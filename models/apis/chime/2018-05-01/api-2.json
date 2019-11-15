@@ -70,6 +70,24 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "BatchCreateRoomMembership":{
+      "name":"BatchCreateRoomMembership",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{accountId}/rooms/{roomId}/memberships?operation=batch-create",
+        "responseCode":201
+      },
+      "input":{"shape":"BatchCreateRoomMembershipRequest"},
+      "output":{"shape":"BatchCreateRoomMembershipResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "BatchDeletePhoneNumber":{
       "name":"BatchDeletePhoneNumber",
       "http":{
@@ -223,6 +241,45 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "CreateRoom":{
+      "name":"CreateRoom",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{accountId}/rooms",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateRoomRequest"},
+      "output":{"shape":"CreateRoomResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "CreateRoomMembership":{
+      "name":"CreateRoomMembership",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{accountId}/rooms/{roomId}/memberships",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateRoomMembershipRequest"},
+      "output":{"shape":"CreateRoomMembershipResponse"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "CreateVoiceConnector":{
       "name":"CreateVoiceConnector",
       "http":{
@@ -314,6 +371,40 @@
         {"shape":"ForbiddenException"},
         {"shape":"BadRequestException"},
         {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "DeleteRoom":{
+      "name":"DeleteRoom",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/accounts/{accountId}/rooms/{roomId}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteRoomRequest"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "DeleteRoomMembership":{
+      "name":"DeleteRoomMembership",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/accounts/{accountId}/rooms/{roomId}/memberships/{memberId}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteRoomMembershipRequest"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
@@ -629,6 +720,24 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "GetRoom":{
+      "name":"GetRoom",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{accountId}/rooms/{roomId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetRoomRequest"},
+      "output":{"shape":"GetRoomResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "GetUser":{
       "name":"GetUser",
       "http":{
@@ -886,6 +995,42 @@
         {"shape":"ForbiddenException"},
         {"shape":"BadRequestException"},
         {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "ListRoomMemberships":{
+      "name":"ListRoomMemberships",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{accountId}/rooms/{roomId}/memberships",
+        "responseCode":200
+      },
+      "input":{"shape":"ListRoomMembershipsRequest"},
+      "output":{"shape":"ListRoomMembershipsResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "ListRooms":{
+      "name":"ListRooms",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{accountId}/rooms",
+        "responseCode":200
+      },
+      "input":{"shape":"ListRoomsRequest"},
+      "output":{"shape":"ListRoomsResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
@@ -1282,6 +1427,42 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "UpdateRoom":{
+      "name":"UpdateRoom",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{accountId}/rooms/{roomId}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateRoomRequest"},
+      "output":{"shape":"UpdateRoomResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "UpdateRoomMembership":{
+      "name":"UpdateRoomMembership",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{accountId}/rooms/{roomId}/memberships/{memberId}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateRoomMembershipRequest"},
+      "output":{"shape":"UpdateRoomMembershipResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "UpdateUser":{
       "name":"UpdateUser",
       "http":{
@@ -1485,6 +1666,33 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "BatchCreateRoomMembershipRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "RoomId",
+        "MembershipItemList"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "RoomId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"roomId"
+        },
+        "MembershipItemList":{"shape":"MembershipItemList"}
+      }
+    },
+    "BatchCreateRoomMembershipResponse":{
+      "type":"structure",
+      "members":{
+        "Errors":{"shape":"MemberErrorList"}
+      }
+    },
     "BatchDeletePhoneNumberRequest":{
       "type":"structure",
       "required":["PhoneNumberIds"],
@@ -1625,6 +1833,13 @@
       "type":"list",
       "member":{"shape":"CallingRegion"}
     },
+    "ClientRequestToken":{
+      "type":"string",
+      "max":64,
+      "min":2,
+      "pattern":"[-_a-zA-Z0-9]*",
+      "sensitive":true
+    },
     "ConflictException":{
       "type":"structure",
       "members":{
@@ -1688,6 +1903,59 @@
       "type":"structure",
       "members":{
         "PhoneNumberOrder":{"shape":"PhoneNumberOrder"}
+      }
+    },
+    "CreateRoomMembershipRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "RoomId",
+        "MemberId"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "RoomId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"roomId"
+        },
+        "MemberId":{"shape":"NonEmptyString"},
+        "Role":{"shape":"RoomMembershipRole"}
+      }
+    },
+    "CreateRoomMembershipResponse":{
+      "type":"structure",
+      "members":{
+        "RoomMembership":{"shape":"RoomMembership"}
+      }
+    },
+    "CreateRoomRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "Name"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "Name":{"shape":"SensitiveString"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateRoomResponse":{
+      "type":"structure",
+      "members":{
+        "Room":{"shape":"Room"}
       }
     },
     "CreateVoiceConnectorGroupRequest":{
@@ -1780,6 +2048,50 @@
           "shape":"String",
           "location":"uri",
           "locationName":"phoneNumberId"
+        }
+      }
+    },
+    "DeleteRoomMembershipRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "RoomId",
+        "MemberId"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "RoomId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"roomId"
+        },
+        "MemberId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"memberId"
+        }
+      }
+    },
+    "DeleteRoomRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "RoomId"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "RoomId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"roomId"
         }
       }
     },
@@ -2098,6 +2410,31 @@
       "members":{
         "CallingName":{"shape":"CallingName"},
         "CallingNameUpdatedTimestamp":{"shape":"Iso8601Timestamp"}
+      }
+    },
+    "GetRoomRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "RoomId"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "RoomId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"roomId"
+        }
+      }
+    },
+    "GetRoomResponse":{
+      "type":"structure",
+      "members":{
+        "Room":{"shape":"Room"}
       }
     },
     "GetUserRequest":{
@@ -2456,6 +2793,75 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "ListRoomMembershipsRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "RoomId"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "RoomId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"roomId"
+        },
+        "MaxResults":{
+          "shape":"ResultMax",
+          "location":"querystring",
+          "locationName":"max-results"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"next-token"
+        }
+      }
+    },
+    "ListRoomMembershipsResponse":{
+      "type":"structure",
+      "members":{
+        "RoomMemberships":{"shape":"RoomMembershipList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "ListRoomsRequest":{
+      "type":"structure",
+      "required":["AccountId"],
+      "members":{
+        "AccountId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "MemberId":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"member-id"
+        },
+        "MaxResults":{
+          "shape":"ResultMax",
+          "location":"querystring",
+          "locationName":"max-results"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"next-token"
+        }
+      }
+    },
+    "ListRoomsResponse":{
+      "type":"structure",
+      "members":{
+        "Rooms":{"shape":"RoomList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
     "ListUsersRequest":{
       "type":"structure",
       "required":["AccountId"],
@@ -2579,6 +2985,48 @@
       "type":"structure",
       "members":{
       }
+    },
+    "Member":{
+      "type":"structure",
+      "members":{
+        "MemberId":{"shape":"NonEmptyString"},
+        "MemberType":{"shape":"MemberType"},
+        "Email":{"shape":"SensitiveString"},
+        "FullName":{"shape":"SensitiveString"},
+        "AccountId":{"shape":"NonEmptyString"}
+      }
+    },
+    "MemberError":{
+      "type":"structure",
+      "members":{
+        "MemberId":{"shape":"NonEmptyString"},
+        "ErrorCode":{"shape":"ErrorCode"},
+        "ErrorMessage":{"shape":"String"}
+      }
+    },
+    "MemberErrorList":{
+      "type":"list",
+      "member":{"shape":"MemberError"}
+    },
+    "MemberType":{
+      "type":"string",
+      "enum":[
+        "User",
+        "Bot",
+        "Webhook"
+      ]
+    },
+    "MembershipItem":{
+      "type":"structure",
+      "members":{
+        "MemberId":{"shape":"NonEmptyString"},
+        "Role":{"shape":"RoomMembershipRole"}
+      }
+    },
+    "MembershipItemList":{
+      "type":"list",
+      "member":{"shape":"MembershipItem"},
+      "max":50
     },
     "NonEmptyString":{
       "type":"string",
@@ -2999,6 +3447,42 @@
       "max":99,
       "min":1
     },
+    "Room":{
+      "type":"structure",
+      "members":{
+        "RoomId":{"shape":"NonEmptyString"},
+        "Name":{"shape":"SensitiveString"},
+        "AccountId":{"shape":"NonEmptyString"},
+        "CreatedBy":{"shape":"NonEmptyString"},
+        "CreatedTimestamp":{"shape":"Iso8601Timestamp"},
+        "UpdatedTimestamp":{"shape":"Iso8601Timestamp"}
+      }
+    },
+    "RoomList":{
+      "type":"list",
+      "member":{"shape":"Room"}
+    },
+    "RoomMembership":{
+      "type":"structure",
+      "members":{
+        "RoomId":{"shape":"NonEmptyString"},
+        "Member":{"shape":"Member"},
+        "Role":{"shape":"RoomMembershipRole"},
+        "InvitedBy":{"shape":"NonEmptyString"},
+        "UpdatedTimestamp":{"shape":"Iso8601Timestamp"}
+      }
+    },
+    "RoomMembershipList":{
+      "type":"list",
+      "member":{"shape":"RoomMembership"}
+    },
+    "RoomMembershipRole":{
+      "type":"string",
+      "enum":[
+        "Administrator",
+        "Member"
+      ]
+    },
     "SearchAvailablePhoneNumbersRequest":{
       "type":"structure",
       "members":{
@@ -3261,6 +3745,64 @@
       "required":["CallingName"],
       "members":{
         "CallingName":{"shape":"CallingName"}
+      }
+    },
+    "UpdateRoomMembershipRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "RoomId",
+        "MemberId"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "RoomId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"roomId"
+        },
+        "MemberId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"memberId"
+        },
+        "Role":{"shape":"RoomMembershipRole"}
+      }
+    },
+    "UpdateRoomMembershipResponse":{
+      "type":"structure",
+      "members":{
+        "RoomMembership":{"shape":"RoomMembership"}
+      }
+    },
+    "UpdateRoomRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "RoomId"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "RoomId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"roomId"
+        },
+        "Name":{"shape":"SensitiveString"}
+      }
+    },
+    "UpdateRoomResponse":{
+      "type":"structure",
+      "members":{
+        "Room":{"shape":"Room"}
       }
     },
     "UpdateUserRequest":{

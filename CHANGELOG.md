@@ -1,3 +1,27 @@
+Release v1.25.36 (2019-11-15)
+===
+
+### Service Client Updates
+* `service/chime`: Updates service API, documentation, and paginators
+  * This release adds support for Chime Room Management APIs
+* `service/cognito-idp`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * You can now add tags while copying snapshots. Previously, a user had to first copy the snapshot and then add tags to the copied snapshot manually. Moving forward, you can specify the list of tags you wish to be applied to the copied snapshot as a parameter on the Copy Snapshot API.
+* `service/eks`: Updates service API, documentation, waiters, paginators, and examples
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `service/elasticmapreduce`: Updates service API and documentation
+  * Access to the cluster ARN makes it easier for you to author resource-level permissions policies in AWS Identity and Access Management. To simplify the process of obtaining the cluster ARN, Amazon EMR has added a new field containing the cluster ARN to all API responses that include the cluster ID.
+* `service/guardduty`: Updates service API, documentation, and paginators
+  * This release includes new operations related to findings export, including: CreatePublishingDestination, UpdatePublishingDestination, DescribePublishingDestination, DeletePublishingDestination and ListPublishingDestinations.
+* `service/logs`: Updates service documentation
+  * Documentation updates for logs
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added support for DolbyVision encoding, and SCTE35 & ESAM insertion to DASH ISO EMSG.
+* `service/ssm`: Updates service documentation
+  * This release updates AWS Systems Manager Parameter Store documentation for the enhanced search capability.
+* `service/workspaces`: Updates service API and documentation
+  * Added APIs to register your directories with Amazon WorkSpaces and to modify directory details.
+
 Release v1.25.35 (2019-11-14)
 ===
 

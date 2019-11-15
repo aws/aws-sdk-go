@@ -96,6 +96,20 @@
         {"shape":"InternalServerErrorException"}
       ]
     },
+    "CreatePublishingDestination":{
+      "name":"CreatePublishingDestination",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/publishingDestination",
+        "responseCode":200
+      },
+      "input":{"shape":"CreatePublishingDestinationRequest"},
+      "output":{"shape":"CreatePublishingDestinationResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
     "CreateSampleFindings":{
       "name":"CreateSampleFindings",
       "http":{
@@ -208,6 +222,20 @@
         {"shape":"InternalServerErrorException"}
       ]
     },
+    "DeletePublishingDestination":{
+      "name":"DeletePublishingDestination",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/detector/{detectorId}/publishingDestination/{destinationId}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeletePublishingDestinationRequest"},
+      "output":{"shape":"DeletePublishingDestinationResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
     "DeleteThreatIntelSet":{
       "name":"DeleteThreatIntelSet",
       "http":{
@@ -217,6 +245,20 @@
       },
       "input":{"shape":"DeleteThreatIntelSetRequest"},
       "output":{"shape":"DeleteThreatIntelSetResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
+    "DescribePublishingDestination":{
+      "name":"DescribePublishingDestination",
+      "http":{
+        "method":"GET",
+        "requestUri":"/detector/{detectorId}/publishingDestination/{destinationId}",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribePublishingDestinationRequest"},
+      "output":{"shape":"DescribePublishingDestinationResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"InternalServerErrorException"}
@@ -474,6 +516,20 @@
         {"shape":"InternalServerErrorException"}
       ]
     },
+    "ListPublishingDestinations":{
+      "name":"ListPublishingDestinations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/detector/{detectorId}/publishingDestination",
+        "responseCode":200
+      },
+      "input":{"shape":"ListPublishingDestinationsRequest"},
+      "output":{"shape":"ListPublishingDestinationsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
       "http":{
@@ -623,6 +679,20 @@
       },
       "input":{"shape":"UpdateIPSetRequest"},
       "output":{"shape":"UpdateIPSetResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
+    "UpdatePublishingDestination":{
+      "name":"UpdatePublishingDestination",
+      "http":{
+        "method":"POST",
+        "requestUri":"/detector/{detectorId}/publishingDestination/{destinationId}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdatePublishingDestinationRequest"},
+      "output":{"shape":"UpdatePublishingDestinationResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"InternalServerErrorException"}
@@ -1073,6 +1143,44 @@
         }
       }
     },
+    "CreatePublishingDestinationRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "DestinationType",
+        "DestinationProperties"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "DestinationType":{
+          "shape":"DestinationType",
+          "locationName":"destinationType"
+        },
+        "DestinationProperties":{
+          "shape":"DestinationProperties",
+          "locationName":"destinationProperties"
+        },
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "locationName":"clientToken"
+        }
+      }
+    },
+    "CreatePublishingDestinationResponse":{
+      "type":"structure",
+      "required":["DestinationId"],
+      "members":{
+        "DestinationId":{
+          "shape":"String",
+          "locationName":"destinationId"
+        }
+      }
+    },
     "CreateSampleFindingsRequest":{
       "type":"structure",
       "required":["DetectorId"],
@@ -1282,6 +1390,30 @@
         }
       }
     },
+    "DeletePublishingDestinationRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "DestinationId"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "DestinationId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"destinationId"
+        }
+      }
+    },
+    "DeletePublishingDestinationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteThreatIntelSetRequest":{
       "type":"structure",
       "required":[
@@ -1305,6 +1437,102 @@
       "type":"structure",
       "members":{
       }
+    },
+    "DescribePublishingDestinationRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "DestinationId"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "DestinationId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"destinationId"
+        }
+      }
+    },
+    "DescribePublishingDestinationResponse":{
+      "type":"structure",
+      "required":[
+        "DestinationId",
+        "DestinationType",
+        "Status",
+        "PublishingFailureStartTimestamp",
+        "DestinationProperties"
+      ],
+      "members":{
+        "DestinationId":{
+          "shape":"String",
+          "locationName":"destinationId"
+        },
+        "DestinationType":{
+          "shape":"DestinationType",
+          "locationName":"destinationType"
+        },
+        "Status":{
+          "shape":"PublishingStatus",
+          "locationName":"status"
+        },
+        "PublishingFailureStartTimestamp":{
+          "shape":"Long",
+          "locationName":"publishingFailureStartTimestamp"
+        },
+        "DestinationProperties":{
+          "shape":"DestinationProperties",
+          "locationName":"destinationProperties"
+        }
+      }
+    },
+    "Destination":{
+      "type":"structure",
+      "required":[
+        "DestinationId",
+        "DestinationType",
+        "Status"
+      ],
+      "members":{
+        "DestinationId":{
+          "shape":"String",
+          "locationName":"destinationId"
+        },
+        "DestinationType":{
+          "shape":"DestinationType",
+          "locationName":"destinationType"
+        },
+        "Status":{
+          "shape":"PublishingStatus",
+          "locationName":"status"
+        }
+      }
+    },
+    "DestinationProperties":{
+      "type":"structure",
+      "members":{
+        "DestinationArn":{
+          "shape":"String",
+          "locationName":"destinationArn"
+        },
+        "KmsKeyArn":{
+          "shape":"String",
+          "locationName":"kmsKeyArn"
+        }
+      }
+    },
+    "DestinationType":{
+      "type":"string",
+      "enum":["S3"],
+      "max":300,
+      "min":1
+    },
+    "Destinations":{
+      "type":"list",
+      "member":{"shape":"Destination"}
     },
     "DetectorId":{
       "type":"string",
@@ -2326,6 +2554,41 @@
         }
       }
     },
+    "ListPublishingDestinationsRequest":{
+      "type":"structure",
+      "required":["DetectorId"],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListPublishingDestinationsResponse":{
+      "type":"structure",
+      "required":["Destinations"],
+      "members":{
+        "Destinations":{
+          "shape":"Destinations",
+          "locationName":"destinations"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
     "ListTagsForResourceRequest":{
       "type":"structure",
       "required":["ResourceArn"],
@@ -2654,6 +2917,17 @@
     "ProductCodes":{
       "type":"list",
       "member":{"shape":"ProductCode"}
+    },
+    "PublishingStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING_VERIFICATION",
+        "PUBLISHING",
+        "UNABLE_TO_PUBLISH_FIX_DESTINATION_PROPERTY",
+        "STOPPED"
+      ],
+      "max":300,
+      "min":1
     },
     "RemoteIpDetails":{
       "type":"structure",
@@ -3162,6 +3436,34 @@
       }
     },
     "UpdateIPSetResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdatePublishingDestinationRequest":{
+      "type":"structure",
+      "required":[
+        "DetectorId",
+        "DestinationId"
+      ],
+      "members":{
+        "DetectorId":{
+          "shape":"DetectorId",
+          "location":"uri",
+          "locationName":"detectorId"
+        },
+        "DestinationId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"destinationId"
+        },
+        "DestinationProperties":{
+          "shape":"DestinationProperties",
+          "locationName":"destinationProperties"
+        }
+      }
+    },
+    "UpdatePublishingDestinationResponse":{
       "type":"structure",
       "members":{
       }

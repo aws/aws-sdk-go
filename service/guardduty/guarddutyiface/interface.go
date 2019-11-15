@@ -84,6 +84,10 @@ type GuardDutyAPI interface {
 	CreateMembersWithContext(aws.Context, *guardduty.CreateMembersInput, ...request.Option) (*guardduty.CreateMembersOutput, error)
 	CreateMembersRequest(*guardduty.CreateMembersInput) (*request.Request, *guardduty.CreateMembersOutput)
 
+	CreatePublishingDestination(*guardduty.CreatePublishingDestinationInput) (*guardduty.CreatePublishingDestinationOutput, error)
+	CreatePublishingDestinationWithContext(aws.Context, *guardduty.CreatePublishingDestinationInput, ...request.Option) (*guardduty.CreatePublishingDestinationOutput, error)
+	CreatePublishingDestinationRequest(*guardduty.CreatePublishingDestinationInput) (*request.Request, *guardduty.CreatePublishingDestinationOutput)
+
 	CreateSampleFindings(*guardduty.CreateSampleFindingsInput) (*guardduty.CreateSampleFindingsOutput, error)
 	CreateSampleFindingsWithContext(aws.Context, *guardduty.CreateSampleFindingsInput, ...request.Option) (*guardduty.CreateSampleFindingsOutput, error)
 	CreateSampleFindingsRequest(*guardduty.CreateSampleFindingsInput) (*request.Request, *guardduty.CreateSampleFindingsOutput)
@@ -116,9 +120,17 @@ type GuardDutyAPI interface {
 	DeleteMembersWithContext(aws.Context, *guardduty.DeleteMembersInput, ...request.Option) (*guardduty.DeleteMembersOutput, error)
 	DeleteMembersRequest(*guardduty.DeleteMembersInput) (*request.Request, *guardduty.DeleteMembersOutput)
 
+	DeletePublishingDestination(*guardduty.DeletePublishingDestinationInput) (*guardduty.DeletePublishingDestinationOutput, error)
+	DeletePublishingDestinationWithContext(aws.Context, *guardduty.DeletePublishingDestinationInput, ...request.Option) (*guardduty.DeletePublishingDestinationOutput, error)
+	DeletePublishingDestinationRequest(*guardduty.DeletePublishingDestinationInput) (*request.Request, *guardduty.DeletePublishingDestinationOutput)
+
 	DeleteThreatIntelSet(*guardduty.DeleteThreatIntelSetInput) (*guardduty.DeleteThreatIntelSetOutput, error)
 	DeleteThreatIntelSetWithContext(aws.Context, *guardduty.DeleteThreatIntelSetInput, ...request.Option) (*guardduty.DeleteThreatIntelSetOutput, error)
 	DeleteThreatIntelSetRequest(*guardduty.DeleteThreatIntelSetInput) (*request.Request, *guardduty.DeleteThreatIntelSetOutput)
+
+	DescribePublishingDestination(*guardduty.DescribePublishingDestinationInput) (*guardduty.DescribePublishingDestinationOutput, error)
+	DescribePublishingDestinationWithContext(aws.Context, *guardduty.DescribePublishingDestinationInput, ...request.Option) (*guardduty.DescribePublishingDestinationOutput, error)
+	DescribePublishingDestinationRequest(*guardduty.DescribePublishingDestinationInput) (*request.Request, *guardduty.DescribePublishingDestinationOutput)
 
 	DisassociateFromMasterAccount(*guardduty.DisassociateFromMasterAccountInput) (*guardduty.DisassociateFromMasterAccountOutput, error)
 	DisassociateFromMasterAccountWithContext(aws.Context, *guardduty.DisassociateFromMasterAccountInput, ...request.Option) (*guardduty.DisassociateFromMasterAccountOutput, error)
@@ -210,6 +222,13 @@ type GuardDutyAPI interface {
 	ListMembersPages(*guardduty.ListMembersInput, func(*guardduty.ListMembersOutput, bool) bool) error
 	ListMembersPagesWithContext(aws.Context, *guardduty.ListMembersInput, func(*guardduty.ListMembersOutput, bool) bool, ...request.Option) error
 
+	ListPublishingDestinations(*guardduty.ListPublishingDestinationsInput) (*guardduty.ListPublishingDestinationsOutput, error)
+	ListPublishingDestinationsWithContext(aws.Context, *guardduty.ListPublishingDestinationsInput, ...request.Option) (*guardduty.ListPublishingDestinationsOutput, error)
+	ListPublishingDestinationsRequest(*guardduty.ListPublishingDestinationsInput) (*request.Request, *guardduty.ListPublishingDestinationsOutput)
+
+	ListPublishingDestinationsPages(*guardduty.ListPublishingDestinationsInput, func(*guardduty.ListPublishingDestinationsOutput, bool) bool) error
+	ListPublishingDestinationsPagesWithContext(aws.Context, *guardduty.ListPublishingDestinationsInput, func(*guardduty.ListPublishingDestinationsOutput, bool) bool, ...request.Option) error
+
 	ListTagsForResource(*guardduty.ListTagsForResourceInput) (*guardduty.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *guardduty.ListTagsForResourceInput, ...request.Option) (*guardduty.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*guardduty.ListTagsForResourceInput) (*request.Request, *guardduty.ListTagsForResourceOutput)
@@ -256,6 +275,10 @@ type GuardDutyAPI interface {
 	UpdateIPSet(*guardduty.UpdateIPSetInput) (*guardduty.UpdateIPSetOutput, error)
 	UpdateIPSetWithContext(aws.Context, *guardduty.UpdateIPSetInput, ...request.Option) (*guardduty.UpdateIPSetOutput, error)
 	UpdateIPSetRequest(*guardduty.UpdateIPSetInput) (*request.Request, *guardduty.UpdateIPSetOutput)
+
+	UpdatePublishingDestination(*guardduty.UpdatePublishingDestinationInput) (*guardduty.UpdatePublishingDestinationOutput, error)
+	UpdatePublishingDestinationWithContext(aws.Context, *guardduty.UpdatePublishingDestinationInput, ...request.Option) (*guardduty.UpdatePublishingDestinationOutput, error)
+	UpdatePublishingDestinationRequest(*guardduty.UpdatePublishingDestinationInput) (*request.Request, *guardduty.UpdatePublishingDestinationOutput)
 
 	UpdateThreatIntelSet(*guardduty.UpdateThreatIntelSetInput) (*guardduty.UpdateThreatIntelSetOutput, error)
 	UpdateThreatIntelSetWithContext(aws.Context, *guardduty.UpdateThreatIntelSetInput, ...request.Option) (*guardduty.UpdateThreatIntelSetOutput, error)

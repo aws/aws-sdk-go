@@ -20,7 +20,7 @@
     "ListInstanceGroups": "<p>Provides all available details about the instance groups in a cluster.</p>",
     "ListInstances": "<p>Provides information for all active EC2 instances and EC2 instances terminated in the last 30 days, up to a maximum of 2,000. EC2 instances in any of the following states are considered active: AWAITING_FULFILLMENT, PROVISIONING, BOOTSTRAPPING, RUNNING.</p>",
     "ListSecurityConfigurations": "<p>Lists all the security configurations visible to this account, providing their creation dates and times, and their names. This call returns a maximum of 50 clusters per call, but returns a marker to track the paging of the cluster list across multiple ListSecurityConfigurations calls.</p>",
-    "ListSteps": "<p>Provides a list of steps for the cluster in reverse order unless you specify stepIds with the request.</p>",
+    "ListSteps": "<p>Provides a list of steps for the cluster in reverse order unless you specify <code>stepIds</code> with the request of filter by <code>StepStates</code>. You can specify a maximum of ten <code>stepIDs</code>.</p>",
     "ModifyInstanceFleet": "<p>Modifies the target On-Demand and target Spot capacities for the instance fleet with the specified InstanceFleetID within the cluster specified using ClusterID. The call either succeeds or fails atomically.</p> <note> <p>The instance fleet configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x versions.</p> </note>",
     "ModifyInstanceGroups": "<p>ModifyInstanceGroups modifies the number of nodes and configuration settings of an instance group. The input parameters include the new target instance count for the group and the instance group ID. The call will either succeed or fail atomically.</p>",
     "PutAutoScalingPolicy": "<p>Creates or updates an automatic scaling policy for a core instance group or task instance group in an Amazon EMR cluster. The automatic scaling policy defines how an instance group dynamically adds and terminates EC2 instances in response to the value of a CloudWatch metric.</p>",
@@ -29,7 +29,7 @@
     "RemoveTags": "<p>Removes tags from an Amazon EMR resource. Tags make it easier to associate clusters in various ways, such as grouping clusters to track your Amazon EMR resource allocation costs. For more information, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-tags.html\">Tag Clusters</a>. </p> <p>The following example removes the stack tag with value Prod from a cluster:</p>",
     "RunJobFlow": "<p>RunJobFlow creates and starts running a new cluster (job flow). The cluster runs the steps specified. After the steps complete, the cluster stops and the HDFS partition is lost. To prevent loss of data, configure the last step of the job flow to store results in Amazon S3. If the <a>JobFlowInstancesConfig</a> <code>KeepJobFlowAliveWhenNoSteps</code> parameter is set to <code>TRUE</code>, the cluster transitions to the WAITING state rather than shutting down after the steps have completed. </p> <p>For additional protection, you can set the <a>JobFlowInstancesConfig</a> <code>TerminationProtected</code> parameter to <code>TRUE</code> to lock the cluster and prevent it from being terminated by API call, user intervention, or in the event of a job flow error.</p> <p>A maximum of 256 steps are allowed in each job flow.</p> <p>If your cluster is long-running (such as a Hive data warehouse) or complex, you may require more than 256 steps to process your data. You can bypass the 256-step limitation in various ways, including using the SSH shell to connect to the master node and submitting queries directly to the software running on the master node, such as Hive and Hadoop. For more information on how to do this, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/AddMoreThan256Steps.html\">Add More than 256 Steps to a Cluster</a> in the <i>Amazon EMR Management Guide</i>.</p> <p>For long running clusters, we recommend that you periodically store your results.</p> <note> <p>The instance fleets configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x versions. The RunJobFlow request can contain InstanceFleets parameters or InstanceGroups parameters, but not both.</p> </note>",
     "SetTerminationProtection": "<p>SetTerminationProtection locks a cluster (job flow) so the EC2 instances in the cluster cannot be terminated by user intervention, an API call, or in the event of a job-flow error. The cluster still terminates upon successful completion of the job flow. Calling <code>SetTerminationProtection</code> on a cluster is similar to calling the Amazon EC2 <code>DisableAPITermination</code> API on all EC2 instances in a cluster.</p> <p> <code>SetTerminationProtection</code> is used to prevent accidental termination of a cluster and to ensure that in the event of an error, the instances persist so that you can recover any data stored in their ephemeral instance storage.</p> <p> To terminate a cluster that has been locked by setting <code>SetTerminationProtection</code> to <code>true</code>, you must first unlock the job flow by a subsequent call to <code>SetTerminationProtection</code> in which you set the value to <code>false</code>. </p> <p> For more information, see<a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/UsingEMR_TerminationProtection.html\">Managing Cluster Termination</a> in the <i>Amazon EMR Management Guide</i>. </p>",
-    "SetVisibleToAllUsers": "<p> <i>This member will be deprecated.</i> </p> <p>Sets whether all AWS Identity and Access Management (IAM) users under your account can access the specified clusters (job flows). This action works on running clusters. You can also set the visibility of a cluster when you launch it using the <code>VisibleToAllUsers</code> parameter of <a>RunJobFlow</a>. The SetVisibleToAllUsers action can be called only by an IAM user who created the cluster or the AWS account that owns the cluster.</p>",
+    "SetVisibleToAllUsers": "<p>Sets the <a>Cluster$VisibleToAllUsers</a> value, which determines whether the cluster is visible to all IAM users of the AWS account associated with the cluster. Only the IAM user who created the cluster or the AWS account root user can call this action. The default value, <code>true</code>, indicates that all IAM users in the AWS account can perform cluster actions if they have the proper IAM policy permissions. If set to <code>false</code>, only the IAM user that created the cluster can perform actions. This action works on running clusters. You can override the default <code>true</code> setting when you create a cluster by using the <code>VisibleToAllUsers</code> parameter with <code>RunJobFlow</code>.</p>",
     "TerminateJobFlows": "<p>TerminateJobFlows shuts a list of clusters (job flows) down. When a job flow is shut down, any step not yet completed is canceled and the EC2 instances on which the cluster is running are stopped. Any log files not already saved are uploaded to Amazon S3 if a LogUri was specified when the cluster was created.</p> <p>The maximum number of clusters allowed is 10. The call to <code>TerminateJobFlows</code> is asynchronous. Depending on the configuration of the cluster, it may take up to 1-5 minutes for the cluster to completely terminate and release allocated resources, such as Amazon EC2 instances.</p>"
   },
   "shapes": {
@@ -103,7 +103,13 @@
     "ArnType": {
       "base": null,
       "refs": {
-        "BlockPublicAccessConfigurationMetadata$CreatedByArn": "<p>The Amazon Resource Name that created or last modified the configuration.</p>"
+        "AddInstanceFleetOutput$ClusterArn": "<p>The Amazon Resource Name of the cluster.</p>",
+        "AddInstanceGroupsOutput$ClusterArn": "<p>The Amazon Resource Name of the cluster.</p>",
+        "BlockPublicAccessConfigurationMetadata$CreatedByArn": "<p>The Amazon Resource Name that created or last modified the configuration.</p>",
+        "Cluster$ClusterArn": "<p>The Amazon Resource Name of the cluster.</p>",
+        "ClusterSummary$ClusterArn": "<p>The Amazon Resource Name of the cluster.</p>",
+        "PutAutoScalingPolicyOutput$ClusterArn": "<p>The Amazon Resource Name of the cluster.</p>",
+        "RunJobFlowOutput$ClusterArn": "<p>The Amazon Resource Name of the cluster.</p>"
       }
     },
     "AutoScalingPolicy": {
@@ -163,15 +169,15 @@
         "BlockPublicAccessConfiguration$BlockPublicSecurityGroupRules": "<p>Indicates whether EMR block public access is enabled (<code>true</code>) or disabled (<code>false</code>). By default, the value is <code>false</code> for accounts that have created EMR clusters before July 2019. For accounts created after this, the default is <code>true</code>.</p>",
         "Cluster$AutoTerminate": "<p>Specifies whether the cluster should terminate after completing all steps.</p>",
         "Cluster$TerminationProtected": "<p>Indicates whether Amazon EMR will lock the cluster to prevent the EC2 instances from being terminated by an API call or user intervention, or in the event of a cluster error.</p>",
-        "Cluster$VisibleToAllUsers": "<p> <i>This member will be deprecated.</i> </p> <p>Indicates whether the cluster is visible to all IAM users of the AWS account associated with the cluster. If this value is set to <code>true</code>, all IAM users of that AWS account can view and manage the cluster if they have the proper policy permissions set. If this value is <code>false</code>, only the IAM user that created the cluster can view and manage it. This value can be changed using the <a>SetVisibleToAllUsers</a> action.</p>",
-        "JobFlowDetail$VisibleToAllUsers": "<p> <i>This member will be deprecated.</i> </p> <p>Specifies whether the cluster is visible to all IAM users of the AWS account associated with the cluster. If this value is set to <code>true</code>, all IAM users of that AWS account can view and (if they have the proper policy permissions set) manage the cluster. If it is set to <code>false</code>, only the IAM user that created the cluster can view and manage it. This value can be changed using the <a>SetVisibleToAllUsers</a> action.</p>",
+        "Cluster$VisibleToAllUsers": "<p>Indicates whether the cluster is visible to all IAM users of the AWS account associated with the cluster. The default value, <code>true</code>, indicates that all IAM users in the AWS account can perform cluster actions if they have the proper IAM policy permissions. If this value is <code>false</code>, only the IAM user that created the cluster can perform actions. This value can be changed on a running cluster by using the <a>SetVisibleToAllUsers</a> action. You can override the default value of <code>true</code> when you create a cluster by using the <code>VisibleToAllUsers</code> parameter of the <code>RunJobFlow</code> action.</p>",
+        "JobFlowDetail$VisibleToAllUsers": "<p>Indicates whether the cluster is visible to all IAM users of the AWS account associated with the cluster. The default value, <code>true</code>, indicates that all IAM users in the AWS account can perform cluster actions if they have the proper IAM policy permissions. If this value is <code>false</code>, only the IAM user that created the cluster can perform actions. This value can be changed on a running cluster by using the <a>SetVisibleToAllUsers</a> action. You can override the default value of <code>true</code> when you create a cluster by using the <code>VisibleToAllUsers</code> parameter of the <code>RunJobFlow</code> action.</p>",
         "JobFlowInstancesConfig$KeepJobFlowAliveWhenNoSteps": "<p>Specifies whether the cluster should remain available after completing all steps.</p>",
         "JobFlowInstancesConfig$TerminationProtected": "<p>Specifies whether to lock the cluster to prevent the Amazon EC2 instances from being terminated by API call, user intervention, or in the event of a job-flow error.</p>",
         "JobFlowInstancesDetail$KeepJobFlowAliveWhenNoSteps": "<p>Specifies whether the cluster should remain available after completing all steps.</p>",
         "JobFlowInstancesDetail$TerminationProtected": "<p>Specifies whether the Amazon EC2 instances in the cluster are protected from termination by API calls, user intervention, or in the event of a job-flow error.</p>",
-        "RunJobFlowInput$VisibleToAllUsers": "<p> <i>This member will be deprecated.</i> </p> <p>Whether the cluster is visible to all IAM users of the AWS account associated with the cluster. If this value is set to <code>true</code>, all IAM users of that AWS account can view and (if they have the proper policy permissions set) manage the cluster. If it is set to <code>false</code>, only the IAM user that created the cluster can view and manage it.</p>",
+        "RunJobFlowInput$VisibleToAllUsers": "<p>A value of <code>true</code> indicates that all IAM users in the AWS account can perform cluster actions if they have the proper IAM policy permissions. This is the default. A value of <code>false</code> indicates that only the IAM user who created the cluster can perform actions.</p>",
         "SetTerminationProtectionInput$TerminationProtected": "<p>A Boolean that indicates whether to protect the cluster and prevent the Amazon EC2 instances in the cluster from shutting down due to API calls, user intervention, or job-flow error.</p>",
-        "SetVisibleToAllUsersInput$VisibleToAllUsers": "<p> <i>This member will be deprecated.</i> </p> <p>Whether the specified clusters are visible to all IAM users of the AWS account associated with the cluster. If this value is set to True, all IAM users of that AWS account can view and, if they have the proper IAM policy permissions set, manage the clusters. If it is set to False, only the IAM user that created a cluster can view and manage it.</p>"
+        "SetVisibleToAllUsersInput$VisibleToAllUsers": "<p>A value of <code>true</code> indicates that all IAM users in the AWS account can perform cluster actions if they have the proper IAM policy permissions. This is the default. A value of <code>false</code> indicates that only the IAM user who created the cluster can perform actions.</p>"
       }
     },
     "BooleanObject": {
@@ -872,7 +878,7 @@
     "Integer": {
       "base": null,
       "refs": {
-        "CloudWatchAlarmDefinition$EvaluationPeriods": "<p>The number of periods, expressed in seconds using <code>Period</code>, during which the alarm condition must exist before the alarm triggers automatic scaling activity. The default value is <code>1</code>.</p>",
+        "CloudWatchAlarmDefinition$EvaluationPeriods": "<p>The number of periods, in five-minute increments, during which the alarm condition must exist before the alarm triggers automatic scaling activity. The default value is <code>1</code>.</p>",
         "CloudWatchAlarmDefinition$Period": "<p>The period, in seconds, over which the statistic is applied. EMR CloudWatch metrics are emitted every five minutes (300 seconds), so if an EMR CloudWatch metric is specified, specify <code>300</code>.</p>",
         "Cluster$NormalizedInstanceHours": "<p>An approximation of the cost of the cluster, represented in m1.small/hours. This value is incremented one time for every hour an m1.small instance runs. Larger instances are weighted more, so an EC2 instance that is roughly four times more expensive would result in the normalized instance hours being incremented by four. This result is only an approximation and does not reflect the actual billing rate.</p>",
         "Cluster$EbsRootVolumeSize": "<p>The size, in GiB, of the EBS root device volume of the Linux AMI that is used for each EC2 instance. Available in Amazon EMR version 4.x and later.</p>",
@@ -1278,7 +1284,7 @@
       }
     },
     "SetVisibleToAllUsersInput": {
-      "base": "<p> <i>This member will be deprecated.</i> </p> <p>The input to the SetVisibleToAllUsers action.</p>",
+      "base": "<p>The input to the SetVisibleToAllUsers action.</p>",
       "refs": {
       }
     },
@@ -1468,7 +1474,7 @@
         "Instance$InstanceGroupId": "<p>The identifier of the instance group to which this instance belongs.</p>",
         "InstanceFleetStateChangeReason$Message": "<p>An explanatory message.</p>",
         "InstanceGroup$Name": "<p>The name of the instance group.</p>",
-        "InstanceGroup$BidPrice": "<p>The maximum Spot price your are willing to pay for EC2 instances.</p> <p>An optional, nullable field that applies if the <code>MarketType</code> for the instance group is specified as <code>SPOT</code>. Specify the maximum spot price in USD. If the value is NULL and <code>SPOT</code> is specified, the maximum Spot price is set equal to the On-Demand price.</p>",
+        "InstanceGroup$BidPrice": "<p>The bid price for each EC2 Spot instance type as defined by <code>InstanceType</code>. Expressed in USD. If neither <code>BidPrice</code> nor <code>BidPriceAsPercentageOfOnDemandPrice</code> is provided, <code>BidPriceAsPercentageOfOnDemandPrice</code> defaults to 100%.</p>",
         "InstanceGroupStateChangeReason$Message": "<p>The status change reason description.</p>",
         "InstanceStateChangeReason$Message": "<p>The status change reason description.</p>",
         "MetricDimension$Key": "<p>The dimension name.</p>",
@@ -1607,10 +1613,10 @@
       "refs": {
         "DescribeJobFlowsInput$JobFlowIds": "<p>Return only job flows whose job flow ID is contained in this list.</p>",
         "HadoopJarStepConfig$Args": "<p>A list of command line arguments passed to the JAR file's main function when executed.</p>",
-        "ListStepsInput$StepIds": "<p>The filter to limit the step list based on the identifier of the steps.</p>",
+        "ListStepsInput$StepIds": "<p>The filter to limit the step list based on the identifier of the steps. You can specify a maximum of ten Step IDs. The character constraint applies to the overall length of the array.</p>",
         "ScriptBootstrapActionConfig$Args": "<p>A list of command line arguments to pass to the bootstrap action script.</p>",
         "SetTerminationProtectionInput$JobFlowIds": "<p> A list of strings that uniquely identify the clusters to protect. This identifier is returned by <a>RunJobFlow</a> and can also be obtained from <a>DescribeJobFlows</a> . </p>",
-        "SetVisibleToAllUsersInput$JobFlowIds": "<p>Identifiers of the job flows to receive the new visibility setting.</p>",
+        "SetVisibleToAllUsersInput$JobFlowIds": "<p>The unique identifier of the job flow (cluster).</p>",
         "SupportedProductConfig$Args": "<p>The list of user-supplied arguments.</p>",
         "TerminateJobFlowsInput$JobFlowIds": "<p>A list of job flows to be shutdown.</p>"
       }
@@ -1629,10 +1635,10 @@
         "InstanceFleet$Name": "<p>A friendly name for the instance fleet.</p>",
         "InstanceFleetConfig$Name": "<p>The friendly name of the instance fleet.</p>",
         "InstanceGroupConfig$Name": "<p>Friendly name given to the instance group.</p>",
-        "InstanceGroupConfig$BidPrice": "<p>The maximum Spot price your are willing to pay for EC2 instances.</p> <p>An optional, nullable field that applies if the <code>MarketType</code> for the instance group is specified as <code>SPOT</code>. Specify the maximum spot price in USD. If the value is NULL and <code>SPOT</code> is specified, the maximum Spot price is set equal to the On-Demand price.</p>",
+        "InstanceGroupConfig$BidPrice": "<p>The bid price for each EC2 Spot instance type as defined by <code>InstanceType</code>. Expressed in USD. If neither <code>BidPrice</code> nor <code>BidPriceAsPercentageOfOnDemandPrice</code> is provided, <code>BidPriceAsPercentageOfOnDemandPrice</code> defaults to 100%.</p>",
         "InstanceGroupDetail$InstanceGroupId": "<p>Unique identifier for the instance group.</p>",
         "InstanceGroupDetail$Name": "<p>Friendly name for the instance group.</p>",
-        "InstanceGroupDetail$BidPrice": "<p>The maximum Spot price your are willing to pay for EC2 instances.</p> <p>An optional, nullable field that applies if the <code>MarketType</code> for the instance group is specified as <code>SPOT</code>. Specified in USD. If the value is NULL and <code>SPOT</code> is specified, the maximum Spot price is set equal to the On-Demand price.</p>",
+        "InstanceGroupDetail$BidPrice": "<p>The bid price for each EC2 Spot instance type as defined by <code>InstanceType</code>. Expressed in USD. If neither <code>BidPrice</code> nor <code>BidPriceAsPercentageOfOnDemandPrice</code> is provided, <code>BidPriceAsPercentageOfOnDemandPrice</code> defaults to 100%.</p>",
         "InstanceGroupIdsList$member": null,
         "InstanceGroupModifyConfig$InstanceGroupId": "<p>Unique ID of the instance group to expand or shrink.</p>",
         "InstanceTypeConfig$BidPrice": "<p>The bid price for each EC2 Spot instance type as defined by <code>InstanceType</code>. Expressed in USD. If neither <code>BidPrice</code> nor <code>BidPriceAsPercentageOfOnDemandPrice</code> is provided, <code>BidPriceAsPercentageOfOnDemandPrice</code> defaults to 100%. </p>",

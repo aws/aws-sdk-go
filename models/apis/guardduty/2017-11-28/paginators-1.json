@@ -36,6 +36,11 @@
       "limit_key": "MaxResults",
       "result_key": "Members"
     },
+    "ListPublishingDestinations": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
     "ListThreatIntelSets": {
       "input_token": "NextToken",
       "output_token": "NextToken",
