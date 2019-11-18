@@ -2430,8 +2430,6 @@ type GetCostAndUsageInput struct {
 	// Sets the AWS cost granularity to MONTHLY or DAILY, or HOURLY. If Granularity
 	// isn't set, the response object doesn't include the Granularity, either MONTHLY
 	// or DAILY, or HOURLY.
-	//
-	// The GetCostAndUsageRequest operation supports only DAILY and MONTHLY granularities.
 	Granularity *string `type:"string" enum:"Granularity"`
 
 	// You can group AWS costs using up to two different groups, either dimensions,
@@ -2440,7 +2438,7 @@ type GetCostAndUsageInput struct {
 	// When you group by tag key, you get all tag values, including empty strings.
 	//
 	// Valid values are AZ, INSTANCE_TYPE, LEGAL_ENTITY_NAME, LINKED_ACCOUNT, OPERATION,
-	// PLATFORM, PURCHASE_TYPE, SERVICE, TAGS, TENANCY, and USAGE_TYPE.
+	// PLATFORM, PURCHASE_TYPE, SERVICE, TAGS, TENANCY, RECORD_TYPE, and USAGE_TYPE.
 	GroupBy []*GroupDefinition `type:"list"`
 
 	// Which metrics are returned in the query. For more information about blended
@@ -6229,6 +6227,11 @@ type SavingsPlansPurchaseRecommendationDetail struct {
 	// Savings Plans, over the length of the lookback period.
 	EstimatedOnDemandCost *string `type:"string"`
 
+	// The estimated On-Demand costs you would expect with no additional commitment,
+	// based on your usage of the selected time period and the Savings Plans you
+	// own.
+	EstimatedOnDemandCostWithCurrentCommitment *string `type:"string"`
+
 	// The estimated return on investment based on the recommended Savings Plans
 	// purchased. This is calculated as estimatedSavingsAmount/ estimatedSPCost*100.
 	EstimatedROI *string `type:"string"`
@@ -6312,6 +6315,12 @@ func (s *SavingsPlansPurchaseRecommendationDetail) SetEstimatedMonthlySavingsAmo
 // SetEstimatedOnDemandCost sets the EstimatedOnDemandCost field's value.
 func (s *SavingsPlansPurchaseRecommendationDetail) SetEstimatedOnDemandCost(v string) *SavingsPlansPurchaseRecommendationDetail {
 	s.EstimatedOnDemandCost = &v
+	return s
+}
+
+// SetEstimatedOnDemandCostWithCurrentCommitment sets the EstimatedOnDemandCostWithCurrentCommitment field's value.
+func (s *SavingsPlansPurchaseRecommendationDetail) SetEstimatedOnDemandCostWithCurrentCommitment(v string) *SavingsPlansPurchaseRecommendationDetail {
+	s.EstimatedOnDemandCostWithCurrentCommitment = &v
 	return s
 }
 
@@ -6409,6 +6418,11 @@ type SavingsPlansPurchaseRecommendationSummary struct {
 	// purchase.
 	EstimatedMonthlySavingsAmount *string `type:"string"`
 
+	// The estimated On-Demand costs you would expect with no additional commitment,
+	// based on your usage of the selected time period and the Savings Plans you
+	// own.
+	EstimatedOnDemandCostWithCurrentCommitment *string `type:"string"`
+
 	// The estimated return on investment based on the recommended Savings Plans
 	// and estimated savings.
 	EstimatedROI *string `type:"string"`
@@ -6465,6 +6479,12 @@ func (s *SavingsPlansPurchaseRecommendationSummary) SetDailyCommitmentToPurchase
 // SetEstimatedMonthlySavingsAmount sets the EstimatedMonthlySavingsAmount field's value.
 func (s *SavingsPlansPurchaseRecommendationSummary) SetEstimatedMonthlySavingsAmount(v string) *SavingsPlansPurchaseRecommendationSummary {
 	s.EstimatedMonthlySavingsAmount = &v
+	return s
+}
+
+// SetEstimatedOnDemandCostWithCurrentCommitment sets the EstimatedOnDemandCostWithCurrentCommitment field's value.
+func (s *SavingsPlansPurchaseRecommendationSummary) SetEstimatedOnDemandCostWithCurrentCommitment(v string) *SavingsPlansPurchaseRecommendationSummary {
+	s.EstimatedOnDemandCostWithCurrentCommitment = &v
 	return s
 }
 

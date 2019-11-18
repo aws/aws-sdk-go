@@ -310,7 +310,8 @@
       "output":{"shape":"DeleteResourceDataSyncResult"},
       "errors":[
         {"shape":"InternalServerError"},
-        {"shape":"ResourceDataSyncNotFoundException"}
+        {"shape":"ResourceDataSyncNotFoundException"},
+        {"shape":"ResourceDataSyncInvalidConfigurationException"}
       ]
     },
     "DeregisterManagedInstance":{
@@ -1004,6 +1005,7 @@
       "output":{"shape":"GetOpsSummaryResult"},
       "errors":[
         {"shape":"InternalServerError"},
+        {"shape":"ResourceDataSyncNotFoundException"},
         {"shape":"InvalidFilter"},
         {"shape":"InvalidNextToken"},
         {"shape":"InvalidTypeNameException"},
@@ -1281,6 +1283,7 @@
       "input":{"shape":"ListResourceDataSyncRequest"},
       "output":{"shape":"ListResourceDataSyncResult"},
       "errors":[
+        {"shape":"ResourceDataSyncInvalidConfigurationException"},
         {"shape":"InternalServerError"},
         {"shape":"InvalidNextToken"}
       ]
@@ -3033,7 +3036,9 @@
         "RelatedOpsItems":{"shape":"RelatedOpsItems"},
         "Source":{"shape":"OpsItemSource"},
         "Title":{"shape":"OpsItemTitle"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "Category":{"shape":"OpsItemCategory"},
+        "Severity":{"shape":"OpsItemSeverity"}
       }
     },
     "CreateOpsItemResponse":{
@@ -3075,13 +3080,12 @@
     },
     "CreateResourceDataSyncRequest":{
       "type":"structure",
-      "required":[
-        "SyncName",
-        "S3Destination"
-      ],
+      "required":["SyncName"],
       "members":{
         "SyncName":{"shape":"ResourceDataSyncName"},
-        "S3Destination":{"shape":"ResourceDataSyncS3Destination"}
+        "S3Destination":{"shape":"ResourceDataSyncS3Destination"},
+        "SyncType":{"shape":"ResourceDataSyncType"},
+        "SyncSource":{"shape":"ResourceDataSyncSource"}
       }
     },
     "CreateResourceDataSyncResult":{
@@ -3221,7 +3225,8 @@
       "type":"structure",
       "required":["SyncName"],
       "members":{
-        "SyncName":{"shape":"ResourceDataSyncName"}
+        "SyncName":{"shape":"ResourceDataSyncName"},
+        "SyncType":{"shape":"ResourceDataSyncType"}
       }
     },
     "DeleteResourceDataSyncResult":{
@@ -4606,10 +4611,11 @@
     },
     "GetOpsSummaryRequest":{
       "type":"structure",
-      "required":["Aggregators"],
       "members":{
+        "SyncName":{"shape":"ResourceDataSyncName"},
         "Filters":{"shape":"OpsFilterList"},
         "Aggregators":{"shape":"OpsAggregatorList"},
+        "ResultAttributes":{"shape":"OpsResultAttributeList"},
         "NextToken":{"shape":"NextToken"},
         "MaxResults":{
           "shape":"MaxResults",
@@ -5952,6 +5958,7 @@
     "ListResourceDataSyncRequest":{
       "type":"structure",
       "members":{
+        "SyncType":{"shape":"ResourceDataSyncType"},
         "NextToken":{"shape":"NextToken"},
         "MaxResults":{
           "shape":"MaxResults",
@@ -6512,11 +6519,11 @@
       "type":"string",
       "max":20,
       "min":1,
-      "pattern":"^(range|count)"
+      "pattern":"^(range|count|sum)"
     },
     "OpsAggregatorValue":{
       "type":"string",
-      "max":512,
+      "max":2048,
       "min":0
     },
     "OpsAggregatorValueKey":{
@@ -6549,8 +6556,13 @@
     "OpsEntityItem":{
       "type":"structure",
       "members":{
+        "CaptureTime":{"shape":"OpsEntityItemCaptureTime"},
         "Content":{"shape":"OpsEntityItemEntryList"}
       }
+    },
+    "OpsEntityItemCaptureTime":{
+      "type":"string",
+      "pattern":"^(20)[0-9][0-9]-(0[1-9]|1[012])-([12][0-9]|3[01]|0[1-9])(T)(2[0-3]|[0-1][0-9])(:[0-5][0-9])(:[0-5][0-9])(Z)$"
     },
     "OpsEntityItemEntry":{
       "type":"map",
@@ -6632,7 +6644,9 @@
         "Version":{"shape":"String"},
         "Title":{"shape":"OpsItemTitle"},
         "Source":{"shape":"OpsItemSource"},
-        "OperationalData":{"shape":"OpsItemOperationalData"}
+        "OperationalData":{"shape":"OpsItemOperationalData"},
+        "Category":{"shape":"OpsItemCategory"},
+        "Severity":{"shape":"OpsItemSeverity"}
       }
     },
     "OpsItemAlreadyExistsException":{
@@ -6642,6 +6656,11 @@
         "OpsItemId":{"shape":"String"}
       },
       "exception":true
+    },
+    "OpsItemCategory":{
+      "type":"string",
+      "max":64,
+      "min":1
     },
     "OpsItemDataKey":{
       "type":"string",
@@ -6696,7 +6715,9 @@
         "OperationalDataKey",
         "OperationalDataValue",
         "ResourceId",
-        "AutomationId"
+        "AutomationId",
+        "Category",
+        "Severity"
       ]
     },
     "OpsItemFilterOperator":{
@@ -6779,6 +6800,11 @@
       "max":5,
       "min":1
     },
+    "OpsItemSeverity":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
     "OpsItemSource":{
       "type":"string",
       "max":64,
@@ -6808,12 +6834,27 @@
         "Status":{"shape":"OpsItemStatus"},
         "OpsItemId":{"shape":"OpsItemId"},
         "Title":{"shape":"OpsItemTitle"},
-        "OperationalData":{"shape":"OpsItemOperationalData"}
+        "OperationalData":{"shape":"OpsItemOperationalData"},
+        "Category":{"shape":"OpsItemCategory"},
+        "Severity":{"shape":"OpsItemSeverity"}
       }
     },
     "OpsItemTitle":{
       "type":"string",
       "max":1024,
+      "min":1
+    },
+    "OpsResultAttribute":{
+      "type":"structure",
+      "required":["TypeName"],
+      "members":{
+        "TypeName":{"shape":"OpsDataTypeName"}
+      }
+    },
+    "OpsResultAttributeList":{
+      "type":"list",
+      "member":{"shape":"OpsResultAttribute"},
+      "max":1,
       "min":1
     },
     "OutputSource":{
@@ -7745,6 +7786,14 @@
       },
       "exception":true
     },
+    "ResourceDataSyncAwsOrganizationsSource":{
+      "type":"structure",
+      "required":["OrganizationSourceType"],
+      "members":{
+        "OrganizationSourceType":{"shape":"ResourceDataSyncOrganizationSourceType"},
+        "OrganizationalUnits":{"shape":"ResourceDataSyncOrganizationalUnitList"}
+      }
+    },
     "ResourceDataSyncCountExceededException":{
       "type":"structure",
       "members":{
@@ -7753,6 +7802,7 @@
       "exception":true
     },
     "ResourceDataSyncCreatedTime":{"type":"timestamp"},
+    "ResourceDataSyncIncludeFutureRegions":{"type":"boolean"},
     "ResourceDataSyncInvalidConfigurationException":{
       "type":"structure",
       "members":{
@@ -7764,9 +7814,12 @@
       "type":"structure",
       "members":{
         "SyncName":{"shape":"ResourceDataSyncName"},
+        "SyncType":{"shape":"ResourceDataSyncType"},
+        "SyncSource":{"shape":"ResourceDataSyncSourceWithState"},
         "S3Destination":{"shape":"ResourceDataSyncS3Destination"},
         "LastSyncTime":{"shape":"LastResourceDataSyncTime"},
         "LastSuccessfulSyncTime":{"shape":"LastSuccessfulResourceDataSyncTime"},
+        "SyncLastModifiedTime":{"shape":"ResourceDataSyncLastModifiedTime"},
         "LastStatus":{"shape":"LastResourceDataSyncStatus"},
         "SyncCreatedTime":{"shape":"ResourceDataSyncCreatedTime"},
         "LastSyncStatusMessage":{"shape":"LastResourceDataSyncMessage"}
@@ -7776,6 +7829,7 @@
       "type":"list",
       "member":{"shape":"ResourceDataSyncItem"}
     },
+    "ResourceDataSyncLastModifiedTime":{"type":"timestamp"},
     "ResourceDataSyncName":{
       "type":"string",
       "max":64,
@@ -7784,9 +7838,34 @@
     "ResourceDataSyncNotFoundException":{
       "type":"structure",
       "members":{
-        "SyncName":{"shape":"ResourceDataSyncName"}
+        "SyncName":{"shape":"ResourceDataSyncName"},
+        "SyncType":{"shape":"ResourceDataSyncType"},
+        "Message":{"shape":"String"}
       },
       "exception":true
+    },
+    "ResourceDataSyncOrganizationSourceType":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
+    "ResourceDataSyncOrganizationalUnit":{
+      "type":"structure",
+      "members":{
+        "OrganizationalUnitId":{"shape":"ResourceDataSyncOrganizationalUnitId"}
+      }
+    },
+    "ResourceDataSyncOrganizationalUnitId":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^ou-[0-9a-z]{4,32}-[a-z0-9]{8,32}$"
+    },
+    "ResourceDataSyncOrganizationalUnitList":{
+      "type":"list",
+      "member":{"shape":"ResourceDataSyncOrganizationalUnit"},
+      "max":1000,
+      "min":1
     },
     "ResourceDataSyncS3BucketName":{
       "type":"string",
@@ -7818,6 +7897,53 @@
       "min":1
     },
     "ResourceDataSyncS3Region":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
+    "ResourceDataSyncSource":{
+      "type":"structure",
+      "required":[
+        "SourceType",
+        "SourceRegions"
+      ],
+      "members":{
+        "SourceType":{"shape":"ResourceDataSyncSourceType"},
+        "AwsOrganizationsSource":{"shape":"ResourceDataSyncAwsOrganizationsSource"},
+        "SourceRegions":{"shape":"ResourceDataSyncSourceRegionList"},
+        "IncludeFutureRegions":{"shape":"ResourceDataSyncIncludeFutureRegions"}
+      }
+    },
+    "ResourceDataSyncSourceRegion":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
+    "ResourceDataSyncSourceRegionList":{
+      "type":"list",
+      "member":{"shape":"ResourceDataSyncSourceRegion"}
+    },
+    "ResourceDataSyncSourceType":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
+    "ResourceDataSyncSourceWithState":{
+      "type":"structure",
+      "members":{
+        "SourceType":{"shape":"ResourceDataSyncSourceType"},
+        "AwsOrganizationsSource":{"shape":"ResourceDataSyncAwsOrganizationsSource"},
+        "SourceRegions":{"shape":"ResourceDataSyncSourceRegionList"},
+        "IncludeFutureRegions":{"shape":"ResourceDataSyncIncludeFutureRegions"},
+        "State":{"shape":"ResourceDataSyncState"}
+      }
+    },
+    "ResourceDataSyncState":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
+    "ResourceDataSyncType":{
       "type":"string",
       "max":64,
       "min":1
@@ -8836,7 +8962,9 @@
         "RelatedOpsItems":{"shape":"RelatedOpsItems"},
         "Status":{"shape":"OpsItemStatus"},
         "OpsItemId":{"shape":"OpsItemId"},
-        "Title":{"shape":"OpsItemTitle"}
+        "Title":{"shape":"OpsItemTitle"},
+        "Category":{"shape":"OpsItemCategory"},
+        "Severity":{"shape":"OpsItemSeverity"}
       }
     },
     "UpdateOpsItemResponse":{

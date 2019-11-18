@@ -96,6 +96,10 @@ type PinpointAPI interface {
 	CreateSmsTemplateWithContext(aws.Context, *pinpoint.CreateSmsTemplateInput, ...request.Option) (*pinpoint.CreateSmsTemplateOutput, error)
 	CreateSmsTemplateRequest(*pinpoint.CreateSmsTemplateInput) (*request.Request, *pinpoint.CreateSmsTemplateOutput)
 
+	CreateVoiceTemplate(*pinpoint.CreateVoiceTemplateInput) (*pinpoint.CreateVoiceTemplateOutput, error)
+	CreateVoiceTemplateWithContext(aws.Context, *pinpoint.CreateVoiceTemplateInput, ...request.Option) (*pinpoint.CreateVoiceTemplateOutput, error)
+	CreateVoiceTemplateRequest(*pinpoint.CreateVoiceTemplateInput) (*request.Request, *pinpoint.CreateVoiceTemplateOutput)
+
 	DeleteAdmChannel(*pinpoint.DeleteAdmChannelInput) (*pinpoint.DeleteAdmChannelOutput, error)
 	DeleteAdmChannelWithContext(aws.Context, *pinpoint.DeleteAdmChannelInput, ...request.Option) (*pinpoint.DeleteAdmChannelOutput, error)
 	DeleteAdmChannelRequest(*pinpoint.DeleteAdmChannelInput) (*request.Request, *pinpoint.DeleteAdmChannelOutput)
@@ -175,6 +179,10 @@ type PinpointAPI interface {
 	DeleteVoiceChannel(*pinpoint.DeleteVoiceChannelInput) (*pinpoint.DeleteVoiceChannelOutput, error)
 	DeleteVoiceChannelWithContext(aws.Context, *pinpoint.DeleteVoiceChannelInput, ...request.Option) (*pinpoint.DeleteVoiceChannelOutput, error)
 	DeleteVoiceChannelRequest(*pinpoint.DeleteVoiceChannelInput) (*request.Request, *pinpoint.DeleteVoiceChannelOutput)
+
+	DeleteVoiceTemplate(*pinpoint.DeleteVoiceTemplateInput) (*pinpoint.DeleteVoiceTemplateOutput, error)
+	DeleteVoiceTemplateWithContext(aws.Context, *pinpoint.DeleteVoiceTemplateInput, ...request.Option) (*pinpoint.DeleteVoiceTemplateOutput, error)
+	DeleteVoiceTemplateRequest(*pinpoint.DeleteVoiceTemplateInput) (*request.Request, *pinpoint.DeleteVoiceTemplateOutput)
 
 	GetAdmChannel(*pinpoint.GetAdmChannelInput) (*pinpoint.GetAdmChannelOutput, error)
 	GetAdmChannelWithContext(aws.Context, *pinpoint.GetAdmChannelInput, ...request.Option) (*pinpoint.GetAdmChannelOutput, error)
@@ -340,6 +348,10 @@ type PinpointAPI interface {
 	GetVoiceChannelWithContext(aws.Context, *pinpoint.GetVoiceChannelInput, ...request.Option) (*pinpoint.GetVoiceChannelOutput, error)
 	GetVoiceChannelRequest(*pinpoint.GetVoiceChannelInput) (*request.Request, *pinpoint.GetVoiceChannelOutput)
 
+	GetVoiceTemplate(*pinpoint.GetVoiceTemplateInput) (*pinpoint.GetVoiceTemplateOutput, error)
+	GetVoiceTemplateWithContext(aws.Context, *pinpoint.GetVoiceTemplateInput, ...request.Option) (*pinpoint.GetVoiceTemplateOutput, error)
+	GetVoiceTemplateRequest(*pinpoint.GetVoiceTemplateInput) (*request.Request, *pinpoint.GetVoiceTemplateOutput)
+
 	ListJourneys(*pinpoint.ListJourneysInput) (*pinpoint.ListJourneysOutput, error)
 	ListJourneysWithContext(aws.Context, *pinpoint.ListJourneysInput, ...request.Option) (*pinpoint.ListJourneysOutput, error)
 	ListJourneysRequest(*pinpoint.ListJourneysInput) (*request.Request, *pinpoint.ListJourneysOutput)
@@ -463,6 +475,10 @@ type PinpointAPI interface {
 	UpdateVoiceChannel(*pinpoint.UpdateVoiceChannelInput) (*pinpoint.UpdateVoiceChannelOutput, error)
 	UpdateVoiceChannelWithContext(aws.Context, *pinpoint.UpdateVoiceChannelInput, ...request.Option) (*pinpoint.UpdateVoiceChannelOutput, error)
 	UpdateVoiceChannelRequest(*pinpoint.UpdateVoiceChannelInput) (*request.Request, *pinpoint.UpdateVoiceChannelOutput)
+
+	UpdateVoiceTemplate(*pinpoint.UpdateVoiceTemplateInput) (*pinpoint.UpdateVoiceTemplateOutput, error)
+	UpdateVoiceTemplateWithContext(aws.Context, *pinpoint.UpdateVoiceTemplateInput, ...request.Option) (*pinpoint.UpdateVoiceTemplateOutput, error)
+	UpdateVoiceTemplateRequest(*pinpoint.UpdateVoiceTemplateInput) (*request.Request, *pinpoint.UpdateVoiceTemplateOutput)
 }
 
 var _ PinpointAPI = (*pinpoint.Pinpoint)(nil)

@@ -388,6 +388,7 @@
         "SavingsPlansPurchaseRecommendationDetail$CurrencyCode": "<p>The currency code Amazon Web Services used to generate the recommendations and present potential savings.</p>",
         "SavingsPlansPurchaseRecommendationDetail$EstimatedSPCost": "<p>The cost of the recommended Savings Plans over the length of the lookback period.</p>",
         "SavingsPlansPurchaseRecommendationDetail$EstimatedOnDemandCost": "<p>The remaining On-Demand cost estimated to not be covered by the recommended Savings Plans, over the length of the lookback period.</p>",
+        "SavingsPlansPurchaseRecommendationDetail$EstimatedOnDemandCostWithCurrentCommitment": "<p> The estimated On-Demand costs you would expect with no additional commitment, based on your usage of the selected time period and the Savings Plans you own. </p>",
         "SavingsPlansPurchaseRecommendationDetail$EstimatedSavingsAmount": "<p>The estimated savings amount based on the recommended Savings Plans over the length of the lookback period.</p>",
         "SavingsPlansPurchaseRecommendationDetail$EstimatedSavingsPercentage": "<p>The estimated savings percentage relative to the total cost of applicable On-Demand usage over the lookback period.</p>",
         "SavingsPlansPurchaseRecommendationDetail$HourlyCommitmentToPurchase": "<p>The recommended hourly commitment level for the Savings Plans type, and configuration based on the usage during the lookback period.</p>",
@@ -408,6 +409,7 @@
         "SavingsPlansPurchaseRecommendationSummary$HourlyCommitmentToPurchase": "<p>The recommended hourly commitment based on the recommendation parameters.</p>",
         "SavingsPlansPurchaseRecommendationSummary$EstimatedSavingsPercentage": "<p>The estimated savings relative to the total cost of On-Demand usage, over the lookback period. This is calculated as <code>estimatedSavingsAmount</code>/ <code>CurrentOnDemandSpend</code>*100.</p>",
         "SavingsPlansPurchaseRecommendationSummary$EstimatedMonthlySavingsAmount": "<p>The estimated monthly savings amount, based on the recommended Savings Plans purchase.</p>",
+        "SavingsPlansPurchaseRecommendationSummary$EstimatedOnDemandCostWithCurrentCommitment": "<p> The estimated On-Demand costs you would expect with no additional commitment, based on your usage of the selected time period and the Savings Plans you own. </p>",
         "SavingsPlansSavings$NetSavings": "<p>The savings amount that you are accumulating for the usage that is covered by a Savings Plans, when compared to the On-Demand equivalent of the same usage.</p>",
         "SavingsPlansSavings$OnDemandCostEquivalent": "<p>How much the amount that the usage would have cost if it was accrued at the On-Demand rate.</p>",
         "SavingsPlansUtilization$TotalCommitment": "<p>The total amount of Savings Plans commitment that's been purchased in an account (or set of accounts).</p>",
@@ -564,7 +566,7 @@
     "Granularity": {
       "base": null,
       "refs": {
-        "GetCostAndUsageRequest$Granularity": "<p>Sets the AWS cost granularity to <code>MONTHLY</code> or <code>DAILY</code>, or <code>HOURLY</code>. If <code>Granularity</code> isn't set, the response object doesn't include the <code>Granularity</code>, either <code>MONTHLY</code> or <code>DAILY</code>, or <code>HOURLY</code>. </p> <p>The <code>GetCostAndUsageRequest</code> operation supports only <code>DAILY</code> and <code>MONTHLY</code> granularities.</p>",
+        "GetCostAndUsageRequest$Granularity": "<p>Sets the AWS cost granularity to <code>MONTHLY</code> or <code>DAILY</code>, or <code>HOURLY</code>. If <code>Granularity</code> isn't set, the response object doesn't include the <code>Granularity</code>, either <code>MONTHLY</code> or <code>DAILY</code>, or <code>HOURLY</code>. </p>",
         "GetCostAndUsageWithResourcesRequest$Granularity": "<p>Sets the AWS cost granularity to <code>MONTHLY</code>, <code>DAILY</code>, or <code>HOURLY</code>. If <code>Granularity</code> isn't set, the response object doesn't include the <code>Granularity</code>, <code>MONTHLY</code>, <code>DAILY</code>, or <code>HOURLY</code>. </p>",
         "GetCostForecastRequest$Granularity": "<p>How granular you want the forecast to be. You can get 3 months of <code>DAILY</code> forecasts or 12 months of <code>MONTHLY</code> forecasts.</p> <p>The <code>GetCostForecast</code> operation supports only <code>DAILY</code> and <code>MONTHLY</code> granularities.</p>",
         "GetReservationCoverageRequest$Granularity": "<p>The granularity of the AWS cost data for the reservation. Valid values are <code>MONTHLY</code> and <code>DAILY</code>.</p> <p>If <code>GroupBy</code> is set, <code>Granularity</code> can't be set. If <code>Granularity</code> isn't set, the response object doesn't include <code>Granularity</code>, either <code>MONTHLY</code> or <code>DAILY</code>.</p> <p>The <code>GetReservationCoverage</code> operation supports only <code>DAILY</code> and <code>MONTHLY</code> granularities.</p>",
@@ -601,7 +603,7 @@
     "GroupDefinitions": {
       "base": null,
       "refs": {
-        "GetCostAndUsageRequest$GroupBy": "<p>You can group AWS costs using up to two different groups, either dimensions, tag keys, or both.</p> <p>When you group by tag key, you get all tag values, including empty strings.</p> <p>Valid values are <code>AZ</code>, <code>INSTANCE_TYPE</code>, <code>LEGAL_ENTITY_NAME</code>, <code>LINKED_ACCOUNT</code>, <code>OPERATION</code>, <code>PLATFORM</code>, <code>PURCHASE_TYPE</code>, <code>SERVICE</code>, <code>TAGS</code>, <code>TENANCY</code>, and <code>USAGE_TYPE</code>.</p>",
+        "GetCostAndUsageRequest$GroupBy": "<p>You can group AWS costs using up to two different groups, either dimensions, tag keys, or both.</p> <p>When you group by tag key, you get all tag values, including empty strings.</p> <p>Valid values are <code>AZ</code>, <code>INSTANCE_TYPE</code>, <code>LEGAL_ENTITY_NAME</code>, <code>LINKED_ACCOUNT</code>, <code>OPERATION</code>, <code>PLATFORM</code>, <code>PURCHASE_TYPE</code>, <code>SERVICE</code>, <code>TAGS</code>, <code>TENANCY</code>, <code>RECORD_TYPE</code>, and <code>USAGE_TYPE</code>.</p>",
         "GetCostAndUsageResponse$GroupDefinitions": "<p>The groups that are specified by the <code>Filter</code> or <code>GroupBy</code> parameters in the request.</p>",
         "GetCostAndUsageWithResourcesRequest$GroupBy": "<p>You can group Amazon Web Services costs using up to two different groups: either dimensions, tag keys, or both.</p>",
         "GetCostAndUsageWithResourcesResponse$GroupDefinitions": "<p>The groups that are specified by the <code>Filter</code> or <code>GroupBy</code> parameters in the request.</p>",

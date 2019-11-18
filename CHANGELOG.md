@@ -1,3 +1,22 @@
+Release v1.25.37 (2019-11-18)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/cloudformation`: Updates service API, documentation, waiters, and paginators
+  * This release introduces APIs for the CloudFormation Registry, a new service to submit and discover resource providers with which you can manage third-party resources natively in CloudFormation.
+* `service/pinpoint`: Updates service API and documentation
+  * This release of the Amazon Pinpoint API introduces support for using and managing message templates for messages that are sent through the voice channel. It also introduces support for specifying default values for message variables in message templates.
+* `service/rds`: Updates service documentation
+  * Documentation updates for rds
+* `service/runtime.sagemaker`: Updates service API and documentation
+* `service/s3`: Updates service API, documentation, and examples
+  * Added support for S3 Replication for existing objects. This release allows customers who have requested and been granted access to replicate existing S3 objects across buckets.
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker now supports multi-model endpoints to host multiple models on an endpoint using a single inference container.
+* `service/ssm`: Updates service API and documentation
+  * The release contains new API and API changes for AWS Systems Manager Explorer product.
+
 Release v1.25.36 (2019-11-15)
 ===
 

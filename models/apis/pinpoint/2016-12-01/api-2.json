@@ -308,6 +308,37 @@
         }
       ]
     },
+    "CreateVoiceTemplate": {
+      "name": "CreateVoiceTemplate",
+      "http": {
+        "method": "POST",
+        "requestUri": "/v1/templates/{template-name}/voice",
+        "responseCode": 201
+      },
+      "input": {
+        "shape": "CreateVoiceTemplateRequest"
+      },
+      "output": {
+        "shape": "CreateVoiceTemplateResponse"
+      },
+      "errors": [
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        }
+      ]
+    },
     "DeleteAdmChannel": {
       "name": "DeleteAdmChannel",
       "http": {
@@ -966,6 +997,40 @@
       },
       "output": {
         "shape": "DeleteVoiceChannelResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "DeleteVoiceTemplate": {
+      "name": "DeleteVoiceTemplate",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/v1/templates/{template-name}/voice",
+        "responseCode": 202
+      },
+      "input": {
+        "shape": "DeleteVoiceTemplateRequest"
+      },
+      "output": {
+        "shape": "DeleteVoiceTemplateResponse"
       },
       "errors": [
         {
@@ -2382,6 +2447,40 @@
         }
       ]
     },
+    "GetVoiceTemplate": {
+      "name": "GetVoiceTemplate",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/templates/{template-name}/voice",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetVoiceTemplateRequest"
+      },
+      "output": {
+        "shape": "GetVoiceTemplateResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
     "ListJourneys": {
       "name": "ListJourneys",
       "http": {
@@ -3375,6 +3474,40 @@
           "shape": "TooManyRequestsException"
         }
       ]
+    },
+    "UpdateVoiceTemplate": {
+      "name": "UpdateVoiceTemplate",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v1/templates/{template-name}/voice",
+        "responseCode": 202
+      },
+      "input": {
+        "shape": "UpdateVoiceTemplateRequest"
+      },
+      "output": {
+        "shape": "UpdateVoiceTemplateResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
     }
   },
   "shapes": {
@@ -3629,6 +3762,9 @@
           "shape": "__string"
         },
         "MediaUrl": {
+          "shape": "__string"
+        },
+        "RawContent": {
           "shape": "__string"
         },
         "Sound": {
@@ -3994,6 +4130,9 @@
           "shape": "__string"
         },
         "ImageUrl": {
+          "shape": "__string"
+        },
+        "RawContent": {
           "shape": "__string"
         },
         "SmallImageIconUrl": {
@@ -4880,6 +5019,36 @@
         }
       }
     },
+    "CreateVoiceTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "TemplateName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "template-name"
+        },
+        "VoiceTemplateRequest": {
+          "shape": "VoiceTemplateRequest"
+        }
+      },
+      "required": [
+        "TemplateName",
+        "VoiceTemplateRequest"
+      ],
+      "payload": "VoiceTemplateRequest"
+    },
+    "CreateVoiceTemplateResponse": {
+      "type": "structure",
+      "members": {
+        "CreateTemplateMessageBody": {
+          "shape": "CreateTemplateMessageBody"
+        }
+      },
+      "required": [
+        "CreateTemplateMessageBody"
+      ],
+      "payload": "CreateTemplateMessageBody"
+    },
     "DefaultMessage": {
       "type": "structure",
       "members": {
@@ -5467,6 +5636,31 @@
       ],
       "payload": "VoiceChannelResponse"
     },
+    "DeleteVoiceTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "TemplateName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "template-name"
+        }
+      },
+      "required": [
+        "TemplateName"
+      ]
+    },
+    "DeleteVoiceTemplateResponse": {
+      "type": "structure",
+      "members": {
+        "MessageBody": {
+          "shape": "MessageBody"
+        }
+      },
+      "required": [
+        "MessageBody"
+      ],
+      "payload": "MessageBody"
+    },
     "DeliveryStatus": {
       "type": "string",
       "enum": [
@@ -5647,6 +5841,9 @@
     "EmailTemplateRequest": {
       "type": "structure",
       "members": {
+        "DefaultSubstitutions": {
+          "shape": "__string"
+        },
         "HtmlPart": {
           "shape": "__string"
         },
@@ -5656,6 +5853,9 @@
         "tags": {
           "shape": "MapOf__string",
           "locationName": "tags"
+        },
+        "TemplateDescription": {
+          "shape": "__string"
         },
         "TextPart": {
           "shape": "__string"
@@ -5671,6 +5871,9 @@
         "CreationDate": {
           "shape": "__string"
         },
+        "DefaultSubstitutions": {
+          "shape": "__string"
+        },
         "HtmlPart": {
           "shape": "__string"
         },
@@ -5683,6 +5886,9 @@
         "tags": {
           "shape": "MapOf__string",
           "locationName": "tags"
+        },
+        "TemplateDescription": {
+          "shape": "__string"
         },
         "TemplateName": {
           "shape": "__string"
@@ -7743,6 +7949,31 @@
       ],
       "payload": "VoiceChannelResponse"
     },
+    "GetVoiceTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "TemplateName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "template-name"
+        }
+      },
+      "required": [
+        "TemplateName"
+      ]
+    },
+    "GetVoiceTemplateResponse": {
+      "type": "structure",
+      "members": {
+        "VoiceTemplateResponse": {
+          "shape": "VoiceTemplateResponse"
+        }
+      },
+      "required": [
+        "VoiceTemplateResponse"
+      ],
+      "payload": "VoiceTemplateResponse"
+    },
     "HoldoutActivity": {
       "type": "structure",
       "members": {
@@ -8612,12 +8843,18 @@
         "Default": {
           "shape": "DefaultPushNotificationTemplate"
         },
+        "DefaultSubstitutions": {
+          "shape": "__string"
+        },
         "GCM": {
           "shape": "AndroidPushNotificationTemplate"
         },
         "tags": {
           "shape": "MapOf__string",
           "locationName": "tags"
+        },
+        "TemplateDescription": {
+          "shape": "__string"
         }
       }
     },
@@ -8642,6 +8879,9 @@
         "Default": {
           "shape": "DefaultPushNotificationTemplate"
         },
+        "DefaultSubstitutions": {
+          "shape": "__string"
+        },
         "GCM": {
           "shape": "AndroidPushNotificationTemplate"
         },
@@ -8651,6 +8891,9 @@
         "tags": {
           "shape": "MapOf__string",
           "locationName": "tags"
+        },
+        "TemplateDescription": {
+          "shape": "__string"
         },
         "TemplateName": {
           "shape": "__string"
@@ -8952,9 +9195,15 @@
         "Body": {
           "shape": "__string"
         },
+        "DefaultSubstitutions": {
+          "shape": "__string"
+        },
         "tags": {
           "shape": "MapOf__string",
           "locationName": "tags"
+        },
+        "TemplateDescription": {
+          "shape": "__string"
         }
       }
     },
@@ -8970,12 +9219,18 @@
         "CreationDate": {
           "shape": "__string"
         },
+        "DefaultSubstitutions": {
+          "shape": "__string"
+        },
         "LastModifiedDate": {
           "shape": "__string"
         },
         "tags": {
           "shape": "MapOf__string",
           "locationName": "tags"
+        },
+        "TemplateDescription": {
+          "shape": "__string"
         },
         "TemplateName": {
           "shape": "__string"
@@ -9492,6 +9747,9 @@
         },
         "SMSTemplate": {
           "shape": "Template"
+        },
+        "VoiceTemplate": {
+          "shape": "Template"
         }
       }
     },
@@ -9504,12 +9762,18 @@
         "CreationDate": {
           "shape": "__string"
         },
+        "DefaultSubstitutions": {
+          "shape": "__string"
+        },
         "LastModifiedDate": {
           "shape": "__string"
         },
         "tags": {
           "shape": "MapOf__string",
           "locationName": "tags"
+        },
+        "TemplateDescription": {
+          "shape": "__string"
         },
         "TemplateName": {
           "shape": "__string"
@@ -10261,6 +10525,36 @@
       ],
       "payload": "VoiceChannelResponse"
     },
+    "UpdateVoiceTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "TemplateName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "template-name"
+        },
+        "VoiceTemplateRequest": {
+          "shape": "VoiceTemplateRequest"
+        }
+      },
+      "required": [
+        "TemplateName",
+        "VoiceTemplateRequest"
+      ],
+      "payload": "VoiceTemplateRequest"
+    },
+    "UpdateVoiceTemplateResponse": {
+      "type": "structure",
+      "members": {
+        "MessageBody": {
+          "shape": "MessageBody"
+        }
+      },
+      "required": [
+        "MessageBody"
+      ],
+      "payload": "MessageBody"
+    },
     "VoiceChannelRequest": {
       "type": "structure",
       "members": {
@@ -10326,6 +10620,75 @@
           "shape": "__string"
         }
       }
+    },
+    "VoiceTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "Body": {
+          "shape": "__string"
+        },
+        "DefaultSubstitutions": {
+          "shape": "__string"
+        },
+        "LanguageCode": {
+          "shape": "__string"
+        },
+        "tags": {
+          "shape": "MapOf__string",
+          "locationName": "tags"
+        },
+        "TemplateDescription": {
+          "shape": "__string"
+        },
+        "VoiceId": {
+          "shape": "__string"
+        }
+      }
+    },
+    "VoiceTemplateResponse": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string"
+        },
+        "Body": {
+          "shape": "__string"
+        },
+        "CreationDate": {
+          "shape": "__string"
+        },
+        "DefaultSubstitutions": {
+          "shape": "__string"
+        },
+        "LanguageCode": {
+          "shape": "__string"
+        },
+        "LastModifiedDate": {
+          "shape": "__string"
+        },
+        "tags": {
+          "shape": "MapOf__string",
+          "locationName": "tags"
+        },
+        "TemplateDescription": {
+          "shape": "__string"
+        },
+        "TemplateName": {
+          "shape": "__string"
+        },
+        "TemplateType": {
+          "shape": "TemplateType"
+        },
+        "VoiceId": {
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "LastModifiedDate",
+        "CreationDate",
+        "TemplateName",
+        "TemplateType"
+      ]
     },
     "WaitActivity": {
       "type": "structure",

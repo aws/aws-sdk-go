@@ -232,6 +232,26 @@
           "state": "failure"
         }
       ]
+    },
+    "TypeRegistrationComplete": {
+      "delay": 30,
+      "operation": "DescribeTypeRegistration",
+      "maxAttempts": 120,
+      "description": "Wait until type registration is COMPLETE.",
+      "acceptors": [
+        {
+          "argument": "ProgressStatus",
+          "expected": "COMPLETE",
+          "matcher": "path",
+          "state": "success"
+        },
+        {
+          "argument": "ProgressStatus",
+          "expected": "FAILED",
+          "matcher": "path",
+          "state": "failure"
+        }
+      ]
     }
   }
 }

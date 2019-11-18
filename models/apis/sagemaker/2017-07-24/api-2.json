@@ -1195,6 +1195,7 @@
       "members":{
         "ContainerHostname":{"shape":"ContainerHostname"},
         "Image":{"shape":"Image"},
+        "Mode":{"shape":"ContainerMode"},
         "ModelDataUrl":{"shape":"Url"},
         "Environment":{"shape":"EnvironmentMap"},
         "ModelPackageName":{"shape":"ArnOrName"}
@@ -1209,6 +1210,13 @@
       "type":"string",
       "max":63,
       "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*"
+    },
+    "ContainerMode":{
+      "type":"string",
+      "enum":[
+        "SingleModel",
+        "MultiModel"
+      ]
     },
     "ContentClassifier":{
       "type":"string",

@@ -2345,6 +2345,20 @@
       "member":{"shape":"Event"},
       "flattened":true
     },
+    "ExistingObjectReplication":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Status":{"shape":"ExistingObjectReplicationStatus"}
+      }
+    },
+    "ExistingObjectReplicationStatus":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
+    },
     "Expiration":{"type":"string"},
     "ExpirationStatus":{
       "type":"string",
@@ -5759,6 +5773,7 @@
         "Filter":{"shape":"ReplicationRuleFilter"},
         "Status":{"shape":"ReplicationRuleStatus"},
         "SourceSelectionCriteria":{"shape":"SourceSelectionCriteria"},
+        "ExistingObjectReplication":{"shape":"ExistingObjectReplication"},
         "Destination":{"shape":"Destination"},
         "DeleteMarkerReplication":{"shape":"DeleteMarkerReplication"}
       }
