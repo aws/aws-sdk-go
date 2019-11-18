@@ -61,6 +61,8 @@ type InputService1ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a InputService1ProtocolTest client from just a session.
 //     svc := inputservice1protocoltest.New(mySession)
 //
@@ -388,6 +390,8 @@ type InputService2ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a InputService2ProtocolTest client from just a session.
 //     svc := inputservice2protocoltest.New(mySession)
 //
@@ -559,6 +563,8 @@ type InputService3ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a InputService3ProtocolTest client from just a session.
 //     svc := inputservice3protocoltest.New(mySession)
 //
@@ -828,6 +834,8 @@ type InputService4ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a InputService4ProtocolTest client from just a session.
 //     svc := inputservice4protocoltest.New(mySession)
 //
@@ -1003,6 +1011,8 @@ type InputService5ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a InputService5ProtocolTest client from just a session.
 //     svc := inputservice5protocoltest.New(mySession)
 //
@@ -1150,6 +1160,8 @@ type InputService6ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a InputService6ProtocolTest client from just a session.
 //     svc := inputservice6protocoltest.New(mySession)
 //
@@ -1297,6 +1309,8 @@ type InputService7ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a InputService7ProtocolTest client from just a session.
 //     svc := inputservice7protocoltest.New(mySession)
 //
@@ -1444,6 +1458,8 @@ type InputService8ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a InputService8ProtocolTest client from just a session.
 //     svc := inputservice8protocoltest.New(mySession)
 //
@@ -1591,6 +1607,8 @@ type InputService9ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a InputService9ProtocolTest client from just a session.
 //     svc := inputservice9protocoltest.New(mySession)
 //
@@ -1750,6 +1768,8 @@ type InputService10ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a InputService10ProtocolTest client from just a session.
 //     svc := inputservice10protocoltest.New(mySession)
 //
@@ -1910,6 +1930,8 @@ type InputService11ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a InputService11ProtocolTest client from just a session.
 //     svc := inputservice11protocoltest.New(mySession)
 //
@@ -2121,6 +2143,8 @@ type InputService12ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a InputService12ProtocolTest client from just a session.
 //     svc := inputservice12protocoltest.New(mySession)
 //
@@ -2268,6 +2292,8 @@ type InputService13ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a InputService13ProtocolTest client from just a session.
 //     svc := inputservice13protocoltest.New(mySession)
 //
@@ -2415,6 +2441,8 @@ type InputService14ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a InputService14ProtocolTest client from just a session.
 //     svc := inputservice14protocoltest.New(mySession)
 //
@@ -2587,6 +2615,8 @@ type InputService15ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a InputService15ProtocolTest client from just a session.
 //     svc := inputservice15protocoltest.New(mySession)
 //
@@ -2759,6 +2789,8 @@ type InputService16ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a InputService16ProtocolTest client from just a session.
 //     svc := inputservice16protocoltest.New(mySession)
 //
@@ -2992,6 +3024,8 @@ type InputService17ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a InputService17ProtocolTest client from just a session.
 //     svc := inputservice17protocoltest.New(mySession)
 //
@@ -3139,6 +3173,8 @@ type InputService18ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a InputService18ProtocolTest client from just a session.
 //     svc := inputservice18protocoltest.New(mySession)
 //
@@ -3372,6 +3408,8 @@ type InputService19ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a InputService19ProtocolTest client from just a session.
 //     svc := inputservice19protocoltest.New(mySession)
 //
@@ -3789,6 +3827,8 @@ type InputService20ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a InputService20ProtocolTest client from just a session.
 //     svc := inputservice20protocoltest.New(mySession)
 //
@@ -3968,6 +4008,8 @@ type InputService21ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a InputService21ProtocolTest client from just a session.
 //     svc := inputservice21protocoltest.New(mySession)
 //
@@ -4147,6 +4189,8 @@ type InputService22ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a InputService22ProtocolTest client from just a session.
 //     svc := inputservice22protocoltest.New(mySession)
 //
@@ -4380,6 +4424,8 @@ type InputService23ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a InputService23ProtocolTest client from just a session.
 //     svc := inputservice23protocoltest.New(mySession)
 //
@@ -4993,6 +5039,8 @@ type InputService24ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a InputService24ProtocolTest client from just a session.
 //     svc := inputservice24protocoltest.New(mySession)
 //
@@ -5226,6 +5274,8 @@ type InputService25ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a InputService25ProtocolTest client from just a session.
 //     svc := inputservice25protocoltest.New(mySession)
 //
@@ -5571,6 +5621,8 @@ type InputService26ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a InputService26ProtocolTest client from just a session.
 //     svc := inputservice26protocoltest.New(mySession)
 //
@@ -5831,6 +5883,8 @@ type InputService27ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a InputService27ProtocolTest client from just a session.
 //     svc := inputservice27protocoltest.New(mySession)
 //
