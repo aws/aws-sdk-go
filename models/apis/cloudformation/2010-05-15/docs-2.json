@@ -12,6 +12,7 @@
     "DeleteStack": "<p>Deletes a specified stack. Once the call completes successfully, stack deletion starts. Deleted stacks do not show up in the <a>DescribeStacks</a> API if the deletion has been completed successfully.</p>",
     "DeleteStackInstances": "<p>Deletes stack instances for the specified accounts, in the specified regions. </p>",
     "DeleteStackSet": "<p>Deletes a stack set. Before you can delete a stack set, all of its member stack instances must be deleted. For more information about how to do this, see <a>DeleteStackInstances</a>. </p>",
+    "DeregisterType": "<p>Removes a type or type version from active use in the CloudFormation registry. If a type or type version is deregistered, it cannot be used in CloudFormation operations.</p> <p>To deregister a type, you must individually deregister all registered versions of that type. If a type has only a single registered version, deregistering that version results in the type itself being deregistered. </p> <p>You cannot deregister the default version of a type, unless it is the only registered version of that type, in which case the type itself is deregistered as well. </p>",
     "DescribeAccountLimits": "<p>Retrieves your account's AWS CloudFormation limits, such as the maximum number of stacks that you can create in your account. For more information about account limits, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-limits.html\">AWS CloudFormation Limits</a> in the <i>AWS CloudFormation User Guide</i>.</p>",
     "DescribeChangeSet": "<p>Returns the inputs for the change set and a list of changes that AWS CloudFormation will make if you execute the change set. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html\">Updating Stacks Using Change Sets</a> in the AWS CloudFormation User Guide.</p>",
     "DescribeStackDriftDetectionStatus": "<p>Returns information about a stack drift detection operation. A stack drift detection operation detects whether a stack's actual configuration differs, or has <i>drifted</i>, from it's expected configuration, as defined in the stack template and any values specified as template parameters. A stack is considered to have drifted if one or more of its resources have drifted. For more information on stack and resource drift, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift.html\">Detecting Unregulated Configuration Changes to Stacks and Resources</a>.</p> <p>Use <a>DetectStackDrift</a> to initiate a stack drift detection operation. <code>DetectStackDrift</code> returns a <code>StackDriftDetectionId</code> you can use to monitor the progress of the operation using <code>DescribeStackDriftDetectionStatus</code>. Once the drift detection operation has completed, use <a>DescribeStackResourceDrifts</a> to return drift information about the stack and its resources.</p>",
@@ -23,6 +24,8 @@
     "DescribeStackSet": "<p>Returns the description of the specified stack set. </p>",
     "DescribeStackSetOperation": "<p>Returns the description of the specified stack set operation. </p>",
     "DescribeStacks": "<p>Returns the description for the specified stack; if no stack name was specified, then it returns the description for all the stacks created.</p> <note> <p>If the stack does not exist, an <code>AmazonCloudFormationException</code> is returned.</p> </note>",
+    "DescribeType": "<p>Returns detailed information about a type that has been registered.</p> <p>If you specify a <code>VersionId</code>, <code>DescribeType</code> returns information about that specific type version. Otherwise, it returns information about the default type version.</p>",
+    "DescribeTypeRegistration": "<p>Returns information about a type's registration, including its current status and type and version identifiers.</p> <p>When you initiate a registration request using <code> <a>RegisterType</a> </code>, you can then use <code> <a>DescribeTypeRegistration</a> </code> to monitor the progress of that registration request.</p> <p>Once the registration request has completed, use <code> <a>DescribeType</a> </code> to return detailed informaiton about a type.</p>",
     "DetectStackDrift": "<p>Detects whether a stack's actual configuration differs, or has <i>drifted</i>, from it's expected configuration, as defined in the stack template and any values specified as template parameters. For each resource in the stack that supports drift detection, AWS CloudFormation compares the actual configuration of the resource with its expected template configuration. Only resource properties explicitly defined in the stack template are checked for drift. A stack is considered to have drifted if one or more of its resources differ from their expected template configurations. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift.html\">Detecting Unregulated Configuration Changes to Stacks and Resources</a>.</p> <p>Use <code>DetectStackDrift</code> to detect drift on all supported resources for a given stack, or <a>DetectStackResourceDrift</a> to detect drift on individual resources.</p> <p>For a list of stack resources that currently support drift detection, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift-resource-list.html\">Resources that Support Drift Detection</a>.</p> <p> <code>DetectStackDrift</code> can take up to several minutes, depending on the number of resources contained within the stack. Use <a>DescribeStackDriftDetectionStatus</a> to monitor the progress of a detect stack drift operation. Once the drift detection operation has completed, use <a>DescribeStackResourceDrifts</a> to return drift information about the stack and its resources.</p> <p>When detecting drift on a stack, AWS CloudFormation does not detect drift on any nested stacks belonging to that stack. Perform <code>DetectStackDrift</code> directly on the nested stack itself.</p>",
     "DetectStackResourceDrift": "<p>Returns information about whether a resource's actual configuration differs, or has <i>drifted</i>, from it's expected configuration, as defined in the stack template and any values specified as template parameters. This information includes actual and expected property values for resources in which AWS CloudFormation detects drift. Only resource properties explicitly defined in the stack template are checked for drift. For more information about stack and resource drift, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift.html\">Detecting Unregulated Configuration Changes to Stacks and Resources</a>.</p> <p>Use <code>DetectStackResourceDrift</code> to detect drift on individual resources, or <a>DetectStackDrift</a> to detect drift on all resources in a given stack that support drift detection.</p> <p>Resources that do not currently support drift detection cannot be checked. For a list of resources that support drift detection, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift-resource-list.html\">Resources that Support Drift Detection</a>.</p>",
     "EstimateTemplateCost": "<p>Returns the estimated monthly cost of a template. The return value is an AWS Simple Monthly Calculator URL with a query string that describes the resources required to run the template.</p>",
@@ -39,7 +42,13 @@
     "ListStackSetOperations": "<p>Returns summary information about operations performed on a stack set. </p>",
     "ListStackSets": "<p>Returns summary information about stack sets that are associated with the user.</p>",
     "ListStacks": "<p>Returns the summary information for stacks whose status matches the specified StackStatusFilter. Summary information for stacks that have been deleted is kept for 90 days after the stack is deleted. If no StackStatusFilter is specified, summary information for all stacks is returned (including existing stacks and stacks that have been deleted).</p>",
+    "ListTypeRegistrations": "<p>Returns a list of registration tokens for the specified type.</p>",
+    "ListTypeVersions": "<p>Returns summary information about the versions of a type.</p>",
+    "ListTypes": "<p>Returns summary information about types that have been registered with CloudFormation.</p>",
+    "RecordHandlerProgress": "<p>Reports progress of a resource handler to CloudFormation.</p> <p>Reserved for use by the <a href=\"https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/what-is-cloudformation-cli.html\">CloudFormation CLI</a>. Do not use this API in your code.</p>",
+    "RegisterType": "<p>Registers a type with the CloudFormation service. Registering a type makes it available for use in CloudFormation templates in your AWS account, and includes:</p> <ul> <li> <p>Validating the resource schema</p> </li> <li> <p>Determining which handlers have been specified for the resource</p> </li> <li> <p>Making the resource type available for use in your account</p> </li> </ul> <p>For more information on how to develop types and ready them for registeration, see <a href=\"cloudformation-cli/latest/userguide/resource-types.html\">Creating Resource Providers</a> in the <i>CloudFormation CLI User Guide</i>.</p> <p>Once you have initiated a registration request using <code> <a>RegisterType</a> </code>, you can use <code> <a>DescribeTypeRegistration</a> </code> to monitor the progress of the registration request.</p>",
     "SetStackPolicy": "<p>Sets a stack policy for a specified stack.</p>",
+    "SetTypeDefaultVersion": "<p>Specify the default version of a type. The default version of a type will be used in CloudFormation operations.</p>",
     "SignalResource": "<p>Sends a signal to the specified resource with a success or failure status. You can use the SignalResource API in conjunction with a creation policy or update policy. AWS CloudFormation doesn't proceed with a stack creation or update until resources receive the required number of signals or the timeout period is exceeded. The SignalResource API is useful in cases where you want to send signals from anywhere other than an Amazon EC2 instance.</p>",
     "StopStackSetOperation": "<p>Stops an in-progress operation on a stack set and its associated stack instances. </p>",
     "UpdateStack": "<p>Updates a stack as specified in the template. After the call completes successfully, the stack update starts. You can check the status of the stack via the <a>DescribeStacks</a> action.</p> <p>To get a copy of the template for an existing stack, you can use the <a>GetTemplate</a> action.</p> <p>For more information about creating an update template, updating a stack, and monitoring the progress of the update, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks.html\">Updating a Stack</a>.</p>",
@@ -132,6 +141,11 @@
       "base": null,
       "refs": {
         "DescribeStackResourceDriftsInput$MaxResults": "<p>The maximum number of results to be returned with a single call. If the number of available results exceeds this maximum, the response includes a <code>NextToken</code> value that you can assign to the <code>NextToken</code> request parameter to get the next set of results.</p>"
+      }
+    },
+    "CFNRegistryException": {
+      "base": "<p>An error occurred during a CloudFormation registry operation.</p>",
+      "refs": {
       }
     },
     "CancelUpdateStackInput": {
@@ -281,6 +295,7 @@
         "DescribeStackSetOperationInput$OperationId": "<p>The unique ID of the stack set operation. </p>",
         "ExecuteChangeSetInput$ClientRequestToken": "<p>A unique identifier for this <code>ExecuteChangeSet</code> request. Specify this token if you plan to retry requests so that AWS CloudFormation knows that you're not attempting to execute a change set to update a stack with the same name. You might retry <code>ExecuteChangeSet</code> requests to ensure that AWS CloudFormation successfully received them.</p>",
         "ListStackSetOperationResultsInput$OperationId": "<p>The ID of the stack set operation.</p>",
+        "RecordHandlerProgressInput$ClientRequestToken": "<p>Reserved for use by the <a href=\"https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/what-is-cloudformation-cli.html\">CloudFormation CLI</a>.</p>",
         "StackEvent$ClientRequestToken": "<p>The token passed to the operation that generated this event.</p> <p>All events triggered by a given stack operation are assigned the same client request token, which you can use to track operations. For example, if you execute a <code>CreateStack</code> operation with the token <code>token1</code>, then all the <code>StackEvents</code> generated by that operation will have <code>ClientRequestToken</code> set as <code>token1</code>.</p> <p>In the console, stack operations display the client request token on the Events tab. Stack operations that are initiated from the console use the token format <i>Console-StackOperation-ID</i>, which helps you easily identify the stack operation . For example, if you create a stack using the console, each stack event would be assigned the same token in the following format: <code>Console-CreateStack-7f59c3cf-00d2-40c7-b2ff-e75db0987002</code>. </p>",
         "StackSetOperation$OperationId": "<p>The unique ID of a stack set operation.</p>",
         "StackSetOperationSummary$OperationId": "<p>The unique ID of the stack set operation.</p>",
@@ -295,7 +310,8 @@
     "ClientToken": {
       "base": null,
       "refs": {
-        "CreateChangeSetInput$ClientToken": "<p>A unique identifier for this <code>CreateChangeSet</code> request. Specify this token if you plan to retry requests so that AWS CloudFormation knows that you're not attempting to create another change set with the same name. You might retry <code>CreateChangeSet</code> requests to ensure that AWS CloudFormation successfully received them.</p>"
+        "CreateChangeSetInput$ClientToken": "<p>A unique identifier for this <code>CreateChangeSet</code> request. Specify this token if you plan to retry requests so that AWS CloudFormation knows that you're not attempting to create another change set with the same name. You might retry <code>CreateChangeSet</code> requests to ensure that AWS CloudFormation successfully received them.</p>",
+        "RecordHandlerProgressInput$BearerToken": "<p>Reserved for use by the <a href=\"https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/what-is-cloudformation-cli.html\">CloudFormation CLI</a>.</p>"
       }
     },
     "ContinueUpdateRollbackInput": {
@@ -402,6 +418,24 @@
       "refs": {
         "Stack$DeletionTime": "<p>The time the stack was deleted.</p>",
         "StackSummary$DeletionTime": "<p>The time the stack was deleted.</p>"
+      }
+    },
+    "DeprecatedStatus": {
+      "base": null,
+      "refs": {
+        "DescribeTypeOutput$DeprecatedStatus": "<p>The deprecation status of the type.</p> <p>Valid values include:</p> <ul> <li> <p> <code>LIVE</code>: The type is registered and can be used in CloudFormation operations, dependent on its provisioning behavior and visibility scope.</p> </li> <li> <p> <code>DEPRECATED</code>: The type has been deregistered and can no longer be used in CloudFormation operations. </p> </li> </ul>",
+        "ListTypeVersionsInput$DeprecatedStatus": "<p>The deprecation status of the type versions that you want to get summary information about.</p> <p>Valid values include:</p> <ul> <li> <p> <code>LIVE</code>: The type version is registered and can be used in CloudFormation operations, dependent on its provisioning behavior and visibility scope.</p> </li> <li> <p> <code>DEPRECATED</code>: The type version has been deregistered and can no longer be used in CloudFormation operations. </p> </li> </ul>",
+        "ListTypesInput$DeprecatedStatus": "<p>The deprecation status of the types that you want to get summary information about.</p> <p>Valid values include:</p> <ul> <li> <p> <code>LIVE</code>: The type is registered for use in CloudFormation operations.</p> </li> <li> <p> <code>DEPRECATED</code>: The type has been deregistered and can no longer be used in CloudFormation operations. </p> </li> </ul>"
+      }
+    },
+    "DeregisterTypeInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeregisterTypeOutput": {
+      "base": null,
+      "refs": {
       }
     },
     "DescribeAccountLimitsInput": {
@@ -514,6 +548,26 @@
       "refs": {
       }
     },
+    "DescribeTypeInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeTypeOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeTypeRegistrationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeTypeRegistrationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Description": {
       "base": null,
       "refs": {
@@ -521,6 +575,8 @@
         "CreateChangeSetInput$Description": "<p>A description to help you identify this change set.</p>",
         "CreateStackSetInput$Description": "<p>A description of the stack set. You can use the description to identify the stack set's purpose or other important information.</p>",
         "DescribeChangeSetOutput$Description": "<p>Information about the change set.</p>",
+        "DescribeTypeOutput$Description": "<p>The description of the registered type.</p>",
+        "DescribeTypeRegistrationOutput$Description": "<p>The description of the type registration request.</p>",
         "GetTemplateSummaryOutput$Description": "<p>The value that is defined in the <code>Description</code> property of the template.</p>",
         "Output$Description": "<p>User defined description associated with the output.</p>",
         "ParameterDeclaration$Description": "<p>The description that is associate with the parameter.</p>",
@@ -530,6 +586,8 @@
         "StackSet$Description": "<p>A description of the stack set that you specify when the stack set is created or updated.</p>",
         "StackSetSummary$Description": "<p>A description of the stack set that you specify when the stack set is created or updated.</p>",
         "TemplateParameter$Description": "<p>User defined description associated with the parameter.</p>",
+        "TypeSummary$Description": "<p>The description of the type.</p>",
+        "TypeVersionSummary$Description": "<p>The description of the type version.</p>",
         "UpdateStackSetInput$Description": "<p>A brief description of updates that you are making.</p>",
         "ValidateTemplateOutput$Description": "<p>The description found within the template.</p>"
       }
@@ -573,6 +631,12 @@
         "CreateStackInput$EnableTerminationProtection": "<p>Whether to enable termination protection on the specified stack. If a user attempts to delete a stack with termination protection enabled, the operation fails and the stack remains unchanged. For more information, see <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-protect-stacks.html\">Protecting a Stack From Being Deleted</a> in the <i>AWS CloudFormation User Guide</i>. Termination protection is disabled on stacks by default. </p> <p> For <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html\">nested stacks</a>, termination protection is set on the root stack and cannot be changed directly on the nested stack.</p>",
         "Stack$EnableTerminationProtection": "<p>Whether termination protection is enabled for the stack.</p> <p> For <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html\">nested stacks</a>, termination protection is set on the root stack and cannot be changed directly on the nested stack. For more information, see <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-protect-stacks.html\">Protecting a Stack From Being Deleted</a> in the <i>AWS CloudFormation User Guide</i>.</p>",
         "UpdateTerminationProtectionInput$EnableTerminationProtection": "<p>Whether to enable termination protection on the specified stack.</p>"
+      }
+    },
+    "ErrorMessage": {
+      "base": null,
+      "refs": {
+        "CFNRegistryException$Message": null
       }
     },
     "EstimateTemplateCostInput": {
@@ -691,6 +755,12 @@
       "refs": {
       }
     },
+    "HandlerErrorCode": {
+      "base": null,
+      "refs": {
+        "RecordHandlerProgressInput$ErrorCode": "<p>Reserved for use by the <a href=\"https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/what-is-cloudformation-cli.html\">CloudFormation CLI</a>.</p>"
+      }
+    },
     "Imports": {
       "base": null,
       "refs": {
@@ -709,6 +779,11 @@
     },
     "InvalidOperationException": {
       "base": "<p>The specified operation isn't valid.</p>",
+      "refs": {
+      }
+    },
+    "InvalidStateTransitionException": {
+      "base": "<p>Error reserved for use by the <a href=\"https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/what-is-cloudformation-cli.html\">CloudFormation CLI</a>. CloudFormation does not return this error to users.</p>",
       "refs": {
       }
     },
@@ -832,6 +907,49 @@
       "refs": {
       }
     },
+    "ListTypeRegistrationsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTypeRegistrationsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTypeVersionsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTypeVersionsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTypesInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTypesOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "LogGroupName": {
+      "base": null,
+      "refs": {
+        "LoggingConfig$LogGroupName": "<p>The Amazon CloudWatch log group to which CloudFormation sends error logging information when invoking the type's handlers.</p>"
+      }
+    },
+    "LoggingConfig": {
+      "base": "<p>Contains logging configuration information for a type.</p>",
+      "refs": {
+        "DescribeTypeOutput$LoggingConfig": "<p>Contains logging configuration information for a type.</p>",
+        "RegisterTypeInput$LoggingConfig": "<p>Specifies logging configuration information for a type.</p>"
+      }
+    },
     "LogicalResourceId": {
       "base": null,
       "refs": {
@@ -875,7 +993,10 @@
         "ListStackInstancesInput$MaxResults": "<p>The maximum number of results to be returned with a single call. If the number of available results exceeds this maximum, the response includes a <code>NextToken</code> value that you can assign to the <code>NextToken</code> request parameter to get the next set of results.</p>",
         "ListStackSetOperationResultsInput$MaxResults": "<p>The maximum number of results to be returned with a single call. If the number of available results exceeds this maximum, the response includes a <code>NextToken</code> value that you can assign to the <code>NextToken</code> request parameter to get the next set of results.</p>",
         "ListStackSetOperationsInput$MaxResults": "<p>The maximum number of results to be returned with a single call. If the number of available results exceeds this maximum, the response includes a <code>NextToken</code> value that you can assign to the <code>NextToken</code> request parameter to get the next set of results.</p>",
-        "ListStackSetsInput$MaxResults": "<p>The maximum number of results to be returned with a single call. If the number of available results exceeds this maximum, the response includes a <code>NextToken</code> value that you can assign to the <code>NextToken</code> request parameter to get the next set of results.</p>"
+        "ListStackSetsInput$MaxResults": "<p>The maximum number of results to be returned with a single call. If the number of available results exceeds this maximum, the response includes a <code>NextToken</code> value that you can assign to the <code>NextToken</code> request parameter to get the next set of results.</p>",
+        "ListTypeRegistrationsInput$MaxResults": "<p>The maximum number of results to be returned with a single call. If the number of available results exceeds this maximum, the response includes a <code>NextToken</code> value that you can assign to the <code>NextToken</code> request parameter to get the next set of results.</p>",
+        "ListTypeVersionsInput$MaxResults": "<p>The maximum number of results to be returned with a single call. If the number of available results exceeds this maximum, the response includes a <code>NextToken</code> value that you can assign to the <code>NextToken</code> request parameter to get the next set of results.</p>",
+        "ListTypesInput$MaxResults": "<p>The maximum number of results to be returned with a single call. If the number of available results exceeds this maximum, the response includes a <code>NextToken</code> value that you can assign to the <code>NextToken</code> request parameter to get the next set of results.</p>"
       }
     },
     "Metadata": {
@@ -926,7 +1047,13 @@
         "ListStackSetsInput$NextToken": "<p>If the previous paginated request didn't return all of the remaining results, the response object's <code>NextToken</code> parameter value is set to a token. To retrieve the next set of results, call <code>ListStackSets</code> again and assign that token to the request object's <code>NextToken</code> parameter. If there are no remaining results, the previous response object's <code>NextToken</code> parameter is set to <code>null</code>.</p>",
         "ListStackSetsOutput$NextToken": "<p>If the request doesn't return all of the remaining results, <code>NextToken</code> is set to a token. To retrieve the next set of results, call <code>ListStackInstances</code> again and assign that token to the request object's <code>NextToken</code> parameter. If the request returns all results, <code>NextToken</code> is set to <code>null</code>.</p>",
         "ListStacksInput$NextToken": "<p>A string that identifies the next page of stacks that you want to retrieve.</p>",
-        "ListStacksOutput$NextToken": "<p>If the output exceeds 1 MB in size, a string that identifies the next page of stacks. If no additional page exists, this value is null.</p>"
+        "ListStacksOutput$NextToken": "<p>If the output exceeds 1 MB in size, a string that identifies the next page of stacks. If no additional page exists, this value is null.</p>",
+        "ListTypeRegistrationsInput$NextToken": "<p>If the previous paginated request didn't return all of the remaining results, the response object's <code>NextToken</code> parameter value is set to a token. To retrieve the next set of results, call this action again and assign that token to the request object's <code>NextToken</code> parameter. If there are no remaining results, the previous response object's <code>NextToken</code> parameter is set to <code>null</code>.</p>",
+        "ListTypeRegistrationsOutput$NextToken": "<p>If the request doesn't return all of the remaining results, <code>NextToken</code> is set to a token. To retrieve the next set of results, call this action again and assign that token to the request object's <code>NextToken</code> parameter. If the request returns all results, <code>NextToken</code> is set to <code>null</code>.</p>",
+        "ListTypeVersionsInput$NextToken": "<p>If the previous paginated request didn't return all of the remaining results, the response object's <code>NextToken</code> parameter value is set to a token. To retrieve the next set of results, call this action again and assign that token to the request object's <code>NextToken</code> parameter. If there are no remaining results, the previous response object's <code>NextToken</code> parameter is set to <code>null</code>.</p>",
+        "ListTypeVersionsOutput$NextToken": "<p>If the request doesn't return all of the remaining results, <code>NextToken</code> is set to a token. To retrieve the next set of results, call this action again and assign that token to the request object's <code>NextToken</code> parameter. If the request returns all results, <code>NextToken</code> is set to <code>null</code>.</p>",
+        "ListTypesInput$NextToken": "<p>If the previous paginated request didn't return all of the remaining results, the response object's <code>NextToken</code> parameter value is set to a token. To retrieve the next set of results, call this action again and assign that token to the request object's <code>NextToken</code> parameter. If there are no remaining results, the previous response object's <code>NextToken</code> parameter is set to <code>null</code>.</p>",
+        "ListTypesOutput$NextToken": "<p>If the request doesn't return all of the remaining results, <code>NextToken</code> is set to a token. To retrieve the next set of results, call this action again and assign that token to the request object's <code>NextToken</code> parameter. If the request returns all results, <code>NextToken</code> is set to <code>null</code>.</p>"
       }
     },
     "NoEcho": {
@@ -971,6 +1098,25 @@
     "OperationNotFoundException": {
       "base": "<p>The specified ID refers to an operation that doesn't exist.</p>",
       "refs": {
+      }
+    },
+    "OperationStatus": {
+      "base": null,
+      "refs": {
+        "RecordHandlerProgressInput$OperationStatus": "<p>Reserved for use by the <a href=\"https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/what-is-cloudformation-cli.html\">CloudFormation CLI</a>.</p>",
+        "RecordHandlerProgressInput$CurrentOperationStatus": "<p>Reserved for use by the <a href=\"https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/what-is-cloudformation-cli.html\">CloudFormation CLI</a>.</p>"
+      }
+    },
+    "OperationStatusCheckFailedException": {
+      "base": "<p>Error reserved for use by the <a href=\"https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/what-is-cloudformation-cli.html\">CloudFormation CLI</a>. CloudFormation does not return this error to users.</p>",
+      "refs": {
+      }
+    },
+    "OptionalSecureUrl": {
+      "base": null,
+      "refs": {
+        "DescribeTypeOutput$SourceUrl": "<p>The URL of the source code for the type.</p>",
+        "DescribeTypeOutput$DocumentationUrl": "<p>The URL of a page providing detailed documentation for this type.</p>"
       }
     },
     "Output": {
@@ -1085,6 +1231,14 @@
         "PhysicalResourceIdContext$member": null
       }
     },
+    "PrivateTypeArn": {
+      "base": null,
+      "refs": {
+        "DeregisterTypeInput$Arn": "<p>The Amazon Resource Name (ARN) of the type.</p> <p>Conditional: You must specify <code>TypeName</code> or <code>Arn</code>.</p>",
+        "ListTypeVersionsInput$Arn": "<p>The Amazon Resource Name (ARN) of the type for which you want version summary information.</p> <p>Conditional: You must specify <code>TypeName</code> or <code>Arn</code>.</p>",
+        "SetTypeDefaultVersionInput$Arn": "<p>The Amazon Resource Name (ARN) of the type for which you want version summary information.</p> <p>Conditional: You must specify <code>TypeName</code> or <code>Arn</code>.</p>"
+      }
+    },
     "Properties": {
       "base": null,
       "refs": {
@@ -1123,12 +1277,29 @@
         "PropertyDifference$ActualValue": "<p>The actual property value of the resource property.</p>"
       }
     },
+    "ProvisioningType": {
+      "base": null,
+      "refs": {
+        "DescribeTypeOutput$ProvisioningType": "<p>The provisioning behavior of the type. AWS CloudFormation determines the provisioning type during registration, based on the types of handlers in the schema handler package submitted.</p> <p>Valid values include:</p> <ul> <li> <p> <code>FULLY_MUTABLE</code>: The type includes an update handler to process updates to the type during stack update operations.</p> </li> <li> <p> <code>IMMUTABLE</code>: The type does not include an update handler, so the type cannot be updated and must instead be replaced during stack update operations.</p> </li> <li> <p> <code>NON_PROVISIONABLE</code>: The type does not include all of the following handlers, and therefore cannot actually be provisioned.</p> <ul> <li> <p>create</p> </li> <li> <p>read</p> </li> <li> <p>delete</p> </li> </ul> </li> </ul>",
+        "ListTypesInput$ProvisioningType": "<p>The provisioning behavior of the type. AWS CloudFormation determines the provisioning type during registration, based on the types of handlers in the schema handler package submitted.</p> <p>Valid values include:</p> <ul> <li> <p> <code>FULLY_MUTABLE</code>: The type includes an update handler to process updates to the type during stack update operations.</p> </li> <li> <p> <code>IMMUTABLE</code>: The type does not include an update handler, so the type cannot be updated and must instead be replaced during stack update operations.</p> </li> <li> <p> <code>NON_PROVISIONABLE</code>: The type does not include create, read, and delete handlers, and therefore cannot actually be provisioned.</p> </li> </ul>"
+      }
+    },
     "Reason": {
       "base": null,
       "refs": {
         "StackInstance$StatusReason": "<p>The explanation for the specific status code that is assigned to this stack instance.</p>",
         "StackInstanceSummary$StatusReason": "<p>The explanation for the specific status code assigned to this stack instance.</p>",
         "StackSetOperationResultSummary$StatusReason": "<p>The reason for the assigned result status.</p>"
+      }
+    },
+    "RecordHandlerProgressInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RecordHandlerProgressOutput": {
+      "base": null,
+      "refs": {
       }
     },
     "Region": {
@@ -1152,10 +1323,61 @@
         "UpdateStackSetInput$Regions": "<p>The regions in which to update associated stack instances. If you specify regions, you must also specify accounts in which to update stack set instances.</p> <p>To update <i>all</i> the stack instances associated with this stack set, do not specify the <code>Accounts</code> or <code>Regions</code> properties.</p> <p>If the stack set update includes changes to the template (that is, if the <code>TemplateBody</code> or <code>TemplateURL</code> properties are specified), or the <code>Parameters</code> property, AWS CloudFormation marks all stack instances with a status of <code>OUTDATED</code> prior to updating the stack instances in the specified accounts and regions. If the stack set update does not include changes to the template or parameters, AWS CloudFormation updates the stack instances in the specified accounts and regions, while leaving all other stack instances with their existing stack instance status. </p>"
       }
     },
+    "RegisterTypeInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RegisterTypeOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RegistrationStatus": {
+      "base": null,
+      "refs": {
+        "DescribeTypeRegistrationOutput$ProgressStatus": "<p>The current status of the type registration request.</p>",
+        "ListTypeRegistrationsInput$RegistrationStatusFilter": "<p>The current status of the type registration request.</p>"
+      }
+    },
+    "RegistrationToken": {
+      "base": null,
+      "refs": {
+        "DescribeTypeRegistrationInput$RegistrationToken": "<p>The identifier for this registration request.</p> <p>This registration token is generated by CloudFormation when you initiate a registration request using <code> <a>RegisterType</a> </code>.</p>",
+        "RegisterTypeOutput$RegistrationToken": "<p>The identifier for this registration request.</p> <p>Use this registration token when calling <code> <a>DescribeTypeRegistration</a> </code>, which returns information about the status and IDs of the type registration. </p>",
+        "RegistrationTokenList$member": null
+      }
+    },
+    "RegistrationTokenList": {
+      "base": null,
+      "refs": {
+        "ListTypeRegistrationsOutput$RegistrationTokenList": "<p> A list of type registration tokens.</p> <p>Use <code> <a>DescribeTypeRegistration</a> </code> to return detailed information about a type registration request.</p>"
+      }
+    },
+    "RegistryType": {
+      "base": null,
+      "refs": {
+        "DeregisterTypeInput$Type": "<p>The kind of type.</p> <p>Currently the only valid value is <code>RESOURCE</code>.</p>",
+        "DescribeTypeInput$Type": "<p>The kind of type. </p> <p>Currently the only valid value is <code>RESOURCE</code>.</p>",
+        "DescribeTypeOutput$Type": "<p>The kind of type. </p> <p>Currently the only valid value is <code>RESOURCE</code>.</p>",
+        "ListTypeRegistrationsInput$Type": "<p>The kind of type.</p> <p>Currently the only valid value is <code>RESOURCE</code>.</p>",
+        "ListTypeVersionsInput$Type": "<p>The kind of the type.</p> <p>Currently the only valid value is <code>RESOURCE</code>.</p>",
+        "RegisterTypeInput$Type": "<p>The kind of type.</p> <p>Currently, the only valid value is <code>RESOURCE</code>.</p>",
+        "SetTypeDefaultVersionInput$Type": "<p>The kind of type.</p>",
+        "TypeSummary$Type": "<p>The kind of type.</p>",
+        "TypeVersionSummary$Type": "<p>The kind of type.</p>"
+      }
+    },
     "Replacement": {
       "base": null,
       "refs": {
         "ResourceChange$Replacement": "<p>For the <code>Modify</code> action, indicates whether AWS CloudFormation will replace the resource by creating a new one and deleting the old one. This value depends on the value of the <code>RequiresRecreation</code> property in the <code>ResourceTargetDefinition</code> structure. For example, if the <code>RequiresRecreation</code> field is <code>Always</code> and the <code>Evaluation</code> field is <code>Static</code>, <code>Replacement</code> is <code>True</code>. If the <code>RequiresRecreation</code> field is <code>Always</code> and the <code>Evaluation</code> field is <code>Dynamic</code>, <code>Replacement</code> is <code>Conditionally</code>.</p> <p>If you have multiple changes with different <code>RequiresRecreation</code> values, the <code>Replacement</code> value depends on the change with the most impact. A <code>RequiresRecreation</code> value of <code>Always</code> has the most impact, followed by <code>Conditionally</code>, and then <code>Never</code>.</p>"
+      }
+    },
+    "RequestToken": {
+      "base": null,
+      "refs": {
+        "RegisterTypeInput$ClientRequestToken": "<p>A unique identifier that acts as an idempotency key for this registration request. Specifying a client request token prevents CloudFormation from generating more than one version of a type from the same registeration request, even if the request is submitted multiple times. </p>"
       }
     },
     "RequiresRecreation": {
@@ -1224,6 +1446,12 @@
       "base": null,
       "refs": {
         "ResourceIdentifierSummary$ResourceIdentifiers": "<p>The resource properties you can provide during the import to identify your target resources. For example, <code>BucketName</code> is a possible identifier property for <code>AWS::S3::Bucket</code> resources.</p>"
+      }
+    },
+    "ResourceModel": {
+      "base": null,
+      "refs": {
+        "RecordHandlerProgressInput$ResourceModel": "<p>Reserved for use by the <a href=\"https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/what-is-cloudformation-cli.html\">CloudFormation CLI</a>.</p>"
       }
     },
     "ResourceProperties": {
@@ -1348,6 +1576,14 @@
         "UpdateStackSetInput$AdministrationRoleARN": "<p>The Amazon Resource Number (ARN) of the IAM role to use to update this stack set.</p> <p>Specify an IAM role only if you are using customized administrator roles to control which users or groups can manage specific stack sets within the same administrator account. For more information, see <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-prereqs.html\">Granting Permissions for Stack Set Operations</a> in the <i>AWS CloudFormation User Guide</i>.</p> <p>If you specified a customized administrator role when you created the stack set, you must specify a customized administrator role, even if it is the same customized administrator role used with this stack set previously.</p>"
       }
     },
+    "RoleArn": {
+      "base": null,
+      "refs": {
+        "DescribeTypeOutput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM execution role used to register the type. If your resource type calls AWS APIs in any of its handlers, you must create an <i> <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html\">IAM execution role</a> </i> that includes the necessary permissions to call those AWS APIs, and provision that execution role in your account. CloudFormation then assumes that execution role to provide your resource type with the appropriate credentials.</p>",
+        "LoggingConfig$LogRoleArn": "<p>The ARN of the role that CloudFormation should assume when sending log entries to CloudWatch logs.</p>",
+        "RegisterTypeInput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM execution role to use to register the type. If your resource type calls AWS APIs in any of its handlers, you must create an <i> <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html\">IAM execution role</a> </i> that includes the necessary permissions to call those AWS APIs, and provision that execution role in your account. CloudFormation then assumes that execution role to provide your resource type with the appropriate credentials.</p>"
+      }
+    },
     "RollbackConfiguration": {
       "base": "<p>Structure containing the rollback triggers for AWS CloudFormation to monitor during stack creation and updating operations, and for the specified monitoring period afterwards.</p> <p>Rollback triggers enable you to have AWS CloudFormation monitor the state of your application during stack creation and updating, and to roll back that operation if the application breaches the threshold of any of the alarms you've specified. For more information, see <a href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-rollback-triggers.html\">Monitor and Roll Back Stack Operations</a>.</p>",
       "refs": {
@@ -1370,6 +1606,12 @@
         "RollbackConfiguration$RollbackTriggers": "<p>The triggers to monitor during stack creation or update actions. </p> <p>By default, AWS CloudFormation saves the rollback triggers specified for a stack and applies them to any subsequent update operations for the stack, unless you specify otherwise. If you do specify rollback triggers for this parameter, those triggers replace any list of triggers previously specified for the stack. This means:</p> <ul> <li> <p>To use the rollback triggers previously specified for this stack, if any, don't specify this parameter.</p> </li> <li> <p>To specify new or updated rollback triggers, you must specify <i>all</i> the triggers that you want used for this stack, even triggers you've specifed before (for example, when creating the stack or during a previous stack update). Any triggers that you don't include in the updated list of triggers are no longer applied to the stack.</p> </li> <li> <p>To remove all currently specified triggers, specify an empty list for this parameter.</p> </li> </ul> <p>If a specified trigger is missing, the entire stack operation fails and is rolled back. </p>"
       }
     },
+    "S3Url": {
+      "base": null,
+      "refs": {
+        "RegisterTypeInput$SchemaHandlerPackage": "<p>A url to the S3 bucket containing the schema handler package that contains the schema, event handlers, and associated files for the type you want to register.</p> <p>For information on generating a schema handler package for the type you want to register, see <a href=\"https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-type-cli-submit.html\">submit</a> in the <i>CloudFormation CLI User Guide</i>.</p>"
+      }
+    },
     "Scope": {
       "base": null,
       "refs": {
@@ -1378,6 +1620,16 @@
     },
     "SetStackPolicyInput": {
       "base": "<p>The input for the <a>SetStackPolicy</a> action.</p>",
+      "refs": {
+      }
+    },
+    "SetTypeDefaultVersionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SetTypeDefaultVersionOutput": {
+      "base": null,
       "refs": {
       }
     },
@@ -1830,6 +2082,12 @@
       "refs": {
       }
     },
+    "StatusMessage": {
+      "base": null,
+      "refs": {
+        "RecordHandlerProgressInput$StatusMessage": "<p>Reserved for use by the <a href=\"https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/what-is-cloudformation-cli.html\">CloudFormation CLI</a>.</p>"
+      }
+    },
     "StopStackSetOperationInput": {
       "base": null,
       "refs": {
@@ -1935,6 +2193,8 @@
       "base": null,
       "refs": {
         "DescribeStackDriftDetectionStatusOutput$Timestamp": "<p>Time at which the stack drift detection operation was initiated.</p>",
+        "DescribeTypeOutput$LastUpdated": "<p>When the specified type version was registered.</p>",
+        "DescribeTypeOutput$TimeCreated": "<p>When the specified type version was registered.</p>",
         "StackDriftInformation$LastCheckTimestamp": "<p>Most recent time when a drift detection operation was initiated on the stack, or any of its individual resources that support drift detection.</p>",
         "StackDriftInformationSummary$LastCheckTimestamp": "<p>Most recent time when a drift detection operation was initiated on the stack, or any of its individual resources that support drift detection.</p>",
         "StackEvent$Timestamp": "<p>Time the status was updated.</p>",
@@ -1947,7 +2207,9 @@
         "StackSetOperation$CreationTimestamp": "<p>The time at which the operation was initiated. Note that the creation times for the stack set operation might differ from the creation time of the individual stacks themselves. This is because AWS CloudFormation needs to perform preparatory work for the operation, such as dispatching the work to the requested regions, before actually creating the first stacks.</p>",
         "StackSetOperation$EndTimestamp": "<p>The time at which the stack set operation ended, across all accounts and regions specified. Note that this doesn't necessarily mean that the stack set operation was successful, or even attempted, in each account or region.</p>",
         "StackSetOperationSummary$CreationTimestamp": "<p>The time at which the operation was initiated. Note that the creation times for the stack set operation might differ from the creation time of the individual stacks themselves. This is because AWS CloudFormation needs to perform preparatory work for the operation, such as dispatching the work to the requested regions, before actually creating the first stacks.</p>",
-        "StackSetOperationSummary$EndTimestamp": "<p>The time at which the stack set operation ended, across all accounts and regions specified. Note that this doesn't necessarily mean that the stack set operation was successful, or even attempted, in each account or region.</p>"
+        "StackSetOperationSummary$EndTimestamp": "<p>The time at which the stack set operation ended, across all accounts and regions specified. Note that this doesn't necessarily mean that the stack set operation was successful, or even attempted, in each account or region.</p>",
+        "TypeSummary$LastUpdated": "<p>When the current default version of the type was registered.</p>",
+        "TypeVersionSummary$TimeCreated": "<p>When the version was registered.</p>"
       }
     },
     "TokenAlreadyExistsException": {
@@ -1972,6 +2234,78 @@
       "base": null,
       "refs": {
         "RollbackTrigger$Type": "<p>The resource type of the rollback trigger. Currently, <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cw-alarm.html\">AWS::CloudWatch::Alarm</a> is the only supported resource type.</p>"
+      }
+    },
+    "TypeArn": {
+      "base": null,
+      "refs": {
+        "DescribeTypeInput$Arn": "<p>The Amazon Resource Name (ARN) of the type.</p> <p>Conditional: You must specify <code>TypeName</code> or <code>Arn</code>.</p>",
+        "DescribeTypeOutput$Arn": "<p>The Amazon Resource Name (ARN) of the type.</p>",
+        "DescribeTypeRegistrationOutput$TypeArn": "<p>The Amazon Resource Name (ARN) of the type being registered.</p> <p>For registration requests with a <code>ProgressStatus</code> of other than <code>COMPLETE</code>, this will be <code>null</code>.</p>",
+        "DescribeTypeRegistrationOutput$TypeVersionArn": "<p>The Amazon Resource Name (ARN) of this specific version of the type being registered.</p> <p>For registration requests with a <code>ProgressStatus</code> of other than <code>COMPLETE</code>, this will be <code>null</code>.</p>",
+        "ListTypeRegistrationsInput$TypeArn": "<p>The Amazon Resource Name (ARN) of the type.</p> <p>Conditional: You must specify <code>TypeName</code> or <code>Arn</code>.</p>",
+        "TypeSummary$TypeArn": "<p>The Amazon Resource Name (ARN) of the type.</p>",
+        "TypeVersionSummary$Arn": "<p>The Amazon Resource Name (ARN) of the type version.</p>"
+      }
+    },
+    "TypeName": {
+      "base": null,
+      "refs": {
+        "DeregisterTypeInput$TypeName": "<p>The name of the type.</p> <p>Conditional: You must specify <code>TypeName</code> or <code>Arn</code>.</p>",
+        "DescribeTypeInput$TypeName": "<p>The name of the type.</p> <p>Conditional: You must specify <code>TypeName</code> or <code>Arn</code>.</p>",
+        "DescribeTypeOutput$TypeName": "<p>The name of the registered type.</p>",
+        "ListTypeRegistrationsInput$TypeName": "<p>The name of the type.</p> <p>Conditional: You must specify <code>TypeName</code> or <code>Arn</code>.</p>",
+        "ListTypeVersionsInput$TypeName": "<p>The name of the type for which you want version summary information.</p> <p>Conditional: You must specify <code>TypeName</code> or <code>Arn</code>.</p>",
+        "RegisterTypeInput$TypeName": "<p>The name of the type being registered.</p> <p>We recommend that type names adhere to the following pattern: <i>company_or_organization</i>::<i>service</i>::<i>type</i>.</p> <note> <p>The following organization namespaces are reserved and cannot be used in your resource type names:</p> <ul> <li> <p> <code>Alexa</code> </p> </li> <li> <p> <code>AMZN</code> </p> </li> <li> <p> <code>Amazon</code> </p> </li> <li> <p> <code>AWS</code> </p> </li> <li> <p> <code>Custom</code> </p> </li> <li> <p> <code>Dev</code> </p> </li> </ul> </note>",
+        "SetTypeDefaultVersionInput$TypeName": "<p>The name of the type.</p> <p>Conditional: You must specify <code>TypeName</code> or <code>Arn</code>.</p>",
+        "TypeSummary$TypeName": "<p>The name of the type.</p>",
+        "TypeVersionSummary$TypeName": "<p>The name of the type.</p>"
+      }
+    },
+    "TypeNotFoundException": {
+      "base": "<p>The specified type does not exist in the CloudFormation registry.</p>",
+      "refs": {
+      }
+    },
+    "TypeSchema": {
+      "base": null,
+      "refs": {
+        "DescribeTypeOutput$Schema": "<p>The schema that defines the type.</p> <p>For more information on type schemas, see <a href=\"https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-type-schema.html\">Resource Provider Schema</a> in the <i>CloudFormation CLI User Guide</i>.</p>"
+      }
+    },
+    "TypeSummaries": {
+      "base": null,
+      "refs": {
+        "ListTypesOutput$TypeSummaries": "<p>A list of <code>TypeSummary</code> structures that contain information about the specified types.</p>"
+      }
+    },
+    "TypeSummary": {
+      "base": "<p>Contains summary information about the specified CloudFormation type.</p>",
+      "refs": {
+        "TypeSummaries$member": null
+      }
+    },
+    "TypeVersionId": {
+      "base": null,
+      "refs": {
+        "DeregisterTypeInput$VersionId": "<p>The ID of a specific version of the type. The version ID is the value at the end of the Amazon Resource Name (ARN) assigned to the type version when it is registered.</p>",
+        "DescribeTypeInput$VersionId": "<p>The ID of a specific version of the type. The version ID is the value at the end of the Amazon Resource Name (ARN) assigned to the type version when it is registered.</p> <p>If you specify a <code>VersionId</code>, <code>DescribeType</code> returns information about that specific type version. Otherwise, it returns information about the default type version.</p>",
+        "DescribeTypeOutput$DefaultVersionId": "<p>The ID of the default version of the type. The default version is used when the type version is not specified.</p> <p>To set the default version of a type, use <code> <a>SetTypeDefaultVersion</a> </code>. </p>",
+        "SetTypeDefaultVersionInput$VersionId": "<p>The ID of a specific version of the type. The version ID is the value at the end of the Amazon Resource Name (ARN) assigned to the type version when it is registered.</p>",
+        "TypeSummary$DefaultVersionId": "<p>The ID of the default version of the type. The default version is used when the type version is not specified.</p> <p>To set the default version of a type, use <code> <a>SetTypeDefaultVersion</a> </code>. </p>",
+        "TypeVersionSummary$VersionId": "<p>The ID of a specific version of the type. The version ID is the value at the end of the Amazon Resource Name (ARN) assigned to the type version when it is registered.</p>"
+      }
+    },
+    "TypeVersionSummaries": {
+      "base": null,
+      "refs": {
+        "ListTypeVersionsOutput$TypeVersionSummaries": "<p>A list of <code>TypeVersionSummary</code> structures that contain information about the specified type's versions.</p>"
+      }
+    },
+    "TypeVersionSummary": {
+      "base": "<p>Contains summary information about a specific version of a CloudFormation type.</p>",
+      "refs": {
+        "TypeVersionSummaries$member": null
       }
     },
     "UpdateStackInput": {
@@ -2054,6 +2388,13 @@
       "base": null,
       "refs": {
         "GetTemplateSummaryOutput$Version": "<p>The AWS template format version, which identifies the capabilities of the template.</p>"
+      }
+    },
+    "Visibility": {
+      "base": null,
+      "refs": {
+        "DescribeTypeOutput$Visibility": "<p>The scope at which the type is visible and usable in CloudFormation operations.</p> <p>Valid values include:</p> <ul> <li> <p> <code>PRIVATE</code>: The type is only visible and usable within the account in which it is registered. Currently, AWS CloudFormation marks any types you register as <code>PRIVATE</code>.</p> </li> <li> <p> <code>PUBLIC</code>: The type is publically visible and usable within any Amazon account.</p> </li> </ul>",
+        "ListTypesInput$Visibility": "<p>The scope at which the type is visible and usable in CloudFormation operations.</p> <p>Valid values include:</p> <ul> <li> <p> <code>PRIVATE</code>: The type is only visible and usable within the account in which it is registered. Currently, AWS CloudFormation marks any types you create as <code>PRIVATE</code>.</p> </li> <li> <p> <code>PUBLIC</code>: The type is publically visible and usable within any Amazon account.</p> </li> </ul>"
       }
     }
   }

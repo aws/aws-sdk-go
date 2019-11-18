@@ -11,6 +11,7 @@
     "CreatePushTemplate" : "<p>Creates a message template that you can use in messages that are sent through a push notification channel.</p>",
     "CreateSegment" : "<p>Creates a new segment for an application or updates the configuration, dimension, and other settings for an existing segment that's associated with an application.</p>",
     "CreateSmsTemplate" : "<p>Creates a message template that you can use in messages that are sent through the SMS channel.</p>",
+    "CreateVoiceTemplate" : "<p>Creates a message template that you can use in messages that are sent through the voice channel.</p>",
     "DeleteAdmChannel" : "<p>Disables the ADM channel for an application and deletes any existing settings for the channel.</p>",
     "DeleteApnsChannel" : "<p>Disables the APNs channel for an application and deletes any existing settings for the channel.</p>",
     "DeleteApnsSandboxChannel" : "<p>Disables the APNs sandbox channel for an application and deletes any existing settings for the channel.</p>",
@@ -31,6 +32,7 @@
     "DeleteSmsTemplate" : "<p>Deletes a message template that was designed for use in messages that were sent through the SMS channel.</p>",
     "DeleteUserEndpoints" : "<p>Deletes all the endpoints that are associated with a specific user ID.</p>",
     "DeleteVoiceChannel" : "<p>Disables the voice channel for an application and deletes any existing settings for the channel.</p>",
+    "DeleteVoiceTemplate" : "<p>Deletes a message template that was designed for use in messages that were sent through the voice channel.</p>",
     "GetAdmChannel" : "<p>Retrieves information about the status and settings of the ADM channel for an application.</p>",
     "GetApnsChannel" : "<p>Retrieves information about the status and settings of the APNs channel for an application.</p>",
     "GetApnsSandboxChannel" : "<p>Retrieves information about the status and settings of the APNs sandbox channel for an application.</p>",
@@ -72,6 +74,7 @@
     "GetSmsTemplate" : "<p>Retrieves the content and settings for a message template that you can use in messages that are sent through the SMS channel.</p>",
     "GetUserEndpoints" : "<p>Retrieves information about all the endpoints that are associated with a specific user ID.</p>",
     "GetVoiceChannel" : "<p>Retrieves information about the status and settings of the voice channel for an application.</p>",
+    "GetVoiceTemplate" : "<p>Retrieves the content and settings for a message template that you can use in messages that are sent through the voice channel.</p>",
     "ListJourneys" : "<p>Retrieves information about the status, configuration, and other settings for all the journeys that are associated with an application.</p>",
     "ListTagsForResource" : "<p>Retrieves all the tags (keys and values) that are associated with an application, campaign, journey, message template, or segment.</p>",
     "ListTemplates" : "<p>Retrieves information about all the message templates that are associated with your Amazon Pinpoint account.</p>",
@@ -102,7 +105,8 @@
     "UpdateSegment" : "<p>Creates a new segment for an application or updates the configuration, dimension, and other settings for an existing segment that's associated with an application.</p>",
     "UpdateSmsChannel" : "<p>Enables the SMS channel for an application or updates the status and settings of the SMS channel for an application.</p>",
     "UpdateSmsTemplate" : "<p>Updates an existing message template that you can use in messages that are sent through the SMS channel.</p>",
-    "UpdateVoiceChannel" : "<p>Enables the voice channel for an application or updates the status and settings of the voice channel for an application.</p>"
+    "UpdateVoiceChannel" : "<p>Enables the voice channel for an application or updates the status and settings of the voice channel for an application.</p>",
+    "UpdateVoiceTemplate" : "<p>Updates an existing message template that you can use in messages that are sent through the voice channel.</p>"
   },
   "shapes" : {
     "ADMChannelRequest" : {
@@ -376,9 +380,9 @@
       "refs" : { }
     },
     "DefaultMessage" : {
-      "base" : "<p>Specifies the default message to use for all channels.</p>",
+      "base" : "<p>Specifies the default message for all channels.</p>",
       "refs" : {
-        "DirectMessageConfiguration$DefaultMessage" : "<p>The default message body for all channels.</p>"
+        "DirectMessageConfiguration$DefaultMessage" : "<p>The default message for all channels.</p>"
       }
     },
     "DefaultPushNotificationMessage" : {
@@ -410,8 +414,8 @@
     "DirectMessageConfiguration" : {
       "base" : "<p>Specifies the settings and content for the default message and any default messages that you tailored for specific channels.</p>",
       "refs" : {
-        "MessageRequest$MessageConfiguration" : "<p>The set of properties that defines the configuration settings for the message.</p>",
-        "SendUsersMessageRequest$MessageConfiguration" : "<p>The message definitions for the default message and any default messages that you defined for specific channels.</p>"
+        "MessageRequest$MessageConfiguration" : "<p>The settings and content for the default message and any default messages that you defined for specific channels.</p>",
+        "SendUsersMessageRequest$MessageConfiguration" : "<p>The settings and content for the default message and any default messages that you defined for specific channels.</p>"
       }
     },
     "Duration" : {
@@ -749,7 +753,7 @@
       }
     },
     "MessageRequest" : {
-      "base" : "<p>Specifies the objects that define configuration and other settings for a message.</p>",
+      "base" : "<p>Specifies the configuration and other settings for a message.</p>",
       "refs" : { }
     },
     "MessageResponse" : {
@@ -1030,9 +1034,9 @@
     "SimpleEmailPart" : {
       "base" : "<p>Specifies the subject or body of an email message, represented as textual email data and the applicable character set.</p>",
       "refs" : {
-        "SimpleEmail$HtmlPart" : "<p>The body of the email message, in HTML format. We recommend using an HTML part for email clients that support HTML. You can include links, formatted text, and more in an HTML message.</p>",
+        "SimpleEmail$HtmlPart" : "<p>The body of the email message, in HTML format. We recommend using HTML format for email clients that render HTML content. You can include links, formatted text, and more in an HTML message.</p>",
         "SimpleEmail$Subject" : "<p>The subject line, or title, of the email.</p>",
-        "SimpleEmail$TextPart" : "<p>The body of the email message, in text format. We recommend using a text part for email clients that don't support HTML and clients that are connected to high-latency networks, such as mobile devices.</p>"
+        "SimpleEmail$TextPart" : "<p>The body of the email message, in plain text format. We recommend using plain text format for email clients that don't render HTML content and clients that are connected to high-latency networks, such as mobile devices.</p>"
       }
     },
     "SourceType" : {
@@ -1065,11 +1069,12 @@
       "refs" : {
         "TemplateConfiguration$EmailTemplate" : "<p>The email template to use for the message.</p>",
         "TemplateConfiguration$PushTemplate" : "<p>The push notification template to use for the message.</p>",
-        "TemplateConfiguration$SMSTemplate" : "<p>The SMS template to use for the message.</p>"
+        "TemplateConfiguration$SMSTemplate" : "<p>The SMS template to use for the message.</p>",
+        "TemplateConfiguration$VoiceTemplate" : "<p>The voice template to use for the message.</p>"
       }
     },
     "TemplateConfiguration" : {
-      "base" : "<p>Specifies the message template for each type of channel.</p>",
+      "base" : "<p>Specifies the message template to use for the message, for each type of channel.</p>",
       "refs" : {
         "CampaignResponse$TemplateConfiguration" : "<p>The message template that’s used for the campaign.</p>",
         "MessageRequest$TemplateConfiguration" : "<p>The message template to use for the message.</p>",
@@ -1091,7 +1096,8 @@
         "EmailTemplateResponse$TemplateType" : "<p>The type of channel that the message template is designed for. For an email template, this value is EMAIL.</p>",
         "PushNotificationTemplateResponse$TemplateType" : "<p>The type of channel that the message template is designed for. For a push notification template, this value is PUSH.</p>",
         "SMSTemplateResponse$TemplateType" : "<p>The type of channel that the message template is designed for. For an SMS template, this value is SMS.</p>",
-        "TemplateResponse$TemplateType" : "<p>The type of channel that the message template is designed for.</p>"
+        "TemplateResponse$TemplateType" : "<p>The type of channel that the message template is designed for.</p>",
+        "VoiceTemplateResponse$TemplateType" : "<p>The type of channel that the message template is designed for. For a voice template, this value is VOICE.</p>"
       }
     },
     "TemplatesResponse" : {
@@ -1131,6 +1137,14 @@
       "refs" : {
         "DirectMessageConfiguration$VoiceMessage" : "<p>The default message for the voice channel. This message overrides the default message (DefaultMessage).</p>"
       }
+    },
+    "VoiceTemplateRequest" : {
+      "base" : "<p>Specifies the content and settings for a message template that can be used in messages that are sent through the voice channel.</p>",
+      "refs" : { }
+    },
+    "VoiceTemplateResponse" : {
+      "base" : "<p>Provides information about the content and settings for a message template that can be used in messages that are sent through the voice channel.</p>",
+      "refs" : { }
     },
     "WaitActivity" : {
       "base" : "<p>Specifies the settings for a wait activity in a journey. This type of activity waits for a certain amount of time or until a specific date and time before moving participants to the next activity in a journey.</p>",
@@ -1551,9 +1565,9 @@
       "refs" : {
         "ADMMessage$Substitutions" : "<p>The default message variables to use in the notification message. You can override the default variables with individual address variables.</p>",
         "APNSMessage$Substitutions" : "<p>The default message variables to use in the notification message. You can override these default variables with individual address variables.</p>",
-        "AddressConfiguration$Substitutions" : "<p>An object that maps variable values for the message. Amazon Pinpoint merges these values with the variable values specified by properties of the DefaultMessage object. The substitutions in this map take precedence over all other substitutions.</p>",
+        "AddressConfiguration$Substitutions" : "<p>A map of the message variables to merge with the variables specified by properties of the DefaultMessage object. The variables specified in this map take precedence over all other variables.</p>",
         "BaiduMessage$Substitutions" : "<p>The default message variables to use in the notification message. You can override the default variables with individual address variables.</p>",
-        "DefaultMessage$Substitutions" : "<p>The default message variables to use in the push notification, email, or SMS message. You can override these default variables with individual address variables.</p>",
+        "DefaultMessage$Substitutions" : "<p>The default message variables to use in the message. You can override these default variables with individual address variables.</p>",
         "DefaultPushNotificationMessage$Substitutions" : "<p>The default message variables to use in the notification message. You can override the default variables with individual address variables.</p>",
         "EmailMessage$Substitutions" : "<p>The default message variables to use in the email message. You can override the default variables with individual address variables.</p>",
         "EndpointBatchItem$Attributes" : "<p>One or more custom attributes that describe the endpoint by associating a name with an array of values. For example, the value of a custom attribute named Interests might be: [\"science\", \"music\", \"travel\"]. You can use these attributes as filter criteria when you create segments.</p> <p>When you define the name of a custom attribute, avoid using the following characters: number sign (#), colon (:), question mark (?), backslash (\\), and slash (/). The Amazon Pinpoint console can't display attribute names that contain these characters. This limitation doesn't apply to attribute values.</p>",
@@ -1601,6 +1615,8 @@
         "SendUsersMessageRequest$Context" : "<p>A map of custom attribute-value pairs. For a push notification, Amazon Pinpoint adds these attributes to the data.pinpoint object in the body of the notification payload. Amazon Pinpoint also provides these attributes in the events that it generates for users-messages deliveries.</p>",
         "TagsModel$tags" : "<p>A string-to-string map of key-value pairs that defines the tags for an application, campaign, journey, message template, or segment. Each of these resources can have a maximum of 50 tags.</p> <p>Each tag consists of a required tag key and an associated tag value. The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.</p>",
         "TemplateResponse$tags" : "<p>A string-to-string map of key-value pairs that identifies the tags that are associated with the message template. Each tag consists of a required tag key and an associated tag value.</p>",
+        "VoiceTemplateRequest$tags" : "<p>A string-to-string map of key-value pairs that defines the tags to associate with the message template. Each tag consists of a required tag key and an associated tag value.</p>",
+        "VoiceTemplateResponse$tags" : "<p>A string-to-string map of key-value pairs that identifies the tags that are associated with the message template. Each tag consists of a required tag key and an associated tag value.</p>",
         "WriteCampaignRequest$tags" : "<p>A string-to-string map of key-value pairs that defines the tags to associate with the campaign. Each tag consists of a required tag key and an associated tag value.</p>",
         "WriteSegmentRequest$tags" : "<p>A string-to-string map of key-value pairs that defines the tags to associate with the segment. Each tag consists of a required tag key and an associated tag value.</p>"
       }
@@ -1623,7 +1639,7 @@
         "ADMMessage$ImageIconUrl" : "<p>The URL of the large icon image to display in the content view of the push notification.</p>",
         "ADMMessage$ImageUrl" : "<p>The URL of an image to display in the push notification.</p>",
         "ADMMessage$MD5" : "<p>The base64-encoded, MD5 checksum of the value specified by the Data property. ADM uses the MD5 value to verify the integrity of the data.</p>",
-        "ADMMessage$RawContent" : "<p>The raw, JSON-formatted string to use as the payload for the notification message. This value overrides the message.</p>",
+        "ADMMessage$RawContent" : "<p>The raw, JSON-formatted string to use as the payload for the notification message. If specified, this value overrides all other content for the message.</p>",
         "ADMMessage$SmallImageIconUrl" : "<p>The URL of the small icon image to display in the status bar and the content view of the push notification.</p>",
         "ADMMessage$Sound" : "<p>The sound to play when the recipient receives the push notification. You can use the default stream or specify the file name of a sound resource that's bundled in your app. On an Android platform, the sound file must reside in /res/raw/.</p>",
         "ADMMessage$Title" : "<p>The title to display above the notification message on the recipient's device.</p>",
@@ -1649,13 +1665,14 @@
         "APNSMessage$MediaUrl" : "<p>The URL of an image or video to display in the push notification.</p>",
         "APNSMessage$PreferredAuthenticationMethod" : "<p>The authentication method that you want Amazon Pinpoint to use when authenticating with APNs, CERTIFICATE or TOKEN.</p>",
         "APNSMessage$Priority" : "<p>para>5 - Low priority, the notification might be delayed, delivered as part of a group, or throttled.</p>/listitem> <li><p>10 - High priority, the notification is sent immediately. This is the default value. A high priority notification should trigger an alert, play a sound, or badge your app's icon on the recipient's device.</p></li>/para> <p>Amazon Pinpoint specifies this value in the apns-priority request header when it sends the notification message to APNs.</p> <p>The equivalent values for Firebase Cloud Messaging (FCM), formerly Google Cloud Messaging (GCM), are normal, for 5, and high, for 10. If you specify an FCM value for this property, Amazon Pinpoint accepts and converts the value to the corresponding APNs value.</p>",
-        "APNSMessage$RawContent" : "<p>The raw, JSON-formatted string to use as the payload for the notification message. This value overrides all other content for the message.</p> <note><p>If you specify the raw content of an APNs push notification, the message payload has to include the content-available key. The value of the content-available key has to be an integer, and can only be 0 or 1. If you're sending a standard notification, set the value of content-available to 0. If you're sending a silent (background) notification, set the value of content-available to 1. Additionally, silent notification payloads can't include the alert, badge, or sound keys. For more information, see <a href=\"https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/generating_a_remote_notification\">Generating a Remote Notification</a> and <a href=\"https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/pushing_background_updates_to_your_app\">Pushing Background Updates to Your App</a> on the Apple Developer website.</p></note>",
+        "APNSMessage$RawContent" : "<p>The raw, JSON-formatted string to use as the payload for the notification message. If specified, this value overrides all other content for the message.</p> <note><p>If you specify the raw content of an APNs push notification, the message payload has to include the content-available key. The value of the content-available key has to be an integer, and can only be 0 or 1. If you're sending a standard notification, set the value of content-available to 0. If you're sending a silent (background) notification, set the value of content-available to 1. Additionally, silent notification payloads can't include the alert, badge, or sound keys. For more information, see <a href=\"https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/generating_a_remote_notification\">Generating a Remote Notification</a> and <a href=\"https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/pushing_background_updates_to_your_app\">Pushing Background Updates to Your App</a> on the Apple Developer website.</p></note>",
         "APNSMessage$Sound" : "<p>The key for the sound to play when the recipient receives the push notification. The value for this key is the name of a sound file in your app's main bundle or the Library/Sounds folder in your app's data container. If the sound file can't be found or you specify default for the value, the system plays the default alert sound.</p>",
         "APNSMessage$ThreadId" : "<p>The key that represents your app-specific identifier for grouping notifications. If you provide a Notification Content app extension, you can use this value to group your notifications together.</p>",
         "APNSMessage$Title" : "<p>The title to display above the notification message on the recipient's device.</p>",
         "APNSMessage$Url" : "<p>The URL to open in the recipient's default mobile browser, if a recipient taps the push notification and the value of the Action property is URL.</p>",
         "APNSPushNotificationTemplate$Body" : "<p>The message body to use in push notifications that are based on the message template.</p>",
         "APNSPushNotificationTemplate$MediaUrl" : "<p>The URL of an image or video to display in push notifications that are based on the message template.</p>",
+        "APNSPushNotificationTemplate$RawContent" : "<p>The raw, JSON-formatted string to use as the payload for push notifications that are based on the message template. If specified, this value overrides all other content for the message template.</p>",
         "APNSPushNotificationTemplate$Sound" : "<p>The key for the sound to play when the recipient receives a push notification that's based on the message template. The value for this key is the name of a sound file in your app's main bundle or the Library/Sounds folder in your app's data container. If the sound file can't be found or you specify default for the value, the system plays the default alert sound.</p>",
         "APNSPushNotificationTemplate$Title" : "<p>The title to use in push notifications that are based on the message template. This title appears above the notification message on a recipient's device.</p>",
         "APNSPushNotificationTemplate$Url" : "<p>The URL to open in the recipient's default mobile browser, if a recipient taps a push notification that's based on the message template and the value of the Action property is URL.</p>",
@@ -1713,11 +1730,12 @@
         "ActivityResponse$State" : "<p>The current status of the activity. Possible values are: PENDING, INITIALIZING, RUNNING, PAUSED, CANCELLED, and COMPLETED.</p>",
         "ActivityResponse$TreatmentId" : "<p>The unique identifier for the campaign treatment that the activity applies to. A treatment is a variation of a campaign that's used for A/B testing of a campaign.</p>",
         "AddressConfiguration$BodyOverride" : "<p>The message body to use instead of the default message body. This value overrides the default message body.</p>",
-        "AddressConfiguration$RawContent" : "<p>The raw, JSON-formatted string to use as the payload for the notification message. This value overrides the message.</p>",
+        "AddressConfiguration$RawContent" : "<p>The raw, JSON-formatted string to use as the payload for the message. If specified, this value overrides all other values for the message.</p>",
         "AddressConfiguration$TitleOverride" : "<p>The message title to use instead of the default message title. This value overrides the default message title.</p>",
         "AndroidPushNotificationTemplate$Body" : "<p>The message body to use in a push notification that's based on the message template.</p>",
         "AndroidPushNotificationTemplate$ImageIconUrl" : "<p>The URL of the large icon image to display in the content view of a push notification that's based on the message template.</p>",
         "AndroidPushNotificationTemplate$ImageUrl" : "<p>The URL of an image to display in a push notification that's based on the message template.</p>",
+        "AndroidPushNotificationTemplate$RawContent" : "<p>The raw, JSON-formatted string to use as the payload for a push notification that's based on the message template. If specified, this value overrides all other content for the message template.</p>",
         "AndroidPushNotificationTemplate$SmallImageIconUrl" : "<p>The URL of the small icon image to display in the status bar and the content view of a push notification that's based on the message template.</p>",
         "AndroidPushNotificationTemplate$Sound" : "<p>The sound to play when a recipient receives a push notification that's based on the message template. You can use the default stream or specify the file name of a sound resource that's bundled in your app. On an Android platform, the sound file must reside in /res/raw/.</p>",
         "AndroidPushNotificationTemplate$Title" : "<p>The title to use in a push notification that's based on the message template. This title appears above the notification message on a recipient's device.</p>",
@@ -1748,7 +1766,7 @@
         "BaiduMessage$IconReference" : "<p>The icon image name of the asset saved in your app.</p>",
         "BaiduMessage$ImageIconUrl" : "<p>The URL of the large icon image to display in the content view of the push notification.</p>",
         "BaiduMessage$ImageUrl" : "<p>The URL of an image to display in the push notification.</p>",
-        "BaiduMessage$RawContent" : "<p>The raw, JSON-formatted string to use as the payload for the notification message. This value overrides the message.</p>",
+        "BaiduMessage$RawContent" : "<p>The raw, JSON-formatted string to use as the payload for the notification message. If specified, this value overrides all other content for the message.</p>",
         "BaiduMessage$SmallImageIconUrl" : "<p>The URL of the small icon image to display in the status bar and the content view of the push notification.</p>",
         "BaiduMessage$Sound" : "<p>The sound to play when the recipient receives the push notification. You can use the default stream or specify the file name of a sound resource that's bundled in your app. On an Android platform, the sound file must reside in /res/raw/.</p>",
         "BaiduMessage$Title" : "<p>The title to display above the notification message on the recipient's device.</p>",
@@ -1759,9 +1777,9 @@
         "CampaignDateRangeKpiResponse$KpiName" : "<p>The name of the metric, also referred to as a <i>key performance indicator (KPI)</i>, that the data was retrieved for. This value describes the associated metric and consists of two or more terms, which are comprised of lowercase alphanumeric characters, separated by a hyphen. For a list of possible values, see the <a href=\"https://docs.aws.amazon.com/pinpoint/latest/developerguide/welcome.html\">Amazon Pinpoint Developer Guide</a>.</p>",
         "CampaignDateRangeKpiResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null for the Campaign Metrics resource because the resource returns all results in a single page.</p>",
         "CampaignDateRangeKpiResponse$StartTime" : "<p>The first date and time of the date range that was used to filter the query results, in extended ISO 8601 format. The date range is inclusive.</p>",
-        "CampaignEmailMessage$Body" : "<p>The body of the email for recipients whose email clients don't support HTML content.</p>",
+        "CampaignEmailMessage$Body" : "<p>The body of the email for recipients whose email clients don't render HTML content.</p>",
         "CampaignEmailMessage$FromAddress" : "<p>The verified email address to send the email from. The default address is the FromAddress specified for the email channel for the application.</p>",
-        "CampaignEmailMessage$HtmlBody" : "<p>The body of the email, in HTML format, for recipients whose email clients support HTML content.</p>",
+        "CampaignEmailMessage$HtmlBody" : "<p>The body of the email, in HTML format, for recipients whose email clients render HTML content.</p>",
         "CampaignEmailMessage$Title" : "<p>The subject line, or title, of the email.</p>",
         "CampaignHook$LambdaFunctionName" : "<p>The name or Amazon Resource Name (ARN) of the AWS Lambda function that Amazon Pinpoint invokes to send messages for a campaign.</p>",
         "CampaignHook$WebUrl" : " <p>The web URL that Amazon Pinpoint calls to invoke the AWS Lambda function over HTTPS.</p>",
@@ -1789,7 +1807,7 @@
         "CreateTemplateMessageBody$Arn" : "<p>The Amazon Resource Name (ARN) of the message template that was created.</p>",
         "CreateTemplateMessageBody$Message" : "<p>The message that's returned from the API for the request to create the message template.</p>",
         "CreateTemplateMessageBody$RequestID" : "<p>The unique identifier for the request to create the message template.</p>",
-        "DefaultMessage$Body" : "<p>The default message body of the push notification, email, or SMS message.</p>",
+        "DefaultMessage$Body" : "<p>The default body of the message.</p>",
         "DefaultPushNotificationMessage$Body" : "<p>The default body of the notification message.</p>",
         "DefaultPushNotificationMessage$Title" : "<p>The default title to display above the notification message on a recipient's device.</p>",
         "DefaultPushNotificationMessage$Url" : "<p>The default URL to open in a recipient's default mobile browser, if a recipient taps the push notification and the value of the Action property is URL.</p>",
@@ -1816,16 +1834,20 @@
         "EmailMessage$FromAddress" : "<p>The verified email address to send the email message from. The default value is the FromAddress specified for the email channel.</p>",
         "EmailMessageActivity$NextActivity" : "<p>The unique identifier for the next activity to perform, after the message is sent.</p>",
         "EmailMessageActivity$TemplateName" : "<p>The name of the email template to use for the message.</p>",
-        "EmailTemplateRequest$HtmlPart" : "<p>The message body, in HTML format, to use in email messages that are based on the message template. We recommend using HTML format for email clients that support HTML. You can include links, formatted text, and more in an HTML message.</p>",
+        "EmailTemplateRequest$DefaultSubstitutions" : "<p>A JSON object that specifies the default values to use for message variables in the message template. This object is a set of key-value pairs. Each key defines a message variable in the template. The corresponding value defines the default value for that variable. When you create a message that's based on the template, you can override these defaults with message-specific and address-specific variables and values.</p>",
+        "EmailTemplateRequest$HtmlPart" : "<p>The message body, in HTML format, to use in email messages that are based on the message template. We recommend using HTML format for email clients that render HTML content. You can include links, formatted text, and more in an HTML message.</p>",
         "EmailTemplateRequest$Subject" : "<p>The subject line, or title, to use in email messages that are based on the message template.</p>",
-        "EmailTemplateRequest$TextPart" : "<p>The message body, in text format, to use in email messages that are based on the message template. We recommend using text format for email clients that don't support HTML and clients that are connected to high-latency networks, such as mobile devices.</p>",
+        "EmailTemplateRequest$TemplateDescription" : "<p>A custom description of the message template.</p>",
+        "EmailTemplateRequest$TextPart" : "<p>The message body, in plain text format, to use in email messages that are based on the message template. We recommend using plain text format for email clients that don't render HTML content and clients that are connected to high-latency networks, such as mobile devices.</p>",
         "EmailTemplateResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the message template.</p>",
         "EmailTemplateResponse$CreationDate" : "<p>The date when the message template was created.</p>",
+        "EmailTemplateResponse$DefaultSubstitutions" : "<p>The JSON object that specifies the default values that are used for message variables in the message template. This object is a set of key-value pairs. Each key defines a message variable in the template. The corresponding value defines the default value for that variable.</p>",
         "EmailTemplateResponse$HtmlPart" : "<p>The message body, in HTML format, that's used in email messages that are based on the message template.</p>",
         "EmailTemplateResponse$LastModifiedDate" : "<p>The date when the message template was last modified.</p>",
         "EmailTemplateResponse$Subject" : "<p>The subject line, or title, that's used in email messages that are based on the message template.</p>",
+        "EmailTemplateResponse$TemplateDescription" : "<p>The custom description of the message template.</p>",
         "EmailTemplateResponse$TemplateName" : "<p>The name of the message template.</p>",
-        "EmailTemplateResponse$TextPart" : "<p>The message body, in text format, that's used in email messages that are based on the message template.</p>",
+        "EmailTemplateResponse$TextPart" : "<p>The message body, in plain text format, that's used in email messages that are based on the message template.</p>",
         "EndpointBatchItem$Address" : "<p>The destination address for messages or push notifications that you send to the endpoint. The address varies by channel. For a push-notification channel, use the token provided by the push notification service, such as an Apple Push Notification service (APNs) device token or a Firebase Cloud Messaging (FCM) registration token. For the SMS channel, use a phone number in E.164 format, such as +12065550100. For the email channel, use an email address.</p>",
         "EndpointBatchItem$EffectiveDate" : "<p>The date and time, in ISO 8601 format, when the endpoint was created or updated.</p>",
         "EndpointBatchItem$EndpointStatus" : "<p>Specifies whether to send messages or push notifications to the endpoint. Valid values are: ACTIVE, messages are sent to the endpoint; and, INACTIVE, messages aren’t sent to the endpoint.</p> <p>Amazon Pinpoint automatically sets this value to ACTIVE when you create an endpoint or update an existing endpoint. Amazon Pinpoint automatically sets this value to INACTIVE if you update another endpoint that has the same address specified by the Address property.</p>",
@@ -1864,7 +1886,7 @@
         "EndpointResponse$OptOut" : "<p>Specifies whether the user who's associated with the endpoint has opted out of receiving messages and push notifications from you. Possible values are: ALL, the user has opted out and doesn't want to receive any messages or push notifications; and, NONE, the user hasn't opted out and wants to receive all messages and push notifications.</p>",
         "EndpointResponse$RequestId" : "<p>The unique identifier for the most recent request to update the endpoint.</p>",
         "EndpointSendConfiguration$BodyOverride" : "<p>The body of the message. If specified, this value overrides the default message body.</p>",
-        "EndpointSendConfiguration$RawContent" : "<p>The raw, JSON-formatted string to use as the payload for the message. If specified, this value overrides the message.</p>",
+        "EndpointSendConfiguration$RawContent" : "<p>The raw, JSON-formatted string to use as the payload for the message. If specified, this value overrides all other values for the message.</p>",
         "EndpointSendConfiguration$TitleOverride" : "<p>The title or subject line of the message. If specified, this value overrides the default message title or subject line.</p>",
         "EndpointUser$UserId" : "<p>The unique identifier for the user.</p>",
         "Event$AppPackageName" : "<p>The package name of the app that's recording the event.</p>",
@@ -1908,7 +1930,7 @@
         "GCMMessage$ImageIconUrl" : "<p>The URL of the large icon image to display in the content view of the push notification.</p>",
         "GCMMessage$ImageUrl" : "<p>The URL of an image to display in the push notification.</p>",
         "GCMMessage$Priority" : "<p>para>normal - The notification might be delayed. Delivery is optimized for battery usage on the recipient's device. Use this value unless immediate delivery is required.</p>/listitem> <li><p>high - The notification is sent immediately and might wake a sleeping device.</p></li>/para> <p>Amazon Pinpoint specifies this value in the FCM priority parameter when it sends the notification message to FCM.</p> <p>The equivalent values for Apple Push Notification service (APNs) are 5, for normal, and 10, for high. If you specify an APNs value for this property, Amazon Pinpoint accepts and converts the value to the corresponding FCM value.</p>",
-        "GCMMessage$RawContent" : "<p>The raw, JSON-formatted string to use as the payload for the notification message. This value overrides the message.</p>",
+        "GCMMessage$RawContent" : "<p>The raw, JSON-formatted string to use as the payload for the notification message. If specified, this value overrides all other content for the message.</p>",
         "GCMMessage$RestrictedPackageName" : "<p>The package name of the application where registration tokens must match in order for the recipient to receive the message.</p>",
         "GCMMessage$SmallImageIconUrl" : "<p>The URL of the small icon image to display in the status bar and the content view of the push notification.</p>",
         "GCMMessage$Sound" : "<p>The sound to play when the recipient receives the push notification. You can use the default stream or specify the file name of a sound resource that's bundled in your app. On an Android platform, the sound file must reside in /res/raw/.</p>",
@@ -1963,7 +1985,7 @@
         "Message$ImageUrl" : "<p>The URL of an image to display in the push notification.</p>",
         "Message$JsonBody" : "<p>The JSON payload to use for a silent push notification.</p>",
         "Message$MediaUrl" : "<p>The URL of the image or video to display in the push notification.</p>",
-        "Message$RawContent" : "<p>The raw, JSON-formatted string to use as the payload for the notification message. This value overrides other values for the message.</p>",
+        "Message$RawContent" : "<p>The raw, JSON-formatted string to use as the payload for the notification message. If specified, this value overrides all other content for the message.</p>",
         "Message$Title" : "<p>The title to display above the notification message on a recipient's device.</p>",
         "Message$Url" : "<p>The URL to open in a recipient's default mobile browser, if a recipient taps the push notification and the value of the Action property is URL.</p>",
         "MessageBody$Message" : "<p>The message that's returned from the API.</p>",
@@ -1997,9 +2019,13 @@
         "PublicEndpoint$EndpointStatus" : "<p>Specifies whether to send messages or push notifications to the endpoint. Valid values are: ACTIVE, messages are sent to the endpoint; and, INACTIVE, messages aren’t sent to the endpoint.</p> <p>Amazon Pinpoint automatically sets this value to ACTIVE when you create an endpoint or update an existing endpoint. Amazon Pinpoint automatically sets this value to INACTIVE if you update another endpoint that has the same address specified by the Address property.</p>",
         "PublicEndpoint$OptOut" : "<p>Specifies whether the user who's associated with the endpoint has opted out of receiving messages and push notifications from you. Possible values are: ALL, the user has opted out and doesn't want to receive any messages or push notifications; and, NONE, the user hasn't opted out and wants to receive all messages and push notifications.</p>",
         "PublicEndpoint$RequestId" : "<p>A unique identifier that's generated each time the endpoint is updated.</p>",
+        "PushNotificationTemplateRequest$DefaultSubstitutions" : "<p>A JSON object that specifies the default values to use for message variables in the message template. This object is a set of key-value pairs. Each key defines a message variable in the template. The corresponding value defines the default value for that variable. When you create a message that's based on the template, you can override these defaults with message-specific and address-specific variables and values.</p>",
+        "PushNotificationTemplateRequest$TemplateDescription" : "<p>A custom description of the message template.</p>",
         "PushNotificationTemplateResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the message template.</p>",
         "PushNotificationTemplateResponse$CreationDate" : "<p>The date when the message template was created.</p>",
+        "PushNotificationTemplateResponse$DefaultSubstitutions" : "<p>The JSON object that specifies the default values that are used for message variables in the message template. This object is a set of key-value pairs. Each key defines a message variable in the template. The corresponding value defines the default value for that variable.</p>",
         "PushNotificationTemplateResponse$LastModifiedDate" : "<p>The date when the message template was last modified.</p>",
+        "PushNotificationTemplateResponse$TemplateDescription" : "<p>The custom description of the message template.</p>",
         "PushNotificationTemplateResponse$TemplateName" : "<p>The name of the message template.</p>",
         "QuietTime$End" : "<p>The specific time when quiet time ends. This value has to use 24-hour notation and be in HH:MM format, where HH is the hour (with a leading zero, if applicable) and MM is the minutes. For example, use 02:30 to represent 2:30 AM, or 14:30 to represent 2:30 PM.</p>",
         "QuietTime$Start" : "<p>The specific time when quiet time begins. This value has to use 24-hour notation and be in HH:MM format, where HH is the hour (with a leading zero, if applicable) and MM is the minutes. For example, use 02:30 to represent 2:30 AM, or 14:30 to represent 2:30 PM.</p>",
@@ -2023,10 +2049,14 @@
         "SMSMessage$OriginationNumber" : "<p>The number to send the SMS message from. This value should be one of the dedicated long or short codes that's assigned to your AWS account. If you don't specify a long or short code, Amazon Pinpoint assigns a random long code to the SMS message and sends the message from that code.</p>",
         "SMSMessage$SenderId" : "<p>The sender ID to display as the sender of the message on a recipient's device. Support for sender IDs varies by country or region.</p>",
         "SMSTemplateRequest$Body" : "<p>The message body to use in text messages that are based on the message template.</p>",
+        "SMSTemplateRequest$DefaultSubstitutions" : "<p>A JSON object that specifies the default values to use for message variables in the message template. This object is a set of key-value pairs. Each key defines a message variable in the template. The corresponding value defines the default value for that variable. When you create a message that's based on the template, you can override these defaults with message-specific and address-specific variables and values.</p>",
+        "SMSTemplateRequest$TemplateDescription" : "<p>A custom description of the message template.</p>",
         "SMSTemplateResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the message template.</p>",
         "SMSTemplateResponse$Body" : "<p>The message body that's used in text messages that are based on the message template.</p>",
         "SMSTemplateResponse$CreationDate" : "<p>The date when the message template was created.</p>",
+        "SMSTemplateResponse$DefaultSubstitutions" : "<p>The JSON object that specifies the default values that are used for message variables in the message template. This object is a set of key-value pairs. Each key defines a message variable in the template. The corresponding value defines the default value for that variable.</p>",
         "SMSTemplateResponse$LastModifiedDate" : "<p>The date when the message template was last modified.</p>",
+        "SMSTemplateResponse$TemplateDescription" : "<p>The custom description of the message template.</p>",
         "SMSTemplateResponse$TemplateName" : "<p>The name of the message template.</p>",
         "Schedule$EndTime" : "<p>The scheduled time, in ISO 8601 format, when the campaign ended or will end.</p>",
         "Schedule$StartTime" : "<p>The scheduled time, in ISO 8601 format, when the campaign began or will begin.</p>",
@@ -2055,7 +2085,9 @@
         "Template$Name" : "<p>The name of the message template to use for the message. If specified, this value must match the name of an existing message template.</p>",
         "TemplateResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the message template.</p>",
         "TemplateResponse$CreationDate" : "<p>The date when the message template was created.</p>",
+        "TemplateResponse$DefaultSubstitutions" : "<p>The JSON object that specifies the default values that are used for message variables in the message template. This object is a set of key-value pairs. Each key defines a message variable in the template. The corresponding value defines the default value for that variable.</p>",
         "TemplateResponse$LastModifiedDate" : "<p>The date when the message template was last modified.</p>",
+        "TemplateResponse$TemplateDescription" : "<p>The custom description of the message template.</p>",
         "TemplateResponse$TemplateName" : "<p>The name of the message template.</p>",
         "TemplatesResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null if there are no additional pages.</p>",
         "TreatmentResource$Id" : "<p>The unique identifier for the treatment.</p>",
@@ -2067,17 +2099,31 @@
         "VoiceChannelResponse$LastModifiedBy" : "<p>The user who last modified the voice channel.</p>",
         "VoiceChannelResponse$LastModifiedDate" : "<p>The date and time, in ISO 8601 format, when the voice channel was last modified.</p>",
         "VoiceChannelResponse$Platform" : "<p>The type of messaging or notification platform for the channel. For the voice channel, this value is VOICE.</p>",
-        "VoiceMessage$Body" : "<p>The text script for the voice message.</p>",
-        "VoiceMessage$LanguageCode" : "<p>The language to use when delivering the message. For a list of supported languages, see the <a href=\"AmazonPollyDG.html\">Amazon Polly Developer Guide</a>.</p>",
+        "VoiceMessage$Body" : "<p>The text of the script to use for the voice message.</p>",
+        "VoiceMessage$LanguageCode" : "<p>The code for the language to use when synthesizing the text of the message script. For a list of supported languages and the code for each one, see the <a href=\"https://docs.aws.amazon.com/polly/latest/dg/what-is.html\">Amazon Polly Developer Guide</a>.</p>",
         "VoiceMessage$OriginationNumber" : "<p>The long code to send the voice message from. This value should be one of the dedicated long codes that's assigned to your AWS account. Although it isn't required, we recommend that you specify the long code in E.164 format, for example +12065550100, to ensure prompt and accurate delivery of the message.</p>",
-        "VoiceMessage$VoiceId" : "<p>The name of the voice to use when delivering the message. For a list of supported voices, see the <a href=\"AmazonPollyDG.html\">Amazon Polly Developer Guide</a>.</p>",
+        "VoiceMessage$VoiceId" : "<p>The name of the voice to use when delivering the message. For a list of supported voices, see the <a href=\"https://docs.aws.amazon.com/polly/latest/dg/what-is.html\">Amazon Polly Developer Guide</a>.</p>",
+        "VoiceTemplateRequest$Body" : "<p>The text of the script to use in messages that are based on the message template, in plain text format.</p>",
+        "VoiceTemplateRequest$DefaultSubstitutions" : "<p>A JSON object that specifies the default values to use for message variables in the message template. This object is a set of key-value pairs. Each key defines a message variable in the template. The corresponding value defines the default value for that variable. When you create a message that's based on the template, you can override these defaults with message-specific and address-specific variables and values.</p>",
+        "VoiceTemplateRequest$LanguageCode" : "<p>The code for the language to use when synthesizing the text of the script in messages that are based on the message template. For a list of supported languages and the code for each one, see the <a href=\"https://docs.aws.amazon.com/polly/latest/dg/what-is.html\">Amazon Polly Developer Guide</a>.</p>",
+        "VoiceTemplateRequest$TemplateDescription" : "<p>A custom description of the message template.</p>",
+        "VoiceTemplateRequest$VoiceId" : "<p>The name of the voice to use when delivering messages that are based on the message template. For a list of supported voices, see the <a href=\"https://docs.aws.amazon.com/polly/latest/dg/what-is.html\">Amazon Polly Developer Guide</a>.</p>",
+        "VoiceTemplateResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the message template.</p>",
+        "VoiceTemplateResponse$Body" : "<p>The text of the script that's used in messages that are based on the message template, in plain text format.</p>",
+        "VoiceTemplateResponse$CreationDate" : "<p>The date when the message template was created.</p>",
+        "VoiceTemplateResponse$DefaultSubstitutions" : "<p>The JSON object that specifies the default values that are used for message variables in the message template. This object is a set of key-value pairs. Each key defines a message variable in the template. The corresponding value defines the default value for that variable.</p>",
+        "VoiceTemplateResponse$LanguageCode" : "<p>The code for the language that's used when synthesizing the text of the script in messages that are based on the message template. For a list of supported languages and the code for each one, see the <a href=\"https://docs.aws.amazon.com/polly/latest/dg/what-is.html\">Amazon Polly Developer Guide</a>.</p>",
+        "VoiceTemplateResponse$LastModifiedDate" : "<p>The date when the message template was last modified.</p>",
+        "VoiceTemplateResponse$TemplateDescription" : "<p>The custom description of the message template.</p>",
+        "VoiceTemplateResponse$TemplateName" : "<p>The name of the message template.</p>",
+        "VoiceTemplateResponse$VoiceId" : "<p>The name of the voice that's used when delivering messages that are based on the message template. For a list of supported voices, see the <a href=\"https://docs.aws.amazon.com/polly/latest/dg/what-is.html\">Amazon Polly Developer Guide</a>.</p>",
         "WaitActivity$NextActivity" : "<p>The unique identifier for the next activity to perform, after performing the wait activity.</p>",
-        "WaitTime$WaitFor" : "<p>The amount of time, as a duration in ISO 8601 format, to wait before determining whether the activity's conditions have been met or moving participants to the next activity in the journey.</p>",
+        "WaitTime$WaitFor" : "<p>The amount of time to wait, as a duration in ISO 8601 format, before determining whether the activity's conditions have been met or moving participants to the next activity in the journey.</p>",
         "WaitTime$WaitUntil" : "<p>The date and time, in ISO 8601 format, when Amazon Pinpoint determines whether the activity's conditions have been met or the activity moves participants to the next activity in the journey.</p>",
-        "WriteCampaignRequest$Description" : "<p>The custom description of the campaign.</p>",
+        "WriteCampaignRequest$Description" : "<p>A custom description of the campaign.</p>",
         "WriteCampaignRequest$Name" : "<p>The custom name of the campaign.</p>",
         "WriteCampaignRequest$SegmentId" : "<p>The unique identifier for the segment to associate with the campaign.</p>",
-        "WriteCampaignRequest$TreatmentDescription" : "<p>The custom description of a variation of the campaign to use for A/B testing.</p>",
+        "WriteCampaignRequest$TreatmentDescription" : "<p>A custom description of a variation of the campaign to use for A/B testing.</p>",
         "WriteCampaignRequest$TreatmentName" : "<p>The custom name of a variation of the campaign to use for A/B testing.</p>",
         "WriteEventStream$DestinationStreamArn" : "<p>The Amazon Resource Name (ARN) of the Amazon Kinesis data stream or Amazon Kinesis Data Firehose delivery stream that you want to publish event data to.</p> <p>For a Kinesis data stream, the ARN format is: arn:aws:kinesis:<replaceable>region</replaceable>:<replaceable>account-id</replaceable>:stream/<replaceable>stream_name</replaceable>\n               </p> <p>For a Kinesis Data Firehose delivery stream, the ARN format is: arn:aws:firehose:<replaceable>region</replaceable>:<replaceable>account-id</replaceable>:deliverystream/<replaceable>stream_name</replaceable>\n               </p>",
         "WriteEventStream$RoleArn" : "<p>The AWS Identity and Access Management (IAM) role that authorizes Amazon Pinpoint to publish event data to the stream in your AWS account.</p>",
@@ -2087,7 +2133,7 @@
         "WriteJourneyRequest$RefreshFrequency" : "<p>The frequency with which Amazon Pinpoint evaluates segment and event data for the journey, as a duration in ISO 8601 format.</p>",
         "WriteJourneyRequest$StartActivity" : "<p>The unique identifier for the first activity in the journey.</p>",
         "WriteSegmentRequest$Name" : "<p>The name of the segment.</p>",
-        "WriteTreatmentResource$TreatmentDescription" : "<p>The custom description of the treatment.</p>",
+        "WriteTreatmentResource$TreatmentDescription" : "<p>A custom description of the treatment.</p>",
         "WriteTreatmentResource$TreatmentName" : "<p>The custom name of the treatment. A treatment is a variation of a campaign that's used for A/B testing of a campaign.</p>",
         "ListOf__string$member" : null,
         "MapOf__string$member" : null

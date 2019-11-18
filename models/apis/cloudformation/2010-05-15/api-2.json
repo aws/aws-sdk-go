@@ -170,6 +170,23 @@
         {"shape":"OperationInProgressException"}
       ]
     },
+    "DeregisterType":{
+      "name":"DeregisterType",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeregisterTypeInput"},
+      "output":{
+        "shape":"DeregisterTypeOutput",
+        "resultWrapper":"DeregisterTypeResult"
+      },
+      "errors":[
+        {"shape":"CFNRegistryException"},
+        {"shape":"TypeNotFoundException"}
+      ],
+      "idempotent":true
+    },
     "DescribeAccountLimits":{
       "name":"DescribeAccountLimits",
       "http":{
@@ -315,6 +332,39 @@
         "shape":"DescribeStacksOutput",
         "resultWrapper":"DescribeStacksResult"
       }
+    },
+    "DescribeType":{
+      "name":"DescribeType",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeTypeInput"},
+      "output":{
+        "shape":"DescribeTypeOutput",
+        "resultWrapper":"DescribeTypeResult"
+      },
+      "errors":[
+        {"shape":"CFNRegistryException"},
+        {"shape":"TypeNotFoundException"}
+      ],
+      "idempotent":true
+    },
+    "DescribeTypeRegistration":{
+      "name":"DescribeTypeRegistration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeTypeRegistrationInput"},
+      "output":{
+        "shape":"DescribeTypeRegistrationOutput",
+        "resultWrapper":"DescribeTypeRegistrationResult"
+      },
+      "errors":[
+        {"shape":"CFNRegistryException"}
+      ],
+      "idempotent":true
     },
     "DetectStackDrift":{
       "name":"DetectStackDrift",
@@ -530,6 +580,87 @@
         "resultWrapper":"ListStacksResult"
       }
     },
+    "ListTypeRegistrations":{
+      "name":"ListTypeRegistrations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTypeRegistrationsInput"},
+      "output":{
+        "shape":"ListTypeRegistrationsOutput",
+        "resultWrapper":"ListTypeRegistrationsResult"
+      },
+      "errors":[
+        {"shape":"CFNRegistryException"}
+      ],
+      "idempotent":true
+    },
+    "ListTypeVersions":{
+      "name":"ListTypeVersions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTypeVersionsInput"},
+      "output":{
+        "shape":"ListTypeVersionsOutput",
+        "resultWrapper":"ListTypeVersionsResult"
+      },
+      "errors":[
+        {"shape":"CFNRegistryException"}
+      ],
+      "idempotent":true
+    },
+    "ListTypes":{
+      "name":"ListTypes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTypesInput"},
+      "output":{
+        "shape":"ListTypesOutput",
+        "resultWrapper":"ListTypesResult"
+      },
+      "errors":[
+        {"shape":"CFNRegistryException"}
+      ],
+      "idempotent":true
+    },
+    "RecordHandlerProgress":{
+      "name":"RecordHandlerProgress",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RecordHandlerProgressInput"},
+      "output":{
+        "shape":"RecordHandlerProgressOutput",
+        "resultWrapper":"RecordHandlerProgressResult"
+      },
+      "errors":[
+        {"shape":"InvalidStateTransitionException"},
+        {"shape":"OperationStatusCheckFailedException"}
+      ],
+      "idempotent":true
+    },
+    "RegisterType":{
+      "name":"RegisterType",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RegisterTypeInput"},
+      "output":{
+        "shape":"RegisterTypeOutput",
+        "resultWrapper":"RegisterTypeResult"
+      },
+      "errors":[
+        {"shape":"CFNRegistryException"}
+      ],
+      "idempotent":true
+    },
     "SetStackPolicy":{
       "name":"SetStackPolicy",
       "http":{
@@ -537,6 +668,23 @@
         "requestUri":"/"
       },
       "input":{"shape":"SetStackPolicyInput"}
+    },
+    "SetTypeDefaultVersion":{
+      "name":"SetTypeDefaultVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SetTypeDefaultVersionInput"},
+      "output":{
+        "shape":"SetTypeDefaultVersionOutput",
+        "resultWrapper":"SetTypeDefaultVersionResult"
+      },
+      "errors":[
+        {"shape":"CFNRegistryException"},
+        {"shape":"TypeNotFoundException"}
+      ],
+      "idempotent":true
     },
     "SignalResource":{
       "name":"SignalResource",
@@ -706,6 +854,18 @@
       "box":true,
       "max":100,
       "min":1
+    },
+    "CFNRegistryException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{
+        "code":"CFNRegistryException",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
     },
     "CancelUpdateStackInput":{
       "type":"structure",
@@ -1039,6 +1199,27 @@
       }
     },
     "DeletionTime":{"type":"timestamp"},
+    "DeprecatedStatus":{
+      "type":"string",
+      "enum":[
+        "LIVE",
+        "DEPRECATED"
+      ]
+    },
+    "DeregisterTypeInput":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"PrivateTypeArn"},
+        "Type":{"shape":"RegistryType"},
+        "TypeName":{"shape":"TypeName"},
+        "VersionId":{"shape":"TypeVersionId"}
+      }
+    },
+    "DeregisterTypeOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DescribeAccountLimitsInput":{
       "type":"structure",
       "members":{
@@ -1233,6 +1414,51 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "DescribeTypeInput":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"RegistryType"},
+        "TypeName":{"shape":"TypeName"},
+        "Arn":{"shape":"TypeArn"},
+        "VersionId":{"shape":"TypeVersionId"}
+      }
+    },
+    "DescribeTypeOutput":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"TypeArn"},
+        "Type":{"shape":"RegistryType"},
+        "TypeName":{"shape":"TypeName"},
+        "DefaultVersionId":{"shape":"TypeVersionId"},
+        "Description":{"shape":"Description"},
+        "Schema":{"shape":"TypeSchema"},
+        "ProvisioningType":{"shape":"ProvisioningType"},
+        "DeprecatedStatus":{"shape":"DeprecatedStatus"},
+        "LoggingConfig":{"shape":"LoggingConfig"},
+        "ExecutionRoleArn":{"shape":"RoleArn"},
+        "Visibility":{"shape":"Visibility"},
+        "SourceUrl":{"shape":"OptionalSecureUrl"},
+        "DocumentationUrl":{"shape":"OptionalSecureUrl"},
+        "LastUpdated":{"shape":"Timestamp"},
+        "TimeCreated":{"shape":"Timestamp"}
+      }
+    },
+    "DescribeTypeRegistrationInput":{
+      "type":"structure",
+      "required":["RegistrationToken"],
+      "members":{
+        "RegistrationToken":{"shape":"RegistrationToken"}
+      }
+    },
+    "DescribeTypeRegistrationOutput":{
+      "type":"structure",
+      "members":{
+        "ProgressStatus":{"shape":"RegistrationStatus"},
+        "Description":{"shape":"Description"},
+        "TypeArn":{"shape":"TypeArn"},
+        "TypeVersionArn":{"shape":"TypeArn"}
+      }
+    },
     "Description":{
       "type":"string",
       "max":1024,
@@ -1281,6 +1507,11 @@
     },
     "DisableRollback":{"type":"boolean"},
     "EnableTerminationProtection":{"type":"boolean"},
+    "ErrorMessage":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
     "EstimateTemplateCostInput":{
       "type":"structure",
       "members":{
@@ -1408,6 +1639,25 @@
         "ResourceIdentifierSummaries":{"shape":"ResourceIdentifierSummaries"}
       }
     },
+    "HandlerErrorCode":{
+      "type":"string",
+      "enum":[
+        "NotUpdatable",
+        "InvalidRequest",
+        "AccessDenied",
+        "InvalidCredentials",
+        "AlreadyExists",
+        "NotFound",
+        "ResourceConflict",
+        "Throttling",
+        "ServiceLimitExceeded",
+        "NotStabilized",
+        "GeneralServiceException",
+        "ServiceInternalError",
+        "NetworkFailure",
+        "InternalFailure"
+      ]
+    },
     "Imports":{
       "type":"list",
       "member":{"shape":"StackName"}
@@ -1440,6 +1690,17 @@
       },
       "error":{
         "code":"InvalidOperationException",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "InvalidStateTransitionException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidStateTransition",
         "httpStatusCode":400,
         "senderFault":true
       },
@@ -1601,6 +1862,76 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListTypeRegistrationsInput":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"RegistryType"},
+        "TypeName":{"shape":"TypeName"},
+        "TypeArn":{"shape":"TypeArn"},
+        "RegistrationStatusFilter":{"shape":"RegistrationStatus"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListTypeRegistrationsOutput":{
+      "type":"structure",
+      "members":{
+        "RegistrationTokenList":{"shape":"RegistrationTokenList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListTypeVersionsInput":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"RegistryType"},
+        "TypeName":{"shape":"TypeName"},
+        "Arn":{"shape":"PrivateTypeArn"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"},
+        "DeprecatedStatus":{"shape":"DeprecatedStatus"}
+      }
+    },
+    "ListTypeVersionsOutput":{
+      "type":"structure",
+      "members":{
+        "TypeVersionSummaries":{"shape":"TypeVersionSummaries"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListTypesInput":{
+      "type":"structure",
+      "members":{
+        "Visibility":{"shape":"Visibility"},
+        "ProvisioningType":{"shape":"ProvisioningType"},
+        "DeprecatedStatus":{"shape":"DeprecatedStatus"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListTypesOutput":{
+      "type":"structure",
+      "members":{
+        "TypeSummaries":{"shape":"TypeSummaries"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "LogGroupName":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"[\\.\\-_/#A-Za-z0-9]+"
+    },
+    "LoggingConfig":{
+      "type":"structure",
+      "required":[
+        "LogRoleArn",
+        "LogGroupName"
+      ],
+      "members":{
+        "LogRoleArn":{"shape":"RoleArn"},
+        "LogGroupName":{"shape":"LogGroupName"}
+      }
+    },
     "LogicalResourceId":{"type":"string"},
     "LogicalResourceIds":{
       "type":"list",
@@ -1692,6 +2023,30 @@
       },
       "exception":true
     },
+    "OperationStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "IN_PROGRESS",
+        "SUCCESS",
+        "FAILED"
+      ]
+    },
+    "OperationStatusCheckFailedException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ConditionalCheckFailed",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "OptionalSecureUrl":{
+      "type":"string",
+      "max":4096
+    },
     "Output":{
       "type":"structure",
       "members":{
@@ -1761,6 +2116,11 @@
         "Value":{"shape":"Value"}
       }
     },
+    "PrivateTypeArn":{
+      "type":"string",
+      "max":1024,
+      "pattern":"arn:aws[A-Za-z0-9-]{0,64}:cloudformation:[A-Za-z0-9-]{1,64}:[0-9]{12}:type/.+"
+    },
     "Properties":{"type":"string"},
     "PropertyDifference":{
       "type":"structure",
@@ -1784,11 +2144,83 @@
     "PropertyName":{"type":"string"},
     "PropertyPath":{"type":"string"},
     "PropertyValue":{"type":"string"},
+    "ProvisioningType":{
+      "type":"string",
+      "enum":[
+        "NON_PROVISIONABLE",
+        "IMMUTABLE",
+        "FULLY_MUTABLE"
+      ]
+    },
     "Reason":{"type":"string"},
+    "RecordHandlerProgressInput":{
+      "type":"structure",
+      "required":[
+        "BearerToken",
+        "OperationStatus"
+      ],
+      "members":{
+        "BearerToken":{"shape":"ClientToken"},
+        "OperationStatus":{"shape":"OperationStatus"},
+        "CurrentOperationStatus":{"shape":"OperationStatus"},
+        "StatusMessage":{"shape":"StatusMessage"},
+        "ErrorCode":{"shape":"HandlerErrorCode"},
+        "ResourceModel":{"shape":"ResourceModel"},
+        "ClientRequestToken":{"shape":"ClientRequestToken"}
+      }
+    },
+    "RecordHandlerProgressOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "Region":{"type":"string"},
     "RegionList":{
       "type":"list",
       "member":{"shape":"Region"}
+    },
+    "RegisterTypeInput":{
+      "type":"structure",
+      "required":[
+        "TypeName",
+        "SchemaHandlerPackage"
+      ],
+      "members":{
+        "Type":{"shape":"RegistryType"},
+        "TypeName":{"shape":"TypeName"},
+        "SchemaHandlerPackage":{"shape":"S3Url"},
+        "LoggingConfig":{"shape":"LoggingConfig"},
+        "ExecutionRoleArn":{"shape":"RoleArn"},
+        "ClientRequestToken":{"shape":"RequestToken"}
+      }
+    },
+    "RegisterTypeOutput":{
+      "type":"structure",
+      "members":{
+        "RegistrationToken":{"shape":"RegistrationToken"}
+      }
+    },
+    "RegistrationStatus":{
+      "type":"string",
+      "enum":[
+        "COMPLETE",
+        "IN_PROGRESS",
+        "FAILED"
+      ]
+    },
+    "RegistrationToken":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[a-zA-Z0-9][-a-zA-Z0-9]*"
+    },
+    "RegistrationTokenList":{
+      "type":"list",
+      "member":{"shape":"RegistrationToken"}
+    },
+    "RegistryType":{
+      "type":"string",
+      "enum":["RESOURCE"]
     },
     "Replacement":{
       "type":"string",
@@ -1797,6 +2229,12 @@
         "False",
         "Conditional"
       ]
+    },
+    "RequestToken":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[a-zA-Z0-9][-a-zA-Z0-9]*"
     },
     "RequiresRecreation":{
       "type":"string",
@@ -1874,6 +2312,11 @@
     "ResourceIdentifiers":{
       "type":"list",
       "member":{"shape":"ResourceIdentifierPropertyKey"}
+    },
+    "ResourceModel":{
+      "type":"string",
+      "max":16384,
+      "min":1
     },
     "ResourceProperties":{"type":"string"},
     "ResourceSignalStatus":{
@@ -1964,6 +2407,12 @@
       "max":2048,
       "min":20
     },
+    "RoleArn":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"arn:.+:iam::[0-9]{12}:role/.+"
+    },
     "RollbackConfiguration":{
       "type":"structure",
       "members":{
@@ -1987,6 +2436,11 @@
       "member":{"shape":"RollbackTrigger"},
       "max":5
     },
+    "S3Url":{
+      "type":"string",
+      "max":4096,
+      "min":1
+    },
     "Scope":{
       "type":"list",
       "member":{"shape":"ResourceAttribute"}
@@ -1998,6 +2452,20 @@
         "StackName":{"shape":"StackName"},
         "StackPolicyBody":{"shape":"StackPolicyBody"},
         "StackPolicyURL":{"shape":"StackPolicyURL"}
+      }
+    },
+    "SetTypeDefaultVersionInput":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"PrivateTypeArn"},
+        "Type":{"shape":"RegistryType"},
+        "TypeName":{"shape":"TypeName"},
+        "VersionId":{"shape":"TypeVersionId"}
+      }
+    },
+    "SetTypeDefaultVersionOutput":{
+      "type":"structure",
+      "members":{
       }
     },
     "SignalResourceInput":{
@@ -2533,6 +3001,10 @@
       },
       "exception":true
     },
+    "StatusMessage":{
+      "type":"string",
+      "max":1024
+    },
     "StopStackSetOperationInput":{
       "type":"structure",
       "required":[
@@ -2627,6 +3099,69 @@
       "member":{"shape":"TransformName"}
     },
     "Type":{"type":"string"},
+    "TypeArn":{
+      "type":"string",
+      "max":1024,
+      "pattern":"arn:aws[A-Za-z0-9-]{0,64}:cloudformation:[A-Za-z0-9-]{1,64}:([0-9]{12})?:type/.+"
+    },
+    "TypeName":{
+      "type":"string",
+      "max":196,
+      "min":10,
+      "pattern":"[A-Za-z0-9]{2,64}::[A-Za-z0-9]{2,64}::[A-Za-z0-9]{2,64}"
+    },
+    "TypeNotFoundException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"TypeNotFoundException",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "TypeSchema":{
+      "type":"string",
+      "max":16777216,
+      "min":1
+    },
+    "TypeSummaries":{
+      "type":"list",
+      "member":{"shape":"TypeSummary"}
+    },
+    "TypeSummary":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"RegistryType"},
+        "TypeName":{"shape":"TypeName"},
+        "DefaultVersionId":{"shape":"TypeVersionId"},
+        "TypeArn":{"shape":"TypeArn"},
+        "LastUpdated":{"shape":"Timestamp"},
+        "Description":{"shape":"Description"}
+      }
+    },
+    "TypeVersionId":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[A-Za-z0-9-]+"
+    },
+    "TypeVersionSummaries":{
+      "type":"list",
+      "member":{"shape":"TypeVersionSummary"}
+    },
+    "TypeVersionSummary":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"RegistryType"},
+        "TypeName":{"shape":"TypeName"},
+        "VersionId":{"shape":"TypeVersionId"},
+        "Arn":{"shape":"TypeArn"},
+        "TimeCreated":{"shape":"Timestamp"},
+        "Description":{"shape":"Description"}
+      }
+    },
     "UpdateStackInput":{
       "type":"structure",
       "required":["StackName"],
@@ -2747,6 +3282,13 @@
       }
     },
     "Value":{"type":"string"},
-    "Version":{"type":"string"}
+    "Version":{"type":"string"},
+    "Visibility":{
+      "type":"string",
+      "enum":[
+        "PUBLIC",
+        "PRIVATE"
+      ]
+    }
   }
 }

@@ -1192,6 +1192,7 @@
         "CurrencyCode":{"shape":"GenericString"},
         "EstimatedSPCost":{"shape":"GenericString"},
         "EstimatedOnDemandCost":{"shape":"GenericString"},
+        "EstimatedOnDemandCostWithCurrentCommitment":{"shape":"GenericString"},
         "EstimatedSavingsAmount":{"shape":"GenericString"},
         "EstimatedSavingsPercentage":{"shape":"GenericString"},
         "HourlyCommitmentToPurchase":{"shape":"GenericString"},
@@ -1225,7 +1226,8 @@
         "DailyCommitmentToPurchase":{"shape":"GenericString"},
         "HourlyCommitmentToPurchase":{"shape":"GenericString"},
         "EstimatedSavingsPercentage":{"shape":"GenericString"},
-        "EstimatedMonthlySavingsAmount":{"shape":"GenericString"}
+        "EstimatedMonthlySavingsAmount":{"shape":"GenericString"},
+        "EstimatedOnDemandCostWithCurrentCommitment":{"shape":"GenericString"}
       }
     },
     "SavingsPlansSavings":{

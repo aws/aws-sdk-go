@@ -13,7 +13,8 @@ const (
 	// ErrCodeModelError for service response error code
 	// "ModelError".
 	//
-	// Model (owned by the customer in the container) returned an error 500.
+	// Model (owned by the customer in the container) returned 4xx or 5xx error
+	// code.
 	ErrCodeModelError = "ModelError"
 
 	// ErrCodeServiceUnavailable for service response error code
