@@ -61,6 +61,8 @@ type OutputService1ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a OutputService1ProtocolTest client from just a session.
 //     svc := outputservice1protocoltest.New(mySession)
 //
@@ -312,6 +314,8 @@ type OutputService2ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a OutputService2ProtocolTest client from just a session.
 //     svc := outputservice2protocoltest.New(mySession)
 //
@@ -479,6 +483,8 @@ type OutputService3ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a OutputService3ProtocolTest client from just a session.
 //     svc := outputservice3protocoltest.New(mySession)
 //
@@ -692,6 +698,8 @@ type OutputService4ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a OutputService4ProtocolTest client from just a session.
 //     svc := outputservice4protocoltest.New(mySession)
 //
@@ -837,6 +845,8 @@ type OutputService5ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a OutputService5ProtocolTest client from just a session.
 //     svc := outputservice5protocoltest.New(mySession)
 //
@@ -994,6 +1004,8 @@ type OutputService6ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a OutputService6ProtocolTest client from just a session.
 //     svc := outputservice6protocoltest.New(mySession)
 //
@@ -1139,6 +1151,8 @@ type OutputService7ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a OutputService7ProtocolTest client from just a session.
 //     svc := outputservice7protocoltest.New(mySession)
 //
@@ -1284,6 +1298,8 @@ type OutputService8ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a OutputService8ProtocolTest client from just a session.
 //     svc := outputservice8protocoltest.New(mySession)
 //
@@ -1429,6 +1445,8 @@ type OutputService9ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a OutputService9ProtocolTest client from just a session.
 //     svc := outputservice9protocoltest.New(mySession)
 //
@@ -1567,6 +1585,8 @@ type OutputService10ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a OutputService10ProtocolTest client from just a session.
 //     svc := outputservice10protocoltest.New(mySession)
 //
@@ -1720,6 +1740,8 @@ type OutputService11ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a OutputService11ProtocolTest client from just a session.
 //     svc := outputservice11protocoltest.New(mySession)
 //
@@ -1885,6 +1907,8 @@ type OutputService12ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a OutputService12ProtocolTest client from just a session.
 //     svc := outputservice12protocoltest.New(mySession)
 //
@@ -2030,6 +2054,8 @@ type OutputService13ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a OutputService13ProtocolTest client from just a session.
 //     svc := outputservice13protocoltest.New(mySession)
 //
@@ -2291,6 +2317,8 @@ type OutputService14ProtocolTest struct {
 // aws.Config parameter to add your extra config.
 //
 // Example:
+//     mySession := session.Must(session.NewSession())
+//
 //     // Create a OutputService14ProtocolTest client from just a session.
 //     svc := outputservice14protocoltest.New(mySession)
 //
