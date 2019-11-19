@@ -116,6 +116,10 @@ type IoTAPI interface {
 	ClearDefaultAuthorizerWithContext(aws.Context, *iot.ClearDefaultAuthorizerInput, ...request.Option) (*iot.ClearDefaultAuthorizerOutput, error)
 	ClearDefaultAuthorizerRequest(*iot.ClearDefaultAuthorizerInput) (*request.Request, *iot.ClearDefaultAuthorizerOutput)
 
+	ConfirmTopicRuleDestination(*iot.ConfirmTopicRuleDestinationInput) (*iot.ConfirmTopicRuleDestinationOutput, error)
+	ConfirmTopicRuleDestinationWithContext(aws.Context, *iot.ConfirmTopicRuleDestinationInput, ...request.Option) (*iot.ConfirmTopicRuleDestinationOutput, error)
+	ConfirmTopicRuleDestinationRequest(*iot.ConfirmTopicRuleDestinationInput) (*request.Request, *iot.ConfirmTopicRuleDestinationOutput)
+
 	CreateAuthorizer(*iot.CreateAuthorizerInput) (*iot.CreateAuthorizerOutput, error)
 	CreateAuthorizerWithContext(aws.Context, *iot.CreateAuthorizerInput, ...request.Option) (*iot.CreateAuthorizerOutput, error)
 	CreateAuthorizerRequest(*iot.CreateAuthorizerInput) (*request.Request, *iot.CreateAuthorizerOutput)
@@ -187,6 +191,10 @@ type IoTAPI interface {
 	CreateTopicRule(*iot.CreateTopicRuleInput) (*iot.CreateTopicRuleOutput, error)
 	CreateTopicRuleWithContext(aws.Context, *iot.CreateTopicRuleInput, ...request.Option) (*iot.CreateTopicRuleOutput, error)
 	CreateTopicRuleRequest(*iot.CreateTopicRuleInput) (*request.Request, *iot.CreateTopicRuleOutput)
+
+	CreateTopicRuleDestination(*iot.CreateTopicRuleDestinationInput) (*iot.CreateTopicRuleDestinationOutput, error)
+	CreateTopicRuleDestinationWithContext(aws.Context, *iot.CreateTopicRuleDestinationInput, ...request.Option) (*iot.CreateTopicRuleDestinationOutput, error)
+	CreateTopicRuleDestinationRequest(*iot.CreateTopicRuleDestinationInput) (*request.Request, *iot.CreateTopicRuleDestinationOutput)
 
 	DeleteAccountAuditConfiguration(*iot.DeleteAccountAuditConfigurationInput) (*iot.DeleteAccountAuditConfigurationOutput, error)
 	DeleteAccountAuditConfigurationWithContext(aws.Context, *iot.DeleteAccountAuditConfigurationInput, ...request.Option) (*iot.DeleteAccountAuditConfigurationOutput, error)
@@ -271,6 +279,10 @@ type IoTAPI interface {
 	DeleteTopicRule(*iot.DeleteTopicRuleInput) (*iot.DeleteTopicRuleOutput, error)
 	DeleteTopicRuleWithContext(aws.Context, *iot.DeleteTopicRuleInput, ...request.Option) (*iot.DeleteTopicRuleOutput, error)
 	DeleteTopicRuleRequest(*iot.DeleteTopicRuleInput) (*request.Request, *iot.DeleteTopicRuleOutput)
+
+	DeleteTopicRuleDestination(*iot.DeleteTopicRuleDestinationInput) (*iot.DeleteTopicRuleDestinationOutput, error)
+	DeleteTopicRuleDestinationWithContext(aws.Context, *iot.DeleteTopicRuleDestinationInput, ...request.Option) (*iot.DeleteTopicRuleDestinationOutput, error)
+	DeleteTopicRuleDestinationRequest(*iot.DeleteTopicRuleDestinationInput) (*request.Request, *iot.DeleteTopicRuleDestinationOutput)
 
 	DeleteV2LoggingLevel(*iot.DeleteV2LoggingLevelInput) (*iot.DeleteV2LoggingLevelOutput, error)
 	DeleteV2LoggingLevelWithContext(aws.Context, *iot.DeleteV2LoggingLevelInput, ...request.Option) (*iot.DeleteV2LoggingLevelOutput, error)
@@ -444,6 +456,10 @@ type IoTAPI interface {
 	GetTopicRuleWithContext(aws.Context, *iot.GetTopicRuleInput, ...request.Option) (*iot.GetTopicRuleOutput, error)
 	GetTopicRuleRequest(*iot.GetTopicRuleInput) (*request.Request, *iot.GetTopicRuleOutput)
 
+	GetTopicRuleDestination(*iot.GetTopicRuleDestinationInput) (*iot.GetTopicRuleDestinationOutput, error)
+	GetTopicRuleDestinationWithContext(aws.Context, *iot.GetTopicRuleDestinationInput, ...request.Option) (*iot.GetTopicRuleDestinationOutput, error)
+	GetTopicRuleDestinationRequest(*iot.GetTopicRuleDestinationInput) (*request.Request, *iot.GetTopicRuleDestinationOutput)
+
 	GetV2LoggingOptions(*iot.GetV2LoggingOptionsInput) (*iot.GetV2LoggingOptionsOutput, error)
 	GetV2LoggingOptionsWithContext(aws.Context, *iot.GetV2LoggingOptionsInput, ...request.Option) (*iot.GetV2LoggingOptionsOutput, error)
 	GetV2LoggingOptionsRequest(*iot.GetV2LoggingOptionsInput) (*request.Request, *iot.GetV2LoggingOptionsOutput)
@@ -607,6 +623,10 @@ type IoTAPI interface {
 	ListThingsInThingGroup(*iot.ListThingsInThingGroupInput) (*iot.ListThingsInThingGroupOutput, error)
 	ListThingsInThingGroupWithContext(aws.Context, *iot.ListThingsInThingGroupInput, ...request.Option) (*iot.ListThingsInThingGroupOutput, error)
 	ListThingsInThingGroupRequest(*iot.ListThingsInThingGroupInput) (*request.Request, *iot.ListThingsInThingGroupOutput)
+
+	ListTopicRuleDestinations(*iot.ListTopicRuleDestinationsInput) (*iot.ListTopicRuleDestinationsOutput, error)
+	ListTopicRuleDestinationsWithContext(aws.Context, *iot.ListTopicRuleDestinationsInput, ...request.Option) (*iot.ListTopicRuleDestinationsOutput, error)
+	ListTopicRuleDestinationsRequest(*iot.ListTopicRuleDestinationsInput) (*request.Request, *iot.ListTopicRuleDestinationsOutput)
 
 	ListTopicRules(*iot.ListTopicRulesInput) (*iot.ListTopicRulesOutput, error)
 	ListTopicRulesWithContext(aws.Context, *iot.ListTopicRulesInput, ...request.Option) (*iot.ListTopicRulesOutput, error)
@@ -775,6 +795,10 @@ type IoTAPI interface {
 	UpdateThingGroupsForThing(*iot.UpdateThingGroupsForThingInput) (*iot.UpdateThingGroupsForThingOutput, error)
 	UpdateThingGroupsForThingWithContext(aws.Context, *iot.UpdateThingGroupsForThingInput, ...request.Option) (*iot.UpdateThingGroupsForThingOutput, error)
 	UpdateThingGroupsForThingRequest(*iot.UpdateThingGroupsForThingInput) (*request.Request, *iot.UpdateThingGroupsForThingOutput)
+
+	UpdateTopicRuleDestination(*iot.UpdateTopicRuleDestinationInput) (*iot.UpdateTopicRuleDestinationOutput, error)
+	UpdateTopicRuleDestinationWithContext(aws.Context, *iot.UpdateTopicRuleDestinationInput, ...request.Option) (*iot.UpdateTopicRuleDestinationOutput, error)
+	UpdateTopicRuleDestinationRequest(*iot.UpdateTopicRuleDestinationInput) (*request.Request, *iot.UpdateTopicRuleDestinationOutput)
 
 	ValidateSecurityProfileBehaviors(*iot.ValidateSecurityProfileBehaviorsInput) (*iot.ValidateSecurityProfileBehaviorsOutput, error)
 	ValidateSecurityProfileBehaviorsWithContext(aws.Context, *iot.ValidateSecurityProfileBehaviorsInput, ...request.Option) (*iot.ValidateSecurityProfileBehaviorsOutput, error)

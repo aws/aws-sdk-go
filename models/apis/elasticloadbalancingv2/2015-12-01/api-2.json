@@ -73,7 +73,8 @@
         {"shape":"TooManyRegistrationsForTargetIdException"},
         {"shape":"TooManyTargetsException"},
         {"shape":"TooManyActionsException"},
-        {"shape":"InvalidLoadBalancerActionException"}
+        {"shape":"InvalidLoadBalancerActionException"},
+        {"shape":"TooManyUniqueTargetGroupsPerLoadBalancerException"}
       ]
     },
     "CreateLoadBalancer":{
@@ -127,7 +128,8 @@
         {"shape":"TooManyTargetsException"},
         {"shape":"UnsupportedProtocolException"},
         {"shape":"TooManyActionsException"},
-        {"shape":"InvalidLoadBalancerActionException"}
+        {"shape":"InvalidLoadBalancerActionException"},
+        {"shape":"TooManyUniqueTargetGroupsPerLoadBalancerException"}
       ]
     },
     "CreateTargetGroup":{
@@ -424,7 +426,8 @@
         {"shape":"TooManyRegistrationsForTargetIdException"},
         {"shape":"TooManyTargetsException"},
         {"shape":"TooManyActionsException"},
-        {"shape":"InvalidLoadBalancerActionException"}
+        {"shape":"InvalidLoadBalancerActionException"},
+        {"shape":"TooManyUniqueTargetGroupsPerLoadBalancerException"}
       ]
     },
     "ModifyLoadBalancerAttributes":{
@@ -464,7 +467,8 @@
         {"shape":"TargetGroupNotFoundException"},
         {"shape":"UnsupportedProtocolException"},
         {"shape":"TooManyActionsException"},
-        {"shape":"InvalidLoadBalancerActionException"}
+        {"shape":"InvalidLoadBalancerActionException"},
+        {"shape":"TooManyUniqueTargetGroupsPerLoadBalancerException"}
       ]
     },
     "ModifyTargetGroup":{
@@ -635,7 +639,8 @@
         "AuthenticateCognitoConfig":{"shape":"AuthenticateCognitoActionConfig"},
         "Order":{"shape":"ActionOrder"},
         "RedirectConfig":{"shape":"RedirectActionConfig"},
-        "FixedResponseConfig":{"shape":"FixedResponseActionConfig"}
+        "FixedResponseConfig":{"shape":"FixedResponseActionConfig"},
+        "ForwardConfig":{"shape":"ForwardActionConfig"}
       }
     },
     "ActionOrder":{
@@ -1241,6 +1246,13 @@
     "FixedResponseActionStatusCode":{
       "type":"string",
       "pattern":"^(2|4|5)\\d\\d$"
+    },
+    "ForwardActionConfig":{
+      "type":"structure",
+      "members":{
+        "TargetGroups":{"shape":"TargetGroupList"},
+        "TargetGroupStickinessConfig":{"shape":"TargetGroupStickinessConfig"}
+      }
     },
     "HealthCheckEnabled":{"type":"boolean"},
     "HealthCheckIntervalSeconds":{
@@ -2106,6 +2118,10 @@
       "type":"list",
       "member":{"shape":"TargetGroupAttribute"}
     },
+    "TargetGroupList":{
+      "type":"list",
+      "member":{"shape":"TargetGroupTuple"}
+    },
     "TargetGroupName":{"type":"string"},
     "TargetGroupNames":{
       "type":"list",
@@ -2122,6 +2138,23 @@
       },
       "exception":true
     },
+    "TargetGroupStickinessConfig":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"TargetGroupStickinessEnabled"},
+        "DurationSeconds":{"shape":"TargetGroupStickinessDurationSeconds"}
+      }
+    },
+    "TargetGroupStickinessDurationSeconds":{"type":"integer"},
+    "TargetGroupStickinessEnabled":{"type":"boolean"},
+    "TargetGroupTuple":{
+      "type":"structure",
+      "members":{
+        "TargetGroupArn":{"shape":"TargetGroupArn"},
+        "Weight":{"shape":"TargetGroupWeight"}
+      }
+    },
+    "TargetGroupWeight":{"type":"integer"},
     "TargetGroups":{
       "type":"list",
       "member":{"shape":"TargetGroup"}
@@ -2277,6 +2310,17 @@
       },
       "error":{
         "code":"TooManyTargets",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "TooManyUniqueTargetGroupsPerLoadBalancerException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"TooManyUniqueTargetGroupsPerLoadBalancer",
         "httpStatusCode":400,
         "senderFault":true
       },

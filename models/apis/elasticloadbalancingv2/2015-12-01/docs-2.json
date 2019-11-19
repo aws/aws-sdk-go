@@ -24,9 +24,9 @@
     "DescribeTargetGroupAttributes": "<p>Describes the attributes for the specified target group.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html#target-group-attributes\">Target Group Attributes</a> in the <i>Application Load Balancers Guide</i> or <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/network/load-balancer-target-groups.html#target-group-attributes\">Target Group Attributes</a> in the <i>Network Load Balancers Guide</i>.</p>",
     "DescribeTargetGroups": "<p>Describes the specified target groups or all of your target groups. By default, all target groups are described. Alternatively, you can specify one of the following to filter the results: the ARN of the load balancer, the names of one or more target groups, or the ARNs of one or more target groups.</p> <p>To describe the targets for a target group, use <a>DescribeTargetHealth</a>. To describe the attributes of a target group, use <a>DescribeTargetGroupAttributes</a>.</p>",
     "DescribeTargetHealth": "<p>Describes the health of the specified targets or all of your targets.</p>",
-    "ModifyListener": "<p>Modifies the specified properties of the specified listener.</p> <p>Any properties that you do not specify retain their current values. However, changing the protocol from HTTPS to HTTP, or from TLS to TCP, removes the security policy and default certificate properties. If you change the protocol from HTTP to HTTPS, or from TCP to TLS, you must add the security policy and default certificate properties.</p>",
+    "ModifyListener": "<p>Replaces the specified properties of the specified listener. Any properties that you do not specify remain unchanged.</p> <p>Changing the protocol from HTTPS to HTTP, or from TLS to TCP, removes the security policy and default certificate properties. If you change the protocol from HTTP to HTTPS, or from TCP to TLS, you must add the security policy and default certificate properties.</p> <p>To add an item to a list, remove an item from a list, or update an item in a list, you must provide the entire list. For example, to add an action, specify a list with the current actions plus the new action.</p>",
     "ModifyLoadBalancerAttributes": "<p>Modifies the specified attributes of the specified Application Load Balancer or Network Load Balancer.</p> <p>If any of the specified attributes can't be modified as requested, the call fails. Any existing attributes that you do not modify retain their current values.</p>",
-    "ModifyRule": "<p>Modifies the specified rule.</p> <p>Any existing properties that you do not modify retain their current values.</p> <p>To modify the actions for the default rule, use <a>ModifyListener</a>.</p>",
+    "ModifyRule": "<p>Replaces the specified properties of the specified rule. Any properties that you do not specify are unchanged.</p> <p>To add an item to a list, remove an item from a list, or update an item in a list, you must provide the entire list. For example, to add an action, specify a list with the current actions plus the new action.</p> <p>To modify the actions for the default rule, use <a>ModifyListener</a>.</p>",
     "ModifyTargetGroup": "<p>Modifies the health checks used when evaluating the health state of the targets in the specified target group.</p> <p>To monitor the health of the targets, use <a>DescribeTargetHealth</a>.</p>",
     "ModifyTargetGroupAttributes": "<p>Modifies the specified attributes of the specified target group.</p>",
     "RegisterTargets": "<p>Registers the specified targets with the specified target group.</p> <p>If the target is an EC2 instance, it must be in the <code>running</code> state when you register it.</p> <p>By default, the load balancer routes requests to registered targets using the protocol and port for the target group. Alternatively, you can override the port for a target when you register it. You can register each EC2 instance or IP address with the same target group multiple times using different ports.</p> <p>With a Network Load Balancer, you cannot register instances by instance ID if they have the following instance types: C1, CC1, CC2, CG1, CG2, CR1, CS1, G1, G2, HI1, HS1, M1, M2, M3, and T1. You can register instances of these types by IP address.</p> <p>To remove a target from a target group, use <a>DeregisterTargets</a>.</p>",
@@ -59,11 +59,11 @@
     "Actions": {
       "base": null,
       "refs": {
-        "CreateListenerInput$DefaultActions": "<p>The actions for the default rule. The rule must include one forward action or one or more fixed-response actions.</p> <p>If the action type is <code>forward</code>, you specify a target group. The protocol of the target group must be HTTP or HTTPS for an Application Load Balancer. The protocol of the target group must be TCP, TLS, UDP, or TCP_UDP for a Network Load Balancer.</p> <p>[HTTPS listeners] If the action type is <code>authenticate-oidc</code>, you authenticate users through an identity provider that is OpenID Connect (OIDC) compliant.</p> <p>[HTTPS listeners] If the action type is <code>authenticate-cognito</code>, you authenticate users through the user pools supported by Amazon Cognito.</p> <p>[Application Load Balancer] If the action type is <code>redirect</code>, you redirect specified client requests from one URL to another.</p> <p>[Application Load Balancer] If the action type is <code>fixed-response</code>, you drop specified client requests and return a custom HTTP response.</p>",
-        "CreateRuleInput$Actions": "<p>The actions. Each rule must include exactly one of the following types of actions: <code>forward</code>, <code>fixed-response</code>, or <code>redirect</code>, and it must be the last action to be performed.</p> <p>If the action type is <code>forward</code>, you specify a target group. The protocol of the target group must be HTTP or HTTPS for an Application Load Balancer. The protocol of the target group must be TCP, TLS, UDP, or TCP_UDP for a Network Load Balancer.</p> <p>[HTTPS listeners] If the action type is <code>authenticate-oidc</code>, you authenticate users through an identity provider that is OpenID Connect (OIDC) compliant.</p> <p>[HTTPS listeners] If the action type is <code>authenticate-cognito</code>, you authenticate users through the user pools supported by Amazon Cognito.</p> <p>[Application Load Balancer] If the action type is <code>redirect</code>, you redirect specified client requests from one URL to another.</p> <p>[Application Load Balancer] If the action type is <code>fixed-response</code>, you drop specified client requests and return a custom HTTP response.</p>",
+        "CreateListenerInput$DefaultActions": "<p>The actions for the default rule. The rule must include one forward action or one or more fixed-response actions.</p> <p>If the action type is <code>forward</code>, you specify one or more target groups. The protocol of the target group must be HTTP or HTTPS for an Application Load Balancer. The protocol of the target group must be TCP, TLS, UDP, or TCP_UDP for a Network Load Balancer.</p> <p>[HTTPS listeners] If the action type is <code>authenticate-oidc</code>, you authenticate users through an identity provider that is OpenID Connect (OIDC) compliant.</p> <p>[HTTPS listeners] If the action type is <code>authenticate-cognito</code>, you authenticate users through the user pools supported by Amazon Cognito.</p> <p>[Application Load Balancer] If the action type is <code>redirect</code>, you redirect specified client requests from one URL to another.</p> <p>[Application Load Balancer] If the action type is <code>fixed-response</code>, you drop specified client requests and return a custom HTTP response.</p>",
+        "CreateRuleInput$Actions": "<p>The actions. Each rule must include exactly one of the following types of actions: <code>forward</code>, <code>fixed-response</code>, or <code>redirect</code>, and it must be the last action to be performed.</p> <p>If the action type is <code>forward</code>, you specify one or more target groups. The protocol of the target group must be HTTP or HTTPS for an Application Load Balancer. The protocol of the target group must be TCP, TLS, UDP, or TCP_UDP for a Network Load Balancer.</p> <p>[HTTPS listeners] If the action type is <code>authenticate-oidc</code>, you authenticate users through an identity provider that is OpenID Connect (OIDC) compliant.</p> <p>[HTTPS listeners] If the action type is <code>authenticate-cognito</code>, you authenticate users through the user pools supported by Amazon Cognito.</p> <p>[Application Load Balancer] If the action type is <code>redirect</code>, you redirect specified client requests from one URL to another.</p> <p>[Application Load Balancer] If the action type is <code>fixed-response</code>, you drop specified client requests and return a custom HTTP response.</p>",
         "Listener$DefaultActions": "<p>The default actions for the listener.</p>",
-        "ModifyListenerInput$DefaultActions": "<p>The actions for the default rule. The rule must include one forward action or one or more fixed-response actions.</p> <p>If the action type is <code>forward</code>, you specify a target group. The protocol of the target group must be HTTP or HTTPS for an Application Load Balancer. The protocol of the target group must be TCP, TLS, UDP, or TCP_UDP for a Network Load Balancer.</p> <p>[HTTPS listeners] If the action type is <code>authenticate-oidc</code>, you authenticate users through an identity provider that is OpenID Connect (OIDC) compliant.</p> <p>[HTTPS listeners] If the action type is <code>authenticate-cognito</code>, you authenticate users through the user pools supported by Amazon Cognito.</p> <p>[Application Load Balancer] If the action type is <code>redirect</code>, you redirect specified client requests from one URL to another.</p> <p>[Application Load Balancer] If the action type is <code>fixed-response</code>, you drop specified client requests and return a custom HTTP response.</p>",
-        "ModifyRuleInput$Actions": "<p>The actions. Each rule must include exactly one of the following types of actions: <code>forward</code>, <code>fixed-response</code>, or <code>redirect</code>, and it must be the last action to be performed.</p> <p>If the action type is <code>forward</code>, you specify a target group. The protocol of the target group must be HTTP or HTTPS for an Application Load Balancer. The protocol of the target group must be TCP, TLS, UDP, or TCP_UDP for a Network Load Balancer.</p> <p>[HTTPS listeners] If the action type is <code>authenticate-oidc</code>, you authenticate users through an identity provider that is OpenID Connect (OIDC) compliant.</p> <p>[HTTPS listeners] If the action type is <code>authenticate-cognito</code>, you authenticate users through the user pools supported by Amazon Cognito.</p> <p>[Application Load Balancer] If the action type is <code>redirect</code>, you redirect specified client requests from one URL to another.</p> <p>[Application Load Balancer] If the action type is <code>fixed-response</code>, you drop specified client requests and return a custom HTTP response.</p>",
+        "ModifyListenerInput$DefaultActions": "<p>The actions for the default rule. The rule must include one forward action or one or more fixed-response actions.</p> <p>If the action type is <code>forward</code>, you specify one or more target groups. The protocol of the target group must be HTTP or HTTPS for an Application Load Balancer. The protocol of the target group must be TCP, TLS, UDP, or TCP_UDP for a Network Load Balancer.</p> <p>[HTTPS listeners] If the action type is <code>authenticate-oidc</code>, you authenticate users through an identity provider that is OpenID Connect (OIDC) compliant.</p> <p>[HTTPS listeners] If the action type is <code>authenticate-cognito</code>, you authenticate users through the user pools supported by Amazon Cognito.</p> <p>[Application Load Balancer] If the action type is <code>redirect</code>, you redirect specified client requests from one URL to another.</p> <p>[Application Load Balancer] If the action type is <code>fixed-response</code>, you drop specified client requests and return a custom HTTP response.</p>",
+        "ModifyRuleInput$Actions": "<p>The actions. Each rule must include exactly one of the following types of actions: <code>forward</code>, <code>fixed-response</code>, or <code>redirect</code>, and it must be the last action to be performed.</p> <p>If the action type is <code>forward</code>, you specify one or more target groups. The protocol of the target group must be HTTP or HTTPS for an Application Load Balancer. The protocol of the target group must be TCP, TLS, UDP, or TCP_UDP for a Network Load Balancer.</p> <p>[HTTPS listeners] If the action type is <code>authenticate-oidc</code>, you authenticate users through an identity provider that is OpenID Connect (OIDC) compliant.</p> <p>[HTTPS listeners] If the action type is <code>authenticate-cognito</code>, you authenticate users through the user pools supported by Amazon Cognito.</p> <p>[Application Load Balancer] If the action type is <code>redirect</code>, you redirect specified client requests from one URL to another.</p> <p>[Application Load Balancer] If the action type is <code>fixed-response</code>, you drop specified client requests and return a custom HTTP response.</p>",
         "Rule$Actions": "<p>The actions. Each rule must include exactly one of the following types of actions: <code>forward</code>, <code>redirect</code>, or <code>fixed-response</code>, and it must be the last action to be performed.</p>"
       }
     },
@@ -606,6 +606,12 @@
         "FixedResponseActionConfig$StatusCode": "<p>The HTTP response code (2XX, 4XX, or 5XX).</p>"
       }
     },
+    "ForwardActionConfig": {
+      "base": "<p>Information about a forward action.</p>",
+      "refs": {
+        "Action$ForwardConfig": "<p>Information for creating an action that distributes requests among one or more target groups. For Network Load Balancers, you can specify a single target group. Specify only when <code>Type</code> is <code>forward</code>. If you specify both <code>ForwardConfig</code> and <code>TargetGroupArn</code>, you can specify only one target group using <code>ForwardConfig</code> and it must be the same target group specified in <code>TargetGroupArn</code>.</p>"
+      }
+    },
     "HealthCheckEnabled": {
       "base": null,
       "refs": {
@@ -1009,7 +1015,7 @@
     "Name": {
       "base": null,
       "refs": {
-        "Limit$Name": "<p>The name of the limit. The possible values are:</p> <ul> <li> <p>application-load-balancers</p> </li> <li> <p>listeners-per-application-load-balancer</p> </li> <li> <p>listeners-per-network-load-balancer</p> </li> <li> <p>network-load-balancers</p> </li> <li> <p>rules-per-application-load-balancer</p> </li> <li> <p>target-groups</p> </li> <li> <p>targets-per-application-load-balancer</p> </li> <li> <p>targets-per-availability-zone-per-network-load-balancer</p> </li> <li> <p>targets-per-network-load-balancer</p> </li> </ul>"
+        "Limit$Name": "<p>The name of the limit. The possible values are:</p> <ul> <li> <p>application-load-balancers</p> </li> <li> <p>listeners-per-application-load-balancer</p> </li> <li> <p>listeners-per-network-load-balancer</p> </li> <li> <p>network-load-balancers</p> </li> <li> <p>rules-per-application-load-balancer</p> </li> <li> <p>target-groups</p> </li> <li> <p>target-groups-per-action-on-application-load-balancer</p> </li> <li> <p>target-groups-per-action-on-network-load-balancer</p> </li> <li> <p>target-groups-per-application-load-balancer</p> </li> <li> <p>targets-per-application-load-balancer</p> </li> <li> <p>targets-per-availability-zone-per-network-load-balancer</p> </li> <li> <p>targets-per-network-load-balancer</p> </li> </ul>"
       }
     },
     "OperationNotPermittedException": {
@@ -1479,7 +1485,7 @@
     "TargetGroupArn": {
       "base": null,
       "refs": {
-        "Action$TargetGroupArn": "<p>The Amazon Resource Name (ARN) of the target group. Specify only when <code>Type</code> is <code>forward</code>.</p>",
+        "Action$TargetGroupArn": "<p>The Amazon Resource Name (ARN) of the target group. Specify only when <code>Type</code> is <code>forward</code> and you want to route to a single target group. To route to one or more target groups, use <code>ForwardConfig</code> instead.</p>",
         "DeleteTargetGroupInput$TargetGroupArn": "<p>The Amazon Resource Name (ARN) of the target group.</p>",
         "DeregisterTargetsInput$TargetGroupArn": "<p>The Amazon Resource Name (ARN) of the target group.</p>",
         "DescribeTargetGroupAttributesInput$TargetGroupArn": "<p>The Amazon Resource Name (ARN) of the target group.</p>",
@@ -1488,7 +1494,8 @@
         "ModifyTargetGroupInput$TargetGroupArn": "<p>The Amazon Resource Name (ARN) of the target group.</p>",
         "RegisterTargetsInput$TargetGroupArn": "<p>The Amazon Resource Name (ARN) of the target group.</p>",
         "TargetGroup$TargetGroupArn": "<p>The Amazon Resource Name (ARN) of the target group.</p>",
-        "TargetGroupArns$member": null
+        "TargetGroupArns$member": null,
+        "TargetGroupTuple$TargetGroupArn": "<p>The Amazon Resource Name (ARN) of the target group.</p>"
       }
     },
     "TargetGroupArns": {
@@ -1528,6 +1535,12 @@
         "ModifyTargetGroupAttributesOutput$Attributes": "<p>Information about the attributes.</p>"
       }
     },
+    "TargetGroupList": {
+      "base": null,
+      "refs": {
+        "ForwardActionConfig$TargetGroups": "<p>One or more target groups. For Network Load Balancers, you can specify a single target group.</p>"
+      }
+    },
     "TargetGroupName": {
       "base": null,
       "refs": {
@@ -1545,6 +1558,36 @@
     "TargetGroupNotFoundException": {
       "base": "<p>The specified target group does not exist.</p>",
       "refs": {
+      }
+    },
+    "TargetGroupStickinessConfig": {
+      "base": "<p>Information about the target group stickiness for a rule.</p>",
+      "refs": {
+        "ForwardActionConfig$TargetGroupStickinessConfig": "<p>The target group stickiness for the rule.</p>"
+      }
+    },
+    "TargetGroupStickinessDurationSeconds": {
+      "base": null,
+      "refs": {
+        "TargetGroupStickinessConfig$DurationSeconds": "<p>The time period, in seconds, during which requests from a client should be routed to the same target group. The range is 1-604800 seconds (7 days).</p>"
+      }
+    },
+    "TargetGroupStickinessEnabled": {
+      "base": null,
+      "refs": {
+        "TargetGroupStickinessConfig$Enabled": "<p>Indicates whether target group stickiness is enabled.</p>"
+      }
+    },
+    "TargetGroupTuple": {
+      "base": "<p>Information about how traffic will be distributed between multiple target groups in a forward rule.</p>",
+      "refs": {
+        "TargetGroupList$member": null
+      }
+    },
+    "TargetGroupWeight": {
+      "base": null,
+      "refs": {
+        "TargetGroupTuple$Weight": "<p>The weight. The range is 0 to 999.</p>"
       }
     },
     "TargetGroups": {
@@ -1640,6 +1683,11 @@
     },
     "TooManyTargetsException": {
       "base": "<p>You've reached the limit on the number of targets.</p>",
+      "refs": {
+      }
+    },
+    "TooManyUniqueTargetGroupsPerLoadBalancerException": {
+      "base": "<p>You've reached the limit on the number of unique target groups per load balancer across all listeners. If a target group is used by multiple actions for a load balancer, it is counted as only one use.</p>",
       "refs": {
       }
     },

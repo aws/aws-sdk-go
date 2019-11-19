@@ -28,6 +28,7 @@
     "DescribeTypeRegistration": "<p>Returns information about a type's registration, including its current status and type and version identifiers.</p> <p>When you initiate a registration request using <code> <a>RegisterType</a> </code>, you can then use <code> <a>DescribeTypeRegistration</a> </code> to monitor the progress of that registration request.</p> <p>Once the registration request has completed, use <code> <a>DescribeType</a> </code> to return detailed informaiton about a type.</p>",
     "DetectStackDrift": "<p>Detects whether a stack's actual configuration differs, or has <i>drifted</i>, from it's expected configuration, as defined in the stack template and any values specified as template parameters. For each resource in the stack that supports drift detection, AWS CloudFormation compares the actual configuration of the resource with its expected template configuration. Only resource properties explicitly defined in the stack template are checked for drift. A stack is considered to have drifted if one or more of its resources differ from their expected template configurations. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift.html\">Detecting Unregulated Configuration Changes to Stacks and Resources</a>.</p> <p>Use <code>DetectStackDrift</code> to detect drift on all supported resources for a given stack, or <a>DetectStackResourceDrift</a> to detect drift on individual resources.</p> <p>For a list of stack resources that currently support drift detection, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift-resource-list.html\">Resources that Support Drift Detection</a>.</p> <p> <code>DetectStackDrift</code> can take up to several minutes, depending on the number of resources contained within the stack. Use <a>DescribeStackDriftDetectionStatus</a> to monitor the progress of a detect stack drift operation. Once the drift detection operation has completed, use <a>DescribeStackResourceDrifts</a> to return drift information about the stack and its resources.</p> <p>When detecting drift on a stack, AWS CloudFormation does not detect drift on any nested stacks belonging to that stack. Perform <code>DetectStackDrift</code> directly on the nested stack itself.</p>",
     "DetectStackResourceDrift": "<p>Returns information about whether a resource's actual configuration differs, or has <i>drifted</i>, from it's expected configuration, as defined in the stack template and any values specified as template parameters. This information includes actual and expected property values for resources in which AWS CloudFormation detects drift. Only resource properties explicitly defined in the stack template are checked for drift. For more information about stack and resource drift, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift.html\">Detecting Unregulated Configuration Changes to Stacks and Resources</a>.</p> <p>Use <code>DetectStackResourceDrift</code> to detect drift on individual resources, or <a>DetectStackDrift</a> to detect drift on all resources in a given stack that support drift detection.</p> <p>Resources that do not currently support drift detection cannot be checked. For a list of resources that support drift detection, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift-resource-list.html\">Resources that Support Drift Detection</a>.</p>",
+    "DetectStackSetDrift": "<p>Detect drift on a stack set. When CloudFormation performs drift detection on a stack set, it performs drift detection on the stack associated with each stack instance in the stack set. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-drift.html\">How CloudFormation Performs Drift Detection on a Stack Set</a>.</p> <p> <code>DetectStackSetDrift</code> returns the <code>OperationId</code> of the stack set drift detection operation. Use this operation id with <code> <a>DescribeStackSetOperation</a> </code> to monitor the progress of the drift detection operation. The drift detection operation may take some time, depending on the number of stack instances included in the stack set, as well as the number of resources included in each stack.</p> <p>Once the operation has completed, use the following actions to return drift information:</p> <ul> <li> <p>Use <code> <a>DescribeStackSet</a> </code> to return detailed informaiton about the stack set, including detailed information about the last <i>completed</i> drift operation performed on the stack set. (Information about drift operations that are in progress is not included.)</p> </li> <li> <p>Use <code> <a>ListStackInstances</a> </code> to return a list of stack instances belonging to the stack set, including the drift status and last drift time checked of each instance.</p> </li> <li> <p>Use <code> <a>DescribeStackInstance</a> </code> to return detailed information about a specific stack instance, including its drift status and last drift time checked.</p> </li> </ul> <p>For more information on performing a drift detection operation on a stack set, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-drift.html\">Detecting Unmanaged Changes in Stack Sets</a>. </p> <p>You can only run a single drift detection operation on a given stack set at one time. </p> <p>To stop a drift detection stack set operation, use <code> <a>StopStackSetOperation</a> </code>.</p>",
     "EstimateTemplateCost": "<p>Returns the estimated monthly cost of a template. The return value is an AWS Simple Monthly Calculator URL with a query string that describes the resources required to run the template.</p>",
     "ExecuteChangeSet": "<p>Updates a stack using the input information that was provided when the specified change set was created. After the call successfully completes, AWS CloudFormation starts updating the stack. Use the <a>DescribeStacks</a> action to view the status of the update.</p> <p>When you execute a change set, AWS CloudFormation deletes all other change sets associated with the stack because they aren't valid for the updated stack.</p> <p>If a stack policy is associated with the stack, AWS CloudFormation enforces the policy during the update. You can't specify a temporary stack policy that overrides the current policy.</p>",
     "GetStackPolicy": "<p>Returns the stack policy for a specified stack. If a stack doesn't have a policy, a null value is returned.</p>",
@@ -293,6 +294,8 @@
         "DeleteStackInstancesInput$OperationId": "<p>The unique identifier for this stack set operation. </p> <p>If you don't specify an operation ID, the SDK generates one automatically. </p> <p>The operation ID also functions as an idempotency token, to ensure that AWS CloudFormation performs the stack set operation only once, even if you retry the request multiple times. You can retry stack set operation requests to ensure that AWS CloudFormation successfully received them.</p> <p>Repeating this stack set operation with a new operation ID retries all stack instances whose status is <code>OUTDATED</code>. </p>",
         "DeleteStackInstancesOutput$OperationId": "<p>The unique identifier for this stack set operation.</p>",
         "DescribeStackSetOperationInput$OperationId": "<p>The unique ID of the stack set operation. </p>",
+        "DetectStackSetDriftInput$OperationId": "<p> <i>The ID of the stack set operation.</i> </p>",
+        "DetectStackSetDriftOutput$OperationId": "<p>The ID of the drift detection stack set operation. </p> <p>you can use this operation id with <code> <a>DescribeStackSetOperation</a> </code> to monitor the progress of the drift detection operation. </p>",
         "ExecuteChangeSetInput$ClientRequestToken": "<p>A unique identifier for this <code>ExecuteChangeSet</code> request. Specify this token if you plan to retry requests so that AWS CloudFormation knows that you're not attempting to execute a change set to update a stack with the same name. You might retry <code>ExecuteChangeSet</code> requests to ensure that AWS CloudFormation successfully received them.</p>",
         "ListStackSetOperationResultsInput$OperationId": "<p>The ID of the stack set operation.</p>",
         "RecordHandlerProgressInput$ClientRequestToken": "<p>Reserved for use by the <a href=\"https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/what-is-cloudformation-cli.html\">CloudFormation CLI</a>.</p>",
@@ -612,6 +615,16 @@
       "refs": {
       }
     },
+    "DetectStackSetDriftInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DetectStackSetDriftOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DifferenceType": {
       "base": null,
       "refs": {
@@ -623,6 +636,12 @@
       "refs": {
         "CreateStackInput$DisableRollback": "<p>Set to <code>true</code> to disable rollback of the stack if stack creation failed. You can specify either <code>DisableRollback</code> or <code>OnFailure</code>, but not both.</p> <p>Default: <code>false</code> </p>",
         "Stack$DisableRollback": "<p>Boolean to enable or disable rollback on stack creation failures:</p> <ul> <li> <p> <code>true</code>: disable rollback</p> </li> <li> <p> <code>false</code>: enable rollback</p> </li> </ul>"
+      }
+    },
+    "DriftedStackInstancesCount": {
+      "base": null,
+      "refs": {
+        "StackSetDriftDetectionDetails$DriftedStackInstancesCount": "<p>The number of stack instances that have drifted from the expected template and parameter configuration of the stack set. A stack instance is considered to have drifted if one or more of the resources in the associated stack do not match their expected configuration.</p>"
       }
     },
     "EnableTerminationProtection": {
@@ -713,6 +732,12 @@
         "ListExportsOutput$Exports": "<p>The output for the <a>ListExports</a> action.</p>"
       }
     },
+    "FailedStackInstancesCount": {
+      "base": null,
+      "refs": {
+        "StackSetDriftDetectionDetails$FailedStackInstancesCount": "<p>The number of stack instances for which the drift detection operation failed.</p>"
+      }
+    },
     "FailureToleranceCount": {
       "base": null,
       "refs": {
@@ -765,6 +790,18 @@
       "base": null,
       "refs": {
         "ListImportsOutput$Imports": "<p>A list of stack names that are importing the specified exported output value. </p>"
+      }
+    },
+    "InProgressStackInstancesCount": {
+      "base": null,
+      "refs": {
+        "StackSetDriftDetectionDetails$InProgressStackInstancesCount": "<p>The number of stack instances that are currently being checked for drift.</p>"
+      }
+    },
+    "InSyncStackInstancesCount": {
+      "base": null,
+      "refs": {
+        "StackSetDriftDetectionDetails$InSyncStackInstancesCount": "<p>The number of stack instances which match the expected template and parameter configuration of the stack set.</p>"
       }
     },
     "InsufficientCapabilitiesException": {
@@ -1681,7 +1718,10 @@
       "refs": {
         "DescribeStackDriftDetectionStatusOutput$StackDriftStatus": "<p>Status of the stack's actual configuration compared to its expected configuration. </p> <ul> <li> <p> <code>DRIFTED</code>: The stack differs from its expected template configuration. A stack is considered to have drifted if one or more of its resources have drifted.</p> </li> <li> <p> <code>NOT_CHECKED</code>: AWS CloudFormation has not checked if the stack differs from its expected template configuration.</p> </li> <li> <p> <code>IN_SYNC</code>: The stack's actual configuration matches its expected template configuration.</p> </li> <li> <p> <code>UNKNOWN</code>: This value is reserved for future use.</p> </li> </ul>",
         "StackDriftInformation$StackDriftStatus": "<p>Status of the stack's actual configuration compared to its expected template configuration. </p> <ul> <li> <p> <code>DRIFTED</code>: The stack differs from its expected template configuration. A stack is considered to have drifted if one or more of its resources have drifted.</p> </li> <li> <p> <code>NOT_CHECKED</code>: AWS CloudFormation has not checked if the stack differs from its expected template configuration.</p> </li> <li> <p> <code>IN_SYNC</code>: The stack's actual configuration matches its expected template configuration.</p> </li> <li> <p> <code>UNKNOWN</code>: This value is reserved for future use.</p> </li> </ul>",
-        "StackDriftInformationSummary$StackDriftStatus": "<p>Status of the stack's actual configuration compared to its expected template configuration. </p> <ul> <li> <p> <code>DRIFTED</code>: The stack differs from its expected template configuration. A stack is considered to have drifted if one or more of its resources have drifted.</p> </li> <li> <p> <code>NOT_CHECKED</code>: AWS CloudFormation has not checked if the stack differs from its expected template configuration.</p> </li> <li> <p> <code>IN_SYNC</code>: The stack's actual configuration matches its expected template configuration.</p> </li> <li> <p> <code>UNKNOWN</code>: This value is reserved for future use.</p> </li> </ul>"
+        "StackDriftInformationSummary$StackDriftStatus": "<p>Status of the stack's actual configuration compared to its expected template configuration. </p> <ul> <li> <p> <code>DRIFTED</code>: The stack differs from its expected template configuration. A stack is considered to have drifted if one or more of its resources have drifted.</p> </li> <li> <p> <code>NOT_CHECKED</code>: AWS CloudFormation has not checked if the stack differs from its expected template configuration.</p> </li> <li> <p> <code>IN_SYNC</code>: The stack's actual configuration matches its expected template configuration.</p> </li> <li> <p> <code>UNKNOWN</code>: This value is reserved for future use.</p> </li> </ul>",
+        "StackInstance$DriftStatus": "<p>Status of the stack instance's actual configuration compared to the expected template and parameter configuration of the stack set to which it belongs. </p> <ul> <li> <p> <code>DRIFTED</code>: The stack differs from the expected template and parameter configuration of the stack set to which it belongs. A stack instance is considered to have drifted if one or more of the resources in the associated stack have drifted.</p> </li> <li> <p> <code>NOT_CHECKED</code>: AWS CloudFormation has not checked if the stack instance differs from its expected stack set configuration.</p> </li> <li> <p> <code>IN_SYNC</code>: The stack instance's actual configuration matches its expected stack set configuration.</p> </li> <li> <p> <code>UNKNOWN</code>: This value is reserved for future use.</p> </li> </ul>",
+        "StackInstanceSummary$DriftStatus": "<p>Status of the stack instance's actual configuration compared to the expected template and parameter configuration of the stack set to which it belongs. </p> <ul> <li> <p> <code>DRIFTED</code>: The stack differs from the expected template and parameter configuration of the stack set to which it belongs. A stack instance is considered to have drifted if one or more of the resources in the associated stack have drifted.</p> </li> <li> <p> <code>NOT_CHECKED</code>: AWS CloudFormation has not checked if the stack instance differs from its expected stack set configuration.</p> </li> <li> <p> <code>IN_SYNC</code>: The stack instance's actual configuration matches its expected stack set configuration.</p> </li> <li> <p> <code>UNKNOWN</code>: This value is reserved for future use.</p> </li> </ul>",
+        "StackSetSummary$DriftStatus": "<p>Status of the stack set's actual configuration compared to its expected template and parameter configuration. A stack set is considered to have drifted if one or more of its stack instances have drifted from their expected template and parameter configuration.</p> <ul> <li> <p> <code>DRIFTED</code>: One or more of the stack instances belonging to the stack set stack differs from the expected template and parameter configuration. A stack instance is considered to have drifted if one or more of the resources in the associated stack have drifted.</p> </li> <li> <p> <code>NOT_CHECKED</code>: AWS CloudFormation has not checked the stack set for drift.</p> </li> <li> <p> <code>IN_SYNC</code>: All of the stack instances belonging to the stack set stack match from the expected template and parameter configuration.</p> </li> <li> <p> <code>UNKNOWN</code>: This value is reserved for future use.</p> </li> </ul>"
       }
     },
     "StackEvent": {
@@ -1905,6 +1945,25 @@
         "StackSet$StackSetARN": "<p>The Amazon Resource Number (ARN) of the stack set.</p>"
       }
     },
+    "StackSetDriftDetectionDetails": {
+      "base": "<p>Detailed information about the drift status of the stack set.</p> <p>For stack sets, contains information about the last <i>completed</i> drift operation performed on the stack set. Information about drift operations in-progress is not included. </p> <p>For stack set operations, includes information about drift operations currently being performed on the stack set.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-drift.html\">Detecting Unmanaged Changes in Stack Sets</a> in the <i>AWS CloudFormation User Guide</i>.</p>",
+      "refs": {
+        "StackSet$StackSetDriftDetectionDetails": "<p>Detailed information about the drift status of the stack set.</p> <p>For stack sets, contains information about the last <i>completed</i> drift operation performed on the stack set. Information about drift operations currently in progress is not included.</p>",
+        "StackSetOperation$StackSetDriftDetectionDetails": "<p>Detailed information about the drift status of the stack set. This includes information about drift operations currently being performed on the stack set.</p> <p>this information will only be present for stack set operations whose <code>Action</code> type is <code>DETECT_DRIFT</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-drift.html\">Detecting Unmanaged Changes in Stack Sets</a> in the AWS CloudFormation User Guide.</p>"
+      }
+    },
+    "StackSetDriftDetectionStatus": {
+      "base": null,
+      "refs": {
+        "StackSetDriftDetectionDetails$DriftDetectionStatus": "<p>The status of the stack set drift detection operation.</p> <ul> <li> <p> <code>COMPLETED</code>: The drift detection operation completed without failing on any stack instances.</p> </li> <li> <p> <code>FAILED</code>: The drift detection operation exceeded the specified failure tolerance. </p> </li> <li> <p> <code>PARTIAL_SUCCESS</code>: The drift detection operation completed without exceeding the failure tolerance for the operation.</p> </li> <li> <p> <code>IN_PROGRESS</code>: The drift detection operation is currently being performed.</p> </li> <li> <p> <code>STOPPED</code>: The user has cancelled the drift detection operation.</p> </li> </ul>"
+      }
+    },
+    "StackSetDriftStatus": {
+      "base": null,
+      "refs": {
+        "StackSetDriftDetectionDetails$DriftStatus": "<p>Status of the stack set's actual configuration compared to its expected template and parameter configuration. A stack set is considered to have drifted if one or more of its stack instances have drifted from their expected template and parameter configuration.</p> <ul> <li> <p> <code>DRIFTED</code>: One or more of the stack instances belonging to the stack set stack differs from the expected template and parameter configuration. A stack instance is considered to have drifted if one or more of the resources in the associated stack have drifted.</p> </li> <li> <p> <code>NOT_CHECKED</code>: AWS CloudFormation has not checked the stack set for drift.</p> </li> <li> <p> <code>IN_SYNC</code>: All of the stack instances belonging to the stack set stack match from the expected template and parameter configuration.</p> </li> </ul>"
+      }
+    },
     "StackSetId": {
       "base": null,
       "refs": {
@@ -1938,6 +1997,7 @@
     "StackSetNameOrId": {
       "base": null,
       "refs": {
+        "DetectStackSetDriftInput$StackSetName": "<p>The name of the stack set on which to perform the drift detection operation.</p>",
         "GetTemplateSummaryInput$StackSetName": "<p>The name or unique ID of the stack set from which the stack was created.</p> <p>Conditional: You must specify only one of the following parameters: <code>StackName</code>, <code>StackSetName</code>, <code>TemplateBody</code>, or <code>TemplateURL</code>.</p>",
         "UpdateStackInstancesInput$StackSetName": "<p>The name or unique ID of the stack set associated with the stack instances.</p>"
       }
@@ -1970,6 +2030,7 @@
       "refs": {
         "CreateStackInstancesInput$OperationPreferences": "<p>Preferences for how AWS CloudFormation performs this stack set operation.</p>",
         "DeleteStackInstancesInput$OperationPreferences": "<p>Preferences for how AWS CloudFormation performs this stack set operation.</p>",
+        "DetectStackSetDriftInput$OperationPreferences": null,
         "StackSetOperation$OperationPreferences": "<p>The preferences for how AWS CloudFormation performs this stack set operation.</p>",
         "UpdateStackInstancesInput$OperationPreferences": "<p>Preferences for how AWS CloudFormation performs this stack set operation.</p>",
         "UpdateStackSetInput$OperationPreferences": "<p>Preferences for how AWS CloudFormation performs this stack set operation.</p>"
@@ -2198,16 +2259,20 @@
         "StackDriftInformation$LastCheckTimestamp": "<p>Most recent time when a drift detection operation was initiated on the stack, or any of its individual resources that support drift detection.</p>",
         "StackDriftInformationSummary$LastCheckTimestamp": "<p>Most recent time when a drift detection operation was initiated on the stack, or any of its individual resources that support drift detection.</p>",
         "StackEvent$Timestamp": "<p>Time the status was updated.</p>",
+        "StackInstance$LastDriftCheckTimestamp": "<p>Most recent time when CloudFormation performed a drift detection operation on the stack instance. This value will be <code>NULL</code> for any stack instance on which drift detection has not yet been performed.</p>",
+        "StackInstanceSummary$LastDriftCheckTimestamp": "<p>Most recent time when CloudFormation performed a drift detection operation on the stack instance. This value will be <code>NULL</code> for any stack instance on which drift detection has not yet been performed.</p>",
         "StackResource$Timestamp": "<p>Time the status was updated.</p>",
         "StackResourceDetail$LastUpdatedTimestamp": "<p>Time the status was updated.</p>",
         "StackResourceDrift$Timestamp": "<p>Time at which AWS CloudFormation performed drift detection on the stack resource.</p>",
         "StackResourceDriftInformation$LastCheckTimestamp": "<p>When AWS CloudFormation last checked if the resource had drifted from its expected configuration.</p>",
         "StackResourceDriftInformationSummary$LastCheckTimestamp": "<p>When AWS CloudFormation last checked if the resource had drifted from its expected configuration.</p>",
         "StackResourceSummary$LastUpdatedTimestamp": "<p>Time the status was updated.</p>",
+        "StackSetDriftDetectionDetails$LastDriftCheckTimestamp": "<p>Most recent time when CloudFormation performed a drift detection operation on the stack set. This value will be <code>NULL</code> for any stack set on which drift detection has not yet been performed.</p>",
         "StackSetOperation$CreationTimestamp": "<p>The time at which the operation was initiated. Note that the creation times for the stack set operation might differ from the creation time of the individual stacks themselves. This is because AWS CloudFormation needs to perform preparatory work for the operation, such as dispatching the work to the requested regions, before actually creating the first stacks.</p>",
         "StackSetOperation$EndTimestamp": "<p>The time at which the stack set operation ended, across all accounts and regions specified. Note that this doesn't necessarily mean that the stack set operation was successful, or even attempted, in each account or region.</p>",
         "StackSetOperationSummary$CreationTimestamp": "<p>The time at which the operation was initiated. Note that the creation times for the stack set operation might differ from the creation time of the individual stacks themselves. This is because AWS CloudFormation needs to perform preparatory work for the operation, such as dispatching the work to the requested regions, before actually creating the first stacks.</p>",
         "StackSetOperationSummary$EndTimestamp": "<p>The time at which the stack set operation ended, across all accounts and regions specified. Note that this doesn't necessarily mean that the stack set operation was successful, or even attempted, in each account or region.</p>",
+        "StackSetSummary$LastDriftCheckTimestamp": "<p>Most recent time when CloudFormation performed a drift detection operation on the stack set. This value will be <code>NULL</code> for any stack set on which drift detection has not yet been performed.</p>",
         "TypeSummary$LastUpdated": "<p>When the current default version of the type was registered.</p>",
         "TypeVersionSummary$TimeCreated": "<p>When the version was registered.</p>"
       }
@@ -2215,6 +2280,12 @@
     "TokenAlreadyExistsException": {
       "base": "<p>A client request token already exists.</p>",
       "refs": {
+      }
+    },
+    "TotalStackInstancesCount": {
+      "base": null,
+      "refs": {
+        "StackSetDriftDetectionDetails$TotalStackInstancesCount": "<p>The total number of stack instances belonging to this stack set. </p> <p>The total number of stack instances is equal to the total of:</p> <ul> <li> <p>Stack instances that match the stack set configuration. </p> </li> <li> <p>Stack instances that have drifted from the stack set configuration. </p> </li> <li> <p>Stack instances where the drift detection operation has failed.</p> </li> <li> <p>Stack instances currently being checked for drift.</p> </li> </ul>"
       }
     },
     "TransformName": {
