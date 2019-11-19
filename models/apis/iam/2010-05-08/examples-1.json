@@ -733,8 +733,13 @@
             "Arn": "arn:aws:iam::123456789012:role/Test-Role",
             "AssumeRolePolicyDocument": "<URL-encoded-JSON>",
             "CreateDate": "2013-04-18T05:01:58Z",
+            "MaxSessionDuration": 3600,
             "Path": "/",
             "RoleId": "AROADBQP57FF2AEXAMPLE",
+            "RoleLastUsed": {
+              "LastUsedDate": "2019-11-18T05:01:58Z",
+              "Region": "us-east-1"
+            },
             "RoleName": "Test-Role"
           }
         },

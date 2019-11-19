@@ -238,6 +238,22 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "ConfirmTopicRuleDestination":{
+      "name":"ConfirmTopicRuleDestination",
+      "http":{
+        "method":"GET",
+        "requestUri":"/confirmdestination/{confirmationToken+}"
+      },
+      "input":{"shape":"ConfirmTopicRuleDestinationRequest"},
+      "output":{"shape":"ConfirmTopicRuleDestinationResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ConflictingResourceUpdateException"}
+      ]
+    },
     "CreateAuthorizer":{
       "name":"CreateAuthorizer",
       "http":{
@@ -537,6 +553,22 @@
       "input":{"shape":"CreateTopicRuleRequest"},
       "errors":[
         {"shape":"SqlParseException"},
+        {"shape":"InternalException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ConflictingResourceUpdateException"}
+      ]
+    },
+    "CreateTopicRuleDestination":{
+      "name":"CreateTopicRuleDestination",
+      "http":{
+        "method":"POST",
+        "requestUri":"/destinations"
+      },
+      "input":{"shape":"CreateTopicRuleDestinationRequest"},
+      "output":{"shape":"CreateTopicRuleDestinationResponse"},
+      "errors":[
         {"shape":"InternalException"},
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceAlreadyExistsException"},
@@ -879,6 +911,22 @@
         "requestUri":"/rules/{ruleName}"
       },
       "input":{"shape":"DeleteTopicRuleRequest"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ConflictingResourceUpdateException"}
+      ]
+    },
+    "DeleteTopicRuleDestination":{
+      "name":"DeleteTopicRuleDestination",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/destinations/{arn+}"
+      },
+      "input":{"shape":"DeleteTopicRuleDestinationRequest"},
+      "output":{"shape":"DeleteTopicRuleDestinationResponse"},
       "errors":[
         {"shape":"InternalException"},
         {"shape":"InvalidRequestException"},
@@ -1577,6 +1625,21 @@
         {"shape":"UnauthorizedException"}
       ]
     },
+    "GetTopicRuleDestination":{
+      "name":"GetTopicRuleDestination",
+      "http":{
+        "method":"GET",
+        "requestUri":"/destinations/{arn+}"
+      },
+      "input":{"shape":"GetTopicRuleDestinationRequest"},
+      "output":{"shape":"GetTopicRuleDestinationResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"UnauthorizedException"}
+      ]
+    },
     "GetV2LoggingOptions":{
       "name":"GetV2LoggingOptions",
       "http":{
@@ -2209,6 +2272,21 @@
         {"shape":"InvalidRequestException"},
         {"shape":"InternalFailureException"},
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "ListTopicRuleDestinations":{
+      "name":"ListTopicRuleDestinations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/destinations"
+      },
+      "input":{"shape":"ListTopicRuleDestinationsRequest"},
+      "output":{"shape":"ListTopicRuleDestinationsResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"UnauthorizedException"}
       ]
     },
     "ListTopicRules":{
@@ -2887,6 +2965,22 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "UpdateTopicRuleDestination":{
+      "name":"UpdateTopicRuleDestination",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/destinations"
+      },
+      "input":{"shape":"UpdateTopicRuleDestinationRequest"},
+      "output":{"shape":"UpdateTopicRuleDestinationResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ConflictingResourceUpdateException"}
+      ]
+    },
     "ValidateSecurityProfileBehaviors":{
       "name":"ValidateSecurityProfileBehaviors",
       "http":{
@@ -2972,7 +3066,8 @@
         "salesforce":{"shape":"SalesforceAction"},
         "iotAnalytics":{"shape":"IotAnalyticsAction"},
         "iotEvents":{"shape":"IotEventsAction"},
-        "stepFunctions":{"shape":"StepFunctionsAction"}
+        "stepFunctions":{"shape":"StepFunctionsAction"},
+        "http":{"shape":"HttpAction"}
       }
     },
     "ActionList":{
@@ -3945,6 +4040,27 @@
         "Enabled":{"shape":"Enabled"}
       }
     },
+    "ConfirmTopicRuleDestinationRequest":{
+      "type":"structure",
+      "required":["confirmationToken"],
+      "members":{
+        "confirmationToken":{
+          "shape":"ConfirmationToken",
+          "location":"uri",
+          "locationName":"confirmationToken"
+        }
+      }
+    },
+    "ConfirmTopicRuleDestinationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "ConfirmationToken":{
+      "type":"string",
+      "max":2048,
+      "min":1
+    },
     "ConflictingResourceUpdateException":{
       "type":"structure",
       "members":{
@@ -4391,6 +4507,19 @@
         "thingTypeId":{"shape":"ThingTypeId"}
       }
     },
+    "CreateTopicRuleDestinationRequest":{
+      "type":"structure",
+      "required":["destinationConfiguration"],
+      "members":{
+        "destinationConfiguration":{"shape":"TopicRuleDestinationConfiguration"}
+      }
+    },
+    "CreateTopicRuleDestinationResponse":{
+      "type":"structure",
+      "members":{
+        "topicRuleDestination":{"shape":"TopicRuleDestination"}
+      }
+    },
     "CreateTopicRuleRequest":{
       "type":"structure",
       "required":[
@@ -4818,6 +4947,22 @@
       }
     },
     "DeleteThingTypeResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteTopicRuleDestinationRequest":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{
+          "shape":"AwsArn",
+          "location":"uri",
+          "locationName":"arn"
+        }
+      }
+    },
+    "DeleteTopicRuleDestinationResponse":{
       "type":"structure",
       "members":{
       }
@@ -5709,11 +5854,6 @@
     "ForceFlag":{"type":"boolean"},
     "Forced":{"type":"boolean"},
     "FunctionArn":{"type":"string"},
-    "GEMaxResults":{
-      "type":"integer",
-      "max":10000,
-      "min":1
-    },
     "GenerationId":{"type":"string"},
     "GetCardinalityRequest":{
       "type":"structure",
@@ -5906,6 +6046,23 @@
         "statistics":{"shape":"Statistics"}
       }
     },
+    "GetTopicRuleDestinationRequest":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{
+          "shape":"AwsArn",
+          "location":"uri",
+          "locationName":"arn"
+        }
+      }
+    },
+    "GetTopicRuleDestinationResponse":{
+      "type":"structure",
+      "members":{
+        "topicRuleDestination":{"shape":"TopicRuleDestination"}
+      }
+    },
     "GetTopicRuleRequest":{
       "type":"structure",
       "required":["ruleName"],
@@ -5947,6 +6104,64 @@
     "HashAlgorithm":{"type":"string"},
     "HashKeyField":{"type":"string"},
     "HashKeyValue":{"type":"string"},
+    "HeaderKey":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "HeaderList":{
+      "type":"list",
+      "member":{"shape":"HttpActionHeader"},
+      "max":100,
+      "min":0
+    },
+    "HeaderValue":{"type":"string"},
+    "HttpAction":{
+      "type":"structure",
+      "required":["url"],
+      "members":{
+        "url":{"shape":"Url"},
+        "confirmationUrl":{"shape":"Url"},
+        "headers":{"shape":"HeaderList"},
+        "auth":{"shape":"HttpAuthorization"}
+      }
+    },
+    "HttpActionHeader":{
+      "type":"structure",
+      "required":[
+        "key",
+        "value"
+      ],
+      "members":{
+        "key":{"shape":"HeaderKey"},
+        "value":{"shape":"HeaderValue"}
+      }
+    },
+    "HttpAuthorization":{
+      "type":"structure",
+      "members":{
+        "sigv4":{"shape":"SigV4Authorization"}
+      }
+    },
+    "HttpUrlDestinationConfiguration":{
+      "type":"structure",
+      "required":["confirmationUrl"],
+      "members":{
+        "confirmationUrl":{"shape":"Url"}
+      }
+    },
+    "HttpUrlDestinationProperties":{
+      "type":"structure",
+      "members":{
+        "confirmationUrl":{"shape":"Url"}
+      }
+    },
+    "HttpUrlDestinationSummary":{
+      "type":"structure",
+      "members":{
+        "confirmationUrl":{"shape":"Url"}
+      }
+    },
     "ImplicitDeny":{
       "type":"structure",
       "members":{
@@ -7496,6 +7711,28 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "ListTopicRuleDestinationsRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{
+          "shape":"TopicRuleDestinationMaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListTopicRuleDestinationsResponse":{
+      "type":"structure",
+      "members":{
+        "destinationSummaries":{"shape":"TopicRuleDestinationSummaries"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
     "ListTopicRulesRequest":{
       "type":"structure",
       "members":{
@@ -7505,7 +7742,7 @@
           "locationName":"topic"
         },
         "maxResults":{
-          "shape":"GEMaxResults",
+          "shape":"TopicRuleMaxResults",
           "location":"querystring",
           "locationName":"maxResults"
         },
@@ -8542,6 +8779,7 @@
       "type":"list",
       "member":{"shape":"SecurityProfileTarget"}
     },
+    "ServiceName":{"type":"string"},
     "ServiceUnavailableException":{
       "type":"structure",
       "members":{
@@ -8614,6 +8852,19 @@
         "disableAllLogs":{"shape":"DisableAllLogs"}
       }
     },
+    "SigV4Authorization":{
+      "type":"structure",
+      "required":[
+        "signingRegion",
+        "serviceName",
+        "roleArn"
+      ],
+      "members":{
+        "signingRegion":{"shape":"SigningRegion"},
+        "serviceName":{"shape":"ServiceName"},
+        "roleArn":{"shape":"AwsArn"}
+      }
+    },
     "Signature":{"type":"blob"},
     "SignatureAlgorithm":{"type":"string"},
     "SigningJobId":{"type":"string"},
@@ -8626,6 +8877,7 @@
         "certificatePathOnDevice":{"shape":"CertificatePathOnDevice"}
       }
     },
+    "SigningRegion":{"type":"string"},
     "SkippedFindingsCount":{"type":"long"},
     "SkyfallMaxResults":{
       "type":"integer",
@@ -9278,6 +9530,48 @@
         "errorAction":{"shape":"Action"}
       }
     },
+    "TopicRuleDestination":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"AwsArn"},
+        "status":{"shape":"TopicRuleDestinationStatus"},
+        "statusReason":{"shape":"String"},
+        "httpUrlProperties":{"shape":"HttpUrlDestinationProperties"}
+      }
+    },
+    "TopicRuleDestinationConfiguration":{
+      "type":"structure",
+      "members":{
+        "httpUrlConfiguration":{"shape":"HttpUrlDestinationConfiguration"}
+      }
+    },
+    "TopicRuleDestinationMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
+    "TopicRuleDestinationStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "IN_PROGRESS",
+        "DISABLED",
+        "ERROR"
+      ]
+    },
+    "TopicRuleDestinationSummaries":{
+      "type":"list",
+      "member":{"shape":"TopicRuleDestinationSummary"}
+    },
+    "TopicRuleDestinationSummary":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"AwsArn"},
+        "status":{"shape":"TopicRuleDestinationStatus"},
+        "statusReason":{"shape":"String"},
+        "httpUrlSummary":{"shape":"HttpUrlDestinationSummary"}
+      }
+    },
     "TopicRuleList":{
       "type":"list",
       "member":{"shape":"TopicRuleListItem"}
@@ -9291,6 +9585,11 @@
         "createdAt":{"shape":"CreatedAtDate"},
         "ruleDisabled":{"shape":"IsDisabled"}
       }
+    },
+    "TopicRuleMaxResults":{
+      "type":"integer",
+      "max":10000,
+      "min":1
     },
     "TopicRulePayload":{
       "type":"structure",
@@ -9744,6 +10043,26 @@
       "type":"structure",
       "members":{
       }
+    },
+    "UpdateTopicRuleDestinationRequest":{
+      "type":"structure",
+      "required":[
+        "arn",
+        "status"
+      ],
+      "members":{
+        "arn":{"shape":"AwsArn"},
+        "status":{"shape":"TopicRuleDestinationStatus"}
+      }
+    },
+    "UpdateTopicRuleDestinationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "Url":{
+      "type":"string",
+      "max":2000
     },
     "UseBase64":{"type":"boolean"},
     "Valid":{"type":"boolean"},

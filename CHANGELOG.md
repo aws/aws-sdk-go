@@ -1,3 +1,28 @@
+Release v1.25.38 (2019-11-19)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * Amazon EC2 Auto Scaling now supports Instance Weighting and Max Instance Lifetime. Instance Weighting allows specifying the capacity units for each instance type included in the MixedInstancesPolicy and how they would contribute to your application's performance. Max Instance Lifetime allows specifying the maximum length of time that an instance can be in service. If any instances are approaching this limit, Amazon EC2 Auto Scaling gradually replaces them.
+* `service/cloudformation`: Updates service API and documentation
+  * This release of AWS CloudFormation StackSets enables users to detect drift on a stack set and the stack instances that belong to that stack set.
+* `service/codebuild`: Updates service API and documentation
+  * Add support for ARM and GPU-enhanced build environments and a new SSD-backed Linux compute type with additional CPU and memory in CodeBuild
+* `service/config`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for RunInstances to specify the metadata options for new instances; adds a new API, ModifyInstanceMetadataOptions, which lets you modify the metadata options for a running or stopped instance; and adds support for CreateCustomerGateway to specify a device name.
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+* `service/iam`: Updates service API, documentation, and examples
+  * IAM reports the timestamp when a role's credentials were last used to make an AWS request. This helps you identify unused roles and remove them confidently from your AWS accounts.
+* `service/iot`: Updates service API and documentation
+  * As part of this release, we are extending the capability of AWS IoT Rules Engine to send messages directly to customer's own web services/applications. Customers can now create topic rules with HTTP actions to route messages from IoT Core directly to URL's that they own. Ownership is proved by creating and confirming topic rule destinations.
+* `service/lambda`: Updates service API
+  * This release provides three new runtimes to support Node.js 12 (initially 12.13.0), Python 3.8 and Java 11.
+
+### SDK Enhancements
+* `aws/ec2metadata`: Adds support for EC2Metadata client to use secure tokens provided by the IMDS ([#2958](https://github.com/aws/aws-sdk-go/pull/2958))
+  * Modifies and adds tests to verify the behavior of the EC2Metadata client.
+
 Release v1.25.37 (2019-11-18)
 ===
 

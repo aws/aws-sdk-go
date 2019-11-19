@@ -84,6 +84,18 @@
         {"shape":"NoSuchConfigurationRecorderException"}
       ]
     },
+    "DeleteConformancePack":{
+      "name":"DeleteConformancePack",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteConformancePackRequest"},
+      "errors":[
+        {"shape":"NoSuchConformancePackException"},
+        {"shape":"ResourceInUseException"}
+      ]
+    },
     "DeleteDeliveryChannel":{
       "name":"DeleteDeliveryChannel",
       "http":{
@@ -118,6 +130,19 @@
       "input":{"shape":"DeleteOrganizationConfigRuleRequest"},
       "errors":[
         {"shape":"NoSuchOrganizationConfigRuleException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"OrganizationAccessDeniedException"}
+      ]
+    },
+    "DeleteOrganizationConformancePack":{
+      "name":"DeleteOrganizationConformancePack",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteOrganizationConformancePackRequest"},
+      "errors":[
+        {"shape":"NoSuchOrganizationConformancePackException"},
         {"shape":"ResourceInUseException"},
         {"shape":"OrganizationAccessDeniedException"}
       ]
@@ -321,6 +346,49 @@
         {"shape":"NoSuchConfigurationRecorderException"}
       ]
     },
+    "DescribeConformancePackCompliance":{
+      "name":"DescribeConformancePackCompliance",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeConformancePackComplianceRequest"},
+      "output":{"shape":"DescribeConformancePackComplianceResponse"},
+      "errors":[
+        {"shape":"InvalidLimitException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"NoSuchConfigRuleInConformancePackException"},
+        {"shape":"NoSuchConformancePackException"}
+      ]
+    },
+    "DescribeConformancePackStatus":{
+      "name":"DescribeConformancePackStatus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeConformancePackStatusRequest"},
+      "output":{"shape":"DescribeConformancePackStatusResponse"},
+      "errors":[
+        {"shape":"InvalidLimitException"},
+        {"shape":"InvalidNextTokenException"}
+      ]
+    },
+    "DescribeConformancePacks":{
+      "name":"DescribeConformancePacks",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeConformancePacksRequest"},
+      "output":{"shape":"DescribeConformancePacksResponse"},
+      "errors":[
+        {"shape":"NoSuchConformancePackException"},
+        {"shape":"InvalidLimitException"},
+        {"shape":"InvalidNextTokenException"}
+      ]
+    },
     "DescribeDeliveryChannelStatus":{
       "name":"DescribeDeliveryChannelStatus",
       "http":{
@@ -370,6 +438,36 @@
       "output":{"shape":"DescribeOrganizationConfigRulesResponse"},
       "errors":[
         {"shape":"NoSuchOrganizationConfigRuleException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidLimitException"},
+        {"shape":"OrganizationAccessDeniedException"}
+      ]
+    },
+    "DescribeOrganizationConformancePackStatuses":{
+      "name":"DescribeOrganizationConformancePackStatuses",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeOrganizationConformancePackStatusesRequest"},
+      "output":{"shape":"DescribeOrganizationConformancePackStatusesResponse"},
+      "errors":[
+        {"shape":"NoSuchOrganizationConformancePackException"},
+        {"shape":"InvalidLimitException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"OrganizationAccessDeniedException"}
+      ]
+    },
+    "DescribeOrganizationConformancePacks":{
+      "name":"DescribeOrganizationConformancePacks",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeOrganizationConformancePacksRequest"},
+      "output":{"shape":"DescribeOrganizationConformancePacksResponse"},
+      "errors":[
+        {"shape":"NoSuchOrganizationConformancePackException"},
         {"shape":"InvalidNextTokenException"},
         {"shape":"InvalidLimitException"},
         {"shape":"OrganizationAccessDeniedException"}
@@ -544,6 +642,36 @@
         {"shape":"InvalidParameterValueException"}
       ]
     },
+    "GetConformancePackComplianceDetails":{
+      "name":"GetConformancePackComplianceDetails",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetConformancePackComplianceDetailsRequest"},
+      "output":{"shape":"GetConformancePackComplianceDetailsResponse"},
+      "errors":[
+        {"shape":"InvalidLimitException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"NoSuchConformancePackException"},
+        {"shape":"NoSuchConfigRuleInConformancePackException"},
+        {"shape":"InvalidParameterValueException"}
+      ]
+    },
+    "GetConformancePackComplianceSummary":{
+      "name":"GetConformancePackComplianceSummary",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetConformancePackComplianceSummaryRequest"},
+      "output":{"shape":"GetConformancePackComplianceSummaryResponse"},
+      "errors":[
+        {"shape":"NoSuchConformancePackException"},
+        {"shape":"InvalidLimitException"},
+        {"shape":"InvalidNextTokenException"}
+      ]
+    },
     "GetDiscoveredResourceCounts":{
       "name":"GetDiscoveredResourceCounts",
       "http":{
@@ -568,6 +696,21 @@
       "output":{"shape":"GetOrganizationConfigRuleDetailedStatusResponse"},
       "errors":[
         {"shape":"NoSuchOrganizationConfigRuleException"},
+        {"shape":"InvalidLimitException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"OrganizationAccessDeniedException"}
+      ]
+    },
+    "GetOrganizationConformancePackDetailedStatus":{
+      "name":"GetOrganizationConformancePackDetailedStatus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetOrganizationConformancePackDetailedStatusRequest"},
+      "output":{"shape":"GetOrganizationConformancePackDetailedStatusResponse"},
+      "errors":[
+        {"shape":"NoSuchOrganizationConformancePackException"},
         {"shape":"InvalidLimitException"},
         {"shape":"InvalidNextTokenException"},
         {"shape":"OrganizationAccessDeniedException"}
@@ -693,6 +836,22 @@
         {"shape":"InvalidRecordingGroupException"}
       ]
     },
+    "PutConformancePack":{
+      "name":"PutConformancePack",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutConformancePackRequest"},
+      "output":{"shape":"PutConformancePackResponse"},
+      "errors":[
+        {"shape":"InsufficientPermissionsException"},
+        {"shape":"ConformancePackTemplateValidationException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MaxNumberOfConformancePacksExceededException"}
+      ]
+    },
     "PutDeliveryChannel":{
       "name":"PutDeliveryChannel",
       "http":{
@@ -741,6 +900,25 @@
         {"shape":"NoAvailableOrganizationException"},
         {"shape":"OrganizationAllFeaturesNotEnabledException"},
         {"shape":"InsufficientPermissionsException"}
+      ]
+    },
+    "PutOrganizationConformancePack":{
+      "name":"PutOrganizationConformancePack",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutOrganizationConformancePackRequest"},
+      "output":{"shape":"PutOrganizationConformancePackResponse"},
+      "errors":[
+        {"shape":"MaxNumberOfOrganizationConformancePacksExceededException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ValidationException"},
+        {"shape":"OrganizationAccessDeniedException"},
+        {"shape":"InsufficientPermissionsException"},
+        {"shape":"OrganizationConformancePackTemplateValidationException"},
+        {"shape":"OrganizationAllFeaturesNotEnabledException"},
+        {"shape":"NoAvailableOrganizationException"}
       ]
     },
     "PutRemediationConfigurations":{
@@ -1014,6 +1192,11 @@
       "type":"string",
       "max":256,
       "min":1
+    },
+    "Annotation":{
+      "type":"string",
+      "max":256,
+      "min":0
     },
     "AutoRemediationAttemptSeconds":{
       "type":"long",
@@ -1398,6 +1581,211 @@
       "member":{"shape":"ConfigurationRecorderStatus"}
     },
     "ConfigurationStateId":{"type":"string"},
+    "ConformancePackArn":{
+      "type":"string",
+      "max":2048,
+      "min":1
+    },
+    "ConformancePackComplianceFilters":{
+      "type":"structure",
+      "members":{
+        "ConfigRuleNames":{"shape":"ConformancePackConfigRuleNames"},
+        "ComplianceType":{"shape":"ConformancePackComplianceType"}
+      }
+    },
+    "ConformancePackComplianceResourceIds":{
+      "type":"list",
+      "member":{"shape":"StringWithCharLimit256"},
+      "max":5,
+      "min":0
+    },
+    "ConformancePackComplianceSummary":{
+      "type":"structure",
+      "required":[
+        "ConformancePackName",
+        "ConformancePackComplianceStatus"
+      ],
+      "members":{
+        "ConformancePackName":{"shape":"ConformancePackName"},
+        "ConformancePackComplianceStatus":{"shape":"ConformancePackComplianceType"}
+      }
+    },
+    "ConformancePackComplianceSummaryList":{
+      "type":"list",
+      "member":{"shape":"ConformancePackComplianceSummary"},
+      "max":5,
+      "min":1
+    },
+    "ConformancePackComplianceType":{
+      "type":"string",
+      "enum":[
+        "COMPLIANT",
+        "NON_COMPLIANT"
+      ]
+    },
+    "ConformancePackConfigRuleNames":{
+      "type":"list",
+      "member":{"shape":"StringWithCharLimit64"},
+      "max":10,
+      "min":0
+    },
+    "ConformancePackDetail":{
+      "type":"structure",
+      "required":[
+        "ConformancePackName",
+        "ConformancePackArn",
+        "ConformancePackId",
+        "DeliveryS3Bucket"
+      ],
+      "members":{
+        "ConformancePackName":{"shape":"ConformancePackName"},
+        "ConformancePackArn":{"shape":"ConformancePackArn"},
+        "ConformancePackId":{"shape":"ConformancePackId"},
+        "DeliveryS3Bucket":{"shape":"DeliveryS3Bucket"},
+        "DeliveryS3KeyPrefix":{"shape":"DeliveryS3KeyPrefix"},
+        "ConformancePackInputParameters":{"shape":"ConformancePackInputParameters"},
+        "LastUpdateRequestedTime":{"shape":"Date"},
+        "CreatedBy":{"shape":"StringWithCharLimit256"}
+      }
+    },
+    "ConformancePackDetailList":{
+      "type":"list",
+      "member":{"shape":"ConformancePackDetail"},
+      "max":25,
+      "min":0
+    },
+    "ConformancePackEvaluationFilters":{
+      "type":"structure",
+      "members":{
+        "ConfigRuleNames":{"shape":"ConformancePackConfigRuleNames"},
+        "ComplianceType":{"shape":"ConformancePackComplianceType"},
+        "ResourceType":{"shape":"StringWithCharLimit256"},
+        "ResourceIds":{"shape":"ConformancePackComplianceResourceIds"}
+      }
+    },
+    "ConformancePackEvaluationResult":{
+      "type":"structure",
+      "required":[
+        "ComplianceType",
+        "EvaluationResultIdentifier",
+        "ConfigRuleInvokedTime",
+        "ResultRecordedTime"
+      ],
+      "members":{
+        "ComplianceType":{"shape":"ConformancePackComplianceType"},
+        "EvaluationResultIdentifier":{"shape":"EvaluationResultIdentifier"},
+        "ConfigRuleInvokedTime":{"shape":"Date"},
+        "ResultRecordedTime":{"shape":"Date"},
+        "Annotation":{"shape":"Annotation"}
+      }
+    },
+    "ConformancePackId":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
+    "ConformancePackInputParameter":{
+      "type":"structure",
+      "required":[
+        "ParameterName",
+        "ParameterValue"
+      ],
+      "members":{
+        "ParameterName":{"shape":"ParameterName"},
+        "ParameterValue":{"shape":"ParameterValue"}
+      }
+    },
+    "ConformancePackInputParameters":{
+      "type":"list",
+      "member":{"shape":"ConformancePackInputParameter"},
+      "max":60,
+      "min":0
+    },
+    "ConformancePackName":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[a-zA-Z][-a-zA-Z0-9]*"
+    },
+    "ConformancePackNamesList":{
+      "type":"list",
+      "member":{"shape":"ConformancePackName"},
+      "max":25,
+      "min":0
+    },
+    "ConformancePackNamesToSummarizeList":{
+      "type":"list",
+      "member":{"shape":"ConformancePackName"},
+      "max":5,
+      "min":1
+    },
+    "ConformancePackRuleCompliance":{
+      "type":"structure",
+      "members":{
+        "ConfigRuleName":{"shape":"ConfigRuleName"},
+        "ComplianceType":{"shape":"ConformancePackComplianceType"}
+      }
+    },
+    "ConformancePackRuleComplianceList":{
+      "type":"list",
+      "member":{"shape":"ConformancePackRuleCompliance"},
+      "max":1000,
+      "min":0
+    },
+    "ConformancePackRuleEvaluationResultsList":{
+      "type":"list",
+      "member":{"shape":"ConformancePackEvaluationResult"},
+      "max":100,
+      "min":0
+    },
+    "ConformancePackState":{
+      "type":"string",
+      "enum":[
+        "CREATE_IN_PROGRESS",
+        "CREATE_COMPLETE",
+        "CREATE_FAILED",
+        "DELETE_IN_PROGRESS",
+        "DELETE_FAILED"
+      ]
+    },
+    "ConformancePackStatusDetail":{
+      "type":"structure",
+      "required":[
+        "ConformancePackName",
+        "ConformancePackId",
+        "ConformancePackArn",
+        "ConformancePackState",
+        "StackArn",
+        "LastUpdateRequestedTime"
+      ],
+      "members":{
+        "ConformancePackName":{"shape":"ConformancePackName"},
+        "ConformancePackId":{"shape":"ConformancePackId"},
+        "ConformancePackArn":{"shape":"ConformancePackArn"},
+        "ConformancePackState":{"shape":"ConformancePackState"},
+        "StackArn":{"shape":"StackArn"},
+        "ConformancePackStatusReason":{"shape":"ConformancePackStatusReason"},
+        "LastUpdateRequestedTime":{"shape":"Date"},
+        "LastUpdateCompletedTime":{"shape":"Date"}
+      }
+    },
+    "ConformancePackStatusDetailsList":{
+      "type":"list",
+      "member":{"shape":"ConformancePackStatusDetail"},
+      "max":25,
+      "min":0
+    },
+    "ConformancePackStatusReason":{
+      "type":"string",
+      "max":2000,
+      "min":0
+    },
+    "ConformancePackTemplateValidationException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "CosmosPageLimit":{
       "type":"integer",
       "max":100,
@@ -1436,6 +1824,13 @@
         "ConfigurationRecorderName":{"shape":"RecorderName"}
       }
     },
+    "DeleteConformancePackRequest":{
+      "type":"structure",
+      "required":["ConformancePackName"],
+      "members":{
+        "ConformancePackName":{"shape":"ConformancePackName"}
+      }
+    },
     "DeleteDeliveryChannelRequest":{
       "type":"structure",
       "required":["DeliveryChannelName"],
@@ -1460,6 +1855,13 @@
       "required":["OrganizationConfigRuleName"],
       "members":{
         "OrganizationConfigRuleName":{"shape":"OrganizationConfigRuleName"}
+      }
+    },
+    "DeleteOrganizationConformancePackRequest":{
+      "type":"structure",
+      "required":["OrganizationConformancePackName"],
+      "members":{
+        "OrganizationConformancePackName":{"shape":"OrganizationConformancePackName"}
       }
     },
     "DeletePendingAggregationRequestRequest":{
@@ -1553,6 +1955,16 @@
     "DeliveryChannelStatusList":{
       "type":"list",
       "member":{"shape":"DeliveryChannelStatus"}
+    },
+    "DeliveryS3Bucket":{
+      "type":"string",
+      "max":63,
+      "min":3
+    },
+    "DeliveryS3KeyPrefix":{
+      "type":"string",
+      "max":1024,
+      "min":1
     },
     "DeliveryStatus":{
       "type":"string",
@@ -1710,6 +2122,63 @@
         "ConfigurationRecorders":{"shape":"ConfigurationRecorderList"}
       }
     },
+    "DescribeConformancePackComplianceLimit":{
+      "type":"integer",
+      "max":1000,
+      "min":0
+    },
+    "DescribeConformancePackComplianceRequest":{
+      "type":"structure",
+      "required":["ConformancePackName"],
+      "members":{
+        "ConformancePackName":{"shape":"ConformancePackName"},
+        "Filters":{"shape":"ConformancePackComplianceFilters"},
+        "Limit":{"shape":"DescribeConformancePackComplianceLimit"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeConformancePackComplianceResponse":{
+      "type":"structure",
+      "required":[
+        "ConformancePackName",
+        "ConformancePackRuleComplianceList"
+      ],
+      "members":{
+        "ConformancePackName":{"shape":"ConformancePackName"},
+        "ConformancePackRuleComplianceList":{"shape":"ConformancePackRuleComplianceList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeConformancePackStatusRequest":{
+      "type":"structure",
+      "members":{
+        "ConformancePackNames":{"shape":"ConformancePackNamesList"},
+        "Limit":{"shape":"PageSizeLimit"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeConformancePackStatusResponse":{
+      "type":"structure",
+      "members":{
+        "ConformancePackStatusDetails":{"shape":"ConformancePackStatusDetailsList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeConformancePacksRequest":{
+      "type":"structure",
+      "members":{
+        "ConformancePackNames":{"shape":"ConformancePackNamesList"},
+        "Limit":{"shape":"PageSizeLimit"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeConformancePacksResponse":{
+      "type":"structure",
+      "members":{
+        "ConformancePackDetails":{"shape":"ConformancePackDetailList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "DescribeDeliveryChannelStatusRequest":{
       "type":"structure",
       "members":{
@@ -1761,6 +2230,36 @@
       "type":"structure",
       "members":{
         "OrganizationConfigRules":{"shape":"OrganizationConfigRules"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeOrganizationConformancePackStatusesRequest":{
+      "type":"structure",
+      "members":{
+        "OrganizationConformancePackNames":{"shape":"OrganizationConformancePackNames"},
+        "Limit":{"shape":"CosmosPageLimit"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeOrganizationConformancePackStatusesResponse":{
+      "type":"structure",
+      "members":{
+        "OrganizationConformancePackStatuses":{"shape":"OrganizationConformancePackStatuses"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeOrganizationConformancePacksRequest":{
+      "type":"structure",
+      "members":{
+        "OrganizationConformancePackNames":{"shape":"OrganizationConformancePackNames"},
+        "Limit":{"shape":"CosmosPageLimit"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeOrganizationConformancePacksResponse":{
+      "type":"structure",
+      "members":{
+        "OrganizationConformancePacks":{"shape":"OrganizationConformancePacks"},
         "NextToken":{"shape":"String"}
       }
     },
@@ -2108,6 +2607,46 @@
         "ComplianceSummariesByResourceType":{"shape":"ComplianceSummariesByResourceType"}
       }
     },
+    "GetConformancePackComplianceDetailsLimit":{
+      "type":"integer",
+      "max":100,
+      "min":0
+    },
+    "GetConformancePackComplianceDetailsRequest":{
+      "type":"structure",
+      "required":["ConformancePackName"],
+      "members":{
+        "ConformancePackName":{"shape":"ConformancePackName"},
+        "Filters":{"shape":"ConformancePackEvaluationFilters"},
+        "Limit":{"shape":"GetConformancePackComplianceDetailsLimit"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "GetConformancePackComplianceDetailsResponse":{
+      "type":"structure",
+      "required":["ConformancePackName"],
+      "members":{
+        "ConformancePackName":{"shape":"ConformancePackName"},
+        "ConformancePackRuleEvaluationResults":{"shape":"ConformancePackRuleEvaluationResultsList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "GetConformancePackComplianceSummaryRequest":{
+      "type":"structure",
+      "required":["ConformancePackNames"],
+      "members":{
+        "ConformancePackNames":{"shape":"ConformancePackNamesToSummarizeList"},
+        "Limit":{"shape":"PageSizeLimit"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "GetConformancePackComplianceSummaryResponse":{
+      "type":"structure",
+      "members":{
+        "ConformancePackComplianceSummaryList":{"shape":"ConformancePackComplianceSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "GetDiscoveredResourceCountsRequest":{
       "type":"structure",
       "members":{
@@ -2138,6 +2677,23 @@
       "type":"structure",
       "members":{
         "OrganizationConfigRuleDetailedStatus":{"shape":"OrganizationConfigRuleDetailedStatus"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "GetOrganizationConformancePackDetailedStatusRequest":{
+      "type":"structure",
+      "required":["OrganizationConformancePackName"],
+      "members":{
+        "OrganizationConformancePackName":{"shape":"OrganizationConformancePackName"},
+        "Filters":{"shape":"OrganizationResourceDetailedStatusFilters"},
+        "Limit":{"shape":"CosmosPageLimit"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "GetOrganizationConformancePackDetailedStatusResponse":{
+      "type":"structure",
+      "members":{
+        "OrganizationConformancePackDetailedStatuses":{"shape":"OrganizationConformancePackDetailedStatuses"},
         "NextToken":{"shape":"String"}
       }
     },
@@ -2357,6 +2913,12 @@
       },
       "exception":true
     },
+    "MaxNumberOfConformancePacksExceededException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "MaxNumberOfDeliveryChannelsExceededException":{
       "type":"structure",
       "members":{
@@ -2364,6 +2926,12 @@
       "exception":true
     },
     "MaxNumberOfOrganizationConfigRulesExceededException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "MaxNumberOfOrganizationConformancePacksExceededException":{
       "type":"structure",
       "members":{
       },
@@ -2391,12 +2959,12 @@
         "CREATE_SUCCESSFUL",
         "CREATE_IN_PROGRESS",
         "CREATE_FAILED",
-        "UPDATE_SUCCESSFUL",
-        "UPDATE_FAILED",
-        "UPDATE_IN_PROGRESS",
         "DELETE_SUCCESSFUL",
         "DELETE_FAILED",
-        "DELETE_IN_PROGRESS"
+        "DELETE_IN_PROGRESS",
+        "UPDATE_SUCCESSFUL",
+        "UPDATE_IN_PROGRESS",
+        "UPDATE_FAILED"
       ]
     },
     "MemberAccountStatus":{
@@ -2462,6 +3030,12 @@
       },
       "exception":true
     },
+    "NoSuchConfigRuleInConformancePackException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "NoSuchConfigurationAggregatorException":{
       "type":"structure",
       "members":{
@@ -2474,6 +3048,12 @@
       },
       "exception":true
     },
+    "NoSuchConformancePackException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "NoSuchDeliveryChannelException":{
       "type":"structure",
       "members":{
@@ -2481,6 +3061,12 @@
       "exception":true
     },
     "NoSuchOrganizationConfigRuleException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "NoSuchOrganizationConformancePackException":{
       "type":"structure",
       "members":{
       },
@@ -2591,6 +3177,84 @@
       "type":"list",
       "member":{"shape":"OrganizationConfigRule"}
     },
+    "OrganizationConformancePack":{
+      "type":"structure",
+      "required":[
+        "OrganizationConformancePackName",
+        "OrganizationConformancePackArn",
+        "DeliveryS3Bucket",
+        "LastUpdateTime"
+      ],
+      "members":{
+        "OrganizationConformancePackName":{"shape":"OrganizationConformancePackName"},
+        "OrganizationConformancePackArn":{"shape":"StringWithCharLimit256"},
+        "DeliveryS3Bucket":{"shape":"DeliveryS3Bucket"},
+        "DeliveryS3KeyPrefix":{"shape":"DeliveryS3KeyPrefix"},
+        "ConformancePackInputParameters":{"shape":"ConformancePackInputParameters"},
+        "ExcludedAccounts":{"shape":"ExcludedAccounts"},
+        "LastUpdateTime":{"shape":"Date"}
+      }
+    },
+    "OrganizationConformancePackDetailedStatus":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "ConformancePackName",
+        "Status"
+      ],
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "ConformancePackName":{"shape":"StringWithCharLimit256"},
+        "Status":{"shape":"OrganizationResourceDetailedStatus"},
+        "ErrorCode":{"shape":"String"},
+        "ErrorMessage":{"shape":"String"},
+        "LastUpdateTime":{"shape":"Date"}
+      }
+    },
+    "OrganizationConformancePackDetailedStatuses":{
+      "type":"list",
+      "member":{"shape":"OrganizationConformancePackDetailedStatus"}
+    },
+    "OrganizationConformancePackName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[a-zA-Z][-a-zA-Z0-9]*"
+    },
+    "OrganizationConformancePackNames":{
+      "type":"list",
+      "member":{"shape":"OrganizationConformancePackName"},
+      "max":25,
+      "min":0
+    },
+    "OrganizationConformancePackStatus":{
+      "type":"structure",
+      "required":[
+        "OrganizationConformancePackName",
+        "Status"
+      ],
+      "members":{
+        "OrganizationConformancePackName":{"shape":"OrganizationConformancePackName"},
+        "Status":{"shape":"OrganizationResourceStatus"},
+        "ErrorCode":{"shape":"String"},
+        "ErrorMessage":{"shape":"String"},
+        "LastUpdateTime":{"shape":"Date"}
+      }
+    },
+    "OrganizationConformancePackStatuses":{
+      "type":"list",
+      "member":{"shape":"OrganizationConformancePackStatus"}
+    },
+    "OrganizationConformancePackTemplateValidationException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "OrganizationConformancePacks":{
+      "type":"list",
+      "member":{"shape":"OrganizationConformancePack"}
+    },
     "OrganizationCustomRuleMetadata":{
       "type":"structure",
       "required":[
@@ -2623,18 +3287,53 @@
         "TagValueScope":{"shape":"StringWithCharLimit256"}
       }
     },
+    "OrganizationResourceDetailedStatus":{
+      "type":"string",
+      "enum":[
+        "CREATE_SUCCESSFUL",
+        "CREATE_IN_PROGRESS",
+        "CREATE_FAILED",
+        "DELETE_SUCCESSFUL",
+        "DELETE_FAILED",
+        "DELETE_IN_PROGRESS",
+        "UPDATE_SUCCESSFUL",
+        "UPDATE_IN_PROGRESS",
+        "UPDATE_FAILED"
+      ]
+    },
+    "OrganizationResourceDetailedStatusFilters":{
+      "type":"structure",
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "Status":{"shape":"OrganizationResourceDetailedStatus"}
+      }
+    },
+    "OrganizationResourceStatus":{
+      "type":"string",
+      "enum":[
+        "CREATE_SUCCESSFUL",
+        "CREATE_IN_PROGRESS",
+        "CREATE_FAILED",
+        "DELETE_SUCCESSFUL",
+        "DELETE_FAILED",
+        "DELETE_IN_PROGRESS",
+        "UPDATE_SUCCESSFUL",
+        "UPDATE_IN_PROGRESS",
+        "UPDATE_FAILED"
+      ]
+    },
     "OrganizationRuleStatus":{
       "type":"string",
       "enum":[
         "CREATE_SUCCESSFUL",
         "CREATE_IN_PROGRESS",
         "CREATE_FAILED",
-        "UPDATE_SUCCESSFUL",
-        "UPDATE_FAILED",
-        "UPDATE_IN_PROGRESS",
         "DELETE_SUCCESSFUL",
         "DELETE_FAILED",
-        "DELETE_IN_PROGRESS"
+        "DELETE_IN_PROGRESS",
+        "UPDATE_SUCCESSFUL",
+        "UPDATE_IN_PROGRESS",
+        "UPDATE_FAILED"
       ]
     },
     "OversizedConfigurationItemException":{
@@ -2649,6 +3348,21 @@
         "CUSTOM_LAMBDA",
         "AWS"
       ]
+    },
+    "PageSizeLimit":{
+      "type":"integer",
+      "max":20,
+      "min":0
+    },
+    "ParameterName":{
+      "type":"string",
+      "max":255,
+      "min":0
+    },
+    "ParameterValue":{
+      "type":"string",
+      "max":4096,
+      "min":0
     },
     "PendingAggregationRequest":{
       "type":"structure",
@@ -2716,6 +3430,27 @@
         "ConfigurationRecorder":{"shape":"ConfigurationRecorder"}
       }
     },
+    "PutConformancePackRequest":{
+      "type":"structure",
+      "required":[
+        "ConformancePackName",
+        "DeliveryS3Bucket"
+      ],
+      "members":{
+        "ConformancePackName":{"shape":"ConformancePackName"},
+        "TemplateS3Uri":{"shape":"TemplateS3Uri"},
+        "TemplateBody":{"shape":"TemplateBody"},
+        "DeliveryS3Bucket":{"shape":"DeliveryS3Bucket"},
+        "DeliveryS3KeyPrefix":{"shape":"DeliveryS3KeyPrefix"},
+        "ConformancePackInputParameters":{"shape":"ConformancePackInputParameters"}
+      }
+    },
+    "PutConformancePackResponse":{
+      "type":"structure",
+      "members":{
+        "ConformancePackArn":{"shape":"ConformancePackArn"}
+      }
+    },
     "PutDeliveryChannelRequest":{
       "type":"structure",
       "required":["DeliveryChannel"],
@@ -2752,6 +3487,28 @@
       "type":"structure",
       "members":{
         "OrganizationConfigRuleArn":{"shape":"StringWithCharLimit256"}
+      }
+    },
+    "PutOrganizationConformancePackRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationConformancePackName",
+        "DeliveryS3Bucket"
+      ],
+      "members":{
+        "OrganizationConformancePackName":{"shape":"OrganizationConformancePackName"},
+        "TemplateS3Uri":{"shape":"TemplateS3Uri"},
+        "TemplateBody":{"shape":"TemplateBody"},
+        "DeliveryS3Bucket":{"shape":"DeliveryS3Bucket"},
+        "DeliveryS3KeyPrefix":{"shape":"DeliveryS3KeyPrefix"},
+        "ConformancePackInputParameters":{"shape":"ConformancePackInputParameters"},
+        "ExcludedAccounts":{"shape":"ExcludedAccounts"}
+      }
+    },
+    "PutOrganizationConformancePackResponse":{
+      "type":"structure",
+      "members":{
+        "OrganizationConformancePackArn":{"shape":"StringWithCharLimit256"}
       }
     },
     "PutRemediationConfigurationsRequest":{
@@ -3306,6 +4063,11 @@
         "ErrorPercentage":{"shape":"Percentage"}
       }
     },
+    "StackArn":{
+      "type":"string",
+      "max":2048,
+      "min":1
+    },
     "StartConfigRulesEvaluationRequest":{
       "type":"structure",
       "members":{
@@ -3462,6 +4224,17 @@
       "member":{"shape":"Tag"},
       "max":50,
       "min":0
+    },
+    "TemplateBody":{
+      "type":"string",
+      "max":51200,
+      "min":1
+    },
+    "TemplateS3Uri":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"s3://.*"
     },
     "TooManyTagsException":{
       "type":"structure",

@@ -173,6 +173,10 @@ type CloudFormationAPI interface {
 	DetectStackResourceDriftWithContext(aws.Context, *cloudformation.DetectStackResourceDriftInput, ...request.Option) (*cloudformation.DetectStackResourceDriftOutput, error)
 	DetectStackResourceDriftRequest(*cloudformation.DetectStackResourceDriftInput) (*request.Request, *cloudformation.DetectStackResourceDriftOutput)
 
+	DetectStackSetDrift(*cloudformation.DetectStackSetDriftInput) (*cloudformation.DetectStackSetDriftOutput, error)
+	DetectStackSetDriftWithContext(aws.Context, *cloudformation.DetectStackSetDriftInput, ...request.Option) (*cloudformation.DetectStackSetDriftOutput, error)
+	DetectStackSetDriftRequest(*cloudformation.DetectStackSetDriftInput) (*request.Request, *cloudformation.DetectStackSetDriftOutput)
+
 	EstimateTemplateCost(*cloudformation.EstimateTemplateCostInput) (*cloudformation.EstimateTemplateCostOutput, error)
 	EstimateTemplateCostWithContext(aws.Context, *cloudformation.EstimateTemplateCostInput, ...request.Option) (*cloudformation.EstimateTemplateCostOutput, error)
 	EstimateTemplateCostRequest(*cloudformation.EstimateTemplateCostInput) (*request.Request, *cloudformation.EstimateTemplateCostOutput)
