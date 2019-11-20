@@ -100,17 +100,29 @@ type MigrationHubAPI interface {
 	ListCreatedArtifactsWithContext(aws.Context, *migrationhub.ListCreatedArtifactsInput, ...request.Option) (*migrationhub.ListCreatedArtifactsOutput, error)
 	ListCreatedArtifactsRequest(*migrationhub.ListCreatedArtifactsInput) (*request.Request, *migrationhub.ListCreatedArtifactsOutput)
 
+	ListCreatedArtifactsPages(*migrationhub.ListCreatedArtifactsInput, func(*migrationhub.ListCreatedArtifactsOutput, bool) bool) error
+	ListCreatedArtifactsPagesWithContext(aws.Context, *migrationhub.ListCreatedArtifactsInput, func(*migrationhub.ListCreatedArtifactsOutput, bool) bool, ...request.Option) error
+
 	ListDiscoveredResources(*migrationhub.ListDiscoveredResourcesInput) (*migrationhub.ListDiscoveredResourcesOutput, error)
 	ListDiscoveredResourcesWithContext(aws.Context, *migrationhub.ListDiscoveredResourcesInput, ...request.Option) (*migrationhub.ListDiscoveredResourcesOutput, error)
 	ListDiscoveredResourcesRequest(*migrationhub.ListDiscoveredResourcesInput) (*request.Request, *migrationhub.ListDiscoveredResourcesOutput)
+
+	ListDiscoveredResourcesPages(*migrationhub.ListDiscoveredResourcesInput, func(*migrationhub.ListDiscoveredResourcesOutput, bool) bool) error
+	ListDiscoveredResourcesPagesWithContext(aws.Context, *migrationhub.ListDiscoveredResourcesInput, func(*migrationhub.ListDiscoveredResourcesOutput, bool) bool, ...request.Option) error
 
 	ListMigrationTasks(*migrationhub.ListMigrationTasksInput) (*migrationhub.ListMigrationTasksOutput, error)
 	ListMigrationTasksWithContext(aws.Context, *migrationhub.ListMigrationTasksInput, ...request.Option) (*migrationhub.ListMigrationTasksOutput, error)
 	ListMigrationTasksRequest(*migrationhub.ListMigrationTasksInput) (*request.Request, *migrationhub.ListMigrationTasksOutput)
 
+	ListMigrationTasksPages(*migrationhub.ListMigrationTasksInput, func(*migrationhub.ListMigrationTasksOutput, bool) bool) error
+	ListMigrationTasksPagesWithContext(aws.Context, *migrationhub.ListMigrationTasksInput, func(*migrationhub.ListMigrationTasksOutput, bool) bool, ...request.Option) error
+
 	ListProgressUpdateStreams(*migrationhub.ListProgressUpdateStreamsInput) (*migrationhub.ListProgressUpdateStreamsOutput, error)
 	ListProgressUpdateStreamsWithContext(aws.Context, *migrationhub.ListProgressUpdateStreamsInput, ...request.Option) (*migrationhub.ListProgressUpdateStreamsOutput, error)
 	ListProgressUpdateStreamsRequest(*migrationhub.ListProgressUpdateStreamsInput) (*request.Request, *migrationhub.ListProgressUpdateStreamsOutput)
+
+	ListProgressUpdateStreamsPages(*migrationhub.ListProgressUpdateStreamsInput, func(*migrationhub.ListProgressUpdateStreamsOutput, bool) bool) error
+	ListProgressUpdateStreamsPagesWithContext(aws.Context, *migrationhub.ListProgressUpdateStreamsInput, func(*migrationhub.ListProgressUpdateStreamsOutput, bool) bool, ...request.Option) error
 
 	NotifyApplicationState(*migrationhub.NotifyApplicationStateInput) (*migrationhub.NotifyApplicationStateOutput, error)
 	NotifyApplicationStateWithContext(aws.Context, *migrationhub.NotifyApplicationStateInput, ...request.Option) (*migrationhub.NotifyApplicationStateOutput, error)

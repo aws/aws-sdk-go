@@ -1472,7 +1472,8 @@
       "type":"structure",
       "members":{
         "arn":{"shape":"String"},
-        "reason":{"shape":"String"}
+        "reason":{"shape":"String"},
+        "detail":{"shape":"String"}
       }
     },
     "Failures":{
@@ -2144,19 +2145,20 @@
       "required":["taskDefinition"],
       "members":{
         "cluster":{"shape":"String"},
-        "taskDefinition":{"shape":"String"},
-        "overrides":{"shape":"TaskOverride"},
         "count":{"shape":"BoxedInteger"},
-        "startedBy":{"shape":"String"},
+        "enableECSManagedTags":{"shape":"Boolean"},
         "group":{"shape":"String"},
+        "launchType":{"shape":"LaunchType"},
+        "networkConfiguration":{"shape":"NetworkConfiguration"},
+        "overrides":{"shape":"TaskOverride"},
         "placementConstraints":{"shape":"PlacementConstraints"},
         "placementStrategy":{"shape":"PlacementStrategies"},
-        "launchType":{"shape":"LaunchType"},
         "platformVersion":{"shape":"String"},
-        "networkConfiguration":{"shape":"NetworkConfiguration"},
+        "propagateTags":{"shape":"PropagateTags"},
+        "referenceId":{"shape":"String"},
+        "startedBy":{"shape":"String"},
         "tags":{"shape":"Tags"},
-        "enableECSManagedTags":{"shape":"Boolean"},
-        "propagateTags":{"shape":"PropagateTags"}
+        "taskDefinition":{"shape":"String"}
       }
     },
     "RunTaskResponse":{
@@ -2335,20 +2337,21 @@
     "StartTaskRequest":{
       "type":"structure",
       "required":[
-        "taskDefinition",
-        "containerInstances"
+        "containerInstances",
+        "taskDefinition"
       ],
       "members":{
         "cluster":{"shape":"String"},
-        "taskDefinition":{"shape":"String"},
-        "overrides":{"shape":"TaskOverride"},
         "containerInstances":{"shape":"StringList"},
-        "startedBy":{"shape":"String"},
+        "enableECSManagedTags":{"shape":"Boolean"},
         "group":{"shape":"String"},
         "networkConfiguration":{"shape":"NetworkConfiguration"},
+        "overrides":{"shape":"TaskOverride"},
+        "propagateTags":{"shape":"PropagateTags"},
+        "referenceId":{"shape":"String"},
+        "startedBy":{"shape":"String"},
         "tags":{"shape":"Tags"},
-        "enableECSManagedTags":{"shape":"Boolean"},
-        "propagateTags":{"shape":"PropagateTags"}
+        "taskDefinition":{"shape":"String"}
       }
     },
     "StartTaskResponse":{
@@ -2509,36 +2512,38 @@
     "Task":{
       "type":"structure",
       "members":{
-        "taskArn":{"shape":"String"},
+        "attachments":{"shape":"Attachments"},
+        "attributes":{"shape":"Attributes"},
+        "availabilityZone":{"shape":"String"},
         "clusterArn":{"shape":"String"},
-        "taskDefinitionArn":{"shape":"String"},
-        "containerInstanceArn":{"shape":"String"},
-        "overrides":{"shape":"TaskOverride"},
-        "lastStatus":{"shape":"String"},
-        "desiredStatus":{"shape":"String"},
-        "cpu":{"shape":"String"},
-        "memory":{"shape":"String"},
-        "containers":{"shape":"Containers"},
-        "startedBy":{"shape":"String"},
-        "version":{"shape":"Long"},
-        "stoppedReason":{"shape":"String"},
-        "stopCode":{"shape":"TaskStopCode"},
         "connectivity":{"shape":"Connectivity"},
         "connectivityAt":{"shape":"Timestamp"},
+        "containerInstanceArn":{"shape":"String"},
+        "containers":{"shape":"Containers"},
+        "cpu":{"shape":"String"},
+        "createdAt":{"shape":"Timestamp"},
+        "desiredStatus":{"shape":"String"},
+        "executionStoppedAt":{"shape":"Timestamp"},
+        "group":{"shape":"String"},
+        "healthStatus":{"shape":"HealthStatus"},
+        "inferenceAccelerators":{"shape":"InferenceAccelerators"},
+        "lastStatus":{"shape":"String"},
+        "launchType":{"shape":"LaunchType"},
+        "memory":{"shape":"String"},
+        "overrides":{"shape":"TaskOverride"},
+        "platformVersion":{"shape":"String"},
         "pullStartedAt":{"shape":"Timestamp"},
         "pullStoppedAt":{"shape":"Timestamp"},
-        "executionStoppedAt":{"shape":"Timestamp"},
-        "createdAt":{"shape":"Timestamp"},
         "startedAt":{"shape":"Timestamp"},
-        "stoppingAt":{"shape":"Timestamp"},
+        "startedBy":{"shape":"String"},
+        "stopCode":{"shape":"TaskStopCode"},
         "stoppedAt":{"shape":"Timestamp"},
-        "group":{"shape":"String"},
-        "launchType":{"shape":"LaunchType"},
-        "platformVersion":{"shape":"String"},
-        "attachments":{"shape":"Attachments"},
-        "healthStatus":{"shape":"HealthStatus"},
+        "stoppedReason":{"shape":"String"},
+        "stoppingAt":{"shape":"Timestamp"},
         "tags":{"shape":"Tags"},
-        "inferenceAccelerators":{"shape":"InferenceAccelerators"}
+        "taskArn":{"shape":"String"},
+        "taskDefinitionArn":{"shape":"String"},
+        "version":{"shape":"Long"}
       }
     },
     "TaskDefinition":{
@@ -2559,6 +2564,7 @@
         "requiresCompatibilities":{"shape":"CompatibilityList"},
         "cpu":{"shape":"String"},
         "memory":{"shape":"String"},
+        "inferenceAccelerators":{"shape":"InferenceAccelerators"},
         "pidMode":{"shape":"PidMode"},
         "ipcMode":{"shape":"IpcMode"},
         "proxyConfiguration":{"shape":"ProxyConfiguration"}
@@ -2614,9 +2620,11 @@
       "type":"structure",
       "members":{
         "containerOverrides":{"shape":"ContainerOverrides"},
+        "cpu":{"shape":"String"},
         "inferenceAcceleratorOverrides":{"shape":"InferenceAcceleratorOverrides"},
-        "taskRoleArn":{"shape":"String"},
-        "executionRoleArn":{"shape":"String"}
+        "executionRoleArn":{"shape":"String"},
+        "memory":{"shape":"String"},
+        "taskRoleArn":{"shape":"String"}
       }
     },
     "TaskSet":{

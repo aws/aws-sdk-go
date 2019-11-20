@@ -196,7 +196,8 @@
     "DNSName": {
       "base": "<p>The Domain Name Service (DNS) name for the file system. You can mount your file system using its DNS name.</p>",
       "refs": {
-        "FileSystem$DNSName": "<p>The DNS name for the file system.</p>"
+        "FileSystem$DNSName": "<p>The DNS name for the file system.</p>",
+        "WindowsFileSystemConfiguration$RemoteAdministrationEndpoint": "<p>For <code>MULTI_AZ_1</code> deployment types, use this endpoint when performing administrative tasks on the file system using Amazon FSx Remote PowerShell.</p> <p>For <code>SINGLE_AZ_1</code> deployment types, this is the DNS name of the file system.</p> <p>This endpoint is temporarily unavailable when the file system is undergoing maintenance.</p>"
       }
     },
     "DailyTime": {
@@ -335,7 +336,7 @@
       "base": null,
       "refs": {
         "SelfManagedActiveDirectoryAttributes$FileSystemAdministratorsGroup": "<p>The name of the domain group whose members have administrative privileges for the FSx file system.</p>",
-        "SelfManagedActiveDirectoryConfiguration$FileSystemAdministratorsGroup": "<p>(Optional) The name of the domain group whose members are granted administrative privileges for the file system. Administrative privileges include taking ownership of files and folders, and setting audit controls (audit ACLs) on files and folders. The group that you specify must already exist in your domain. If you don't provide one, your AD domain's Domain Admins group is used.</p>"
+        "SelfManagedActiveDirectoryConfiguration$FileSystemAdministratorsGroup": "<p>(Optional) The name of the domain group whose members are granted administrative privileges for the file system. Administrative privileges include taking ownership of files and folders, setting audit controls (audit ACLs) on files and folders, and administering the file system remotely by using the FSx Remote PowerShell. The group that you specify must already exist in your domain. If you don't provide one, your AD domain's Domain Admins group is used.</p>"
       }
     },
     "FileSystemFailureDetails": {
@@ -366,7 +367,7 @@
       "base": "<p>The lifecycle status of the file system.</p>",
       "refs": {
         "DeleteFileSystemResponse$Lifecycle": "<p>The file system lifecycle for the deletion request. Should be <code>DELETING</code>.</p>",
-        "FileSystem$Lifecycle": "<p>The lifecycle status of the file system:</p> <ul> <li> <p> <code>AVAILABLE</code> indicates that the file system is reachable and available for use.</p> </li> <li> <p> <code>CREATING</code> indicates that Amazon FSx is in the process of creating the new file system.</p> </li> <li> <p> <code>DELETING</code> indicates that Amazon FSx is in the process of deleting the file system.</p> </li> <li> <p> <code>FAILED</code> indicates that Amazon FSx was not able to create the file system.</p> </li> <li> <p> <code>MISCONFIGURED</code> indicates that the file system is in a failed but recoverable state.</p> </li> <li> <p> <code>UPDATING</code> indicates that the file system is undergoing a customer initiated update.</p> </li> </ul>"
+        "FileSystem$Lifecycle": "<p>The lifecycle status of the file system, following are the possible values and what they mean:</p> <ul> <li> <p> <code>AVAILABLE</code> - The file system is in a healthy state, and is reachable and available for use.</p> </li> <li> <p> <code>CREATING</code> - Amazon FSx is creating the new file system.</p> </li> <li> <p> <code>DELETING</code> - Amazon FSx is deleting an existing file system.</p> </li> <li> <p> <code>FAILED</code> - An existing file system has experienced an unrecoverable failure. When creating a new file system, Amazon FSx was unable to create the file system.</p> </li> <li> <p> <code>MISCONFIGURED</code> indicates that the file system is in a failed but recoverable state.</p> </li> <li> <p> <code>UPDATING</code> indicates that the file system is undergoing a customer initiated update.</p> </li> </ul>"
       }
     },
     "FileSystemMaintenanceOperation": {
@@ -465,7 +466,8 @@
     "IpAddress": {
       "base": null,
       "refs": {
-        "DnsIps$member": null
+        "DnsIps$member": null,
+        "WindowsFileSystemConfiguration$PreferredFileServerIp": "<p>For <code>MULTI_AZ_1</code> deployment types, the IP address of the primary, or preferred, file server.</p> <p>Use this IP address when mounting the file system on Linux SMB clients or Windows SMB clients that are not joined to a Microsoft Active Directory. Applicable for both <code>SINGLE_AZ_1</code> and <code>MULTI_AZ_1</code> deployment types. This IP address is temporarily unavailable when the file system is undergoing maintenance. For Linux and Windows SMB clients that are joined to an Active Directory, use the file system's DNSName instead. For more information and instruction on mapping and mounting file shares, see <a href=\"https://docs.aws.amazon.com/fsx/latest/WindowsGuide/accessing-file-shares.html\">https://docs.aws.amazon.com/fsx/latest/WindowsGuide/accessing-file-shares.html</a>.</p>"
       }
     },
     "KmsKeyId": {
@@ -635,22 +637,24 @@
     "StorageCapacity": {
       "base": "<p>The storage capacity for your Amazon FSx file system, in gibibytes.</p>",
       "refs": {
-        "CreateFileSystemRequest$StorageCapacity": "<p>The storage capacity of the file system being created.</p> <p>For Windows file systems, the storage capacity has a minimum of 300 GiB, and a maximum of 65,536 GiB.</p> <p>For Lustre file systems, the storage capacity has a minimum of 3,600 GiB. Storage capacity is provisioned in increments of 3,600 GiB.</p>",
+        "CreateFileSystemRequest$StorageCapacity": "<p>The storage capacity of the file system being created.</p> <p>For Windows file systems, valid values are 32 GiB - 65,536 GiB.</p> <p>For Lustre file systems, valid values are 1,200, 2,400, 3,600, then continuing in increments of 3600 GiB.</p>",
         "FileSystem$StorageCapacity": "<p>The storage capacity of the file system in gigabytes (GB).</p>"
       }
     },
     "SubnetId": {
       "base": "<p>The ID for a subnet. A <i>subnet</i> is a range of IP addresses in your virtual private cloud (VPC). For more information, see <a href=\"https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html\">VPC and Subnets</a> in the <i>Amazon VPC User Guide.</i> </p>",
       "refs": {
+        "CreateFileSystemWindowsConfiguration$PreferredSubnetId": "<p>Required when <code>DeploymentType</code> is set to <code>MULTI_AZ_1</code>. This specifies the subnet in which you want the preferred file server to be located. For in-AWS applications, we recommend that you launch your clients in the same Availability Zone (AZ) as your preferred file server to reduce cross-AZ data transfer costs and minimize latency. </p>",
         "InvalidNetworkSettings$InvalidSubnetId": null,
-        "SubnetIds$member": null
+        "SubnetIds$member": null,
+        "WindowsFileSystemConfiguration$PreferredSubnetId": "<p>For <code>MULTI_AZ_1</code> deployment types, it specifies the ID of the subnet where the preferred file server is located. Must be one of the two subnet IDs specified in <code>SubnetIds</code> property. Amazon FSx serves traffic from this subnet except in the event of a failover to the secondary file server.</p> <p>For <code>SINGLE_AZ_1</code> deployment types, this value is the same as that for <code>SubnetIDs</code>.</p>"
       }
     },
     "SubnetIds": {
       "base": "<p>A list of subnet IDs. Currently, you can specify only one subnet ID in a call to the <code>CreateFileSystem</code> operation.</p>",
       "refs": {
         "CreateFileSystemFromBackupRequest$SubnetIds": "<p>A list of IDs for the subnets that the file system will be accessible from. Currently, you can specify only one subnet. The file server is also launched in that subnet's Availability Zone.</p>",
-        "CreateFileSystemRequest$SubnetIds": "<p>The IDs of the subnets that the file system will be accessible from. File systems support only one subnet. The file server is also launched in that subnet's Availability Zone.</p>",
+        "CreateFileSystemRequest$SubnetIds": "<p>Specifies the IDs of the subnets that the file system will be accessible from. For Windows <code>MULTI_AZ_1</code> file system deployment types, provide exactly two subnet IDs, one for the preferred file server and one for the standy file server. You specify one of these subnets as the preferred subnet using the <code>WindowsConfiguration &gt; PreferredSubnetID</code> property.</p> <p>For Windows <code>SINGLE_AZ_1</code> file system deployment types and Lustre file systems, provide exactly one subnet ID. The file server is launched in that subnet's Availability Zone.</p>",
         "FileSystem$SubnetIds": "<p>The ID of the subnet to contain the endpoint for the file system. One and only one is supported. The file system is launched in the Availability Zone associated with this subnet.</p>"
       }
     },
@@ -755,6 +759,13 @@
         "UpdateFileSystemLustreConfiguration$WeeklyMaintenanceStartTime": "<p>The preferred time to perform weekly maintenance, in the UTC time zone.</p>",
         "UpdateFileSystemWindowsConfiguration$WeeklyMaintenanceStartTime": "<p>The preferred time to perform weekly maintenance, in the UTC time zone.</p>",
         "WindowsFileSystemConfiguration$WeeklyMaintenanceStartTime": "<p>The preferred time to perform weekly maintenance, in the UTC time zone.</p>"
+      }
+    },
+    "WindowsDeploymentType": {
+      "base": null,
+      "refs": {
+        "CreateFileSystemWindowsConfiguration$DeploymentType": "<p>Specifies the file system deployment type, valid values are the following:</p> <ul> <li> <p>MULTI_AZ_1 - Deploys a high availability file system that is configured for Multi-AZ redundancy to tolerate temporary Availability Zone (AZ) unavailability. You can only deploy a Multi-AZ file system in AWS Regions that have a minimum of three Availability Zones.</p> </li> <li> <p>SINGLE_AZ_1 - (Default) Choose to deploy a file system that is configured for single AZ redundancy.</p> </li> </ul> <p>To learn more about high availability Multi-AZ file systems, see <a href=\"https://docs.aws.amazon.com/fsx/latest/WindowsGuide/high-availability-multiAZ.html\"> High Availability for Amazon FSx for Windows File Server</a>.</p>",
+        "WindowsFileSystemConfiguration$DeploymentType": "<p>Specifies the file system deployment type, valid values are the following:</p> <ul> <li> <p> <code>MULTI_AZ_1</code> - Specifies a high availability file system that is configured for Multi-AZ redundancy to tolerate temporary Availability Zone (AZ) unavailability.</p> </li> <li> <p> <code>SINGLE_AZ_1</code> - (Default) Specifies a file system that is configured for single AZ redundancy.</p> </li> </ul>"
       }
     },
     "WindowsFileSystemConfiguration": {

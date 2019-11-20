@@ -78,8 +78,20 @@
       "output_token": "NextToken",
       "result_key": "EgressOnlyInternetGateways"
     },
+    "DescribeExportImageTasks": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "ExportImageTasks"
+    },
     "DescribeExportTasks": {
       "result_key": "ExportTasks"
+    },
+    "DescribeFastSnapshotRestores": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "FastSnapshotRestores"
     },
     "DescribeFleets": {
       "input_token": "NextToken",

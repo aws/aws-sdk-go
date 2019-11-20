@@ -1358,6 +1358,15 @@
       "input":{"shape":"DescribeExportTasksRequest"},
       "output":{"shape":"DescribeExportTasksResult"}
     },
+    "DescribeFastSnapshotRestores":{
+      "name":"DescribeFastSnapshotRestores",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeFastSnapshotRestoresRequest"},
+      "output":{"shape":"DescribeFastSnapshotRestoresResult"}
+    },
     "DescribeFleetHistory":{
       "name":"DescribeFleetHistory",
       "http":{
@@ -2120,6 +2129,15 @@
       "input":{"shape":"DisableEbsEncryptionByDefaultRequest"},
       "output":{"shape":"DisableEbsEncryptionByDefaultResult"}
     },
+    "DisableFastSnapshotRestores":{
+      "name":"DisableFastSnapshotRestores",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisableFastSnapshotRestoresRequest"},
+      "output":{"shape":"DisableFastSnapshotRestoresResult"}
+    },
     "DisableTransitGatewayRouteTablePropagation":{
       "name":"DisableTransitGatewayRouteTablePropagation",
       "http":{
@@ -2224,6 +2242,15 @@
       },
       "input":{"shape":"EnableEbsEncryptionByDefaultRequest"},
       "output":{"shape":"EnableEbsEncryptionByDefaultResult"}
+    },
+    "EnableFastSnapshotRestores":{
+      "name":"EnableFastSnapshotRestores",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"EnableFastSnapshotRestoresRequest"},
+      "output":{"shape":"EnableFastSnapshotRestoresResult"}
     },
     "EnableTransitGatewayRouteTablePropagation":{
       "name":"EnableTransitGatewayRouteTablePropagation",
@@ -4301,6 +4328,13 @@
         "impaired",
         "unavailable"
       ]
+    },
+    "AvailabilityZoneStringList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"AvailabilityZone"
+      }
     },
     "AvailableCapacity":{
       "type":"structure",
@@ -8782,6 +8816,92 @@
         }
       }
     },
+    "DescribeFastSnapshotRestoreSuccessItem":{
+      "type":"structure",
+      "members":{
+        "SnapshotId":{
+          "shape":"String",
+          "locationName":"snapshotId"
+        },
+        "AvailabilityZone":{
+          "shape":"String",
+          "locationName":"availabilityZone"
+        },
+        "State":{
+          "shape":"FastSnapshotRestoreStateCode",
+          "locationName":"state"
+        },
+        "StateTransitionReason":{
+          "shape":"String",
+          "locationName":"stateTransitionReason"
+        },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
+        },
+        "OwnerAlias":{
+          "shape":"String",
+          "locationName":"ownerAlias"
+        },
+        "EnablingTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"enablingTime"
+        },
+        "OptimizingTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"optimizingTime"
+        },
+        "EnabledTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"enabledTime"
+        },
+        "DisablingTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"disablingTime"
+        },
+        "DisabledTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"disabledTime"
+        }
+      }
+    },
+    "DescribeFastSnapshotRestoreSuccessSet":{
+      "type":"list",
+      "member":{
+        "shape":"DescribeFastSnapshotRestoreSuccessItem",
+        "locationName":"item"
+      }
+    },
+    "DescribeFastSnapshotRestoresMaxResults":{
+      "type":"integer",
+      "max":200,
+      "min":0
+    },
+    "DescribeFastSnapshotRestoresRequest":{
+      "type":"structure",
+      "members":{
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"DescribeFastSnapshotRestoresMaxResults"},
+        "NextToken":{"shape":"NextToken"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DescribeFastSnapshotRestoresResult":{
+      "type":"structure",
+      "members":{
+        "FastSnapshotRestores":{
+          "shape":"DescribeFastSnapshotRestoreSuccessSet",
+          "locationName":"fastSnapshotRestoreSet"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "locationName":"nextToken"
+        }
+      }
+    },
     "DescribeFleetError":{
       "type":"structure",
       "members":{
@@ -11541,6 +11661,146 @@
         }
       }
     },
+    "DisableFastSnapshotRestoreErrorItem":{
+      "type":"structure",
+      "members":{
+        "SnapshotId":{
+          "shape":"String",
+          "locationName":"snapshotId"
+        },
+        "FastSnapshotRestoreStateErrors":{
+          "shape":"DisableFastSnapshotRestoreStateErrorSet",
+          "locationName":"fastSnapshotRestoreStateErrorSet"
+        }
+      }
+    },
+    "DisableFastSnapshotRestoreErrorSet":{
+      "type":"list",
+      "member":{
+        "shape":"DisableFastSnapshotRestoreErrorItem",
+        "locationName":"item"
+      }
+    },
+    "DisableFastSnapshotRestoreStateError":{
+      "type":"structure",
+      "members":{
+        "Code":{
+          "shape":"String",
+          "locationName":"code"
+        },
+        "Message":{
+          "shape":"String",
+          "locationName":"message"
+        }
+      }
+    },
+    "DisableFastSnapshotRestoreStateErrorItem":{
+      "type":"structure",
+      "members":{
+        "AvailabilityZone":{
+          "shape":"String",
+          "locationName":"availabilityZone"
+        },
+        "Error":{
+          "shape":"DisableFastSnapshotRestoreStateError",
+          "locationName":"error"
+        }
+      }
+    },
+    "DisableFastSnapshotRestoreStateErrorSet":{
+      "type":"list",
+      "member":{
+        "shape":"DisableFastSnapshotRestoreStateErrorItem",
+        "locationName":"item"
+      }
+    },
+    "DisableFastSnapshotRestoreSuccessItem":{
+      "type":"structure",
+      "members":{
+        "SnapshotId":{
+          "shape":"String",
+          "locationName":"snapshotId"
+        },
+        "AvailabilityZone":{
+          "shape":"String",
+          "locationName":"availabilityZone"
+        },
+        "State":{
+          "shape":"FastSnapshotRestoreStateCode",
+          "locationName":"state"
+        },
+        "StateTransitionReason":{
+          "shape":"String",
+          "locationName":"stateTransitionReason"
+        },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
+        },
+        "OwnerAlias":{
+          "shape":"String",
+          "locationName":"ownerAlias"
+        },
+        "EnablingTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"enablingTime"
+        },
+        "OptimizingTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"optimizingTime"
+        },
+        "EnabledTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"enabledTime"
+        },
+        "DisablingTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"disablingTime"
+        },
+        "DisabledTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"disabledTime"
+        }
+      }
+    },
+    "DisableFastSnapshotRestoreSuccessSet":{
+      "type":"list",
+      "member":{
+        "shape":"DisableFastSnapshotRestoreSuccessItem",
+        "locationName":"item"
+      }
+    },
+    "DisableFastSnapshotRestoresRequest":{
+      "type":"structure",
+      "required":[
+        "AvailabilityZones",
+        "SourceSnapshotIds"
+      ],
+      "members":{
+        "AvailabilityZones":{
+          "shape":"AvailabilityZoneStringList",
+          "locationName":"AvailabilityZone"
+        },
+        "SourceSnapshotIds":{
+          "shape":"SnapshotIdStringList",
+          "locationName":"SourceSnapshotId"
+        },
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DisableFastSnapshotRestoresResult":{
+      "type":"structure",
+      "members":{
+        "Successful":{
+          "shape":"DisableFastSnapshotRestoreSuccessSet",
+          "locationName":"successful"
+        },
+        "Unsuccessful":{
+          "shape":"DisableFastSnapshotRestoreErrorSet",
+          "locationName":"unsuccessful"
+        }
+      }
+    },
     "DisableTransitGatewayRouteTablePropagationRequest":{
       "type":"structure",
       "required":[
@@ -12143,6 +12403,146 @@
         }
       }
     },
+    "EnableFastSnapshotRestoreErrorItem":{
+      "type":"structure",
+      "members":{
+        "SnapshotId":{
+          "shape":"String",
+          "locationName":"snapshotId"
+        },
+        "FastSnapshotRestoreStateErrors":{
+          "shape":"EnableFastSnapshotRestoreStateErrorSet",
+          "locationName":"fastSnapshotRestoreStateErrorSet"
+        }
+      }
+    },
+    "EnableFastSnapshotRestoreErrorSet":{
+      "type":"list",
+      "member":{
+        "shape":"EnableFastSnapshotRestoreErrorItem",
+        "locationName":"item"
+      }
+    },
+    "EnableFastSnapshotRestoreStateError":{
+      "type":"structure",
+      "members":{
+        "Code":{
+          "shape":"String",
+          "locationName":"code"
+        },
+        "Message":{
+          "shape":"String",
+          "locationName":"message"
+        }
+      }
+    },
+    "EnableFastSnapshotRestoreStateErrorItem":{
+      "type":"structure",
+      "members":{
+        "AvailabilityZone":{
+          "shape":"String",
+          "locationName":"availabilityZone"
+        },
+        "Error":{
+          "shape":"EnableFastSnapshotRestoreStateError",
+          "locationName":"error"
+        }
+      }
+    },
+    "EnableFastSnapshotRestoreStateErrorSet":{
+      "type":"list",
+      "member":{
+        "shape":"EnableFastSnapshotRestoreStateErrorItem",
+        "locationName":"item"
+      }
+    },
+    "EnableFastSnapshotRestoreSuccessItem":{
+      "type":"structure",
+      "members":{
+        "SnapshotId":{
+          "shape":"String",
+          "locationName":"snapshotId"
+        },
+        "AvailabilityZone":{
+          "shape":"String",
+          "locationName":"availabilityZone"
+        },
+        "State":{
+          "shape":"FastSnapshotRestoreStateCode",
+          "locationName":"state"
+        },
+        "StateTransitionReason":{
+          "shape":"String",
+          "locationName":"stateTransitionReason"
+        },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
+        },
+        "OwnerAlias":{
+          "shape":"String",
+          "locationName":"ownerAlias"
+        },
+        "EnablingTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"enablingTime"
+        },
+        "OptimizingTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"optimizingTime"
+        },
+        "EnabledTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"enabledTime"
+        },
+        "DisablingTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"disablingTime"
+        },
+        "DisabledTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"disabledTime"
+        }
+      }
+    },
+    "EnableFastSnapshotRestoreSuccessSet":{
+      "type":"list",
+      "member":{
+        "shape":"EnableFastSnapshotRestoreSuccessItem",
+        "locationName":"item"
+      }
+    },
+    "EnableFastSnapshotRestoresRequest":{
+      "type":"structure",
+      "required":[
+        "AvailabilityZones",
+        "SourceSnapshotIds"
+      ],
+      "members":{
+        "AvailabilityZones":{
+          "shape":"AvailabilityZoneStringList",
+          "locationName":"AvailabilityZone"
+        },
+        "SourceSnapshotIds":{
+          "shape":"SnapshotIdStringList",
+          "locationName":"SourceSnapshotId"
+        },
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "EnableFastSnapshotRestoresResult":{
+      "type":"structure",
+      "members":{
+        "Successful":{
+          "shape":"EnableFastSnapshotRestoreSuccessSet",
+          "locationName":"successful"
+        },
+        "Unsuccessful":{
+          "shape":"EnableFastSnapshotRestoreErrorSet",
+          "locationName":"unsuccessful"
+        }
+      }
+    },
     "EnableTransitGatewayRouteTablePropagationRequest":{
       "type":"structure",
       "required":[
@@ -12605,6 +13005,16 @@
         "shape":"FailedQueuedPurchaseDeletion",
         "locationName":"item"
       }
+    },
+    "FastSnapshotRestoreStateCode":{
+      "type":"string",
+      "enum":[
+        "enabling",
+        "optimizing",
+        "enabled",
+        "disabling",
+        "disabled"
+      ]
     },
     "Filter":{
       "type":"structure",
@@ -24687,6 +25097,10 @@
         "VolumeType":{
           "shape":"VolumeType",
           "locationName":"volumeType"
+        },
+        "FastRestored":{
+          "shape":"Boolean",
+          "locationName":"fastRestored"
         }
       }
     },

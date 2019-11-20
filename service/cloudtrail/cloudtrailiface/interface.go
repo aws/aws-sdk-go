@@ -80,6 +80,10 @@ type CloudTrailAPI interface {
 	GetEventSelectorsWithContext(aws.Context, *cloudtrail.GetEventSelectorsInput, ...request.Option) (*cloudtrail.GetEventSelectorsOutput, error)
 	GetEventSelectorsRequest(*cloudtrail.GetEventSelectorsInput) (*request.Request, *cloudtrail.GetEventSelectorsOutput)
 
+	GetInsightSelectors(*cloudtrail.GetInsightSelectorsInput) (*cloudtrail.GetInsightSelectorsOutput, error)
+	GetInsightSelectorsWithContext(aws.Context, *cloudtrail.GetInsightSelectorsInput, ...request.Option) (*cloudtrail.GetInsightSelectorsOutput, error)
+	GetInsightSelectorsRequest(*cloudtrail.GetInsightSelectorsInput) (*request.Request, *cloudtrail.GetInsightSelectorsOutput)
+
 	GetTrail(*cloudtrail.GetTrailInput) (*cloudtrail.GetTrailOutput, error)
 	GetTrailWithContext(aws.Context, *cloudtrail.GetTrailInput, ...request.Option) (*cloudtrail.GetTrailOutput, error)
 	GetTrailRequest(*cloudtrail.GetTrailInput) (*request.Request, *cloudtrail.GetTrailOutput)
@@ -119,6 +123,10 @@ type CloudTrailAPI interface {
 	PutEventSelectors(*cloudtrail.PutEventSelectorsInput) (*cloudtrail.PutEventSelectorsOutput, error)
 	PutEventSelectorsWithContext(aws.Context, *cloudtrail.PutEventSelectorsInput, ...request.Option) (*cloudtrail.PutEventSelectorsOutput, error)
 	PutEventSelectorsRequest(*cloudtrail.PutEventSelectorsInput) (*request.Request, *cloudtrail.PutEventSelectorsOutput)
+
+	PutInsightSelectors(*cloudtrail.PutInsightSelectorsInput) (*cloudtrail.PutInsightSelectorsOutput, error)
+	PutInsightSelectorsWithContext(aws.Context, *cloudtrail.PutInsightSelectorsInput, ...request.Option) (*cloudtrail.PutInsightSelectorsOutput, error)
+	PutInsightSelectorsRequest(*cloudtrail.PutInsightSelectorsInput) (*request.Request, *cloudtrail.PutInsightSelectorsOutput)
 
 	RemoveTags(*cloudtrail.RemoveTagsInput) (*cloudtrail.RemoveTagsOutput, error)
 	RemoveTagsWithContext(aws.Context, *cloudtrail.RemoveTagsInput, ...request.Option) (*cloudtrail.RemoveTagsOutput, error)

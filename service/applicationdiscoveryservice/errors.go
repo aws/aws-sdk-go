@@ -15,6 +15,12 @@ const (
 	// "ConflictErrorException".
 	ErrCodeConflictErrorException = "ConflictErrorException"
 
+	// ErrCodeHomeRegionNotSetException for service response error code
+	// "HomeRegionNotSetException".
+	//
+	// The home region is not set. Set the home region to continue.
+	ErrCodeHomeRegionNotSetException = "HomeRegionNotSetException"
+
 	// ErrCodeInvalidParameterException for service response error code
 	// "InvalidParameterException".
 	//

@@ -70,6 +70,26 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "BatchCreateAttendee":{
+      "name":"BatchCreateAttendee",
+      "http":{
+        "method":"POST",
+        "requestUri":"/meetings/{meetingId}/attendees?operation=batch-create",
+        "responseCode":201
+      },
+      "input":{"shape":"BatchCreateAttendeeRequest"},
+      "output":{"shape":"BatchCreateAttendeeResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "BatchCreateRoomMembership":{
       "name":"BatchCreateRoomMembership",
       "http":{
@@ -202,6 +222,26 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "CreateAttendee":{
+      "name":"CreateAttendee",
+      "http":{
+        "method":"POST",
+        "requestUri":"/meetings/{meetingId}/attendees",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateAttendeeRequest"},
+      "output":{"shape":"CreateAttendeeResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "CreateBot":{
       "name":"CreateBot",
       "http":{
@@ -219,6 +259,25 @@
         {"shape":"UnauthorizedClientException"},
         {"shape":"ResourceLimitExceededException"},
         {"shape":"NotFoundException"}
+      ]
+    },
+    "CreateMeeting":{
+      "name":"CreateMeeting",
+      "http":{
+        "method":"POST",
+        "requestUri":"/meetings",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateMeetingRequest"},
+      "output":{"shape":"CreateMeetingResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "CreatePhoneNumberOrder":{
@@ -340,6 +399,24 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "DeleteAttendee":{
+      "name":"DeleteAttendee",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/meetings/{meetingId}/attendees/{attendeeId}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteAttendeeRequest"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "DeleteEventsConfiguration":{
       "name":"DeleteEventsConfiguration",
       "http":{
@@ -355,6 +432,24 @@
         {"shape":"BadRequestException"},
         {"shape":"UnauthorizedClientException"},
         {"shape":"ResourceLimitExceededException"}
+      ]
+    },
+    "DeleteMeeting":{
+      "name":"DeleteMeeting",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/meetings/{meetingId}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteMeetingRequest"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "DeletePhoneNumber":{
@@ -612,6 +707,25 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "GetAttendee":{
+      "name":"GetAttendee",
+      "http":{
+        "method":"GET",
+        "requestUri":"/meetings/{meetingId}/attendees/{attendeeId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetAttendeeRequest"},
+      "output":{"shape":"GetAttendeeResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "GetBot":{
       "name":"GetBot",
       "http":{
@@ -662,6 +776,25 @@
         {"shape":"ForbiddenException"},
         {"shape":"BadRequestException"},
         {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "GetMeeting":{
+      "name":"GetMeeting",
+      "http":{
+        "method":"GET",
+        "requestUri":"/meetings/{meetingId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetMeetingRequest"},
+      "output":{"shape":"GetMeetingResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
@@ -946,6 +1079,25 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "ListAttendees":{
+      "name":"ListAttendees",
+      "http":{
+        "method":"GET",
+        "requestUri":"/meetings/{meetingId}/attendees",
+        "responseCode":200
+      },
+      "input":{"shape":"ListAttendeesRequest"},
+      "output":{"shape":"ListAttendeesResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "ListBots":{
       "name":"ListBots",
       "http":{
@@ -962,6 +1114,24 @@
         {"shape":"UnauthorizedClientException"},
         {"shape":"BadRequestException"},
         {"shape":"NotFoundException"}
+      ]
+    },
+    "ListMeetings":{
+      "name":"ListMeetings",
+      "http":{
+        "method":"GET",
+        "requestUri":"/meetings",
+        "responseCode":200
+      },
+      "input":{"shape":"ListMeetingsRequest"},
+      "output":{"shape":"ListMeetingsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "ListPhoneNumberOrders":{
@@ -1593,6 +1763,13 @@
         "EnterpriseOIDC"
       ]
     },
+    "Arn":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"^arn[\\/\\:\\-\\_\\.a-zA-Z0-9]+$",
+      "sensitive":true
+    },
     "AssociatePhoneNumberWithUserRequest":{
       "type":"structure",
       "required":[
@@ -1657,6 +1834,18 @@
         "PhoneNumberErrors":{"shape":"PhoneNumberErrorList"}
       }
     },
+    "Attendee":{
+      "type":"structure",
+      "members":{
+        "ExternalUserId":{"shape":"ExternalUserIdType"},
+        "AttendeeId":{"shape":"GuidString"},
+        "JoinToken":{"shape":"JoinTokenString"}
+      }
+    },
+    "AttendeeList":{
+      "type":"list",
+      "member":{"shape":"Attendee"}
+    },
     "BadRequestException":{
       "type":"structure",
       "members":{
@@ -1665,6 +1854,32 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "BatchCreateAttendeeErrorList":{
+      "type":"list",
+      "member":{"shape":"CreateAttendeeError"}
+    },
+    "BatchCreateAttendeeRequest":{
+      "type":"structure",
+      "required":[
+        "MeetingId",
+        "Attendees"
+      ],
+      "members":{
+        "MeetingId":{
+          "shape":"GuidString",
+          "location":"uri",
+          "locationName":"meetingId"
+        },
+        "Attendees":{"shape":"CreateAttendeeRequestItemList"}
+      }
+    },
+    "BatchCreateAttendeeResponse":{
+      "type":"structure",
+      "members":{
+        "Attendees":{"shape":"AttendeeList"},
+        "Errors":{"shape":"BatchCreateAttendeeErrorList"}
+      }
     },
     "BatchCreateRoomMembershipRequest":{
       "type":"structure",
@@ -1866,6 +2081,46 @@
         "Account":{"shape":"Account"}
       }
     },
+    "CreateAttendeeError":{
+      "type":"structure",
+      "members":{
+        "ExternalUserId":{"shape":"ExternalUserIdType"},
+        "ErrorCode":{"shape":"String"},
+        "ErrorMessage":{"shape":"String"}
+      }
+    },
+    "CreateAttendeeRequest":{
+      "type":"structure",
+      "required":[
+        "MeetingId",
+        "ExternalUserId"
+      ],
+      "members":{
+        "MeetingId":{
+          "shape":"GuidString",
+          "location":"uri",
+          "locationName":"meetingId"
+        },
+        "ExternalUserId":{"shape":"ExternalUserIdType"}
+      }
+    },
+    "CreateAttendeeRequestItem":{
+      "type":"structure",
+      "required":["ExternalUserId"],
+      "members":{
+        "ExternalUserId":{"shape":"ExternalUserIdType"}
+      }
+    },
+    "CreateAttendeeRequestItemList":{
+      "type":"list",
+      "member":{"shape":"CreateAttendeeRequestItem"}
+    },
+    "CreateAttendeeResponse":{
+      "type":"structure",
+      "members":{
+        "Attendee":{"shape":"Attendee"}
+      }
+    },
     "CreateBotRequest":{
       "type":"structure",
       "required":[
@@ -1886,6 +2141,25 @@
       "type":"structure",
       "members":{
         "Bot":{"shape":"Bot"}
+      }
+    },
+    "CreateMeetingRequest":{
+      "type":"structure",
+      "required":["ClientRequestToken"],
+      "members":{
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        },
+        "MeetingHostId":{"shape":"ExternalUserIdType"},
+        "MediaRegion":{"shape":"String"},
+        "NotificationsConfiguration":{"shape":"MeetingNotificationConfiguration"}
+      }
+    },
+    "CreateMeetingResponse":{
+      "type":"structure",
+      "members":{
+        "Meeting":{"shape":"Meeting"}
       }
     },
     "CreatePhoneNumberOrderRequest":{
@@ -2021,6 +2295,25 @@
       "members":{
       }
     },
+    "DeleteAttendeeRequest":{
+      "type":"structure",
+      "required":[
+        "MeetingId",
+        "AttendeeId"
+      ],
+      "members":{
+        "MeetingId":{
+          "shape":"GuidString",
+          "location":"uri",
+          "locationName":"meetingId"
+        },
+        "AttendeeId":{
+          "shape":"GuidString",
+          "location":"uri",
+          "locationName":"attendeeId"
+        }
+      }
+    },
     "DeleteEventsConfigurationRequest":{
       "type":"structure",
       "required":[
@@ -2037,6 +2330,17 @@
           "shape":"NonEmptyString",
           "location":"uri",
           "locationName":"botId"
+        }
+      }
+    },
+    "DeleteMeetingRequest":{
+      "type":"structure",
+      "required":["MeetingId"],
+      "members":{
+        "MeetingId":{
+          "shape":"GuidString",
+          "location":"uri",
+          "locationName":"meetingId"
         }
       }
     },
@@ -2271,6 +2575,12 @@
         "LambdaFunctionArn":{"shape":"SensitiveString"}
       }
     },
+    "ExternalUserIdType":{
+      "type":"string",
+      "max":64,
+      "min":2,
+      "sensitive":true
+    },
     "ForbiddenException":{
       "type":"structure",
       "members":{
@@ -2312,6 +2622,31 @@
       "type":"structure",
       "members":{
         "AccountSettings":{"shape":"AccountSettings"}
+      }
+    },
+    "GetAttendeeRequest":{
+      "type":"structure",
+      "required":[
+        "MeetingId",
+        "AttendeeId"
+      ],
+      "members":{
+        "MeetingId":{
+          "shape":"GuidString",
+          "location":"uri",
+          "locationName":"meetingId"
+        },
+        "AttendeeId":{
+          "shape":"GuidString",
+          "location":"uri",
+          "locationName":"attendeeId"
+        }
+      }
+    },
+    "GetAttendeeResponse":{
+      "type":"structure",
+      "members":{
+        "Attendee":{"shape":"Attendee"}
       }
     },
     "GetBotRequest":{
@@ -2369,6 +2704,23 @@
       "members":{
         "BusinessCalling":{"shape":"BusinessCallingSettings"},
         "VoiceConnector":{"shape":"VoiceConnectorSettings"}
+      }
+    },
+    "GetMeetingRequest":{
+      "type":"structure",
+      "required":["MeetingId"],
+      "members":{
+        "MeetingId":{
+          "shape":"GuidString",
+          "location":"uri",
+          "locationName":"meetingId"
+        }
+      }
+    },
+    "GetMeetingResponse":{
+      "type":"structure",
+      "members":{
+        "Meeting":{"shape":"Meeting"}
       }
     },
     "GetPhoneNumberOrderRequest":{
@@ -2656,6 +3008,12 @@
       "type":"timestamp",
       "timestampFormat":"iso8601"
     },
+    "JoinTokenString":{
+      "type":"string",
+      "max":2048,
+      "min":2,
+      "sensitive":true
+    },
     "License":{
       "type":"string",
       "enum":[
@@ -2701,6 +3059,34 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "ListAttendeesRequest":{
+      "type":"structure",
+      "required":["MeetingId"],
+      "members":{
+        "MeetingId":{
+          "shape":"GuidString",
+          "location":"uri",
+          "locationName":"meetingId"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"next-token"
+        },
+        "MaxResults":{
+          "shape":"ResultMax",
+          "location":"querystring",
+          "locationName":"max-results"
+        }
+      }
+    },
+    "ListAttendeesResponse":{
+      "type":"structure",
+      "members":{
+        "Attendees":{"shape":"AttendeeList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
     "ListBotsRequest":{
       "type":"structure",
       "required":["AccountId"],
@@ -2726,6 +3112,28 @@
       "type":"structure",
       "members":{
         "Bots":{"shape":"BotList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "ListMeetingsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"next-token"
+        },
+        "MaxResults":{
+          "shape":"ResultMax",
+          "location":"querystring",
+          "locationName":"max-results"
+        }
+      }
+    },
+    "ListMeetingsResponse":{
+      "type":"structure",
+      "members":{
+        "Meetings":{"shape":"MeetingList"},
         "NextToken":{"shape":"String"}
       }
     },
@@ -2984,6 +3392,36 @@
     "LogoutUserResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "MediaPlacement":{
+      "type":"structure",
+      "members":{
+        "AudioHostUrl":{"shape":"UriType"},
+        "ScreenDataUrl":{"shape":"UriType"},
+        "ScreenSharingUrl":{"shape":"UriType"},
+        "ScreenViewingUrl":{"shape":"UriType"},
+        "SignalingUrl":{"shape":"UriType"},
+        "TurnControlUrl":{"shape":"UriType"}
+      }
+    },
+    "Meeting":{
+      "type":"structure",
+      "members":{
+        "MeetingId":{"shape":"GuidString"},
+        "MediaPlacement":{"shape":"MediaPlacement"},
+        "MediaRegion":{"shape":"String"}
+      }
+    },
+    "MeetingList":{
+      "type":"list",
+      "member":{"shape":"Meeting"}
+    },
+    "MeetingNotificationConfiguration":{
+      "type":"structure",
+      "members":{
+        "SnsTopicArn":{"shape":"Arn"},
+        "SqsQueueArn":{"shape":"Arn"}
       }
     },
     "Member":{
@@ -3910,6 +4348,10 @@
       "members":{
         "VoiceConnector":{"shape":"VoiceConnector"}
       }
+    },
+    "UriType":{
+      "type":"string",
+      "max":4096
     },
     "User":{
       "type":"structure",

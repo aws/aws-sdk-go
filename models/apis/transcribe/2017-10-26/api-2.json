@@ -315,6 +315,11 @@
         "Vocabularies":{"shape":"Vocabularies"}
       }
     },
+    "MaxAlternatives":{
+      "type":"integer",
+      "max":10,
+      "min":2
+    },
     "MaxResults":{
       "type":"integer",
       "max":100,
@@ -385,7 +390,9 @@
         "VocabularyName":{"shape":"VocabularyName"},
         "ShowSpeakerLabels":{"shape":"Boolean"},
         "MaxSpeakerLabels":{"shape":"MaxSpeakers"},
-        "ChannelIdentification":{"shape":"Boolean"}
+        "ChannelIdentification":{"shape":"Boolean"},
+        "ShowAlternatives":{"shape":"Boolean"},
+        "MaxAlternatives":{"shape":"MaxAlternatives"}
       }
     },
     "StartTranscriptionJobRequest":{

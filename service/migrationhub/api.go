@@ -84,8 +84,8 @@ func (c *MigrationHub) AssociateCreatedArtifactRequest(input *AssociateCreatedAr
 //   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
-//   Exception raised when there is an internal, configuration, or dependency
-//   error encountered.
+//   Exception raised when an internal, configuration, or dependency error is
+//   encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   Exception raised when there is an internal, configuration, or dependency
@@ -104,9 +104,13 @@ func (c *MigrationHub) AssociateCreatedArtifactRequest(input *AssociateCreatedAr
 //   is entered in the wrong format or data type.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   Exception raised when the request references a resource (ADS configuration,
-//   update stream, migration task, etc.) that does not exist in ADS (Application
-//   Discovery Service) or in Migration Hub's repository.
+//   Exception raised when the request references a resource (Application Discovery
+//   Service configuration, update stream, migration task, etc.) that does not
+//   exist in Application Discovery Service (Application Discovery Service) or
+//   in Migration Hub's repository.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/AssociateCreatedArtifact
 func (c *MigrationHub) AssociateCreatedArtifact(input *AssociateCreatedArtifactInput) (*AssociateCreatedArtifactOutput, error) {
@@ -175,8 +179,8 @@ func (c *MigrationHub) AssociateDiscoveredResourceRequest(input *AssociateDiscov
 
 // AssociateDiscoveredResource API operation for AWS Migration Hub.
 //
-// Associates a discovered resource ID from Application Discovery Service (ADS)
-// with a migration task.
+// Associates a discovered resource ID from Application Discovery Service with
+// a migration task.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -190,8 +194,8 @@ func (c *MigrationHub) AssociateDiscoveredResourceRequest(input *AssociateDiscov
 //   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
-//   Exception raised when there is an internal, configuration, or dependency
-//   error encountered.
+//   Exception raised when an internal, configuration, or dependency error is
+//   encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   Exception raised when there is an internal, configuration, or dependency
@@ -210,14 +214,18 @@ func (c *MigrationHub) AssociateDiscoveredResourceRequest(input *AssociateDiscov
 //   is entered in the wrong format or data type.
 //
 //   * ErrCodePolicyErrorException "PolicyErrorException"
-//   Exception raised when there are problems accessing ADS (Application Discovery
-//   Service); most likely due to a misconfigured policy or the migrationhub-discovery
-//   role is missing or not configured correctly.
+//   Exception raised when there are problems accessing Application Discovery
+//   Service (Application Discovery Service); most likely due to a misconfigured
+//   policy or the migrationhub-discovery role is missing or not configured correctly.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   Exception raised when the request references a resource (ADS configuration,
-//   update stream, migration task, etc.) that does not exist in ADS (Application
-//   Discovery Service) or in Migration Hub's repository.
+//   Exception raised when the request references a resource (Application Discovery
+//   Service configuration, update stream, migration task, etc.) that does not
+//   exist in Application Discovery Service (Application Discovery Service) or
+//   in Migration Hub's repository.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/AssociateDiscoveredResource
 func (c *MigrationHub) AssociateDiscoveredResource(input *AssociateDiscoveredResourceInput) (*AssociateDiscoveredResourceOutput, error) {
@@ -304,8 +312,8 @@ func (c *MigrationHub) CreateProgressUpdateStreamRequest(input *CreateProgressUp
 //   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
-//   Exception raised when there is an internal, configuration, or dependency
-//   error encountered.
+//   Exception raised when an internal, configuration, or dependency error is
+//   encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   Exception raised when there is an internal, configuration, or dependency
@@ -322,6 +330,9 @@ func (c *MigrationHub) CreateProgressUpdateStreamRequest(input *CreateProgressUp
 //   * ErrCodeInvalidInputException "InvalidInputException"
 //   Exception raised when the provided input violates a policy constraint or
 //   is entered in the wrong format or data type.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/CreateProgressUpdateStream
 func (c *MigrationHub) CreateProgressUpdateStream(input *CreateProgressUpdateStreamInput) (*CreateProgressUpdateStreamOutput, error) {
@@ -405,7 +416,7 @@ func (c *MigrationHub) DeleteProgressUpdateStreamRequest(input *DeleteProgressUp
 //    ListProgressUpdateStreams call.
 //
 //    * CreateProgressUpdateStream, ImportMigrationTask, NotifyMigrationTaskState,
-//    and all Associate[*] APIs realted to the tasks belonging to the stream
+//    and all Associate[*] APIs related to the tasks belonging to the stream
 //    will throw "InvalidInputException" if the stream of the same name is in
 //    the process of being deleted.
 //
@@ -426,8 +437,8 @@ func (c *MigrationHub) DeleteProgressUpdateStreamRequest(input *DeleteProgressUp
 //   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
-//   Exception raised when there is an internal, configuration, or dependency
-//   error encountered.
+//   Exception raised when an internal, configuration, or dependency error is
+//   encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   Exception raised when there is an internal, configuration, or dependency
@@ -446,9 +457,13 @@ func (c *MigrationHub) DeleteProgressUpdateStreamRequest(input *DeleteProgressUp
 //   is entered in the wrong format or data type.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   Exception raised when the request references a resource (ADS configuration,
-//   update stream, migration task, etc.) that does not exist in ADS (Application
-//   Discovery Service) or in Migration Hub's repository.
+//   Exception raised when the request references a resource (Application Discovery
+//   Service configuration, update stream, migration task, etc.) that does not
+//   exist in Application Discovery Service (Application Discovery Service) or
+//   in Migration Hub's repository.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/DeleteProgressUpdateStream
 func (c *MigrationHub) DeleteProgressUpdateStream(input *DeleteProgressUpdateStreamInput) (*DeleteProgressUpdateStreamOutput, error) {
@@ -530,8 +545,8 @@ func (c *MigrationHub) DescribeApplicationStateRequest(input *DescribeApplicatio
 //   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
-//   Exception raised when there is an internal, configuration, or dependency
-//   error encountered.
+//   Exception raised when an internal, configuration, or dependency error is
+//   encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   Exception raised when there is an internal, configuration, or dependency
@@ -542,14 +557,18 @@ func (c *MigrationHub) DescribeApplicationStateRequest(input *DescribeApplicatio
 //   is entered in the wrong format or data type.
 //
 //   * ErrCodePolicyErrorException "PolicyErrorException"
-//   Exception raised when there are problems accessing ADS (Application Discovery
-//   Service); most likely due to a misconfigured policy or the migrationhub-discovery
-//   role is missing or not configured correctly.
+//   Exception raised when there are problems accessing Application Discovery
+//   Service (Application Discovery Service); most likely due to a misconfigured
+//   policy or the migrationhub-discovery role is missing or not configured correctly.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   Exception raised when the request references a resource (ADS configuration,
-//   update stream, migration task, etc.) that does not exist in ADS (Application
-//   Discovery Service) or in Migration Hub's repository.
+//   Exception raised when the request references a resource (Application Discovery
+//   Service configuration, update stream, migration task, etc.) that does not
+//   exist in Application Discovery Service (Application Discovery Service) or
+//   in Migration Hub's repository.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/DescribeApplicationState
 func (c *MigrationHub) DescribeApplicationState(input *DescribeApplicationStateInput) (*DescribeApplicationStateOutput, error) {
@@ -631,8 +650,8 @@ func (c *MigrationHub) DescribeMigrationTaskRequest(input *DescribeMigrationTask
 //   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
-//   Exception raised when there is an internal, configuration, or dependency
-//   error encountered.
+//   Exception raised when an internal, configuration, or dependency error is
+//   encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   Exception raised when there is an internal, configuration, or dependency
@@ -643,9 +662,13 @@ func (c *MigrationHub) DescribeMigrationTaskRequest(input *DescribeMigrationTask
 //   is entered in the wrong format or data type.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   Exception raised when the request references a resource (ADS configuration,
-//   update stream, migration task, etc.) that does not exist in ADS (Application
-//   Discovery Service) or in Migration Hub's repository.
+//   Exception raised when the request references a resource (Application Discovery
+//   Service configuration, update stream, migration task, etc.) that does not
+//   exist in Application Discovery Service (Application Discovery Service) or
+//   in Migration Hub's repository.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/DescribeMigrationTask
 func (c *MigrationHub) DescribeMigrationTask(input *DescribeMigrationTaskInput) (*DescribeMigrationTaskOutput, error) {
@@ -740,8 +763,8 @@ func (c *MigrationHub) DisassociateCreatedArtifactRequest(input *DisassociateCre
 //   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
-//   Exception raised when there is an internal, configuration, or dependency
-//   error encountered.
+//   Exception raised when an internal, configuration, or dependency error is
+//   encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   Exception raised when there is an internal, configuration, or dependency
@@ -760,9 +783,13 @@ func (c *MigrationHub) DisassociateCreatedArtifactRequest(input *DisassociateCre
 //   is entered in the wrong format or data type.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   Exception raised when the request references a resource (ADS configuration,
-//   update stream, migration task, etc.) that does not exist in ADS (Application
-//   Discovery Service) or in Migration Hub's repository.
+//   Exception raised when the request references a resource (Application Discovery
+//   Service configuration, update stream, migration task, etc.) that does not
+//   exist in Application Discovery Service (Application Discovery Service) or
+//   in Migration Hub's repository.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/DisassociateCreatedArtifact
 func (c *MigrationHub) DisassociateCreatedArtifact(input *DisassociateCreatedArtifactInput) (*DisassociateCreatedArtifactOutput, error) {
@@ -831,8 +858,8 @@ func (c *MigrationHub) DisassociateDiscoveredResourceRequest(input *Disassociate
 
 // DisassociateDiscoveredResource API operation for AWS Migration Hub.
 //
-// Disassociate an Application Discovery Service (ADS) discovered resource from
-// a migration task.
+// Disassociate an Application Discovery Service discovered resource from a
+// migration task.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -846,8 +873,8 @@ func (c *MigrationHub) DisassociateDiscoveredResourceRequest(input *Disassociate
 //   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
-//   Exception raised when there is an internal, configuration, or dependency
-//   error encountered.
+//   Exception raised when an internal, configuration, or dependency error is
+//   encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   Exception raised when there is an internal, configuration, or dependency
@@ -866,9 +893,13 @@ func (c *MigrationHub) DisassociateDiscoveredResourceRequest(input *Disassociate
 //   is entered in the wrong format or data type.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   Exception raised when the request references a resource (ADS configuration,
-//   update stream, migration task, etc.) that does not exist in ADS (Application
-//   Discovery Service) or in Migration Hub's repository.
+//   Exception raised when the request references a resource (Application Discovery
+//   Service configuration, update stream, migration task, etc.) that does not
+//   exist in Application Discovery Service (Application Discovery Service) or
+//   in Migration Hub's repository.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/DisassociateDiscoveredResource
 func (c *MigrationHub) DisassociateDiscoveredResource(input *DisassociateDiscoveredResourceInput) (*DisassociateDiscoveredResourceOutput, error) {
@@ -956,8 +987,8 @@ func (c *MigrationHub) ImportMigrationTaskRequest(input *ImportMigrationTaskInpu
 //   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
-//   Exception raised when there is an internal, configuration, or dependency
-//   error encountered.
+//   Exception raised when an internal, configuration, or dependency error is
+//   encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   Exception raised when there is an internal, configuration, or dependency
@@ -976,9 +1007,13 @@ func (c *MigrationHub) ImportMigrationTaskRequest(input *ImportMigrationTaskInpu
 //   is entered in the wrong format or data type.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   Exception raised when the request references a resource (ADS configuration,
-//   update stream, migration task, etc.) that does not exist in ADS (Application
-//   Discovery Service) or in Migration Hub's repository.
+//   Exception raised when the request references a resource (Application Discovery
+//   Service configuration, update stream, migration task, etc.) that does not
+//   exist in Application Discovery Service (Application Discovery Service) or
+//   in Migration Hub's repository.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/ImportMigrationTask
 func (c *MigrationHub) ImportMigrationTask(input *ImportMigrationTaskInput) (*ImportMigrationTaskOutput, error) {
@@ -1033,6 +1068,12 @@ func (c *MigrationHub) ListCreatedArtifactsRequest(input *ListCreatedArtifactsIn
 		Name:       opListCreatedArtifacts,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1068,8 +1109,8 @@ func (c *MigrationHub) ListCreatedArtifactsRequest(input *ListCreatedArtifactsIn
 //   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
-//   Exception raised when there is an internal, configuration, or dependency
-//   error encountered.
+//   Exception raised when an internal, configuration, or dependency error is
+//   encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   Exception raised when there is an internal, configuration, or dependency
@@ -1080,9 +1121,13 @@ func (c *MigrationHub) ListCreatedArtifactsRequest(input *ListCreatedArtifactsIn
 //   is entered in the wrong format or data type.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   Exception raised when the request references a resource (ADS configuration,
-//   update stream, migration task, etc.) that does not exist in ADS (Application
-//   Discovery Service) or in Migration Hub's repository.
+//   Exception raised when the request references a resource (Application Discovery
+//   Service configuration, update stream, migration task, etc.) that does not
+//   exist in Application Discovery Service (Application Discovery Service) or
+//   in Migration Hub's repository.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/ListCreatedArtifacts
 func (c *MigrationHub) ListCreatedArtifacts(input *ListCreatedArtifactsInput) (*ListCreatedArtifactsOutput, error) {
@@ -1104,6 +1149,58 @@ func (c *MigrationHub) ListCreatedArtifactsWithContext(ctx aws.Context, input *L
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListCreatedArtifactsPages iterates over the pages of a ListCreatedArtifacts operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCreatedArtifacts method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListCreatedArtifacts operation.
+//    pageNum := 0
+//    err := client.ListCreatedArtifactsPages(params,
+//        func(page *migrationhub.ListCreatedArtifactsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *MigrationHub) ListCreatedArtifactsPages(input *ListCreatedArtifactsInput, fn func(*ListCreatedArtifactsOutput, bool) bool) error {
+	return c.ListCreatedArtifactsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCreatedArtifactsPagesWithContext same as ListCreatedArtifactsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MigrationHub) ListCreatedArtifactsPagesWithContext(ctx aws.Context, input *ListCreatedArtifactsInput, fn func(*ListCreatedArtifactsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCreatedArtifactsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCreatedArtifactsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCreatedArtifactsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListDiscoveredResources = "ListDiscoveredResources"
@@ -1137,6 +1234,12 @@ func (c *MigrationHub) ListDiscoveredResourcesRequest(input *ListDiscoveredResou
 		Name:       opListDiscoveredResources,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1164,8 +1267,8 @@ func (c *MigrationHub) ListDiscoveredResourcesRequest(input *ListDiscoveredResou
 //   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
-//   Exception raised when there is an internal, configuration, or dependency
-//   error encountered.
+//   Exception raised when an internal, configuration, or dependency error is
+//   encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   Exception raised when there is an internal, configuration, or dependency
@@ -1176,9 +1279,13 @@ func (c *MigrationHub) ListDiscoveredResourcesRequest(input *ListDiscoveredResou
 //   is entered in the wrong format or data type.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   Exception raised when the request references a resource (ADS configuration,
-//   update stream, migration task, etc.) that does not exist in ADS (Application
-//   Discovery Service) or in Migration Hub's repository.
+//   Exception raised when the request references a resource (Application Discovery
+//   Service configuration, update stream, migration task, etc.) that does not
+//   exist in Application Discovery Service (Application Discovery Service) or
+//   in Migration Hub's repository.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/ListDiscoveredResources
 func (c *MigrationHub) ListDiscoveredResources(input *ListDiscoveredResourcesInput) (*ListDiscoveredResourcesOutput, error) {
@@ -1200,6 +1307,58 @@ func (c *MigrationHub) ListDiscoveredResourcesWithContext(ctx aws.Context, input
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListDiscoveredResourcesPages iterates over the pages of a ListDiscoveredResources operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDiscoveredResources method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListDiscoveredResources operation.
+//    pageNum := 0
+//    err := client.ListDiscoveredResourcesPages(params,
+//        func(page *migrationhub.ListDiscoveredResourcesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *MigrationHub) ListDiscoveredResourcesPages(input *ListDiscoveredResourcesInput, fn func(*ListDiscoveredResourcesOutput, bool) bool) error {
+	return c.ListDiscoveredResourcesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDiscoveredResourcesPagesWithContext same as ListDiscoveredResourcesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MigrationHub) ListDiscoveredResourcesPagesWithContext(ctx aws.Context, input *ListDiscoveredResourcesInput, fn func(*ListDiscoveredResourcesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDiscoveredResourcesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDiscoveredResourcesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDiscoveredResourcesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListMigrationTasks = "ListMigrationTasks"
@@ -1233,6 +1392,12 @@ func (c *MigrationHub) ListMigrationTasksRequest(input *ListMigrationTasksInput)
 		Name:       opListMigrationTasks,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1268,8 +1433,8 @@ func (c *MigrationHub) ListMigrationTasksRequest(input *ListMigrationTasksInput)
 //   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
-//   Exception raised when there is an internal, configuration, or dependency
-//   error encountered.
+//   Exception raised when an internal, configuration, or dependency error is
+//   encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   Exception raised when there is an internal, configuration, or dependency
@@ -1280,14 +1445,18 @@ func (c *MigrationHub) ListMigrationTasksRequest(input *ListMigrationTasksInput)
 //   is entered in the wrong format or data type.
 //
 //   * ErrCodePolicyErrorException "PolicyErrorException"
-//   Exception raised when there are problems accessing ADS (Application Discovery
-//   Service); most likely due to a misconfigured policy or the migrationhub-discovery
-//   role is missing or not configured correctly.
+//   Exception raised when there are problems accessing Application Discovery
+//   Service (Application Discovery Service); most likely due to a misconfigured
+//   policy or the migrationhub-discovery role is missing or not configured correctly.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   Exception raised when the request references a resource (ADS configuration,
-//   update stream, migration task, etc.) that does not exist in ADS (Application
-//   Discovery Service) or in Migration Hub's repository.
+//   Exception raised when the request references a resource (Application Discovery
+//   Service configuration, update stream, migration task, etc.) that does not
+//   exist in Application Discovery Service (Application Discovery Service) or
+//   in Migration Hub's repository.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/ListMigrationTasks
 func (c *MigrationHub) ListMigrationTasks(input *ListMigrationTasksInput) (*ListMigrationTasksOutput, error) {
@@ -1309,6 +1478,58 @@ func (c *MigrationHub) ListMigrationTasksWithContext(ctx aws.Context, input *Lis
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListMigrationTasksPages iterates over the pages of a ListMigrationTasks operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListMigrationTasks method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListMigrationTasks operation.
+//    pageNum := 0
+//    err := client.ListMigrationTasksPages(params,
+//        func(page *migrationhub.ListMigrationTasksOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *MigrationHub) ListMigrationTasksPages(input *ListMigrationTasksInput, fn func(*ListMigrationTasksOutput, bool) bool) error {
+	return c.ListMigrationTasksPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListMigrationTasksPagesWithContext same as ListMigrationTasksPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MigrationHub) ListMigrationTasksPagesWithContext(ctx aws.Context, input *ListMigrationTasksInput, fn func(*ListMigrationTasksOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListMigrationTasksInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListMigrationTasksRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListMigrationTasksOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListProgressUpdateStreams = "ListProgressUpdateStreams"
@@ -1342,6 +1563,12 @@ func (c *MigrationHub) ListProgressUpdateStreamsRequest(input *ListProgressUpdat
 		Name:       opListProgressUpdateStreams,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1370,8 +1597,8 @@ func (c *MigrationHub) ListProgressUpdateStreamsRequest(input *ListProgressUpdat
 //   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
-//   Exception raised when there is an internal, configuration, or dependency
-//   error encountered.
+//   Exception raised when an internal, configuration, or dependency error is
+//   encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   Exception raised when there is an internal, configuration, or dependency
@@ -1380,6 +1607,9 @@ func (c *MigrationHub) ListProgressUpdateStreamsRequest(input *ListProgressUpdat
 //   * ErrCodeInvalidInputException "InvalidInputException"
 //   Exception raised when the provided input violates a policy constraint or
 //   is entered in the wrong format or data type.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/ListProgressUpdateStreams
 func (c *MigrationHub) ListProgressUpdateStreams(input *ListProgressUpdateStreamsInput) (*ListProgressUpdateStreamsOutput, error) {
@@ -1401,6 +1631,58 @@ func (c *MigrationHub) ListProgressUpdateStreamsWithContext(ctx aws.Context, inp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListProgressUpdateStreamsPages iterates over the pages of a ListProgressUpdateStreams operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListProgressUpdateStreams method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListProgressUpdateStreams operation.
+//    pageNum := 0
+//    err := client.ListProgressUpdateStreamsPages(params,
+//        func(page *migrationhub.ListProgressUpdateStreamsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *MigrationHub) ListProgressUpdateStreamsPages(input *ListProgressUpdateStreamsInput, fn func(*ListProgressUpdateStreamsOutput, bool) bool) error {
+	return c.ListProgressUpdateStreamsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListProgressUpdateStreamsPagesWithContext same as ListProgressUpdateStreamsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MigrationHub) ListProgressUpdateStreamsPagesWithContext(ctx aws.Context, input *ListProgressUpdateStreamsInput, fn func(*ListProgressUpdateStreamsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListProgressUpdateStreamsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListProgressUpdateStreamsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListProgressUpdateStreamsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opNotifyApplicationState = "NotifyApplicationState"
@@ -1464,8 +1746,8 @@ func (c *MigrationHub) NotifyApplicationStateRequest(input *NotifyApplicationSta
 //   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
-//   Exception raised when there is an internal, configuration, or dependency
-//   error encountered.
+//   Exception raised when an internal, configuration, or dependency error is
+//   encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   Exception raised when there is an internal, configuration, or dependency
@@ -1484,14 +1766,18 @@ func (c *MigrationHub) NotifyApplicationStateRequest(input *NotifyApplicationSta
 //   is entered in the wrong format or data type.
 //
 //   * ErrCodePolicyErrorException "PolicyErrorException"
-//   Exception raised when there are problems accessing ADS (Application Discovery
-//   Service); most likely due to a misconfigured policy or the migrationhub-discovery
-//   role is missing or not configured correctly.
+//   Exception raised when there are problems accessing Application Discovery
+//   Service (Application Discovery Service); most likely due to a misconfigured
+//   policy or the migrationhub-discovery role is missing or not configured correctly.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   Exception raised when the request references a resource (ADS configuration,
-//   update stream, migration task, etc.) that does not exist in ADS (Application
-//   Discovery Service) or in Migration Hub's repository.
+//   Exception raised when the request references a resource (Application Discovery
+//   Service configuration, update stream, migration task, etc.) that does not
+//   exist in Application Discovery Service (Application Discovery Service) or
+//   in Migration Hub's repository.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/NotifyApplicationState
 func (c *MigrationHub) NotifyApplicationState(input *NotifyApplicationStateInput) (*NotifyApplicationStateOutput, error) {
@@ -1583,8 +1869,8 @@ func (c *MigrationHub) NotifyMigrationTaskStateRequest(input *NotifyMigrationTas
 //   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
-//   Exception raised when there is an internal, configuration, or dependency
-//   error encountered.
+//   Exception raised when an internal, configuration, or dependency error is
+//   encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   Exception raised when there is an internal, configuration, or dependency
@@ -1603,9 +1889,13 @@ func (c *MigrationHub) NotifyMigrationTaskStateRequest(input *NotifyMigrationTas
 //   is entered in the wrong format or data type.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   Exception raised when the request references a resource (ADS configuration,
-//   update stream, migration task, etc.) that does not exist in ADS (Application
-//   Discovery Service) or in Migration Hub's repository.
+//   Exception raised when the request references a resource (Application Discovery
+//   Service configuration, update stream, migration task, etc.) that does not
+//   exist in Application Discovery Service (Application Discovery Service) or
+//   in Migration Hub's repository.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/NotifyMigrationTaskState
 func (c *MigrationHub) NotifyMigrationTaskState(input *NotifyMigrationTaskStateInput) (*NotifyMigrationTaskStateOutput, error) {
@@ -1675,14 +1965,14 @@ func (c *MigrationHub) PutResourceAttributesRequest(input *PutResourceAttributes
 // PutResourceAttributes API operation for AWS Migration Hub.
 //
 // Provides identifying details of the resource being migrated so that it can
-// be associated in the Application Discovery Service (ADS)'s repository. This
-// association occurs asynchronously after PutResourceAttributes returns.
+// be associated in the Application Discovery Service repository. This association
+// occurs asynchronously after PutResourceAttributes returns.
 //
 //    * Keep in mind that subsequent calls to PutResourceAttributes will override
 //    previously stored attributes. For example, if it is first called with
 //    a MAC address, but later, it is desired to add an IP address, it will
 //    then be required to call it with both the IP and MAC addresses to prevent
-//    overiding the MAC address.
+//    overriding the MAC address.
 //
 //    * Note the instructions regarding the special use case of the ResourceAttributeList
 //    (https://docs.aws.amazon.com/migrationhub/latest/ug/API_PutResourceAttributes.html#migrationhub-PutResourceAttributes-request-ResourceAttributeList)
@@ -1704,8 +1994,8 @@ func (c *MigrationHub) PutResourceAttributesRequest(input *PutResourceAttributes
 //   You do not have sufficient access to perform this action.
 //
 //   * ErrCodeInternalServerError "InternalServerError"
-//   Exception raised when there is an internal, configuration, or dependency
-//   error encountered.
+//   Exception raised when an internal, configuration, or dependency error is
+//   encountered.
 //
 //   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
 //   Exception raised when there is an internal, configuration, or dependency
@@ -1724,9 +2014,13 @@ func (c *MigrationHub) PutResourceAttributesRequest(input *PutResourceAttributes
 //   is entered in the wrong format or data type.
 //
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
-//   Exception raised when the request references a resource (ADS configuration,
-//   update stream, migration task, etc.) that does not exist in ADS (Application
-//   Discovery Service) or in Migration Hub's repository.
+//   Exception raised when the request references a resource (Application Discovery
+//   Service configuration, update stream, migration task, etc.) that does not
+//   exist in Application Discovery Service (Application Discovery Service) or
+//   in Migration Hub's repository.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/PutResourceAttributes
 func (c *MigrationHub) PutResourceAttributes(input *PutResourceAttributesInput) (*PutResourceAttributesOutput, error) {
@@ -1763,7 +2057,8 @@ type AssociateCreatedArtifactInput struct {
 	// to test if the caller has permission to make the call.
 	DryRun *bool `type:"boolean"`
 
-	// Unique identifier that references the migration task.
+	// Unique identifier that references the migration task. Do not store personal
+	// data in this field.
 	//
 	// MigrationTaskName is a required field
 	MigrationTaskName *string `min:"1" type:"string" required:"true"`
@@ -1864,7 +2159,8 @@ type AssociateDiscoveredResourceInput struct {
 	// to test if the caller has permission to make the call.
 	DryRun *bool `type:"boolean"`
 
-	// The identifier given to the MigrationTask.
+	// The identifier given to the MigrationTask. Do not store personal data in
+	// this field.
 	//
 	// MigrationTaskName is a required field
 	MigrationTaskName *string `min:"1" type:"string" required:"true"`
@@ -1960,7 +2256,8 @@ type CreateProgressUpdateStreamInput struct {
 	// to test if the caller has permission to make the call.
 	DryRun *bool `type:"boolean"`
 
-	// The name of the ProgressUpdateStream.
+	// The name of the ProgressUpdateStream. Do not store personal data in this
+	// field.
 	//
 	// ProgressUpdateStreamName is a required field
 	ProgressUpdateStreamName *string `min:"1" type:"string" required:"true"`
@@ -2078,7 +2375,8 @@ type DeleteProgressUpdateStreamInput struct {
 	// to test if the caller has permission to make the call.
 	DryRun *bool `type:"boolean"`
 
-	// The name of the ProgressUpdateStream.
+	// The name of the ProgressUpdateStream. Do not store personal data in this
+	// field.
 	//
 	// ProgressUpdateStreamName is a required field
 	ProgressUpdateStreamName *string `min:"1" type:"string" required:"true"`
@@ -2139,7 +2437,8 @@ func (s DeleteProgressUpdateStreamOutput) GoString() string {
 type DescribeApplicationStateInput struct {
 	_ struct{} `type:"structure"`
 
-	// The configurationId in ADS that uniquely identifies the grouped application.
+	// The configurationId in Application Discovery Service that uniquely identifies
+	// the grouped application.
 	//
 	// ApplicationId is a required field
 	ApplicationId *string `min:"1" type:"string" required:"true"`
@@ -2212,7 +2511,8 @@ func (s *DescribeApplicationStateOutput) SetLastUpdatedTime(v time.Time) *Descri
 type DescribeMigrationTaskInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier given to the MigrationTask.
+	// The identifier given to the MigrationTask. Do not store personal data in
+	// this field.
 	//
 	// MigrationTaskName is a required field
 	MigrationTaskName *string `min:"1" type:"string" required:"true"`
@@ -2304,7 +2604,7 @@ type DisassociateCreatedArtifactInput struct {
 	DryRun *bool `type:"boolean"`
 
 	// Unique identifier that references the migration task to be disassociated
-	// with the artifact.
+	// with the artifact. Do not store personal data in this field.
 	//
 	// MigrationTaskName is a required field
 	MigrationTaskName *string `min:"1" type:"string" required:"true"`
@@ -2394,7 +2694,7 @@ func (s DisassociateCreatedArtifactOutput) GoString() string {
 type DisassociateDiscoveredResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// ConfigurationId of the ADS resource to be disassociated.
+	// ConfigurationId of the Application Discovery Service resource to be disassociated.
 	//
 	// ConfigurationId is a required field
 	ConfigurationId *string `min:"1" type:"string" required:"true"`
@@ -2403,7 +2703,8 @@ type DisassociateDiscoveredResourceInput struct {
 	// to test if the caller has permission to make the call.
 	DryRun *bool `type:"boolean"`
 
-	// The identifier given to the MigrationTask.
+	// The identifier given to the MigrationTask. Do not store personal data in
+	// this field.
 	//
 	// MigrationTaskName is a required field
 	MigrationTaskName *string `min:"1" type:"string" required:"true"`
@@ -2494,7 +2795,8 @@ func (s DisassociateDiscoveredResourceOutput) GoString() string {
 type DiscoveredResource struct {
 	_ struct{} `type:"structure"`
 
-	// The configurationId in ADS that uniquely identifies the on-premise resource.
+	// The configurationId in Application Discovery Service that uniquely identifies
+	// the on-premise resource.
 	//
 	// ConfigurationId is a required field
 	ConfigurationId *string `min:"1" type:"string" required:"true"`
@@ -2549,12 +2851,13 @@ type ImportMigrationTaskInput struct {
 	// to test if the caller has permission to make the call.
 	DryRun *bool `type:"boolean"`
 
-	// Unique identifier that references the migration task.
+	// Unique identifier that references the migration task. Do not store personal
+	// data in this field.
 	//
 	// MigrationTaskName is a required field
 	MigrationTaskName *string `min:"1" type:"string" required:"true"`
 
-	// The name of the ProgressUpdateStream.
+	// The name of the ProgressUpdateStream. >
 	//
 	// ProgressUpdateStream is a required field
 	ProgressUpdateStream *string `min:"1" type:"string" required:"true"`
@@ -2630,7 +2933,8 @@ type ListCreatedArtifactsInput struct {
 	// Maximum number of results to be returned per page.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// Unique identifier that references the migration task.
+	// Unique identifier that references the migration task. Do not store personal
+	// data in this field.
 	//
 	// MigrationTaskName is a required field
 	MigrationTaskName *string `min:"1" type:"string" required:"true"`
@@ -2745,7 +3049,7 @@ type ListDiscoveredResourcesInput struct {
 	// The maximum number of results returned per page.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// The name of the MigrationTask.
+	// The name of the MigrationTask. Do not store personal data in this field.
 	//
 	// MigrationTaskName is a required field
 	MigrationTaskName *string `min:"1" type:"string" required:"true"`
@@ -3031,12 +3335,15 @@ func (s *ListProgressUpdateStreamsOutput) SetProgressUpdateStreamSummaryList(v [
 type MigrationTask struct {
 	_ struct{} `type:"structure"`
 
-	// Unique identifier that references the migration task.
+	// Unique identifier that references the migration task. Do not store personal
+	// data in this field.
 	MigrationTaskName *string `min:"1" type:"string"`
 
 	// A name that identifies the vendor of the migration tool being used.
 	ProgressUpdateStream *string `min:"1" type:"string"`
 
+	// Information about the resource that is being migrated. This data will be
+	// used to map the task to a resource in the Application Discovery Service repository.
 	ResourceAttributeList []*ResourceAttribute `type:"list"`
 
 	// Task object encapsulating task information.
@@ -3091,9 +3398,11 @@ func (s *MigrationTask) SetUpdateDateTime(v time.Time) *MigrationTask {
 type MigrationTaskSummary struct {
 	_ struct{} `type:"structure"`
 
-	// Unique identifier that references the migration task.
+	// Unique identifier that references the migration task. Do not store personal
+	// data in this field.
 	MigrationTaskName *string `min:"1" type:"string"`
 
+	// Indication of the percentage completion of the task.
 	ProgressPercent *int64 `type:"integer"`
 
 	// An AWS resource used for access control. It should uniquely identify the
@@ -3159,7 +3468,8 @@ func (s *MigrationTaskSummary) SetUpdateDateTime(v time.Time) *MigrationTaskSumm
 type NotifyApplicationStateInput struct {
 	_ struct{} `type:"structure"`
 
-	// The configurationId in ADS that uniquely identifies the grouped application.
+	// The configurationId in Application Discovery Service that uniquely identifies
+	// the grouped application.
 	//
 	// ApplicationId is a required field
 	ApplicationId *string `min:"1" type:"string" required:"true"`
@@ -3172,6 +3482,9 @@ type NotifyApplicationStateInput struct {
 	//
 	// Status is a required field
 	Status *string `type:"string" required:"true" enum:"ApplicationStatus"`
+
+	// The timestamp when the application state changed.
+	UpdateDateTime *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -3221,6 +3534,12 @@ func (s *NotifyApplicationStateInput) SetStatus(v string) *NotifyApplicationStat
 	return s
 }
 
+// SetUpdateDateTime sets the UpdateDateTime field's value.
+func (s *NotifyApplicationStateInput) SetUpdateDateTime(v time.Time) *NotifyApplicationStateInput {
+	s.UpdateDateTime = &v
+	return s
+}
+
 type NotifyApplicationStateOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3242,7 +3561,8 @@ type NotifyMigrationTaskStateInput struct {
 	// to test if the caller has permission to make the call.
 	DryRun *bool `type:"boolean"`
 
-	// Unique identifier that references the migration task.
+	// Unique identifier that references the migration task. Do not store personal
+	// data in this field.
 	//
 	// MigrationTaskName is a required field
 	MigrationTaskName *string `min:"1" type:"string" required:"true"`
@@ -3371,7 +3691,8 @@ func (s NotifyMigrationTaskStateOutput) GoString() string {
 type ProgressUpdateStreamSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the ProgressUpdateStream.
+	// The name of the ProgressUpdateStream. Do not store personal data in this
+	// field.
 	ProgressUpdateStreamName *string `min:"1" type:"string"`
 }
 
@@ -3398,7 +3719,8 @@ type PutResourceAttributesInput struct {
 	// to test if the caller has permission to make the call.
 	DryRun *bool `type:"boolean"`
 
-	// Unique identifier that references the migration task.
+	// Unique identifier that references the migration task. Do not store personal
+	// data in this field.
 	//
 	// MigrationTaskName is a required field
 	MigrationTaskName *string `min:"1" type:"string" required:"true"`
@@ -3409,8 +3731,7 @@ type PutResourceAttributesInput struct {
 	ProgressUpdateStream *string `min:"1" type:"string" required:"true"`
 
 	// Information about the resource that is being migrated. This data will be
-	// used to map the task to a resource in the Application Discovery Service (ADS)'s
-	// repository.
+	// used to map the task to a resource in the Application Discovery Service repository.
 	//
 	// Takes the object array of ResourceAttribute where the Type field is reserved
 	// for the following values: IPV4_ADDRESS | IPV6_ADDRESS | MAC_ADDRESS | FQDN
@@ -3422,7 +3743,7 @@ type PutResourceAttributesInput struct {
 	//    is required that VM_MANAGER_ID, as a minimum, is always set. If VM_MANAGER_ID
 	//    is not set, then all "VM" fields will be discarded and "VM" fields will
 	//    not be used for matching the migration task to a server in Application
-	//    Discovery Service (ADS)'s repository. See the Example (https://docs.aws.amazon.com/migrationhub/latest/ug/API_PutResourceAttributes.html#API_PutResourceAttributes_Examples)
+	//    Discovery Service repository. See the Example (https://docs.aws.amazon.com/migrationhub/latest/ug/API_PutResourceAttributes.html#API_PutResourceAttributes_Examples)
 	//    section below for a use case of specifying "VM" related values.
 	//
 	//    * If a server you are trying to match has multiple IP or MAC addresses,
