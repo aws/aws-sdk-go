@@ -339,6 +339,19 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "DescribeAvailabilityMonitorTest":{
+      "name":"DescribeAvailabilityMonitorTest",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeAvailabilityMonitorTestInput"},
+      "output":{"shape":"DescribeAvailabilityMonitorTestOutput"},
+      "errors":[
+        {"shape":"InvalidGatewayRequestException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "DescribeBandwidthRateLimit":{
       "name":"DescribeBandwidthRateLimit",
       "http":{
@@ -820,6 +833,19 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "StartAvailabilityMonitorTest":{
+      "name":"StartAvailabilityMonitorTest",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartAvailabilityMonitorTestInput"},
+      "output":{"shape":"StartAvailabilityMonitorTestOutput"},
+      "errors":[
+        {"shape":"InvalidGatewayRequestException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "StartGateway":{
       "name":"StartGateway",
       "http":{
@@ -995,6 +1021,18 @@
       "max":50,
       "min":1
     },
+    "ActiveDirectoryStatus":{
+      "type":"string",
+      "enum":[
+        "ACCESS_DENIED",
+        "DETACHED",
+        "JOINED",
+        "JOINING",
+        "NETWORK_ERROR",
+        "TIMEOUT",
+        "UNKNOWN_ERROR"
+      ]
+    },
     "AddCacheInput":{
       "type":"structure",
       "required":[
@@ -1106,6 +1144,14 @@
       "type":"string",
       "max":15,
       "min":5
+    },
+    "AvailabilityMonitorTestStatus":{
+      "type":"string",
+      "enum":[
+        "COMPLETE",
+        "FAILED",
+        "PENDING"
+      ]
     },
     "BandwidthDownloadRateLimit":{
       "type":"long",
@@ -1547,6 +1593,21 @@
         "VolumeARN":{"shape":"VolumeARN"}
       }
     },
+    "DescribeAvailabilityMonitorTestInput":{
+      "type":"structure",
+      "required":["GatewayARN"],
+      "members":{
+        "GatewayARN":{"shape":"GatewayARN"}
+      }
+    },
+    "DescribeAvailabilityMonitorTestOutput":{
+      "type":"structure",
+      "members":{
+        "GatewayARN":{"shape":"GatewayARN"},
+        "Status":{"shape":"AvailabilityMonitorTestStatus"},
+        "StartTime":{"shape":"Time"}
+      }
+    },
     "DescribeBandwidthRateLimitInput":{
       "type":"structure",
       "required":["GatewayARN"],
@@ -1630,7 +1691,8 @@
         "Ec2InstanceRegion":{"shape":"Ec2InstanceRegion"},
         "Tags":{"shape":"Tags"},
         "VPCEndpoint":{"shape":"string"},
-        "CloudWatchLogGroupARN":{"shape":"CloudWatchLogGroupARN"}
+        "CloudWatchLogGroupARN":{"shape":"CloudWatchLogGroupARN"},
+        "HostEnvironment":{"shape":"HostEnvironment"}
       }
     },
     "DescribeMaintenanceStartTimeInput":{
@@ -1689,6 +1751,7 @@
       "members":{
         "GatewayARN":{"shape":"GatewayARN"},
         "DomainName":{"shape":"DomainName"},
+        "ActiveDirectoryStatus":{"shape":"ActiveDirectoryStatus"},
         "SMBGuestPasswordSet":{"shape":"Boolean"},
         "SMBSecurityStrategy":{"shape":"SMBSecurityStrategy"}
       }
@@ -1967,6 +2030,7 @@
         "LocalStorageLimitExceeded",
         "LunAlreadyAllocated ",
         "LunInvalid",
+        "JoinDomainInProgress",
         "MaximumContentLengthExceeded",
         "MaximumTapeCartridgeCountExceeded",
         "MaximumVolumeCountExceeded",
@@ -2129,6 +2193,15 @@
       "type":"string",
       "pattern":"^(([a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9\\-]*[A-Za-z0-9])(:(\\d+))?$"
     },
+    "HostEnvironment":{
+      "type":"string",
+      "enum":[
+        "VMWARE",
+        "HYPER-V",
+        "EC2",
+        "OTHER"
+      ]
+    },
     "Hosts":{
       "type":"list",
       "member":{"shape":"Host"}
@@ -2186,6 +2259,7 @@
         "DomainName":{"shape":"DomainName"},
         "OrganizationalUnit":{"shape":"OrganizationalUnit"},
         "DomainControllers":{"shape":"Hosts"},
+        "TimeoutInSeconds":{"shape":"TimeoutInSeconds"},
         "UserName":{"shape":"DomainUserName"},
         "Password":{"shape":"DomainUserPassword"}
       }
@@ -2193,7 +2267,8 @@
     "JoinDomainOutput":{
       "type":"structure",
       "members":{
-        "GatewayARN":{"shape":"GatewayARN"}
+        "GatewayARN":{"shape":"GatewayARN"},
+        "ActiveDirectoryStatus":{"shape":"ActiveDirectoryStatus"}
       }
     },
     "KMSKey":{
@@ -2680,6 +2755,19 @@
       "max":15,
       "min":5
     },
+    "StartAvailabilityMonitorTestInput":{
+      "type":"structure",
+      "required":["GatewayARN"],
+      "members":{
+        "GatewayARN":{"shape":"GatewayARN"}
+      }
+    },
+    "StartAvailabilityMonitorTestOutput":{
+      "type":"structure",
+      "members":{
+        "GatewayARN":{"shape":"GatewayARN"}
+      }
+    },
     "StartGatewayInput":{
       "type":"structure",
       "required":["GatewayARN"],
@@ -2868,6 +2956,11 @@
       "pattern":"^[-\\.;a-z0-9]+$"
     },
     "Time":{"type":"timestamp"},
+    "TimeoutInSeconds":{
+      "type":"integer",
+      "max":3600,
+      "min":0
+    },
     "UpdateBandwidthRateLimitInput":{
       "type":"structure",
       "required":["GatewayARN"],

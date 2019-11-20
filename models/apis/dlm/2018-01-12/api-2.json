@@ -129,6 +129,18 @@
     }
   },
   "shapes":{
+    "AvailabilityZone":{
+      "type":"string",
+      "max":16,
+      "min":0,
+      "pattern":"([a-z]+-){2,3}\\d[a-z]"
+    },
+    "AvailabilityZoneList":{
+      "type":"list",
+      "member":{"shape":"AvailabilityZone"},
+      "max":10,
+      "min":1
+    },
     "CopyTags":{"type":"boolean"},
     "Count":{
       "type":"integer",
@@ -193,6 +205,17 @@
       "max":2048,
       "min":0,
       "pattern":"arn:aws:iam::\\d+:role/.*"
+    },
+    "FastRestoreRule":{
+      "type":"structure",
+      "required":[
+        "Count",
+        "AvailabilityZones"
+      ],
+      "members":{
+        "Count":{"shape":"Count"},
+        "AvailabilityZones":{"shape":"AvailabilityZoneList"}
+      }
     },
     "GetLifecyclePoliciesRequest":{
       "type":"structure",
@@ -422,7 +445,8 @@
         "TagsToAdd":{"shape":"TagsToAddList"},
         "VariableTags":{"shape":"VariableTagsList"},
         "CreateRule":{"shape":"CreateRule"},
-        "RetainRule":{"shape":"RetainRule"}
+        "RetainRule":{"shape":"RetainRule"},
+        "FastRestoreRule":{"shape":"FastRestoreRule"}
       }
     },
     "ScheduleList":{

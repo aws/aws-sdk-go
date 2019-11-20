@@ -160,6 +160,10 @@ type StorageGatewayAPI interface {
 	DeleteVolumeWithContext(aws.Context, *storagegateway.DeleteVolumeInput, ...request.Option) (*storagegateway.DeleteVolumeOutput, error)
 	DeleteVolumeRequest(*storagegateway.DeleteVolumeInput) (*request.Request, *storagegateway.DeleteVolumeOutput)
 
+	DescribeAvailabilityMonitorTest(*storagegateway.DescribeAvailabilityMonitorTestInput) (*storagegateway.DescribeAvailabilityMonitorTestOutput, error)
+	DescribeAvailabilityMonitorTestWithContext(aws.Context, *storagegateway.DescribeAvailabilityMonitorTestInput, ...request.Option) (*storagegateway.DescribeAvailabilityMonitorTestOutput, error)
+	DescribeAvailabilityMonitorTestRequest(*storagegateway.DescribeAvailabilityMonitorTestInput) (*request.Request, *storagegateway.DescribeAvailabilityMonitorTestOutput)
+
 	DescribeBandwidthRateLimit(*storagegateway.DescribeBandwidthRateLimitInput) (*storagegateway.DescribeBandwidthRateLimitOutput, error)
 	DescribeBandwidthRateLimitWithContext(aws.Context, *storagegateway.DescribeBandwidthRateLimitInput, ...request.Option) (*storagegateway.DescribeBandwidthRateLimitOutput, error)
 	DescribeBandwidthRateLimitRequest(*storagegateway.DescribeBandwidthRateLimitInput) (*request.Request, *storagegateway.DescribeBandwidthRateLimitOutput)
@@ -334,6 +338,10 @@ type StorageGatewayAPI interface {
 	ShutdownGateway(*storagegateway.ShutdownGatewayInput) (*storagegateway.ShutdownGatewayOutput, error)
 	ShutdownGatewayWithContext(aws.Context, *storagegateway.ShutdownGatewayInput, ...request.Option) (*storagegateway.ShutdownGatewayOutput, error)
 	ShutdownGatewayRequest(*storagegateway.ShutdownGatewayInput) (*request.Request, *storagegateway.ShutdownGatewayOutput)
+
+	StartAvailabilityMonitorTest(*storagegateway.StartAvailabilityMonitorTestInput) (*storagegateway.StartAvailabilityMonitorTestOutput, error)
+	StartAvailabilityMonitorTestWithContext(aws.Context, *storagegateway.StartAvailabilityMonitorTestInput, ...request.Option) (*storagegateway.StartAvailabilityMonitorTestOutput, error)
+	StartAvailabilityMonitorTestRequest(*storagegateway.StartAvailabilityMonitorTestInput) (*request.Request, *storagegateway.StartAvailabilityMonitorTestOutput)
 
 	StartGateway(*storagegateway.StartGatewayInput) (*storagegateway.StartGatewayOutput, error)
 	StartGatewayWithContext(aws.Context, *storagegateway.StartGatewayInput, ...request.Option) (*storagegateway.StartGatewayOutput, error)

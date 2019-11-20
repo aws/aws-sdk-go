@@ -427,6 +427,8 @@
       "members":{
         "ActiveDirectoryId":{"shape":"DirectoryId"},
         "SelfManagedActiveDirectoryConfiguration":{"shape":"SelfManagedActiveDirectoryConfiguration"},
+        "DeploymentType":{"shape":"WindowsDeploymentType"},
+        "PreferredSubnetId":{"shape":"SubnetId"},
         "ThroughputCapacity":{"shape":"MegabytesPerSecond"},
         "WeeklyMaintenanceStartTime":{"shape":"WeeklyTime"},
         "DailyAutomaticBackupStartTime":{"shape":"DailyTime"},
@@ -1033,11 +1035,22 @@
       "min":7,
       "pattern":"^[1-7]:([01]\\d|2[0-3]):?([0-5]\\d)$"
     },
+    "WindowsDeploymentType":{
+      "type":"string",
+      "enum":[
+        "MULTI_AZ_1",
+        "SINGLE_AZ_1"
+      ]
+    },
     "WindowsFileSystemConfiguration":{
       "type":"structure",
       "members":{
         "ActiveDirectoryId":{"shape":"DirectoryId"},
         "SelfManagedActiveDirectoryConfiguration":{"shape":"SelfManagedActiveDirectoryAttributes"},
+        "DeploymentType":{"shape":"WindowsDeploymentType"},
+        "RemoteAdministrationEndpoint":{"shape":"DNSName"},
+        "PreferredSubnetId":{"shape":"SubnetId"},
+        "PreferredFileServerIp":{"shape":"IpAddress"},
         "ThroughputCapacity":{"shape":"MegabytesPerSecond"},
         "MaintenanceOperationsInProgress":{"shape":"FileSystemMaintenanceOperations"},
         "WeeklyMaintenanceStartTime":{"shape":"WeeklyTime"},

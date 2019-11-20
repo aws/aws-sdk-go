@@ -24,7 +24,8 @@
         {"shape":"AuthorizationErrorException"},
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidParameterValueException"},
-        {"shape":"ServerInternalErrorException"}
+        {"shape":"ServerInternalErrorException"},
+        {"shape":"HomeRegionNotSetException"}
       ]
     },
     "BatchDeleteImportData":{
@@ -37,8 +38,10 @@
       "output":{"shape":"BatchDeleteImportDataResponse"},
       "errors":[
         {"shape":"AuthorizationErrorException"},
+        {"shape":"InvalidParameterException"},
         {"shape":"InvalidParameterValueException"},
-        {"shape":"ServerInternalErrorException"}
+        {"shape":"ServerInternalErrorException"},
+        {"shape":"HomeRegionNotSetException"}
       ]
     },
     "CreateApplication":{
@@ -53,7 +56,8 @@
         {"shape":"AuthorizationErrorException"},
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidParameterValueException"},
-        {"shape":"ServerInternalErrorException"}
+        {"shape":"ServerInternalErrorException"},
+        {"shape":"HomeRegionNotSetException"}
       ]
     },
     "CreateTags":{
@@ -69,7 +73,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidParameterValueException"},
-        {"shape":"ServerInternalErrorException"}
+        {"shape":"ServerInternalErrorException"},
+        {"shape":"HomeRegionNotSetException"}
       ]
     },
     "DeleteApplications":{
@@ -84,7 +89,8 @@
         {"shape":"AuthorizationErrorException"},
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidParameterValueException"},
-        {"shape":"ServerInternalErrorException"}
+        {"shape":"ServerInternalErrorException"},
+        {"shape":"HomeRegionNotSetException"}
       ]
     },
     "DeleteTags":{
@@ -100,7 +106,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidParameterValueException"},
-        {"shape":"ServerInternalErrorException"}
+        {"shape":"ServerInternalErrorException"},
+        {"shape":"HomeRegionNotSetException"}
       ]
     },
     "DescribeAgents":{
@@ -115,7 +122,8 @@
         {"shape":"AuthorizationErrorException"},
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidParameterValueException"},
-        {"shape":"ServerInternalErrorException"}
+        {"shape":"ServerInternalErrorException"},
+        {"shape":"HomeRegionNotSetException"}
       ]
     },
     "DescribeConfigurations":{
@@ -130,7 +138,8 @@
         {"shape":"AuthorizationErrorException"},
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidParameterValueException"},
-        {"shape":"ServerInternalErrorException"}
+        {"shape":"ServerInternalErrorException"},
+        {"shape":"HomeRegionNotSetException"}
       ]
     },
     "DescribeContinuousExports":{
@@ -147,7 +156,8 @@
         {"shape":"InvalidParameterValueException"},
         {"shape":"ServerInternalErrorException"},
         {"shape":"OperationNotPermittedException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"HomeRegionNotSetException"}
       ]
     },
     "DescribeExportConfigurations":{
@@ -163,7 +173,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidParameterValueException"},
-        {"shape":"ServerInternalErrorException"}
+        {"shape":"ServerInternalErrorException"},
+        {"shape":"HomeRegionNotSetException"}
       ],
       "deprecated":true
     },
@@ -179,7 +190,8 @@
         {"shape":"AuthorizationErrorException"},
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidParameterValueException"},
-        {"shape":"ServerInternalErrorException"}
+        {"shape":"ServerInternalErrorException"},
+        {"shape":"HomeRegionNotSetException"}
       ]
     },
     "DescribeImportTasks":{
@@ -192,8 +204,10 @@
       "output":{"shape":"DescribeImportTasksResponse"},
       "errors":[
         {"shape":"AuthorizationErrorException"},
+        {"shape":"InvalidParameterException"},
         {"shape":"InvalidParameterValueException"},
-        {"shape":"ServerInternalErrorException"}
+        {"shape":"ServerInternalErrorException"},
+        {"shape":"HomeRegionNotSetException"}
       ]
     },
     "DescribeTags":{
@@ -209,7 +223,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidParameterValueException"},
-        {"shape":"ServerInternalErrorException"}
+        {"shape":"ServerInternalErrorException"},
+        {"shape":"HomeRegionNotSetException"}
       ]
     },
     "DisassociateConfigurationItemsFromApplication":{
@@ -224,7 +239,8 @@
         {"shape":"AuthorizationErrorException"},
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidParameterValueException"},
-        {"shape":"ServerInternalErrorException"}
+        {"shape":"ServerInternalErrorException"},
+        {"shape":"HomeRegionNotSetException"}
       ]
     },
     "ExportConfigurations":{
@@ -239,7 +255,8 @@
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidParameterValueException"},
         {"shape":"ServerInternalErrorException"},
-        {"shape":"OperationNotPermittedException"}
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"HomeRegionNotSetException"}
       ],
       "deprecated":true
     },
@@ -255,7 +272,8 @@
         {"shape":"AuthorizationErrorException"},
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidParameterValueException"},
-        {"shape":"ServerInternalErrorException"}
+        {"shape":"ServerInternalErrorException"},
+        {"shape":"HomeRegionNotSetException"}
       ]
     },
     "ListConfigurations":{
@@ -271,7 +289,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidParameterValueException"},
-        {"shape":"ServerInternalErrorException"}
+        {"shape":"ServerInternalErrorException"},
+        {"shape":"HomeRegionNotSetException"}
       ]
     },
     "ListServerNeighbors":{
@@ -286,7 +305,8 @@
         {"shape":"AuthorizationErrorException"},
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidParameterValueException"},
-        {"shape":"ServerInternalErrorException"}
+        {"shape":"ServerInternalErrorException"},
+        {"shape":"HomeRegionNotSetException"}
       ]
     },
     "StartContinuousExport":{
@@ -304,7 +324,8 @@
         {"shape":"InvalidParameterValueException"},
         {"shape":"ServerInternalErrorException"},
         {"shape":"OperationNotPermittedException"},
-        {"shape":"ResourceInUseException"}
+        {"shape":"ResourceInUseException"},
+        {"shape":"HomeRegionNotSetException"}
       ]
     },
     "StartDataCollectionByAgentIds":{
@@ -319,7 +340,8 @@
         {"shape":"AuthorizationErrorException"},
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidParameterValueException"},
-        {"shape":"ServerInternalErrorException"}
+        {"shape":"ServerInternalErrorException"},
+        {"shape":"HomeRegionNotSetException"}
       ]
     },
     "StartExportTask":{
@@ -335,7 +357,8 @@
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidParameterValueException"},
         {"shape":"ServerInternalErrorException"},
-        {"shape":"OperationNotPermittedException"}
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"HomeRegionNotSetException"}
       ]
     },
     "StartImportTask":{
@@ -349,8 +372,10 @@
       "errors":[
         {"shape":"ResourceInUseException"},
         {"shape":"AuthorizationErrorException"},
+        {"shape":"InvalidParameterException"},
         {"shape":"InvalidParameterValueException"},
-        {"shape":"ServerInternalErrorException"}
+        {"shape":"ServerInternalErrorException"},
+        {"shape":"HomeRegionNotSetException"}
       ]
     },
     "StopContinuousExport":{
@@ -368,7 +393,8 @@
         {"shape":"ServerInternalErrorException"},
         {"shape":"OperationNotPermittedException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"ResourceInUseException"}
+        {"shape":"ResourceInUseException"},
+        {"shape":"HomeRegionNotSetException"}
       ]
     },
     "StopDataCollectionByAgentIds":{
@@ -383,7 +409,8 @@
         {"shape":"AuthorizationErrorException"},
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidParameterValueException"},
-        {"shape":"ServerInternalErrorException"}
+        {"shape":"ServerInternalErrorException"},
+        {"shape":"HomeRegionNotSetException"}
       ]
     },
     "UpdateApplication":{
@@ -398,7 +425,8 @@
         {"shape":"AuthorizationErrorException"},
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidParameterValueException"},
-        {"shape":"ServerInternalErrorException"}
+        {"shape":"ServerInternalErrorException"},
+        {"shape":"HomeRegionNotSetException"}
       ]
     }
   },
@@ -974,6 +1002,13 @@
         "agentSummary":{"shape":"CustomerAgentInfo"},
         "connectorSummary":{"shape":"CustomerConnectorInfo"}
       }
+    },
+    "HomeRegionNotSetException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"Message"}
+      },
+      "exception":true
     },
     "ImportStatus":{
       "type":"string",

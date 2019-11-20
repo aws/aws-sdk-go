@@ -1724,11 +1724,21 @@ type Settings struct {
 	// request. If you set both, your request returns a BadRequestException.
 	ChannelIdentification *bool `type:"boolean"`
 
+	// The number of alternative transcriptions that the service should return.
+	// If you specify the MaxAlternatives field, you must set the ShowAlternatives
+	// field to true.
+	MaxAlternatives *int64 `min:"2" type:"integer"`
+
 	// The maximum number of speakers to identify in the input audio. If there are
 	// more speakers in the audio than this number, multiple speakers will be identified
 	// as a single speaker. If you specify the MaxSpeakerLabels field, you must
 	// set the ShowSpeakerLabels field to true.
 	MaxSpeakerLabels *int64 `min:"2" type:"integer"`
+
+	// Determines whether the transcription contains alternative transcriptions.
+	// If you set the ShowAlternatives field to true, you must also set the maximum
+	// number of alternatives to return in the MaxAlternatives field.
+	ShowAlternatives *bool `type:"boolean"`
 
 	// Determines whether the transcription job uses speaker recognition to identify
 	// different speakers in the input audio. Speaker recognition labels individual
@@ -1756,6 +1766,9 @@ func (s Settings) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Settings) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Settings"}
+	if s.MaxAlternatives != nil && *s.MaxAlternatives < 2 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxAlternatives", 2))
+	}
 	if s.MaxSpeakerLabels != nil && *s.MaxSpeakerLabels < 2 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxSpeakerLabels", 2))
 	}
@@ -1775,9 +1788,21 @@ func (s *Settings) SetChannelIdentification(v bool) *Settings {
 	return s
 }
 
+// SetMaxAlternatives sets the MaxAlternatives field's value.
+func (s *Settings) SetMaxAlternatives(v int64) *Settings {
+	s.MaxAlternatives = &v
+	return s
+}
+
 // SetMaxSpeakerLabels sets the MaxSpeakerLabels field's value.
 func (s *Settings) SetMaxSpeakerLabels(v int64) *Settings {
 	s.MaxSpeakerLabels = &v
+	return s
+}
+
+// SetShowAlternatives sets the ShowAlternatives field's value.
+func (s *Settings) SetShowAlternatives(v bool) *Settings {
+	s.ShowAlternatives = &v
 	return s
 }
 

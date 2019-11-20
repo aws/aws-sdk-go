@@ -12,6 +12,18 @@
     "UpdateLifecyclePolicy": "<p>Updates the specified lifecycle policy.</p>"
   },
   "shapes": {
+    "AvailabilityZone": {
+      "base": null,
+      "refs": {
+        "AvailabilityZoneList$member": null
+      }
+    },
+    "AvailabilityZoneList": {
+      "base": null,
+      "refs": {
+        "FastRestoreRule$AvailabilityZones": "<p>The Availability Zones in which to enable fast snapshot restore.</p>"
+      }
+    },
     "CopyTags": {
       "base": null,
       "refs": {
@@ -21,6 +33,7 @@
     "Count": {
       "base": null,
       "refs": {
+        "FastRestoreRule$Count": "<p>The number of snapshots to be enabled with fast snapshot restore.</p>",
         "RetainRule$Count": "<p>The number of snapshots to keep for each volume, up to a maximum of 1000.</p>"
       }
     },
@@ -80,6 +93,12 @@
         "CreateLifecyclePolicyRequest$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role used to run the operations specified by the lifecycle policy.</p>",
         "LifecyclePolicy$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role used to run the operations specified by the lifecycle policy.</p>",
         "UpdateLifecyclePolicyRequest$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role used to run the operations specified by the lifecycle policy.</p>"
+      }
+    },
+    "FastRestoreRule": {
+      "base": "<p>Specifies when to enable fast snapshot restore.</p>",
+      "refs": {
+        "Schedule$FastRestoreRule": "<p>Enable fast snapshot restore.</p>"
       }
     },
     "GetLifecyclePoliciesRequest": {

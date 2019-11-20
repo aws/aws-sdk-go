@@ -2111,6 +2111,12 @@
         "MetadataEntry$Value": "<p>Value of the Object.</p>"
       }
     },
+    "Metrics": {
+      "base": "<p> A container specifying replication metrics-related information, including whether emitting metrics and Amazon S3 events for replication are enabled. In addition, contains configurations related to specific metrics or events. Must be specified together with a <code>ReplicationTime</code> block. </p>",
+      "refs": {
+        "Destination$Metrics": "<p> A container specifying replication metrics-related information, including whether emitting metrics and Amazon S3 events for replication are enabled. In addition, contains configurations related to specific metrics or events. Must be specified together with a <code>ReplicationTime</code> block. </p>"
+      }
+    },
     "MetricsAndOperator": {
       "base": "<p>A conjunction (logical AND) of predicates, which is used in evaluating a metrics filter. The operator must have at least two predicates, and an object must match all of the predicates in order for the filter to apply.</p>",
       "refs": {
@@ -2144,6 +2150,18 @@
         "GetBucketMetricsConfigurationRequest$Id": "<p>The ID used to identify the metrics configuration.</p>",
         "MetricsConfiguration$Id": "<p>The ID used to identify the metrics configuration.</p>",
         "PutBucketMetricsConfigurationRequest$Id": "<p>The ID used to identify the metrics configuration.</p>"
+      }
+    },
+    "MetricsStatus": {
+      "base": null,
+      "refs": {
+        "Metrics$Status": "<p> Specifies whether the replication metrics are enabled. </p>"
+      }
+    },
+    "Minutes": {
+      "base": null,
+      "refs": {
+        "ReplicationTimeValue$Minutes": "<p> Contains an integer specifying time in minutes. </p>"
       }
     },
     "MissingMeta": {
@@ -2971,6 +2989,25 @@
       "refs": {
         "GetObjectOutput$ReplicationStatus": "<p>Amazon S3 can return this if your request involves a bucket that is either a source or destination in a replication rule.</p>",
         "HeadObjectOutput$ReplicationStatus": "<p>Amazon S3 can return this header if your request involves a bucket that is either a source or destination in a replication rule.</p> <p>In replication you have a source bucket on which you configure replication and destination bucket where Amazon S3 stores object replicas. When you request an object (GetObject) or object metadata (HeadObject) from these buckets, Amazon S3 will return the x-amz-replication-status header in the response as follows:</p> <ul> <li> <p>If requesting object from the source bucket — Amazon S3 will return the x-amz-replication-status header if object in your request is eligible for replication.</p> <p> For example, suppose in your replication configuration you specify object prefix \"TaxDocs\" requesting Amazon S3 to replicate objects with key prefix \"TaxDocs\". Then any objects you upload with this key name prefix, for example \"TaxDocs/document1.pdf\", is eligible for replication. For any object request with this key name prefix Amazon S3 will return the x-amz-replication-status header with value PENDING, COMPLETED or FAILED indicating object replication status.</p> </li> <li> <p>If requesting object from the destination bucket — Amazon S3 will return the x-amz-replication-status header with value REPLICA if object in your request is a replica that Amazon S3 created.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html\">Replication</a>.</p>"
+      }
+    },
+    "ReplicationTime": {
+      "base": "<p> A container specifying the time when all objects and operations on objects are replicated. Must be specified together with a <code>Metrics</code> block. </p>",
+      "refs": {
+        "Destination$ReplicationTime": "<p> A container specifying the time when all objects and operations on objects are replicated. Must be specified together with a <code>Metrics</code> block. </p>"
+      }
+    },
+    "ReplicationTimeStatus": {
+      "base": null,
+      "refs": {
+        "ReplicationTime$Status": "<p> Specifies whether the replication time is enabled. </p>"
+      }
+    },
+    "ReplicationTimeValue": {
+      "base": "<p> A container specifying the time value. </p>",
+      "refs": {
+        "Metrics$EventThreshold": "<p> A container specifying the time threshold for emitting the <code>s3:Replication:OperationMissedThreshold</code> event. </p>",
+        "ReplicationTime$Time": "<p> A container specifying the time by which replication should complete for all objects and operations on objects. </p>"
       }
     },
     "RequestCharged": {

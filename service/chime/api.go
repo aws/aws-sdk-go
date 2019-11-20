@@ -318,6 +318,110 @@ func (c *Chime) AssociatePhoneNumbersWithVoiceConnectorGroupWithContext(ctx aws.
 	return out, req.Send()
 }
 
+const opBatchCreateAttendee = "BatchCreateAttendee"
+
+// BatchCreateAttendeeRequest generates a "aws/request.Request" representing the
+// client's request for the BatchCreateAttendee operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchCreateAttendee for more information on using the BatchCreateAttendee
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the BatchCreateAttendeeRequest method.
+//    req, resp := client.BatchCreateAttendeeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/BatchCreateAttendee
+func (c *Chime) BatchCreateAttendeeRequest(input *BatchCreateAttendeeInput) (req *request.Request, output *BatchCreateAttendeeOutput) {
+	op := &request.Operation{
+		Name:       opBatchCreateAttendee,
+		HTTPMethod: "POST",
+		HTTPPath:   "/meetings/{meetingId}/attendees?operation=batch-create",
+	}
+
+	if input == nil {
+		input = &BatchCreateAttendeeInput{}
+	}
+
+	output = &BatchCreateAttendeeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchCreateAttendee API operation for Amazon Chime.
+//
+// Creates up to 100 new attendees for an active Amazon Chime SDK meeting. For
+// more information about the Amazon Chime SDK, see Using the Amazon Chime SDK
+// (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html) in the Amazon
+// Chime Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation BatchCreateAttendee for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input parameters don't match the service's restrictions.
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ErrCodeResourceLimitExceededException "ResourceLimitExceededException"
+//   The request exceeds the resource limit.
+//
+//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   The client exceeded its request rate limit.
+//
+//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   The client is not currently authorized to make the request.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   The service is currently unavailable.
+//
+//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/BatchCreateAttendee
+func (c *Chime) BatchCreateAttendee(input *BatchCreateAttendeeInput) (*BatchCreateAttendeeOutput, error) {
+	req, out := c.BatchCreateAttendeeRequest(input)
+	return out, req.Send()
+}
+
+// BatchCreateAttendeeWithContext is the same as BatchCreateAttendee with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchCreateAttendee for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) BatchCreateAttendeeWithContext(ctx aws.Context, input *BatchCreateAttendeeInput, opts ...request.Option) (*BatchCreateAttendeeOutput, error) {
+	req, out := c.BatchCreateAttendeeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBatchCreateRoomMembership = "BatchCreateRoomMembership"
 
 // BatchCreateRoomMembershipRequest generates a "aws/request.Request" representing the
@@ -1043,6 +1147,109 @@ func (c *Chime) CreateAccountWithContext(ctx aws.Context, input *CreateAccountIn
 	return out, req.Send()
 }
 
+const opCreateAttendee = "CreateAttendee"
+
+// CreateAttendeeRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAttendee operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateAttendee for more information on using the CreateAttendee
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateAttendeeRequest method.
+//    req, resp := client.CreateAttendeeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateAttendee
+func (c *Chime) CreateAttendeeRequest(input *CreateAttendeeInput) (req *request.Request, output *CreateAttendeeOutput) {
+	op := &request.Operation{
+		Name:       opCreateAttendee,
+		HTTPMethod: "POST",
+		HTTPPath:   "/meetings/{meetingId}/attendees",
+	}
+
+	if input == nil {
+		input = &CreateAttendeeInput{}
+	}
+
+	output = &CreateAttendeeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateAttendee API operation for Amazon Chime.
+//
+// Creates a new attendee for an active Amazon Chime SDK meeting. For more information
+// about the Amazon Chime SDK, see Using the Amazon Chime SDK (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html)
+// in the Amazon Chime Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation CreateAttendee for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input parameters don't match the service's restrictions.
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ErrCodeResourceLimitExceededException "ResourceLimitExceededException"
+//   The request exceeds the resource limit.
+//
+//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   The client exceeded its request rate limit.
+//
+//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   The client is not currently authorized to make the request.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   The service is currently unavailable.
+//
+//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateAttendee
+func (c *Chime) CreateAttendee(input *CreateAttendeeInput) (*CreateAttendeeOutput, error) {
+	req, out := c.CreateAttendeeRequest(input)
+	return out, req.Send()
+}
+
+// CreateAttendeeWithContext is the same as CreateAttendee with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateAttendee for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) CreateAttendeeWithContext(ctx aws.Context, input *CreateAttendeeInput, opts ...request.Option) (*CreateAttendeeOutput, error) {
+	req, out := c.CreateAttendeeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateBot = "CreateBot"
 
 // CreateBotRequest generates a "aws/request.Request" representing the
@@ -1136,6 +1343,107 @@ func (c *Chime) CreateBot(input *CreateBotInput) (*CreateBotOutput, error) {
 // for more information on using Contexts.
 func (c *Chime) CreateBotWithContext(ctx aws.Context, input *CreateBotInput, opts ...request.Option) (*CreateBotOutput, error) {
 	req, out := c.CreateBotRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateMeeting = "CreateMeeting"
+
+// CreateMeetingRequest generates a "aws/request.Request" representing the
+// client's request for the CreateMeeting operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateMeeting for more information on using the CreateMeeting
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateMeetingRequest method.
+//    req, resp := client.CreateMeetingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateMeeting
+func (c *Chime) CreateMeetingRequest(input *CreateMeetingInput) (req *request.Request, output *CreateMeetingOutput) {
+	op := &request.Operation{
+		Name:       opCreateMeeting,
+		HTTPMethod: "POST",
+		HTTPPath:   "/meetings",
+	}
+
+	if input == nil {
+		input = &CreateMeetingInput{}
+	}
+
+	output = &CreateMeetingOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateMeeting API operation for Amazon Chime.
+//
+// Creates a new Amazon Chime SDK meeting in the specified media Region with
+// no initial attendees. For more information about the Amazon Chime SDK, see
+// Using the Amazon Chime SDK (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html)
+// in the Amazon Chime Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation CreateMeeting for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input parameters don't match the service's restrictions.
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * ErrCodeResourceLimitExceededException "ResourceLimitExceededException"
+//   The request exceeds the resource limit.
+//
+//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   The client exceeded its request rate limit.
+//
+//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   The client is not currently authorized to make the request.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   The service is currently unavailable.
+//
+//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateMeeting
+func (c *Chime) CreateMeeting(input *CreateMeetingInput) (*CreateMeetingOutput, error) {
+	req, out := c.CreateMeetingRequest(input)
+	return out, req.Send()
+}
+
+// CreateMeetingWithContext is the same as CreateMeeting with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateMeeting for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) CreateMeetingWithContext(ctx aws.Context, input *CreateMeetingInput, opts ...request.Option) (*CreateMeetingOutput, error) {
+	req, out := c.CreateMeetingRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1778,6 +2086,109 @@ func (c *Chime) DeleteAccountWithContext(ctx aws.Context, input *DeleteAccountIn
 	return out, req.Send()
 }
 
+const opDeleteAttendee = "DeleteAttendee"
+
+// DeleteAttendeeRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAttendee operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAttendee for more information on using the DeleteAttendee
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteAttendeeRequest method.
+//    req, resp := client.DeleteAttendeeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteAttendee
+func (c *Chime) DeleteAttendeeRequest(input *DeleteAttendeeInput) (req *request.Request, output *DeleteAttendeeOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAttendee,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/meetings/{meetingId}/attendees/{attendeeId}",
+	}
+
+	if input == nil {
+		input = &DeleteAttendeeInput{}
+	}
+
+	output = &DeleteAttendeeOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteAttendee API operation for Amazon Chime.
+//
+// Deletes an attendee from the specified Amazon Chime SDK meeting and deletes
+// their JoinToken. Attendees are automatically deleted when a Amazon Chime
+// SDK meeting is deleted. For more information about the Amazon Chime SDK,
+// see Using the Amazon Chime SDK (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html)
+// in the Amazon Chime Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation DeleteAttendee for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input parameters don't match the service's restrictions.
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   The client exceeded its request rate limit.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   The client is not currently authorized to make the request.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   The service is currently unavailable.
+//
+//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteAttendee
+func (c *Chime) DeleteAttendee(input *DeleteAttendeeInput) (*DeleteAttendeeOutput, error) {
+	req, out := c.DeleteAttendeeRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAttendeeWithContext is the same as DeleteAttendee with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAttendee for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) DeleteAttendeeWithContext(ctx aws.Context, input *DeleteAttendeeInput, opts ...request.Option) (*DeleteAttendeeOutput, error) {
+	req, out := c.DeleteAttendeeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteEventsConfiguration = "DeleteEventsConfiguration"
 
 // DeleteEventsConfigurationRequest generates a "aws/request.Request" representing the
@@ -1869,6 +2280,108 @@ func (c *Chime) DeleteEventsConfiguration(input *DeleteEventsConfigurationInput)
 // for more information on using Contexts.
 func (c *Chime) DeleteEventsConfigurationWithContext(ctx aws.Context, input *DeleteEventsConfigurationInput, opts ...request.Option) (*DeleteEventsConfigurationOutput, error) {
 	req, out := c.DeleteEventsConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteMeeting = "DeleteMeeting"
+
+// DeleteMeetingRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteMeeting operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteMeeting for more information on using the DeleteMeeting
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteMeetingRequest method.
+//    req, resp := client.DeleteMeetingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteMeeting
+func (c *Chime) DeleteMeetingRequest(input *DeleteMeetingInput) (req *request.Request, output *DeleteMeetingOutput) {
+	op := &request.Operation{
+		Name:       opDeleteMeeting,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/meetings/{meetingId}",
+	}
+
+	if input == nil {
+		input = &DeleteMeetingInput{}
+	}
+
+	output = &DeleteMeetingOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteMeeting API operation for Amazon Chime.
+//
+// Deletes the specified Amazon Chime SDK meeting. When a meeting is deleted,
+// its attendees are also deleted and clients can no longer join it. For more
+// information about the Amazon Chime SDK, see Using the Amazon Chime SDK (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html)
+// in the Amazon Chime Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation DeleteMeeting for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input parameters don't match the service's restrictions.
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   The client exceeded its request rate limit.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   The client is not currently authorized to make the request.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   The service is currently unavailable.
+//
+//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteMeeting
+func (c *Chime) DeleteMeeting(input *DeleteMeetingInput) (*DeleteMeetingOutput, error) {
+	req, out := c.DeleteMeetingRequest(input)
+	return out, req.Send()
+}
+
+// DeleteMeetingWithContext is the same as DeleteMeeting with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteMeeting for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) DeleteMeetingWithContext(ctx aws.Context, input *DeleteMeetingInput, opts ...request.Option) (*DeleteMeetingOutput, error) {
+	req, out := c.DeleteMeetingRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3276,6 +3789,107 @@ func (c *Chime) GetAccountSettingsWithContext(ctx aws.Context, input *GetAccount
 	return out, req.Send()
 }
 
+const opGetAttendee = "GetAttendee"
+
+// GetAttendeeRequest generates a "aws/request.Request" representing the
+// client's request for the GetAttendee operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAttendee for more information on using the GetAttendee
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetAttendeeRequest method.
+//    req, resp := client.GetAttendeeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetAttendee
+func (c *Chime) GetAttendeeRequest(input *GetAttendeeInput) (req *request.Request, output *GetAttendeeOutput) {
+	op := &request.Operation{
+		Name:       opGetAttendee,
+		HTTPMethod: "GET",
+		HTTPPath:   "/meetings/{meetingId}/attendees/{attendeeId}",
+	}
+
+	if input == nil {
+		input = &GetAttendeeInput{}
+	}
+
+	output = &GetAttendeeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetAttendee API operation for Amazon Chime.
+//
+// Gets the Amazon Chime SDK attendee details for a specified meeting ID and
+// attendee ID. For more information about the Amazon Chime SDK, see Using the
+// Amazon Chime SDK (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html)
+// in the Amazon Chime Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation GetAttendee for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input parameters don't match the service's restrictions.
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   The client exceeded its request rate limit.
+//
+//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   The client is not currently authorized to make the request.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   The service is currently unavailable.
+//
+//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetAttendee
+func (c *Chime) GetAttendee(input *GetAttendeeInput) (*GetAttendeeOutput, error) {
+	req, out := c.GetAttendeeRequest(input)
+	return out, req.Send()
+}
+
+// GetAttendeeWithContext is the same as GetAttendee with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAttendee for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) GetAttendeeWithContext(ctx aws.Context, input *GetAttendeeInput, opts ...request.Option) (*GetAttendeeOutput, error) {
+	req, out := c.GetAttendeeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetBot = "GetBot"
 
 // GetBotRequest generates a "aws/request.Request" representing the
@@ -3562,6 +4176,107 @@ func (c *Chime) GetGlobalSettings(input *GetGlobalSettingsInput) (*GetGlobalSett
 // for more information on using Contexts.
 func (c *Chime) GetGlobalSettingsWithContext(ctx aws.Context, input *GetGlobalSettingsInput, opts ...request.Option) (*GetGlobalSettingsOutput, error) {
 	req, out := c.GetGlobalSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetMeeting = "GetMeeting"
+
+// GetMeetingRequest generates a "aws/request.Request" representing the
+// client's request for the GetMeeting operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMeeting for more information on using the GetMeeting
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetMeetingRequest method.
+//    req, resp := client.GetMeetingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetMeeting
+func (c *Chime) GetMeetingRequest(input *GetMeetingInput) (req *request.Request, output *GetMeetingOutput) {
+	op := &request.Operation{
+		Name:       opGetMeeting,
+		HTTPMethod: "GET",
+		HTTPPath:   "/meetings/{meetingId}",
+	}
+
+	if input == nil {
+		input = &GetMeetingInput{}
+	}
+
+	output = &GetMeetingOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetMeeting API operation for Amazon Chime.
+//
+// Gets the Amazon Chime SDK meeting details for the specified meeting ID. For
+// more information about the Amazon Chime SDK, see Using the Amazon Chime SDK
+// (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html) in the Amazon
+// Chime Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation GetMeeting for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input parameters don't match the service's restrictions.
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   The client exceeded its request rate limit.
+//
+//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   The client is not currently authorized to make the request.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   The service is currently unavailable.
+//
+//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetMeeting
+func (c *Chime) GetMeeting(input *GetMeetingInput) (*GetMeetingOutput, error) {
+	req, out := c.GetMeetingRequest(input)
+	return out, req.Send()
+}
+
+// GetMeetingWithContext is the same as GetMeeting with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMeeting for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) GetMeetingWithContext(ctx aws.Context, input *GetMeetingInput, opts ...request.Option) (*GetMeetingOutput, error) {
+	req, out := c.GetMeetingRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5112,6 +5827,164 @@ func (c *Chime) ListAccountsPagesWithContext(ctx aws.Context, input *ListAccount
 	return p.Err()
 }
 
+const opListAttendees = "ListAttendees"
+
+// ListAttendeesRequest generates a "aws/request.Request" representing the
+// client's request for the ListAttendees operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAttendees for more information on using the ListAttendees
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAttendeesRequest method.
+//    req, resp := client.ListAttendeesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListAttendees
+func (c *Chime) ListAttendeesRequest(input *ListAttendeesInput) (req *request.Request, output *ListAttendeesOutput) {
+	op := &request.Operation{
+		Name:       opListAttendees,
+		HTTPMethod: "GET",
+		HTTPPath:   "/meetings/{meetingId}/attendees",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAttendeesInput{}
+	}
+
+	output = &ListAttendeesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAttendees API operation for Amazon Chime.
+//
+// Lists the attendees for the specified Amazon Chime SDK meeting. For more
+// information about the Amazon Chime SDK, see Using the Amazon Chime SDK (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html)
+// in the Amazon Chime Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation ListAttendees for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input parameters don't match the service's restrictions.
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   The client exceeded its request rate limit.
+//
+//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   The client is not currently authorized to make the request.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   The service is currently unavailable.
+//
+//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListAttendees
+func (c *Chime) ListAttendees(input *ListAttendeesInput) (*ListAttendeesOutput, error) {
+	req, out := c.ListAttendeesRequest(input)
+	return out, req.Send()
+}
+
+// ListAttendeesWithContext is the same as ListAttendees with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAttendees for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListAttendeesWithContext(ctx aws.Context, input *ListAttendeesInput, opts ...request.Option) (*ListAttendeesOutput, error) {
+	req, out := c.ListAttendeesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAttendeesPages iterates over the pages of a ListAttendees operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAttendees method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAttendees operation.
+//    pageNum := 0
+//    err := client.ListAttendeesPages(params,
+//        func(page *chime.ListAttendeesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Chime) ListAttendeesPages(input *ListAttendeesInput, fn func(*ListAttendeesOutput, bool) bool) error {
+	return c.ListAttendeesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAttendeesPagesWithContext same as ListAttendeesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListAttendeesPagesWithContext(ctx aws.Context, input *ListAttendeesInput, fn func(*ListAttendeesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAttendeesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAttendeesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAttendeesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListBots = "ListBots"
 
 // ListBotsRequest generates a "aws/request.Request" representing the
@@ -5259,6 +6132,161 @@ func (c *Chime) ListBotsPagesWithContext(ctx aws.Context, input *ListBotsInput, 
 
 	for p.Next() {
 		if !fn(p.Page().(*ListBotsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListMeetings = "ListMeetings"
+
+// ListMeetingsRequest generates a "aws/request.Request" representing the
+// client's request for the ListMeetings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMeetings for more information on using the ListMeetings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListMeetingsRequest method.
+//    req, resp := client.ListMeetingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListMeetings
+func (c *Chime) ListMeetingsRequest(input *ListMeetingsInput) (req *request.Request, output *ListMeetingsOutput) {
+	op := &request.Operation{
+		Name:       opListMeetings,
+		HTTPMethod: "GET",
+		HTTPPath:   "/meetings",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListMeetingsInput{}
+	}
+
+	output = &ListMeetingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListMeetings API operation for Amazon Chime.
+//
+// Lists up to 100 active Amazon Chime SDK meetings. For more information about
+// the Amazon Chime SDK, see Using the Amazon Chime SDK (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html)
+// in the Amazon Chime Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation ListMeetings for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input parameters don't match the service's restrictions.
+//
+//   * ErrCodeForbiddenException "ForbiddenException"
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   The client exceeded its request rate limit.
+//
+//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   The client is not currently authorized to make the request.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   The service is currently unavailable.
+//
+//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListMeetings
+func (c *Chime) ListMeetings(input *ListMeetingsInput) (*ListMeetingsOutput, error) {
+	req, out := c.ListMeetingsRequest(input)
+	return out, req.Send()
+}
+
+// ListMeetingsWithContext is the same as ListMeetings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMeetings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListMeetingsWithContext(ctx aws.Context, input *ListMeetingsInput, opts ...request.Option) (*ListMeetingsOutput, error) {
+	req, out := c.ListMeetingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListMeetingsPages iterates over the pages of a ListMeetings operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListMeetings method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListMeetings operation.
+//    pageNum := 0
+//    err := client.ListMeetingsPages(params,
+//        func(page *chime.ListMeetingsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Chime) ListMeetingsPages(input *ListMeetingsInput, fn func(*ListMeetingsOutput, bool) bool) error {
+	return c.ListMeetingsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListMeetingsPagesWithContext same as ListMeetingsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListMeetingsPagesWithContext(ctx aws.Context, input *ListMeetingsInput, fn func(*ListMeetingsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListMeetingsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListMeetingsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListMeetingsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -9118,6 +10146,154 @@ func (s *AssociatePhoneNumbersWithVoiceConnectorOutput) SetPhoneNumberErrors(v [
 	return s
 }
 
+// An Amazon Chime SDK meeting attendee. Includes a unique AttendeeId and JoinToken.
+// The JoinToken allows a client to authenticate and join as the specified attendee.
+// The JoinToken expires when the meeting ends or when DeleteAttendee is called.
+// After that, the attendee is unable to join the meeting.
+//
+// We recommend securely transferring each JoinToken from your server application
+// to the client so that no other client has access to the token except for
+// the one authorized to represent the attendee.
+type Attendee struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime SDK attendee ID.
+	AttendeeId *string `type:"string"`
+
+	// The Amazon Chime SDK external user ID. Links the attendee to an identity
+	// managed by a builder application.
+	ExternalUserId *string `min:"2" type:"string" sensitive:"true"`
+
+	// The join token used by the Amazon Chime SDK attendee.
+	JoinToken *string `min:"2" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s Attendee) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Attendee) GoString() string {
+	return s.String()
+}
+
+// SetAttendeeId sets the AttendeeId field's value.
+func (s *Attendee) SetAttendeeId(v string) *Attendee {
+	s.AttendeeId = &v
+	return s
+}
+
+// SetExternalUserId sets the ExternalUserId field's value.
+func (s *Attendee) SetExternalUserId(v string) *Attendee {
+	s.ExternalUserId = &v
+	return s
+}
+
+// SetJoinToken sets the JoinToken field's value.
+func (s *Attendee) SetJoinToken(v string) *Attendee {
+	s.JoinToken = &v
+	return s
+}
+
+type BatchCreateAttendeeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The request containing the attendees to create.
+	//
+	// Attendees is a required field
+	Attendees []*CreateAttendeeRequestItem `type:"list" required:"true"`
+
+	// The Amazon Chime SDK meeting ID.
+	//
+	// MeetingId is a required field
+	MeetingId *string `location:"uri" locationName:"meetingId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s BatchCreateAttendeeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchCreateAttendeeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchCreateAttendeeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchCreateAttendeeInput"}
+	if s.Attendees == nil {
+		invalidParams.Add(request.NewErrParamRequired("Attendees"))
+	}
+	if s.MeetingId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MeetingId"))
+	}
+	if s.MeetingId != nil && len(*s.MeetingId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MeetingId", 1))
+	}
+	if s.Attendees != nil {
+		for i, v := range s.Attendees {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Attendees", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttendees sets the Attendees field's value.
+func (s *BatchCreateAttendeeInput) SetAttendees(v []*CreateAttendeeRequestItem) *BatchCreateAttendeeInput {
+	s.Attendees = v
+	return s
+}
+
+// SetMeetingId sets the MeetingId field's value.
+func (s *BatchCreateAttendeeInput) SetMeetingId(v string) *BatchCreateAttendeeInput {
+	s.MeetingId = &v
+	return s
+}
+
+type BatchCreateAttendeeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The attendee information, including attendees IDs and join tokens.
+	Attendees []*Attendee `type:"list"`
+
+	// If the action fails for one or more of the attendees in the request, a list
+	// of the attendees is returned, along with error codes and error messages.
+	Errors []*CreateAttendeeError `type:"list"`
+}
+
+// String returns the string representation
+func (s BatchCreateAttendeeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchCreateAttendeeOutput) GoString() string {
+	return s.String()
+}
+
+// SetAttendees sets the Attendees field's value.
+func (s *BatchCreateAttendeeOutput) SetAttendees(v []*Attendee) *BatchCreateAttendeeOutput {
+	s.Attendees = v
+	return s
+}
+
+// SetErrors sets the Errors field's value.
+func (s *BatchCreateAttendeeOutput) SetErrors(v []*CreateAttendeeError) *BatchCreateAttendeeOutput {
+	s.Errors = v
+	return s
+}
+
 type BatchCreateRoomMembershipInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9791,6 +10967,177 @@ func (s *CreateAccountOutput) SetAccount(v *Account) *CreateAccountOutput {
 	return s
 }
 
+// The list of errors returned when errors are encountered during the BatchCreateAttendee
+// and CreateAttendee actions. This includes external user IDs, error codes,
+// and error messages.
+type CreateAttendeeError struct {
+	_ struct{} `type:"structure"`
+
+	// The error code.
+	ErrorCode *string `type:"string"`
+
+	// The error message.
+	ErrorMessage *string `type:"string"`
+
+	// The Amazon Chime SDK external user ID. Links the attendee to an identity
+	// managed by a builder application.
+	ExternalUserId *string `min:"2" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s CreateAttendeeError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAttendeeError) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *CreateAttendeeError) SetErrorCode(v string) *CreateAttendeeError {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *CreateAttendeeError) SetErrorMessage(v string) *CreateAttendeeError {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetExternalUserId sets the ExternalUserId field's value.
+func (s *CreateAttendeeError) SetExternalUserId(v string) *CreateAttendeeError {
+	s.ExternalUserId = &v
+	return s
+}
+
+type CreateAttendeeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime SDK external user ID. Links the attendee to an identity
+	// managed by a builder application.
+	//
+	// ExternalUserId is a required field
+	ExternalUserId *string `min:"2" type:"string" required:"true" sensitive:"true"`
+
+	// The Amazon Chime SDK meeting ID.
+	//
+	// MeetingId is a required field
+	MeetingId *string `location:"uri" locationName:"meetingId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateAttendeeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAttendeeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAttendeeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAttendeeInput"}
+	if s.ExternalUserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExternalUserId"))
+	}
+	if s.ExternalUserId != nil && len(*s.ExternalUserId) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ExternalUserId", 2))
+	}
+	if s.MeetingId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MeetingId"))
+	}
+	if s.MeetingId != nil && len(*s.MeetingId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MeetingId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExternalUserId sets the ExternalUserId field's value.
+func (s *CreateAttendeeInput) SetExternalUserId(v string) *CreateAttendeeInput {
+	s.ExternalUserId = &v
+	return s
+}
+
+// SetMeetingId sets the MeetingId field's value.
+func (s *CreateAttendeeInput) SetMeetingId(v string) *CreateAttendeeInput {
+	s.MeetingId = &v
+	return s
+}
+
+type CreateAttendeeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The attendee information, including attendee ID and join token.
+	Attendee *Attendee `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateAttendeeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAttendeeOutput) GoString() string {
+	return s.String()
+}
+
+// SetAttendee sets the Attendee field's value.
+func (s *CreateAttendeeOutput) SetAttendee(v *Attendee) *CreateAttendeeOutput {
+	s.Attendee = v
+	return s
+}
+
+// The Amazon Chime SDK attendee fields to create, used with the BatchCreateAttendee
+// action.
+type CreateAttendeeRequestItem struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime SDK external user ID. Links the attendee to an identity
+	// managed by a builder application.
+	//
+	// ExternalUserId is a required field
+	ExternalUserId *string `min:"2" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s CreateAttendeeRequestItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAttendeeRequestItem) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAttendeeRequestItem) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAttendeeRequestItem"}
+	if s.ExternalUserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExternalUserId"))
+	}
+	if s.ExternalUserId != nil && len(*s.ExternalUserId) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ExternalUserId", 2))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExternalUserId sets the ExternalUserId field's value.
+func (s *CreateAttendeeRequestItem) SetExternalUserId(v string) *CreateAttendeeRequestItem {
+	s.ExternalUserId = &v
+	return s
+}
+
 type CreateBotInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9875,6 +11222,102 @@ func (s CreateBotOutput) GoString() string {
 // SetBot sets the Bot field's value.
 func (s *CreateBotOutput) SetBot(v *Bot) *CreateBotOutput {
 	s.Bot = v
+	return s
+}
+
+type CreateMeetingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the client request. Use a different token for different
+	// meetings.
+	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
+
+	// The Region in which to create the meeting. Available values: us-east-1, us-west-2.
+	MediaRegion *string `type:"string"`
+
+	// Reserved.
+	MeetingHostId *string `min:"2" type:"string" sensitive:"true"`
+
+	// The configuration for resource targets to receive notifications when meeting
+	// and attendee events occur.
+	NotificationsConfiguration *MeetingNotificationConfiguration `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateMeetingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateMeetingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateMeetingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateMeetingInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 2))
+	}
+	if s.MeetingHostId != nil && len(*s.MeetingHostId) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("MeetingHostId", 2))
+	}
+	if s.NotificationsConfiguration != nil {
+		if err := s.NotificationsConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("NotificationsConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateMeetingInput) SetClientRequestToken(v string) *CreateMeetingInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetMediaRegion sets the MediaRegion field's value.
+func (s *CreateMeetingInput) SetMediaRegion(v string) *CreateMeetingInput {
+	s.MediaRegion = &v
+	return s
+}
+
+// SetMeetingHostId sets the MeetingHostId field's value.
+func (s *CreateMeetingInput) SetMeetingHostId(v string) *CreateMeetingInput {
+	s.MeetingHostId = &v
+	return s
+}
+
+// SetNotificationsConfiguration sets the NotificationsConfiguration field's value.
+func (s *CreateMeetingInput) SetNotificationsConfiguration(v *MeetingNotificationConfiguration) *CreateMeetingInput {
+	s.NotificationsConfiguration = v
+	return s
+}
+
+type CreateMeetingOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The meeting information, including the meeting ID and MediaPlacement.
+	Meeting *Meeting `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateMeetingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateMeetingOutput) GoString() string {
+	return s.String()
+}
+
+// SetMeeting sets the Meeting field's value.
+func (s *CreateMeetingOutput) SetMeeting(v *Meeting) *CreateMeetingOutput {
+	s.Meeting = v
 	return s
 }
 
@@ -10409,6 +11852,78 @@ func (s DeleteAccountOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteAttendeeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime SDK attendee ID.
+	//
+	// AttendeeId is a required field
+	AttendeeId *string `location:"uri" locationName:"attendeeId" type:"string" required:"true"`
+
+	// The Amazon Chime SDK meeting ID.
+	//
+	// MeetingId is a required field
+	MeetingId *string `location:"uri" locationName:"meetingId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteAttendeeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAttendeeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAttendeeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAttendeeInput"}
+	if s.AttendeeId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttendeeId"))
+	}
+	if s.AttendeeId != nil && len(*s.AttendeeId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttendeeId", 1))
+	}
+	if s.MeetingId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MeetingId"))
+	}
+	if s.MeetingId != nil && len(*s.MeetingId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MeetingId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttendeeId sets the AttendeeId field's value.
+func (s *DeleteAttendeeInput) SetAttendeeId(v string) *DeleteAttendeeInput {
+	s.AttendeeId = &v
+	return s
+}
+
+// SetMeetingId sets the MeetingId field's value.
+func (s *DeleteAttendeeInput) SetMeetingId(v string) *DeleteAttendeeInput {
+	s.MeetingId = &v
+	return s
+}
+
+type DeleteAttendeeOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteAttendeeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAttendeeOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteEventsConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10478,6 +11993,61 @@ func (s DeleteEventsConfigurationOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteEventsConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteMeetingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime SDK meeting ID.
+	//
+	// MeetingId is a required field
+	MeetingId *string `location:"uri" locationName:"meetingId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteMeetingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteMeetingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteMeetingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteMeetingInput"}
+	if s.MeetingId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MeetingId"))
+	}
+	if s.MeetingId != nil && len(*s.MeetingId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MeetingId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMeetingId sets the MeetingId field's value.
+func (s *DeleteMeetingInput) SetMeetingId(v string) *DeleteMeetingInput {
+	s.MeetingId = &v
+	return s
+}
+
+type DeleteMeetingOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteMeetingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteMeetingOutput) GoString() string {
 	return s.String()
 }
 
@@ -11430,6 +13000,87 @@ func (s *GetAccountSettingsOutput) SetAccountSettings(v *AccountSettings) *GetAc
 	return s
 }
 
+type GetAttendeeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime SDK attendee ID.
+	//
+	// AttendeeId is a required field
+	AttendeeId *string `location:"uri" locationName:"attendeeId" type:"string" required:"true"`
+
+	// The Amazon Chime SDK meeting ID.
+	//
+	// MeetingId is a required field
+	MeetingId *string `location:"uri" locationName:"meetingId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetAttendeeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAttendeeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAttendeeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAttendeeInput"}
+	if s.AttendeeId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttendeeId"))
+	}
+	if s.AttendeeId != nil && len(*s.AttendeeId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttendeeId", 1))
+	}
+	if s.MeetingId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MeetingId"))
+	}
+	if s.MeetingId != nil && len(*s.MeetingId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MeetingId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttendeeId sets the AttendeeId field's value.
+func (s *GetAttendeeInput) SetAttendeeId(v string) *GetAttendeeInput {
+	s.AttendeeId = &v
+	return s
+}
+
+// SetMeetingId sets the MeetingId field's value.
+func (s *GetAttendeeInput) SetMeetingId(v string) *GetAttendeeInput {
+	s.MeetingId = &v
+	return s
+}
+
+type GetAttendeeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime SDK attendee information.
+	Attendee *Attendee `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetAttendeeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAttendeeOutput) GoString() string {
+	return s.String()
+}
+
+// SetAttendee sets the Attendee field's value.
+func (s *GetAttendeeOutput) SetAttendee(v *Attendee) *GetAttendeeOutput {
+	s.Attendee = v
+	return s
+}
+
 type GetBotInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11635,6 +13286,70 @@ func (s *GetGlobalSettingsOutput) SetBusinessCalling(v *BusinessCallingSettings)
 // SetVoiceConnector sets the VoiceConnector field's value.
 func (s *GetGlobalSettingsOutput) SetVoiceConnector(v *VoiceConnectorSettings) *GetGlobalSettingsOutput {
 	s.VoiceConnector = v
+	return s
+}
+
+type GetMeetingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime SDK meeting ID.
+	//
+	// MeetingId is a required field
+	MeetingId *string `location:"uri" locationName:"meetingId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetMeetingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMeetingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMeetingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMeetingInput"}
+	if s.MeetingId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MeetingId"))
+	}
+	if s.MeetingId != nil && len(*s.MeetingId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MeetingId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMeetingId sets the MeetingId field's value.
+func (s *GetMeetingInput) SetMeetingId(v string) *GetMeetingInput {
+	s.MeetingId = &v
+	return s
+}
+
+type GetMeetingOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime SDK meeting information.
+	Meeting *Meeting `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetMeetingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMeetingOutput) GoString() string {
+	return s.String()
+}
+
+// SetMeeting sets the Meeting field's value.
+func (s *GetMeetingOutput) SetMeeting(v *Meeting) *GetMeetingOutput {
+	s.Meeting = v
 	return s
 }
 
@@ -12731,6 +14446,100 @@ func (s *ListAccountsOutput) SetNextToken(v string) *ListAccountsOutput {
 	return s
 }
 
+type ListAttendeesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return in a single call.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The Amazon Chime SDK meeting ID.
+	//
+	// MeetingId is a required field
+	MeetingId *string `location:"uri" locationName:"meetingId" type:"string" required:"true"`
+
+	// The token to use to retrieve the next page of results.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
+}
+
+// String returns the string representation
+func (s ListAttendeesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAttendeesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAttendeesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAttendeesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.MeetingId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MeetingId"))
+	}
+	if s.MeetingId != nil && len(*s.MeetingId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MeetingId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAttendeesInput) SetMaxResults(v int64) *ListAttendeesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMeetingId sets the MeetingId field's value.
+func (s *ListAttendeesInput) SetMeetingId(v string) *ListAttendeesInput {
+	s.MeetingId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAttendeesInput) SetNextToken(v string) *ListAttendeesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAttendeesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime SDK attendee information.
+	Attendees []*Attendee `type:"list"`
+
+	// The token to use to retrieve the next page of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListAttendeesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAttendeesOutput) GoString() string {
+	return s.String()
+}
+
+// SetAttendees sets the Attendees field's value.
+func (s *ListAttendeesOutput) SetAttendees(v []*Attendee) *ListAttendeesOutput {
+	s.Attendees = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAttendeesOutput) SetNextToken(v string) *ListAttendeesOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListBotsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12822,6 +14631,83 @@ func (s *ListBotsOutput) SetBots(v []*Bot) *ListBotsOutput {
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListBotsOutput) SetNextToken(v string) *ListBotsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListMeetingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return in a single call.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token to use to retrieve the next page of results.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
+}
+
+// String returns the string representation
+func (s ListMeetingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListMeetingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMeetingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMeetingsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListMeetingsInput) SetMaxResults(v int64) *ListMeetingsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMeetingsInput) SetNextToken(v string) *ListMeetingsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListMeetingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime SDK meeting information.
+	Meetings []*Meeting `type:"list"`
+
+	// The token to use to retrieve the next page of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListMeetingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListMeetingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMeetings sets the Meetings field's value.
+func (s *ListMeetingsOutput) SetMeetings(v []*Meeting) *ListMeetingsOutput {
+	s.Meetings = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMeetingsOutput) SetNextToken(v string) *ListMeetingsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -13647,6 +15533,168 @@ func (s LogoutUserOutput) String() string {
 // GoString returns the string representation
 func (s LogoutUserOutput) GoString() string {
 	return s.String()
+}
+
+// A set of endpoints used by clients to connect to the media service group
+// for a Amazon Chime SDK meeting.
+type MediaPlacement struct {
+	_ struct{} `type:"structure"`
+
+	// The audio host URL.
+	AudioHostUrl *string `type:"string"`
+
+	// The screen data URL.
+	ScreenDataUrl *string `type:"string"`
+
+	// The screen sharing URL.
+	ScreenSharingUrl *string `type:"string"`
+
+	// The screen viewing URL.
+	ScreenViewingUrl *string `type:"string"`
+
+	// The signaling URL.
+	SignalingUrl *string `type:"string"`
+
+	// The turn control URL.
+	TurnControlUrl *string `type:"string"`
+}
+
+// String returns the string representation
+func (s MediaPlacement) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MediaPlacement) GoString() string {
+	return s.String()
+}
+
+// SetAudioHostUrl sets the AudioHostUrl field's value.
+func (s *MediaPlacement) SetAudioHostUrl(v string) *MediaPlacement {
+	s.AudioHostUrl = &v
+	return s
+}
+
+// SetScreenDataUrl sets the ScreenDataUrl field's value.
+func (s *MediaPlacement) SetScreenDataUrl(v string) *MediaPlacement {
+	s.ScreenDataUrl = &v
+	return s
+}
+
+// SetScreenSharingUrl sets the ScreenSharingUrl field's value.
+func (s *MediaPlacement) SetScreenSharingUrl(v string) *MediaPlacement {
+	s.ScreenSharingUrl = &v
+	return s
+}
+
+// SetScreenViewingUrl sets the ScreenViewingUrl field's value.
+func (s *MediaPlacement) SetScreenViewingUrl(v string) *MediaPlacement {
+	s.ScreenViewingUrl = &v
+	return s
+}
+
+// SetSignalingUrl sets the SignalingUrl field's value.
+func (s *MediaPlacement) SetSignalingUrl(v string) *MediaPlacement {
+	s.SignalingUrl = &v
+	return s
+}
+
+// SetTurnControlUrl sets the TurnControlUrl field's value.
+func (s *MediaPlacement) SetTurnControlUrl(v string) *MediaPlacement {
+	s.TurnControlUrl = &v
+	return s
+}
+
+// A meeting created using the Amazon Chime SDK.
+type Meeting struct {
+	_ struct{} `type:"structure"`
+
+	// The media placement for the meeting.
+	MediaPlacement *MediaPlacement `type:"structure"`
+
+	// The Region in which to create the meeting. Available values: us-east-1, us-west-2.
+	MediaRegion *string `type:"string"`
+
+	// The Amazon Chime SDK meeting ID.
+	MeetingId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s Meeting) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Meeting) GoString() string {
+	return s.String()
+}
+
+// SetMediaPlacement sets the MediaPlacement field's value.
+func (s *Meeting) SetMediaPlacement(v *MediaPlacement) *Meeting {
+	s.MediaPlacement = v
+	return s
+}
+
+// SetMediaRegion sets the MediaRegion field's value.
+func (s *Meeting) SetMediaRegion(v string) *Meeting {
+	s.MediaRegion = &v
+	return s
+}
+
+// SetMeetingId sets the MeetingId field's value.
+func (s *Meeting) SetMeetingId(v string) *Meeting {
+	s.MeetingId = &v
+	return s
+}
+
+// The configuration for resource targets to receive notifications when Amazon
+// Chime SDK meeting and attendee events occur.
+type MeetingNotificationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The SNS topic ARN.
+	SnsTopicArn *string `min:"1" type:"string" sensitive:"true"`
+
+	// The SQS queue ARN.
+	SqsQueueArn *string `min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s MeetingNotificationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MeetingNotificationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MeetingNotificationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MeetingNotificationConfiguration"}
+	if s.SnsTopicArn != nil && len(*s.SnsTopicArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SnsTopicArn", 1))
+	}
+	if s.SqsQueueArn != nil && len(*s.SqsQueueArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SqsQueueArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSnsTopicArn sets the SnsTopicArn field's value.
+func (s *MeetingNotificationConfiguration) SetSnsTopicArn(v string) *MeetingNotificationConfiguration {
+	s.SnsTopicArn = &v
+	return s
+}
+
+// SetSqsQueueArn sets the SqsQueueArn field's value.
+func (s *MeetingNotificationConfiguration) SetSqsQueueArn(v string) *MeetingNotificationConfiguration {
+	s.SqsQueueArn = &v
+	return s
 }
 
 // The member details, such as email address, name, member ID, and member type.

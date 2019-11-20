@@ -155,6 +155,7 @@
     "DescribeElasticGpus": "<p>Describes the Elastic Graphics accelerator associated with your instances. For more information about Elastic Graphics, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/elastic-graphics.html\">Amazon Elastic Graphics</a>.</p>",
     "DescribeExportImageTasks": "<p>Describes the specified export image tasks or all your export image tasks.</p>",
     "DescribeExportTasks": "<p>Describes the specified export instance tasks or all your export instance tasks.</p>",
+    "DescribeFastSnapshotRestores": "<p>Describes the state of fast snapshot restores for your snapshots.</p>",
     "DescribeFleetHistory": "<p>Describes the events for the specified EC2 Fleet during the specified time.</p>",
     "DescribeFleetInstances": "<p>Describes the running instances for the specified EC2 Fleet.</p>",
     "DescribeFleets": "<p>Describes the specified EC2 Fleets or all your EC2 Fleets.</p>",
@@ -240,6 +241,7 @@
     "DetachVolume": "<p>Detaches an EBS volume from an instance. Make sure to unmount any file systems on the device within your operating system before detaching the volume. Failure to do so can result in the volume becoming stuck in the <code>busy</code> state while detaching. If this happens, detachment can be delayed indefinitely until you unmount the volume, force detachment, reboot the instance, or all three. If an EBS volume is the root device of an instance, it can't be detached while the instance is running. To detach the root volume, stop the instance first.</p> <p>When a volume with an AWS Marketplace product code is detached from an instance, the product code is no longer associated with the instance.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-detaching-volume.html\">Detaching an Amazon EBS Volume</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "DetachVpnGateway": "<p>Detaches a virtual private gateway from a VPC. You do this if you're planning to turn off the VPC and not use it anymore. You can confirm a virtual private gateway has been completely detached from a VPC by describing the virtual private gateway (any attachments to the virtual private gateway are also described).</p> <p>You must wait for the attachment's state to switch to <code>detached</code> before you can delete the VPC or attach a different VPC to the virtual private gateway.</p>",
     "DisableEbsEncryptionByDefault": "<p>Disables EBS encryption by default for your account in the current Region.</p> <p>After you disable encryption by default, you can still create encrypted volumes by enabling encryption when you create each volume.</p> <p>Disabling encryption by default does not change the encryption status of your existing volumes.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+    "DisableFastSnapshotRestores": "<p>Disables fast snapshot restores for the specified snapshots in the specified Availability Zones.</p>",
     "DisableTransitGatewayRouteTablePropagation": "<p>Disables the specified resource attachment from propagating routes to the specified propagation route table.</p>",
     "DisableVgwRoutePropagation": "<p>Disables a virtual private gateway (VGW) from propagating routes to a specified route table of a VPC.</p>",
     "DisableVpcClassicLink": "<p>Disables ClassicLink for a VPC. You cannot disable ClassicLink for a VPC that has EC2-Classic instances linked to it.</p>",
@@ -252,6 +254,7 @@
     "DisassociateTransitGatewayRouteTable": "<p>Disassociates a resource attachment from a transit gateway route table.</p>",
     "DisassociateVpcCidrBlock": "<p>Disassociates a CIDR block from a VPC. To disassociate the CIDR block, you must specify its association ID. You can get the association ID by using <a>DescribeVpcs</a>. You must detach or delete all gateways and resources that are associated with the CIDR block before you can disassociate it. </p> <p>You cannot disassociate the CIDR block with which you originally created the VPC (the primary CIDR block).</p>",
     "EnableEbsEncryptionByDefault": "<p>Enables EBS encryption by default for your account in the current Region.</p> <p>After you enable encryption by default, the EBS volumes that you create are are always encrypted, either using the default CMK or the CMK that you specified when you created each volume. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>You can specify the default CMK for encryption by default using <a>ModifyEbsDefaultKmsKeyId</a> or <a>ResetEbsDefaultKmsKeyId</a>.</p> <p>Enabling encryption by default has no effect on the encryption status of your existing volumes.</p> <p>After you enable encryption by default, you can no longer launch instances using instance types that do not support encryption. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances\">Supported Instance Types</a>.</p>",
+    "EnableFastSnapshotRestores": "<p>Enables fast snapshot restores for the specified snapshots in the specified Availability Zones.</p> <p>You get the full benefit of fast snapshot restores after they enter the <code>enabled</code> state. To get the current state of fast snapshot restores, use <a>DescribeFastSnapshotRestores</a>. To disable fast snapshot restores, use <a>DisableFastSnapshotRestores</a>.</p>",
     "EnableTransitGatewayRouteTablePropagation": "<p>Enables the specified attachment to propagate routes to the specified propagation route table.</p>",
     "EnableVgwRoutePropagation": "<p>Enables a virtual private gateway (VGW) to propagate routes to the specified route table of a VPC.</p>",
     "EnableVolumeIO": "<p>Enables I/O operations for a volume that had I/O operations disabled because the data on the volume was potentially inconsistent.</p>",
@@ -735,7 +738,7 @@
       }
     },
     "AttachVolumeRequest": {
-      "base": "<p>Contains the parameters for AttachVolume.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -890,6 +893,13 @@
         "AvailabilityZone$State": "<p>The state of the Availability Zone.</p>"
       }
     },
+    "AvailabilityZoneStringList": {
+      "base": null,
+      "refs": {
+        "DisableFastSnapshotRestoresRequest$AvailabilityZones": "<p>One or more Availability Zones. For example, <code>us-east-2a</code>.</p>",
+        "EnableFastSnapshotRestoresRequest$AvailabilityZones": "<p>One or more Availability Zones. For example, <code>us-east-2a</code>.</p>"
+      }
+    },
     "AvailableCapacity": {
       "base": "<p>The capacity information for instances launched onto the Dedicated Host.</p>",
       "refs": {
@@ -1040,7 +1050,7 @@
         "CreateRouteTableRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateSecurityGroupRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateSnapshotRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
-        "CreateSnapshotsRequest$DryRun": "<p>Checks whether you have the required permissions for the action without actually making the request. Provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.</p>",
+        "CreateSnapshotsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateSpotDatafeedSubscriptionRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateSubnetRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateTagsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1135,6 +1145,7 @@
         "DescribeEgressOnlyInternetGatewaysRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeElasticGpusRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeExportImageTasksRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DescribeFastSnapshotRestoresRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeFleetHistoryRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeFleetInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeFleetsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1213,8 +1224,9 @@
         "DetachVolumeRequest$Force": "<p>Forces detachment if the previous detachment attempt did not occur cleanly (for example, logging into an instance, unmounting the volume, and detaching normally). This option can lead to data loss or a corrupted file system. Use this option only as a last resort to detach a volume from a failed instance. The instance won't have an opportunity to flush file system caches or file system metadata. If you use this option, you must perform file system check and repair procedures.</p>",
         "DetachVolumeRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DetachVpnGatewayRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
-        "DisableEbsEncryptionByDefaultRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>. </p>",
+        "DisableEbsEncryptionByDefaultRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisableEbsEncryptionByDefaultResult$EbsEncryptionByDefault": "<p>The updated status of encryption by default.</p>",
+        "DisableFastSnapshotRestoresRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisableTransitGatewayRouteTablePropagationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisableVpcClassicLinkDnsSupportResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
         "DisableVpcClassicLinkRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1228,8 +1240,9 @@
         "EbsBlockDevice$Encrypted": "<p>Indicates whether the encryption state of an EBS volume is changed while being restored from a backing snapshot. The effect of setting the encryption state to <code>true</code> depends on the volume origin (new or from a snapshot), starting encryption state, ownership, and whether encryption by default is enabled. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-parameters\">Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>In no case can you remove encryption from an encrypted volume.</p> <p>Encrypted volumes can only be attached to instances that support Amazon EBS encryption. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances\">Supported Instance Types</a>.</p>",
         "EbsInstanceBlockDevice$DeleteOnTermination": "<p>Indicates whether the volume is deleted on instance termination.</p>",
         "EbsInstanceBlockDeviceSpecification$DeleteOnTermination": "<p>Indicates whether the volume is deleted on instance termination.</p>",
-        "EnableEbsEncryptionByDefaultRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>. </p>",
+        "EnableEbsEncryptionByDefaultRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "EnableEbsEncryptionByDefaultResult$EbsEncryptionByDefault": "<p>The updated status of encryption by default.</p>",
+        "EnableFastSnapshotRestoresRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "EnableTransitGatewayRouteTablePropagationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "EnableVolumeIORequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "EnableVpcClassicLinkDnsSupportResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
@@ -1455,6 +1468,7 @@
         "UpdateSecurityGroupRuleDescriptionsIngressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "UpdateSecurityGroupRuleDescriptionsIngressResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, returns an error.</p>",
         "Volume$Encrypted": "<p>Indicates whether the volume is encrypted.</p>",
+        "Volume$FastRestored": "<p>Indicates whether the volume was created using fast snapshot restore.</p>",
         "VolumeAttachment$DeleteOnTermination": "<p>Indicates whether the EBS volume is deleted on instance termination.</p>",
         "Vpc$IsDefault": "<p>Indicates whether the VPC is the default VPC.</p>",
         "VpcClassicLink$ClassicLinkEnabled": "<p>Indicates whether the VPC is enabled for ClassicLink.</p>",
@@ -2081,12 +2095,12 @@
       }
     },
     "CopySnapshotRequest": {
-      "base": "<p>Contains the parameters for CopySnapshot.</p>",
+      "base": null,
       "refs": {
       }
     },
     "CopySnapshotResult": {
-      "base": "<p>Contains the output of CopySnapshot.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -2388,7 +2402,7 @@
       }
     },
     "CreateSnapshotRequest": {
-      "base": "<p>Contains the parameters for CreateSnapshot.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -2534,7 +2548,7 @@
       }
     },
     "CreateVolumeRequest": {
-      "base": "<p>Contains the parameters for CreateVolume.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -3042,7 +3056,7 @@
       }
     },
     "DeleteSnapshotRequest": {
-      "base": "<p>Contains the parameters for DeleteSnapshot.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -3142,7 +3156,7 @@
       }
     },
     "DeleteVolumeRequest": {
-      "base": "<p>Contains the parameters for DeleteVolume.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -3495,6 +3509,34 @@
       }
     },
     "DescribeExportTasksResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeFastSnapshotRestoreSuccessItem": {
+      "base": "<p>Describes fast snapshot restores for a snapshot.</p>",
+      "refs": {
+        "DescribeFastSnapshotRestoreSuccessSet$member": null
+      }
+    },
+    "DescribeFastSnapshotRestoreSuccessSet": {
+      "base": null,
+      "refs": {
+        "DescribeFastSnapshotRestoresResult$FastSnapshotRestores": "<p>Information about the state of fast snapshot restores.</p>"
+      }
+    },
+    "DescribeFastSnapshotRestoresMaxResults": {
+      "base": null,
+      "refs": {
+        "DescribeFastSnapshotRestoresRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>"
+      }
+    },
+    "DescribeFastSnapshotRestoresRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeFastSnapshotRestoresResult": {
       "base": null,
       "refs": {
       }
@@ -4044,12 +4086,12 @@
       }
     },
     "DescribeSnapshotAttributeRequest": {
-      "base": "<p>Contains the parameters for DescribeSnapshotAttribute.</p>",
+      "base": null,
       "refs": {
       }
     },
     "DescribeSnapshotAttributeResult": {
-      "base": "<p>Contains the output of DescribeSnapshotAttribute.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -4254,12 +4296,12 @@
       }
     },
     "DescribeVolumeAttributeRequest": {
-      "base": "<p>Contains the parameters for DescribeVolumeAttribute.</p>",
+      "base": null,
       "refs": {
       }
     },
     "DescribeVolumeAttributeResult": {
-      "base": "<p>Contains the output of DescribeVolumeAttribute.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -4469,7 +4511,7 @@
       }
     },
     "DetachVolumeRequest": {
-      "base": "<p>Contains the parameters for DetachVolume.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -4547,6 +4589,58 @@
       }
     },
     "DisableEbsEncryptionByDefaultResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisableFastSnapshotRestoreErrorItem": {
+      "base": "<p>Contains information about the errors that occurred when disabling fast snapshot restores.</p>",
+      "refs": {
+        "DisableFastSnapshotRestoreErrorSet$member": null
+      }
+    },
+    "DisableFastSnapshotRestoreErrorSet": {
+      "base": null,
+      "refs": {
+        "DisableFastSnapshotRestoresResult$Unsuccessful": "<p>Information about the snapshots for which fast snapshot restores could not be disabled.</p>"
+      }
+    },
+    "DisableFastSnapshotRestoreStateError": {
+      "base": "<p>Describes an error that occurred when disabling fast snapshot restores.</p>",
+      "refs": {
+        "DisableFastSnapshotRestoreStateErrorItem$Error": "<p>The error.</p>"
+      }
+    },
+    "DisableFastSnapshotRestoreStateErrorItem": {
+      "base": "<p>Contains information about an error that occurred when disabling fast snapshot restores.</p>",
+      "refs": {
+        "DisableFastSnapshotRestoreStateErrorSet$member": null
+      }
+    },
+    "DisableFastSnapshotRestoreStateErrorSet": {
+      "base": null,
+      "refs": {
+        "DisableFastSnapshotRestoreErrorItem$FastSnapshotRestoreStateErrors": "<p>The errors.</p>"
+      }
+    },
+    "DisableFastSnapshotRestoreSuccessItem": {
+      "base": "<p>Describes fast snapshot restores that were successfully disabled.</p>",
+      "refs": {
+        "DisableFastSnapshotRestoreSuccessSet$member": null
+      }
+    },
+    "DisableFastSnapshotRestoreSuccessSet": {
+      "base": null,
+      "refs": {
+        "DisableFastSnapshotRestoresResult$Successful": "<p>Information about the snapshots for which fast snapshot restores were successfully disabled.</p>"
+      }
+    },
+    "DisableFastSnapshotRestoresRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisableFastSnapshotRestoresResult": {
       "base": null,
       "refs": {
       }
@@ -4911,6 +5005,58 @@
       "refs": {
       }
     },
+    "EnableFastSnapshotRestoreErrorItem": {
+      "base": "<p>Contains information about the errors that occurred when enabling fast snapshot restores.</p>",
+      "refs": {
+        "EnableFastSnapshotRestoreErrorSet$member": null
+      }
+    },
+    "EnableFastSnapshotRestoreErrorSet": {
+      "base": null,
+      "refs": {
+        "EnableFastSnapshotRestoresResult$Unsuccessful": "<p>Information about the snapshots for which fast snapshot restores could not be enabled.</p>"
+      }
+    },
+    "EnableFastSnapshotRestoreStateError": {
+      "base": "<p>Describes an error that occurred when enabling fast snapshot restores.</p>",
+      "refs": {
+        "EnableFastSnapshotRestoreStateErrorItem$Error": "<p>The error.</p>"
+      }
+    },
+    "EnableFastSnapshotRestoreStateErrorItem": {
+      "base": "<p>Contains information about an error that occurred when enabling fast snapshot restores.</p>",
+      "refs": {
+        "EnableFastSnapshotRestoreStateErrorSet$member": null
+      }
+    },
+    "EnableFastSnapshotRestoreStateErrorSet": {
+      "base": null,
+      "refs": {
+        "EnableFastSnapshotRestoreErrorItem$FastSnapshotRestoreStateErrors": "<p>The errors.</p>"
+      }
+    },
+    "EnableFastSnapshotRestoreSuccessItem": {
+      "base": "<p>Describes fast snapshot restores that were successfully enabled.</p>",
+      "refs": {
+        "EnableFastSnapshotRestoreSuccessSet$member": null
+      }
+    },
+    "EnableFastSnapshotRestoreSuccessSet": {
+      "base": null,
+      "refs": {
+        "EnableFastSnapshotRestoresResult$Successful": "<p>Information about the snapshots for which fast snapshot restores were successfully enabled.</p>"
+      }
+    },
+    "EnableFastSnapshotRestoresRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "EnableFastSnapshotRestoresResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "EnableTransitGatewayRouteTablePropagationRequest": {
       "base": null,
       "refs": {
@@ -4927,7 +5073,7 @@
       }
     },
     "EnableVolumeIORequest": {
-      "base": "<p>Contains the parameters for EnableVolumeIO.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -5131,6 +5277,14 @@
         "DeleteQueuedReservedInstancesResult$FailedQueuedPurchaseDeletions": "<p>Information about the queued purchases that could not be deleted.</p>"
       }
     },
+    "FastSnapshotRestoreStateCode": {
+      "base": null,
+      "refs": {
+        "DescribeFastSnapshotRestoreSuccessItem$State": "<p>The state of fast snapshot restores.</p>",
+        "DisableFastSnapshotRestoreSuccessItem$State": "<p>The state of fast snapshot restores for the snapshot.</p>",
+        "EnableFastSnapshotRestoreSuccessItem$State": "<p>The state of fast snapshot restores.</p>"
+      }
+    },
     "Filter": {
       "base": "<p>A filter name and value pair that is used to return a more specific list of results from a describe operation. Filters can be used to match a set of resources by specific criteria, such as tags, attributes, or IDs. The filters supported by a describe operation are documented with the describe operation. For example:</p> <ul> <li> <p> <a>DescribeAvailabilityZones</a> </p> </li> <li> <p> <a>DescribeImages</a> </p> </li> <li> <p> <a>DescribeInstances</a> </p> </li> <li> <p> <a>DescribeKeyPairs</a> </p> </li> <li> <p> <a>DescribeSecurityGroups</a> </p> </li> <li> <p> <a>DescribeSnapshots</a> </p> </li> <li> <p> <a>DescribeSubnets</a> </p> </li> <li> <p> <a>DescribeTags</a> </p> </li> <li> <p> <a>DescribeVolumes</a> </p> </li> <li> <p> <a>DescribeVpcs</a> </p> </li> </ul>",
       "refs": {
@@ -5154,6 +5308,7 @@
         "DescribeDhcpOptionsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>dhcp-options-id</code> - The ID of a DHCP options set.</p> </li> <li> <p> <code>key</code> - The key for one of the options (for example, <code>domain-name</code>).</p> </li> <li> <p> <code>value</code> - The value for one of the options.</p> </li> <li> <p> <code>owner-id</code> - The ID of the AWS account that owns the DHCP options set.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
         "DescribeElasticGpusRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>availability-zone</code> - The Availability Zone in which the Elastic Graphics accelerator resides.</p> </li> <li> <p> <code>elastic-gpu-health</code> - The status of the Elastic Graphics accelerator (<code>OK</code> | <code>IMPAIRED</code>).</p> </li> <li> <p> <code>elastic-gpu-state</code> - The state of the Elastic Graphics accelerator (<code>ATTACHED</code>).</p> </li> <li> <p> <code>elastic-gpu-type</code> - The type of Elastic Graphics accelerator; for example, <code>eg1.medium</code>.</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance to which the Elastic Graphics accelerator is associated.</p> </li> </ul>",
         "DescribeExportImageTasksRequest$Filters": "<p>Filter tasks using the <code>task-state</code> filter and one of the following values: <code>active</code>, <code>completed</code>, <code>deleting</code>, or <code>deleted</code>.</p>",
+        "DescribeFastSnapshotRestoresRequest$Filters": "<p>The filters. The possible values are:</p> <ul> <li> <p> <code>availability-zone</code>: The Availability Zone of the snapshot.</p> </li> <li> <p> <code>owner-id</code>: The ID of the AWS account that owns the snapshot.</p> </li> <li> <p> <code>snapshot-id</code>: The ID of the snapshot.</p> </li> <li> <p> <code>state</code>: The state of fast snapshot restores for the snapshot (<code>enabling</code> | <code>optimizing</code> | <code>enabled</code> | <code>disabling</code> | <code>disabled</code>).</p> </li> </ul>",
         "DescribeFleetInstancesRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>instance-type</code> - The instance type.</p> </li> </ul>",
         "DescribeFleetsRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>activity-status</code> - The progress of the EC2 Fleet ( <code>error</code> | <code>pending-fulfillment</code> | <code>pending-termination</code> | <code>fulfilled</code>).</p> </li> <li> <p> <code>excess-capacity-termination-policy</code> - Indicates whether to terminate running instances if the target capacity is decreased below the current EC2 Fleet size (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>fleet-state</code> - The state of the EC2 Fleet (<code>submitted</code> | <code>active</code> | <code>deleted</code> | <code>failed</code> | <code>deleted-running</code> | <code>deleted-terminating</code> | <code>modifying</code>).</p> </li> <li> <p> <code>replace-unhealthy-instances</code> - Indicates whether EC2 Fleet should replace unhealthy instances (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>type</code> - The type of request (<code>instant</code> | <code>request</code> | <code>maintain</code>).</p> </li> </ul>",
         "DescribeFlowLogsRequest$Filter": "<p>One or more filters.</p> <ul> <li> <p> <code>deliver-log-status</code> - The status of the logs delivery (<code>SUCCESS</code> | <code>FAILED</code>).</p> </li> <li> <p> <code>log-destination-type</code> - The type of destination to which the flow log publishes data. Possible destination types include <code>cloud-watch-logs</code> and <code>S3</code>.</p> </li> <li> <p> <code>flow-log-id</code> - The ID of the flow log.</p> </li> <li> <p> <code>log-group-name</code> - The name of the log group.</p> </li> <li> <p> <code>resource-id</code> - The ID of the VPC, subnet, or network interface.</p> </li> <li> <p> <code>traffic-type</code> - The type of traffic (<code>ACCEPT</code> | <code>REJECT</code> | <code>ALL</code>).</p> </li> </ul>",
@@ -7362,6 +7517,21 @@
     "MillisecondDateTime": {
       "base": null,
       "refs": {
+        "DescribeFastSnapshotRestoreSuccessItem$EnablingTime": "<p>The time at which fast snapshot restores entered the <code>enabling</code> state.</p>",
+        "DescribeFastSnapshotRestoreSuccessItem$OptimizingTime": "<p>The time at which fast snapshot restores entered the <code>optimizing</code> state.</p>",
+        "DescribeFastSnapshotRestoreSuccessItem$EnabledTime": "<p>The time at which fast snapshot restores entered the <code>enabled</code> state.</p>",
+        "DescribeFastSnapshotRestoreSuccessItem$DisablingTime": "<p>The time at which fast snapshot restores entered the <code>disabling</code> state.</p>",
+        "DescribeFastSnapshotRestoreSuccessItem$DisabledTime": "<p>The time at which fast snapshot restores entered the <code>disabled</code> state.</p>",
+        "DisableFastSnapshotRestoreSuccessItem$EnablingTime": "<p>The time at which fast snapshot restores entered the <code>enabling</code> state.</p>",
+        "DisableFastSnapshotRestoreSuccessItem$OptimizingTime": "<p>The time at which fast snapshot restores entered the <code>optimizing</code> state.</p>",
+        "DisableFastSnapshotRestoreSuccessItem$EnabledTime": "<p>The time at which fast snapshot restores entered the <code>enabled</code> state.</p>",
+        "DisableFastSnapshotRestoreSuccessItem$DisablingTime": "<p>The time at which fast snapshot restores entered the <code>disabling</code> state.</p>",
+        "DisableFastSnapshotRestoreSuccessItem$DisabledTime": "<p>The time at which fast snapshot restores entered the <code>disabled</code> state.</p>",
+        "EnableFastSnapshotRestoreSuccessItem$EnablingTime": "<p>The time at which fast snapshot restores entered the <code>enabling</code> state.</p>",
+        "EnableFastSnapshotRestoreSuccessItem$OptimizingTime": "<p>The time at which fast snapshot restores entered the <code>optimizing</code> state.</p>",
+        "EnableFastSnapshotRestoreSuccessItem$EnabledTime": "<p>The time at which fast snapshot restores entered the <code>enabled</code> state.</p>",
+        "EnableFastSnapshotRestoreSuccessItem$DisablingTime": "<p>The time at which fast snapshot restores entered the <code>disabling</code> state.</p>",
+        "EnableFastSnapshotRestoreSuccessItem$DisabledTime": "<p>The time at which fast snapshot restores entered the <code>disabled</code> state.</p>",
         "SnapshotInfo$StartTime": "<p>Time this snapshot was started. This is the same for all snapshots initiated by the same request.</p>",
         "VpcEndpoint$CreationTimestamp": "<p>The date and time the VPC endpoint was created.</p>",
         "VpcEndpointConnection$CreationTimestamp": "<p>The date and time the VPC endpoint was created.</p>"
@@ -7523,7 +7693,7 @@
       }
     },
     "ModifySnapshotAttributeRequest": {
-      "base": "<p>Contains the parameters for ModifySnapshotAttribute.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -7589,7 +7759,7 @@
       }
     },
     "ModifyVolumeAttributeRequest": {
-      "base": "<p>Contains the parameters for ModifyVolumeAttribute.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -8013,6 +8183,8 @@
         "DescribeClientVpnTargetNetworksResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeExportImageTasksRequest$NextToken": "<p>A token that indicates the next page of results.</p>",
         "DescribeExportImageTasksResult$NextToken": "<p>The token to use to get the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "DescribeFastSnapshotRestoresRequest$NextToken": "<p>The token for the next page of results.</p>",
+        "DescribeFastSnapshotRestoresResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeFpgaImagesRequest$NextToken": "<p>The token to retrieve the next page of results.</p>",
         "DescribeFpgaImagesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeIamInstanceProfileAssociationsRequest$NextToken": "<p>The token to request the next page of results.</p>",
@@ -9079,7 +9251,7 @@
       }
     },
     "ResetSnapshotAttributeRequest": {
-      "base": "<p>Contains the parameters for ResetSnapshotAttribute.</p>",
+      "base": null,
       "refs": {
       }
     },
@@ -9607,7 +9779,9 @@
     "SnapshotIdStringList": {
       "base": null,
       "refs": {
-        "DescribeSnapshotsRequest$SnapshotIds": "<p>The snapshot IDs.</p> <p>Default: Describes the snapshots for which you have create volume permissions.</p>"
+        "DescribeSnapshotsRequest$SnapshotIds": "<p>The snapshot IDs.</p> <p>Default: Describes the snapshots for which you have create volume permissions.</p>",
+        "DisableFastSnapshotRestoresRequest$SourceSnapshotIds": "<p>The IDs of one or more snapshots. For example, <code>snap-1234567890abcdef0</code>.</p>",
+        "EnableFastSnapshotRestoresRequest$SourceSnapshotIds": "<p>The IDs of one or more snapshots. For example, <code>snap-1234567890abcdef0</code>. You can specify a snapshot that was shared with you from another AWS account.</p>"
       }
     },
     "SnapshotInfo": {
@@ -9961,6 +10135,7 @@
         "AvailabilityZone$ZoneName": "<p>The name of the Availability Zone.</p>",
         "AvailabilityZone$ZoneId": "<p>The ID of the Availability Zone.</p>",
         "AvailabilityZoneMessage$Message": "<p>The message about the Availability Zone.</p>",
+        "AvailabilityZoneStringList$member": null,
         "BillingProductList$member": null,
         "BlockDeviceMapping$DeviceName": "<p>The device name (for example, <code>/dev/sdh</code> or <code>xvdh</code>).</p>",
         "BlockDeviceMapping$VirtualName": "<p>The virtual device name (<code>ephemeral</code>N). Instance store volumes are numbered starting from 0. An instance type with 2 available instance store volumes can specify mappings for <code>ephemeral0</code> and <code>ephemeral1</code>. The number of available instance store volumes depends on the instance type. After you connect to the instance, you must mount the volume.</p> <p>NVMe instance store volumes are automatically enumerated and assigned a device name. Including them in your block device mapping has no effect.</p> <p>Constraints: For M3 instances, you must specify instance store volumes in the block device mapping for the instance. When you launch an M3 instance, we ignore any instance store volumes specified in the block device mapping for the AMI.</p>",
@@ -10218,6 +10393,11 @@
         "DescribeEgressOnlyInternetGatewaysResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeElasticGpusRequest$NextToken": "<p>The token to request the next page of results.</p>",
         "DescribeElasticGpusResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "DescribeFastSnapshotRestoreSuccessItem$SnapshotId": "<p>The ID of the snapshot.</p>",
+        "DescribeFastSnapshotRestoreSuccessItem$AvailabilityZone": "<p>The Availability Zone.</p>",
+        "DescribeFastSnapshotRestoreSuccessItem$StateTransitionReason": "<p>The reason for the state transition. The possible values are as follows:</p> <ul> <li> <p> <code>Client.UserInitiated</code> - The state successfully transitioned to <code>enabling</code> or <code>disabling</code>.</p> </li> <li> <p> <code>Client.UserInitiated - Lifecycle state transition</code> - The state successfully transitioned to <code>optimizing</code>, <code>enabled</code>, or <code>disabled</code>.</p> </li> </ul>",
+        "DescribeFastSnapshotRestoreSuccessItem$OwnerId": "<p>The ID of the AWS account that owns the snapshot.</p>",
+        "DescribeFastSnapshotRestoreSuccessItem$OwnerAlias": "<p>The alias of the snapshot owner.</p>",
         "DescribeFleetError$ErrorCode": "<p>The error code that indicates why the instance could not be launched. For more information about error codes, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/errors-overview.html.html\">Error Codes</a>.</p>",
         "DescribeFleetError$ErrorMessage": "<p>The error message that describes why the instance could not be launched. For more information about error messages, see ee <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/errors-overview.html.html\">Error Codes</a>.</p>",
         "DescribeFleetHistoryRequest$NextToken": "<p>The token for the next set of results.</p>",
@@ -10362,6 +10542,15 @@
         "DhcpOptionsIdStringList$member": null,
         "DirectoryServiceAuthentication$DirectoryId": "<p>The ID of the Active Directory used for authentication.</p>",
         "DirectoryServiceAuthenticationRequest$DirectoryId": "<p>The ID of the Active Directory to be used for authentication.</p>",
+        "DisableFastSnapshotRestoreErrorItem$SnapshotId": "<p>The ID of the snapshot.</p>",
+        "DisableFastSnapshotRestoreStateError$Code": "<p>The error code.</p>",
+        "DisableFastSnapshotRestoreStateError$Message": "<p>The error message.</p>",
+        "DisableFastSnapshotRestoreStateErrorItem$AvailabilityZone": "<p>The Availability Zone.</p>",
+        "DisableFastSnapshotRestoreSuccessItem$SnapshotId": "<p>The ID of the snapshot.</p>",
+        "DisableFastSnapshotRestoreSuccessItem$AvailabilityZone": "<p>The Availability Zone.</p>",
+        "DisableFastSnapshotRestoreSuccessItem$StateTransitionReason": "<p>The reason for the state transition. The possible values are as follows:</p> <ul> <li> <p> <code>Client.UserInitiated</code> - The state successfully transitioned to <code>enabling</code> or <code>disabling</code>.</p> </li> <li> <p> <code>Client.UserInitiated - Lifecycle state transition</code> - The state successfully transitioned to <code>optimizing</code>, <code>enabled</code>, or <code>disabled</code>.</p> </li> </ul>",
+        "DisableFastSnapshotRestoreSuccessItem$OwnerId": "<p>The ID of the AWS account that owns the snapshot.</p>",
+        "DisableFastSnapshotRestoreSuccessItem$OwnerAlias": "<p>The alias of the snapshot owner.</p>",
         "DisassociateAddressRequest$AssociationId": "<p>[EC2-VPC] The association ID. Required for EC2-VPC.</p>",
         "DisassociateAddressRequest$PublicIp": "<p>[EC2-Classic] The Elastic IP address. Required for EC2-Classic.</p>",
         "DisassociateClientVpnTargetNetworkRequest$AssociationId": "<p>The ID of the target network association.</p>",
@@ -10395,6 +10584,15 @@
         "ElasticInferenceAcceleratorAssociation$ElasticInferenceAcceleratorArn": "<p> The Amazon Resource Name (ARN) of the elastic inference accelerator. </p>",
         "ElasticInferenceAcceleratorAssociation$ElasticInferenceAcceleratorAssociationId": "<p> The ID of the association. </p>",
         "ElasticInferenceAcceleratorAssociation$ElasticInferenceAcceleratorAssociationState": "<p> The state of the elastic inference accelerator. </p>",
+        "EnableFastSnapshotRestoreErrorItem$SnapshotId": "<p>The ID of the snapshot.</p>",
+        "EnableFastSnapshotRestoreStateError$Code": "<p>The error code.</p>",
+        "EnableFastSnapshotRestoreStateError$Message": "<p>The error message.</p>",
+        "EnableFastSnapshotRestoreStateErrorItem$AvailabilityZone": "<p>The Availability Zone.</p>",
+        "EnableFastSnapshotRestoreSuccessItem$SnapshotId": "<p>The ID of the snapshot.</p>",
+        "EnableFastSnapshotRestoreSuccessItem$AvailabilityZone": "<p>The Availability Zone.</p>",
+        "EnableFastSnapshotRestoreSuccessItem$StateTransitionReason": "<p>The reason for the state transition. The possible values are as follows:</p> <ul> <li> <p> <code>Client.UserInitiated</code> - The state successfully transitioned to <code>enabling</code> or <code>disabling</code>.</p> </li> <li> <p> <code>Client.UserInitiated - Lifecycle state transition</code> - The state successfully transitioned to <code>optimizing</code>, <code>enabled</code>, or <code>disabled</code>.</p> </li> </ul>",
+        "EnableFastSnapshotRestoreSuccessItem$OwnerId": "<p>The ID of the AWS account that owns the snapshot.</p>",
+        "EnableFastSnapshotRestoreSuccessItem$OwnerAlias": "<p>The alias of the snapshot owner.</p>",
         "EventInformation$EventDescription": "<p>The description of the event.</p>",
         "EventInformation$EventSubType": "<p>The event.</p> <p>The following are the <code>error</code> events:</p> <ul> <li> <p> <code>iamFleetRoleInvalid</code> - The EC2 Fleet or Spot Fleet did not have the required permissions either to launch or terminate an instance.</p> </li> <li> <p> <code>spotFleetRequestConfigurationInvalid</code> - The configuration is not valid. For more information, see the description of the event.</p> </li> <li> <p> <code>spotInstanceCountLimitExceeded</code> - You've reached the limit on the number of Spot Instances that you can launch.</p> </li> </ul> <p>The following are the <code>fleetRequestChange</code> events:</p> <ul> <li> <p> <code>active</code> - The EC2 Fleet or Spot Fleet request has been validated and Amazon EC2 is attempting to maintain the target number of running Spot Instances.</p> </li> <li> <p> <code>cancelled</code> - The EC2 Fleet or Spot Fleet request is canceled and has no running Spot Instances. The EC2 Fleet or Spot Fleet will be deleted two days after its instances were terminated.</p> </li> <li> <p> <code>cancelled_running</code> - The EC2 Fleet or Spot Fleet request is canceled and does not launch additional Spot Instances. Existing Spot Instances continue to run until they are interrupted or terminated.</p> </li> <li> <p> <code>cancelled_terminating</code> - The EC2 Fleet or Spot Fleet request is canceled and its Spot Instances are terminating.</p> </li> <li> <p> <code>expired</code> - The EC2 Fleet or Spot Fleet request has expired. A subsequent event indicates that the instances were terminated, if the request was created with <code>TerminateInstancesWithExpiration</code> set.</p> </li> <li> <p> <code>modify_in_progress</code> - A request to modify the EC2 Fleet or Spot Fleet request was accepted and is in progress.</p> </li> <li> <p> <code>modify_successful</code> - The EC2 Fleet or Spot Fleet request was modified.</p> </li> <li> <p> <code>price_update</code> - The price for a launch configuration was adjusted because it was too high. This change is permanent.</p> </li> <li> <p> <code>submitted</code> - The EC2 Fleet or Spot Fleet request is being evaluated and Amazon EC2 is preparing to launch the target number of Spot Instances.</p> </li> </ul> <p>The following are the <code>instanceChange</code> events:</p> <ul> <li> <p> <code>launched</code> - A request was fulfilled and a new instance was launched.</p> </li> <li> <p> <code>terminated</code> - An instance was terminated by the user.</p> </li> </ul> <p>The following are the <code>Information</code> events:</p> <ul> <li> <p> <code>launchSpecTemporarilyBlacklisted</code> - The configuration is not valid and several attempts to launch instances have failed. For more information, see the description of the event.</p> </li> <li> <p> <code>launchSpecUnusable</code> - The price in a launch specification is not valid because it is below the Spot price or the Spot price is above the On-Demand price.</p> </li> <li> <p> <code>fleetProgressHalted</code> - The price in every launch specification is not valid. A launch specification might become valid if the Spot price changes.</p> </li> </ul>",
         "EventInformation$InstanceId": "<p>The ID of the instance. This information is available only for <code>instanceChange</code> events.</p>",
@@ -11437,7 +11635,7 @@
         "ClassicLinkInstance$Tags": "<p>Any tags assigned to the instance.</p>",
         "ClientVpnEndpoint$Tags": "<p>Any tags assigned to the Client VPN endpoint.</p>",
         "ConversionTask$Tags": "<p>Any tags assigned to the task.</p>",
-        "CopySnapshotResult$Tags": null,
+        "CopySnapshotResult$Tags": "<p>Any tags applied to the new snapshot.</p>",
         "CreateTagsRequest$Tags": "<p>The tags. The <code>value</code> parameter is required, but if you don't want the tag to have a value, specify the parameter with no value, and we set the value to an empty string.</p>",
         "CustomerGateway$Tags": "<p>Any tags assigned to the customer gateway.</p>",
         "DeleteTagsRequest$Tags": "<p>The tags to delete. Specify a tag key and an optional tag value to delete specific tags. If you specify a tag key without a tag value, we delete any tag with this key regardless of its value. If you specify a tag key with an empty string as the tag value, we delete the tag only if its value is an empty string.</p> <p>If you omit this parameter, we delete all user-defined tags for the specified resources. We do not delete AWS-generated tags (tags that have the <code>aws:</code> prefix).</p>",
@@ -11493,7 +11691,7 @@
       "base": null,
       "refs": {
         "AllocateHostsRequest$TagSpecifications": "<p>The tags to apply to the Dedicated Host during creation.</p>",
-        "CopySnapshotRequest$TagSpecifications": null,
+        "CopySnapshotRequest$TagSpecifications": "<p>The tags to apply to the new snapshot.</p>",
         "CreateCapacityReservationRequest$TagSpecifications": "<p>The tags to apply to the Capacity Reservation during launch.</p>",
         "CreateClientVpnEndpointRequest$TagSpecifications": "<p>The tags to apply to the Client VPN endpoint during creation.</p>",
         "CreateFleetRequest$TagSpecifications": "<p>The key-value pair for tagging the EC2 Fleet request on creation. The value for <code>ResourceType</code> must be <code>fleet</code>, otherwise the fleet request fails. To tag instances at launch, specify the tags in the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html#create-launch-template\">launch template</a>. For information about tagging after launch, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#tag-resources\">Tagging Your Resources</a>. </p>",

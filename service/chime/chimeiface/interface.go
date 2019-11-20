@@ -72,6 +72,10 @@ type ChimeAPI interface {
 	AssociatePhoneNumbersWithVoiceConnectorGroupWithContext(aws.Context, *chime.AssociatePhoneNumbersWithVoiceConnectorGroupInput, ...request.Option) (*chime.AssociatePhoneNumbersWithVoiceConnectorGroupOutput, error)
 	AssociatePhoneNumbersWithVoiceConnectorGroupRequest(*chime.AssociatePhoneNumbersWithVoiceConnectorGroupInput) (*request.Request, *chime.AssociatePhoneNumbersWithVoiceConnectorGroupOutput)
 
+	BatchCreateAttendee(*chime.BatchCreateAttendeeInput) (*chime.BatchCreateAttendeeOutput, error)
+	BatchCreateAttendeeWithContext(aws.Context, *chime.BatchCreateAttendeeInput, ...request.Option) (*chime.BatchCreateAttendeeOutput, error)
+	BatchCreateAttendeeRequest(*chime.BatchCreateAttendeeInput) (*request.Request, *chime.BatchCreateAttendeeOutput)
+
 	BatchCreateRoomMembership(*chime.BatchCreateRoomMembershipInput) (*chime.BatchCreateRoomMembershipOutput, error)
 	BatchCreateRoomMembershipWithContext(aws.Context, *chime.BatchCreateRoomMembershipInput, ...request.Option) (*chime.BatchCreateRoomMembershipOutput, error)
 	BatchCreateRoomMembershipRequest(*chime.BatchCreateRoomMembershipInput) (*request.Request, *chime.BatchCreateRoomMembershipOutput)
@@ -100,9 +104,17 @@ type ChimeAPI interface {
 	CreateAccountWithContext(aws.Context, *chime.CreateAccountInput, ...request.Option) (*chime.CreateAccountOutput, error)
 	CreateAccountRequest(*chime.CreateAccountInput) (*request.Request, *chime.CreateAccountOutput)
 
+	CreateAttendee(*chime.CreateAttendeeInput) (*chime.CreateAttendeeOutput, error)
+	CreateAttendeeWithContext(aws.Context, *chime.CreateAttendeeInput, ...request.Option) (*chime.CreateAttendeeOutput, error)
+	CreateAttendeeRequest(*chime.CreateAttendeeInput) (*request.Request, *chime.CreateAttendeeOutput)
+
 	CreateBot(*chime.CreateBotInput) (*chime.CreateBotOutput, error)
 	CreateBotWithContext(aws.Context, *chime.CreateBotInput, ...request.Option) (*chime.CreateBotOutput, error)
 	CreateBotRequest(*chime.CreateBotInput) (*request.Request, *chime.CreateBotOutput)
+
+	CreateMeeting(*chime.CreateMeetingInput) (*chime.CreateMeetingOutput, error)
+	CreateMeetingWithContext(aws.Context, *chime.CreateMeetingInput, ...request.Option) (*chime.CreateMeetingOutput, error)
+	CreateMeetingRequest(*chime.CreateMeetingInput) (*request.Request, *chime.CreateMeetingOutput)
 
 	CreatePhoneNumberOrder(*chime.CreatePhoneNumberOrderInput) (*chime.CreatePhoneNumberOrderOutput, error)
 	CreatePhoneNumberOrderWithContext(aws.Context, *chime.CreatePhoneNumberOrderInput, ...request.Option) (*chime.CreatePhoneNumberOrderOutput, error)
@@ -128,9 +140,17 @@ type ChimeAPI interface {
 	DeleteAccountWithContext(aws.Context, *chime.DeleteAccountInput, ...request.Option) (*chime.DeleteAccountOutput, error)
 	DeleteAccountRequest(*chime.DeleteAccountInput) (*request.Request, *chime.DeleteAccountOutput)
 
+	DeleteAttendee(*chime.DeleteAttendeeInput) (*chime.DeleteAttendeeOutput, error)
+	DeleteAttendeeWithContext(aws.Context, *chime.DeleteAttendeeInput, ...request.Option) (*chime.DeleteAttendeeOutput, error)
+	DeleteAttendeeRequest(*chime.DeleteAttendeeInput) (*request.Request, *chime.DeleteAttendeeOutput)
+
 	DeleteEventsConfiguration(*chime.DeleteEventsConfigurationInput) (*chime.DeleteEventsConfigurationOutput, error)
 	DeleteEventsConfigurationWithContext(aws.Context, *chime.DeleteEventsConfigurationInput, ...request.Option) (*chime.DeleteEventsConfigurationOutput, error)
 	DeleteEventsConfigurationRequest(*chime.DeleteEventsConfigurationInput) (*request.Request, *chime.DeleteEventsConfigurationOutput)
+
+	DeleteMeeting(*chime.DeleteMeetingInput) (*chime.DeleteMeetingOutput, error)
+	DeleteMeetingWithContext(aws.Context, *chime.DeleteMeetingInput, ...request.Option) (*chime.DeleteMeetingOutput, error)
+	DeleteMeetingRequest(*chime.DeleteMeetingInput) (*request.Request, *chime.DeleteMeetingOutput)
 
 	DeletePhoneNumber(*chime.DeletePhoneNumberInput) (*chime.DeletePhoneNumberOutput, error)
 	DeletePhoneNumberWithContext(aws.Context, *chime.DeletePhoneNumberInput, ...request.Option) (*chime.DeletePhoneNumberOutput, error)
@@ -188,6 +208,10 @@ type ChimeAPI interface {
 	GetAccountSettingsWithContext(aws.Context, *chime.GetAccountSettingsInput, ...request.Option) (*chime.GetAccountSettingsOutput, error)
 	GetAccountSettingsRequest(*chime.GetAccountSettingsInput) (*request.Request, *chime.GetAccountSettingsOutput)
 
+	GetAttendee(*chime.GetAttendeeInput) (*chime.GetAttendeeOutput, error)
+	GetAttendeeWithContext(aws.Context, *chime.GetAttendeeInput, ...request.Option) (*chime.GetAttendeeOutput, error)
+	GetAttendeeRequest(*chime.GetAttendeeInput) (*request.Request, *chime.GetAttendeeOutput)
+
 	GetBot(*chime.GetBotInput) (*chime.GetBotOutput, error)
 	GetBotWithContext(aws.Context, *chime.GetBotInput, ...request.Option) (*chime.GetBotOutput, error)
 	GetBotRequest(*chime.GetBotInput) (*request.Request, *chime.GetBotOutput)
@@ -199,6 +223,10 @@ type ChimeAPI interface {
 	GetGlobalSettings(*chime.GetGlobalSettingsInput) (*chime.GetGlobalSettingsOutput, error)
 	GetGlobalSettingsWithContext(aws.Context, *chime.GetGlobalSettingsInput, ...request.Option) (*chime.GetGlobalSettingsOutput, error)
 	GetGlobalSettingsRequest(*chime.GetGlobalSettingsInput) (*request.Request, *chime.GetGlobalSettingsOutput)
+
+	GetMeeting(*chime.GetMeetingInput) (*chime.GetMeetingOutput, error)
+	GetMeetingWithContext(aws.Context, *chime.GetMeetingInput, ...request.Option) (*chime.GetMeetingOutput, error)
+	GetMeetingRequest(*chime.GetMeetingInput) (*request.Request, *chime.GetMeetingOutput)
 
 	GetPhoneNumber(*chime.GetPhoneNumberInput) (*chime.GetPhoneNumberOutput, error)
 	GetPhoneNumberWithContext(aws.Context, *chime.GetPhoneNumberInput, ...request.Option) (*chime.GetPhoneNumberOutput, error)
@@ -263,12 +291,26 @@ type ChimeAPI interface {
 	ListAccountsPages(*chime.ListAccountsInput, func(*chime.ListAccountsOutput, bool) bool) error
 	ListAccountsPagesWithContext(aws.Context, *chime.ListAccountsInput, func(*chime.ListAccountsOutput, bool) bool, ...request.Option) error
 
+	ListAttendees(*chime.ListAttendeesInput) (*chime.ListAttendeesOutput, error)
+	ListAttendeesWithContext(aws.Context, *chime.ListAttendeesInput, ...request.Option) (*chime.ListAttendeesOutput, error)
+	ListAttendeesRequest(*chime.ListAttendeesInput) (*request.Request, *chime.ListAttendeesOutput)
+
+	ListAttendeesPages(*chime.ListAttendeesInput, func(*chime.ListAttendeesOutput, bool) bool) error
+	ListAttendeesPagesWithContext(aws.Context, *chime.ListAttendeesInput, func(*chime.ListAttendeesOutput, bool) bool, ...request.Option) error
+
 	ListBots(*chime.ListBotsInput) (*chime.ListBotsOutput, error)
 	ListBotsWithContext(aws.Context, *chime.ListBotsInput, ...request.Option) (*chime.ListBotsOutput, error)
 	ListBotsRequest(*chime.ListBotsInput) (*request.Request, *chime.ListBotsOutput)
 
 	ListBotsPages(*chime.ListBotsInput, func(*chime.ListBotsOutput, bool) bool) error
 	ListBotsPagesWithContext(aws.Context, *chime.ListBotsInput, func(*chime.ListBotsOutput, bool) bool, ...request.Option) error
+
+	ListMeetings(*chime.ListMeetingsInput) (*chime.ListMeetingsOutput, error)
+	ListMeetingsWithContext(aws.Context, *chime.ListMeetingsInput, ...request.Option) (*chime.ListMeetingsOutput, error)
+	ListMeetingsRequest(*chime.ListMeetingsInput) (*request.Request, *chime.ListMeetingsOutput)
+
+	ListMeetingsPages(*chime.ListMeetingsInput, func(*chime.ListMeetingsOutput, bool) bool) error
+	ListMeetingsPagesWithContext(aws.Context, *chime.ListMeetingsInput, func(*chime.ListMeetingsOutput, bool) bool, ...request.Option) error
 
 	ListPhoneNumberOrders(*chime.ListPhoneNumberOrdersInput) (*chime.ListPhoneNumberOrdersOutput, error)
 	ListPhoneNumberOrdersWithContext(aws.Context, *chime.ListPhoneNumberOrdersInput, ...request.Option) (*chime.ListPhoneNumberOrdersOutput, error)

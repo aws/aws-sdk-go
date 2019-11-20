@@ -542,6 +542,7 @@
         "Name":{"shape":"TagValue"},
         "Options":{"shape":"Options"},
         "Excludes":{"shape":"FilterList"},
+        "Schedule":{"shape":"TaskSchedule"},
         "Tags":{"shape":"TagList"}
       }
     },
@@ -720,6 +721,7 @@
         "DestinationNetworkInterfaceArns":{"shape":"DestinationNetworkInterfaceArns"},
         "Options":{"shape":"Options"},
         "Excludes":{"shape":"FilterList"},
+        "Schedule":{"shape":"TaskSchedule"},
         "ErrorCode":{"shape":"string"},
         "ErrorDetail":{"shape":"string"},
         "CreationTime":{"shape":"Time"}
@@ -775,7 +777,8 @@
       "type":"string",
       "enum":[
         "PUBLIC",
-        "PRIVATE_LINK"
+        "PRIVATE_LINK",
+        "FIPS"
       ]
     },
     "FilterList":{
@@ -972,7 +975,7 @@
     "NonEmptySubdirectory":{
       "type":"string",
       "max":4096,
-      "pattern":"^[a-zA-Z0-9_\\-\\./]+$"
+      "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\p{Zs}]+$"
     },
     "OnPremConfig":{
       "type":"structure",
@@ -1028,7 +1031,6 @@
       "type":"string",
       "enum":[
         "NONE",
-        "BEST_EFFORT",
         "PRESERVE"
       ]
     },
@@ -1078,6 +1080,11 @@
         "DEEP_ARCHIVE"
       ]
     },
+    "ScheduleExpressionCron":{
+      "type":"string",
+      "max":256,
+      "pattern":"^[a-zA-Z0-9\\ \\_\\*\\?\\,\\|\\^\\-\\/\\#\\s\\(\\)\\+]*$"
+    },
     "ServerHostname":{
       "type":"string",
       "max":255,
@@ -1097,12 +1104,13 @@
     "SmbPassword":{
       "type":"string",
       "max":104,
-      "pattern":"^.{0,104}$"
+      "pattern":"^.{0,104}$",
+      "sensitive":true
     },
     "SmbUser":{
       "type":"string",
       "max":104,
-      "pattern":"^[^\\\\x5B\\\\x5D\\\\/:;|=,+*?]{1,104}$"
+      "pattern":"^[^\\x5B\\x5D\\\\/:;|=,+*?]{1,104}$"
     },
     "SmbVersion":{
       "type":"string",
@@ -1134,7 +1142,7 @@
     "Subdirectory":{
       "type":"string",
       "max":4096,
-      "pattern":"^[a-zA-Z0-9_\\-\\./]*$"
+      "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\p{Zs}]*$"
     },
     "TagKey":{
       "type":"string",
@@ -1215,6 +1223,7 @@
       "members":{
         "PrepareDuration":{"shape":"Duration"},
         "PrepareStatus":{"shape":"PhaseStatus"},
+        "TotalDuration":{"shape":"Duration"},
         "TransferDuration":{"shape":"Duration"},
         "TransferStatus":{"shape":"PhaseStatus"},
         "VerifyDuration":{"shape":"Duration"},
@@ -1253,6 +1262,13 @@
         "ENABLED",
         "DISABLED"
       ]
+    },
+    "TaskSchedule":{
+      "type":"structure",
+      "required":["ScheduleExpression"],
+      "members":{
+        "ScheduleExpression":{"shape":"ScheduleExpressionCron"}
+      }
     },
     "TaskStatus":{
       "type":"string",
@@ -1310,6 +1326,7 @@
         "TaskArn":{"shape":"TaskArn"},
         "Options":{"shape":"Options"},
         "Excludes":{"shape":"FilterList"},
+        "Schedule":{"shape":"TaskSchedule"},
         "Name":{"shape":"TagValue"},
         "CloudWatchLogGroupArn":{"shape":"LogGroupArn"}
       }

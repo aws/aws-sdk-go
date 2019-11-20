@@ -82,6 +82,9 @@ func (c *ApplicationDiscoveryService) AssociateConfigurationItemsToApplicationRe
 //   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
 //   The server experienced an internal error. Try again.
 //
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/AssociateConfigurationItemsToApplication
 func (c *ApplicationDiscoveryService) AssociateConfigurationItemsToApplication(input *AssociateConfigurationItemsToApplicationInput) (*AssociateConfigurationItemsToApplicationOutput, error) {
 	req, out := c.AssociateConfigurationItemsToApplicationRequest(input)
@@ -170,12 +173,18 @@ func (c *ApplicationDiscoveryService) BatchDeleteImportDataRequest(input *BatchD
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
+//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   One or more parameters are not valid. Verify the parameters and try again.
+//
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
 //   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
 //   The server experienced an internal error. Try again.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/BatchDeleteImportData
 func (c *ApplicationDiscoveryService) BatchDeleteImportData(input *BatchDeleteImportDataInput) (*BatchDeleteImportDataOutput, error) {
@@ -266,6 +275,9 @@ func (c *ApplicationDiscoveryService) CreateApplicationRequest(input *CreateAppl
 //
 //   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
 //   The server experienced an internal error. Try again.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/CreateApplication
 func (c *ApplicationDiscoveryService) CreateApplication(input *CreateApplicationInput) (*CreateApplicationOutput, error) {
@@ -364,6 +376,9 @@ func (c *ApplicationDiscoveryService) CreateTagsRequest(input *CreateTagsInput) 
 //   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
 //   The server experienced an internal error. Try again.
 //
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/CreateTags
 func (c *ApplicationDiscoveryService) CreateTags(input *CreateTagsInput) (*CreateTagsOutput, error) {
 	req, out := c.CreateTagsRequest(input)
@@ -455,6 +470,9 @@ func (c *ApplicationDiscoveryService) DeleteApplicationsRequest(input *DeleteApp
 //
 //   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
 //   The server experienced an internal error. Try again.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DeleteApplications
 func (c *ApplicationDiscoveryService) DeleteApplications(input *DeleteApplicationsInput) (*DeleteApplicationsOutput, error) {
@@ -552,6 +570,9 @@ func (c *ApplicationDiscoveryService) DeleteTagsRequest(input *DeleteTagsInput) 
 //   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
 //   The server experienced an internal error. Try again.
 //
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DeleteTags
 func (c *ApplicationDiscoveryService) DeleteTags(input *DeleteTagsInput) (*DeleteTagsOutput, error) {
 	req, out := c.DeleteTagsRequest(input)
@@ -643,6 +664,9 @@ func (c *ApplicationDiscoveryService) DescribeAgentsRequest(input *DescribeAgent
 //
 //   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
 //   The server experienced an internal error. Try again.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeAgents
 func (c *ApplicationDiscoveryService) DescribeAgents(input *DescribeAgentsInput) (*DescribeAgentsOutput, error) {
@@ -752,6 +776,9 @@ func (c *ApplicationDiscoveryService) DescribeConfigurationsRequest(input *Descr
 //   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
 //   The server experienced an internal error. Try again.
 //
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeConfigurations
 func (c *ApplicationDiscoveryService) DescribeConfigurations(input *DescribeConfigurationsInput) (*DescribeConfigurationsOutput, error) {
 	req, out := c.DescribeConfigurationsRequest(input)
@@ -856,6 +883,9 @@ func (c *ApplicationDiscoveryService) DescribeContinuousExportsRequest(input *De
 //   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
 //   The specified configuration ID was not located. Verify the configuration
 //   ID and try again.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeContinuousExports
 func (c *ApplicationDiscoveryService) DescribeContinuousExports(input *DescribeContinuousExportsInput) (*DescribeContinuousExportsOutput, error) {
@@ -1009,6 +1039,9 @@ func (c *ApplicationDiscoveryService) DescribeExportConfigurationsRequest(input 
 //   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
 //   The server experienced an internal error. Try again.
 //
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeExportConfigurations
 //
 // Deprecated: DescribeExportConfigurations has been deprecated
@@ -1104,6 +1137,9 @@ func (c *ApplicationDiscoveryService) DescribeExportTasksRequest(input *Describe
 //   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
 //   The server experienced an internal error. Try again.
 //
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeExportTasks
 func (c *ApplicationDiscoveryService) DescribeExportTasks(input *DescribeExportTasksInput) (*DescribeExportTasksOutput, error) {
 	req, out := c.DescribeExportTasksRequest(input)
@@ -1191,12 +1227,18 @@ func (c *ApplicationDiscoveryService) DescribeImportTasksRequest(input *Describe
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
+//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   One or more parameters are not valid. Verify the parameters and try again.
+//
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
 //   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
 //   The server experienced an internal error. Try again.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeImportTasks
 func (c *ApplicationDiscoveryService) DescribeImportTasks(input *DescribeImportTasksInput) (*DescribeImportTasksOutput, error) {
@@ -1356,6 +1398,9 @@ func (c *ApplicationDiscoveryService) DescribeTagsRequest(input *DescribeTagsInp
 //   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
 //   The server experienced an internal error. Try again.
 //
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeTags
 func (c *ApplicationDiscoveryService) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, error) {
 	req, out := c.DescribeTagsRequest(input)
@@ -1446,6 +1491,9 @@ func (c *ApplicationDiscoveryService) DisassociateConfigurationItemsFromApplicat
 //
 //   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
 //   The server experienced an internal error. Try again.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DisassociateConfigurationItemsFromApplication
 func (c *ApplicationDiscoveryService) DisassociateConfigurationItemsFromApplication(input *DisassociateConfigurationItemsFromApplicationInput) (*DisassociateConfigurationItemsFromApplicationOutput, error) {
@@ -1551,6 +1599,9 @@ func (c *ApplicationDiscoveryService) ExportConfigurationsRequest(input *ExportC
 //   * ErrCodeOperationNotPermittedException "OperationNotPermittedException"
 //   This operation is not permitted.
 //
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/ExportConfigurations
 //
 // Deprecated: ExportConfigurations has been deprecated
@@ -1648,6 +1699,9 @@ func (c *ApplicationDiscoveryService) GetDiscoverySummaryRequest(input *GetDisco
 //   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
 //   The server experienced an internal error. Try again.
 //
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/GetDiscoverySummary
 func (c *ApplicationDiscoveryService) GetDiscoverySummary(input *GetDiscoverySummaryInput) (*GetDiscoverySummaryOutput, error) {
 	req, out := c.GetDiscoverySummaryRequest(input)
@@ -1744,6 +1798,9 @@ func (c *ApplicationDiscoveryService) ListConfigurationsRequest(input *ListConfi
 //   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
 //   The server experienced an internal error. Try again.
 //
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/ListConfigurations
 func (c *ApplicationDiscoveryService) ListConfigurations(input *ListConfigurationsInput) (*ListConfigurationsOutput, error) {
 	req, out := c.ListConfigurationsRequest(input)
@@ -1834,6 +1891,9 @@ func (c *ApplicationDiscoveryService) ListServerNeighborsRequest(input *ListServ
 //
 //   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
 //   The server experienced an internal error. Try again.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/ListServerNeighbors
 func (c *ApplicationDiscoveryService) ListServerNeighbors(input *ListServerNeighborsInput) (*ListServerNeighborsOutput, error) {
@@ -1937,6 +1997,9 @@ func (c *ApplicationDiscoveryService) StartContinuousExportRequest(input *StartC
 //   the import tasks are meant to be different, use a different clientRequestToken,
 //   and try again.
 //
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StartContinuousExport
 func (c *ApplicationDiscoveryService) StartContinuousExport(input *StartContinuousExportInput) (*StartContinuousExportOutput, error) {
 	req, out := c.StartContinuousExportRequest(input)
@@ -2026,6 +2089,9 @@ func (c *ApplicationDiscoveryService) StartDataCollectionByAgentIdsRequest(input
 //
 //   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
 //   The server experienced an internal error. Try again.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StartDataCollectionByAgentIds
 func (c *ApplicationDiscoveryService) StartDataCollectionByAgentIds(input *StartDataCollectionByAgentIdsInput) (*StartDataCollectionByAgentIdsOutput, error) {
@@ -2129,6 +2195,9 @@ func (c *ApplicationDiscoveryService) StartExportTaskRequest(input *StartExportT
 //
 //   * ErrCodeOperationNotPermittedException "OperationNotPermittedException"
 //   This operation is not permitted.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StartExportTask
 func (c *ApplicationDiscoveryService) StartExportTask(input *StartExportTaskInput) (*StartExportTaskOutput, error) {
@@ -2245,12 +2314,18 @@ func (c *ApplicationDiscoveryService) StartImportTaskRequest(input *StartImportT
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
+//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   One or more parameters are not valid. Verify the parameters and try again.
+//
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
 //   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
 //   The server experienced an internal error. Try again.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StartImportTask
 func (c *ApplicationDiscoveryService) StartImportTask(input *StartImportTaskInput) (*StartImportTaskOutput, error) {
@@ -2356,6 +2431,9 @@ func (c *ApplicationDiscoveryService) StopContinuousExportRequest(input *StopCon
 //   the import tasks are meant to be different, use a different clientRequestToken,
 //   and try again.
 //
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StopContinuousExport
 func (c *ApplicationDiscoveryService) StopContinuousExport(input *StopContinuousExportInput) (*StopContinuousExportOutput, error) {
 	req, out := c.StopContinuousExportRequest(input)
@@ -2445,6 +2523,9 @@ func (c *ApplicationDiscoveryService) StopDataCollectionByAgentIdsRequest(input 
 //
 //   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
 //   The server experienced an internal error. Try again.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StopDataCollectionByAgentIds
 func (c *ApplicationDiscoveryService) StopDataCollectionByAgentIds(input *StopDataCollectionByAgentIdsInput) (*StopDataCollectionByAgentIdsOutput, error) {
@@ -2536,6 +2617,9 @@ func (c *ApplicationDiscoveryService) UpdateApplicationRequest(input *UpdateAppl
 //
 //   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
 //   The server experienced an internal error. Try again.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/UpdateApplication
 func (c *ApplicationDiscoveryService) UpdateApplication(input *UpdateApplicationInput) (*UpdateApplicationOutput, error) {
@@ -3858,7 +3942,7 @@ func (s *DescribeContinuousExportsOutput) SetNextToken(v string) *DescribeContin
 type DescribeExportConfigurationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of continuous export ids to search for.
+	// A list of continuous export IDs to search for.
 	ExportIds []*string `locationName:"exportIds" type:"list"`
 
 	// A number between 1 and 100 specifying the maximum number of continuous export

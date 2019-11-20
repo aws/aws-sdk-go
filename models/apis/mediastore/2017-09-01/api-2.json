@@ -457,7 +457,8 @@
     "Endpoint":{
       "type":"string",
       "max":255,
-      "min":1
+      "min":1,
+      "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+"
     },
     "ErrorMessage":{
       "type":"string",
@@ -675,6 +676,7 @@
     },
     "Tag":{
       "type":"structure",
+      "required":["Key"],
       "members":{
         "Key":{"shape":"TagKey"},
         "Value":{"shape":"TagValue"}

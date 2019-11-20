@@ -2270,7 +2270,9 @@
         "Account":{"shape":"AccountId"},
         "StorageClass":{"shape":"StorageClass"},
         "AccessControlTranslation":{"shape":"AccessControlTranslation"},
-        "EncryptionConfiguration":{"shape":"EncryptionConfiguration"}
+        "EncryptionConfiguration":{"shape":"EncryptionConfiguration"},
+        "ReplicationTime":{"shape":"ReplicationTime"},
+        "Metrics":{"shape":"Metrics"}
       }
     },
     "DisplayName":{"type":"string"},
@@ -2336,8 +2338,14 @@
         "s3:ObjectRemoved:*",
         "s3:ObjectRemoved:Delete",
         "s3:ObjectRemoved:DeleteMarkerCreated",
+        "s3:ObjectRestore:*",
         "s3:ObjectRestore:Post",
-        "s3:ObjectRestore:Completed"
+        "s3:ObjectRestore:Completed",
+        "s3:Replication:*",
+        "s3:Replication:OperationFailedReplication",
+        "s3:Replication:OperationNotTracked",
+        "s3:Replication:OperationMissedThreshold",
+        "s3:Replication:OperationReplicatedAfterThreshold"
       ]
     },
     "EventList":{
@@ -4285,6 +4293,17 @@
     },
     "MetadataKey":{"type":"string"},
     "MetadataValue":{"type":"string"},
+    "Metrics":{
+      "type":"structure",
+      "required":[
+        "Status",
+        "EventThreshold"
+      ],
+      "members":{
+        "Status":{"shape":"MetricsStatus"},
+        "EventThreshold":{"shape":"ReplicationTimeValue"}
+      }
+    },
     "MetricsAndOperator":{
       "type":"structure",
       "members":{
@@ -4318,6 +4337,14 @@
       }
     },
     "MetricsId":{"type":"string"},
+    "MetricsStatus":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
+    },
+    "Minutes":{"type":"integer"},
     "MissingMeta":{"type":"integer"},
     "MultipartUpload":{
       "type":"structure",
@@ -5817,6 +5844,30 @@
         "FAILED",
         "REPLICA"
       ]
+    },
+    "ReplicationTime":{
+      "type":"structure",
+      "required":[
+        "Status",
+        "Time"
+      ],
+      "members":{
+        "Status":{"shape":"ReplicationTimeStatus"},
+        "Time":{"shape":"ReplicationTimeValue"}
+      }
+    },
+    "ReplicationTimeStatus":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
+    },
+    "ReplicationTimeValue":{
+      "type":"structure",
+      "members":{
+        "Minutes":{"shape":"Minutes"}
+      }
     },
     "RequestCharged":{
       "type":"string",

@@ -698,9 +698,19 @@ type EC2API interface {
 	DescribeExportImageTasksWithContext(aws.Context, *ec2.DescribeExportImageTasksInput, ...request.Option) (*ec2.DescribeExportImageTasksOutput, error)
 	DescribeExportImageTasksRequest(*ec2.DescribeExportImageTasksInput) (*request.Request, *ec2.DescribeExportImageTasksOutput)
 
+	DescribeExportImageTasksPages(*ec2.DescribeExportImageTasksInput, func(*ec2.DescribeExportImageTasksOutput, bool) bool) error
+	DescribeExportImageTasksPagesWithContext(aws.Context, *ec2.DescribeExportImageTasksInput, func(*ec2.DescribeExportImageTasksOutput, bool) bool, ...request.Option) error
+
 	DescribeExportTasks(*ec2.DescribeExportTasksInput) (*ec2.DescribeExportTasksOutput, error)
 	DescribeExportTasksWithContext(aws.Context, *ec2.DescribeExportTasksInput, ...request.Option) (*ec2.DescribeExportTasksOutput, error)
 	DescribeExportTasksRequest(*ec2.DescribeExportTasksInput) (*request.Request, *ec2.DescribeExportTasksOutput)
+
+	DescribeFastSnapshotRestores(*ec2.DescribeFastSnapshotRestoresInput) (*ec2.DescribeFastSnapshotRestoresOutput, error)
+	DescribeFastSnapshotRestoresWithContext(aws.Context, *ec2.DescribeFastSnapshotRestoresInput, ...request.Option) (*ec2.DescribeFastSnapshotRestoresOutput, error)
+	DescribeFastSnapshotRestoresRequest(*ec2.DescribeFastSnapshotRestoresInput) (*request.Request, *ec2.DescribeFastSnapshotRestoresOutput)
+
+	DescribeFastSnapshotRestoresPages(*ec2.DescribeFastSnapshotRestoresInput, func(*ec2.DescribeFastSnapshotRestoresOutput, bool) bool) error
+	DescribeFastSnapshotRestoresPagesWithContext(aws.Context, *ec2.DescribeFastSnapshotRestoresInput, func(*ec2.DescribeFastSnapshotRestoresOutput, bool) bool, ...request.Option) error
 
 	DescribeFleetHistory(*ec2.DescribeFleetHistoryInput) (*ec2.DescribeFleetHistoryOutput, error)
 	DescribeFleetHistoryWithContext(aws.Context, *ec2.DescribeFleetHistoryInput, ...request.Option) (*ec2.DescribeFleetHistoryOutput, error)
@@ -1204,6 +1214,10 @@ type EC2API interface {
 	DisableEbsEncryptionByDefaultWithContext(aws.Context, *ec2.DisableEbsEncryptionByDefaultInput, ...request.Option) (*ec2.DisableEbsEncryptionByDefaultOutput, error)
 	DisableEbsEncryptionByDefaultRequest(*ec2.DisableEbsEncryptionByDefaultInput) (*request.Request, *ec2.DisableEbsEncryptionByDefaultOutput)
 
+	DisableFastSnapshotRestores(*ec2.DisableFastSnapshotRestoresInput) (*ec2.DisableFastSnapshotRestoresOutput, error)
+	DisableFastSnapshotRestoresWithContext(aws.Context, *ec2.DisableFastSnapshotRestoresInput, ...request.Option) (*ec2.DisableFastSnapshotRestoresOutput, error)
+	DisableFastSnapshotRestoresRequest(*ec2.DisableFastSnapshotRestoresInput) (*request.Request, *ec2.DisableFastSnapshotRestoresOutput)
+
 	DisableTransitGatewayRouteTablePropagation(*ec2.DisableTransitGatewayRouteTablePropagationInput) (*ec2.DisableTransitGatewayRouteTablePropagationOutput, error)
 	DisableTransitGatewayRouteTablePropagationWithContext(aws.Context, *ec2.DisableTransitGatewayRouteTablePropagationInput, ...request.Option) (*ec2.DisableTransitGatewayRouteTablePropagationOutput, error)
 	DisableTransitGatewayRouteTablePropagationRequest(*ec2.DisableTransitGatewayRouteTablePropagationInput) (*request.Request, *ec2.DisableTransitGatewayRouteTablePropagationOutput)
@@ -1251,6 +1265,10 @@ type EC2API interface {
 	EnableEbsEncryptionByDefault(*ec2.EnableEbsEncryptionByDefaultInput) (*ec2.EnableEbsEncryptionByDefaultOutput, error)
 	EnableEbsEncryptionByDefaultWithContext(aws.Context, *ec2.EnableEbsEncryptionByDefaultInput, ...request.Option) (*ec2.EnableEbsEncryptionByDefaultOutput, error)
 	EnableEbsEncryptionByDefaultRequest(*ec2.EnableEbsEncryptionByDefaultInput) (*request.Request, *ec2.EnableEbsEncryptionByDefaultOutput)
+
+	EnableFastSnapshotRestores(*ec2.EnableFastSnapshotRestoresInput) (*ec2.EnableFastSnapshotRestoresOutput, error)
+	EnableFastSnapshotRestoresWithContext(aws.Context, *ec2.EnableFastSnapshotRestoresInput, ...request.Option) (*ec2.EnableFastSnapshotRestoresOutput, error)
+	EnableFastSnapshotRestoresRequest(*ec2.EnableFastSnapshotRestoresInput) (*request.Request, *ec2.EnableFastSnapshotRestoresOutput)
 
 	EnableTransitGatewayRouteTablePropagation(*ec2.EnableTransitGatewayRouteTablePropagationInput) (*ec2.EnableTransitGatewayRouteTablePropagationOutput, error)
 	EnableTransitGatewayRouteTablePropagationWithContext(aws.Context, *ec2.EnableTransitGatewayRouteTablePropagationInput, ...request.Option) (*ec2.EnableTransitGatewayRouteTablePropagationOutput, error)
@@ -1754,6 +1772,9 @@ type EC2API interface {
 
 	WaitUntilPasswordDataAvailable(*ec2.GetPasswordDataInput) error
 	WaitUntilPasswordDataAvailableWithContext(aws.Context, *ec2.GetPasswordDataInput, ...request.WaiterOption) error
+
+	WaitUntilSecurityGroupExists(*ec2.DescribeSecurityGroupsInput) error
+	WaitUntilSecurityGroupExistsWithContext(aws.Context, *ec2.DescribeSecurityGroupsInput, ...request.WaiterOption) error
 
 	WaitUntilSnapshotCompleted(*ec2.DescribeSnapshotsInput) error
 	WaitUntilSnapshotCompletedWithContext(aws.Context, *ec2.DescribeSnapshotsInput, ...request.WaiterOption) error

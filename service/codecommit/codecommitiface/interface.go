@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // AWS CodeCommit.
 //    func myFunc(svc codecommitiface.CodeCommitAPI) bool {
-//        // Make svc.BatchDescribeMergeConflicts request
+//        // Make svc.AssociateApprovalRuleTemplateWithRepository request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockCodeCommitClient struct {
 //        codecommitiface.CodeCommitAPI
 //    }
-//    func (m *mockCodeCommitClient) BatchDescribeMergeConflicts(input *codecommit.BatchDescribeMergeConflictsInput) (*codecommit.BatchDescribeMergeConflictsOutput, error) {
+//    func (m *mockCodeCommitClient) AssociateApprovalRuleTemplateWithRepository(input *codecommit.AssociateApprovalRuleTemplateWithRepositoryInput) (*codecommit.AssociateApprovalRuleTemplateWithRepositoryOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,9 +60,21 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type CodeCommitAPI interface {
+	AssociateApprovalRuleTemplateWithRepository(*codecommit.AssociateApprovalRuleTemplateWithRepositoryInput) (*codecommit.AssociateApprovalRuleTemplateWithRepositoryOutput, error)
+	AssociateApprovalRuleTemplateWithRepositoryWithContext(aws.Context, *codecommit.AssociateApprovalRuleTemplateWithRepositoryInput, ...request.Option) (*codecommit.AssociateApprovalRuleTemplateWithRepositoryOutput, error)
+	AssociateApprovalRuleTemplateWithRepositoryRequest(*codecommit.AssociateApprovalRuleTemplateWithRepositoryInput) (*request.Request, *codecommit.AssociateApprovalRuleTemplateWithRepositoryOutput)
+
+	BatchAssociateApprovalRuleTemplateWithRepositories(*codecommit.BatchAssociateApprovalRuleTemplateWithRepositoriesInput) (*codecommit.BatchAssociateApprovalRuleTemplateWithRepositoriesOutput, error)
+	BatchAssociateApprovalRuleTemplateWithRepositoriesWithContext(aws.Context, *codecommit.BatchAssociateApprovalRuleTemplateWithRepositoriesInput, ...request.Option) (*codecommit.BatchAssociateApprovalRuleTemplateWithRepositoriesOutput, error)
+	BatchAssociateApprovalRuleTemplateWithRepositoriesRequest(*codecommit.BatchAssociateApprovalRuleTemplateWithRepositoriesInput) (*request.Request, *codecommit.BatchAssociateApprovalRuleTemplateWithRepositoriesOutput)
+
 	BatchDescribeMergeConflicts(*codecommit.BatchDescribeMergeConflictsInput) (*codecommit.BatchDescribeMergeConflictsOutput, error)
 	BatchDescribeMergeConflictsWithContext(aws.Context, *codecommit.BatchDescribeMergeConflictsInput, ...request.Option) (*codecommit.BatchDescribeMergeConflictsOutput, error)
 	BatchDescribeMergeConflictsRequest(*codecommit.BatchDescribeMergeConflictsInput) (*request.Request, *codecommit.BatchDescribeMergeConflictsOutput)
+
+	BatchDisassociateApprovalRuleTemplateFromRepositories(*codecommit.BatchDisassociateApprovalRuleTemplateFromRepositoriesInput) (*codecommit.BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput, error)
+	BatchDisassociateApprovalRuleTemplateFromRepositoriesWithContext(aws.Context, *codecommit.BatchDisassociateApprovalRuleTemplateFromRepositoriesInput, ...request.Option) (*codecommit.BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput, error)
+	BatchDisassociateApprovalRuleTemplateFromRepositoriesRequest(*codecommit.BatchDisassociateApprovalRuleTemplateFromRepositoriesInput) (*request.Request, *codecommit.BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput)
 
 	BatchGetCommits(*codecommit.BatchGetCommitsInput) (*codecommit.BatchGetCommitsOutput, error)
 	BatchGetCommitsWithContext(aws.Context, *codecommit.BatchGetCommitsInput, ...request.Option) (*codecommit.BatchGetCommitsOutput, error)
@@ -71,6 +83,10 @@ type CodeCommitAPI interface {
 	BatchGetRepositories(*codecommit.BatchGetRepositoriesInput) (*codecommit.BatchGetRepositoriesOutput, error)
 	BatchGetRepositoriesWithContext(aws.Context, *codecommit.BatchGetRepositoriesInput, ...request.Option) (*codecommit.BatchGetRepositoriesOutput, error)
 	BatchGetRepositoriesRequest(*codecommit.BatchGetRepositoriesInput) (*request.Request, *codecommit.BatchGetRepositoriesOutput)
+
+	CreateApprovalRuleTemplate(*codecommit.CreateApprovalRuleTemplateInput) (*codecommit.CreateApprovalRuleTemplateOutput, error)
+	CreateApprovalRuleTemplateWithContext(aws.Context, *codecommit.CreateApprovalRuleTemplateInput, ...request.Option) (*codecommit.CreateApprovalRuleTemplateOutput, error)
+	CreateApprovalRuleTemplateRequest(*codecommit.CreateApprovalRuleTemplateInput) (*request.Request, *codecommit.CreateApprovalRuleTemplateOutput)
 
 	CreateBranch(*codecommit.CreateBranchInput) (*codecommit.CreateBranchOutput, error)
 	CreateBranchWithContext(aws.Context, *codecommit.CreateBranchInput, ...request.Option) (*codecommit.CreateBranchOutput, error)
@@ -84,6 +100,10 @@ type CodeCommitAPI interface {
 	CreatePullRequestWithContext(aws.Context, *codecommit.CreatePullRequestInput, ...request.Option) (*codecommit.CreatePullRequestOutput, error)
 	CreatePullRequestRequest(*codecommit.CreatePullRequestInput) (*request.Request, *codecommit.CreatePullRequestOutput)
 
+	CreatePullRequestApprovalRule(*codecommit.CreatePullRequestApprovalRuleInput) (*codecommit.CreatePullRequestApprovalRuleOutput, error)
+	CreatePullRequestApprovalRuleWithContext(aws.Context, *codecommit.CreatePullRequestApprovalRuleInput, ...request.Option) (*codecommit.CreatePullRequestApprovalRuleOutput, error)
+	CreatePullRequestApprovalRuleRequest(*codecommit.CreatePullRequestApprovalRuleInput) (*request.Request, *codecommit.CreatePullRequestApprovalRuleOutput)
+
 	CreateRepository(*codecommit.CreateRepositoryInput) (*codecommit.CreateRepositoryOutput, error)
 	CreateRepositoryWithContext(aws.Context, *codecommit.CreateRepositoryInput, ...request.Option) (*codecommit.CreateRepositoryOutput, error)
 	CreateRepositoryRequest(*codecommit.CreateRepositoryInput) (*request.Request, *codecommit.CreateRepositoryOutput)
@@ -91,6 +111,10 @@ type CodeCommitAPI interface {
 	CreateUnreferencedMergeCommit(*codecommit.CreateUnreferencedMergeCommitInput) (*codecommit.CreateUnreferencedMergeCommitOutput, error)
 	CreateUnreferencedMergeCommitWithContext(aws.Context, *codecommit.CreateUnreferencedMergeCommitInput, ...request.Option) (*codecommit.CreateUnreferencedMergeCommitOutput, error)
 	CreateUnreferencedMergeCommitRequest(*codecommit.CreateUnreferencedMergeCommitInput) (*request.Request, *codecommit.CreateUnreferencedMergeCommitOutput)
+
+	DeleteApprovalRuleTemplate(*codecommit.DeleteApprovalRuleTemplateInput) (*codecommit.DeleteApprovalRuleTemplateOutput, error)
+	DeleteApprovalRuleTemplateWithContext(aws.Context, *codecommit.DeleteApprovalRuleTemplateInput, ...request.Option) (*codecommit.DeleteApprovalRuleTemplateOutput, error)
+	DeleteApprovalRuleTemplateRequest(*codecommit.DeleteApprovalRuleTemplateInput) (*request.Request, *codecommit.DeleteApprovalRuleTemplateOutput)
 
 	DeleteBranch(*codecommit.DeleteBranchInput) (*codecommit.DeleteBranchOutput, error)
 	DeleteBranchWithContext(aws.Context, *codecommit.DeleteBranchInput, ...request.Option) (*codecommit.DeleteBranchOutput, error)
@@ -103,6 +127,10 @@ type CodeCommitAPI interface {
 	DeleteFile(*codecommit.DeleteFileInput) (*codecommit.DeleteFileOutput, error)
 	DeleteFileWithContext(aws.Context, *codecommit.DeleteFileInput, ...request.Option) (*codecommit.DeleteFileOutput, error)
 	DeleteFileRequest(*codecommit.DeleteFileInput) (*request.Request, *codecommit.DeleteFileOutput)
+
+	DeletePullRequestApprovalRule(*codecommit.DeletePullRequestApprovalRuleInput) (*codecommit.DeletePullRequestApprovalRuleOutput, error)
+	DeletePullRequestApprovalRuleWithContext(aws.Context, *codecommit.DeletePullRequestApprovalRuleInput, ...request.Option) (*codecommit.DeletePullRequestApprovalRuleOutput, error)
+	DeletePullRequestApprovalRuleRequest(*codecommit.DeletePullRequestApprovalRuleInput) (*request.Request, *codecommit.DeletePullRequestApprovalRuleOutput)
 
 	DeleteRepository(*codecommit.DeleteRepositoryInput) (*codecommit.DeleteRepositoryOutput, error)
 	DeleteRepositoryWithContext(aws.Context, *codecommit.DeleteRepositoryInput, ...request.Option) (*codecommit.DeleteRepositoryOutput, error)
@@ -121,6 +149,18 @@ type CodeCommitAPI interface {
 
 	DescribePullRequestEventsPages(*codecommit.DescribePullRequestEventsInput, func(*codecommit.DescribePullRequestEventsOutput, bool) bool) error
 	DescribePullRequestEventsPagesWithContext(aws.Context, *codecommit.DescribePullRequestEventsInput, func(*codecommit.DescribePullRequestEventsOutput, bool) bool, ...request.Option) error
+
+	DisassociateApprovalRuleTemplateFromRepository(*codecommit.DisassociateApprovalRuleTemplateFromRepositoryInput) (*codecommit.DisassociateApprovalRuleTemplateFromRepositoryOutput, error)
+	DisassociateApprovalRuleTemplateFromRepositoryWithContext(aws.Context, *codecommit.DisassociateApprovalRuleTemplateFromRepositoryInput, ...request.Option) (*codecommit.DisassociateApprovalRuleTemplateFromRepositoryOutput, error)
+	DisassociateApprovalRuleTemplateFromRepositoryRequest(*codecommit.DisassociateApprovalRuleTemplateFromRepositoryInput) (*request.Request, *codecommit.DisassociateApprovalRuleTemplateFromRepositoryOutput)
+
+	EvaluatePullRequestApprovalRules(*codecommit.EvaluatePullRequestApprovalRulesInput) (*codecommit.EvaluatePullRequestApprovalRulesOutput, error)
+	EvaluatePullRequestApprovalRulesWithContext(aws.Context, *codecommit.EvaluatePullRequestApprovalRulesInput, ...request.Option) (*codecommit.EvaluatePullRequestApprovalRulesOutput, error)
+	EvaluatePullRequestApprovalRulesRequest(*codecommit.EvaluatePullRequestApprovalRulesInput) (*request.Request, *codecommit.EvaluatePullRequestApprovalRulesOutput)
+
+	GetApprovalRuleTemplate(*codecommit.GetApprovalRuleTemplateInput) (*codecommit.GetApprovalRuleTemplateOutput, error)
+	GetApprovalRuleTemplateWithContext(aws.Context, *codecommit.GetApprovalRuleTemplateInput, ...request.Option) (*codecommit.GetApprovalRuleTemplateOutput, error)
+	GetApprovalRuleTemplateRequest(*codecommit.GetApprovalRuleTemplateInput) (*request.Request, *codecommit.GetApprovalRuleTemplateOutput)
 
 	GetBlob(*codecommit.GetBlobInput) (*codecommit.GetBlobOutput, error)
 	GetBlobWithContext(aws.Context, *codecommit.GetBlobInput, ...request.Option) (*codecommit.GetBlobOutput, error)
@@ -186,6 +226,14 @@ type CodeCommitAPI interface {
 	GetPullRequestWithContext(aws.Context, *codecommit.GetPullRequestInput, ...request.Option) (*codecommit.GetPullRequestOutput, error)
 	GetPullRequestRequest(*codecommit.GetPullRequestInput) (*request.Request, *codecommit.GetPullRequestOutput)
 
+	GetPullRequestApprovalStates(*codecommit.GetPullRequestApprovalStatesInput) (*codecommit.GetPullRequestApprovalStatesOutput, error)
+	GetPullRequestApprovalStatesWithContext(aws.Context, *codecommit.GetPullRequestApprovalStatesInput, ...request.Option) (*codecommit.GetPullRequestApprovalStatesOutput, error)
+	GetPullRequestApprovalStatesRequest(*codecommit.GetPullRequestApprovalStatesInput) (*request.Request, *codecommit.GetPullRequestApprovalStatesOutput)
+
+	GetPullRequestOverrideState(*codecommit.GetPullRequestOverrideStateInput) (*codecommit.GetPullRequestOverrideStateOutput, error)
+	GetPullRequestOverrideStateWithContext(aws.Context, *codecommit.GetPullRequestOverrideStateInput, ...request.Option) (*codecommit.GetPullRequestOverrideStateOutput, error)
+	GetPullRequestOverrideStateRequest(*codecommit.GetPullRequestOverrideStateInput) (*request.Request, *codecommit.GetPullRequestOverrideStateOutput)
+
 	GetRepository(*codecommit.GetRepositoryInput) (*codecommit.GetRepositoryOutput, error)
 	GetRepositoryWithContext(aws.Context, *codecommit.GetRepositoryInput, ...request.Option) (*codecommit.GetRepositoryOutput, error)
 	GetRepositoryRequest(*codecommit.GetRepositoryInput) (*request.Request, *codecommit.GetRepositoryOutput)
@@ -193,6 +241,20 @@ type CodeCommitAPI interface {
 	GetRepositoryTriggers(*codecommit.GetRepositoryTriggersInput) (*codecommit.GetRepositoryTriggersOutput, error)
 	GetRepositoryTriggersWithContext(aws.Context, *codecommit.GetRepositoryTriggersInput, ...request.Option) (*codecommit.GetRepositoryTriggersOutput, error)
 	GetRepositoryTriggersRequest(*codecommit.GetRepositoryTriggersInput) (*request.Request, *codecommit.GetRepositoryTriggersOutput)
+
+	ListApprovalRuleTemplates(*codecommit.ListApprovalRuleTemplatesInput) (*codecommit.ListApprovalRuleTemplatesOutput, error)
+	ListApprovalRuleTemplatesWithContext(aws.Context, *codecommit.ListApprovalRuleTemplatesInput, ...request.Option) (*codecommit.ListApprovalRuleTemplatesOutput, error)
+	ListApprovalRuleTemplatesRequest(*codecommit.ListApprovalRuleTemplatesInput) (*request.Request, *codecommit.ListApprovalRuleTemplatesOutput)
+
+	ListApprovalRuleTemplatesPages(*codecommit.ListApprovalRuleTemplatesInput, func(*codecommit.ListApprovalRuleTemplatesOutput, bool) bool) error
+	ListApprovalRuleTemplatesPagesWithContext(aws.Context, *codecommit.ListApprovalRuleTemplatesInput, func(*codecommit.ListApprovalRuleTemplatesOutput, bool) bool, ...request.Option) error
+
+	ListAssociatedApprovalRuleTemplatesForRepository(*codecommit.ListAssociatedApprovalRuleTemplatesForRepositoryInput) (*codecommit.ListAssociatedApprovalRuleTemplatesForRepositoryOutput, error)
+	ListAssociatedApprovalRuleTemplatesForRepositoryWithContext(aws.Context, *codecommit.ListAssociatedApprovalRuleTemplatesForRepositoryInput, ...request.Option) (*codecommit.ListAssociatedApprovalRuleTemplatesForRepositoryOutput, error)
+	ListAssociatedApprovalRuleTemplatesForRepositoryRequest(*codecommit.ListAssociatedApprovalRuleTemplatesForRepositoryInput) (*request.Request, *codecommit.ListAssociatedApprovalRuleTemplatesForRepositoryOutput)
+
+	ListAssociatedApprovalRuleTemplatesForRepositoryPages(*codecommit.ListAssociatedApprovalRuleTemplatesForRepositoryInput, func(*codecommit.ListAssociatedApprovalRuleTemplatesForRepositoryOutput, bool) bool) error
+	ListAssociatedApprovalRuleTemplatesForRepositoryPagesWithContext(aws.Context, *codecommit.ListAssociatedApprovalRuleTemplatesForRepositoryInput, func(*codecommit.ListAssociatedApprovalRuleTemplatesForRepositoryOutput, bool) bool, ...request.Option) error
 
 	ListBranches(*codecommit.ListBranchesInput) (*codecommit.ListBranchesOutput, error)
 	ListBranchesWithContext(aws.Context, *codecommit.ListBranchesInput, ...request.Option) (*codecommit.ListBranchesOutput, error)
@@ -214,6 +276,13 @@ type CodeCommitAPI interface {
 
 	ListRepositoriesPages(*codecommit.ListRepositoriesInput, func(*codecommit.ListRepositoriesOutput, bool) bool) error
 	ListRepositoriesPagesWithContext(aws.Context, *codecommit.ListRepositoriesInput, func(*codecommit.ListRepositoriesOutput, bool) bool, ...request.Option) error
+
+	ListRepositoriesForApprovalRuleTemplate(*codecommit.ListRepositoriesForApprovalRuleTemplateInput) (*codecommit.ListRepositoriesForApprovalRuleTemplateOutput, error)
+	ListRepositoriesForApprovalRuleTemplateWithContext(aws.Context, *codecommit.ListRepositoriesForApprovalRuleTemplateInput, ...request.Option) (*codecommit.ListRepositoriesForApprovalRuleTemplateOutput, error)
+	ListRepositoriesForApprovalRuleTemplateRequest(*codecommit.ListRepositoriesForApprovalRuleTemplateInput) (*request.Request, *codecommit.ListRepositoriesForApprovalRuleTemplateOutput)
+
+	ListRepositoriesForApprovalRuleTemplatePages(*codecommit.ListRepositoriesForApprovalRuleTemplateInput, func(*codecommit.ListRepositoriesForApprovalRuleTemplateOutput, bool) bool) error
+	ListRepositoriesForApprovalRuleTemplatePagesWithContext(aws.Context, *codecommit.ListRepositoriesForApprovalRuleTemplateInput, func(*codecommit.ListRepositoriesForApprovalRuleTemplateOutput, bool) bool, ...request.Option) error
 
 	ListTagsForResource(*codecommit.ListTagsForResourceInput) (*codecommit.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *codecommit.ListTagsForResourceInput, ...request.Option) (*codecommit.ListTagsForResourceOutput, error)
@@ -242,6 +311,10 @@ type CodeCommitAPI interface {
 	MergePullRequestByThreeWay(*codecommit.MergePullRequestByThreeWayInput) (*codecommit.MergePullRequestByThreeWayOutput, error)
 	MergePullRequestByThreeWayWithContext(aws.Context, *codecommit.MergePullRequestByThreeWayInput, ...request.Option) (*codecommit.MergePullRequestByThreeWayOutput, error)
 	MergePullRequestByThreeWayRequest(*codecommit.MergePullRequestByThreeWayInput) (*request.Request, *codecommit.MergePullRequestByThreeWayOutput)
+
+	OverridePullRequestApprovalRules(*codecommit.OverridePullRequestApprovalRulesInput) (*codecommit.OverridePullRequestApprovalRulesOutput, error)
+	OverridePullRequestApprovalRulesWithContext(aws.Context, *codecommit.OverridePullRequestApprovalRulesInput, ...request.Option) (*codecommit.OverridePullRequestApprovalRulesOutput, error)
+	OverridePullRequestApprovalRulesRequest(*codecommit.OverridePullRequestApprovalRulesInput) (*request.Request, *codecommit.OverridePullRequestApprovalRulesOutput)
 
 	PostCommentForComparedCommit(*codecommit.PostCommentForComparedCommitInput) (*codecommit.PostCommentForComparedCommitOutput, error)
 	PostCommentForComparedCommitWithContext(aws.Context, *codecommit.PostCommentForComparedCommitInput, ...request.Option) (*codecommit.PostCommentForComparedCommitOutput, error)
@@ -275,6 +348,18 @@ type CodeCommitAPI interface {
 	UntagResourceWithContext(aws.Context, *codecommit.UntagResourceInput, ...request.Option) (*codecommit.UntagResourceOutput, error)
 	UntagResourceRequest(*codecommit.UntagResourceInput) (*request.Request, *codecommit.UntagResourceOutput)
 
+	UpdateApprovalRuleTemplateContent(*codecommit.UpdateApprovalRuleTemplateContentInput) (*codecommit.UpdateApprovalRuleTemplateContentOutput, error)
+	UpdateApprovalRuleTemplateContentWithContext(aws.Context, *codecommit.UpdateApprovalRuleTemplateContentInput, ...request.Option) (*codecommit.UpdateApprovalRuleTemplateContentOutput, error)
+	UpdateApprovalRuleTemplateContentRequest(*codecommit.UpdateApprovalRuleTemplateContentInput) (*request.Request, *codecommit.UpdateApprovalRuleTemplateContentOutput)
+
+	UpdateApprovalRuleTemplateDescription(*codecommit.UpdateApprovalRuleTemplateDescriptionInput) (*codecommit.UpdateApprovalRuleTemplateDescriptionOutput, error)
+	UpdateApprovalRuleTemplateDescriptionWithContext(aws.Context, *codecommit.UpdateApprovalRuleTemplateDescriptionInput, ...request.Option) (*codecommit.UpdateApprovalRuleTemplateDescriptionOutput, error)
+	UpdateApprovalRuleTemplateDescriptionRequest(*codecommit.UpdateApprovalRuleTemplateDescriptionInput) (*request.Request, *codecommit.UpdateApprovalRuleTemplateDescriptionOutput)
+
+	UpdateApprovalRuleTemplateName(*codecommit.UpdateApprovalRuleTemplateNameInput) (*codecommit.UpdateApprovalRuleTemplateNameOutput, error)
+	UpdateApprovalRuleTemplateNameWithContext(aws.Context, *codecommit.UpdateApprovalRuleTemplateNameInput, ...request.Option) (*codecommit.UpdateApprovalRuleTemplateNameOutput, error)
+	UpdateApprovalRuleTemplateNameRequest(*codecommit.UpdateApprovalRuleTemplateNameInput) (*request.Request, *codecommit.UpdateApprovalRuleTemplateNameOutput)
+
 	UpdateComment(*codecommit.UpdateCommentInput) (*codecommit.UpdateCommentOutput, error)
 	UpdateCommentWithContext(aws.Context, *codecommit.UpdateCommentInput, ...request.Option) (*codecommit.UpdateCommentOutput, error)
 	UpdateCommentRequest(*codecommit.UpdateCommentInput) (*request.Request, *codecommit.UpdateCommentOutput)
@@ -282,6 +367,14 @@ type CodeCommitAPI interface {
 	UpdateDefaultBranch(*codecommit.UpdateDefaultBranchInput) (*codecommit.UpdateDefaultBranchOutput, error)
 	UpdateDefaultBranchWithContext(aws.Context, *codecommit.UpdateDefaultBranchInput, ...request.Option) (*codecommit.UpdateDefaultBranchOutput, error)
 	UpdateDefaultBranchRequest(*codecommit.UpdateDefaultBranchInput) (*request.Request, *codecommit.UpdateDefaultBranchOutput)
+
+	UpdatePullRequestApprovalRuleContent(*codecommit.UpdatePullRequestApprovalRuleContentInput) (*codecommit.UpdatePullRequestApprovalRuleContentOutput, error)
+	UpdatePullRequestApprovalRuleContentWithContext(aws.Context, *codecommit.UpdatePullRequestApprovalRuleContentInput, ...request.Option) (*codecommit.UpdatePullRequestApprovalRuleContentOutput, error)
+	UpdatePullRequestApprovalRuleContentRequest(*codecommit.UpdatePullRequestApprovalRuleContentInput) (*request.Request, *codecommit.UpdatePullRequestApprovalRuleContentOutput)
+
+	UpdatePullRequestApprovalState(*codecommit.UpdatePullRequestApprovalStateInput) (*codecommit.UpdatePullRequestApprovalStateOutput, error)
+	UpdatePullRequestApprovalStateWithContext(aws.Context, *codecommit.UpdatePullRequestApprovalStateInput, ...request.Option) (*codecommit.UpdatePullRequestApprovalStateOutput, error)
+	UpdatePullRequestApprovalStateRequest(*codecommit.UpdatePullRequestApprovalStateInput) (*request.Request, *codecommit.UpdatePullRequestApprovalStateOutput)
 
 	UpdatePullRequestDescription(*codecommit.UpdatePullRequestDescriptionInput) (*codecommit.UpdatePullRequestDescriptionOutput, error)
 	UpdatePullRequestDescriptionWithContext(aws.Context, *codecommit.UpdatePullRequestDescriptionInput, ...request.Option) (*codecommit.UpdatePullRequestDescriptionOutput, error)

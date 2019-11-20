@@ -952,6 +952,65 @@ func (s DeleteLifecyclePolicyOutput) GoString() string {
 	return s.String()
 }
 
+// Specifies when to enable fast snapshot restore.
+type FastRestoreRule struct {
+	_ struct{} `type:"structure"`
+
+	// The Availability Zones in which to enable fast snapshot restore.
+	//
+	// AvailabilityZones is a required field
+	AvailabilityZones []*string `min:"1" type:"list" required:"true"`
+
+	// The number of snapshots to be enabled with fast snapshot restore.
+	//
+	// Count is a required field
+	Count *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s FastRestoreRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FastRestoreRule) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FastRestoreRule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FastRestoreRule"}
+	if s.AvailabilityZones == nil {
+		invalidParams.Add(request.NewErrParamRequired("AvailabilityZones"))
+	}
+	if s.AvailabilityZones != nil && len(s.AvailabilityZones) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AvailabilityZones", 1))
+	}
+	if s.Count == nil {
+		invalidParams.Add(request.NewErrParamRequired("Count"))
+	}
+	if s.Count != nil && *s.Count < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Count", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAvailabilityZones sets the AvailabilityZones field's value.
+func (s *FastRestoreRule) SetAvailabilityZones(v []*string) *FastRestoreRule {
+	s.AvailabilityZones = v
+	return s
+}
+
+// SetCount sets the Count field's value.
+func (s *FastRestoreRule) SetCount(v int64) *FastRestoreRule {
+	s.Count = &v
+	return s
+}
+
 type GetLifecyclePoliciesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1522,6 +1581,9 @@ type Schedule struct {
 	// The create rule.
 	CreateRule *CreateRule `type:"structure"`
 
+	// Enable fast snapshot restore.
+	FastRestoreRule *FastRestoreRule `type:"structure"`
+
 	// The name of the schedule.
 	Name *string `type:"string"`
 
@@ -1555,6 +1617,11 @@ func (s *Schedule) Validate() error {
 	if s.CreateRule != nil {
 		if err := s.CreateRule.Validate(); err != nil {
 			invalidParams.AddNested("CreateRule", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.FastRestoreRule != nil {
+		if err := s.FastRestoreRule.Validate(); err != nil {
+			invalidParams.AddNested("FastRestoreRule", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.RetainRule != nil {
@@ -1598,6 +1665,12 @@ func (s *Schedule) SetCopyTags(v bool) *Schedule {
 // SetCreateRule sets the CreateRule field's value.
 func (s *Schedule) SetCreateRule(v *CreateRule) *Schedule {
 	s.CreateRule = v
+	return s
+}
+
+// SetFastRestoreRule sets the FastRestoreRule field's value.
+func (s *Schedule) SetFastRestoreRule(v *FastRestoreRule) *Schedule {
+	s.FastRestoreRule = v
 	return s
 }
 
