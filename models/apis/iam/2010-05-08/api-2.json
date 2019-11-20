@@ -4588,7 +4588,8 @@
         "Description":{"shape":"roleDescriptionType"},
         "MaxSessionDuration":{"shape":"roleMaxSessionDurationType"},
         "PermissionsBoundary":{"shape":"AttachedPermissionsBoundary"},
-        "Tags":{"shape":"tagListType"}
+        "Tags":{"shape":"tagListType"},
+        "RoleLastUsed":{"shape":"RoleLastUsed"}
       }
     },
     "RoleDetail":{
@@ -4604,7 +4605,15 @@
         "RolePolicyList":{"shape":"policyDetailListType"},
         "AttachedManagedPolicies":{"shape":"attachedPoliciesListType"},
         "PermissionsBoundary":{"shape":"AttachedPermissionsBoundary"},
-        "Tags":{"shape":"tagListType"}
+        "Tags":{"shape":"tagListType"},
+        "RoleLastUsed":{"shape":"RoleLastUsed"}
+      }
+    },
+    "RoleLastUsed":{
+      "type":"structure",
+      "members":{
+        "LastUsedDate":{"shape":"dateType"},
+        "Region":{"shape":"stringType"}
       }
     },
     "RoleUsageListType":{

@@ -84,6 +84,10 @@ type ConfigServiceAPI interface {
 	DeleteConfigurationRecorderWithContext(aws.Context, *configservice.DeleteConfigurationRecorderInput, ...request.Option) (*configservice.DeleteConfigurationRecorderOutput, error)
 	DeleteConfigurationRecorderRequest(*configservice.DeleteConfigurationRecorderInput) (*request.Request, *configservice.DeleteConfigurationRecorderOutput)
 
+	DeleteConformancePack(*configservice.DeleteConformancePackInput) (*configservice.DeleteConformancePackOutput, error)
+	DeleteConformancePackWithContext(aws.Context, *configservice.DeleteConformancePackInput, ...request.Option) (*configservice.DeleteConformancePackOutput, error)
+	DeleteConformancePackRequest(*configservice.DeleteConformancePackInput) (*request.Request, *configservice.DeleteConformancePackOutput)
+
 	DeleteDeliveryChannel(*configservice.DeleteDeliveryChannelInput) (*configservice.DeleteDeliveryChannelOutput, error)
 	DeleteDeliveryChannelWithContext(aws.Context, *configservice.DeleteDeliveryChannelInput, ...request.Option) (*configservice.DeleteDeliveryChannelOutput, error)
 	DeleteDeliveryChannelRequest(*configservice.DeleteDeliveryChannelInput) (*request.Request, *configservice.DeleteDeliveryChannelOutput)
@@ -95,6 +99,10 @@ type ConfigServiceAPI interface {
 	DeleteOrganizationConfigRule(*configservice.DeleteOrganizationConfigRuleInput) (*configservice.DeleteOrganizationConfigRuleOutput, error)
 	DeleteOrganizationConfigRuleWithContext(aws.Context, *configservice.DeleteOrganizationConfigRuleInput, ...request.Option) (*configservice.DeleteOrganizationConfigRuleOutput, error)
 	DeleteOrganizationConfigRuleRequest(*configservice.DeleteOrganizationConfigRuleInput) (*request.Request, *configservice.DeleteOrganizationConfigRuleOutput)
+
+	DeleteOrganizationConformancePack(*configservice.DeleteOrganizationConformancePackInput) (*configservice.DeleteOrganizationConformancePackOutput, error)
+	DeleteOrganizationConformancePackWithContext(aws.Context, *configservice.DeleteOrganizationConformancePackInput, ...request.Option) (*configservice.DeleteOrganizationConformancePackOutput, error)
+	DeleteOrganizationConformancePackRequest(*configservice.DeleteOrganizationConformancePackInput) (*request.Request, *configservice.DeleteOrganizationConformancePackOutput)
 
 	DeletePendingAggregationRequest(*configservice.DeletePendingAggregationRequestInput) (*configservice.DeletePendingAggregationRequestOutput, error)
 	DeletePendingAggregationRequestWithContext(aws.Context, *configservice.DeletePendingAggregationRequestInput, ...request.Option) (*configservice.DeletePendingAggregationRequestOutput, error)
@@ -156,6 +164,18 @@ type ConfigServiceAPI interface {
 	DescribeConfigurationRecordersWithContext(aws.Context, *configservice.DescribeConfigurationRecordersInput, ...request.Option) (*configservice.DescribeConfigurationRecordersOutput, error)
 	DescribeConfigurationRecordersRequest(*configservice.DescribeConfigurationRecordersInput) (*request.Request, *configservice.DescribeConfigurationRecordersOutput)
 
+	DescribeConformancePackCompliance(*configservice.DescribeConformancePackComplianceInput) (*configservice.DescribeConformancePackComplianceOutput, error)
+	DescribeConformancePackComplianceWithContext(aws.Context, *configservice.DescribeConformancePackComplianceInput, ...request.Option) (*configservice.DescribeConformancePackComplianceOutput, error)
+	DescribeConformancePackComplianceRequest(*configservice.DescribeConformancePackComplianceInput) (*request.Request, *configservice.DescribeConformancePackComplianceOutput)
+
+	DescribeConformancePackStatus(*configservice.DescribeConformancePackStatusInput) (*configservice.DescribeConformancePackStatusOutput, error)
+	DescribeConformancePackStatusWithContext(aws.Context, *configservice.DescribeConformancePackStatusInput, ...request.Option) (*configservice.DescribeConformancePackStatusOutput, error)
+	DescribeConformancePackStatusRequest(*configservice.DescribeConformancePackStatusInput) (*request.Request, *configservice.DescribeConformancePackStatusOutput)
+
+	DescribeConformancePacks(*configservice.DescribeConformancePacksInput) (*configservice.DescribeConformancePacksOutput, error)
+	DescribeConformancePacksWithContext(aws.Context, *configservice.DescribeConformancePacksInput, ...request.Option) (*configservice.DescribeConformancePacksOutput, error)
+	DescribeConformancePacksRequest(*configservice.DescribeConformancePacksInput) (*request.Request, *configservice.DescribeConformancePacksOutput)
+
 	DescribeDeliveryChannelStatus(*configservice.DescribeDeliveryChannelStatusInput) (*configservice.DescribeDeliveryChannelStatusOutput, error)
 	DescribeDeliveryChannelStatusWithContext(aws.Context, *configservice.DescribeDeliveryChannelStatusInput, ...request.Option) (*configservice.DescribeDeliveryChannelStatusOutput, error)
 	DescribeDeliveryChannelStatusRequest(*configservice.DescribeDeliveryChannelStatusInput) (*request.Request, *configservice.DescribeDeliveryChannelStatusOutput)
@@ -171,6 +191,14 @@ type ConfigServiceAPI interface {
 	DescribeOrganizationConfigRules(*configservice.DescribeOrganizationConfigRulesInput) (*configservice.DescribeOrganizationConfigRulesOutput, error)
 	DescribeOrganizationConfigRulesWithContext(aws.Context, *configservice.DescribeOrganizationConfigRulesInput, ...request.Option) (*configservice.DescribeOrganizationConfigRulesOutput, error)
 	DescribeOrganizationConfigRulesRequest(*configservice.DescribeOrganizationConfigRulesInput) (*request.Request, *configservice.DescribeOrganizationConfigRulesOutput)
+
+	DescribeOrganizationConformancePackStatuses(*configservice.DescribeOrganizationConformancePackStatusesInput) (*configservice.DescribeOrganizationConformancePackStatusesOutput, error)
+	DescribeOrganizationConformancePackStatusesWithContext(aws.Context, *configservice.DescribeOrganizationConformancePackStatusesInput, ...request.Option) (*configservice.DescribeOrganizationConformancePackStatusesOutput, error)
+	DescribeOrganizationConformancePackStatusesRequest(*configservice.DescribeOrganizationConformancePackStatusesInput) (*request.Request, *configservice.DescribeOrganizationConformancePackStatusesOutput)
+
+	DescribeOrganizationConformancePacks(*configservice.DescribeOrganizationConformancePacksInput) (*configservice.DescribeOrganizationConformancePacksOutput, error)
+	DescribeOrganizationConformancePacksWithContext(aws.Context, *configservice.DescribeOrganizationConformancePacksInput, ...request.Option) (*configservice.DescribeOrganizationConformancePacksOutput, error)
+	DescribeOrganizationConformancePacksRequest(*configservice.DescribeOrganizationConformancePacksInput) (*request.Request, *configservice.DescribeOrganizationConformancePacksOutput)
 
 	DescribePendingAggregationRequests(*configservice.DescribePendingAggregationRequestsInput) (*configservice.DescribePendingAggregationRequestsOutput, error)
 	DescribePendingAggregationRequestsWithContext(aws.Context, *configservice.DescribePendingAggregationRequestsInput, ...request.Option) (*configservice.DescribePendingAggregationRequestsOutput, error)
@@ -230,6 +258,14 @@ type ConfigServiceAPI interface {
 	GetComplianceSummaryByResourceTypeWithContext(aws.Context, *configservice.GetComplianceSummaryByResourceTypeInput, ...request.Option) (*configservice.GetComplianceSummaryByResourceTypeOutput, error)
 	GetComplianceSummaryByResourceTypeRequest(*configservice.GetComplianceSummaryByResourceTypeInput) (*request.Request, *configservice.GetComplianceSummaryByResourceTypeOutput)
 
+	GetConformancePackComplianceDetails(*configservice.GetConformancePackComplianceDetailsInput) (*configservice.GetConformancePackComplianceDetailsOutput, error)
+	GetConformancePackComplianceDetailsWithContext(aws.Context, *configservice.GetConformancePackComplianceDetailsInput, ...request.Option) (*configservice.GetConformancePackComplianceDetailsOutput, error)
+	GetConformancePackComplianceDetailsRequest(*configservice.GetConformancePackComplianceDetailsInput) (*request.Request, *configservice.GetConformancePackComplianceDetailsOutput)
+
+	GetConformancePackComplianceSummary(*configservice.GetConformancePackComplianceSummaryInput) (*configservice.GetConformancePackComplianceSummaryOutput, error)
+	GetConformancePackComplianceSummaryWithContext(aws.Context, *configservice.GetConformancePackComplianceSummaryInput, ...request.Option) (*configservice.GetConformancePackComplianceSummaryOutput, error)
+	GetConformancePackComplianceSummaryRequest(*configservice.GetConformancePackComplianceSummaryInput) (*request.Request, *configservice.GetConformancePackComplianceSummaryOutput)
+
 	GetDiscoveredResourceCounts(*configservice.GetDiscoveredResourceCountsInput) (*configservice.GetDiscoveredResourceCountsOutput, error)
 	GetDiscoveredResourceCountsWithContext(aws.Context, *configservice.GetDiscoveredResourceCountsInput, ...request.Option) (*configservice.GetDiscoveredResourceCountsOutput, error)
 	GetDiscoveredResourceCountsRequest(*configservice.GetDiscoveredResourceCountsInput) (*request.Request, *configservice.GetDiscoveredResourceCountsOutput)
@@ -237,6 +273,10 @@ type ConfigServiceAPI interface {
 	GetOrganizationConfigRuleDetailedStatus(*configservice.GetOrganizationConfigRuleDetailedStatusInput) (*configservice.GetOrganizationConfigRuleDetailedStatusOutput, error)
 	GetOrganizationConfigRuleDetailedStatusWithContext(aws.Context, *configservice.GetOrganizationConfigRuleDetailedStatusInput, ...request.Option) (*configservice.GetOrganizationConfigRuleDetailedStatusOutput, error)
 	GetOrganizationConfigRuleDetailedStatusRequest(*configservice.GetOrganizationConfigRuleDetailedStatusInput) (*request.Request, *configservice.GetOrganizationConfigRuleDetailedStatusOutput)
+
+	GetOrganizationConformancePackDetailedStatus(*configservice.GetOrganizationConformancePackDetailedStatusInput) (*configservice.GetOrganizationConformancePackDetailedStatusOutput, error)
+	GetOrganizationConformancePackDetailedStatusWithContext(aws.Context, *configservice.GetOrganizationConformancePackDetailedStatusInput, ...request.Option) (*configservice.GetOrganizationConformancePackDetailedStatusOutput, error)
+	GetOrganizationConformancePackDetailedStatusRequest(*configservice.GetOrganizationConformancePackDetailedStatusInput) (*request.Request, *configservice.GetOrganizationConformancePackDetailedStatusOutput)
 
 	GetResourceConfigHistory(*configservice.GetResourceConfigHistoryInput) (*configservice.GetResourceConfigHistoryOutput, error)
 	GetResourceConfigHistoryWithContext(aws.Context, *configservice.GetResourceConfigHistoryInput, ...request.Option) (*configservice.GetResourceConfigHistoryOutput, error)
@@ -273,6 +313,10 @@ type ConfigServiceAPI interface {
 	PutConfigurationRecorderWithContext(aws.Context, *configservice.PutConfigurationRecorderInput, ...request.Option) (*configservice.PutConfigurationRecorderOutput, error)
 	PutConfigurationRecorderRequest(*configservice.PutConfigurationRecorderInput) (*request.Request, *configservice.PutConfigurationRecorderOutput)
 
+	PutConformancePack(*configservice.PutConformancePackInput) (*configservice.PutConformancePackOutput, error)
+	PutConformancePackWithContext(aws.Context, *configservice.PutConformancePackInput, ...request.Option) (*configservice.PutConformancePackOutput, error)
+	PutConformancePackRequest(*configservice.PutConformancePackInput) (*request.Request, *configservice.PutConformancePackOutput)
+
 	PutDeliveryChannel(*configservice.PutDeliveryChannelInput) (*configservice.PutDeliveryChannelOutput, error)
 	PutDeliveryChannelWithContext(aws.Context, *configservice.PutDeliveryChannelInput, ...request.Option) (*configservice.PutDeliveryChannelOutput, error)
 	PutDeliveryChannelRequest(*configservice.PutDeliveryChannelInput) (*request.Request, *configservice.PutDeliveryChannelOutput)
@@ -284,6 +328,10 @@ type ConfigServiceAPI interface {
 	PutOrganizationConfigRule(*configservice.PutOrganizationConfigRuleInput) (*configservice.PutOrganizationConfigRuleOutput, error)
 	PutOrganizationConfigRuleWithContext(aws.Context, *configservice.PutOrganizationConfigRuleInput, ...request.Option) (*configservice.PutOrganizationConfigRuleOutput, error)
 	PutOrganizationConfigRuleRequest(*configservice.PutOrganizationConfigRuleInput) (*request.Request, *configservice.PutOrganizationConfigRuleOutput)
+
+	PutOrganizationConformancePack(*configservice.PutOrganizationConformancePackInput) (*configservice.PutOrganizationConformancePackOutput, error)
+	PutOrganizationConformancePackWithContext(aws.Context, *configservice.PutOrganizationConformancePackInput, ...request.Option) (*configservice.PutOrganizationConformancePackOutput, error)
+	PutOrganizationConformancePackRequest(*configservice.PutOrganizationConformancePackInput) (*request.Request, *configservice.PutOrganizationConformancePackOutput)
 
 	PutRemediationConfigurations(*configservice.PutRemediationConfigurationsInput) (*configservice.PutRemediationConfigurationsOutput, error)
 	PutRemediationConfigurationsWithContext(aws.Context, *configservice.PutRemediationConfigurationsInput, ...request.Option) (*configservice.PutRemediationConfigurationsOutput, error)

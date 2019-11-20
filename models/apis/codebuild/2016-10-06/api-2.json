@@ -465,7 +465,8 @@
       "enum":[
         "BUILD_GENERAL1_SMALL",
         "BUILD_GENERAL1_MEDIUM",
-        "BUILD_GENERAL1_LARGE"
+        "BUILD_GENERAL1_LARGE",
+        "BUILD_GENERAL1_2XLARGE"
       ]
     },
     "CreateProjectInput":{
@@ -598,7 +599,9 @@
       "type":"string",
       "enum":[
         "WINDOWS_CONTAINER",
-        "LINUX_CONTAINER"
+        "LINUX_CONTAINER",
+        "LINUX_GPU_CONTAINER",
+        "ARM_CONTAINER"
       ]
     },
     "EnvironmentVariable":{

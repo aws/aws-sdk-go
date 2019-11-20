@@ -8,9 +8,11 @@
     "DeleteConfigRule": "<p>Deletes the specified AWS Config rule and all of its evaluation results.</p> <p>AWS Config sets the state of a rule to <code>DELETING</code> until the deletion is complete. You cannot update a rule while it is in this state. If you make a <code>PutConfigRule</code> or <code>DeleteConfigRule</code> request for the rule, you will receive a <code>ResourceInUseException</code>.</p> <p>You can check the state of a rule by using the <code>DescribeConfigRules</code> request.</p>",
     "DeleteConfigurationAggregator": "<p>Deletes the specified configuration aggregator and the aggregated data associated with the aggregator.</p>",
     "DeleteConfigurationRecorder": "<p>Deletes the configuration recorder.</p> <p>After the configuration recorder is deleted, AWS Config will not record resource configuration changes until you create a new configuration recorder.</p> <p>This action does not delete the configuration information that was previously recorded. You will be able to access the previously recorded information by using the <code>GetResourceConfigHistory</code> action, but you will not be able to access this information in the AWS Config console until you create a new configuration recorder.</p>",
+    "DeleteConformancePack": "<p>Deletes the specified conformance pack and all the AWS Config rules and all evaluation results within that conformance pack.</p> <p>AWS Config sets the conformance pack to <code>DELETE_IN_PROGRESS</code> until the deletion is complete. You cannot update a conformance pack while it is in this state.</p>",
     "DeleteDeliveryChannel": "<p>Deletes the delivery channel.</p> <p>Before you can delete the delivery channel, you must stop the configuration recorder by using the <a>StopConfigurationRecorder</a> action.</p>",
     "DeleteEvaluationResults": "<p>Deletes the evaluation results for the specified AWS Config rule. You can specify one AWS Config rule per request. After you delete the evaluation results, you can call the <a>StartConfigRulesEvaluation</a> API to start evaluating your AWS resources against the rule.</p>",
     "DeleteOrganizationConfigRule": "<p>Deletes the specified organization config rule and all of its evaluation results from all member accounts in that organization. Only a master account can delete an organization config rule.</p> <p>AWS Config sets the state of a rule to DELETE_IN_PROGRESS until the deletion is complete. You cannot update a rule while it is in this state.</p>",
+    "DeleteOrganizationConformancePack": "<p>Deletes the specified organization conformance pack and all of the config rules and remediation actions from all member accounts in that organization. Only a master account can delete an organization conformance pack.</p> <p>AWS Config sets the state of a conformance pack to DELETE_IN_PROGRESS until the deletion is complete. You cannot update a conformance pack while it is in this state. </p>",
     "DeletePendingAggregationRequest": "<p>Deletes pending authorization requests for a specified aggregator account in a specified region.</p>",
     "DeleteRemediationConfiguration": "<p>Deletes the remediation configuration.</p>",
     "DeleteRemediationExceptions": "<p>Deletes one or more remediation exceptions mentioned in the resource keys.</p>",
@@ -26,10 +28,15 @@
     "DescribeConfigurationAggregators": "<p>Returns the details of one or more configuration aggregators. If the configuration aggregator is not specified, this action returns the details for all the configuration aggregators associated with the account. </p>",
     "DescribeConfigurationRecorderStatus": "<p>Returns the current status of the specified configuration recorder. If a configuration recorder is not specified, this action returns the status of all configuration recorders associated with the account.</p> <note> <p>Currently, you can specify only one configuration recorder per region in your account.</p> </note>",
     "DescribeConfigurationRecorders": "<p>Returns the details for the specified configuration recorders. If the configuration recorder is not specified, this action returns the details for all configuration recorders associated with the account.</p> <note> <p>Currently, you can specify only one configuration recorder per region in your account.</p> </note>",
+    "DescribeConformancePackCompliance": "<p>Returns compliance information for each rule in that conformance pack.</p> <note> <p>You must provide exact rule names otherwise AWS Config cannot return evaluation results due to insufficient data.</p> </note>",
+    "DescribeConformancePackStatus": "<p>Provides one or more conformance packs deployment status.</p>",
+    "DescribeConformancePacks": "<p>Returns a list of one or more conformance packs.</p>",
     "DescribeDeliveryChannelStatus": "<p>Returns the current status of the specified delivery channel. If a delivery channel is not specified, this action returns the current status of all delivery channels associated with the account.</p> <note> <p>Currently, you can specify only one delivery channel per region in your account.</p> </note>",
     "DescribeDeliveryChannels": "<p>Returns details about the specified delivery channel. If a delivery channel is not specified, this action returns the details of all delivery channels associated with the account.</p> <note> <p>Currently, you can specify only one delivery channel per region in your account.</p> </note>",
     "DescribeOrganizationConfigRuleStatuses": "<p>Provides organization config rule deployment status for an organization.</p> <note> <p>The status is not considered successful until organization config rule is successfully deployed in all the member accounts with an exception of excluded accounts.</p> <p>When you specify the limit and the next token, you receive a paginated response. Limit and next token are not applicable if you specify organization config rule names. It is only applicable, when you request all the organization config rules.</p> <p>Only a master account can call this API.</p> </note>",
     "DescribeOrganizationConfigRules": "<p>Returns a list of organization config rules.</p> <note> <p>When you specify the limit and the next token, you receive a paginated response. Limit and next token are not applicable if you specify organization config rule names. It is only applicable, when you request all the organization config rules.</p> <p>Only a master account can call this API.</p> </note>",
+    "DescribeOrganizationConformancePackStatuses": "<p>Provides organization conformance pack deployment status for an organization.</p> <note> <p>The status is not considered successful until organization conformance pack is successfully deployed in all the member accounts with an exception of excluded accounts.</p> <p>When you specify the limit and the next token, you receive a paginated response. Limit and next token are not applicable if you specify organization conformance pack names. They are only applicable, when you request all the organization conformance packs.</p> <p>Only a master account can call this API.</p> </note>",
+    "DescribeOrganizationConformancePacks": "<p>Returns a list of organization conformance packs.</p> <note> <p>When you specify the limit and the next token, you receive a paginated response. Limit and next token are not applicable if you specify organization conformance packs names. They are only applicable, when you request all the organization conformance packs. Only a master account can call this API.</p> </note>",
     "DescribePendingAggregationRequests": "<p>Returns a list of all pending aggregation requests.</p>",
     "DescribeRemediationConfigurations": "<p>Returns the details of one or more remediation configurations.</p>",
     "DescribeRemediationExceptions": "<p>Returns the details of one or more remediation exceptions. A detailed view of a remediation exception for a set of resources that includes an explanation of an exception and the time when the exception will be deleted. When you specify the limit and the next token, you receive a paginated response. </p> <note> <p>When you specify the limit and the next token, you receive a paginated response. </p> <p>Limit and next token are not applicable if you request resources in batch. It is only applicable, when you request all resources.</p> </note>",
@@ -43,8 +50,11 @@
     "GetComplianceDetailsByResource": "<p>Returns the evaluation results for the specified AWS resource. The results indicate which AWS Config rules were used to evaluate the resource, when each rule was last used, and whether the resource complies with each rule.</p>",
     "GetComplianceSummaryByConfigRule": "<p>Returns the number of AWS Config rules that are compliant and noncompliant, up to a maximum of 25 for each.</p>",
     "GetComplianceSummaryByResourceType": "<p>Returns the number of resources that are compliant and the number that are noncompliant. You can specify one or more resource types to get these numbers for each resource type. The maximum number returned is 100.</p>",
+    "GetConformancePackComplianceDetails": "<p>Returns compliance details of a conformance pack for all AWS resources that are monitered by conformance pack.</p>",
+    "GetConformancePackComplianceSummary": null,
     "GetDiscoveredResourceCounts": "<p>Returns the resource types, the number of each resource type, and the total number of resources that AWS Config is recording in this region for your AWS account. </p> <p class=\"title\"> <b>Example</b> </p> <ol> <li> <p>AWS Config is recording three resource types in the US East (Ohio) Region for your account: 25 EC2 instances, 20 IAM users, and 15 S3 buckets.</p> </li> <li> <p>You make a call to the <code>GetDiscoveredResourceCounts</code> action and specify that you want all resource types. </p> </li> <li> <p>AWS Config returns the following:</p> <ul> <li> <p>The resource types (EC2 instances, IAM users, and S3 buckets).</p> </li> <li> <p>The number of each resource type (25, 20, and 15).</p> </li> <li> <p>The total number of all resources (60).</p> </li> </ul> </li> </ol> <p>The response is paginated. By default, AWS Config lists 100 <a>ResourceCount</a> objects on each page. You can customize this number with the <code>limit</code> parameter. The response includes a <code>nextToken</code> string. To get the next page of results, run the request again and specify the string for the <code>nextToken</code> parameter.</p> <note> <p>If you make a call to the <a>GetDiscoveredResourceCounts</a> action, you might not immediately receive resource counts in the following situations:</p> <ul> <li> <p>You are a new AWS Config customer.</p> </li> <li> <p>You just enabled resource recording.</p> </li> </ul> <p>It might take a few minutes for AWS Config to record and count your resources. Wait a few minutes and then retry the <a>GetDiscoveredResourceCounts</a> action. </p> </note>",
     "GetOrganizationConfigRuleDetailedStatus": "<p>Returns detailed status for each member account within an organization for a given organization config rule.</p> <note> <p>Only a master account can call this API.</p> </note>",
+    "GetOrganizationConformancePackDetailedStatus": "<p>Returns detailed status for each member account within an organization for a given organization conformance pack.</p> <p>Only a master account can call this API.</p>",
     "GetResourceConfigHistory": "<p>Returns a list of configuration items for the specified resource. The list contains details about each state of the resource during the specified time interval. If you specified a retention period to retain your <code>ConfigurationItems</code> between a minimum of 30 days and a maximum of 7 years (2557 days), AWS Config returns the <code>ConfigurationItems</code> for the specified retention period. </p> <p>The response is paginated. By default, AWS Config returns a limit of 10 configuration items per page. You can customize this number with the <code>limit</code> parameter. The response includes a <code>nextToken</code> string. To get the next page of results, run the request again and specify the string for the <code>nextToken</code> parameter.</p> <note> <p>Each call to the API is limited to span a duration of seven days. It is likely that the number of records returned is smaller than the specified <code>limit</code>. In such cases, you can make another call, using the <code>nextToken</code>.</p> </note>",
     "ListAggregateDiscoveredResources": "<p>Accepts a resource type and returns a list of resource identifiers that are aggregated for a specific resource type across accounts and regions. A resource identifier includes the resource type, ID, (if available) the custom resource name, source account, and source region. You can narrow the results to include only resources that have specific resource IDs, or a resource name, or source account ID, or source region.</p> <p>For example, if the input consists of accountID 12345678910 and the region is us-east-1 for resource type <code>AWS::EC2::Instance</code> then the API returns all the EC2 instance identifiers of accountID 12345678910 and region us-east-1.</p>",
     "ListDiscoveredResources": "<p>Accepts a resource type and returns a list of resource identifiers for the resources of that type. A resource identifier includes the resource type, ID, and (if available) the custom resource name. The results consist of resources that AWS Config has discovered, including those that AWS Config is not currently recording. You can narrow the results to include only resources that have specific resource IDs or a resource name.</p> <note> <p>You can specify either resource IDs or a resource name, but not both, in the same request.</p> </note> <p>The response is paginated. By default, AWS Config lists 100 resource identifiers on each page. You can customize this number with the <code>limit</code> parameter. The response includes a <code>nextToken</code> string. To get the next page of results, run the request again and specify the string for the <code>nextToken</code> parameter.</p>",
@@ -53,9 +63,11 @@
     "PutConfigRule": "<p>Adds or updates an AWS Config rule for evaluating whether your AWS resources comply with your desired configurations.</p> <p>You can use this action for custom AWS Config rules and AWS managed Config rules. A custom AWS Config rule is a rule that you develop and maintain. An AWS managed Config rule is a customizable, predefined rule that AWS Config provides.</p> <p>If you are adding a new custom AWS Config rule, you must first create the AWS Lambda function that the rule invokes to evaluate your resources. When you use the <code>PutConfigRule</code> action to add the rule to AWS Config, you must specify the Amazon Resource Name (ARN) that AWS Lambda assigns to the function. Specify the ARN for the <code>SourceIdentifier</code> key. This key is part of the <code>Source</code> object, which is part of the <code>ConfigRule</code> object. </p> <p>If you are adding an AWS managed Config rule, specify the rule's identifier for the <code>SourceIdentifier</code> key. To reference AWS managed Config rule identifiers, see <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html\">About AWS Managed Config Rules</a>.</p> <p>For any new rule that you add, specify the <code>ConfigRuleName</code> in the <code>ConfigRule</code> object. Do not specify the <code>ConfigRuleArn</code> or the <code>ConfigRuleId</code>. These values are generated by AWS Config for new rules.</p> <p>If you are updating a rule that you added previously, you can specify the rule by <code>ConfigRuleName</code>, <code>ConfigRuleId</code>, or <code>ConfigRuleArn</code> in the <code>ConfigRule</code> data type that you use in this request.</p> <p>The maximum number of rules that AWS Config supports is 150.</p> <p>For information about requesting a rule limit increase, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_config\">AWS Config Limits</a> in the <i>AWS General Reference Guide</i>.</p> <p>For more information about developing and using AWS Config rules, see <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html\">Evaluating AWS Resource Configurations with AWS Config</a> in the <i>AWS Config Developer Guide</i>.</p>",
     "PutConfigurationAggregator": "<p>Creates and updates the configuration aggregator with the selected source accounts and regions. The source account can be individual account(s) or an organization.</p> <note> <p>AWS Config should be enabled in source accounts and regions you want to aggregate.</p> <p>If your source type is an organization, you must be signed in to the master account and all features must be enabled in your organization. AWS Config calls <code>EnableAwsServiceAccess</code> API to enable integration between AWS Config and AWS Organizations. </p> </note>",
     "PutConfigurationRecorder": "<p>Creates a new configuration recorder to record the selected resource configurations.</p> <p>You can use this action to change the role <code>roleARN</code> or the <code>recordingGroup</code> of an existing recorder. To change the role, call the action on the existing configuration recorder and specify a role.</p> <note> <p>Currently, you can specify only one configuration recorder per region in your account.</p> <p>If <code>ConfigurationRecorder</code> does not have the <b>recordingGroup</b> parameter specified, the default is to record all supported resource types.</p> </note>",
+    "PutConformancePack": "<p>Creates or updates a conformance pack. A conformance pack is a collection of AWS Config rules that can be easily deployed in an account and a region.</p> <p>This API creates a service linked role <code>AWSServiceRoleForConfigConforms</code> in your account. The service linked role is created only when the role does not exist in your account. AWS Config verifies the existence of role with <code>GetRole</code> action.</p> <note> <p>You must specify either the <code>TemplateS3Uri</code> or the <code>TemplateBody</code> parameter, but not both. If you provide both AWS Config uses the <code>TemplateS3Uri</code> parameter and ignores the <code>TemplateBody</code> parameter.</p> </note>",
     "PutDeliveryChannel": "<p>Creates a delivery channel object to deliver configuration information to an Amazon S3 bucket and Amazon SNS topic.</p> <p>Before you can create a delivery channel, you must create a configuration recorder.</p> <p>You can use this action to change the Amazon S3 bucket or an Amazon SNS topic of the existing delivery channel. To change the Amazon S3 bucket or an Amazon SNS topic, call this action and specify the changed values for the S3 bucket and the SNS topic. If you specify a different value for either the S3 bucket or the SNS topic, this action will keep the existing value for the parameter that is not changed.</p> <note> <p>You can have only one delivery channel per region in your account.</p> </note>",
     "PutEvaluations": "<p>Used by an AWS Lambda function to deliver evaluation results to AWS Config. This action is required in every AWS Lambda function that is invoked by an AWS Config rule.</p>",
     "PutOrganizationConfigRule": "<p>Adds or updates organization config rule for your entire organization evaluating whether your AWS resources comply with your desired configurations. Only a master account can create or update an organization config rule.</p> <p>This API enables organization service access through the <code>EnableAWSServiceAccess</code> action and creates a service linked role <code>AWSServiceRoleForConfigMultiAccountSetup</code> in the master account of your organization. The service linked role is created only when the role does not exist in the master account. AWS Config verifies the existence of role with <code>GetRole</code> action.</p> <p>You can use this action to create both custom AWS Config rules and AWS managed Config rules. If you are adding a new custom AWS Config rule, you must first create AWS Lambda function in the master account that the rule invokes to evaluate your resources. When you use the <code>PutOrganizationConfigRule</code> action to add the rule to AWS Config, you must specify the Amazon Resource Name (ARN) that AWS Lambda assigns to the function. If you are adding an AWS managed Config rule, specify the rule's identifier for the <code>RuleIdentifier</code> key.</p> <p>The maximum number of organization config rules that AWS Config supports is 150.</p> <note> <p>Specify either <code>OrganizationCustomRuleMetadata</code> or <code>OrganizationManagedRuleMetadata</code>.</p> </note>",
+    "PutOrganizationConformancePack": "<p>Deploys conformance packs across member accounts in an AWS Organization.</p> <p>This API enables organization service access through the <code>EnableAWSServiceAccess</code> action and creates a service linked role AWSServiceRoleForConfigMultiAccountSetup in the master account of your organization. The service linked role is created only when the role does not exist in the master account. AWS Config verifies the existence of role with GetRole action. </p> <note> <p>The SPN is <code>config-multiaccountsetup.amazonaws.com</code>.</p> <p>You must specify either the <code>TemplateS3Uri</code> or the <code>TemplateBody</code> parameter, but not both. If you provide both AWS Config uses the <code>TemplateS3Uri</code> parameter and ignores the <code>TemplateBody</code> parameter.</p> </note>",
     "PutRemediationConfigurations": "<p>Adds or updates the remediation configuration with a specific AWS Config rule with the selected target or action. The API creates the <code>RemediationConfiguration</code> object for the AWS Config rule. The AWS Config rule must already exist for you to add a remediation configuration. The target (SSM document) must exist and have permissions to use the target. </p>",
     "PutRemediationExceptions": "<p>A remediation exception is when a specific resource is no longer considered for auto-remediation. This API adds a new exception or updates an exisiting exception for a specific resource with a specific AWS Config rule. </p>",
     "PutRetentionConfiguration": "<p>Creates and updates the retention configuration with details about retention period (number of days) that AWS Config stores your historical information. The API creates the <code>RetentionConfiguration</code> object and names the object as <b>default</b>. When you have a <code>RetentionConfiguration</code> object named <b>default</b>, calling the API modifies the default object. </p> <note> <p>Currently, AWS Config supports only one retention configuration per region in your account.</p> </note>",
@@ -111,6 +123,8 @@
         "ExcludedAccounts$member": null,
         "GetAggregateComplianceDetailsByConfigRuleRequest$AccountId": "<p>The 12-digit account ID of the source account.</p>",
         "MemberAccountStatus$AccountId": "<p>The 12-digit account ID of a member account.</p>",
+        "OrganizationConformancePackDetailedStatus$AccountId": "<p>The 12-digit account ID of a member account.</p>",
+        "OrganizationResourceDetailedStatusFilters$AccountId": "<p>The 12-digit account ID of the member account within an organization.</p>",
         "PendingAggregationRequest$RequesterAccountId": "<p>The 12-digit account ID of the account requesting to aggregate data.</p>",
         "PutAggregationAuthorizationRequest$AuthorizedAccountId": "<p>The 12-digit account ID of the account authorized to aggregate data.</p>",
         "ResourceCountFilters$AccountId": "<p>The 12-digit ID of the account.</p>",
@@ -226,6 +240,12 @@
         "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) that identifies the resource for which to list the tags. Currently, the supported resources are <code>ConfigRule</code>, <code>ConfigurationAggregator</code> and <code>AggregatorAuthorization</code>.</p>",
         "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) that identifies the resource for which to list the tags. Currently, the supported resources are <code>ConfigRule</code>, <code>ConfigurationAggregator</code> and <code>AggregatorAuthorization</code>.</p>",
         "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) that identifies the resource for which to list the tags. Currently, the supported resources are <code>ConfigRule</code>, <code>ConfigurationAggregator</code> and <code>AggregatorAuthorization</code>.</p>"
+      }
+    },
+    "Annotation": {
+      "base": null,
+      "refs": {
+        "ConformancePackEvaluationResult$Annotation": "<p>Supplementary information about how the evaluation determined the compliance. </p>"
       }
     },
     "AutoRemediationAttemptSeconds": {
@@ -477,6 +497,7 @@
         "AggregateComplianceByConfigRule$ConfigRuleName": "<p>The name of the AWS Config rule.</p>",
         "ConfigRuleComplianceFilters$ConfigRuleName": "<p>The name of the AWS Config rule.</p>",
         "ConfigRuleNames$member": null,
+        "ConformancePackRuleCompliance$ConfigRuleName": "<p>Filters the results by AWS Config rule name.</p>",
         "DeleteRemediationConfigurationRequest$ConfigRuleName": "<p>The name of the AWS Config rule for which you want to delete remediation configuration.</p>",
         "DeleteRemediationExceptionsRequest$ConfigRuleName": "<p>The name of the AWS Config rule for which you want to delete remediation exception configuration.</p>",
         "DescribeRemediationExceptionsRequest$ConfigRuleName": "<p>The name of the AWS Config rule.</p>",
@@ -642,12 +663,186 @@
         "ConfigurationItem$configurationStateId": "<p>An identifier that indicates the ordering of the configuration items of a resource.</p>"
       }
     },
+    "ConformancePackArn": {
+      "base": null,
+      "refs": {
+        "ConformancePackDetail$ConformancePackArn": "<p>Amazon Resource Name (ARN) of the conformance pack.</p>",
+        "ConformancePackStatusDetail$ConformancePackArn": "<p>Amazon Resource Name (ARN) of comformance pack.</p>",
+        "PutConformancePackResponse$ConformancePackArn": "<p>ARN of the conformance pack.</p>"
+      }
+    },
+    "ConformancePackComplianceFilters": {
+      "base": "<p>Filters the conformance pack by compliance types and AWS Config rule names.</p>",
+      "refs": {
+        "DescribeConformancePackComplianceRequest$Filters": "<p>A <code>ConformancePackComplianceFilters</code> object.</p>"
+      }
+    },
+    "ConformancePackComplianceResourceIds": {
+      "base": null,
+      "refs": {
+        "ConformancePackEvaluationFilters$ResourceIds": "<p>Filters the results by resource IDs.</p>"
+      }
+    },
+    "ConformancePackComplianceSummary": {
+      "base": null,
+      "refs": {
+        "ConformancePackComplianceSummaryList$member": null
+      }
+    },
+    "ConformancePackComplianceSummaryList": {
+      "base": null,
+      "refs": {
+        "GetConformancePackComplianceSummaryResponse$ConformancePackComplianceSummaryList": null
+      }
+    },
+    "ConformancePackComplianceType": {
+      "base": null,
+      "refs": {
+        "ConformancePackComplianceFilters$ComplianceType": "<p>Filters the results by compliance.</p> <p>The allowed values are <code>COMPLIANT</code> and <code>NON_COMPLIANT</code>.</p>",
+        "ConformancePackComplianceSummary$ConformancePackComplianceStatus": null,
+        "ConformancePackEvaluationFilters$ComplianceType": "<p>Filters the results by compliance.</p> <p>The allowed values are <code>COMPLIANT</code> and <code>NON_COMPLIANT</code>.</p>",
+        "ConformancePackEvaluationResult$ComplianceType": "<p>Filters the results by compliance.</p> <p>The allowed values are <code>COMPLIANT</code> and <code>NON_COMPLIANT</code>.</p>",
+        "ConformancePackRuleCompliance$ComplianceType": "<p>Filters the results by compliance.</p> <p>The allowed values are <code>COMPLIANT</code> and <code>NON_COMPLIANT</code>.</p>"
+      }
+    },
+    "ConformancePackConfigRuleNames": {
+      "base": null,
+      "refs": {
+        "ConformancePackComplianceFilters$ConfigRuleNames": "<p>Filters the results by AWS Config rule names.</p>",
+        "ConformancePackEvaluationFilters$ConfigRuleNames": "<p>Filters the results by AWS Config rule names.</p>"
+      }
+    },
+    "ConformancePackDetail": {
+      "base": "<p>Returns details of a conformance pack. A conformance pack is a collection of AWS Config rules that can be easily deployed in an account and a region.</p>",
+      "refs": {
+        "ConformancePackDetailList$member": null
+      }
+    },
+    "ConformancePackDetailList": {
+      "base": null,
+      "refs": {
+        "DescribeConformancePacksResponse$ConformancePackDetails": "<p>Returns a list of <code>ConformancePackDetail</code> objects.</p>"
+      }
+    },
+    "ConformancePackEvaluationFilters": {
+      "base": "<p>Filters a conformance pack by AWS Config rule names, compliance types, AWS resource types, and resource IDs.</p>",
+      "refs": {
+        "GetConformancePackComplianceDetailsRequest$Filters": "<p>A <code>ConformancePackEvaluationFilters</code> object.</p>"
+      }
+    },
+    "ConformancePackEvaluationResult": {
+      "base": "<p>The details of a conformance pack evaluation. Provides AWS Config rule and AWS resource type that was evaluated, the compliance of the conformance pack, related time stamps, and supplementary information. </p>",
+      "refs": {
+        "ConformancePackRuleEvaluationResultsList$member": null
+      }
+    },
+    "ConformancePackId": {
+      "base": null,
+      "refs": {
+        "ConformancePackDetail$ConformancePackId": "<p>ID of the conformance pack.</p>",
+        "ConformancePackStatusDetail$ConformancePackId": "<p>ID of the conformance pack.</p>"
+      }
+    },
+    "ConformancePackInputParameter": {
+      "base": "<p>Input parameters in the form of key-value pairs for the conformance pack, both of which you define. Keys can have a maximum character length of 128 characters, and values can have a maximum length of 256 characters.</p>",
+      "refs": {
+        "ConformancePackInputParameters$member": null
+      }
+    },
+    "ConformancePackInputParameters": {
+      "base": null,
+      "refs": {
+        "ConformancePackDetail$ConformancePackInputParameters": "<p>A list of <code>ConformancePackInputParameter</code> objects.</p>",
+        "OrganizationConformancePack$ConformancePackInputParameters": "<p>A list of <code>ConformancePackInputParameter</code> objects.</p>",
+        "PutConformancePackRequest$ConformancePackInputParameters": "<p>A list of <code>ConformancePackInputParameter</code> objects.</p>",
+        "PutOrganizationConformancePackRequest$ConformancePackInputParameters": "<p>A list of <code>ConformancePackInputParameter</code> objects.</p>"
+      }
+    },
+    "ConformancePackName": {
+      "base": null,
+      "refs": {
+        "ConformancePackComplianceSummary$ConformancePackName": null,
+        "ConformancePackDetail$ConformancePackName": "<p>Name of the conformance pack.</p>",
+        "ConformancePackNamesList$member": null,
+        "ConformancePackNamesToSummarizeList$member": null,
+        "ConformancePackStatusDetail$ConformancePackName": "<p>Name of the conformance pack.</p>",
+        "DeleteConformancePackRequest$ConformancePackName": "<p>Name of the conformance pack you want to delete.</p>",
+        "DescribeConformancePackComplianceRequest$ConformancePackName": "<p>Name of the conformance pack.</p>",
+        "DescribeConformancePackComplianceResponse$ConformancePackName": "<p>Name of the conformance pack.</p>",
+        "GetConformancePackComplianceDetailsRequest$ConformancePackName": "<p>Name of the conformance pack.</p>",
+        "GetConformancePackComplianceDetailsResponse$ConformancePackName": "<p>Name of the conformance pack.</p>",
+        "PutConformancePackRequest$ConformancePackName": "<p>Name of the conformance pack you want to create.</p>"
+      }
+    },
+    "ConformancePackNamesList": {
+      "base": null,
+      "refs": {
+        "DescribeConformancePackStatusRequest$ConformancePackNames": "<p>Comma-separated list of conformance pack names.</p>",
+        "DescribeConformancePacksRequest$ConformancePackNames": "<p>Comma-separated list of conformance pack names for which you want details. If you do not specify any names, AWS Config returns details for all your conformance packs. </p>"
+      }
+    },
+    "ConformancePackNamesToSummarizeList": {
+      "base": null,
+      "refs": {
+        "GetConformancePackComplianceSummaryRequest$ConformancePackNames": null
+      }
+    },
+    "ConformancePackRuleCompliance": {
+      "base": "<p>Compliance information of one or more AWS Config rules within a conformance pack. You can filter using AWS Config rule names and compliance types.</p>",
+      "refs": {
+        "ConformancePackRuleComplianceList$member": null
+      }
+    },
+    "ConformancePackRuleComplianceList": {
+      "base": null,
+      "refs": {
+        "DescribeConformancePackComplianceResponse$ConformancePackRuleComplianceList": "<p>Returns a list of <code>ConformancePackRuleCompliance</code> objects.</p>"
+      }
+    },
+    "ConformancePackRuleEvaluationResultsList": {
+      "base": null,
+      "refs": {
+        "GetConformancePackComplianceDetailsResponse$ConformancePackRuleEvaluationResults": "<p>Returns a list of <code>ConformancePackEvaluationResult</code> objects.</p>"
+      }
+    },
+    "ConformancePackState": {
+      "base": null,
+      "refs": {
+        "ConformancePackStatusDetail$ConformancePackState": "<p>Indicates deployment status of conformance pack.</p> <p>AWS Config sets the state of the conformance pack to:</p> <ul> <li> <p>CREATE_IN_PROGRESS when a conformance pack creation is in progress for an account.</p> </li> <li> <p>CREATE_COMPLETE when a conformance pack has been successfully created in your account.</p> </li> <li> <p>CREATE_FAILED when a conformance pack creation failed in your account.</p> </li> <li> <p>DELETE_IN_PROGRESS when a conformance pack deletion is in progress. </p> </li> <li> <p>DELETE_FAILED when a conformance pack deletion failed from your account.</p> </li> </ul>"
+      }
+    },
+    "ConformancePackStatusDetail": {
+      "base": "<p>Status details of a conformance pack.</p>",
+      "refs": {
+        "ConformancePackStatusDetailsList$member": null
+      }
+    },
+    "ConformancePackStatusDetailsList": {
+      "base": null,
+      "refs": {
+        "DescribeConformancePackStatusResponse$ConformancePackStatusDetails": "<p>A list of <code>ConformancePackStatusDetail</code> objects.</p>"
+      }
+    },
+    "ConformancePackStatusReason": {
+      "base": null,
+      "refs": {
+        "ConformancePackStatusDetail$ConformancePackStatusReason": "<p>The reason of conformance pack creation failure.</p>"
+      }
+    },
+    "ConformancePackTemplateValidationException": {
+      "base": "<p>You have specified a template that is not valid or supported.</p>",
+      "refs": {
+      }
+    },
     "CosmosPageLimit": {
       "base": null,
       "refs": {
         "DescribeOrganizationConfigRuleStatusesRequest$Limit": "<p>The maximum number of <code>OrganizationConfigRuleStatuses</code> returned on each page. If you do no specify a number, AWS Config uses the default. The default is 100.</p>",
         "DescribeOrganizationConfigRulesRequest$Limit": "<p>The maximum number of organization config rules returned on each page. If you do no specify a number, AWS Config uses the default. The default is 100.</p>",
-        "GetOrganizationConfigRuleDetailedStatusRequest$Limit": "<p>The maximum number of <code>OrganizationConfigRuleDetailedStatus</code> returned on each page. If you do not specify a number, AWS Config uses the default. The default is 100.</p>"
+        "DescribeOrganizationConformancePackStatusesRequest$Limit": "<p>The maximum number of OrganizationConformancePackStatuses returned on each page. If you do no specify a number, AWS Config uses the default. The default is 100. </p>",
+        "DescribeOrganizationConformancePacksRequest$Limit": "<p>The maximum number of organization config packs returned on each page. If you do no specify a number, AWS Config uses the default. The default is 100.</p>",
+        "GetOrganizationConfigRuleDetailedStatusRequest$Limit": "<p>The maximum number of <code>OrganizationConfigRuleDetailedStatus</code> returned on each page. If you do not specify a number, AWS Config uses the default. The default is 100.</p>",
+        "GetOrganizationConformancePackDetailedStatusRequest$Limit": "<p>The maximum number of <code>OrganizationConformancePackDetailedStatuses</code> returned on each page. If you do not specify a number, AWS Config uses the default. The default is 100. </p>"
       }
     },
     "Date": {
@@ -672,12 +867,20 @@
         "ConfigurationRecorderStatus$lastStartTime": "<p>The time the recorder was last started.</p>",
         "ConfigurationRecorderStatus$lastStopTime": "<p>The time the recorder was last stopped.</p>",
         "ConfigurationRecorderStatus$lastStatusChangeTime": "<p>The time when the status was last changed.</p>",
+        "ConformancePackDetail$LastUpdateRequestedTime": "<p>Last time when conformation pack update was requested. </p>",
+        "ConformancePackEvaluationResult$ConfigRuleInvokedTime": "<p>The time when AWS Config rule evaluated AWS resource.</p>",
+        "ConformancePackEvaluationResult$ResultRecordedTime": "<p>The time when AWS Config recorded the evaluation result. </p>",
+        "ConformancePackStatusDetail$LastUpdateRequestedTime": "<p>Last time when conformation pack creation and update was requested.</p>",
+        "ConformancePackStatusDetail$LastUpdateCompletedTime": "<p>Last time when conformation pack creation and update was successful.</p>",
         "EvaluationResult$ResultRecordedTime": "<p>The time when AWS Config recorded the evaluation result.</p>",
         "EvaluationResult$ConfigRuleInvokedTime": "<p>The time when the AWS Config rule evaluated the AWS resource.</p>",
         "EvaluationResultIdentifier$OrderingTimestamp": "<p>The time of the event that triggered the evaluation of your AWS resources. The time can indicate when AWS Config delivered a configuration item change notification, or it can indicate when AWS Config delivered the configuration snapshot, depending on which event triggered the evaluation.</p>",
         "MemberAccountStatus$LastUpdateTime": "<p>The timestamp of the last status update.</p>",
         "OrganizationConfigRule$LastUpdateTime": "<p>The timestamp of the last update.</p>",
         "OrganizationConfigRuleStatus$LastUpdateTime": "<p>The timestamp of the last update.</p>",
+        "OrganizationConformancePack$LastUpdateTime": "<p>Last time when organization conformation pack was updated.</p>",
+        "OrganizationConformancePackDetailedStatus$LastUpdateTime": "<p>The timestamp of the last status update.</p>",
+        "OrganizationConformancePackStatus$LastUpdateTime": "<p>The timestamp of the last update.</p>",
         "PutRemediationExceptionsRequest$ExpirationTime": "<p>The exception is automatically deleted after the expiration date.</p>",
         "RemediationException$ExpirationTime": "<p>The time when the remediation exception will be deleted.</p>",
         "RemediationExecutionStatus$InvocationTime": "<p>Start time when the remediation was executed.</p>",
@@ -706,6 +909,11 @@
       "refs": {
       }
     },
+    "DeleteConformancePackRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteDeliveryChannelRequest": {
       "base": "<p>The input for the <a>DeleteDeliveryChannel</a> action. The action accepts the following data, in JSON format. </p>",
       "refs": {
@@ -722,6 +930,11 @@
       }
     },
     "DeleteOrganizationConfigRuleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteOrganizationConformancePackRequest": {
       "base": null,
       "refs": {
       }
@@ -796,6 +1009,24 @@
       "base": null,
       "refs": {
         "DescribeDeliveryChannelStatusResponse$DeliveryChannelsStatus": "<p>A list that contains the status of a specified delivery channel.</p>"
+      }
+    },
+    "DeliveryS3Bucket": {
+      "base": null,
+      "refs": {
+        "ConformancePackDetail$DeliveryS3Bucket": "<p>Location of an Amazon S3 bucket where AWS Config can deliver evaluation results and conformance pack template that is used to create a pack.</p>",
+        "OrganizationConformancePack$DeliveryS3Bucket": "<p>Location of an Amazon S3 bucket where AWS Config can deliver evaluation results and conformance pack template that is used to create a pack. </p>",
+        "PutConformancePackRequest$DeliveryS3Bucket": "<p>Location of an Amazon S3 bucket where AWS Config can deliver evaluation results. AWS Config stores intermediate files while processing conformance pack template.</p>",
+        "PutOrganizationConformancePackRequest$DeliveryS3Bucket": "<p>Location of an Amazon S3 bucket where AWS Config can deliver evaluation results. AWS Config stores intermediate files while processing conformance pack template.</p>"
+      }
+    },
+    "DeliveryS3KeyPrefix": {
+      "base": null,
+      "refs": {
+        "ConformancePackDetail$DeliveryS3KeyPrefix": "<p>Any folder structure you want to add to an Amazon S3 bucket.</p>",
+        "OrganizationConformancePack$DeliveryS3KeyPrefix": "<p>Any folder structure you want to add to an Amazon S3 bucket.</p>",
+        "PutConformancePackRequest$DeliveryS3KeyPrefix": "<p>The prefix for the Amazon S3 bucket. </p>",
+        "PutOrganizationConformancePackRequest$DeliveryS3KeyPrefix": "<p>The prefix for the Amazon S3 bucket.</p>"
       }
     },
     "DeliveryStatus": {
@@ -905,6 +1136,42 @@
       "refs": {
       }
     },
+    "DescribeConformancePackComplianceLimit": {
+      "base": null,
+      "refs": {
+        "DescribeConformancePackComplianceRequest$Limit": "<p>The maximum number of AWS Config rules within a conformance pack are returned on each page.</p>"
+      }
+    },
+    "DescribeConformancePackComplianceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeConformancePackComplianceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeConformancePackStatusRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeConformancePackStatusResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeConformancePacksRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeConformancePacksResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeDeliveryChannelStatusRequest": {
       "base": "<p>The input for the <a>DeliveryChannelStatus</a> action.</p>",
       "refs": {
@@ -941,6 +1208,26 @@
       }
     },
     "DescribeOrganizationConfigRulesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeOrganizationConformancePackStatusesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeOrganizationConformancePackStatusesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeOrganizationConformancePacksRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeOrganizationConformancePacksResponse": {
       "base": null,
       "refs": {
       }
@@ -1035,6 +1322,7 @@
       "base": "<p>Uniquely identifies an evaluation result.</p>",
       "refs": {
         "AggregateEvaluationResult$EvaluationResultIdentifier": "<p>Uniquely identifies the evaluation result.</p>",
+        "ConformancePackEvaluationResult$EvaluationResultIdentifier": null,
         "EvaluationResult$EvaluationResultIdentifier": "<p>Uniquely identifies the evaluation result.</p>"
       }
     },
@@ -1068,7 +1356,9 @@
       "base": null,
       "refs": {
         "OrganizationConfigRule$ExcludedAccounts": "<p>A comma-separated list of accounts excluded from organization config rule.</p>",
-        "PutOrganizationConfigRuleRequest$ExcludedAccounts": "<p>A comma-separated list of accounts that you want to exclude from an organization config rule.</p>"
+        "OrganizationConformancePack$ExcludedAccounts": "<p>A comma-separated list of accounts excluded from organization conformance pack.</p>",
+        "PutOrganizationConfigRuleRequest$ExcludedAccounts": "<p>A comma-separated list of accounts that you want to exclude from an organization config rule.</p>",
+        "PutOrganizationConformancePackRequest$ExcludedAccounts": "<p>A list of AWS accounts to be excluded from an organization conformance pack while deploying a conformance pack.</p>"
       }
     },
     "ExecutionControls": {
@@ -1212,6 +1502,32 @@
       "refs": {
       }
     },
+    "GetConformancePackComplianceDetailsLimit": {
+      "base": null,
+      "refs": {
+        "GetConformancePackComplianceDetailsRequest$Limit": "<p>The maximum number of evaluation results returned on each page. If you do no specify a number, AWS Config uses the default. The default is 100.</p>"
+      }
+    },
+    "GetConformancePackComplianceDetailsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetConformancePackComplianceDetailsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetConformancePackComplianceSummaryRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetConformancePackComplianceSummaryResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetDiscoveredResourceCountsRequest": {
       "base": null,
       "refs": {
@@ -1228,6 +1544,16 @@
       }
     },
     "GetOrganizationConfigRuleDetailedStatusResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetOrganizationConformancePackDetailedStatusRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetOrganizationConformancePackDetailedStatusResponse": {
       "base": null,
       "refs": {
       }
@@ -1274,7 +1600,7 @@
       }
     },
     "InsufficientPermissionsException": {
-      "base": "<p>Indicates one of the following errors:</p> <ul> <li> <p>For PutConfigRule, the rule cannot be created because the IAM role assigned to AWS Config lacks permissions to perform the config:Put* action.</p> </li> <li> <p>For PutConfigRule, the AWS Lambda function cannot be invoked. Check the function ARN, and check the function's permissions.</p> </li> <li> <p>For OrganizationConfigRule, organization config rule cannot be created because you do not have permissions to call IAM <code>GetRole</code> action or create service linked role.</p> </li> </ul>",
+      "base": "<p>Indicates one of the following errors:</p> <ul> <li> <p>For PutConfigRule, the rule cannot be created because the IAM role assigned to AWS Config lacks permissions to perform the config:Put* action.</p> </li> <li> <p>For PutConfigRule, the AWS Lambda function cannot be invoked. Check the function ARN, and check the function's permissions.</p> </li> <li> <p>For PutOrganizationConfigRule, organization config rule cannot be created because you do not have permissions to call IAM <code>GetRole</code> action or create a service linked role.</p> </li> <li> <p>For PutConformancePack and PutOrganizationConformancePack, a conformance pack cannot be created becuase you do not have permissions: </p> <ul> <li> <p>To call IAM <code>GetRole</code> action or create a service linked role.</p> </li> <li> <p>To read Amazon S3 bucket.</p> </li> <li> <p>To create a rule and a stack.</p> </li> </ul> </li> </ul>",
       "refs": {
       }
     },
@@ -1428,6 +1754,11 @@
       "refs": {
       }
     },
+    "MaxNumberOfConformancePacksExceededException": {
+      "base": "<p>You have reached the limit (20) of the number of conformance packs in an account.</p>",
+      "refs": {
+      }
+    },
     "MaxNumberOfDeliveryChannelsExceededException": {
       "base": "<p>You have reached the limit of the number of delivery channels you can create.</p>",
       "refs": {
@@ -1435,6 +1766,11 @@
     },
     "MaxNumberOfOrganizationConfigRulesExceededException": {
       "base": "<p>You have reached the limit of the number of organization config rules you can create.</p>",
+      "refs": {
+      }
+    },
+    "MaxNumberOfOrganizationConformancePacksExceededException": {
+      "base": "<p>You have reached the limit (10) of the number of organization conformance packs in an account.</p>",
       "refs": {
       }
     },
@@ -1485,6 +1821,12 @@
         "DescribeAggregateComplianceByConfigRulesResponse$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
         "DescribeComplianceByResourceRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
         "DescribeComplianceByResourceResponse$NextToken": "<p>The string that you use in a subsequent request to get the next page of results in a paginated response.</p>",
+        "DescribeConformancePackComplianceRequest$NextToken": "<p>The <code>nextToken</code> string returned in a previous request that you use to request the next page of results in a paginated response.</p>",
+        "DescribeConformancePackComplianceResponse$NextToken": "<p>The <code>nextToken</code> string returned in a previous request that you use to request the next page of results in a paginated response.</p>",
+        "DescribeConformancePackStatusRequest$NextToken": "<p>The <code>nextToken</code> string returned in a previous request that you use to request the next page of results in a paginated response.</p>",
+        "DescribeConformancePackStatusResponse$NextToken": "<p>The <code>nextToken</code> string returned in a previous request that you use to request the next page of results in a paginated response.</p>",
+        "DescribeConformancePacksRequest$NextToken": "<p>The <code>nextToken</code> string returned in a previous request that you use to request the next page of results in a paginated response.</p>",
+        "DescribeConformancePacksResponse$NextToken": "<p>The <code>nextToken</code> string returned in a previous request that you use to request the next page of results in a paginated response.</p>",
         "DescribeRetentionConfigurationsRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
         "DescribeRetentionConfigurationsResponse$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
         "GetAggregateComplianceDetailsByConfigRuleRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
@@ -1495,6 +1837,10 @@
         "GetAggregateDiscoveredResourceCountsResponse$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
         "GetComplianceDetailsByConfigRuleRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
         "GetComplianceDetailsByConfigRuleResponse$NextToken": "<p>The string that you use in a subsequent request to get the next page of results in a paginated response.</p>",
+        "GetConformancePackComplianceDetailsRequest$NextToken": "<p>The <code>nextToken</code> string returned in a previous request that you use to request the next page of results in a paginated response.</p>",
+        "GetConformancePackComplianceDetailsResponse$NextToken": "<p>The <code>nextToken</code> string returned in a previous request that you use to request the next page of results in a paginated response.</p>",
+        "GetConformancePackComplianceSummaryRequest$NextToken": null,
+        "GetConformancePackComplianceSummaryResponse$NextToken": null,
         "GetDiscoveredResourceCountsRequest$nextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
         "GetDiscoveredResourceCountsResponse$nextToken": "<p>The string that you use in a subsequent request to get the next page of results in a paginated response.</p>",
         "GetResourceConfigHistoryRequest$nextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
@@ -1539,6 +1885,11 @@
       "refs": {
       }
     },
+    "NoSuchConfigRuleInConformancePackException": {
+      "base": "<p>AWS Config rule that you passed in the filter does not exist.</p>",
+      "refs": {
+      }
+    },
     "NoSuchConfigurationAggregatorException": {
       "base": "<p>You have specified a configuration aggregator that does not exist.</p>",
       "refs": {
@@ -1549,6 +1900,11 @@
       "refs": {
       }
     },
+    "NoSuchConformancePackException": {
+      "base": "<p>You specified one or more conformance packs that do not exist.</p>",
+      "refs": {
+      }
+    },
     "NoSuchDeliveryChannelException": {
       "base": "<p>You have specified a delivery channel that does not exist.</p>",
       "refs": {
@@ -1556,6 +1912,11 @@
     },
     "NoSuchOrganizationConfigRuleException": {
       "base": "<p>You specified one or more organization config rules that do not exist.</p>",
+      "refs": {
+      }
+    },
+    "NoSuchOrganizationConformancePackException": {
+      "base": "<p>AWS Config organization conformance pack that you passed in the filter does not exist.</p> <p>For DeleteOrganizationConformancePack, you tried to delete an organization conformance pack that does not exist.</p>",
       "refs": {
       }
     },
@@ -1581,7 +1942,7 @@
       }
     },
     "OrganizationAccessDeniedException": {
-      "base": "<p>For PutConfigAggregator API, no permission to call EnableAWSServiceAccess API.</p> <p>For all OrganizationConfigRule APIs, AWS Config throws an exception if APIs are called from member accounts. All APIs must be called from organization master account.</p>",
+      "base": "<p>For PutConfigAggregator API, no permission to call EnableAWSServiceAccess API.</p> <p>For all OrganizationConfigRule and OrganizationConformancePack APIs, AWS Config throws an exception if APIs are called from member accounts. All APIs must be called from organization master account.</p>",
       "refs": {
       }
     },
@@ -1653,7 +2014,66 @@
     "OrganizationConfigRules": {
       "base": null,
       "refs": {
-        "DescribeOrganizationConfigRulesResponse$OrganizationConfigRules": "<p>Retuns a list <code>OrganizationConfigRule</code> objects.</p>"
+        "DescribeOrganizationConfigRulesResponse$OrganizationConfigRules": "<p>Returns a list of <code>OrganizationConfigRule</code> objects.</p>"
+      }
+    },
+    "OrganizationConformancePack": {
+      "base": "<p>An organization conformance pack that has information about conformance packs that AWS Config creates in member accounts. </p>",
+      "refs": {
+        "OrganizationConformancePacks$member": null
+      }
+    },
+    "OrganizationConformancePackDetailedStatus": {
+      "base": "<p>Organization conformance pack creation or deletion status in each member account. This includes the name of the conformance pack, the status, error code and error message when the conformance pack creation or deletion failed. </p>",
+      "refs": {
+        "OrganizationConformancePackDetailedStatuses$member": null
+      }
+    },
+    "OrganizationConformancePackDetailedStatuses": {
+      "base": null,
+      "refs": {
+        "GetOrganizationConformancePackDetailedStatusResponse$OrganizationConformancePackDetailedStatuses": "<p>A list of <code>OrganizationConformancePackDetailedStatus</code> objects. </p>"
+      }
+    },
+    "OrganizationConformancePackName": {
+      "base": null,
+      "refs": {
+        "DeleteOrganizationConformancePackRequest$OrganizationConformancePackName": "<p>The name of organization conformance pack that you want to delete.</p>",
+        "GetOrganizationConformancePackDetailedStatusRequest$OrganizationConformancePackName": "<p>The name of organization conformance pack for which you want status details for member accounts.</p>",
+        "OrganizationConformancePack$OrganizationConformancePackName": "<p>The name you assign to an organization conformance pack.</p>",
+        "OrganizationConformancePackNames$member": null,
+        "OrganizationConformancePackStatus$OrganizationConformancePackName": "<p>The name that you assign to organization conformance pack.</p>",
+        "PutOrganizationConformancePackRequest$OrganizationConformancePackName": "<p>Name of the organization conformance pack you want to create.</p>"
+      }
+    },
+    "OrganizationConformancePackNames": {
+      "base": null,
+      "refs": {
+        "DescribeOrganizationConformancePackStatusesRequest$OrganizationConformancePackNames": "<p>The names of organization conformance packs for which you want status details. If you do not specify any names, AWS Config returns details for all your organization conformance packs. </p>",
+        "DescribeOrganizationConformancePacksRequest$OrganizationConformancePackNames": "<p>The name that you assign to an organization conformance pack.</p>"
+      }
+    },
+    "OrganizationConformancePackStatus": {
+      "base": "<p>Returns the status for an organization conformance pack in an organization.</p>",
+      "refs": {
+        "OrganizationConformancePackStatuses$member": null
+      }
+    },
+    "OrganizationConformancePackStatuses": {
+      "base": null,
+      "refs": {
+        "DescribeOrganizationConformancePackStatusesResponse$OrganizationConformancePackStatuses": "<p>A list of <code>OrganizationConformancePackStatus</code> objects. </p>"
+      }
+    },
+    "OrganizationConformancePackTemplateValidationException": {
+      "base": "<p>You have specified a template that is not valid or supported.</p>",
+      "refs": {
+      }
+    },
+    "OrganizationConformancePacks": {
+      "base": null,
+      "refs": {
+        "DescribeOrganizationConformancePacksResponse$OrganizationConformancePacks": "<p>Returns a list of OrganizationConformancePacks objects.</p>"
       }
     },
     "OrganizationCustomRuleMetadata": {
@@ -1668,6 +2088,25 @@
       "refs": {
         "OrganizationConfigRule$OrganizationManagedRuleMetadata": "<p>An <code>OrganizationManagedRuleMetadata</code> object.</p>",
         "PutOrganizationConfigRuleRequest$OrganizationManagedRuleMetadata": "<p>An <code>OrganizationManagedRuleMetadata</code> object. </p>"
+      }
+    },
+    "OrganizationResourceDetailedStatus": {
+      "base": null,
+      "refs": {
+        "OrganizationConformancePackDetailedStatus$Status": "<p>Indicates deployment status for conformance pack in a member account. When master account calls <code>PutOrganizationConformancePack</code> action for the first time, conformance pack status is created in the member account. When master account calls <code>PutOrganizationConformancePack</code> action for the second time, conformance pack status is updated in the member account. Conformance pack status is deleted when the master account deletes <code>OrganizationConformancePack</code> and disables service access for <code>config-multiaccountsetup.amazonaws.com</code>. </p> <p> AWS Config sets the state of the conformance pack to:</p> <ul> <li> <p> <code>CREATE_SUCCESSFUL</code> when conformance pack has been created in the member account. </p> </li> <li> <p> <code>CREATE_IN_PROGRESS</code> when conformance pack is being created in the member account.</p> </li> <li> <p> <code>CREATE_FAILED</code> when conformance pack creation has failed in the member account.</p> </li> <li> <p> <code>DELETE_FAILED</code> when conformance pack deletion has failed in the member account.</p> </li> <li> <p> <code>DELETE_IN_PROGRESS</code> when conformance pack is being deleted in the member account.</p> </li> <li> <p> <code>DELETE_SUCCESSFUL</code> when conformance pack has been deleted in the member account. </p> </li> <li> <p> <code>UPDATE_SUCCESSFUL</code> when conformance pack has been updated in the member account.</p> </li> <li> <p> <code>UPDATE_IN_PROGRESS</code> when conformance pack is being updated in the member account.</p> </li> <li> <p> <code>UPDATE_FAILED</code> when conformance pack deletion has failed in the member account.</p> </li> </ul>",
+        "OrganizationResourceDetailedStatusFilters$Status": "<p>Indicates deployment status for conformance pack in a member account. When master account calls <code>PutOrganizationConformancePack</code> action for the first time, conformance pack status is created in the member account. When master account calls <code>PutOrganizationConformancePack</code> action for the second time, conformance pack status is updated in the member account. Conformance pack status is deleted when the master account deletes <code>OrganizationConformancePack</code> and disables service access for <code>config-multiaccountsetup.amazonaws.com</code>. </p> <p> AWS Config sets the state of the conformance pack to:</p> <ul> <li> <p> <code>CREATE_SUCCESSFUL</code> when conformance pack has been created in the member account. </p> </li> <li> <p> <code>CREATE_IN_PROGRESS</code> when conformance pack is being created in the member account.</p> </li> <li> <p> <code>CREATE_FAILED</code> when conformance pack creation has failed in the member account.</p> </li> <li> <p> <code>DELETE_FAILED</code> when conformance pack deletion has failed in the member account.</p> </li> <li> <p> <code>DELETE_IN_PROGRESS</code> when conformance pack is being deleted in the member account.</p> </li> <li> <p> <code>DELETE_SUCCESSFUL</code> when conformance pack has been deleted in the member account. </p> </li> <li> <p> <code>UPDATE_SUCCESSFUL</code> when conformance pack has been updated in the member account.</p> </li> <li> <p> <code>UPDATE_IN_PROGRESS</code> when conformance pack is being updated in the member account.</p> </li> <li> <p> <code>UPDATE_FAILED</code> when conformance pack deletion has failed in the member account.</p> </li> </ul>"
+      }
+    },
+    "OrganizationResourceDetailedStatusFilters": {
+      "base": "<p>Status filter object to filter results based on specific member account ID or status type for an organization conformance pack.</p>",
+      "refs": {
+        "GetOrganizationConformancePackDetailedStatusRequest$Filters": "<p>An <code>OrganizationResourceDetailedStatusFilters</code> object.</p>"
+      }
+    },
+    "OrganizationResourceStatus": {
+      "base": null,
+      "refs": {
+        "OrganizationConformancePackStatus$Status": "<p>Indicates deployment status of an organization conformance pack. When master account calls PutOrganizationConformancePack for the first time, conformance pack status is created in all the member accounts. When master account calls PutOrganizationConformancePack for the second time, conformance pack status is updated in all the member accounts. Additionally, conformance pack status is updated when one or more member accounts join or leave an organization. Conformance pack status is deleted when the master account deletes OrganizationConformancePack in all the member accounts and disables service access for <code>config-multiaccountsetup.amazonaws.com</code>.</p> <p>AWS Config sets the state of the conformance pack to:</p> <ul> <li> <p> <code>CREATE_SUCCESSFUL</code> when an organization conformance pack has been successfully created in all the member accounts. </p> </li> <li> <p> <code>CREATE_IN_PROGRESS</code> when an organization conformance pack creation is in progress.</p> </li> <li> <p> <code>CREATE_FAILED</code> when an organization conformance pack creation failed in one or more member accounts within that organization.</p> </li> <li> <p> <code>DELETE_FAILED</code> when an organization conformance pack deletion failed in one or more member accounts within that organization.</p> </li> <li> <p> <code>DELETE_IN_PROGRESS</code> when an organization conformance pack deletion is in progress.</p> </li> <li> <p> <code>DELETE_SUCCESSFUL</code> when an organization conformance pack has been successfully deleted from all the member accounts.</p> </li> <li> <p> <code>UPDATE_SUCCESSFUL</code> when an organization conformance pack has been successfully updated in all the member accounts.</p> </li> <li> <p> <code>UPDATE_IN_PROGRESS</code> when an organization conformance pack update is in progress.</p> </li> <li> <p> <code>UPDATE_FAILED</code> when an organization conformance pack update failed in one or more member accounts within that organization.</p> </li> </ul>"
       }
     },
     "OrganizationRuleStatus": {
@@ -1685,6 +2124,26 @@
       "base": null,
       "refs": {
         "Source$Owner": "<p>Indicates whether AWS or the customer owns and manages the AWS Config rule.</p>"
+      }
+    },
+    "PageSizeLimit": {
+      "base": null,
+      "refs": {
+        "DescribeConformancePackStatusRequest$Limit": "<p>The maximum number of conformance packs returned on each page.</p>",
+        "DescribeConformancePacksRequest$Limit": "<p>The maximum number of conformance packs returned on each page.</p>",
+        "GetConformancePackComplianceSummaryRequest$Limit": null
+      }
+    },
+    "ParameterName": {
+      "base": null,
+      "refs": {
+        "ConformancePackInputParameter$ParameterName": "<p>One part of a key-value pair.</p>"
+      }
+    },
+    "ParameterValue": {
+      "base": null,
+      "refs": {
+        "ConformancePackInputParameter$ParameterValue": "<p>Another part of the key-value pair. </p>"
       }
     },
     "PendingAggregationRequest": {
@@ -1736,6 +2195,16 @@
       "refs": {
       }
     },
+    "PutConformancePackRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutConformancePackResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "PutDeliveryChannelRequest": {
       "base": "<p>The input for the <a>PutDeliveryChannel</a> action.</p>",
       "refs": {
@@ -1757,6 +2226,16 @@
       }
     },
     "PutOrganizationConfigRuleResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutOrganizationConformancePackRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutOrganizationConformancePackResponse": {
       "base": null,
       "refs": {
       }
@@ -2038,7 +2517,7 @@
       }
     },
     "ResourceInUseException": {
-      "base": "<p>You see this exception in the following cases: </p> <ul> <li> <p>For DeleteConfigRule API, AWS Config is deleting this rule. Try your request again later.</p> </li> <li> <p>For DeleteConfigRule API, the rule is deleting your evaluation results. Try your request again later.</p> </li> <li> <p>For DeleteConfigRule API, a remediation action is associated with the rule and AWS Config cannot delete this rule. Delete the remediation action associated with the rule before deleting the rule and try your request again later.</p> </li> <li> <p>For PutConfigOrganizationRule, organization config rule deletion is in progress. Try your request again later.</p> </li> <li> <p>For DeleteOrganizationConfigRule, organization config rule creation is in progress. Try your request again later.</p> </li> </ul>",
+      "base": "<p>You see this exception in the following cases: </p> <ul> <li> <p>For DeleteConfigRule, AWS Config is deleting this rule. Try your request again later.</p> </li> <li> <p>For DeleteConfigRule, the rule is deleting your evaluation results. Try your request again later.</p> </li> <li> <p>For DeleteConfigRule, a remediation action is associated with the rule and AWS Config cannot delete this rule. Delete the remediation action associated with the rule before deleting the rule and try your request again later.</p> </li> <li> <p>For PutConfigOrganizationRule, organization config rule deletion is in progress. Try your request again later.</p> </li> <li> <p>For DeleteOrganizationConfigRule, organization config rule creation is in progress. Try your request again later.</p> </li> <li> <p>For PutConformancePack and PutOrganizationConformancePack, a conformance pack creation, update, and deletion is in progress. Try your request again later.</p> </li> <li> <p>For DeleteConformancePack, a conformance pack creation, update, and deletion is in progress. Try your request again later.</p> </li> </ul>",
       "refs": {
       }
     },
@@ -2216,6 +2695,12 @@
         "ExecutionControls$SsmControls": "<p>A SsmControls object.</p>"
       }
     },
+    "StackArn": {
+      "base": null,
+      "refs": {
+        "ConformancePackStatusDetail$StackArn": "<p>Amazon Resource Name (ARN) of AWS CloudFormation stack. </p>"
+      }
+    },
     "StartConfigRulesEvaluationRequest": {
       "base": "<p/>",
       "refs": {
@@ -2308,6 +2793,10 @@
         "DescribeOrganizationConfigRuleStatusesResponse$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
         "DescribeOrganizationConfigRulesRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
         "DescribeOrganizationConfigRulesResponse$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
+        "DescribeOrganizationConformancePackStatusesRequest$NextToken": "<p>The nextToken string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
+        "DescribeOrganizationConformancePackStatusesResponse$NextToken": "<p>The nextToken string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
+        "DescribeOrganizationConformancePacksRequest$NextToken": "<p>The nextToken string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
+        "DescribeOrganizationConformancePacksResponse$NextToken": "<p>The nextToken string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
         "DescribePendingAggregationRequestsRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
         "DescribePendingAggregationRequestsResponse$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
         "DescribeRemediationExceptionsRequest$NextToken": "<p>The <code>nextToken</code> string returned in a previous request that you use to request the next page of results in a paginated response.</p>",
@@ -2322,11 +2811,17 @@
         "GetComplianceDetailsByResourceResponse$NextToken": "<p>The string that you use in a subsequent request to get the next page of results in a paginated response.</p>",
         "GetOrganizationConfigRuleDetailedStatusRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
         "GetOrganizationConfigRuleDetailedStatusResponse$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
+        "GetOrganizationConformancePackDetailedStatusRequest$NextToken": "<p>The nextToken string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
+        "GetOrganizationConformancePackDetailedStatusResponse$NextToken": "<p>The nextToken string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
         "MemberAccountStatus$ErrorCode": "<p>An error code that is returned when config rule creation or deletion failed in the member account.</p>",
         "MemberAccountStatus$ErrorMessage": "<p>An error message indicating that config rule account creation or deletion has failed due to an error in the member account.</p>",
         "OrganizationAggregationSource$RoleArn": "<p>ARN of the IAM role used to retrieve AWS Organization details associated with the aggregator account.</p>",
         "OrganizationConfigRuleStatus$ErrorCode": "<p>An error code that is returned when organization config rule creation or deletion has failed.</p>",
         "OrganizationConfigRuleStatus$ErrorMessage": "<p>An error message indicating that organization config rule creation or deletion failed due to an error.</p>",
+        "OrganizationConformancePackDetailedStatus$ErrorCode": "<p>An error code that is returned when conformance pack creation or deletion failed in the member account. </p>",
+        "OrganizationConformancePackDetailedStatus$ErrorMessage": "<p>An error message indicating that conformance pack account creation or deletion has failed due to an error in the member account. </p>",
+        "OrganizationConformancePackStatus$ErrorCode": "<p>An error code that is returned when organization conformance pack creation or deletion has failed in the member account. </p>",
+        "OrganizationConformancePackStatus$ErrorMessage": "<p>An error message indicating that organization conformance pack creation or deletion failed due to an error. </p>",
         "PutEvaluationsRequest$ResultToken": "<p>An encrypted token that associates an evaluation with an AWS Config rule. Identifies the rule and the event that triggered the evaluation.</p>",
         "RemediationConfiguration$TargetVersion": "<p>Version of the target. For example, version of the SSM document.</p>",
         "RemediationConfiguration$ResourceType": "<p>The type of a resource. </p>",
@@ -2372,6 +2867,9 @@
         "ComplianceResourceTypes$member": null,
         "ComplianceSummaryByResourceType$ResourceType": "<p>The type of AWS resource.</p>",
         "ConfigRule$CreatedBy": "<p>Service principal name of the service that created the rule.</p> <note> <p>The field is populated only if the service linked rule is created by a service. The field is empty if you create your own rule.</p> </note>",
+        "ConformancePackComplianceResourceIds$member": null,
+        "ConformancePackDetail$CreatedBy": null,
+        "ConformancePackEvaluationFilters$ResourceType": "<p>Filters the results by the resource type (for example, <code>\"AWS::EC2::Instance\"</code>). </p>",
         "DescribeComplianceByResourceRequest$ResourceType": "<p>The types of AWS resources for which you want compliance information (for example, <code>AWS::EC2::Instance</code>). For this action, you can specify that the resource type is an AWS account by specifying <code>AWS::::Account</code>.</p>",
         "Evaluation$ComplianceResourceType": "<p>The type of AWS resource that was evaluated.</p>",
         "Evaluation$Annotation": "<p>Supplementary information about how the evaluation determined the compliance.</p>",
@@ -2381,12 +2879,15 @@
         "GetAggregateDiscoveredResourceCountsResponse$GroupByKey": "<p>The key passed into the request object. If <code>GroupByKey</code> is not provided, the result will be empty.</p>",
         "GetComplianceDetailsByResourceRequest$ResourceType": "<p>The type of the AWS resource for which you want compliance information.</p>",
         "GroupedResourceCount$GroupName": "<p>The name of the group that can be region, account ID, or resource type. For example, region1, region2 if the region was chosen as <code>GroupByKey</code>.</p>",
-        "OrganizationConfigRule$OrganizationConfigRuleArn": "<p>The Amazon Resource Name (ARN) of organization config rule.</p>",
+        "OrganizationConfigRule$OrganizationConfigRuleArn": "<p>Amazon Resource Name (ARN) of organization config rule.</p>",
+        "OrganizationConformancePack$OrganizationConformancePackArn": "<p>Amazon Resource Name (ARN) of organization conformance pack.</p>",
+        "OrganizationConformancePackDetailedStatus$ConformancePackName": "<p>The name of conformance pack deployed in the member account.</p>",
         "OrganizationCustomRuleMetadata$LambdaFunctionArn": "<p>The lambda function ARN.</p>",
         "OrganizationCustomRuleMetadata$TagValueScope": "<p>The optional part of a key-value pair that make up a tag. A value acts as a descriptor within a tag category (key). </p>",
         "OrganizationManagedRuleMetadata$RuleIdentifier": "<p>For organization config managed rules, a predefined identifier from a list. For example, <code>IAM_PASSWORD_POLICY</code> is a managed rule. To reference a managed rule, see <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html\">Using AWS Managed Config Rules</a>.</p>",
         "OrganizationManagedRuleMetadata$TagValueScope": "<p>The optional part of a key-value pair that make up a tag. A value acts as a descriptor within a tag category (key).</p>",
         "PutOrganizationConfigRuleResponse$OrganizationConfigRuleArn": "<p>The Amazon Resource Name (ARN) of an organization config rule.</p>",
+        "PutOrganizationConformancePackResponse$OrganizationConformancePackArn": "<p>ARN of the organization conformance pack.</p>",
         "RemediationConfiguration$TargetId": "<p>Target ID is the name of the public document.</p>",
         "RemediationException$ResourceType": "<p>The type of a resource.</p>",
         "RemediationExceptionResourceKey$ResourceType": "<p>The type of a resource.</p>",
@@ -2411,6 +2912,7 @@
         "ComplianceByConfigRule$ConfigRuleName": "<p>The name of the AWS Config rule.</p>",
         "ConfigRule$ConfigRuleName": "<p>The name that you assign to the AWS Config rule. The name is required if you are adding a new rule.</p>",
         "ConfigRuleEvaluationStatus$ConfigRuleName": "<p>The name of the AWS Config rule.</p>",
+        "ConformancePackConfigRuleNames$member": null,
         "DeleteConfigRuleRequest$ConfigRuleName": "<p>The name of the AWS Config rule that you want to delete.</p>",
         "DeleteEvaluationResultsRequest$ConfigRuleName": "<p>The name of the AWS Config rule for which you want to delete the evaluation results.</p>",
         "EvaluationResultQualifier$ConfigRuleName": "<p>The name of the AWS Config rule that was used in the evaluation.</p>",
@@ -2496,6 +2998,20 @@
         "PutAggregationAuthorizationRequest$Tags": "<p>An array of tag object.</p>",
         "PutConfigRuleRequest$Tags": "<p>An array of tag object.</p>",
         "PutConfigurationAggregatorRequest$Tags": "<p>An array of tag object.</p>"
+      }
+    },
+    "TemplateBody": {
+      "base": null,
+      "refs": {
+        "PutConformancePackRequest$TemplateBody": "<p>A string containing full conformance pack template body. Structure containing the template body with a minimum length of 1 byte and a maximum length of 51,200 bytes.</p> <note> <p>You can only use a YAML template with one resource type, that is, config rule.</p> </note>",
+        "PutOrganizationConformancePackRequest$TemplateBody": "<p>A string containing full conformance pack template body. Structure containing the template body with a minimum length of 1 byte and a maximum length of 51,200 bytes.</p>"
+      }
+    },
+    "TemplateS3Uri": {
+      "base": null,
+      "refs": {
+        "PutConformancePackRequest$TemplateS3Uri": "<p>Location of file containing the template body. The uri must point to the conformance pack template (max size: 300,000 bytes) that is located in an Amazon S3 bucket in the same region as the conformance pack.</p> <note> <p>You must have access to read Amazon S3 bucket.</p> </note>",
+        "PutOrganizationConformancePackRequest$TemplateS3Uri": "<p>Location of file containing the template body. The uri must point to the conformance pack template (max size: 300,000 bytes).</p> <note> <p>You must have access to read Amazon S3 bucket.</p> </note>"
       }
     },
     "TooManyTagsException": {

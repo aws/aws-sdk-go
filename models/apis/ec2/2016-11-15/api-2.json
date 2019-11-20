@@ -2579,6 +2579,15 @@
       "input":{"shape":"ModifyInstanceEventStartTimeRequest"},
       "output":{"shape":"ModifyInstanceEventStartTimeResult"}
     },
+    "ModifyInstanceMetadataOptions":{
+      "name":"ModifyInstanceMetadataOptions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyInstanceMetadataOptionsRequest"},
+      "output":{"shape":"ModifyInstanceMetadataOptionsResult"}
+    },
     "ModifyInstancePlacement":{
       "name":"ModifyInstancePlacement",
       "http":{
@@ -5813,6 +5822,7 @@
         },
         "CertificateArn":{"shape":"String"},
         "Type":{"shape":"GatewayType"},
+        "DeviceName":{"shape":"String"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -7224,6 +7234,10 @@
         "Type":{
           "shape":"String",
           "locationName":"type"
+        },
+        "DeviceName":{
+          "shape":"String",
+          "locationName":"deviceName"
         },
         "Tags":{
           "shape":"TagList",
@@ -13775,6 +13789,13 @@
         "host"
       ]
     },
+    "HttpTokensState":{
+      "type":"string",
+      "enum":[
+        "optional",
+        "required"
+      ]
+    },
     "HypervisorType":{
       "type":"string",
       "enum":[
@@ -14767,6 +14788,10 @@
         "Licenses":{
           "shape":"LicenseList",
           "locationName":"licenseSet"
+        },
+        "MetadataOptions":{
+          "shape":"InstanceMetadataOptionsResponse",
+          "locationName":"metadataOptions"
         }
       }
     },
@@ -15086,6 +15111,49 @@
       "enum":[
         "open",
         "targeted"
+      ]
+    },
+    "InstanceMetadataEndpointState":{
+      "type":"string",
+      "enum":[
+        "disabled",
+        "enabled"
+      ]
+    },
+    "InstanceMetadataOptionsRequest":{
+      "type":"structure",
+      "members":{
+        "HttpTokens":{"shape":"HttpTokensState"},
+        "HttpPutResponseHopLimit":{"shape":"Integer"},
+        "HttpEndpoint":{"shape":"InstanceMetadataEndpointState"}
+      }
+    },
+    "InstanceMetadataOptionsResponse":{
+      "type":"structure",
+      "members":{
+        "State":{
+          "shape":"InstanceMetadataOptionsState",
+          "locationName":"state"
+        },
+        "HttpTokens":{
+          "shape":"HttpTokensState",
+          "locationName":"httpTokens"
+        },
+        "HttpPutResponseHopLimit":{
+          "shape":"Integer",
+          "locationName":"httpPutResponseHopLimit"
+        },
+        "HttpEndpoint":{
+          "shape":"InstanceMetadataEndpointState",
+          "locationName":"httpEndpoint"
+        }
+      }
+    },
+    "InstanceMetadataOptionsState":{
+      "type":"string",
+      "enum":[
+        "pending",
+        "applied"
       ]
     },
     "InstanceMonitoring":{
@@ -17194,6 +17262,30 @@
         "Event":{
           "shape":"InstanceStatusEvent",
           "locationName":"event"
+        }
+      }
+    },
+    "ModifyInstanceMetadataOptionsRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{"shape":"String"},
+        "HttpTokens":{"shape":"HttpTokensState"},
+        "HttpPutResponseHopLimit":{"shape":"Integer"},
+        "HttpEndpoint":{"shape":"InstanceMetadataEndpointState"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "ModifyInstanceMetadataOptionsResult":{
+      "type":"structure",
+      "members":{
+        "InstanceId":{
+          "shape":"String",
+          "locationName":"instanceId"
+        },
+        "InstanceMetadataOptions":{
+          "shape":"InstanceMetadataOptionsResponse",
+          "locationName":"instanceMetadataOptions"
         }
       }
     },
@@ -21188,7 +21280,8 @@
         "LicenseSpecifications":{
           "shape":"LicenseSpecificationListRequest",
           "locationName":"LicenseSpecification"
-        }
+        },
+        "MetadataOptions":{"shape":"InstanceMetadataOptionsRequest"}
       }
     },
     "RunScheduledInstancesRequest":{
