@@ -3,11 +3,13 @@
   "service": "<p> Amplify is a fully managed continuous deployment and hosting service for modern web apps. </p>",
   "operations": {
     "CreateApp": "<p> Creates a new Amplify App. </p>",
+    "CreateBackendEnvironment": "<p> Creates a new backend environment for an Amplify App. </p>",
     "CreateBranch": "<p> Creates a new Branch for an Amplify App. </p>",
     "CreateDeployment": "<p> Create a deployment for manual deploy apps. (Apps are not connected to repository) </p>",
     "CreateDomainAssociation": "<p> Create a new DomainAssociation on an App </p>",
     "CreateWebhook": "<p> Create a new webhook on an App. </p>",
     "DeleteApp": "<p> Delete an existing Amplify App by appId. </p>",
+    "DeleteBackendEnvironment": "<p> Delete backend environment for an Amplify App. </p>",
     "DeleteBranch": "<p> Deletes a branch for an Amplify App. </p>",
     "DeleteDomainAssociation": "<p> Deletes a DomainAssociation. </p>",
     "DeleteJob": "<p> Delete a job, for an Amplify branch, part of Amplify App. </p>",
@@ -15,12 +17,14 @@
     "GenerateAccessLogs": "<p> Retrieve website access logs for a specific time range via a pre-signed URL. </p>",
     "GetApp": "<p> Retrieves an existing Amplify App by appId. </p>",
     "GetArtifactUrl": "<p> Retrieves artifact info that corresponds to a artifactId. </p>",
+    "GetBackendEnvironment": "<p> Retrieves a backend environment for an Amplify App. </p>",
     "GetBranch": "<p> Retrieves a branch for an Amplify App. </p>",
     "GetDomainAssociation": "<p> Retrieves domain info that corresponds to an appId and domainName. </p>",
     "GetJob": "<p> Get a job for a branch, part of an Amplify App. </p>",
     "GetWebhook": "<p> Retrieves webhook info that corresponds to a webhookId. </p>",
     "ListApps": "<p> Lists existing Amplify Apps. </p>",
     "ListArtifacts": "<p> List artifacts with an app, a branch, a job and an artifact type. </p>",
+    "ListBackendEnvironments": "<p> Lists backend environments for an Amplify App. </p>",
     "ListBranches": "<p> Lists branches for an Amplify App. </p>",
     "ListDomainAssociations": "<p> List domains with an app </p>",
     "ListJobs": "<p> List Jobs for a branch, part of an Amplify App. </p>",
@@ -70,20 +74,24 @@
       "base": null,
       "refs": {
         "App$appId": "<p> Unique Id for the Amplify App. </p>",
+        "CreateBackendEnvironmentRequest$appId": "<p> Unique Id for an Amplify App. </p>",
         "CreateBranchRequest$appId": "<p> Unique Id for an Amplify App. </p>",
         "CreateDeploymentRequest$appId": "<p> Unique Id for an Amplify App. </p>",
         "CreateDomainAssociationRequest$appId": "<p> Unique Id for an Amplify App. </p>",
         "CreateWebhookRequest$appId": "<p> Unique Id for an Amplify App. </p>",
         "DeleteAppRequest$appId": "<p> Unique Id for an Amplify App. </p>",
+        "DeleteBackendEnvironmentRequest$appId": "<p> Unique Id of an Amplify App. </p>",
         "DeleteBranchRequest$appId": "<p> Unique Id for an Amplify App. </p>",
         "DeleteDomainAssociationRequest$appId": "<p> Unique Id for an Amplify App. </p>",
         "DeleteJobRequest$appId": "<p> Unique Id for an Amplify App. </p>",
         "GenerateAccessLogsRequest$appId": "<p> Unique Id for an Amplify App. </p>",
         "GetAppRequest$appId": "<p> Unique Id for an Amplify App. </p>",
+        "GetBackendEnvironmentRequest$appId": "<p> Unique Id for an Amplify App. </p>",
         "GetBranchRequest$appId": "<p> Unique Id for an Amplify App. </p>",
         "GetDomainAssociationRequest$appId": "<p> Unique Id for an Amplify App. </p>",
         "GetJobRequest$appId": "<p> Unique Id for an Amplify App. </p>",
         "ListArtifactsRequest$appId": "<p> Unique Id for an Amplify App. </p>",
+        "ListBackendEnvironmentsRequest$appId": "<p> Unique Id for an amplify App. </p>",
         "ListBranchesRequest$appId": "<p> Unique Id for an Amplify App. </p>",
         "ListDomainAssociationsRequest$appId": "<p> Unique Id for an Amplify App. </p>",
         "ListJobsRequest$appId": "<p> Unique Id for an Amplify App. </p>",
@@ -174,12 +182,28 @@
         "UpdateAppRequest$autoBranchCreationPatterns": "<p> Automated branch creation glob patterns for the Amplify App. </p>"
       }
     },
+    "BackendEnvironment": {
+      "base": "<p> Backend environment for an Amplify App. </p>",
+      "refs": {
+        "BackendEnvironments$member": null,
+        "CreateBackendEnvironmentResult$backendEnvironment": "<p> Backend environment structure for an amplify App. </p>",
+        "DeleteBackendEnvironmentResult$backendEnvironment": "<p> Backend environment structure for an Amplify App. </p>",
+        "GetBackendEnvironmentResult$backendEnvironment": "<p> Backend environment structure for an an Amplify App. </p>"
+      }
+    },
     "BackendEnvironmentArn": {
       "base": null,
       "refs": {
+        "BackendEnvironment$backendEnvironmentArn": "<p> Arn for a backend environment, part of an Amplify App. </p>",
         "Branch$backendEnvironmentArn": "<p> ARN for a Backend Environment, part of an Amplify App. </p>",
         "CreateBranchRequest$backendEnvironmentArn": "<p> ARN for a Backend Environment, part of an Amplify App. </p>",
         "UpdateBranchRequest$backendEnvironmentArn": "<p> ARN for a Backend Environment, part of an Amplify App. </p>"
+      }
+    },
+    "BackendEnvironments": {
+      "base": null,
+      "refs": {
+        "ListBackendEnvironmentsResult$backendEnvironments": "<p> List of backend environments for an Amplify App. </p>"
       }
     },
     "BadRequestException": {
@@ -313,6 +337,16 @@
       "refs": {
       }
     },
+    "CreateBackendEnvironmentRequest": {
+      "base": "<p> Request structure for a backend environment create request. </p>",
+      "refs": {
+      }
+    },
+    "CreateBackendEnvironmentResult": {
+      "base": "<p> Result structure for create backend environment. </p>",
+      "refs": {
+      }
+    },
     "CreateBranchRequest": {
       "base": "<p> Request structure for a branch create request. </p>",
       "refs": {
@@ -347,6 +381,7 @@
       "base": null,
       "refs": {
         "App$createTime": "<p> Create date / time for the Amplify App. </p>",
+        "BackendEnvironment$createTime": "<p> Creation date and time for a backend environment, part of an Amplify App. </p>",
         "Branch$createTime": "<p> Creation date and time for a branch, part of an Amplify App. </p>",
         "Webhook$createTime": "<p> Create date / time for a webhook. </p>"
       }
@@ -409,6 +444,16 @@
       "refs": {
       }
     },
+    "DeleteBackendEnvironmentRequest": {
+      "base": "<p> Request structure for delete backend environment request. </p>",
+      "refs": {
+      }
+    },
+    "DeleteBackendEnvironmentResult": {
+      "base": "<p> Result structure of a delete backend environment result. </p>",
+      "refs": {
+      }
+    },
     "DeleteBranchRequest": {
       "base": "<p> Request structure for delete branch request. </p>",
       "refs": {
@@ -452,6 +497,13 @@
     "DependentServiceFailureException": {
       "base": "<p> Exception thrown when an operation fails due to a dependent service throwing an exception. </p>",
       "refs": {
+      }
+    },
+    "DeploymentArtifacts": {
+      "base": null,
+      "refs": {
+        "BackendEnvironment$deploymentArtifacts": "<p> Name of deployment artifacts. </p>",
+        "CreateBackendEnvironmentRequest$deploymentArtifacts": "<p> Name of deployment artifacts. </p>"
       }
     },
     "Description": {
@@ -603,6 +655,16 @@
         "EnvironmentVariables$value": null
       }
     },
+    "EnvironmentName": {
+      "base": null,
+      "refs": {
+        "BackendEnvironment$environmentName": "<p> Name for a backend environment, part of an Amplify App. </p>",
+        "CreateBackendEnvironmentRequest$environmentName": "<p> Name for the backend environment. </p>",
+        "DeleteBackendEnvironmentRequest$environmentName": "<p> Name of a backend environment of an Amplify App. </p>",
+        "GetBackendEnvironmentRequest$environmentName": "<p> Name for the backend environment. </p>",
+        "ListBackendEnvironmentsRequest$environmentName": "<p> Name of the backend environment </p>"
+      }
+    },
     "EnvironmentVariables": {
       "base": null,
       "refs": {
@@ -682,6 +744,16 @@
     },
     "GetArtifactUrlResult": {
       "base": "<p> Result structure for the get artifact request. </p>",
+      "refs": {
+      }
+    },
+    "GetBackendEnvironmentRequest": {
+      "base": "<p> Request structure for get backend environment request. </p>",
+      "refs": {
+      }
+    },
+    "GetBackendEnvironmentResult": {
+      "base": "<p> Result structure for get backend environment result. </p>",
       "refs": {
       }
     },
@@ -823,6 +895,16 @@
       "refs": {
       }
     },
+    "ListBackendEnvironmentsRequest": {
+      "base": "<p> Request structure for list backend environments request. </p>",
+      "refs": {
+      }
+    },
+    "ListBackendEnvironmentsResult": {
+      "base": "<p> Result structure for list backend environments result. </p>",
+      "refs": {
+      }
+    },
     "ListBranchesRequest": {
       "base": "<p> Request structure for list branches request. </p>",
       "refs": {
@@ -891,6 +973,7 @@
       "refs": {
         "ListAppsRequest$maxResults": "<p> Maximum number of records to list in a single response. </p>",
         "ListArtifactsRequest$maxResults": "<p> Maximum number of records to list in a single response. </p>",
+        "ListBackendEnvironmentsRequest$maxResults": "<p> Maximum number of records to list in a single response. </p>",
         "ListBranchesRequest$maxResults": "<p> Maximum number of records to list in a single response. </p>",
         "ListDomainAssociationsRequest$maxResults": "<p> Maximum number of records to list in a single response. </p>",
         "ListJobsRequest$maxResults": "<p> Maximum number of records to list in a single response. </p>",
@@ -912,6 +995,8 @@
         "ListAppsResult$nextToken": "<p> Pagination token. Set to null to start listing Apps from start. If non-null pagination token is returned in a result, then pass its value in here to list more projects. </p>",
         "ListArtifactsRequest$nextToken": "<p> Pagination token. Set to null to start listing artifacts from start. If non-null pagination token is returned in a result, then pass its value in here to list more artifacts. </p>",
         "ListArtifactsResult$nextToken": "<p> Pagination token. If non-null pagination token is returned in a result, then pass its value in another request to fetch more entries. </p>",
+        "ListBackendEnvironmentsRequest$nextToken": "<p> Pagination token. Set to null to start listing backen environments from start. If a non-null pagination token is returned in a result, then pass its value in here to list more backend environments. </p>",
+        "ListBackendEnvironmentsResult$nextToken": "<p> Pagination token. If non-null pagination token is returned in a result, then pass its value in another request to fetch more entries. </p>",
         "ListBranchesRequest$nextToken": "<p> Pagination token. Set to null to start listing branches from start. If a non-null pagination token is returned in a result, then pass its value in here to list more branches. </p>",
         "ListBranchesResult$nextToken": "<p> Pagination token. If non-null pagination token is returned in a result, then pass its value in another request to fetch more entries. </p>",
         "ListDomainAssociationsRequest$nextToken": "<p> Pagination token. Set to null to start listing Apps from start. If non-null pagination token is returned in a result, then pass its value in here to list more projects. </p>",
@@ -1002,6 +1087,13 @@
       "base": null,
       "refs": {
         "StartDeploymentRequest$sourceUrl": "<p> The sourceUrl for this deployment, used when calling start deployment without create deployment. SourceUrl can be any HTTP GET url that is public accessible and downloads a single zip. </p>"
+      }
+    },
+    "StackName": {
+      "base": null,
+      "refs": {
+        "BackendEnvironment$stackName": "<p> CloudFormation stack name of backend environment. </p>",
+        "CreateBackendEnvironmentRequest$stackName": "<p> CloudFormation stack name of backend environment. </p>"
       }
     },
     "Stage": {
@@ -1244,6 +1336,7 @@
       "base": null,
       "refs": {
         "App$updateTime": "<p> Update date / time for the Amplify App. </p>",
+        "BackendEnvironment$updateTime": "<p> Last updated date and time for a backend environment, part of an Amplify App. </p>",
         "Branch$updateTime": "<p> Last updated date and time for a branch, part of an Amplify App. </p>",
         "Webhook$updateTime": "<p> Update date / time for a webhook. </p>"
       }

@@ -563,6 +563,10 @@ type SSMAPI interface {
 	UpdatePatchBaselineWithContext(aws.Context, *ssm.UpdatePatchBaselineInput, ...request.Option) (*ssm.UpdatePatchBaselineOutput, error)
 	UpdatePatchBaselineRequest(*ssm.UpdatePatchBaselineInput) (*request.Request, *ssm.UpdatePatchBaselineOutput)
 
+	UpdateResourceDataSync(*ssm.UpdateResourceDataSyncInput) (*ssm.UpdateResourceDataSyncOutput, error)
+	UpdateResourceDataSyncWithContext(aws.Context, *ssm.UpdateResourceDataSyncInput, ...request.Option) (*ssm.UpdateResourceDataSyncOutput, error)
+	UpdateResourceDataSyncRequest(*ssm.UpdateResourceDataSyncInput) (*request.Request, *ssm.UpdateResourceDataSyncOutput)
+
 	UpdateServiceSetting(*ssm.UpdateServiceSettingInput) (*ssm.UpdateServiceSettingOutput, error)
 	UpdateServiceSettingWithContext(aws.Context, *ssm.UpdateServiceSettingInput, ...request.Option) (*ssm.UpdateServiceSettingOutput, error)
 	UpdateServiceSettingRequest(*ssm.UpdateServiceSettingInput) (*request.Request, *ssm.UpdateServiceSettingOutput)

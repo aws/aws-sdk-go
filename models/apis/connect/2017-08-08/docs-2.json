@@ -20,6 +20,7 @@
     "ListTagsForResource": "<p>Lists the tags for the specified resource.</p>",
     "ListUserHierarchyGroups": "<p>Provides summary information about the hierarchy groups for the specified Amazon Connect instance.</p>",
     "ListUsers": "<p>Provides summary information about the users for the specified Amazon Connect instance.</p>",
+    "StartChatContact": "<p>Initiates a contact flow to start a new chat for the customer. Response of this API provides a token required to obtain credentials from the <a href=\"https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html\">CreateParticipantConnection</a> API in the Amazon Connect Participant Service.</p> <p>When a new chat contact is successfully created, clients need to subscribe to the participant’s connection for the created chat within 5 minutes. This is achieved by invoking <a href=\"https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html\">CreateParticipantConnection</a> with WEBSOCKET and CONNECTION_CREDENTIALS. </p>",
     "StartOutboundVoiceContact": "<p>Initiates a contact flow to place an outbound call to a customer.</p> <p>There is a 60 second dialing timeout for this operation. If the call is not connected after 60 seconds, it fails.</p>",
     "StopContact": "<p>Ends the specified contact.</p>",
     "TagResource": "<p>Adds the specified tags to the specified resource.</p> <p>The supported resource type is users.</p>",
@@ -95,6 +96,7 @@
       "base": null,
       "refs": {
         "GetContactAttributesResponse$Attributes": "<p>Information about the attributes.</p>",
+        "StartChatContactRequest$Attributes": "<p>A custom key-value pair using an attribute map. The attributes are standard Amazon Connect attributes, and can be accessed in contact flows just like any other contact attributes. </p> <p>There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact. Attribute keys can include only alphanumeric, dash, and underscore characters.</p>",
         "StartOutboundVoiceContactRequest$Attributes": "<p>A custom key-value pair using an attribute map. The attributes are standard Amazon Connect attributes, and can be accessed in contact flows just like any other contact attributes.</p> <p>There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact. Attribute keys can include only alphanumeric, dash, and underscore characters.</p>",
         "UpdateContactAttributesRequest$Attributes": "<p>The Amazon Connect attributes. These attributes can be accessed in contact flows just like any other contact attributes.</p> <p>You can have up to 32,768 UTF-8 bytes across all attributes for a contact. Attribute keys can include only alphanumeric, dash, and underscore characters.</p>"
       }
@@ -118,9 +120,28 @@
         "Filters$Channels": "<p>The channel to use to filter the metrics.</p>"
       }
     },
+    "ChatContent": {
+      "base": null,
+      "refs": {
+        "ChatMessage$Content": "<p>The content of the chat message.</p>"
+      }
+    },
+    "ChatContentType": {
+      "base": null,
+      "refs": {
+        "ChatMessage$ContentType": "<p>The type of the content. Supported types are text/plain.</p>"
+      }
+    },
+    "ChatMessage": {
+      "base": "<p>A chat message.</p>",
+      "refs": {
+        "StartChatContactRequest$InitialMessage": "<p>The initial message to be sent to the newly created chat.</p>"
+      }
+    },
     "ClientToken": {
       "base": null,
       "refs": {
+        "StartChatContactRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "StartOutboundVoiceContactRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. The token is valid for 7 days after creation. If a contact is already started, the contact ID is returned. If the contact is disconnected, a new contact is started.</p>"
       }
     },
@@ -134,6 +155,7 @@
       "base": null,
       "refs": {
         "ContactFlowSummary$Id": "<p>The identifier of the contact flow.</p>",
+        "StartChatContactRequest$ContactFlowId": "<p>The identifier of the contact flow for the chat.</p>",
         "StartOutboundVoiceContactRequest$ContactFlowId": "<p>The identifier of the contact flow for the outbound call.</p>"
       }
     },
@@ -172,6 +194,7 @@
       "base": null,
       "refs": {
         "GetContactAttributesRequest$InitialContactId": "<p>The identifier of the initial contact.</p>",
+        "StartChatContactResponse$ContactId": "<p>The identifier of this contact within the Amazon Connect instance. </p>",
         "StartOutboundVoiceContactResponse$ContactId": "<p>The identifier of this contact within the Amazon Connect instance.</p>",
         "StopContactRequest$ContactId": "<p>The ID of the contact.</p>",
         "UpdateContactAttributesRequest$InitialContactId": "<p>The identifier of the contact. This is the identifier of the contact associated with the first interaction with the contact center.</p>"
@@ -238,7 +261,7 @@
     "CurrentMetrics": {
       "base": null,
       "refs": {
-        "GetCurrentMetricDataRequest$CurrentMetrics": "<p>The metrics to retrieve. Specify the name and unit for each metric. The following metrics are available:</p> <dl> <dt>AGENTS_AFTER_CONTACT_WORK</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>AGENTS_AVAILABLE</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>AGENTS_ERROR</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>AGENTS_NON_PRODUCTIVE</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>AGENTS_ON_CALL</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>AGENTS_ONLINE</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>AGENTS_STAFFED</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>CONTACTS_IN_QUEUE</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>CONTACTS_SCHEDULED</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>OLDEST_CONTACT_AGE</dt> <dd> <p>Unit: SECONDS</p> </dd> </dl>"
+        "GetCurrentMetricDataRequest$CurrentMetrics": "<p>The metrics to retrieve. Specify the name and unit for each metric. The following metrics are available:</p> <dl> <dt>AGENTS_AFTER_CONTACT_WORK</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>AGENTS_AVAILABLE</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>AGENTS_ERROR</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>AGENTS_NON_PRODUCTIVE</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>AGENTS_ON_CALL</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>AGENTS_ON_CONTACT</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>AGENTS_ONLINE</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>AGENTS_STAFFED</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>CONTACTS_IN_QUEUE</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>CONTACTS_SCHEDULED</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>OLDEST_CONTACT_AGE</dt> <dd> <p>Unit: SECONDS</p> </dd> <dt>SLOTS_ACTIVE</dt> <dd> <p>Unit: COUNT</p> </dd> <dt>SLOTS_AVAILABLE</dt> <dd> <p>Unit: COUNT</p> </dd> </dl>"
       }
     },
     "DeleteUserRequest": {
@@ -293,6 +316,12 @@
       "refs": {
         "CreateUserRequest$DirectoryUserId": "<p>The identifier of the user account in the directory used for identity management. If Amazon Connect cannot access the directory, you can specify this identifier to authenticate users. If you include the identifier, we assume that Amazon Connect cannot access the directory. Otherwise, the identity information is used to authenticate users from your directory.</p> <p>This parameter is required if you are using an existing directory for identity management in Amazon Connect when Amazon Connect cannot access your directory to authenticate users. If you are using SAML for identity management and include this parameter, an error is returned.</p>",
         "User$DirectoryUserId": "<p>The identifier of the user account in the directory used for identity management.</p>"
+      }
+    },
+    "DisplayName": {
+      "base": null,
+      "refs": {
+        "ParticipantDetails$DisplayName": "<p>Display name of the participant.</p>"
       }
     },
     "DuplicateResourceException": {
@@ -529,6 +558,7 @@
         "ListSecurityProfilesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "ListUserHierarchyGroupsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "ListUsersRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "StartChatContactRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "StartOutboundVoiceContactRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "StopContactRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "UpdateContactAttributesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
@@ -713,6 +743,24 @@
     "OutboundContactNotPermittedException": {
       "base": "<p>The contact is not permitted.</p>",
       "refs": {
+      }
+    },
+    "ParticipantDetails": {
+      "base": "<p>The customer's details.</p>",
+      "refs": {
+        "StartChatContactRequest$ParticipantDetails": "<p>Information identifying the participant.</p>"
+      }
+    },
+    "ParticipantId": {
+      "base": null,
+      "refs": {
+        "StartChatContactResponse$ParticipantId": "<p>The identifier for a chat participant. The participantId for a chat participant is the same throughout the chat lifecycle.</p>"
+      }
+    },
+    "ParticipantToken": {
+      "base": null,
+      "refs": {
+        "StartChatContactResponse$ParticipantToken": "<p>The token used by the chat participant to call <a href=\"https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html\">CreateParticipantConnection</a>. The participant token is valid for the lifetime of a chat participant.</p>"
       }
     },
     "Password": {
@@ -902,6 +950,16 @@
       "refs": {
         "Credentials$AccessToken": "<p>An access token generated for a federated user to access Amazon Connect.</p>",
         "Credentials$RefreshToken": "<p>Renews a token generated for a user to access the Amazon Connect instance.</p>"
+      }
+    },
+    "StartChatContactRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartChatContactResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "StartOutboundVoiceContactRequest": {

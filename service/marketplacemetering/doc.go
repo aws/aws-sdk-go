@@ -12,7 +12,7 @@
 // Submitting Metering Records
 //
 //    * MeterUsage- Submits the metering record for a Marketplace product. MeterUsage
-//    is called from an EC2 instance.
+//    is called from an EC2 instance or a container running on EKS or ECS.
 //
 //    * BatchMeterUsage- Submits the metering record for a set of customers.
 //    BatchMeterUsage is called from a software-as-a-service (SaaS) application.

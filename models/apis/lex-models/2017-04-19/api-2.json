@@ -810,7 +810,8 @@
         "checksum":{"shape":"String"},
         "version":{"shape":"Version"},
         "locale":{"shape":"Locale"},
-        "childDirected":{"shape":"Boolean"}
+        "childDirected":{"shape":"Boolean"},
+        "detectSentiment":{"shape":"Boolean"}
       }
     },
     "CreateIntentVersionRequest":{
@@ -1269,7 +1270,8 @@
         "checksum":{"shape":"String"},
         "version":{"shape":"Version"},
         "locale":{"shape":"Locale"},
-        "childDirected":{"shape":"Boolean"}
+        "childDirected":{"shape":"Boolean"},
+        "detectSentiment":{"shape":"Boolean"}
       }
     },
     "GetBotVersionsRequest":{
@@ -1944,6 +1946,7 @@
         "processBehavior":{"shape":"ProcessBehavior"},
         "locale":{"shape":"Locale"},
         "childDirected":{"shape":"Boolean"},
+        "detectSentiment":{"shape":"Boolean"},
         "createVersion":{"shape":"Boolean"}
       }
     },
@@ -1965,7 +1968,8 @@
         "version":{"shape":"Version"},
         "locale":{"shape":"Locale"},
         "childDirected":{"shape":"Boolean"},
-        "createVersion":{"shape":"Boolean"}
+        "createVersion":{"shape":"Boolean"},
+        "detectSentiment":{"shape":"Boolean"}
       }
     },
     "PutIntentRequest":{

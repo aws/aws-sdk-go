@@ -11734,6 +11734,101 @@ func (c *SSM) UpdatePatchBaselineWithContext(ctx aws.Context, input *UpdatePatch
 	return out, req.Send()
 }
 
+const opUpdateResourceDataSync = "UpdateResourceDataSync"
+
+// UpdateResourceDataSyncRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateResourceDataSync operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateResourceDataSync for more information on using the UpdateResourceDataSync
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateResourceDataSyncRequest method.
+//    req, resp := client.UpdateResourceDataSyncRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/UpdateResourceDataSync
+func (c *SSM) UpdateResourceDataSyncRequest(input *UpdateResourceDataSyncInput) (req *request.Request, output *UpdateResourceDataSyncOutput) {
+	op := &request.Operation{
+		Name:       opUpdateResourceDataSync,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateResourceDataSyncInput{}
+	}
+
+	output = &UpdateResourceDataSyncOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateResourceDataSync API operation for Amazon Simple Systems Manager (SSM).
+//
+// Update a resource data sync. After you create a resource data sync for a
+// Region, you can't change the account options for that sync. For example,
+// if you create a sync in the us-east-2 (Ohio) Region and you choose the Include
+// only the current account option, you can't edit that sync later and choose
+// the Include all accounts from my AWS Organizations configuration option.
+// Instead, you must delete the first resource data sync, and create a new one.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Systems Manager (SSM)'s
+// API operation UpdateResourceDataSync for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeResourceDataSyncNotFoundException "ResourceDataSyncNotFoundException"
+//   The specified sync name was not found.
+//
+//   * ErrCodeResourceDataSyncInvalidConfigurationException "ResourceDataSyncInvalidConfigurationException"
+//   The specified sync configuration is invalid.
+//
+//   * ErrCodeResourceDataSyncConflictException "ResourceDataSyncConflictException"
+//   Another UpdateResourceDataSync request is being processed. Wait a few minutes
+//   and try again.
+//
+//   * ErrCodeInternalServerError "InternalServerError"
+//   An error occurred on the server side.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/UpdateResourceDataSync
+func (c *SSM) UpdateResourceDataSync(input *UpdateResourceDataSyncInput) (*UpdateResourceDataSyncOutput, error) {
+	req, out := c.UpdateResourceDataSyncRequest(input)
+	return out, req.Send()
+}
+
+// UpdateResourceDataSyncWithContext is the same as UpdateResourceDataSync with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateResourceDataSync for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SSM) UpdateResourceDataSyncWithContext(ctx aws.Context, input *UpdateResourceDataSyncInput, opts ...request.Option) (*UpdateResourceDataSyncOutput, error) {
+	req, out := c.UpdateResourceDataSyncRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateServiceSetting = "UpdateServiceSetting"
 
 // UpdateServiceSettingRequest generates a "aws/request.Request" representing the
@@ -37518,6 +37613,100 @@ func (s *UpdatePatchBaselineOutput) SetRejectedPatchesAction(v string) *UpdatePa
 func (s *UpdatePatchBaselineOutput) SetSources(v []*PatchSource) *UpdatePatchBaselineOutput {
 	s.Sources = v
 	return s
+}
+
+type UpdateResourceDataSyncInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the resource data sync you want to update.
+	//
+	// SyncName is a required field
+	SyncName *string `min:"1" type:"string" required:"true"`
+
+	// Specify information about the data sources to synchronize.
+	//
+	// SyncSource is a required field
+	SyncSource *ResourceDataSyncSource `type:"structure" required:"true"`
+
+	// The type of resource data sync. If SyncType is SyncToDestination, then the
+	// resource data sync synchronizes data to an Amazon S3 bucket. If the SyncType
+	// is SyncFromSource then the resource data sync synchronizes data from AWS
+	// Organizations or from multiple AWS Regions.
+	//
+	// SyncType is a required field
+	SyncType *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateResourceDataSyncInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateResourceDataSyncInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateResourceDataSyncInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateResourceDataSyncInput"}
+	if s.SyncName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SyncName"))
+	}
+	if s.SyncName != nil && len(*s.SyncName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SyncName", 1))
+	}
+	if s.SyncSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("SyncSource"))
+	}
+	if s.SyncType == nil {
+		invalidParams.Add(request.NewErrParamRequired("SyncType"))
+	}
+	if s.SyncType != nil && len(*s.SyncType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SyncType", 1))
+	}
+	if s.SyncSource != nil {
+		if err := s.SyncSource.Validate(); err != nil {
+			invalidParams.AddNested("SyncSource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSyncName sets the SyncName field's value.
+func (s *UpdateResourceDataSyncInput) SetSyncName(v string) *UpdateResourceDataSyncInput {
+	s.SyncName = &v
+	return s
+}
+
+// SetSyncSource sets the SyncSource field's value.
+func (s *UpdateResourceDataSyncInput) SetSyncSource(v *ResourceDataSyncSource) *UpdateResourceDataSyncInput {
+	s.SyncSource = v
+	return s
+}
+
+// SetSyncType sets the SyncType field's value.
+func (s *UpdateResourceDataSyncInput) SetSyncType(v string) *UpdateResourceDataSyncInput {
+	s.SyncType = &v
+	return s
+}
+
+type UpdateResourceDataSyncOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateResourceDataSyncOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateResourceDataSyncOutput) GoString() string {
+	return s.String()
 }
 
 // The request body of the UpdateServiceSetting API action.

@@ -466,6 +466,11 @@
           "location":"header",
           "locationName":"x-amz-lex-session-attributes"
         },
+        "sentimentResponse":{
+          "shape":"String",
+          "location":"header",
+          "locationName":"x-amz-lex-sentiment"
+        },
         "message":{
           "shape":"Text",
           "location":"header",
@@ -531,6 +536,7 @@
         "slots":{"shape":"StringMap"},
         "sessionAttributes":{"shape":"StringMap"},
         "message":{"shape":"Text"},
+        "sentimentResponse":{"shape":"SentimentResponse"},
         "messageFormat":{"shape":"MessageFormatType"},
         "dialogState":{"shape":"DialogState"},
         "slotToElicit":{"shape":"String"},
@@ -640,6 +646,15 @@
         "genericAttachments":{"shape":"genericAttachmentList"}
       }
     },
+    "SentimentLabel":{"type":"string"},
+    "SentimentResponse":{
+      "type":"structure",
+      "members":{
+        "sentimentLabel":{"shape":"SentimentLabel"},
+        "sentimentScore":{"shape":"SentimentScore"}
+      }
+    },
+    "SentimentScore":{"type":"string"},
     "String":{"type":"string"},
     "StringMap":{
       "type":"map",

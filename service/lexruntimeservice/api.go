@@ -1583,6 +1583,12 @@ type PostContentOutput struct {
 	//    intent was created.
 	MessageFormat *string `location:"header" locationName:"x-amz-lex-message-format" type:"string" enum:"MessageFormatType"`
 
+	// The sentiment expressed in and utterance.
+	//
+	// When the bot is configured to send utterances to Amazon Comprehend for sentiment
+	// analysis, this field contains the result of the analysis.
+	SentimentResponse *string `location:"header" locationName:"x-amz-lex-sentiment" type:"string"`
+
 	// Map of key/value pairs representing the session-specific context information.
 	SessionAttributes aws.JSONValue `location:"header" locationName:"x-amz-lex-session-attributes" type:"jsonvalue"`
 
@@ -1653,6 +1659,12 @@ func (s *PostContentOutput) SetMessage(v string) *PostContentOutput {
 // SetMessageFormat sets the MessageFormat field's value.
 func (s *PostContentOutput) SetMessageFormat(v string) *PostContentOutput {
 	s.MessageFormat = &v
+	return s
+}
+
+// SetSentimentResponse sets the SentimentResponse field's value.
+func (s *PostContentOutput) SetSentimentResponse(v string) *PostContentOutput {
+	s.SentimentResponse = &v
 	return s
 }
 
@@ -1894,6 +1906,12 @@ type PostTextOutput struct {
 	// choose the settings button next to a slot) or from a code hook (Lambda function).
 	ResponseCard *ResponseCard `locationName:"responseCard" type:"structure"`
 
+	// The sentiment expressed in and utterance.
+	//
+	// When the bot is configured to send utterances to Amazon Comprehend for sentiment
+	// analysis, this field contains the result of the analysis.
+	SentimentResponse *SentimentResponse `locationName:"sentimentResponse" type:"structure"`
+
 	// A map of key-value pairs representing the session-specific context information.
 	SessionAttributes map[string]*string `locationName:"sessionAttributes" type:"map" sensitive:"true"`
 
@@ -1951,6 +1969,12 @@ func (s *PostTextOutput) SetMessageFormat(v string) *PostTextOutput {
 // SetResponseCard sets the ResponseCard field's value.
 func (s *PostTextOutput) SetResponseCard(v *ResponseCard) *PostTextOutput {
 	s.ResponseCard = v
+	return s
+}
+
+// SetSentimentResponse sets the SentimentResponse field's value.
+func (s *PostTextOutput) SetSentimentResponse(v *SentimentResponse) *PostTextOutput {
+	s.SentimentResponse = v
 	return s
 }
 
@@ -2317,6 +2341,43 @@ func (s *ResponseCard) SetGenericAttachments(v []*GenericAttachment) *ResponseCa
 // SetVersion sets the Version field's value.
 func (s *ResponseCard) SetVersion(v string) *ResponseCard {
 	s.Version = &v
+	return s
+}
+
+// The sentiment expressed in an utterance.
+//
+// When the bot is configured to send utterances to Amazon Comprehend for sentiment
+// analysis, this field structure contains the result of the analysis.
+type SentimentResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The inferred sentiment that Amazon Comprehend has the highest confidence
+	// in.
+	SentimentLabel *string `locationName:"sentimentLabel" type:"string"`
+
+	// The likelihood that the sentiment was correctly inferred.
+	SentimentScore *string `locationName:"sentimentScore" type:"string"`
+}
+
+// String returns the string representation
+func (s SentimentResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SentimentResponse) GoString() string {
+	return s.String()
+}
+
+// SetSentimentLabel sets the SentimentLabel field's value.
+func (s *SentimentResponse) SetSentimentLabel(v string) *SentimentResponse {
+	s.SentimentLabel = &v
+	return s
+}
+
+// SetSentimentScore sets the SentimentScore field's value.
+func (s *SentimentResponse) SetSentimentScore(v string) *SentimentResponse {
+	s.SentimentScore = &v
 	return s
 }
 

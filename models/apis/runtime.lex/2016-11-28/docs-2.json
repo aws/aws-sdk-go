@@ -279,6 +279,24 @@
         "PostTextResponse$responseCard": "<p>Represents the options that the user has to respond to the current prompt. Response Card can come from the bot configuration (in the Amazon Lex console, choose the settings button next to a slot) or from a code hook (Lambda function). </p>"
       }
     },
+    "SentimentLabel": {
+      "base": null,
+      "refs": {
+        "SentimentResponse$sentimentLabel": "<p>The inferred sentiment that Amazon Comprehend has the highest confidence in.</p>"
+      }
+    },
+    "SentimentResponse": {
+      "base": "<p>The sentiment expressed in an utterance.</p> <p>When the bot is configured to send utterances to Amazon Comprehend for sentiment analysis, this field structure contains the result of the analysis.</p>",
+      "refs": {
+        "PostTextResponse$sentimentResponse": "<p>The sentiment expressed in and utterance.</p> <p>When the bot is configured to send utterances to Amazon Comprehend for sentiment analysis, this field contains the result of the analysis.</p>"
+      }
+    },
+    "SentimentScore": {
+      "base": null,
+      "refs": {
+        "SentimentResponse$sentimentScore": "<p>The likelihood that the sentiment was correctly inferred.</p>"
+      }
+    },
     "String": {
       "base": null,
       "refs": {
@@ -295,6 +313,7 @@
         "NotFoundException$message": null,
         "PostContentResponse$slots": "<p>Map of zero or more intent slots (name/value pairs) Amazon Lex detected from the user input during the conversation. The field is base-64 encoded.</p> <p>Amazon Lex creates a resolution list containing likely values for a slot. The value that it returns is determined by the <code>valueSelectionStrategy</code> selected when the slot type was created or updated. If <code>valueSelectionStrategy</code> is set to <code>ORIGINAL_VALUE</code>, the value provided by the user is returned, if the user value is similar to the slot values. If <code>valueSelectionStrategy</code> is set to <code>TOP_RESOLUTION</code> Amazon Lex returns the first value in the resolution list or, if there is no resolution list, null. If you don't specify a <code>valueSelectionStrategy</code>, the default is <code>ORIGINAL_VALUE</code>.</p>",
         "PostContentResponse$sessionAttributes": "<p> Map of key/value pairs representing the session-specific context information. </p>",
+        "PostContentResponse$sentimentResponse": "<p>The sentiment expressed in and utterance.</p> <p>When the bot is configured to send utterances to Amazon Comprehend for sentiment analysis, this field contains the result of the analysis.</p>",
         "PostContentResponse$slotToElicit": "<p> If the <code>dialogState</code> value is <code>ElicitSlot</code>, returns the name of the slot for which Amazon Lex is eliciting a value. </p>",
         "PostContentResponse$inputTranscript": "<p>The text used to process the request.</p> <p>If the input was an audio stream, the <code>inputTranscript</code> field contains the text extracted from the audio stream. This is the text that is actually processed to recognize intents and slot values. You can use this information to determine if Amazon Lex is correctly processing the audio that you send.</p>",
         "PostTextResponse$slotToElicit": "<p>If the <code>dialogState</code> value is <code>ElicitSlot</code>, returns the name of the slot for which Amazon Lex is eliciting a value. </p>",

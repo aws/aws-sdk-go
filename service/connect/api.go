@@ -2249,6 +2249,105 @@ func (c *Connect) ListUsersPagesWithContext(ctx aws.Context, input *ListUsersInp
 	return p.Err()
 }
 
+const opStartChatContact = "StartChatContact"
+
+// StartChatContactRequest generates a "aws/request.Request" representing the
+// client's request for the StartChatContact operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartChatContact for more information on using the StartChatContact
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartChatContactRequest method.
+//    req, resp := client.StartChatContactRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartChatContact
+func (c *Connect) StartChatContactRequest(input *StartChatContactInput) (req *request.Request, output *StartChatContactOutput) {
+	op := &request.Operation{
+		Name:       opStartChatContact,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/contact/chat",
+	}
+
+	if input == nil {
+		input = &StartChatContactInput{}
+	}
+
+	output = &StartChatContactOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartChatContact API operation for Amazon Connect Service.
+//
+// Initiates a contact flow to start a new chat for the customer. Response of
+// this API provides a token required to obtain credentials from the CreateParticipantConnection
+// (https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html)
+// API in the Amazon Connect Participant Service.
+//
+// When a new chat contact is successfully created, clients need to subscribe
+// to the participant’s connection for the created chat within 5 minutes.
+// This is achieved by invoking CreateParticipantConnection (https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html)
+// with WEBSOCKET and CONNECTION_CREDENTIALS.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation StartChatContact for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is not valid.
+//
+//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   One or more of the specified parameters are not valid.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified resource was not found.
+//
+//   * ErrCodeInternalServiceException "InternalServiceException"
+//   Request processing failed due to an error or failure with the service.
+//
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   The allowed limit for the resource has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartChatContact
+func (c *Connect) StartChatContact(input *StartChatContactInput) (*StartChatContactOutput, error) {
+	req, out := c.StartChatContactRequest(input)
+	return out, req.Send()
+}
+
+// StartChatContactWithContext is the same as StartChatContact with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartChatContact for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) StartChatContactWithContext(ctx aws.Context, input *StartChatContactInput, opts ...request.Option) (*StartChatContactOutput, error) {
+	req, out := c.StartChatContactRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartOutboundVoiceContact = "StartOutboundVoiceContact"
 
 // StartOutboundVoiceContactRequest generates a "aws/request.Request" representing the
@@ -3196,6 +3295,65 @@ func (c *Connect) UpdateUserSecurityProfilesWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+// A chat message.
+type ChatMessage struct {
+	_ struct{} `type:"structure"`
+
+	// The content of the chat message.
+	//
+	// Content is a required field
+	Content *string `min:"1" type:"string" required:"true"`
+
+	// The type of the content. Supported types are text/plain.
+	//
+	// ContentType is a required field
+	ContentType *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ChatMessage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ChatMessage) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ChatMessage) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ChatMessage"}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
+	if s.Content != nil && len(*s.Content) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Content", 1))
+	}
+	if s.ContentType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContentType"))
+	}
+	if s.ContentType != nil && len(*s.ContentType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContentType", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContent sets the Content field's value.
+func (s *ChatMessage) SetContent(v string) *ChatMessage {
+	s.Content = &v
+	return s
+}
+
+// SetContentType sets the ContentType field's value.
+func (s *ChatMessage) SetContentType(v string) *ChatMessage {
+	s.ContentType = &v
+	return s
+}
+
 // Contains summary information about a contact flow.
 type ContactFlowSummary struct {
 	_ struct{} `type:"structure"`
@@ -4090,6 +4248,10 @@ type GetCurrentMetricDataInput struct {
 	//
 	// Unit: COUNT
 	//
+	// AGENTS_ON_CONTACT
+	//
+	// Unit: COUNT
+	//
 	// AGENTS_ONLINE
 	//
 	// Unit: COUNT
@@ -4109,6 +4271,14 @@ type GetCurrentMetricDataInput struct {
 	// OLDEST_CONTACT_AGE
 	//
 	// Unit: SECONDS
+	//
+	// SLOTS_ACTIVE
+	//
+	// Unit: COUNT
+	//
+	// SLOTS_AVAILABLE
+	//
+	// Unit: COUNT
 	//
 	// CurrentMetrics is a required field
 	CurrentMetrics []*CurrentMetric `type:"list" required:"true"`
@@ -5959,6 +6129,48 @@ func (s *ListUsersOutput) SetUserSummaryList(v []*UserSummary) *ListUsersOutput 
 	return s
 }
 
+// The customer's details.
+type ParticipantDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Display name of the participant.
+	//
+	// DisplayName is a required field
+	DisplayName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ParticipantDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ParticipantDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ParticipantDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ParticipantDetails"}
+	if s.DisplayName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DisplayName"))
+	}
+	if s.DisplayName != nil && len(*s.DisplayName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DisplayName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *ParticipantDetails) SetDisplayName(v string) *ParticipantDetails {
+	s.DisplayName = &v
+	return s
+}
+
 // Contains summary information about a phone number for a contact center.
 type PhoneNumberSummary struct {
 	_ struct{} `type:"structure"`
@@ -6184,6 +6396,162 @@ func (s *SecurityProfileSummary) SetId(v string) *SecurityProfileSummary {
 // SetName sets the Name field's value.
 func (s *SecurityProfileSummary) SetName(v string) *SecurityProfileSummary {
 	s.Name = &v
+	return s
+}
+
+type StartChatContactInput struct {
+	_ struct{} `type:"structure"`
+
+	// A custom key-value pair using an attribute map. The attributes are standard
+	// Amazon Connect attributes, and can be accessed in contact flows just like
+	// any other contact attributes.
+	//
+	// There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact.
+	// Attribute keys can include only alphanumeric, dash, and underscore characters.
+	Attributes map[string]*string `type:"map"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// The identifier of the contact flow for the chat.
+	//
+	// ContactFlowId is a required field
+	ContactFlowId *string `type:"string" required:"true"`
+
+	// The initial message to be sent to the newly created chat.
+	InitialMessage *ChatMessage `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+
+	// Information identifying the participant.
+	//
+	// ParticipantDetails is a required field
+	ParticipantDetails *ParticipantDetails `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s StartChatContactInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartChatContactInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartChatContactInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartChatContactInput"}
+	if s.ContactFlowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactFlowId"))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.ParticipantDetails == nil {
+		invalidParams.Add(request.NewErrParamRequired("ParticipantDetails"))
+	}
+	if s.InitialMessage != nil {
+		if err := s.InitialMessage.Validate(); err != nil {
+			invalidParams.AddNested("InitialMessage", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ParticipantDetails != nil {
+		if err := s.ParticipantDetails.Validate(); err != nil {
+			invalidParams.AddNested("ParticipantDetails", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *StartChatContactInput) SetAttributes(v map[string]*string) *StartChatContactInput {
+	s.Attributes = v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *StartChatContactInput) SetClientToken(v string) *StartChatContactInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetContactFlowId sets the ContactFlowId field's value.
+func (s *StartChatContactInput) SetContactFlowId(v string) *StartChatContactInput {
+	s.ContactFlowId = &v
+	return s
+}
+
+// SetInitialMessage sets the InitialMessage field's value.
+func (s *StartChatContactInput) SetInitialMessage(v *ChatMessage) *StartChatContactInput {
+	s.InitialMessage = v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *StartChatContactInput) SetInstanceId(v string) *StartChatContactInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetParticipantDetails sets the ParticipantDetails field's value.
+func (s *StartChatContactInput) SetParticipantDetails(v *ParticipantDetails) *StartChatContactInput {
+	s.ParticipantDetails = v
+	return s
+}
+
+type StartChatContactOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of this contact within the Amazon Connect instance.
+	ContactId *string `min:"1" type:"string"`
+
+	// The identifier for a chat participant. The participantId for a chat participant
+	// is the same throughout the chat lifecycle.
+	ParticipantId *string `min:"1" type:"string"`
+
+	// The token used by the chat participant to call CreateParticipantConnection
+	// (https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html).
+	// The participant token is valid for the lifetime of a chat participant.
+	ParticipantToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s StartChatContactOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartChatContactOutput) GoString() string {
+	return s.String()
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *StartChatContactOutput) SetContactId(v string) *StartChatContactOutput {
+	s.ContactId = &v
+	return s
+}
+
+// SetParticipantId sets the ParticipantId field's value.
+func (s *StartChatContactOutput) SetParticipantId(v string) *StartChatContactOutput {
+	s.ParticipantId = &v
+	return s
+}
+
+// SetParticipantToken sets the ParticipantToken field's value.
+func (s *StartChatContactOutput) SetParticipantToken(v string) *StartChatContactOutput {
+	s.ParticipantToken = &v
 	return s
 }
 
@@ -7383,6 +7751,9 @@ func (s *UserSummary) SetUsername(v string) *UserSummary {
 const (
 	// ChannelVoice is a Channel enum value
 	ChannelVoice = "VOICE"
+
+	// ChannelChat is a Channel enum value
+	ChannelChat = "CHAT"
 )
 
 const (
@@ -7450,6 +7821,15 @@ const (
 
 	// CurrentMetricNameContactsScheduled is a CurrentMetricName enum value
 	CurrentMetricNameContactsScheduled = "CONTACTS_SCHEDULED"
+
+	// CurrentMetricNameAgentsOnContact is a CurrentMetricName enum value
+	CurrentMetricNameAgentsOnContact = "AGENTS_ON_CONTACT"
+
+	// CurrentMetricNameSlotsActive is a CurrentMetricName enum value
+	CurrentMetricNameSlotsActive = "SLOTS_ACTIVE"
+
+	// CurrentMetricNameSlotsAvailable is a CurrentMetricName enum value
+	CurrentMetricNameSlotsAvailable = "SLOTS_AVAILABLE"
 )
 
 const (

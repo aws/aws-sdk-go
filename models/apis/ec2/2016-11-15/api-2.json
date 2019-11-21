@@ -3507,7 +3507,6 @@
       "type":"structure",
       "required":[
         "AvailabilityZone",
-        "InstanceType",
         "Quantity"
       ],
       "members":{
@@ -3527,6 +3526,7 @@
           "shape":"String",
           "locationName":"instanceType"
         },
+        "InstanceFamily":{"shape":"String"},
         "Quantity":{
           "shape":"Integer",
           "locationName":"quantity"
@@ -3593,6 +3593,13 @@
         "shape":"AllowedPrincipal",
         "locationName":"item"
       }
+    },
+    "AllowsMultipleInstanceTypes":{
+      "type":"string",
+      "enum":[
+        "on",
+        "off"
+      ]
     },
     "ApplySecurityGroupsToClientVpnTargetNetworkRequest":{
       "type":"structure",
@@ -5639,7 +5646,7 @@
           "locationName":"encrypted"
         },
         "KmsKeyId":{
-          "shape":"KmsKeyId",
+          "shape":"String",
           "locationName":"kmsKeyId"
         },
         "Name":{"shape":"String"},
@@ -6140,7 +6147,7 @@
           "locationName":"dryRun"
         },
         "InstanceId":{
-          "shape":"InstanceId",
+          "shape":"String",
           "locationName":"instanceId"
         },
         "Name":{
@@ -8203,7 +8210,7 @@
       "type":"structure",
       "required":["ImageId"],
       "members":{
-        "ImageId":{"shape":"ImageId"},
+        "ImageId":{"shape":"String"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -14018,6 +14025,18 @@
         "HostRecovery":{
           "shape":"HostRecovery",
           "locationName":"hostRecovery"
+        },
+        "AllowsMultipleInstanceTypes":{
+          "shape":"AllowsMultipleInstanceTypes",
+          "locationName":"allowsMultipleInstanceTypes"
+        },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
+        },
+        "AvailabilityZoneId":{
+          "shape":"String",
+          "locationName":"availabilityZoneId"
         }
       }
     },
@@ -14032,6 +14051,10 @@
         "InstanceType":{
           "shape":"String",
           "locationName":"instanceType"
+        },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
         }
       }
     },
@@ -14099,6 +14122,10 @@
         "InstanceType":{
           "shape":"String",
           "locationName":"instanceType"
+        },
+        "InstanceFamily":{
+          "shape":"String",
+          "locationName":"instanceFamily"
         },
         "Sockets":{
           "shape":"Integer",
@@ -14570,6 +14597,35 @@
         }
       }
     },
+    "ImportImageLicenseConfigurationRequest":{
+      "type":"structure",
+      "members":{
+        "LicenseConfigurationArn":{"shape":"String"}
+      }
+    },
+    "ImportImageLicenseConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "LicenseConfigurationArn":{
+          "shape":"String",
+          "locationName":"licenseConfigurationArn"
+        }
+      }
+    },
+    "ImportImageLicenseSpecificationListRequest":{
+      "type":"list",
+      "member":{
+        "shape":"ImportImageLicenseConfigurationRequest",
+        "locationName":"item"
+      }
+    },
+    "ImportImageLicenseSpecificationListResponse":{
+      "type":"list",
+      "member":{
+        "shape":"ImportImageLicenseConfigurationResponse",
+        "locationName":"item"
+      }
+    },
     "ImportImageRequest":{
       "type":"structure",
       "members":{
@@ -14584,10 +14640,11 @@
         "DryRun":{"shape":"Boolean"},
         "Encrypted":{"shape":"Boolean"},
         "Hypervisor":{"shape":"String"},
-        "KmsKeyId":{"shape":"KmsKeyId"},
+        "KmsKeyId":{"shape":"String"},
         "LicenseType":{"shape":"String"},
         "Platform":{"shape":"String"},
-        "RoleName":{"shape":"String"}
+        "RoleName":{"shape":"String"},
+        "LicenseSpecifications":{"shape":"ImportImageLicenseSpecificationListRequest"}
       }
     },
     "ImportImageResult":{
@@ -14644,6 +14701,10 @@
         "StatusMessage":{
           "shape":"String",
           "locationName":"statusMessage"
+        },
+        "LicenseSpecifications":{
+          "shape":"ImportImageLicenseSpecificationListResponse",
+          "locationName":"licenseSpecifications"
         }
       }
     },
@@ -14701,6 +14762,10 @@
         "StatusMessage":{
           "shape":"String",
           "locationName":"statusMessage"
+        },
+        "LicenseSpecifications":{
+          "shape":"ImportImageLicenseSpecificationListResponse",
+          "locationName":"licenseSpecifications"
         }
       }
     },
@@ -16427,7 +16492,6 @@
         "disable"
       ]
     },
-    "KernelId":{"type":"string"},
     "KeyNameStringList":{
       "type":"list",
       "member":{
@@ -17462,7 +17526,9 @@
           "shape":"RequestHostIdList",
           "locationName":"hostId"
         },
-        "HostRecovery":{"shape":"HostRecovery"}
+        "HostRecovery":{"shape":"HostRecovery"},
+        "InstanceType":{"shape":"String"},
+        "InstanceFamily":{"shape":"String"}
       }
     },
     "ModifyHostsResult":{
@@ -17517,7 +17583,7 @@
       "members":{
         "Attribute":{"shape":"String"},
         "Description":{"shape":"AttributeValue"},
-        "ImageId":{"shape":"ImageId"},
+        "ImageId":{"shape":"String"},
         "LaunchPermission":{"shape":"LaunchPermissionModifications"},
         "OperationType":{"shape":"OperationType"},
         "ProductCodes":{
@@ -19862,7 +19928,6 @@
         "Windows (Amazon VPC)"
       ]
     },
-    "RamdiskId":{"type":"string"},
     "ReasonCodesList":{
       "type":"list",
       "member":{
@@ -19965,7 +20030,7 @@
           "locationName":"enaSupport"
         },
         "KernelId":{
-          "shape":"KernelId",
+          "shape":"String",
           "locationName":"kernelId"
         },
         "Name":{
@@ -19977,7 +20042,7 @@
           "locationName":"BillingProduct"
         },
         "RamdiskId":{
-          "shape":"RamdiskId",
+          "shape":"String",
           "locationName":"ramdiskId"
         },
         "RootDeviceName":{
@@ -21079,7 +21144,7 @@
       ],
       "members":{
         "Attribute":{"shape":"ResetImageAttributeName"},
-        "ImageId":{"shape":"ImageId"},
+        "ImageId":{"shape":"String"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"

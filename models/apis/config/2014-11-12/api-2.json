@@ -183,6 +183,18 @@
         {"shape":"NoSuchRemediationExceptionException"}
       ]
     },
+    "DeleteResourceConfig":{
+      "name":"DeleteResourceConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteResourceConfigRequest"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"NoRunningConfigurationRecorderException"}
+      ]
+    },
     "DeleteRetentionConfiguration":{
       "name":"DeleteRetentionConfiguration",
       "http":{
@@ -944,6 +956,20 @@
       "output":{"shape":"PutRemediationExceptionsResponse"},
       "errors":[
         {"shape":"InvalidParameterValueException"}
+      ]
+    },
+    "PutResourceConfig":{
+      "name":"PutResourceConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutResourceConfigRequest"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InsufficientPermissionsException"},
+        {"shape":"NoRunningConfigurationRecorderException"},
+        {"shape":"MaxActiveResourcesExceededException"}
       ]
     },
     "PutRetentionConfiguration":{
@@ -1903,6 +1929,17 @@
       "type":"structure",
       "members":{
         "FailedBatches":{"shape":"FailedDeleteRemediationExceptionsBatches"}
+      }
+    },
+    "DeleteResourceConfigRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceType",
+        "ResourceId"
+      ],
+      "members":{
+        "ResourceType":{"shape":"ResourceTypeString"},
+        "ResourceId":{"shape":"ResourceId"}
       }
     },
     "DeleteRetentionConfigurationRequest":{
@@ -2901,6 +2938,12 @@
       }
     },
     "Long":{"type":"long"},
+    "MaxActiveResourcesExceededException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "MaxNumberOfConfigRulesExceededException":{
       "type":"structure",
       "members":{
@@ -3543,6 +3586,23 @@
         "FailedBatches":{"shape":"FailedRemediationExceptionBatches"}
       }
     },
+    "PutResourceConfigRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceType",
+        "SchemaVersionId",
+        "ResourceId",
+        "Configuration"
+      ],
+      "members":{
+        "ResourceType":{"shape":"ResourceTypeString"},
+        "SchemaVersionId":{"shape":"SchemaVersionId"},
+        "ResourceId":{"shape":"ResourceId"},
+        "ResourceName":{"shape":"ResourceName"},
+        "Configuration":{"shape":"Configuration"},
+        "Tags":{"shape":"Tags"}
+      }
+    },
     "PutRetentionConfigurationRequest":{
       "type":"structure",
       "required":["RetentionPeriodInDays"],
@@ -3940,6 +4000,11 @@
       "type":"list",
       "member":{"shape":"ResourceType"}
     },
+    "ResourceTypeString":{
+      "type":"string",
+      "max":196,
+      "min":1
+    },
     "ResourceTypes":{
       "type":"list",
       "member":{"shape":"StringWithCharLimit256"},
@@ -4003,6 +4068,12 @@
       "type":"integer",
       "max":50,
       "min":0
+    },
+    "SchemaVersionId":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[A-Za-z0-9-]+"
     },
     "Scope":{
       "type":"structure",

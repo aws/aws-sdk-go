@@ -2546,6 +2546,27 @@ const (
 
 	// LanguageCodePtPt is a LanguageCode enum value
 	LanguageCodePtPt = "pt-PT"
+
+	// LanguageCodeTeIn is a LanguageCode enum value
+	LanguageCodeTeIn = "te-IN"
+
+	// LanguageCodeTrTr is a LanguageCode enum value
+	LanguageCodeTrTr = "tr-TR"
+
+	// LanguageCodeDeCh is a LanguageCode enum value
+	LanguageCodeDeCh = "de-CH"
+
+	// LanguageCodeHeIl is a LanguageCode enum value
+	LanguageCodeHeIl = "he-IL"
+
+	// LanguageCodeMsMy is a LanguageCode enum value
+	LanguageCodeMsMy = "ms-MY"
+
+	// LanguageCodeJaJp is a LanguageCode enum value
+	LanguageCodeJaJp = "ja-JP"
+
+	// LanguageCodeArAe is a LanguageCode enum value
+	LanguageCodeArAe = "ar-AE"
 )
 
 const (

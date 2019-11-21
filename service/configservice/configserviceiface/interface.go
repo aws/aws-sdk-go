@@ -116,6 +116,10 @@ type ConfigServiceAPI interface {
 	DeleteRemediationExceptionsWithContext(aws.Context, *configservice.DeleteRemediationExceptionsInput, ...request.Option) (*configservice.DeleteRemediationExceptionsOutput, error)
 	DeleteRemediationExceptionsRequest(*configservice.DeleteRemediationExceptionsInput) (*request.Request, *configservice.DeleteRemediationExceptionsOutput)
 
+	DeleteResourceConfig(*configservice.DeleteResourceConfigInput) (*configservice.DeleteResourceConfigOutput, error)
+	DeleteResourceConfigWithContext(aws.Context, *configservice.DeleteResourceConfigInput, ...request.Option) (*configservice.DeleteResourceConfigOutput, error)
+	DeleteResourceConfigRequest(*configservice.DeleteResourceConfigInput) (*request.Request, *configservice.DeleteResourceConfigOutput)
+
 	DeleteRetentionConfiguration(*configservice.DeleteRetentionConfigurationInput) (*configservice.DeleteRetentionConfigurationOutput, error)
 	DeleteRetentionConfigurationWithContext(aws.Context, *configservice.DeleteRetentionConfigurationInput, ...request.Option) (*configservice.DeleteRetentionConfigurationOutput, error)
 	DeleteRetentionConfigurationRequest(*configservice.DeleteRetentionConfigurationInput) (*request.Request, *configservice.DeleteRetentionConfigurationOutput)
@@ -340,6 +344,10 @@ type ConfigServiceAPI interface {
 	PutRemediationExceptions(*configservice.PutRemediationExceptionsInput) (*configservice.PutRemediationExceptionsOutput, error)
 	PutRemediationExceptionsWithContext(aws.Context, *configservice.PutRemediationExceptionsInput, ...request.Option) (*configservice.PutRemediationExceptionsOutput, error)
 	PutRemediationExceptionsRequest(*configservice.PutRemediationExceptionsInput) (*request.Request, *configservice.PutRemediationExceptionsOutput)
+
+	PutResourceConfig(*configservice.PutResourceConfigInput) (*configservice.PutResourceConfigOutput, error)
+	PutResourceConfigWithContext(aws.Context, *configservice.PutResourceConfigInput, ...request.Option) (*configservice.PutResourceConfigOutput, error)
+	PutResourceConfigRequest(*configservice.PutResourceConfigInput) (*request.Request, *configservice.PutResourceConfigOutput)
 
 	PutRetentionConfiguration(*configservice.PutRetentionConfigurationInput) (*configservice.PutRetentionConfigurationOutput, error)
 	PutRetentionConfigurationWithContext(aws.Context, *configservice.PutRetentionConfigurationInput, ...request.Option) (*configservice.PutRetentionConfigurationOutput, error)

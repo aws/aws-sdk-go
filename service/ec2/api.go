@@ -551,8 +551,9 @@ func (c *EC2) AllocateHostsRequest(input *AllocateHostsInput) (req *request.Requ
 
 // AllocateHosts API operation for Amazon Elastic Compute Cloud.
 //
-// Allocates a Dedicated Host to your account. At a minimum, specify the instance
-// size type, Availability Zone, and quantity of hosts to allocate.
+// Allocates a Dedicated Host to your account. At a minimum, specify the supported
+// instance type or instance family, the Availability Zone in which to allocate
+// the host, and the number of hosts to allocate.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -13794,8 +13795,8 @@ func (c *EC2) DescribeHostReservationOfferingsRequest(input *DescribeHostReserva
 //
 // Describes the Dedicated Host reservations that are available to purchase.
 //
-// The results describe all the Dedicated Host reservation offerings, including
-// offerings that may not match the instance family and Region of your Dedicated
+// The results describe all of the Dedicated Host reservation offerings, including
+// offerings that might not match the instance family and Region of your Dedicated
 // Hosts. When purchasing an offering, ensure that the instance family and Region
 // of the offering matches that of the Dedicated Hosts with which it is to be
 // associated. For more information about supported instance types, see Dedicated
@@ -26837,6 +26838,10 @@ func (c *EC2) ModifyHostsRequest(input *ModifyHostsInput) (req *request.Request,
 // no host ID is provided, the instance is launched onto a suitable host with
 // auto-placement enabled.
 //
+// You can also use this API action to modify a Dedicated Host to support either
+// multiple instance types in an instance family, or to support a specific instance
+// type only.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -34061,12 +34066,23 @@ type AllocateHostsInput struct {
 	// Default: off
 	HostRecovery *string `type:"string" enum:"HostRecovery"`
 
-	// Specifies the instance type for which to configure your Dedicated Hosts.
-	// When you specify the instance type, that is the only instance type that you
-	// can launch onto that host.
+	// Specifies the instance family to be supported by the Dedicated Hosts. If
+	// you specify an instance family, the Dedicated Hosts support multiple instance
+	// types within that instance family.
 	//
-	// InstanceType is a required field
-	InstanceType *string `locationName:"instanceType" type:"string" required:"true"`
+	// If you want the Dedicated Hosts to support a specific instance type only,
+	// omit this parameter and specify InstanceType instead. You cannot specify
+	// InstanceFamily and InstanceType in the same request.
+	InstanceFamily *string `type:"string"`
+
+	// Specifies the instance type to be supported by the Dedicated Hosts. If you
+	// specify an instance type, the Dedicated Hosts support instances of the specified
+	// instance type only.
+	//
+	// If you want the Dedicated Hosts to support multiple instance types in a specific
+	// instance family, omit this parameter and specify InstanceFamily instead.
+	// You cannot specify InstanceType and InstanceFamily in the same request.
+	InstanceType *string `locationName:"instanceType" type:"string"`
 
 	// The number of Dedicated Hosts to allocate to your account with these parameters.
 	//
@@ -34092,9 +34108,6 @@ func (s *AllocateHostsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AllocateHostsInput"}
 	if s.AvailabilityZone == nil {
 		invalidParams.Add(request.NewErrParamRequired("AvailabilityZone"))
-	}
-	if s.InstanceType == nil {
-		invalidParams.Add(request.NewErrParamRequired("InstanceType"))
 	}
 	if s.Quantity == nil {
 		invalidParams.Add(request.NewErrParamRequired("Quantity"))
@@ -34127,6 +34140,12 @@ func (s *AllocateHostsInput) SetClientToken(v string) *AllocateHostsInput {
 // SetHostRecovery sets the HostRecovery field's value.
 func (s *AllocateHostsInput) SetHostRecovery(v string) *AllocateHostsInput {
 	s.HostRecovery = &v
+	return s
+}
+
+// SetInstanceFamily sets the InstanceFamily field's value.
+func (s *AllocateHostsInput) SetInstanceFamily(v string) *AllocateHostsInput {
+	s.InstanceFamily = &v
 	return s
 }
 
@@ -36401,14 +36420,19 @@ func (s *AvailabilityZoneMessage) SetMessage(v string) *AvailabilityZoneMessage 
 	return s
 }
 
-// The capacity information for instances launched onto the Dedicated Host.
+// The capacity information for instances that can be launched onto the Dedicated
+// Host.
 type AvailableCapacity struct {
 	_ struct{} `type:"structure"`
 
-	// The total number of instances supported by the Dedicated Host.
+	// The number of instances that can be launched onto the Dedicated Host depending
+	// on the host's available capacity. For Dedicated Hosts that support multiple
+	// instance types, this parameter represents the number of instances for each
+	// instance size that is supported on the host.
 	AvailableInstanceCapacity []*InstanceCapacity `locationName:"availableInstanceCapacity" locationNameList:"item" type:"list"`
 
-	// The number of vCPUs available on the Dedicated Host.
+	// The number of vCPUs available for launching instances onto the Dedicated
+	// Host.
 	AvailableVCpus *int64 `locationName:"availableVCpus" type:"integer"`
 }
 
@@ -68469,13 +68493,23 @@ type Host struct {
 	// The time that the Dedicated Host was allocated.
 	AllocationTime *time.Time `locationName:"allocationTime" type:"timestamp"`
 
+	// Indicates whether the Dedicated Host supports multiple instance types of
+	// the same instance family, or a specific instance type only. one indicates
+	// that the Dedicated Host supports multiple instance types in the instance
+	// family. off indicates that the Dedicated Host supports a single instance
+	// type only.
+	AllowsMultipleInstanceTypes *string `locationName:"allowsMultipleInstanceTypes" type:"string" enum:"AllowsMultipleInstanceTypes"`
+
 	// Whether auto-placement is on or off.
 	AutoPlacement *string `locationName:"autoPlacement" type:"string" enum:"AutoPlacement"`
 
 	// The Availability Zone of the Dedicated Host.
 	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
 
-	// The number of new instances that can be launched onto the Dedicated Host.
+	// The ID of the Availability Zone in which the Dedicated Host is allocated.
+	AvailabilityZoneId *string `locationName:"availabilityZoneId" type:"string"`
+
+	// Information about the instances running on the Dedicated Host.
 	AvailableCapacity *AvailableCapacity `locationName:"availableCapacity" type:"structure"`
 
 	// Unique, case-sensitive identifier that you provide to ensure the idempotency
@@ -68498,6 +68532,9 @@ type Host struct {
 
 	// The IDs and instance type that are currently running on the Dedicated Host.
 	Instances []*HostInstance `locationName:"instances" locationNameList:"item" type:"list"`
+
+	// The ID of the AWS account that owns the Dedicated Host.
+	OwnerId *string `locationName:"ownerId" type:"string"`
 
 	// The time that the Dedicated Host was released.
 	ReleaseTime *time.Time `locationName:"releaseTime" type:"timestamp"`
@@ -68525,6 +68562,12 @@ func (s *Host) SetAllocationTime(v time.Time) *Host {
 	return s
 }
 
+// SetAllowsMultipleInstanceTypes sets the AllowsMultipleInstanceTypes field's value.
+func (s *Host) SetAllowsMultipleInstanceTypes(v string) *Host {
+	s.AllowsMultipleInstanceTypes = &v
+	return s
+}
+
 // SetAutoPlacement sets the AutoPlacement field's value.
 func (s *Host) SetAutoPlacement(v string) *Host {
 	s.AutoPlacement = &v
@@ -68534,6 +68577,12 @@ func (s *Host) SetAutoPlacement(v string) *Host {
 // SetAvailabilityZone sets the AvailabilityZone field's value.
 func (s *Host) SetAvailabilityZone(v string) *Host {
 	s.AvailabilityZone = &v
+	return s
+}
+
+// SetAvailabilityZoneId sets the AvailabilityZoneId field's value.
+func (s *Host) SetAvailabilityZoneId(v string) *Host {
+	s.AvailabilityZoneId = &v
 	return s
 }
 
@@ -68579,6 +68628,12 @@ func (s *Host) SetInstances(v []*HostInstance) *Host {
 	return s
 }
 
+// SetOwnerId sets the OwnerId field's value.
+func (s *Host) SetOwnerId(v string) *Host {
+	s.OwnerId = &v
+	return s
+}
+
 // SetReleaseTime sets the ReleaseTime field's value.
 func (s *Host) SetReleaseTime(v time.Time) *Host {
 	s.ReleaseTime = &v
@@ -68601,11 +68656,14 @@ func (s *Host) SetTags(v []*Tag) *Host {
 type HostInstance struct {
 	_ struct{} `type:"structure"`
 
-	// the IDs of instances that are running on the Dedicated Host.
+	// The ID of instance that is running on the Dedicated Host.
 	InstanceId *string `locationName:"instanceId" type:"string"`
 
-	// The instance type size (for example, m3.medium) of the running instance.
+	// The instance type (for example, m3.medium) of the running instance.
 	InstanceType *string `locationName:"instanceType" type:"string"`
+
+	// The ID of the AWS account that owns the instance.
+	OwnerId *string `locationName:"ownerId" type:"string"`
 }
 
 // String returns the string representation
@@ -68627,6 +68685,12 @@ func (s *HostInstance) SetInstanceId(v string) *HostInstance {
 // SetInstanceType sets the InstanceType field's value.
 func (s *HostInstance) SetInstanceType(v string) *HostInstance {
 	s.InstanceType = &v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *HostInstance) SetOwnerId(v string) *HostInstance {
+	s.OwnerId = &v
 	return s
 }
 
@@ -68708,20 +68772,24 @@ func (s *HostOffering) SetUpfrontPrice(v string) *HostOffering {
 	return s
 }
 
-// Describes properties of a Dedicated Host.
+// Describes the properties of a Dedicated Host.
 type HostProperties struct {
 	_ struct{} `type:"structure"`
 
 	// The number of cores on the Dedicated Host.
 	Cores *int64 `locationName:"cores" type:"integer"`
 
-	// The instance type size that the Dedicated Host supports (for example, m3.medium).
+	// The instance family supported by the Dedicated Host. For example, m5.
+	InstanceFamily *string `locationName:"instanceFamily" type:"string"`
+
+	// The instance type supported by the Dedicated Host. For example, m5.large.
+	// If the host supports multiple instance types, no instanceType is returned.
 	InstanceType *string `locationName:"instanceType" type:"string"`
 
 	// The number of sockets on the Dedicated Host.
 	Sockets *int64 `locationName:"sockets" type:"integer"`
 
-	// The number of vCPUs on the Dedicated Host.
+	// The total number of vCPUs on the Dedicated Host.
 	TotalVCpus *int64 `locationName:"totalVCpus" type:"integer"`
 }
 
@@ -68738,6 +68806,12 @@ func (s HostProperties) GoString() string {
 // SetCores sets the Cores field's value.
 func (s *HostProperties) SetCores(v int64) *HostProperties {
 	s.Cores = &v
+	return s
+}
+
+// SetInstanceFamily sets the InstanceFamily field's value.
+func (s *HostProperties) SetInstanceFamily(v string) *HostProperties {
+	s.InstanceFamily = &v
 	return s
 }
 
@@ -69624,6 +69698,9 @@ type ImportImageInput struct {
 	// The specified CMK must exist in the Region that the AMI is being copied to.
 	KmsKeyId *string `type:"string"`
 
+	// The ARNs of the license configurations.
+	LicenseSpecifications []*ImportImageLicenseConfigurationRequest `locationNameList:"item" type:"list"`
+
 	// The license type to be used for the Amazon Machine Image (AMI) after importing.
 	//
 	// By default, we detect the source-system operating system (OS) and apply the
@@ -69710,6 +69787,12 @@ func (s *ImportImageInput) SetKmsKeyId(v string) *ImportImageInput {
 	return s
 }
 
+// SetLicenseSpecifications sets the LicenseSpecifications field's value.
+func (s *ImportImageInput) SetLicenseSpecifications(v []*ImportImageLicenseConfigurationRequest) *ImportImageInput {
+	s.LicenseSpecifications = v
+	return s
+}
+
 // SetLicenseType sets the LicenseType field's value.
 func (s *ImportImageInput) SetLicenseType(v string) *ImportImageInput {
 	s.LicenseType = &v
@@ -69725,6 +69808,54 @@ func (s *ImportImageInput) SetPlatform(v string) *ImportImageInput {
 // SetRoleName sets the RoleName field's value.
 func (s *ImportImageInput) SetRoleName(v string) *ImportImageInput {
 	s.RoleName = &v
+	return s
+}
+
+// The request information of license configurations.
+type ImportImageLicenseConfigurationRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of a license configuration.
+	LicenseConfigurationArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ImportImageLicenseConfigurationRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ImportImageLicenseConfigurationRequest) GoString() string {
+	return s.String()
+}
+
+// SetLicenseConfigurationArn sets the LicenseConfigurationArn field's value.
+func (s *ImportImageLicenseConfigurationRequest) SetLicenseConfigurationArn(v string) *ImportImageLicenseConfigurationRequest {
+	s.LicenseConfigurationArn = &v
+	return s
+}
+
+// The response information of license configurations.
+type ImportImageLicenseConfigurationResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of a license configuration.
+	LicenseConfigurationArn *string `locationName:"licenseConfigurationArn" type:"string"`
+}
+
+// String returns the string representation
+func (s ImportImageLicenseConfigurationResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ImportImageLicenseConfigurationResponse) GoString() string {
+	return s.String()
+}
+
+// SetLicenseConfigurationArn sets the LicenseConfigurationArn field's value.
+func (s *ImportImageLicenseConfigurationResponse) SetLicenseConfigurationArn(v string) *ImportImageLicenseConfigurationResponse {
+	s.LicenseConfigurationArn = &v
 	return s
 }
 
@@ -69752,6 +69883,9 @@ type ImportImageOutput struct {
 	// The identifier for the AWS Key Management Service (AWS KMS) customer master
 	// key (CMK) that was used to create the encrypted AMI.
 	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+
+	// The ARNs of the license configurations.
+	LicenseSpecifications []*ImportImageLicenseConfigurationResponse `locationName:"licenseSpecifications" locationNameList:"item" type:"list"`
 
 	// The license type of the virtual machine.
 	LicenseType *string `locationName:"licenseType" type:"string"`
@@ -69824,6 +69958,12 @@ func (s *ImportImageOutput) SetKmsKeyId(v string) *ImportImageOutput {
 	return s
 }
 
+// SetLicenseSpecifications sets the LicenseSpecifications field's value.
+func (s *ImportImageOutput) SetLicenseSpecifications(v []*ImportImageLicenseConfigurationResponse) *ImportImageOutput {
+	s.LicenseSpecifications = v
+	return s
+}
+
 // SetLicenseType sets the LicenseType field's value.
 func (s *ImportImageOutput) SetLicenseType(v string) *ImportImageOutput {
 	s.LicenseType = &v
@@ -69889,6 +70029,9 @@ type ImportImageTask struct {
 	// The identifier for the AWS Key Management Service (AWS KMS) customer master
 	// key (CMK) that was used to create the encrypted image.
 	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+
+	// The ARNs of the license configurations associated to the import image task.
+	LicenseSpecifications []*ImportImageLicenseConfigurationResponse `locationName:"licenseSpecifications" locationNameList:"item" type:"list"`
 
 	// The license type of the virtual machine.
 	LicenseType *string `locationName:"licenseType" type:"string"`
@@ -69958,6 +70101,12 @@ func (s *ImportImageTask) SetImportTaskId(v string) *ImportImageTask {
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *ImportImageTask) SetKmsKeyId(v string) *ImportImageTask {
 	s.KmsKeyId = &v
+	return s
+}
+
+// SetLicenseSpecifications sets the LicenseSpecifications field's value.
+func (s *ImportImageTask) SetLicenseSpecifications(v []*ImportImageLicenseConfigurationResponse) *ImportImageTask {
+	s.LicenseSpecifications = v
 	return s
 }
 
@@ -71372,17 +71521,20 @@ func (s *InstanceBlockDeviceMappingSpecification) SetVirtualName(v string) *Inst
 	return s
 }
 
-// Information about the instance type that the Dedicated Host supports.
+// Information about the number of instances that can be launched onto the Dedicated
+// Host.
 type InstanceCapacity struct {
 	_ struct{} `type:"structure"`
 
-	// The number of instances that can still be launched onto the Dedicated Host.
+	// The number of instances that can be launched onto the Dedicated Host based
+	// on the host's available capacity.
 	AvailableCapacity *int64 `locationName:"availableCapacity" type:"integer"`
 
-	// The instance type size supported by the Dedicated Host.
+	// The instance type supported by the Dedicated Host.
 	InstanceType *string `locationName:"instanceType" type:"string"`
 
-	// The total number of instances that can be launched onto the Dedicated Host.
+	// The total number of instances that can be launched onto the Dedicated Host
+	// if there are no instances running on it.
 	TotalCapacity *int64 `locationName:"totalCapacity" type:"integer"`
 }
 
@@ -75783,6 +75935,24 @@ type ModifyHostsInput struct {
 	// For more information, see Host Recovery (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-recovery.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
 	HostRecovery *string `type:"string" enum:"HostRecovery"`
+
+	// Specifies the instance family to be supported by the Dedicated Host. Specify
+	// this parameter to modify a Dedicated Host to support multiple instance types
+	// within its current instance family.
+	//
+	// If you want to modify a Dedicated Host to support a specific instance type
+	// only, omit this parameter and specify InstanceType instead. You cannot specify
+	// InstanceFamily and InstanceType in the same request.
+	InstanceFamily *string `type:"string"`
+
+	// Specifies the instance type to be supported by the Dedicated Host. Specify
+	// this parameter to modify a Dedicated Host to support only a specific instance
+	// type.
+	//
+	// If you want to modify a Dedicated Host to support multiple instance types
+	// in its current instance family, omit this parameter and specify InstanceFamily
+	// instead. You cannot specify InstanceType and InstanceFamily in the same request.
+	InstanceType *string `type:"string"`
 }
 
 // String returns the string representation
@@ -75823,6 +75993,18 @@ func (s *ModifyHostsInput) SetHostIds(v []*string) *ModifyHostsInput {
 // SetHostRecovery sets the HostRecovery field's value.
 func (s *ModifyHostsInput) SetHostRecovery(v string) *ModifyHostsInput {
 	s.HostRecovery = &v
+	return s
+}
+
+// SetInstanceFamily sets the InstanceFamily field's value.
+func (s *ModifyHostsInput) SetInstanceFamily(v string) *ModifyHostsInput {
+	s.InstanceFamily = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *ModifyHostsInput) SetInstanceType(v string) *ModifyHostsInput {
+	s.InstanceType = &v
 	return s
 }
 
@@ -97393,6 +97575,14 @@ const (
 
 	// AllocationStrategyCapacityOptimized is a AllocationStrategy enum value
 	AllocationStrategyCapacityOptimized = "capacityOptimized"
+)
+
+const (
+	// AllowsMultipleInstanceTypesOn is a AllowsMultipleInstanceTypes enum value
+	AllowsMultipleInstanceTypesOn = "on"
+
+	// AllowsMultipleInstanceTypesOff is a AllowsMultipleInstanceTypes enum value
+	AllowsMultipleInstanceTypesOff = "off"
 )
 
 const (
