@@ -13,6 +13,22 @@
     "uid":"appsync-2017-07-25"
   },
   "operations":{
+    "CreateApiCache":{
+      "name":"CreateApiCache",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/apis/{apiId}/ApiCaches"
+      },
+      "input":{"shape":"CreateApiCacheRequest"},
+      "output":{"shape":"CreateApiCacheResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "CreateApiKey":{
       "name":"CreateApiKey",
       "http":{
@@ -111,6 +127,22 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "DeleteApiCache":{
+      "name":"DeleteApiCache",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v1/apis/{apiId}/ApiCaches"
+      },
+      "input":{"shape":"DeleteApiCacheRequest"},
+      "output":{"shape":"DeleteApiCacheResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "DeleteApiKey":{
       "name":"DeleteApiKey",
       "http":{
@@ -197,6 +229,38 @@
       },
       "input":{"shape":"DeleteTypeRequest"},
       "output":{"shape":"DeleteTypeResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "FlushApiCache":{
+      "name":"FlushApiCache",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v1/apis/{apiId}/FlushCache"
+      },
+      "input":{"shape":"FlushApiCacheRequest"},
+      "output":{"shape":"FlushApiCacheResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "GetApiCache":{
+      "name":"GetApiCache",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v1/apis/{apiId}/ApiCaches"
+      },
+      "input":{"shape":"GetApiCacheRequest"},
+      "output":{"shape":"GetApiCacheResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"ConcurrentModificationException"},
@@ -483,6 +547,22 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "UpdateApiCache":{
+      "name":"UpdateApiCache",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/apis/{apiId}/ApiCaches/update"
+      },
+      "input":{"shape":"UpdateApiCacheRequest"},
+      "output":{"shape":"UpdateApiCacheResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "UpdateApiKey":{
       "name":"UpdateApiKey",
       "http":{
@@ -601,6 +681,46 @@
       "type":"list",
       "member":{"shape":"AdditionalAuthenticationProvider"}
     },
+    "ApiCache":{
+      "type":"structure",
+      "members":{
+        "ttl":{"shape":"Long"},
+        "apiCachingBehavior":{"shape":"ApiCachingBehavior"},
+        "transitEncryptionEnabled":{"shape":"Boolean"},
+        "atRestEncryptionEnabled":{"shape":"Boolean"},
+        "type":{"shape":"ApiCacheType"},
+        "status":{"shape":"ApiCacheStatus"}
+      }
+    },
+    "ApiCacheStatus":{
+      "type":"string",
+      "enum":[
+        "AVAILABLE",
+        "CREATING",
+        "DELETING",
+        "MODIFYING",
+        "FAILED"
+      ]
+    },
+    "ApiCacheType":{
+      "type":"string",
+      "enum":[
+        "T2_SMALL",
+        "T2_MEDIUM",
+        "R4_LARGE",
+        "R4_XLARGE",
+        "R4_2XLARGE",
+        "R4_4XLARGE",
+        "R4_8XLARGE"
+      ]
+    },
+    "ApiCachingBehavior":{
+      "type":"string",
+      "enum":[
+        "FULL_REQUEST_CACHING",
+        "PER_RESOLVER_CACHING"
+      ]
+    },
     "ApiKey":{
       "type":"structure",
       "members":{
@@ -676,6 +796,17 @@
     "Blob":{"type":"blob"},
     "Boolean":{"type":"boolean"},
     "BooleanValue":{"type":"boolean"},
+    "CachingConfig":{
+      "type":"structure",
+      "members":{
+        "ttl":{"shape":"Long"},
+        "cachingKeys":{"shape":"CachingKeys"}
+      }
+    },
+    "CachingKeys":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "CognitoUserPoolConfig":{
       "type":"structure",
       "required":[
@@ -695,6 +826,49 @@
       },
       "error":{"httpStatusCode":409},
       "exception":true
+    },
+    "ConflictDetectionType":{
+      "type":"string",
+      "enum":[
+        "VERSION",
+        "NONE"
+      ]
+    },
+    "ConflictHandlerType":{
+      "type":"string",
+      "enum":[
+        "OPTIMISTIC_CONCURRENCY",
+        "LAMBDA",
+        "AUTOMERGE",
+        "NONE"
+      ]
+    },
+    "CreateApiCacheRequest":{
+      "type":"structure",
+      "required":[
+        "apiId",
+        "ttl",
+        "apiCachingBehavior",
+        "type"
+      ],
+      "members":{
+        "apiId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"apiId"
+        },
+        "ttl":{"shape":"Long"},
+        "transitEncryptionEnabled":{"shape":"Boolean"},
+        "atRestEncryptionEnabled":{"shape":"Boolean"},
+        "apiCachingBehavior":{"shape":"ApiCachingBehavior"},
+        "type":{"shape":"ApiCacheType"}
+      }
+    },
+    "CreateApiCacheResponse":{
+      "type":"structure",
+      "members":{
+        "apiCache":{"shape":"ApiCache"}
+      }
     },
     "CreateApiKeyRequest":{
       "type":"structure",
@@ -820,7 +994,9 @@
         "requestMappingTemplate":{"shape":"MappingTemplate"},
         "responseMappingTemplate":{"shape":"MappingTemplate"},
         "kind":{"shape":"ResolverKind"},
-        "pipelineConfig":{"shape":"PipelineConfig"}
+        "pipelineConfig":{"shape":"PipelineConfig"},
+        "syncConfig":{"shape":"SyncConfig"},
+        "cachingConfig":{"shape":"CachingConfig"}
       }
     },
     "CreateResolverResponse":{
@@ -888,6 +1064,22 @@
         "ALLOW",
         "DENY"
       ]
+    },
+    "DeleteApiCacheRequest":{
+      "type":"structure",
+      "required":["apiId"],
+      "members":{
+        "apiId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"apiId"
+        }
+      }
+    },
+    "DeleteApiCacheResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "DeleteApiKeyRequest":{
       "type":"structure",
@@ -1031,6 +1223,14 @@
       "members":{
       }
     },
+    "DeltaSyncConfig":{
+      "type":"structure",
+      "members":{
+        "baseTableTTL":{"shape":"Long"},
+        "deltaSyncTableName":{"shape":"String"},
+        "deltaSyncTableTTL":{"shape":"Long"}
+      }
+    },
     "DynamodbDataSourceConfig":{
       "type":"structure",
       "required":[
@@ -1040,7 +1240,9 @@
       "members":{
         "tableName":{"shape":"String"},
         "awsRegion":{"shape":"String"},
-        "useCallerCredentials":{"shape":"Boolean"}
+        "useCallerCredentials":{"shape":"Boolean"},
+        "deltaSyncConfig":{"shape":"DeltaSyncConfig"},
+        "versioned":{"shape":"Boolean"}
       }
     },
     "ElasticsearchDataSourceConfig":{
@@ -1063,6 +1265,22 @@
         "ALL"
       ]
     },
+    "FlushApiCacheRequest":{
+      "type":"structure",
+      "required":["apiId"],
+      "members":{
+        "apiId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"apiId"
+        }
+      }
+    },
+    "FlushApiCacheResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "FunctionConfiguration":{
       "type":"structure",
       "members":{
@@ -1083,6 +1301,23 @@
     "FunctionsIds":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "GetApiCacheRequest":{
+      "type":"structure",
+      "required":["apiId"],
+      "members":{
+        "apiId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"apiId"
+        }
+      }
+    },
+    "GetApiCacheResponse":{
+      "type":"structure",
+      "members":{
+        "apiCache":{"shape":"ApiCache"}
+      }
     },
     "GetDataSourceRequest":{
       "type":"structure",
@@ -1304,6 +1539,12 @@
       "error":{"httpStatusCode":500},
       "exception":true,
       "fault":true
+    },
+    "LambdaConflictHandlerConfig":{
+      "type":"structure",
+      "members":{
+        "lambdaConflictHandlerArn":{"shape":"String"}
+      }
     },
     "LambdaDataSourceConfig":{
       "type":"structure",
@@ -1606,6 +1847,8 @@
     },
     "PaginationToken":{
       "type":"string",
+      "max":65536,
+      "min":1,
       "pattern":"[\\\\S]+"
     },
     "PipelineConfig":{
@@ -1645,7 +1888,9 @@
         "requestMappingTemplate":{"shape":"MappingTemplate"},
         "responseMappingTemplate":{"shape":"MappingTemplate"},
         "kind":{"shape":"ResolverKind"},
-        "pipelineConfig":{"shape":"PipelineConfig"}
+        "pipelineConfig":{"shape":"PipelineConfig"},
+        "syncConfig":{"shape":"SyncConfig"},
+        "cachingConfig":{"shape":"CachingConfig"}
       }
     },
     "ResolverKind":{
@@ -1667,6 +1912,8 @@
     },
     "ResourceName":{
       "type":"string",
+      "max":65536,
+      "min":1,
       "pattern":"[_A-Za-z][_0-9A-Za-z]*"
     },
     "SchemaStatus":{
@@ -1702,6 +1949,14 @@
       }
     },
     "String":{"type":"string"},
+    "SyncConfig":{
+      "type":"structure",
+      "members":{
+        "conflictHandler":{"shape":"ConflictHandlerType"},
+        "conflictDetection":{"shape":"ConflictDetectionType"},
+        "lambdaConflictHandlerConfig":{"shape":"LambdaConflictHandlerConfig"}
+      }
+    },
     "TagKey":{
       "type":"string",
       "max":128,
@@ -1796,6 +2051,31 @@
     "UntagResourceResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateApiCacheRequest":{
+      "type":"structure",
+      "required":[
+        "apiId",
+        "ttl",
+        "apiCachingBehavior",
+        "type"
+      ],
+      "members":{
+        "apiId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"apiId"
+        },
+        "ttl":{"shape":"Long"},
+        "apiCachingBehavior":{"shape":"ApiCachingBehavior"},
+        "type":{"shape":"ApiCacheType"}
+      }
+    },
+    "UpdateApiCacheResponse":{
+      "type":"structure",
+      "members":{
+        "apiCache":{"shape":"ApiCache"}
       }
     },
     "UpdateApiKeyRequest":{
@@ -1948,7 +2228,9 @@
         "requestMappingTemplate":{"shape":"MappingTemplate"},
         "responseMappingTemplate":{"shape":"MappingTemplate"},
         "kind":{"shape":"ResolverKind"},
-        "pipelineConfig":{"shape":"PipelineConfig"}
+        "pipelineConfig":{"shape":"PipelineConfig"},
+        "syncConfig":{"shape":"SyncConfig"},
+        "cachingConfig":{"shape":"CachingConfig"}
       }
     },
     "UpdateResolverResponse":{

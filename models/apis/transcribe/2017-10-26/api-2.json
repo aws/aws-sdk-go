@@ -271,7 +271,14 @@
         "en-IE",
         "en-AB",
         "en-WL",
-        "pt-PT"
+        "pt-PT",
+        "te-IN",
+        "tr-TR",
+        "de-CH",
+        "he-IL",
+        "ms-MY",
+        "ja-JP",
+        "ar-AE"
       ]
     },
     "LimitExceededException":{

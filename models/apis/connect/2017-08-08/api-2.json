@@ -301,6 +301,22 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "StartChatContact":{
+      "name":"StartChatContact",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/contact/chat"
+      },
+      "input":{"shape":"StartChatContactRequest"},
+      "output":{"shape":"StartChatContactResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "StartOutboundVoiceContact":{
       "name":"StartOutboundVoiceContact",
       "http":{
@@ -474,9 +490,8 @@
     },
     "AgentUsername":{
       "type":"string",
-      "max":20,
-      "min":1,
-      "pattern":"[a-zA-Z0-9\\_\\-\\.]+"
+      "max":100,
+      "min":1
     },
     "AttributeName":{
       "type":"string",
@@ -496,12 +511,36 @@
     "AutoAccept":{"type":"boolean"},
     "Channel":{
       "type":"string",
-      "enum":["VOICE"]
+      "enum":[
+        "VOICE",
+        "CHAT"
+      ]
     },
     "Channels":{
       "type":"list",
       "member":{"shape":"Channel"},
       "max":1
+    },
+    "ChatContent":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
+    "ChatContentType":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "ChatMessage":{
+      "type":"structure",
+      "required":[
+        "ContentType",
+        "Content"
+      ],
+      "members":{
+        "ContentType":{"shape":"ChatContentType"},
+        "Content":{"shape":"ChatContent"}
+      }
     },
     "ClientToken":{
       "type":"string",
@@ -636,7 +675,10 @@
         "AGENTS_STAFFED",
         "CONTACTS_IN_QUEUE",
         "OLDEST_CONTACT_AGE",
-        "CONTACTS_SCHEDULED"
+        "CONTACTS_SCHEDULED",
+        "AGENTS_ON_CONTACT",
+        "SLOTS_ACTIVE",
+        "SLOTS_AVAILABLE"
       ]
     },
     "CurrentMetricResult":{
@@ -756,6 +798,11 @@
       }
     },
     "DirectoryUserId":{"type":"string"},
+    "DisplayName":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
     "DuplicateResourceException":{
       "type":"structure",
       "members":{
@@ -1352,6 +1399,23 @@
       "error":{"httpStatusCode":403},
       "exception":true
     },
+    "ParticipantDetails":{
+      "type":"structure",
+      "required":["DisplayName"],
+      "members":{
+        "DisplayName":{"shape":"DisplayName"}
+      }
+    },
+    "ParticipantId":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "ParticipantToken":{
+      "type":"string",
+      "max":1000,
+      "min":1
+    },
     "Password":{
       "type":"string",
       "pattern":"/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d\\S]{8,64}$/"
@@ -1731,6 +1795,33 @@
     "SecurityToken":{
       "type":"string",
       "sensitive":true
+    },
+    "StartChatContactRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ContactFlowId",
+        "ParticipantDetails"
+      ],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "ContactFlowId":{"shape":"ContactFlowId"},
+        "Attributes":{"shape":"Attributes"},
+        "ParticipantDetails":{"shape":"ParticipantDetails"},
+        "InitialMessage":{"shape":"ChatMessage"},
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "StartChatContactResponse":{
+      "type":"structure",
+      "members":{
+        "ContactId":{"shape":"ContactId"},
+        "ParticipantId":{"shape":"ParticipantId"},
+        "ParticipantToken":{"shape":"ParticipantToken"}
+      }
     },
     "StartOutboundVoiceContactRequest":{
       "type":"structure",

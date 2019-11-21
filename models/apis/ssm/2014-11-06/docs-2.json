@@ -121,6 +121,7 @@
     "UpdateManagedInstanceRole": "<p>Assigns or changes an Amazon Identity and Access Management (IAM) role for the managed instance.</p>",
     "UpdateOpsItem": "<p>Edit or change an OpsItem. You must have permission in AWS Identity and Access Management (IAM) to update an OpsItem. For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter-getting-started.html\">Getting Started with OpsCenter</a> in the <i>AWS Systems Manager User Guide</i>.</p> <p>Operations engineers and IT professionals use OpsCenter to view, investigate, and remediate operational issues impacting the performance and health of their AWS resources. For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter.html\">AWS Systems Manager OpsCenter</a> in the <i>AWS Systems Manager User Guide</i>. </p>",
     "UpdatePatchBaseline": "<p>Modifies an existing patch baseline. Fields not specified in the request are left unchanged.</p> <note> <p>For information about valid key and value pairs in <code>PatchFilters</code> for each supported operating system type, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/APIReference/API_PatchFilter.html\">PatchFilter</a>.</p> </note>",
+    "UpdateResourceDataSync": "<p>Update a resource data sync. After you create a resource data sync for a Region, you can't change the account options for that sync. For example, if you create a sync in the us-east-2 (Ohio) Region and you choose the Include only the current account option, you can't edit that sync later and choose the Include all accounts from my AWS Organizations configuration option. Instead, you must delete the first resource data sync, and create a new one.</p>",
     "UpdateServiceSetting": "<p> <code>ServiceSetting</code> is an account-level setting for an AWS service. This setting defines how a user interacts with or uses a service or a feature of a service. For example, if an AWS service charges money to the account based on feature or service usage, then the AWS service team might create a default setting of \"false\". This means the user can't use this feature unless they change the setting to \"true\" and intentionally opt in for a paid feature.</p> <p>Services map a <code>SettingId</code> object to a setting value. AWS services teams define the default value for a <code>SettingId</code>. You can't create a new <code>SettingId</code>, but you can overwrite the default value if you have the <code>ssm:UpdateServiceSetting</code> permission for the setting. Use the <a>GetServiceSetting</a> API action to view the current value. Or, use the <a>ResetServiceSetting</a> to change the value back to the original value defined by the AWS service team.</p> <p>Update the service setting for the account. </p>"
   },
   "shapes": {
@@ -5740,6 +5741,11 @@
         "ResourceDataSyncSourceWithState$AwsOrganizationsSource": "<p>The field name in <code>SyncSource</code> for the <code>ResourceDataSyncAwsOrganizationsSource</code> type.</p>"
       }
     },
+    "ResourceDataSyncConflictException": {
+      "base": "<p>Another <code>UpdateResourceDataSync</code> request is being processed. Wait a few minutes and try again.</p>",
+      "refs": {
+      }
+    },
     "ResourceDataSyncCountExceededException": {
       "base": "<p>You have exceeded the allowed maximum sync configurations.</p>",
       "refs": {
@@ -5789,7 +5795,8 @@
         "GetOpsSummaryRequest$SyncName": "<p>Specify the name of a resource data sync to get.</p>",
         "ResourceDataSyncAlreadyExistsException$SyncName": null,
         "ResourceDataSyncItem$SyncName": "<p>The name of the Resource Data Sync.</p>",
-        "ResourceDataSyncNotFoundException$SyncName": null
+        "ResourceDataSyncNotFoundException$SyncName": null,
+        "UpdateResourceDataSyncRequest$SyncName": "<p>The name of the resource data sync you want to update.</p>"
       }
     },
     "ResourceDataSyncNotFoundException": {
@@ -5855,7 +5862,8 @@
     "ResourceDataSyncSource": {
       "base": "<p>Information about the source of the data included in the resource data sync.</p>",
       "refs": {
-        "CreateResourceDataSyncRequest$SyncSource": "<p>Specify information about the data sources to synchronize.</p>"
+        "CreateResourceDataSyncRequest$SyncSource": "<p>Specify information about the data sources to synchronize.</p>",
+        "UpdateResourceDataSyncRequest$SyncSource": "<p>Specify information about the data sources to synchronize.</p>"
       }
     },
     "ResourceDataSyncSourceRegion": {
@@ -5897,7 +5905,8 @@
         "DeleteResourceDataSyncRequest$SyncType": "<p>Specify the type of resource data sync to delete.</p>",
         "ListResourceDataSyncRequest$SyncType": "<p>View a list of resource data syncs according to the sync type. Specify <code>SyncToDestination</code> to view resource data syncs that synchronize data to an Amazon S3 buckets. Specify <code>SyncFromSource</code> to view resource data syncs from AWS Organizations or from multiple AWS Regions. </p>",
         "ResourceDataSyncItem$SyncType": "<p>The type of resource data sync. If <code>SyncType</code> is <code>SyncToDestination</code>, then the resource data sync synchronizes data to an Amazon S3 bucket. If the <code>SyncType</code> is <code>SyncFromSource</code> then the resource data sync synchronizes data from AWS Organizations or from multiple AWS Regions.</p>",
-        "ResourceDataSyncNotFoundException$SyncType": null
+        "ResourceDataSyncNotFoundException$SyncType": null,
+        "UpdateResourceDataSyncRequest$SyncType": "<p>The type of resource data sync. If <code>SyncType</code> is <code>SyncToDestination</code>, then the resource data sync synchronizes data to an Amazon S3 bucket. If the <code>SyncType</code> is <code>SyncFromSource</code> then the resource data sync synchronizes data from AWS Organizations or from multiple AWS Regions.</p>"
       }
     },
     "ResourceId": {
@@ -6517,6 +6526,7 @@
         "ParameterVersionNotFound$message": null,
         "PoliciesLimitExceededException$message": null,
         "RelatedOpsItem$OpsItemId": "<p>The ID of an OpsItem related to the current OpsItem.</p>",
+        "ResourceDataSyncConflictException$Message": null,
         "ResourceDataSyncCountExceededException$Message": null,
         "ResourceDataSyncInvalidConfigurationException$Message": null,
         "ResourceDataSyncNotFoundException$Message": null,
@@ -6901,6 +6911,16 @@
       }
     },
     "UpdatePatchBaselineResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateResourceDataSyncRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateResourceDataSyncResult": {
       "base": null,
       "refs": {
       }

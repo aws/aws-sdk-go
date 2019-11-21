@@ -1,3 +1,26 @@
+Release v1.25.40 (2019-11-21)
+===
+
+### Service Client Updates
+* `service/amplify`: Updates service API and documentation
+* `service/appsync`: Updates service API and documentation
+* `service/config`: Updates service API and documentation
+* `service/connect`: Updates service API and documentation
+* `service/connectparticipant`: Adds new service
+* `service/dynamodb`: Updates service API and documentation
+  * With this release, you can convert an existing Amazon DynamoDB table to a global table by adding replicas in other AWS Regions.
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for attaching AWS License Manager Configurations to Amazon Machine Image (AMI) using ImportImage API; and adds support for running different instance sizes on EC2 Dedicated Hosts
+* `service/glue`: Updates service API and documentation
+  * This release adds support for Glue 1.0 compatible ML Transforms.
+* `service/lex-models`: Updates service API and documentation
+* `service/meteringmarketplace`: Updates service documentation
+  * Documentation updates for the AWS Marketplace Metering Service.
+* `service/runtime.lex`: Updates service API and documentation
+* `service/ssm`: Updates service API and documentation
+  * The release contains new API and API changes for AWS Systems Manager Explorer product.
+* `service/transcribe`: Updates service API
+
 Release v1.25.39 (2019-11-20)
 ===
 

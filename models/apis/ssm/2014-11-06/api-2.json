@@ -1754,6 +1754,21 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "UpdateResourceDataSync":{
+      "name":"UpdateResourceDataSync",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateResourceDataSyncRequest"},
+      "output":{"shape":"UpdateResourceDataSyncResult"},
+      "errors":[
+        {"shape":"ResourceDataSyncNotFoundException"},
+        {"shape":"ResourceDataSyncInvalidConfigurationException"},
+        {"shape":"ResourceDataSyncConflictException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "UpdateServiceSetting":{
       "name":"UpdateServiceSetting",
       "http":{
@@ -7794,6 +7809,13 @@
         "OrganizationalUnits":{"shape":"ResourceDataSyncOrganizationalUnitList"}
       }
     },
+    "ResourceDataSyncConflictException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
     "ResourceDataSyncCountExceededException":{
       "type":"structure",
       "members":{
@@ -9016,6 +9038,24 @@
         "ModifiedDate":{"shape":"DateTime"},
         "Description":{"shape":"BaselineDescription"},
         "Sources":{"shape":"PatchSourceList"}
+      }
+    },
+    "UpdateResourceDataSyncRequest":{
+      "type":"structure",
+      "required":[
+        "SyncName",
+        "SyncType",
+        "SyncSource"
+      ],
+      "members":{
+        "SyncName":{"shape":"ResourceDataSyncName"},
+        "SyncType":{"shape":"ResourceDataSyncType"},
+        "SyncSource":{"shape":"ResourceDataSyncSource"}
+      }
+    },
+    "UpdateResourceDataSyncResult":{
+      "type":"structure",
+      "members":{
       }
     },
     "UpdateServiceSettingRequest":{

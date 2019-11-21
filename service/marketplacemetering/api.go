@@ -167,8 +167,8 @@ func (c *MarketplaceMetering) MeterUsageRequest(input *MeterUsageInput) (req *re
 // API to emit metering records. For identical requests, the API is idempotent.
 // It simply returns the metering record ID.
 //
-// MeterUsage is authenticated on the buyer's AWS account, generally when running
-// from an EC2 instance on the AWS Marketplace.
+// MeterUsage is authenticated on the buyer's AWS account using credentials
+// from the EC2 instance, ECS task, or EKS pod.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -191,16 +191,17 @@ func (c *MarketplaceMetering) MeterUsageRequest(input *MeterUsageInput) (req *re
 //   with products.
 //
 //   * ErrCodeInvalidEndpointRegionException "InvalidEndpointRegionException"
-//   The endpoint being called is in a Region different from your EC2 instance.
-//   The Region of the Metering Service endpoint and the Region of the EC2 instance
-//   must match.
+//   The endpoint being called is in a AWS Region different from your EC2 instance,
+//   ECS task, or EKS pod. The Region of the Metering Service endpoint and the
+//   AWS Region of the resource must match.
 //
 //   * ErrCodeTimestampOutOfBoundsException "TimestampOutOfBoundsException"
 //   The timestamp value passed in the meterUsage() is out of allowed range.
 //
 //   * ErrCodeDuplicateRequestException "DuplicateRequestException"
-//   A metering record has already been emitted by the same EC2 instance for the
-//   given {usageDimension, timestamp} with a different usageQuantity.
+//   A metering record has already been emitted by the same EC2 instance, ECS
+//   task, or EKS pod for the given {usageDimension, timestamp} with a different
+//   usageQuantity.
 //
 //   * ErrCodeThrottlingException "ThrottlingException"
 //   The calls to the API are throttled.
