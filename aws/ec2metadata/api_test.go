@@ -813,6 +813,7 @@ func TestEC2Metadata_Concurrency(t *testing.T) {
 	wg.Add(10)
 	for i := 0; i < 10; i++ {
 		go func() {
+			defer wg.Done()
 			for j := 0; j < 10; j++ {
 				resp, err := c.GetMetadata("some/data")
 				if err != nil {
@@ -823,7 +824,6 @@ func TestEC2Metadata_Concurrency(t *testing.T) {
 					t.Errorf("expect %v, got %v", e, a)
 				}
 			}
-			wg.Done()
 		}()
 	}
 	wg.Wait()
