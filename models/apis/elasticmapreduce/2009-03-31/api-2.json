@@ -258,6 +258,19 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "ModifyCluster":{
+      "name":"ModifyCluster",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyClusterInput"},
+      "output":{"shape":"ModifyClusterOutput"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
     "ModifyInstanceFleet":{
       "name":"ModifyInstanceFleet",
       "http":{
@@ -590,9 +603,14 @@
     },
     "CancelStepsInput":{
       "type":"structure",
+      "required":[
+        "ClusterId",
+        "StepIds"
+      ],
       "members":{
         "ClusterId":{"shape":"XmlStringMaxLen256"},
-        "StepIds":{"shape":"StepIdsList"}
+        "StepIds":{"shape":"StepIdsList"},
+        "StepCancellationOption":{"shape":"StepCancellationOption"}
       }
     },
     "CancelStepsOutput":{
@@ -656,7 +674,9 @@
         "EbsRootVolumeSize":{"shape":"Integer"},
         "RepoUpgradeOnBoot":{"shape":"RepoUpgradeOnBoot"},
         "KerberosAttributes":{"shape":"KerberosAttributes"},
-        "ClusterArn":{"shape":"ArnType"}
+        "ClusterArn":{"shape":"ArnType"},
+        "StepConcurrencyLevel":{"shape":"Integer"},
+        "OutpostArn":{"shape":"OptionalArnType"}
       }
     },
     "ClusterId":{"type":"string"},
@@ -711,7 +731,8 @@
         "Name":{"shape":"String"},
         "Status":{"shape":"ClusterStatus"},
         "NormalizedInstanceHours":{"shape":"Integer"},
-        "ClusterArn":{"shape":"ArnType"}
+        "ClusterArn":{"shape":"ArnType"},
+        "OutpostArn":{"shape":"OptionalArnType"}
       }
     },
     "ClusterSummaryList":{
@@ -1648,6 +1669,20 @@
       "type":"list",
       "member":{"shape":"MetricDimension"}
     },
+    "ModifyClusterInput":{
+      "type":"structure",
+      "required":["ClusterId"],
+      "members":{
+        "ClusterId":{"shape":"String"},
+        "StepConcurrencyLevel":{"shape":"Integer"}
+      }
+    },
+    "ModifyClusterOutput":{
+      "type":"structure",
+      "members":{
+        "StepConcurrencyLevel":{"shape":"Integer"}
+      }
+    },
     "ModifyInstanceFleetInput":{
       "type":"structure",
       "required":[
@@ -1673,6 +1708,11 @@
     "NonNegativeDouble":{
       "type":"double",
       "min":0.0
+    },
+    "OptionalArnType":{
+      "type":"string",
+      "max":2048,
+      "min":0
     },
     "PlacementType":{
       "type":"structure",
@@ -1801,7 +1841,8 @@
         "CustomAmiId":{"shape":"XmlStringMaxLen256"},
         "EbsRootVolumeSize":{"shape":"Integer"},
         "RepoUpgradeOnBoot":{"shape":"RepoUpgradeOnBoot"},
-        "KerberosAttributes":{"shape":"KerberosAttributes"}
+        "KerberosAttributes":{"shape":"KerberosAttributes"},
+        "StepConcurrencyLevel":{"shape":"Integer"}
       }
     },
     "RunJobFlowOutput":{
@@ -1961,6 +2002,13 @@
         "ActionOnFailure":{"shape":"ActionOnFailure"},
         "Status":{"shape":"StepStatus"}
       }
+    },
+    "StepCancellationOption":{
+      "type":"string",
+      "enum":[
+        "SEND_INTERRUPT",
+        "TERMINATE_PROCESS"
+      ]
     },
     "StepConfig":{
       "type":"structure",

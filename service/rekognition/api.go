@@ -82,6 +82,17 @@ func (c *Rekognition) CompareFacesRequest(input *CompareFacesInput) (req *reques
 // in the source image, including the bounding box of the face and confidence
 // value.
 //
+// The QualityFilter input parameter allows you to filter out detected faces
+// that don’t meet a required quality bar. The quality bar is based on a variety
+// of common use cases. By default, CompareFaces chooses the quality bar that's
+// used to filter faces. You can also explicitly choose the quality bar. Use
+// QualityFilter, to set the quality bar by specifying LOW, MEDIUM, or HIGH.
+// If you do not want to filter detected faces, specify NONE.
+//
+// To use quality filtering, you need a collection associated with version 3
+// of the face model or higher. To get the version of the face model associated
+// with a collection, call DescribeCollection.
+//
 // If the image doesn't contain Exif metadata, CompareFaces returns orientation
 // information for the source and target images. Use these values to display
 // the images with the correct image orientation.
@@ -918,7 +929,7 @@ func (c *Rekognition) DetectFacesRequest(input *DetectFacesInput) (req *request.
 // the operation returns face details. These details include a bounding box
 // of the face, a confidence value (that the bounding box contains a face),
 // and a fixed set of attributes such as facial landmarks (for example, coordinates
-// of eye and mouth), gender, presence of beard, sunglasses, and so on.
+// of eye and mouth), presence of beard, sunglasses, and so on.
 //
 // The face-detection algorithm is most effective on frontal faces. For non-frontal
 // or obscured faces, the algorithm might not detect the faces or might detect
@@ -2707,15 +2718,15 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 // standing in the background.
 //
 // The QualityFilter input parameter allows you to filter out detected faces
-// that don’t meet the required quality bar chosen by Amazon Rekognition.
-// The quality bar is based on a variety of common use cases. By default, IndexFaces
-// filters detected faces. You can also explicitly filter detected faces by
-// specifying AUTO for the value of QualityFilter. If you do not want to filter
-// detected faces, specify NONE.
+// that don’t meet a required quality bar. The quality bar is based on a variety
+// of common use cases. By default, IndexFaces chooses the quality bar that's
+// used to filter faces. You can also explicitly choose the quality bar. Use
+// QualityFilter, to set the quality bar by specifying LOW, MEDIUM, or HIGH.
+// If you do not want to filter detected faces, specify NONE.
 //
 // To use quality filtering, you need a collection associated with version 3
-// of the face model. To get the version of the face model associated with a
-// collection, call DescribeCollection.
+// of the face model or higher. To get the version of the face model associated
+// with a collection, call DescribeCollection.
 //
 // Information about faces detected in an image, but not indexed, is returned
 // in an array of UnindexedFace objects, UnindexedFaces. Faces aren't indexed
@@ -2732,6 +2743,8 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 //
 //    * The face has an extreme pose.
 //
+//    * The face doesn’t have enough detail to be suitable for face search.
+//
 // In response, the IndexFaces operation returns an array of metadata for all
 // detected faces, FaceRecords. This includes:
 //
@@ -2747,10 +2760,10 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 //
 // If you request all facial attributes (by using the detectionAttributes parameter),
 // Amazon Rekognition returns detailed facial attributes, such as facial landmarks
-// (for example, location of eye and mouth) and other facial attributes like
-// gender. If you provide the same image, specify the same collection, and use
-// the same external ID in the IndexFaces operation, Amazon Rekognition doesn't
-// save duplicate face metadata.
+// (for example, location of eye and mouth) and other facial attributes. If
+// you provide the same image, specify the same collection, and use the same
+// external ID in the IndexFaces operation, Amazon Rekognition doesn't save
+// duplicate face metadata.
 //
 // The input image is passed either as base64-encoded image bytes, or as a reference
 // to an image in an Amazon S3 bucket. If you use the AWS CLI to call Amazon
@@ -3610,6 +3623,17 @@ func (c *Rekognition) SearchFacesByImageRequest(input *SearchFacesByImageInput) 
 //
 // For an example, Searching for a Face Using an Image in the Amazon Rekognition
 // Developer Guide.
+//
+// The QualityFilter input parameter allows you to filter out detected faces
+// that don’t meet a required quality bar. The quality bar is based on a variety
+// of common use cases. By default, Amazon Rekognition chooses the quality bar
+// that's used to filter faces. You can also explicitly choose the quality bar.
+// Use QualityFilter, to set the quality bar for filtering by specifying LOW,
+// MEDIUM, or HIGH. If you do not want to filter detected faces, specify NONE.
+//
+// To use quality filtering, you need a collection associated with version 3
+// of the face model or higher. To get the version of the face model associated
+// with a collection, call DescribeCollection.
 //
 // This operation requires permissions to perform the rekognition:SearchFacesByImage
 // action.
@@ -4930,6 +4954,19 @@ func (s *CelebrityRecognition) SetTimestamp(v int64) *CelebrityRecognition {
 type CompareFacesInput struct {
 	_ struct{} `type:"structure"`
 
+	// A filter that specifies a quality bar for how much filtering is done to identify
+	// faces. Filtered faces aren't compared. If you specify AUTO, Amazon Rekognition
+	// chooses the quality bar. If you specify LOW, MEDIUM, or HIGH, filtering removes
+	// all faces that don’t meet the chosen quality bar. The default value is
+	// AUTO. The quality bar is based on a variety of common use cases. Low-quality
+	// detections can occur for a number of reasons. Some examples are an object
+	// that's misidentified as a face, a face that's too blurry, or a face with
+	// a pose that's too extreme to use. If you specify NONE, no filtering is performed.
+	//
+	// To use quality filtering, the collection you are using must be associated
+	// with version 3 of the face model or higher.
+	QualityFilter *string `type:"string" enum:"QualityFilter"`
+
 	// The minimum level of confidence in the face matches that a match must meet
 	// to be included in the FaceMatches array.
 	SimilarityThreshold *float64 `type:"float"`
@@ -4991,6 +5028,12 @@ func (s *CompareFacesInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetQualityFilter sets the QualityFilter field's value.
+func (s *CompareFacesInput) SetQualityFilter(v string) *CompareFacesInput {
+	s.QualityFilter = &v
+	return s
 }
 
 // SetSimilarityThreshold sets the SimilarityThreshold field's value.
@@ -6552,7 +6595,7 @@ type FaceDetail struct {
 	// level in the determination.
 	EyesOpen *EyeOpen `type:"structure"`
 
-	// Gender of the face and the confidence level in the determination.
+	// The predicted gender of a detected face.
 	Gender *Gender `type:"structure"`
 
 	// Indicates the location of landmarks on the face. Default attribute.
@@ -6835,14 +6878,29 @@ func (s *FaceSearchSettings) SetFaceMatchThreshold(v float64) *FaceSearchSetting
 	return s
 }
 
-// Gender of the face and the confidence level in the determination.
+// The predicted gender of a detected face.
+//
+// Amazon Rekognition makes gender binary (male/female) predictions based on
+// the physical appearance of a face in a particular image. This kind of prediction
+// is not designed to categorize a person’s gender identity, and you shouldn't
+// use Amazon Rekognition to make such a determination. For example, a male
+// actor wearing a long-haired wig and earrings for a role might be predicted
+// as female.
+//
+// Using Amazon Rekognition to make gender binary predictions is best suited
+// for use cases where aggregate gender distribution statistics need to be analyzed
+// without identifying specific users. For example, the percentage of female
+// users compared to male users on a social media platform.
+//
+// We don't recommend using gender binary predictions to make decisions that
+// impact an individual's rights, privacy, or access to services.
 type Gender struct {
 	_ struct{} `type:"structure"`
 
-	// Level of confidence in the determination.
+	// Level of confidence in the prediction.
 	Confidence *float64 `type:"float"`
 
-	// Gender of the face.
+	// The predicted gender of the face.
 	Value *string `type:"string" enum:"GenderType"`
 }
 
@@ -8003,18 +8061,17 @@ type IndexFacesInput struct {
 	// face model.
 	MaxFaces *int64 `min:"1" type:"integer"`
 
-	// A filter that specifies how much filtering is done to identify faces that
-	// are detected with low quality. Filtered faces aren't indexed. If you specify
-	// AUTO, filtering prioritizes the identification of faces that don’t meet
-	// the required quality bar chosen by Amazon Rekognition. The quality bar is
-	// based on a variety of common use cases. Low-quality detections can occur
-	// for a number of reasons. Some examples are an object that's misidentified
-	// as a face, a face that's too blurry, or a face with a pose that's too extreme
-	// to use. If you specify NONE, no filtering is performed. The default value
-	// is AUTO.
+	// A filter that specifies a quality bar for how much filtering is done to identify
+	// faces. Filtered faces aren't indexed. If you specify AUTO, Amazon Rekognition
+	// chooses the quality bar. If you specify LOW, MEDIUM, or HIGH, filtering removes
+	// all faces that don’t meet the chosen quality bar. The default value is
+	// AUTO. The quality bar is based on a variety of common use cases. Low-quality
+	// detections can occur for a number of reasons. Some examples are an object
+	// that's misidentified as a face, a face that's too blurry, or a face with
+	// a pose that's too extreme to use. If you specify NONE, no filtering is performed.
 	//
 	// To use quality filtering, the collection you are using must be associated
-	// with version 3 of the face model.
+	// with version 3 of the face model or higher.
 	QualityFilter *string `type:"string" enum:"QualityFilter"`
 }
 
@@ -9266,6 +9323,20 @@ type SearchFacesByImageInput struct {
 	// Maximum number of faces to return. The operation returns the maximum number
 	// of faces with the highest confidence in the match.
 	MaxFaces *int64 `min:"1" type:"integer"`
+
+	// A filter that specifies a quality bar for how much filtering is done to identify
+	// faces. Filtered faces aren't searched for in the collection. If you specify
+	// AUTO, Amazon Rekognition chooses the quality bar. If you specify LOW, MEDIUM,
+	// or HIGH, filtering removes all faces that don’t meet the chosen quality
+	// bar. The default value is AUTO. The quality bar is based on a variety of
+	// common use cases. Low-quality detections can occur for a number of reasons.
+	// Some examples are an object that's misidentified as a face, a face that's
+	// too blurry, or a face with a pose that's too extreme to use. If you specify
+	// NONE, no filtering is performed.
+	//
+	// To use quality filtering, the collection you are using must be associated
+	// with version 3 of the face model or higher.
+	QualityFilter *string `type:"string" enum:"QualityFilter"`
 }
 
 // String returns the string representation
@@ -9326,6 +9397,12 @@ func (s *SearchFacesByImageInput) SetImage(v *Image) *SearchFacesByImageInput {
 // SetMaxFaces sets the MaxFaces field's value.
 func (s *SearchFacesByImageInput) SetMaxFaces(v int64) *SearchFacesByImageInput {
 	s.MaxFaces = &v
+	return s
+}
+
+// SetQualityFilter sets the QualityFilter field's value.
+func (s *SearchFacesByImageInput) SetQualityFilter(v string) *SearchFacesByImageInput {
+	s.QualityFilter = &v
 	return s
 }
 
@@ -11012,6 +11089,15 @@ const (
 
 	// QualityFilterAuto is a QualityFilter enum value
 	QualityFilterAuto = "AUTO"
+
+	// QualityFilterLow is a QualityFilter enum value
+	QualityFilterLow = "LOW"
+
+	// QualityFilterMedium is a QualityFilter enum value
+	QualityFilterMedium = "MEDIUM"
+
+	// QualityFilterHigh is a QualityFilter enum value
+	QualityFilterHigh = "HIGH"
 )
 
 const (
@@ -11032,6 +11118,9 @@ const (
 
 	// ReasonSmallBoundingBox is a Reason enum value
 	ReasonSmallBoundingBox = "SMALL_BOUNDING_BOX"
+
+	// ReasonLowFaceQuality is a Reason enum value
+	ReasonLowFaceQuality = "LOW_FACE_QUALITY"
 )
 
 const (

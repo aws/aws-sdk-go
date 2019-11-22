@@ -20934,6 +20934,10 @@ type DescribePatchGroupStateOutput struct {
 	// The number of instances with installed patches.
 	InstancesWithInstalledPatches *int64 `type:"integer"`
 
+	// The number of instances with patches installed that have not been rebooted
+	// after the patch installation. The status of these instances is NON_COMPLIANT.
+	InstancesWithInstalledPendingRebootPatches *int64 `type:"integer"`
+
 	// The number of instances with patches installed that are specified in a RejectedPatches
 	// list. Patches with a status of INSTALLED_REJECTED were typically installed
 	// before they were added to a RejectedPatches list.
@@ -20984,6 +20988,12 @@ func (s *DescribePatchGroupStateOutput) SetInstancesWithInstalledOtherPatches(v 
 // SetInstancesWithInstalledPatches sets the InstancesWithInstalledPatches field's value.
 func (s *DescribePatchGroupStateOutput) SetInstancesWithInstalledPatches(v int64) *DescribePatchGroupStateOutput {
 	s.InstancesWithInstalledPatches = &v
+	return s
+}
+
+// SetInstancesWithInstalledPendingRebootPatches sets the InstancesWithInstalledPendingRebootPatches field's value.
+func (s *DescribePatchGroupStateOutput) SetInstancesWithInstalledPendingRebootPatches(v int64) *DescribePatchGroupStateOutput {
+	s.InstancesWithInstalledPendingRebootPatches = &v
 	return s
 }
 
@@ -25673,6 +25683,9 @@ type InstancePatchState struct {
 	// on the instance.
 	InstalledOtherCount *int64 `type:"integer"`
 
+	// The number of patches installed since the last time the instance was rebooted.
+	InstalledPendingRebootCount *int64 `type:"integer"`
+
 	// The number of instances with patches installed that are specified in a RejectedPatches
 	// list. Patches with a status of InstalledRejected were typically installed
 	// before they were added to a RejectedPatches list.
@@ -25686,6 +25699,10 @@ type InstancePatchState struct {
 	//
 	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
+
+	// The time of the last attempt to patch the instance with NoReboot specified
+	// as the reboot option.
+	LastNoRebootInstallOperationTime *time.Time `type:"timestamp"`
 
 	// The number of patches from the patch baseline that are applicable for the
 	// instance but aren't currently installed.
@@ -25721,6 +25738,20 @@ type InstancePatchState struct {
 	//
 	// PatchGroup is a required field
 	PatchGroup *string `min:"1" type:"string" required:"true"`
+
+	// Indicates the reboot option specified in the patch baseline.
+	//
+	// Reboot options apply to Install operations only. Reboots are not attempted
+	// for Patch Manager Scan operations.
+	//
+	//    * RebootIfNeeded: Patch Manager tries to reboot the instance if it installed
+	//    any patches, or if any patches are detected with a status of InstalledPendingReboot.
+	//
+	//    * NoReboot: Patch Manager attempts to install missing packages without
+	//    trying to reboot the system. Patches installed with this option are assigned
+	//    a status of InstalledPendingReboot. These patches might not be in effect
+	//    until a reboot is performed.
+	RebootOption *string `type:"string" enum:"RebootOption"`
 
 	// The ID of the patch baseline snapshot used during the patching operation
 	// when this compliance data was collected.
@@ -25771,6 +25802,12 @@ func (s *InstancePatchState) SetInstalledOtherCount(v int64) *InstancePatchState
 	return s
 }
 
+// SetInstalledPendingRebootCount sets the InstalledPendingRebootCount field's value.
+func (s *InstancePatchState) SetInstalledPendingRebootCount(v int64) *InstancePatchState {
+	s.InstalledPendingRebootCount = &v
+	return s
+}
+
 // SetInstalledRejectedCount sets the InstalledRejectedCount field's value.
 func (s *InstancePatchState) SetInstalledRejectedCount(v int64) *InstancePatchState {
 	s.InstalledRejectedCount = &v
@@ -25780,6 +25817,12 @@ func (s *InstancePatchState) SetInstalledRejectedCount(v int64) *InstancePatchSt
 // SetInstanceId sets the InstanceId field's value.
 func (s *InstancePatchState) SetInstanceId(v string) *InstancePatchState {
 	s.InstanceId = &v
+	return s
+}
+
+// SetLastNoRebootInstallOperationTime sets the LastNoRebootInstallOperationTime field's value.
+func (s *InstancePatchState) SetLastNoRebootInstallOperationTime(v time.Time) *InstancePatchState {
+	s.LastNoRebootInstallOperationTime = &v
 	return s
 }
 
@@ -25822,6 +25865,12 @@ func (s *InstancePatchState) SetOwnerInformation(v string) *InstancePatchState {
 // SetPatchGroup sets the PatchGroup field's value.
 func (s *InstancePatchState) SetPatchGroup(v string) *InstancePatchState {
 	s.PatchGroup = &v
+	return s
+}
+
+// SetRebootOption sets the RebootOption field's value.
+func (s *InstancePatchState) SetRebootOption(v string) *InstancePatchState {
+	s.RebootOption = &v
 	return s
 }
 
@@ -31864,7 +31913,11 @@ type PutParameterInput struct {
 	//
 	// The maximum length constraint listed below includes capacity for additional
 	// system attributes that are not part of the name. The maximum length for the
-	// fully qualified parameter name is 1011 characters.
+	// fully qualified parameter name is 1011 characters, including the full length
+	// of the parameter ARN. For example, the following fully qualified parameter
+	// name is 65 characters, not 20 characters:
+	//
+	// arn:aws:ssm:us-east-2:111122223333:parameter/ExampleParameterName
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -38529,6 +38582,9 @@ const (
 	// PatchComplianceDataStateInstalledOther is a PatchComplianceDataState enum value
 	PatchComplianceDataStateInstalledOther = "INSTALLED_OTHER"
 
+	// PatchComplianceDataStateInstalledPendingReboot is a PatchComplianceDataState enum value
+	PatchComplianceDataStateInstalledPendingReboot = "INSTALLED_PENDING_REBOOT"
+
 	// PatchComplianceDataStateInstalledRejected is a PatchComplianceDataState enum value
 	PatchComplianceDataStateInstalledRejected = "INSTALLED_REJECTED"
 
@@ -38658,6 +38714,14 @@ const (
 
 	// PlatformTypeLinux is a PlatformType enum value
 	PlatformTypeLinux = "Linux"
+)
+
+const (
+	// RebootOptionRebootIfNeeded is a RebootOption enum value
+	RebootOptionRebootIfNeeded = "RebootIfNeeded"
+
+	// RebootOptionNoReboot is a RebootOption enum value
+	RebootOptionNoReboot = "NoReboot"
 )
 
 const (

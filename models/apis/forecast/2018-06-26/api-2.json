@@ -533,7 +533,8 @@
       ],
       "members":{
         "ForecastName":{"shape":"Name"},
-        "PredictorArn":{"shape":"Arn"}
+        "PredictorArn":{"shape":"Arn"},
+        "ForecastTypes":{"shape":"ForecastTypes"}
       }
     },
     "CreateForecastResponse":{
@@ -774,6 +775,7 @@
       "members":{
         "ForecastArn":{"shape":"Arn"},
         "ForecastName":{"shape":"Name"},
+        "ForecastTypes":{"shape":"ForecastTypes"},
         "PredictorArn":{"shape":"Arn"},
         "DatasetGroupArn":{"shape":"Arn"},
         "Status":{"shape":"String"},
@@ -804,6 +806,7 @@
         "InputDataConfig":{"shape":"InputDataConfig"},
         "FeaturizationConfig":{"shape":"FeaturizationConfig"},
         "EncryptionConfig":{"shape":"EncryptionConfig"},
+        "PredictorExecutionDetails":{"shape":"PredictorExecutionDetails"},
         "DatasetImportJobArns":{"shape":"ArnList"},
         "AutoMLAlgorithmArns":{"shape":"ArnList"},
         "Status":{"shape":"Status"},
@@ -969,6 +972,16 @@
         "CreationTime":{"shape":"Timestamp"},
         "LastModificationTime":{"shape":"Timestamp"}
       }
+    },
+    "ForecastType":{
+      "type":"string",
+      "pattern":"(^0?\\.\\d\\d?$|^mean$)"
+    },
+    "ForecastTypes":{
+      "type":"list",
+      "member":{"shape":"ForecastType"},
+      "max":20,
+      "min":1
     },
     "Forecasts":{
       "type":"list",
@@ -1157,7 +1170,7 @@
       "type":"string",
       "max":63,
       "min":1,
-      "pattern":"^[a-zA-Z0-9][a-zA-Z0-9_]*"
+      "pattern":"^[a-zA-Z][a-zA-Z0-9_]*"
     },
     "NextToken":{
       "type":"string",
@@ -1185,6 +1198,25 @@
     "PredictorEvaluationResults":{
       "type":"list",
       "member":{"shape":"EvaluationResult"}
+    },
+    "PredictorExecution":{
+      "type":"structure",
+      "members":{
+        "AlgorithmArn":{"shape":"Arn"},
+        "TestWindows":{"shape":"TestWindowDetails"}
+      }
+    },
+    "PredictorExecutionDetails":{
+      "type":"structure",
+      "members":{
+        "PredictorExecutions":{"shape":"PredictorExecutions"}
+      }
+    },
+    "PredictorExecutions":{
+      "type":"list",
+      "member":{"shape":"PredictorExecution"},
+      "max":5,
+      "min":1
     },
     "PredictorSummary":{
       "type":"structure",
@@ -1237,7 +1269,7 @@
     },
     "S3Path":{
       "type":"string",
-      "pattern":"^s3://.+$"
+      "pattern":"^s3://[a-z0-9].+$"
     },
     "ScalingType":{
       "type":"string",
@@ -1303,6 +1335,19 @@
       "member":{"shape":"SupplementaryFeature"},
       "max":1,
       "min":1
+    },
+    "TestWindowDetails":{
+      "type":"list",
+      "member":{"shape":"TestWindowSummary"}
+    },
+    "TestWindowSummary":{
+      "type":"structure",
+      "members":{
+        "TestWindowStart":{"shape":"Timestamp"},
+        "TestWindowEnd":{"shape":"Timestamp"},
+        "Status":{"shape":"Status"},
+        "Message":{"shape":"ErrorMessage"}
+      }
     },
     "TestWindows":{
       "type":"list",

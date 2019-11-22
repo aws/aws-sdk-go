@@ -322,10 +322,6 @@
       },
       "application-autoscaling" : {
         "defaults" : {
-          "credentialScope" : {
-            "service" : "application-autoscaling"
-          },
-          "hostname" : "autoscaling.{region}.amazonaws.com",
           "protocols" : [ "http", "https" ]
         },
         "endpoints" : {
@@ -454,10 +450,6 @@
       },
       "autoscaling-plans" : {
         "defaults" : {
-          "credentialScope" : {
-            "service" : "autoscaling-plans"
-          },
-          "hostname" : "autoscaling.{region}.amazonaws.com",
           "protocols" : [ "http", "https" ]
         },
         "endpoints" : {
@@ -3942,10 +3934,6 @@
       },
       "application-autoscaling" : {
         "defaults" : {
-          "credentialScope" : {
-            "service" : "application-autoscaling"
-          },
-          "hostname" : "autoscaling.{region}.amazonaws.com",
           "protocols" : [ "http", "https" ]
         },
         "endpoints" : {
@@ -4447,6 +4435,9 @@
         }
       },
       "application-autoscaling" : {
+        "defaults" : {
+          "protocols" : [ "http", "https" ]
+        },
         "endpoints" : {
           "us-gov-east-1" : { },
           "us-gov-west-1" : { }
@@ -5171,10 +5162,7 @@
       },
       "application-autoscaling" : {
         "defaults" : {
-          "credentialScope" : {
-            "service" : "application-autoscaling"
-          },
-          "hostname" : "autoscaling.{region}.amazonaws.com",
+          "hostname" : "autoscaling.us-iso-east-1.c2s.ic.gov",
           "protocols" : [ "http", "https" ]
         },
         "endpoints" : {
@@ -5444,10 +5432,7 @@
     "services" : {
       "application-autoscaling" : {
         "defaults" : {
-          "credentialScope" : {
-            "service" : "application-autoscaling"
-          },
-          "hostname" : "autoscaling.{region}.amazonaws.com",
+          "hostname" : "autoscaling.us-isob-east-1.sc2s.sgov.gov",
           "protocols" : [ "http", "https" ]
         },
         "endpoints" : {

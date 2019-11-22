@@ -157,6 +157,10 @@ type EMRAPI interface {
 	ListStepsPages(*emr.ListStepsInput, func(*emr.ListStepsOutput, bool) bool) error
 	ListStepsPagesWithContext(aws.Context, *emr.ListStepsInput, func(*emr.ListStepsOutput, bool) bool, ...request.Option) error
 
+	ModifyCluster(*emr.ModifyClusterInput) (*emr.ModifyClusterOutput, error)
+	ModifyClusterWithContext(aws.Context, *emr.ModifyClusterInput, ...request.Option) (*emr.ModifyClusterOutput, error)
+	ModifyClusterRequest(*emr.ModifyClusterInput) (*request.Request, *emr.ModifyClusterOutput)
+
 	ModifyInstanceFleet(*emr.ModifyInstanceFleetInput) (*emr.ModifyInstanceFleetOutput, error)
 	ModifyInstanceFleetWithContext(aws.Context, *emr.ModifyInstanceFleetInput, ...request.Option) (*emr.ModifyInstanceFleetOutput, error)
 	ModifyInstanceFleetRequest(*emr.ModifyInstanceFleetInput) (*request.Request, *emr.ModifyInstanceFleetOutput)

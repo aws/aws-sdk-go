@@ -1250,6 +1250,9 @@ type AssetShallow struct {
 	// The ARN of the Asset.
 	Arn *string `locationName:"arn" type:"string"`
 
+	// The time the Asset was initially submitted for Ingest.
+	CreatedAt *string `locationName:"createdAt" type:"string"`
+
 	// The unique identifier for the Asset.
 	Id *string `locationName:"id" type:"string"`
 
@@ -1279,6 +1282,12 @@ func (s AssetShallow) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *AssetShallow) SetArn(v string) *AssetShallow {
 	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *AssetShallow) SetCreatedAt(v string) *AssetShallow {
+	s.CreatedAt = &v
 	return s
 }
 
@@ -1505,6 +1514,8 @@ type CreateAssetOutput struct {
 
 	Arn *string `locationName:"arn" type:"string"`
 
+	CreatedAt *string `locationName:"createdAt" type:"string"`
+
 	EgressEndpoints []*EgressEndpoint `locationName:"egressEndpoints" type:"list"`
 
 	Id *string `locationName:"id" type:"string"`
@@ -1531,6 +1542,12 @@ func (s CreateAssetOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *CreateAssetOutput) SetArn(v string) *CreateAssetOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CreateAssetOutput) SetCreatedAt(v string) *CreateAssetOutput {
+	s.CreatedAt = &v
 	return s
 }
 
@@ -2178,6 +2195,8 @@ type DescribeAssetOutput struct {
 
 	Arn *string `locationName:"arn" type:"string"`
 
+	CreatedAt *string `locationName:"createdAt" type:"string"`
+
 	EgressEndpoints []*EgressEndpoint `locationName:"egressEndpoints" type:"list"`
 
 	Id *string `locationName:"id" type:"string"`
@@ -2204,6 +2223,12 @@ func (s DescribeAssetOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *DescribeAssetOutput) SetArn(v string) *DescribeAssetOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *DescribeAssetOutput) SetCreatedAt(v string) *DescribeAssetOutput {
+	s.CreatedAt = &v
 	return s
 }
 

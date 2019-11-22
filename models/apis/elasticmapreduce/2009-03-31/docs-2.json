@@ -21,6 +21,7 @@
     "ListInstances": "<p>Provides information for all active EC2 instances and EC2 instances terminated in the last 30 days, up to a maximum of 2,000. EC2 instances in any of the following states are considered active: AWAITING_FULFILLMENT, PROVISIONING, BOOTSTRAPPING, RUNNING.</p>",
     "ListSecurityConfigurations": "<p>Lists all the security configurations visible to this account, providing their creation dates and times, and their names. This call returns a maximum of 50 clusters per call, but returns a marker to track the paging of the cluster list across multiple ListSecurityConfigurations calls.</p>",
     "ListSteps": "<p>Provides a list of steps for the cluster in reverse order unless you specify <code>stepIds</code> with the request of filter by <code>StepStates</code>. You can specify a maximum of ten <code>stepIDs</code>.</p>",
+    "ModifyCluster": "<p>Modifies the number of steps that can be executed concurrently for the cluster specified using ClusterID.</p>",
     "ModifyInstanceFleet": "<p>Modifies the target On-Demand and target Spot capacities for the instance fleet with the specified InstanceFleetID within the cluster specified using ClusterID. The call either succeeds or fails atomically.</p> <note> <p>The instance fleet configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x versions.</p> </note>",
     "ModifyInstanceGroups": "<p>ModifyInstanceGroups modifies the number of nodes and configuration settings of an instance group. The input parameters include the new target instance count for the group and the instance group ID. The call will either succeed or fail atomically.</p>",
     "PutAutoScalingPolicy": "<p>Creates or updates an automatic scaling policy for a core instance group or task instance group in an Amazon EMR cluster. The automatic scaling policy defines how an instance group dynamically adds and terminates EC2 instances in response to the value of a CloudWatch metric.</p>",
@@ -882,6 +883,7 @@
         "CloudWatchAlarmDefinition$Period": "<p>The period, in seconds, over which the statistic is applied. EMR CloudWatch metrics are emitted every five minutes (300 seconds), so if an EMR CloudWatch metric is specified, specify <code>300</code>.</p>",
         "Cluster$NormalizedInstanceHours": "<p>An approximation of the cost of the cluster, represented in m1.small/hours. This value is incremented one time for every hour an m1.small instance runs. Larger instances are weighted more, so an EC2 instance that is roughly four times more expensive would result in the normalized instance hours being incremented by four. This result is only an approximation and does not reflect the actual billing rate.</p>",
         "Cluster$EbsRootVolumeSize": "<p>The size, in GiB, of the EBS root device volume of the Linux AMI that is used for each EC2 instance. Available in Amazon EMR version 4.x and later.</p>",
+        "Cluster$StepConcurrencyLevel": "<p>Specifies the number of steps that can be executed concurrently.</p>",
         "ClusterSummary$NormalizedInstanceHours": "<p>An approximation of the cost of the cluster, represented in m1.small/hours. This value is incremented one time for every hour an m1.small instance runs. Larger instances are weighted more, so an EC2 instance that is roughly four times more expensive would result in the normalized instance hours being incremented by four. This result is only an approximation and does not reflect the actual billing rate.</p>",
         "EbsBlockDeviceConfig$VolumesPerInstance": "<p>Number of EBS volumes with a specific volume configuration that will be associated with every instance in the instance group</p>",
         "InstanceGroup$RequestedInstanceCount": "<p>The target number of instances for the instance group.</p>",
@@ -894,7 +896,10 @@
         "JobFlowInstancesConfig$InstanceCount": "<p>The number of EC2 instances in the cluster.</p>",
         "JobFlowInstancesDetail$InstanceCount": "<p>The number of Amazon EC2 instances in the cluster. If the value is 1, the same instance serves as both the master and core and task node. If the value is greater than 1, one instance is the master node and all others are core and task nodes.</p>",
         "JobFlowInstancesDetail$NormalizedInstanceHours": "<p>An approximation of the cost of the cluster, represented in m1.small/hours. This value is incremented one time for every hour that an m1.small runs. Larger instances are weighted more, so an Amazon EC2 instance that is roughly four times more expensive would result in the normalized instance hours being incremented by four. This result is only an approximation and does not reflect the actual billing rate.</p>",
+        "ModifyClusterInput$StepConcurrencyLevel": "<p>The number of steps that can be executed concurrently. You can specify a maximum of 256 steps. </p>",
+        "ModifyClusterOutput$StepConcurrencyLevel": "<p>The number of steps that can be executed concurrently.</p>",
         "RunJobFlowInput$EbsRootVolumeSize": "<p>The size, in GiB, of the EBS root device volume of the Linux AMI that is used for each EC2 instance. Available in Amazon EMR version 4.x and later.</p>",
+        "RunJobFlowInput$StepConcurrencyLevel": "<p>Specifies the number of steps that can be executed concurrently. The default value is <code>1</code>. The maximum value is <code>256</code>.</p>",
         "ScalingConstraints$MinCapacity": "<p>The lower boundary of EC2 instances in an instance group below which scaling activities are not allowed to shrink. Scale-in activities will not terminate instances below this boundary.</p>",
         "ScalingConstraints$MaxCapacity": "<p>The upper boundary of EC2 instances in an instance group beyond which scaling activities are not allowed to grow. Scale-out activities will not add instances beyond this boundary.</p>",
         "ShrinkPolicy$DecommissionTimeout": "<p>The desired timeout for decommissioning an instance. Overrides the default YARN decommissioning timeout.</p>",
@@ -1099,6 +1104,16 @@
         "CloudWatchAlarmDefinition$Dimensions": "<p>A CloudWatch metric dimension.</p>"
       }
     },
+    "ModifyClusterInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyClusterOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ModifyInstanceFleetInput": {
       "base": null,
       "refs": {
@@ -1121,6 +1136,13 @@
         "CloudWatchAlarmDefinition$Threshold": "<p>The value against which the specified statistic is compared.</p>",
         "InstanceTypeConfig$BidPriceAsPercentageOfOnDemandPrice": "<p>The bid price, as a percentage of On-Demand price, for each EC2 Spot instance as defined by <code>InstanceType</code>. Expressed as a number (for example, 20 specifies 20%). If neither <code>BidPrice</code> nor <code>BidPriceAsPercentageOfOnDemandPrice</code> is provided, <code>BidPriceAsPercentageOfOnDemandPrice</code> defaults to 100%.</p>",
         "InstanceTypeSpecification$BidPriceAsPercentageOfOnDemandPrice": "<p>The bid price, as a percentage of On-Demand price, for each EC2 Spot instance as defined by <code>InstanceType</code>. Expressed as a number (for example, 20 specifies 20%).</p>"
+      }
+    },
+    "OptionalArnType": {
+      "base": null,
+      "refs": {
+        "Cluster$OutpostArn": "<p> The Amazon Resource Name (ARN) of the Outpost where the cluster is launched. </p>",
+        "ClusterSummary$OutpostArn": "<p> The Amazon Resource Name (ARN) of the Outpost where the cluster is launched. </p>"
       }
     },
     "PlacementType": {
@@ -1325,6 +1347,12 @@
         "DescribeStepOutput$Step": "<p>The step details for the requested step identifier.</p>"
       }
     },
+    "StepCancellationOption": {
+      "base": null,
+      "refs": {
+        "CancelStepsInput$StepCancellationOption": "<p>The option to choose for cancelling <code>RUNNING</code> steps. By default, the value is <code>SEND_INTERRUPT</code>.</p>"
+      }
+    },
     "StepConfig": {
       "base": "<p>Specification of a cluster (job flow) step.</p>",
       "refs": {
@@ -1479,6 +1507,7 @@
         "InstanceStateChangeReason$Message": "<p>The status change reason description.</p>",
         "MetricDimension$Key": "<p>The dimension name.</p>",
         "MetricDimension$Value": "<p>The dimension value.</p>",
+        "ModifyClusterInput$ClusterId": "<p>The unique identifier of the cluster.</p>",
         "ScalingRule$Name": "<p>The name used to identify an automatic scaling rule. Rule names must be unique within a scaling policy.</p>",
         "ScalingRule$Description": "<p>A friendly, more verbose description of the automatic scaling rule.</p>",
         "Step$Name": "<p>The name of the cluster step.</p>",

@@ -768,7 +768,8 @@
       "members":{
         "SourceImage":{"shape":"Image"},
         "TargetImage":{"shape":"Image"},
-        "SimilarityThreshold":{"shape":"Percent"}
+        "SimilarityThreshold":{"shape":"Percent"},
+        "QualityFilter":{"shape":"QualityFilter"}
       }
     },
     "CompareFacesResponse":{
@@ -1730,7 +1731,10 @@
       "type":"string",
       "enum":[
         "NONE",
-        "AUTO"
+        "AUTO",
+        "LOW",
+        "MEDIUM",
+        "HIGH"
       ]
     },
     "Reason":{
@@ -1741,7 +1745,8 @@
         "LOW_BRIGHTNESS",
         "LOW_SHARPNESS",
         "LOW_CONFIDENCE",
-        "SMALL_BOUNDING_BOX"
+        "SMALL_BOUNDING_BOX",
+        "LOW_FACE_QUALITY"
       ]
     },
     "Reasons":{
@@ -1827,7 +1832,8 @@
         "CollectionId":{"shape":"CollectionId"},
         "Image":{"shape":"Image"},
         "MaxFaces":{"shape":"MaxFaces"},
-        "FaceMatchThreshold":{"shape":"Percent"}
+        "FaceMatchThreshold":{"shape":"Percent"},
+        "QualityFilter":{"shape":"QualityFilter"}
       }
     },
     "SearchFacesByImageResponse":{

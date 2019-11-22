@@ -425,11 +425,7 @@ var awsPartition = partition{
 		},
 		"application-autoscaling": service{
 			Defaults: endpoint{
-				Hostname:  "autoscaling.{region}.amazonaws.com",
 				Protocols: []string{"http", "https"},
-				CredentialScope: credentialScope{
-					Service: "application-autoscaling",
-				},
 			},
 			Endpoints: endpoints{
 				"ap-east-1":      endpoint{},
@@ -560,11 +556,7 @@ var awsPartition = partition{
 		},
 		"autoscaling-plans": service{
 			Defaults: endpoint{
-				Hostname:  "autoscaling.{region}.amazonaws.com",
 				Protocols: []string{"http", "https"},
-				CredentialScope: credentialScope{
-					Service: "autoscaling-plans",
-				},
 			},
 			Endpoints: endpoints{
 				"ap-northeast-1": endpoint{},
@@ -4171,11 +4163,7 @@ var awscnPartition = partition{
 		},
 		"application-autoscaling": service{
 			Defaults: endpoint{
-				Hostname:  "autoscaling.{region}.amazonaws.com.cn",
 				Protocols: []string{"http", "https"},
-				CredentialScope: credentialScope{
-					Service: "application-autoscaling",
-				},
 			},
 			Endpoints: endpoints{
 				"cn-north-1":     endpoint{},
@@ -4732,7 +4720,8 @@ var awsusgovPartition = partition{
 		},
 		"application-autoscaling": service{
 			Defaults: endpoint{
-				Hostname: "autoscaling.{region}.amazonaws.com",
+				Hostname:  "autoscaling.{region}.amazonaws.com",
+				Protocols: []string{"http", "https"},
 				CredentialScope: credentialScope{
 					Service: "application-autoscaling",
 				},
@@ -5538,11 +5527,8 @@ var awsisoPartition = partition{
 		},
 		"application-autoscaling": service{
 			Defaults: endpoint{
-				Hostname:  "autoscaling.{region}.amazonaws.com",
+				Hostname:  "autoscaling.us-iso-east-1.c2s.ic.gov",
 				Protocols: []string{"http", "https"},
-				CredentialScope: credentialScope{
-					Service: "application-autoscaling",
-				},
 			},
 			Endpoints: endpoints{
 				"us-iso-east-1": endpoint{},
@@ -5870,11 +5856,8 @@ var awsisobPartition = partition{
 	Services: services{
 		"application-autoscaling": service{
 			Defaults: endpoint{
-				Hostname:  "autoscaling.{region}.amazonaws.com",
+				Hostname:  "autoscaling.us-isob-east-1.sc2s.sgov.gov",
 				Protocols: []string{"http", "https"},
-				CredentialScope: credentialScope{
-					Service: "application-autoscaling",
-				},
 			},
 			Endpoints: endpoints{
 				"us-isob-east-1": endpoint{},
