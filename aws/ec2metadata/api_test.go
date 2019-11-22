@@ -369,12 +369,12 @@ func TestGetRegion(t *testing.T) {
 				testType := InsecureTestType
 				Ts := &testServer{
 					t:    t,
-					data: "us-west-2a",
+					data: instanceIdentityDocument,
 				}
 				return newTestServer(t, testType, Ts)
 			},
-			expectedData:                "us-west-2",
-			expectedOperationsPerformed: []string{"GetToken", "GetMetadata"},
+			expectedData:                "us-east-1",
+			expectedOperationsPerformed: []string{"GetToken", "GetDynamicData"},
 		},
 		"Secure server success case": {
 			NewServer: func(t *testing.T) *httptest.Server {
@@ -382,12 +382,12 @@ func TestGetRegion(t *testing.T) {
 				Ts := &testServer{
 					t:      t,
 					tokens: []string{"firstToken", "secondToken", "thirdToken"},
-					data:   "us-west-2a",
+					data:   instanceIdentityDocument,
 				}
 				return newTestServer(t, testType, Ts)
 			},
-			expectedData:                "us-west-2",
-			expectedOperationsPerformed: []string{"GetToken", "GetMetadata"},
+			expectedData:                "us-east-1",
+			expectedOperationsPerformed: []string{"GetToken", "GetDynamicData"},
 		},
 		"Bad request case": {
 			NewServer: func(t *testing.T) *httptest.Server {
@@ -395,12 +395,12 @@ func TestGetRegion(t *testing.T) {
 				Ts := &testServer{
 					t:      t,
 					tokens: []string{"firstToken", "secondToken", "thirdToken"},
-					data:   "us-west-2a",
+					data:   instanceIdentityDocument,
 				}
 				return newTestServer(t, testType, Ts)
 			},
 			expectedError:               "400",
-			expectedOperationsPerformed: []string{"GetToken", "GetMetadata"},
+			expectedOperationsPerformed: []string{"GetToken", "GetDynamicData"},
 		},
 		"ServerErrorForTokenTestType": {
 			NewServer: func(t *testing.T) *httptest.Server {
@@ -408,12 +408,12 @@ func TestGetRegion(t *testing.T) {
 				Ts := &testServer{
 					t:      t,
 					tokens: []string{},
-					data:   "us-west-2a",
+					data:   instanceIdentityDocument,
 				}
 				return newTestServer(t, testType, Ts)
 			},
-			expectedData:                "us-west-2",
-			expectedOperationsPerformed: []string{"GetToken", "GetMetadata"},
+			expectedData:                "us-east-1",
+			expectedOperationsPerformed: []string{"GetToken", "GetDynamicData"},
 		},
 	}
 

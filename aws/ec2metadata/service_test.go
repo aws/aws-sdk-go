@@ -92,7 +92,7 @@ func TestClientDisableIMDS(t *testing.T) {
 	svc := ec2metadata.New(unit.Session, &aws.Config{
 		LogLevel: aws.LogLevel(aws.LogDebugWithHTTPBody),
 	})
-	resp, err := svc.Region()
+	resp, err := svc.GetUserData()
 	if err == nil {
 		t.Fatalf("expect error, got none")
 	}
@@ -116,7 +116,7 @@ func runEC2MetadataClients(t *testing.T, cfg *aws.Config, atOnce int) {
 	for i := 0; i < atOnce; i++ {
 		go func() {
 			defer wg.Done()
-			_, err := svc.Region()
+			_, err := svc.GetUserData()
 			if err != nil {
 				t.Errorf("expect no error, got %v", err)
 			}
