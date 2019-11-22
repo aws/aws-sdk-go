@@ -481,7 +481,7 @@ func (c *CodeBuild) DeleteProjectRequest(input *DeleteProjectInput) (req *reques
 
 // DeleteProject API operation for AWS CodeBuild.
 //
-// Deletes a build project.
+// Deletes a build project. When you delete a project, its builds are not deleted.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3496,11 +3496,11 @@ type ListBuildsForProjectInput struct {
 	_ struct{} `type:"structure"`
 
 	// During a previous call, if there are more than 100 items in the list, only
-	// the first 100 items are returned, along with a unique string called a next
-	// token. To get the next batch of items in the list, call this operation again,
-	// adding the next token to the call. To get all of the items in the list, keep
-	// calling this operation with each subsequent next token that is returned,
-	// until no more next tokens are returned.
+	// the first 100 items are returned, along with a unique string called a nextToken.
+	// To get the next batch of items in the list, call this operation again, adding
+	// the next token to the call. To get all of the items in the list, keep calling
+	// this operation with each subsequent next token that is returned, until no
+	// more next tokens are returned.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The name of the AWS CodeBuild project.
@@ -3568,7 +3568,7 @@ type ListBuildsForProjectOutput struct {
 	Ids []*string `locationName:"ids" min:"1" type:"list"`
 
 	// If there are more than 100 items in the list, only the first 100 items are
-	// returned, along with a unique string called a next token. To get the next
+	// returned, along with a unique string called a nextToken. To get the next
 	// batch of items in the list, call this operation again, adding the next token
 	// to the call.
 	NextToken *string `locationName:"nextToken" type:"string"`
@@ -3600,11 +3600,11 @@ type ListBuildsInput struct {
 	_ struct{} `type:"structure"`
 
 	// During a previous call, if there are more than 100 items in the list, only
-	// the first 100 items are returned, along with a unique string called a next
-	// token. To get the next batch of items in the list, call this operation again,
-	// adding the next token to the call. To get all of the items in the list, keep
-	// calling this operation with each subsequent next token that is returned,
-	// until no more next tokens are returned.
+	// the first 100 items are returned, along with a unique string called a nextToken.
+	// To get the next batch of items in the list, call this operation again, adding
+	// the next token to the call. To get all of the items in the list, keep calling
+	// this operation with each subsequent next token that is returned, until no
+	// more next tokens are returned.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The order to list build IDs. Valid values include:
@@ -3644,7 +3644,7 @@ type ListBuildsOutput struct {
 	Ids []*string `locationName:"ids" min:"1" type:"list"`
 
 	// If there are more than 100 items in the list, only the first 100 items are
-	// returned, along with a unique string called a next token. To get the next
+	// returned, along with a unique string called a nextToken. To get the next
 	// batch of items in the list, call this operation again, adding the next token
 	// to the call.
 	NextToken *string `locationName:"nextToken" type:"string"`
@@ -3714,11 +3714,11 @@ type ListProjectsInput struct {
 	_ struct{} `type:"structure"`
 
 	// During a previous call, if there are more than 100 items in the list, only
-	// the first 100 items are returned, along with a unique string called a next
-	// token. To get the next batch of items in the list, call this operation again,
-	// adding the next token to the call. To get all of the items in the list, keep
-	// calling this operation with each subsequent next token that is returned,
-	// until no more next tokens are returned.
+	// the first 100 items are returned, along with a unique string called a nextToken.
+	// To get the next batch of items in the list, call this operation again, adding
+	// the next token to the call. To get all of the items in the list, keep calling
+	// this operation with each subsequent next token that is returned, until no
+	// more next tokens are returned.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	// The criterion to be used to list build project names. Valid values include:
@@ -3789,7 +3789,7 @@ type ListProjectsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// If there are more than 100 items in the list, only the first 100 items are
-	// returned, along with a unique string called a next token. To get the next
+	// returned, along with a unique string called a nextToken. To get the next
 	// batch of items in the list, call this operation again, adding the next token
 	// to the call.
 	NextToken *string `locationName:"nextToken" type:"string"`
@@ -3923,6 +3923,10 @@ type LogsLocation struct {
 	// Information about Amazon CloudWatch Logs for a build project.
 	CloudWatchLogs *CloudWatchLogsConfig `locationName:"cloudWatchLogs" type:"structure"`
 
+	// The ARN of Amazon CloudWatch Logs for a build project. Its format is arn:${Partition}:logs:${Region}:${Account}:log-group:${LogGroupName}:log-stream:${LogStreamName}.
+	// For more information, see Resources Defined by Amazon CloudWatch Logs (https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazoncloudwatchlogs.html#amazoncloudwatchlogs-resources-for-iam-policies).
+	CloudWatchLogsArn *string `locationName:"cloudWatchLogsArn" type:"string"`
+
 	// The URL to an individual build log in Amazon CloudWatch Logs.
 	DeepLink *string `locationName:"deepLink" type:"string"`
 
@@ -3934,6 +3938,10 @@ type LogsLocation struct {
 
 	// Information about S3 logs for a build project.
 	S3Logs *S3LogsConfig `locationName:"s3Logs" type:"structure"`
+
+	// The ARN of S3 logs for a build project. Its format is arn:${Partition}:s3:::${BucketName}/${ObjectName}.
+	// For more information, see Resources Defined by Amazon S3 (https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazons3.html#amazons3-resources-for-iam-policies).
+	S3LogsArn *string `locationName:"s3LogsArn" type:"string"`
 
 	// The name of the Amazon CloudWatch Logs stream for the build logs.
 	StreamName *string `locationName:"streamName" type:"string"`
@@ -3952,6 +3960,12 @@ func (s LogsLocation) GoString() string {
 // SetCloudWatchLogs sets the CloudWatchLogs field's value.
 func (s *LogsLocation) SetCloudWatchLogs(v *CloudWatchLogsConfig) *LogsLocation {
 	s.CloudWatchLogs = v
+	return s
+}
+
+// SetCloudWatchLogsArn sets the CloudWatchLogsArn field's value.
+func (s *LogsLocation) SetCloudWatchLogsArn(v string) *LogsLocation {
+	s.CloudWatchLogsArn = &v
 	return s
 }
 
@@ -3976,6 +3990,12 @@ func (s *LogsLocation) SetS3DeepLink(v string) *LogsLocation {
 // SetS3Logs sets the S3Logs field's value.
 func (s *LogsLocation) SetS3Logs(v *S3LogsConfig) *LogsLocation {
 	s.S3Logs = v
+	return s
+}
+
+// SetS3LogsArn sets the S3LogsArn field's value.
+func (s *LogsLocation) SetS3LogsArn(v string) *LogsLocation {
+	s.S3LogsArn = &v
 	return s
 }
 

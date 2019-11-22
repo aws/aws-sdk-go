@@ -3892,6 +3892,10 @@
         "Instances":{"shape":"Integer"},
         "InstancesWithInstalledPatches":{"shape":"Integer"},
         "InstancesWithInstalledOtherPatches":{"shape":"Integer"},
+        "InstancesWithInstalledPendingRebootPatches":{
+          "shape":"InstancesCount",
+          "box":true
+        },
         "InstancesWithInstalledRejectedPatches":{
           "shape":"InstancesCount",
           "box":true
@@ -5033,6 +5037,10 @@
         "OwnerInformation":{"shape":"OwnerInformation"},
         "InstalledCount":{"shape":"PatchInstalledCount"},
         "InstalledOtherCount":{"shape":"PatchInstalledOtherCount"},
+        "InstalledPendingRebootCount":{
+          "shape":"PatchInstalledPendingRebootCount",
+          "box":true
+        },
         "InstalledRejectedCount":{
           "shape":"PatchInstalledRejectedCount",
           "box":true
@@ -5046,7 +5054,9 @@
         "NotApplicableCount":{"shape":"PatchNotApplicableCount"},
         "OperationStartTime":{"shape":"DateTime"},
         "OperationEndTime":{"shape":"DateTime"},
-        "Operation":{"shape":"PatchOperationType"}
+        "Operation":{"shape":"PatchOperationType"},
+        "LastNoRebootInstallOperationTime":{"shape":"DateTime"},
+        "RebootOption":{"shape":"RebootOption"}
       }
     },
     "InstancePatchStateFilter":{
@@ -7223,6 +7233,7 @@
       "enum":[
         "INSTALLED",
         "INSTALLED_OTHER",
+        "INSTALLED_PENDING_REBOOT",
         "INSTALLED_REJECTED",
         "MISSING",
         "NOT_APPLICABLE",
@@ -7340,6 +7351,7 @@
     },
     "PatchInstalledCount":{"type":"integer"},
     "PatchInstalledOtherCount":{"type":"integer"},
+    "PatchInstalledPendingRebootCount":{"type":"integer"},
     "PatchInstalledRejectedCount":{"type":"integer"},
     "PatchKbNumber":{"type":"string"},
     "PatchLanguage":{"type":"string"},
@@ -7605,6 +7617,13 @@
         "Version":{"shape":"PSParameterVersion"},
         "Tier":{"shape":"ParameterTier"}
       }
+    },
+    "RebootOption":{
+      "type":"string",
+      "enum":[
+        "RebootIfNeeded",
+        "NoReboot"
+      ]
     },
     "Region":{"type":"string"},
     "Regions":{

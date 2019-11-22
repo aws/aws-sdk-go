@@ -436,6 +436,10 @@
           "locationName": "arn",
           "shape": "__string"
         },
+        "CreatedAt": {
+          "locationName": "createdAt",
+          "shape": "__string"
+        },
         "EgressEndpoints": {
           "locationName": "egressEndpoints",
           "shape": "__listOfEgressEndpoint"
@@ -511,6 +515,10 @@
       "members": {
         "Arn": {
           "locationName": "arn",
+          "shape": "__string"
+        },
+        "CreatedAt": {
+          "locationName": "createdAt",
           "shape": "__string"
         },
         "Id": {
@@ -603,6 +611,10 @@
       "members": {
         "Arn": {
           "locationName": "arn",
+          "shape": "__string"
+        },
+        "CreatedAt": {
+          "locationName": "createdAt",
           "shape": "__string"
         },
         "EgressEndpoints": {
@@ -844,6 +856,10 @@
       "members": {
         "Arn": {
           "locationName": "arn",
+          "shape": "__string"
+        },
+        "CreatedAt": {
+          "locationName": "createdAt",
           "shape": "__string"
         },
         "EgressEndpoints": {

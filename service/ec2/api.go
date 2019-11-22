@@ -13167,6 +13167,10 @@ func (c *EC2) DescribeFleetHistoryRequest(input *DescribeFleetHistoryInput) (req
 //
 // Describes the events for the specified EC2 Fleet during the specified time.
 //
+// EC2 Fleet events are delayed by up to 30 seconds before they can be described.
+// This ensures that you can query by the last evaluated time and not miss a
+// recorded event. EC2 Fleet events are available for 48 hours.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -15273,6 +15277,157 @@ func (c *EC2) DescribeInstanceStatusPagesWithContext(ctx aws.Context, input *Des
 	}
 
 	return p.Err()
+}
+
+const opDescribeInstanceTypeOfferings = "DescribeInstanceTypeOfferings"
+
+// DescribeInstanceTypeOfferingsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeInstanceTypeOfferings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeInstanceTypeOfferings for more information on using the DescribeInstanceTypeOfferings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeInstanceTypeOfferingsRequest method.
+//    req, resp := client.DescribeInstanceTypeOfferingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ec2-2016-11-15/DescribeInstanceTypeOfferings
+func (c *EC2) DescribeInstanceTypeOfferingsRequest(input *DescribeInstanceTypeOfferingsInput) (req *request.Request, output *DescribeInstanceTypeOfferingsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeInstanceTypeOfferings,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeInstanceTypeOfferingsInput{}
+	}
+
+	output = &DescribeInstanceTypeOfferingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeInstanceTypeOfferings API operation for Amazon Elastic Compute Cloud.
+//
+// Returns a list of all instance types offered. The results can be filtered
+// by location (Region or Availability Zone). If no location is specified, the
+// instance types offered in the current Region are returned.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Compute Cloud's
+// API operation DescribeInstanceTypeOfferings for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ec2-2016-11-15/DescribeInstanceTypeOfferings
+func (c *EC2) DescribeInstanceTypeOfferings(input *DescribeInstanceTypeOfferingsInput) (*DescribeInstanceTypeOfferingsOutput, error) {
+	req, out := c.DescribeInstanceTypeOfferingsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeInstanceTypeOfferingsWithContext is the same as DescribeInstanceTypeOfferings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeInstanceTypeOfferings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EC2) DescribeInstanceTypeOfferingsWithContext(ctx aws.Context, input *DescribeInstanceTypeOfferingsInput, opts ...request.Option) (*DescribeInstanceTypeOfferingsOutput, error) {
+	req, out := c.DescribeInstanceTypeOfferingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeInstanceTypes = "DescribeInstanceTypes"
+
+// DescribeInstanceTypesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeInstanceTypes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeInstanceTypes for more information on using the DescribeInstanceTypes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeInstanceTypesRequest method.
+//    req, resp := client.DescribeInstanceTypesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ec2-2016-11-15/DescribeInstanceTypes
+func (c *EC2) DescribeInstanceTypesRequest(input *DescribeInstanceTypesInput) (req *request.Request, output *DescribeInstanceTypesOutput) {
+	op := &request.Operation{
+		Name:       opDescribeInstanceTypes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeInstanceTypesInput{}
+	}
+
+	output = &DescribeInstanceTypesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeInstanceTypes API operation for Amazon Elastic Compute Cloud.
+//
+// Returns a list of all instance types offered in your current AWS Region.
+// The results can be filtered by the attributes of the instance types.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Compute Cloud's
+// API operation DescribeInstanceTypes for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ec2-2016-11-15/DescribeInstanceTypes
+func (c *EC2) DescribeInstanceTypes(input *DescribeInstanceTypesInput) (*DescribeInstanceTypesOutput, error) {
+	req, out := c.DescribeInstanceTypesRequest(input)
+	return out, req.Send()
+}
+
+// DescribeInstanceTypesWithContext is the same as DescribeInstanceTypes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeInstanceTypes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EC2) DescribeInstanceTypesWithContext(ctx aws.Context, input *DescribeInstanceTypesInput, opts ...request.Option) (*DescribeInstanceTypesOutput, error) {
+	req, out := c.DescribeInstanceTypesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeInstances = "DescribeInstances"
@@ -54100,6 +54255,305 @@ func (s *DescribeInstanceStatusOutput) SetNextToken(v string) *DescribeInstanceS
 	return s
 }
 
+type DescribeInstanceTypeOfferingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Checks whether you have the required permissions for the action, without
+	// actually making the request, and provides an error response. If you have
+	// the required permissions, the error response is DryRunOperation. Otherwise,
+	// it is UnauthorizedOperation.
+	DryRun *bool `type:"boolean"`
+
+	// One or more filters. Filter names and values are case-sensitive.
+	//
+	//    * location - This depends on the location type. For example, if the location
+	//    type is region (default), the location is the Region code (for example,
+	//    us-east-2.)
+	//
+	//    * instance-type - The instance type.
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// The location type.
+	LocationType *string `type:"string" enum:"LocationType"`
+
+	// The maximum number of results to return for the request in a single page.
+	// The remaining results can be seen by sending another request with the next
+	// token value.
+	MaxResults *int64 `min:"5" type:"integer"`
+
+	// The token to retrieve the next page of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeInstanceTypeOfferingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeInstanceTypeOfferingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeInstanceTypeOfferingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeInstanceTypeOfferingsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 5 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeInstanceTypeOfferingsInput) SetDryRun(v bool) *DescribeInstanceTypeOfferingsInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeInstanceTypeOfferingsInput) SetFilters(v []*Filter) *DescribeInstanceTypeOfferingsInput {
+	s.Filters = v
+	return s
+}
+
+// SetLocationType sets the LocationType field's value.
+func (s *DescribeInstanceTypeOfferingsInput) SetLocationType(v string) *DescribeInstanceTypeOfferingsInput {
+	s.LocationType = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeInstanceTypeOfferingsInput) SetMaxResults(v int64) *DescribeInstanceTypeOfferingsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeInstanceTypeOfferingsInput) SetNextToken(v string) *DescribeInstanceTypeOfferingsInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeInstanceTypeOfferingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The instance types offered.
+	InstanceTypeOfferings []*InstanceTypeOffering `locationName:"instanceTypeOfferingSet" locationNameList:"item" type:"list"`
+
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeInstanceTypeOfferingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeInstanceTypeOfferingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetInstanceTypeOfferings sets the InstanceTypeOfferings field's value.
+func (s *DescribeInstanceTypeOfferingsOutput) SetInstanceTypeOfferings(v []*InstanceTypeOffering) *DescribeInstanceTypeOfferingsOutput {
+	s.InstanceTypeOfferings = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeInstanceTypeOfferingsOutput) SetNextToken(v string) *DescribeInstanceTypeOfferingsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeInstanceTypesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Checks whether you have the required permissions for the action, without
+	// actually making the request, and provides an error response. If you have
+	// the required permissions, the error response is DryRunOperation. Otherwise,
+	// it is UnauthorizedOperation.
+	DryRun *bool `type:"boolean"`
+
+	// One or more filters. Filter names and values are case-sensitive.
+	//
+	//    * auto-recovery-supported - Indicates whether auto recovery is supported.
+	//    (true | false)
+	//
+	//    * bare-metal - Indicates whether it is a bare metal instance type. (true
+	//    | false)
+	//
+	//    * burstable-performance-supported - Indicates whether it is a burstable
+	//    performance instance type. (true | false)
+	//
+	//    * current-generation - Indicates whether this instance type is the latest
+	//    generation instance type of an instance family. (true | false)
+	//
+	//    * ebs-info.ebs-optimized-support - Indicates whether the instance type
+	//    is EBS-optimized. (true | false)
+	//
+	//    * ebs-info.encryption-support - Indicates whether EBS encryption is supported.
+	//    (true | false)
+	//
+	//    * free-tier-eligible - Indicates whether the instance type is eligible
+	//    to use in the free tier. (true | false)
+	//
+	//    * hibernation-supported - Indicates whether On-Demand hibernation is supported.
+	//    (true | false)
+	//
+	//    * hypervisor - The hypervisor used. (nitro | xen)
+	//
+	//    * instance-storage-info.disk.count - The number of local disks.
+	//
+	//    * instance-storage-info.disk.size-in-gb - The storage size of each instance
+	//    storage disk, in GB.
+	//
+	//    * instance-storage-info.disk.type - The storage technology for the local
+	//    instance storage disks. (hdd | ssd)
+	//
+	//    * instance-storage-info.total-size-in-gb - The total amount of storage
+	//    available from all local instance storage, in GB.
+	//
+	//    * instance-storage-supported - Indicates whether the instance type has
+	//    local instance storage. (true | false)
+	//
+	//    * memory-info.size-in-mib - The memory size.
+	//
+	//    * network-info.ena-support - Indicates whether Elastic Network Adapter
+	//    (ENA) is supported or required. (required | supported | unsupported)
+	//
+	//    * network-info.ipv4-addresses-per-interface - The maximum number of private
+	//    IPv4 addresses per network interface.
+	//
+	//    * network-info.ipv6-addresses-per-interface - The maximum number of private
+	//    IPv6 addresses per network interface.
+	//
+	//    * network-info.ipv6-supported - Indicates whether the instance type supports
+	//    IPv6. (true | false)
+	//
+	//    * network-info.maximum-network-interfaces - The maximum number of network
+	//    interfaces per instance.
+	//
+	//    * network-info.network-performance - Describes the network performance.
+	//
+	//    * processor-info.sustained-clock-speed-in-ghz - The CPU clock speed, in
+	//    GHz.
+	//
+	//    * vcpu-info.default-cores - The default number of cores for the instance
+	//    type.
+	//
+	//    * vcpu-info.default-threads-per-core - The default number of threads per
+	//    cores for the instance type.
+	//
+	//    * vcpu-info.default-vcpus - The default number of vCPUs for the instance
+	//    type.
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
+	// The instance types. For more information, see Instance Types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	InstanceTypes []*string `locationName:"InstanceType" type:"list"`
+
+	// The maximum number of results to return for the request in a single page.
+	// The remaining results can be seen by sending another request with the next
+	// token value.
+	MaxResults *int64 `min:"5" type:"integer"`
+
+	// The token to retrieve the next page of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeInstanceTypesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeInstanceTypesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeInstanceTypesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeInstanceTypesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 5 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeInstanceTypesInput) SetDryRun(v bool) *DescribeInstanceTypesInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeInstanceTypesInput) SetFilters(v []*Filter) *DescribeInstanceTypesInput {
+	s.Filters = v
+	return s
+}
+
+// SetInstanceTypes sets the InstanceTypes field's value.
+func (s *DescribeInstanceTypesInput) SetInstanceTypes(v []*string) *DescribeInstanceTypesInput {
+	s.InstanceTypes = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeInstanceTypesInput) SetMaxResults(v int64) *DescribeInstanceTypesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeInstanceTypesInput) SetNextToken(v string) *DescribeInstanceTypesInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeInstanceTypesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The instance type. For more information, see Instance Types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	InstanceTypes []*InstanceTypeInfo `locationName:"instanceTypeSet" locationNameList:"item" type:"list"`
+
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeInstanceTypesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeInstanceTypesOutput) GoString() string {
+	return s.String()
+}
+
+// SetInstanceTypes sets the InstanceTypes field's value.
+func (s *DescribeInstanceTypesOutput) SetInstanceTypes(v []*InstanceTypeInfo) *DescribeInstanceTypesOutput {
+	s.InstanceTypes = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeInstanceTypesOutput) SetNextToken(v string) *DescribeInstanceTypesOutput {
+	s.NextToken = &v
+	return s
+}
+
 type DescribeInstancesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -63735,6 +64189,48 @@ func (s *DiskImageVolumeDescription) SetSize(v int64) *DiskImageVolumeDescriptio
 	return s
 }
 
+// Describes the disk.
+type DiskInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The number of disks with this configuration.
+	Count *int64 `locationName:"count" type:"integer"`
+
+	// The size of the disk in GiB.
+	SizeInGB *int64 `locationName:"sizeInGB" type:"long"`
+
+	// The type of disk.
+	Type *string `locationName:"type" type:"string" enum:"DiskType"`
+}
+
+// String returns the string representation
+func (s DiskInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DiskInfo) GoString() string {
+	return s.String()
+}
+
+// SetCount sets the Count field's value.
+func (s *DiskInfo) SetCount(v int64) *DiskInfo {
+	s.Count = &v
+	return s
+}
+
+// SetSizeInGB sets the SizeInGB field's value.
+func (s *DiskInfo) SetSizeInGB(v int64) *DiskInfo {
+	s.SizeInGB = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DiskInfo) SetType(v string) *DiskInfo {
+	s.Type = &v
+	return s
+}
+
 // Describes a DNS entry.
 type DnsEntry struct {
 	_ struct{} `type:"structure"`
@@ -63925,6 +64421,41 @@ func (s *EbsBlockDevice) SetVolumeSize(v int64) *EbsBlockDevice {
 // SetVolumeType sets the VolumeType field's value.
 func (s *EbsBlockDevice) SetVolumeType(v string) *EbsBlockDevice {
 	s.VolumeType = &v
+	return s
+}
+
+// Describes the Amazon EBS features supported by the instance type.
+type EbsInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates that the instance type is Amazon EBS-optimized. For more information,
+	// see Amazon EBS-Optimized Instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html)
+	// in Amazon EC2 User Guide for Linux Instances.
+	EbsOptimizedSupport *string `locationName:"ebsOptimizedSupport" type:"string" enum:"EbsOptimizedSupport"`
+
+	// Indicates whether Amazon EBS encryption is supported.
+	EncryptionSupport *string `locationName:"encryptionSupport" type:"string" enum:"EbsEncryptionSupport"`
+}
+
+// String returns the string representation
+func (s EbsInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EbsInfo) GoString() string {
+	return s.String()
+}
+
+// SetEbsOptimizedSupport sets the EbsOptimizedSupport field's value.
+func (s *EbsInfo) SetEbsOptimizedSupport(v string) *EbsInfo {
+	s.EbsOptimizedSupport = &v
+	return s
+}
+
+// SetEncryptionSupport sets the EncryptionSupport field's value.
+func (s *EbsInfo) SetEncryptionSupport(v string) *EbsInfo {
+	s.EncryptionSupport = &v
 	return s
 }
 
@@ -66793,6 +67324,81 @@ func (s *FlowLog) SetTrafficType(v string) *FlowLog {
 	return s
 }
 
+// Describes the FPGA accelerator for the instance type.
+type FpgaDeviceInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The count of FPGA accelerators for the instance type.
+	Count *int64 `locationName:"count" type:"integer"`
+
+	// The manufacturer of the FPGA accelerator.
+	Manufacturer *string `locationName:"manufacturer" type:"string"`
+
+	// Describes the memory for the FPGA accelerator for the instance type.
+	MemoryInfo *FpgaDeviceMemoryInfo `locationName:"memoryInfo" type:"structure"`
+
+	// The name of the FPGA accelerator.
+	Name *string `locationName:"name" type:"string"`
+}
+
+// String returns the string representation
+func (s FpgaDeviceInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FpgaDeviceInfo) GoString() string {
+	return s.String()
+}
+
+// SetCount sets the Count field's value.
+func (s *FpgaDeviceInfo) SetCount(v int64) *FpgaDeviceInfo {
+	s.Count = &v
+	return s
+}
+
+// SetManufacturer sets the Manufacturer field's value.
+func (s *FpgaDeviceInfo) SetManufacturer(v string) *FpgaDeviceInfo {
+	s.Manufacturer = &v
+	return s
+}
+
+// SetMemoryInfo sets the MemoryInfo field's value.
+func (s *FpgaDeviceInfo) SetMemoryInfo(v *FpgaDeviceMemoryInfo) *FpgaDeviceInfo {
+	s.MemoryInfo = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *FpgaDeviceInfo) SetName(v string) *FpgaDeviceInfo {
+	s.Name = &v
+	return s
+}
+
+// Describes the memory for the FPGA accelerator for the instance type.
+type FpgaDeviceMemoryInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The size (in MiB) for the memory available to the FPGA accelerator.
+	SizeInMiB *int64 `locationName:"sizeInMiB" type:"integer"`
+}
+
+// String returns the string representation
+func (s FpgaDeviceMemoryInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FpgaDeviceMemoryInfo) GoString() string {
+	return s.String()
+}
+
+// SetSizeInMiB sets the SizeInMiB field's value.
+func (s *FpgaDeviceMemoryInfo) SetSizeInMiB(v int64) *FpgaDeviceMemoryInfo {
+	s.SizeInMiB = &v
+	return s
+}
+
 // Describes an Amazon FPGA image (AFI).
 type FpgaImage struct {
 	_ struct{} `type:"structure"`
@@ -67042,6 +67648,39 @@ func (s *FpgaImageState) SetCode(v string) *FpgaImageState {
 // SetMessage sets the Message field's value.
 func (s *FpgaImageState) SetMessage(v string) *FpgaImageState {
 	s.Message = &v
+	return s
+}
+
+// Describes the FPGAs for the instance type.
+type FpgaInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the FPGAs for the instance type.
+	Fpgas []*FpgaDeviceInfo `locationName:"fpgas" locationNameList:"item" type:"list"`
+
+	// The total memory of all FPGA accelerators for the instance type.
+	TotalFpgaMemoryInMiB *int64 `locationName:"totalFpgaMemoryInMiB" type:"integer"`
+}
+
+// String returns the string representation
+func (s FpgaInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FpgaInfo) GoString() string {
+	return s.String()
+}
+
+// SetFpgas sets the Fpgas field's value.
+func (s *FpgaInfo) SetFpgas(v []*FpgaDeviceInfo) *FpgaInfo {
+	s.Fpgas = v
+	return s
+}
+
+// SetTotalFpgaMemoryInMiB sets the TotalFpgaMemoryInMiB field's value.
+func (s *FpgaInfo) SetTotalFpgaMemoryInMiB(v int64) *FpgaInfo {
+	s.TotalFpgaMemoryInMiB = &v
 	return s
 }
 
@@ -68300,6 +68939,114 @@ func (s *GetTransitGatewayRouteTablePropagationsOutput) SetNextToken(v string) *
 // SetTransitGatewayRouteTablePropagations sets the TransitGatewayRouteTablePropagations field's value.
 func (s *GetTransitGatewayRouteTablePropagationsOutput) SetTransitGatewayRouteTablePropagations(v []*TransitGatewayRouteTablePropagation) *GetTransitGatewayRouteTablePropagationsOutput {
 	s.TransitGatewayRouteTablePropagations = v
+	return s
+}
+
+// Describes the GPU accelerators for the instance type.
+type GpuDeviceInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The number of GPUs for the instance type.
+	Count *int64 `locationName:"count" type:"integer"`
+
+	// The manufacturer of the GPU accelerator.
+	Manufacturer *string `locationName:"manufacturer" type:"string"`
+
+	// Describes the memory available to the GPU accelerator.
+	MemoryInfo *GpuDeviceMemoryInfo `locationName:"memoryInfo" type:"structure"`
+
+	// The name of the GPU accelerator.
+	Name *string `locationName:"name" type:"string"`
+}
+
+// String returns the string representation
+func (s GpuDeviceInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GpuDeviceInfo) GoString() string {
+	return s.String()
+}
+
+// SetCount sets the Count field's value.
+func (s *GpuDeviceInfo) SetCount(v int64) *GpuDeviceInfo {
+	s.Count = &v
+	return s
+}
+
+// SetManufacturer sets the Manufacturer field's value.
+func (s *GpuDeviceInfo) SetManufacturer(v string) *GpuDeviceInfo {
+	s.Manufacturer = &v
+	return s
+}
+
+// SetMemoryInfo sets the MemoryInfo field's value.
+func (s *GpuDeviceInfo) SetMemoryInfo(v *GpuDeviceMemoryInfo) *GpuDeviceInfo {
+	s.MemoryInfo = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GpuDeviceInfo) SetName(v string) *GpuDeviceInfo {
+	s.Name = &v
+	return s
+}
+
+// Describes the memory available to the GPU accelerator.
+type GpuDeviceMemoryInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The size (in MiB) for the memory available to the GPU accelerator.
+	SizeInMiB *int64 `locationName:"sizeInMiB" type:"integer"`
+}
+
+// String returns the string representation
+func (s GpuDeviceMemoryInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GpuDeviceMemoryInfo) GoString() string {
+	return s.String()
+}
+
+// SetSizeInMiB sets the SizeInMiB field's value.
+func (s *GpuDeviceMemoryInfo) SetSizeInMiB(v int64) *GpuDeviceMemoryInfo {
+	s.SizeInMiB = &v
+	return s
+}
+
+// Describes the GPU accelerators for the instance type.
+type GpuInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the GPU accelerators for the instance type.
+	Gpus []*GpuDeviceInfo `locationName:"gpus" locationNameList:"item" type:"list"`
+
+	// The total size of the memory for the GPU accelerators for the instance type.
+	TotalGpuMemoryInMiB *int64 `locationName:"totalGpuMemoryInMiB" type:"integer"`
+}
+
+// String returns the string representation
+func (s GpuInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GpuInfo) GoString() string {
+	return s.String()
+}
+
+// SetGpus sets the Gpus field's value.
+func (s *GpuInfo) SetGpus(v []*GpuDeviceInfo) *GpuInfo {
+	s.Gpus = v
+	return s
+}
+
+// SetTotalGpuMemoryInMiB sets the TotalGpuMemoryInMiB field's value.
+func (s *GpuInfo) SetTotalGpuMemoryInMiB(v int64) *GpuInfo {
+	s.TotalGpuMemoryInMiB = &v
 	return s
 }
 
@@ -72794,6 +73541,289 @@ func (s *InstanceStatusSummary) SetStatus(v string) *InstanceStatusSummary {
 	return s
 }
 
+// Describes the disks that are available for the instance type.
+type InstanceStorageInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Array describing the disks that are available for the instance type.
+	Disks []*DiskInfo `locationName:"disks" locationNameList:"item" type:"list"`
+
+	// The total size of the disks, in GiB.
+	TotalSizeInGB *int64 `locationName:"totalSizeInGB" type:"long"`
+}
+
+// String returns the string representation
+func (s InstanceStorageInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InstanceStorageInfo) GoString() string {
+	return s.String()
+}
+
+// SetDisks sets the Disks field's value.
+func (s *InstanceStorageInfo) SetDisks(v []*DiskInfo) *InstanceStorageInfo {
+	s.Disks = v
+	return s
+}
+
+// SetTotalSizeInGB sets the TotalSizeInGB field's value.
+func (s *InstanceStorageInfo) SetTotalSizeInGB(v int64) *InstanceStorageInfo {
+	s.TotalSizeInGB = &v
+	return s
+}
+
+// Describes the instance type.
+type InstanceTypeInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether auto recovery is supported.
+	AutoRecoverySupported *bool `locationName:"autoRecoverySupported" type:"boolean"`
+
+	// Indicates whether the instance is bare metal.
+	BareMetal *bool `locationName:"bareMetal" type:"boolean"`
+
+	// Indicates whether the instance type is a burstable performance instance type.
+	BurstablePerformanceSupported *bool `locationName:"burstablePerformanceSupported" type:"boolean"`
+
+	// Indicates whether the instance type is a current generation.
+	CurrentGeneration *bool `locationName:"currentGeneration" type:"boolean"`
+
+	// Indicates whether Dedicated Hosts are supported on the instance type.
+	DedicatedHostsSupported *bool `locationName:"dedicatedHostsSupported" type:"boolean"`
+
+	// Describes the Amazon EBS settings for the instance type.
+	EbsInfo *EbsInfo `locationName:"ebsInfo" type:"structure"`
+
+	// Describes the FPGA accelerator settings for the instance type.
+	FpgaInfo *FpgaInfo `locationName:"fpgaInfo" type:"structure"`
+
+	// Indicates whether the instance type is eligible for the free tier.
+	FreeTierEligible *bool `locationName:"freeTierEligible" type:"boolean"`
+
+	// Describes the GPU accelerator settings for the instance type.
+	GpuInfo *GpuInfo `locationName:"gpuInfo" type:"structure"`
+
+	// Indicates whether On-Demand hibernation is supported.
+	HibernationSupported *bool `locationName:"hibernationSupported" type:"boolean"`
+
+	// Indicates the hypervisor used for the instance type.
+	Hypervisor *string `locationName:"hypervisor" type:"string" enum:"InstanceTypeHypervisor"`
+
+	// Describes the disks for the instance type.
+	InstanceStorageInfo *InstanceStorageInfo `locationName:"instanceStorageInfo" type:"structure"`
+
+	// Indicates whether instance storage is supported.
+	InstanceStorageSupported *bool `locationName:"instanceStorageSupported" type:"boolean"`
+
+	// The instance type. For more information, see Instance Types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	InstanceType *string `locationName:"instanceType" type:"string" enum:"InstanceType"`
+
+	// Describes the memory for the instance type.
+	MemoryInfo *MemoryInfo `locationName:"memoryInfo" type:"structure"`
+
+	// Describes the network settings for the instance type.
+	NetworkInfo *NetworkInfo `locationName:"networkInfo" type:"structure"`
+
+	// Describes the placement group settings for the instance type.
+	PlacementGroupInfo *PlacementGroupInfo `locationName:"placementGroupInfo" type:"structure"`
+
+	// Describes the processor.
+	ProcessorInfo *ProcessorInfo `locationName:"processorInfo" type:"structure"`
+
+	// Indicates the supported root devices.
+	SupportedRootDevices []*string `locationName:"supportedRootDevices" locationNameList:"item" type:"list"`
+
+	// Indicates whether the instance type is offered for spot or On-Demand.
+	SupportedUsageClasses []*string `locationName:"supportedUsageClasses" locationNameList:"item" type:"list"`
+
+	// Describes the vCPU configurations for the instance type.
+	VCpuInfo *VCpuInfo `locationName:"vCpuInfo" type:"structure"`
+}
+
+// String returns the string representation
+func (s InstanceTypeInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InstanceTypeInfo) GoString() string {
+	return s.String()
+}
+
+// SetAutoRecoverySupported sets the AutoRecoverySupported field's value.
+func (s *InstanceTypeInfo) SetAutoRecoverySupported(v bool) *InstanceTypeInfo {
+	s.AutoRecoverySupported = &v
+	return s
+}
+
+// SetBareMetal sets the BareMetal field's value.
+func (s *InstanceTypeInfo) SetBareMetal(v bool) *InstanceTypeInfo {
+	s.BareMetal = &v
+	return s
+}
+
+// SetBurstablePerformanceSupported sets the BurstablePerformanceSupported field's value.
+func (s *InstanceTypeInfo) SetBurstablePerformanceSupported(v bool) *InstanceTypeInfo {
+	s.BurstablePerformanceSupported = &v
+	return s
+}
+
+// SetCurrentGeneration sets the CurrentGeneration field's value.
+func (s *InstanceTypeInfo) SetCurrentGeneration(v bool) *InstanceTypeInfo {
+	s.CurrentGeneration = &v
+	return s
+}
+
+// SetDedicatedHostsSupported sets the DedicatedHostsSupported field's value.
+func (s *InstanceTypeInfo) SetDedicatedHostsSupported(v bool) *InstanceTypeInfo {
+	s.DedicatedHostsSupported = &v
+	return s
+}
+
+// SetEbsInfo sets the EbsInfo field's value.
+func (s *InstanceTypeInfo) SetEbsInfo(v *EbsInfo) *InstanceTypeInfo {
+	s.EbsInfo = v
+	return s
+}
+
+// SetFpgaInfo sets the FpgaInfo field's value.
+func (s *InstanceTypeInfo) SetFpgaInfo(v *FpgaInfo) *InstanceTypeInfo {
+	s.FpgaInfo = v
+	return s
+}
+
+// SetFreeTierEligible sets the FreeTierEligible field's value.
+func (s *InstanceTypeInfo) SetFreeTierEligible(v bool) *InstanceTypeInfo {
+	s.FreeTierEligible = &v
+	return s
+}
+
+// SetGpuInfo sets the GpuInfo field's value.
+func (s *InstanceTypeInfo) SetGpuInfo(v *GpuInfo) *InstanceTypeInfo {
+	s.GpuInfo = v
+	return s
+}
+
+// SetHibernationSupported sets the HibernationSupported field's value.
+func (s *InstanceTypeInfo) SetHibernationSupported(v bool) *InstanceTypeInfo {
+	s.HibernationSupported = &v
+	return s
+}
+
+// SetHypervisor sets the Hypervisor field's value.
+func (s *InstanceTypeInfo) SetHypervisor(v string) *InstanceTypeInfo {
+	s.Hypervisor = &v
+	return s
+}
+
+// SetInstanceStorageInfo sets the InstanceStorageInfo field's value.
+func (s *InstanceTypeInfo) SetInstanceStorageInfo(v *InstanceStorageInfo) *InstanceTypeInfo {
+	s.InstanceStorageInfo = v
+	return s
+}
+
+// SetInstanceStorageSupported sets the InstanceStorageSupported field's value.
+func (s *InstanceTypeInfo) SetInstanceStorageSupported(v bool) *InstanceTypeInfo {
+	s.InstanceStorageSupported = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *InstanceTypeInfo) SetInstanceType(v string) *InstanceTypeInfo {
+	s.InstanceType = &v
+	return s
+}
+
+// SetMemoryInfo sets the MemoryInfo field's value.
+func (s *InstanceTypeInfo) SetMemoryInfo(v *MemoryInfo) *InstanceTypeInfo {
+	s.MemoryInfo = v
+	return s
+}
+
+// SetNetworkInfo sets the NetworkInfo field's value.
+func (s *InstanceTypeInfo) SetNetworkInfo(v *NetworkInfo) *InstanceTypeInfo {
+	s.NetworkInfo = v
+	return s
+}
+
+// SetPlacementGroupInfo sets the PlacementGroupInfo field's value.
+func (s *InstanceTypeInfo) SetPlacementGroupInfo(v *PlacementGroupInfo) *InstanceTypeInfo {
+	s.PlacementGroupInfo = v
+	return s
+}
+
+// SetProcessorInfo sets the ProcessorInfo field's value.
+func (s *InstanceTypeInfo) SetProcessorInfo(v *ProcessorInfo) *InstanceTypeInfo {
+	s.ProcessorInfo = v
+	return s
+}
+
+// SetSupportedRootDevices sets the SupportedRootDevices field's value.
+func (s *InstanceTypeInfo) SetSupportedRootDevices(v []*string) *InstanceTypeInfo {
+	s.SupportedRootDevices = v
+	return s
+}
+
+// SetSupportedUsageClasses sets the SupportedUsageClasses field's value.
+func (s *InstanceTypeInfo) SetSupportedUsageClasses(v []*string) *InstanceTypeInfo {
+	s.SupportedUsageClasses = v
+	return s
+}
+
+// SetVCpuInfo sets the VCpuInfo field's value.
+func (s *InstanceTypeInfo) SetVCpuInfo(v *VCpuInfo) *InstanceTypeInfo {
+	s.VCpuInfo = v
+	return s
+}
+
+// The instance types offered.
+type InstanceTypeOffering struct {
+	_ struct{} `type:"structure"`
+
+	// The instance type. For more information, see Instance Types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	InstanceType *string `locationName:"instanceType" type:"string" enum:"InstanceType"`
+
+	// The identifier for the location. This depends on the location type. For example,
+	// if the location type is region, the location is the Region code (for example,
+	// us-east-2.)
+	Location *string `locationName:"location" type:"string"`
+
+	// The location type.
+	LocationType *string `locationName:"locationType" type:"string" enum:"LocationType"`
+}
+
+// String returns the string representation
+func (s InstanceTypeOffering) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InstanceTypeOffering) GoString() string {
+	return s.String()
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *InstanceTypeOffering) SetInstanceType(v string) *InstanceTypeOffering {
+	s.InstanceType = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *InstanceTypeOffering) SetLocation(v string) *InstanceTypeOffering {
+	s.Location = &v
+	return s
+}
+
+// SetLocationType sets the LocationType field's value.
+func (s *InstanceTypeOffering) SetLocationType(v string) *InstanceTypeOffering {
+	s.LocationType = &v
+	return s
+}
+
 // Information about the Capacity Reservation usage.
 type InstanceUsage struct {
 	_ struct{} `type:"structure"`
@@ -75324,6 +76354,30 @@ func (s *LoadPermissionRequest) SetGroup(v string) *LoadPermissionRequest {
 // SetUserId sets the UserId field's value.
 func (s *LoadPermissionRequest) SetUserId(v string) *LoadPermissionRequest {
 	s.UserId = &v
+	return s
+}
+
+// Describes the memory for the instance type.
+type MemoryInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Size of the memory, in MiB.
+	SizeInMiB *int64 `locationName:"sizeInMiB" type:"long"`
+}
+
+// String returns the string representation
+func (s MemoryInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MemoryInfo) GoString() string {
+	return s.String()
+}
+
+// SetSizeInMiB sets the SizeInMiB field's value.
+func (s *MemoryInfo) SetSizeInMiB(v int64) *MemoryInfo {
+	s.SizeInMiB = &v
 	return s
 }
 
@@ -80262,6 +81316,75 @@ func (s *NetworkAclEntry) SetRuleNumber(v int64) *NetworkAclEntry {
 	return s
 }
 
+// Describes the networking features of the instance type.
+type NetworkInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether Elastic Network Adapter (ENA) is supported.
+	EnaSupport *string `locationName:"enaSupport" type:"string" enum:"EnaSupport"`
+
+	// The maximum number of IPv4 addresses per network interface.
+	Ipv4AddressesPerInterface *int64 `locationName:"ipv4AddressesPerInterface" type:"integer"`
+
+	// The maximum number of IPv6 addresses per network interface.
+	Ipv6AddressesPerInterface *int64 `locationName:"ipv6AddressesPerInterface" type:"integer"`
+
+	// Indicates whether IPv6 is supported.
+	Ipv6Supported *bool `locationName:"ipv6Supported" type:"boolean"`
+
+	// The maximum number of network interfaces for the instance type.
+	MaximumNetworkInterfaces *int64 `locationName:"maximumNetworkInterfaces" type:"integer"`
+
+	// Describes the network performance.
+	NetworkPerformance *string `locationName:"networkPerformance" type:"string"`
+}
+
+// String returns the string representation
+func (s NetworkInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NetworkInfo) GoString() string {
+	return s.String()
+}
+
+// SetEnaSupport sets the EnaSupport field's value.
+func (s *NetworkInfo) SetEnaSupport(v string) *NetworkInfo {
+	s.EnaSupport = &v
+	return s
+}
+
+// SetIpv4AddressesPerInterface sets the Ipv4AddressesPerInterface field's value.
+func (s *NetworkInfo) SetIpv4AddressesPerInterface(v int64) *NetworkInfo {
+	s.Ipv4AddressesPerInterface = &v
+	return s
+}
+
+// SetIpv6AddressesPerInterface sets the Ipv6AddressesPerInterface field's value.
+func (s *NetworkInfo) SetIpv6AddressesPerInterface(v int64) *NetworkInfo {
+	s.Ipv6AddressesPerInterface = &v
+	return s
+}
+
+// SetIpv6Supported sets the Ipv6Supported field's value.
+func (s *NetworkInfo) SetIpv6Supported(v bool) *NetworkInfo {
+	s.Ipv6Supported = &v
+	return s
+}
+
+// SetMaximumNetworkInterfaces sets the MaximumNetworkInterfaces field's value.
+func (s *NetworkInfo) SetMaximumNetworkInterfaces(v int64) *NetworkInfo {
+	s.MaximumNetworkInterfaces = &v
+	return s
+}
+
+// SetNetworkPerformance sets the NetworkPerformance field's value.
+func (s *NetworkInfo) SetNetworkPerformance(v string) *NetworkInfo {
+	s.NetworkPerformance = &v
+	return s
+}
+
 // Describes a network interface.
 type NetworkInterface struct {
 	_ struct{} `type:"structure"`
@@ -81546,6 +82669,30 @@ func (s *PlacementGroup) SetStrategy(v string) *PlacementGroup {
 	return s
 }
 
+// Describes the placement group support of the instance type.
+type PlacementGroupInfo struct {
+	_ struct{} `type:"structure"`
+
+	// A list of supported placement groups types.
+	SupportedStrategies []*string `locationName:"supportedStrategies" locationNameList:"item" type:"list"`
+}
+
+// String returns the string representation
+func (s PlacementGroupInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PlacementGroupInfo) GoString() string {
+	return s.String()
+}
+
+// SetSupportedStrategies sets the SupportedStrategies field's value.
+func (s *PlacementGroupInfo) SetSupportedStrategies(v []*string) *PlacementGroupInfo {
+	s.SupportedStrategies = v
+	return s
+}
+
 // Describes the placement of an instance.
 type PlacementResponse struct {
 	_ struct{} `type:"structure"`
@@ -81885,6 +83032,39 @@ func (s *PrivateIpAddressSpecification) SetPrimary(v bool) *PrivateIpAddressSpec
 // SetPrivateIpAddress sets the PrivateIpAddress field's value.
 func (s *PrivateIpAddressSpecification) SetPrivateIpAddress(v string) *PrivateIpAddressSpecification {
 	s.PrivateIpAddress = &v
+	return s
+}
+
+// Describes the processor used by the instance type.
+type ProcessorInfo struct {
+	_ struct{} `type:"structure"`
+
+	// A list of architectures supported by the instance type.
+	SupportedArchitectures []*string `locationName:"supportedArchitectures" locationNameList:"item" type:"list"`
+
+	// The speed of the processor, in GHz.
+	SustainedClockSpeedInGhz *float64 `locationName:"sustainedClockSpeedInGhz" type:"double"`
+}
+
+// String returns the string representation
+func (s ProcessorInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ProcessorInfo) GoString() string {
+	return s.String()
+}
+
+// SetSupportedArchitectures sets the SupportedArchitectures field's value.
+func (s *ProcessorInfo) SetSupportedArchitectures(v []*string) *ProcessorInfo {
+	s.SupportedArchitectures = v
+	return s
+}
+
+// SetSustainedClockSpeedInGhz sets the SustainedClockSpeedInGhz field's value.
+func (s *ProcessorInfo) SetSustainedClockSpeedInGhz(v float64) *ProcessorInfo {
+	s.SustainedClockSpeedInGhz = &v
 	return s
 }
 
@@ -95446,6 +96626,68 @@ func (s *UserIdGroupPair) SetVpcPeeringConnectionId(v string) *UserIdGroupPair {
 	return s
 }
 
+// Describes the vCPU configurations for the instance type.
+type VCpuInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The default number of cores for the instance type.
+	DefaultCores *int64 `locationName:"defaultCores" type:"integer"`
+
+	// The default number of threads per core for the instance type.
+	DefaultThreadsPerCore *int64 `locationName:"defaultThreadsPerCore" type:"integer"`
+
+	// The default number of vCPUs for the instance type.
+	DefaultVCpus *int64 `locationName:"defaultVCpus" type:"integer"`
+
+	// List of the valid number of cores that can be configured for the instance
+	// type.
+	ValidCores []*int64 `locationName:"validCores" locationNameList:"item" type:"list"`
+
+	// List of the valid number of threads per core that can be configured for the
+	// instance type.
+	ValidThreadsPerCore []*int64 `locationName:"validThreadsPerCore" locationNameList:"item" type:"list"`
+}
+
+// String returns the string representation
+func (s VCpuInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VCpuInfo) GoString() string {
+	return s.String()
+}
+
+// SetDefaultCores sets the DefaultCores field's value.
+func (s *VCpuInfo) SetDefaultCores(v int64) *VCpuInfo {
+	s.DefaultCores = &v
+	return s
+}
+
+// SetDefaultThreadsPerCore sets the DefaultThreadsPerCore field's value.
+func (s *VCpuInfo) SetDefaultThreadsPerCore(v int64) *VCpuInfo {
+	s.DefaultThreadsPerCore = &v
+	return s
+}
+
+// SetDefaultVCpus sets the DefaultVCpus field's value.
+func (s *VCpuInfo) SetDefaultVCpus(v int64) *VCpuInfo {
+	s.DefaultVCpus = &v
+	return s
+}
+
+// SetValidCores sets the ValidCores field's value.
+func (s *VCpuInfo) SetValidCores(v []*int64) *VCpuInfo {
+	s.ValidCores = v
+	return s
+}
+
+// SetValidThreadsPerCore sets the ValidThreadsPerCore field's value.
+func (s *VCpuInfo) SetValidThreadsPerCore(v []*int64) *VCpuInfo {
+	s.ValidThreadsPerCore = v
+	return s
+}
+
 // Describes telemetry for a VPN tunnel.
 type VgwTelemetry struct {
 	_ struct{} `type:"structure"`
@@ -97586,6 +98828,17 @@ const (
 )
 
 const (
+	// ArchitectureTypeI386 is a ArchitectureType enum value
+	ArchitectureTypeI386 = "i386"
+
+	// ArchitectureTypeX8664 is a ArchitectureType enum value
+	ArchitectureTypeX8664 = "x86_64"
+
+	// ArchitectureTypeArm64 is a ArchitectureType enum value
+	ArchitectureTypeArm64 = "arm64"
+)
+
+const (
 	// ArchitectureValuesI386 is a ArchitectureValues enum value
 	ArchitectureValuesI386 = "i386"
 
@@ -98021,6 +99274,14 @@ const (
 )
 
 const (
+	// DiskTypeHdd is a DiskType enum value
+	DiskTypeHdd = "hdd"
+
+	// DiskTypeSsd is a DiskType enum value
+	DiskTypeSsd = "ssd"
+)
+
+const (
 	// DnsSupportValueEnable is a DnsSupportValue enum value
 	DnsSupportValueEnable = "enable"
 
@@ -98037,6 +99298,25 @@ const (
 )
 
 const (
+	// EbsEncryptionSupportUnsupported is a EbsEncryptionSupport enum value
+	EbsEncryptionSupportUnsupported = "unsupported"
+
+	// EbsEncryptionSupportSupported is a EbsEncryptionSupport enum value
+	EbsEncryptionSupportSupported = "supported"
+)
+
+const (
+	// EbsOptimizedSupportUnsupported is a EbsOptimizedSupport enum value
+	EbsOptimizedSupportUnsupported = "unsupported"
+
+	// EbsOptimizedSupportSupported is a EbsOptimizedSupport enum value
+	EbsOptimizedSupportSupported = "supported"
+
+	// EbsOptimizedSupportDefault is a EbsOptimizedSupport enum value
+	EbsOptimizedSupportDefault = "default"
+)
+
+const (
 	// ElasticGpuStateAttached is a ElasticGpuState enum value
 	ElasticGpuStateAttached = "ATTACHED"
 )
@@ -98047,6 +99327,17 @@ const (
 
 	// ElasticGpuStatusImpaired is a ElasticGpuStatus enum value
 	ElasticGpuStatusImpaired = "IMPAIRED"
+)
+
+const (
+	// EnaSupportUnsupported is a EnaSupport enum value
+	EnaSupportUnsupported = "unsupported"
+
+	// EnaSupportSupported is a EnaSupport enum value
+	EnaSupportSupported = "supported"
+
+	// EnaSupportRequired is a EnaSupport enum value
+	EnaSupportRequired = "required"
 )
 
 const (
@@ -98904,8 +100195,17 @@ const (
 	// InstanceTypeC5d9xlarge is a InstanceType enum value
 	InstanceTypeC5d9xlarge = "c5d.9xlarge"
 
+	// InstanceTypeC5d12xlarge is a InstanceType enum value
+	InstanceTypeC5d12xlarge = "c5d.12xlarge"
+
 	// InstanceTypeC5d18xlarge is a InstanceType enum value
 	InstanceTypeC5d18xlarge = "c5d.18xlarge"
+
+	// InstanceTypeC5d24xlarge is a InstanceType enum value
+	InstanceTypeC5d24xlarge = "c5d.24xlarge"
+
+	// InstanceTypeC5dMetal is a InstanceType enum value
+	InstanceTypeC5dMetal = "c5d.metal"
 
 	// InstanceTypeC5nLarge is a InstanceType enum value
 	InstanceTypeC5nLarge = "c5n.large"
@@ -99278,6 +100578,14 @@ const (
 )
 
 const (
+	// InstanceTypeHypervisorNitro is a InstanceTypeHypervisor enum value
+	InstanceTypeHypervisorNitro = "nitro"
+
+	// InstanceTypeHypervisorXen is a InstanceTypeHypervisor enum value
+	InstanceTypeHypervisorXen = "xen"
+)
+
+const (
 	// InterfacePermissionTypeInstanceAttach is a InterfacePermissionType enum value
 	InterfacePermissionTypeInstanceAttach = "INSTANCE-ATTACH"
 
@@ -99339,6 +100647,17 @@ const (
 
 	// ListingStatusClosed is a ListingStatus enum value
 	ListingStatusClosed = "closed"
+)
+
+const (
+	// LocationTypeRegion is a LocationType enum value
+	LocationTypeRegion = "region"
+
+	// LocationTypeAvailabilityZone is a LocationType enum value
+	LocationTypeAvailabilityZone = "availability-zone"
+
+	// LocationTypeAvailabilityZoneId is a LocationType enum value
+	LocationTypeAvailabilityZoneId = "availability-zone-id"
 )
 
 const (
@@ -99526,6 +100845,17 @@ const (
 
 	// PlacementGroupStateDeleted is a PlacementGroupState enum value
 	PlacementGroupStateDeleted = "deleted"
+)
+
+const (
+	// PlacementGroupStrategyCluster is a PlacementGroupStrategy enum value
+	PlacementGroupStrategyCluster = "cluster"
+
+	// PlacementGroupStrategyPartition is a PlacementGroupStrategy enum value
+	PlacementGroupStrategyPartition = "partition"
+
+	// PlacementGroupStrategySpread is a PlacementGroupStrategy enum value
+	PlacementGroupStrategySpread = "spread"
 )
 
 const (
@@ -99768,6 +101098,14 @@ const (
 
 	// ResourceTypeVpnGateway is a ResourceType enum value
 	ResourceTypeVpnGateway = "vpn-gateway"
+)
+
+const (
+	// RootDeviceTypeEbs is a RootDeviceType enum value
+	RootDeviceTypeEbs = "ebs"
+
+	// RootDeviceTypeInstanceStore is a RootDeviceType enum value
+	RootDeviceTypeInstanceStore = "instance-store"
 )
 
 const (
@@ -100231,6 +101569,14 @@ const (
 
 	// UnsuccessfulInstanceCreditSpecificationErrorCodeInstanceCreditSpecificationNotSupported is a UnsuccessfulInstanceCreditSpecificationErrorCode enum value
 	UnsuccessfulInstanceCreditSpecificationErrorCodeInstanceCreditSpecificationNotSupported = "InstanceCreditSpecification.NotSupported"
+)
+
+const (
+	// UsageClassTypeSpot is a UsageClassType enum value
+	UsageClassTypeSpot = "spot"
+
+	// UsageClassTypeOnDemand is a UsageClassType enum value
+	UsageClassTypeOnDemand = "on-demand"
 )
 
 const (

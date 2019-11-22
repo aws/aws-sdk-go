@@ -156,7 +156,7 @@
     "DescribeExportImageTasks": "<p>Describes the specified export image tasks or all your export image tasks.</p>",
     "DescribeExportTasks": "<p>Describes the specified export instance tasks or all your export instance tasks.</p>",
     "DescribeFastSnapshotRestores": "<p>Describes the state of fast snapshot restores for your snapshots.</p>",
-    "DescribeFleetHistory": "<p>Describes the events for the specified EC2 Fleet during the specified time.</p>",
+    "DescribeFleetHistory": "<p>Describes the events for the specified EC2 Fleet during the specified time.</p> <p>EC2 Fleet events are delayed by up to 30 seconds before they can be described. This ensures that you can query by the last evaluated time and not miss a recorded event. EC2 Fleet events are available for 48 hours.</p>",
     "DescribeFleetInstances": "<p>Describes the running instances for the specified EC2 Fleet.</p>",
     "DescribeFleets": "<p>Describes the specified EC2 Fleets or all your EC2 Fleets.</p>",
     "DescribeFlowLogs": "<p>Describes one or more flow logs. To view the information in your flow logs (the log streams for the network interfaces), you must use the CloudWatch Logs console or the CloudWatch Logs API.</p>",
@@ -175,6 +175,8 @@
     "DescribeInstanceAttribute": "<p>Describes the specified attribute of the specified instance. You can specify only one attribute at a time. Valid attribute values are: <code>instanceType</code> | <code>kernel</code> | <code>ramdisk</code> | <code>userData</code> | <code>disableApiTermination</code> | <code>instanceInitiatedShutdownBehavior</code> | <code>rootDeviceName</code> | <code>blockDeviceMapping</code> | <code>productCodes</code> | <code>sourceDestCheck</code> | <code>groupSet</code> | <code>ebsOptimized</code> | <code>sriovNetSupport</code> </p>",
     "DescribeInstanceCreditSpecifications": "<p>Describes the credit option for CPU usage of the specified T2 or T3 instances. The credit options are <code>standard</code> and <code>unlimited</code>.</p> <p>If you do not specify an instance ID, Amazon EC2 returns T2 and T3 instances with the <code>unlimited</code> credit option, as well as instances that were previously configured as T2 or T3 with the <code>unlimited</code> credit option. For example, if you resize a T2 instance, while it is configured as <code>unlimited</code>, to an M4 instance, Amazon EC2 returns the M4 instance.</p> <p>If you specify one or more instance IDs, Amazon EC2 returns the credit option (<code>standard</code> or <code>unlimited</code>) of those instances. If you specify an instance ID that is not valid, such as an instance that is not a T2 or T3 instance, an error is returned.</p> <p>Recently terminated instances might appear in the returned results. This interval is usually less than one hour.</p> <p>If an Availability Zone is experiencing a service disruption and you specify instance IDs in the affected zone, or do not specify any instance IDs at all, the call fails. If you specify only instance IDs in an unaffected zone, the call works normally.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html\">Burstable Performance Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "DescribeInstanceStatus": "<p>Describes the status of the specified instances or all of your instances. By default, only running instances are described, unless you specifically indicate to return the status of all instances.</p> <p>Instance status includes the following components:</p> <ul> <li> <p> <b>Status checks</b> - Amazon EC2 performs status checks on running EC2 instances to identify hardware and software issues. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html\">Status Checks for Your Instances</a> and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/TroubleshootingInstances.html\">Troubleshooting Instances with Failed Status Checks</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> </li> <li> <p> <b>Scheduled events</b> - Amazon EC2 can schedule events (such as reboot, stop, or terminate) for your instances related to hardware issues, software updates, or system maintenance. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-instances-status-check_sched.html\">Scheduled Events for Your Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> </li> <li> <p> <b>Instance state</b> - You can manage your instances from the moment you launch them through their termination. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html\">Instance Lifecycle</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> </li> </ul>",
+    "DescribeInstanceTypeOfferings": "<p>Returns a list of all instance types offered. The results can be filtered by location (Region or Availability Zone). If no location is specified, the instance types offered in the current Region are returned.</p>",
+    "DescribeInstanceTypes": "<p>Returns a list of all instance types offered in your current AWS Region. The results can be filtered by the attributes of the instance types.</p>",
     "DescribeInstances": "<p>Describes the specified instances or all of AWS account's instances.</p> <p>If you specify one or more instance IDs, Amazon EC2 returns information for those instances. If you do not specify instance IDs, Amazon EC2 returns information for all relevant instances. If you specify an instance ID that is not valid, an error is returned. If you specify an instance that you do not own, it is not included in the returned results.</p> <p>Recently terminated instances might appear in the returned results. This interval is usually less than one hour.</p> <p>If you describe instances in the rare case where an Availability Zone is experiencing a service disruption and you specify instance IDs that are in the affected zone, or do not specify any instance IDs at all, the call fails. If you describe instances and specify only instance IDs that are in an unaffected zone, the call works normally.</p>",
     "DescribeInternetGateways": "<p>Describes one or more of your internet gateways.</p>",
     "DescribeKeyPairs": "<p>Describes the specified key pairs or all of your key pairs.</p> <p>For more information about key pairs, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html\">Key Pairs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
@@ -564,6 +566,18 @@
       "refs": {
       }
     },
+    "ArchitectureType": {
+      "base": null,
+      "refs": {
+        "ArchitectureTypeList$member": null
+      }
+    },
+    "ArchitectureTypeList": {
+      "base": null,
+      "refs": {
+        "ProcessorInfo$SupportedArchitectures": "<p>A list of architectures supported by the instance type.</p>"
+      }
+    },
     "ArchitectureValues": {
       "base": null,
       "refs": {
@@ -869,6 +883,12 @@
         "ModifyHostsRequest$AutoPlacement": "<p>Specify whether to enable or disable auto-placement.</p>"
       }
     },
+    "AutoRecoveryFlag": {
+      "base": null,
+      "refs": {
+        "InstanceTypeInfo$AutoRecoverySupported": "<p>Indicates whether auto recovery is supported.</p>"
+      }
+    },
     "AvailabilityZone": {
       "base": "<p>Describes an Availability Zone.</p>",
       "refs": {
@@ -916,6 +936,12 @@
       "base": null,
       "refs": {
         "AvailableCapacity$AvailableInstanceCapacity": "<p>The number of instances that can be launched onto the Dedicated Host depending on the host's available capacity. For Dedicated Hosts that support multiple instance types, this parameter represents the number of instances for each instance size that is supported on the host.</p>"
+      }
+    },
+    "BareMetalFlag": {
+      "base": null,
+      "refs": {
+        "InstanceTypeInfo$BareMetal": "<p>Indicates whether the instance is bare metal.</p>"
       }
     },
     "BatchState": {
@@ -1166,6 +1192,8 @@
         "DescribeInstanceCreditSpecificationsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeInstanceStatusRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeInstanceStatusRequest$IncludeAllInstances": "<p>When <code>true</code>, includes the health status for all instances. When <code>false</code>, includes the health status for running instances only.</p> <p>Default: <code>false</code> </p>",
+        "DescribeInstanceTypeOfferingsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DescribeInstanceTypesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeInternetGatewaysRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeKeyPairsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1528,6 +1556,12 @@
       "base": null,
       "refs": {
         "BundleTask$State": "<p>The state of the task.</p>"
+      }
+    },
+    "BurstablePerformanceFlag": {
+      "base": null,
+      "refs": {
+        "InstanceTypeInfo$BurstablePerformanceSupported": "<p>Indicates whether the instance type is a burstable performance instance type.</p>"
       }
     },
     "ByoipCidr": {
@@ -2116,6 +2150,19 @@
         "CreateSnapshotsRequest$CopyTagsFromSource": "<p>Copies the tags from the specified volume to corresponding snapshot.</p>"
       }
     },
+    "CoreCount": {
+      "base": null,
+      "refs": {
+        "CoreCountList$member": null,
+        "VCpuInfo$DefaultCores": "<p>The default number of cores for the instance type.</p>"
+      }
+    },
+    "CoreCountList": {
+      "base": null,
+      "refs": {
+        "VCpuInfo$ValidCores": "<p>List of the valid number of cores that can be configured for the instance type.</p>"
+      }
+    },
     "CpuOptions": {
       "base": "<p>The CPU options for the instance.</p>",
       "refs": {
@@ -2662,6 +2709,12 @@
         "ReservedInstancesOffering$CurrencyCode": "<p>The currency of the Reserved Instance offering you are purchasing. It's specified using ISO 4217 standard currency codes. At this time, the only supported currency is <code>USD</code>.</p>"
       }
     },
+    "CurrentGenerationFlag": {
+      "base": null,
+      "refs": {
+        "InstanceTypeInfo$CurrentGeneration": "<p>Indicates whether the instance type is a current generation.</p>"
+      }
+    },
     "CustomerGateway": {
       "base": "<p>Describes a customer gateway.</p>",
       "refs": {
@@ -2687,6 +2740,18 @@
       "base": null,
       "refs": {
         "DescribeCustomerGatewaysResult$CustomerGateways": "<p>Information about one or more customer gateways.</p>"
+      }
+    },
+    "DITMaxResults": {
+      "base": null,
+      "refs": {
+        "DescribeInstanceTypesRequest$MaxResults": "<p>The maximum number of results to return for the request in a single page. The remaining results can be seen by sending another request with the next token value.</p>"
+      }
+    },
+    "DITOMaxResults": {
+      "base": null,
+      "refs": {
+        "DescribeInstanceTypeOfferingsRequest$MaxResults": "<p>The maximum number of results to return for the request in a single page. The remaining results can be seen by sending another request with the next token value.</p>"
       }
     },
     "DatafeedSubscriptionState": {
@@ -2795,6 +2860,12 @@
         "VolumeStatusEvent$NotAfter": "<p>The latest end time of the event.</p>",
         "VolumeStatusEvent$NotBefore": "<p>The earliest start time of the event.</p>",
         "VpcPeeringConnection$ExpirationTime": "<p>The time that an unaccepted VPC peering connection will expire.</p>"
+      }
+    },
+    "DedicatedHostFlag": {
+      "base": null,
+      "refs": {
+        "InstanceTypeInfo$DedicatedHostsSupported": "<p>Indicates whether Dedicated Hosts are supported on the instance type.</p>"
       }
     },
     "DefaultRouteTableAssociationValue": {
@@ -3775,6 +3846,26 @@
       "refs": {
       }
     },
+    "DescribeInstanceTypeOfferingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeInstanceTypeOfferingsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeInstanceTypesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeInstanceTypesResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeInstancesRequest": {
       "base": null,
       "refs": {
@@ -4746,6 +4837,12 @@
       "refs": {
       }
     },
+    "DiskCount": {
+      "base": null,
+      "refs": {
+        "DiskInfo$Count": "<p>The number of disks with this configuration.</p>"
+      }
+    },
     "DiskImage": {
       "base": "<p>Describes a disk image.</p>",
       "refs": {
@@ -4788,6 +4885,31 @@
       "refs": {
         "ImportInstanceVolumeDetailItem$Volume": "<p>The volume.</p>",
         "ImportVolumeTaskDetails$Volume": "<p>The volume.</p>"
+      }
+    },
+    "DiskInfo": {
+      "base": "<p>Describes the disk.</p>",
+      "refs": {
+        "DiskInfoList$member": null
+      }
+    },
+    "DiskInfoList": {
+      "base": null,
+      "refs": {
+        "InstanceStorageInfo$Disks": "<p>Array describing the disks that are available for the instance type.</p>"
+      }
+    },
+    "DiskSize": {
+      "base": null,
+      "refs": {
+        "DiskInfo$SizeInGB": "<p>The size of the disk in GiB.</p>",
+        "InstanceStorageInfo$TotalSizeInGB": "<p>The total size of the disks, in GiB.</p>"
+      }
+    },
+    "DiskType": {
+      "base": null,
+      "refs": {
+        "DiskInfo$Type": "<p>The type of disk.</p>"
       }
     },
     "DnsEntry": {
@@ -4857,6 +4979,18 @@
         "BlockDeviceMapping$Ebs": "<p>Parameters used to automatically set up EBS volumes when the instance is launched.</p>"
       }
     },
+    "EbsEncryptionSupport": {
+      "base": null,
+      "refs": {
+        "EbsInfo$EncryptionSupport": "<p>Indicates whether Amazon EBS encryption is supported.</p>"
+      }
+    },
+    "EbsInfo": {
+      "base": "<p>Describes the Amazon EBS features supported by the instance type.</p>",
+      "refs": {
+        "InstanceTypeInfo$EbsInfo": "<p>Describes the Amazon EBS settings for the instance type.</p>"
+      }
+    },
     "EbsInstanceBlockDevice": {
       "base": "<p>Describes a parameter used to set up an EBS volume in a block device mapping.</p>",
       "refs": {
@@ -4867,6 +5001,12 @@
       "base": "<p>Describes information used to set up an EBS volume specified in a block device mapping.</p>",
       "refs": {
         "InstanceBlockDeviceMappingSpecification$Ebs": "<p>Parameters used to automatically set up EBS volumes when the instance is launched.</p>"
+      }
+    },
+    "EbsOptimizedSupport": {
+      "base": null,
+      "refs": {
+        "EbsInfo$EbsOptimizedSupport": "<p>Indicates that the instance type is Amazon EBS-optimized. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html\">Amazon EBS-Optimized Instances</a> in <i>Amazon EC2 User Guide for Linux Instances</i>.</p>"
       }
     },
     "EgressOnlyInternetGateway": {
@@ -4999,6 +5139,12 @@
       "base": null,
       "refs": {
         "RunInstancesRequest$ElasticInferenceAccelerators": "<p>An elastic inference accelerator to associate with the instance. Elastic inference accelerators are a resource you can attach to your Amazon EC2 instances to accelerate your Deep Learning (DL) inference workloads.</p>"
+      }
+    },
+    "EnaSupport": {
+      "base": null,
+      "refs": {
+        "NetworkInfo$EnaSupport": "<p>Indicates whether Elastic Network Adapter (ENA) is supported.</p>"
       }
     },
     "EnableEbsEncryptionByDefaultRequest": {
@@ -5328,6 +5474,8 @@
         "DescribeImportSnapshotTasksRequest$Filters": "<p>The filters.</p>",
         "DescribeInstanceCreditSpecificationsRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>instance-id</code> - The ID of the instance.</p> </li> </ul>",
         "DescribeInstanceStatusRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>availability-zone</code> - The Availability Zone of the instance.</p> </li> <li> <p> <code>event.code</code> - The code for the scheduled event (<code>instance-reboot</code> | <code>system-reboot</code> | <code>system-maintenance</code> | <code>instance-retirement</code> | <code>instance-stop</code>).</p> </li> <li> <p> <code>event.description</code> - A description of the event.</p> </li> <li> <p> <code>event.instance-event-id</code> - The ID of the event whose date and time you are modifying.</p> </li> <li> <p> <code>event.not-after</code> - The latest end time for the scheduled event (for example, <code>2014-09-15T17:15:20.000Z</code>).</p> </li> <li> <p> <code>event.not-before</code> - The earliest start time for the scheduled event (for example, <code>2014-09-15T17:15:20.000Z</code>).</p> </li> <li> <p> <code>event.not-before-deadline</code> - The deadline for starting the event (for example, <code>2014-09-15T17:15:20.000Z</code>).</p> </li> <li> <p> <code>instance-state-code</code> - The code for the instance state, as a 16-bit unsigned integer. The high byte is used for internal purposes and should be ignored. The low byte is set based on the state represented. The valid values are 0 (pending), 16 (running), 32 (shutting-down), 48 (terminated), 64 (stopping), and 80 (stopped).</p> </li> <li> <p> <code>instance-state-name</code> - The state of the instance (<code>pending</code> | <code>running</code> | <code>shutting-down</code> | <code>terminated</code> | <code>stopping</code> | <code>stopped</code>).</p> </li> <li> <p> <code>instance-status.reachability</code> - Filters on instance status where the name is <code>reachability</code> (<code>passed</code> | <code>failed</code> | <code>initializing</code> | <code>insufficient-data</code>).</p> </li> <li> <p> <code>instance-status.status</code> - The status of the instance (<code>ok</code> | <code>impaired</code> | <code>initializing</code> | <code>insufficient-data</code> | <code>not-applicable</code>).</p> </li> <li> <p> <code>system-status.reachability</code> - Filters on system status where the name is <code>reachability</code> (<code>passed</code> | <code>failed</code> | <code>initializing</code> | <code>insufficient-data</code>).</p> </li> <li> <p> <code>system-status.status</code> - The system status of the instance (<code>ok</code> | <code>impaired</code> | <code>initializing</code> | <code>insufficient-data</code> | <code>not-applicable</code>).</p> </li> </ul>",
+        "DescribeInstanceTypeOfferingsRequest$Filters": "<p>One or more filters. Filter names and values are case-sensitive.</p> <ul> <li> <p> <code>location</code> - This depends on the location type. For example, if the location type is <code>region</code> (default), the location is the Region code (for example, <code>us-east-2</code>.)</p> </li> <li> <p> <code>instance-type</code> - The instance type.</p> </li> </ul>",
+        "DescribeInstanceTypesRequest$Filters": "<p>One or more filters. Filter names and values are case-sensitive.</p> <ul> <li> <p> <code>auto-recovery-supported</code> - Indicates whether auto recovery is supported. (<code>true</code> | <code>false</code>)</p> </li> <li> <p> <code>bare-metal</code> - Indicates whether it is a bare metal instance type. (<code>true</code> | <code>false</code>)</p> </li> <li> <p> <code>burstable-performance-supported</code> - Indicates whether it is a burstable performance instance type. (<code>true</code> | <code>false</code>)</p> </li> <li> <p> <code>current-generation</code> - Indicates whether this instance type is the latest generation instance type of an instance family. (<code>true</code> | <code>false</code>)</p> </li> <li> <p> <code>ebs-info.ebs-optimized-support</code> - Indicates whether the instance type is EBS-optimized. (<code>true</code> | <code>false</code>)</p> </li> <li> <p> <code>ebs-info.encryption-support</code> - Indicates whether EBS encryption is supported. (<code>true</code> | <code>false</code>)</p> </li> <li> <p> <code>free-tier-eligible</code> - Indicates whether the instance type is eligible to use in the free tier. (<code>true</code> | <code>false</code>)</p> </li> <li> <p> <code>hibernation-supported</code> - Indicates whether On-Demand hibernation is supported. (<code>true</code> | <code>false</code>)</p> </li> <li> <p> <code>hypervisor</code> - The hypervisor used. (<code>nitro</code> | <code>xen</code>)</p> </li> <li> <p> <code>instance-storage-info.disk.count</code> - The number of local disks.</p> </li> <li> <p> <code>instance-storage-info.disk.size-in-gb</code> - The storage size of each instance storage disk, in GB.</p> </li> <li> <p> <code>instance-storage-info.disk.type</code> - The storage technology for the local instance storage disks. (<code>hdd</code> | <code>ssd</code>)</p> </li> <li> <p> <code>instance-storage-info.total-size-in-gb</code> - The total amount of storage available from all local instance storage, in GB.</p> </li> <li> <p> <code>instance-storage-supported</code> - Indicates whether the instance type has local instance storage. (<code>true</code> | <code>false</code>)</p> </li> <li> <p> <code>memory-info.size-in-mib</code> - The memory size.</p> </li> <li> <p> <code>network-info.ena-support</code> - Indicates whether Elastic Network Adapter (ENA) is supported or required. (<code>required</code> | <code>supported</code> | <code>unsupported</code>)</p> </li> <li> <p> <code>network-info.ipv4-addresses-per-interface</code> - The maximum number of private IPv4 addresses per network interface.</p> </li> <li> <p> <code>network-info.ipv6-addresses-per-interface</code> - The maximum number of private IPv6 addresses per network interface.</p> </li> <li> <p> <code>network-info.ipv6-supported</code> - Indicates whether the instance type supports IPv6. (<code>true</code> | <code>false</code>)</p> </li> <li> <p> <code>network-info.maximum-network-interfaces</code> - The maximum number of network interfaces per instance.</p> </li> <li> <p> <code>network-info.network-performance</code> - Describes the network performance.</p> </li> <li> <p> <code>processor-info.sustained-clock-speed-in-ghz</code> - The CPU clock speed, in GHz.</p> </li> <li> <p> <code>vcpu-info.default-cores</code> - The default number of cores for the instance type.</p> </li> <li> <p> <code>vcpu-info.default-threads-per-core</code> - The default number of threads per cores for the instance type.</p> </li> <li> <p> <code>vcpu-info.default-vcpus</code> - The default number of vCPUs for the instance type.</p> </li> </ul>",
         "DescribeInstancesRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>affinity</code> - The affinity setting for an instance running on a Dedicated Host (<code>default</code> | <code>host</code>).</p> </li> <li> <p> <code>architecture</code> - The instance architecture (<code>i386</code> | <code>x86_64</code> | <code>arm64</code>).</p> </li> <li> <p> <code>availability-zone</code> - The Availability Zone of the instance.</p> </li> <li> <p> <code>block-device-mapping.attach-time</code> - The attach time for an EBS volume mapped to the instance, for example, <code>2010-09-15T17:15:20.000Z</code>.</p> </li> <li> <p> <code>block-device-mapping.delete-on-termination</code> - A Boolean that indicates whether the EBS volume is deleted on instance termination.</p> </li> <li> <p> <code>block-device-mapping.device-name</code> - The device name specified in the block device mapping (for example, <code>/dev/sdh</code> or <code>xvdh</code>).</p> </li> <li> <p> <code>block-device-mapping.status</code> - The status for the EBS volume (<code>attaching</code> | <code>attached</code> | <code>detaching</code> | <code>detached</code>).</p> </li> <li> <p> <code>block-device-mapping.volume-id</code> - The volume ID of the EBS volume.</p> </li> <li> <p> <code>client-token</code> - The idempotency token you provided when you launched the instance.</p> </li> <li> <p> <code>dns-name</code> - The public DNS name of the instance.</p> </li> <li> <p> <code>group-id</code> - The ID of the security group for the instance. EC2-Classic only.</p> </li> <li> <p> <code>group-name</code> - The name of the security group for the instance. EC2-Classic only.</p> </li> <li> <p> <code>hibernation-options.configured</code> - A Boolean that indicates whether the instance is enabled for hibernation. A value of <code>true</code> means that the instance is enabled for hibernation. </p> </li> <li> <p> <code>host-id</code> - The ID of the Dedicated Host on which the instance is running, if applicable.</p> </li> <li> <p> <code>hypervisor</code> - The hypervisor type of the instance (<code>ovm</code> | <code>xen</code>).</p> </li> <li> <p> <code>iam-instance-profile.arn</code> - The instance profile associated with the instance. Specified as an ARN. <code>image-id</code> - The ID of the image used to launch the instance.</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance.</p> </li> <li> <p> <code>instance-lifecycle</code> - Indicates whether this is a Spot Instance or a Scheduled Instance (<code>spot</code> | <code>scheduled</code>).</p> </li> <li> <p> <code>instance-state-code</code> - The state of the instance, as a 16-bit unsigned integer. The high byte is used for internal purposes and should be ignored. The low byte is set based on the state represented. The valid values are: 0 (pending), 16 (running), 32 (shutting-down), 48 (terminated), 64 (stopping), and 80 (stopped).</p> </li> <li> <p> <code>instance-state-name</code> - The state of the instance (<code>pending</code> | <code>running</code> | <code>shutting-down</code> | <code>terminated</code> | <code>stopping</code> | <code>stopped</code>).</p> </li> <li> <p> <code>instance-type</code> - The type of instance (for example, <code>t2.micro</code>).</p> </li> <li> <p> <code>instance.group-id</code> - The ID of the security group for the instance. </p> </li> <li> <p> <code>instance.group-name</code> - The name of the security group for the instance. </p> </li> <li> <p> <code>ip-address</code> - The public IPv4 address of the instance.</p> </li> <li> <p> <code>kernel-id</code> - The kernel ID.</p> </li> <li> <p> <code>key-name</code> - The name of the key pair used when the instance was launched.</p> </li> <li> <p> <code>launch-index</code> - When launching multiple instances, this is the index for the instance in the launch group (for example, 0, 1, 2, and so on). </p> </li> <li> <p> <code>launch-time</code> - The time when the instance was launched.</p> </li> <li> <p> <code>metadata-http-tokens</code> - The metadata request authorization state (<code>optional</code> | <code>required</code>)</p> </li> <li> <p> <code>metadata-http-put-response-hop-limit</code> - The http metadata request put response hop limit (integer, possible values <code>1</code> to <code>64</code>)</p> </li> <li> <p> <code>metadata-http-endpoint</code> - Enable or disable metadata access on http endpoint (<code>enabled</code> | <code>disabled</code>)</p> </li> <li> <p> <code>monitoring-state</code> - Indicates whether detailed monitoring is enabled (<code>disabled</code> | <code>enabled</code>).</p> </li> <li> <p> <code>network-interface.addresses.private-ip-address</code> - The private IPv4 address associated with the network interface.</p> </li> <li> <p> <code>network-interface.addresses.primary</code> - Specifies whether the IPv4 address of the network interface is the primary private IPv4 address.</p> </li> <li> <p> <code>network-interface.addresses.association.public-ip</code> - The ID of the association of an Elastic IP address (IPv4) with a network interface.</p> </li> <li> <p> <code>network-interface.addresses.association.ip-owner-id</code> - The owner ID of the private IPv4 address associated with the network interface.</p> </li> <li> <p> <code>network-interface.association.public-ip</code> - The address of the Elastic IP address (IPv4) bound to the network interface.</p> </li> <li> <p> <code>network-interface.association.ip-owner-id</code> - The owner of the Elastic IP address (IPv4) associated with the network interface.</p> </li> <li> <p> <code>network-interface.association.allocation-id</code> - The allocation ID returned when you allocated the Elastic IP address (IPv4) for your network interface.</p> </li> <li> <p> <code>network-interface.association.association-id</code> - The association ID returned when the network interface was associated with an IPv4 address.</p> </li> <li> <p> <code>network-interface.attachment.attachment-id</code> - The ID of the interface attachment.</p> </li> <li> <p> <code>network-interface.attachment.instance-id</code> - The ID of the instance to which the network interface is attached.</p> </li> <li> <p> <code>network-interface.attachment.instance-owner-id</code> - The owner ID of the instance to which the network interface is attached.</p> </li> <li> <p> <code>network-interface.attachment.device-index</code> - The device index to which the network interface is attached.</p> </li> <li> <p> <code>network-interface.attachment.status</code> - The status of the attachment (<code>attaching</code> | <code>attached</code> | <code>detaching</code> | <code>detached</code>).</p> </li> <li> <p> <code>network-interface.attachment.attach-time</code> - The time that the network interface was attached to an instance.</p> </li> <li> <p> <code>network-interface.attachment.delete-on-termination</code> - Specifies whether the attachment is deleted when an instance is terminated.</p> </li> <li> <p> <code>network-interface.availability-zone</code> - The Availability Zone for the network interface.</p> </li> <li> <p> <code>network-interface.description</code> - The description of the network interface.</p> </li> <li> <p> <code>network-interface.group-id</code> - The ID of a security group associated with the network interface.</p> </li> <li> <p> <code>network-interface.group-name</code> - The name of a security group associated with the network interface.</p> </li> <li> <p> <code>network-interface.ipv6-addresses.ipv6-address</code> - The IPv6 address associated with the network interface.</p> </li> <li> <p> <code>network-interface.mac-address</code> - The MAC address of the network interface.</p> </li> <li> <p> <code>network-interface.network-interface-id</code> - The ID of the network interface.</p> </li> <li> <p> <code>network-interface.owner-id</code> - The ID of the owner of the network interface.</p> </li> <li> <p> <code>network-interface.private-dns-name</code> - The private DNS name of the network interface.</p> </li> <li> <p> <code>network-interface.requester-id</code> - The requester ID for the network interface.</p> </li> <li> <p> <code>network-interface.requester-managed</code> - Indicates whether the network interface is being managed by AWS.</p> </li> <li> <p> <code>network-interface.status</code> - The status of the network interface (<code>available</code>) | <code>in-use</code>).</p> </li> <li> <p> <code>network-interface.source-dest-check</code> - Whether the network interface performs source/destination checking. A value of <code>true</code> means that checking is enabled, and <code>false</code> means that checking is disabled. The value must be <code>false</code> for the network interface to perform network address translation (NAT) in your VPC.</p> </li> <li> <p> <code>network-interface.subnet-id</code> - The ID of the subnet for the network interface.</p> </li> <li> <p> <code>network-interface.vpc-id</code> - The ID of the VPC for the network interface.</p> </li> <li> <p> <code>owner-id</code> - The AWS account ID of the instance owner.</p> </li> <li> <p> <code>placement-group-name</code> - The name of the placement group for the instance.</p> </li> <li> <p> <code>placement-partition-number</code> - The partition in which the instance is located.</p> </li> <li> <p> <code>platform</code> - The platform. To list only Windows instances, use <code>windows</code>.</p> </li> <li> <p> <code>private-dns-name</code> - The private IPv4 DNS name of the instance.</p> </li> <li> <p> <code>private-ip-address</code> - The private IPv4 address of the instance.</p> </li> <li> <p> <code>product-code</code> - The product code associated with the AMI used to launch the instance.</p> </li> <li> <p> <code>product-code.type</code> - The type of product code (<code>devpay</code> | <code>marketplace</code>).</p> </li> <li> <p> <code>ramdisk-id</code> - The RAM disk ID.</p> </li> <li> <p> <code>reason</code> - The reason for the current state of the instance (for example, shows \"User Initiated [date]\" when you stop or terminate the instance). Similar to the state-reason-code filter.</p> </li> <li> <p> <code>requester-id</code> - The ID of the entity that launched the instance on your behalf (for example, AWS Management Console, Auto Scaling, and so on).</p> </li> <li> <p> <code>reservation-id</code> - The ID of the instance's reservation. A reservation ID is created any time you launch an instance. A reservation ID has a one-to-one relationship with an instance launch request, but can be associated with more than one instance if you launch multiple instances using the same launch request. For example, if you launch one instance, you get one reservation ID. If you launch ten instances using the same launch request, you also get one reservation ID.</p> </li> <li> <p> <code>root-device-name</code> - The device name of the root device volume (for example, <code>/dev/sda1</code>).</p> </li> <li> <p> <code>root-device-type</code> - The type of the root device volume (<code>ebs</code> | <code>instance-store</code>).</p> </li> <li> <p> <code>source-dest-check</code> - Indicates whether the instance performs source/destination checking. A value of <code>true</code> means that checking is enabled, and <code>false</code> means that checking is disabled. The value must be <code>false</code> for the instance to perform network address translation (NAT) in your VPC. </p> </li> <li> <p> <code>spot-instance-request-id</code> - The ID of the Spot Instance request.</p> </li> <li> <p> <code>state-reason-code</code> - The reason code for the state change.</p> </li> <li> <p> <code>state-reason-message</code> - A message that describes the state change.</p> </li> <li> <p> <code>subnet-id</code> - The ID of the subnet for the instance.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources that have a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>tenancy</code> - The tenancy of an instance (<code>dedicated</code> | <code>default</code> | <code>host</code>).</p> </li> <li> <p> <code>virtualization-type</code> - The virtualization type of the instance (<code>paravirtual</code> | <code>hvm</code>).</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC that the instance is running in.</p> </li> </ul>",
         "DescribeInternetGatewaysRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>attachment.state</code> - The current state of the attachment between the gateway and the VPC (<code>available</code>). Present only if a VPC is attached.</p> </li> <li> <p> <code>attachment.vpc-id</code> - The ID of an attached VPC.</p> </li> <li> <p> <code>internet-gateway-id</code> - The ID of the Internet gateway.</p> </li> <li> <p> <code>owner-id</code> - The ID of the AWS account that owns the internet gateway.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
         "DescribeKeyPairsRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>fingerprint</code> - The fingerprint of the key pair.</p> </li> <li> <p> <code>key-name</code> - The name of the key pair.</p> </li> </ul>",
@@ -5550,6 +5698,48 @@
         "CreateFlowLogsRequest$ResourceType": "<p>The type of resource for which to create the flow log. For example, if you specified a VPC ID for the <code>ResourceId</code> property, specify <code>VPC</code> for this property.</p>"
       }
     },
+    "FpgaDeviceCount": {
+      "base": null,
+      "refs": {
+        "FpgaDeviceInfo$Count": "<p>The count of FPGA accelerators for the instance type.</p>"
+      }
+    },
+    "FpgaDeviceInfo": {
+      "base": "<p>Describes the FPGA accelerator for the instance type.</p>",
+      "refs": {
+        "FpgaDeviceInfoList$member": null
+      }
+    },
+    "FpgaDeviceInfoList": {
+      "base": null,
+      "refs": {
+        "FpgaInfo$Fpgas": "<p>Describes the FPGAs for the instance type.</p>"
+      }
+    },
+    "FpgaDeviceManufacturerName": {
+      "base": null,
+      "refs": {
+        "FpgaDeviceInfo$Manufacturer": "<p>The manufacturer of the FPGA accelerator.</p>"
+      }
+    },
+    "FpgaDeviceMemoryInfo": {
+      "base": "<p>Describes the memory for the FPGA accelerator for the instance type.</p>",
+      "refs": {
+        "FpgaDeviceInfo$MemoryInfo": "<p>Describes the memory for the FPGA accelerator for the instance type.</p>"
+      }
+    },
+    "FpgaDeviceMemorySize": {
+      "base": null,
+      "refs": {
+        "FpgaDeviceMemoryInfo$SizeInMiB": "<p>The size (in MiB) for the memory available to the FPGA accelerator.</p>"
+      }
+    },
+    "FpgaDeviceName": {
+      "base": null,
+      "refs": {
+        "FpgaDeviceInfo$Name": "<p>The name of the FPGA accelerator.</p>"
+      }
+    },
     "FpgaImage": {
       "base": "<p>Describes an Amazon FPGA image (AFI).</p>",
       "refs": {
@@ -5600,6 +5790,18 @@
       "base": null,
       "refs": {
         "FpgaImageState$Code": "<p>The state. The following are the possible values:</p> <ul> <li> <p> <code>pending</code> - AFI bitstream generation is in progress.</p> </li> <li> <p> <code>available</code> - The AFI is available for use.</p> </li> <li> <p> <code>failed</code> - AFI bitstream generation failed.</p> </li> <li> <p> <code>unavailable</code> - The AFI is no longer available for use.</p> </li> </ul>"
+      }
+    },
+    "FpgaInfo": {
+      "base": "<p>Describes the FPGAs for the instance type.</p>",
+      "refs": {
+        "InstanceTypeInfo$FpgaInfo": "<p>Describes the FPGA accelerator settings for the instance type.</p>"
+      }
+    },
+    "FreeTierEligibleFlag": {
+      "base": null,
+      "refs": {
+        "InstanceTypeInfo$FreeTierEligible": "<p>Indicates whether the instance type is eligible for the free tier.</p>"
       }
     },
     "GatewayType": {
@@ -5737,6 +5939,54 @@
       "refs": {
       }
     },
+    "GpuDeviceCount": {
+      "base": null,
+      "refs": {
+        "GpuDeviceInfo$Count": "<p>The number of GPUs for the instance type.</p>"
+      }
+    },
+    "GpuDeviceInfo": {
+      "base": "<p>Describes the GPU accelerators for the instance type.</p>",
+      "refs": {
+        "GpuDeviceInfoList$member": null
+      }
+    },
+    "GpuDeviceInfoList": {
+      "base": null,
+      "refs": {
+        "GpuInfo$Gpus": "<p>Describes the GPU accelerators for the instance type.</p>"
+      }
+    },
+    "GpuDeviceManufacturerName": {
+      "base": null,
+      "refs": {
+        "GpuDeviceInfo$Manufacturer": "<p>The manufacturer of the GPU accelerator.</p>"
+      }
+    },
+    "GpuDeviceMemoryInfo": {
+      "base": "<p>Describes the memory available to the GPU accelerator.</p>",
+      "refs": {
+        "GpuDeviceInfo$MemoryInfo": "<p>Describes the memory available to the GPU accelerator.</p>"
+      }
+    },
+    "GpuDeviceMemorySize": {
+      "base": null,
+      "refs": {
+        "GpuDeviceMemoryInfo$SizeInMiB": "<p>The size (in MiB) for the memory available to the GPU accelerator.</p>"
+      }
+    },
+    "GpuDeviceName": {
+      "base": null,
+      "refs": {
+        "GpuDeviceInfo$Name": "<p>The name of the GPU accelerator.</p>"
+      }
+    },
+    "GpuInfo": {
+      "base": "<p>Describes the GPU accelerators for the instance type.</p>",
+      "refs": {
+        "InstanceTypeInfo$GpuInfo": "<p>Describes the GPU accelerator settings for the instance type.</p>"
+      }
+    },
     "GroupIdStringList": {
       "base": null,
       "refs": {
@@ -5783,6 +6033,12 @@
       "refs": {
         "DescribeSecurityGroupsRequest$GroupNames": "<p>[EC2-Classic and default VPC only] The names of the security groups. You can specify either the security group name or the security group ID. For security groups in a nondefault VPC, use the <code>group-name</code> filter to describe security groups by name.</p> <p>Default: Describes all your security groups.</p>",
         "ModifySnapshotAttributeRequest$GroupNames": "<p>The group to modify for the snapshot.</p>"
+      }
+    },
+    "HibernationFlag": {
+      "base": null,
+      "refs": {
+        "InstanceTypeInfo$HibernationSupported": "<p>Indicates whether On-Demand hibernation is supported.</p>"
       }
     },
     "HibernationOptions": {
@@ -6621,6 +6877,18 @@
         "InstanceStatus$SystemStatus": "<p>Reports impaired functionality that stems from issues related to the systems that support an instance, such as hardware failures and network connectivity problems.</p>"
       }
     },
+    "InstanceStorageFlag": {
+      "base": null,
+      "refs": {
+        "InstanceTypeInfo$InstanceStorageSupported": "<p>Indicates whether instance storage is supported.</p>"
+      }
+    },
+    "InstanceStorageInfo": {
+      "base": "<p>Describes the disks that are available for the instance type.</p>",
+      "refs": {
+        "InstanceTypeInfo$InstanceStorageInfo": "<p>Describes the disks for the instance type.</p>"
+      }
+    },
     "InstanceType": {
       "base": null,
       "refs": {
@@ -6631,9 +6899,12 @@
         "FleetLaunchTemplateOverridesRequest$InstanceType": "<p>The instance type.</p>",
         "ImportInstanceLaunchSpecification$InstanceType": "<p>The instance type. For more information about the instance types that you can import, see <a href=\"https://docs.aws.amazon.com/vm-import/latest/userguide/vmie_prereqs.html#vmimport-instance-types\">Instance Types</a> in the VM Import/Export User Guide.</p>",
         "Instance$InstanceType": "<p>The instance type.</p>",
+        "InstanceTypeInfo$InstanceType": "<p>The instance type. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
         "InstanceTypeList$member": null,
+        "InstanceTypeOffering$InstanceType": "<p>The instance type. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
         "LaunchSpecification$InstanceType": "<p>The instance type.</p>",
         "LaunchTemplateOverrides$InstanceType": "<p>The instance type.</p>",
+        "RequestInstanceTypeList$member": null,
         "RequestLaunchTemplateData$InstanceType": "<p>The instance type. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
         "RequestSpotLaunchSpecification$InstanceType": "<p>The instance type.</p>",
         "ReservedInstances$InstanceType": "<p>The instance type on which the Reserved Instance can be used.</p>",
@@ -6645,10 +6916,40 @@
         "SpotPrice$InstanceType": "<p>The instance type.</p>"
       }
     },
+    "InstanceTypeHypervisor": {
+      "base": null,
+      "refs": {
+        "InstanceTypeInfo$Hypervisor": "<p>Indicates the hypervisor used for the instance type.</p>"
+      }
+    },
+    "InstanceTypeInfo": {
+      "base": "<p>Describes the instance type.</p>",
+      "refs": {
+        "InstanceTypeInfoList$member": null
+      }
+    },
+    "InstanceTypeInfoList": {
+      "base": null,
+      "refs": {
+        "DescribeInstanceTypesResult$InstanceTypes": "<p>The instance type. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>"
+      }
+    },
     "InstanceTypeList": {
       "base": null,
       "refs": {
         "DescribeSpotPriceHistoryRequest$InstanceTypes": "<p>Filters the results by the specified instance types.</p>"
+      }
+    },
+    "InstanceTypeOffering": {
+      "base": "<p>The instance types offered.</p>",
+      "refs": {
+        "InstanceTypeOfferingsList$member": null
+      }
+    },
+    "InstanceTypeOfferingsList": {
+      "base": null,
+      "refs": {
+        "DescribeInstanceTypeOfferingsResult$InstanceTypeOfferings": "<p>The instance types offered.</p>"
       }
     },
     "InstanceUsage": {
@@ -6995,6 +7296,12 @@
       "base": null,
       "refs": {
         "VpcPeeringConnectionVpcInfo$Ipv6CidrBlockSet": "<p>The IPv6 CIDR block for the VPC.</p>"
+      }
+    },
+    "Ipv6Flag": {
+      "base": null,
+      "refs": {
+        "NetworkInfo$Ipv6Supported": "<p>Indicates whether IPv6 is supported.</p>"
       }
     },
     "Ipv6Range": {
@@ -7491,6 +7798,19 @@
         "LoadPermissionListRequest$member": null
       }
     },
+    "Location": {
+      "base": null,
+      "refs": {
+        "InstanceTypeOffering$Location": "<p>The identifier for the location. This depends on the location type. For example, if the location type is <code>region</code>, the location is the Region code (for example, <code>us-east-2</code>.)</p>"
+      }
+    },
+    "LocationType": {
+      "base": null,
+      "refs": {
+        "DescribeInstanceTypeOfferingsRequest$LocationType": "<p>The location type.</p>",
+        "InstanceTypeOffering$LocationType": "<p>The location type.</p>"
+      }
+    },
     "LogDestinationType": {
       "base": null,
       "refs": {
@@ -7531,6 +7851,36 @@
         "InstanceMarketOptionsRequest$MarketType": "<p>The market type.</p>",
         "LaunchTemplateInstanceMarketOptions$MarketType": "<p>The market type.</p>",
         "LaunchTemplateInstanceMarketOptionsRequest$MarketType": "<p>The market type.</p>"
+      }
+    },
+    "MaxIpv4AddrPerInterface": {
+      "base": null,
+      "refs": {
+        "NetworkInfo$Ipv4AddressesPerInterface": "<p>The maximum number of IPv4 addresses per network interface.</p>"
+      }
+    },
+    "MaxIpv6AddrPerInterface": {
+      "base": null,
+      "refs": {
+        "NetworkInfo$Ipv6AddressesPerInterface": "<p>The maximum number of IPv6 addresses per network interface.</p>"
+      }
+    },
+    "MaxNetworkInterfaces": {
+      "base": null,
+      "refs": {
+        "NetworkInfo$MaximumNetworkInterfaces": "<p>The maximum number of network interfaces for the instance type.</p>"
+      }
+    },
+    "MemoryInfo": {
+      "base": "<p>Describes the memory for the instance type.</p>",
+      "refs": {
+        "InstanceTypeInfo$MemoryInfo": "<p>Describes the memory for the instance type.</p>"
+      }
+    },
+    "MemorySize": {
+      "base": null,
+      "refs": {
+        "MemoryInfo$SizeInMiB": "<p>Size of the memory, in MiB.</p>"
       }
     },
     "MillisecondDateTime": {
@@ -8036,6 +8386,12 @@
         "DescribeNetworkAclsResult$NetworkAcls": "<p>Information about one or more network ACLs.</p>"
       }
     },
+    "NetworkInfo": {
+      "base": "<p>Describes the networking features of the instance type.</p>",
+      "refs": {
+        "InstanceTypeInfo$NetworkInfo": "<p>Describes the network settings for the instance type.</p>"
+      }
+    },
     "NetworkInterface": {
       "base": "<p>Describes a network interface.</p>",
       "refs": {
@@ -8174,6 +8530,12 @@
         "NetworkInterface$InterfaceType": "<p>The type of network interface.</p>"
       }
     },
+    "NetworkPerformance": {
+      "base": null,
+      "refs": {
+        "NetworkInfo$NetworkPerformance": "<p>Describes the network performance.</p>"
+      }
+    },
     "NewDhcpConfiguration": {
       "base": null,
       "refs": {
@@ -8208,6 +8570,10 @@
         "DescribeFpgaImagesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeIamInstanceProfileAssociationsRequest$NextToken": "<p>The token to request the next page of results.</p>",
         "DescribeIamInstanceProfileAssociationsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "DescribeInstanceTypeOfferingsRequest$NextToken": "<p>The token to retrieve the next page of results.</p>",
+        "DescribeInstanceTypeOfferingsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "DescribeInstanceTypesRequest$NextToken": "<p>The token to retrieve the next page of results.</p>",
+        "DescribeInstanceTypesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribePublicIpv4PoolsRequest$NextToken": "<p>The token for the next page of results.</p>",
         "DescribeTrafficMirrorFiltersRequest$NextToken": "<p>The token for the next page of results.</p>",
         "DescribeTrafficMirrorSessionsRequest$NextToken": "<p>The token for the next page of results.</p>",
@@ -8487,6 +8853,12 @@
         "PlacementGroupList$member": null
       }
     },
+    "PlacementGroupInfo": {
+      "base": "<p>Describes the placement group support of the instance type.</p>",
+      "refs": {
+        "InstanceTypeInfo$PlacementGroupInfo": "<p>Describes the placement group settings for the instance type.</p>"
+      }
+    },
     "PlacementGroupList": {
       "base": null,
       "refs": {
@@ -8503,6 +8875,18 @@
       "base": null,
       "refs": {
         "PlacementGroup$State": "<p>The state of the placement group.</p>"
+      }
+    },
+    "PlacementGroupStrategy": {
+      "base": null,
+      "refs": {
+        "PlacementGroupStrategyList$member": null
+      }
+    },
+    "PlacementGroupStrategyList": {
+      "base": null,
+      "refs": {
+        "PlacementGroupInfo$SupportedStrategies": "<p>A list of supported placement groups types.</p>"
       }
     },
     "PlacementGroupStringList": {
@@ -8659,6 +9043,18 @@
       "refs": {
         "AssignPrivateIpAddressesRequest$PrivateIpAddresses": "<p>One or more IP addresses to be assigned as a secondary private IP address to the network interface. You can't specify this parameter when also specifying a number of secondary IP addresses.</p> <p>If you don't specify an IP address, Amazon EC2 automatically selects an IP address within the subnet range.</p>",
         "UnassignPrivateIpAddressesRequest$PrivateIpAddresses": "<p>The secondary private IP addresses to unassign from the network interface. You can specify this option multiple times to unassign more than one IP address.</p>"
+      }
+    },
+    "ProcessorInfo": {
+      "base": "<p>Describes the processor used by the instance type.</p>",
+      "refs": {
+        "InstanceTypeInfo$ProcessorInfo": "<p>Describes the processor.</p>"
+      }
+    },
+    "ProcessorSustainedClockSpeed": {
+      "base": null,
+      "refs": {
+        "ProcessorInfo$SustainedClockSpeedInGhz": "<p>The speed of the processor, in GHz.</p>"
       }
     },
     "ProductCode": {
@@ -9013,6 +9409,12 @@
         "PurchaseHostReservationRequest$HostIdSet": "<p>The IDs of the Dedicated Hosts with which the reservation will be associated.</p>"
       }
     },
+    "RequestInstanceTypeList": {
+      "base": null,
+      "refs": {
+        "DescribeInstanceTypesRequest$InstanceTypes": "<p>The instance types. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>"
+      }
+    },
     "RequestLaunchTemplateData": {
       "base": "<p>The information to include in the launch template.</p>",
       "refs": {
@@ -9353,6 +9755,18 @@
     "RevokeSecurityGroupIngressRequest": {
       "base": null,
       "refs": {
+      }
+    },
+    "RootDeviceType": {
+      "base": null,
+      "refs": {
+        "RootDeviceTypeList$member": null
+      }
+    },
+    "RootDeviceTypeList": {
+      "base": null,
+      "refs": {
+        "InstanceTypeInfo$SupportedRootDevices": "<p>Indicates the supported root devices.</p>"
       }
     },
     "Route": {
@@ -11865,6 +12279,19 @@
       "refs": {
       }
     },
+    "ThreadsPerCore": {
+      "base": null,
+      "refs": {
+        "ThreadsPerCoreList$member": null,
+        "VCpuInfo$DefaultThreadsPerCore": "<p>The default number of threads per core for the instance type.</p>"
+      }
+    },
+    "ThreadsPerCoreList": {
+      "base": null,
+      "refs": {
+        "VCpuInfo$ValidThreadsPerCore": "<p>List of the valid number of threads per core that can be configured for the instance type. </p>"
+      }
+    },
     "TrafficDirection": {
       "base": null,
       "refs": {
@@ -12457,6 +12884,18 @@
       "refs": {
       }
     },
+    "UsageClassType": {
+      "base": null,
+      "refs": {
+        "UsageClassTypeList$member": null
+      }
+    },
+    "UsageClassTypeList": {
+      "base": null,
+      "refs": {
+        "InstanceTypeInfo$SupportedUsageClasses": "<p>Indicates whether the instance type is offered for spot or On-Demand.</p>"
+      }
+    },
     "UserBucket": {
       "base": "<p>Describes the S3 bucket for the disk image.</p>",
       "refs": {
@@ -12509,6 +12948,18 @@
         "ModifyFpgaImageAttributeRequest$UserIds": "<p>The AWS account IDs. This parameter is valid only when modifying the <code>loadPermission</code> attribute.</p>",
         "ModifyImageAttributeRequest$UserIds": "<p>The AWS account IDs. This parameter can be used only when the <code>Attribute</code> parameter is <code>launchPermission</code>.</p>",
         "ModifySnapshotAttributeRequest$UserIds": "<p>The account ID to modify for the snapshot.</p>"
+      }
+    },
+    "VCpuCount": {
+      "base": null,
+      "refs": {
+        "VCpuInfo$DefaultVCpus": "<p>The default number of vCPUs for the instance type.</p>"
+      }
+    },
+    "VCpuInfo": {
+      "base": "<p>Describes the vCPU configurations for the instance type.</p>",
+      "refs": {
+        "InstanceTypeInfo$VCpuInfo": "<p>Describes the vCPU configurations for the instance type.</p>"
       }
     },
     "ValueStringList": {
@@ -13178,6 +13629,18 @@
         "ReservedInstances$Scope": "<p>The scope of the Reserved Instance.</p>",
         "ReservedInstancesConfiguration$Scope": "<p>Whether the Reserved Instance is applied to instances in a Region or instances in a specific Availability Zone.</p>",
         "ReservedInstancesOffering$Scope": "<p>Whether the Reserved Instance is applied to instances in a Region or an Availability Zone.</p>"
+      }
+    },
+    "totalFpgaMemory": {
+      "base": null,
+      "refs": {
+        "FpgaInfo$TotalFpgaMemoryInMiB": "<p>The total memory of all FPGA accelerators for the instance type.</p>"
+      }
+    },
+    "totalGpuMemory": {
+      "base": null,
+      "refs": {
+        "GpuInfo$TotalGpuMemoryInMiB": "<p>The total size of the memory for the GPU accelerators for the instance type.</p>"
       }
     }
   }

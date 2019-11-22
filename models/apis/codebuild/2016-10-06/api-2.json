@@ -817,6 +817,8 @@
         "streamName":{"shape":"String"},
         "deepLink":{"shape":"String"},
         "s3DeepLink":{"shape":"String"},
+        "cloudWatchLogsArn":{"shape":"String"},
+        "s3LogsArn":{"shape":"String"},
         "cloudWatchLogs":{"shape":"CloudWatchLogsConfig"},
         "s3Logs":{"shape":"S3LogsConfig"}
       }

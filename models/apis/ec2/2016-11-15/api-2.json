@@ -1538,6 +1538,24 @@
       "input":{"shape":"DescribeInstanceStatusRequest"},
       "output":{"shape":"DescribeInstanceStatusResult"}
     },
+    "DescribeInstanceTypeOfferings":{
+      "name":"DescribeInstanceTypeOfferings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeInstanceTypeOfferingsRequest"},
+      "output":{"shape":"DescribeInstanceTypeOfferingsResult"}
+    },
+    "DescribeInstanceTypes":{
+      "name":"DescribeInstanceTypes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeInstanceTypesRequest"},
+      "output":{"shape":"DescribeInstanceTypesResult"}
+    },
     "DescribeInstances":{
       "name":"DescribeInstances",
       "http":{
@@ -3627,6 +3645,21 @@
         }
       }
     },
+    "ArchitectureType":{
+      "type":"string",
+      "enum":[
+        "i386",
+        "x86_64",
+        "arm64"
+      ]
+    },
+    "ArchitectureTypeList":{
+      "type":"list",
+      "member":{
+        "shape":"ArchitectureType",
+        "locationName":"item"
+      }
+    },
     "ArchitectureValues":{
       "type":"string",
       "enum":[
@@ -4279,6 +4312,7 @@
         "off"
       ]
     },
+    "AutoRecoveryFlag":{"type":"boolean"},
     "AvailabilityZone":{
       "type":"structure",
       "members":{
@@ -4363,6 +4397,7 @@
         "locationName":"item"
       }
     },
+    "BareMetalFlag":{"type":"boolean"},
     "BatchState":{
       "type":"string",
       "enum":[
@@ -4528,6 +4563,7 @@
         "failed"
       ]
     },
+    "BurstablePerformanceFlag":{"type":"boolean"},
     "ByoipCidr":{
       "type":"structure",
       "members":{
@@ -5719,6 +5755,14 @@
     "CopyTagsFromSource":{
       "type":"string",
       "enum":["volume"]
+    },
+    "CoreCount":{"type":"integer"},
+    "CoreCountList":{
+      "type":"list",
+      "member":{
+        "shape":"CoreCount",
+        "locationName":"item"
+      }
     },
     "CpuOptions":{
       "type":"structure",
@@ -7249,6 +7293,7 @@
       "type":"string",
       "enum":["USD"]
     },
+    "CurrentGenerationFlag":{"type":"boolean"},
     "CustomerGateway":{
       "type":"structure",
       "members":{
@@ -7301,6 +7346,16 @@
         "locationName":"item"
       }
     },
+    "DITMaxResults":{
+      "type":"integer",
+      "max":100,
+      "min":5
+    },
+    "DITOMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":5
+    },
     "DatafeedSubscriptionState":{
       "type":"string",
       "enum":[
@@ -7309,6 +7364,7 @@
       ]
     },
     "DateTime":{"type":"timestamp"},
+    "DedicatedHostFlag":{"type":"boolean"},
     "DefaultRouteTableAssociationValue":{
       "type":"string",
       "enum":[
@@ -9498,6 +9554,61 @@
         },
         "NextToken":{
           "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "DescribeInstanceTypeOfferingsRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "LocationType":{"shape":"LocationType"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"DITOMaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeInstanceTypeOfferingsResult":{
+      "type":"structure",
+      "members":{
+        "InstanceTypeOfferings":{
+          "shape":"InstanceTypeOfferingsList",
+          "locationName":"instanceTypeOfferingSet"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "DescribeInstanceTypesRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "InstanceTypes":{
+          "shape":"RequestInstanceTypeList",
+          "locationName":"InstanceType"
+        },
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"DITMaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeInstanceTypesResult":{
+      "type":"structure",
+      "members":{
+        "InstanceTypes":{
+          "shape":"InstanceTypeInfoList",
+          "locationName":"instanceTypeSet"
+        },
+        "NextToken":{
+          "shape":"NextToken",
           "locationName":"nextToken"
         }
       }
@@ -12015,6 +12126,7 @@
         }
       }
     },
+    "DiskCount":{"type":"integer"},
     "DiskImage":{
       "type":"structure",
       "members":{
@@ -12091,6 +12203,38 @@
         }
       }
     },
+    "DiskInfo":{
+      "type":"structure",
+      "members":{
+        "SizeInGB":{
+          "shape":"DiskSize",
+          "locationName":"sizeInGB"
+        },
+        "Count":{
+          "shape":"DiskCount",
+          "locationName":"count"
+        },
+        "Type":{
+          "shape":"DiskType",
+          "locationName":"type"
+        }
+      }
+    },
+    "DiskInfoList":{
+      "type":"list",
+      "member":{
+        "shape":"DiskInfo",
+        "locationName":"item"
+      }
+    },
+    "DiskSize":{"type":"long"},
+    "DiskType":{
+      "type":"string",
+      "enum":[
+        "hdd",
+        "ssd"
+      ]
+    },
     "DnsEntry":{
       "type":"structure",
       "members":{
@@ -12163,6 +12307,26 @@
         "KmsKeyId":{"shape":"String"}
       }
     },
+    "EbsEncryptionSupport":{
+      "type":"string",
+      "enum":[
+        "unsupported",
+        "supported"
+      ]
+    },
+    "EbsInfo":{
+      "type":"structure",
+      "members":{
+        "EbsOptimizedSupport":{
+          "shape":"EbsOptimizedSupport",
+          "locationName":"ebsOptimizedSupport"
+        },
+        "EncryptionSupport":{
+          "shape":"EbsEncryptionSupport",
+          "locationName":"encryptionSupport"
+        }
+      }
+    },
     "EbsInstanceBlockDevice":{
       "type":"structure",
       "members":{
@@ -12196,6 +12360,14 @@
           "locationName":"volumeId"
         }
       }
+    },
+    "EbsOptimizedSupport":{
+      "type":"string",
+      "enum":[
+        "unsupported",
+        "supported",
+        "default"
+      ]
     },
     "EgressOnlyInternetGateway":{
       "type":"structure",
@@ -12394,6 +12566,14 @@
         "shape":"ElasticInferenceAccelerator",
         "locationName":"item"
       }
+    },
+    "EnaSupport":{
+      "type":"string",
+      "enum":[
+        "unsupported",
+        "supported",
+        "required"
+      ]
     },
     "EnableEbsEncryptionByDefaultRequest":{
       "type":"structure",
@@ -13377,6 +13557,47 @@
         "NetworkInterface"
       ]
     },
+    "FpgaDeviceCount":{"type":"integer"},
+    "FpgaDeviceInfo":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"FpgaDeviceName",
+          "locationName":"name"
+        },
+        "Manufacturer":{
+          "shape":"FpgaDeviceManufacturerName",
+          "locationName":"manufacturer"
+        },
+        "Count":{
+          "shape":"FpgaDeviceCount",
+          "locationName":"count"
+        },
+        "MemoryInfo":{
+          "shape":"FpgaDeviceMemoryInfo",
+          "locationName":"memoryInfo"
+        }
+      }
+    },
+    "FpgaDeviceInfoList":{
+      "type":"list",
+      "member":{
+        "shape":"FpgaDeviceInfo",
+        "locationName":"item"
+      }
+    },
+    "FpgaDeviceManufacturerName":{"type":"string"},
+    "FpgaDeviceMemoryInfo":{
+      "type":"structure",
+      "members":{
+        "SizeInMiB":{
+          "shape":"FpgaDeviceMemorySize",
+          "locationName":"sizeInMiB"
+        }
+      }
+    },
+    "FpgaDeviceMemorySize":{"type":"integer"},
+    "FpgaDeviceName":{"type":"string"},
     "FpgaImage":{
       "type":"structure",
       "members":{
@@ -13513,6 +13734,20 @@
         "unavailable"
       ]
     },
+    "FpgaInfo":{
+      "type":"structure",
+      "members":{
+        "Fpgas":{
+          "shape":"FpgaDeviceInfoList",
+          "locationName":"fpgas"
+        },
+        "TotalFpgaMemoryInMiB":{
+          "shape":"totalFpgaMemory",
+          "locationName":"totalFpgaMemoryInMiB"
+        }
+      }
+    },
+    "FreeTierEligibleFlag":{"type":"boolean"},
     "GatewayType":{
       "type":"string",
       "enum":["ipsec.1"]
@@ -13860,6 +14095,60 @@
         }
       }
     },
+    "GpuDeviceCount":{"type":"integer"},
+    "GpuDeviceInfo":{
+      "type":"structure",
+      "members":{
+        "Name":{
+          "shape":"GpuDeviceName",
+          "locationName":"name"
+        },
+        "Manufacturer":{
+          "shape":"GpuDeviceManufacturerName",
+          "locationName":"manufacturer"
+        },
+        "Count":{
+          "shape":"GpuDeviceCount",
+          "locationName":"count"
+        },
+        "MemoryInfo":{
+          "shape":"GpuDeviceMemoryInfo",
+          "locationName":"memoryInfo"
+        }
+      }
+    },
+    "GpuDeviceInfoList":{
+      "type":"list",
+      "member":{
+        "shape":"GpuDeviceInfo",
+        "locationName":"item"
+      }
+    },
+    "GpuDeviceManufacturerName":{"type":"string"},
+    "GpuDeviceMemoryInfo":{
+      "type":"structure",
+      "members":{
+        "SizeInMiB":{
+          "shape":"GpuDeviceMemorySize",
+          "locationName":"sizeInMiB"
+        }
+      }
+    },
+    "GpuDeviceMemorySize":{"type":"integer"},
+    "GpuDeviceName":{"type":"string"},
+    "GpuInfo":{
+      "type":"structure",
+      "members":{
+        "Gpus":{
+          "shape":"GpuDeviceInfoList",
+          "locationName":"gpus"
+        },
+        "TotalGpuMemoryInMiB":{
+          "shape":"totalGpuMemory",
+          "locationName":"totalGpuMemoryInMiB"
+        }
+      }
+    },
     "GroupIdStringList":{
       "type":"list",
       "member":{
@@ -13908,6 +14197,7 @@
         "locationName":"GroupName"
       }
     },
+    "HibernationFlag":{"type":"boolean"},
     "HibernationOptions":{
       "type":"structure",
       "members":{
@@ -16024,6 +16314,20 @@
         }
       }
     },
+    "InstanceStorageFlag":{"type":"boolean"},
+    "InstanceStorageInfo":{
+      "type":"structure",
+      "members":{
+        "TotalSizeInGB":{
+          "shape":"DiskSize",
+          "locationName":"totalSizeInGB"
+        },
+        "Disks":{
+          "shape":"DiskInfoList",
+          "locationName":"disks"
+        }
+      }
+    },
     "InstanceType":{
       "type":"string",
       "enum":[
@@ -16167,7 +16471,10 @@
         "c5d.2xlarge",
         "c5d.4xlarge",
         "c5d.9xlarge",
+        "c5d.12xlarge",
         "c5d.18xlarge",
+        "c5d.24xlarge",
+        "c5d.metal",
         "c5n.large",
         "c5n.xlarge",
         "c5n.2xlarge",
@@ -16293,9 +16600,136 @@
         "r5n.24xlarge"
       ]
     },
+    "InstanceTypeHypervisor":{
+      "type":"string",
+      "enum":[
+        "nitro",
+        "xen"
+      ]
+    },
+    "InstanceTypeInfo":{
+      "type":"structure",
+      "members":{
+        "InstanceType":{
+          "shape":"InstanceType",
+          "locationName":"instanceType"
+        },
+        "CurrentGeneration":{
+          "shape":"CurrentGenerationFlag",
+          "locationName":"currentGeneration"
+        },
+        "FreeTierEligible":{
+          "shape":"FreeTierEligibleFlag",
+          "locationName":"freeTierEligible"
+        },
+        "SupportedUsageClasses":{
+          "shape":"UsageClassTypeList",
+          "locationName":"supportedUsageClasses"
+        },
+        "SupportedRootDevices":{
+          "shape":"RootDeviceTypeList",
+          "locationName":"supportedRootDevices"
+        },
+        "BareMetal":{
+          "shape":"BareMetalFlag",
+          "locationName":"bareMetal"
+        },
+        "Hypervisor":{
+          "shape":"InstanceTypeHypervisor",
+          "locationName":"hypervisor"
+        },
+        "ProcessorInfo":{
+          "shape":"ProcessorInfo",
+          "locationName":"processorInfo"
+        },
+        "VCpuInfo":{
+          "shape":"VCpuInfo",
+          "locationName":"vCpuInfo"
+        },
+        "MemoryInfo":{
+          "shape":"MemoryInfo",
+          "locationName":"memoryInfo"
+        },
+        "InstanceStorageSupported":{
+          "shape":"InstanceStorageFlag",
+          "locationName":"instanceStorageSupported"
+        },
+        "InstanceStorageInfo":{
+          "shape":"InstanceStorageInfo",
+          "locationName":"instanceStorageInfo"
+        },
+        "EbsInfo":{
+          "shape":"EbsInfo",
+          "locationName":"ebsInfo"
+        },
+        "NetworkInfo":{
+          "shape":"NetworkInfo",
+          "locationName":"networkInfo"
+        },
+        "GpuInfo":{
+          "shape":"GpuInfo",
+          "locationName":"gpuInfo"
+        },
+        "FpgaInfo":{
+          "shape":"FpgaInfo",
+          "locationName":"fpgaInfo"
+        },
+        "PlacementGroupInfo":{
+          "shape":"PlacementGroupInfo",
+          "locationName":"placementGroupInfo"
+        },
+        "HibernationSupported":{
+          "shape":"HibernationFlag",
+          "locationName":"hibernationSupported"
+        },
+        "BurstablePerformanceSupported":{
+          "shape":"BurstablePerformanceFlag",
+          "locationName":"burstablePerformanceSupported"
+        },
+        "DedicatedHostsSupported":{
+          "shape":"DedicatedHostFlag",
+          "locationName":"dedicatedHostsSupported"
+        },
+        "AutoRecoverySupported":{
+          "shape":"AutoRecoveryFlag",
+          "locationName":"autoRecoverySupported"
+        }
+      }
+    },
+    "InstanceTypeInfoList":{
+      "type":"list",
+      "member":{
+        "shape":"InstanceTypeInfo",
+        "locationName":"item"
+      }
+    },
     "InstanceTypeList":{
       "type":"list",
       "member":{"shape":"InstanceType"}
+    },
+    "InstanceTypeOffering":{
+      "type":"structure",
+      "members":{
+        "InstanceType":{
+          "shape":"InstanceType",
+          "locationName":"instanceType"
+        },
+        "LocationType":{
+          "shape":"LocationType",
+          "locationName":"locationType"
+        },
+        "Location":{
+          "shape":"Location",
+          "locationName":"location"
+        }
+      }
+    },
+    "InstanceTypeOfferingsList":{
+      "type":"list",
+      "member":{
+        "shape":"InstanceTypeOffering",
+        "locationName":"item"
+      }
     },
     "InstanceUsage":{
       "type":"structure",
@@ -16465,6 +16899,7 @@
         "locationName":"item"
       }
     },
+    "Ipv6Flag":{"type":"boolean"},
     "Ipv6Range":{
       "type":"structure",
       "members":{
@@ -17386,6 +17821,15 @@
         "UserId":{"shape":"String"}
       }
     },
+    "Location":{"type":"string"},
+    "LocationType":{
+      "type":"string",
+      "enum":[
+        "region",
+        "availability-zone",
+        "availability-zone-id"
+      ]
+    },
     "LogDestinationType":{
       "type":"string",
       "enum":[
@@ -17398,6 +17842,19 @@
       "type":"string",
       "enum":["spot"]
     },
+    "MaxIpv4AddrPerInterface":{"type":"integer"},
+    "MaxIpv6AddrPerInterface":{"type":"integer"},
+    "MaxNetworkInterfaces":{"type":"integer"},
+    "MemoryInfo":{
+      "type":"structure",
+      "members":{
+        "SizeInMiB":{
+          "shape":"MemorySize",
+          "locationName":"sizeInMiB"
+        }
+      }
+    },
+    "MemorySize":{"type":"long"},
     "MillisecondDateTime":{"type":"timestamp"},
     "ModifyCapacityReservationRequest":{
       "type":"structure",
@@ -18652,6 +19109,35 @@
         "locationName":"item"
       }
     },
+    "NetworkInfo":{
+      "type":"structure",
+      "members":{
+        "NetworkPerformance":{
+          "shape":"NetworkPerformance",
+          "locationName":"networkPerformance"
+        },
+        "MaximumNetworkInterfaces":{
+          "shape":"MaxNetworkInterfaces",
+          "locationName":"maximumNetworkInterfaces"
+        },
+        "Ipv4AddressesPerInterface":{
+          "shape":"MaxIpv4AddrPerInterface",
+          "locationName":"ipv4AddressesPerInterface"
+        },
+        "Ipv6AddressesPerInterface":{
+          "shape":"MaxIpv6AddrPerInterface",
+          "locationName":"ipv6AddressesPerInterface"
+        },
+        "Ipv6Supported":{
+          "shape":"Ipv6Flag",
+          "locationName":"ipv6Supported"
+        },
+        "EnaSupport":{
+          "shape":"EnaSupport",
+          "locationName":"enaSupport"
+        }
+      }
+    },
     "NetworkInterface":{
       "type":"structure",
       "members":{
@@ -18960,6 +19446,7 @@
         "efa"
       ]
     },
+    "NetworkPerformance":{"type":"string"},
     "NewDhcpConfiguration":{
       "type":"structure",
       "members":{
@@ -19344,6 +19831,15 @@
         }
       }
     },
+    "PlacementGroupInfo":{
+      "type":"structure",
+      "members":{
+        "SupportedStrategies":{
+          "shape":"PlacementGroupStrategyList",
+          "locationName":"supportedStrategies"
+        }
+      }
+    },
     "PlacementGroupList":{
       "type":"list",
       "member":{
@@ -19360,6 +19856,21 @@
         "deleting",
         "deleted"
       ]
+    },
+    "PlacementGroupStrategy":{
+      "type":"string",
+      "enum":[
+        "cluster",
+        "partition",
+        "spread"
+      ]
+    },
+    "PlacementGroupStrategyList":{
+      "type":"list",
+      "member":{
+        "shape":"PlacementGroupStrategy",
+        "locationName":"item"
+      }
     },
     "PlacementGroupStringList":{
       "type":"list",
@@ -19592,6 +20103,20 @@
         "locationName":"PrivateIpAddress"
       }
     },
+    "ProcessorInfo":{
+      "type":"structure",
+      "members":{
+        "SupportedArchitectures":{
+          "shape":"ArchitectureTypeList",
+          "locationName":"supportedArchitectures"
+        },
+        "SustainedClockSpeedInGhz":{
+          "shape":"ProcessorSustainedClockSpeed",
+          "locationName":"sustainedClockSpeedInGhz"
+        }
+      }
+    },
+    "ProcessorSustainedClockSpeed":{"type":"double"},
     "ProductCode":{
       "type":"structure",
       "members":{
@@ -20440,6 +20965,12 @@
         "shape":"HostId",
         "locationName":"item"
       }
+    },
+    "RequestInstanceTypeList":{
+      "type":"list",
+      "member":{"shape":"InstanceType"},
+      "locationName":"InstanceType",
+      "max":100
     },
     "RequestLaunchTemplateData":{
       "type":"structure",
@@ -21497,6 +22028,20 @@
           "shape":"Boolean",
           "locationName":"dryRun"
         }
+      }
+    },
+    "RootDeviceType":{
+      "type":"string",
+      "enum":[
+        "ebs",
+        "instance-store"
+      ]
+    },
+    "RootDeviceTypeList":{
+      "type":"list",
+      "member":{
+        "shape":"RootDeviceType",
+        "locationName":"item"
       }
     },
     "Route":{
@@ -23869,6 +24414,14 @@
         }
       }
     },
+    "ThreadsPerCore":{"type":"integer"},
+    "ThreadsPerCoreList":{
+      "type":"list",
+      "member":{
+        "shape":"ThreadsPerCore",
+        "locationName":"item"
+      }
+    },
     "TrafficDirection":{
       "type":"string",
       "enum":[
@@ -24960,6 +25513,20 @@
         }
       }
     },
+    "UsageClassType":{
+      "type":"string",
+      "enum":[
+        "spot",
+        "on-demand"
+      ]
+    },
+    "UsageClassTypeList":{
+      "type":"list",
+      "member":{
+        "shape":"UsageClassType",
+        "locationName":"item"
+      }
+    },
     "UserBucket":{
       "type":"structure",
       "members":{
@@ -25049,6 +25616,32 @@
       "member":{
         "shape":"String",
         "locationName":"UserId"
+      }
+    },
+    "VCpuCount":{"type":"integer"},
+    "VCpuInfo":{
+      "type":"structure",
+      "members":{
+        "DefaultVCpus":{
+          "shape":"VCpuCount",
+          "locationName":"defaultVCpus"
+        },
+        "DefaultCores":{
+          "shape":"CoreCount",
+          "locationName":"defaultCores"
+        },
+        "DefaultThreadsPerCore":{
+          "shape":"ThreadsPerCore",
+          "locationName":"defaultThreadsPerCore"
+        },
+        "ValidCores":{
+          "shape":"CoreCountList",
+          "locationName":"validCores"
+        },
+        "ValidThreadsPerCore":{
+          "shape":"ThreadsPerCoreList",
+          "locationName":"validThreadsPerCore"
+        }
       }
     },
     "ValueStringList":{
@@ -26186,6 +26779,8 @@
         "Availability Zone",
         "Region"
       ]
-    }
+    },
+    "totalFpgaMemory":{"type":"integer"},
+    "totalGpuMemory":{"type":"integer"}
   }
 }

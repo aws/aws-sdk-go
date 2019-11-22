@@ -28,6 +28,10 @@
 //    language runtime, and tools that AWS CodeBuild uses to run a build. You
 //    can add tags to build projects to help manage your resources and costs.
 //
+//    * BatchGetReportGroups: Returns an array of report groups.
+//
+//    * BatchGetReports: Returns an array of reports.
+//
 //    * CreateProject: Creates a build project.
 //
 //    * CreateWebhook: For an existing AWS CodeBuild build project that has
@@ -66,6 +70,14 @@
 //    * ListSourceCredentials: Returns a list of SourceCredentialsInfo objects.
 //    Each SourceCredentialsInfo object includes the authentication type, token
 //    ARN, and type of source provider for one set of credentials.
+//
+//    * StartBuild: Starts running a build.
+//
+//    * StopBuild: Attempts to stop running a build.
+//
+//    * UpdateProject: Changes the settings of an existing build project.
+//
+//    * UpdateWebhook: Changes the settings of an existing webhook.
 //
 //    * StartBuild: Starts running a build.
 //

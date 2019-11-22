@@ -1387,6 +1387,7 @@
         "InstanceInformation$LastSuccessfulAssociationExecutionDate": "<p>The last date the association was successfully run.</p>",
         "InstancePatchState$OperationStartTime": "<p>The time the most recent patching operation was started on the instance.</p>",
         "InstancePatchState$OperationEndTime": "<p>The time the most recent patching operation completed on the instance.</p>",
+        "InstancePatchState$LastNoRebootInstallOperationTime": "<p>The time of the last attempt to patch the instance with <code>NoReboot</code> specified as the reboot option.</p>",
         "MaintenanceWindowExecution$StartTime": "<p>The time the execution started.</p>",
         "MaintenanceWindowExecution$EndTime": "<p>The time the execution finished.</p>",
         "MaintenanceWindowExecutionTaskIdentity$StartTime": "<p>The time the task execution started.</p>",
@@ -2845,6 +2846,7 @@
     "InstancesCount": {
       "base": null,
       "refs": {
+        "DescribePatchGroupStateResult$InstancesWithInstalledPendingRebootPatches": "<p>The number of instances with patches installed that have not been rebooted after the patch installation. The status of these instances is NON_COMPLIANT.</p>",
         "DescribePatchGroupStateResult$InstancesWithInstalledRejectedPatches": "<p>The number of instances with patches installed that are specified in a RejectedPatches list. Patches with a status of <i>INSTALLED_REJECTED</i> were typically installed before they were added to a RejectedPatches list.</p> <note> <p>If ALLOW_AS_DEPENDENCY is the specified option for RejectedPatchesAction, the value of InstancesWithInstalledRejectedPatches will always be 0 (zero).</p> </note>"
       }
     },
@@ -4808,7 +4810,7 @@
         "ParameterHistory$Name": "<p>The name of the parameter.</p>",
         "ParameterMetadata$Name": "<p>The parameter name.</p>",
         "ParameterNameList$member": null,
-        "PutParameterRequest$Name": "<p>The fully qualified name of the parameter that you want to add to the system. The fully qualified name includes the complete hierarchy of the parameter path and name. For example: <code>/Dev/DBServer/MySQL/db-string13</code> </p> <p>Naming Constraints:</p> <ul> <li> <p>Parameter names are case sensitive.</p> </li> <li> <p>A parameter name must be unique within an AWS Region</p> </li> <li> <p>A parameter name can't be prefixed with \"aws\" or \"ssm\" (case-insensitive).</p> </li> <li> <p>Parameter names can include only the following symbols and letters: <code>a-zA-Z0-9_.-/</code> </p> </li> <li> <p>A parameter name can't include spaces.</p> </li> <li> <p>Parameter hierarchies are limited to a maximum depth of fifteen levels.</p> </li> </ul> <p>For additional information about valid values for parameter names, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-parameter-name-constraints.html\">Requirements and Constraints for Parameter Names</a> in the <i>AWS Systems Manager User Guide</i>.</p> <note> <p>The maximum length constraint listed below includes capacity for additional system attributes that are not part of the name. The maximum length for the fully qualified parameter name is 1011 characters. </p> </note>"
+        "PutParameterRequest$Name": "<p>The fully qualified name of the parameter that you want to add to the system. The fully qualified name includes the complete hierarchy of the parameter path and name. For example: <code>/Dev/DBServer/MySQL/db-string13</code> </p> <p>Naming Constraints:</p> <ul> <li> <p>Parameter names are case sensitive.</p> </li> <li> <p>A parameter name must be unique within an AWS Region</p> </li> <li> <p>A parameter name can't be prefixed with \"aws\" or \"ssm\" (case-insensitive).</p> </li> <li> <p>Parameter names can include only the following symbols and letters: <code>a-zA-Z0-9_.-/</code> </p> </li> <li> <p>A parameter name can't include spaces.</p> </li> <li> <p>Parameter hierarchies are limited to a maximum depth of fifteen levels.</p> </li> </ul> <p>For additional information about valid values for parameter names, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-parameter-name-constraints.html\">Requirements and Constraints for Parameter Names</a> in the <i>AWS Systems Manager User Guide</i>.</p> <note> <p>The maximum length constraint listed below includes capacity for additional system attributes that are not part of the name. The maximum length for the fully qualified parameter name is 1011 characters, including the full length of the parameter ARN. For example, the following fully qualified parameter name is 65 characters, not 20 characters:</p> <p> <code>arn:aws:ssm:us-east-2:111122223333:parameter/ExampleParameterName</code> </p> </note>"
       }
     },
     "PSParameterSelector": {
@@ -5297,6 +5299,12 @@
         "InstancePatchState$InstalledOtherCount": "<p>The number of patches not specified in the patch baseline that are installed on the instance.</p>"
       }
     },
+    "PatchInstalledPendingRebootCount": {
+      "base": null,
+      "refs": {
+        "InstancePatchState$InstalledPendingRebootCount": "<p>The number of patches installed since the last time the instance was rebooted.</p>"
+      }
+    },
     "PatchInstalledRejectedCount": {
       "base": null,
       "refs": {
@@ -5584,6 +5592,12 @@
     "PutParameterResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "RebootOption": {
+      "base": null,
+      "refs": {
+        "InstancePatchState$RebootOption": "<p>Indicates the reboot option specified in the patch baseline.</p> <note> <p>Reboot options apply to <code>Install</code> operations only. Reboots are not attempted for Patch Manager <code>Scan</code> operations.</p> </note> <ul> <li> <p> <b>RebootIfNeeded</b>: Patch Manager tries to reboot the instance if it installed any patches, or if any patches are detected with a status of <code>InstalledPendingReboot</code>.</p> </li> <li> <p> <b>NoReboot</b>: Patch Manager attempts to install missing packages without trying to reboot the system. Patches installed with this option are assigned a status of <code>InstalledPendingReboot</code>. These patches might not be in effect until a reboot is performed.</p> </li> </ul>"
       }
     },
     "Region": {

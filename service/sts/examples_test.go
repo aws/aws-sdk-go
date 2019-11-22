@@ -31,11 +31,28 @@ func parseTime(layout, value string) *time.Time {
 func ExampleSTS_AssumeRole_shared00() {
 	svc := sts.New(session.New())
 	input := &sts.AssumeRoleInput{
-		DurationSeconds: aws.Int64(3600),
 		ExternalId:      aws.String("123ABC"),
 		Policy:          aws.String("{\"Version\":\"2012-10-17\",\"Statement\":[{\"Sid\":\"Stmt1\",\"Effect\":\"Allow\",\"Action\":\"s3:ListAllMyBuckets\",\"Resource\":\"*\"}]}"),
 		RoleArn:         aws.String("arn:aws:iam::123456789012:role/demo"),
-		RoleSessionName: aws.String("Bob"),
+		RoleSessionName: aws.String("testAssumeRoleSession"),
+		Tags: []*sts.Tag{
+			{
+				Key:   aws.String("Project"),
+				Value: aws.String("Unicorn"),
+			},
+			{
+				Key:   aws.String("Team"),
+				Value: aws.String("Automation"),
+			},
+			{
+				Key:   aws.String("Cost-Center"),
+				Value: aws.String("12345"),
+			},
+		},
+		TransitiveTagKeys: []*string{
+			aws.String("Project"),
+			aws.String("Cost-Center"),
+		},
 	}
 
 	result, err := svc.AssumeRole(input)
@@ -223,8 +240,18 @@ func ExampleSTS_GetFederationToken_shared00() {
 	svc := sts.New(session.New())
 	input := &sts.GetFederationTokenInput{
 		DurationSeconds: aws.Int64(3600),
-		Name:            aws.String("Bob"),
+		Name:            aws.String("testFedUserSession"),
 		Policy:          aws.String("{\"Version\":\"2012-10-17\",\"Statement\":[{\"Sid\":\"Stmt1\",\"Effect\":\"Allow\",\"Action\":\"s3:ListAllMyBuckets\",\"Resource\":\"*\"}]}"),
+		Tags: []*sts.Tag{
+			{
+				Key:   aws.String("Project"),
+				Value: aws.String("Pegasus"),
+			},
+			{
+				Key:   aws.String("Cost-Center"),
+				Value: aws.String("98765"),
+			},
+		},
 	}
 
 	result, err := svc.GetFederationToken(input)

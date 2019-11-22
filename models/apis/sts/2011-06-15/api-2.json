@@ -156,6 +156,8 @@
         "PolicyArns":{"shape":"policyDescriptorListType"},
         "Policy":{"shape":"sessionPolicyDocumentType"},
         "DurationSeconds":{"shape":"roleDurationSecondsType"},
+        "Tags":{"shape":"tagListType"},
+        "TransitiveTagKeys":{"shape":"tagKeyListType"},
         "ExternalId":{"shape":"externalIdType"},
         "SerialNumber":{"shape":"serialNumberType"},
         "TokenCode":{"shape":"tokenCodeType"}
@@ -322,7 +324,8 @@
         "Name":{"shape":"userNameType"},
         "Policy":{"shape":"sessionPolicyDocumentType"},
         "PolicyArns":{"shape":"policyDescriptorListType"},
-        "DurationSeconds":{"shape":"durationSecondsType"}
+        "DurationSeconds":{"shape":"durationSecondsType"},
+        "Tags":{"shape":"tagListType"}
       }
     },
     "GetFederationTokenResponse":{
@@ -446,6 +449,17 @@
     },
     "Subject":{"type":"string"},
     "SubjectType":{"type":"string"},
+    "Tag":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Key":{"shape":"tagKeyType"},
+        "Value":{"shape":"tagValueType"}
+      }
+    },
     "accessKeyIdType":{
       "type":"string",
       "max":128,
@@ -533,6 +547,28 @@
       "max":2048,
       "min":1,
       "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+"
+    },
+    "tagKeyListType":{
+      "type":"list",
+      "member":{"shape":"tagKeyType"},
+      "max":50
+    },
+    "tagKeyType":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]+"
+    },
+    "tagListType":{
+      "type":"list",
+      "member":{"shape":"Tag"},
+      "max":50
+    },
+    "tagValueType":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"[\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*"
     },
     "tokenCodeType":{
       "type":"string",

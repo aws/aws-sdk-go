@@ -1,3 +1,31 @@
+Release v1.25.41 (2019-11-22)
+===
+
+### Service Client Updates
+* `service/acm`: Updates service API and documentation
+  * This release adds support for Tag-Based IAM for AWS Certificate Manager and adding tags to certificates upon creation.
+* `service/application-autoscaling`: Updates service API
+* `service/autoscaling-plans`: Updates service API
+* `service/codebuild`: Updates service API and documentation
+  * Add Canonical ARN to LogsLocation.
+* `service/ec2`: Updates service API and documentation
+  * This release adds two new APIs (DescribeInstanceTypes and DescribeInstanceTypeOfferings) that give customers access to instance type attributes and regional and zonal offerings.
+* `service/elasticmapreduce`: Updates service API and documentation
+  * Amazon EMR adds support for concurrent step execution and cancelling running steps. Amazon EMR has added a new Outpost ARN field in the ListCluster and DescribeCluster API responses that is populated for clusters launched in an AWS Outpost subnet.
+* `service/forecast`: Updates service API and documentation
+* `service/mediapackage-vod`: Updates service API and documentation
+* `service/rekognition`: Updates service API and documentation
+  * This release adds enhanced face filtering support to the IndexFaces API operation, and introduces face filtering for CompareFaces and SearchFacesByImage API operations.
+* `service/sns`: Updates service documentation
+  * Added documentation for the dead-letter queue feature.
+* `service/ssm`: Updates service API and documentation
+  * Add RebootOption and LastNoRebootInstallOperationTime for DescribeInstancePatchStates and DescribeInstancePatchStatesForPatchGroup API
+* `service/sts`: Updates service API, documentation, and examples
+  * Support tagging for STS sessions and tag based access control for the STS APIs
+
+### SDK Bugs
+* `aws/ec2metadata`: Fix failing concurrency test for ec2metadata client ([#2960](https://github.com/aws/aws-sdk-go/pull/2960))
+
 Release v1.25.40 (2019-11-21)
 ===
 

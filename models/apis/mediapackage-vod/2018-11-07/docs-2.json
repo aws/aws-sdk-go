@@ -253,6 +253,7 @@
       "base" : null,
       "refs" : {
         "Asset$Arn" : "The ARN of the Asset.",
+        "Asset$CreatedAt" : "The time the Asset was initially submitted for Ingest.",
         "Asset$Id" : "The unique identifier for the Asset.",
         "Asset$PackagingGroupId" : "The ID of the PackagingGroup for the Asset.",
         "Asset$ResourceId" : "The resource ID to include in SPEKE key requests.",
@@ -265,6 +266,7 @@
         "AssetCreateParameters$SourceRoleArn" : "The IAM role ARN used to access the source S3 bucket.",
         "AssetList$NextToken" : "A token that can be used to resume pagination from the end of the collection.",
         "AssetShallow$Arn" : "The ARN of the Asset.",
+        "AssetShallow$CreatedAt" : "The time the Asset was initially submitted for Ingest.",
         "AssetShallow$Id" : "The unique identifier for the Asset.",
         "AssetShallow$PackagingGroupId" : "The ID of the PackagingGroup for the Asset.",
         "AssetShallow$ResourceId" : "The resource ID to include in SPEKE key requests.",

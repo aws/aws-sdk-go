@@ -821,6 +821,14 @@ type EC2API interface {
 	DescribeInstanceStatusPages(*ec2.DescribeInstanceStatusInput, func(*ec2.DescribeInstanceStatusOutput, bool) bool) error
 	DescribeInstanceStatusPagesWithContext(aws.Context, *ec2.DescribeInstanceStatusInput, func(*ec2.DescribeInstanceStatusOutput, bool) bool, ...request.Option) error
 
+	DescribeInstanceTypeOfferings(*ec2.DescribeInstanceTypeOfferingsInput) (*ec2.DescribeInstanceTypeOfferingsOutput, error)
+	DescribeInstanceTypeOfferingsWithContext(aws.Context, *ec2.DescribeInstanceTypeOfferingsInput, ...request.Option) (*ec2.DescribeInstanceTypeOfferingsOutput, error)
+	DescribeInstanceTypeOfferingsRequest(*ec2.DescribeInstanceTypeOfferingsInput) (*request.Request, *ec2.DescribeInstanceTypeOfferingsOutput)
+
+	DescribeInstanceTypes(*ec2.DescribeInstanceTypesInput) (*ec2.DescribeInstanceTypesOutput, error)
+	DescribeInstanceTypesWithContext(aws.Context, *ec2.DescribeInstanceTypesInput, ...request.Option) (*ec2.DescribeInstanceTypesOutput, error)
+	DescribeInstanceTypesRequest(*ec2.DescribeInstanceTypesInput) (*request.Request, *ec2.DescribeInstanceTypesOutput)
+
 	DescribeInstances(*ec2.DescribeInstancesInput) (*ec2.DescribeInstancesOutput, error)
 	DescribeInstancesWithContext(aws.Context, *ec2.DescribeInstancesInput, ...request.Option) (*ec2.DescribeInstancesOutput, error)
 	DescribeInstancesRequest(*ec2.DescribeInstancesInput) (*request.Request, *ec2.DescribeInstancesOutput)
