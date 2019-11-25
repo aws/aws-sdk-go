@@ -11,6 +11,18 @@
     "uid":"s3control-2018-08-20"
   },
   "operations":{
+    "CreateAccessPoint":{
+      "name":"CreateAccessPoint",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v20180820/accesspoint/{name}"
+      },
+      "input":{
+        "shape":"CreateAccessPointRequest",
+        "locationName":"CreateAccessPointRequest",
+        "xmlNamespace":{"uri":"http://awss3control.amazonaws.com/doc/2018-08-20/"}
+      }
+    },
     "CreateJob":{
       "name":"CreateJob",
       "http":{
@@ -29,6 +41,22 @@
         {"shape":"IdempotencyException"},
         {"shape":"InternalServiceException"}
       ]
+    },
+    "DeleteAccessPoint":{
+      "name":"DeleteAccessPoint",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v20180820/accesspoint/{name}"
+      },
+      "input":{"shape":"DeleteAccessPointRequest"}
+    },
+    "DeleteAccessPointPolicy":{
+      "name":"DeleteAccessPointPolicy",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v20180820/accesspoint/{name}/policy"
+      },
+      "input":{"shape":"DeleteAccessPointPolicyRequest"}
     },
     "DeletePublicAccessBlock":{
       "name":"DeletePublicAccessBlock",
@@ -53,6 +81,33 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "GetAccessPoint":{
+      "name":"GetAccessPoint",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20180820/accesspoint/{name}"
+      },
+      "input":{"shape":"GetAccessPointRequest"},
+      "output":{"shape":"GetAccessPointResult"}
+    },
+    "GetAccessPointPolicy":{
+      "name":"GetAccessPointPolicy",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20180820/accesspoint/{name}/policy"
+      },
+      "input":{"shape":"GetAccessPointPolicyRequest"},
+      "output":{"shape":"GetAccessPointPolicyResult"}
+    },
+    "GetAccessPointPolicyStatus":{
+      "name":"GetAccessPointPolicyStatus",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20180820/accesspoint/{name}/policyStatus"
+      },
+      "input":{"shape":"GetAccessPointPolicyStatusRequest"},
+      "output":{"shape":"GetAccessPointPolicyStatusResult"}
+    },
     "GetPublicAccessBlock":{
       "name":"GetPublicAccessBlock",
       "http":{
@@ -64,6 +119,15 @@
       "errors":[
         {"shape":"NoSuchPublicAccessBlockConfiguration"}
       ]
+    },
+    "ListAccessPoints":{
+      "name":"ListAccessPoints",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20180820/accesspoint"
+      },
+      "input":{"shape":"ListAccessPointsRequest"},
+      "output":{"shape":"ListAccessPointsResult"}
     },
     "ListJobs":{
       "name":"ListJobs",
@@ -78,6 +142,18 @@
         {"shape":"InternalServiceException"},
         {"shape":"InvalidNextTokenException"}
       ]
+    },
+    "PutAccessPointPolicy":{
+      "name":"PutAccessPointPolicy",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v20180820/accesspoint/{name}/policy"
+      },
+      "input":{
+        "shape":"PutAccessPointPolicyRequest",
+        "locationName":"PutAccessPointPolicyRequest",
+        "xmlNamespace":{"uri":"http://awss3control.amazonaws.com/doc/2018-08-20/"}
+      }
     },
     "PutPublicAccessBlock":{
       "name":"PutPublicAccessBlock",
@@ -120,6 +196,32 @@
     }
   },
   "shapes":{
+    "AccessPoint":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "NetworkOrigin",
+        "Bucket"
+      ],
+      "members":{
+        "Name":{"shape":"AccessPointName"},
+        "NetworkOrigin":{"shape":"NetworkOrigin"},
+        "VpcConfiguration":{"shape":"VpcConfiguration"},
+        "Bucket":{"shape":"BucketName"}
+      }
+    },
+    "AccessPointList":{
+      "type":"list",
+      "member":{
+        "shape":"AccessPoint",
+        "locationName":"AccessPoint"
+      }
+    },
+    "AccessPointName":{
+      "type":"string",
+      "max":50,
+      "min":3
+    },
     "AccountId":{
       "type":"string",
       "max":64
@@ -132,7 +234,35 @@
       "exception":true
     },
     "Boolean":{"type":"boolean"},
+    "BucketName":{
+      "type":"string",
+      "max":255,
+      "min":3
+    },
     "ConfirmationRequired":{"type":"boolean"},
+    "CreateAccessPointRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "Name",
+        "Bucket"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "Name":{
+          "shape":"AccessPointName",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "Bucket":{"shape":"BucketName"},
+        "VpcConfiguration":{"shape":"VpcConfiguration"},
+        "PublicAccessBlockConfiguration":{"shape":"PublicAccessBlockConfiguration"}
+      }
+    },
     "CreateJobRequest":{
       "type":"structure",
       "required":[
@@ -175,6 +305,45 @@
         "JobId":{"shape":"JobId"}
       }
     },
+    "CreationDate":{"type":"timestamp"},
+    "DeleteAccessPointPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "Name"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "Name":{
+          "shape":"AccessPointName",
+          "location":"uri",
+          "locationName":"name"
+        }
+      }
+    },
+    "DeleteAccessPointRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "Name"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "Name":{
+          "shape":"AccessPointName",
+          "location":"uri",
+          "locationName":"name"
+        }
+      }
+    },
     "DeletePublicAccessBlockRequest":{
       "type":"structure",
       "required":["AccountId"],
@@ -215,6 +384,86 @@
       "type":"string",
       "max":1024,
       "min":1
+    },
+    "GetAccessPointPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "Name"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "Name":{
+          "shape":"AccessPointName",
+          "location":"uri",
+          "locationName":"name"
+        }
+      }
+    },
+    "GetAccessPointPolicyResult":{
+      "type":"structure",
+      "members":{
+        "Policy":{"shape":"Policy"}
+      }
+    },
+    "GetAccessPointPolicyStatusRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "Name"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "Name":{
+          "shape":"AccessPointName",
+          "location":"uri",
+          "locationName":"name"
+        }
+      }
+    },
+    "GetAccessPointPolicyStatusResult":{
+      "type":"structure",
+      "members":{
+        "PolicyStatus":{"shape":"PolicyStatus"}
+      }
+    },
+    "GetAccessPointRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "Name"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "Name":{
+          "shape":"AccessPointName",
+          "location":"uri",
+          "locationName":"name"
+        }
+      }
+    },
+    "GetAccessPointResult":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"AccessPointName"},
+        "Bucket":{"shape":"BucketName"},
+        "NetworkOrigin":{"shape":"NetworkOrigin"},
+        "VpcConfiguration":{"shape":"VpcConfiguration"},
+        "PublicAccessBlockConfiguration":{"shape":"PublicAccessBlockConfiguration"},
+        "CreationDate":{"shape":"CreationDate"}
+      }
     },
     "GetPublicAccessBlockOutput":{
       "type":"structure",
@@ -268,6 +517,7 @@
       },
       "exception":true
     },
+    "IsPublic":{"type":"boolean"},
     "JobArn":{
       "type":"string",
       "max":1024,
@@ -574,6 +824,39 @@
         "FunctionArn":{"shape":"NonEmptyMaxLength1024String"}
       }
     },
+    "ListAccessPointsRequest":{
+      "type":"structure",
+      "required":["AccountId"],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "Bucket":{
+          "shape":"BucketName",
+          "location":"querystring",
+          "locationName":"bucket"
+        },
+        "NextToken":{
+          "shape":"NonEmptyMaxLength1024String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListAccessPointsResult":{
+      "type":"structure",
+      "members":{
+        "AccessPointList":{"shape":"AccessPointList"},
+        "NextToken":{"shape":"NonEmptyMaxLength1024String"}
+      }
+    },
     "ListJobsRequest":{
       "type":"structure",
       "required":["AccountId"],
@@ -616,6 +899,13 @@
       "type":"integer",
       "max":1000,
       "min":1
+    },
+    "NetworkOrigin":{
+      "type":"string",
+      "enum":[
+        "Internet",
+        "VPC"
+      ]
     },
     "NoSuchPublicAccessBlockConfiguration":{
       "type":"structure",
@@ -663,6 +953,16 @@
         "S3InitiateRestoreObject"
       ]
     },
+    "Policy":{"type":"string"},
+    "PolicyStatus":{
+      "type":"structure",
+      "members":{
+        "IsPublic":{
+          "shape":"IsPublic",
+          "locationName":"IsPublic"
+        }
+      }
+    },
     "PublicAccessBlockConfiguration":{
       "type":"structure",
       "members":{
@@ -682,6 +982,27 @@
           "shape":"Setting",
           "locationName":"RestrictPublicBuckets"
         }
+      }
+    },
+    "PutAccessPointPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "Name",
+        "Policy"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "Name":{
+          "shape":"AccessPointName",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "Policy":{"shape":"Policy"}
       }
     },
     "PutPublicAccessBlockRequest":{
@@ -1039,6 +1360,18 @@
         "Status":{"shape":"JobStatus"},
         "StatusUpdateReason":{"shape":"JobStatusUpdateReason"}
       }
+    },
+    "VpcConfiguration":{
+      "type":"structure",
+      "required":["VpcId"],
+      "members":{
+        "VpcId":{"shape":"VpcId"}
+      }
+    },
+    "VpcId":{
+      "type":"string",
+      "max":1024,
+      "min":1
     }
   }
 }
