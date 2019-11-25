@@ -1806,6 +1806,8 @@ type CreatePackagingGroupOutput struct {
 
 	Arn *string `locationName:"arn" type:"string"`
 
+	DomainName *string `locationName:"domainName" type:"string"`
+
 	Id *string `locationName:"id" type:"string"`
 }
 
@@ -1822,6 +1824,12 @@ func (s CreatePackagingGroupOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *CreatePackagingGroupOutput) SetArn(v string) *CreatePackagingGroupOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *CreatePackagingGroupOutput) SetDomainName(v string) *CreatePackagingGroupOutput {
+	s.DomainName = &v
 	return s
 }
 
@@ -2425,6 +2433,8 @@ type DescribePackagingGroupOutput struct {
 
 	Arn *string `locationName:"arn" type:"string"`
 
+	DomainName *string `locationName:"domainName" type:"string"`
+
 	Id *string `locationName:"id" type:"string"`
 }
 
@@ -2441,6 +2451,12 @@ func (s DescribePackagingGroupOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *DescribePackagingGroupOutput) SetArn(v string) *DescribePackagingGroupOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *DescribePackagingGroupOutput) SetDomainName(v string) *DescribePackagingGroupOutput {
+	s.DomainName = &v
 	return s
 }
 
@@ -3159,6 +3175,9 @@ type PackagingGroup struct {
 	// The ARN of the PackagingGroup.
 	Arn *string `locationName:"arn" type:"string"`
 
+	// The fully qualified domain name for Assets in the PackagingGroup.
+	DomainName *string `locationName:"domainName" type:"string"`
+
 	// The ID of the PackagingGroup.
 	Id *string `locationName:"id" type:"string"`
 }
@@ -3176,6 +3195,12 @@ func (s PackagingGroup) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *PackagingGroup) SetArn(v string) *PackagingGroup {
 	s.Arn = &v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *PackagingGroup) SetDomainName(v string) *PackagingGroup {
+	s.DomainName = &v
 	return s
 }
 

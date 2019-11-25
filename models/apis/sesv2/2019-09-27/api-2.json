@@ -156,6 +156,20 @@
         {"shape":"ConcurrentModificationException"}
       ]
     },
+    "DeleteSuppressedDestination":{
+      "name":"DeleteSuppressedDestination",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v2/email/suppression/addresses/{EmailAddress}"
+      },
+      "input":{"shape":"DeleteSuppressedDestinationRequest"},
+      "output":{"shape":"DeleteSuppressedDestinationResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
     "GetAccount":{
       "name":"GetAccount",
       "http":{
@@ -309,6 +323,20 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "GetSuppressedDestination":{
+      "name":"GetSuppressedDestination",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v2/email/suppression/addresses/{EmailAddress}"
+      },
+      "input":{"shape":"GetSuppressedDestinationRequest"},
+      "output":{"shape":"GetSuppressedDestinationResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
     "ListConfigurationSets":{
       "name":"ListConfigurationSets",
       "http":{
@@ -376,6 +404,20 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "ListSuppressedDestinations":{
+      "name":"ListSuppressedDestinations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v2/email/suppression/addresses"
+      },
+      "input":{"shape":"ListSuppressedDestinationsRequest"},
+      "output":{"shape":"ListSuppressedDestinationsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InvalidNextTokenException"}
+      ]
+    },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
       "http":{
@@ -411,6 +453,19 @@
       },
       "input":{"shape":"PutAccountSendingAttributesRequest"},
       "output":{"shape":"PutAccountSendingAttributesResponse"},
+      "errors":[
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
+    "PutAccountSuppressionAttributes":{
+      "name":"PutAccountSuppressionAttributes",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v2/email/account/suppression"
+      },
+      "input":{"shape":"PutAccountSuppressionAttributesRequest"},
+      "output":{"shape":"PutAccountSuppressionAttributesResponse"},
       "errors":[
         {"shape":"TooManyRequestsException"},
         {"shape":"BadRequestException"}
@@ -452,6 +507,20 @@
       },
       "input":{"shape":"PutConfigurationSetSendingOptionsRequest"},
       "output":{"shape":"PutConfigurationSetSendingOptionsResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
+    "PutConfigurationSetSuppressionOptions":{
+      "name":"PutConfigurationSetSuppressionOptions",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v2/email/configuration-sets/{ConfigurationSetName}/suppression-options"
+      },
+      "input":{"shape":"PutConfigurationSetSuppressionOptionsRequest"},
+      "output":{"shape":"PutConfigurationSetSuppressionOptionsResponse"},
       "errors":[
         {"shape":"NotFoundException"},
         {"shape":"TooManyRequestsException"},
@@ -556,6 +625,19 @@
         {"shape":"NotFoundException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"BadRequestException"}
+      ]
+    },
+    "PutSuppressedDestination":{
+      "name":"PutSuppressedDestination",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v2/email/suppression/addresses"
+      },
+      "input":{"shape":"PutSuppressedDestinationRequest"},
+      "output":{"shape":"PutSuppressedDestinationResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "SendEmail":{
@@ -759,7 +841,8 @@
         "DeliveryOptions":{"shape":"DeliveryOptions"},
         "ReputationOptions":{"shape":"ReputationOptions"},
         "SendingOptions":{"shape":"SendingOptions"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "SuppressionOptions":{"shape":"SuppressionOptions"}
       }
     },
     "CreateConfigurationSetResponse":{
@@ -920,6 +1003,22 @@
       }
     },
     "DeleteEmailIdentityResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteSuppressedDestinationRequest":{
+      "type":"structure",
+      "required":["EmailAddress"],
+      "members":{
+        "EmailAddress":{
+          "shape":"EmailAddress",
+          "location":"uri",
+          "locationName":"EmailAddress"
+        }
+      }
+    },
+    "DeleteSuppressedDestinationResponse":{
       "type":"structure",
       "members":{
       }
@@ -1120,6 +1219,7 @@
       "type":"list",
       "member":{"shape":"EventType"}
     },
+    "FeedbackId":{"type":"string"},
     "GeneralEnforcementStatus":{"type":"string"},
     "GetAccountRequest":{
       "type":"structure",
@@ -1129,11 +1229,12 @@
     "GetAccountResponse":{
       "type":"structure",
       "members":{
-        "SendQuota":{"shape":"SendQuota"},
-        "SendingEnabled":{"shape":"Enabled"},
         "DedicatedIpAutoWarmupEnabled":{"shape":"Enabled"},
         "EnforcementStatus":{"shape":"GeneralEnforcementStatus"},
-        "ProductionAccessEnabled":{"shape":"Enabled"}
+        "ProductionAccessEnabled":{"shape":"Enabled"},
+        "SendQuota":{"shape":"SendQuota"},
+        "SendingEnabled":{"shape":"Enabled"},
+        "SuppressionAttributes":{"shape":"SuppressionAttributes"}
       }
     },
     "GetBlacklistReportsRequest":{
@@ -1190,7 +1291,8 @@
         "DeliveryOptions":{"shape":"DeliveryOptions"},
         "ReputationOptions":{"shape":"ReputationOptions"},
         "SendingOptions":{"shape":"SendingOptions"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "SuppressionOptions":{"shape":"SuppressionOptions"}
       }
     },
     "GetDedicatedIpRequest":{
@@ -1355,6 +1457,24 @@
         "Tags":{"shape":"TagList"}
       }
     },
+    "GetSuppressedDestinationRequest":{
+      "type":"structure",
+      "required":["EmailAddress"],
+      "members":{
+        "EmailAddress":{
+          "shape":"EmailAddress",
+          "location":"uri",
+          "locationName":"EmailAddress"
+        }
+      }
+    },
+    "GetSuppressedDestinationResponse":{
+      "type":"structure",
+      "required":["SuppressedDestination"],
+      "members":{
+        "SuppressedDestination":{"shape":"SuppressedDestination"}
+      }
+    },
     "Identity":{"type":"string"},
     "IdentityInfo":{
       "type":"structure",
@@ -1383,6 +1503,13 @@
         "Global":{"shape":"Enabled"},
         "TrackedIsps":{"shape":"IspNameList"}
       }
+    },
+    "InvalidNextTokenException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
     },
     "Ip":{"type":"string"},
     "IpList":{
@@ -1560,6 +1687,43 @@
       "type":"list",
       "member":{"shape":"PoolName"}
     },
+    "ListSuppressedDestinationsRequest":{
+      "type":"structure",
+      "members":{
+        "Reasons":{
+          "shape":"SuppressionListReasons",
+          "location":"querystring",
+          "locationName":"Reason"
+        },
+        "StartDate":{
+          "shape":"Timestamp",
+          "location":"querystring",
+          "locationName":"StartDate"
+        },
+        "EndDate":{
+          "shape":"Timestamp",
+          "location":"querystring",
+          "locationName":"EndDate"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"NextToken"
+        },
+        "PageSize":{
+          "shape":"MaxItems",
+          "location":"querystring",
+          "locationName":"PageSize"
+        }
+      }
+    },
+    "ListSuppressedDestinationsResponse":{
+      "type":"structure",
+      "members":{
+        "SuppressedDestinationSummaries":{"shape":"SuppressedDestinationSummaries"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListTagsForResourceRequest":{
       "type":"structure",
       "required":["ResourceArn"],
@@ -1706,6 +1870,17 @@
       "members":{
       }
     },
+    "PutAccountSuppressionAttributesRequest":{
+      "type":"structure",
+      "members":{
+        "SuppressedReasons":{"shape":"SuppressionListReasons"}
+      }
+    },
+    "PutAccountSuppressionAttributesResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "PutConfigurationSetDeliveryOptionsRequest":{
       "type":"structure",
       "required":["ConfigurationSetName"],
@@ -1754,6 +1929,23 @@
       }
     },
     "PutConfigurationSetSendingOptionsResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "PutConfigurationSetSuppressionOptionsRequest":{
+      "type":"structure",
+      "required":["ConfigurationSetName"],
+      "members":{
+        "ConfigurationSetName":{
+          "shape":"ConfigurationSetName",
+          "location":"uri",
+          "locationName":"ConfigurationSetName"
+        },
+        "SuppressedReasons":{"shape":"SuppressionListReasons"}
+      }
+    },
+    "PutConfigurationSetSuppressionOptionsResponse":{
       "type":"structure",
       "members":{
       }
@@ -1880,6 +2072,22 @@
       "members":{
       }
     },
+    "PutSuppressedDestinationRequest":{
+      "type":"structure",
+      "required":[
+        "EmailAddress",
+        "Reason"
+      ],
+      "members":{
+        "EmailAddress":{"shape":"EmailAddress"},
+        "Reason":{"shape":"SuppressionListReason"}
+      }
+    },
+    "PutSuppressedDestinationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "RawMessage":{
       "type":"structure",
       "required":["Data"],
@@ -1951,6 +2159,67 @@
       }
     },
     "Subject":{"type":"string"},
+    "SuppressedDestination":{
+      "type":"structure",
+      "required":[
+        "EmailAddress",
+        "Reason",
+        "LastUpdateTime"
+      ],
+      "members":{
+        "EmailAddress":{"shape":"EmailAddress"},
+        "Reason":{"shape":"SuppressionListReason"},
+        "LastUpdateTime":{"shape":"Timestamp"},
+        "Attributes":{"shape":"SuppressedDestinationAttributes"}
+      }
+    },
+    "SuppressedDestinationAttributes":{
+      "type":"structure",
+      "members":{
+        "MessageId":{"shape":"OutboundMessageId"},
+        "FeedbackId":{"shape":"FeedbackId"}
+      }
+    },
+    "SuppressedDestinationSummaries":{
+      "type":"list",
+      "member":{"shape":"SuppressedDestinationSummary"}
+    },
+    "SuppressedDestinationSummary":{
+      "type":"structure",
+      "required":[
+        "EmailAddress",
+        "Reason",
+        "LastUpdateTime"
+      ],
+      "members":{
+        "EmailAddress":{"shape":"EmailAddress"},
+        "Reason":{"shape":"SuppressionListReason"},
+        "LastUpdateTime":{"shape":"Timestamp"}
+      }
+    },
+    "SuppressionAttributes":{
+      "type":"structure",
+      "members":{
+        "SuppressedReasons":{"shape":"SuppressionListReasons"}
+      }
+    },
+    "SuppressionListReason":{
+      "type":"string",
+      "enum":[
+        "BOUNCE",
+        "COMPLAINT"
+      ]
+    },
+    "SuppressionListReasons":{
+      "type":"list",
+      "member":{"shape":"SuppressionListReason"}
+    },
+    "SuppressionOptions":{
+      "type":"structure",
+      "members":{
+        "SuppressedReasons":{"shape":"SuppressionListReasons"}
+      }
+    },
     "Tag":{
       "type":"structure",
       "required":[

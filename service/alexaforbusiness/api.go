@@ -4178,7 +4178,10 @@ func (c *AlexaForBusiness) ListBusinessReportSchedulesRequest(input *ListBusines
 
 // ListBusinessReportSchedules API operation for Alexa For Business.
 //
-// Lists the details of the schedules that a user configured.
+// Lists the details of the schedules that a user configured. A download URL
+// of the report associated with each schedule is returned every time this action
+// is called. A new download URL is returned each time, and is valid for 24
+// hours.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10278,6 +10281,78 @@ func (s *CreateContactOutput) SetContactArn(v string) *CreateContactOutput {
 	return s
 }
 
+// Creates settings for the end of meeting reminder feature that are applied
+// to a room profile. The end of meeting reminder enables Alexa to remind users
+// when a meeting is ending.
+type CreateEndOfMeetingReminder struct {
+	_ struct{} `type:"structure"`
+
+	// Whether an end of meeting reminder is enabled or not.
+	//
+	// Enabled is a required field
+	Enabled *bool `type:"boolean" required:"true"`
+
+	// A range of 3 to 15 minutes that determines when the reminder begins.
+	//
+	// ReminderAtMinutes is a required field
+	ReminderAtMinutes []*int64 `min:"1" type:"list" required:"true"`
+
+	// The type of sound that users hear during the end of meeting reminder.
+	//
+	// ReminderType is a required field
+	ReminderType *string `type:"string" required:"true" enum:"EndOfMeetingReminderType"`
+}
+
+// String returns the string representation
+func (s CreateEndOfMeetingReminder) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateEndOfMeetingReminder) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateEndOfMeetingReminder) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateEndOfMeetingReminder"}
+	if s.Enabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("Enabled"))
+	}
+	if s.ReminderAtMinutes == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReminderAtMinutes"))
+	}
+	if s.ReminderAtMinutes != nil && len(s.ReminderAtMinutes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReminderAtMinutes", 1))
+	}
+	if s.ReminderType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReminderType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *CreateEndOfMeetingReminder) SetEnabled(v bool) *CreateEndOfMeetingReminder {
+	s.Enabled = &v
+	return s
+}
+
+// SetReminderAtMinutes sets the ReminderAtMinutes field's value.
+func (s *CreateEndOfMeetingReminder) SetReminderAtMinutes(v []*int64) *CreateEndOfMeetingReminder {
+	s.ReminderAtMinutes = v
+	return s
+}
+
+// SetReminderType sets the ReminderType field's value.
+func (s *CreateEndOfMeetingReminder) SetReminderType(v string) *CreateEndOfMeetingReminder {
+	s.ReminderType = &v
+	return s
+}
+
 type CreateGatewayGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10360,6 +10435,144 @@ func (s CreateGatewayGroupOutput) GoString() string {
 // SetGatewayGroupArn sets the GatewayGroupArn field's value.
 func (s *CreateGatewayGroupOutput) SetGatewayGroupArn(v string) *CreateGatewayGroupOutput {
 	s.GatewayGroupArn = &v
+	return s
+}
+
+// Creates settings for the instant booking feature that are applied to a room
+// profile. When users start their meeting with Alexa, Alexa automatically books
+// the room for the configured duration if the room is available.
+type CreateInstantBooking struct {
+	_ struct{} `type:"structure"`
+
+	// Duration between 15 and 240 minutes at increments of 15 that determines how
+	// long to book an available room when a meeting is started with Alexa.
+	//
+	// DurationInMinutes is a required field
+	DurationInMinutes *int64 `type:"integer" required:"true"`
+
+	// Whether instant booking is enabled or not.
+	//
+	// Enabled is a required field
+	Enabled *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateInstantBooking) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateInstantBooking) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateInstantBooking) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateInstantBooking"}
+	if s.DurationInMinutes == nil {
+		invalidParams.Add(request.NewErrParamRequired("DurationInMinutes"))
+	}
+	if s.Enabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("Enabled"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDurationInMinutes sets the DurationInMinutes field's value.
+func (s *CreateInstantBooking) SetDurationInMinutes(v int64) *CreateInstantBooking {
+	s.DurationInMinutes = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *CreateInstantBooking) SetEnabled(v bool) *CreateInstantBooking {
+	s.Enabled = &v
+	return s
+}
+
+// Creates meeting room settings of a room profile.
+type CreateMeetingRoomConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Creates settings for the end of meeting reminder feature that are applied
+	// to a room profile. The end of meeting reminder enables Alexa to remind users
+	// when a meeting is ending.
+	EndOfMeetingReminder *CreateEndOfMeetingReminder `type:"structure"`
+
+	// Settings to automatically book a room for a configured duration if it's free
+	// when joining a meeting with Alexa.
+	InstantBooking *CreateInstantBooking `type:"structure"`
+
+	// Settings for requiring a check in when a room is reserved. Alexa can cancel
+	// a room reservation if it's not checked into to make the room available for
+	// others. Users can check in by joining the meeting with Alexa or an AVS device,
+	// or by saying “Alexa, check in.”
+	RequireCheckIn *CreateRequireCheckIn `type:"structure"`
+
+	// Whether room utilization metrics are enabled or not.
+	RoomUtilizationMetricsEnabled *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s CreateMeetingRoomConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateMeetingRoomConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateMeetingRoomConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateMeetingRoomConfiguration"}
+	if s.EndOfMeetingReminder != nil {
+		if err := s.EndOfMeetingReminder.Validate(); err != nil {
+			invalidParams.AddNested("EndOfMeetingReminder", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.InstantBooking != nil {
+		if err := s.InstantBooking.Validate(); err != nil {
+			invalidParams.AddNested("InstantBooking", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RequireCheckIn != nil {
+		if err := s.RequireCheckIn.Validate(); err != nil {
+			invalidParams.AddNested("RequireCheckIn", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndOfMeetingReminder sets the EndOfMeetingReminder field's value.
+func (s *CreateMeetingRoomConfiguration) SetEndOfMeetingReminder(v *CreateEndOfMeetingReminder) *CreateMeetingRoomConfiguration {
+	s.EndOfMeetingReminder = v
+	return s
+}
+
+// SetInstantBooking sets the InstantBooking field's value.
+func (s *CreateMeetingRoomConfiguration) SetInstantBooking(v *CreateInstantBooking) *CreateMeetingRoomConfiguration {
+	s.InstantBooking = v
+	return s
+}
+
+// SetRequireCheckIn sets the RequireCheckIn field's value.
+func (s *CreateMeetingRoomConfiguration) SetRequireCheckIn(v *CreateRequireCheckIn) *CreateMeetingRoomConfiguration {
+	s.RequireCheckIn = v
+	return s
+}
+
+// SetRoomUtilizationMetricsEnabled sets the RoomUtilizationMetricsEnabled field's value.
+func (s *CreateMeetingRoomConfiguration) SetRoomUtilizationMetricsEnabled(v bool) *CreateMeetingRoomConfiguration {
+	s.RoomUtilizationMetricsEnabled = &v
 	return s
 }
 
@@ -10552,11 +10765,15 @@ type CreateProfileInput struct {
 	// DistanceUnit is a required field
 	DistanceUnit *string `type:"string" required:"true" enum:"DistanceUnit"`
 
-	// The locale of the room profile.
+	// The locale of the room profile. (This is currently only available to a limited
+	// preview audience.)
 	Locale *string `min:"1" type:"string"`
 
 	// The maximum volume limit for a room profile.
 	MaxVolumeLimit *int64 `type:"integer"`
+
+	// The meeting room settings of a room profile.
+	MeetingRoomConfiguration *CreateMeetingRoomConfiguration `type:"structure"`
 
 	// Whether PSTN calling is enabled.
 	PSTNEnabled *bool `type:"boolean"`
@@ -10631,6 +10848,11 @@ func (s *CreateProfileInput) Validate() error {
 	if s.WakeWord == nil {
 		invalidParams.Add(request.NewErrParamRequired("WakeWord"))
 	}
+	if s.MeetingRoomConfiguration != nil {
+		if err := s.MeetingRoomConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("MeetingRoomConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -10665,6 +10887,12 @@ func (s *CreateProfileInput) SetLocale(v string) *CreateProfileInput {
 // SetMaxVolumeLimit sets the MaxVolumeLimit field's value.
 func (s *CreateProfileInput) SetMaxVolumeLimit(v int64) *CreateProfileInput {
 	s.MaxVolumeLimit = &v
+	return s
+}
+
+// SetMeetingRoomConfiguration sets the MeetingRoomConfiguration field's value.
+func (s *CreateProfileInput) SetMeetingRoomConfiguration(v *CreateMeetingRoomConfiguration) *CreateProfileInput {
+	s.MeetingRoomConfiguration = v
 	return s
 }
 
@@ -10724,6 +10952,62 @@ func (s CreateProfileOutput) GoString() string {
 // SetProfileArn sets the ProfileArn field's value.
 func (s *CreateProfileOutput) SetProfileArn(v string) *CreateProfileOutput {
 	s.ProfileArn = &v
+	return s
+}
+
+// Creates settings for the require check in feature that are applied to a room
+// profile. Require check in allows a meeting room’s Alexa or AVS device to
+// prompt the user to check in; otherwise, the room will be released.
+type CreateRequireCheckIn struct {
+	_ struct{} `type:"structure"`
+
+	// Whether require check in is enabled or not.
+	//
+	// Enabled is a required field
+	Enabled *bool `type:"boolean" required:"true"`
+
+	// Duration between 5 and 20 minutes to determine when to release the room if
+	// it's not checked into.
+	//
+	// ReleaseAfterMinutes is a required field
+	ReleaseAfterMinutes *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateRequireCheckIn) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateRequireCheckIn) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateRequireCheckIn) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateRequireCheckIn"}
+	if s.Enabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("Enabled"))
+	}
+	if s.ReleaseAfterMinutes == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReleaseAfterMinutes"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *CreateRequireCheckIn) SetEnabled(v bool) *CreateRequireCheckIn {
+	s.Enabled = &v
+	return s
+}
+
+// SetReleaseAfterMinutes sets the ReleaseAfterMinutes field's value.
+func (s *CreateRequireCheckIn) SetReleaseAfterMinutes(v int64) *CreateRequireCheckIn {
+	s.ReleaseAfterMinutes = &v
 	return s
 }
 
@@ -12498,6 +12782,50 @@ func (s DisassociateSkillGroupFromRoomOutput) GoString() string {
 	return s.String()
 }
 
+// Settings for the end of meeting reminder feature that are applied to a room
+// profile. The end of meeting reminder enables Alexa to remind users when a
+// meeting is ending.
+type EndOfMeetingReminder struct {
+	_ struct{} `type:"structure"`
+
+	// Whether an end of meeting reminder is enabled or not.
+	Enabled *bool `type:"boolean"`
+
+	// A range of 3 to 15 minutes that determines when the reminder begins.
+	ReminderAtMinutes []*int64 `min:"1" type:"list"`
+
+	// The type of sound that users hear during the end of meeting reminder.
+	ReminderType *string `type:"string" enum:"EndOfMeetingReminderType"`
+}
+
+// String returns the string representation
+func (s EndOfMeetingReminder) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EndOfMeetingReminder) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *EndOfMeetingReminder) SetEnabled(v bool) *EndOfMeetingReminder {
+	s.Enabled = &v
+	return s
+}
+
+// SetReminderAtMinutes sets the ReminderAtMinutes field's value.
+func (s *EndOfMeetingReminder) SetReminderAtMinutes(v []*int64) *EndOfMeetingReminder {
+	s.ReminderAtMinutes = v
+	return s
+}
+
+// SetReminderType sets the ReminderType field's value.
+func (s *EndOfMeetingReminder) SetReminderType(v string) *EndOfMeetingReminder {
+	s.ReminderType = &v
+	return s
+}
+
 // A filter name and value pair that is used to return a more specific list
 // of results. Filters can be used to match a set of resources by various criteria.
 type Filter struct {
@@ -13601,6 +13929,42 @@ func (s *IPDialIn) SetEndpoint(v string) *IPDialIn {
 	return s
 }
 
+// Settings for the instant booking feature that are applied to a room profile.
+// When users start their meeting with Alexa, Alexa automatically books the
+// room for the configured duration if the room is available.
+type InstantBooking struct {
+	_ struct{} `type:"structure"`
+
+	// Duration between 15 and 240 minutes at increments of 15 that determines how
+	// long to book an available room when a meeting is started with Alexa.
+	DurationInMinutes *int64 `type:"integer"`
+
+	// Whether instant booking is enabled or not.
+	Enabled *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s InstantBooking) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InstantBooking) GoString() string {
+	return s.String()
+}
+
+// SetDurationInMinutes sets the DurationInMinutes field's value.
+func (s *InstantBooking) SetDurationInMinutes(v int64) *InstantBooking {
+	s.DurationInMinutes = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *InstantBooking) SetEnabled(v bool) *InstantBooking {
+	s.Enabled = &v
+	return s
+}
+
 type ListBusinessReportSchedulesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14045,22 +14409,20 @@ func (s *ListGatewaysOutput) SetNextToken(v string) *ListGatewaysOutput {
 type ListSkillsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Whether the skill is enabled under the user's account, or if it requires
-	// linking to be used.
+	// Whether the skill is enabled under the user's account.
 	EnablementType *string `type:"string" enum:"EnablementTypeFilter"`
 
 	// The maximum number of results to include in the response. If more results
 	// exist than the specified MaxResults value, a token is included in the response
-	// so that the remaining results can be retrieved. Required.
+	// so that the remaining results can be retrieved.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// An optional token returned from a prior request. Use this token for pagination
 	// of results from this action. If this parameter is specified, the response
 	// includes only results beyond the token, up to the value specified by MaxResults.
-	// Required.
 	NextToken *string `min:"1" type:"string"`
 
-	// The ARN of the skill group for which to list enabled skills. Required.
+	// The ARN of the skill group for which to list enabled skills.
 	SkillGroupArn *string `type:"string"`
 
 	// Whether the skill is publicly available or is a private skill.
@@ -14524,6 +14886,63 @@ func (s *ListTagsOutput) SetTags(v []*Tag) *ListTagsOutput {
 	return s
 }
 
+// Meeting room settings of a room profile.
+type MeetingRoomConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Settings for the end of meeting reminder feature that are applied to a room
+	// profile. The end of meeting reminder enables Alexa to remind users when a
+	// meeting is ending.
+	EndOfMeetingReminder *EndOfMeetingReminder `type:"structure"`
+
+	// Settings to automatically book the room if available for a configured duration
+	// when joining a meeting with Alexa.
+	InstantBooking *InstantBooking `type:"structure"`
+
+	// Settings for requiring a check in when a room is reserved. Alexa can cancel
+	// a room reservation if it's not checked into. This makes the room available
+	// for others. Users can check in by joining the meeting with Alexa or an AVS
+	// device, or by saying “Alexa, check in.”
+	RequireCheckIn *RequireCheckIn `type:"structure"`
+
+	// Whether room utilization metrics are enabled or not.
+	RoomUtilizationMetricsEnabled *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s MeetingRoomConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MeetingRoomConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetEndOfMeetingReminder sets the EndOfMeetingReminder field's value.
+func (s *MeetingRoomConfiguration) SetEndOfMeetingReminder(v *EndOfMeetingReminder) *MeetingRoomConfiguration {
+	s.EndOfMeetingReminder = v
+	return s
+}
+
+// SetInstantBooking sets the InstantBooking field's value.
+func (s *MeetingRoomConfiguration) SetInstantBooking(v *InstantBooking) *MeetingRoomConfiguration {
+	s.InstantBooking = v
+	return s
+}
+
+// SetRequireCheckIn sets the RequireCheckIn field's value.
+func (s *MeetingRoomConfiguration) SetRequireCheckIn(v *RequireCheckIn) *MeetingRoomConfiguration {
+	s.RequireCheckIn = v
+	return s
+}
+
+// SetRoomUtilizationMetricsEnabled sets the RoomUtilizationMetricsEnabled field's value.
+func (s *MeetingRoomConfiguration) SetRoomUtilizationMetricsEnabled(v bool) *MeetingRoomConfiguration {
+	s.RoomUtilizationMetricsEnabled = &v
+	return s
+}
+
 // The values that indicate whether a pin is always required (YES), never required
 // (NO), or OPTIONAL.
 //
@@ -14924,11 +15343,15 @@ type Profile struct {
 	// Retrieves if the profile is default or not.
 	IsDefault *bool `type:"boolean"`
 
-	// The locale of a room profile.
+	// The locale of a room profile. (This is currently available only to a limited
+	// preview audience.)
 	Locale *string `min:"1" type:"string"`
 
 	// The max volume limit of a room profile.
 	MaxVolumeLimit *int64 `type:"integer"`
+
+	// Meeting room settings of a room profile.
+	MeetingRoomConfiguration *MeetingRoomConfiguration `type:"structure"`
 
 	// The PSTN setting of a room profile.
 	PSTNEnabled *bool `type:"boolean"`
@@ -14998,6 +15421,12 @@ func (s *Profile) SetMaxVolumeLimit(v int64) *Profile {
 	return s
 }
 
+// SetMeetingRoomConfiguration sets the MeetingRoomConfiguration field's value.
+func (s *Profile) SetMeetingRoomConfiguration(v *MeetingRoomConfiguration) *Profile {
+	s.MeetingRoomConfiguration = v
+	return s
+}
+
 // SetPSTNEnabled sets the PSTNEnabled field's value.
 func (s *Profile) SetPSTNEnabled(v bool) *Profile {
 	s.PSTNEnabled = &v
@@ -15053,7 +15482,8 @@ type ProfileData struct {
 	// Retrieves if the profile data is default or not.
 	IsDefault *bool `type:"boolean"`
 
-	// The locale of a room profile.
+	// The locale of a room profile. (This is currently available only to a limited
+	// preview audience.)
 	Locale *string `min:"1" type:"string"`
 
 	// The ARN of a room profile.
@@ -15065,7 +15495,7 @@ type ProfileData struct {
 	// The temperature unit of a room profile.
 	TemperatureUnit *string `type:"string" enum:"TemperatureUnit"`
 
-	// The timezone of a room profile.
+	// The time zone of a room profile.
 	Timezone *string `min:"1" type:"string"`
 
 	// The wake word of a room profile.
@@ -15597,6 +16027,42 @@ func (s RejectSkillOutput) String() string {
 // GoString returns the string representation
 func (s RejectSkillOutput) GoString() string {
 	return s.String()
+}
+
+// Settings for the require check in feature that are applied to a room profile.
+// Require check in allows a meeting room’s Alexa or AVS device to prompt
+// the user to check in; otherwise, the room will be released.
+type RequireCheckIn struct {
+	_ struct{} `type:"structure"`
+
+	// Whether require check in is enabled or not.
+	Enabled *bool `type:"boolean"`
+
+	// Duration between 5 and 20 minutes to determine when to release the room if
+	// it's not checked into.
+	ReleaseAfterMinutes *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s RequireCheckIn) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RequireCheckIn) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *RequireCheckIn) SetEnabled(v bool) *RequireCheckIn {
+	s.Enabled = &v
+	return s
+}
+
+// SetReleaseAfterMinutes sets the ReleaseAfterMinutes field's value.
+func (s *RequireCheckIn) SetReleaseAfterMinutes(v int64) *RequireCheckIn {
+	s.ReleaseAfterMinutes = &v
+	return s
 }
 
 type ResolveRoomInput struct {
@@ -17824,7 +18290,7 @@ type Tag struct {
 	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
-	// The value of a tag. Tag values are case-sensitive and can be null.
+	// The value of a tag. Tag values are case sensitive and can be null.
 	//
 	// Value is a required field
 	Value *string `type:"string" required:"true"`
@@ -18552,6 +19018,65 @@ func (s UpdateDeviceOutput) GoString() string {
 	return s.String()
 }
 
+// Settings for the end of meeting reminder feature that are applied to a room
+// profile. The end of meeting reminder enables Alexa to remind users when a
+// meeting is ending.
+type UpdateEndOfMeetingReminder struct {
+	_ struct{} `type:"structure"`
+
+	// Whether an end of meeting reminder is enabled or not.
+	Enabled *bool `type:"boolean"`
+
+	// Updates settings for the end of meeting reminder feature that are applied
+	// to a room profile. The end of meeting reminder enables Alexa to remind users
+	// when a meeting is ending.
+	ReminderAtMinutes []*int64 `min:"1" type:"list"`
+
+	// The type of sound that users hear during the end of meeting reminder.
+	ReminderType *string `type:"string" enum:"EndOfMeetingReminderType"`
+}
+
+// String returns the string representation
+func (s UpdateEndOfMeetingReminder) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateEndOfMeetingReminder) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateEndOfMeetingReminder) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateEndOfMeetingReminder"}
+	if s.ReminderAtMinutes != nil && len(s.ReminderAtMinutes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReminderAtMinutes", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *UpdateEndOfMeetingReminder) SetEnabled(v bool) *UpdateEndOfMeetingReminder {
+	s.Enabled = &v
+	return s
+}
+
+// SetReminderAtMinutes sets the ReminderAtMinutes field's value.
+func (s *UpdateEndOfMeetingReminder) SetReminderAtMinutes(v []*int64) *UpdateEndOfMeetingReminder {
+	s.ReminderAtMinutes = v
+	return s
+}
+
+// SetReminderType sets the ReminderType field's value.
+func (s *UpdateEndOfMeetingReminder) SetReminderType(v string) *UpdateEndOfMeetingReminder {
+	s.ReminderType = &v
+	return s
+}
+
 type UpdateGatewayGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -18711,6 +19236,114 @@ func (s UpdateGatewayOutput) GoString() string {
 	return s.String()
 }
 
+// Updates settings for the instant booking feature that are applied to a room
+// profile. If instant booking is enabled, Alexa automatically reserves a room
+// if it is free when a user joins a meeting with Alexa.
+type UpdateInstantBooking struct {
+	_ struct{} `type:"structure"`
+
+	// Duration between 15 and 240 minutes at increments of 15 that determines how
+	// long to book an available room when a meeting is started with Alexa.
+	DurationInMinutes *int64 `type:"integer"`
+
+	// Whether instant booking is enabled or not.
+	Enabled *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s UpdateInstantBooking) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateInstantBooking) GoString() string {
+	return s.String()
+}
+
+// SetDurationInMinutes sets the DurationInMinutes field's value.
+func (s *UpdateInstantBooking) SetDurationInMinutes(v int64) *UpdateInstantBooking {
+	s.DurationInMinutes = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *UpdateInstantBooking) SetEnabled(v bool) *UpdateInstantBooking {
+	s.Enabled = &v
+	return s
+}
+
+// Updates meeting room settings of a room profile.
+type UpdateMeetingRoomConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Settings for the end of meeting reminder feature that are applied to a room
+	// profile. The end of meeting reminder enables Alexa to remind users when a
+	// meeting is ending.
+	EndOfMeetingReminder *UpdateEndOfMeetingReminder `type:"structure"`
+
+	// Settings to automatically book an available room available for a configured
+	// duration when joining a meeting with Alexa.
+	InstantBooking *UpdateInstantBooking `type:"structure"`
+
+	// Settings for requiring a check in when a room is reserved. Alexa can cancel
+	// a room reservation if it's not checked into to make the room available for
+	// others. Users can check in by joining the meeting with Alexa or an AVS device,
+	// or by saying “Alexa, check in.”
+	RequireCheckIn *UpdateRequireCheckIn `type:"structure"`
+
+	// Whether room utilization metrics are enabled or not.
+	RoomUtilizationMetricsEnabled *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s UpdateMeetingRoomConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateMeetingRoomConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateMeetingRoomConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateMeetingRoomConfiguration"}
+	if s.EndOfMeetingReminder != nil {
+		if err := s.EndOfMeetingReminder.Validate(); err != nil {
+			invalidParams.AddNested("EndOfMeetingReminder", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndOfMeetingReminder sets the EndOfMeetingReminder field's value.
+func (s *UpdateMeetingRoomConfiguration) SetEndOfMeetingReminder(v *UpdateEndOfMeetingReminder) *UpdateMeetingRoomConfiguration {
+	s.EndOfMeetingReminder = v
+	return s
+}
+
+// SetInstantBooking sets the InstantBooking field's value.
+func (s *UpdateMeetingRoomConfiguration) SetInstantBooking(v *UpdateInstantBooking) *UpdateMeetingRoomConfiguration {
+	s.InstantBooking = v
+	return s
+}
+
+// SetRequireCheckIn sets the RequireCheckIn field's value.
+func (s *UpdateMeetingRoomConfiguration) SetRequireCheckIn(v *UpdateRequireCheckIn) *UpdateMeetingRoomConfiguration {
+	s.RequireCheckIn = v
+	return s
+}
+
+// SetRoomUtilizationMetricsEnabled sets the RoomUtilizationMetricsEnabled field's value.
+func (s *UpdateMeetingRoomConfiguration) SetRoomUtilizationMetricsEnabled(v bool) *UpdateMeetingRoomConfiguration {
+	s.RoomUtilizationMetricsEnabled = &v
+	return s
+}
+
 type UpdateNetworkProfileInput struct {
 	_ struct{} `type:"structure"`
 
@@ -18843,11 +19476,15 @@ type UpdateProfileInput struct {
 	// done to the default status.
 	IsDefault *bool `type:"boolean"`
 
-	// The updated locale for the room profile.
+	// The updated locale for the room profile. (This is currently only available
+	// to a limited preview audience.)
 	Locale *string `min:"1" type:"string"`
 
 	// The updated maximum volume limit for the room profile.
 	MaxVolumeLimit *int64 `type:"integer"`
+
+	// The updated meeting room settings of a room profile.
+	MeetingRoomConfiguration *UpdateMeetingRoomConfiguration `type:"structure"`
 
 	// Whether the PSTN setting of the room profile is enabled.
 	PSTNEnabled *bool `type:"boolean"`
@@ -18896,6 +19533,11 @@ func (s *UpdateProfileInput) Validate() error {
 	if s.Timezone != nil && len(*s.Timezone) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Timezone", 1))
 	}
+	if s.MeetingRoomConfiguration != nil {
+		if err := s.MeetingRoomConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("MeetingRoomConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -18930,6 +19572,12 @@ func (s *UpdateProfileInput) SetLocale(v string) *UpdateProfileInput {
 // SetMaxVolumeLimit sets the MaxVolumeLimit field's value.
 func (s *UpdateProfileInput) SetMaxVolumeLimit(v int64) *UpdateProfileInput {
 	s.MaxVolumeLimit = &v
+	return s
+}
+
+// SetMeetingRoomConfiguration sets the MeetingRoomConfiguration field's value.
+func (s *UpdateProfileInput) SetMeetingRoomConfiguration(v *UpdateMeetingRoomConfiguration) *UpdateProfileInput {
+	s.MeetingRoomConfiguration = v
 	return s
 }
 
@@ -18987,6 +19635,42 @@ func (s UpdateProfileOutput) String() string {
 // GoString returns the string representation
 func (s UpdateProfileOutput) GoString() string {
 	return s.String()
+}
+
+// Updates settings for the require check in feature that are applied to a room
+// profile. Require check in allows a meeting room’s Alexa or AVS device to
+// prompt the user to check in; otherwise, the room will be released.
+type UpdateRequireCheckIn struct {
+	_ struct{} `type:"structure"`
+
+	// Whether require check in is enabled or not.
+	Enabled *bool `type:"boolean"`
+
+	// Duration between 5 and 20 minutes to determine when to release the room if
+	// it's not checked into.
+	ReleaseAfterMinutes *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s UpdateRequireCheckIn) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateRequireCheckIn) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *UpdateRequireCheckIn) SetEnabled(v bool) *UpdateRequireCheckIn {
+	s.Enabled = &v
+	return s
+}
+
+// SetReleaseAfterMinutes sets the ReleaseAfterMinutes field's value.
+func (s *UpdateRequireCheckIn) SetReleaseAfterMinutes(v int64) *UpdateRequireCheckIn {
+	s.ReleaseAfterMinutes = &v
+	return s
 }
 
 type UpdateRoomInput struct {
@@ -19243,6 +19927,9 @@ const (
 
 	// BusinessReportIntervalOneWeek is a BusinessReportInterval enum value
 	BusinessReportIntervalOneWeek = "ONE_WEEK"
+
+	// BusinessReportIntervalThirtyDays is a BusinessReportInterval enum value
+	BusinessReportIntervalThirtyDays = "THIRTY_DAYS"
 )
 
 const (
@@ -19406,6 +20093,20 @@ const (
 
 	// EnablementTypeFilterPending is a EnablementTypeFilter enum value
 	EnablementTypeFilterPending = "PENDING"
+)
+
+const (
+	// EndOfMeetingReminderTypeAnnouncementTimeCheck is a EndOfMeetingReminderType enum value
+	EndOfMeetingReminderTypeAnnouncementTimeCheck = "ANNOUNCEMENT_TIME_CHECK"
+
+	// EndOfMeetingReminderTypeAnnouncementVariableTimeLeft is a EndOfMeetingReminderType enum value
+	EndOfMeetingReminderTypeAnnouncementVariableTimeLeft = "ANNOUNCEMENT_VARIABLE_TIME_LEFT"
+
+	// EndOfMeetingReminderTypeChime is a EndOfMeetingReminderType enum value
+	EndOfMeetingReminderTypeChime = "CHIME"
+
+	// EndOfMeetingReminderTypeKnock is a EndOfMeetingReminderType enum value
+	EndOfMeetingReminderTypeKnock = "KNOCK"
 )
 
 const (

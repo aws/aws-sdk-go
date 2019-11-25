@@ -3,10 +3,284 @@
 package costexplorer
 
 import (
+	"fmt"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 )
+
+const opCreateCostCategoryDefinition = "CreateCostCategoryDefinition"
+
+// CreateCostCategoryDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCostCategoryDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateCostCategoryDefinition for more information on using the CreateCostCategoryDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateCostCategoryDefinitionRequest method.
+//    req, resp := client.CreateCostCategoryDefinitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/CreateCostCategoryDefinition
+func (c *CostExplorer) CreateCostCategoryDefinitionRequest(input *CreateCostCategoryDefinitionInput) (req *request.Request, output *CreateCostCategoryDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opCreateCostCategoryDefinition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateCostCategoryDefinitionInput{}
+	}
+
+	output = &CreateCostCategoryDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateCostCategoryDefinition API operation for AWS Cost Explorer Service.
+//
+//
+//  Cost Category is in preview release for AWS Billing and Cost Management
+//  and is subject to change. Your use of Cost Categories is subject to the
+//  Beta Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+//  (Section 1.10).
+//
+// Creates a new Cost Category with the requested name and rules.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Cost Explorer Service's
+// API operation CreateCostCategoryDefinition for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeServiceQuotaExceededException "ServiceQuotaExceededException"
+//   You've reached the limit on the number of resources you can create, or exceeded
+//   the size of an individual resources.
+//
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   You made too many calls in a short period of time. Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/CreateCostCategoryDefinition
+func (c *CostExplorer) CreateCostCategoryDefinition(input *CreateCostCategoryDefinitionInput) (*CreateCostCategoryDefinitionOutput, error) {
+	req, out := c.CreateCostCategoryDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// CreateCostCategoryDefinitionWithContext is the same as CreateCostCategoryDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateCostCategoryDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CostExplorer) CreateCostCategoryDefinitionWithContext(ctx aws.Context, input *CreateCostCategoryDefinitionInput, opts ...request.Option) (*CreateCostCategoryDefinitionOutput, error) {
+	req, out := c.CreateCostCategoryDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteCostCategoryDefinition = "DeleteCostCategoryDefinition"
+
+// DeleteCostCategoryDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCostCategoryDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteCostCategoryDefinition for more information on using the DeleteCostCategoryDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteCostCategoryDefinitionRequest method.
+//    req, resp := client.DeleteCostCategoryDefinitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/DeleteCostCategoryDefinition
+func (c *CostExplorer) DeleteCostCategoryDefinitionRequest(input *DeleteCostCategoryDefinitionInput) (req *request.Request, output *DeleteCostCategoryDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteCostCategoryDefinition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteCostCategoryDefinitionInput{}
+	}
+
+	output = &DeleteCostCategoryDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteCostCategoryDefinition API operation for AWS Cost Explorer Service.
+//
+//
+//  Cost Category is in preview release for AWS Billing and Cost Management
+//  and is subject to change. Your use of Cost Categories is subject to the
+//  Beta Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+//  (Section 1.10).
+//
+// Deletes a Cost Category. Expenses from this month going forward will no longer
+// be categorized with this Cost Category.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Cost Explorer Service's
+// API operation DeleteCostCategoryDefinition for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified ARN in the request doesn't exist.
+//
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   You made too many calls in a short period of time. Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/DeleteCostCategoryDefinition
+func (c *CostExplorer) DeleteCostCategoryDefinition(input *DeleteCostCategoryDefinitionInput) (*DeleteCostCategoryDefinitionOutput, error) {
+	req, out := c.DeleteCostCategoryDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteCostCategoryDefinitionWithContext is the same as DeleteCostCategoryDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteCostCategoryDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CostExplorer) DeleteCostCategoryDefinitionWithContext(ctx aws.Context, input *DeleteCostCategoryDefinitionInput, opts ...request.Option) (*DeleteCostCategoryDefinitionOutput, error) {
+	req, out := c.DeleteCostCategoryDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeCostCategoryDefinition = "DescribeCostCategoryDefinition"
+
+// DescribeCostCategoryDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeCostCategoryDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeCostCategoryDefinition for more information on using the DescribeCostCategoryDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeCostCategoryDefinitionRequest method.
+//    req, resp := client.DescribeCostCategoryDefinitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/DescribeCostCategoryDefinition
+func (c *CostExplorer) DescribeCostCategoryDefinitionRequest(input *DescribeCostCategoryDefinitionInput) (req *request.Request, output *DescribeCostCategoryDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opDescribeCostCategoryDefinition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeCostCategoryDefinitionInput{}
+	}
+
+	output = &DescribeCostCategoryDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeCostCategoryDefinition API operation for AWS Cost Explorer Service.
+//
+//
+//  Cost Category is in preview release for AWS Billing and Cost Management
+//  and is subject to change. Your use of Cost Categories is subject to the
+//  Beta Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+//  (Section 1.10).
+//
+// Returns the name, ARN, rules, definition, and effective dates of a Cost Category
+// that's defined in the account.
+//
+// You have the option to use EffectiveOn to return a Cost Category that is
+// active on a specific date. If there is no EffectiveOn specified, you’ll
+// see a Cost Category that is effective on the current date. If Cost Category
+// is still effective, EffectiveEnd is omitted in the response.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Cost Explorer Service's
+// API operation DescribeCostCategoryDefinition for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified ARN in the request doesn't exist.
+//
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   You made too many calls in a short period of time. Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/DescribeCostCategoryDefinition
+func (c *CostExplorer) DescribeCostCategoryDefinition(input *DescribeCostCategoryDefinitionInput) (*DescribeCostCategoryDefinitionOutput, error) {
+	req, out := c.DescribeCostCategoryDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// DescribeCostCategoryDefinitionWithContext is the same as DescribeCostCategoryDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeCostCategoryDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CostExplorer) DescribeCostCategoryDefinitionWithContext(ctx aws.Context, input *DescribeCostCategoryDefinitionInput, opts ...request.Option) (*DescribeCostCategoryDefinitionOutput, error) {
+	req, out := c.DescribeCostCategoryDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
 
 const opGetCostAndUsage = "GetCostAndUsage"
 
@@ -1437,6 +1711,464 @@ func (c *CostExplorer) GetUsageForecastWithContext(ctx aws.Context, input *GetUs
 	return out, req.Send()
 }
 
+const opListCostCategoryDefinitions = "ListCostCategoryDefinitions"
+
+// ListCostCategoryDefinitionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCostCategoryDefinitions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCostCategoryDefinitions for more information on using the ListCostCategoryDefinitions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListCostCategoryDefinitionsRequest method.
+//    req, resp := client.ListCostCategoryDefinitionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/ListCostCategoryDefinitions
+func (c *CostExplorer) ListCostCategoryDefinitionsRequest(input *ListCostCategoryDefinitionsInput) (req *request.Request, output *ListCostCategoryDefinitionsOutput) {
+	op := &request.Operation{
+		Name:       opListCostCategoryDefinitions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListCostCategoryDefinitionsInput{}
+	}
+
+	output = &ListCostCategoryDefinitionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCostCategoryDefinitions API operation for AWS Cost Explorer Service.
+//
+//
+//  Cost Category is in preview release for AWS Billing and Cost Management
+//  and is subject to change. Your use of Cost Categories is subject to the
+//  Beta Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+//  (Section 1.10).
+//
+// Returns the name, ARN and effective dates of all Cost Categories defined
+// in the account. You have the option to use EffectiveOn to return a list of
+// Cost Categories that were active on a specific date. If there is no EffectiveOn
+// specified, you’ll see Cost Categories that are effective on the current
+// date. If Cost Category is still effective, EffectiveEnd is omitted in the
+// response.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Cost Explorer Service's
+// API operation ListCostCategoryDefinitions for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   You made too many calls in a short period of time. Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/ListCostCategoryDefinitions
+func (c *CostExplorer) ListCostCategoryDefinitions(input *ListCostCategoryDefinitionsInput) (*ListCostCategoryDefinitionsOutput, error) {
+	req, out := c.ListCostCategoryDefinitionsRequest(input)
+	return out, req.Send()
+}
+
+// ListCostCategoryDefinitionsWithContext is the same as ListCostCategoryDefinitions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCostCategoryDefinitions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CostExplorer) ListCostCategoryDefinitionsWithContext(ctx aws.Context, input *ListCostCategoryDefinitionsInput, opts ...request.Option) (*ListCostCategoryDefinitionsOutput, error) {
+	req, out := c.ListCostCategoryDefinitionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateCostCategoryDefinition = "UpdateCostCategoryDefinition"
+
+// UpdateCostCategoryDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateCostCategoryDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateCostCategoryDefinition for more information on using the UpdateCostCategoryDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateCostCategoryDefinitionRequest method.
+//    req, resp := client.UpdateCostCategoryDefinitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/UpdateCostCategoryDefinition
+func (c *CostExplorer) UpdateCostCategoryDefinitionRequest(input *UpdateCostCategoryDefinitionInput) (req *request.Request, output *UpdateCostCategoryDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opUpdateCostCategoryDefinition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateCostCategoryDefinitionInput{}
+	}
+
+	output = &UpdateCostCategoryDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateCostCategoryDefinition API operation for AWS Cost Explorer Service.
+//
+//
+//  Cost Category is in preview release for AWS Billing and Cost Management
+//  and is subject to change. Your use of Cost Categories is subject to the
+//  Beta Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+//  (Section 1.10).
+//
+// Updates an existing Cost Category. Changes made to the Cost Category rules
+// will be used to categorize the current month’s expenses and future expenses.
+// This won’t change categorization for the previous months.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Cost Explorer Service's
+// API operation UpdateCostCategoryDefinition for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified ARN in the request doesn't exist.
+//
+//   * ErrCodeServiceQuotaExceededException "ServiceQuotaExceededException"
+//   You've reached the limit on the number of resources you can create, or exceeded
+//   the size of an individual resources.
+//
+//   * ErrCodeLimitExceededException "LimitExceededException"
+//   You made too many calls in a short period of time. Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/UpdateCostCategoryDefinition
+func (c *CostExplorer) UpdateCostCategoryDefinition(input *UpdateCostCategoryDefinitionInput) (*UpdateCostCategoryDefinitionOutput, error) {
+	req, out := c.UpdateCostCategoryDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// UpdateCostCategoryDefinitionWithContext is the same as UpdateCostCategoryDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateCostCategoryDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CostExplorer) UpdateCostCategoryDefinitionWithContext(ctx aws.Context, input *UpdateCostCategoryDefinitionInput, opts ...request.Option) (*UpdateCostCategoryDefinitionOutput, error) {
+	req, out := c.UpdateCostCategoryDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+//
+//  Cost Category is in preview release for AWS Billing and Cost Management
+//  and is subject to change. Your use of Cost Categories is subject to the
+//  Beta Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+//  (Section 1.10).
+//
+// The structure of Cost Categories. This includes detailed metadata and the
+// set of rules for the CostCategory object.
+type CostCategory struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for your Cost Category.
+	//
+	// CostCategoryArn is a required field
+	CostCategoryArn *string `min:"20" type:"string" required:"true"`
+
+	// The Cost Category's effective end date.
+	EffectiveEnd *string `min:"20" type:"string"`
+
+	// The Cost Category's effective start date.
+	//
+	// EffectiveStart is a required field
+	EffectiveStart *string `min:"20" type:"string" required:"true"`
+
+	// The unique name of the Cost Category.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The rule schema version in this particular Cost Category.
+	//
+	// RuleVersion is a required field
+	RuleVersion *string `type:"string" required:"true" enum:"CostCategoryRuleVersion"`
+
+	// Rules are processed in order. If there are multiple rules that match the
+	// line item, then the first rule to match is used to determine that Cost Category
+	// value.
+	//
+	// Rules is a required field
+	Rules []*CostCategoryRule `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s CostCategory) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CostCategory) GoString() string {
+	return s.String()
+}
+
+// SetCostCategoryArn sets the CostCategoryArn field's value.
+func (s *CostCategory) SetCostCategoryArn(v string) *CostCategory {
+	s.CostCategoryArn = &v
+	return s
+}
+
+// SetEffectiveEnd sets the EffectiveEnd field's value.
+func (s *CostCategory) SetEffectiveEnd(v string) *CostCategory {
+	s.EffectiveEnd = &v
+	return s
+}
+
+// SetEffectiveStart sets the EffectiveStart field's value.
+func (s *CostCategory) SetEffectiveStart(v string) *CostCategory {
+	s.EffectiveStart = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CostCategory) SetName(v string) *CostCategory {
+	s.Name = &v
+	return s
+}
+
+// SetRuleVersion sets the RuleVersion field's value.
+func (s *CostCategory) SetRuleVersion(v string) *CostCategory {
+	s.RuleVersion = &v
+	return s
+}
+
+// SetRules sets the Rules field's value.
+func (s *CostCategory) SetRules(v []*CostCategoryRule) *CostCategory {
+	s.Rules = v
+	return s
+}
+
+//
+//  Cost Category is in preview release for AWS Billing and Cost Management
+//  and is subject to change. Your use of Cost Categories is subject to the
+//  Beta Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+//  (Section 1.10).
+//
+// A reference to a Cost Category containing only enough information to identify
+// the Cost Category.
+//
+// You can use this information to retrieve the full Cost Category information
+// using DescribeCostCategory.
+type CostCategoryReference struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for your Cost Category Reference.
+	CostCategoryArn *string `min:"20" type:"string"`
+
+	// The Cost Category's effective end date.
+	EffectiveEnd *string `min:"20" type:"string"`
+
+	// The Cost Category's effective start date.
+	EffectiveStart *string `min:"20" type:"string"`
+
+	// The unique name of the Cost Category.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CostCategoryReference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CostCategoryReference) GoString() string {
+	return s.String()
+}
+
+// SetCostCategoryArn sets the CostCategoryArn field's value.
+func (s *CostCategoryReference) SetCostCategoryArn(v string) *CostCategoryReference {
+	s.CostCategoryArn = &v
+	return s
+}
+
+// SetEffectiveEnd sets the EffectiveEnd field's value.
+func (s *CostCategoryReference) SetEffectiveEnd(v string) *CostCategoryReference {
+	s.EffectiveEnd = &v
+	return s
+}
+
+// SetEffectiveStart sets the EffectiveStart field's value.
+func (s *CostCategoryReference) SetEffectiveStart(v string) *CostCategoryReference {
+	s.EffectiveStart = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CostCategoryReference) SetName(v string) *CostCategoryReference {
+	s.Name = &v
+	return s
+}
+
+//
+//  Cost Category is in preview release for AWS Billing and Cost Management
+//  and is subject to change. Your use of Cost Categories is subject to the
+//  Beta Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+//  (Section 1.10).
+//
+// Rules are processed in order. If there are multiple rules that match the
+// line item, then the first rule to match is used to determine that Cost Category
+// value.
+type CostCategoryRule struct {
+	_ struct{} `type:"structure"`
+
+	// An Expression (http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
+	// object used to categorize costs. This supports dimensions, Tags, and nested
+	// expressions. Currently the only dimensions supported is LINKED_ACCOUNT.
+	//
+	// Root level OR is not supported. We recommend you create a separate rule instead.
+	//
+	// Rule is a required field
+	Rule *Expression `type:"structure" required:"true"`
+
+	// The value a line item will be categorized as, if it matches the rule.
+	//
+	// Value is a required field
+	Value *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CostCategoryRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CostCategoryRule) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CostCategoryRule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CostCategoryRule"}
+	if s.Rule == nil {
+		invalidParams.Add(request.NewErrParamRequired("Rule"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+	if s.Rule != nil {
+		if err := s.Rule.Validate(); err != nil {
+			invalidParams.AddNested("Rule", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRule sets the Rule field's value.
+func (s *CostCategoryRule) SetRule(v *Expression) *CostCategoryRule {
+	s.Rule = v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *CostCategoryRule) SetValue(v string) *CostCategoryRule {
+	s.Value = &v
+	return s
+}
+
+//
+//  Cost Category is in preview release for AWS Billing and Cost Management
+//  and is subject to change. Your use of Cost Categories is subject to the
+//  Beta Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+//  (Section 1.10).
+//
+// The values that are available for Cost Categories.
+type CostCategoryValues struct {
+	_ struct{} `type:"structure"`
+
+	// The unique name of the Cost Category.
+	Key *string `min:"1" type:"string"`
+
+	// The specific value of the Cost Category.
+	Values []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s CostCategoryValues) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CostCategoryValues) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CostCategoryValues) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CostCategoryValues"}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *CostCategoryValues) SetKey(v string) *CostCategoryValues {
+	s.Key = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *CostCategoryValues) SetValues(v []*string) *CostCategoryValues {
+	s.Values = v
+	return s
+}
+
 // The amount of instance usage that a reservation covered.
 type Coverage struct {
 	_ struct{} `type:"structure"`
@@ -1660,6 +2392,122 @@ func (s *CoverageNormalizedUnits) SetTotalRunningNormalizedUnits(v string) *Cove
 	return s
 }
 
+type CreateCostCategoryDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique name of the Cost Category.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The rule schema version in this particular Cost Category.
+	//
+	// RuleVersion is a required field
+	RuleVersion *string `type:"string" required:"true" enum:"CostCategoryRuleVersion"`
+
+	// Rules are processed in order. If there are multiple rules that match the
+	// line item, then the first rule to match is used to determine that Cost Category
+	// value.
+	//
+	// Rules is a required field
+	Rules []*CostCategoryRule `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateCostCategoryDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateCostCategoryDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateCostCategoryDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateCostCategoryDefinitionInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.RuleVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleVersion"))
+	}
+	if s.Rules == nil {
+		invalidParams.Add(request.NewErrParamRequired("Rules"))
+	}
+	if s.Rules != nil && len(s.Rules) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Rules", 1))
+	}
+	if s.Rules != nil {
+		for i, v := range s.Rules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Rules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *CreateCostCategoryDefinitionInput) SetName(v string) *CreateCostCategoryDefinitionInput {
+	s.Name = &v
+	return s
+}
+
+// SetRuleVersion sets the RuleVersion field's value.
+func (s *CreateCostCategoryDefinitionInput) SetRuleVersion(v string) *CreateCostCategoryDefinitionInput {
+	s.RuleVersion = &v
+	return s
+}
+
+// SetRules sets the Rules field's value.
+func (s *CreateCostCategoryDefinitionInput) SetRules(v []*CostCategoryRule) *CreateCostCategoryDefinitionInput {
+	s.Rules = v
+	return s
+}
+
+type CreateCostCategoryDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for your newly created Cost Category.
+	CostCategoryArn *string `min:"20" type:"string"`
+
+	// The Cost Category's effective start date.
+	EffectiveStart *string `min:"20" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateCostCategoryDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateCostCategoryDefinitionOutput) GoString() string {
+	return s.String()
+}
+
+// SetCostCategoryArn sets the CostCategoryArn field's value.
+func (s *CreateCostCategoryDefinitionOutput) SetCostCategoryArn(v string) *CreateCostCategoryDefinitionOutput {
+	s.CostCategoryArn = &v
+	return s
+}
+
+// SetEffectiveStart sets the EffectiveStart field's value.
+func (s *CreateCostCategoryDefinitionOutput) SetEffectiveStart(v string) *CreateCostCategoryDefinitionOutput {
+	s.EffectiveStart = &v
+	return s
+}
+
 // Context about the current instance.
 type CurrentInstance struct {
 	_ struct{} `type:"structure"`
@@ -1820,6 +2668,163 @@ func (s *DateInterval) SetEnd(v string) *DateInterval {
 // SetStart sets the Start field's value.
 func (s *DateInterval) SetStart(v string) *DateInterval {
 	s.Start = &v
+	return s
+}
+
+type DeleteCostCategoryDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for your Cost Category.
+	//
+	// CostCategoryArn is a required field
+	CostCategoryArn *string `min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteCostCategoryDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCostCategoryDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteCostCategoryDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteCostCategoryDefinitionInput"}
+	if s.CostCategoryArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CostCategoryArn"))
+	}
+	if s.CostCategoryArn != nil && len(*s.CostCategoryArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("CostCategoryArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCostCategoryArn sets the CostCategoryArn field's value.
+func (s *DeleteCostCategoryDefinitionInput) SetCostCategoryArn(v string) *DeleteCostCategoryDefinitionInput {
+	s.CostCategoryArn = &v
+	return s
+}
+
+type DeleteCostCategoryDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for your Cost Category.
+	CostCategoryArn *string `min:"20" type:"string"`
+
+	// The effective end date of the Cost Category as a result of deleting it. No
+	// costs after this date will be categorized by the deleted Cost Category.
+	EffectiveEnd *string `min:"20" type:"string"`
+}
+
+// String returns the string representation
+func (s DeleteCostCategoryDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCostCategoryDefinitionOutput) GoString() string {
+	return s.String()
+}
+
+// SetCostCategoryArn sets the CostCategoryArn field's value.
+func (s *DeleteCostCategoryDefinitionOutput) SetCostCategoryArn(v string) *DeleteCostCategoryDefinitionOutput {
+	s.CostCategoryArn = &v
+	return s
+}
+
+// SetEffectiveEnd sets the EffectiveEnd field's value.
+func (s *DeleteCostCategoryDefinitionOutput) SetEffectiveEnd(v string) *DeleteCostCategoryDefinitionOutput {
+	s.EffectiveEnd = &v
+	return s
+}
+
+type DescribeCostCategoryDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for your Cost Category.
+	//
+	// CostCategoryArn is a required field
+	CostCategoryArn *string `min:"20" type:"string" required:"true"`
+
+	// The date when the Cost Category was effective.
+	EffectiveOn *string `min:"20" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeCostCategoryDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCostCategoryDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeCostCategoryDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeCostCategoryDefinitionInput"}
+	if s.CostCategoryArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CostCategoryArn"))
+	}
+	if s.CostCategoryArn != nil && len(*s.CostCategoryArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("CostCategoryArn", 20))
+	}
+	if s.EffectiveOn != nil && len(*s.EffectiveOn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("EffectiveOn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCostCategoryArn sets the CostCategoryArn field's value.
+func (s *DescribeCostCategoryDefinitionInput) SetCostCategoryArn(v string) *DescribeCostCategoryDefinitionInput {
+	s.CostCategoryArn = &v
+	return s
+}
+
+// SetEffectiveOn sets the EffectiveOn field's value.
+func (s *DescribeCostCategoryDefinitionInput) SetEffectiveOn(v string) *DescribeCostCategoryDefinitionInput {
+	s.EffectiveOn = &v
+	return s
+}
+
+type DescribeCostCategoryDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+
+	//
+	//  Cost Category is in preview release for AWS Billing and Cost Management
+	//  and is subject to change. Your use of Cost Categories is subject to the
+	//  Beta Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+	//  (Section 1.10).
+	//
+	// The structure of Cost Categories. This includes detailed metadata and the
+	// set of rules for the CostCategory object.
+	CostCategory *CostCategory `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeCostCategoryDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCostCategoryDefinitionOutput) GoString() string {
+	return s.String()
+}
+
+// SetCostCategory sets the CostCategory field's value.
+func (s *DescribeCostCategoryDefinitionOutput) SetCostCategory(v *CostCategory) *DescribeCostCategoryDefinitionOutput {
+	s.CostCategory = v
 	return s
 }
 
@@ -2314,6 +3319,14 @@ type Expression struct {
 	// Return results that match both Dimension objects.
 	And []*Expression `type:"list"`
 
+	//  Cost Category is in preview release for AWS Billing and Cost Management
+	//  and is subject to change. Your use of Cost Categories is subject to the
+	//  Beta Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+	//  (Section 1.10).
+	//
+	// The specific CostCategory used for Expression.
+	CostCategories *CostCategoryValues `type:"structure"`
+
 	// The specific Dimension to use for Expression.
 	Dimensions *DimensionValues `type:"structure"`
 
@@ -2337,9 +3350,45 @@ func (s Expression) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Expression) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Expression"}
+	if s.CostCategories != nil {
+		if err := s.CostCategories.Validate(); err != nil {
+			invalidParams.AddNested("CostCategories", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Not != nil {
+		if err := s.Not.Validate(); err != nil {
+			invalidParams.AddNested("Not", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Or != nil {
+		for i, v := range s.Or {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Or", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetAnd sets the And field's value.
 func (s *Expression) SetAnd(v []*Expression) *Expression {
 	s.And = v
+	return s
+}
+
+// SetCostCategories sets the CostCategories field's value.
+func (s *Expression) SetCostCategories(v *CostCategoryValues) *Expression {
+	s.CostCategories = v
 	return s
 }
 
@@ -2487,6 +3536,11 @@ func (s *GetCostAndUsageInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetCostAndUsageInput"}
 	if s.TimePeriod == nil {
 		invalidParams.Add(request.NewErrParamRequired("TimePeriod"))
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.TimePeriod != nil {
 		if err := s.TimePeriod.Validate(); err != nil {
@@ -2651,6 +3705,11 @@ func (s *GetCostAndUsageWithResourcesInput) Validate() error {
 	if s.TimePeriod == nil {
 		invalidParams.Add(request.NewErrParamRequired("TimePeriod"))
 	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.TimePeriod != nil {
 		if err := s.TimePeriod.Validate(); err != nil {
 			invalidParams.AddNested("TimePeriod", err.(request.ErrInvalidParams))
@@ -2814,6 +3873,11 @@ func (s *GetCostForecastInput) Validate() error {
 	}
 	if s.TimePeriod == nil {
 		invalidParams.Add(request.NewErrParamRequired("TimePeriod"))
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.TimePeriod != nil {
 		if err := s.TimePeriod.Validate(); err != nil {
@@ -3335,6 +4399,11 @@ func (s *GetReservationCoverageInput) Validate() error {
 	if s.TimePeriod == nil {
 		invalidParams.Add(request.NewErrParamRequired("TimePeriod"))
 	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.TimePeriod != nil {
 		if err := s.TimePeriod.Validate(); err != nil {
 			invalidParams.AddNested("TimePeriod", err.(request.ErrInvalidParams))
@@ -3665,6 +4734,11 @@ func (s *GetReservationUtilizationInput) Validate() error {
 	if s.TimePeriod == nil {
 		invalidParams.Add(request.NewErrParamRequired("TimePeriod"))
 	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.TimePeriod != nil {
 		if err := s.TimePeriod.Validate(); err != nil {
 			invalidParams.AddNested("TimePeriod", err.(request.ErrInvalidParams))
@@ -3816,6 +4890,11 @@ func (s *GetRightsizingRecommendationInput) Validate() error {
 	if s.Service == nil {
 		invalidParams.Add(request.NewErrParamRequired("Service"))
 	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3964,6 +5043,11 @@ func (s *GetSavingsPlansCoverageInput) Validate() error {
 	}
 	if s.TimePeriod == nil {
 		invalidParams.Add(request.NewErrParamRequired("TimePeriod"))
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.TimePeriod != nil {
 		if err := s.TimePeriod.Validate(); err != nil {
@@ -4256,6 +5340,11 @@ func (s *GetSavingsPlansUtilizationDetailsInput) Validate() error {
 	if s.TimePeriod == nil {
 		invalidParams.Add(request.NewErrParamRequired("TimePeriod"))
 	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.TimePeriod != nil {
 		if err := s.TimePeriod.Validate(); err != nil {
 			invalidParams.AddNested("TimePeriod", err.(request.ErrInvalidParams))
@@ -4401,6 +5490,11 @@ func (s *GetSavingsPlansUtilizationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetSavingsPlansUtilizationInput"}
 	if s.TimePeriod == nil {
 		invalidParams.Add(request.NewErrParamRequired("TimePeriod"))
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.TimePeriod != nil {
 		if err := s.TimePeriod.Validate(); err != nil {
@@ -4669,6 +5763,11 @@ func (s *GetUsageForecastInput) Validate() error {
 	if s.TimePeriod == nil {
 		invalidParams.Add(request.NewErrParamRequired("TimePeriod"))
 	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.TimePeriod != nil {
 		if err := s.TimePeriod.Validate(); err != nil {
 			invalidParams.AddNested("TimePeriod", err.(request.ErrInvalidParams))
@@ -4868,6 +5967,91 @@ func (s *InstanceDetails) SetRDSInstanceDetails(v *RDSInstanceDetails) *Instance
 // SetRedshiftInstanceDetails sets the RedshiftInstanceDetails field's value.
 func (s *InstanceDetails) SetRedshiftInstanceDetails(v *RedshiftInstanceDetails) *InstanceDetails {
 	s.RedshiftInstanceDetails = v
+	return s
+}
+
+type ListCostCategoryDefinitionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The date when the Cost Category was effective.
+	EffectiveOn *string `min:"20" type:"string"`
+
+	// The token to retrieve the next set of results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
+	//
+	// You can use this information to retrieve the full Cost Category information
+	// using DescribeCostCategory.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListCostCategoryDefinitionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListCostCategoryDefinitionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCostCategoryDefinitionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCostCategoryDefinitionsInput"}
+	if s.EffectiveOn != nil && len(*s.EffectiveOn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("EffectiveOn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEffectiveOn sets the EffectiveOn field's value.
+func (s *ListCostCategoryDefinitionsInput) SetEffectiveOn(v string) *ListCostCategoryDefinitionsInput {
+	s.EffectiveOn = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCostCategoryDefinitionsInput) SetNextToken(v string) *ListCostCategoryDefinitionsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCostCategoryDefinitionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A reference to a Cost Category containing enough information to identify
+	// the Cost Category.
+	CostCategoryReferences []*CostCategoryReference `type:"list"`
+
+	// The token to retrieve the next set of results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListCostCategoryDefinitionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListCostCategoryDefinitionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetCostCategoryReferences sets the CostCategoryReferences field's value.
+func (s *ListCostCategoryDefinitionsOutput) SetCostCategoryReferences(v []*CostCategoryReference) *ListCostCategoryDefinitionsOutput {
+	s.CostCategoryReferences = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCostCategoryDefinitionsOutput) SetNextToken(v string) *ListCostCategoryDefinitionsOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -6952,6 +8136,122 @@ func (s *TerminateRecommendationDetail) SetEstimatedMonthlySavings(v string) *Te
 	return s
 }
 
+type UpdateCostCategoryDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for your Cost Category.
+	//
+	// CostCategoryArn is a required field
+	CostCategoryArn *string `min:"20" type:"string" required:"true"`
+
+	// The rule schema version in this particular Cost Category.
+	//
+	// RuleVersion is a required field
+	RuleVersion *string `type:"string" required:"true" enum:"CostCategoryRuleVersion"`
+
+	// Rules are processed in order. If there are multiple rules that match the
+	// line item, then the first rule to match is used to determine that Cost Category
+	// value.
+	//
+	// Rules is a required field
+	Rules []*CostCategoryRule `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateCostCategoryDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateCostCategoryDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateCostCategoryDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateCostCategoryDefinitionInput"}
+	if s.CostCategoryArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CostCategoryArn"))
+	}
+	if s.CostCategoryArn != nil && len(*s.CostCategoryArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("CostCategoryArn", 20))
+	}
+	if s.RuleVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleVersion"))
+	}
+	if s.Rules == nil {
+		invalidParams.Add(request.NewErrParamRequired("Rules"))
+	}
+	if s.Rules != nil && len(s.Rules) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Rules", 1))
+	}
+	if s.Rules != nil {
+		for i, v := range s.Rules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Rules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCostCategoryArn sets the CostCategoryArn field's value.
+func (s *UpdateCostCategoryDefinitionInput) SetCostCategoryArn(v string) *UpdateCostCategoryDefinitionInput {
+	s.CostCategoryArn = &v
+	return s
+}
+
+// SetRuleVersion sets the RuleVersion field's value.
+func (s *UpdateCostCategoryDefinitionInput) SetRuleVersion(v string) *UpdateCostCategoryDefinitionInput {
+	s.RuleVersion = &v
+	return s
+}
+
+// SetRules sets the Rules field's value.
+func (s *UpdateCostCategoryDefinitionInput) SetRules(v []*CostCategoryRule) *UpdateCostCategoryDefinitionInput {
+	s.Rules = v
+	return s
+}
+
+type UpdateCostCategoryDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for your Cost Category.
+	CostCategoryArn *string `min:"20" type:"string"`
+
+	// The Cost Category's effective start date.
+	EffectiveStart *string `min:"20" type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateCostCategoryDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateCostCategoryDefinitionOutput) GoString() string {
+	return s.String()
+}
+
+// SetCostCategoryArn sets the CostCategoryArn field's value.
+func (s *UpdateCostCategoryDefinitionOutput) SetCostCategoryArn(v string) *UpdateCostCategoryDefinitionOutput {
+	s.CostCategoryArn = &v
+	return s
+}
+
+// SetEffectiveStart sets the EffectiveStart field's value.
+func (s *UpdateCostCategoryDefinitionOutput) SetEffectiveStart(v string) *UpdateCostCategoryDefinitionOutput {
+	s.EffectiveStart = &v
+	return s
+}
+
 // The amount of utilization, in hours.
 type UtilizationByTime struct {
 	_ struct{} `type:"structure"`
@@ -7011,6 +8311,12 @@ const (
 
 	// ContextSavingsPlans is a Context enum value
 	ContextSavingsPlans = "SAVINGS_PLANS"
+)
+
+// The rule schema version in this particular Cost Category.
+const (
+	// CostCategoryRuleVersionCostCategoryExpressionV1 is a CostCategoryRuleVersion enum value
+	CostCategoryRuleVersionCostCategoryExpressionV1 = "CostCategoryExpression.v1"
 )
 
 const (
@@ -7113,6 +8419,9 @@ const (
 
 	// GroupDefinitionTypeTag is a GroupDefinitionType enum value
 	GroupDefinitionTypeTag = "TAG"
+
+	// GroupDefinitionTypeCostCategory is a GroupDefinitionType enum value
+	GroupDefinitionTypeCostCategory = "COST_CATEGORY"
 )
 
 const (

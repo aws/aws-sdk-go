@@ -12,6 +12,12 @@
       "output_token": "NextMarker",
       "result_key": "EventSourceMappings"
     },
+    "ListFunctionEventInvokeConfigs": {
+      "input_token": "Marker",
+      "limit_key": "MaxItems",
+      "output_token": "NextMarker",
+      "result_key": "FunctionEventInvokeConfigs"
+    },
     "ListFunctions": {
       "input_token": "Marker",
       "limit_key": "MaxItems",

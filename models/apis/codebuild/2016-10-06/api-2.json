@@ -48,6 +48,30 @@
         {"shape":"InvalidInputException"}
       ]
     },
+    "BatchGetReportGroups":{
+      "name":"BatchGetReportGroups",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchGetReportGroupsInput"},
+      "output":{"shape":"BatchGetReportGroupsOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"}
+      ]
+    },
+    "BatchGetReports":{
+      "name":"BatchGetReports",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchGetReportsInput"},
+      "output":{"shape":"BatchGetReportsOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"}
+      ]
+    },
     "CreateProject":{
       "name":"CreateProject",
       "http":{
@@ -56,6 +80,20 @@
       },
       "input":{"shape":"CreateProjectInput"},
       "output":{"shape":"CreateProjectOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"AccountLimitExceededException"}
+      ]
+    },
+    "CreateReportGroup":{
+      "name":"CreateReportGroup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateReportGroupInput"},
+      "output":{"shape":"CreateReportGroupOutput"},
       "errors":[
         {"shape":"InvalidInputException"},
         {"shape":"ResourceAlreadyExistsException"},
@@ -89,6 +127,30 @@
         {"shape":"InvalidInputException"}
       ]
     },
+    "DeleteReport":{
+      "name":"DeleteReport",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteReportInput"},
+      "output":{"shape":"DeleteReportOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"}
+      ]
+    },
+    "DeleteReportGroup":{
+      "name":"DeleteReportGroup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteReportGroupInput"},
+      "output":{"shape":"DeleteReportGroupOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"}
+      ]
+    },
     "DeleteSourceCredentials":{
       "name":"DeleteSourceCredentials",
       "http":{
@@ -114,6 +176,19 @@
         {"shape":"InvalidInputException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"OAuthProviderException"}
+      ]
+    },
+    "DescribeTestCases":{
+      "name":"DescribeTestCases",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeTestCasesInput"},
+      "output":{"shape":"DescribeTestCasesOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "ImportSourceCredentials":{
@@ -189,6 +264,43 @@
         {"shape":"InvalidInputException"}
       ]
     },
+    "ListReportGroups":{
+      "name":"ListReportGroups",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListReportGroupsInput"},
+      "output":{"shape":"ListReportGroupsOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"}
+      ]
+    },
+    "ListReports":{
+      "name":"ListReports",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListReportsInput"},
+      "output":{"shape":"ListReportsOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"}
+      ]
+    },
+    "ListReportsForReportGroup":{
+      "name":"ListReportsForReportGroup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListReportsForReportGroupInput"},
+      "output":{"shape":"ListReportsForReportGroupOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "ListSourceCredentials":{
       "name":"ListSourceCredentials",
       "http":{
@@ -233,6 +345,19 @@
       },
       "input":{"shape":"UpdateProjectInput"},
       "output":{"shape":"UpdateProjectOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "UpdateReportGroup":{
+      "name":"UpdateReportGroup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateReportGroupInput"},
+      "output":{"shape":"UpdateReportGroupOutput"},
       "errors":[
         {"shape":"InvalidInputException"},
         {"shape":"ResourceNotFoundException"}
@@ -332,6 +457,34 @@
         "projectsNotFound":{"shape":"ProjectNames"}
       }
     },
+    "BatchGetReportGroupsInput":{
+      "type":"structure",
+      "required":["reportGroupArns"],
+      "members":{
+        "reportGroupArns":{"shape":"ReportGroupArns"}
+      }
+    },
+    "BatchGetReportGroupsOutput":{
+      "type":"structure",
+      "members":{
+        "reportGroups":{"shape":"ReportGroups"},
+        "reportGroupsNotFound":{"shape":"ReportGroupArns"}
+      }
+    },
+    "BatchGetReportsInput":{
+      "type":"structure",
+      "required":["reportArns"],
+      "members":{
+        "reportArns":{"shape":"ReportArns"}
+      }
+    },
+    "BatchGetReportsOutput":{
+      "type":"structure",
+      "members":{
+        "reports":{"shape":"Reports"},
+        "reportsNotFound":{"shape":"ReportArns"}
+      }
+    },
     "Boolean":{"type":"boolean"},
     "Build":{
       "type":"structure",
@@ -363,7 +516,8 @@
         "vpcConfig":{"shape":"VpcConfig"},
         "networkInterface":{"shape":"NetworkInterface"},
         "encryptionKey":{"shape":"NonEmptyString"},
-        "exportedEnvironmentVariables":{"shape":"ExportedEnvironmentVariables"}
+        "exportedEnvironmentVariables":{"shape":"ExportedEnvironmentVariables"},
+        "reportArns":{"shape":"BuildReportArns"}
       }
     },
     "BuildArtifacts":{
@@ -426,6 +580,10 @@
     "BuildPhases":{
       "type":"list",
       "member":{"shape":"BuildPhase"}
+    },
+    "BuildReportArns":{
+      "type":"list",
+      "member":{"shape":"String"}
     },
     "Builds":{
       "type":"list",
@@ -505,6 +663,25 @@
         "project":{"shape":"Project"}
       }
     },
+    "CreateReportGroupInput":{
+      "type":"structure",
+      "required":[
+        "name",
+        "type",
+        "exportConfig"
+      ],
+      "members":{
+        "name":{"shape":"ReportGroupName"},
+        "type":{"shape":"ReportType"},
+        "exportConfig":{"shape":"ReportExportConfig"}
+      }
+    },
+    "CreateReportGroupOutput":{
+      "type":"structure",
+      "members":{
+        "reportGroup":{"shape":"ReportGroup"}
+      }
+    },
     "CreateWebhookInput":{
       "type":"structure",
       "required":["projectName"],
@@ -536,6 +713,30 @@
       "members":{
       }
     },
+    "DeleteReportGroupInput":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"NonEmptyString"}
+      }
+    },
+    "DeleteReportGroupOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteReportInput":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"NonEmptyString"}
+      }
+    },
+    "DeleteReportOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteSourceCredentialsInput":{
       "type":"structure",
       "required":["arn"],
@@ -559,6 +760,23 @@
     "DeleteWebhookOutput":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DescribeTestCasesInput":{
+      "type":"structure",
+      "required":["reportArn"],
+      "members":{
+        "reportArn":{"shape":"String"},
+        "nextToken":{"shape":"String"},
+        "maxResults":{"shape":"PageSize"},
+        "filter":{"shape":"TestCaseFilter"}
+      }
+    },
+    "DescribeTestCasesOutput":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"String"},
+        "testCases":{"shape":"TestCases"}
       }
     },
     "EnvironmentImage":{
@@ -785,6 +1003,56 @@
         "projects":{"shape":"ProjectNames"}
       }
     },
+    "ListReportGroupsInput":{
+      "type":"structure",
+      "members":{
+        "sortOrder":{"shape":"SortOrderType"},
+        "sortBy":{"shape":"ReportGroupSortByType"},
+        "nextToken":{"shape":"String"},
+        "maxResults":{"shape":"PageSize"}
+      }
+    },
+    "ListReportGroupsOutput":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"String"},
+        "reportGroups":{"shape":"ReportGroupArns"}
+      }
+    },
+    "ListReportsForReportGroupInput":{
+      "type":"structure",
+      "required":["reportGroupArn"],
+      "members":{
+        "reportGroupArn":{"shape":"String"},
+        "nextToken":{"shape":"String"},
+        "sortOrder":{"shape":"SortOrderType"},
+        "maxResults":{"shape":"PageSize"},
+        "filter":{"shape":"ReportFilter"}
+      }
+    },
+    "ListReportsForReportGroupOutput":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"String"},
+        "reports":{"shape":"ReportArns"}
+      }
+    },
+    "ListReportsInput":{
+      "type":"structure",
+      "members":{
+        "sortOrder":{"shape":"SortOrderType"},
+        "nextToken":{"shape":"String"},
+        "maxResults":{"shape":"PageSize"},
+        "filter":{"shape":"ReportFilter"}
+      }
+    },
+    "ListReportsOutput":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"String"},
+        "reports":{"shape":"ReportArns"}
+      }
+    },
     "ListSourceCredentialsInput":{
       "type":"structure",
       "members":{
@@ -839,6 +1107,11 @@
       "members":{
       },
       "exception":true
+    },
+    "PageSize":{
+      "type":"integer",
+      "max":100,
+      "min":1
     },
     "PhaseContext":{
       "type":"structure",
@@ -1024,6 +1297,116 @@
         "credentialProvider":{"shape":"CredentialProviderType"}
       }
     },
+    "Report":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"NonEmptyString"},
+        "type":{"shape":"ReportType"},
+        "name":{"shape":"String"},
+        "reportGroupArn":{"shape":"NonEmptyString"},
+        "executionId":{"shape":"String"},
+        "status":{"shape":"ReportStatusType"},
+        "created":{"shape":"Timestamp"},
+        "expired":{"shape":"Timestamp"},
+        "exportConfig":{"shape":"ReportExportConfig"},
+        "truncated":{"shape":"WrapperBoolean"},
+        "testSummary":{"shape":"TestReportSummary"}
+      }
+    },
+    "ReportArns":{
+      "type":"list",
+      "member":{"shape":"NonEmptyString"},
+      "max":100,
+      "min":1
+    },
+    "ReportExportConfig":{
+      "type":"structure",
+      "members":{
+        "exportConfigType":{"shape":"ReportExportConfigType"},
+        "s3Destination":{"shape":"S3ReportExportConfig"}
+      }
+    },
+    "ReportExportConfigType":{
+      "type":"string",
+      "enum":[
+        "S3",
+        "NO_EXPORT"
+      ]
+    },
+    "ReportFilter":{
+      "type":"structure",
+      "members":{
+        "status":{"shape":"ReportStatusType"}
+      }
+    },
+    "ReportGroup":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"NonEmptyString"},
+        "name":{"shape":"ReportGroupName"},
+        "type":{"shape":"ReportType"},
+        "exportConfig":{"shape":"ReportExportConfig"},
+        "created":{"shape":"Timestamp"},
+        "lastModified":{"shape":"Timestamp"}
+      }
+    },
+    "ReportGroupArns":{
+      "type":"list",
+      "member":{"shape":"NonEmptyString"},
+      "max":100,
+      "min":1
+    },
+    "ReportGroupName":{
+      "type":"string",
+      "max":128,
+      "min":2
+    },
+    "ReportGroupSortByType":{
+      "type":"string",
+      "enum":[
+        "NAME",
+        "CREATED_TIME",
+        "LAST_MODIFIED_TIME"
+      ]
+    },
+    "ReportGroups":{
+      "type":"list",
+      "member":{"shape":"ReportGroup"},
+      "max":100,
+      "min":1
+    },
+    "ReportPackagingType":{
+      "type":"string",
+      "enum":[
+        "ZIP",
+        "NONE"
+      ]
+    },
+    "ReportStatusCounts":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"WrapperInt"}
+    },
+    "ReportStatusType":{
+      "type":"string",
+      "enum":[
+        "GENERATING",
+        "SUCCEEDED",
+        "FAILED",
+        "INCOMPLETE",
+        "DELETING"
+      ]
+    },
+    "ReportType":{
+      "type":"string",
+      "enum":["TEST"]
+    },
+    "Reports":{
+      "type":"list",
+      "member":{"shape":"Report"},
+      "max":100,
+      "min":1
+    },
     "ResourceAlreadyExistsException":{
       "type":"structure",
       "members":{
@@ -1042,6 +1425,16 @@
       "members":{
         "status":{"shape":"LogsConfigStatusType"},
         "location":{"shape":"String"},
+        "encryptionDisabled":{"shape":"WrapperBoolean"}
+      }
+    },
+    "S3ReportExportConfig":{
+      "type":"structure",
+      "members":{
+        "bucket":{"shape":"NonEmptyString"},
+        "path":{"shape":"String"},
+        "packaging":{"shape":"ReportPackagingType"},
+        "encryptionKey":{"shape":"NonEmptyString"},
         "encryptionDisabled":{"shape":"WrapperBoolean"}
       }
     },
@@ -1189,6 +1582,42 @@
       "max":50,
       "min":0
     },
+    "TestCase":{
+      "type":"structure",
+      "members":{
+        "reportArn":{"shape":"NonEmptyString"},
+        "testRawDataPath":{"shape":"String"},
+        "prefix":{"shape":"String"},
+        "name":{"shape":"String"},
+        "status":{"shape":"String"},
+        "durationInNanoSeconds":{"shape":"WrapperLong"},
+        "message":{"shape":"String"},
+        "expired":{"shape":"Timestamp"}
+      }
+    },
+    "TestCaseFilter":{
+      "type":"structure",
+      "members":{
+        "status":{"shape":"String"}
+      }
+    },
+    "TestCases":{
+      "type":"list",
+      "member":{"shape":"TestCase"}
+    },
+    "TestReportSummary":{
+      "type":"structure",
+      "required":[
+        "total",
+        "statusCounts",
+        "durationInNanoSeconds"
+      ],
+      "members":{
+        "total":{"shape":"WrapperInt"},
+        "statusCounts":{"shape":"ReportStatusCounts"},
+        "durationInNanoSeconds":{"shape":"WrapperLong"}
+      }
+    },
     "TimeOut":{
       "type":"integer",
       "max":480,
@@ -1223,6 +1652,20 @@
       "type":"structure",
       "members":{
         "project":{"shape":"Project"}
+      }
+    },
+    "UpdateReportGroupInput":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"NonEmptyString"},
+        "exportConfig":{"shape":"ReportExportConfig"}
+      }
+    },
+    "UpdateReportGroupOutput":{
+      "type":"structure",
+      "members":{
+        "reportGroup":{"shape":"ReportGroup"}
       }
     },
     "UpdateWebhookInput":{

@@ -68,6 +68,10 @@ type ApplicationInsightsAPI interface {
 	CreateComponentWithContext(aws.Context, *applicationinsights.CreateComponentInput, ...request.Option) (*applicationinsights.CreateComponentOutput, error)
 	CreateComponentRequest(*applicationinsights.CreateComponentInput) (*request.Request, *applicationinsights.CreateComponentOutput)
 
+	CreateLogPattern(*applicationinsights.CreateLogPatternInput) (*applicationinsights.CreateLogPatternOutput, error)
+	CreateLogPatternWithContext(aws.Context, *applicationinsights.CreateLogPatternInput, ...request.Option) (*applicationinsights.CreateLogPatternOutput, error)
+	CreateLogPatternRequest(*applicationinsights.CreateLogPatternInput) (*request.Request, *applicationinsights.CreateLogPatternOutput)
+
 	DeleteApplication(*applicationinsights.DeleteApplicationInput) (*applicationinsights.DeleteApplicationOutput, error)
 	DeleteApplicationWithContext(aws.Context, *applicationinsights.DeleteApplicationInput, ...request.Option) (*applicationinsights.DeleteApplicationOutput, error)
 	DeleteApplicationRequest(*applicationinsights.DeleteApplicationInput) (*request.Request, *applicationinsights.DeleteApplicationOutput)
@@ -75,6 +79,10 @@ type ApplicationInsightsAPI interface {
 	DeleteComponent(*applicationinsights.DeleteComponentInput) (*applicationinsights.DeleteComponentOutput, error)
 	DeleteComponentWithContext(aws.Context, *applicationinsights.DeleteComponentInput, ...request.Option) (*applicationinsights.DeleteComponentOutput, error)
 	DeleteComponentRequest(*applicationinsights.DeleteComponentInput) (*request.Request, *applicationinsights.DeleteComponentOutput)
+
+	DeleteLogPattern(*applicationinsights.DeleteLogPatternInput) (*applicationinsights.DeleteLogPatternOutput, error)
+	DeleteLogPatternWithContext(aws.Context, *applicationinsights.DeleteLogPatternInput, ...request.Option) (*applicationinsights.DeleteLogPatternOutput, error)
+	DeleteLogPatternRequest(*applicationinsights.DeleteLogPatternInput) (*request.Request, *applicationinsights.DeleteLogPatternOutput)
 
 	DescribeApplication(*applicationinsights.DescribeApplicationInput) (*applicationinsights.DescribeApplicationOutput, error)
 	DescribeApplicationWithContext(aws.Context, *applicationinsights.DescribeApplicationInput, ...request.Option) (*applicationinsights.DescribeApplicationOutput, error)
@@ -91,6 +99,10 @@ type ApplicationInsightsAPI interface {
 	DescribeComponentConfigurationRecommendation(*applicationinsights.DescribeComponentConfigurationRecommendationInput) (*applicationinsights.DescribeComponentConfigurationRecommendationOutput, error)
 	DescribeComponentConfigurationRecommendationWithContext(aws.Context, *applicationinsights.DescribeComponentConfigurationRecommendationInput, ...request.Option) (*applicationinsights.DescribeComponentConfigurationRecommendationOutput, error)
 	DescribeComponentConfigurationRecommendationRequest(*applicationinsights.DescribeComponentConfigurationRecommendationInput) (*request.Request, *applicationinsights.DescribeComponentConfigurationRecommendationOutput)
+
+	DescribeLogPattern(*applicationinsights.DescribeLogPatternInput) (*applicationinsights.DescribeLogPatternOutput, error)
+	DescribeLogPatternWithContext(aws.Context, *applicationinsights.DescribeLogPatternInput, ...request.Option) (*applicationinsights.DescribeLogPatternOutput, error)
+	DescribeLogPatternRequest(*applicationinsights.DescribeLogPatternInput) (*request.Request, *applicationinsights.DescribeLogPatternOutput)
 
 	DescribeObservation(*applicationinsights.DescribeObservationInput) (*applicationinsights.DescribeObservationOutput, error)
 	DescribeObservationWithContext(aws.Context, *applicationinsights.DescribeObservationInput, ...request.Option) (*applicationinsights.DescribeObservationOutput, error)
@@ -118,12 +130,38 @@ type ApplicationInsightsAPI interface {
 	ListComponentsPages(*applicationinsights.ListComponentsInput, func(*applicationinsights.ListComponentsOutput, bool) bool) error
 	ListComponentsPagesWithContext(aws.Context, *applicationinsights.ListComponentsInput, func(*applicationinsights.ListComponentsOutput, bool) bool, ...request.Option) error
 
+	ListLogPatternSets(*applicationinsights.ListLogPatternSetsInput) (*applicationinsights.ListLogPatternSetsOutput, error)
+	ListLogPatternSetsWithContext(aws.Context, *applicationinsights.ListLogPatternSetsInput, ...request.Option) (*applicationinsights.ListLogPatternSetsOutput, error)
+	ListLogPatternSetsRequest(*applicationinsights.ListLogPatternSetsInput) (*request.Request, *applicationinsights.ListLogPatternSetsOutput)
+
+	ListLogPatternSetsPages(*applicationinsights.ListLogPatternSetsInput, func(*applicationinsights.ListLogPatternSetsOutput, bool) bool) error
+	ListLogPatternSetsPagesWithContext(aws.Context, *applicationinsights.ListLogPatternSetsInput, func(*applicationinsights.ListLogPatternSetsOutput, bool) bool, ...request.Option) error
+
+	ListLogPatterns(*applicationinsights.ListLogPatternsInput) (*applicationinsights.ListLogPatternsOutput, error)
+	ListLogPatternsWithContext(aws.Context, *applicationinsights.ListLogPatternsInput, ...request.Option) (*applicationinsights.ListLogPatternsOutput, error)
+	ListLogPatternsRequest(*applicationinsights.ListLogPatternsInput) (*request.Request, *applicationinsights.ListLogPatternsOutput)
+
+	ListLogPatternsPages(*applicationinsights.ListLogPatternsInput, func(*applicationinsights.ListLogPatternsOutput, bool) bool) error
+	ListLogPatternsPagesWithContext(aws.Context, *applicationinsights.ListLogPatternsInput, func(*applicationinsights.ListLogPatternsOutput, bool) bool, ...request.Option) error
+
 	ListProblems(*applicationinsights.ListProblemsInput) (*applicationinsights.ListProblemsOutput, error)
 	ListProblemsWithContext(aws.Context, *applicationinsights.ListProblemsInput, ...request.Option) (*applicationinsights.ListProblemsOutput, error)
 	ListProblemsRequest(*applicationinsights.ListProblemsInput) (*request.Request, *applicationinsights.ListProblemsOutput)
 
 	ListProblemsPages(*applicationinsights.ListProblemsInput, func(*applicationinsights.ListProblemsOutput, bool) bool) error
 	ListProblemsPagesWithContext(aws.Context, *applicationinsights.ListProblemsInput, func(*applicationinsights.ListProblemsOutput, bool) bool, ...request.Option) error
+
+	ListTagsForResource(*applicationinsights.ListTagsForResourceInput) (*applicationinsights.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *applicationinsights.ListTagsForResourceInput, ...request.Option) (*applicationinsights.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*applicationinsights.ListTagsForResourceInput) (*request.Request, *applicationinsights.ListTagsForResourceOutput)
+
+	TagResource(*applicationinsights.TagResourceInput) (*applicationinsights.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *applicationinsights.TagResourceInput, ...request.Option) (*applicationinsights.TagResourceOutput, error)
+	TagResourceRequest(*applicationinsights.TagResourceInput) (*request.Request, *applicationinsights.TagResourceOutput)
+
+	UntagResource(*applicationinsights.UntagResourceInput) (*applicationinsights.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *applicationinsights.UntagResourceInput, ...request.Option) (*applicationinsights.UntagResourceOutput, error)
+	UntagResourceRequest(*applicationinsights.UntagResourceInput) (*request.Request, *applicationinsights.UntagResourceOutput)
 
 	UpdateApplication(*applicationinsights.UpdateApplicationInput) (*applicationinsights.UpdateApplicationOutput, error)
 	UpdateApplicationWithContext(aws.Context, *applicationinsights.UpdateApplicationInput, ...request.Option) (*applicationinsights.UpdateApplicationOutput, error)
@@ -136,6 +174,10 @@ type ApplicationInsightsAPI interface {
 	UpdateComponentConfiguration(*applicationinsights.UpdateComponentConfigurationInput) (*applicationinsights.UpdateComponentConfigurationOutput, error)
 	UpdateComponentConfigurationWithContext(aws.Context, *applicationinsights.UpdateComponentConfigurationInput, ...request.Option) (*applicationinsights.UpdateComponentConfigurationOutput, error)
 	UpdateComponentConfigurationRequest(*applicationinsights.UpdateComponentConfigurationInput) (*request.Request, *applicationinsights.UpdateComponentConfigurationOutput)
+
+	UpdateLogPattern(*applicationinsights.UpdateLogPatternInput) (*applicationinsights.UpdateLogPatternOutput, error)
+	UpdateLogPatternWithContext(aws.Context, *applicationinsights.UpdateLogPatternInput, ...request.Option) (*applicationinsights.UpdateLogPatternOutput, error)
+	UpdateLogPatternRequest(*applicationinsights.UpdateLogPatternInput) (*request.Request, *applicationinsights.UpdateLogPatternOutput)
 }
 
 var _ ApplicationInsightsAPI = (*applicationinsights.ApplicationInsights)(nil)

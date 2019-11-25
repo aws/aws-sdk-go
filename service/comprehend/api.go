@@ -492,6 +492,97 @@ func (c *Comprehend) BatchDetectSyntaxWithContext(ctx aws.Context, input *BatchD
 	return out, req.Send()
 }
 
+const opClassifyDocument = "ClassifyDocument"
+
+// ClassifyDocumentRequest generates a "aws/request.Request" representing the
+// client's request for the ClassifyDocument operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ClassifyDocument for more information on using the ClassifyDocument
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ClassifyDocumentRequest method.
+//    req, resp := client.ClassifyDocumentRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ClassifyDocument
+func (c *Comprehend) ClassifyDocumentRequest(input *ClassifyDocumentInput) (req *request.Request, output *ClassifyDocumentOutput) {
+	op := &request.Operation{
+		Name:       opClassifyDocument,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ClassifyDocumentInput{}
+	}
+
+	output = &ClassifyDocumentOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ClassifyDocument API operation for Amazon Comprehend.
+//
+// Creates a new document classification request to analyze a single document
+// in real-time, using a previously created and trained custom model and an
+// endpoint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation ClassifyDocument for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is invalid.
+//
+//   * ErrCodeResourceUnavailableException "ResourceUnavailableException"
+//   The specified resource is not available. Check to see if the resource is
+//   in the TRAINED state and try your request again.
+//
+//   * ErrCodeTextSizeLimitExceededException "TextSizeLimitExceededException"
+//   The size of the input text exceeds the limit. Use a smaller document.
+//
+//   * ErrCodeInternalServerException "InternalServerException"
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ClassifyDocument
+func (c *Comprehend) ClassifyDocument(input *ClassifyDocumentInput) (*ClassifyDocumentOutput, error) {
+	req, out := c.ClassifyDocumentRequest(input)
+	return out, req.Send()
+}
+
+// ClassifyDocumentWithContext is the same as ClassifyDocument with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ClassifyDocument for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) ClassifyDocumentWithContext(ctx aws.Context, input *ClassifyDocumentInput, opts ...request.Option) (*ClassifyDocumentOutput, error) {
+	req, out := c.ClassifyDocumentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateDocumentClassifier = "CreateDocumentClassifier"
 
 // CreateDocumentClassifierRequest generates a "aws/request.Request" representing the
@@ -600,6 +691,113 @@ func (c *Comprehend) CreateDocumentClassifier(input *CreateDocumentClassifierInp
 // for more information on using Contexts.
 func (c *Comprehend) CreateDocumentClassifierWithContext(ctx aws.Context, input *CreateDocumentClassifierInput, opts ...request.Option) (*CreateDocumentClassifierOutput, error) {
 	req, out := c.CreateDocumentClassifierRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateEndpoint = "CreateEndpoint"
+
+// CreateEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the CreateEndpoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateEndpoint for more information on using the CreateEndpoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateEndpointRequest method.
+//    req, resp := client.CreateEndpointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/CreateEndpoint
+func (c *Comprehend) CreateEndpointRequest(input *CreateEndpointInput) (req *request.Request, output *CreateEndpointOutput) {
+	op := &request.Operation{
+		Name:       opCreateEndpoint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateEndpointInput{}
+	}
+
+	output = &CreateEndpointOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateEndpoint API operation for Amazon Comprehend.
+//
+// Creates a model-specific endpoint for synchronous inference for a previously
+// trained custom model
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation CreateEndpoint for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is invalid.
+//
+//   * ErrCodeResourceInUseException "ResourceInUseException"
+//   The specified name is already in use. Use a different name and try your request
+//   again.
+//
+//   * ErrCodeResourceLimitExceededException "ResourceLimitExceededException"
+//   The maximum number of recognizers per account has been exceeded. Review the
+//   recognizers, perform cleanup, and then try your request again.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified resource ARN was not found. Check the ARN and try your request
+//   again.
+//
+//   * ErrCodeResourceUnavailableException "ResourceUnavailableException"
+//   The specified resource is not available. Check to see if the resource is
+//   in the TRAINED state and try your request again.
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   The number of requests exceeds the limit. Resubmit your request later.
+//
+//   * ErrCodeTooManyTagsException "TooManyTagsException"
+//   The request contains more tags than can be associated with a resource (50
+//   tags per resource). The maximum number of tags includes both existing tags
+//   and those included in your current request.
+//
+//   * ErrCodeInternalServerException "InternalServerException"
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/CreateEndpoint
+func (c *Comprehend) CreateEndpoint(input *CreateEndpointInput) (*CreateEndpointOutput, error) {
+	req, out := c.CreateEndpointRequest(input)
+	return out, req.Send()
+}
+
+// CreateEndpointWithContext is the same as CreateEndpoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateEndpoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) CreateEndpointWithContext(ctx aws.Context, input *CreateEndpointInput, opts ...request.Option) (*CreateEndpointOutput, error) {
+	req, out := c.CreateEndpointRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -816,6 +1014,101 @@ func (c *Comprehend) DeleteDocumentClassifier(input *DeleteDocumentClassifierInp
 // for more information on using Contexts.
 func (c *Comprehend) DeleteDocumentClassifierWithContext(ctx aws.Context, input *DeleteDocumentClassifierInput, opts ...request.Option) (*DeleteDocumentClassifierOutput, error) {
 	req, out := c.DeleteDocumentClassifierRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteEndpoint = "DeleteEndpoint"
+
+// DeleteEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteEndpoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteEndpoint for more information on using the DeleteEndpoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteEndpointRequest method.
+//    req, resp := client.DeleteEndpointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DeleteEndpoint
+func (c *Comprehend) DeleteEndpointRequest(input *DeleteEndpointInput) (req *request.Request, output *DeleteEndpointOutput) {
+	op := &request.Operation{
+		Name:       opDeleteEndpoint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteEndpointInput{}
+	}
+
+	output = &DeleteEndpointOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteEndpoint API operation for Amazon Comprehend.
+//
+// Deletes a model-specific endpoint for a previously-trained custom model.
+// All endpoints must be deleted in order for the model to be deleted.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation DeleteEndpoint for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is invalid.
+//
+//   * ErrCodeResourceInUseException "ResourceInUseException"
+//   The specified name is already in use. Use a different name and try your request
+//   again.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified resource ARN was not found. Check the ARN and try your request
+//   again.
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   The number of requests exceeds the limit. Resubmit your request later.
+//
+//   * ErrCodeInternalServerException "InternalServerException"
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DeleteEndpoint
+func (c *Comprehend) DeleteEndpoint(input *DeleteEndpointInput) (*DeleteEndpointOutput, error) {
+	req, out := c.DeleteEndpointRequest(input)
+	return out, req.Send()
+}
+
+// DeleteEndpointWithContext is the same as DeleteEndpoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteEndpoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) DeleteEndpointWithContext(ctx aws.Context, input *DeleteEndpointInput, opts ...request.Option) (*DeleteEndpointOutput, error) {
+	req, out := c.DeleteEndpointRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1189,6 +1482,96 @@ func (c *Comprehend) DescribeDominantLanguageDetectionJob(input *DescribeDominan
 // for more information on using Contexts.
 func (c *Comprehend) DescribeDominantLanguageDetectionJobWithContext(ctx aws.Context, input *DescribeDominantLanguageDetectionJobInput, opts ...request.Option) (*DescribeDominantLanguageDetectionJobOutput, error) {
 	req, out := c.DescribeDominantLanguageDetectionJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeEndpoint = "DescribeEndpoint"
+
+// DescribeEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEndpoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeEndpoint for more information on using the DescribeEndpoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeEndpointRequest method.
+//    req, resp := client.DescribeEndpointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DescribeEndpoint
+func (c *Comprehend) DescribeEndpointRequest(input *DescribeEndpointInput) (req *request.Request, output *DescribeEndpointOutput) {
+	op := &request.Operation{
+		Name:       opDescribeEndpoint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeEndpointInput{}
+	}
+
+	output = &DescribeEndpointOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeEndpoint API operation for Amazon Comprehend.
+//
+// Gets the properties associated with a specific endpoint. Use this operation
+// to get the status of an endpoint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation DescribeEndpoint for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is invalid.
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   The number of requests exceeds the limit. Resubmit your request later.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified resource ARN was not found. Check the ARN and try your request
+//   again.
+//
+//   * ErrCodeInternalServerException "InternalServerException"
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DescribeEndpoint
+func (c *Comprehend) DescribeEndpoint(input *DescribeEndpointInput) (*DescribeEndpointOutput, error) {
+	req, out := c.DescribeEndpointRequest(input)
+	return out, req.Send()
+}
+
+// DescribeEndpointWithContext is the same as DescribeEndpoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeEndpoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) DescribeEndpointWithContext(ctx aws.Context, input *DescribeEndpointInput, opts ...request.Option) (*DescribeEndpointOutput, error) {
+	req, out := c.DescribeEndpointRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2534,6 +2917,91 @@ func (c *Comprehend) ListDominantLanguageDetectionJobsPagesWithContext(ctx aws.C
 	}
 
 	return p.Err()
+}
+
+const opListEndpoints = "ListEndpoints"
+
+// ListEndpointsRequest generates a "aws/request.Request" representing the
+// client's request for the ListEndpoints operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListEndpoints for more information on using the ListEndpoints
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListEndpointsRequest method.
+//    req, resp := client.ListEndpointsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ListEndpoints
+func (c *Comprehend) ListEndpointsRequest(input *ListEndpointsInput) (req *request.Request, output *ListEndpointsOutput) {
+	op := &request.Operation{
+		Name:       opListEndpoints,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListEndpointsInput{}
+	}
+
+	output = &ListEndpointsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListEndpoints API operation for Amazon Comprehend.
+//
+// Gets a list of all existing endpoints that you've created.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation ListEndpoints for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is invalid.
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   The number of requests exceeds the limit. Resubmit your request later.
+//
+//   * ErrCodeInternalServerException "InternalServerException"
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ListEndpoints
+func (c *Comprehend) ListEndpoints(input *ListEndpointsInput) (*ListEndpointsOutput, error) {
+	req, out := c.ListEndpointsRequest(input)
+	return out, req.Send()
+}
+
+// ListEndpointsWithContext is the same as ListEndpoints with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListEndpoints for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) ListEndpointsWithContext(ctx aws.Context, input *ListEndpointsInput, opts ...request.Option) (*ListEndpointsOutput, error) {
+	req, out := c.ListEndpointsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListEntitiesDetectionJobs = "ListEntitiesDetectionJobs"
@@ -4690,6 +5158,108 @@ func (c *Comprehend) UntagResourceWithContext(ctx aws.Context, input *UntagResou
 	return out, req.Send()
 }
 
+const opUpdateEndpoint = "UpdateEndpoint"
+
+// UpdateEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateEndpoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateEndpoint for more information on using the UpdateEndpoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateEndpointRequest method.
+//    req, resp := client.UpdateEndpointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/UpdateEndpoint
+func (c *Comprehend) UpdateEndpointRequest(input *UpdateEndpointInput) (req *request.Request, output *UpdateEndpointOutput) {
+	op := &request.Operation{
+		Name:       opUpdateEndpoint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateEndpointInput{}
+	}
+
+	output = &UpdateEndpointOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateEndpoint API operation for Amazon Comprehend.
+//
+// Updates information about the specified endpoint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation UpdateEndpoint for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request is invalid.
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   The number of requests exceeds the limit. Resubmit your request later.
+//
+//   * ErrCodeResourceInUseException "ResourceInUseException"
+//   The specified name is already in use. Use a different name and try your request
+//   again.
+//
+//   * ErrCodeResourceLimitExceededException "ResourceLimitExceededException"
+//   The maximum number of recognizers per account has been exceeded. Review the
+//   recognizers, perform cleanup, and then try your request again.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The specified resource ARN was not found. Check the ARN and try your request
+//   again.
+//
+//   * ErrCodeResourceUnavailableException "ResourceUnavailableException"
+//   The specified resource is not available. Check to see if the resource is
+//   in the TRAINED state and try your request again.
+//
+//   * ErrCodeInternalServerException "InternalServerException"
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/UpdateEndpoint
+func (c *Comprehend) UpdateEndpoint(input *UpdateEndpointInput) (*UpdateEndpointOutput, error) {
+	req, out := c.UpdateEndpointRequest(input)
+	return out, req.Send()
+}
+
+// UpdateEndpointWithContext is the same as UpdateEndpoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateEndpoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) UpdateEndpointWithContext(ctx aws.Context, input *UpdateEndpointInput, opts ...request.Option) (*UpdateEndpointOutput, error) {
+	req, out := c.UpdateEndpointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 type BatchDetectDominantLanguageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4811,9 +5381,7 @@ type BatchDetectEntitiesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language of the input documents. You can specify any of the primary languages
-	// supported by Amazon Comprehend: German ("de"), English ("en"), Spanish ("es"),
-	// French ("fr"), Italian ("it"), or Portuguese ("pt"). All documents must be
-	// in the same language.
+	// supported by Amazon Comprehend. All documents must be in the same language.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -4944,9 +5512,7 @@ type BatchDetectKeyPhrasesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language of the input documents. You can specify any of the primary languages
-	// supported by Amazon Comprehend: German ("de"), English ("en"), Spanish ("es"),
-	// French ("fr"), Italian ("it"), or Portuguese ("pt"). All documents must be
-	// in the same language.
+	// supported by Amazon Comprehend. All documents must be in the same language.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -5077,9 +5643,7 @@ type BatchDetectSentimentInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language of the input documents. You can specify any of the primary languages
-	// supported by Amazon Comprehend: German ("de"), English ("en"), Spanish ("es"),
-	// French ("fr"), Italian ("it"), or Portuguese ("pt"). All documents must be
-	// in the same language.
+	// supported by Amazon Comprehend. All documents must be in the same language.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -5219,10 +5783,10 @@ func (s *BatchDetectSentimentOutput) SetResultList(v []*BatchDetectSentimentItem
 type BatchDetectSyntaxInput struct {
 	_ struct{} `type:"structure"`
 
-	// The language of the input documents. You can specify any of the primary languages
-	// supported by Amazon Comprehend: German ("de"), English ("en"), Spanish ("es"),
-	// French ("fr"), Italian ("it"), or Portuguese ("pt"). All documents must be
-	// in the same language.
+	// The language of the input documents. You can specify any of the following
+	// languages supported by Amazon Comprehend: German ("de"), English ("en"),
+	// Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
+	// documents must be in the same language.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"SyntaxLanguageCode"`
@@ -5507,6 +6071,87 @@ func (s *ClassifierMetadata) SetNumberOfTrainedDocuments(v int64) *ClassifierMet
 	return s
 }
 
+type ClassifyDocumentInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Number (ARN) of the endpoint.
+	//
+	// EndpointArn is a required field
+	EndpointArn *string `type:"string" required:"true"`
+
+	// The document text to be analyzed.
+	//
+	// Text is a required field
+	Text *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ClassifyDocumentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ClassifyDocumentInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ClassifyDocumentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ClassifyDocumentInput"}
+	if s.EndpointArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointArn"))
+	}
+	if s.Text == nil {
+		invalidParams.Add(request.NewErrParamRequired("Text"))
+	}
+	if s.Text != nil && len(*s.Text) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Text", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndpointArn sets the EndpointArn field's value.
+func (s *ClassifyDocumentInput) SetEndpointArn(v string) *ClassifyDocumentInput {
+	s.EndpointArn = &v
+	return s
+}
+
+// SetText sets the Text field's value.
+func (s *ClassifyDocumentInput) SetText(v string) *ClassifyDocumentInput {
+	s.Text = &v
+	return s
+}
+
+type ClassifyDocumentOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The classes used by the document being analyzed. These are used for multi-class
+	// trained models. Individual classes are mutually exclusive and each document
+	// is expected to have only a single class assigned to it. For example, an animal
+	// can be a dog or a cat, but not both at the same time.
+	Classes []*DocumentClass `type:"list"`
+}
+
+// String returns the string representation
+func (s ClassifyDocumentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ClassifyDocumentOutput) GoString() string {
+	return s.String()
+}
+
+// SetClasses sets the Classes field's value.
+func (s *ClassifyDocumentOutput) SetClasses(v []*DocumentClass) *ClassifyDocumentOutput {
+	s.Classes = v
+	return s
+}
+
 type CreateDocumentClassifierInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5530,10 +6175,10 @@ type CreateDocumentClassifierInput struct {
 	// InputDataConfig is a required field
 	InputDataConfig *DocumentClassifierInputDataConfig `type:"structure" required:"true"`
 
-	// The language of the input documents. You can specify any of the primary languages
-	// supported by Amazon Comprehend: German ("de"), English ("en"), Spanish ("es"),
-	// French ("fr"), Italian ("it"), or Portuguese ("pt"). All documents must be
-	// in the same language.
+	// The language of the input documents. You can specify any of the following
+	// languages supported by Amazon Comprehend: German ("de"), English ("en"),
+	// Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
+	// documents must be in the same language.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -5696,6 +6341,136 @@ func (s CreateDocumentClassifierOutput) GoString() string {
 // SetDocumentClassifierArn sets the DocumentClassifierArn field's value.
 func (s *CreateDocumentClassifierOutput) SetDocumentClassifierArn(v string) *CreateDocumentClassifierOutput {
 	s.DocumentClassifierArn = &v
+	return s
+}
+
+type CreateEndpointInput struct {
+	_ struct{} `type:"structure"`
+
+	// An idempotency token provided by the customer. If this token matches a previous
+	// endpoint creation request, Amazon Comprehend will not return a ResourceInUseException.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The desired number of inference units to be used by the model using this
+	// endpoint. Each inference unit represents of a throughput of 100 characters
+	// per second.
+	//
+	// DesiredInferenceUnits is a required field
+	DesiredInferenceUnits *int64 `min:"1" type:"integer" required:"true"`
+
+	// This is the descriptive suffix that becomes part of the EndpointArn used
+	// for all subsequent requests to this resource.
+	//
+	// EndpointName is a required field
+	EndpointName *string `type:"string" required:"true"`
+
+	// The Amazon Resource Number (ARN) of the model to which the endpoint will
+	// be attached.
+	//
+	// ModelArn is a required field
+	ModelArn *string `type:"string" required:"true"`
+
+	// Tags associated with the endpoint being created. A tag is a key-value pair
+	// that adds metadata to the endpoint. For example, a tag with "Sales" as the
+	// key might be added to an endpoint to indicate its use by the sales department.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s CreateEndpointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateEndpointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateEndpointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateEndpointInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.DesiredInferenceUnits == nil {
+		invalidParams.Add(request.NewErrParamRequired("DesiredInferenceUnits"))
+	}
+	if s.DesiredInferenceUnits != nil && *s.DesiredInferenceUnits < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("DesiredInferenceUnits", 1))
+	}
+	if s.EndpointName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointName"))
+	}
+	if s.ModelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelArn"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateEndpointInput) SetClientRequestToken(v string) *CreateEndpointInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetDesiredInferenceUnits sets the DesiredInferenceUnits field's value.
+func (s *CreateEndpointInput) SetDesiredInferenceUnits(v int64) *CreateEndpointInput {
+	s.DesiredInferenceUnits = &v
+	return s
+}
+
+// SetEndpointName sets the EndpointName field's value.
+func (s *CreateEndpointInput) SetEndpointName(v string) *CreateEndpointInput {
+	s.EndpointName = &v
+	return s
+}
+
+// SetModelArn sets the ModelArn field's value.
+func (s *CreateEndpointInput) SetModelArn(v string) *CreateEndpointInput {
+	s.ModelArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateEndpointInput) SetTags(v []*Tag) *CreateEndpointInput {
+	s.Tags = v
+	return s
+}
+
+type CreateEndpointOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Number (ARN) of the endpoint being created.
+	EndpointArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateEndpointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateEndpointOutput) GoString() string {
+	return s.String()
+}
+
+// SetEndpointArn sets the EndpointArn field's value.
+func (s *CreateEndpointOutput) SetEndpointArn(v string) *CreateEndpointOutput {
+	s.EndpointArn = &v
 	return s
 }
 
@@ -5932,6 +6707,58 @@ func (s DeleteDocumentClassifierOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteDocumentClassifierOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteEndpointInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Number (ARN) of the endpoint being deleted.
+	//
+	// EndpointArn is a required field
+	EndpointArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteEndpointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteEndpointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteEndpointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteEndpointInput"}
+	if s.EndpointArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndpointArn sets the EndpointArn field's value.
+func (s *DeleteEndpointInput) SetEndpointArn(v string) *DeleteEndpointInput {
+	s.EndpointArn = &v
+	return s
+}
+
+type DeleteEndpointOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteEndpointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteEndpointOutput) GoString() string {
 	return s.String()
 }
 
@@ -6178,6 +7005,67 @@ func (s DescribeDominantLanguageDetectionJobOutput) GoString() string {
 // SetDominantLanguageDetectionJobProperties sets the DominantLanguageDetectionJobProperties field's value.
 func (s *DescribeDominantLanguageDetectionJobOutput) SetDominantLanguageDetectionJobProperties(v *DominantLanguageDetectionJobProperties) *DescribeDominantLanguageDetectionJobOutput {
 	s.DominantLanguageDetectionJobProperties = v
+	return s
+}
+
+type DescribeEndpointInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Number (ARN) of the endpoint being described.
+	//
+	// EndpointArn is a required field
+	EndpointArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeEndpointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEndpointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeEndpointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeEndpointInput"}
+	if s.EndpointArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndpointArn sets the EndpointArn field's value.
+func (s *DescribeEndpointInput) SetEndpointArn(v string) *DescribeEndpointInput {
+	s.EndpointArn = &v
+	return s
+}
+
+type DescribeEndpointOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Describes information associated with the specific endpoint.
+	EndpointProperties *EndpointProperties `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeEndpointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEndpointOutput) GoString() string {
+	return s.String()
+}
+
+// SetEndpointProperties sets the EndpointProperties field's value.
+func (s *DescribeEndpointOutput) SetEndpointProperties(v *EndpointProperties) *DescribeEndpointOutput {
+	s.EndpointProperties = v
 	return s
 }
 
@@ -6577,9 +7465,7 @@ type DetectEntitiesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language of the input documents. You can specify any of the primary languages
-	// supported by Amazon Comprehend: German ("de"), English ("en"), Spanish ("es"),
-	// French ("fr"), Italian ("it"), or Portuguese ("pt"). All documents must be
-	// in the same language.
+	// supported by Amazon Comprehend. All documents must be in the same language.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -6662,9 +7548,7 @@ type DetectKeyPhrasesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language of the input documents. You can specify any of the primary languages
-	// supported by Amazon Comprehend: German ("de"), English ("en"), Spanish ("es"),
-	// French ("fr"), Italian ("it"), or Portuguese ("pt"). All documents must be
-	// in the same language.
+	// supported by Amazon Comprehend. All documents must be in the same language.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -6747,9 +7631,7 @@ type DetectSentimentInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language of the input documents. You can specify any of the primary languages
-	// supported by Amazon Comprehend: German ("de"), English ("en"), Spanish ("es"),
-	// French ("fr"), Italian ("it"), or Portuguese ("pt"). All documents must be
-	// in the same language.
+	// supported by Amazon Comprehend. All documents must be in the same language.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -6838,7 +7720,7 @@ func (s *DetectSentimentOutput) SetSentimentScore(v *SentimentScore) *DetectSent
 type DetectSyntaxInput struct {
 	_ struct{} `type:"structure"`
 
-	// The language code of the input documents. You can specify any of the primary
+	// The language code of the input documents. You can specify any of the following
 	// languages supported by Amazon Comprehend: German ("de"), English ("en"),
 	// Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt").
 	//
@@ -6916,6 +7798,39 @@ func (s DetectSyntaxOutput) GoString() string {
 // SetSyntaxTokens sets the SyntaxTokens field's value.
 func (s *DetectSyntaxOutput) SetSyntaxTokens(v []*SyntaxToken) *DetectSyntaxOutput {
 	s.SyntaxTokens = v
+	return s
+}
+
+// Specifies the class that categorizes the document being analyzed
+type DocumentClass struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the class.
+	Name *string `min:"1" type:"string"`
+
+	// The confidence score that Amazon Comprehend has this class correctly attributed.
+	Score *float64 `type:"float"`
+}
+
+// String returns the string representation
+func (s DocumentClass) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DocumentClass) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *DocumentClass) SetName(v string) *DocumentClass {
+	s.Name = &v
+	return s
+}
+
+// SetScore sets the Score field's value.
+func (s *DocumentClass) SetScore(v float64) *DocumentClass {
+	s.Score = &v
 	return s
 }
 
@@ -7664,6 +8579,151 @@ func (s *DominantLanguageDetectionJobProperties) SetVolumeKmsKeyId(v string) *Do
 // SetVpcConfig sets the VpcConfig field's value.
 func (s *DominantLanguageDetectionJobProperties) SetVpcConfig(v *VpcConfig) *DominantLanguageDetectionJobProperties {
 	s.VpcConfig = v
+	return s
+}
+
+// The filter used to determine which endpoints are are returned. You can filter
+// jobs on their name, model, status, or the date and time that they were created.
+// You can only set one filter at a time.
+type EndpointFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies a date after which the returned endpoint or endpoints were created.
+	CreationTimeAfter *time.Time `type:"timestamp"`
+
+	// Specifies a date before which the returned endpoint or endpoints were created.
+	CreationTimeBefore *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Number (ARN) of the model to which the endpoint is attached.
+	ModelArn *string `type:"string"`
+
+	// Specifies the status of the endpoint being returned. Possible values are:
+	// Creating, Ready, Updating, Deleting, Failed.
+	Status *string `type:"string" enum:"EndpointStatus"`
+}
+
+// String returns the string representation
+func (s EndpointFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EndpointFilter) GoString() string {
+	return s.String()
+}
+
+// SetCreationTimeAfter sets the CreationTimeAfter field's value.
+func (s *EndpointFilter) SetCreationTimeAfter(v time.Time) *EndpointFilter {
+	s.CreationTimeAfter = &v
+	return s
+}
+
+// SetCreationTimeBefore sets the CreationTimeBefore field's value.
+func (s *EndpointFilter) SetCreationTimeBefore(v time.Time) *EndpointFilter {
+	s.CreationTimeBefore = &v
+	return s
+}
+
+// SetModelArn sets the ModelArn field's value.
+func (s *EndpointFilter) SetModelArn(v string) *EndpointFilter {
+	s.ModelArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *EndpointFilter) SetStatus(v string) *EndpointFilter {
+	s.Status = &v
+	return s
+}
+
+// Specifies information about the specified endpoint.
+type EndpointProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The creation date and time of the endpoint.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The number of inference units currently used by the model using this endpoint.
+	CurrentInferenceUnits *int64 `min:"1" type:"integer"`
+
+	// The desired number of inference units to be used by the model using this
+	// endpoint. Each inference unit represents of a throughput of 100 characters
+	// per second.
+	DesiredInferenceUnits *int64 `min:"1" type:"integer"`
+
+	// The Amazon Resource Number (ARN) of the endpoint.
+	EndpointArn *string `type:"string"`
+
+	// The date and time that the endpoint was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// Specifies a reason for failure in cases of Failed status.
+	Message *string `type:"string"`
+
+	// The Amazon Resource Number (ARN) of the model to which the endpoint is attached.
+	ModelArn *string `type:"string"`
+
+	// Specifies the status of the endpoint. Because the endpoint updates and creation
+	// are asynchronous, so customers will need to wait for the endpoint to be Ready
+	// status before making inference requests.
+	Status *string `type:"string" enum:"EndpointStatus"`
+}
+
+// String returns the string representation
+func (s EndpointProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EndpointProperties) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *EndpointProperties) SetCreationTime(v time.Time) *EndpointProperties {
+	s.CreationTime = &v
+	return s
+}
+
+// SetCurrentInferenceUnits sets the CurrentInferenceUnits field's value.
+func (s *EndpointProperties) SetCurrentInferenceUnits(v int64) *EndpointProperties {
+	s.CurrentInferenceUnits = &v
+	return s
+}
+
+// SetDesiredInferenceUnits sets the DesiredInferenceUnits field's value.
+func (s *EndpointProperties) SetDesiredInferenceUnits(v int64) *EndpointProperties {
+	s.DesiredInferenceUnits = &v
+	return s
+}
+
+// SetEndpointArn sets the EndpointArn field's value.
+func (s *EndpointProperties) SetEndpointArn(v string) *EndpointProperties {
+	s.EndpointArn = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *EndpointProperties) SetLastModifiedTime(v time.Time) *EndpointProperties {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *EndpointProperties) SetMessage(v string) *EndpointProperties {
+	s.Message = &v
+	return s
+}
+
+// SetModelArn sets the ModelArn field's value.
+func (s *EndpointProperties) SetModelArn(v string) *EndpointProperties {
+	s.ModelArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *EndpointProperties) SetStatus(v string) *EndpointProperties {
+	s.Status = &v
 	return s
 }
 
@@ -9206,6 +10266,98 @@ func (s *ListDominantLanguageDetectionJobsOutput) SetNextToken(v string) *ListDo
 	return s
 }
 
+type ListEndpointsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters the endpoints that are returned. You can filter endpoints on their
+	// name, model, status, or the date and time that they were created. You can
+	// only set one filter at a time.
+	Filter *EndpointFilter `type:"structure"`
+
+	// The maximum number of results to return in each page. The default is 100.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Identifies the next page of results to return.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListEndpointsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListEndpointsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListEndpointsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListEndpointsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *ListEndpointsInput) SetFilter(v *EndpointFilter) *ListEndpointsInput {
+	s.Filter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListEndpointsInput) SetMaxResults(v int64) *ListEndpointsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEndpointsInput) SetNextToken(v string) *ListEndpointsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListEndpointsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Displays a list of endpoint properties being retrieved by the service in
+	// response to the request.
+	EndpointPropertiesList []*EndpointProperties `type:"list"`
+
+	// Identifies the next page of results to return.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListEndpointsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListEndpointsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEndpointPropertiesList sets the EndpointPropertiesList field's value.
+func (s *ListEndpointsOutput) SetEndpointPropertiesList(v []*EndpointProperties) *ListEndpointsOutput {
+	s.EndpointPropertiesList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEndpointsOutput) SetNextToken(v string) *ListEndpointsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListEntitiesDetectionJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10528,10 +11680,9 @@ type StartEntitiesDetectionJobInput struct {
 	JobName *string `min:"1" type:"string"`
 
 	// The language of the input documents. All documents must be in the same language.
-	// You can specify any of the languages supported by Amazon Comprehend: English
-	// ("en"), Spanish ("es"), French ("fr"), German ("de"), Italian ("it"), or
-	// Portuguese ("pt"). If custom entities recognition is used, this parameter
-	// is ignored and the language used for training the model is used instead.
+	// You can specify any of the languages supported by Amazon Comprehend. If custom
+	// entities recognition is used, this parameter is ignored and the language
+	// used for training the model is used instead.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -10737,9 +11888,7 @@ type StartKeyPhrasesDetectionJobInput struct {
 	JobName *string `min:"1" type:"string"`
 
 	// The language of the input documents. You can specify any of the primary languages
-	// supported by Amazon Comprehend: German ("de"), English ("en"), Spanish ("es"),
-	// French ("fr"), Italian ("it"), or Portuguese ("pt"). All documents must be
-	// in the same language.
+	// supported by Amazon Comprehend. All documents must be in the same language.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -10934,9 +12083,7 @@ type StartSentimentDetectionJobInput struct {
 	JobName *string `min:"1" type:"string"`
 
 	// The language of the input documents. You can specify any of the primary languages
-	// supported by Amazon Comprehend: German ("de"), English ("en"), Spanish ("es"),
-	// French ("fr"), Italian ("it"), or Portuguese ("pt"). All documents must be
-	// in the same language.
+	// supported by Amazon Comprehend. All documents must be in the same language.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -12183,6 +13330,77 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateEndpointInput struct {
+	_ struct{} `type:"structure"`
+
+	// The desired number of inference units to be used by the model using this
+	// endpoint. Each inference unit represents of a throughput of 100 characters
+	// per second.
+	//
+	// DesiredInferenceUnits is a required field
+	DesiredInferenceUnits *int64 `min:"1" type:"integer" required:"true"`
+
+	// The Amazon Resource Number (ARN) of the endpoint being updated.
+	//
+	// EndpointArn is a required field
+	EndpointArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateEndpointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateEndpointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateEndpointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateEndpointInput"}
+	if s.DesiredInferenceUnits == nil {
+		invalidParams.Add(request.NewErrParamRequired("DesiredInferenceUnits"))
+	}
+	if s.DesiredInferenceUnits != nil && *s.DesiredInferenceUnits < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("DesiredInferenceUnits", 1))
+	}
+	if s.EndpointArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDesiredInferenceUnits sets the DesiredInferenceUnits field's value.
+func (s *UpdateEndpointInput) SetDesiredInferenceUnits(v int64) *UpdateEndpointInput {
+	s.DesiredInferenceUnits = &v
+	return s
+}
+
+// SetEndpointArn sets the EndpointArn field's value.
+func (s *UpdateEndpointInput) SetEndpointArn(v string) *UpdateEndpointInput {
+	s.EndpointArn = &v
+	return s
+}
+
+type UpdateEndpointOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateEndpointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateEndpointOutput) GoString() string {
+	return s.String()
+}
+
 // Configuration parameters for an optional private Virtual Private Cloud (VPC)
 // containing the resources you are using for the job. For For more information,
 // see Amazon VPC (https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html).
@@ -12252,6 +13470,23 @@ func (s *VpcConfig) SetSubnets(v []*string) *VpcConfig {
 	s.Subnets = v
 	return s
 }
+
+const (
+	// EndpointStatusCreating is a EndpointStatus enum value
+	EndpointStatusCreating = "CREATING"
+
+	// EndpointStatusDeleting is a EndpointStatus enum value
+	EndpointStatusDeleting = "DELETING"
+
+	// EndpointStatusFailed is a EndpointStatus enum value
+	EndpointStatusFailed = "FAILED"
+
+	// EndpointStatusInService is a EndpointStatus enum value
+	EndpointStatusInService = "IN_SERVICE"
+
+	// EndpointStatusUpdating is a EndpointStatus enum value
+	EndpointStatusUpdating = "UPDATING"
+)
 
 const (
 	// EntityTypePerson is a EntityType enum value

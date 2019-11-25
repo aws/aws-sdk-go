@@ -96,6 +96,10 @@ type SESV2API interface {
 	DeleteEmailIdentityWithContext(aws.Context, *sesv2.DeleteEmailIdentityInput, ...request.Option) (*sesv2.DeleteEmailIdentityOutput, error)
 	DeleteEmailIdentityRequest(*sesv2.DeleteEmailIdentityInput) (*request.Request, *sesv2.DeleteEmailIdentityOutput)
 
+	DeleteSuppressedDestination(*sesv2.DeleteSuppressedDestinationInput) (*sesv2.DeleteSuppressedDestinationOutput, error)
+	DeleteSuppressedDestinationWithContext(aws.Context, *sesv2.DeleteSuppressedDestinationInput, ...request.Option) (*sesv2.DeleteSuppressedDestinationOutput, error)
+	DeleteSuppressedDestinationRequest(*sesv2.DeleteSuppressedDestinationInput) (*request.Request, *sesv2.DeleteSuppressedDestinationOutput)
+
 	GetAccount(*sesv2.GetAccountInput) (*sesv2.GetAccountOutput, error)
 	GetAccountWithContext(aws.Context, *sesv2.GetAccountInput, ...request.Option) (*sesv2.GetAccountOutput, error)
 	GetAccountRequest(*sesv2.GetAccountInput) (*request.Request, *sesv2.GetAccountOutput)
@@ -143,6 +147,10 @@ type SESV2API interface {
 	GetEmailIdentityWithContext(aws.Context, *sesv2.GetEmailIdentityInput, ...request.Option) (*sesv2.GetEmailIdentityOutput, error)
 	GetEmailIdentityRequest(*sesv2.GetEmailIdentityInput) (*request.Request, *sesv2.GetEmailIdentityOutput)
 
+	GetSuppressedDestination(*sesv2.GetSuppressedDestinationInput) (*sesv2.GetSuppressedDestinationOutput, error)
+	GetSuppressedDestinationWithContext(aws.Context, *sesv2.GetSuppressedDestinationInput, ...request.Option) (*sesv2.GetSuppressedDestinationOutput, error)
+	GetSuppressedDestinationRequest(*sesv2.GetSuppressedDestinationInput) (*request.Request, *sesv2.GetSuppressedDestinationOutput)
+
 	ListConfigurationSets(*sesv2.ListConfigurationSetsInput) (*sesv2.ListConfigurationSetsOutput, error)
 	ListConfigurationSetsWithContext(aws.Context, *sesv2.ListConfigurationSetsInput, ...request.Option) (*sesv2.ListConfigurationSetsOutput, error)
 	ListConfigurationSetsRequest(*sesv2.ListConfigurationSetsInput) (*request.Request, *sesv2.ListConfigurationSetsOutput)
@@ -178,6 +186,13 @@ type SESV2API interface {
 	ListEmailIdentitiesPages(*sesv2.ListEmailIdentitiesInput, func(*sesv2.ListEmailIdentitiesOutput, bool) bool) error
 	ListEmailIdentitiesPagesWithContext(aws.Context, *sesv2.ListEmailIdentitiesInput, func(*sesv2.ListEmailIdentitiesOutput, bool) bool, ...request.Option) error
 
+	ListSuppressedDestinations(*sesv2.ListSuppressedDestinationsInput) (*sesv2.ListSuppressedDestinationsOutput, error)
+	ListSuppressedDestinationsWithContext(aws.Context, *sesv2.ListSuppressedDestinationsInput, ...request.Option) (*sesv2.ListSuppressedDestinationsOutput, error)
+	ListSuppressedDestinationsRequest(*sesv2.ListSuppressedDestinationsInput) (*request.Request, *sesv2.ListSuppressedDestinationsOutput)
+
+	ListSuppressedDestinationsPages(*sesv2.ListSuppressedDestinationsInput, func(*sesv2.ListSuppressedDestinationsOutput, bool) bool) error
+	ListSuppressedDestinationsPagesWithContext(aws.Context, *sesv2.ListSuppressedDestinationsInput, func(*sesv2.ListSuppressedDestinationsOutput, bool) bool, ...request.Option) error
+
 	ListTagsForResource(*sesv2.ListTagsForResourceInput) (*sesv2.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *sesv2.ListTagsForResourceInput, ...request.Option) (*sesv2.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*sesv2.ListTagsForResourceInput) (*request.Request, *sesv2.ListTagsForResourceOutput)
@@ -190,6 +205,10 @@ type SESV2API interface {
 	PutAccountSendingAttributesWithContext(aws.Context, *sesv2.PutAccountSendingAttributesInput, ...request.Option) (*sesv2.PutAccountSendingAttributesOutput, error)
 	PutAccountSendingAttributesRequest(*sesv2.PutAccountSendingAttributesInput) (*request.Request, *sesv2.PutAccountSendingAttributesOutput)
 
+	PutAccountSuppressionAttributes(*sesv2.PutAccountSuppressionAttributesInput) (*sesv2.PutAccountSuppressionAttributesOutput, error)
+	PutAccountSuppressionAttributesWithContext(aws.Context, *sesv2.PutAccountSuppressionAttributesInput, ...request.Option) (*sesv2.PutAccountSuppressionAttributesOutput, error)
+	PutAccountSuppressionAttributesRequest(*sesv2.PutAccountSuppressionAttributesInput) (*request.Request, *sesv2.PutAccountSuppressionAttributesOutput)
+
 	PutConfigurationSetDeliveryOptions(*sesv2.PutConfigurationSetDeliveryOptionsInput) (*sesv2.PutConfigurationSetDeliveryOptionsOutput, error)
 	PutConfigurationSetDeliveryOptionsWithContext(aws.Context, *sesv2.PutConfigurationSetDeliveryOptionsInput, ...request.Option) (*sesv2.PutConfigurationSetDeliveryOptionsOutput, error)
 	PutConfigurationSetDeliveryOptionsRequest(*sesv2.PutConfigurationSetDeliveryOptionsInput) (*request.Request, *sesv2.PutConfigurationSetDeliveryOptionsOutput)
@@ -201,6 +220,10 @@ type SESV2API interface {
 	PutConfigurationSetSendingOptions(*sesv2.PutConfigurationSetSendingOptionsInput) (*sesv2.PutConfigurationSetSendingOptionsOutput, error)
 	PutConfigurationSetSendingOptionsWithContext(aws.Context, *sesv2.PutConfigurationSetSendingOptionsInput, ...request.Option) (*sesv2.PutConfigurationSetSendingOptionsOutput, error)
 	PutConfigurationSetSendingOptionsRequest(*sesv2.PutConfigurationSetSendingOptionsInput) (*request.Request, *sesv2.PutConfigurationSetSendingOptionsOutput)
+
+	PutConfigurationSetSuppressionOptions(*sesv2.PutConfigurationSetSuppressionOptionsInput) (*sesv2.PutConfigurationSetSuppressionOptionsOutput, error)
+	PutConfigurationSetSuppressionOptionsWithContext(aws.Context, *sesv2.PutConfigurationSetSuppressionOptionsInput, ...request.Option) (*sesv2.PutConfigurationSetSuppressionOptionsOutput, error)
+	PutConfigurationSetSuppressionOptionsRequest(*sesv2.PutConfigurationSetSuppressionOptionsInput) (*request.Request, *sesv2.PutConfigurationSetSuppressionOptionsOutput)
 
 	PutConfigurationSetTrackingOptions(*sesv2.PutConfigurationSetTrackingOptionsInput) (*sesv2.PutConfigurationSetTrackingOptionsOutput, error)
 	PutConfigurationSetTrackingOptionsWithContext(aws.Context, *sesv2.PutConfigurationSetTrackingOptionsInput, ...request.Option) (*sesv2.PutConfigurationSetTrackingOptionsOutput, error)
@@ -229,6 +252,10 @@ type SESV2API interface {
 	PutEmailIdentityMailFromAttributes(*sesv2.PutEmailIdentityMailFromAttributesInput) (*sesv2.PutEmailIdentityMailFromAttributesOutput, error)
 	PutEmailIdentityMailFromAttributesWithContext(aws.Context, *sesv2.PutEmailIdentityMailFromAttributesInput, ...request.Option) (*sesv2.PutEmailIdentityMailFromAttributesOutput, error)
 	PutEmailIdentityMailFromAttributesRequest(*sesv2.PutEmailIdentityMailFromAttributesInput) (*request.Request, *sesv2.PutEmailIdentityMailFromAttributesOutput)
+
+	PutSuppressedDestination(*sesv2.PutSuppressedDestinationInput) (*sesv2.PutSuppressedDestinationOutput, error)
+	PutSuppressedDestinationWithContext(aws.Context, *sesv2.PutSuppressedDestinationInput, ...request.Option) (*sesv2.PutSuppressedDestinationOutput, error)
+	PutSuppressedDestinationRequest(*sesv2.PutSuppressedDestinationInput) (*request.Request, *sesv2.PutSuppressedDestinationOutput)
 
 	SendEmail(*sesv2.SendEmailInput) (*sesv2.SendEmailOutput, error)
 	SendEmailWithContext(aws.Context, *sesv2.SendEmailInput, ...request.Option) (*sesv2.SendEmailOutput, error)

@@ -208,12 +208,11 @@
     },
     "FastRestoreRule":{
       "type":"structure",
-      "required":[
-        "Count",
-        "AvailabilityZones"
-      ],
+      "required":["AvailabilityZones"],
       "members":{
         "Count":{"shape":"Count"},
+        "Interval":{"shape":"Interval"},
+        "IntervalUnit":{"shape":"RetentionIntervalUnitValues"},
         "AvailabilityZones":{"shape":"AvailabilityZoneList"}
       }
     },
@@ -432,10 +431,20 @@
     },
     "RetainRule":{
       "type":"structure",
-      "required":["Count"],
       "members":{
-        "Count":{"shape":"Count"}
+        "Count":{"shape":"Count"},
+        "Interval":{"shape":"Interval"},
+        "IntervalUnit":{"shape":"RetentionIntervalUnitValues"}
       }
+    },
+    "RetentionIntervalUnitValues":{
+      "type":"string",
+      "enum":[
+        "DAYS",
+        "WEEKS",
+        "MONTHS",
+        "YEARS"
+      ]
     },
     "Schedule":{
       "type":"structure",

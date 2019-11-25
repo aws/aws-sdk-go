@@ -35,6 +35,19 @@ const (
 	// or without a pagination token.
 	ErrCodeRequestChangedException = "RequestChangedException"
 
+	// ErrCodeResourceNotFoundException for service response error code
+	// "ResourceNotFoundException".
+	//
+	// The specified ARN in the request doesn't exist.
+	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
+
+	// ErrCodeServiceQuotaExceededException for service response error code
+	// "ServiceQuotaExceededException".
+	//
+	// You've reached the limit on the number of resources you can create, or exceeded
+	// the size of an individual resources.
+	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
+
 	// ErrCodeUnresolvableUsageUnitException for service response error code
 	// "UnresolvableUsageUnitException".
 	//

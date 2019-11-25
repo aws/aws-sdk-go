@@ -496,7 +496,12 @@
           "location":"header",
           "locationName":"x-amz-lex-input-transcript"
         },
-        "audioStream":{"shape":"BlobStream"}
+        "audioStream":{"shape":"BlobStream"},
+        "sessionId":{
+          "shape":"String",
+          "location":"header",
+          "locationName":"x-amz-lex-session-id"
+        }
       },
       "payload":"audioStream"
     },
@@ -540,7 +545,8 @@
         "messageFormat":{"shape":"MessageFormatType"},
         "dialogState":{"shape":"DialogState"},
         "slotToElicit":{"shape":"String"},
-        "responseCard":{"shape":"ResponseCard"}
+        "responseCard":{"shape":"ResponseCard"},
+        "sessionId":{"shape":"String"}
       }
     },
     "PutSessionRequest":{

@@ -20,13 +20,17 @@
     "CreateAuthorizer": "<p>Creates an authorizer.</p>",
     "CreateBillingGroup": "<p>Creates a billing group.</p>",
     "CreateCertificateFromCsr": "<p>Creates an X.509 certificate using the specified certificate signing request.</p> <p> <b>Note:</b> The CSR must include a public key that is either an RSA key with a length of at least 2048 bits or an ECC key from NIST P-256 or NIST P-384 curves. </p> <p> <b>Note:</b> Reusing the same certificate signing request (CSR) results in a distinct certificate.</p> <p>You can create multiple certificates in a batch by creating a directory, copying multiple .csr files into that directory, and then specifying that directory on the command line. The following commands show how to create a batch of certificates given a batch of CSRs.</p> <p>Assuming a set of CSRs are located inside of the directory my-csr-directory:</p> <p>On Linux and OS X, the command is:</p> <p>$ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/{}</p> <p>This command lists all of the CSRs in my-csr-directory and pipes each CSR file name to the aws iot create-certificate-from-csr AWS CLI command to create a certificate for the corresponding CSR.</p> <p>The aws iot create-certificate-from-csr part of the command can also be run in parallel to speed up the certificate creation process:</p> <p>$ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/{}</p> <p>On Windows PowerShell, the command to create certificates for all CSRs in my-csr-directory is:</p> <p>&gt; ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/$_}</p> <p>On a Windows command prompt, the command to create certificates for all CSRs in my-csr-directory is:</p> <p>&gt; forfiles /p my-csr-directory /c \"cmd /c aws iot create-certificate-from-csr --certificate-signing-request file://@path\"</p>",
+    "CreateDomainConfiguration": "<p>Creates a domain configuration.</p> <note> <p>The domain configuration feature is in public preview and is subject to change.</p> </note>",
     "CreateDynamicThingGroup": "<p>Creates a dynamic thing group.</p>",
     "CreateJob": "<p>Creates a job.</p>",
-    "CreateKeysAndCertificate": "<p>Creates a 2048-bit RSA key pair and issues an X.509 certificate using the issued public key.</p> <p> <b>Note</b> This is the only time AWS IoT issues the private key for this certificate, so it is important to keep it in a secure location.</p>",
+    "CreateKeysAndCertificate": "<p>Creates a 2048-bit RSA key pair and issues an X.509 certificate using the issued public key. You can also call <code>CreateKeysAndCertificate</code> over MQTT from a device, for more information, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html#provision-mqtt-api\">Provisioning MQTT API</a>.</p> <p> <b>Note</b> This is the only time AWS IoT issues the private key for this certificate, so it is important to keep it in a secure location.</p>",
     "CreateMitigationAction": "<p>Defines an action that can be applied to audit findings by using StartAuditMitigationActionsTask. Each mitigation action can apply only one type of change.</p>",
     "CreateOTAUpdate": "<p>Creates an AWS IoT OTAUpdate on a target group of things or groups.</p>",
     "CreatePolicy": "<p>Creates an AWS IoT policy.</p> <p>The created policy is the default version for the policy. This operation creates a policy version with a version identifier of <b>1</b> and sets <b>1</b> as the policy's default version.</p>",
     "CreatePolicyVersion": "<p>Creates a new version of the specified AWS IoT policy. To update a policy, create a new policy version. A managed policy can have up to five versions. If the policy has five versions, you must use <a>DeletePolicyVersion</a> to delete an existing version before you create a new one.</p> <p>Optionally, you can set the new version as the policy's default version. The default version is the operative version (that is, the version that is in effect for the certificates to which the policy is attached).</p>",
+    "CreateProvisioningClaim": "<p>Creates a provisioning claim.</p>",
+    "CreateProvisioningTemplate": "<p>Creates a fleet provisioning template.</p>",
+    "CreateProvisioningTemplateVersion": "<p>Creates a new version of a fleet provisioning template.</p>",
     "CreateRoleAlias": "<p>Creates a role alias.</p>",
     "CreateScheduledAudit": "<p>Creates a scheduled audit that is run at a specified time interval.</p>",
     "CreateSecurityProfile": "<p>Creates a Device Defender security profile.</p>",
@@ -41,6 +45,7 @@
     "DeleteBillingGroup": "<p>Deletes the billing group.</p>",
     "DeleteCACertificate": "<p>Deletes a registered CA certificate.</p>",
     "DeleteCertificate": "<p>Deletes the specified certificate.</p> <p>A certificate cannot be deleted if it has a policy or IoT thing attached to it or if its status is set to ACTIVE. To delete a certificate, first use the <a>DetachPrincipalPolicy</a> API to detach all policies. Next, use the <a>UpdateCertificate</a> API to set the certificate to the INACTIVE status.</p>",
+    "DeleteDomainConfiguration": "<p>Deletes the specified domain configuration.</p> <note> <p>The domain configuration feature is in public preview and is subject to change.</p> </note>",
     "DeleteDynamicThingGroup": "<p>Deletes a dynamic thing group.</p>",
     "DeleteJob": "<p>Deletes a job and its related job executions.</p> <p>Deleting a job may take time, depending on the number of job executions created for the job and various other factors. While the job is being deleted, the status of the job will be shown as \"DELETION_IN_PROGRESS\". Attempting to delete or cancel a job whose status is already \"DELETION_IN_PROGRESS\" will result in an error.</p> <p>Only 10 jobs may have status \"DELETION_IN_PROGRESS\" at the same time, or a LimitExceededException will occur.</p>",
     "DeleteJobExecution": "<p>Deletes a job execution.</p>",
@@ -48,6 +53,8 @@
     "DeleteOTAUpdate": "<p>Delete an OTA update.</p>",
     "DeletePolicy": "<p>Deletes the specified policy.</p> <p>A policy cannot be deleted if it has non-default versions or it is attached to any certificate.</p> <p>To delete a policy, use the DeletePolicyVersion API to delete all non-default versions of the policy; use the DetachPrincipalPolicy API to detach the policy from any certificate; and then use the DeletePolicy API to delete the policy.</p> <p>When a policy is deleted using DeletePolicy, its default version is deleted with it.</p>",
     "DeletePolicyVersion": "<p>Deletes the specified version of the specified policy. You cannot delete the default version of a policy using this API. To delete the default version of a policy, use <a>DeletePolicy</a>. To find out which version of a policy is marked as the default version, use ListPolicyVersions.</p>",
+    "DeleteProvisioningTemplate": "<p>Deletes a fleet provisioning template.</p>",
+    "DeleteProvisioningTemplateVersion": "<p>Deletes a fleet provisioning template version.</p>",
     "DeleteRegistrationCode": "<p>Deletes a CA certificate registration code.</p>",
     "DeleteRoleAlias": "<p>Deletes a role alias</p>",
     "DeleteScheduledAudit": "<p>Deletes a scheduled audit.</p>",
@@ -69,12 +76,15 @@
     "DescribeCACertificate": "<p>Describes a registered CA certificate.</p>",
     "DescribeCertificate": "<p>Gets information about the specified certificate.</p>",
     "DescribeDefaultAuthorizer": "<p>Describes the default authorizer.</p>",
+    "DescribeDomainConfiguration": "<p>Gets summary information about a domain configuration.</p> <note> <p>The domain configuration feature is in public preview and is subject to change.</p> </note>",
     "DescribeEndpoint": "<p>Returns a unique endpoint specific to the AWS account making the call.</p>",
     "DescribeEventConfigurations": "<p>Describes event configurations.</p>",
     "DescribeIndex": "<p>Describes a search index.</p>",
     "DescribeJob": "<p>Describes a job.</p>",
     "DescribeJobExecution": "<p>Describes a job execution.</p>",
     "DescribeMitigationAction": "<p>Gets information about a mitigation action.</p>",
+    "DescribeProvisioningTemplate": "<p>Returns information about a fleet provisioning template.</p>",
+    "DescribeProvisioningTemplateVersion": "<p>Returns information about a fleet provisioning template version.</p>",
     "DescribeRoleAlias": "<p>Describes a role alias.</p>",
     "DescribeScheduledAudit": "<p>Gets information about a scheduled audit.</p>",
     "DescribeSecurityProfile": "<p>Gets information about a Device Defender security profile.</p>",
@@ -91,7 +101,7 @@
     "EnableTopicRule": "<p>Enables the rule.</p>",
     "GetCardinality": "<p>Returns the approximate count of unique values that match the query.</p>",
     "GetEffectivePolicies": "<p>Gets a list of the policies that have an effect on the authorization behavior of the specified device when it connects to the AWS IoT device gateway.</p>",
-    "GetIndexingConfiguration": "<p>Gets the search configuration.</p>",
+    "GetIndexingConfiguration": "<p>Gets the indexing configuration.</p>",
     "GetJobDocument": "<p>Gets a job document.</p>",
     "GetLoggingOptions": "<p>Gets the logging options.</p> <p>NOTE: use of this command is not recommended. Use <code>GetV2LoggingOptions</code> instead.</p>",
     "GetOTAUpdate": "<p>Gets an OTA update.</p>",
@@ -99,7 +109,7 @@
     "GetPolicy": "<p>Gets information about the specified policy with the policy document of the default version.</p>",
     "GetPolicyVersion": "<p>Gets information about the specified policy version.</p>",
     "GetRegistrationCode": "<p>Gets a registration code used to register a CA certificate with AWS IoT.</p>",
-    "GetStatistics": "<p>Gets statistics about things that match the specified query.</p>",
+    "GetStatistics": "<p>Returns the count, average, sum, minimum, maximum, sum of squares, variance, and standard deviation for the specified aggregated field. If the aggregation field is of type <code>String</code>, only the count statistic is returned.</p>",
     "GetTopicRule": "<p>Gets information about the rule.</p>",
     "GetTopicRuleDestination": "<p>Gets information about a topic rule destination.</p>",
     "GetV2LoggingOptions": "<p>Gets the fine grained logging options.</p>",
@@ -114,6 +124,7 @@
     "ListCACertificates": "<p>Lists the CA certificates registered for your AWS account.</p> <p>The results are paginated with a default page size of 25. You can use the returned marker to retrieve additional results.</p>",
     "ListCertificates": "<p>Lists the certificates registered in your AWS account.</p> <p>The results are paginated with a default page size of 25. You can use the returned marker to retrieve additional results.</p>",
     "ListCertificatesByCA": "<p>List the device certificates signed by the specified CA certificate.</p>",
+    "ListDomainConfigurations": "<p>Gets a list of domain configurations for the user. This list is sorted alphabetically by domain configuration name.</p> <note> <p>The domain configuration feature is in public preview and is subject to change.</p> </note>",
     "ListIndices": "<p>Lists the search indices.</p>",
     "ListJobExecutionsForJob": "<p>Lists the job executions for a job.</p>",
     "ListJobExecutionsForThing": "<p>Lists the job executions for the specified thing.</p>",
@@ -126,6 +137,8 @@
     "ListPolicyVersions": "<p>Lists the versions of the specified policy and identifies the default version.</p>",
     "ListPrincipalPolicies": "<p>Lists the policies attached to the specified principal. If you use an Cognito identity, the ID must be in <a href=\"https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetCredentialsForIdentity.html#API_GetCredentialsForIdentity_RequestSyntax\">AmazonCognito Identity format</a>.</p> <p> <b>Note:</b> This API is deprecated. Please use <a>ListAttachedPolicies</a> instead.</p>",
     "ListPrincipalThings": "<p>Lists the things associated with the specified principal. A principal can be X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities or federated identities. </p>",
+    "ListProvisioningTemplateVersions": "<p>A list of fleet provisioning template versions.</p>",
+    "ListProvisioningTemplates": "<p>Lists the fleet provisioning templates in your AWS account.</p>",
     "ListRoleAliases": "<p>Lists the role aliases registered in your account.</p>",
     "ListScheduledAudits": "<p>Lists all of your scheduled audits.</p>",
     "ListSecurityProfiles": "<p>Lists the Device Defender security profiles you have created. You can use filters to list only those security profiles associated with a thing group or only those associated with your account.</p>",
@@ -149,7 +162,7 @@
     "ListViolationEvents": "<p>Lists the Device Defender security profile violations discovered during the given time period. You can use filters to limit the results to those alerts issued for a particular security profile, behavior, or thing (device).</p>",
     "RegisterCACertificate": "<p>Registers a CA certificate with AWS IoT. This CA certificate can then be used to sign device certificates, which can be then registered with AWS IoT. You can register up to 10 CA certificates per AWS account that have the same subject field. This enables you to have up to 10 certificate authorities sign your device certificates. If you have more than one CA certificate registered, make sure you pass the CA certificate when you register your device certificates with the RegisterCertificate API.</p>",
     "RegisterCertificate": "<p>Registers a device certificate with AWS IoT. If you have more than one CA certificate that has the same subject field, you must specify the CA certificate that was used to sign the device certificate being registered.</p>",
-    "RegisterThing": "<p>Provisions a thing.</p>",
+    "RegisterThing": "<p>Provisions a thing in the device registry. RegisterThing calls other AWS IoT control plane APIs. These calls might exceed your account level <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_iot\"> AWS IoT Throttling Limits</a> and cause throttle errors. Please contact <a href=\"https://console.aws.amazon.com/support/home\">AWS Customer Support</a> to raise your throttling limits if necessary.</p>",
     "RejectCertificateTransfer": "<p>Rejects a pending certificate transfer. After AWS IoT rejects a certificate transfer, the certificate status changes from <b>PENDING_TRANSFER</b> to <b>INACTIVE</b>.</p> <p>To check for pending certificate transfers, call <a>ListCertificates</a> to enumerate your certificates.</p> <p>This operation can only be called by the transfer destination. After it is called, the certificate will be returned to the source's account in the INACTIVE state.</p>",
     "RemoveThingFromBillingGroup": "<p>Removes the given thing from the billing group.</p>",
     "RemoveThingFromThingGroup": "<p>Remove the specified thing from the specified group.</p>",
@@ -174,11 +187,13 @@
     "UpdateBillingGroup": "<p>Updates information about the billing group.</p>",
     "UpdateCACertificate": "<p>Updates a registered CA certificate.</p>",
     "UpdateCertificate": "<p>Updates the status of the specified certificate. This operation is idempotent.</p> <p>Moving a certificate from the ACTIVE state (including REVOKED) will not disconnect currently connected devices, but these devices will be unable to reconnect.</p> <p>The ACTIVE state is required to authenticate devices connecting to AWS IoT using a certificate.</p>",
+    "UpdateDomainConfiguration": "<p>Updates values stored in the domain configuration. Domain configurations for default endpoints can't be updated.</p> <note> <p>The domain configuration feature is in public preview and is subject to change.</p> </note>",
     "UpdateDynamicThingGroup": "<p>Updates a dynamic thing group.</p>",
     "UpdateEventConfigurations": "<p>Updates the event configurations.</p>",
     "UpdateIndexingConfiguration": "<p>Updates the search configuration.</p>",
     "UpdateJob": "<p>Updates supported fields of the specified job.</p>",
     "UpdateMitigationAction": "<p>Updates the definition for the specified mitigation action.</p>",
+    "UpdateProvisioningTemplate": "<p>Updates a fleet provisioning template.</p>",
     "UpdateRoleAlias": "<p>Updates a role alias.</p>",
     "UpdateScheduledAudit": "<p>Updates a scheduled audit, including which checks are performed and how often the audit takes place.</p>",
     "UpdateSecurityProfile": "<p>Updates a Device Defender security profile.</p>",
@@ -225,6 +240,14 @@
     "AcceptCertificateTransferRequest": {
       "base": "<p>The input for the AcceptCertificateTransfer operation.</p>",
       "refs": {
+      }
+    },
+    "AcmCertificateArn": {
+      "base": null,
+      "refs": {
+        "CreateDomainConfigurationRequest$validationCertificateArn": "<p>The certificate used to validate the server certificate and prove domain name ownership. This certificate must be signed by a public certificate authority. This value is not required for AWS-managed domains.</p>",
+        "ServerCertificateArns$member": null,
+        "ServerCertificateSummary$serverCertificateArn": "<p>The ARN of the server certificate.</p>"
       }
     },
     "Action": {
@@ -307,7 +330,7 @@
       "refs": {
         "GetCardinalityRequest$aggregationField": "<p>The field to aggregate.</p>",
         "GetPercentilesRequest$aggregationField": "<p>The field to aggregate.</p>",
-        "GetStatisticsRequest$aggregationField": "<p>The aggregation field name. Currently not supported.</p>"
+        "GetStatisticsRequest$aggregationField": "<p>The aggregation field name.</p>"
       }
     },
     "AlarmName": {
@@ -343,6 +366,12 @@
         "UpdateSecurityProfileResponse$alertTargets": "<p>Where the alerts are sent. (Alerts are always sent to the console.)</p>"
       }
     },
+    "AllowAuthorizerOverride": {
+      "base": null,
+      "refs": {
+        "AuthorizerConfig$allowAuthorizerOverride": "<p>A Boolean that specifies whether the domain configuration's authorization service can be overridden.</p>"
+      }
+    },
     "AllowAutoRegistration": {
       "base": null,
       "refs": {
@@ -374,6 +403,96 @@
         "ListPrincipalPoliciesRequest$ascendingOrder": "<p>Specifies the order for results. If true, results are returned in ascending creation order.</p>",
         "ListRoleAliasesRequest$ascendingOrder": "<p>Return the list of role aliases in ascending alphabetical order.</p>",
         "ListStreamsRequest$ascendingOrder": "<p>Set to true to return the list of streams in ascending order.</p>"
+      }
+    },
+    "AssetId": {
+      "base": null,
+      "refs": {
+        "PutAssetPropertyValueEntry$assetId": "<p>The ID of the AWS IoT SiteWise asset. You must specify either a <code>propertyAlias</code> or both an <code>analiasId</code> and a <code>propertyId</code>. Accepts substitution templates.</p>"
+      }
+    },
+    "AssetPropertyAlias": {
+      "base": null,
+      "refs": {
+        "PutAssetPropertyValueEntry$propertyAlias": "<p>The name of the property alias associated with your asset property. You must specify either a <code>propertyAlias</code> or both an <code>aliasId</code> and a <code>propertyId</code>. Accepts substitution templates.</p>"
+      }
+    },
+    "AssetPropertyBooleanValue": {
+      "base": null,
+      "refs": {
+        "AssetPropertyVariant$booleanValue": "<p>Optional. A string that contains the boolean value (<code>true</code> or <code>false</code>) of the value entry. Accepts substitution templates.</p>"
+      }
+    },
+    "AssetPropertyDoubleValue": {
+      "base": null,
+      "refs": {
+        "AssetPropertyVariant$doubleValue": "<p>Optional. A string that contains the double value of the value entry. Accepts substitution templates.</p>"
+      }
+    },
+    "AssetPropertyEntryId": {
+      "base": null,
+      "refs": {
+        "PutAssetPropertyValueEntry$entryId": "<p>Optional. A unique identifier for this entry that you can define to better track which message caused an error in case of failure. Accepts substitution templates. Defaults to a new UUID.</p>"
+      }
+    },
+    "AssetPropertyId": {
+      "base": null,
+      "refs": {
+        "PutAssetPropertyValueEntry$propertyId": "<p>The ID of the asset's property. You must specify either a <code>propertyAlias</code> or both an <code>analiasId</code> and a <code>propertyId</code>. Accepts substitution templates.</p>"
+      }
+    },
+    "AssetPropertyIntegerValue": {
+      "base": null,
+      "refs": {
+        "AssetPropertyVariant$integerValue": "<p>Optional. A string that contains the integer value of the value entry. Accepts substitution templates.</p>"
+      }
+    },
+    "AssetPropertyOffsetInNanos": {
+      "base": null,
+      "refs": {
+        "AssetPropertyTimestamp$offsetInNanos": "<p>Optional. A string that contains the nanosecond time offset. Accepts substitution templates.</p>"
+      }
+    },
+    "AssetPropertyQuality": {
+      "base": null,
+      "refs": {
+        "AssetPropertyValue$quality": "<p>Optional. A string that describes the quality of the value. Accepts substitution templates. Must be <code>GOOD</code>, <code>BAD</code>, or <code>UNCERTAIN</code>.</p>"
+      }
+    },
+    "AssetPropertyStringValue": {
+      "base": null,
+      "refs": {
+        "AssetPropertyVariant$stringValue": "<p>Optional. The string value of the value entry. Accepts substitution templates.</p>"
+      }
+    },
+    "AssetPropertyTimeInSeconds": {
+      "base": null,
+      "refs": {
+        "AssetPropertyTimestamp$timeInSeconds": "<p>A string that contains the time in seconds since epoch. Accepts substitution templates.</p>"
+      }
+    },
+    "AssetPropertyTimestamp": {
+      "base": "<p>An asset property timestamp entry containing the following information.</p>",
+      "refs": {
+        "AssetPropertyValue$timestamp": "<p>The asset property value timestamp.</p>"
+      }
+    },
+    "AssetPropertyValue": {
+      "base": "<p>An asset property value entry containing the following information.</p>",
+      "refs": {
+        "AssetPropertyValueList$member": null
+      }
+    },
+    "AssetPropertyValueList": {
+      "base": null,
+      "refs": {
+        "PutAssetPropertyValueEntry$propertyValues": "<p>A list of property values to insert that each contain timestamp, quality, and value (TQV) information.</p>"
+      }
+    },
+    "AssetPropertyVariant": {
+      "base": "<p>Contains an asset property value (of a single type).</p>",
+      "refs": {
+        "AssetPropertyValue$value": "<p>The value of the asset property.</p>"
       }
     },
     "AssociateTargetsWithJobRequest": {
@@ -712,6 +831,14 @@
         "UpdateAuthorizerResponse$authorizerArn": "<p>The authorizer ARN.</p>"
       }
     },
+    "AuthorizerConfig": {
+      "base": "<p>An object that specifies the authorization service for a domain.</p>",
+      "refs": {
+        "CreateDomainConfigurationRequest$authorizerConfig": "<p>An object that specifies the authorization service for a domain.</p>",
+        "DescribeDomainConfigurationResponse$authorizerConfig": "<p>An object that specifies the authorization service for a domain.</p>",
+        "UpdateDomainConfigurationRequest$authorizerConfig": "<p>An object that specifies the authorization service for a domain.</p>"
+      }
+    },
     "AuthorizerDescription": {
       "base": "<p>The authorizer description.</p>",
       "refs": {
@@ -730,6 +857,7 @@
     "AuthorizerName": {
       "base": null,
       "refs": {
+        "AuthorizerConfig$defaultAuthorizerName": "<p>The name of the authorization service for a domain configuration.</p>",
         "AuthorizerDescription$authorizerName": "<p>The authorizer name.</p>",
         "AuthorizerSummary$authorizerName": "<p>The authorizer name.</p>",
         "CreateAuthorizerRequest$authorizerName": "<p>The authorizer name.</p>",
@@ -774,7 +902,7 @@
     "Average": {
       "base": null,
       "refs": {
-        "Statistics$average": "<p>The average of the aggregated fields. If the field data type is String this value is indeterminate.</p>"
+        "Statistics$average": "<p>The average of the aggregated field values.</p>"
       }
     },
     "AwsAccountId": {
@@ -805,6 +933,7 @@
         "IotAnalyticsAction$channelArn": "<p>(deprecated) The ARN of the IoT Analytics channel to which message data will be sent.</p>",
         "IotAnalyticsAction$roleArn": "<p>The ARN of the role which has a policy that grants IoT Analytics permission to send message data via IoT Analytics (iotanalytics:BatchPutMessage).</p>",
         "IotEventsAction$roleArn": "<p>The ARN of the role that grants AWS IoT permission to send an input to an AWS IoT Events detector. (\"Action\":\"iotevents:BatchPutMessage\").</p>",
+        "IotSiteWiseAction$roleArn": "<p>The ARN of the role that grants AWS IoT permission to send an asset property value to AWS IoTSiteWise. (<code>\"Action\": \"iotsitewise:BatchPutAssetPropertyValue\"</code>). The trust policy can restrict access to specific asset hierarchy paths.</p>",
         "KinesisAction$roleArn": "<p>The ARN of the IAM role that grants access to the Amazon Kinesis stream.</p>",
         "LoggingOptionsPayload$roleArn": "<p>The ARN of the IAM role that grants access.</p>",
         "RepublishAction$roleArn": "<p>The ARN of the IAM role that grants access.</p>",
@@ -949,6 +1078,13 @@
       "refs": {
         "ThingConnectivity$connected": "<p>True if the thing is connected to the AWS IoT service; false if it is not connected.</p>",
         "ThingTypeMetadata$deprecated": "<p>Whether the thing type is deprecated. If <b>true</b>, no new things could be associated with this type.</p>"
+      }
+    },
+    "BooleanKey": {
+      "base": null,
+      "refs": {
+        "AuthorizerDescription$signingDisabled": "<p>Specifies whether AWS IoT validates the token signature in an authorization request.</p>",
+        "CreateAuthorizerRequest$signingDisabled": "<p>Specifies whether AWS IoT validates the token signature in an authorization request.</p>"
       }
     },
     "BucketName": {
@@ -1098,6 +1234,7 @@
         "CertificateDescription$caCertificateId": "<p>The certificate ID of the CA certificate used to sign this certificate.</p>",
         "CreateCertificateFromCsrResponse$certificateId": "<p>The ID of the certificate. Certificate management operations only take a certificateId.</p>",
         "CreateKeysAndCertificateResponse$certificateId": "<p>The ID of the certificate. AWS IoT issues a default subject name for the certificate (for example, AWS IoT Certificate).</p>",
+        "CreateProvisioningClaimResponse$certificateId": "<p>The ID of the certificate.</p>",
         "DeleteCACertificateRequest$certificateId": "<p>The ID of the certificate to delete. (The last part of the certificate ARN contains the certificate ID.)</p>",
         "DeleteCertificateRequest$certificateId": "<p>The ID of the certificate. (The last part of the certificate ARN contains the certificate ID.)</p>",
         "DescribeCACertificateRequest$certificateId": "<p>The CA certificate identifier.</p>",
@@ -1133,6 +1270,7 @@
         "CertificateDescription$certificatePem": "<p>The certificate data, in PEM format.</p>",
         "CreateCertificateFromCsrResponse$certificatePem": "<p>The certificate data, in PEM format.</p>",
         "CreateKeysAndCertificateResponse$certificatePem": "<p>The certificate data, in PEM format.</p>",
+        "CreateProvisioningClaimResponse$certificatePem": "<p>The provisioning claim certificate.</p>",
         "RegisterCACertificateRequest$caCertificate": "<p>The CA certificate.</p>",
         "RegisterCACertificateRequest$verificationCertificate": "<p>The private key verification certificate.</p>",
         "RegisterCertificateRequest$certificatePem": "<p>The certificate data, in PEM format.</p>",
@@ -1375,6 +1513,16 @@
       "refs": {
       }
     },
+    "CreateDomainConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateDomainConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateDynamicThingGroupRequest": {
       "base": null,
       "refs": {
@@ -1442,6 +1590,36 @@
     },
     "CreatePolicyVersionResponse": {
       "base": "<p>The output of the CreatePolicyVersion operation.</p>",
+      "refs": {
+      }
+    },
+    "CreateProvisioningClaimRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateProvisioningClaimResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateProvisioningTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateProvisioningTemplateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateProvisioningTemplateVersionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateProvisioningTemplateVersionResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -1581,10 +1759,14 @@
         "CertificateDescription$lastModifiedDate": "<p>The date and time the certificate was last modified.</p>",
         "CertificateValidity$notBefore": "<p>The certificate is not valid before this date.</p>",
         "CertificateValidity$notAfter": "<p>The certificate is not valid after this date.</p>",
+        "CreateProvisioningClaimResponse$expiration": "<p>The provisioning claim expiration time.</p>",
+        "DescribeProvisioningTemplateResponse$creationDate": "<p>The date when the fleet provisioning template was created.</p>",
+        "DescribeProvisioningTemplateResponse$lastModifiedDate": "<p>The date when the fleet provisioning template was last modified.</p>",
+        "DescribeProvisioningTemplateVersionResponse$creationDate": "<p>The date when the fleet provisioning template version was created.</p>",
         "GetPolicyResponse$creationDate": "<p>The date the policy was created.</p>",
         "GetPolicyResponse$lastModifiedDate": "<p>The date the policy was last modified.</p>",
-        "GetPolicyVersionResponse$creationDate": "<p>The date the policy version was created.</p>",
-        "GetPolicyVersionResponse$lastModifiedDate": "<p>The date the policy version was last modified.</p>",
+        "GetPolicyVersionResponse$creationDate": "<p>The date the policy was created.</p>",
+        "GetPolicyVersionResponse$lastModifiedDate": "<p>The date the policy was last modified.</p>",
         "Job$createdAt": "<p>The time, in seconds since the epoch, when the job was created.</p>",
         "Job$lastUpdatedAt": "<p>The time, in seconds since the epoch, when the job was last updated.</p>",
         "Job$completedAt": "<p>The time, in seconds since the epoch, when the job was completed.</p>",
@@ -1603,6 +1785,9 @@
         "OutgoingCertificate$transferDate": "<p>The date the transfer was initiated.</p>",
         "OutgoingCertificate$creationDate": "<p>The certificate creation date.</p>",
         "PolicyVersion$createDate": "<p>The date and time the policy was created.</p>",
+        "ProvisioningTemplateSummary$creationDate": "<p>The date when the fleet provisioning template summary was created.</p>",
+        "ProvisioningTemplateSummary$lastModifiedDate": "<p>The date when the fleet provisioning template summary was last modified.</p>",
+        "ProvisioningTemplateVersionSummary$creationDate": "<p>The date when the fleet provisioning template version was created</p>",
         "RoleAliasDescription$creationDate": "<p>The UNIX timestamp of when the role alias was created.</p>",
         "RoleAliasDescription$lastModifiedDate": "<p>The UNIX timestamp of when the role alias was last modified.</p>",
         "StreamInfo$createdAt": "<p>The date when the stream was created.</p>",
@@ -1698,6 +1883,16 @@
       "refs": {
       }
     },
+    "DeleteDomainConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteDomainConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteDynamicThingGroupRequest": {
       "base": null,
       "refs": {
@@ -1745,6 +1940,26 @@
     },
     "DeletePolicyVersionRequest": {
       "base": "<p>The input for the DeletePolicyVersion operation.</p>",
+      "refs": {
+      }
+    },
+    "DeleteProvisioningTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteProvisioningTemplateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteProvisioningTemplateVersionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteProvisioningTemplateVersionResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -1978,6 +2193,16 @@
       "refs": {
       }
     },
+    "DescribeDomainConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDomainConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeEndpointRequest": {
       "base": "<p>The input for the DescribeEndpoint operation.</p>",
       "refs": {
@@ -2034,6 +2259,26 @@
       }
     },
     "DescribeMitigationActionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeProvisioningTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeProvisioningTemplateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeProvisioningTemplateVersionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeProvisioningTemplateVersionResponse": {
       "base": null,
       "refs": {
       }
@@ -2207,6 +2452,55 @@
       "refs": {
       }
     },
+    "DomainConfigurationArn": {
+      "base": null,
+      "refs": {
+        "CreateDomainConfigurationResponse$domainConfigurationArn": "<p>The ARN of the domain configuration.</p>",
+        "DescribeDomainConfigurationResponse$domainConfigurationArn": "<p>The ARN of the domain configuration.</p>",
+        "DomainConfigurationSummary$domainConfigurationArn": "<p>The ARN of the domain configuration.</p>",
+        "UpdateDomainConfigurationResponse$domainConfigurationArn": "<p>The ARN of the domain configuration that was updated.</p>"
+      }
+    },
+    "DomainConfigurationName": {
+      "base": null,
+      "refs": {
+        "CreateDomainConfigurationRequest$domainConfigurationName": "<p>The name of the domain configuration. This value must be unique to a region.</p>",
+        "CreateDomainConfigurationResponse$domainConfigurationName": "<p>The name of the domain configuration.</p>",
+        "DeleteDomainConfigurationRequest$domainConfigurationName": "<p>The name of the domain configuration to be deleted.</p>"
+      }
+    },
+    "DomainConfigurationStatus": {
+      "base": null,
+      "refs": {
+        "DescribeDomainConfigurationResponse$domainConfigurationStatus": "<p>A Boolean value that specifies the current state of the domain configuration.</p>",
+        "UpdateDomainConfigurationRequest$domainConfigurationStatus": "<p>The status to which the domain configuration should be updated.</p>"
+      }
+    },
+    "DomainConfigurationSummary": {
+      "base": "<p>The summary of a domain configuration. A domain configuration specifies custom IoT-specific information about a domain. A domain configuration can be associated with an AWS-managed domain (for example, dbc123defghijk.iot.us-west-2.amazonaws.com), a customer managed domain, or a default endpoint.</p> <ul> <li> <p>Data</p> </li> <li> <p>Jobs</p> </li> <li> <p>CredentialProvider</p> </li> </ul> <note> <p>The domain configuration feature is in public preview and is subject to change.</p> </note>",
+      "refs": {
+        "DomainConfigurations$member": null
+      }
+    },
+    "DomainConfigurations": {
+      "base": null,
+      "refs": {
+        "ListDomainConfigurationsResponse$domainConfigurations": "<p>A list of objects that contain summary information about the user's domain configurations.</p>"
+      }
+    },
+    "DomainName": {
+      "base": null,
+      "refs": {
+        "CreateDomainConfigurationRequest$domainName": "<p>The name of the domain.</p>",
+        "DescribeDomainConfigurationResponse$domainName": "<p>The name of the domain.</p>"
+      }
+    },
+    "DomainType": {
+      "base": null,
+      "refs": {
+        "DescribeDomainConfigurationResponse$domainType": "<p>The type of the domain.</p>"
+      }
+    },
     "DurationSeconds": {
       "base": null,
       "refs": {
@@ -2302,7 +2596,11 @@
       "refs": {
         "AuditCheckConfiguration$enabled": "<p>True if this audit check is enabled for this account.</p>",
         "AuditNotificationTarget$enabled": "<p>True if notifications to the target are enabled.</p>",
-        "Configuration$Enabled": "<p>True to enable the configuration.</p>"
+        "Configuration$Enabled": "<p>True to enable the configuration.</p>",
+        "CreateProvisioningTemplateRequest$enabled": "<p>True to enable the fleet provisioning template, otherwise false.</p>",
+        "DescribeProvisioningTemplateResponse$enabled": "<p>True if the fleet provisioning template is enabled, otherwise false.</p>",
+        "ProvisioningTemplateSummary$enabled": "<p>True if the fleet provision template is enabled, otherwise false.</p>",
+        "UpdateProvisioningTemplateRequest$enabled": "<p>True to enable the fleet provisioning template, otherwise false.</p>"
       }
     },
     "EndpointAddress": {
@@ -2416,7 +2714,7 @@
       }
     },
     "Field": {
-      "base": "<p>The field to aggregate.</p>",
+      "base": "<p>Describes the name and data type at a field.</p>",
       "refs": {
         "Fields$member": null
       }
@@ -2430,16 +2728,16 @@
     "FieldType": {
       "base": null,
       "refs": {
-        "Field$type": "<p>The data type of the field.</p>"
+        "Field$type": "<p>The datatype of the field.</p>"
       }
     },
     "Fields": {
       "base": null,
       "refs": {
-        "ThingGroupIndexingConfiguration$managedFields": "<p>A list of automatically indexed thing group fields.</p>",
-        "ThingGroupIndexingConfiguration$customFields": "<p>A list of thing group fields to index. This list cannot contain any managed fields. Use the GetIndexingConfiguration API to get a list of managed fields.</p>",
-        "ThingIndexingConfiguration$managedFields": "<p>A list of automatically indexed thing fields.</p>",
-        "ThingIndexingConfiguration$customFields": "<p>A list of thing fields to index. This list cannot contain any managed fields. Use the GetIndexingConfiguration API to get a list of managed fields.</p>"
+        "ThingGroupIndexingConfiguration$managedFields": "<p>Contains fields that are indexed and whose types are already known by the Fleet Indexing service.</p>",
+        "ThingGroupIndexingConfiguration$customFields": "<p>A list of thing group fields to index. This list cannot contain any managed fields. Use the GetIndexingConfiguration API to get a list of managed fields.</p> <p>Contains custom field names and their data type.</p>",
+        "ThingIndexingConfiguration$managedFields": "<p>Contains fields that are indexed and whose types are already known by the Fleet Indexing service.</p>",
+        "ThingIndexingConfiguration$customFields": "<p>Contains custom field names and their data type.</p>"
       }
     },
     "FileId": {
@@ -2740,6 +3038,36 @@
         "HttpAction$auth": "<p>The authentication method to use when sending data to an HTTPS endpoint.</p>"
       }
     },
+    "HttpContext": {
+      "base": "<p>Specifies the HTTP context to use for the test authorizer request.</p>",
+      "refs": {
+        "TestInvokeAuthorizerRequest$httpContext": "<p>Specifies a test HTTP authorization request.</p>"
+      }
+    },
+    "HttpHeaderName": {
+      "base": null,
+      "refs": {
+        "HttpHeaders$key": null
+      }
+    },
+    "HttpHeaderValue": {
+      "base": null,
+      "refs": {
+        "HttpHeaders$value": null
+      }
+    },
+    "HttpHeaders": {
+      "base": null,
+      "refs": {
+        "HttpContext$headers": "<p>The header keys and values in an HTTP authorization request.</p>"
+      }
+    },
+    "HttpQueryString": {
+      "base": null,
+      "refs": {
+        "HttpContext$queryString": "<p>The query string keys and values in an HTTP authorization request.</p>"
+      }
+    },
     "HttpUrlDestinationConfiguration": {
       "base": "<p>HTTP URL destination configuration used by the topic rule's HTTP action.</p>",
       "refs": {
@@ -2886,6 +3214,12 @@
         "Action$iotEvents": "<p>Sends an input to an AWS IoT Events detector.</p>"
       }
     },
+    "IotSiteWiseAction": {
+      "base": "<p>Describes an action to send data from an MQTT message that triggered the rule to AWS IoT SiteWise asset properties.</p>",
+      "refs": {
+        "Action$iotSiteWise": "<p>Sends data from the MQTT message that triggered the rule to AWS IoT SiteWise asset properties.</p>"
+      }
+    },
     "IsAuthenticated": {
       "base": null,
       "refs": {
@@ -2896,8 +3230,11 @@
       "base": null,
       "refs": {
         "CreatePolicyVersionResponse$isDefaultVersion": "<p>Specifies whether the policy version is the default.</p>",
+        "CreateProvisioningTemplateVersionResponse$isDefaultVersion": "<p>True if the fleet provisioning template version is the default version, otherwise false.</p>",
+        "DescribeProvisioningTemplateVersionResponse$isDefaultVersion": "<p>True if the fleet provisioning template version is the default version.</p>",
         "GetPolicyVersionResponse$isDefaultVersion": "<p>Specifies whether the policy version is the default.</p>",
-        "PolicyVersion$isDefaultVersion": "<p>Specifies whether the policy version is the default.</p>"
+        "PolicyVersion$isDefaultVersion": "<p>Specifies whether the policy version is the default.</p>",
+        "ProvisioningTemplateVersionSummary$isDefaultVersion": "<p>True if the fleet provisioning template version is the default version, otherwise false.</p>"
       }
     },
     "IsDisabled": {
@@ -3094,7 +3431,8 @@
     "KeyPair": {
       "base": "<p>Describes a key pair.</p>",
       "refs": {
-        "CreateKeysAndCertificateResponse$keyPair": "<p>The generated key pair.</p>"
+        "CreateKeysAndCertificateResponse$keyPair": "<p>The generated key pair.</p>",
+        "CreateProvisioningClaimResponse$keyPair": "<p>The provisioning claim key pair.</p>"
       }
     },
     "KeyValue": {
@@ -3245,6 +3583,16 @@
       "refs": {
       }
     },
+    "ListDomainConfigurationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDomainConfigurationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListIndicesRequest": {
       "base": null,
       "refs": {
@@ -3362,6 +3710,26 @@
     },
     "ListPrincipalThingsResponse": {
       "base": "<p>The output from the ListPrincipalThings operation.</p>",
+      "refs": {
+      }
+    },
+    "ListProvisioningTemplateVersionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListProvisioningTemplateVersionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListProvisioningTemplatesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListProvisioningTemplatesResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -3645,6 +4013,8 @@
         "ListCertificatesByCAResponse$nextMarker": "<p>The marker for the next set of results, or null if there are no additional results.</p>",
         "ListCertificatesRequest$marker": "<p>The marker for the next set of results.</p>",
         "ListCertificatesResponse$nextMarker": "<p>The marker for the next set of results, or null if there are no additional results.</p>",
+        "ListDomainConfigurationsRequest$marker": "<p>The marker for the next set of results.</p>",
+        "ListDomainConfigurationsResponse$nextMarker": "<p>The marker for the next set of results.</p>",
         "ListOutgoingCertificatesRequest$marker": "<p>The marker for the next set of results.</p>",
         "ListOutgoingCertificatesResponse$nextMarker": "<p>The marker for the next set of results.</p>",
         "ListPoliciesRequest$marker": "<p>The marker for the next set of results.</p>",
@@ -3675,6 +4045,8 @@
         "ListAuditTasksRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p>",
         "ListMitigationActionsRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p>",
         "ListOTAUpdatesRequest$maxResults": "<p>The maximum number of results to return at one time.</p>",
+        "ListProvisioningTemplateVersionsRequest$maxResults": "<p>The maximum number of results to return at one time.</p>",
+        "ListProvisioningTemplatesRequest$maxResults": "<p>The maximum number of results to return at one time.</p>",
         "ListScheduledAuditsRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p>",
         "ListSecurityProfilesForTargetRequest$maxResults": "<p>The maximum number of results to return at one time.</p>",
         "ListSecurityProfilesRequest$maxResults": "<p>The maximum number of results to return at one time.</p>",
@@ -3686,7 +4058,7 @@
     "Maximum": {
       "base": null,
       "refs": {
-        "Statistics$maximum": "<p>The maximum value of the aggregated fields. If the field data type is String this value is indeterminate.</p>"
+        "Statistics$maximum": "<p>The maximum aggregated field value.</p>"
       }
     },
     "MaximumPerMinute": {
@@ -3728,7 +4100,7 @@
     "Minimum": {
       "base": null,
       "refs": {
-        "Statistics$minimum": "<p>The minimum value of the aggregated fields. If the field data type is String this value is indeterminate.</p>"
+        "Statistics$minimum": "<p>The minimum aggregated field value.</p>"
       }
     },
     "MinimumNumberOfExecutedThings": {
@@ -3828,6 +4200,30 @@
         "ListMitigationActionsRequest$actionType": "<p>Specify a value to limit the result to mitigation actions with a specific action type.</p>"
       }
     },
+    "MqttClientId": {
+      "base": null,
+      "refs": {
+        "MqttContext$clientId": "<p>The value of the <code>clientId</code> key in an MQTT authorization request.</p>"
+      }
+    },
+    "MqttContext": {
+      "base": "<p>Specifies the MQTT context to use for the test authorizer request</p>",
+      "refs": {
+        "TestInvokeAuthorizerRequest$mqttContext": "<p>Specifies a test MQTT authorization request.&gt;</p>"
+      }
+    },
+    "MqttPassword": {
+      "base": null,
+      "refs": {
+        "MqttContext$password": "<p>The value of the <code>password</code> key in an MQTT authorization request.</p>"
+      }
+    },
+    "MqttUsername": {
+      "base": null,
+      "refs": {
+        "MqttContext$username": "<p>The value of the <code>username</code> key in an MQTT authorization request.</p>"
+      }
+    },
     "NextToken": {
       "base": null,
       "refs": {
@@ -3843,8 +4239,8 @@
         "ListAuditTasksResponse$nextToken": "<p>A token that can be used to retrieve the next set of results, or <code>null</code> if there are no additional results.</p>",
         "ListBillingGroupsRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
         "ListBillingGroupsResponse$nextToken": "<p>The token used to get the next set of results, or <b>null</b> if there are no additional results.</p>",
-        "ListIndicesRequest$nextToken": "<p>The token used to get the next set of results, or null if there are no additional results.</p>",
-        "ListIndicesResponse$nextToken": "<p>The token used to get the next set of results, or null if there are no additional results.</p>",
+        "ListIndicesRequest$nextToken": "<p>The token used to get the next set of results, or <code>null</code> if there are no additional results.</p>",
+        "ListIndicesResponse$nextToken": "<p>The token used to get the next set of results, or <code>null</code> if there are no additional results.</p>",
         "ListJobExecutionsForJobRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
         "ListJobExecutionsForJobResponse$nextToken": "<p>The token for the next set of results, or <b>null</b> if there are no additional results.</p>",
         "ListJobExecutionsForThingRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
@@ -3857,6 +4253,10 @@
         "ListOTAUpdatesResponse$nextToken": "<p>A token to use to get the next set of results.</p>",
         "ListPrincipalThingsRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
         "ListPrincipalThingsResponse$nextToken": "<p>The token used to get the next set of results, or <b>null</b> if there are no additional results.</p>",
+        "ListProvisioningTemplateVersionsRequest$nextToken": "<p>A token to retrieve the next set of results.</p>",
+        "ListProvisioningTemplateVersionsResponse$nextToken": "<p>A token to retrieve the next set of results.</p>",
+        "ListProvisioningTemplatesRequest$nextToken": "<p>A token to retrieve the next set of results.</p>",
+        "ListProvisioningTemplatesResponse$nextToken": "<p>A token to retrieve the next set of results.</p>",
         "ListScheduledAuditsRequest$nextToken": "<p>The token for the next set of results.</p>",
         "ListScheduledAuditsResponse$nextToken": "<p>A token that can be used to retrieve the next set of results, or <code>null</code> if there are no additional results.</p>",
         "ListSecurityProfilesForTargetRequest$nextToken": "<p>The token for the next set of results.</p>",
@@ -3893,8 +4293,8 @@
         "ListV2LoggingLevelsResponse$nextToken": "<p>The token used to get the next set of results, or <b>null</b> if there are no additional results.</p>",
         "ListViolationEventsRequest$nextToken": "<p>The token for the next set of results.</p>",
         "ListViolationEventsResponse$nextToken": "<p>A token that can be used to retrieve the next set of results, or <code>null</code> if there are no additional results.</p>",
-        "SearchIndexRequest$nextToken": "<p>The token used to get the next set of results, or null if there are no additional results.</p>",
-        "SearchIndexResponse$nextToken": "<p>The token used to get the next set of results, or null if there are no additional results.</p>"
+        "SearchIndexRequest$nextToken": "<p>The token used to get the next set of results, or <code>null</code> if there are no additional results.</p>",
+        "SearchIndexResponse$nextToken": "<p>The token used to get the next set of results, or <code>null</code> if there are no additional results.</p>"
       }
     },
     "NonCompliantChecksCount": {
@@ -4047,6 +4447,7 @@
         "ListCACertificatesRequest$pageSize": "<p>The result page size.</p>",
         "ListCertificatesByCARequest$pageSize": "<p>The result page size.</p>",
         "ListCertificatesRequest$pageSize": "<p>The result page size.</p>",
+        "ListDomainConfigurationsRequest$pageSize": "<p>The result page size.</p>",
         "ListOutgoingCertificatesRequest$pageSize": "<p>The result page size.</p>",
         "ListPoliciesRequest$pageSize": "<p>The result page size.</p>",
         "ListPolicyPrincipalsRequest$pageSize": "<p>The result page size.</p>",
@@ -4331,6 +4732,30 @@
         "JobProcessDetails$processingTargets": "<p>The target devices to which the job execution is being rolled out. This value will be null after the job execution has finished rolling out to all the target devices.</p>"
       }
     },
+    "ProvisioningTemplateListing": {
+      "base": null,
+      "refs": {
+        "ListProvisioningTemplatesResponse$templates": "<p>A list of fleet provisioning templates</p>"
+      }
+    },
+    "ProvisioningTemplateSummary": {
+      "base": "<p>A summary of information about a fleet provisioning template.</p>",
+      "refs": {
+        "ProvisioningTemplateListing$member": null
+      }
+    },
+    "ProvisioningTemplateVersionListing": {
+      "base": null,
+      "refs": {
+        "ListProvisioningTemplateVersionsResponse$versions": "<p>The list of fleet provisioning template versions.</p>"
+      }
+    },
+    "ProvisioningTemplateVersionSummary": {
+      "base": "<p>A summary of information about a fleet provision template version.</p>",
+      "refs": {
+        "ProvisioningTemplateVersionListing$member": null
+      }
+    },
     "PublicKey": {
       "base": null,
       "refs": {
@@ -4349,6 +4774,18 @@
       "base": "<p>Parameters to define a mitigation action that publishes findings to Amazon SNS. You can implement your own custom actions in response to the Amazon SNS messages.</p>",
       "refs": {
         "MitigationActionParams$publishFindingToSnsParams": "<p>Parameters to define a mitigation action that publishes findings to Amazon SNS. You can implement your own custom actions in response to the Amazon SNS messages.</p>"
+      }
+    },
+    "PutAssetPropertyValueEntry": {
+      "base": "<p>An asset property value entry containing the following information.</p>",
+      "refs": {
+        "PutAssetPropertyValueEntryList$member": null
+      }
+    },
+    "PutAssetPropertyValueEntryList": {
+      "base": null,
+      "refs": {
+        "IotSiteWiseAction$putAssetPropertyValueEntries": "<p>A list of asset property value entries.</p>"
       }
     },
     "PutItemInput": {
@@ -4567,6 +5004,12 @@
         "AuditFinding$relatedResources": "<p>The list of related resources.</p>"
       }
     },
+    "RemoveAuthorizerConfig": {
+      "base": null,
+      "refs": {
+        "UpdateDomainConfigurationRequest$removeAuthorizerConfig": "<p>Removes the authorization configuration from a domain.</p>"
+      }
+    },
     "RemoveAutoRegistration": {
       "base": null,
       "refs": {
@@ -4627,6 +5070,16 @@
       "base": "<p>Describes an action to republish to another topic.</p>",
       "refs": {
         "Action$republish": "<p>Publish to another MQTT topic.</p>"
+      }
+    },
+    "ReservedDomainConfigurationName": {
+      "base": null,
+      "refs": {
+        "DescribeDomainConfigurationRequest$domainConfigurationName": "<p>The name of the domain configuration.</p>",
+        "DescribeDomainConfigurationResponse$domainConfigurationName": "<p>The name of the domain configuration.</p>",
+        "DomainConfigurationSummary$domainConfigurationName": "<p>The name of the domain configuration. This value must be unique to a region.</p>",
+        "UpdateDomainConfigurationRequest$domainConfigurationName": "<p>The name of the domain configuration to be updated.</p>",
+        "UpdateDomainConfigurationResponse$domainConfigurationName": "<p>The name of the domain configuration that was updated.</p>"
       }
     },
     "Resource": {
@@ -4709,6 +5162,7 @@
       "base": null,
       "refs": {
         "CreateRoleAliasResponse$roleAliasArn": "<p>The role alias ARN.</p>",
+        "ResourceIdentifier$roleAliasArn": "<p>The ARN of the role alias that has overly permissive actions.</p>",
         "RoleAliasDescription$roleAliasArn": "<p>The ARN of the role alias.</p>",
         "UpdateRoleAliasResponse$roleAliasArn": "<p>The role alias ARN.</p>"
       }
@@ -4732,20 +5186,24 @@
         "AuditNotificationTarget$roleArn": "<p>The ARN of the role that grants permission to send notifications to the target.</p>",
         "CreateMitigationActionRequest$roleArn": "<p>The ARN of the IAM role that is used to apply the mitigation action.</p>",
         "CreateOTAUpdateRequest$roleArn": "<p>The IAM role that allows access to the AWS IoT Jobs service.</p>",
+        "CreateProvisioningTemplateRequest$provisioningRoleArn": "<p>The role ARN for the role associated with the fleet provisioning template. This IoT role grants permission to provision a device.</p>",
         "CreateRoleAliasRequest$roleArn": "<p>The role ARN.</p>",
         "CreateStreamRequest$roleArn": "<p>An IAM role that allows the IoT service principal assumes to access your S3 files.</p>",
         "DescribeAccountAuditConfigurationResponse$roleArn": "<p>The ARN of the role that grants permission to AWS IoT to access information about your devices, policies, certificates, and other items as required when performing an audit.</p> <p>On the first call to <code>UpdateAccountAuditConfiguration</code>, this parameter is required.</p>",
         "DescribeMitigationActionResponse$roleArn": "<p>The ARN of the IAM role used to apply this action.</p>",
+        "DescribeProvisioningTemplateResponse$provisioningRoleArn": "<p>The ARN of the role associated with the provisioning template. This IoT role grants permission to provision a device.</p>",
         "DescribeThingRegistrationTaskResponse$roleArn": "<p>The role ARN that grants access to the input file bucket.</p>",
         "EnableIoTLoggingParams$roleArnForLogging": "<p>The ARN of the IAM role used for logging.</p>",
         "MitigationAction$roleArn": "<p>The IAM role ARN used to apply this mitigation action.</p>",
         "PresignedUrlConfig$roleArn": "<p>The ARN of an IAM role that grants grants permission to download files from the S3 bucket where the job data/updates are stored. The role must also grant permission for IoT to download the files.</p>",
         "RegistrationConfig$roleArn": "<p>The ARN of the role.</p>",
+        "ResourceIdentifier$iamRoleArn": "<p>The ARN of the IAM role that has overly permissive actions.</p>",
         "RoleAliasDescription$roleArn": "<p>The role ARN.</p>",
         "StartThingRegistrationTaskRequest$roleArn": "<p>The IAM role ARN that grants permission the input file.</p>",
         "StreamInfo$roleArn": "<p>An IAM role AWS IoT assumes to access your S3 files.</p>",
         "UpdateAccountAuditConfigurationRequest$roleArn": "<p>The ARN of the role that grants permission to AWS IoT to access information about your devices, policies, certificates and other items as required when performing an audit.</p>",
         "UpdateMitigationActionRequest$roleArn": "<p>The ARN of the IAM role that is used to apply the mitigation action.</p>",
+        "UpdateProvisioningTemplateRequest$provisioningRoleArn": "<p>The ARN of the role associated with the provisioning template. This IoT role grants permission to provision a device.</p>",
         "UpdateRoleAliasRequest$roleArn": "<p>The role ARN.</p>",
         "UpdateStreamRequest$roleArn": "<p>An IAM role that allows the IoT service principal assumes to access your S3 files.</p>"
       }
@@ -4992,10 +5450,55 @@
         "ListTargetsForSecurityProfileResponse$securityProfileTargets": "<p>The thing groups to which the security profile is attached.</p>"
       }
     },
+    "ServerCertificateArns": {
+      "base": null,
+      "refs": {
+        "CreateDomainConfigurationRequest$serverCertificateArns": "<p>The ARNs of the certificates that AWS IoT passes to the device during the TLS handshake. Currently you can specify only one certificate ARN. This value is not required for AWS-managed domains.</p>"
+      }
+    },
+    "ServerCertificateStatus": {
+      "base": null,
+      "refs": {
+        "ServerCertificateSummary$serverCertificateStatus": "<p>The status of the server certificate.</p>"
+      }
+    },
+    "ServerCertificateStatusDetail": {
+      "base": null,
+      "refs": {
+        "ServerCertificateSummary$serverCertificateStatusDetail": "<p>Details that explain the status of the server certificate.</p>"
+      }
+    },
+    "ServerCertificateSummary": {
+      "base": "<p>An object that contains information about a server certificate.</p>",
+      "refs": {
+        "ServerCertificates$member": null
+      }
+    },
+    "ServerCertificates": {
+      "base": null,
+      "refs": {
+        "DescribeDomainConfigurationResponse$serverCertificates": "<p>A list containing summary information about the server certificate included in the domain configuration.</p>"
+      }
+    },
+    "ServerName": {
+      "base": null,
+      "refs": {
+        "TlsContext$serverName": "<p>The value of the <code>serverName</code> key in a TLS authorization request.</p>"
+      }
+    },
     "ServiceName": {
       "base": null,
       "refs": {
         "SigV4Authorization$serviceName": "<p>The service name to use while signing with Sig V4.</p>"
+      }
+    },
+    "ServiceType": {
+      "base": null,
+      "refs": {
+        "CreateDomainConfigurationRequest$serviceType": "<p>The type of service delivered by the endpoint.</p>",
+        "DescribeDomainConfigurationResponse$serviceType": "<p>The type of service delivered by the endpoint.</p>",
+        "DomainConfigurationSummary$serviceType": "<p>The type of service delivered by the endpoint.</p>",
+        "ListDomainConfigurationsRequest$serviceType": "<p>The type of service delivered by the endpoint.</p>"
       }
     },
     "ServiceUnavailableException": {
@@ -5021,7 +5524,8 @@
     "SetAsDefault": {
       "base": null,
       "refs": {
-        "CreatePolicyVersionRequest$setAsDefault": "<p>Specifies whether the policy version is set as the default. When this parameter is true, the new policy version becomes the operative version (that is, the version that is in effect for the certificates to which the policy is attached).</p>"
+        "CreatePolicyVersionRequest$setAsDefault": "<p>Specifies whether the policy version is set as the default. When this parameter is true, the new policy version becomes the operative version (that is, the version that is in effect for the certificates to which the policy is attached).</p>",
+        "CreateProvisioningTemplateVersionRequest$setAsDefault": "<p>Sets a fleet provision template version as the default version.</p>"
       }
     },
     "SetDefaultAuthorizerRequest": {
@@ -5350,7 +5854,7 @@
     "Sum": {
       "base": null,
       "refs": {
-        "Statistics$sum": "<p>The sum of the aggregated fields. If the field data type is String this value is indeterminate.</p>"
+        "Statistics$sum": "<p>The sum of the aggregated field values.</p>"
       }
     },
     "SumOfSquares": {
@@ -5393,6 +5897,7 @@
         "CreateJobRequest$tags": "<p>Metadata which can be used to manage the job.</p>",
         "CreateMitigationActionRequest$tags": "<p>Metadata that can be used to manage the mitigation action.</p>",
         "CreateOTAUpdateRequest$tags": "<p>Metadata which can be used to manage updates.</p>",
+        "CreateProvisioningTemplateRequest$tags": "<p>Metadata which can be used to manage the fleet provisioning template.</p> <note> <p>For URI Request parameters use format: ...key1=value1&amp;key2=value2...</p> <p>For the CLI command-line parameter use format: &amp;&amp;tags \"key1=value1&amp;key2=value2...\"</p> <p>For the cli-input-json file use format: \"tags\": \"key1=value1&amp;key2=value2...\"</p> </note>",
         "CreateScheduledAuditRequest$tags": "<p>Metadata that can be used to manage the scheduled audit.</p>",
         "CreateSecurityProfileRequest$tags": "<p>Metadata that can be used to manage the security profile.</p>",
         "CreateStreamRequest$tags": "<p>Metadata which can be used to manage streams.</p>",
@@ -5492,13 +5997,66 @@
         "AuditMitigationActionsTaskStatistics$value": null
       }
     },
+    "TemplateArn": {
+      "base": null,
+      "refs": {
+        "CreateProvisioningTemplateResponse$templateArn": "<p>The ARN that identifies the provisioning template.</p>",
+        "CreateProvisioningTemplateVersionResponse$templateArn": "<p>The ARN that identifies the provisioning template.</p>",
+        "DescribeProvisioningTemplateResponse$templateArn": "<p>The ARN of the fleet provisioning template.</p>",
+        "ProvisioningTemplateSummary$templateArn": "<p>The ARN of the fleet provisioning template.</p>"
+      }
+    },
     "TemplateBody": {
       "base": null,
       "refs": {
+        "CreateProvisioningTemplateRequest$templateBody": "<p>The JSON formatted contents of the fleet provisioning template.</p>",
+        "CreateProvisioningTemplateVersionRequest$templateBody": "<p>The JSON formatted contents of the fleet provisioning template.</p>",
+        "DescribeProvisioningTemplateResponse$templateBody": "<p>The JSON formatted contents of the fleet provisioning template.</p>",
+        "DescribeProvisioningTemplateVersionResponse$templateBody": "<p>The JSON formatted contents of the fleet provisioning template version.</p>",
         "DescribeThingRegistrationTaskResponse$templateBody": "<p>The task's template.</p>",
         "RegisterThingRequest$templateBody": "<p>The provisioning template. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html\">Programmatic Provisioning</a> for more information.</p>",
         "RegistrationConfig$templateBody": "<p>The template body.</p>",
         "StartThingRegistrationTaskRequest$templateBody": "<p>The provisioning template.</p>"
+      }
+    },
+    "TemplateDescription": {
+      "base": null,
+      "refs": {
+        "CreateProvisioningTemplateRequest$description": "<p>The description of the fleet provisioning template.</p>",
+        "DescribeProvisioningTemplateResponse$description": "<p>The description of the fleet provisioning template.</p>",
+        "ProvisioningTemplateSummary$description": "<p>The description of the fleet provisioning template.</p>",
+        "UpdateProvisioningTemplateRequest$description": "<p>The description of the fleet provisioning template.</p>"
+      }
+    },
+    "TemplateName": {
+      "base": null,
+      "refs": {
+        "CreateProvisioningClaimRequest$templateName": "<p>The name of the provisioning template to use.</p>",
+        "CreateProvisioningTemplateRequest$templateName": "<p>The name of the fleet provisioning template.</p>",
+        "CreateProvisioningTemplateResponse$templateName": "<p>The name of the fleet provisioning template.</p>",
+        "CreateProvisioningTemplateVersionRequest$templateName": "<p>The name of the fleet provisioning template.</p>",
+        "CreateProvisioningTemplateVersionResponse$templateName": "<p>The name of the fleet provisioning template.</p>",
+        "DeleteProvisioningTemplateRequest$templateName": "<p>The name of the fleet provision template to delete.</p>",
+        "DeleteProvisioningTemplateVersionRequest$templateName": "<p>The name of the fleet provisioning template version to delete.</p>",
+        "DescribeProvisioningTemplateRequest$templateName": "<p>The name of the fleet provisioning template.</p>",
+        "DescribeProvisioningTemplateResponse$templateName": "<p>The name of the fleet provisioning template.</p>",
+        "DescribeProvisioningTemplateVersionRequest$templateName": "<p>The template name.</p>",
+        "ListProvisioningTemplateVersionsRequest$templateName": "<p>The name of the fleet provisioning template.</p>",
+        "ProvisioningTemplateSummary$templateName": "<p>The name of the fleet provisioning template.</p>",
+        "UpdateProvisioningTemplateRequest$templateName": "<p>The name of the fleet provisioning template.</p>"
+      }
+    },
+    "TemplateVersionId": {
+      "base": null,
+      "refs": {
+        "CreateProvisioningTemplateResponse$defaultVersionId": "<p>The default version of the fleet provisioning template.</p>",
+        "CreateProvisioningTemplateVersionResponse$versionId": "<p>The version of the fleet provisioning template.</p>",
+        "DeleteProvisioningTemplateVersionRequest$versionId": "<p>The fleet provisioning template version ID to delete.</p>",
+        "DescribeProvisioningTemplateResponse$defaultVersionId": "<p>The default fleet template version ID.</p>",
+        "DescribeProvisioningTemplateVersionRequest$versionId": "<p>The fleet provisioning template version ID.</p>",
+        "DescribeProvisioningTemplateVersionResponse$versionId": "<p>The fleet provisioning template version ID.</p>",
+        "ProvisioningTemplateVersionSummary$versionId": "<p>The ID of the fleet privisioning template version.</p>",
+        "UpdateProvisioningTemplateRequest$defaultVersionId": "<p>The ID of the default provisioning template version.</p>"
       }
     },
     "TestAuthorizationRequest": {
@@ -5871,6 +6429,12 @@
         "ViolationEvent$violationEventTime": "<p>The time the violation event occurred.</p>"
       }
     },
+    "TlsContext": {
+      "base": "<p>Specifies the TLS context to use for the test authorizer request.</p>",
+      "refs": {
+        "TestInvokeAuthorizerRequest$tlsContext": "<p>Specifies a test TLS authorization request.</p>"
+      }
+    },
     "Token": {
       "base": null,
       "refs": {
@@ -6097,6 +6661,16 @@
         "MitigationActionParams$updateDeviceCertificateParams": "<p>Parameters to define a mitigation action that changes the state of the device certificate to inactive.</p>"
       }
     },
+    "UpdateDomainConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateDomainConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateDynamicThingGroupRequest": {
       "base": null,
       "refs": {
@@ -6138,6 +6712,16 @@
       }
     },
     "UpdateMitigationActionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateProvisioningTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateProvisioningTemplateResponse": {
       "base": null,
       "refs": {
       }

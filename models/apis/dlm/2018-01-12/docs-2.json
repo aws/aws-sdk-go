@@ -34,7 +34,7 @@
       "base": null,
       "refs": {
         "FastRestoreRule$Count": "<p>The number of snapshots to be enabled with fast snapshot restore.</p>",
-        "RetainRule$Count": "<p>The number of snapshots to keep for each volume, up to a maximum of 1000.</p>"
+        "RetainRule$Count": "<p>The number of snapshots to retain for each volume, up to a maximum of 1000.</p>"
       }
     },
     "CreateLifecyclePolicyRequest": {
@@ -96,7 +96,7 @@
       }
     },
     "FastRestoreRule": {
-      "base": "<p>Specifies when to enable fast snapshot restore.</p>",
+      "base": "<p>Specifies a rule for enabling fast snapshot restore. You can enable fast snapshot restore based on either a count or a time interval.</p>",
       "refs": {
         "Schedule$FastRestoreRule": "<p>Enable fast snapshot restore.</p>"
       }
@@ -137,7 +137,9 @@
     "Interval": {
       "base": null,
       "refs": {
-        "CreateRule$Interval": "<p>The interval between snapshots. The supported values are 2, 3, 4, 6, 8, 12, and 24.</p>"
+        "CreateRule$Interval": "<p>The interval between snapshots. The supported values are 2, 3, 4, 6, 8, 12, and 24.</p>",
+        "FastRestoreRule$Interval": "<p>The amount of time to enable fast snapshot restore. The maximum is 100 years. This is equivalent to 1200 months, 5200 weeks, or 36500 days.</p>",
+        "RetainRule$Interval": "<p>The amount of time to retain each snapshot. The maximum is 100 years. This is equivalent to 1200 months, 5200 weeks, or 36500 days.</p>"
       }
     },
     "IntervalUnitValues": {
@@ -273,9 +275,16 @@
       }
     },
     "RetainRule": {
-      "base": "<p>Specifies the number of snapshots to keep for each EBS volume.</p>",
+      "base": "<p>Specifies the retention rule for a lifecycle policy. You can retain snapshots based on either a count or a time interval.</p>",
       "refs": {
-        "Schedule$RetainRule": "<p>The retain rule.</p>"
+        "Schedule$RetainRule": "<p>The retention rule.</p>"
+      }
+    },
+    "RetentionIntervalUnitValues": {
+      "base": null,
+      "refs": {
+        "FastRestoreRule$IntervalUnit": "<p>The unit of time for enabling fast snapshot restore.</p>",
+        "RetainRule$IntervalUnit": "<p>The unit of time for time-based retention.</p>"
       }
     },
     "Schedule": {

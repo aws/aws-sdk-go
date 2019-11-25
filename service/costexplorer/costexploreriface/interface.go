@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // AWS Cost Explorer Service.
 //    func myFunc(svc costexploreriface.CostExplorerAPI) bool {
-//        // Make svc.GetCostAndUsage request
+//        // Make svc.CreateCostCategoryDefinition request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockCostExplorerClient struct {
 //        costexploreriface.CostExplorerAPI
 //    }
-//    func (m *mockCostExplorerClient) GetCostAndUsage(input *costexplorer.GetCostAndUsageInput) (*costexplorer.GetCostAndUsageOutput, error) {
+//    func (m *mockCostExplorerClient) CreateCostCategoryDefinition(input *costexplorer.CreateCostCategoryDefinitionInput) (*costexplorer.CreateCostCategoryDefinitionOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,18 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type CostExplorerAPI interface {
+	CreateCostCategoryDefinition(*costexplorer.CreateCostCategoryDefinitionInput) (*costexplorer.CreateCostCategoryDefinitionOutput, error)
+	CreateCostCategoryDefinitionWithContext(aws.Context, *costexplorer.CreateCostCategoryDefinitionInput, ...request.Option) (*costexplorer.CreateCostCategoryDefinitionOutput, error)
+	CreateCostCategoryDefinitionRequest(*costexplorer.CreateCostCategoryDefinitionInput) (*request.Request, *costexplorer.CreateCostCategoryDefinitionOutput)
+
+	DeleteCostCategoryDefinition(*costexplorer.DeleteCostCategoryDefinitionInput) (*costexplorer.DeleteCostCategoryDefinitionOutput, error)
+	DeleteCostCategoryDefinitionWithContext(aws.Context, *costexplorer.DeleteCostCategoryDefinitionInput, ...request.Option) (*costexplorer.DeleteCostCategoryDefinitionOutput, error)
+	DeleteCostCategoryDefinitionRequest(*costexplorer.DeleteCostCategoryDefinitionInput) (*request.Request, *costexplorer.DeleteCostCategoryDefinitionOutput)
+
+	DescribeCostCategoryDefinition(*costexplorer.DescribeCostCategoryDefinitionInput) (*costexplorer.DescribeCostCategoryDefinitionOutput, error)
+	DescribeCostCategoryDefinitionWithContext(aws.Context, *costexplorer.DescribeCostCategoryDefinitionInput, ...request.Option) (*costexplorer.DescribeCostCategoryDefinitionOutput, error)
+	DescribeCostCategoryDefinitionRequest(*costexplorer.DescribeCostCategoryDefinitionInput) (*request.Request, *costexplorer.DescribeCostCategoryDefinitionOutput)
+
 	GetCostAndUsage(*costexplorer.GetCostAndUsageInput) (*costexplorer.GetCostAndUsageOutput, error)
 	GetCostAndUsageWithContext(aws.Context, *costexplorer.GetCostAndUsageInput, ...request.Option) (*costexplorer.GetCostAndUsageOutput, error)
 	GetCostAndUsageRequest(*costexplorer.GetCostAndUsageInput) (*request.Request, *costexplorer.GetCostAndUsageOutput)
@@ -121,6 +133,14 @@ type CostExplorerAPI interface {
 	GetUsageForecast(*costexplorer.GetUsageForecastInput) (*costexplorer.GetUsageForecastOutput, error)
 	GetUsageForecastWithContext(aws.Context, *costexplorer.GetUsageForecastInput, ...request.Option) (*costexplorer.GetUsageForecastOutput, error)
 	GetUsageForecastRequest(*costexplorer.GetUsageForecastInput) (*request.Request, *costexplorer.GetUsageForecastOutput)
+
+	ListCostCategoryDefinitions(*costexplorer.ListCostCategoryDefinitionsInput) (*costexplorer.ListCostCategoryDefinitionsOutput, error)
+	ListCostCategoryDefinitionsWithContext(aws.Context, *costexplorer.ListCostCategoryDefinitionsInput, ...request.Option) (*costexplorer.ListCostCategoryDefinitionsOutput, error)
+	ListCostCategoryDefinitionsRequest(*costexplorer.ListCostCategoryDefinitionsInput) (*request.Request, *costexplorer.ListCostCategoryDefinitionsOutput)
+
+	UpdateCostCategoryDefinition(*costexplorer.UpdateCostCategoryDefinitionInput) (*costexplorer.UpdateCostCategoryDefinitionOutput, error)
+	UpdateCostCategoryDefinitionWithContext(aws.Context, *costexplorer.UpdateCostCategoryDefinitionInput, ...request.Option) (*costexplorer.UpdateCostCategoryDefinitionOutput, error)
+	UpdateCostCategoryDefinitionRequest(*costexplorer.UpdateCostCategoryDefinitionInput) (*request.Request, *costexplorer.UpdateCostCategoryDefinitionOutput)
 }
 
 var _ CostExplorerAPI = (*costexplorer.CostExplorer)(nil)

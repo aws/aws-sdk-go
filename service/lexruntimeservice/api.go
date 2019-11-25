@@ -1592,6 +1592,9 @@ type PostContentOutput struct {
 	// Map of key/value pairs representing the session-specific context information.
 	SessionAttributes aws.JSONValue `location:"header" locationName:"x-amz-lex-session-attributes" type:"jsonvalue"`
 
+	// The unique identifier for the session.
+	SessionId *string `location:"header" locationName:"x-amz-lex-session-id" type:"string"`
+
 	// If the dialogState value is ElicitSlot, returns the name of the slot for
 	// which Amazon Lex is eliciting a value.
 	SlotToElicit *string `location:"header" locationName:"x-amz-lex-slot-to-elicit" type:"string"`
@@ -1671,6 +1674,12 @@ func (s *PostContentOutput) SetSentimentResponse(v string) *PostContentOutput {
 // SetSessionAttributes sets the SessionAttributes field's value.
 func (s *PostContentOutput) SetSessionAttributes(v aws.JSONValue) *PostContentOutput {
 	s.SessionAttributes = v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *PostContentOutput) SetSessionId(v string) *PostContentOutput {
+	s.SessionId = &v
 	return s
 }
 
@@ -1915,6 +1924,9 @@ type PostTextOutput struct {
 	// A map of key-value pairs representing the session-specific context information.
 	SessionAttributes map[string]*string `locationName:"sessionAttributes" type:"map" sensitive:"true"`
 
+	// A unique identifier for the session.
+	SessionId *string `locationName:"sessionId" type:"string"`
+
 	// If the dialogState value is ElicitSlot, returns the name of the slot for
 	// which Amazon Lex is eliciting a value.
 	SlotToElicit *string `locationName:"slotToElicit" type:"string"`
@@ -1981,6 +1993,12 @@ func (s *PostTextOutput) SetSentimentResponse(v *SentimentResponse) *PostTextOut
 // SetSessionAttributes sets the SessionAttributes field's value.
 func (s *PostTextOutput) SetSessionAttributes(v map[string]*string) *PostTextOutput {
 	s.SessionAttributes = v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *PostTextOutput) SetSessionId(v string) *PostTextOutput {
+	s.SessionId = &v
 	return s
 }
 

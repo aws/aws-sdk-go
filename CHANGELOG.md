@@ -1,3 +1,53 @@
+Release v1.25.42 (2019-11-25)
+===
+
+### Service Client Updates
+* `service/alexaforbusiness`: Updates service API and documentation
+* `service/appconfig`: Adds new service
+* `service/application-autoscaling`: Updates service API and documentation
+* `service/application-insights`: Updates service API, documentation, and paginators
+* `service/athena`: Updates service API and documentation
+  * This release adds additional query lifecycle metrics to the QueryExecutionStatistics object in GetQueryExecution response.
+* `service/ce`: Updates service API and documentation
+* `service/codebuild`: Updates service API and documentation
+  * CodeBuild adds support for test reporting
+* `service/cognito-idp`: Updates service API
+* `service/comprehend`: Updates service API and documentation
+* `service/dlm`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * This release adds two new APIs: 1. ModifyDefaultCreditSpecification, which allows you to set default credit specification at the account level per AWS Region, per burstable performance instance family, so that all new burstable performance instances in the account launch using the new default credit specification. 2. GetDefaultCreditSpecification, which allows you to get current default credit specification per AWS Region, per burstable performance instance family. This release also adds new client exceptions for StartInstances and StopInstances.
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+* `service/greengrass`: Updates service API and documentation
+  * IoT Greengrass supports machine learning resources in 'No container' mode.
+* `service/iot`: Updates service API and documentation
+  * This release adds: 1) APIs for fleet provisioning claim and template, 2) endpoint configuration and custom domains, 3) support for enhanced custom authentication, d) support for 4 additional audit checks: Device and CA certificate key quality checks, IoT role alias over-permissive check and IoT role alias access to unused services check, 5) extended capability of AWS IoT Rules Engine to support IoT SiteWise rule action. The IoT SiteWise rule action lets you send messages from IoT sensors and applications to IoT SiteWise asset properties
+* `service/iotsecuretunneling`: Adds new service
+* `service/kinesisanalyticsv2`: Updates service API and documentation
+* `service/kms`: Updates service API and documentation
+  * AWS Key Management Service (KMS) now enables creation and use of asymmetric Customer Master Keys (CMKs) and the generation of asymmetric data key pairs.
+* `service/lambda`: Updates service API, documentation, waiters, and paginators
+  * Added the function state and update status to the output of GetFunctionConfiguration and other actions. Check the state information to ensure that a function is ready before you perform operations on it. Functions take time to become ready when you connect them to a VPC.Added the EventInvokeConfig type and operations to configure error handling options for asynchronous invocation. Use PutFunctionEventInvokeConfig to configure the number of retries and the maximum age of events when you invoke the function asynchronously.Added on-failure and on-success destination settings for asynchronous invocation. Configure destinations to send an invocation record to an SNS topic, an SQS queue, an EventBridge event bus, or a Lambda function.Added error handling options to event source mappings. This enables you to configure the number of retries, configure the maximum age of records, or retry with smaller batches when an error occurs when a function processes a Kinesis or DynamoDB stream.Added the on-failure destination setting to event source mappings. This enables you to send discarded events to an SNS topic or SQS queue when all retries fail or when the maximum record age is exceeded when a function processes a Kinesis or DynamoDB stream.Added the ParallelizationFactor option to event source mappings to increase concurrency per shard when a function processes a Kinesis or DynamoDB stream.
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added support for 8K outputs and support for QuickTime Animation Codec (RLE) inputs.
+* `service/medialive`: Updates service API, documentation, waiters, and paginators
+  * AWS Elemental MediaLive now supports the ability to create a multiple program transport stream (MPTS).
+* `service/mediapackage-vod`: Updates service API and documentation
+* `service/monitoring`: Updates service API, documentation, and paginators
+  * This release adds a new feature called "Contributor Insights". "Contributor Insights" supports the following 6 new APIs (PutInsightRule, DeleteInsightRules, EnableInsightRules, DisableInsightRules, DescribeInsightRules and GetInsightRuleReport).
+* `service/ram`: Updates service API and documentation
+* `service/rds`: Updates service API and documentation
+  * Cluster Endpoints can now be tagged by using --tags in the create-db-cluster-endpoint API
+* `service/redshift`: Updates service API, documentation, and paginators
+  * This release contains changes for 1. Redshift Scheduler 2. Update to the DescribeNodeConfigurationOptions to include a new action type recommend-node-config
+* `service/runtime.lex`: Updates service API and documentation
+* `service/sesv2`: Updates service API, documentation, and paginators
+* `service/ssm`: Updates service API and documentation
+  * AWS Systems Manager Documents now supports more Document Types: ApplicationConfiguration, ApplicationConfigurationSchema and DeploymentStrategy. This release also extends Document Permissions capabilities and introduces a new Force flag for DeleteDocument API.
+
+### SDK Enhancements
+* `aws/credentials/processcreds`: Increase the default max buffer size ([#2957](https://github.com/aws/aws-sdk-go/pull/2957))
+  * Fixes [#2875](https://github.com/aws/aws-sdk-go/issues/2875)
+
 Release v1.25.41 (2019-11-22)
 ===
 

@@ -285,6 +285,7 @@
         "PackagingConfigurationCreateParameters$PackagingGroupId" : "The ID of a PackagingGroup.",
         "PackagingConfigurationList$NextToken" : "A token that can be used to resume pagination from the end of the collection.",
         "PackagingGroup$Arn" : "The ARN of the PackagingGroup.",
+        "PackagingGroup$DomainName" : "The fully qualified domain name for Assets in the PackagingGroup.",
         "PackagingGroup$Id" : "The ID of the PackagingGroup.",
         "PackagingGroupCreateParameters$Id" : "The ID of the PackagingGroup.",
         "PackagingGroupList$NextToken" : "A token that can be used to resume pagination from the end of the collection.",

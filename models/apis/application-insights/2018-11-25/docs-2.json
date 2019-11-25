@@ -4,27 +4,45 @@
   "operations": {
     "CreateApplication": "<p>Adds an application that is created from a resource group.</p>",
     "CreateComponent": "<p>Creates a custom component by grouping similar standalone instances to monitor.</p>",
+    "CreateLogPattern": "<p>Adds an log pattern to a <code>LogPatternSet</code>.</p>",
     "DeleteApplication": "<p>Removes the specified application from monitoring. Does not delete the application.</p>",
     "DeleteComponent": "<p>Ungroups a custom component. When you ungroup custom components, all applicable monitors that are set up for the component are removed and the instances revert to their standalone status.</p>",
+    "DeleteLogPattern": "<p>Removes the specified log pattern from a <code>LogPatternSet</code>.</p>",
     "DescribeApplication": "<p>Describes the application.</p>",
     "DescribeComponent": "<p>Describes a component and lists the resources that are grouped together in a component.</p>",
     "DescribeComponentConfiguration": "<p>Describes the monitoring configuration of the component.</p>",
     "DescribeComponentConfigurationRecommendation": "<p>Describes the recommended monitoring configuration of the component.</p>",
+    "DescribeLogPattern": "<p>Describe a specific log pattern from a <code>LogPatternSet</code>.</p>",
     "DescribeObservation": "<p>Describes an anomaly or error with the application.</p>",
     "DescribeProblem": "<p>Describes an application problem.</p>",
     "DescribeProblemObservations": "<p>Describes the anomalies or errors associated with the problem.</p>",
     "ListApplications": "<p>Lists the IDs of the applications that you are monitoring. </p>",
     "ListComponents": "<p>Lists the auto-grouped, standalone, and custom components of the application.</p>",
+    "ListLogPatternSets": "<p>Lists the log pattern sets in the specific application.</p>",
+    "ListLogPatterns": "<p>Lists the log patterns in the specific log <code>LogPatternSet</code>.</p>",
     "ListProblems": "<p>Lists the problems with your application.</p>",
+    "ListTagsForResource": "<p>Retrieve a list of the tags (keys and values) that are associated with a specified application. A <i>tag</i> is a label that you optionally define and associate with an application. Each tag consists of a required <i>tag key</i> and an optional associated <i>tag value</i>. A tag key is a general label that acts as a category for more specific tag values. A tag value acts as a descriptor within a tag key.</p>",
+    "TagResource": "<p>Add one or more tags (keys and values) to a specified application. A <i>tag</i> is a label that you optionally define and associate with an application. Tags can help you categorize and manage application in different ways, such as by purpose, owner, environment, or other criteria. </p> <p>Each tag consists of a required <i>tag key</i> and an associated <i>tag value</i>, both of which you define. A tag key is a general label that acts as a category for more specific tag values. A tag value acts as a descriptor within a tag key.</p>",
+    "UntagResource": "<p>Remove one or more tags (keys and values) from a specified application.</p>",
     "UpdateApplication": "<p>Updates the application.</p>",
     "UpdateComponent": "<p>Updates the custom component name and/or the list of resources that make up the component.</p>",
-    "UpdateComponentConfiguration": "<p>Updates the monitoring configurations for the component. The configuration input parameter is an escaped JSON of the configuration and should match the schema of what is returned by <code>DescribeComponentConfigurationRecommendation</code>.</p>"
+    "UpdateComponentConfiguration": "<p>Updates the monitoring configurations for the component. The configuration input parameter is an escaped JSON of the configuration and should match the schema of what is returned by <code>DescribeComponentConfigurationRecommendation</code>. </p>",
+    "UpdateLogPattern": "<p>Adds a log pattern to a <code>LogPatternSet</code>.</p>"
   },
   "shapes": {
     "AffectedResource": {
       "base": null,
       "refs": {
         "Problem$AffectedResource": "<p>The resource affected by the problem.</p>"
+      }
+    },
+    "AmazonResourceName": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceRequest$ResourceARN": "<p>The Amazon Resource Name (ARN) of the application that you want to retrieve tag information for.</p>",
+        "TagResourceRequest$ResourceARN": "<p>The Amazon Resource Name (ARN) of the application that you want to add one or more tags to.</p>",
+        "TooManyTagsException$ResourceName": "<p>The name of the resource with too many tags.</p>",
+        "UntagResourceRequest$ResourceARN": "<p>The Amazon Resource Name (ARN) of the application that you want to remove one or more tags from.</p>"
       }
     },
     "ApplicationComponent": {
@@ -65,7 +83,7 @@
       "refs": {
         "DescribeComponentConfigurationRecommendationResponse$ComponentConfiguration": "<p>The recommended configuration settings of the component. The value is the escaped JSON of the configuration.</p>",
         "DescribeComponentConfigurationResponse$ComponentConfiguration": "<p>The configuration settings of the component. The value is the escaped JSON of the configuration.</p>",
-        "UpdateComponentConfigurationRequest$ComponentConfiguration": "<p>The configuration settings of the component. The value is the escaped JSON of the configuration. For more information about the JSON format, see <a href=\"https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/working-with-json.html\">Working with JSON</a>. You can send a request to <code>DescribeComponentConfigurationRecommendation</code> to see the recommended configuration for a component.</p>"
+        "UpdateComponentConfigurationRequest$ComponentConfiguration": "<p>The configuration settings of the component. The value is the escaped JSON of the configuration. For more information about the JSON format, see <a href=\"https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/working-with-json.html\">Working with JSON</a>. You can send a request to <code>DescribeComponentConfigurationRecommendation</code> to see the recommended configuration for a component. For the complete format of the component configuration file, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/component-config.html\">Component Configuration</a>.</p>"
       }
     },
     "ComponentName": {
@@ -101,6 +119,16 @@
       "refs": {
       }
     },
+    "CreateLogPatternRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateLogPatternResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteApplicationRequest": {
       "base": null,
       "refs": {
@@ -117,6 +145,16 @@
       }
     },
     "DeleteComponentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteLogPatternRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteLogPatternResponse": {
       "base": null,
       "refs": {
       }
@@ -157,6 +195,16 @@
       }
     },
     "DescribeComponentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeLogPatternRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeLogPatternResponse": {
       "base": null,
       "refs": {
       }
@@ -207,6 +255,13 @@
         "ResourceInUseException$Message": null,
         "ResourceNotFoundException$Message": null,
         "ValidationException$Message": null
+      }
+    },
+    "ExceptionMessage": {
+      "base": null,
+      "refs": {
+        "TagsAlreadyExistException$Message": null,
+        "TooManyTagsException$Message": null
       }
     },
     "Feedback": {
@@ -270,12 +325,42 @@
       "refs": {
       }
     },
+    "ListLogPatternSetsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListLogPatternSetsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListLogPatternsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListLogPatternsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListProblemsRequest": {
       "base": null,
       "refs": {
       }
     },
     "ListProblemsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
       "base": null,
       "refs": {
       }
@@ -292,6 +377,65 @@
         "Observation$LogGroup": "<p>The log group name.</p>"
       }
     },
+    "LogPattern": {
+      "base": "<p>An object that defines the log patterns that belongs to a <code>LogPatternSet</code>.</p>",
+      "refs": {
+        "CreateLogPatternResponse$LogPattern": "<p>The successfully created log pattern.</p>",
+        "DescribeLogPatternResponse$LogPattern": "<p>The successfully created log pattern.</p>",
+        "LogPatternList$member": null,
+        "UpdateLogPatternResponse$LogPattern": "<p>The successfully created log pattern.</p>"
+      }
+    },
+    "LogPatternList": {
+      "base": null,
+      "refs": {
+        "ListLogPatternsResponse$LogPatterns": "<p>The list of log patterns.</p>"
+      }
+    },
+    "LogPatternName": {
+      "base": null,
+      "refs": {
+        "CreateLogPatternRequest$PatternName": "<p>The name of the log pattern.</p>",
+        "DeleteLogPatternRequest$PatternName": "<p>The name of the log pattern.</p>",
+        "DescribeLogPatternRequest$PatternName": "<p>The name of the log pattern.</p>",
+        "LogPattern$PatternName": "<p>The name of the log pattern. A log pattern name can contains at many as 50 characters, and it cannot be empty. The characters can be Unicode letters, digits or one of the following symbols: period, dash, underscore.</p>",
+        "UpdateLogPatternRequest$PatternName": "<p>The name of the log pattern.</p>"
+      }
+    },
+    "LogPatternRank": {
+      "base": null,
+      "refs": {
+        "CreateLogPatternRequest$Rank": "<p>Rank of the log pattern.</p>",
+        "LogPattern$Rank": "<p>Rank of the log pattern.</p>",
+        "UpdateLogPatternRequest$Rank": "<p>Rank of the log pattern.</p>"
+      }
+    },
+    "LogPatternRegex": {
+      "base": null,
+      "refs": {
+        "CreateLogPatternRequest$Pattern": "<p>The log pattern.</p>",
+        "LogPattern$Pattern": "<p>A regular expression that defines the log pattern. A log pattern can contains at many as 50 characters, and it cannot be empty.</p>",
+        "UpdateLogPatternRequest$Pattern": "<p>The log pattern.</p>"
+      }
+    },
+    "LogPatternSetList": {
+      "base": null,
+      "refs": {
+        "ListLogPatternSetsResponse$LogPatternSets": "<p>The list of log pattern sets.</p>"
+      }
+    },
+    "LogPatternSetName": {
+      "base": null,
+      "refs": {
+        "CreateLogPatternRequest$PatternSetName": "<p>The name of the log pattern set.</p>",
+        "DeleteLogPatternRequest$PatternSetName": "<p>The name of the log pattern set.</p>",
+        "DescribeLogPatternRequest$PatternSetName": "<p>The name of the log pattern set.</p>",
+        "ListLogPatternsRequest$PatternSetName": "<p>The name of the log pattern set.</p>",
+        "LogPattern$PatternSetName": "<p>The name of the log pattern. A log pattern name can contains at many as 30 characters, and it cannot be empty. The characters can be Unicode letters, digits or one of the following symbols: period, dash, underscore.</p>",
+        "LogPatternSetList$member": null,
+        "UpdateLogPatternRequest$PatternSetName": "<p>The name of the log pattern set.</p>"
+      }
+    },
     "LogText": {
       "base": null,
       "refs": {
@@ -303,6 +447,8 @@
       "refs": {
         "ListApplicationsRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>",
         "ListComponentsRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>",
+        "ListLogPatternSetsRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>",
+        "ListLogPatternsRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>",
         "ListProblemsRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>"
       }
     },
@@ -375,6 +521,10 @@
         "ListApplicationsResponse$NextToken": "<p>The token used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>",
         "ListComponentsRequest$NextToken": "<p>The token to request the next page of results.</p>",
         "ListComponentsResponse$NextToken": "<p>The token to request the next page of results.</p>",
+        "ListLogPatternSetsRequest$NextToken": "<p>The token to request the next page of results.</p>",
+        "ListLogPatternSetsResponse$NextToken": "<p>The token used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>",
+        "ListLogPatternsRequest$NextToken": "<p>The token to request the next page of results.</p>",
+        "ListLogPatternsResponse$NextToken": "<p>The token used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>",
         "ListProblemsRequest$NextToken": "<p>The token to request the next page of results.</p>",
         "ListProblemsResponse$NextToken": "<p>The token used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>"
       }
@@ -430,18 +580,29 @@
         "ApplicationInfo$ResourceGroupName": "<p>The name of the resource group used for the application.</p>",
         "CreateApplicationRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "CreateComponentRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
+        "CreateLogPatternRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
+        "CreateLogPatternResponse$ResourceGroupName": "<p>The name of the resource group.</p>",
         "DeleteApplicationRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "DeleteComponentRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
+        "DeleteLogPatternRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "DescribeApplicationRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "DescribeComponentConfigurationRecommendationRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "DescribeComponentConfigurationRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "DescribeComponentRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
+        "DescribeLogPatternRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
+        "DescribeLogPatternResponse$ResourceGroupName": "<p>The name of the resource group.</p>",
         "ListComponentsRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
+        "ListLogPatternSetsRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
+        "ListLogPatternSetsResponse$ResourceGroupName": "<p>The name of the resource group.</p>",
+        "ListLogPatternsRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
+        "ListLogPatternsResponse$ResourceGroupName": "<p>The name of the resource group.</p>",
         "ListProblemsRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "Problem$ResourceGroupName": "<p>The name of the resource group affected by the problem.</p>",
         "UpdateApplicationRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "UpdateComponentConfigurationRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
-        "UpdateComponentRequest$ResourceGroupName": "<p>The name of the resource group.</p>"
+        "UpdateComponentRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
+        "UpdateLogPatternRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
+        "UpdateLogPatternResponse$ResourceGroupName": "<p>The name of the resource group.</p>"
       }
     },
     "ResourceInUseException": {
@@ -500,13 +661,61 @@
         "Problem$Status": "<p>The status of the problem.</p>"
       }
     },
+    "Tag": {
+      "base": "<p>An object that defines the tags associated with an application. A <i>tag</i> is a label that you optionally define and associate with an application. Tags can help you categorize and manage resources in different ways, such as by purpose, owner, environment, or other criteria.</p> <p>Each tag consists of a required <i>tag key</i> and an associated <i>tag value</i>, both of which you define. A tag key is a general label that acts as a category for a more specific tag value. A tag value acts as a descriptor within a tag key. A tag key can contain as many as 128 characters. A tag value can contain as many as 256 characters. The characters can be Unicode letters, digits, white space, or one of the following symbols: _ . : / = + -. The following additional restrictions apply to tags:</p> <ul> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>For each associated resource, each tag key must be unique and it can have only one value.</p> </li> <li> <p>The <code>aws:</code> prefix is reserved for use by AWS; you can’t use it in any tag keys or values that you define. In addition, you can't edit or remove tag keys or values that use this prefix. </p> </li> </ul>",
+      "refs": {
+        "TagList$member": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "Tag$Key": "<p>One part of a key-value pair that defines a tag. The maximum length of a tag key is 128 characters. The minimum length is 1 character.</p>",
+        "TagKeyList$member": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$TagKeys": "<p>The tags (tag keys) that you want to remove from the resource. When you specify a tag key, the action removes both that key and its associated tag value.</p> <p>To remove more than one tag from the application, append the <code>TagKeys</code> parameter and argument for each additional tag to remove, separated by an ampersand. </p>"
+      }
+    },
+    "TagList": {
+      "base": null,
+      "refs": {
+        "CreateApplicationRequest$Tags": "<p>List of tags to add to the application. tag key (<code>Key</code>) and an associated tag value (<code>Value</code>). The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.</p>",
+        "ListTagsForResourceResponse$Tags": "<p>An array that lists all the tags that are associated with the application. Each tag consists of a required tag key (<code>Key</code>) and an associated tag value (<code>Value</code>).</p>",
+        "TagResourceRequest$Tags": "<p>A list of tags that to add to the application. A tag consists of a required tag key (<code>Key</code>) and an associated tag value (<code>Value</code>). The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "Tag$Value": "<p>The optional part of a key-value pair that defines a tag. The maximum length of a tag value is 256 characters. The minimum length is 0 characters. If you don't want an application to have a specific tag value, don't specify a value for this parameter.</p>"
+      }
+    },
+    "TagsAlreadyExistException": {
+      "base": "<p>Tags are already registered for the specified application ARN.</p>",
+      "refs": {
+      }
+    },
     "Tier": {
       "base": null,
       "refs": {
         "ApplicationComponent$Tier": "<p>The stack tier of the application component.</p>",
-        "DescribeComponentConfigurationRecommendationRequest$Tier": "<p>The tier of the application component. Supported tiers include <code>DOT_NET_WORKER</code>, <code>DOT_NET_WEB</code>, <code>SQL_SERVER</code>, and <code>DEFAULT</code>.</p>",
-        "DescribeComponentConfigurationResponse$Tier": "<p>The tier of the application component. Supported tiers include <code>DOT_NET_WORKER</code>, <code>DOT_NET_WEB</code>, <code>SQL_SERVER</code>, and <code>DEFAULT</code> </p>",
-        "UpdateComponentConfigurationRequest$Tier": "<p>The tier of the application component. Supported tiers include <code>DOT_NET_WORKER</code>, <code>DOT_NET_WEB</code>, <code>SQL_SERVER</code>, and <code>DEFAULT</code>.</p>"
+        "DescribeComponentConfigurationRecommendationRequest$Tier": "<p>The tier of the application component. Supported tiers include <code>DOT_NET_CORE</code>, <code>DOT_NET_WORKER</code>, <code>DOT_NET_WEB</code>, <code>SQL_SERVER</code>, and <code>DEFAULT</code>.</p>",
+        "DescribeComponentConfigurationResponse$Tier": "<p>The tier of the application component. Supported tiers include <code>DOT_NET_CORE</code>, <code>DOT_NET_WORKER</code>, <code>DOT_NET_WEB</code>, <code>SQL_SERVER</code>, and <code>DEFAULT</code> </p>",
+        "UpdateComponentConfigurationRequest$Tier": "<p>The tier of the application component. Supported tiers include <code>DOT_NET_WORKER</code>, <code>DOT_NET_WEB</code>, <code>DOT_NET_CORE</code>, <code>SQL_SERVER</code>, and <code>DEFAULT</code>.</p>"
       }
     },
     "Title": {
@@ -515,10 +724,25 @@
         "Problem$Title": "<p>The name of the problem.</p>"
       }
     },
+    "TooManyTagsException": {
+      "base": "<p>The number of the provided tags is beyond the limit, or the number of total tags you are trying to attach to the specified resource exceeds the limit.</p>",
+      "refs": {
+      }
+    },
     "Unit": {
       "base": null,
       "refs": {
         "Observation$Unit": "<p>The unit of the source observation metric.</p>"
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateApplicationRequest": {
@@ -547,6 +771,16 @@
       }
     },
     "UpdateComponentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateLogPatternRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateLogPatternResponse": {
       "base": null,
       "refs": {
       }

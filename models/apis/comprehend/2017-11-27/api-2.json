@@ -92,6 +92,21 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ClassifyDocument":{
+      "name":"ClassifyDocument",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ClassifyDocumentRequest"},
+      "output":{"shape":"ClassifyDocumentResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceUnavailableException"},
+        {"shape":"TextSizeLimitExceededException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "CreateDocumentClassifier":{
       "name":"CreateDocumentClassifier",
       "http":{
@@ -108,6 +123,25 @@
         {"shape":"ResourceLimitExceededException"},
         {"shape":"UnsupportedLanguageException"},
         {"shape":"KmsKeyValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "CreateEndpoint":{
+      "name":"CreateEndpoint",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateEndpointRequest"},
+      "output":{"shape":"CreateEndpointResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceUnavailableException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"TooManyTagsException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -144,6 +178,22 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceUnavailableException"},
         {"shape":"ResourceInUseException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DeleteEndpoint":{
+      "name":"DeleteEndpoint",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteEndpointRequest"},
+      "output":{"shape":"DeleteEndpointResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyRequestsException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -206,6 +256,21 @@
         {"shape":"InvalidRequestException"},
         {"shape":"JobNotFoundException"},
         {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribeEndpoint":{
+      "name":"DescribeEndpoint",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeEndpointRequest"},
+      "output":{"shape":"DescribeEndpointResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -400,6 +465,20 @@
         {"shape":"InvalidRequestException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"InvalidFilterException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListEndpoints":{
+      "name":"ListEndpoints",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListEndpointsRequest"},
+      "output":{"shape":"ListEndpointsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -703,6 +782,24 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"}
       ]
+    },
+    "UpdateEndpoint":{
+      "name":"UpdateEndpoint",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateEndpointRequest"},
+      "output":{"shape":"UpdateEndpointResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceUnavailableException"},
+        {"shape":"InternalServerException"}
+      ]
     }
   },
   "shapes":{
@@ -886,6 +983,23 @@
         "EvaluationMetrics":{"shape":"ClassifierEvaluationMetrics"}
       }
     },
+    "ClassifyDocumentRequest":{
+      "type":"structure",
+      "required":[
+        "Text",
+        "EndpointArn"
+      ],
+      "members":{
+        "Text":{"shape":"String"},
+        "EndpointArn":{"shape":"DocumentClassifierEndpointArn"}
+      }
+    },
+    "ClassifyDocumentResponse":{
+      "type":"structure",
+      "members":{
+        "Classes":{"shape":"ListOfClasses"}
+      }
+    },
     "ClientRequestTokenString":{
       "type":"string",
       "max":64,
@@ -901,6 +1015,21 @@
       "type":"string",
       "max":63,
       "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*$"
+    },
+    "ComprehendEndpointArn":{
+      "type":"string",
+      "max":256,
+      "pattern":"arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document-classifier-endpoint/[a-zA-Z0-9](-*[a-zA-Z0-9])*"
+    },
+    "ComprehendEndpointName":{
+      "type":"string",
+      "max":40,
+      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*$"
+    },
+    "ComprehendModelArn":{
+      "type":"string",
+      "max":256,
+      "pattern":"arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document-classifier/[a-zA-Z0-9](-*[a-zA-Z0-9])*"
     },
     "ConcurrentModificationException":{
       "type":"structure",
@@ -936,6 +1065,30 @@
       "type":"structure",
       "members":{
         "DocumentClassifierArn":{"shape":"DocumentClassifierArn"}
+      }
+    },
+    "CreateEndpointRequest":{
+      "type":"structure",
+      "required":[
+        "EndpointName",
+        "ModelArn",
+        "DesiredInferenceUnits"
+      ],
+      "members":{
+        "EndpointName":{"shape":"ComprehendEndpointName"},
+        "ModelArn":{"shape":"ComprehendModelArn"},
+        "DesiredInferenceUnits":{"shape":"InferenceUnitsInteger"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestTokenString",
+          "idempotencyToken":true
+        },
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateEndpointResponse":{
+      "type":"structure",
+      "members":{
+        "EndpointArn":{"shape":"ComprehendEndpointArn"}
       }
     },
     "CreateEntityRecognizerRequest":{
@@ -974,6 +1127,18 @@
       }
     },
     "DeleteDocumentClassifierResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteEndpointRequest":{
+      "type":"structure",
+      "required":["EndpointArn"],
+      "members":{
+        "EndpointArn":{"shape":"ComprehendEndpointArn"}
+      }
+    },
+    "DeleteEndpointResponse":{
       "type":"structure",
       "members":{
       }
@@ -1027,6 +1192,19 @@
       "type":"structure",
       "members":{
         "DominantLanguageDetectionJobProperties":{"shape":"DominantLanguageDetectionJobProperties"}
+      }
+    },
+    "DescribeEndpointRequest":{
+      "type":"structure",
+      "required":["EndpointArn"],
+      "members":{
+        "EndpointArn":{"shape":"ComprehendEndpointArn"}
+      }
+    },
+    "DescribeEndpointResponse":{
+      "type":"structure",
+      "members":{
+        "EndpointProperties":{"shape":"EndpointProperties"}
       }
     },
     "DescribeEntitiesDetectionJobRequest":{
@@ -1176,6 +1354,13 @@
         "SyntaxTokens":{"shape":"ListOfSyntaxTokens"}
       }
     },
+    "DocumentClass":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"String"},
+        "Score":{"shape":"Float"}
+      }
+    },
     "DocumentClassificationJobFilter":{
       "type":"structure",
       "members":{
@@ -1210,6 +1395,11 @@
       "type":"string",
       "max":256,
       "pattern":"arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document-classifier/[a-zA-Z0-9](-*[a-zA-Z0-9])*"
+    },
+    "DocumentClassifierEndpointArn":{
+      "type":"string",
+      "max":256,
+      "pattern":"arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document-classifier-endpoint/[a-zA-Z0-9](-*[a-zA-Z0-9])*"
     },
     "DocumentClassifierFilter":{
       "type":"structure",
@@ -1293,6 +1483,42 @@
       "member":{"shape":"DominantLanguageDetectionJobProperties"}
     },
     "Double":{"type":"double"},
+    "EndpointFilter":{
+      "type":"structure",
+      "members":{
+        "ModelArn":{"shape":"ComprehendModelArn"},
+        "Status":{"shape":"EndpointStatus"},
+        "CreationTimeBefore":{"shape":"Timestamp"},
+        "CreationTimeAfter":{"shape":"Timestamp"}
+      }
+    },
+    "EndpointProperties":{
+      "type":"structure",
+      "members":{
+        "EndpointArn":{"shape":"ComprehendEndpointArn"},
+        "Status":{"shape":"EndpointStatus"},
+        "Message":{"shape":"AnyLengthString"},
+        "ModelArn":{"shape":"ComprehendModelArn"},
+        "DesiredInferenceUnits":{"shape":"InferenceUnitsInteger"},
+        "CurrentInferenceUnits":{"shape":"InferenceUnitsInteger"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"}
+      }
+    },
+    "EndpointPropertiesList":{
+      "type":"list",
+      "member":{"shape":"EndpointProperties"}
+    },
+    "EndpointStatus":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "DELETING",
+        "FAILED",
+        "IN_SERVICE",
+        "UPDATING"
+      ]
+    },
     "EntitiesDetectionJobFilter":{
       "type":"structure",
       "members":{
@@ -1477,6 +1703,10 @@
       "min":20,
       "pattern":"arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+"
     },
+    "InferenceUnitsInteger":{
+      "type":"integer",
+      "min":1
+    },
     "InputDataConfig":{
       "type":"structure",
       "required":["S3Uri"],
@@ -1657,6 +1887,21 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "ListEndpointsRequest":{
+      "type":"structure",
+      "members":{
+        "Filter":{"shape":"EndpointFilter"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"MaxResultsInteger"}
+      }
+    },
+    "ListEndpointsResponse":{
+      "type":"structure",
+      "members":{
+        "EndpointPropertiesList":{"shape":"EndpointPropertiesList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
     "ListEntitiesDetectionJobsRequest":{
       "type":"structure",
       "members":{
@@ -1701,6 +1946,10 @@
         "KeyPhrasesDetectionJobPropertiesList":{"shape":"KeyPhrasesDetectionJobPropertiesList"},
         "NextToken":{"shape":"String"}
       }
+    },
+    "ListOfClasses":{
+      "type":"list",
+      "member":{"shape":"DocumentClass"}
     },
     "ListOfDetectDominantLanguageResult":{
       "type":"list",
@@ -2348,6 +2597,22 @@
       }
     },
     "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateEndpointRequest":{
+      "type":"structure",
+      "required":[
+        "EndpointArn",
+        "DesiredInferenceUnits"
+      ],
+      "members":{
+        "EndpointArn":{"shape":"ComprehendEndpointArn"},
+        "DesiredInferenceUnits":{"shape":"InferenceUnitsInteger"}
+      }
+    },
+    "UpdateEndpointResponse":{
       "type":"structure",
       "members":{
       }

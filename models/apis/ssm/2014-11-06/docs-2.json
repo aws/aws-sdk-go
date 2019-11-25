@@ -134,7 +134,8 @@
     "AccountId": {
       "base": null,
       "refs": {
-        "AccountIdList$member": null
+        "AccountIdList$member": null,
+        "AccountSharingInfo$AccountId": "<p>The AWS account ID where the current document is shared.</p>"
       }
     },
     "AccountIdList": {
@@ -143,6 +144,18 @@
         "DescribeDocumentPermissionResponse$AccountIds": "<p>The account IDs that have permission to use this document. The ID can be either an AWS account or <i>All</i>.</p>",
         "ModifyDocumentPermissionRequest$AccountIdsToAdd": "<p>The AWS user accounts that should have access to the document. The account IDs can either be a group of account IDs or <i>All</i>.</p>",
         "ModifyDocumentPermissionRequest$AccountIdsToRemove": "<p>The AWS user accounts that should no longer have access to the document. The AWS user account can either be a group of account IDs or <i>All</i>. This action has a higher priority than <i>AccountIdsToAdd</i>. If you specify an account ID to add and the same ID to remove, the system removes access to the document.</p>"
+      }
+    },
+    "AccountSharingInfo": {
+      "base": "<p>Information includes the AWS account ID where the current document is shared and the version shared with that account.</p>",
+      "refs": {
+        "AccountSharingInfoList$member": null
+      }
+    },
+    "AccountSharingInfoList": {
+      "base": "<p>A list of of AWS accounts where the current document is shared and the version shared with each account.</p>",
+      "refs": {
+        "DescribeDocumentPermissionResponse$AccountSharingInfoList": "<p>A list of of AWS accounts where the current document is shared and the version shared with each account.</p>"
       }
     },
     "Accounts": {
@@ -817,6 +830,7 @@
         "Activation$Expired": "<p>Whether or not the activation is expired.</p>",
         "AutomationExecution$StepExecutionsTruncated": "<p>A boolean value that indicates if the response contains the full list of the Automation step executions. If true, use the DescribeAutomationStepExecutions API action to get the full list of step executions.</p>",
         "CreatePatchBaselineRequest$ApprovedPatchesEnableNonSecurity": "<p>Indicates whether the list of approved patches includes non-security updates that should be applied to the instances. The default value is 'false'. Applies to Linux instances only.</p>",
+        "DeleteDocumentRequest$Force": "<p>Some SSM document types require that you specify a <code>Force</code> flag before you can delete the document. For example, you must specify a <code>Force</code> flag to delete a document of type <code>ApplicationConfigurationSchema</code>. You can restrict access to the <code>Force</code> flag in an AWS Identity and Access Management (IAM) policy.</p>",
         "DeregisterTargetFromMaintenanceWindowRequest$Safe": "<p>The system checks if the target is being referenced by a task. If the target is being referenced, the system returns an error and does not deregister the target from the maintenance window.</p>",
         "DescribeAutomationStepExecutionsRequest$ReverseOrder": "<p>A boolean that indicates whether to list step executions in reverse order by start time. The default value is false.</p>",
         "DocumentVersionInfo$IsDefaultVersion": "<p>An identifier for the default version of the document.</p>",
@@ -1919,9 +1933,11 @@
         "DescribeDocumentRequest$Name": "<p>The name of the Systems Manager document.</p>",
         "DocumentDescription$Name": "<p>The name of the Systems Manager document.</p>",
         "DocumentIdentifier$Name": "<p>The name of the Systems Manager document.</p>",
+        "DocumentRequires$Name": "<p>The name of the required SSM document. The name can be an Amazon Resource Name (ARN).</p>",
         "GetDocumentRequest$Name": "<p>The name of the Systems Manager document.</p>",
         "GetDocumentResult$Name": "<p>The name of the Systems Manager document.</p>",
         "InstanceAssociationStatusInfo$Name": "<p>The name of the association.</p>",
+        "ListDocumentVersionsRequest$Name": "<p>The name of the document. You can specify an Amazon Resource Name (ARN).</p>",
         "SendCommandRequest$DocumentName": "<p>Required. The name of the Systems Manager document to run. This can be a public document or a custom document.</p>",
         "StartAutomationExecutionRequest$DocumentName": "<p>The name of the Automation document to use for this execution.</p>",
         "StartSessionRequest$DocumentName": "<p>The name of the SSM document to define the parameters and plugin settings for the session. For example, <code>SSM-SessionManagerRunShell</code>. If no document name is provided, a shell to the instance is launched by default.</p>",
@@ -2069,7 +2085,6 @@
         "DocumentDefaultVersionDescription$Name": "<p>The name of the document.</p>",
         "DocumentVersionInfo$Name": "<p>The document name.</p>",
         "GetCommandInvocationResult$DocumentName": "<p>The name of the document that was run. For example, AWS-RunShellScript.</p>",
-        "ListDocumentVersionsRequest$Name": "<p>The name of the document about which you want version information.</p>",
         "ModifyDocumentPermissionRequest$Name": "<p>The name of the document that you want to share.</p>",
         "Session$DocumentName": "<p>The name of the Session Manager SSM document used to define the parameters and plugin settings for the session. For example, <code>SSM-SessionManagerRunShell</code>.</p>",
         "UpdateDocumentDefaultVersionRequest$Name": "<p>The name of a custom document that you want to set as the default version.</p>",
@@ -2131,6 +2146,21 @@
         "ModifyDocumentPermissionRequest$PermissionType": "<p>The permission type for the document. The permission type can be <i>Share</i>.</p>"
       }
     },
+    "DocumentRequires": {
+      "base": "<p>An SSM document required by the current document.</p>",
+      "refs": {
+        "DocumentRequiresList$member": null
+      }
+    },
+    "DocumentRequiresList": {
+      "base": null,
+      "refs": {
+        "CreateDocumentRequest$Requires": "<p>A list of SSM documents required by a document. For example, an <code>ApplicationConfiguration</code> document requires an <code>ApplicationConfigurationSchema</code> document.</p>",
+        "DocumentDescription$Requires": "<p>A list of SSM documents required by a document. For example, an <code>ApplicationConfiguration</code> document requires an <code>ApplicationConfigurationSchema</code> document.</p>",
+        "DocumentIdentifier$Requires": "<p>A list of SSM documents required by a document. For example, an <code>ApplicationConfiguration</code> document requires an <code>ApplicationConfigurationSchema</code> document.</p>",
+        "GetDocumentResult$Requires": "<p>A list of SSM documents required by a document. For example, an <code>ApplicationConfiguration</code> document requires an <code>ApplicationConfigurationSchema</code> document.</p>"
+      }
+    },
     "DocumentSchemaVersion": {
       "base": null,
       "refs": {
@@ -2188,6 +2218,7 @@
         "DocumentDescription$LatestVersion": "<p>The latest version of the document.</p>",
         "DocumentDescription$DefaultVersion": "<p>The default version.</p>",
         "DocumentIdentifier$DocumentVersion": "<p>The document version.</p>",
+        "DocumentRequires$Version": "<p>The document version required by the current document.</p>",
         "DocumentVersionInfo$DocumentVersion": "<p>The document version.</p>",
         "GetCommandInvocationResult$DocumentVersion": "<p>The SSM document version used in the request.</p>",
         "GetDocumentRequest$DocumentVersion": "<p>The document version for which you want information.</p>",
@@ -6247,6 +6278,13 @@
       "refs": {
         "CompliantSummary$SeveritySummary": "<p>A summary of the compliance severity by compliance type.</p>",
         "NonCompliantSummary$SeveritySummary": "<p>A summary of the non-compliance severity by compliance type</p>"
+      }
+    },
+    "SharedDocumentVersion": {
+      "base": "<p>The document version shared with other accounts. You can share <code>Latest</code>, <code>Default</code> or <code>All versions</code>.</p>",
+      "refs": {
+        "AccountSharingInfo$SharedDocumentVersion": "<p>The version of the current document shared with the account.</p>",
+        "ModifyDocumentPermissionRequest$SharedDocumentVersion": "<p>(Optional) The version of the document to share. If it's not specified, the system choose the <code>Default</code> version to share.</p>"
       }
     },
     "SignalType": {

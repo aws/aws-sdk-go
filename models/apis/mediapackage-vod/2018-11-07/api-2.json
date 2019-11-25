@@ -728,6 +728,10 @@
           "locationName": "arn",
           "shape": "__string"
         },
+        "DomainName": {
+          "locationName": "domainName",
+          "shape": "__string"
+        },
         "Id": {
           "locationName": "id",
           "shape": "__string"
@@ -952,6 +956,10 @@
       "members": {
         "Arn": {
           "locationName": "arn",
+          "shape": "__string"
+        },
+        "DomainName": {
+          "locationName": "domainName",
           "shape": "__string"
         },
         "Id": {
@@ -1320,6 +1328,10 @@
       "members": {
         "Arn": {
           "locationName": "arn",
+          "shape": "__string"
+        },
+        "DomainName": {
+          "locationName": "domainName",
           "shape": "__string"
         },
         "Id": {

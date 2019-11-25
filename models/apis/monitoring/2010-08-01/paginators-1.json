@@ -15,6 +15,11 @@
     "DescribeAlarmsForMetric": {
       "result_key": "MetricAlarms"
     },
+    "DescribeInsightRules": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
     "GetMetricData": {
       "input_token": "NextToken",
       "limit_key": "MaxDatapoints",

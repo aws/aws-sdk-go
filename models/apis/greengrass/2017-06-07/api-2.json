@@ -4602,11 +4602,26 @@
         }
       }
     },
+    "ResourceDownloadOwnerSetting" : {
+      "type" : "structure",
+      "members" : {
+        "GroupOwner" : {
+          "shape" : "__string"
+        },
+        "GroupPermission" : {
+          "shape" : "Permission"
+        }
+      },
+      "required" : [ "GroupOwner", "GroupPermission" ]
+    },
     "S3MachineLearningModelResourceData" : {
       "type" : "structure",
       "members" : {
         "DestinationPath" : {
           "shape" : "__string"
+        },
+        "OwnerSetting" : {
+          "shape" : "ResourceDownloadOwnerSetting"
         },
         "S3Uri" : {
           "shape" : "__string"
@@ -4621,6 +4636,9 @@
       "members" : {
         "DestinationPath" : {
           "shape" : "__string"
+        },
+        "OwnerSetting" : {
+          "shape" : "ResourceDownloadOwnerSetting"
         },
         "SageMakerJobArn" : {
           "shape" : "__string"
@@ -4963,11 +4981,11 @@
     },
     "UpdateTargetsArchitecture" : {
       "type" : "string",
-      "enum" : [ "armv6l", "armv7l", "x86_64", "aarch64", "openwrt" ]
+      "enum" : [ "armv6l", "armv7l", "x86_64", "aarch64" ]
     },
     "UpdateTargetsOperatingSystem" : {
       "type" : "string",
-      "enum" : [ "ubuntu", "raspbian", "amazon_linux" ]
+      "enum" : [ "ubuntu", "raspbian", "amazon_linux", "openwrt" ]
     },
     "VersionInformation" : {
       "type" : "structure",
