@@ -11931,6 +11931,40 @@ func (c *SSM) UpdateServiceSettingWithContext(ctx aws.Context, input *UpdateServ
 	return out, req.Send()
 }
 
+// Information includes the AWS account ID where the current document is shared
+// and the version shared with that account.
+type AccountSharingInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID where the current document is shared.
+	AccountId *string `type:"string"`
+
+	// The version of the current document shared with the account.
+	SharedDocumentVersion *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AccountSharingInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccountSharingInfo) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *AccountSharingInfo) SetAccountId(v string) *AccountSharingInfo {
+	s.AccountId = &v
+	return s
+}
+
+// SetSharedDocumentVersion sets the SharedDocumentVersion field's value.
+func (s *AccountSharingInfo) SetSharedDocumentVersion(v string) *AccountSharingInfo {
+	s.SharedDocumentVersion = &v
+	return s
+}
+
 // An activation registers one or more on-premises servers or virtual machines
 // (VMs) with AWS so that you can configure those servers or VMs using Run Command.
 // A server or VM that has been registered with AWS is called a managed instance.
@@ -15841,6 +15875,10 @@ type CreateDocumentInput struct {
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
+	// A list of SSM documents required by a document. For example, an ApplicationConfiguration
+	// document requires an ApplicationConfigurationSchema document.
+	Requires []*DocumentRequires `min:"1" type:"list"`
+
 	// Optional metadata that you assign to a resource. Tags enable you to categorize
 	// a resource in different ways, such as by purpose, owner, or environment.
 	// For example, you might want to tag an SSM document to identify the types
@@ -15891,6 +15929,9 @@ func (s *CreateDocumentInput) Validate() error {
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
+	if s.Requires != nil && len(s.Requires) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Requires", 1))
+	}
 	if s.Attachments != nil {
 		for i, v := range s.Attachments {
 			if v == nil {
@@ -15898,6 +15939,16 @@ func (s *CreateDocumentInput) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Attachments", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Requires != nil {
+		for i, v := range s.Requires {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Requires", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -15945,6 +15996,12 @@ func (s *CreateDocumentInput) SetDocumentType(v string) *CreateDocumentInput {
 // SetName sets the Name field's value.
 func (s *CreateDocumentInput) SetName(v string) *CreateDocumentInput {
 	s.Name = &v
+	return s
+}
+
+// SetRequires sets the Requires field's value.
+func (s *CreateDocumentInput) SetRequires(v []*DocumentRequires) *CreateDocumentInput {
+	s.Requires = v
 	return s
 }
 
@@ -16894,6 +16951,12 @@ type DeleteDocumentInput struct {
 	// versions of the document are deleted.
 	DocumentVersion *string `type:"string"`
 
+	// Some SSM document types require that you specify a Force flag before you
+	// can delete the document. For example, you must specify a Force flag to delete
+	// a document of type ApplicationConfigurationSchema. You can restrict access
+	// to the Force flag in an AWS Identity and Access Management (IAM) policy.
+	Force *bool `type:"boolean"`
+
 	// The name of the document.
 	//
 	// Name is a required field
@@ -16930,6 +16993,12 @@ func (s *DeleteDocumentInput) Validate() error {
 // SetDocumentVersion sets the DocumentVersion field's value.
 func (s *DeleteDocumentInput) SetDocumentVersion(v string) *DeleteDocumentInput {
 	s.DocumentVersion = &v
+	return s
+}
+
+// SetForce sets the Force field's value.
+func (s *DeleteDocumentInput) SetForce(v bool) *DeleteDocumentInput {
+	s.Force = &v
 	return s
 }
 
@@ -18680,6 +18749,10 @@ type DescribeDocumentPermissionOutput struct {
 	// The account IDs that have permission to use this document. The ID can be
 	// either an AWS account or All.
 	AccountIds []*string `type:"list"`
+
+	// A list of of AWS accounts where the current document is shared and the version
+	// shared with each account.
+	AccountSharingInfoList []*AccountSharingInfo `type:"list"`
 }
 
 // String returns the string representation
@@ -18695,6 +18768,12 @@ func (s DescribeDocumentPermissionOutput) GoString() string {
 // SetAccountIds sets the AccountIds field's value.
 func (s *DescribeDocumentPermissionOutput) SetAccountIds(v []*string) *DescribeDocumentPermissionOutput {
 	s.AccountIds = v
+	return s
+}
+
+// SetAccountSharingInfoList sets the AccountSharingInfoList field's value.
+func (s *DescribeDocumentPermissionOutput) SetAccountSharingInfoList(v []*AccountSharingInfo) *DescribeDocumentPermissionOutput {
+	s.AccountSharingInfoList = v
 	return s
 }
 
@@ -21452,6 +21531,10 @@ type DocumentDescription struct {
 	// The list of OS platforms compatible with this Systems Manager document.
 	PlatformTypes []*string `type:"list"`
 
+	// A list of SSM documents required by a document. For example, an ApplicationConfiguration
+	// document requires an ApplicationConfigurationSchema document.
+	Requires []*DocumentRequires `min:"1" type:"list"`
+
 	// The schema version.
 	SchemaVersion *string `type:"string"`
 
@@ -21571,6 +21654,12 @@ func (s *DocumentDescription) SetParameters(v []*DocumentParameter) *DocumentDes
 // SetPlatformTypes sets the PlatformTypes field's value.
 func (s *DocumentDescription) SetPlatformTypes(v []*string) *DocumentDescription {
 	s.PlatformTypes = v
+	return s
+}
+
+// SetRequires sets the Requires field's value.
+func (s *DocumentDescription) SetRequires(v []*DocumentRequires) *DocumentDescription {
+	s.Requires = v
 	return s
 }
 
@@ -21694,6 +21783,10 @@ type DocumentIdentifier struct {
 	// The operating system platform.
 	PlatformTypes []*string `type:"list"`
 
+	// A list of SSM documents required by a document. For example, an ApplicationConfiguration
+	// document requires an ApplicationConfigurationSchema document.
+	Requires []*DocumentRequires `min:"1" type:"list"`
+
 	// The schema version.
 	SchemaVersion *string `type:"string"`
 
@@ -21755,6 +21848,12 @@ func (s *DocumentIdentifier) SetOwner(v string) *DocumentIdentifier {
 // SetPlatformTypes sets the PlatformTypes field's value.
 func (s *DocumentIdentifier) SetPlatformTypes(v []*string) *DocumentIdentifier {
 	s.PlatformTypes = v
+	return s
+}
+
+// SetRequires sets the Requires field's value.
+func (s *DocumentIdentifier) SetRequires(v []*DocumentRequires) *DocumentIdentifier {
+	s.Requires = v
 	return s
 }
 
@@ -21903,6 +22002,55 @@ func (s *DocumentParameter) SetName(v string) *DocumentParameter {
 // SetType sets the Type field's value.
 func (s *DocumentParameter) SetType(v string) *DocumentParameter {
 	s.Type = &v
+	return s
+}
+
+// An SSM document required by the current document.
+type DocumentRequires struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the required SSM document. The name can be an Amazon Resource
+	// Name (ARN).
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The document version required by the current document.
+	Version *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DocumentRequires) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DocumentRequires) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DocumentRequires) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DocumentRequires"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DocumentRequires) SetName(v string) *DocumentRequires {
+	s.Name = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *DocumentRequires) SetVersion(v string) *DocumentRequires {
+	s.Version = &v
 	return s
 }
 
@@ -22825,6 +22973,10 @@ type GetDocumentOutput struct {
 	// The name of the Systems Manager document.
 	Name *string `type:"string"`
 
+	// A list of SSM documents required by a document. For example, an ApplicationConfiguration
+	// document requires an ApplicationConfigurationSchema document.
+	Requires []*DocumentRequires `min:"1" type:"list"`
+
 	// The status of the Systems Manager document, such as Creating, Active, Updating,
 	// Failed, and Deleting.
 	Status *string `type:"string" enum:"DocumentStatus"`
@@ -22884,6 +23036,12 @@ func (s *GetDocumentOutput) SetDocumentVersion(v string) *GetDocumentOutput {
 // SetName sets the Name field's value.
 func (s *GetDocumentOutput) SetName(v string) *GetDocumentOutput {
 	s.Name = &v
+	return s
+}
+
+// SetRequires sets the Requires field's value.
+func (s *GetDocumentOutput) SetRequires(v []*DocumentRequires) *GetDocumentOutput {
+	s.Requires = v
 	return s
 }
 
@@ -27461,7 +27619,7 @@ type ListDocumentVersionsInput struct {
 	// results.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// The name of the document about which you want version information.
+	// The name of the document. You can specify an Amazon Resource Name (ARN).
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
@@ -29371,6 +29529,10 @@ type ModifyDocumentPermissionInput struct {
 	//
 	// PermissionType is a required field
 	PermissionType *string `type:"string" required:"true" enum:"DocumentPermissionType"`
+
+	// (Optional) The version of the document to share. If it's not specified, the
+	// system choose the Default version to share.
+	SharedDocumentVersion *string `type:"string"`
 }
 
 // String returns the string representation
@@ -29420,6 +29582,12 @@ func (s *ModifyDocumentPermissionInput) SetName(v string) *ModifyDocumentPermiss
 // SetPermissionType sets the PermissionType field's value.
 func (s *ModifyDocumentPermissionInput) SetPermissionType(v string) *ModifyDocumentPermissionInput {
 	s.PermissionType = &v
+	return s
+}
+
+// SetSharedDocumentVersion sets the SharedDocumentVersion field's value.
+func (s *ModifyDocumentPermissionInput) SetSharedDocumentVersion(v string) *ModifyDocumentPermissionInput {
+	s.SharedDocumentVersion = &v
 	return s
 }
 
@@ -38219,6 +38387,15 @@ const (
 
 	// DocumentTypePackage is a DocumentType enum value
 	DocumentTypePackage = "Package"
+
+	// DocumentTypeApplicationConfiguration is a DocumentType enum value
+	DocumentTypeApplicationConfiguration = "ApplicationConfiguration"
+
+	// DocumentTypeApplicationConfigurationSchema is a DocumentType enum value
+	DocumentTypeApplicationConfigurationSchema = "ApplicationConfigurationSchema"
+
+	// DocumentTypeDeploymentStrategy is a DocumentType enum value
+	DocumentTypeDeploymentStrategy = "DeploymentStrategy"
 )
 
 const (

@@ -14,6 +14,45 @@
     "uid":"ce-2017-10-25"
   },
   "operations":{
+    "CreateCostCategoryDefinition":{
+      "name":"CreateCostCategoryDefinition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateCostCategoryDefinitionRequest"},
+      "output":{"shape":"CreateCostCategoryDefinitionResponse"},
+      "errors":[
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
+    "DeleteCostCategoryDefinition":{
+      "name":"DeleteCostCategoryDefinition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteCostCategoryDefinitionRequest"},
+      "output":{"shape":"DeleteCostCategoryDefinitionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
+    "DescribeCostCategoryDefinition":{
+      "name":"DescribeCostCategoryDefinition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeCostCategoryDefinitionRequest"},
+      "output":{"shape":"DescribeCostCategoryDefinitionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "GetCostAndUsage":{
       "name":"GetCostAndUsage",
       "http":{
@@ -213,6 +252,32 @@
         {"shape":"DataUnavailableException"},
         {"shape":"UnresolvableUsageUnitException"}
       ]
+    },
+    "ListCostCategoryDefinitions":{
+      "name":"ListCostCategoryDefinitions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListCostCategoryDefinitionsRequest"},
+      "output":{"shape":"ListCostCategoryDefinitionsResponse"},
+      "errors":[
+        {"shape":"LimitExceededException"}
+      ]
+    },
+    "UpdateCostCategoryDefinition":{
+      "name":"UpdateCostCategoryDefinition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateCostCategoryDefinitionRequest"},
+      "output":{"shape":"UpdateCostCategoryDefinitionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"LimitExceededException"}
+      ]
     }
   },
   "shapes":{
@@ -225,6 +290,12 @@
     },
     "AmortizedRecurringFee":{"type":"string"},
     "AmortizedUpfrontFee":{"type":"string"},
+    "Arn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"arn:aws[-a-z0-9]*:[a-z0-9]+:[-a-z0-9]*:[0-9]{12}:[-a-zA-Z0-9/:_]+"
+    },
     "AttributeType":{"type":"string"},
     "AttributeValue":{"type":"string"},
     "Attributes":{
@@ -246,6 +317,77 @@
         "RESERVATIONS",
         "SAVINGS_PLANS"
       ]
+    },
+    "CostCategory":{
+      "type":"structure",
+      "required":[
+        "CostCategoryArn",
+        "EffectiveStart",
+        "Name",
+        "RuleVersion",
+        "Rules"
+      ],
+      "members":{
+        "CostCategoryArn":{"shape":"Arn"},
+        "EffectiveStart":{"shape":"ZonedDateTime"},
+        "EffectiveEnd":{"shape":"ZonedDateTime"},
+        "Name":{"shape":"CostCategoryName"},
+        "RuleVersion":{"shape":"CostCategoryRuleVersion"},
+        "Rules":{"shape":"CostCategoryRulesList"}
+      }
+    },
+    "CostCategoryName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^(?! )[\\p{L}\\p{N}\\p{Z}-_]*(?<! )$"
+    },
+    "CostCategoryReference":{
+      "type":"structure",
+      "members":{
+        "CostCategoryArn":{"shape":"Arn"},
+        "Name":{"shape":"CostCategoryName"},
+        "EffectiveStart":{"shape":"ZonedDateTime"},
+        "EffectiveEnd":{"shape":"ZonedDateTime"}
+      }
+    },
+    "CostCategoryReferencesList":{
+      "type":"list",
+      "member":{"shape":"CostCategoryReference"}
+    },
+    "CostCategoryRule":{
+      "type":"structure",
+      "required":[
+        "Value",
+        "Rule"
+      ],
+      "members":{
+        "Value":{"shape":"CostCategoryValue"},
+        "Rule":{"shape":"Expression"}
+      }
+    },
+    "CostCategoryRuleVersion":{
+      "type":"string",
+      "enum":["CostCategoryExpression.v1"]
+    },
+    "CostCategoryRulesList":{
+      "type":"list",
+      "member":{"shape":"CostCategoryRule"},
+      "max":500,
+      "min":1
+    },
+    "CostCategoryValue":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^(?! )[\\p{L}\\p{N}\\p{Z}-_]*(?<! )$"
+    },
+    "CostCategoryValues":{
+      "type":"structure",
+      "members":{
+        "Key":{"shape":"CostCategoryName"},
+        "Values":{"shape":"Values"}
+      }
     },
     "Coverage":{
       "type":"structure",
@@ -293,6 +435,26 @@
       "type":"list",
       "member":{"shape":"CoverageByTime"}
     },
+    "CreateCostCategoryDefinitionRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "RuleVersion",
+        "Rules"
+      ],
+      "members":{
+        "Name":{"shape":"CostCategoryName"},
+        "RuleVersion":{"shape":"CostCategoryRuleVersion"},
+        "Rules":{"shape":"CostCategoryRulesList"}
+      }
+    },
+    "CreateCostCategoryDefinitionResponse":{
+      "type":"structure",
+      "members":{
+        "CostCategoryArn":{"shape":"Arn"},
+        "EffectiveStart":{"shape":"ZonedDateTime"}
+      }
+    },
     "CurrentInstance":{
       "type":"structure",
       "members":{
@@ -324,6 +486,34 @@
       "members":{
         "Start":{"shape":"YearMonthDay"},
         "End":{"shape":"YearMonthDay"}
+      }
+    },
+    "DeleteCostCategoryDefinitionRequest":{
+      "type":"structure",
+      "required":["CostCategoryArn"],
+      "members":{
+        "CostCategoryArn":{"shape":"Arn"}
+      }
+    },
+    "DeleteCostCategoryDefinitionResponse":{
+      "type":"structure",
+      "members":{
+        "CostCategoryArn":{"shape":"Arn"},
+        "EffectiveEnd":{"shape":"ZonedDateTime"}
+      }
+    },
+    "DescribeCostCategoryDefinitionRequest":{
+      "type":"structure",
+      "required":["CostCategoryArn"],
+      "members":{
+        "CostCategoryArn":{"shape":"Arn"},
+        "EffectiveOn":{"shape":"ZonedDateTime"}
+      }
+    },
+    "DescribeCostCategoryDefinitionResponse":{
+      "type":"structure",
+      "members":{
+        "CostCategory":{"shape":"CostCategory"}
       }
     },
     "Dimension":{
@@ -448,7 +638,8 @@
         "And":{"shape":"Expressions"},
         "Not":{"shape":"Expression"},
         "Dimensions":{"shape":"DimensionValues"},
-        "Tags":{"shape":"TagValues"}
+        "Tags":{"shape":"TagValues"},
+        "CostCategories":{"shape":"CostCategoryValues"}
       }
     },
     "Expressions":{
@@ -808,7 +999,8 @@
       "type":"string",
       "enum":[
         "DIMENSION",
-        "TAG"
+        "TAG",
+        "COST_CATEGORY"
       ]
     },
     "GroupDefinitions":{
@@ -847,6 +1039,20 @@
         "Message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "ListCostCategoryDefinitionsRequest":{
+      "type":"structure",
+      "members":{
+        "EffectiveOn":{"shape":"ZonedDateTime"},
+        "NextToken":{"shape":"NextPageToken"}
+      }
+    },
+    "ListCostCategoryDefinitionsResponse":{
+      "type":"structure",
+      "members":{
+        "CostCategoryReferences":{"shape":"CostCategoryReferencesList"},
+        "NextToken":{"shape":"NextPageToken"}
+      }
     },
     "LookbackPeriodInDays":{
       "type":"string",
@@ -1076,6 +1282,13 @@
         "EC2ResourceDetails":{"shape":"EC2ResourceDetails"}
       }
     },
+    "ResourceNotFoundException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
     "ResourceUtilization":{
       "type":"structure",
       "members":{
@@ -1287,6 +1500,13 @@
       "member":{"shape":"SavingsPlansUtilizationByTime"}
     },
     "SearchString":{"type":"string"},
+    "ServiceQuotaExceededException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
     "ServiceSpecification":{
       "type":"structure",
       "members":{
@@ -1360,6 +1580,26 @@
     },
     "UnusedHours":{"type":"string"},
     "UnusedUnits":{"type":"string"},
+    "UpdateCostCategoryDefinitionRequest":{
+      "type":"structure",
+      "required":[
+        "CostCategoryArn",
+        "RuleVersion",
+        "Rules"
+      ],
+      "members":{
+        "CostCategoryArn":{"shape":"Arn"},
+        "RuleVersion":{"shape":"CostCategoryRuleVersion"},
+        "Rules":{"shape":"CostCategoryRulesList"}
+      }
+    },
+    "UpdateCostCategoryDefinitionResponse":{
+      "type":"structure",
+      "members":{
+        "CostCategoryArn":{"shape":"Arn"},
+        "EffectiveStart":{"shape":"ZonedDateTime"}
+      }
+    },
     "UtilizationByTime":{
       "type":"structure",
       "members":{
@@ -1382,6 +1622,12 @@
     "YearMonthDay":{
       "type":"string",
       "pattern":"(\\d{4}-\\d{2}-\\d{2})(T\\d{2}:\\d{2}:\\d{2}Z)?"
+    },
+    "ZonedDateTime":{
+      "type":"string",
+      "max":25,
+      "min":20,
+      "pattern":"^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d(([+-]\\d\\d:\\d\\d)|Z)$"
     }
   }
 }

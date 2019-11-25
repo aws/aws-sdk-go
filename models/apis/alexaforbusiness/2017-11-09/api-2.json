@@ -1368,7 +1368,8 @@
       "type":"string",
       "enum":[
         "ONE_DAY",
-        "ONE_WEEK"
+        "ONE_WEEK",
+        "THIRTY_DAYS"
       ]
     },
     "BusinessReportRecurrence":{
@@ -1643,6 +1644,19 @@
         "ContactArn":{"shape":"Arn"}
       }
     },
+    "CreateEndOfMeetingReminder":{
+      "type":"structure",
+      "required":[
+        "ReminderAtMinutes",
+        "ReminderType",
+        "Enabled"
+      ],
+      "members":{
+        "ReminderAtMinutes":{"shape":"EndOfMeetingReminderMinutesList"},
+        "ReminderType":{"shape":"EndOfMeetingReminderType"},
+        "Enabled":{"shape":"Boolean"}
+      }
+    },
     "CreateGatewayGroupRequest":{
       "type":"structure",
       "required":[
@@ -1662,6 +1676,26 @@
       "type":"structure",
       "members":{
         "GatewayGroupArn":{"shape":"Arn"}
+      }
+    },
+    "CreateInstantBooking":{
+      "type":"structure",
+      "required":[
+        "DurationInMinutes",
+        "Enabled"
+      ],
+      "members":{
+        "DurationInMinutes":{"shape":"Minutes"},
+        "Enabled":{"shape":"Boolean"}
+      }
+    },
+    "CreateMeetingRoomConfiguration":{
+      "type":"structure",
+      "members":{
+        "RoomUtilizationMetricsEnabled":{"shape":"Boolean"},
+        "EndOfMeetingReminder":{"shape":"CreateEndOfMeetingReminder"},
+        "InstantBooking":{"shape":"CreateInstantBooking"},
+        "RequireCheckIn":{"shape":"CreateRequireCheckIn"}
       }
     },
     "CreateNetworkProfileRequest":{
@@ -1718,13 +1752,25 @@
         },
         "SetupModeDisabled":{"shape":"Boolean"},
         "MaxVolumeLimit":{"shape":"MaxVolumeLimit"},
-        "PSTNEnabled":{"shape":"Boolean"}
+        "PSTNEnabled":{"shape":"Boolean"},
+        "MeetingRoomConfiguration":{"shape":"CreateMeetingRoomConfiguration"}
       }
     },
     "CreateProfileResponse":{
       "type":"structure",
       "members":{
         "ProfileArn":{"shape":"Arn"}
+      }
+    },
+    "CreateRequireCheckIn":{
+      "type":"structure",
+      "required":[
+        "ReleaseAfterMinutes",
+        "Enabled"
+      ],
+      "members":{
+        "ReleaseAfterMinutes":{"shape":"Minutes"},
+        "Enabled":{"shape":"Boolean"}
       }
     },
     "CreateRoomRequest":{
@@ -2226,6 +2272,29 @@
         "PENDING"
       ]
     },
+    "EndOfMeetingReminder":{
+      "type":"structure",
+      "members":{
+        "ReminderAtMinutes":{"shape":"EndOfMeetingReminderMinutesList"},
+        "ReminderType":{"shape":"EndOfMeetingReminderType"},
+        "Enabled":{"shape":"Boolean"}
+      }
+    },
+    "EndOfMeetingReminderMinutesList":{
+      "type":"list",
+      "member":{"shape":"Minutes"},
+      "max":1,
+      "min":1
+    },
+    "EndOfMeetingReminderType":{
+      "type":"string",
+      "enum":[
+        "ANNOUNCEMENT_TIME_CHECK",
+        "ANNOUNCEMENT_VARIABLE_TIME_LEFT",
+        "CHIME",
+        "KNOCK"
+      ]
+    },
     "EndUserLicenseAgreement":{"type":"string"},
     "Endpoint":{
       "type":"string",
@@ -2565,6 +2634,13 @@
       }
     },
     "IconUrl":{"type":"string"},
+    "InstantBooking":{
+      "type":"structure",
+      "members":{
+        "DurationInMinutes":{"shape":"Minutes"},
+        "Enabled":{"shape":"Boolean"}
+      }
+    },
     "InvalidCertificateAuthorityException":{
       "type":"structure",
       "members":{
@@ -2776,6 +2852,15 @@
       "min":1
     },
     "MaxVolumeLimit":{"type":"integer"},
+    "MeetingRoomConfiguration":{
+      "type":"structure",
+      "members":{
+        "RoomUtilizationMetricsEnabled":{"shape":"Boolean"},
+        "EndOfMeetingReminder":{"shape":"EndOfMeetingReminder"},
+        "InstantBooking":{"shape":"InstantBooking"},
+        "RequireCheckIn":{"shape":"RequireCheckIn"}
+      }
+    },
     "MeetingSetting":{
       "type":"structure",
       "required":["RequirePin"],
@@ -2783,6 +2868,7 @@
         "RequirePin":{"shape":"RequirePin"}
       }
     },
+    "Minutes":{"type":"integer"},
     "NameInUseException":{
       "type":"structure",
       "members":{
@@ -2958,7 +3044,8 @@
         "SetupModeDisabled":{"shape":"Boolean"},
         "MaxVolumeLimit":{"shape":"MaxVolumeLimit"},
         "PSTNEnabled":{"shape":"Boolean"},
-        "AddressBookArn":{"shape":"Arn"}
+        "AddressBookArn":{"shape":"Arn"},
+        "MeetingRoomConfiguration":{"shape":"MeetingRoomConfiguration"}
       }
     },
     "ProfileData":{
@@ -3093,6 +3180,13 @@
       }
     },
     "ReleaseDate":{"type":"string"},
+    "RequireCheckIn":{
+      "type":"structure",
+      "members":{
+        "ReleaseAfterMinutes":{"shape":"Minutes"},
+        "Enabled":{"shape":"Boolean"}
+      }
+    },
     "RequirePin":{
       "type":"string",
       "enum":[
@@ -3844,6 +3938,14 @@
       "members":{
       }
     },
+    "UpdateEndOfMeetingReminder":{
+      "type":"structure",
+      "members":{
+        "ReminderAtMinutes":{"shape":"EndOfMeetingReminderMinutesList"},
+        "ReminderType":{"shape":"EndOfMeetingReminderType"},
+        "Enabled":{"shape":"Boolean"}
+      }
+    },
     "UpdateGatewayGroupRequest":{
       "type":"structure",
       "required":["GatewayGroupArn"],
@@ -3871,6 +3973,22 @@
     "UpdateGatewayResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateInstantBooking":{
+      "type":"structure",
+      "members":{
+        "DurationInMinutes":{"shape":"Minutes"},
+        "Enabled":{"shape":"Boolean"}
+      }
+    },
+    "UpdateMeetingRoomConfiguration":{
+      "type":"structure",
+      "members":{
+        "RoomUtilizationMetricsEnabled":{"shape":"Boolean"},
+        "EndOfMeetingReminder":{"shape":"UpdateEndOfMeetingReminder"},
+        "InstantBooking":{"shape":"UpdateInstantBooking"},
+        "RequireCheckIn":{"shape":"UpdateRequireCheckIn"}
       }
     },
     "UpdateNetworkProfileRequest":{
@@ -3905,12 +4023,20 @@
         "Locale":{"shape":"DeviceLocale"},
         "SetupModeDisabled":{"shape":"Boolean"},
         "MaxVolumeLimit":{"shape":"MaxVolumeLimit"},
-        "PSTNEnabled":{"shape":"Boolean"}
+        "PSTNEnabled":{"shape":"Boolean"},
+        "MeetingRoomConfiguration":{"shape":"UpdateMeetingRoomConfiguration"}
       }
     },
     "UpdateProfileResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateRequireCheckIn":{
+      "type":"structure",
+      "members":{
+        "ReleaseAfterMinutes":{"shape":"Minutes"},
+        "Enabled":{"shape":"Boolean"}
       }
     },
     "UpdateRoomRequest":{

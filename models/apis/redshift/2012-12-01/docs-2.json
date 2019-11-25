@@ -17,6 +17,7 @@
     "CreateEventSubscription": "<p>Creates an Amazon Redshift event notification subscription. This action requires an ARN (Amazon Resource Name) of an Amazon SNS topic created by either the Amazon Redshift console, the Amazon SNS console, or the Amazon SNS API. To obtain an ARN with Amazon SNS, you must create a topic in Amazon SNS and subscribe to the topic. The ARN is displayed in the SNS console.</p> <p>You can specify the source type, and lists of Amazon Redshift source IDs, event categories, and event severities. Notifications will be sent for all events you want that match those criteria. For example, you can specify source type = cluster, source ID = my-cluster-1 and mycluster2, event categories = Availability, Backup, and severity = ERROR. The subscription will only send notifications for those ERROR events in the Availability and Backup categories for the specified clusters.</p> <p>If you specify both the source type and source IDs, such as source type = cluster and source identifier = my-cluster-1, notifications will be sent for all the cluster events for my-cluster-1. If you specify a source type but do not specify a source identifier, you will receive notice of the events for the objects of that type in your AWS account. If you do not specify either the SourceType nor the SourceIdentifier, you will be notified of events generated from all Amazon Redshift sources belonging to your AWS account. You must specify a source type if you specify a source ID.</p>",
     "CreateHsmClientCertificate": "<p>Creates an HSM client certificate that an Amazon Redshift cluster will use to connect to the client's HSM in order to store and retrieve the keys used to encrypt the cluster databases.</p> <p>The command returns a public key, which you must store in the HSM. In addition to creating the HSM certificate, you must create an Amazon Redshift HSM configuration that provides a cluster the information needed to store and use encryption keys in the HSM. For more information, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-HSM.html\">Hardware Security Modules</a> in the Amazon Redshift Cluster Management Guide.</p>",
     "CreateHsmConfiguration": "<p>Creates an HSM configuration that contains the information required by an Amazon Redshift cluster to store and use database encryption keys in a Hardware Security Module (HSM). After creating the HSM configuration, you can specify it as a parameter when creating a cluster. The cluster will then store its encryption keys in the HSM.</p> <p>In addition to creating an HSM configuration, you must also create an HSM client certificate. For more information, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-HSM.html\">Hardware Security Modules</a> in the Amazon Redshift Cluster Management Guide.</p>",
+    "CreateScheduledAction": "<p>Creates a scheduled action. A scheduled action contains a schedule and an Amazon Redshift API action. For example, you can create a schedule of when to run the <code>ResizeCluster</code> API operation. </p>",
     "CreateSnapshotCopyGrant": "<p>Creates a snapshot copy grant that permits Amazon Redshift to use a customer master key (CMK) from AWS Key Management Service (AWS KMS) to encrypt copied snapshots in a destination region.</p> <p> For more information about managing snapshot copy grants, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html\">Amazon Redshift Database Encryption</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>",
     "CreateSnapshotSchedule": "<p>Creates a new snapshot schedule.</p>",
     "CreateTags": "<p>Adds one or more tags to a specified resource.</p> <p>A resource can have up to 50 tags. If you try to create more than 50 tags for a resource, you will receive an error and the attempt will fail.</p> <p>If you specify a key that already exists for the resource, the value for that key will be updated with the new value.</p>",
@@ -28,6 +29,7 @@
     "DeleteEventSubscription": "<p>Deletes an Amazon Redshift event notification subscription.</p>",
     "DeleteHsmClientCertificate": "<p>Deletes the specified HSM client certificate.</p>",
     "DeleteHsmConfiguration": "<p>Deletes the specified Amazon Redshift HSM configuration.</p>",
+    "DeleteScheduledAction": "<p>Deletes a scheduled action. </p>",
     "DeleteSnapshotCopyGrant": "<p>Deletes the specified snapshot copy grant.</p>",
     "DeleteSnapshotSchedule": "<p>Deletes a snapshot schedule.</p>",
     "DeleteTags": "<p>Deletes a tag or tags from a resource. You must provide the ARN of the resource from which you want to delete the tag or tags.</p>",
@@ -53,6 +55,7 @@
     "DescribeReservedNodeOfferings": "<p>Returns a list of the available reserved node offerings by Amazon Redshift with their descriptions including the node type, the fixed and recurring costs of reserving the node and duration the node will be reserved for you. These descriptions help you determine which reserve node offering you want to purchase. You then use the unique offering ID in you call to <a>PurchaseReservedNodeOffering</a> to reserve one or more nodes for your Amazon Redshift cluster. </p> <p> For more information about reserved node offerings, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/purchase-reserved-node-instance.html\">Purchasing Reserved Nodes</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
     "DescribeReservedNodes": "<p>Returns the descriptions of the reserved nodes.</p>",
     "DescribeResize": "<p>Returns information about the last resize operation for the specified cluster. If no resize operation has ever been initiated for the specified cluster, a <code>HTTP 404</code> error is returned. If a resize operation was initiated and completed, the status of the resize remains as <code>SUCCEEDED</code> until the next resize. </p> <p>A resize operation can be requested using <a>ModifyCluster</a> and specifying a different number or type of nodes for the cluster. </p>",
+    "DescribeScheduledActions": "<p>Describes properties of scheduled actions. </p>",
     "DescribeSnapshotCopyGrants": "<p>Returns a list of snapshot copy grants owned by the AWS account in the destination region.</p> <p> For more information about managing snapshot copy grants, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html\">Amazon Redshift Database Encryption</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>",
     "DescribeSnapshotSchedules": "<p>Returns a list of snapshot schedules. </p>",
     "DescribeStorage": "<p>Returns the total amount of snapshot usage and provisioned storage in megabytes.</p>",
@@ -73,6 +76,7 @@
     "ModifyClusterSnapshotSchedule": "<p>Modifies a snapshot schedule for a cluster.</p>",
     "ModifyClusterSubnetGroup": "<p>Modifies a cluster subnet group to include the specified list of VPC subnets. The operation replaces the existing list of subnets with the new list of subnets.</p>",
     "ModifyEventSubscription": "<p>Modifies an existing Amazon Redshift event notification subscription.</p>",
+    "ModifyScheduledAction": "<p>Modify a scheduled action. </p>",
     "ModifySnapshotCopyRetentionPeriod": "<p>Modifies the number of days to retain snapshots in the destination AWS Region after they are copied from the source AWS Region. By default, this operation only changes the retention period of copied automated snapshots. The retention periods for both new and existing copied automated snapshots are updated with the new retention period. You can set the manual option to change only the retention periods of copied manual snapshots. If you set this option, only newly copied manual snapshots have the new retention period. </p>",
     "ModifySnapshotSchedule": "<p>Modifies a snapshot schedule. Any schedule associated with a cluster is modified asynchronously.</p>",
     "PurchaseReservedNodeOffering": "<p>Allows you to purchase reserved nodes. Amazon Redshift offers a predefined set of reserved node offerings. You can purchase one or more of the offerings. You can call the <a>DescribeReservedNodeOfferings</a> API to obtain the available reserved node offerings. You can call this API by providing a specific reserved node offering and the number of nodes you want to reserve. </p> <p> For more information about reserved node offerings, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/purchase-reserved-node-instance.html\">Purchasing Reserved Nodes</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
@@ -127,7 +131,7 @@
     "ActionType": {
       "base": null,
       "refs": {
-        "DescribeNodeConfigurationOptionsMessage$ActionType": "<p>The action type to evaluate for possible node configurations. Currently, it must be \"restore-cluster\".</p>"
+        "DescribeNodeConfigurationOptionsMessage$ActionType": "<p>The action type to evaluate for possible node configurations. Specify \"restore-cluster\" to get configuration combinations based on an existing snapshot. Specify \"recommend-node-config\" to get configuration recommendations based on an existing cluster or snapshot. </p>"
       }
     },
     "AssociatedClusterList": {
@@ -279,8 +283,10 @@
         "CreateClusterMessage$Encrypted": "<p>If <code>true</code>, the data in the cluster is encrypted at rest. </p> <p>Default: false</p>",
         "CreateClusterMessage$EnhancedVpcRouting": "<p>An option that specifies whether to create the cluster with enhanced VPC routing enabled. To create a cluster that uses enhanced VPC routing, the cluster must be in a VPC. For more information, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/enhanced-vpc-routing.html\">Enhanced VPC Routing</a> in the Amazon Redshift Cluster Management Guide.</p> <p>If this option is <code>true</code>, enhanced VPC routing is enabled. </p> <p>Default: false</p>",
         "CreateEventSubscriptionMessage$Enabled": "<p>A boolean value; set to <code>true</code> to activate the subscription, and set to <code>false</code> to create the subscription but not activate it. </p>",
+        "CreateScheduledActionMessage$Enable": "<p>If true, the schedule is enabled. If false, the scheduled action does not trigger. For more information about <code>state</code> of the scheduled action, see <a>ScheduledAction</a>. </p>",
         "CreateSnapshotScheduleMessage$DryRun": "<p/>",
         "DescribeClusterSnapshotsMessage$ClusterExists": "<p>A value that indicates whether to return snapshots only for an existing cluster. You can perform table-level restore only by using a snapshot of an existing cluster, that is, a cluster that has not been deleted. Values for this parameter work as follows: </p> <ul> <li> <p>If <code>ClusterExists</code> is set to <code>true</code>, <code>ClusterIdentifier</code> is required.</p> </li> <li> <p>If <code>ClusterExists</code> is set to <code>false</code> and <code>ClusterIdentifier</code> isn't specified, all snapshots associated with deleted clusters (orphaned snapshots) are returned. </p> </li> <li> <p>If <code>ClusterExists</code> is set to <code>false</code> and <code>ClusterIdentifier</code> is specified for a deleted cluster, snapshots associated with that cluster are returned.</p> </li> <li> <p>If <code>ClusterExists</code> is set to <code>false</code> and <code>ClusterIdentifier</code> is specified for an existing cluster, no snapshots are returned. </p> </li> </ul>",
+        "DescribeScheduledActionsMessage$Active": "<p>If true, retrieve only active scheduled actions. If false, retrieve only disabled scheduled actions. </p>",
         "GetClusterCredentialsMessage$AutoCreate": "<p>Create a database user with the name specified for the user named in <code>DbUser</code> if one does not exist.</p>",
         "ModifyClusterMaintenanceMessage$DeferMaintenance": "<p>A boolean indicating whether to enable the deferred maintenance window. </p>",
         "ModifyClusterMessage$AllowVersionUpgrade": "<p>If <code>true</code>, major version upgrades will be applied automatically to the cluster during the maintenance window. </p> <p>Default: <code>false</code> </p>",
@@ -289,6 +295,7 @@
         "ModifyClusterMessage$Encrypted": "<p>Indicates whether the cluster is encrypted. If the cluster is encrypted and you provide a value for the <code>KmsKeyId</code> parameter, we will encrypt the cluster with the provided <code>KmsKeyId</code>. If you don't provide a <code>KmsKeyId</code>, we will encrypt with the default key. In the China region we will use legacy encryption if you specify that the cluster is encrypted.</p>",
         "ModifyClusterSnapshotScheduleMessage$DisassociateSchedule": "<p>A boolean to indicate whether to remove the assoiciation between the cluster and the schedule.</p>",
         "ModifyEventSubscriptionMessage$Enabled": "<p>A Boolean value indicating if the subscription is enabled. <code>true</code> indicates the subscription is enabled </p>",
+        "ModifyScheduledActionMessage$Enable": "<p>A modified enable flag of the scheduled action. If true, the scheduled action is active. If false, the scheduled action is disabled. </p>",
         "PendingModifiedValues$PubliclyAccessible": "<p>The pending or in-progress change of the ability to connect to the cluster from the public network.</p>",
         "PendingModifiedValues$EnhancedVpcRouting": "<p>An option that specifies whether to create the cluster with enhanced VPC routing enabled. To create a cluster that uses enhanced VPC routing, the cluster must be in a VPC. For more information, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/enhanced-vpc-routing.html\">Enhanced VPC Routing</a> in the Amazon Redshift Cluster Management Guide.</p> <p>If this option is <code>true</code>, enhanced VPC routing is enabled. </p> <p>Default: false</p>",
         "ResizeClusterMessage$Classic": "<p>A boolean value indicating whether the resize operation is using the classic resize process. If you don't provide this parameter or set the value to <code>false</code>, the resize type is elastic. </p>",
@@ -697,6 +704,11 @@
       "refs": {
       }
     },
+    "CreateScheduledActionMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateSnapshotCopyGrantMessage": {
       "base": "<p>The result of the <code>CreateSnapshotCopyGrant</code> action.</p>",
       "refs": {
@@ -806,6 +818,11 @@
     },
     "DeleteHsmConfigurationMessage": {
       "base": "<p/>",
+      "refs": {
+      }
+    },
+    "DeleteScheduledActionMessage": {
+      "base": null,
       "refs": {
       }
     },
@@ -949,6 +966,11 @@
       "refs": {
       }
     },
+    "DescribeScheduledActionsMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeSnapshotCopyGrantsMessage": {
       "base": "<p>The result of the <code>DescribeSnapshotCopyGrants</code> action.</p>",
       "refs": {
@@ -999,7 +1021,7 @@
         "ReservedNode$UsagePrice": "<p>The hourly rate Amazon Redshift charges you for this reserved node.</p>",
         "ReservedNodeOffering$FixedPrice": "<p>The upfront fixed charge you will pay to purchase the specific reserved node offering.</p>",
         "ReservedNodeOffering$UsagePrice": "<p>The rate you are charged for each hour the cluster that is using the offering is running.</p>",
-        "RestoreStatus$CurrentRestoreRateInMegaBytesPerSecond": "<p>The number of megabytes per second being transferred from the backup storage. Returns the average rate for a completed backup.</p>",
+        "RestoreStatus$CurrentRestoreRateInMegaBytesPerSecond": "<p>The number of megabytes per second being transferred from the backup storage. Returns the average rate for a completed backup. This field is only updated when you restore to DC2 and DS2 node types. </p>",
         "Snapshot$TotalBackupSizeInMegaBytes": "<p>The size of the complete set of backup data that would be used to restore the cluster.</p>",
         "Snapshot$ActualIncrementalBackupSizeInMegaBytes": "<p>The size of the incremental backup.</p>",
         "Snapshot$BackupProgressInMegaBytes": "<p>The number of megabytes that have been transferred to the snapshot backup.</p>",
@@ -1335,6 +1357,7 @@
         "DescribeOrderableClusterOptionsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
         "DescribeReservedNodeOfferingsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
         "DescribeReservedNodesMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
+        "DescribeScheduledActionsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
         "DescribeSnapshotCopyGrantsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
         "DescribeSnapshotSchedulesMessage$MaxRecords": "<p>The maximum number or response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned <code>marker</code> value.</p>",
         "DescribeTableRestoreStatusMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.</p>",
@@ -1446,6 +1469,11 @@
       "refs": {
       }
     },
+    "InvalidScheduledActionFault": {
+      "base": "<p>The scheduled action is not valid. </p>",
+      "refs": {
+      }
+    },
     "InvalidSnapshotCopyGrantStateFault": {
       "base": "<p>The snapshot copy grant can't be deleted because it is used by one or more clusters.</p>",
       "refs": {
@@ -1492,10 +1520,10 @@
         "ClusterSnapshotCopyStatus$RetentionPeriod": "<p>The number of days that automated snapshots are retained in the destination region after they are copied from a source region.</p>",
         "DataTransferProgress$TotalDataInMegaBytes": "<p>Describes the total amount of data to be transfered in megabytes.</p>",
         "DataTransferProgress$DataTransferredInMegaBytes": "<p>Describes the total amount of data that has been transfered in MB's.</p>",
-        "RestoreStatus$SnapshotSizeInMegaBytes": "<p>The size of the set of snapshot data used to restore the cluster.</p>",
-        "RestoreStatus$ProgressInMegaBytes": "<p>The number of megabytes that have been transferred from snapshot storage.</p>",
-        "RestoreStatus$ElapsedTimeInSeconds": "<p>The amount of time an in-progress restore has been running, or the amount of time it took a completed restore to finish.</p>",
-        "RestoreStatus$EstimatedTimeToCompletionInSeconds": "<p>The estimate of the time remaining before the restore will complete. Returns 0 for a completed restore.</p>",
+        "RestoreStatus$SnapshotSizeInMegaBytes": "<p>The size of the set of snapshot data used to restore the cluster. This field is only updated when you restore to DC2 and DS2 node types. </p>",
+        "RestoreStatus$ProgressInMegaBytes": "<p>The number of megabytes that have been transferred from snapshot storage. This field is only updated when you restore to DC2 and DS2 node types. </p>",
+        "RestoreStatus$ElapsedTimeInSeconds": "<p>The amount of time an in-progress restore has been running, or the amount of time it took a completed restore to finish. This field is only updated when you restore to DC2 and DS2 node types. </p>",
+        "RestoreStatus$EstimatedTimeToCompletionInSeconds": "<p>The estimate of the time remaining before the restore will complete. Returns 0 for a completed restore. This field is only updated when you restore to DC2 and DS2 node types. </p>",
         "Snapshot$EstimatedSecondsToCompletion": "<p>The estimate of the time remaining before the snapshot backup will complete. Returns <code>0</code> for a completed backup. </p>",
         "Snapshot$ElapsedTimeInSeconds": "<p>The amount of time an in-progress snapshot backup has been running, or the amount of time it took a completed backup to finish.</p>"
       }
@@ -1517,6 +1545,12 @@
       "base": "<p>Defines a maintenance track that determines which Amazon Redshift version to apply during a maintenance window. If the value for <code>MaintenanceTrack</code> is <code>current</code>, the cluster is updated to the most recently certified maintenance release. If the value is <code>trailing</code>, the cluster is updated to the previously certified maintenance release. </p>",
       "refs": {
         "TrackList$member": null
+      }
+    },
+    "Mode": {
+      "base": null,
+      "refs": {
+        "NodeConfigurationOption$Mode": "<p>The category of the node configuration recommendation.</p>"
       }
     },
     "ModifyClusterDbRevisionMessage": {
@@ -1595,6 +1629,11 @@
       }
     },
     "ModifyEventSubscriptionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyScheduledActionMessage": {
       "base": null,
       "refs": {
       }
@@ -1831,6 +1870,7 @@
     "ResizeClusterMessage": {
       "base": null,
       "refs": {
+        "ScheduledActionType$ResizeCluster": "<p>An action that runs a <code>ResizeCluster</code> API operation. </p>"
       }
     },
     "ResizeClusterResult": {
@@ -1966,6 +2006,87 @@
       "refs": {
         "Cluster$SnapshotScheduleState": "<p>The current state of the cluster snapshot schedule.</p>",
         "ClusterAssociatedToSchedule$ScheduleAssociationState": "<p/>"
+      }
+    },
+    "ScheduledAction": {
+      "base": "<p>Describes a scheduled action. You can use a scheduled action to trigger some Amazon Redshift API operations on a schedule. For information about which API operations can be scheduled, see <a>ScheduledActionType</a>. </p>",
+      "refs": {
+        "ScheduledActionList$member": null
+      }
+    },
+    "ScheduledActionAlreadyExistsFault": {
+      "base": "<p>The scheduled action already exists. </p>",
+      "refs": {
+      }
+    },
+    "ScheduledActionFilter": {
+      "base": "<p>A set of elements to filter the returned scheduled actions. </p>",
+      "refs": {
+        "ScheduledActionFilterList$member": null
+      }
+    },
+    "ScheduledActionFilterList": {
+      "base": null,
+      "refs": {
+        "DescribeScheduledActionsMessage$Filters": "<p>List of scheduled action filters. </p>"
+      }
+    },
+    "ScheduledActionFilterName": {
+      "base": null,
+      "refs": {
+        "ScheduledActionFilter$Name": "<p>The type of element to filter. </p>"
+      }
+    },
+    "ScheduledActionList": {
+      "base": null,
+      "refs": {
+        "ScheduledActionsMessage$ScheduledActions": "<p>List of retrieved scheduled actions. </p>"
+      }
+    },
+    "ScheduledActionNotFoundFault": {
+      "base": "<p>The scheduled action cannot be found. </p>",
+      "refs": {
+      }
+    },
+    "ScheduledActionQuotaExceededFault": {
+      "base": "<p>The quota for scheduled actions exceeded. </p>",
+      "refs": {
+      }
+    },
+    "ScheduledActionState": {
+      "base": null,
+      "refs": {
+        "ScheduledAction$State": "<p>The state of the scheduled action. For example, <code>DISABLED</code>. </p>"
+      }
+    },
+    "ScheduledActionTimeList": {
+      "base": null,
+      "refs": {
+        "ScheduledAction$NextInvocations": "<p>List of times when the scheduled action will run. </p>"
+      }
+    },
+    "ScheduledActionType": {
+      "base": "<p>The action type that specifies an Amazon Redshift API operation that is supported by the Amazon Redshift scheduler. </p>",
+      "refs": {
+        "CreateScheduledActionMessage$TargetAction": "<p>A JSON format string of the Amazon Redshift API operation with input parameters. For more information about this parameter, see <a>ScheduledAction</a>. </p>",
+        "ModifyScheduledActionMessage$TargetAction": "<p>A modified JSON format of the scheduled action. For more information about this parameter, see <a>ScheduledAction</a>. </p>",
+        "ScheduledAction$TargetAction": "<p>A JSON format string of the Amazon Redshift API operation with input parameters. </p> <p>\"<code>{\\\"ResizeCluster\\\":{\\\"NodeType\\\":\\\"ds2.8xlarge\\\",\\\"ClusterIdentifier\\\":\\\"my-test-cluster\\\",\\\"NumberOfNodes\\\":3}}</code>\". </p>"
+      }
+    },
+    "ScheduledActionTypeUnsupportedFault": {
+      "base": "<p>The action type specified for a scheduled action is not supported. </p>",
+      "refs": {
+      }
+    },
+    "ScheduledActionTypeValues": {
+      "base": null,
+      "refs": {
+        "DescribeScheduledActionsMessage$TargetActionType": "<p>The type of the scheduled actions to retrieve. </p>"
+      }
+    },
+    "ScheduledActionsMessage": {
+      "base": null,
+      "refs": {
       }
     },
     "ScheduledSnapshotTimeList": {
@@ -2261,6 +2382,10 @@
         "CreateHsmConfigurationMessage$HsmPartitionName": "<p>The name of the partition in the HSM where the Amazon Redshift clusters will store their database encryption keys.</p>",
         "CreateHsmConfigurationMessage$HsmPartitionPassword": "<p>The password required to access the HSM partition.</p>",
         "CreateHsmConfigurationMessage$HsmServerPublicCertificate": "<p>The HSMs public certificate file. When using Cloud HSM, the file name is server.pem.</p>",
+        "CreateScheduledActionMessage$ScheduledActionName": "<p>The name of the scheduled action. The name must be unique within an account. For more information about this parameter, see <a>ScheduledAction</a>. </p>",
+        "CreateScheduledActionMessage$Schedule": "<p>The schedule in <code>at( )</code> or <code>cron( )</code> format. For more information about this parameter, see <a>ScheduledAction</a>.</p>",
+        "CreateScheduledActionMessage$IamRole": "<p>The IAM role to assume to run the target action. For more information about this parameter, see <a>ScheduledAction</a>. </p>",
+        "CreateScheduledActionMessage$ScheduledActionDescription": "<p>The description of the scheduled action. </p>",
         "CreateSnapshotCopyGrantMessage$SnapshotCopyGrantName": "<p>The name of the snapshot copy grant. This name must be unique in the region for the AWS account.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63 alphanumeric characters or hyphens.</p> </li> <li> <p>Alphabetic characters must be lowercase.</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p> </li> <li> <p>Must be unique for all clusters within an AWS account.</p> </li> </ul>",
         "CreateSnapshotCopyGrantMessage$KmsKeyId": "<p>The unique identifier of the customer master key (CMK) to which to grant Amazon Redshift permission. If no key is specified, the default key is used.</p>",
         "CreateSnapshotScheduleMessage$ScheduleIdentifier": "<p>A unique identifier for a snapshot schedule. Only alphanumeric characters are allowed for the identifier.</p>",
@@ -2281,6 +2406,7 @@
         "DeleteEventSubscriptionMessage$SubscriptionName": "<p>The name of the Amazon Redshift event notification subscription to be deleted.</p>",
         "DeleteHsmClientCertificateMessage$HsmClientCertificateIdentifier": "<p>The identifier of the HSM client certificate to be deleted.</p>",
         "DeleteHsmConfigurationMessage$HsmConfigurationIdentifier": "<p>The identifier of the Amazon Redshift HSM configuration to be deleted.</p>",
+        "DeleteScheduledActionMessage$ScheduledActionName": "<p>The name of the scheduled action to delete. </p>",
         "DeleteSnapshotCopyGrantMessage$SnapshotCopyGrantName": "<p>The name of the snapshot copy grant to delete.</p>",
         "DeleteSnapshotScheduleMessage$ScheduleIdentifier": "<p>A unique identifier of the snapshot schedule to delete.</p>",
         "DeleteTagsMessage$ResourceName": "<p>The Amazon Resource Name (ARN) from which you want to remove the tag or tags. For example, <code>arn:aws:redshift:us-east-1:123456789:cluster:t1</code>. </p>",
@@ -2319,6 +2445,7 @@
         "DescribeHsmConfigurationsMessage$HsmConfigurationIdentifier": "<p>The identifier of a specific Amazon Redshift HSM configuration to be described. If no identifier is specified, information is returned for all HSM configurations owned by your AWS customer account.</p>",
         "DescribeHsmConfigurationsMessage$Marker": "<p>An optional parameter that specifies the starting point to return a set of response records. When the results of a <a>DescribeHsmConfigurations</a> request exceed the value specified in <code>MaxRecords</code>, AWS returns a value in the <code>Marker</code> field of the response. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request. </p>",
         "DescribeLoggingStatusMessage$ClusterIdentifier": "<p>The identifier of the cluster from which to get the logging status.</p> <p>Example: <code>examplecluster</code> </p>",
+        "DescribeNodeConfigurationOptionsMessage$ClusterIdentifier": "<p>The identifier of the cluster to evaluate for possible node configurations.</p>",
         "DescribeNodeConfigurationOptionsMessage$SnapshotIdentifier": "<p>The identifier of the snapshot to evaluate for possible node configurations.</p>",
         "DescribeNodeConfigurationOptionsMessage$OwnerAccount": "<p>The AWS customer account used to create or copy the snapshot. Required if you are restoring a snapshot you do not own, optional if you own the snapshot.</p>",
         "DescribeNodeConfigurationOptionsMessage$Marker": "<p>An optional parameter that specifies the starting point to return a set of response records. When the results of a <a>DescribeNodeConfigurationOptions</a> request exceed the value specified in <code>MaxRecords</code>, AWS returns a value in the <code>Marker</code> field of the response. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request. </p>",
@@ -2330,6 +2457,8 @@
         "DescribeReservedNodesMessage$ReservedNodeId": "<p>Identifier for the node reservation.</p>",
         "DescribeReservedNodesMessage$Marker": "<p>An optional parameter that specifies the starting point to return a set of response records. When the results of a <a>DescribeReservedNodes</a> request exceed the value specified in <code>MaxRecords</code>, AWS returns a value in the <code>Marker</code> field of the response. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request. </p>",
         "DescribeResizeMessage$ClusterIdentifier": "<p>The unique identifier of a cluster whose resize progress you are requesting. This parameter is case-sensitive.</p> <p>By default, resize operations for all clusters defined for an AWS account are returned.</p>",
+        "DescribeScheduledActionsMessage$ScheduledActionName": "<p>The name of the scheduled action to retrieve. </p>",
+        "DescribeScheduledActionsMessage$Marker": "<p>An optional parameter that specifies the starting point to return a set of response records. When the results of a <a>DescribeScheduledActions</a> request exceed the value specified in <code>MaxRecords</code>, AWS returns a value in the <code>Marker</code> field of the response. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request. </p>",
         "DescribeSnapshotCopyGrantsMessage$SnapshotCopyGrantName": "<p>The name of the snapshot copy grant.</p>",
         "DescribeSnapshotCopyGrantsMessage$Marker": "<p>An optional parameter that specifies the starting point to return a set of response records. When the results of a <code>DescribeSnapshotCopyGrant</code> request exceed the value specified in <code>MaxRecords</code>, AWS returns a value in the <code>Marker</code> field of the response. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request. </p> <p>Constraints: You can specify either the <b>SnapshotCopyGrantName</b> parameter or the <b>Marker</b> parameter, but not both. </p>",
         "DescribeSnapshotSchedulesMessage$ClusterIdentifier": "<p>The unique identifier for the cluster whose snapshot schedules you want to view.</p>",
@@ -2429,6 +2558,10 @@
         "ModifyEventSubscriptionMessage$SnsTopicArn": "<p>The Amazon Resource Name (ARN) of the SNS topic to be used by the event notification subscription.</p>",
         "ModifyEventSubscriptionMessage$SourceType": "<p>The type of source that will be generating the events. For example, if you want to be notified of events generated by a cluster, you would set this parameter to cluster. If this value is not specified, events are returned for all Amazon Redshift objects in your AWS account. You must specify a source type in order to specify source IDs.</p> <p>Valid values: cluster, cluster-parameter-group, cluster-security-group, and cluster-snapshot.</p>",
         "ModifyEventSubscriptionMessage$Severity": "<p>Specifies the Amazon Redshift event severity to be published by the event notification subscription.</p> <p>Values: ERROR, INFO</p>",
+        "ModifyScheduledActionMessage$ScheduledActionName": "<p>The name of the scheduled action to modify. </p>",
+        "ModifyScheduledActionMessage$Schedule": "<p>A modified schedule in either <code>at( )</code> or <code>cron( )</code> format. For more information about this parameter, see <a>ScheduledAction</a>.</p>",
+        "ModifyScheduledActionMessage$IamRole": "<p>A different IAM role to assume to run the target action. For more information about this parameter, see <a>ScheduledAction</a>.</p>",
+        "ModifyScheduledActionMessage$ScheduledActionDescription": "<p>A modified description of the scheduled action. </p>",
         "ModifySnapshotCopyRetentionPeriodMessage$ClusterIdentifier": "<p>The unique identifier of the cluster for which you want to change the retention period for either automated or manual snapshots that are copied to a destination AWS Region.</p> <p>Constraints: Must be the valid name of an existing cluster that has cross-region snapshot copy enabled.</p>",
         "ModifySnapshotScheduleMessage$ScheduleIdentifier": "<p>A unique alphanumeric identifier of the schedule to modify.</p>",
         "NodeConfigurationOption$NodeType": "<p>The node type, such as, \"ds2.8xlarge\".</p>",
@@ -2515,6 +2648,11 @@
         "RevokeSnapshotAccessMessage$AccountWithRestoreAccess": "<p>The identifier of the AWS customer account that can no longer restore the specified snapshot.</p>",
         "RotateEncryptionKeyMessage$ClusterIdentifier": "<p>The unique identifier of the cluster that you want to rotate the encryption keys for.</p> <p>Constraints: Must be the name of valid cluster that has encryption enabled.</p>",
         "ScheduleDefinitionList$member": null,
+        "ScheduledAction$ScheduledActionName": "<p>The name of the scheduled action. </p>",
+        "ScheduledAction$Schedule": "<p>The schedule for a one-time (at format) or recurring (cron format) scheduled action. Schedule invocations must be separated by at least one hour.</p> <p>Format of at expressions is \"<code>at(yyyy-mm-ddThh:mm:ss)</code>\". For example, \"<code>at(2016-03-04T17:27:00)</code>\".</p> <p>Format of cron expressions is \"<code>cron(Minutes Hours Day-of-month Month Day-of-week Year)</code>\". For example, \"<code>cron(0, 10, *, *, MON, *)</code>\". For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions\">Cron Expressions</a> in the <i>Amazon CloudWatch Events User Guide</i>.</p>",
+        "ScheduledAction$IamRole": "<p>The IAM role to assume to run the scheduled action. This IAM role must have permission to run the Amazon Redshift API operation in the scheduled action. This IAM role must allow the Amazon Redshift scheduler (Principal scheduler.redshift.amazonaws.com) to assume permissions on your behalf. For more information about the IAM role to use with the Amazon Redshift scheduler, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html\">Using Identity-Based Policies for Amazon Redshift</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>",
+        "ScheduledAction$ScheduledActionDescription": "<p>The description of the scheduled action. </p>",
+        "ScheduledActionsMessage$Marker": "<p>An optional parameter that specifies the starting point to return a set of response records. When the results of a <a>DescribeScheduledActions</a> request exceed the value specified in <code>MaxRecords</code>, AWS returns a value in the <code>Marker</code> field of the response. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request. </p>",
         "Snapshot$SnapshotIdentifier": "<p>The snapshot identifier that is provided in the request.</p>",
         "Snapshot$ClusterIdentifier": "<p>The identifier of the cluster for which the snapshot was taken.</p>",
         "Snapshot$Status": "<p>The snapshot status. The value of the status depends on the API operation used: </p> <ul> <li> <p> <a>CreateClusterSnapshot</a> and <a>CopyClusterSnapshot</a> returns status as \"creating\". </p> </li> <li> <p> <a>DescribeClusterSnapshots</a> returns status as \"creating\", \"available\", \"final snapshot\", or \"failed\".</p> </li> <li> <p> <a>DeleteClusterSnapshot</a> returns status as \"deleted\".</p> </li> </ul>",
@@ -2654,20 +2792,29 @@
         "Cluster$NextMaintenanceWindowStartTime": "<p>The date and time in UTC when system maintenance can begin.</p>",
         "ClusterCredentials$Expiration": "<p>The date and time the password in <code>DbPassword</code> expires.</p>",
         "ClusterDbRevision$DatabaseRevisionReleaseDate": "<p>The date on which the database revision was released.</p>",
+        "CreateScheduledActionMessage$StartTime": "<p>The start time in UTC of the scheduled action. Before this time, the scheduled action does not trigger. For more information about this parameter, see <a>ScheduledAction</a>.</p>",
+        "CreateScheduledActionMessage$EndTime": "<p>The end time in UTC of the scheduled action. After this time, the scheduled action does not trigger. For more information about this parameter, see <a>ScheduledAction</a>. </p>",
         "DeferredMaintenanceWindow$DeferMaintenanceStartTime": "<p> A timestamp for the beginning of the time period when we defer maintenance.</p>",
         "DeferredMaintenanceWindow$DeferMaintenanceEndTime": "<p> A timestamp for the end of the time period when we defer maintenance.</p>",
         "DescribeClusterSnapshotsMessage$StartTime": "<p>A value that requests only snapshots created at or after the specified time. The time value is specified in ISO 8601 format. For more information about ISO 8601, go to the <a href=\"http://en.wikipedia.org/wiki/ISO_8601\">ISO8601 Wikipedia page.</a> </p> <p>Example: <code>2012-07-16T18:00:00Z</code> </p>",
         "DescribeClusterSnapshotsMessage$EndTime": "<p>A time value that requests only snapshots created at or before the specified time. The time value is specified in ISO 8601 format. For more information about ISO 8601, go to the <a href=\"http://en.wikipedia.org/wiki/ISO_8601\">ISO8601 Wikipedia page.</a> </p> <p>Example: <code>2012-07-16T18:00:00Z</code> </p>",
         "DescribeEventsMessage$StartTime": "<p>The beginning of the time interval to retrieve events for, specified in ISO 8601 format. For more information about ISO 8601, go to the <a href=\"http://en.wikipedia.org/wiki/ISO_8601\">ISO8601 Wikipedia page.</a> </p> <p>Example: <code>2009-07-08T18:00Z</code> </p>",
         "DescribeEventsMessage$EndTime": "<p>The end of the time interval for which to retrieve events, specified in ISO 8601 format. For more information about ISO 8601, go to the <a href=\"http://en.wikipedia.org/wiki/ISO_8601\">ISO8601 Wikipedia page.</a> </p> <p>Example: <code>2009-07-08T18:00Z</code> </p>",
+        "DescribeScheduledActionsMessage$StartTime": "<p>The start time in UTC of the scheduled actions to retrieve. Only active scheduled actions that have invocations after this time are retrieved.</p>",
+        "DescribeScheduledActionsMessage$EndTime": "<p>The end time in UTC of the scheduled action to retrieve. Only active scheduled actions that have invocations before this time are retrieved.</p>",
         "Event$Date": "<p>The date and time of the event.</p>",
         "EventSubscription$SubscriptionCreationTime": "<p>The date and time the Amazon Redshift event notification subscription was created.</p>",
         "LoggingStatus$LastSuccessfulDeliveryTime": "<p>The last time that logs were delivered.</p>",
         "LoggingStatus$LastFailureTime": "<p>The last time when logs failed to be delivered.</p>",
         "ModifyClusterMaintenanceMessage$DeferMaintenanceStartTime": "<p>A timestamp indicating the start time for the deferred maintenance window.</p>",
         "ModifyClusterMaintenanceMessage$DeferMaintenanceEndTime": "<p>A timestamp indicating end time for the deferred maintenance window. If you specify an end time, you can't specify a duration.</p>",
+        "ModifyScheduledActionMessage$StartTime": "<p>A modified start time of the scheduled action. For more information about this parameter, see <a>ScheduledAction</a>. </p>",
+        "ModifyScheduledActionMessage$EndTime": "<p>A modified end time of the scheduled action. For more information about this parameter, see <a>ScheduledAction</a>. </p>",
         "ReservedNode$StartTime": "<p>The time the reservation started. You purchase a reserved node offering for a duration. This is the start time of that duration.</p>",
         "RevisionTarget$DatabaseRevisionReleaseDate": "<p>The date on which the database revision was released.</p>",
+        "ScheduledAction$StartTime": "<p>The start time in UTC when the schedule is active. Before this time, the scheduled action does not trigger. </p>",
+        "ScheduledAction$EndTime": "<p>The end time in UTC when the schedule is no longer active. After this time, the scheduled action does not trigger. </p>",
+        "ScheduledActionTimeList$member": null,
         "ScheduledSnapshotTimeList$member": null,
         "Snapshot$SnapshotCreateTime": "<p>The time (in UTC format) when Amazon Redshift began the snapshot. A snapshot contains a copy of the cluster data as of this exact time.</p>",
         "Snapshot$ClusterCreateTime": "<p>The time (UTC) when the cluster was originally created.</p>",
@@ -2839,7 +2986,8 @@
     "ValueStringList": {
       "base": null,
       "refs": {
-        "NodeConfigurationOptionsFilter$Values": "<p>List of values. Compare Name using Operator to Values. If filter Name is NumberOfNodes, then values can range from 0 to 200. If filter Name is EstimatedDiskUtilizationPercent, then values can range from 0 to 100. For example, filter NumberOfNodes (name) GT (operator) 3 (values).</p>"
+        "NodeConfigurationOptionsFilter$Values": "<p>List of values. Compare Name using Operator to Values. If filter Name is NumberOfNodes, then values can range from 0 to 200. If filter Name is EstimatedDiskUtilizationPercent, then values can range from 0 to 100. For example, filter NumberOfNodes (name) GT (operator) 3 (values).</p>",
+        "ScheduledActionFilter$Values": "<p>List of values. Compare if the value (of type defined by <code>Name</code>) equals an item in the list of scheduled actions. </p>"
       }
     },
     "VpcSecurityGroupIdList": {

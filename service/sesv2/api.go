@@ -887,6 +887,92 @@ func (c *SESV2) DeleteEmailIdentityWithContext(ctx aws.Context, input *DeleteEma
 	return out, req.Send()
 }
 
+const opDeleteSuppressedDestination = "DeleteSuppressedDestination"
+
+// DeleteSuppressedDestinationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteSuppressedDestination operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteSuppressedDestination for more information on using the DeleteSuppressedDestination
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteSuppressedDestinationRequest method.
+//    req, resp := client.DeleteSuppressedDestinationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/DeleteSuppressedDestination
+func (c *SESV2) DeleteSuppressedDestinationRequest(input *DeleteSuppressedDestinationInput) (req *request.Request, output *DeleteSuppressedDestinationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteSuppressedDestination,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v2/email/suppression/addresses/{EmailAddress}",
+	}
+
+	if input == nil {
+		input = &DeleteSuppressedDestinationInput{}
+	}
+
+	output = &DeleteSuppressedDestinationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteSuppressedDestination API operation for Amazon Simple Email Service.
+//
+// Used to delete a suppressed email destination from your suppression list.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation DeleteSuppressedDestination for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resource you attempted to access doesn't exist.
+//
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input you provided is invalid.
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   Too many requests have been made to the operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/DeleteSuppressedDestination
+func (c *SESV2) DeleteSuppressedDestination(input *DeleteSuppressedDestinationInput) (*DeleteSuppressedDestinationOutput, error) {
+	req, out := c.DeleteSuppressedDestinationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteSuppressedDestinationWithContext is the same as DeleteSuppressedDestination with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteSuppressedDestination for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) DeleteSuppressedDestinationWithContext(ctx aws.Context, input *DeleteSuppressedDestinationInput, opts ...request.Option) (*DeleteSuppressedDestinationOutput, error) {
+	req, out := c.DeleteSuppressedDestinationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetAccount = "GetAccount"
 
 // GetAccountRequest generates a "aws/request.Request" representing the
@@ -1910,6 +1996,92 @@ func (c *SESV2) GetEmailIdentityWithContext(ctx aws.Context, input *GetEmailIden
 	return out, req.Send()
 }
 
+const opGetSuppressedDestination = "GetSuppressedDestination"
+
+// GetSuppressedDestinationRequest generates a "aws/request.Request" representing the
+// client's request for the GetSuppressedDestination operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetSuppressedDestination for more information on using the GetSuppressedDestination
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetSuppressedDestinationRequest method.
+//    req, resp := client.GetSuppressedDestinationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetSuppressedDestination
+func (c *SESV2) GetSuppressedDestinationRequest(input *GetSuppressedDestinationInput) (req *request.Request, output *GetSuppressedDestinationOutput) {
+	op := &request.Operation{
+		Name:       opGetSuppressedDestination,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v2/email/suppression/addresses/{EmailAddress}",
+	}
+
+	if input == nil {
+		input = &GetSuppressedDestinationInput{}
+	}
+
+	output = &GetSuppressedDestinationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetSuppressedDestination API operation for Amazon Simple Email Service.
+//
+// Used to fetch a single suppressed email destination from your suppression
+// list.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation GetSuppressedDestination for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input you provided is invalid.
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   Too many requests have been made to the operation.
+//
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resource you attempted to access doesn't exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetSuppressedDestination
+func (c *SESV2) GetSuppressedDestination(input *GetSuppressedDestinationInput) (*GetSuppressedDestinationOutput, error) {
+	req, out := c.GetSuppressedDestinationRequest(input)
+	return out, req.Send()
+}
+
+// GetSuppressedDestinationWithContext is the same as GetSuppressedDestination with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSuppressedDestination for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) GetSuppressedDestinationWithContext(ctx aws.Context, input *GetSuppressedDestinationInput, opts ...request.Option) (*GetSuppressedDestinationOutput, error) {
+	req, out := c.GetSuppressedDestinationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListConfigurationSets = "ListConfigurationSets"
 
 // ListConfigurationSetsRequest generates a "aws/request.Request" representing the
@@ -2633,6 +2805,151 @@ func (c *SESV2) ListEmailIdentitiesPagesWithContext(ctx aws.Context, input *List
 	return p.Err()
 }
 
+const opListSuppressedDestinations = "ListSuppressedDestinations"
+
+// ListSuppressedDestinationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListSuppressedDestinations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSuppressedDestinations for more information on using the ListSuppressedDestinations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListSuppressedDestinationsRequest method.
+//    req, resp := client.ListSuppressedDestinationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/ListSuppressedDestinations
+func (c *SESV2) ListSuppressedDestinationsRequest(input *ListSuppressedDestinationsInput) (req *request.Request, output *ListSuppressedDestinationsOutput) {
+	op := &request.Operation{
+		Name:       opListSuppressedDestinations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v2/email/suppression/addresses",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "PageSize",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListSuppressedDestinationsInput{}
+	}
+
+	output = &ListSuppressedDestinationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListSuppressedDestinations API operation for Amazon Simple Email Service.
+//
+// Used to fetch a list suppressed email destinations from your suppression
+// list.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation ListSuppressedDestinations for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input you provided is invalid.
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   Too many requests have been made to the operation.
+//
+//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   The specified request includes an invalid or expired token. Please attempt
+//   to get a new token.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/ListSuppressedDestinations
+func (c *SESV2) ListSuppressedDestinations(input *ListSuppressedDestinationsInput) (*ListSuppressedDestinationsOutput, error) {
+	req, out := c.ListSuppressedDestinationsRequest(input)
+	return out, req.Send()
+}
+
+// ListSuppressedDestinationsWithContext is the same as ListSuppressedDestinations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSuppressedDestinations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) ListSuppressedDestinationsWithContext(ctx aws.Context, input *ListSuppressedDestinationsInput, opts ...request.Option) (*ListSuppressedDestinationsOutput, error) {
+	req, out := c.ListSuppressedDestinationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListSuppressedDestinationsPages iterates over the pages of a ListSuppressedDestinations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSuppressedDestinations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListSuppressedDestinations operation.
+//    pageNum := 0
+//    err := client.ListSuppressedDestinationsPages(params,
+//        func(page *sesv2.ListSuppressedDestinationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SESV2) ListSuppressedDestinationsPages(input *ListSuppressedDestinationsInput, fn func(*ListSuppressedDestinationsOutput, bool) bool) error {
+	return c.ListSuppressedDestinationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSuppressedDestinationsPagesWithContext same as ListSuppressedDestinationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) ListSuppressedDestinationsPagesWithContext(ctx aws.Context, input *ListSuppressedDestinationsInput, fn func(*ListSuppressedDestinationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSuppressedDestinationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSuppressedDestinationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListSuppressedDestinationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -2884,6 +3201,89 @@ func (c *SESV2) PutAccountSendingAttributes(input *PutAccountSendingAttributesIn
 // for more information on using Contexts.
 func (c *SESV2) PutAccountSendingAttributesWithContext(ctx aws.Context, input *PutAccountSendingAttributesInput, opts ...request.Option) (*PutAccountSendingAttributesOutput, error) {
 	req, out := c.PutAccountSendingAttributesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutAccountSuppressionAttributes = "PutAccountSuppressionAttributes"
+
+// PutAccountSuppressionAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the PutAccountSuppressionAttributes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutAccountSuppressionAttributes for more information on using the PutAccountSuppressionAttributes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutAccountSuppressionAttributesRequest method.
+//    req, resp := client.PutAccountSuppressionAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutAccountSuppressionAttributes
+func (c *SESV2) PutAccountSuppressionAttributesRequest(input *PutAccountSuppressionAttributesInput) (req *request.Request, output *PutAccountSuppressionAttributesOutput) {
+	op := &request.Operation{
+		Name:       opPutAccountSuppressionAttributes,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v2/email/account/suppression",
+	}
+
+	if input == nil {
+		input = &PutAccountSuppressionAttributesInput{}
+	}
+
+	output = &PutAccountSuppressionAttributesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutAccountSuppressionAttributes API operation for Amazon Simple Email Service.
+//
+// Change your account's suppression preferences for your account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation PutAccountSuppressionAttributes for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   Too many requests have been made to the operation.
+//
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input you provided is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutAccountSuppressionAttributes
+func (c *SESV2) PutAccountSuppressionAttributes(input *PutAccountSuppressionAttributesInput) (*PutAccountSuppressionAttributesOutput, error) {
+	req, out := c.PutAccountSuppressionAttributesRequest(input)
+	return out, req.Send()
+}
+
+// PutAccountSuppressionAttributesWithContext is the same as PutAccountSuppressionAttributes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutAccountSuppressionAttributes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) PutAccountSuppressionAttributesWithContext(ctx aws.Context, input *PutAccountSuppressionAttributesInput, opts ...request.Option) (*PutAccountSuppressionAttributesOutput, error) {
+	req, out := c.PutAccountSuppressionAttributesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3146,6 +3546,92 @@ func (c *SESV2) PutConfigurationSetSendingOptions(input *PutConfigurationSetSend
 // for more information on using Contexts.
 func (c *SESV2) PutConfigurationSetSendingOptionsWithContext(ctx aws.Context, input *PutConfigurationSetSendingOptionsInput, opts ...request.Option) (*PutConfigurationSetSendingOptionsOutput, error) {
 	req, out := c.PutConfigurationSetSendingOptionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutConfigurationSetSuppressionOptions = "PutConfigurationSetSuppressionOptions"
+
+// PutConfigurationSetSuppressionOptionsRequest generates a "aws/request.Request" representing the
+// client's request for the PutConfigurationSetSuppressionOptions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutConfigurationSetSuppressionOptions for more information on using the PutConfigurationSetSuppressionOptions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutConfigurationSetSuppressionOptionsRequest method.
+//    req, resp := client.PutConfigurationSetSuppressionOptionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutConfigurationSetSuppressionOptions
+func (c *SESV2) PutConfigurationSetSuppressionOptionsRequest(input *PutConfigurationSetSuppressionOptionsInput) (req *request.Request, output *PutConfigurationSetSuppressionOptionsOutput) {
+	op := &request.Operation{
+		Name:       opPutConfigurationSetSuppressionOptions,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v2/email/configuration-sets/{ConfigurationSetName}/suppression-options",
+	}
+
+	if input == nil {
+		input = &PutConfigurationSetSuppressionOptionsInput{}
+	}
+
+	output = &PutConfigurationSetSuppressionOptionsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutConfigurationSetSuppressionOptions API operation for Amazon Simple Email Service.
+//
+// Specify your account's suppression preferences for a configuration set.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation PutConfigurationSetSuppressionOptions for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resource you attempted to access doesn't exist.
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   Too many requests have been made to the operation.
+//
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input you provided is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutConfigurationSetSuppressionOptions
+func (c *SESV2) PutConfigurationSetSuppressionOptions(input *PutConfigurationSetSuppressionOptionsInput) (*PutConfigurationSetSuppressionOptionsOutput, error) {
+	req, out := c.PutConfigurationSetSuppressionOptionsRequest(input)
+	return out, req.Send()
+}
+
+// PutConfigurationSetSuppressionOptionsWithContext is the same as PutConfigurationSetSuppressionOptions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutConfigurationSetSuppressionOptions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) PutConfigurationSetSuppressionOptionsWithContext(ctx aws.Context, input *PutConfigurationSetSuppressionOptionsInput, opts ...request.Option) (*PutConfigurationSetSuppressionOptionsOutput, error) {
+	req, out := c.PutConfigurationSetSuppressionOptionsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3779,6 +4265,89 @@ func (c *SESV2) PutEmailIdentityMailFromAttributes(input *PutEmailIdentityMailFr
 // for more information on using Contexts.
 func (c *SESV2) PutEmailIdentityMailFromAttributesWithContext(ctx aws.Context, input *PutEmailIdentityMailFromAttributesInput, opts ...request.Option) (*PutEmailIdentityMailFromAttributesOutput, error) {
 	req, out := c.PutEmailIdentityMailFromAttributesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutSuppressedDestination = "PutSuppressedDestination"
+
+// PutSuppressedDestinationRequest generates a "aws/request.Request" representing the
+// client's request for the PutSuppressedDestination operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutSuppressedDestination for more information on using the PutSuppressedDestination
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutSuppressedDestinationRequest method.
+//    req, resp := client.PutSuppressedDestinationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutSuppressedDestination
+func (c *SESV2) PutSuppressedDestinationRequest(input *PutSuppressedDestinationInput) (req *request.Request, output *PutSuppressedDestinationOutput) {
+	op := &request.Operation{
+		Name:       opPutSuppressedDestination,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v2/email/suppression/addresses",
+	}
+
+	if input == nil {
+		input = &PutSuppressedDestinationInput{}
+	}
+
+	output = &PutSuppressedDestinationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutSuppressedDestination API operation for Amazon Simple Email Service.
+//
+// Puts (overwrites) an email destination in your suppression list.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation PutSuppressedDestination for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input you provided is invalid.
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   Too many requests have been made to the operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutSuppressedDestination
+func (c *SESV2) PutSuppressedDestination(input *PutSuppressedDestinationInput) (*PutSuppressedDestinationOutput, error) {
+	req, out := c.PutSuppressedDestinationRequest(input)
+	return out, req.Send()
+}
+
+// PutSuppressedDestinationWithContext is the same as PutSuppressedDestination with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutSuppressedDestination for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) PutSuppressedDestinationWithContext(ctx aws.Context, input *PutSuppressedDestinationInput, opts ...request.Option) (*PutSuppressedDestinationOutput, error) {
+	req, out := c.PutSuppressedDestinationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4578,6 +5147,9 @@ type CreateConfigurationSetInput struct {
 	// send using the configuration set.
 	SendingOptions *SendingOptions `type:"structure"`
 
+	// An object that contains information about your account's suppression preferences.
+	SuppressionOptions *SuppressionOptions `type:"structure"`
+
 	// An array of objects that define the tags (keys and values) that you want
 	// to associate with the configuration set.
 	Tags []*Tag `type:"list"`
@@ -4646,6 +5218,12 @@ func (s *CreateConfigurationSetInput) SetReputationOptions(v *ReputationOptions)
 // SetSendingOptions sets the SendingOptions field's value.
 func (s *CreateConfigurationSetInput) SetSendingOptions(v *SendingOptions) *CreateConfigurationSetInput {
 	s.SendingOptions = v
+	return s
+}
+
+// SetSuppressionOptions sets the SuppressionOptions field's value.
+func (s *CreateConfigurationSetInput) SetSuppressionOptions(v *SuppressionOptions) *CreateConfigurationSetInput {
+	s.SuppressionOptions = v
 	return s
 }
 
@@ -5367,6 +5945,64 @@ func (s DeleteEmailIdentityOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteEmailIdentityOutput) GoString() string {
+	return s.String()
+}
+
+// A request to delete a suppressed email destination.
+type DeleteSuppressedDestinationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The suppressed email destination to delete.
+	//
+	// EmailAddress is a required field
+	EmailAddress *string `location:"uri" locationName:"EmailAddress" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteSuppressedDestinationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSuppressedDestinationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteSuppressedDestinationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteSuppressedDestinationInput"}
+	if s.EmailAddress == nil {
+		invalidParams.Add(request.NewErrParamRequired("EmailAddress"))
+	}
+	if s.EmailAddress != nil && len(*s.EmailAddress) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EmailAddress", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEmailAddress sets the EmailAddress field's value.
+func (s *DeleteSuppressedDestinationInput) SetEmailAddress(v string) *DeleteSuppressedDestinationInput {
+	s.EmailAddress = &v
+	return s
+}
+
+// An HTTP 200 response if the request succeeds, or an error message if the
+// request fails.
+type DeleteSuppressedDestinationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteSuppressedDestinationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSuppressedDestinationOutput) GoString() string {
 	return s.String()
 }
 
@@ -6227,6 +6863,9 @@ type GetAccountOutput struct {
 	// Indicates whether or not email sending is enabled for your Amazon SES account
 	// in the current AWS Region.
 	SendingEnabled *bool `type:"boolean"`
+
+	// An object that contains information about your account's suppression preferences.
+	SuppressionAttributes *SuppressionAttributes `type:"structure"`
 }
 
 // String returns the string representation
@@ -6266,6 +6905,12 @@ func (s *GetAccountOutput) SetSendQuota(v *SendQuota) *GetAccountOutput {
 // SetSendingEnabled sets the SendingEnabled field's value.
 func (s *GetAccountOutput) SetSendingEnabled(v bool) *GetAccountOutput {
 	s.SendingEnabled = &v
+	return s
+}
+
+// SetSuppressionAttributes sets the SuppressionAttributes field's value.
+func (s *GetAccountOutput) SetSuppressionAttributes(v *SuppressionAttributes) *GetAccountOutput {
+	s.SuppressionAttributes = v
 	return s
 }
 
@@ -6468,6 +7113,9 @@ type GetConfigurationSetOutput struct {
 	// send using the configuration set.
 	SendingOptions *SendingOptions `type:"structure"`
 
+	// An object that contains information about your account's suppression preferences.
+	SuppressionOptions *SuppressionOptions `type:"structure"`
+
 	// An array of objects that define the tags (keys and values) that are associated
 	// with the configuration set.
 	Tags []*Tag `type:"list"`
@@ -6508,6 +7156,12 @@ func (s *GetConfigurationSetOutput) SetReputationOptions(v *ReputationOptions) *
 // SetSendingOptions sets the SendingOptions field's value.
 func (s *GetConfigurationSetOutput) SetSendingOptions(v *SendingOptions) *GetConfigurationSetOutput {
 	s.SendingOptions = v
+	return s
+}
+
+// SetSuppressionOptions sets the SuppressionOptions field's value.
+func (s *GetConfigurationSetOutput) SetSuppressionOptions(v *SuppressionOptions) *GetConfigurationSetOutput {
+	s.SuppressionOptions = v
 	return s
 }
 
@@ -7196,6 +7850,74 @@ func (s *GetEmailIdentityOutput) SetVerifiedForSendingStatus(v bool) *GetEmailId
 	return s
 }
 
+// A request to get a suppressed email destination.
+type GetSuppressedDestinationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Email destination to fetch from the suppression list.
+	//
+	// EmailAddress is a required field
+	EmailAddress *string `location:"uri" locationName:"EmailAddress" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetSuppressedDestinationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetSuppressedDestinationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSuppressedDestinationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSuppressedDestinationInput"}
+	if s.EmailAddress == nil {
+		invalidParams.Add(request.NewErrParamRequired("EmailAddress"))
+	}
+	if s.EmailAddress != nil && len(*s.EmailAddress) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EmailAddress", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEmailAddress sets the EmailAddress field's value.
+func (s *GetSuppressedDestinationInput) SetEmailAddress(v string) *GetSuppressedDestinationInput {
+	s.EmailAddress = &v
+	return s
+}
+
+// Information about the suppressed email destination.
+type GetSuppressedDestinationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object containing information about the suppressed email destination.
+	//
+	// SuppressedDestination is a required field
+	SuppressedDestination *SuppressedDestination `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s GetSuppressedDestinationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetSuppressedDestinationOutput) GoString() string {
+	return s.String()
+}
+
+// SetSuppressedDestination sets the SuppressedDestination field's value.
+func (s *GetSuppressedDestinationOutput) SetSuppressedDestination(v *SuppressedDestination) *GetSuppressedDestinationOutput {
+	s.SuppressedDestination = v
+	return s
+}
+
 // Information about an email identity.
 type IdentityInfo struct {
 	_ struct{} `type:"structure"`
@@ -7821,6 +8543,105 @@ func (s *ListEmailIdentitiesOutput) SetNextToken(v string) *ListEmailIdentitiesO
 	return s
 }
 
+// A request to obtain a list of suppressed email destinations.
+type ListSuppressedDestinationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters email destinations suppressed after the given time.
+	EndDate *time.Time `location:"querystring" locationName:"EndDate" type:"timestamp"`
+
+	// A token returned from a previous call to ListSuppressedDestinations to indicate
+	// the position in the list of suppressed email destinations.
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+
+	// The number of results to show in a single call to ListSuppressedDestinations.
+	// If the number of results is larger than the number you specified in this
+	// parameter, then the response includes a NextToken element, which you can
+	// use to obtain additional results.
+	PageSize *int64 `location:"querystring" locationName:"PageSize" type:"integer"`
+
+	// Filters email destinations suppressed by the given reasons.
+	Reasons []*string `location:"querystring" locationName:"Reason" type:"list"`
+
+	// Filters email destinations suppressed before the given time.
+	StartDate *time.Time `location:"querystring" locationName:"StartDate" type:"timestamp"`
+}
+
+// String returns the string representation
+func (s ListSuppressedDestinationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListSuppressedDestinationsInput) GoString() string {
+	return s.String()
+}
+
+// SetEndDate sets the EndDate field's value.
+func (s *ListSuppressedDestinationsInput) SetEndDate(v time.Time) *ListSuppressedDestinationsInput {
+	s.EndDate = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSuppressedDestinationsInput) SetNextToken(v string) *ListSuppressedDestinationsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPageSize sets the PageSize field's value.
+func (s *ListSuppressedDestinationsInput) SetPageSize(v int64) *ListSuppressedDestinationsInput {
+	s.PageSize = &v
+	return s
+}
+
+// SetReasons sets the Reasons field's value.
+func (s *ListSuppressedDestinationsInput) SetReasons(v []*string) *ListSuppressedDestinationsInput {
+	s.Reasons = v
+	return s
+}
+
+// SetStartDate sets the StartDate field's value.
+func (s *ListSuppressedDestinationsInput) SetStartDate(v time.Time) *ListSuppressedDestinationsInput {
+	s.StartDate = &v
+	return s
+}
+
+// A list of suppressed email destinations.
+type ListSuppressedDestinationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token that indicates that there are additional suppressed destinations
+	// to list. To view additional suppressed destinations, issue another request
+	// to ListSuppressedDestinations, and pass this token in the NextToken parameter.
+	NextToken *string `type:"string"`
+
+	// A list of summaries, each containing a summary for a suppressed email destination.
+	SuppressedDestinationSummaries []*SuppressedDestinationSummary `type:"list"`
+}
+
+// String returns the string representation
+func (s ListSuppressedDestinationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListSuppressedDestinationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSuppressedDestinationsOutput) SetNextToken(v string) *ListSuppressedDestinationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSuppressedDestinationSummaries sets the SuppressedDestinationSummaries field's value.
+func (s *ListSuppressedDestinationsOutput) SetSuppressedDestinationSummaries(v []*SuppressedDestinationSummary) *ListSuppressedDestinationsOutput {
+	s.SuppressedDestinationSummaries = v
+	return s
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8312,6 +9133,51 @@ func (s PutAccountSendingAttributesOutput) GoString() string {
 	return s.String()
 }
 
+// A request to change your account's suppression preferences.
+type PutAccountSuppressionAttributesInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of reasons to suppress email addresses. The only valid reasons are:
+	//
+	//    * COMPLAINT – Amazon SES will suppress an email address that receives
+	//    a complaint.
+	//
+	//    * BOUNCE – Amazon SES will suppress an email address that hard bounces.
+	SuppressedReasons []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s PutAccountSuppressionAttributesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutAccountSuppressionAttributesInput) GoString() string {
+	return s.String()
+}
+
+// SetSuppressedReasons sets the SuppressedReasons field's value.
+func (s *PutAccountSuppressionAttributesInput) SetSuppressedReasons(v []*string) *PutAccountSuppressionAttributesInput {
+	s.SuppressedReasons = v
+	return s
+}
+
+// An HTTP 200 response if the request succeeds, or an error message if the
+// request fails.
+type PutAccountSuppressionAttributesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutAccountSuppressionAttributesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutAccountSuppressionAttributesOutput) GoString() string {
+	return s.String()
+}
+
 // A request to associate a configuration set with a dedicated IP pool.
 type PutConfigurationSetDeliveryOptionsInput struct {
 	_ struct{} `type:"structure"`
@@ -8531,6 +9397,80 @@ func (s PutConfigurationSetSendingOptionsOutput) String() string {
 
 // GoString returns the string representation
 func (s PutConfigurationSetSendingOptionsOutput) GoString() string {
+	return s.String()
+}
+
+// A request to change your account's suppression preferences for an specific
+// configuration set.
+type PutConfigurationSetSuppressionOptionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the configuration set that you want to enable or disable email
+	// sending for.
+	//
+	// ConfigurationSetName is a required field
+	ConfigurationSetName *string `location:"uri" locationName:"ConfigurationSetName" type:"string" required:"true"`
+
+	// A list of reasons to suppress email addresses. The only valid reasons are:
+	//
+	//    * COMPLAINT – Amazon SES will suppress an email address that receives
+	//    a complaint.
+	//
+	//    * BOUNCE – Amazon SES will suppress an email address that hard bounces.
+	SuppressedReasons []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s PutConfigurationSetSuppressionOptionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutConfigurationSetSuppressionOptionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutConfigurationSetSuppressionOptionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutConfigurationSetSuppressionOptionsInput"}
+	if s.ConfigurationSetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationSetName"))
+	}
+	if s.ConfigurationSetName != nil && len(*s.ConfigurationSetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationSetName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigurationSetName sets the ConfigurationSetName field's value.
+func (s *PutConfigurationSetSuppressionOptionsInput) SetConfigurationSetName(v string) *PutConfigurationSetSuppressionOptionsInput {
+	s.ConfigurationSetName = &v
+	return s
+}
+
+// SetSuppressedReasons sets the SuppressedReasons field's value.
+func (s *PutConfigurationSetSuppressionOptionsInput) SetSuppressedReasons(v []*string) *PutConfigurationSetSuppressionOptionsInput {
+	s.SuppressedReasons = v
+	return s
+}
+
+// An HTTP 200 response if the request succeeds, or an error message if the
+// request fails.
+type PutConfigurationSetSuppressionOptionsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutConfigurationSetSuppressionOptionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutConfigurationSetSuppressionOptionsOutput) GoString() string {
 	return s.String()
 }
 
@@ -9067,6 +10007,75 @@ func (s PutEmailIdentityMailFromAttributesOutput) GoString() string {
 	return s.String()
 }
 
+// A request to suppress an email destination.
+type PutSuppressedDestinationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Email destination to be suppressed.
+	//
+	// EmailAddress is a required field
+	EmailAddress *string `type:"string" required:"true"`
+
+	// Reason for which the email destination is suppressed.
+	//
+	// Reason is a required field
+	Reason *string `type:"string" required:"true" enum:"SuppressionListReason"`
+}
+
+// String returns the string representation
+func (s PutSuppressedDestinationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutSuppressedDestinationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutSuppressedDestinationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutSuppressedDestinationInput"}
+	if s.EmailAddress == nil {
+		invalidParams.Add(request.NewErrParamRequired("EmailAddress"))
+	}
+	if s.Reason == nil {
+		invalidParams.Add(request.NewErrParamRequired("Reason"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEmailAddress sets the EmailAddress field's value.
+func (s *PutSuppressedDestinationInput) SetEmailAddress(v string) *PutSuppressedDestinationInput {
+	s.EmailAddress = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *PutSuppressedDestinationInput) SetReason(v string) *PutSuppressedDestinationInput {
+	s.Reason = &v
+	return s
+}
+
+// An HTTP 200 response if the request succeeds, or an error message if the
+// request fails.
+type PutSuppressedDestinationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutSuppressedDestinationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutSuppressedDestinationOutput) GoString() string {
+	return s.String()
+}
+
 // The raw email message.
 type RawMessage struct {
 	_ struct{} `type:"structure"`
@@ -9424,6 +10433,203 @@ func (s *SnsDestination) Validate() error {
 // SetTopicArn sets the TopicArn field's value.
 func (s *SnsDestination) SetTopicArn(v string) *SnsDestination {
 	s.TopicArn = &v
+	return s
+}
+
+// An object containing information about the suppressed email destination.
+type SuppressedDestination struct {
+	_ struct{} `type:"structure"`
+
+	// Optional value with information about the sources of the suppression.
+	Attributes *SuppressedDestinationAttributes `type:"structure"`
+
+	// The suppressed email destination.
+	//
+	// EmailAddress is a required field
+	EmailAddress *string `type:"string" required:"true"`
+
+	// The last time the suppressed destination was updated.
+	//
+	// LastUpdateTime is a required field
+	LastUpdateTime *time.Time `type:"timestamp" required:"true"`
+
+	// The reason for which the email destination is suppressed.
+	//
+	// Reason is a required field
+	Reason *string `type:"string" required:"true" enum:"SuppressionListReason"`
+}
+
+// String returns the string representation
+func (s SuppressedDestination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SuppressedDestination) GoString() string {
+	return s.String()
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *SuppressedDestination) SetAttributes(v *SuppressedDestinationAttributes) *SuppressedDestination {
+	s.Attributes = v
+	return s
+}
+
+// SetEmailAddress sets the EmailAddress field's value.
+func (s *SuppressedDestination) SetEmailAddress(v string) *SuppressedDestination {
+	s.EmailAddress = &v
+	return s
+}
+
+// SetLastUpdateTime sets the LastUpdateTime field's value.
+func (s *SuppressedDestination) SetLastUpdateTime(v time.Time) *SuppressedDestination {
+	s.LastUpdateTime = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *SuppressedDestination) SetReason(v string) *SuppressedDestination {
+	s.Reason = &v
+	return s
+}
+
+// An object containing additional attributes related to a suppressed destination.
+type SuppressedDestinationAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier of the suppression cause.
+	FeedbackId *string `type:"string"`
+
+	// A unique identifier of the message that caused the suppression of the email
+	// destination.
+	MessageId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SuppressedDestinationAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SuppressedDestinationAttributes) GoString() string {
+	return s.String()
+}
+
+// SetFeedbackId sets the FeedbackId field's value.
+func (s *SuppressedDestinationAttributes) SetFeedbackId(v string) *SuppressedDestinationAttributes {
+	s.FeedbackId = &v
+	return s
+}
+
+// SetMessageId sets the MessageId field's value.
+func (s *SuppressedDestinationAttributes) SetMessageId(v string) *SuppressedDestinationAttributes {
+	s.MessageId = &v
+	return s
+}
+
+// A summary for the suppressed email destination.
+type SuppressedDestinationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The suppressed email destination.
+	//
+	// EmailAddress is a required field
+	EmailAddress *string `type:"string" required:"true"`
+
+	// The last time the suppressed destination was updated.
+	//
+	// LastUpdateTime is a required field
+	LastUpdateTime *time.Time `type:"timestamp" required:"true"`
+
+	// The reason for which the email destination is suppressed.
+	//
+	// Reason is a required field
+	Reason *string `type:"string" required:"true" enum:"SuppressionListReason"`
+}
+
+// String returns the string representation
+func (s SuppressedDestinationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SuppressedDestinationSummary) GoString() string {
+	return s.String()
+}
+
+// SetEmailAddress sets the EmailAddress field's value.
+func (s *SuppressedDestinationSummary) SetEmailAddress(v string) *SuppressedDestinationSummary {
+	s.EmailAddress = &v
+	return s
+}
+
+// SetLastUpdateTime sets the LastUpdateTime field's value.
+func (s *SuppressedDestinationSummary) SetLastUpdateTime(v time.Time) *SuppressedDestinationSummary {
+	s.LastUpdateTime = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *SuppressedDestinationSummary) SetReason(v string) *SuppressedDestinationSummary {
+	s.Reason = &v
+	return s
+}
+
+// An object that contains information about your account's suppression preferences.
+type SuppressionAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// A list of reasons to suppress email addresses. The only valid reasons are:
+	//
+	//    * COMPLAINT – Amazon SES will suppress an email address that receives
+	//    a complaint.
+	//
+	//    * BOUNCE – Amazon SES will suppress an email address that hard bounces.
+	SuppressedReasons []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s SuppressionAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SuppressionAttributes) GoString() string {
+	return s.String()
+}
+
+// SetSuppressedReasons sets the SuppressedReasons field's value.
+func (s *SuppressionAttributes) SetSuppressedReasons(v []*string) *SuppressionAttributes {
+	s.SuppressedReasons = v
+	return s
+}
+
+// An object that contains information about your account's suppression preferences.
+type SuppressionOptions struct {
+	_ struct{} `type:"structure"`
+
+	// A list of reasons to suppress email addresses. The only valid reasons are:
+	//
+	//    * COMPLAINT – Amazon SES will suppress an email address that receives
+	//    a complaint.
+	//
+	//    * BOUNCE – Amazon SES will suppress an email address that hard bounces.
+	SuppressedReasons []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s SuppressionOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SuppressionOptions) GoString() string {
+	return s.String()
+}
+
+// SetSuppressedReasons sets the SuppressedReasons field's value.
+func (s *SuppressionOptions) SetSuppressedReasons(v []*string) *SuppressionOptions {
+	s.SuppressedReasons = v
 	return s
 }
 
@@ -10063,6 +11269,21 @@ const (
 
 	// MailFromDomainStatusTemporaryFailure is a MailFromDomainStatus enum value
 	MailFromDomainStatusTemporaryFailure = "TEMPORARY_FAILURE"
+)
+
+// A string representing the cause for suppression for an email destination.
+// It can be one of the following:
+//
+//    * COMPLAINT – Amazon SES will suppress an email address that receive
+//    a complaint.
+//
+//    * BOUNCE – Amazon SES will suppress an email address that hard bounces.
+const (
+	// SuppressionListReasonBounce is a SuppressionListReason enum value
+	SuppressionListReasonBounce = "BOUNCE"
+
+	// SuppressionListReasonComplaint is a SuppressionListReason enum value
+	SuppressionListReasonComplaint = "COMPLAINT"
 )
 
 // Specifies whether messages that use the configuration set are required to

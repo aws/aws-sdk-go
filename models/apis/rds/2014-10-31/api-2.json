@@ -2463,7 +2463,8 @@
         "DBClusterEndpointIdentifier":{"shape":"String"},
         "EndpointType":{"shape":"String"},
         "StaticMembers":{"shape":"StringList"},
-        "ExcludedMembers":{"shape":"StringList"}
+        "ExcludedMembers":{"shape":"StringList"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateDBClusterMessage":{

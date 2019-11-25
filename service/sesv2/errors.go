@@ -29,6 +29,13 @@ const (
 	// The resource is being modified by another operation or thread.
 	ErrCodeConcurrentModificationException = "ConcurrentModificationException"
 
+	// ErrCodeInvalidNextTokenException for service response error code
+	// "InvalidNextTokenException".
+	//
+	// The specified request includes an invalid or expired token. Please attempt
+	// to get a new token.
+	ErrCodeInvalidNextTokenException = "InvalidNextTokenException"
+
 	// ErrCodeLimitExceededException for service response error code
 	// "LimitExceededException".
 	//

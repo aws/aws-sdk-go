@@ -494,6 +494,10 @@ func ExampleLambda_Invoke_shared00() {
 				fmt.Println(lambda.ErrCodeKMSNotFoundException, aerr.Error())
 			case lambda.ErrCodeInvalidRuntimeException:
 				fmt.Println(lambda.ErrCodeInvalidRuntimeException, aerr.Error())
+			case lambda.ErrCodeResourceConflictException:
+				fmt.Println(lambda.ErrCodeResourceConflictException, aerr.Error())
+			case lambda.ErrCodeResourceNotReadyException:
+				fmt.Println(lambda.ErrCodeResourceNotReadyException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -530,6 +534,8 @@ func ExampleLambda_InvokeAsync_shared00() {
 				fmt.Println(lambda.ErrCodeInvalidRequestContentException, aerr.Error())
 			case lambda.ErrCodeInvalidRuntimeException:
 				fmt.Println(lambda.ErrCodeInvalidRuntimeException, aerr.Error())
+			case lambda.ErrCodeResourceConflictException:
+				fmt.Println(lambda.ErrCodeResourceConflictException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -680,6 +686,8 @@ func ExampleLambda_PublishVersion_shared00() {
 				fmt.Println(lambda.ErrCodeCodeStorageExceededException, aerr.Error())
 			case lambda.ErrCodePreconditionFailedException:
 				fmt.Println(lambda.ErrCodePreconditionFailedException, aerr.Error())
+			case lambda.ErrCodeResourceConflictException:
+				fmt.Println(lambda.ErrCodeResourceConflictException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -759,6 +767,8 @@ func ExampleLambda_UpdateAlias_shared00() {
 				fmt.Println(lambda.ErrCodeTooManyRequestsException, aerr.Error())
 			case lambda.ErrCodePreconditionFailedException:
 				fmt.Println(lambda.ErrCodePreconditionFailedException, aerr.Error())
+			case lambda.ErrCodeResourceConflictException:
+				fmt.Println(lambda.ErrCodeResourceConflictException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -845,6 +855,8 @@ func ExampleLambda_UpdateFunctionCode_shared00() {
 				fmt.Println(lambda.ErrCodeCodeStorageExceededException, aerr.Error())
 			case lambda.ErrCodePreconditionFailedException:
 				fmt.Println(lambda.ErrCodePreconditionFailedException, aerr.Error())
+			case lambda.ErrCodeResourceConflictException:
+				fmt.Println(lambda.ErrCodeResourceConflictException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

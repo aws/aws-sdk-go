@@ -692,7 +692,11 @@
       "members":{
         "EngineExecutionTimeInMillis":{"shape":"Long"},
         "DataScannedInBytes":{"shape":"Long"},
-        "DataManifestLocation":{"shape":"String"}
+        "DataManifestLocation":{"shape":"String"},
+        "TotalExecutionTimeInMillis":{"shape":"Long"},
+        "QueryQueueTimeInMillis":{"shape":"Long"},
+        "QueryPlanningTimeInMillis":{"shape":"Long"},
+        "ServiceProcessingTimeInMillis":{"shape":"Long"}
       }
     },
     "QueryExecutionStatus":{

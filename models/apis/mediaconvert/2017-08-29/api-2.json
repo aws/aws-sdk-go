@@ -1094,6 +1094,13 @@
         }
       }
     },
+    "AlphaBehavior": {
+      "type": "string",
+      "enum": [
+        "DISCARD",
+        "REMAP_TO_LUMA"
+      ]
+    },
     "AncillaryConvert608To708": {
       "type": "string",
       "enum": [
@@ -2698,6 +2705,10 @@
           "shape": "__integerMinNegative2147483648Max2147483647",
           "locationName": "shadowYOffset"
         },
+        "SubtitlingType": {
+          "shape": "DvbSubtitlingType",
+          "locationName": "subtitlingType"
+        },
         "TeletextSpacing": {
           "shape": "DvbSubtitleTeletextSpacing",
           "locationName": "teletextSpacing"
@@ -2771,6 +2782,13 @@
       "enum": [
         "FIXED_GRID",
         "PROPORTIONAL"
+      ]
+    },
+    "DvbSubtitlingType": {
+      "type": "string",
+      "enum": [
+        "HEARING_IMPAIRED",
+        "STANDARD"
       ]
     },
     "DvbTdtSettings": {
@@ -7623,7 +7641,7 @@
           "locationName": "fixedAfd"
         },
         "Height": {
-          "shape": "__integerMin32Max4096",
+          "shape": "__integerMin32Max8192",
           "locationName": "height"
         },
         "Position": {
@@ -7651,7 +7669,7 @@
           "locationName": "videoPreprocessors"
         },
         "Width": {
-          "shape": "__integerMin32Max4096",
+          "shape": "__integerMin32Max8192",
           "locationName": "width"
         }
       }
@@ -7701,6 +7719,10 @@
     "VideoSelector": {
       "type": "structure",
       "members": {
+        "AlphaBehavior": {
+          "shape": "AlphaBehavior",
+          "locationName": "alphaBehavior"
+        },
         "ColorSpace": {
           "shape": "ColorSpace",
           "locationName": "colorSpace"
@@ -8054,15 +8076,15 @@
       "min": 32000,
       "max": 48000
     },
-    "__integerMin32Max4096": {
-      "type": "integer",
-      "min": 32,
-      "max": 4096
-    },
     "__integerMin32Max8182": {
       "type": "integer",
       "min": 32,
       "max": 8182
+    },
+    "__integerMin32Max8192": {
+      "type": "integer",
+      "min": 32,
+      "max": 8192
     },
     "__integerMin384000Max768000": {
       "type": "integer",

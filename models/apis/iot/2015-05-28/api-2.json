@@ -303,6 +303,25 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "CreateDomainConfiguration":{
+      "name":"CreateDomainConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/domainConfigurations/{domainConfigurationName}"
+      },
+      "input":{"shape":"CreateDomainConfigurationRequest"},
+      "output":{"shape":"CreateDomainConfigurationResponse"},
+      "errors":[
+        {"shape":"LimitExceededException"},
+        {"shape":"CertificateValidationException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "CreateDynamicThingGroup":{
       "name":"CreateDynamicThingGroup",
       "http":{
@@ -424,6 +443,58 @@
         {"shape":"UnauthorizedException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"InternalFailureException"}
+      ]
+    },
+    "CreateProvisioningClaim":{
+      "name":"CreateProvisioningClaim",
+      "http":{
+        "method":"POST",
+        "requestUri":"/provisioning-templates/{templateName}/provisioning-claim"
+      },
+      "input":{"shape":"CreateProvisioningClaimRequest"},
+      "output":{"shape":"CreateProvisioningClaimResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "CreateProvisioningTemplate":{
+      "name":"CreateProvisioningTemplate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/provisioning-templates"
+      },
+      "input":{"shape":"CreateProvisioningTemplateRequest"},
+      "output":{"shape":"CreateProvisioningTemplateResponse"},
+      "errors":[
+        {"shape":"InternalFailureException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ResourceAlreadyExistsException"}
+      ]
+    },
+    "CreateProvisioningTemplateVersion":{
+      "name":"CreateProvisioningTemplateVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/provisioning-templates/{templateName}/versions"
+      },
+      "input":{"shape":"CreateProvisioningTemplateVersionRequest"},
+      "output":{"shape":"CreateProvisioningTemplateVersionResponse"},
+      "errors":[
+        {"shape":"VersionsLimitExceededException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ConflictingResourceUpdateException"}
       ]
     },
     "CreateRoleAlias":{
@@ -660,6 +731,23 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DeleteDomainConfiguration":{
+      "name":"DeleteDomainConfiguration",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/domainConfigurations/{domainConfigurationName}"
+      },
+      "input":{"shape":"DeleteDomainConfigurationRequest"},
+      "output":{"shape":"DeleteDomainConfigurationResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
     "DeleteDynamicThingGroup":{
       "name":"DeleteDynamicThingGroup",
       "http":{
@@ -770,6 +858,40 @@
         {"shape":"UnauthorizedException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"InternalFailureException"}
+      ]
+    },
+    "DeleteProvisioningTemplate":{
+      "name":"DeleteProvisioningTemplate",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/provisioning-templates/{templateName}"
+      },
+      "input":{"shape":"DeleteProvisioningTemplateRequest"},
+      "output":{"shape":"DeleteProvisioningTemplateResponse"},
+      "errors":[
+        {"shape":"InternalFailureException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"DeleteConflictException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"}
+      ]
+    },
+    "DeleteProvisioningTemplateVersion":{
+      "name":"DeleteProvisioningTemplateVersion",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/provisioning-templates/{templateName}/versions/{versionId}"
+      },
+      "input":{"shape":"DeleteProvisioningTemplateVersionRequest"},
+      "output":{"shape":"DeleteProvisioningTemplateVersionResponse"},
+      "errors":[
+        {"shape":"InternalFailureException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"DeleteConflictException"}
       ]
     },
     "DeleteRegistrationCode":{
@@ -1106,6 +1228,22 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "DescribeDomainConfiguration":{
+      "name":"DescribeDomainConfiguration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/domainConfigurations/{domainConfigurationName}"
+      },
+      "input":{"shape":"DescribeDomainConfigurationRequest"},
+      "output":{"shape":"DescribeDomainConfigurationResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "DescribeEndpoint":{
       "name":"DescribeEndpoint",
       "http":{
@@ -1194,6 +1332,38 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalFailureException"}
+      ]
+    },
+    "DescribeProvisioningTemplate":{
+      "name":"DescribeProvisioningTemplate",
+      "http":{
+        "method":"GET",
+        "requestUri":"/provisioning-templates/{templateName}"
+      },
+      "input":{"shape":"DescribeProvisioningTemplateRequest"},
+      "output":{"shape":"DescribeProvisioningTemplateResponse"},
+      "errors":[
+        {"shape":"InternalFailureException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"}
+      ]
+    },
+    "DescribeProvisioningTemplateVersion":{
+      "name":"DescribeProvisioningTemplateVersion",
+      "http":{
+        "method":"GET",
+        "requestUri":"/provisioning-templates/{templateName}/versions/{versionId}"
+      },
+      "input":{"shape":"DescribeProvisioningTemplateVersionRequest"},
+      "output":{"shape":"DescribeProvisioningTemplateVersionResponse"},
+      "errors":[
+        {"shape":"InternalFailureException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"UnauthorizedException"}
       ]
     },
     "DescribeRoleAlias":{
@@ -1822,6 +1992,22 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "ListDomainConfigurations":{
+      "name":"ListDomainConfigurations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/domainConfigurations"
+      },
+      "input":{"shape":"ListDomainConfigurationsRequest"},
+      "output":{"shape":"ListDomainConfigurationsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "ListIndices":{
       "name":"ListIndices",
       "http":{
@@ -2013,6 +2199,37 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"InternalFailureException"},
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "ListProvisioningTemplateVersions":{
+      "name":"ListProvisioningTemplateVersions",
+      "http":{
+        "method":"GET",
+        "requestUri":"/provisioning-templates/{templateName}/versions"
+      },
+      "input":{"shape":"ListProvisioningTemplateVersionsRequest"},
+      "output":{"shape":"ListProvisioningTemplateVersionsResponse"},
+      "errors":[
+        {"shape":"InternalFailureException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"UnauthorizedException"}
+      ]
+    },
+    "ListProvisioningTemplates":{
+      "name":"ListProvisioningTemplates",
+      "http":{
+        "method":"GET",
+        "requestUri":"/provisioning-templates"
+      },
+      "input":{"shape":"ListProvisioningTemplatesRequest"},
+      "output":{"shape":"ListProvisioningTemplatesResponse"},
+      "errors":[
+        {"shape":"InternalFailureException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"}
       ]
     },
     "ListRoleAliases":{
@@ -2775,6 +2992,24 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "UpdateDomainConfiguration":{
+      "name":"UpdateDomainConfiguration",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/domainConfigurations/{domainConfigurationName}"
+      },
+      "input":{"shape":"UpdateDomainConfigurationRequest"},
+      "output":{"shape":"UpdateDomainConfigurationResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"CertificateValidationException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "UpdateDynamicThingGroup":{
       "name":"UpdateDynamicThingGroup",
       "http":{
@@ -2849,6 +3084,22 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalFailureException"}
+      ]
+    },
+    "UpdateProvisioningTemplate":{
+      "name":"UpdateProvisioningTemplate",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/provisioning-templates/{templateName}"
+      },
+      "input":{"shape":"UpdateProvisioningTemplateRequest"},
+      "output":{"shape":"UpdateProvisioningTemplateResponse"},
+      "errors":[
+        {"shape":"InternalFailureException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ConflictingResourceUpdateException"}
       ]
     },
     "UpdateRoleAlias":{
@@ -3048,6 +3299,12 @@
         }
       }
     },
+    "AcmCertificateArn":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"arn:aws:acm:[a-z]{2}-(gov-)?[a-z]{4,9}-\\d{1}:\\d{12}:certificate/?[a-zA-Z0-9/-]+"
+    },
     "Action":{
       "type":"structure",
       "members":{
@@ -3066,6 +3323,7 @@
         "salesforce":{"shape":"SalesforceAction"},
         "iotAnalytics":{"shape":"IotAnalyticsAction"},
         "iotEvents":{"shape":"IotEventsAction"},
+        "iotSiteWise":{"shape":"IotSiteWiseAction"},
         "stepFunctions":{"shape":"StepFunctionsAction"},
         "http":{"shape":"HttpAction"}
       }
@@ -3173,6 +3431,7 @@
       "key":{"shape":"AlertTargetType"},
       "value":{"shape":"AlertTarget"}
     },
+    "AllowAuthorizerOverride":{"type":"boolean"},
     "AllowAutoRegistration":{"type":"boolean"},
     "Allowed":{
       "type":"structure",
@@ -3182,6 +3441,59 @@
     },
     "ApproximateSecondsBeforeTimedOut":{"type":"long"},
     "AscendingOrder":{"type":"boolean"},
+    "AssetId":{"type":"string"},
+    "AssetPropertyAlias":{
+      "type":"string",
+      "max":2048,
+      "min":1
+    },
+    "AssetPropertyBooleanValue":{"type":"string"},
+    "AssetPropertyDoubleValue":{"type":"string"},
+    "AssetPropertyEntryId":{"type":"string"},
+    "AssetPropertyId":{"type":"string"},
+    "AssetPropertyIntegerValue":{"type":"string"},
+    "AssetPropertyOffsetInNanos":{"type":"string"},
+    "AssetPropertyQuality":{"type":"string"},
+    "AssetPropertyStringValue":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
+    "AssetPropertyTimeInSeconds":{"type":"string"},
+    "AssetPropertyTimestamp":{
+      "type":"structure",
+      "required":["timeInSeconds"],
+      "members":{
+        "timeInSeconds":{"shape":"AssetPropertyTimeInSeconds"},
+        "offsetInNanos":{"shape":"AssetPropertyOffsetInNanos"}
+      }
+    },
+    "AssetPropertyValue":{
+      "type":"structure",
+      "required":[
+        "value",
+        "timestamp"
+      ],
+      "members":{
+        "value":{"shape":"AssetPropertyVariant"},
+        "timestamp":{"shape":"AssetPropertyTimestamp"},
+        "quality":{"shape":"AssetPropertyQuality"}
+      }
+    },
+    "AssetPropertyValueList":{
+      "type":"list",
+      "member":{"shape":"AssetPropertyValue"},
+      "min":1
+    },
+    "AssetPropertyVariant":{
+      "type":"structure",
+      "members":{
+        "stringValue":{"shape":"AssetPropertyStringValue"},
+        "integerValue":{"shape":"AssetPropertyIntegerValue"},
+        "doubleValue":{"shape":"AssetPropertyDoubleValue"},
+        "booleanValue":{"shape":"AssetPropertyBooleanValue"}
+      }
+    },
     "AssociateTargetsWithJobRequest":{
       "type":"structure",
       "required":[
@@ -3558,6 +3870,16 @@
       "member":{"shape":"AuthResult"}
     },
     "AuthorizerArn":{"type":"string"},
+    "AuthorizerConfig":{
+      "type":"structure",
+      "members":{
+        "defaultAuthorizerName":{"shape":"AuthorizerName"},
+        "allowAuthorizerOverride":{
+          "shape":"AllowAuthorizerOverride",
+          "box":true
+        }
+      }
+    },
     "AuthorizerDescription":{
       "type":"structure",
       "members":{
@@ -3568,7 +3890,8 @@
         "tokenSigningPublicKeys":{"shape":"PublicKeyMap"},
         "status":{"shape":"AuthorizerStatus"},
         "creationDate":{"shape":"DateType"},
-        "lastModifiedDate":{"shape":"DateType"}
+        "lastModifiedDate":{"shape":"DateType"},
+        "signingDisabled":{"shape":"BooleanKey"}
       }
     },
     "AuthorizerFunctionArn":{"type":"string"},
@@ -3687,6 +4010,7 @@
       }
     },
     "Boolean":{"type":"boolean"},
+    "BooleanKey":{"type":"boolean"},
     "BucketName":{"type":"string"},
     "CACertificate":{
       "type":"structure",
@@ -4085,9 +4409,7 @@
       "type":"structure",
       "required":[
         "authorizerName",
-        "authorizerFunctionArn",
-        "tokenKeyName",
-        "tokenSigningPublicKeys"
+        "authorizerFunctionArn"
       ],
       "members":{
         "authorizerName":{
@@ -4098,7 +4420,8 @@
         "authorizerFunctionArn":{"shape":"AuthorizerFunctionArn"},
         "tokenKeyName":{"shape":"TokenKeyName"},
         "tokenSigningPublicKeys":{"shape":"PublicKeyMap"},
-        "status":{"shape":"AuthorizerStatus"}
+        "status":{"shape":"AuthorizerStatus"},
+        "signingDisabled":{"shape":"BooleanKey"}
       }
     },
     "CreateAuthorizerResponse":{
@@ -4147,6 +4470,29 @@
         "certificateArn":{"shape":"CertificateArn"},
         "certificateId":{"shape":"CertificateId"},
         "certificatePem":{"shape":"CertificatePem"}
+      }
+    },
+    "CreateDomainConfigurationRequest":{
+      "type":"structure",
+      "required":["domainConfigurationName"],
+      "members":{
+        "domainConfigurationName":{
+          "shape":"DomainConfigurationName",
+          "location":"uri",
+          "locationName":"domainConfigurationName"
+        },
+        "domainName":{"shape":"DomainName"},
+        "serverCertificateArns":{"shape":"ServerCertificateArns"},
+        "validationCertificateArn":{"shape":"AcmCertificateArn"},
+        "authorizerConfig":{"shape":"AuthorizerConfig"},
+        "serviceType":{"shape":"ServiceType"}
+      }
+    },
+    "CreateDomainConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "domainConfigurationName":{"shape":"DomainConfigurationName"},
+        "domainConfigurationArn":{"shape":"DomainConfigurationArn"}
       }
     },
     "CreateDynamicThingGroupRequest":{
@@ -4339,6 +4685,79 @@
         "policyArn":{"shape":"PolicyArn"},
         "policyDocument":{"shape":"PolicyDocument"},
         "policyVersionId":{"shape":"PolicyVersionId"},
+        "isDefaultVersion":{"shape":"IsDefaultVersion"}
+      }
+    },
+    "CreateProvisioningClaimRequest":{
+      "type":"structure",
+      "required":["templateName"],
+      "members":{
+        "templateName":{
+          "shape":"TemplateName",
+          "location":"uri",
+          "locationName":"templateName"
+        }
+      }
+    },
+    "CreateProvisioningClaimResponse":{
+      "type":"structure",
+      "members":{
+        "certificateId":{"shape":"CertificateId"},
+        "certificatePem":{"shape":"CertificatePem"},
+        "keyPair":{"shape":"KeyPair"},
+        "expiration":{"shape":"DateType"}
+      }
+    },
+    "CreateProvisioningTemplateRequest":{
+      "type":"structure",
+      "required":[
+        "templateName",
+        "templateBody",
+        "provisioningRoleArn"
+      ],
+      "members":{
+        "templateName":{"shape":"TemplateName"},
+        "description":{"shape":"TemplateDescription"},
+        "templateBody":{"shape":"TemplateBody"},
+        "enabled":{"shape":"Enabled"},
+        "provisioningRoleArn":{"shape":"RoleArn"},
+        "tags":{"shape":"TagList"}
+      }
+    },
+    "CreateProvisioningTemplateResponse":{
+      "type":"structure",
+      "members":{
+        "templateArn":{"shape":"TemplateArn"},
+        "templateName":{"shape":"TemplateName"},
+        "defaultVersionId":{"shape":"TemplateVersionId"}
+      }
+    },
+    "CreateProvisioningTemplateVersionRequest":{
+      "type":"structure",
+      "required":[
+        "templateName",
+        "templateBody"
+      ],
+      "members":{
+        "templateName":{
+          "shape":"TemplateName",
+          "location":"uri",
+          "locationName":"templateName"
+        },
+        "templateBody":{"shape":"TemplateBody"},
+        "setAsDefault":{
+          "shape":"SetAsDefault",
+          "location":"querystring",
+          "locationName":"setAsDefault"
+        }
+      }
+    },
+    "CreateProvisioningTemplateVersionResponse":{
+      "type":"structure",
+      "members":{
+        "templateArn":{"shape":"TemplateArn"},
+        "templateName":{"shape":"TemplateName"},
+        "versionId":{"shape":"TemplateVersionId"},
         "isDefaultVersion":{"shape":"IsDefaultVersion"}
       }
     },
@@ -4673,6 +5092,22 @@
       "error":{"httpStatusCode":409},
       "exception":true
     },
+    "DeleteDomainConfigurationRequest":{
+      "type":"structure",
+      "required":["domainConfigurationName"],
+      "members":{
+        "domainConfigurationName":{
+          "shape":"DomainConfigurationName",
+          "location":"uri",
+          "locationName":"domainConfigurationName"
+        }
+      }
+    },
+    "DeleteDomainConfigurationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteDynamicThingGroupRequest":{
       "type":"structure",
       "required":["thingGroupName"],
@@ -4810,6 +5245,46 @@
           "location":"uri",
           "locationName":"policyVersionId"
         }
+      }
+    },
+    "DeleteProvisioningTemplateRequest":{
+      "type":"structure",
+      "required":["templateName"],
+      "members":{
+        "templateName":{
+          "shape":"TemplateName",
+          "location":"uri",
+          "locationName":"templateName"
+        }
+      }
+    },
+    "DeleteProvisioningTemplateResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteProvisioningTemplateVersionRequest":{
+      "type":"structure",
+      "required":[
+        "templateName",
+        "versionId"
+      ],
+      "members":{
+        "templateName":{
+          "shape":"TemplateName",
+          "location":"uri",
+          "locationName":"templateName"
+        },
+        "versionId":{
+          "shape":"TemplateVersionId",
+          "location":"uri",
+          "locationName":"versionId"
+        }
+      }
+    },
+    "DeleteProvisioningTemplateVersionResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "DeleteRegistrationCodeRequest":{
@@ -5183,6 +5658,30 @@
         "authorizerDescription":{"shape":"AuthorizerDescription"}
       }
     },
+    "DescribeDomainConfigurationRequest":{
+      "type":"structure",
+      "required":["domainConfigurationName"],
+      "members":{
+        "domainConfigurationName":{
+          "shape":"ReservedDomainConfigurationName",
+          "location":"uri",
+          "locationName":"domainConfigurationName"
+        }
+      }
+    },
+    "DescribeDomainConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "domainConfigurationName":{"shape":"ReservedDomainConfigurationName"},
+        "domainConfigurationArn":{"shape":"DomainConfigurationArn"},
+        "domainName":{"shape":"DomainName"},
+        "serverCertificates":{"shape":"ServerCertificates"},
+        "authorizerConfig":{"shape":"AuthorizerConfig"},
+        "domainConfigurationStatus":{"shape":"DomainConfigurationStatus"},
+        "serviceType":{"shape":"ServiceType"},
+        "domainType":{"shape":"DomainType"}
+      }
+    },
     "DescribeEndpointRequest":{
       "type":"structure",
       "members":{
@@ -5301,6 +5800,59 @@
         "actionParams":{"shape":"MitigationActionParams"},
         "creationDate":{"shape":"Timestamp"},
         "lastModifiedDate":{"shape":"Timestamp"}
+      }
+    },
+    "DescribeProvisioningTemplateRequest":{
+      "type":"structure",
+      "required":["templateName"],
+      "members":{
+        "templateName":{
+          "shape":"TemplateName",
+          "location":"uri",
+          "locationName":"templateName"
+        }
+      }
+    },
+    "DescribeProvisioningTemplateResponse":{
+      "type":"structure",
+      "members":{
+        "templateArn":{"shape":"TemplateArn"},
+        "templateName":{"shape":"TemplateName"},
+        "description":{"shape":"TemplateDescription"},
+        "creationDate":{"shape":"DateType"},
+        "lastModifiedDate":{"shape":"DateType"},
+        "defaultVersionId":{"shape":"TemplateVersionId"},
+        "templateBody":{"shape":"TemplateBody"},
+        "enabled":{"shape":"Enabled"},
+        "provisioningRoleArn":{"shape":"RoleArn"}
+      }
+    },
+    "DescribeProvisioningTemplateVersionRequest":{
+      "type":"structure",
+      "required":[
+        "templateName",
+        "versionId"
+      ],
+      "members":{
+        "templateName":{
+          "shape":"TemplateName",
+          "location":"uri",
+          "locationName":"templateName"
+        },
+        "versionId":{
+          "shape":"TemplateVersionId",
+          "location":"uri",
+          "locationName":"versionId"
+        }
+      }
+    },
+    "DescribeProvisioningTemplateVersionResponse":{
+      "type":"structure",
+      "members":{
+        "versionId":{"shape":"TemplateVersionId"},
+        "creationDate":{"shape":"DateType"},
+        "templateBody":{"shape":"TemplateBody"},
+        "isDefaultVersion":{"shape":"IsDefaultVersion"}
       }
     },
     "DescribeRoleAliasRequest":{
@@ -5610,6 +6162,45 @@
         }
       }
     },
+    "DomainConfigurationArn":{"type":"string"},
+    "DomainConfigurationName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[\\w.-]+"
+    },
+    "DomainConfigurationStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
+    "DomainConfigurationSummary":{
+      "type":"structure",
+      "members":{
+        "domainConfigurationName":{"shape":"ReservedDomainConfigurationName"},
+        "domainConfigurationArn":{"shape":"DomainConfigurationArn"},
+        "serviceType":{"shape":"ServiceType"}
+      }
+    },
+    "DomainConfigurations":{
+      "type":"list",
+      "member":{"shape":"DomainConfigurationSummary"}
+    },
+    "DomainName":{
+      "type":"string",
+      "max":253,
+      "min":1
+    },
+    "DomainType":{
+      "type":"string",
+      "enum":[
+        "ENDPOINT",
+        "AWS_MANAGED",
+        "CUSTOMER_MANAGED"
+      ]
+    },
     "DurationSeconds":{"type":"integer"},
     "DynamicGroupStatus":{
       "type":"string",
@@ -5719,7 +6310,10 @@
     },
     "Enabled":{"type":"boolean"},
     "EndpointAddress":{"type":"string"},
-    "EndpointType":{"type":"string"},
+    "EndpointType":{
+      "type":"string",
+      "max":128
+    },
     "ErrorCode":{"type":"string"},
     "ErrorInfo":{
       "type":"structure",
@@ -6143,6 +6737,33 @@
         "sigv4":{"shape":"SigV4Authorization"}
       }
     },
+    "HttpContext":{
+      "type":"structure",
+      "members":{
+        "headers":{"shape":"HttpHeaders"},
+        "queryString":{"shape":"HttpQueryString"}
+      }
+    },
+    "HttpHeaderName":{
+      "type":"string",
+      "max":8192,
+      "min":1
+    },
+    "HttpHeaderValue":{
+      "type":"string",
+      "max":8192,
+      "min":1
+    },
+    "HttpHeaders":{
+      "type":"map",
+      "key":{"shape":"HttpHeaderName"},
+      "value":{"shape":"HttpHeaderValue"}
+    },
+    "HttpQueryString":{
+      "type":"string",
+      "max":4096,
+      "min":1
+    },
     "HttpUrlDestinationConfiguration":{
       "type":"structure",
       "required":["confirmationUrl"],
@@ -6284,6 +6905,17 @@
       "members":{
         "inputName":{"shape":"InputName"},
         "messageId":{"shape":"MessageId"},
+        "roleArn":{"shape":"AwsArn"}
+      }
+    },
+    "IotSiteWiseAction":{
+      "type":"structure",
+      "required":[
+        "putAssetPropertyValueEntries",
+        "roleArn"
+      ],
+      "members":{
+        "putAssetPropertyValueEntries":{"shape":"PutAssetPropertyValueEntryList"},
         "roleArn":{"shape":"AwsArn"}
       }
     },
@@ -6881,6 +7513,33 @@
         "nextMarker":{"shape":"Marker"}
       }
     },
+    "ListDomainConfigurationsRequest":{
+      "type":"structure",
+      "members":{
+        "marker":{
+          "shape":"Marker",
+          "location":"querystring",
+          "locationName":"marker"
+        },
+        "pageSize":{
+          "shape":"PageSize",
+          "location":"querystring",
+          "locationName":"pageSize"
+        },
+        "serviceType":{
+          "shape":"ServiceType",
+          "location":"querystring",
+          "locationName":"serviceType"
+        }
+      }
+    },
+    "ListDomainConfigurationsResponse":{
+      "type":"structure",
+      "members":{
+        "domainConfigurations":{"shape":"DomainConfigurations"},
+        "nextMarker":{"shape":"Marker"}
+      }
+    },
     "ListIndicesRequest":{
       "type":"structure",
       "members":{
@@ -7227,6 +7886,56 @@
       "type":"structure",
       "members":{
         "things":{"shape":"ThingNameList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListProvisioningTemplateVersionsRequest":{
+      "type":"structure",
+      "required":["templateName"],
+      "members":{
+        "templateName":{
+          "shape":"TemplateName",
+          "location":"uri",
+          "locationName":"templateName"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListProvisioningTemplateVersionsResponse":{
+      "type":"structure",
+      "members":{
+        "versions":{"shape":"ProvisioningTemplateVersionListing"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListProvisioningTemplatesRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListProvisioningTemplatesResponse":{
+      "type":"structure",
+      "members":{
+        "templates":{"shape":"ProvisioningTemplateListing"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -8003,6 +8712,29 @@
         "PUBLISH_FINDING_TO_SNS"
       ]
     },
+    "MqttClientId":{
+      "type":"string",
+      "max":65535,
+      "min":1
+    },
+    "MqttContext":{
+      "type":"structure",
+      "members":{
+        "username":{"shape":"MqttUsername"},
+        "password":{"shape":"MqttPassword"},
+        "clientId":{"shape":"MqttClientId"}
+      }
+    },
+    "MqttPassword":{
+      "type":"blob",
+      "max":65535,
+      "min":1
+    },
+    "MqttUsername":{
+      "type":"string",
+      "max":65535,
+      "min":1
+    },
     "NextToken":{"type":"string"},
     "NonCompliantChecksCount":{"type":"integer"},
     "NonCompliantResource":{
@@ -8251,6 +8983,33 @@
       "type":"list",
       "member":{"shape":"ProcessingTargetName"}
     },
+    "ProvisioningTemplateListing":{
+      "type":"list",
+      "member":{"shape":"ProvisioningTemplateSummary"}
+    },
+    "ProvisioningTemplateSummary":{
+      "type":"structure",
+      "members":{
+        "templateArn":{"shape":"TemplateArn"},
+        "templateName":{"shape":"TemplateName"},
+        "description":{"shape":"TemplateDescription"},
+        "creationDate":{"shape":"DateType"},
+        "lastModifiedDate":{"shape":"DateType"},
+        "enabled":{"shape":"Enabled"}
+      }
+    },
+    "ProvisioningTemplateVersionListing":{
+      "type":"list",
+      "member":{"shape":"ProvisioningTemplateVersionSummary"}
+    },
+    "ProvisioningTemplateVersionSummary":{
+      "type":"structure",
+      "members":{
+        "versionId":{"shape":"TemplateVersionId"},
+        "creationDate":{"shape":"DateType"},
+        "isDefaultVersion":{"shape":"IsDefaultVersion"}
+      }
+    },
     "PublicKey":{
       "type":"string",
       "min":1
@@ -8266,6 +9025,22 @@
       "members":{
         "topicArn":{"shape":"SnsTopicArn"}
       }
+    },
+    "PutAssetPropertyValueEntry":{
+      "type":"structure",
+      "required":["propertyValues"],
+      "members":{
+        "entryId":{"shape":"AssetPropertyEntryId"},
+        "assetId":{"shape":"AssetId"},
+        "propertyId":{"shape":"AssetPropertyId"},
+        "propertyAlias":{"shape":"AssetPropertyAlias"},
+        "propertyValues":{"shape":"AssetPropertyValueList"}
+      }
+    },
+    "PutAssetPropertyValueEntryList":{
+      "type":"list",
+      "member":{"shape":"PutAssetPropertyValueEntry"},
+      "min":1
     },
     "PutItemInput":{
       "type":"structure",
@@ -8444,6 +9219,7 @@
       "type":"list",
       "member":{"shape":"RelatedResource"}
     },
+    "RemoveAuthorizerConfig":{"type":"boolean"},
     "RemoveAutoRegistration":{"type":"boolean"},
     "RemoveThingFromBillingGroupRequest":{
       "type":"structure",
@@ -8517,6 +9293,12 @@
         "qos":{"shape":"Qos"}
       }
     },
+    "ReservedDomainConfigurationName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[\\w.:-]+"
+    },
     "Resource":{"type":"string"},
     "ResourceAlreadyExistsException":{
       "type":"structure",
@@ -8542,7 +9324,9 @@
         "cognitoIdentityPoolId":{"shape":"CognitoIdentityPoolId"},
         "clientId":{"shape":"ClientId"},
         "policyVersionIdentifier":{"shape":"PolicyVersionIdentifier"},
-        "account":{"shape":"AwsAccountId"}
+        "account":{"shape":"AwsAccountId"},
+        "iamRoleArn":{"shape":"RoleArn"},
+        "roleAliasArn":{"shape":"RoleAliasArn"}
       }
     },
     "ResourceLogicalId":{"type":"string"},
@@ -8570,7 +9354,9 @@
         "IOT_POLICY",
         "COGNITO_IDENTITY_POOL",
         "CLIENT_ID",
-        "ACCOUNT_SETTINGS"
+        "ACCOUNT_SETTINGS",
+        "ROLE_ALIAS",
+        "IAM_ROLE"
       ]
     },
     "Resources":{
@@ -8583,7 +9369,11 @@
       "min":1,
       "pattern":"[\\w=,@-]+"
     },
-    "RoleAliasArn":{"type":"string"},
+    "RoleAliasArn":{
+      "type":"string",
+      "max":2048,
+      "min":1
+    },
     "RoleAliasDescription":{
       "type":"structure",
       "members":{
@@ -8779,7 +9569,46 @@
       "type":"list",
       "member":{"shape":"SecurityProfileTarget"}
     },
+    "ServerCertificateArns":{
+      "type":"list",
+      "member":{"shape":"AcmCertificateArn"},
+      "max":1,
+      "min":0
+    },
+    "ServerCertificateStatus":{
+      "type":"string",
+      "enum":[
+        "INVALID",
+        "VALID"
+      ]
+    },
+    "ServerCertificateStatusDetail":{"type":"string"},
+    "ServerCertificateSummary":{
+      "type":"structure",
+      "members":{
+        "serverCertificateArn":{"shape":"AcmCertificateArn"},
+        "serverCertificateStatus":{"shape":"ServerCertificateStatus"},
+        "serverCertificateStatusDetail":{"shape":"ServerCertificateStatusDetail"}
+      }
+    },
+    "ServerCertificates":{
+      "type":"list",
+      "member":{"shape":"ServerCertificateSummary"}
+    },
+    "ServerName":{
+      "type":"string",
+      "max":253,
+      "min":1
+    },
     "ServiceName":{"type":"string"},
+    "ServiceType":{
+      "type":"string",
+      "enum":[
+        "DATA",
+        "CREDENTIAL_PROVIDER",
+        "JOBS"
+      ]
+    },
     "ServiceUnavailableException":{
       "type":"structure",
       "members":{
@@ -9236,7 +10065,21 @@
         "canceledFindingsCount":{"shape":"CanceledFindingsCount"}
       }
     },
+    "TemplateArn":{"type":"string"},
     "TemplateBody":{"type":"string"},
+    "TemplateDescription":{
+      "type":"string",
+      "max":500,
+      "min":0,
+      "pattern":"[^\\p{C}]*"
+    },
+    "TemplateName":{
+      "type":"string",
+      "max":36,
+      "min":1,
+      "pattern":"^[0-9A-Za-z_-]+$"
+    },
+    "TemplateVersionId":{"type":"integer"},
     "TestAuthorizationRequest":{
       "type":"structure",
       "required":["authInfos"],
@@ -9261,11 +10104,7 @@
     },
     "TestInvokeAuthorizerRequest":{
       "type":"structure",
-      "required":[
-        "authorizerName",
-        "token",
-        "tokenSignature"
-      ],
+      "required":["authorizerName"],
       "members":{
         "authorizerName":{
           "shape":"AuthorizerName",
@@ -9273,7 +10112,10 @@
           "locationName":"authorizerName"
         },
         "token":{"shape":"Token"},
-        "tokenSignature":{"shape":"TokenSignature"}
+        "tokenSignature":{"shape":"TokenSignature"},
+        "httpContext":{"shape":"HttpContext"},
+        "mqttContext":{"shape":"MqttContext"},
+        "tlsContext":{"shape":"TlsContext"}
       }
     },
     "TestInvokeAuthorizerResponse":{
@@ -9498,6 +10340,12 @@
       }
     },
     "Timestamp":{"type":"timestamp"},
+    "TlsContext":{
+      "type":"structure",
+      "members":{
+        "serverName":{"shape":"ServerName"}
+      }
+    },
     "Token":{
       "type":"string",
       "max":6144,
@@ -9803,6 +10651,27 @@
         "action":{"shape":"DeviceCertificateUpdateAction"}
       }
     },
+    "UpdateDomainConfigurationRequest":{
+      "type":"structure",
+      "required":["domainConfigurationName"],
+      "members":{
+        "domainConfigurationName":{
+          "shape":"ReservedDomainConfigurationName",
+          "location":"uri",
+          "locationName":"domainConfigurationName"
+        },
+        "authorizerConfig":{"shape":"AuthorizerConfig"},
+        "domainConfigurationStatus":{"shape":"DomainConfigurationStatus"},
+        "removeAuthorizerConfig":{"shape":"RemoveAuthorizerConfig"}
+      }
+    },
+    "UpdateDomainConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "domainConfigurationName":{"shape":"ReservedDomainConfigurationName"},
+        "domainConfigurationArn":{"shape":"DomainConfigurationArn"}
+      }
+    },
     "UpdateDynamicThingGroupRequest":{
       "type":"structure",
       "required":[
@@ -9885,6 +10754,26 @@
       "members":{
         "actionArn":{"shape":"MitigationActionArn"},
         "actionId":{"shape":"MitigationActionId"}
+      }
+    },
+    "UpdateProvisioningTemplateRequest":{
+      "type":"structure",
+      "required":["templateName"],
+      "members":{
+        "templateName":{
+          "shape":"TemplateName",
+          "location":"uri",
+          "locationName":"templateName"
+        },
+        "description":{"shape":"TemplateDescription"},
+        "enabled":{"shape":"Enabled"},
+        "defaultVersionId":{"shape":"TemplateVersionId"},
+        "provisioningRoleArn":{"shape":"RoleArn"}
+      }
+    },
+    "UpdateProvisioningTemplateResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "UpdateRoleAliasRequest":{

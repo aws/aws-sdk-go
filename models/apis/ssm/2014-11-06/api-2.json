@@ -1795,6 +1795,17 @@
       "member":{"shape":"AccountId"},
       "max":20
     },
+    "AccountSharingInfo":{
+      "type":"structure",
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "SharedDocumentVersion":{"shape":"SharedDocumentVersion"}
+      }
+    },
+    "AccountSharingInfoList":{
+      "type":"list",
+      "member":{"shape":"AccountSharingInfo"}
+    },
     "Accounts":{
       "type":"list",
       "member":{"shape":"Account"},
@@ -2989,6 +3000,7 @@
       ],
       "members":{
         "Content":{"shape":"DocumentContent"},
+        "Requires":{"shape":"DocumentRequiresList"},
         "Attachments":{"shape":"AttachmentsSourceList"},
         "Name":{"shape":"DocumentName"},
         "VersionName":{"shape":"DocumentVersionName"},
@@ -3155,7 +3167,8 @@
       "members":{
         "Name":{"shape":"DocumentName"},
         "DocumentVersion":{"shape":"DocumentVersion"},
-        "VersionName":{"shape":"DocumentVersionName"}
+        "VersionName":{"shape":"DocumentVersionName"},
+        "Force":{"shape":"Boolean"}
       }
     },
     "DeleteDocumentResult":{
@@ -3490,7 +3503,8 @@
     "DescribeDocumentPermissionResponse":{
       "type":"structure",
       "members":{
-        "AccountIds":{"shape":"AccountIdList"}
+        "AccountIds":{"shape":"AccountIdList"},
+        "AccountSharingInfoList":{"shape":"AccountSharingInfoList"}
       }
     },
     "DescribeDocumentRequest":{
@@ -4018,7 +4032,8 @@
         "DocumentFormat":{"shape":"DocumentFormat"},
         "TargetType":{"shape":"TargetType"},
         "Tags":{"shape":"TagList"},
-        "AttachmentsInformation":{"shape":"AttachmentInformationList"}
+        "AttachmentsInformation":{"shape":"AttachmentInformationList"},
+        "Requires":{"shape":"DocumentRequiresList"}
       }
     },
     "DocumentFilter":{
@@ -4080,7 +4095,8 @@
         "SchemaVersion":{"shape":"DocumentSchemaVersion"},
         "DocumentFormat":{"shape":"DocumentFormat"},
         "TargetType":{"shape":"TargetType"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "Requires":{"shape":"DocumentRequiresList"}
       }
     },
     "DocumentIdentifierList":{
@@ -4160,6 +4176,19 @@
       "type":"string",
       "enum":["Share"]
     },
+    "DocumentRequires":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"DocumentARN"},
+        "Version":{"shape":"DocumentVersion"}
+      }
+    },
+    "DocumentRequiresList":{
+      "type":"list",
+      "member":{"shape":"DocumentRequires"},
+      "min":1
+    },
     "DocumentSchemaVersion":{
       "type":"string",
       "pattern":"([0-9]+)\\.([0-9]+)"
@@ -4183,7 +4212,10 @@
         "Policy",
         "Automation",
         "Session",
-        "Package"
+        "Package",
+        "ApplicationConfiguration",
+        "ApplicationConfigurationSchema",
+        "DeploymentStrategy"
       ]
     },
     "DocumentVersion":{
@@ -4431,6 +4463,7 @@
         "Content":{"shape":"DocumentContent"},
         "DocumentType":{"shape":"DocumentType"},
         "DocumentFormat":{"shape":"DocumentFormat"},
+        "Requires":{"shape":"DocumentRequiresList"},
         "AttachmentsContent":{"shape":"AttachmentContentList"}
       }
     },
@@ -5900,7 +5933,7 @@
       "type":"structure",
       "required":["Name"],
       "members":{
-        "Name":{"shape":"DocumentName"},
+        "Name":{"shape":"DocumentARN"},
         "MaxResults":{
           "shape":"MaxResults",
           "box":true
@@ -6459,7 +6492,8 @@
         "Name":{"shape":"DocumentName"},
         "PermissionType":{"shape":"DocumentPermissionType"},
         "AccountIdsToAdd":{"shape":"AccountIdList"},
-        "AccountIdsToRemove":{"shape":"AccountIdList"}
+        "AccountIdsToRemove":{"shape":"AccountIdList"},
+        "SharedDocumentVersion":{"shape":"SharedDocumentVersion"}
       }
     },
     "ModifyDocumentPermissionResponse":{
@@ -8314,6 +8348,11 @@
         "InformationalCount":{"shape":"ComplianceSummaryCount"},
         "UnspecifiedCount":{"shape":"ComplianceSummaryCount"}
       }
+    },
+    "SharedDocumentVersion":{
+      "type":"string",
+      "max":8,
+      "pattern":"([$]LATEST|[$]DEFAULT|[$]ALL)"
     },
     "SignalType":{
       "type":"string",

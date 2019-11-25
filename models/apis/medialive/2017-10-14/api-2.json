@@ -6,10 +6,10 @@
     "serviceFullName": "AWS Elemental MediaLive",
     "serviceId": "MediaLive",
     "protocol": "rest-json",
-    "jsonVersion": "1.1",
     "uid": "medialive-2017-10-14",
     "signatureVersion": "v4",
-    "serviceAbbreviation": "MediaLive"
+    "serviceAbbreviation": "MediaLive",
+    "jsonVersion": "1.1"
   },
   "operations": {
     "BatchUpdateSchedule": {
@@ -160,6 +160,86 @@
         }
       ]
     },
+    "CreateMultiplex": {
+      "name": "CreateMultiplex",
+      "http": {
+        "method": "POST",
+        "requestUri": "/prod/multiplexes",
+        "responseCode": 201
+      },
+      "input": {
+        "shape": "CreateMultiplexRequest"
+      },
+      "output": {
+        "shape": "CreateMultiplexResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnprocessableEntityException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
+    "CreateMultiplexProgram": {
+      "name": "CreateMultiplexProgram",
+      "http": {
+        "method": "POST",
+        "requestUri": "/prod/multiplexes/{multiplexId}/programs",
+        "responseCode": 201
+      },
+      "input": {
+        "shape": "CreateMultiplexProgramRequest"
+      },
+      "output": {
+        "shape": "CreateMultiplexProgramResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnprocessableEntityException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
     "CreateTags": {
       "name": "CreateTags",
       "http": {
@@ -299,6 +379,86 @@
         },
         {
           "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "DeleteMultiplex": {
+      "name": "DeleteMultiplex",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/prod/multiplexes/{multiplexId}",
+        "responseCode": 202
+      },
+      "input": {
+        "shape": "DeleteMultiplexRequest"
+      },
+      "output": {
+        "shape": "DeleteMultiplexResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
+    "DeleteMultiplexProgram": {
+      "name": "DeleteMultiplexProgram",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/prod/multiplexes/{multiplexId}/programs/{programName}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DeleteMultiplexProgramRequest"
+      },
+      "output": {
+        "shape": "DeleteMultiplexProgramResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
         }
       ]
     },
@@ -490,6 +650,80 @@
       },
       "output": {
         "shape": "DescribeInputSecurityGroupResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "DescribeMultiplex": {
+      "name": "DescribeMultiplex",
+      "http": {
+        "method": "GET",
+        "requestUri": "/prod/multiplexes/{multiplexId}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DescribeMultiplexRequest"
+      },
+      "output": {
+        "shape": "DescribeMultiplexResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "DescribeMultiplexProgram": {
+      "name": "DescribeMultiplexProgram",
+      "http": {
+        "method": "GET",
+        "requestUri": "/prod/multiplexes/{multiplexId}/programs/{programName}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DescribeMultiplexProgramRequest"
+      },
+      "output": {
+        "shape": "DescribeMultiplexProgramResponse"
       },
       "errors": [
         {
@@ -728,6 +962,77 @@
         }
       ]
     },
+    "ListMultiplexPrograms": {
+      "name": "ListMultiplexPrograms",
+      "http": {
+        "method": "GET",
+        "requestUri": "/prod/multiplexes/{multiplexId}/programs",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListMultiplexProgramsRequest"
+      },
+      "output": {
+        "shape": "ListMultiplexProgramsResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "ListMultiplexes": {
+      "name": "ListMultiplexes",
+      "http": {
+        "method": "GET",
+        "requestUri": "/prod/multiplexes",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListMultiplexesRequest"
+      },
+      "output": {
+        "shape": "ListMultiplexesResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
     "ListOfferings": {
       "name": "ListOfferings",
       "http": {
@@ -904,6 +1209,46 @@
         }
       ]
     },
+    "StartMultiplex": {
+      "name": "StartMultiplex",
+      "http": {
+        "method": "POST",
+        "requestUri": "/prod/multiplexes/{multiplexId}/start",
+        "responseCode": 202
+      },
+      "input": {
+        "shape": "StartMultiplexRequest"
+      },
+      "output": {
+        "shape": "StartMultiplexResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
     "StopChannel": {
       "name": "StopChannel",
       "http": {
@@ -916,6 +1261,46 @@
       },
       "output": {
         "shape": "StopChannelResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
+    "StopMultiplex": {
+      "name": "StopMultiplex",
+      "http": {
+        "method": "POST",
+        "requestUri": "/prod/multiplexes/{multiplexId}/stop",
+        "responseCode": 202
+      },
+      "input": {
+        "shape": "StopMultiplexRequest"
+      },
+      "output": {
+        "shape": "StopMultiplexResponse"
       },
       "errors": [
         {
@@ -1077,6 +1462,86 @@
       "errors": [
         {
           "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
+    "UpdateMultiplex": {
+      "name": "UpdateMultiplex",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/prod/multiplexes/{multiplexId}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateMultiplexRequest"
+      },
+      "output": {
+        "shape": "UpdateMultiplexResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnprocessableEntityException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
+    "UpdateMultiplexProgram": {
+      "name": "UpdateMultiplexProgram",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/prod/multiplexes/{multiplexId}/programs/{programName}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateMultiplexProgramRequest"
+      },
+      "output": {
+        "shape": "UpdateMultiplexProgramResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnprocessableEntityException"
         },
         {
           "shape": "InternalServerErrorException"
@@ -2552,6 +3017,158 @@
         }
       }
     },
+    "CreateMultiplex": {
+      "type": "structure",
+      "members": {
+        "AvailabilityZones": {
+          "shape": "__listOf__string",
+          "locationName": "availabilityZones"
+        },
+        "MultiplexSettings": {
+          "shape": "MultiplexSettings",
+          "locationName": "multiplexSettings"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "RequestId": {
+          "shape": "__string",
+          "locationName": "requestId",
+          "idempotencyToken": true
+        },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
+        }
+      },
+      "required": [
+        "RequestId",
+        "MultiplexSettings",
+        "AvailabilityZones",
+        "Name"
+      ]
+    },
+    "CreateMultiplexProgram": {
+      "type": "structure",
+      "members": {
+        "MultiplexProgramSettings": {
+          "shape": "MultiplexProgramSettings",
+          "locationName": "multiplexProgramSettings"
+        },
+        "ProgramName": {
+          "shape": "__string",
+          "locationName": "programName"
+        },
+        "RequestId": {
+          "shape": "__string",
+          "locationName": "requestId",
+          "idempotencyToken": true
+        }
+      },
+      "required": [
+        "RequestId",
+        "MultiplexProgramSettings",
+        "ProgramName"
+      ]
+    },
+    "CreateMultiplexProgramRequest": {
+      "type": "structure",
+      "members": {
+        "MultiplexId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "multiplexId"
+        },
+        "MultiplexProgramSettings": {
+          "shape": "MultiplexProgramSettings",
+          "locationName": "multiplexProgramSettings"
+        },
+        "ProgramName": {
+          "shape": "__string",
+          "locationName": "programName"
+        },
+        "RequestId": {
+          "shape": "__string",
+          "locationName": "requestId",
+          "idempotencyToken": true
+        }
+      },
+      "required": [
+        "MultiplexId",
+        "RequestId",
+        "MultiplexProgramSettings",
+        "ProgramName"
+      ]
+    },
+    "CreateMultiplexProgramResponse": {
+      "type": "structure",
+      "members": {
+        "MultiplexProgram": {
+          "shape": "MultiplexProgram",
+          "locationName": "multiplexProgram"
+        }
+      }
+    },
+    "CreateMultiplexProgramResultModel": {
+      "type": "structure",
+      "members": {
+        "MultiplexProgram": {
+          "shape": "MultiplexProgram",
+          "locationName": "multiplexProgram"
+        }
+      }
+    },
+    "CreateMultiplexRequest": {
+      "type": "structure",
+      "members": {
+        "AvailabilityZones": {
+          "shape": "__listOf__string",
+          "locationName": "availabilityZones"
+        },
+        "MultiplexSettings": {
+          "shape": "MultiplexSettings",
+          "locationName": "multiplexSettings"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "RequestId": {
+          "shape": "__string",
+          "locationName": "requestId",
+          "idempotencyToken": true
+        },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
+        }
+      },
+      "required": [
+        "RequestId",
+        "MultiplexSettings",
+        "AvailabilityZones",
+        "Name"
+      ]
+    },
+    "CreateMultiplexResponse": {
+      "type": "structure",
+      "members": {
+        "Multiplex": {
+          "shape": "Multiplex",
+          "locationName": "multiplex"
+        }
+      }
+    },
+    "CreateMultiplexResultModel": {
+      "type": "structure",
+      "members": {
+        "Multiplex": {
+          "shape": "Multiplex",
+          "locationName": "multiplex"
+        }
+      }
+    },
     "CreateTagsRequest": {
       "type": "structure",
       "members": {
@@ -2681,6 +3298,104 @@
     "DeleteInputSecurityGroupResponse": {
       "type": "structure",
       "members": {
+      }
+    },
+    "DeleteMultiplexProgramRequest": {
+      "type": "structure",
+      "members": {
+        "MultiplexId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "multiplexId"
+        },
+        "ProgramName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "programName"
+        }
+      },
+      "required": [
+        "MultiplexId",
+        "ProgramName"
+      ]
+    },
+    "DeleteMultiplexProgramResponse": {
+      "type": "structure",
+      "members": {
+        "ChannelId": {
+          "shape": "__string",
+          "locationName": "channelId"
+        },
+        "MultiplexProgramSettings": {
+          "shape": "MultiplexProgramSettings",
+          "locationName": "multiplexProgramSettings"
+        },
+        "PacketIdentifiersMap": {
+          "shape": "MultiplexProgramPacketIdentifiersMap",
+          "locationName": "packetIdentifiersMap"
+        },
+        "ProgramName": {
+          "shape": "__string",
+          "locationName": "programName"
+        }
+      }
+    },
+    "DeleteMultiplexRequest": {
+      "type": "structure",
+      "members": {
+        "MultiplexId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "multiplexId"
+        }
+      },
+      "required": [
+        "MultiplexId"
+      ]
+    },
+    "DeleteMultiplexResponse": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string",
+          "locationName": "arn"
+        },
+        "AvailabilityZones": {
+          "shape": "__listOf__string",
+          "locationName": "availabilityZones"
+        },
+        "Destinations": {
+          "shape": "__listOfMultiplexOutputDestination",
+          "locationName": "destinations"
+        },
+        "Id": {
+          "shape": "__string",
+          "locationName": "id"
+        },
+        "MultiplexSettings": {
+          "shape": "MultiplexSettings",
+          "locationName": "multiplexSettings"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "PipelinesRunningCount": {
+          "shape": "__integer",
+          "locationName": "pipelinesRunningCount"
+        },
+        "ProgramCount": {
+          "shape": "__integer",
+          "locationName": "programCount"
+        },
+        "State": {
+          "shape": "MultiplexState",
+          "locationName": "state"
+        },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
+        }
       }
     },
     "DeleteReservationRequest": {
@@ -3001,6 +3716,104 @@
         "WhitelistRules": {
           "shape": "__listOfInputWhitelistRule",
           "locationName": "whitelistRules"
+        }
+      }
+    },
+    "DescribeMultiplexProgramRequest": {
+      "type": "structure",
+      "members": {
+        "MultiplexId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "multiplexId"
+        },
+        "ProgramName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "programName"
+        }
+      },
+      "required": [
+        "MultiplexId",
+        "ProgramName"
+      ]
+    },
+    "DescribeMultiplexProgramResponse": {
+      "type": "structure",
+      "members": {
+        "ChannelId": {
+          "shape": "__string",
+          "locationName": "channelId"
+        },
+        "MultiplexProgramSettings": {
+          "shape": "MultiplexProgramSettings",
+          "locationName": "multiplexProgramSettings"
+        },
+        "PacketIdentifiersMap": {
+          "shape": "MultiplexProgramPacketIdentifiersMap",
+          "locationName": "packetIdentifiersMap"
+        },
+        "ProgramName": {
+          "shape": "__string",
+          "locationName": "programName"
+        }
+      }
+    },
+    "DescribeMultiplexRequest": {
+      "type": "structure",
+      "members": {
+        "MultiplexId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "multiplexId"
+        }
+      },
+      "required": [
+        "MultiplexId"
+      ]
+    },
+    "DescribeMultiplexResponse": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string",
+          "locationName": "arn"
+        },
+        "AvailabilityZones": {
+          "shape": "__listOf__string",
+          "locationName": "availabilityZones"
+        },
+        "Destinations": {
+          "shape": "__listOfMultiplexOutputDestination",
+          "locationName": "destinations"
+        },
+        "Id": {
+          "shape": "__string",
+          "locationName": "id"
+        },
+        "MultiplexSettings": {
+          "shape": "MultiplexSettings",
+          "locationName": "multiplexSettings"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "PipelinesRunningCount": {
+          "shape": "__integer",
+          "locationName": "pipelinesRunningCount"
+        },
+        "ProgramCount": {
+          "shape": "__integer",
+          "locationName": "programCount"
+        },
+        "State": {
+          "shape": "MultiplexState",
+          "locationName": "state"
+        },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
         }
       }
     },
@@ -3663,6 +4476,10 @@
           "shape": "GlobalConfiguration",
           "locationName": "globalConfiguration"
         },
+        "NielsenConfiguration": {
+          "shape": "NielsenConfiguration",
+          "locationName": "nielsenConfiguration"
+        },
         "OutputGroups": {
           "shape": "__listOfOutputGroup",
           "locationName": "outputGroups"
@@ -3797,7 +4614,7 @@
       "type": "structure",
       "members": {
         "CaptureInterval": {
-          "shape": "__integerMin1Max3600",
+          "shape": "__integerMin1Max3600000",
           "locationName": "captureInterval"
         }
       },
@@ -4084,7 +4901,7 @@
           "locationName": "gopNumBFrames"
         },
         "GopSize": {
-          "shape": "__doubleMin1",
+          "shape": "__double",
           "locationName": "gopSize"
         },
         "GopSizeUnits": {
@@ -4306,6 +5123,7 @@
       "type": "string",
       "enum": [
         "CBR",
+        "MULTIPLEX",
         "QVBR"
       ]
     },
@@ -4374,7 +5192,7 @@
           "locationName": "gopClosedCadence"
         },
         "GopSize": {
-          "shape": "__doubleMin1",
+          "shape": "__double",
           "locationName": "gopSize"
         },
         "GopSizeUnits": {
@@ -5689,6 +6507,96 @@
         }
       }
     },
+    "ListMultiplexProgramsRequest": {
+      "type": "structure",
+      "members": {
+        "MaxResults": {
+          "shape": "MaxResults",
+          "location": "querystring",
+          "locationName": "maxResults"
+        },
+        "MultiplexId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "multiplexId"
+        },
+        "NextToken": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "nextToken"
+        }
+      },
+      "required": [
+        "MultiplexId"
+      ]
+    },
+    "ListMultiplexProgramsResponse": {
+      "type": "structure",
+      "members": {
+        "MultiplexPrograms": {
+          "shape": "__listOfMultiplexProgramSummary",
+          "locationName": "multiplexPrograms"
+        },
+        "NextToken": {
+          "shape": "__string",
+          "locationName": "nextToken"
+        }
+      }
+    },
+    "ListMultiplexProgramsResultModel": {
+      "type": "structure",
+      "members": {
+        "MultiplexPrograms": {
+          "shape": "__listOfMultiplexProgramSummary",
+          "locationName": "multiplexPrograms"
+        },
+        "NextToken": {
+          "shape": "__string",
+          "locationName": "nextToken"
+        }
+      }
+    },
+    "ListMultiplexesRequest": {
+      "type": "structure",
+      "members": {
+        "MaxResults": {
+          "shape": "MaxResults",
+          "location": "querystring",
+          "locationName": "maxResults"
+        },
+        "NextToken": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "nextToken"
+        }
+      }
+    },
+    "ListMultiplexesResponse": {
+      "type": "structure",
+      "members": {
+        "Multiplexes": {
+          "shape": "__listOfMultiplexSummary",
+          "locationName": "multiplexes"
+        },
+        "NextToken": {
+          "shape": "__string",
+          "locationName": "nextToken"
+        }
+      }
+    },
+    "ListMultiplexesResultModel": {
+      "type": "structure",
+      "members": {
+        "Multiplexes": {
+          "shape": "__listOfMultiplexSummary",
+          "locationName": "multiplexes"
+        },
+        "NextToken": {
+          "shape": "__string",
+          "locationName": "nextToken"
+        }
+      }
+    },
     "ListOfferingsRequest": {
       "type": "structure",
       "members": {
@@ -5706,6 +6614,11 @@
           "shape": "__string",
           "location": "querystring",
           "locationName": "codec"
+        },
+        "Duration": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "duration"
         },
         "MaxResults": {
           "shape": "MaxResults",
@@ -5972,6 +6885,13 @@
         "PASSTHROUGH"
       ]
     },
+    "M2tsNielsenId3Behavior": {
+      "type": "string",
+      "enum": [
+        "NO_PASSTHROUGH",
+        "PASSTHROUGH"
+      ]
+    },
     "M2tsPcrControl": {
       "type": "string",
       "enum": [
@@ -6122,6 +7042,10 @@
           "shape": "__string",
           "locationName": "klvDataPids"
         },
+        "NielsenId3Behavior": {
+          "shape": "M2tsNielsenId3Behavior",
+          "locationName": "nielsenId3Behavior"
+        },
         "NullPacketBitrate": {
           "shape": "__doubleMin0",
           "locationName": "nullPacketBitrate"
@@ -6207,6 +7131,13 @@
         "PASSTHROUGH"
       ]
     },
+    "M3u8NielsenId3Behavior": {
+      "type": "string",
+      "enum": [
+        "NO_PASSTHROUGH",
+        "PASSTHROUGH"
+      ]
+    },
     "M3u8PcrControl": {
       "type": "string",
       "enum": [
@@ -6235,6 +7166,10 @@
         "EcmPid": {
           "shape": "__string",
           "locationName": "ecmPid"
+        },
+        "NielsenId3Behavior": {
+          "shape": "M3u8NielsenId3Behavior",
+          "locationName": "nielsenId3Behavior"
         },
         "PatInterval": {
           "shape": "__integerMin0Max1000",
@@ -6474,6 +7409,368 @@
         }
       }
     },
+    "Multiplex": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string",
+          "locationName": "arn"
+        },
+        "AvailabilityZones": {
+          "shape": "__listOf__string",
+          "locationName": "availabilityZones"
+        },
+        "Destinations": {
+          "shape": "__listOfMultiplexOutputDestination",
+          "locationName": "destinations"
+        },
+        "Id": {
+          "shape": "__string",
+          "locationName": "id"
+        },
+        "MultiplexSettings": {
+          "shape": "MultiplexSettings",
+          "locationName": "multiplexSettings"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "PipelinesRunningCount": {
+          "shape": "__integer",
+          "locationName": "pipelinesRunningCount"
+        },
+        "ProgramCount": {
+          "shape": "__integer",
+          "locationName": "programCount"
+        },
+        "State": {
+          "shape": "MultiplexState",
+          "locationName": "state"
+        },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
+        }
+      }
+    },
+    "MultiplexConfigurationValidationError": {
+      "type": "structure",
+      "members": {
+        "Message": {
+          "shape": "__string",
+          "locationName": "message"
+        },
+        "ValidationErrors": {
+          "shape": "__listOfMultiplexValidationError",
+          "locationName": "validationErrors"
+        }
+      }
+    },
+    "MultiplexGroupSettings": {
+      "type": "structure",
+      "members": {
+      }
+    },
+    "MultiplexMediaConnectOutputDestinationSettings": {
+      "type": "structure",
+      "members": {
+        "EntitlementArn": {
+          "shape": "__stringMin1",
+          "locationName": "entitlementArn"
+        }
+      }
+    },
+    "MultiplexOutputDestination": {
+      "type": "structure",
+      "members": {
+        "MediaConnectSettings": {
+          "shape": "MultiplexMediaConnectOutputDestinationSettings",
+          "locationName": "mediaConnectSettings"
+        }
+      }
+    },
+    "MultiplexOutputSettings": {
+      "type": "structure",
+      "members": {
+        "Destination": {
+          "shape": "OutputLocationRef",
+          "locationName": "destination"
+        }
+      },
+      "required": [
+        "Destination"
+      ]
+    },
+    "MultiplexProgram": {
+      "type": "structure",
+      "members": {
+        "ChannelId": {
+          "shape": "__string",
+          "locationName": "channelId"
+        },
+        "MultiplexProgramSettings": {
+          "shape": "MultiplexProgramSettings",
+          "locationName": "multiplexProgramSettings"
+        },
+        "PacketIdentifiersMap": {
+          "shape": "MultiplexProgramPacketIdentifiersMap",
+          "locationName": "packetIdentifiersMap"
+        },
+        "ProgramName": {
+          "shape": "__string",
+          "locationName": "programName"
+        }
+      }
+    },
+    "MultiplexProgramChannelDestinationSettings": {
+      "type": "structure",
+      "members": {
+        "MultiplexId": {
+          "shape": "__stringMin1",
+          "locationName": "multiplexId"
+        },
+        "ProgramName": {
+          "shape": "__stringMin1",
+          "locationName": "programName"
+        }
+      }
+    },
+    "MultiplexProgramPacketIdentifiersMap": {
+      "type": "structure",
+      "members": {
+        "AudioPids": {
+          "shape": "__listOf__integer",
+          "locationName": "audioPids"
+        },
+        "DvbSubPids": {
+          "shape": "__listOf__integer",
+          "locationName": "dvbSubPids"
+        },
+        "DvbTeletextPid": {
+          "shape": "__integer",
+          "locationName": "dvbTeletextPid"
+        },
+        "EtvPlatformPid": {
+          "shape": "__integer",
+          "locationName": "etvPlatformPid"
+        },
+        "EtvSignalPid": {
+          "shape": "__integer",
+          "locationName": "etvSignalPid"
+        },
+        "KlvDataPids": {
+          "shape": "__listOf__integer",
+          "locationName": "klvDataPids"
+        },
+        "PcrPid": {
+          "shape": "__integer",
+          "locationName": "pcrPid"
+        },
+        "PmtPid": {
+          "shape": "__integer",
+          "locationName": "pmtPid"
+        },
+        "PrivateMetadataPid": {
+          "shape": "__integer",
+          "locationName": "privateMetadataPid"
+        },
+        "Scte27Pids": {
+          "shape": "__listOf__integer",
+          "locationName": "scte27Pids"
+        },
+        "Scte35Pid": {
+          "shape": "__integer",
+          "locationName": "scte35Pid"
+        },
+        "TimedMetadataPid": {
+          "shape": "__integer",
+          "locationName": "timedMetadataPid"
+        },
+        "VideoPid": {
+          "shape": "__integer",
+          "locationName": "videoPid"
+        }
+      }
+    },
+    "MultiplexProgramServiceDescriptor": {
+      "type": "structure",
+      "members": {
+        "ProviderName": {
+          "shape": "__stringMax256",
+          "locationName": "providerName"
+        },
+        "ServiceName": {
+          "shape": "__stringMax256",
+          "locationName": "serviceName"
+        }
+      },
+      "required": [
+        "ProviderName",
+        "ServiceName"
+      ]
+    },
+    "MultiplexProgramSettings": {
+      "type": "structure",
+      "members": {
+        "ProgramNumber": {
+          "shape": "__integerMin0Max65535",
+          "locationName": "programNumber"
+        },
+        "ServiceDescriptor": {
+          "shape": "MultiplexProgramServiceDescriptor",
+          "locationName": "serviceDescriptor"
+        },
+        "VideoSettings": {
+          "shape": "MultiplexVideoSettings",
+          "locationName": "videoSettings"
+        }
+      },
+      "required": [
+        "ProgramNumber"
+      ]
+    },
+    "MultiplexProgramSummary": {
+      "type": "structure",
+      "members": {
+        "ChannelId": {
+          "shape": "__string",
+          "locationName": "channelId"
+        },
+        "ProgramName": {
+          "shape": "__string",
+          "locationName": "programName"
+        }
+      }
+    },
+    "MultiplexSettings": {
+      "type": "structure",
+      "members": {
+        "MaximumVideoBufferDelayMilliseconds": {
+          "shape": "__integerMin1000Max3000",
+          "locationName": "maximumVideoBufferDelayMilliseconds"
+        },
+        "TransportStreamBitrate": {
+          "shape": "__integerMin1000000Max100000000",
+          "locationName": "transportStreamBitrate"
+        },
+        "TransportStreamId": {
+          "shape": "__integerMin0Max65535",
+          "locationName": "transportStreamId"
+        },
+        "TransportStreamReservedBitrate": {
+          "shape": "__integerMin0Max100000000",
+          "locationName": "transportStreamReservedBitrate"
+        }
+      },
+      "required": [
+        "TransportStreamBitrate",
+        "TransportStreamId"
+      ]
+    },
+    "MultiplexSettingsSummary": {
+      "type": "structure",
+      "members": {
+        "TransportStreamBitrate": {
+          "shape": "__integerMin1000000Max100000000",
+          "locationName": "transportStreamBitrate"
+        }
+      }
+    },
+    "MultiplexState": {
+      "type": "string",
+      "enum": [
+        "CREATING",
+        "CREATE_FAILED",
+        "IDLE",
+        "STARTING",
+        "RUNNING",
+        "RECOVERING",
+        "STOPPING",
+        "DELETING",
+        "DELETED"
+      ]
+    },
+    "MultiplexStatmuxVideoSettings": {
+      "type": "structure",
+      "members": {
+        "MaximumBitrate": {
+          "shape": "__integerMin100000Max100000000",
+          "locationName": "maximumBitrate"
+        },
+        "MinimumBitrate": {
+          "shape": "__integerMin100000Max100000000",
+          "locationName": "minimumBitrate"
+        }
+      }
+    },
+    "MultiplexSummary": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string",
+          "locationName": "arn"
+        },
+        "AvailabilityZones": {
+          "shape": "__listOf__string",
+          "locationName": "availabilityZones"
+        },
+        "Id": {
+          "shape": "__string",
+          "locationName": "id"
+        },
+        "MultiplexSettings": {
+          "shape": "MultiplexSettingsSummary",
+          "locationName": "multiplexSettings"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "PipelinesRunningCount": {
+          "shape": "__integer",
+          "locationName": "pipelinesRunningCount"
+        },
+        "ProgramCount": {
+          "shape": "__integer",
+          "locationName": "programCount"
+        },
+        "State": {
+          "shape": "MultiplexState",
+          "locationName": "state"
+        },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
+        }
+      }
+    },
+    "MultiplexValidationError": {
+      "type": "structure",
+      "members": {
+        "ElementPath": {
+          "shape": "__string",
+          "locationName": "elementPath"
+        },
+        "ErrorMessage": {
+          "shape": "__string",
+          "locationName": "errorMessage"
+        }
+      }
+    },
+    "MultiplexVideoSettings": {
+      "type": "structure",
+      "members": {
+        "ConstantBitrate": {
+          "shape": "__integerMin100000Max100000000",
+          "locationName": "constantBitrate"
+        },
+        "StatmuxSettings": {
+          "shape": "MultiplexStatmuxVideoSettings",
+          "locationName": "statmuxSettings"
+        }
+      }
+    },
     "NetworkInputServerValidation": {
       "type": "string",
       "enum": [
@@ -6493,6 +7790,26 @@
           "locationName": "serverValidation"
         }
       }
+    },
+    "NielsenConfiguration": {
+      "type": "structure",
+      "members": {
+        "DistributorId": {
+          "shape": "__string",
+          "locationName": "distributorId"
+        },
+        "NielsenPcmToId3Tagging": {
+          "shape": "NielsenPcmToId3TaggingState",
+          "locationName": "nielsenPcmToId3Tagging"
+        }
+      }
+    },
+    "NielsenPcmToId3TaggingState": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "ENABLED"
+      ]
     },
     "NotFoundException": {
       "type": "structure",
@@ -6607,6 +7924,10 @@
           "shape": "__listOfMediaPackageOutputDestinationSettings",
           "locationName": "mediaPackageSettings"
         },
+        "MultiplexSettings": {
+          "shape": "MultiplexProgramChannelDestinationSettings",
+          "locationName": "multiplexSettings"
+        },
         "Settings": {
           "shape": "__listOfOutputDestinationSettings",
           "locationName": "settings"
@@ -6678,6 +7999,10 @@
           "shape": "MsSmoothGroupSettings",
           "locationName": "msSmoothGroupSettings"
         },
+        "MultiplexGroupSettings": {
+          "shape": "MultiplexGroupSettings",
+          "locationName": "multiplexGroupSettings"
+        },
         "RtmpGroupSettings": {
           "shape": "RtmpGroupSettings",
           "locationName": "rtmpGroupSettings"
@@ -6719,6 +8044,10 @@
         "MsSmoothOutputSettings": {
           "shape": "MsSmoothOutputSettings",
           "locationName": "msSmoothOutputSettings"
+        },
+        "MultiplexOutputSettings": {
+          "shape": "MultiplexOutputSettings",
+          "locationName": "multiplexOutputSettings"
         },
         "RtmpOutputSettings": {
           "shape": "RtmpOutputSettings",
@@ -6998,6 +8327,7 @@
       "enum": [
         "SD",
         "HD",
+        "FHD",
         "UHD"
       ]
     },
@@ -7043,6 +8373,7 @@
       "enum": [
         "INPUT",
         "OUTPUT",
+        "MULTIPLEX",
         "CHANNEL"
       ]
     },
@@ -7703,6 +9034,64 @@
         }
       }
     },
+    "StartMultiplexRequest": {
+      "type": "structure",
+      "members": {
+        "MultiplexId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "multiplexId"
+        }
+      },
+      "required": [
+        "MultiplexId"
+      ]
+    },
+    "StartMultiplexResponse": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string",
+          "locationName": "arn"
+        },
+        "AvailabilityZones": {
+          "shape": "__listOf__string",
+          "locationName": "availabilityZones"
+        },
+        "Destinations": {
+          "shape": "__listOfMultiplexOutputDestination",
+          "locationName": "destinations"
+        },
+        "Id": {
+          "shape": "__string",
+          "locationName": "id"
+        },
+        "MultiplexSettings": {
+          "shape": "MultiplexSettings",
+          "locationName": "multiplexSettings"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "PipelinesRunningCount": {
+          "shape": "__integer",
+          "locationName": "pipelinesRunningCount"
+        },
+        "ProgramCount": {
+          "shape": "__integer",
+          "locationName": "programCount"
+        },
+        "State": {
+          "shape": "MultiplexState",
+          "locationName": "state"
+        },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
+        }
+      }
+    },
     "StartTimecode": {
       "type": "structure",
       "members": {
@@ -7859,6 +9248,64 @@
         },
         "State": {
           "shape": "ChannelState",
+          "locationName": "state"
+        },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
+        }
+      }
+    },
+    "StopMultiplexRequest": {
+      "type": "structure",
+      "members": {
+        "MultiplexId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "multiplexId"
+        }
+      },
+      "required": [
+        "MultiplexId"
+      ]
+    },
+    "StopMultiplexResponse": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string",
+          "locationName": "arn"
+        },
+        "AvailabilityZones": {
+          "shape": "__listOf__string",
+          "locationName": "availabilityZones"
+        },
+        "Destinations": {
+          "shape": "__listOfMultiplexOutputDestination",
+          "locationName": "destinations"
+        },
+        "Id": {
+          "shape": "__string",
+          "locationName": "id"
+        },
+        "MultiplexSettings": {
+          "shape": "MultiplexSettings",
+          "locationName": "multiplexSettings"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "PipelinesRunningCount": {
+          "shape": "__integer",
+          "locationName": "pipelinesRunningCount"
+        },
+        "ProgramCount": {
+          "shape": "__integer",
+          "locationName": "programCount"
+        },
+        "State": {
+          "shape": "MultiplexState",
           "locationName": "state"
         },
         "Tags": {
@@ -8032,7 +9479,7 @@
           "locationName": "message"
         },
         "ValidationErrors": {
-          "shape": "__listOfValidationError",
+          "shape": "__listOfMultiplexValidationError",
           "locationName": "validationErrors"
         }
       },
@@ -8303,6 +9750,108 @@
         }
       }
     },
+    "UpdateMultiplex": {
+      "type": "structure",
+      "members": {
+        "MultiplexSettings": {
+          "shape": "MultiplexSettings",
+          "locationName": "multiplexSettings"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        }
+      }
+    },
+    "UpdateMultiplexProgram": {
+      "type": "structure",
+      "members": {
+        "MultiplexProgramSettings": {
+          "shape": "MultiplexProgramSettings",
+          "locationName": "multiplexProgramSettings"
+        }
+      }
+    },
+    "UpdateMultiplexProgramRequest": {
+      "type": "structure",
+      "members": {
+        "MultiplexId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "multiplexId"
+        },
+        "MultiplexProgramSettings": {
+          "shape": "MultiplexProgramSettings",
+          "locationName": "multiplexProgramSettings"
+        },
+        "ProgramName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "programName"
+        }
+      },
+      "required": [
+        "MultiplexId",
+        "ProgramName"
+      ]
+    },
+    "UpdateMultiplexProgramResponse": {
+      "type": "structure",
+      "members": {
+        "MultiplexProgram": {
+          "shape": "MultiplexProgram",
+          "locationName": "multiplexProgram"
+        }
+      }
+    },
+    "UpdateMultiplexProgramResultModel": {
+      "type": "structure",
+      "members": {
+        "MultiplexProgram": {
+          "shape": "MultiplexProgram",
+          "locationName": "multiplexProgram"
+        }
+      }
+    },
+    "UpdateMultiplexRequest": {
+      "type": "structure",
+      "members": {
+        "MultiplexId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "multiplexId"
+        },
+        "MultiplexSettings": {
+          "shape": "MultiplexSettings",
+          "locationName": "multiplexSettings"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        }
+      },
+      "required": [
+        "MultiplexId"
+      ]
+    },
+    "UpdateMultiplexResponse": {
+      "type": "structure",
+      "members": {
+        "Multiplex": {
+          "shape": "Multiplex",
+          "locationName": "multiplex"
+        }
+      }
+    },
+    "UpdateMultiplexResultModel": {
+      "type": "structure",
+      "members": {
+        "Multiplex": {
+          "shape": "Multiplex",
+          "locationName": "multiplex"
+        }
+      }
+    },
     "UpdateReservation": {
       "type": "structure",
       "members": {
@@ -8505,16 +10054,7 @@
     "__doubleMin0": {
       "type": "double"
     },
-    "__doubleMin0Max1000000000": {
-      "type": "double"
-    },
-    "__doubleMin0Max65535": {
-      "type": "double"
-    },
     "__doubleMin1": {
-      "type": "double"
-    },
-    "__doubleMin10000Max1000000000": {
       "type": "double"
     },
     "__doubleMinNegative59Max0": {
@@ -8551,6 +10091,11 @@
       "type": "integer",
       "min": 0,
       "max": 1000000
+    },
+    "__integerMin0Max100000000": {
+      "type": "integer",
+      "min": 0,
+      "max": 100000000
     },
     "__integerMin0Max128": {
       "type": "integer",
@@ -8620,6 +10165,16 @@
       "type": "integer",
       "min": 1000
     },
+    "__integerMin1000000Max100000000": {
+      "type": "integer",
+      "min": 1000000,
+      "max": 100000000
+    },
+    "__integerMin100000Max100000000": {
+      "type": "integer",
+      "min": 100000,
+      "max": 100000000
+    },
     "__integerMin100000Max40000000": {
       "type": "integer",
       "min": 100000,
@@ -8629,6 +10184,11 @@
       "type": "integer",
       "min": 100000,
       "max": 80000000
+    },
+    "__integerMin1000Max3000": {
+      "type": "integer",
+      "min": 1000,
+      "max": 3000
     },
     "__integerMin1000Max30000": {
       "type": "integer",
@@ -8670,10 +10230,10 @@
       "min": 1,
       "max": 32
     },
-    "__integerMin1Max3600": {
+    "__integerMin1Max3600000": {
       "type": "integer",
       "min": 1,
-      "max": 3600
+      "max": 3600000
     },
     "__integerMin1Max4": {
       "type": "integer",
@@ -8870,6 +10430,30 @@
         "shape": "MediaPackageOutputDestinationSettings"
       }
     },
+    "__listOfMultiplexOutputDestination": {
+      "type": "list",
+      "member": {
+        "shape": "MultiplexOutputDestination"
+      }
+    },
+    "__listOfMultiplexProgramSummary": {
+      "type": "list",
+      "member": {
+        "shape": "MultiplexProgramSummary"
+      }
+    },
+    "__listOfMultiplexSummary": {
+      "type": "list",
+      "member": {
+        "shape": "MultiplexSummary"
+      }
+    },
+    "__listOfMultiplexValidationError": {
+      "type": "list",
+      "member": {
+        "shape": "MultiplexValidationError"
+      }
+    },
     "__listOfOffering": {
       "type": "list",
       "member": {
@@ -8940,6 +10524,12 @@
       "type": "list",
       "member": {
         "shape": "VideoDescription"
+      }
+    },
+    "__listOf__integer": {
+      "type": "list",
+      "member": {
+        "shape": "__integer"
       }
     },
     "__listOf__string": {

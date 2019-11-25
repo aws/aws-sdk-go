@@ -11,6 +11,7 @@
     "DeleteConfigurationSetEventDestination": "<p>Delete an event destination.</p> <p> <i>Events</i> include message sends, deliveries, opens, clicks, bounces, and complaints. <i>Event destinations</i> are places that you can send information about these events to. For example, you can send event data to Amazon SNS to receive notifications when you receive bounces or complaints, or you can use Amazon Kinesis Data Firehose to stream data to Amazon S3 for long-term storage.</p>",
     "DeleteDedicatedIpPool": "<p>Delete a dedicated IP pool.</p>",
     "DeleteEmailIdentity": "<p>Deletes an email identity. An identity can be either an email address or a domain name.</p>",
+    "DeleteSuppressedDestination": "<p>Used to delete a suppressed email destination from your suppression list.</p>",
     "GetAccount": "<p>Obtain information about the email-sending status and capabilities of your Amazon SES account in the current AWS Region.</p>",
     "GetBlacklistReports": "<p>Retrieve a list of the blacklists that your dedicated IP addresses appear on.</p>",
     "GetConfigurationSet": "<p>Get information about an existing configuration set, including the dedicated IP pool that it's associated with, whether or not it's enabled for sending email, and more.</p> <p> <i>Configuration sets</i> are groups of rules that you can apply to the emails you send. You apply a configuration set to an email by including a reference to the configuration set in the headers of the email. When you apply a configuration set to an email, all of the rules in that configuration set are applied to the email.</p>",
@@ -22,17 +23,21 @@
     "GetDomainDeliverabilityCampaign": "<p>Retrieve all the deliverability data for a specific campaign. This data is available for a campaign only if the campaign sent email by using a domain that the Deliverability dashboard is enabled for.</p>",
     "GetDomainStatisticsReport": "<p>Retrieve inbox placement and engagement rates for the domains that you use to send email.</p>",
     "GetEmailIdentity": "<p>Provides information about a specific identity, including the identity's verification status, its DKIM authentication status, and its custom Mail-From settings.</p>",
+    "GetSuppressedDestination": "<p>Used to fetch a single suppressed email destination from your suppression list.</p>",
     "ListConfigurationSets": "<p>List all of the configuration sets associated with your account in the current region.</p> <p> <i>Configuration sets</i> are groups of rules that you can apply to the emails you send. You apply a configuration set to an email by including a reference to the configuration set in the headers of the email. When you apply a configuration set to an email, all of the rules in that configuration set are applied to the email.</p>",
     "ListDedicatedIpPools": "<p>List all of the dedicated IP pools that exist in your AWS account in the current Region.</p>",
     "ListDeliverabilityTestReports": "<p>Show a list of the predictive inbox placement tests that you've performed, regardless of their statuses. For predictive inbox placement tests that are complete, you can use the <code>GetDeliverabilityTestReport</code> operation to view the results.</p>",
     "ListDomainDeliverabilityCampaigns": "<p>Retrieve deliverability data for all the campaigns that used a specific domain to send email during a specified time range. This data is available for a domain only if you enabled the Deliverability dashboard for the domain.</p>",
     "ListEmailIdentities": "<p>Returns a list of all of the email identities that are associated with your AWS account. An identity can be either an email address or a domain. This operation returns identities that are verified as well as those that aren't. This operation returns identities that are associated with Amazon SES and Amazon Pinpoint.</p>",
+    "ListSuppressedDestinations": "<p>Used to fetch a list suppressed email destinations from your suppression list.</p>",
     "ListTagsForResource": "<p>Retrieve a list of the tags (keys and values) that are associated with a specified resource. A <i>tag</i> is a label that you optionally define and associate with a resource. Each tag consists of a required <i>tag key</i> and an optional associated <i>tag value</i>. A tag key is a general label that acts as a category for more specific tag values. A tag value acts as a descriptor within a tag key.</p>",
     "PutAccountDedicatedIpWarmupAttributes": "<p>Enable or disable the automatic warm-up feature for dedicated IP addresses.</p>",
     "PutAccountSendingAttributes": "<p>Enable or disable the ability of your account to send email.</p>",
+    "PutAccountSuppressionAttributes": "<p>Change your account's suppression preferences for your account.</p>",
     "PutConfigurationSetDeliveryOptions": "<p>Associate a configuration set with a dedicated IP pool. You can use dedicated IP pools to create groups of dedicated IP addresses for sending specific types of email.</p>",
     "PutConfigurationSetReputationOptions": "<p>Enable or disable collection of reputation metrics for emails that you send using a particular configuration set in a specific AWS Region.</p>",
     "PutConfigurationSetSendingOptions": "<p>Enable or disable email sending for messages that use a particular configuration set in a specific AWS Region.</p>",
+    "PutConfigurationSetSuppressionOptions": "<p>Specify your account's suppression preferences for a configuration set.</p>",
     "PutConfigurationSetTrackingOptions": "<p>Specify a custom domain to use for open and click tracking elements in email that you send.</p>",
     "PutDedicatedIpInPool": "<p>Move a dedicated IP address to an existing dedicated IP pool.</p> <note> <p>The dedicated IP address that you specify must already exist, and must be associated with your AWS account. </p> <p>The dedicated IP pool you specify must already exist. You can create a new pool by using the <code>CreateDedicatedIpPool</code> operation.</p> </note>",
     "PutDedicatedIpWarmupAttributes": "<p/>",
@@ -40,6 +45,7 @@
     "PutEmailIdentityDkimAttributes": "<p>Used to enable or disable DKIM authentication for an email identity.</p>",
     "PutEmailIdentityFeedbackAttributes": "<p>Used to enable or disable feedback forwarding for an identity. This setting determines what happens when an identity is used to send an email that results in a bounce or complaint event.</p> <p>If the value is <code>true</code>, you receive email notifications when bounce or complaint events occur. These notifications are sent to the address that you specified in the <code>Return-Path</code> header of the original email.</p> <p>You're required to have a method of tracking bounces and complaints. If you haven't set up another mechanism for receiving bounce or complaint notifications (for example, by setting up an event destination), you receive an email notification when these events occur (even if this setting is disabled).</p>",
     "PutEmailIdentityMailFromAttributes": "<p>Used to enable or disable the custom Mail-From domain configuration for an email identity.</p>",
+    "PutSuppressedDestination": "<p>Puts (overwrites) an email destination in your suppression list.</p>",
     "SendEmail": "<p>Sends an email message. You can use the Amazon SES API v2 to send two types of messages:</p> <ul> <li> <p> <b>Simple</b> – A standard email message. When you create this type of message, you specify the sender, the recipient, and the message body, and the Amazon SES API v2 assembles the message for you.</p> </li> <li> <p> <b>Raw</b> – A raw, MIME-formatted email message. When you send this type of email, you have to specify all of the message headers, as well as the message body. You can use this message type to send messages that contain attachments. The message that you specify has to be a valid MIME message.</p> </li> </ul>",
     "TagResource": "<p>Add one or more tags (keys and values) to a specified resource. A <i>tag</i> is a label that you optionally define and associate with a resource. Tags can help you categorize and manage resources in different ways, such as by purpose, owner, environment, or other criteria. A resource can have as many as 50 tags.</p> <p>Each tag consists of a required <i>tag key</i> and an associated <i>tag value</i>, both of which you define. A tag key is a general label that acts as a category for more specific tag values. A tag value acts as a descriptor within a tag key.</p>",
     "UntagResource": "<p>Remove one or more tags (keys and values) from a specified resource.</p>",
@@ -174,6 +180,7 @@
         "PutConfigurationSetDeliveryOptionsRequest$ConfigurationSetName": "<p>The name of the configuration set that you want to associate with a dedicated IP pool.</p>",
         "PutConfigurationSetReputationOptionsRequest$ConfigurationSetName": "<p>The name of the configuration set that you want to enable or disable reputation metric tracking for.</p>",
         "PutConfigurationSetSendingOptionsRequest$ConfigurationSetName": "<p>The name of the configuration set that you want to enable or disable email sending for.</p>",
+        "PutConfigurationSetSuppressionOptionsRequest$ConfigurationSetName": "<p>The name of the configuration set that you want to enable or disable email sending for.</p>",
         "PutConfigurationSetTrackingOptionsRequest$ConfigurationSetName": "<p>The name of the configuration set that you want to add a custom tracking domain to.</p>",
         "SendEmailRequest$ConfigurationSetName": "<p>The name of the configuration set that you want to use when sending the email.</p>",
         "UpdateConfigurationSetEventDestinationRequest$ConfigurationSetName": "<p>The name of the configuration set that contains the event destination that you want to modify.</p>"
@@ -321,6 +328,16 @@
       "refs": {
       }
     },
+    "DeleteSuppressedDestinationRequest": {
+      "base": "<p>A request to delete a suppressed email destination.</p>",
+      "refs": {
+      }
+    },
+    "DeleteSuppressedDestinationResponse": {
+      "base": "<p>An HTTP 200 response if the request succeeds, or an error message if the request fails.</p>",
+      "refs": {
+      }
+    },
     "DeliverabilityDashboardAccountStatus": {
       "base": "<p>The current status of your Deliverability dashboard subscription. If this value is <code>PENDING_EXPIRATION</code>, your subscription is scheduled to expire at the end of the current calendar month.</p>",
       "refs": {
@@ -454,10 +471,15 @@
       "base": null,
       "refs": {
         "CreateDeliverabilityTestReportRequest$FromEmailAddress": "<p>The email address that the predictive inbox placement test email was sent from.</p>",
+        "DeleteSuppressedDestinationRequest$EmailAddress": "<p>The suppressed email destination to delete.</p>",
         "DeliverabilityTestReport$FromEmailAddress": "<p>The sender address that you specified for the predictive inbox placement test.</p>",
         "EmailAddressList$member": null,
+        "GetSuppressedDestinationRequest$EmailAddress": "<p>Email destination to fetch from the suppression list.</p>",
+        "PutSuppressedDestinationRequest$EmailAddress": "<p>Email destination to be suppressed.</p>",
         "SendEmailRequest$FromEmailAddress": "<p>The email address that you want to use as the \"From\" address for the email. The address that you specify has to be verified. </p>",
-        "SendEmailRequest$FeedbackForwardingEmailAddress": "<p>The address that you want bounce and complaint notifications to be sent to.</p>"
+        "SendEmailRequest$FeedbackForwardingEmailAddress": "<p>The address that you want bounce and complaint notifications to be sent to.</p>",
+        "SuppressedDestination$EmailAddress": "<p>The suppressed email destination.</p>",
+        "SuppressedDestinationSummary$EmailAddress": "<p>The suppressed email destination.</p>"
       }
     },
     "EmailAddressList": {
@@ -483,9 +505,9 @@
         "DkimAttributes$SigningEnabled": "<p>If the value is <code>true</code>, then the messages that you send from the identity are signed using DKIM. If the value is <code>false</code>, then the messages that you send from the identity aren't DKIM-signed.</p>",
         "EventDestination$Enabled": "<p>If <code>true</code>, the event destination is enabled. When the event destination is enabled, the specified event types are sent to the destinations in this <code>EventDestinationDefinition</code>.</p> <p>If <code>false</code>, the event destination is disabled. When the event destination is disabled, events aren't sent to the specified destinations.</p>",
         "EventDestinationDefinition$Enabled": "<p>If <code>true</code>, the event destination is enabled. When the event destination is enabled, the specified event types are sent to the destinations in this <code>EventDestinationDefinition</code>.</p> <p>If <code>false</code>, the event destination is disabled. When the event destination is disabled, events aren't sent to the specified destinations.</p>",
-        "GetAccountResponse$SendingEnabled": "<p>Indicates whether or not email sending is enabled for your Amazon SES account in the current AWS Region.</p>",
         "GetAccountResponse$DedicatedIpAutoWarmupEnabled": "<p>Indicates whether or not the automatic warm-up feature is enabled for dedicated IP addresses that are associated with your account.</p>",
         "GetAccountResponse$ProductionAccessEnabled": "<p>Indicates whether or not your account has production access in the current AWS Region.</p> <p>If the value is <code>false</code>, then your account is in the <i>sandbox</i>. When your account is in the sandbox, you can only send email to verified identities. Additionally, the maximum number of emails you can send in a 24-hour period (your sending quota) is 200, and the maximum number of emails you can send per second (your maximum sending rate) is 1.</p> <p>If the value is <code>true</code>, then your account has production access. When your account has production access, you can send email to any address. The sending quota and maximum sending rate for your account vary based on your specific use case.</p>",
+        "GetAccountResponse$SendingEnabled": "<p>Indicates whether or not email sending is enabled for your Amazon SES account in the current AWS Region.</p>",
         "GetDeliverabilityDashboardOptionsResponse$DashboardEnabled": "<p>Specifies whether the Deliverability dashboard is enabled. If this value is <code>true</code>, the dashboard is enabled.</p>",
         "GetEmailIdentityResponse$FeedbackForwardingStatus": "<p>The feedback forwarding configuration for the identity.</p> <p>If the value is <code>true</code>, you receive email notifications when bounce or complaint events occur. These notifications are sent to the address that you specified in the <code>Return-Path</code> header of the original email.</p> <p>You're required to have a method of tracking bounces and complaints. If you haven't set up another mechanism for receiving bounce or complaint notifications (for example, by setting up an event destination), you receive an email notification when these events occur (even if this setting is disabled).</p>",
         "GetEmailIdentityResponse$VerifiedForSendingStatus": "<p>Specifies whether or not the identity is verified. You can only send email from verified email addresses or domains. For more information about verifying identities, see the <a href=\"https://docs.aws.amazon.com/pinpoint/latest/userguide/channels-email-manage-verify.html\">Amazon Pinpoint User Guide</a>.</p>",
@@ -553,6 +575,12 @@
       "refs": {
         "EventDestination$MatchingEventTypes": "<p>The types of events that Amazon SES sends to the specified event destinations.</p>",
         "EventDestinationDefinition$MatchingEventTypes": "<p>An array that specifies which events the Amazon SES API v2 should send to the destinations in this <code>EventDestinationDefinition</code>.</p>"
+      }
+    },
+    "FeedbackId": {
+      "base": null,
+      "refs": {
+        "SuppressedDestinationAttributes$FeedbackId": "<p>A unique identifier of the suppression cause.</p>"
       }
     },
     "GeneralEnforcementStatus": {
@@ -671,6 +699,16 @@
       "refs": {
       }
     },
+    "GetSuppressedDestinationRequest": {
+      "base": "<p>A request to get a suppressed email destination.</p>",
+      "refs": {
+      }
+    },
+    "GetSuppressedDestinationResponse": {
+      "base": "<p>Information about the suppressed email destination.</p>",
+      "refs": {
+      }
+    },
     "Identity": {
       "base": null,
       "refs": {
@@ -715,6 +753,11 @@
       "base": "<p>An object that contains information about the inbox placement data settings for a verified domain that’s associated with your AWS account. This data is available only if you enabled the Deliverability dashboard for the domain.</p>",
       "refs": {
         "DomainDeliverabilityTrackingOption$InboxPlacementTrackingOption": "<p>An object that contains information about the inbox placement data settings for the domain.</p>"
+      }
+    },
+    "InvalidNextTokenException": {
+      "base": "<p>The specified request includes an invalid or expired token. Please attempt to get a new token.</p>",
+      "refs": {
       }
     },
     "Ip": {
@@ -833,6 +876,16 @@
         "ListDedicatedIpPoolsResponse$DedicatedIpPools": "<p>A list of all of the dedicated IP pools that are associated with your AWS account in the current Region.</p>"
       }
     },
+    "ListSuppressedDestinationsRequest": {
+      "base": "<p>A request to obtain a list of suppressed email destinations.</p>",
+      "refs": {
+      }
+    },
+    "ListSuppressedDestinationsResponse": {
+      "base": "<p>A list of suppressed email destinations.</p>",
+      "refs": {
+      }
+    },
     "ListTagsForResourceRequest": {
       "base": null,
       "refs": {
@@ -881,7 +934,8 @@
         "ListDedicatedIpPoolsRequest$PageSize": "<p>The number of results to show in a single call to <code>ListDedicatedIpPools</code>. If the number of results is larger than the number you specified in this parameter, then the response includes a <code>NextToken</code> element, which you can use to obtain additional results.</p>",
         "ListDeliverabilityTestReportsRequest$PageSize": "<p>The number of results to show in a single call to <code>ListDeliverabilityTestReports</code>. If the number of results is larger than the number you specified in this parameter, then the response includes a <code>NextToken</code> element, which you can use to obtain additional results.</p> <p>The value you specify has to be at least 0, and can be no more than 1000.</p>",
         "ListDomainDeliverabilityCampaignsRequest$PageSize": "<p>The maximum number of results to include in response to a single call to the <code>ListDomainDeliverabilityCampaigns</code> operation. If the number of results is larger than the number that you specify in this parameter, the response includes a <code>NextToken</code> element, which you can use to obtain additional results.</p>",
-        "ListEmailIdentitiesRequest$PageSize": "<p>The number of results to show in a single call to <code>ListEmailIdentities</code>. If the number of results is larger than the number you specified in this parameter, then the response includes a <code>NextToken</code> element, which you can use to obtain additional results.</p> <p>The value you specify has to be at least 0, and can be no more than 1000.</p>"
+        "ListEmailIdentitiesRequest$PageSize": "<p>The number of results to show in a single call to <code>ListEmailIdentities</code>. If the number of results is larger than the number you specified in this parameter, then the response includes a <code>NextToken</code> element, which you can use to obtain additional results.</p> <p>The value you specify has to be at least 0, and can be no more than 1000.</p>",
+        "ListSuppressedDestinationsRequest$PageSize": "<p>The number of results to show in a single call to <code>ListSuppressedDestinations</code>. If the number of results is larger than the number you specified in this parameter, then the response includes a <code>NextToken</code> element, which you can use to obtain additional results.</p>"
       }
     },
     "MaxSendRate": {
@@ -951,7 +1005,9 @@
         "ListDomainDeliverabilityCampaignsRequest$NextToken": "<p>A token that’s returned from a previous call to the <code>ListDomainDeliverabilityCampaigns</code> operation. This token indicates the position of a campaign in the list of campaigns.</p>",
         "ListDomainDeliverabilityCampaignsResponse$NextToken": "<p>A token that’s returned from a previous call to the <code>ListDomainDeliverabilityCampaigns</code> operation. This token indicates the position of the campaign in the list of campaigns.</p>",
         "ListEmailIdentitiesRequest$NextToken": "<p>A token returned from a previous call to <code>ListEmailIdentities</code> to indicate the position in the list of identities.</p>",
-        "ListEmailIdentitiesResponse$NextToken": "<p>A token that indicates that there are additional configuration sets to list. To view additional configuration sets, issue another request to <code>ListEmailIdentities</code>, and pass this token in the <code>NextToken</code> parameter.</p>"
+        "ListEmailIdentitiesResponse$NextToken": "<p>A token that indicates that there are additional configuration sets to list. To view additional configuration sets, issue another request to <code>ListEmailIdentities</code>, and pass this token in the <code>NextToken</code> parameter.</p>",
+        "ListSuppressedDestinationsRequest$NextToken": "<p>A token returned from a previous call to <code>ListSuppressedDestinations</code> to indicate the position in the list of suppressed email destinations.</p>",
+        "ListSuppressedDestinationsResponse$NextToken": "<p>A token that indicates that there are additional suppressed destinations to list. To view additional suppressed destinations, issue another request to <code>ListSuppressedDestinations</code>, and pass this token in the <code>NextToken</code> parameter.</p>"
       }
     },
     "NotFoundException": {
@@ -962,7 +1018,8 @@
     "OutboundMessageId": {
       "base": null,
       "refs": {
-        "SendEmailResponse$MessageId": "<p>A unique identifier for the message that is generated when the message is accepted.</p> <note> <p>It is possible for the Amazon SES API v2 to accept a message without sending it. This can happen when the message that you're trying to send has an attachment contains a virus, or when you send a templated email that contains invalid personalization content, for example.</p> </note>"
+        "SendEmailResponse$MessageId": "<p>A unique identifier for the message that is generated when the message is accepted.</p> <note> <p>It is possible for the Amazon SES API v2 to accept a message without sending it. This can happen when the message that you're trying to send has an attachment contains a virus, or when you send a templated email that contains invalid personalization content, for example.</p> </note>",
+        "SuppressedDestinationAttributes$MessageId": "<p>A unique identifier of the message that caused the suppression of the email destination.</p>"
       }
     },
     "OverallVolume": {
@@ -1040,6 +1097,16 @@
       "refs": {
       }
     },
+    "PutAccountSuppressionAttributesRequest": {
+      "base": "<p>A request to change your account's suppression preferences.</p>",
+      "refs": {
+      }
+    },
+    "PutAccountSuppressionAttributesResponse": {
+      "base": "<p>An HTTP 200 response if the request succeeds, or an error message if the request fails.</p>",
+      "refs": {
+      }
+    },
     "PutConfigurationSetDeliveryOptionsRequest": {
       "base": "<p>A request to associate a configuration set with a dedicated IP pool.</p>",
       "refs": {
@@ -1066,6 +1133,16 @@
       }
     },
     "PutConfigurationSetSendingOptionsResponse": {
+      "base": "<p>An HTTP 200 response if the request succeeds, or an error message if the request fails.</p>",
+      "refs": {
+      }
+    },
+    "PutConfigurationSetSuppressionOptionsRequest": {
+      "base": "<p>A request to change your account's suppression preferences for an specific configuration set.</p>",
+      "refs": {
+      }
+    },
+    "PutConfigurationSetSuppressionOptionsResponse": {
       "base": "<p>An HTTP 200 response if the request succeeds, or an error message if the request fails.</p>",
       "refs": {
       }
@@ -1136,6 +1213,16 @@
       }
     },
     "PutEmailIdentityMailFromAttributesResponse": {
+      "base": "<p>An HTTP 200 response if the request succeeds, or an error message if the request fails.</p>",
+      "refs": {
+      }
+    },
+    "PutSuppressedDestinationRequest": {
+      "base": "<p>A request to suppress an email destination.</p>",
+      "refs": {
+      }
+    },
+    "PutSuppressedDestinationResponse": {
       "base": "<p>An HTTP 200 response if the request succeeds, or an error message if the request fails.</p>",
       "refs": {
       }
@@ -1233,6 +1320,62 @@
         "DomainDeliverabilityCampaign$Subject": "<p>The subject line, or title, of the email message.</p>"
       }
     },
+    "SuppressedDestination": {
+      "base": "<p>An object containing information about the suppressed email destination.</p>",
+      "refs": {
+        "GetSuppressedDestinationResponse$SuppressedDestination": "<p>An object containing information about the suppressed email destination.</p>"
+      }
+    },
+    "SuppressedDestinationAttributes": {
+      "base": "<p>An object containing additional attributes related to a suppressed destination.</p>",
+      "refs": {
+        "SuppressedDestination$Attributes": "<p> <code>Optional</code> value with information about the sources of the suppression.</p>"
+      }
+    },
+    "SuppressedDestinationSummaries": {
+      "base": null,
+      "refs": {
+        "ListSuppressedDestinationsResponse$SuppressedDestinationSummaries": "<p>A list of summaries, each containing a summary for a suppressed email destination.</p>"
+      }
+    },
+    "SuppressedDestinationSummary": {
+      "base": "<p>A summary for the suppressed email destination.</p>",
+      "refs": {
+        "SuppressedDestinationSummaries$member": null
+      }
+    },
+    "SuppressionAttributes": {
+      "base": "<p>An object that contains information about your account's suppression preferences.</p>",
+      "refs": {
+        "GetAccountResponse$SuppressionAttributes": "<p>An object that contains information about your account's suppression preferences.</p>"
+      }
+    },
+    "SuppressionListReason": {
+      "base": "<p>A string representing the cause for suppression for an email destination. It can be one of the following:</p> <ul> <li> <p> <code>COMPLAINT</code> – Amazon SES will suppress an email address that receive a complaint.</p> </li> <li> <p> <code>BOUNCE</code> – Amazon SES will suppress an email address that hard bounces.</p> </li> </ul>",
+      "refs": {
+        "PutSuppressedDestinationRequest$Reason": "<p>Reason for which the email destination is suppressed.</p>",
+        "SuppressedDestination$Reason": "<p>The reason for which the email destination is suppressed.</p>",
+        "SuppressedDestinationSummary$Reason": "<p>The reason for which the email destination is suppressed.</p>",
+        "SuppressionListReasons$member": null
+      }
+    },
+    "SuppressionListReasons": {
+      "base": null,
+      "refs": {
+        "ListSuppressedDestinationsRequest$Reasons": "<p>Filters email destinations suppressed by the given reasons.</p>",
+        "PutAccountSuppressionAttributesRequest$SuppressedReasons": "<p>A list of reasons to suppress email addresses. The only valid reasons are:</p> <ul> <li> <p> <code>COMPLAINT</code> – Amazon SES will suppress an email address that receives a complaint.</p> </li> <li> <p> <code>BOUNCE</code> – Amazon SES will suppress an email address that hard bounces.</p> </li> </ul>",
+        "PutConfigurationSetSuppressionOptionsRequest$SuppressedReasons": "<p>A list of reasons to suppress email addresses. The only valid reasons are:</p> <ul> <li> <p> <code>COMPLAINT</code> – Amazon SES will suppress an email address that receives a complaint.</p> </li> <li> <p> <code>BOUNCE</code> – Amazon SES will suppress an email address that hard bounces.</p> </li> </ul>",
+        "SuppressionAttributes$SuppressedReasons": "<p>A list of reasons to suppress email addresses. The only valid reasons are:</p> <ul> <li> <p> <code>COMPLAINT</code> – Amazon SES will suppress an email address that receives a complaint.</p> </li> <li> <p> <code>BOUNCE</code> – Amazon SES will suppress an email address that hard bounces.</p> </li> </ul>",
+        "SuppressionOptions$SuppressedReasons": "<p>A list of reasons to suppress email addresses. The only valid reasons are:</p> <ul> <li> <p> <code>COMPLAINT</code> – Amazon SES will suppress an email address that receives a complaint.</p> </li> <li> <p> <code>BOUNCE</code> – Amazon SES will suppress an email address that hard bounces.</p> </li> </ul>"
+      }
+    },
+    "SuppressionOptions": {
+      "base": "<p>An object that contains information about your account's suppression preferences.</p>",
+      "refs": {
+        "CreateConfigurationSetRequest$SuppressionOptions": null,
+        "GetConfigurationSetResponse$SuppressionOptions": "<p>An object that contains information about your account's suppression preferences.</p>"
+      }
+    },
     "Tag": {
       "base": "<p>An object that defines the tags that are associated with a resource. A <i>tag</i> is a label that you optionally define and associate with a resource. Tags can help you categorize and manage resources in different ways, such as by purpose, owner, environment, or other criteria. A resource can have as many as 50 tags.</p> <p>Each tag consists of a required <i>tag key</i> and an associated <i>tag value</i>, both of which you define. A tag key is a general label that acts as a category for a more specific tag value. A tag value acts as a descriptor within a tag key. A tag key can contain as many as 128 characters. A tag value can contain as many as 256 characters. The characters can be Unicode letters, digits, white space, or one of the following symbols: _ . : / = + -. The following additional restrictions apply to tags:</p> <ul> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>For each associated resource, each tag key must be unique and it can have only one value.</p> </li> <li> <p>The <code>aws:</code> prefix is reserved for use by AWS; you can’t use it in any tag keys or values that you define. In addition, you can't edit or remove tag keys or values that use this prefix. Tags that use this prefix don’t count against the limit of 50 tags per resource.</p> </li> <li> <p>You can associate tags with public or shared resources, but the tags are available only for your AWS account, not any other accounts that share the resource. In addition, the tags are available only for resources that are located in the specified AWS Region for your AWS account.</p> </li> </ul>",
       "refs": {
@@ -1313,7 +1456,11 @@
         "GetDomainStatisticsReportRequest$StartDate": "<p>The first day (in Unix time) that you want to obtain domain deliverability metrics for.</p>",
         "GetDomainStatisticsReportRequest$EndDate": "<p>The last day (in Unix time) that you want to obtain domain deliverability metrics for. The <code>EndDate</code> that you specify has to be less than or equal to 30 days after the <code>StartDate</code>.</p>",
         "ListDomainDeliverabilityCampaignsRequest$StartDate": "<p>The first day, in Unix time format, that you want to obtain deliverability data for.</p>",
-        "ListDomainDeliverabilityCampaignsRequest$EndDate": "<p>The last day, in Unix time format, that you want to obtain deliverability data for. This value has to be less than or equal to 30 days after the value of the <code>StartDate</code> parameter.</p>"
+        "ListDomainDeliverabilityCampaignsRequest$EndDate": "<p>The last day, in Unix time format, that you want to obtain deliverability data for. This value has to be less than or equal to 30 days after the value of the <code>StartDate</code> parameter.</p>",
+        "ListSuppressedDestinationsRequest$StartDate": "<p>Filters email destinations suppressed before the given time.</p>",
+        "ListSuppressedDestinationsRequest$EndDate": "<p>Filters email destinations suppressed after the given time.</p>",
+        "SuppressedDestination$LastUpdateTime": "<p>The last time the suppressed destination was updated.</p>",
+        "SuppressedDestinationSummary$LastUpdateTime": "<p>The last time the suppressed destination was updated.</p>"
       }
     },
     "TlsPolicy": {

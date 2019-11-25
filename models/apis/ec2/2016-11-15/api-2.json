@@ -2376,6 +2376,15 @@
       "input":{"shape":"GetConsoleScreenshotRequest"},
       "output":{"shape":"GetConsoleScreenshotResult"}
     },
+    "GetDefaultCreditSpecification":{
+      "name":"GetDefaultCreditSpecification",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetDefaultCreditSpecificationRequest"},
+      "output":{"shape":"GetDefaultCreditSpecificationResult"}
+    },
     "GetEbsDefaultKmsKeyId":{
       "name":"GetEbsDefaultKmsKeyId",
       "http":{
@@ -2528,6 +2537,15 @@
       },
       "input":{"shape":"ModifyClientVpnEndpointRequest"},
       "output":{"shape":"ModifyClientVpnEndpointResult"}
+    },
+    "ModifyDefaultCreditSpecification":{
+      "name":"ModifyDefaultCreditSpecification",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyDefaultCreditSpecificationRequest"},
+      "output":{"shape":"ModifyDefaultCreditSpecificationResult"}
     },
     "ModifyEbsDefaultKmsKeyId":{
       "name":"ModifyEbsDefaultKmsKeyId",
@@ -13851,6 +13869,23 @@
         }
       }
     },
+    "GetDefaultCreditSpecificationRequest":{
+      "type":"structure",
+      "required":["InstanceFamily"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "InstanceFamily":{"shape":"UnlimitedSupportedInstanceFamily"}
+      }
+    },
+    "GetDefaultCreditSpecificationResult":{
+      "type":"structure",
+      "members":{
+        "InstanceFamilyCreditSpecification":{
+          "shape":"InstanceFamilyCreditSpecification",
+          "locationName":"instanceFamilyCreditSpecification"
+        }
+      }
+    },
     "GetEbsDefaultKmsKeyIdRequest":{
       "type":"structure",
       "members":{
@@ -15774,6 +15809,19 @@
         "TargetEnvironment":{
           "shape":"ExportEnvironment",
           "locationName":"targetEnvironment"
+        }
+      }
+    },
+    "InstanceFamilyCreditSpecification":{
+      "type":"structure",
+      "members":{
+        "InstanceFamily":{
+          "shape":"UnlimitedSupportedInstanceFamily",
+          "locationName":"instanceFamily"
+        },
+        "CpuCredits":{
+          "shape":"String",
+          "locationName":"cpuCredits"
         }
       }
     },
@@ -17895,6 +17943,27 @@
         "Return":{
           "shape":"Boolean",
           "locationName":"return"
+        }
+      }
+    },
+    "ModifyDefaultCreditSpecificationRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceFamily",
+        "CpuCredits"
+      ],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "InstanceFamily":{"shape":"UnlimitedSupportedInstanceFamily"},
+        "CpuCredits":{"shape":"String"}
+      }
+    },
+    "ModifyDefaultCreditSpecificationResult":{
+      "type":"structure",
+      "members":{
+        "InstanceFamilyCreditSpecification":{
+          "shape":"InstanceFamilyCreditSpecification",
+          "locationName":"instanceFamilyCreditSpecification"
         }
       }
     },
@@ -25369,6 +25438,14 @@
           "locationName":"privateIpAddress"
         }
       }
+    },
+    "UnlimitedSupportedInstanceFamily":{
+      "type":"string",
+      "enum":[
+        "t2",
+        "t3",
+        "t3a"
+      ]
     },
     "UnmonitorInstancesRequest":{
       "type":"structure",

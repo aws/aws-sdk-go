@@ -952,7 +952,8 @@ func (s DeleteLifecyclePolicyOutput) GoString() string {
 	return s.String()
 }
 
-// Specifies when to enable fast snapshot restore.
+// Specifies a rule for enabling fast snapshot restore. You can enable fast
+// snapshot restore based on either a count or a time interval.
 type FastRestoreRule struct {
 	_ struct{} `type:"structure"`
 
@@ -962,9 +963,14 @@ type FastRestoreRule struct {
 	AvailabilityZones []*string `min:"1" type:"list" required:"true"`
 
 	// The number of snapshots to be enabled with fast snapshot restore.
-	//
-	// Count is a required field
-	Count *int64 `min:"1" type:"integer" required:"true"`
+	Count *int64 `min:"1" type:"integer"`
+
+	// The amount of time to enable fast snapshot restore. The maximum is 100 years.
+	// This is equivalent to 1200 months, 5200 weeks, or 36500 days.
+	Interval *int64 `min:"1" type:"integer"`
+
+	// The unit of time for enabling fast snapshot restore.
+	IntervalUnit *string `type:"string" enum:"RetentionIntervalUnitValues"`
 }
 
 // String returns the string representation
@@ -986,11 +992,11 @@ func (s *FastRestoreRule) Validate() error {
 	if s.AvailabilityZones != nil && len(s.AvailabilityZones) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("AvailabilityZones", 1))
 	}
-	if s.Count == nil {
-		invalidParams.Add(request.NewErrParamRequired("Count"))
-	}
 	if s.Count != nil && *s.Count < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("Count", 1))
+	}
+	if s.Interval != nil && *s.Interval < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Interval", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -1008,6 +1014,18 @@ func (s *FastRestoreRule) SetAvailabilityZones(v []*string) *FastRestoreRule {
 // SetCount sets the Count field's value.
 func (s *FastRestoreRule) SetCount(v int64) *FastRestoreRule {
 	s.Count = &v
+	return s
+}
+
+// SetInterval sets the Interval field's value.
+func (s *FastRestoreRule) SetInterval(v int64) *FastRestoreRule {
+	s.Interval = &v
+	return s
+}
+
+// SetIntervalUnit sets the IntervalUnit field's value.
+func (s *FastRestoreRule) SetIntervalUnit(v string) *FastRestoreRule {
+	s.IntervalUnit = &v
 	return s
 }
 
@@ -1528,14 +1546,20 @@ func (s *PolicyDetails) SetTargetTags(v []*Tag) *PolicyDetails {
 	return s
 }
 
-// Specifies the number of snapshots to keep for each EBS volume.
+// Specifies the retention rule for a lifecycle policy. You can retain snapshots
+// based on either a count or a time interval.
 type RetainRule struct {
 	_ struct{} `type:"structure"`
 
-	// The number of snapshots to keep for each volume, up to a maximum of 1000.
-	//
-	// Count is a required field
-	Count *int64 `min:"1" type:"integer" required:"true"`
+	// The number of snapshots to retain for each volume, up to a maximum of 1000.
+	Count *int64 `min:"1" type:"integer"`
+
+	// The amount of time to retain each snapshot. The maximum is 100 years. This
+	// is equivalent to 1200 months, 5200 weeks, or 36500 days.
+	Interval *int64 `min:"1" type:"integer"`
+
+	// The unit of time for time-based retention.
+	IntervalUnit *string `type:"string" enum:"RetentionIntervalUnitValues"`
 }
 
 // String returns the string representation
@@ -1551,11 +1575,11 @@ func (s RetainRule) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *RetainRule) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "RetainRule"}
-	if s.Count == nil {
-		invalidParams.Add(request.NewErrParamRequired("Count"))
-	}
 	if s.Count != nil && *s.Count < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("Count", 1))
+	}
+	if s.Interval != nil && *s.Interval < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Interval", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -1567,6 +1591,18 @@ func (s *RetainRule) Validate() error {
 // SetCount sets the Count field's value.
 func (s *RetainRule) SetCount(v int64) *RetainRule {
 	s.Count = &v
+	return s
+}
+
+// SetInterval sets the Interval field's value.
+func (s *RetainRule) SetInterval(v int64) *RetainRule {
+	s.Interval = &v
+	return s
+}
+
+// SetIntervalUnit sets the IntervalUnit field's value.
+func (s *RetainRule) SetIntervalUnit(v string) *RetainRule {
+	s.IntervalUnit = &v
 	return s
 }
 
@@ -1587,7 +1623,7 @@ type Schedule struct {
 	// The name of the schedule.
 	Name *string `type:"string"`
 
-	// The retain rule.
+	// The retention rule.
 	RetainRule *RetainRule `type:"structure"`
 
 	// The tags to apply to policy-created resources. These user-defined tags are
@@ -2020,6 +2056,20 @@ const (
 
 	// ResourceTypeValuesInstance is a ResourceTypeValues enum value
 	ResourceTypeValuesInstance = "INSTANCE"
+)
+
+const (
+	// RetentionIntervalUnitValuesDays is a RetentionIntervalUnitValues enum value
+	RetentionIntervalUnitValuesDays = "DAYS"
+
+	// RetentionIntervalUnitValuesWeeks is a RetentionIntervalUnitValues enum value
+	RetentionIntervalUnitValuesWeeks = "WEEKS"
+
+	// RetentionIntervalUnitValuesMonths is a RetentionIntervalUnitValues enum value
+	RetentionIntervalUnitValuesMonths = "MONTHS"
+
+	// RetentionIntervalUnitValuesYears is a RetentionIntervalUnitValues enum value
+	RetentionIntervalUnitValuesYears = "YEARS"
 )
 
 const (

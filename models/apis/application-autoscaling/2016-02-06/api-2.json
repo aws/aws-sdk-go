@@ -429,7 +429,9 @@
         "EC2SpotFleetRequestAverageNetworkOut",
         "SageMakerVariantInvocationsPerInstance",
         "ECSServiceAverageCPUUtilization",
-        "ECSServiceAverageMemoryUtilization"
+        "ECSServiceAverageMemoryUtilization",
+        "AppStreamAverageCapacityUtilization",
+        "ComprehendInferenceUtilization"
       ]
     },
     "MetricUnit":{"type":"string"},
@@ -567,7 +569,8 @@
         "dynamodb:index:WriteCapacityUnits",
         "rds:cluster:ReadReplicaCount",
         "sagemaker:variant:DesiredInstanceCount",
-        "custom-resource:ResourceType:Property"
+        "custom-resource:ResourceType:Property",
+        "comprehend:document-classifier-endpoint:DesiredInferenceUnits"
       ]
     },
     "ScalableTarget":{
@@ -717,7 +720,8 @@
         "dynamodb",
         "rds",
         "sagemaker",
-        "custom-resource"
+        "custom-resource",
+        "comprehend"
       ]
     },
     "StepAdjustment":{

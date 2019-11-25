@@ -15021,19 +15021,19 @@ func (c *EC2) DescribeInstanceCreditSpecificationsRequest(input *DescribeInstanc
 
 // DescribeInstanceCreditSpecifications API operation for Amazon Elastic Compute Cloud.
 //
-// Describes the credit option for CPU usage of the specified T2 or T3 instances.
-// The credit options are standard and unlimited.
+// Describes the credit option for CPU usage of the specified burstable performance
+// instances. The credit options are standard and unlimited.
 //
-// If you do not specify an instance ID, Amazon EC2 returns T2 and T3 instances
-// with the unlimited credit option, as well as instances that were previously
-// configured as T2 or T3 with the unlimited credit option. For example, if
-// you resize a T2 instance, while it is configured as unlimited, to an M4 instance,
-// Amazon EC2 returns the M4 instance.
+// If you do not specify an instance ID, Amazon EC2 returns burstable performance
+// instances with the unlimited credit option, as well as instances that were
+// previously configured as T2, T3, and T3a with the unlimited credit option.
+// For example, if you resize a T2 instance, while it is configured as unlimited,
+// to an M4 instance, Amazon EC2 returns the M4 instance.
 //
 // If you specify one or more instance IDs, Amazon EC2 returns the credit option
 // (standard or unlimited) of those instances. If you specify an instance ID
-// that is not valid, such as an instance that is not a T2 or T3 instance, an
-// error is returned.
+// that is not valid, such as an instance that is not a burstable performance
+// instance, an error is returned.
 //
 // Recently terminated instances might appear in the returned results. This
 // interval is usually less than one hour.
@@ -25176,6 +25176,84 @@ func (c *EC2) GetConsoleScreenshotWithContext(ctx aws.Context, input *GetConsole
 	return out, req.Send()
 }
 
+const opGetDefaultCreditSpecification = "GetDefaultCreditSpecification"
+
+// GetDefaultCreditSpecificationRequest generates a "aws/request.Request" representing the
+// client's request for the GetDefaultCreditSpecification operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetDefaultCreditSpecification for more information on using the GetDefaultCreditSpecification
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetDefaultCreditSpecificationRequest method.
+//    req, resp := client.GetDefaultCreditSpecificationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ec2-2016-11-15/GetDefaultCreditSpecification
+func (c *EC2) GetDefaultCreditSpecificationRequest(input *GetDefaultCreditSpecificationInput) (req *request.Request, output *GetDefaultCreditSpecificationOutput) {
+	op := &request.Operation{
+		Name:       opGetDefaultCreditSpecification,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetDefaultCreditSpecificationInput{}
+	}
+
+	output = &GetDefaultCreditSpecificationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetDefaultCreditSpecification API operation for Amazon Elastic Compute Cloud.
+//
+// Describes the default credit option for CPU usage of a burstable performance
+// instance family.
+//
+// For more information, see Burstable Performance Instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html)
+// in the Amazon Elastic Compute Cloud User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Compute Cloud's
+// API operation GetDefaultCreditSpecification for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ec2-2016-11-15/GetDefaultCreditSpecification
+func (c *EC2) GetDefaultCreditSpecification(input *GetDefaultCreditSpecificationInput) (*GetDefaultCreditSpecificationOutput, error) {
+	req, out := c.GetDefaultCreditSpecificationRequest(input)
+	return out, req.Send()
+}
+
+// GetDefaultCreditSpecificationWithContext is the same as GetDefaultCreditSpecification with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDefaultCreditSpecification for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EC2) GetDefaultCreditSpecificationWithContext(ctx aws.Context, input *GetDefaultCreditSpecificationInput, opts ...request.Option) (*GetDefaultCreditSpecificationOutput, error) {
+	req, out := c.GetDefaultCreditSpecificationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetEbsDefaultKmsKeyId = "GetEbsDefaultKmsKeyId"
 
 // GetEbsDefaultKmsKeyIdRequest generates a "aws/request.Request" representing the
@@ -26678,6 +26756,94 @@ func (c *EC2) ModifyClientVpnEndpointWithContext(ctx aws.Context, input *ModifyC
 	return out, req.Send()
 }
 
+const opModifyDefaultCreditSpecification = "ModifyDefaultCreditSpecification"
+
+// ModifyDefaultCreditSpecificationRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyDefaultCreditSpecification operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ModifyDefaultCreditSpecification for more information on using the ModifyDefaultCreditSpecification
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ModifyDefaultCreditSpecificationRequest method.
+//    req, resp := client.ModifyDefaultCreditSpecificationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ec2-2016-11-15/ModifyDefaultCreditSpecification
+func (c *EC2) ModifyDefaultCreditSpecificationRequest(input *ModifyDefaultCreditSpecificationInput) (req *request.Request, output *ModifyDefaultCreditSpecificationOutput) {
+	op := &request.Operation{
+		Name:       opModifyDefaultCreditSpecification,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifyDefaultCreditSpecificationInput{}
+	}
+
+	output = &ModifyDefaultCreditSpecificationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ModifyDefaultCreditSpecification API operation for Amazon Elastic Compute Cloud.
+//
+// Modifies the default credit option for CPU usage of burstable performance
+// instances. The default credit option is set at the account level per AWS
+// Region, and is specified per instance family. All new burstable performance
+// instances in the account launch using the default credit option.
+//
+// ModifyDefaultCreditSpecification is an asynchronous operation, which works
+// at an AWS Region level and modifies the credit option for each Availability
+// Zone. All zones in a Region are updated within five minutes. But if instances
+// are launched during this operation, they might not get the new credit option
+// until the zone is updated. To verify whether the update has occurred, you
+// can call GetDefaultCreditSpecification and check DefaultCreditSpecification
+// for updates.
+//
+// For more information, see Burstable Performance Instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html)
+// in the Amazon Elastic Compute Cloud User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Compute Cloud's
+// API operation ModifyDefaultCreditSpecification for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ec2-2016-11-15/ModifyDefaultCreditSpecification
+func (c *EC2) ModifyDefaultCreditSpecification(input *ModifyDefaultCreditSpecificationInput) (*ModifyDefaultCreditSpecificationOutput, error) {
+	req, out := c.ModifyDefaultCreditSpecificationRequest(input)
+	return out, req.Send()
+}
+
+// ModifyDefaultCreditSpecificationWithContext is the same as ModifyDefaultCreditSpecification with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ModifyDefaultCreditSpecification for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EC2) ModifyDefaultCreditSpecificationWithContext(ctx aws.Context, input *ModifyDefaultCreditSpecificationInput, opts ...request.Option) (*ModifyDefaultCreditSpecificationOutput, error) {
+	req, out := c.ModifyDefaultCreditSpecificationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opModifyEbsDefaultKmsKeyId = "ModifyEbsDefaultKmsKeyId"
 
 // ModifyEbsDefaultKmsKeyIdRequest generates a "aws/request.Request" representing the
@@ -27510,8 +27676,8 @@ func (c *EC2) ModifyInstanceCreditSpecificationRequest(input *ModifyInstanceCred
 
 // ModifyInstanceCreditSpecification API operation for Amazon Elastic Compute Cloud.
 //
-// Modifies the credit option for CPU usage on a running or stopped T2 or T3
-// instance. The credit options are standard and unlimited.
+// Modifies the credit option for CPU usage on a running or stopped burstable
+// performance instance. The credit options are standard and unlimited.
 //
 // For more information, see Burstable Performance Instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html)
 // in the Amazon Elastic Compute Cloud User Guide.
@@ -68051,6 +68217,79 @@ func (s *GetConsoleScreenshotOutput) SetInstanceId(v string) *GetConsoleScreensh
 	return s
 }
 
+type GetDefaultCreditSpecificationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Checks whether you have the required permissions for the action, without
+	// actually making the request, and provides an error response. If you have
+	// the required permissions, the error response is DryRunOperation. Otherwise,
+	// it is UnauthorizedOperation.
+	DryRun *bool `type:"boolean"`
+
+	// The instance family.
+	//
+	// InstanceFamily is a required field
+	InstanceFamily *string `type:"string" required:"true" enum:"UnlimitedSupportedInstanceFamily"`
+}
+
+// String returns the string representation
+func (s GetDefaultCreditSpecificationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetDefaultCreditSpecificationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetDefaultCreditSpecificationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDefaultCreditSpecificationInput"}
+	if s.InstanceFamily == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceFamily"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *GetDefaultCreditSpecificationInput) SetDryRun(v bool) *GetDefaultCreditSpecificationInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetInstanceFamily sets the InstanceFamily field's value.
+func (s *GetDefaultCreditSpecificationInput) SetInstanceFamily(v string) *GetDefaultCreditSpecificationInput {
+	s.InstanceFamily = &v
+	return s
+}
+
+type GetDefaultCreditSpecificationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The default credit option for CPU usage of the instance family.
+	InstanceFamilyCreditSpecification *InstanceFamilyCreditSpecification `locationName:"instanceFamilyCreditSpecification" type:"structure"`
+}
+
+// String returns the string representation
+func (s GetDefaultCreditSpecificationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetDefaultCreditSpecificationOutput) GoString() string {
+	return s.String()
+}
+
+// SetInstanceFamilyCreditSpecification sets the InstanceFamilyCreditSpecification field's value.
+func (s *GetDefaultCreditSpecificationOutput) SetInstanceFamilyCreditSpecification(v *InstanceFamilyCreditSpecification) *GetDefaultCreditSpecificationOutput {
+	s.InstanceFamilyCreditSpecification = v
+	return s
+}
+
 type GetEbsDefaultKmsKeyIdInput struct {
 	_ struct{} `type:"structure"`
 
@@ -72346,7 +72585,7 @@ func (s *InstanceCount) SetState(v string) *InstanceCount {
 	return s
 }
 
-// Describes the credit option for CPU usage of a T2 or T3 instance.
+// Describes the credit option for CPU usage of a burstable performance instance.
 type InstanceCreditSpecification struct {
 	_ struct{} `type:"structure"`
 
@@ -72380,7 +72619,7 @@ func (s *InstanceCreditSpecification) SetInstanceId(v string) *InstanceCreditSpe
 	return s
 }
 
-// Describes the credit option for CPU usage of a T2 or T3 instance.
+// Describes the credit option for CPU usage of a burstable performance instance.
 type InstanceCreditSpecificationRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -72444,6 +72683,41 @@ func (s *InstanceExportDetails) SetInstanceId(v string) *InstanceExportDetails {
 // SetTargetEnvironment sets the TargetEnvironment field's value.
 func (s *InstanceExportDetails) SetTargetEnvironment(v string) *InstanceExportDetails {
 	s.TargetEnvironment = &v
+	return s
+}
+
+// Describes the default credit option for CPU usage of a burstable performance
+// instance family.
+type InstanceFamilyCreditSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// The default credit option for CPU usage of the instance family. Valid values
+	// are standard and unlimited.
+	CpuCredits *string `locationName:"cpuCredits" type:"string"`
+
+	// The instance family.
+	InstanceFamily *string `locationName:"instanceFamily" type:"string" enum:"UnlimitedSupportedInstanceFamily"`
+}
+
+// String returns the string representation
+func (s InstanceFamilyCreditSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InstanceFamilyCreditSpecification) GoString() string {
+	return s.String()
+}
+
+// SetCpuCredits sets the CpuCredits field's value.
+func (s *InstanceFamilyCreditSpecification) SetCpuCredits(v string) *InstanceFamilyCreditSpecification {
+	s.CpuCredits = &v
+	return s
+}
+
+// SetInstanceFamily sets the InstanceFamily field's value.
+func (s *InstanceFamilyCreditSpecification) SetInstanceFamily(v string) *InstanceFamilyCreditSpecification {
+	s.InstanceFamily = &v
 	return s
 }
 
@@ -76630,6 +76904,95 @@ func (s ModifyClientVpnEndpointOutput) GoString() string {
 // SetReturn sets the Return field's value.
 func (s *ModifyClientVpnEndpointOutput) SetReturn(v bool) *ModifyClientVpnEndpointOutput {
 	s.Return = &v
+	return s
+}
+
+type ModifyDefaultCreditSpecificationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The credit option for CPU usage of the instance family.
+	//
+	// Valid Values: standard | unlimited
+	//
+	// CpuCredits is a required field
+	CpuCredits *string `type:"string" required:"true"`
+
+	// Checks whether you have the required permissions for the action, without
+	// actually making the request, and provides an error response. If you have
+	// the required permissions, the error response is DryRunOperation. Otherwise,
+	// it is UnauthorizedOperation.
+	DryRun *bool `type:"boolean"`
+
+	// The instance family.
+	//
+	// InstanceFamily is a required field
+	InstanceFamily *string `type:"string" required:"true" enum:"UnlimitedSupportedInstanceFamily"`
+}
+
+// String returns the string representation
+func (s ModifyDefaultCreditSpecificationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyDefaultCreditSpecificationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyDefaultCreditSpecificationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyDefaultCreditSpecificationInput"}
+	if s.CpuCredits == nil {
+		invalidParams.Add(request.NewErrParamRequired("CpuCredits"))
+	}
+	if s.InstanceFamily == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceFamily"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCpuCredits sets the CpuCredits field's value.
+func (s *ModifyDefaultCreditSpecificationInput) SetCpuCredits(v string) *ModifyDefaultCreditSpecificationInput {
+	s.CpuCredits = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *ModifyDefaultCreditSpecificationInput) SetDryRun(v bool) *ModifyDefaultCreditSpecificationInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetInstanceFamily sets the InstanceFamily field's value.
+func (s *ModifyDefaultCreditSpecificationInput) SetInstanceFamily(v string) *ModifyDefaultCreditSpecificationInput {
+	s.InstanceFamily = &v
+	return s
+}
+
+type ModifyDefaultCreditSpecificationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The default credit option for CPU usage of the instance family.
+	InstanceFamilyCreditSpecification *InstanceFamilyCreditSpecification `locationName:"instanceFamilyCreditSpecification" type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyDefaultCreditSpecificationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyDefaultCreditSpecificationOutput) GoString() string {
+	return s.String()
+}
+
+// SetInstanceFamilyCreditSpecification sets the InstanceFamilyCreditSpecification field's value.
+func (s *ModifyDefaultCreditSpecificationOutput) SetInstanceFamilyCreditSpecification(v *InstanceFamilyCreditSpecification) *ModifyDefaultCreditSpecificationOutput {
+	s.InstanceFamilyCreditSpecification = v
 	return s
 }
 
@@ -88541,13 +88904,13 @@ type RunInstancesInput struct {
 	// in the Amazon Elastic Compute Cloud User Guide.
 	CpuOptions *CpuOptionsRequest `type:"structure"`
 
-	// The credit option for CPU usage of the T2 or T3 instance. Valid values are
-	// standard and unlimited. To change this attribute after launch, use ModifyInstanceCreditSpecification
-	// (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstanceCreditSpecification.html).
+	// The credit option for CPU usage of the burstable performance instance. Valid
+	// values are standard and unlimited. To change this attribute after launch,
+	// use ModifyInstanceCreditSpecification (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyInstanceCreditSpecification.html).
 	// For more information, see Burstable Performance Instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
 	//
-	// Default: standard (T2 instances) or unlimited (T3 instances)
+	// Default: standard (T2 instances) or unlimited (T3/T3a instances)
 	CreditSpecification *CreditSpecificationRequest `type:"structure"`
 
 	// If you set this parameter to true, you can't terminate the instance using
@@ -93531,8 +93894,8 @@ func (s *SubnetIpv6CidrBlockAssociation) SetIpv6CidrBlockState(v *SubnetCidrBloc
 	return s
 }
 
-// Describes the T2 or T3 instance whose credit option for CPU usage was successfully
-// modified.
+// Describes the burstable performance instance whose credit option for CPU
+// usage was successfully modified.
 type SuccessfulInstanceCreditSpecificationItem struct {
 	_ struct{} `type:"structure"`
 
@@ -96116,13 +96479,13 @@ func (s *UnmonitorInstancesOutput) SetInstanceMonitorings(v []*InstanceMonitorin
 	return s
 }
 
-// Describes the T2 or T3 instance whose credit option for CPU usage was not
-// modified.
+// Describes the burstable performance instance whose credit option for CPU
+// usage was not modified.
 type UnsuccessfulInstanceCreditSpecificationItem struct {
 	_ struct{} `type:"structure"`
 
-	// The applicable error for the T2 or T3 instance whose credit option for CPU
-	// usage was not modified.
+	// The applicable error for the burstable performance instance whose credit
+	// option for CPU usage was not modified.
 	Error *UnsuccessfulInstanceCreditSpecificationItemError `locationName:"error" type:"structure"`
 
 	// The ID of the instance.
@@ -96151,8 +96514,8 @@ func (s *UnsuccessfulInstanceCreditSpecificationItem) SetInstanceId(v string) *U
 	return s
 }
 
-// Information about the error for the T2 or T3 instance whose credit option
-// for CPU usage was not modified.
+// Information about the error for the burstable performance instance whose
+// credit option for CPU usage was not modified.
 type UnsuccessfulInstanceCreditSpecificationItemError struct {
 	_ struct{} `type:"structure"`
 
@@ -101555,6 +101918,17 @@ const (
 
 	// TransportProtocolUdp is a TransportProtocol enum value
 	TransportProtocolUdp = "udp"
+)
+
+const (
+	// UnlimitedSupportedInstanceFamilyT2 is a UnlimitedSupportedInstanceFamily enum value
+	UnlimitedSupportedInstanceFamilyT2 = "t2"
+
+	// UnlimitedSupportedInstanceFamilyT3 is a UnlimitedSupportedInstanceFamily enum value
+	UnlimitedSupportedInstanceFamilyT3 = "t3"
+
+	// UnlimitedSupportedInstanceFamilyT3a is a UnlimitedSupportedInstanceFamily enum value
+	UnlimitedSupportedInstanceFamilyT3a = "t3a"
 )
 
 const (

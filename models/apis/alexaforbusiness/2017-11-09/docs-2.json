@@ -52,7 +52,7 @@
     "GetRoom": "<p>Gets room details by room ARN.</p>",
     "GetRoomSkillParameter": "<p>Gets room skill parameter details by room, skill, and parameter key ARN.</p>",
     "GetSkillGroup": "<p>Gets skill group details by skill group ARN.</p>",
-    "ListBusinessReportSchedules": "<p>Lists the details of the schedules that a user configured.</p>",
+    "ListBusinessReportSchedules": "<p>Lists the details of the schedules that a user configured. A download URL of the report associated with each schedule is returned every time this action is called. A new download URL is returned each time, and is valid for 24 hours.</p>",
     "ListConferenceProviders": "<p>Lists conference providers under a specific AWS account.</p>",
     "ListDeviceEvents": "<p>Lists the device event history, including device connection status, for up to 30 days.</p>",
     "ListGatewayGroups": "<p>Retrieves a list of gateway group summaries. Use GetGatewayGroup to retrieve details of a specific gateway group.</p>",
@@ -259,7 +259,7 @@
         "GetSkillGroupRequest$SkillGroupArn": "<p>The ARN of the skill group for which to get details. Required.</p>",
         "ListDeviceEventsRequest$DeviceArn": "<p>The ARN of a device.</p>",
         "ListGatewaysRequest$GatewayGroupArn": "<p>The gateway group ARN for which to list gateways.</p>",
-        "ListSkillsRequest$SkillGroupArn": "<p>The ARN of the skill group for which to list enabled skills. Required.</p>",
+        "ListSkillsRequest$SkillGroupArn": "<p>The ARN of the skill group for which to list enabled skills.</p>",
         "ListSmartHomeAppliancesRequest$RoomArn": "<p>The room that the appliances are associated with.</p>",
         "ListTagsRequest$Arn": "<p>The ARN of the specified resource for which to list tags.</p>",
         "NetworkProfile$NetworkProfileArn": "<p>The ARN of the network profile associated with a device.</p>",
@@ -390,15 +390,27 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "CreateEndOfMeetingReminder$Enabled": "<p>Whether an end of meeting reminder is enabled or not.</p>",
+        "CreateInstantBooking$Enabled": "<p>Whether instant booking is enabled or not.</p>",
+        "CreateMeetingRoomConfiguration$RoomUtilizationMetricsEnabled": "<p>Whether room utilization metrics are enabled or not.</p>",
         "CreateProfileRequest$SetupModeDisabled": "<p>Whether room profile setup is enabled.</p>",
         "CreateProfileRequest$PSTNEnabled": "<p>Whether PSTN calling is enabled.</p>",
+        "CreateRequireCheckIn$Enabled": "<p>Whether require check in is enabled or not.</p>",
+        "EndOfMeetingReminder$Enabled": "<p>Whether an end of meeting reminder is enabled or not.</p>",
+        "InstantBooking$Enabled": "<p>Whether instant booking is enabled or not.</p>",
+        "MeetingRoomConfiguration$RoomUtilizationMetricsEnabled": "<p>Whether room utilization metrics are enabled or not.</p>",
         "Profile$IsDefault": "<p>Retrieves if the profile is default or not.</p>",
         "Profile$SetupModeDisabled": "<p>The setup mode of a room profile.</p>",
         "Profile$PSTNEnabled": "<p>The PSTN setting of a room profile.</p>",
         "ProfileData$IsDefault": "<p>Retrieves if the profile data is default or not.</p>",
+        "RequireCheckIn$Enabled": "<p>Whether require check in is enabled or not.</p>",
+        "UpdateEndOfMeetingReminder$Enabled": "<p>Whether an end of meeting reminder is enabled or not.</p>",
+        "UpdateInstantBooking$Enabled": "<p>Whether instant booking is enabled or not.</p>",
+        "UpdateMeetingRoomConfiguration$RoomUtilizationMetricsEnabled": "<p>Whether room utilization metrics are enabled or not.</p>",
         "UpdateProfileRequest$IsDefault": "<p>Sets the profile as default if selected. If this is missing, no update is done to the default status.</p>",
         "UpdateProfileRequest$SetupModeDisabled": "<p>Whether the setup mode of the profile is enabled.</p>",
-        "UpdateProfileRequest$PSTNEnabled": "<p>Whether the PSTN setting of the room profile is enabled.</p>"
+        "UpdateProfileRequest$PSTNEnabled": "<p>Whether the PSTN setting of the room profile is enabled.</p>",
+        "UpdateRequireCheckIn$Enabled": "<p>Whether require check in is enabled or not.</p>"
       }
     },
     "BulletPoint": {
@@ -698,6 +710,12 @@
       "refs": {
       }
     },
+    "CreateEndOfMeetingReminder": {
+      "base": "<p>Creates settings for the end of meeting reminder feature that are applied to a room profile. The end of meeting reminder enables Alexa to remind users when a meeting is ending.</p>",
+      "refs": {
+        "CreateMeetingRoomConfiguration$EndOfMeetingReminder": null
+      }
+    },
     "CreateGatewayGroupRequest": {
       "base": null,
       "refs": {
@@ -706,6 +724,18 @@
     "CreateGatewayGroupResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "CreateInstantBooking": {
+      "base": "<p>Creates settings for the instant booking feature that are applied to a room profile. When users start their meeting with Alexa, Alexa automatically books the room for the configured duration if the room is available.</p>",
+      "refs": {
+        "CreateMeetingRoomConfiguration$InstantBooking": "<p>Settings to automatically book a room for a configured duration if it's free when joining a meeting with Alexa.</p>"
+      }
+    },
+    "CreateMeetingRoomConfiguration": {
+      "base": "<p>Creates meeting room settings of a room profile.</p>",
+      "refs": {
+        "CreateProfileRequest$MeetingRoomConfiguration": "<p>The meeting room settings of a room profile.</p>"
       }
     },
     "CreateNetworkProfileRequest": {
@@ -726,6 +756,12 @@
     "CreateProfileResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "CreateRequireCheckIn": {
+      "base": "<p>Creates settings for the require check in feature that are applied to a room profile. Require check in allows a meeting room’s Alexa or AVS device to prompt the user to check in; otherwise, the room will be released.</p>",
+      "refs": {
+        "CreateMeetingRoomConfiguration$RequireCheckIn": "<p>Settings for requiring a check in when a room is reserved. Alexa can cancel a room reservation if it's not checked into to make the room available for others. Users can check in by joining the meeting with Alexa or an AVS device, or by saying “Alexa, check in.”</p>"
       }
     },
     "CreateRoomRequest": {
@@ -985,10 +1021,10 @@
     "DeviceLocale": {
       "base": null,
       "refs": {
-        "CreateProfileRequest$Locale": "<p>The locale of the room profile.</p>",
-        "Profile$Locale": "<p>The locale of a room profile.</p>",
-        "ProfileData$Locale": "<p>The locale of a room profile.</p>",
-        "UpdateProfileRequest$Locale": "<p>The updated locale for the room profile.</p>"
+        "CreateProfileRequest$Locale": "<p>The locale of the room profile. (This is currently only available to a limited preview audience.)</p>",
+        "Profile$Locale": "<p>The locale of a room profile. (This is currently available only to a limited preview audience.)</p>",
+        "ProfileData$Locale": "<p>The locale of a room profile. (This is currently available only to a limited preview audience.)</p>",
+        "UpdateProfileRequest$Locale": "<p>The updated locale for the room profile. (This is currently only available to a limited preview audience.)</p>"
       }
     },
     "DeviceName": {
@@ -1146,7 +1182,29 @@
     "EnablementTypeFilter": {
       "base": null,
       "refs": {
-        "ListSkillsRequest$EnablementType": "<p>Whether the skill is enabled under the user's account, or if it requires linking to be used.</p>"
+        "ListSkillsRequest$EnablementType": "<p>Whether the skill is enabled under the user's account.</p>"
+      }
+    },
+    "EndOfMeetingReminder": {
+      "base": "<p>Settings for the end of meeting reminder feature that are applied to a room profile. The end of meeting reminder enables Alexa to remind users when a meeting is ending. </p>",
+      "refs": {
+        "MeetingRoomConfiguration$EndOfMeetingReminder": "<p>Settings for the end of meeting reminder feature that are applied to a room profile. The end of meeting reminder enables Alexa to remind users when a meeting is ending. </p>"
+      }
+    },
+    "EndOfMeetingReminderMinutesList": {
+      "base": null,
+      "refs": {
+        "CreateEndOfMeetingReminder$ReminderAtMinutes": "<p> A range of 3 to 15 minutes that determines when the reminder begins.</p>",
+        "EndOfMeetingReminder$ReminderAtMinutes": "<p>A range of 3 to 15 minutes that determines when the reminder begins.</p>",
+        "UpdateEndOfMeetingReminder$ReminderAtMinutes": "<p>Updates settings for the end of meeting reminder feature that are applied to a room profile. The end of meeting reminder enables Alexa to remind users when a meeting is ending. </p>"
+      }
+    },
+    "EndOfMeetingReminderType": {
+      "base": null,
+      "refs": {
+        "CreateEndOfMeetingReminder$ReminderType": "<p>The type of sound that users hear during the end of meeting reminder. </p>",
+        "EndOfMeetingReminder$ReminderType": "<p>The type of sound that users hear during the end of meeting reminder. </p>",
+        "UpdateEndOfMeetingReminder$ReminderType": "<p>The type of sound that users hear during the end of meeting reminder. </p>"
       }
     },
     "EndUserLicenseAgreement": {
@@ -1490,6 +1548,12 @@
         "SkillsStoreSkill$IconUrl": "<p>The URL where the skill icon resides.</p>"
       }
     },
+    "InstantBooking": {
+      "base": "<p>Settings for the instant booking feature that are applied to a room profile. When users start their meeting with Alexa, Alexa automatically books the room for the configured duration if the room is available.</p>",
+      "refs": {
+        "MeetingRoomConfiguration$InstantBooking": "<p>Settings to automatically book the room if available for a configured duration when joining a meeting with Alexa. </p>"
+      }
+    },
     "InvalidCertificateAuthorityException": {
       "base": "<p>The Certificate Authority can't issue or revoke a certificate.</p>",
       "refs": {
@@ -1676,12 +1740,30 @@
         "UpdateProfileRequest$MaxVolumeLimit": "<p>The updated maximum volume limit for the room profile.</p>"
       }
     },
+    "MeetingRoomConfiguration": {
+      "base": "<p>Meeting room settings of a room profile.</p>",
+      "refs": {
+        "Profile$MeetingRoomConfiguration": "<p>Meeting room settings of a room profile.</p>"
+      }
+    },
     "MeetingSetting": {
       "base": "<p>The values that indicate whether a pin is always required (YES), never required (NO), or OPTIONAL.</p> <ul> <li> <p>If YES, Alexa will always ask for a meeting pin.</p> </li> <li> <p>If NO, Alexa will never ask for a meeting pin.</p> </li> <li> <p>If OPTIONAL, Alexa will ask if you have a meeting pin and if the customer responds with yes, it will ask for the meeting pin.</p> </li> </ul>",
       "refs": {
         "ConferenceProvider$MeetingSetting": "<p>The meeting settings for the conference provider.</p>",
         "CreateConferenceProviderRequest$MeetingSetting": "<p>The meeting settings for the conference provider.</p>",
         "UpdateConferenceProviderRequest$MeetingSetting": "<p>The meeting settings for the conference provider.</p>"
+      }
+    },
+    "Minutes": {
+      "base": null,
+      "refs": {
+        "CreateInstantBooking$DurationInMinutes": "<p>Duration between 15 and 240 minutes at increments of 15 that determines how long to book an available room when a meeting is started with Alexa.</p>",
+        "CreateRequireCheckIn$ReleaseAfterMinutes": "<p>Duration between 5 and 20 minutes to determine when to release the room if it's not checked into.</p>",
+        "EndOfMeetingReminderMinutesList$member": null,
+        "InstantBooking$DurationInMinutes": "<p>Duration between 15 and 240 minutes at increments of 15 that determines how long to book an available room when a meeting is started with Alexa. </p>",
+        "RequireCheckIn$ReleaseAfterMinutes": "<p>Duration between 5 and 20 minutes to determine when to release the room if it's not checked into. </p>",
+        "UpdateInstantBooking$DurationInMinutes": "<p>Duration between 15 and 240 minutes at increments of 15 that determines how long to book an available room when a meeting is started with Alexa.</p>",
+        "UpdateRequireCheckIn$ReleaseAfterMinutes": "<p>Duration between 5 and 20 minutes to determine when to release the room if it's not checked into. </p>"
       }
     },
     "NameInUseException": {
@@ -1769,7 +1851,7 @@
         "ListGatewayGroupsResponse$NextToken": "<p>The token used to paginate though multiple pages of gateway group summaries.</p>",
         "ListGatewaysRequest$NextToken": "<p>The token used to paginate though multiple pages of gateway summaries.</p>",
         "ListGatewaysResponse$NextToken": "<p>The token used to paginate though multiple pages of gateway summaries.</p>",
-        "ListSkillsRequest$NextToken": "<p>An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by <code>MaxResults</code>. Required.</p>",
+        "ListSkillsRequest$NextToken": "<p>An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by <code>MaxResults</code>.</p>",
         "ListSkillsResponse$NextToken": "<p>The token returned to indicate that there is more data available.</p>",
         "ListSkillsStoreCategoriesRequest$NextToken": "<p>The tokens used for pagination.</p>",
         "ListSkillsStoreCategoriesResponse$NextToken": "<p>The tokens used for pagination.</p>",
@@ -1993,6 +2075,12 @@
       "base": null,
       "refs": {
         "SkillDetails$ReleaseDate": "<p>The date when the skill was released.</p>"
+      }
+    },
+    "RequireCheckIn": {
+      "base": "<p>Settings for the require check in feature that are applied to a room profile. Require check in allows a meeting room’s Alexa or AVS device to prompt the user to check in; otherwise, the room will be released. </p>",
+      "refs": {
+        "MeetingRoomConfiguration$RequireCheckIn": "<p>Settings for requiring a check in when a room is reserved. Alexa can cancel a room reservation if it's not checked into. This makes the room available for others. Users can check in by joining the meeting with Alexa or an AVS device, or by saying “Alexa, check in.” </p>"
       }
     },
     "RequirePin": {
@@ -2334,7 +2422,7 @@
     "SkillListMaxResults": {
       "base": null,
       "refs": {
-        "ListSkillsRequest$MaxResults": "<p>The maximum number of results to include in the response. If more results exist than the specified <code>MaxResults</code> value, a token is included in the response so that the remaining results can be retrieved. Required.</p>",
+        "ListSkillsRequest$MaxResults": "<p>The maximum number of results to include in the response. If more results exist than the specified <code>MaxResults</code> value, a token is included in the response so that the remaining results can be retrieved.</p>",
         "ListSkillsStoreSkillsByCategoryRequest$MaxResults": "<p>The maximum number of skills returned per paginated calls.</p>"
       }
     },
@@ -2527,7 +2615,7 @@
     "TagValue": {
       "base": null,
       "refs": {
-        "Tag$Value": "<p>The value of a tag. Tag values are case-sensitive and can be null.</p>"
+        "Tag$Value": "<p>The value of a tag. Tag values are case sensitive and can be null.</p>"
       }
     },
     "TemperatureUnit": {
@@ -2568,7 +2656,7 @@
       "refs": {
         "CreateProfileRequest$Timezone": "<p>The time zone used by a room profile.</p>",
         "Profile$Timezone": "<p>The time zone of a room profile.</p>",
-        "ProfileData$Timezone": "<p>The timezone of a room profile.</p>",
+        "ProfileData$Timezone": "<p>The time zone of a room profile.</p>",
         "UpdateProfileRequest$Timezone": "<p>The updated timezone for the room profile.</p>"
       }
     },
@@ -2664,6 +2752,12 @@
       "refs": {
       }
     },
+    "UpdateEndOfMeetingReminder": {
+      "base": "<p>Settings for the end of meeting reminder feature that are applied to a room profile. The end of meeting reminder enables Alexa to remind users when a meeting is ending. </p>",
+      "refs": {
+        "UpdateMeetingRoomConfiguration$EndOfMeetingReminder": "<p>Settings for the end of meeting reminder feature that are applied to a room profile. The end of meeting reminder enables Alexa to remind users when a meeting is ending. </p>"
+      }
+    },
     "UpdateGatewayGroupRequest": {
       "base": null,
       "refs": {
@@ -2684,6 +2778,18 @@
       "refs": {
       }
     },
+    "UpdateInstantBooking": {
+      "base": "<p>Updates settings for the instant booking feature that are applied to a room profile. If instant booking is enabled, Alexa automatically reserves a room if it is free when a user joins a meeting with Alexa.</p>",
+      "refs": {
+        "UpdateMeetingRoomConfiguration$InstantBooking": "<p>Settings to automatically book an available room available for a configured duration when joining a meeting with Alexa.</p>"
+      }
+    },
+    "UpdateMeetingRoomConfiguration": {
+      "base": "<p>Updates meeting room settings of a room profile.</p>",
+      "refs": {
+        "UpdateProfileRequest$MeetingRoomConfiguration": "<p>The updated meeting room settings of a room profile.</p>"
+      }
+    },
     "UpdateNetworkProfileRequest": {
       "base": null,
       "refs": {
@@ -2702,6 +2808,12 @@
     "UpdateProfileResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "UpdateRequireCheckIn": {
+      "base": "<p>Updates settings for the require check in feature that are applied to a room profile. Require check in allows a meeting room’s Alexa or AVS device to prompt the user to check in; otherwise, the room will be released. </p>",
+      "refs": {
+        "UpdateMeetingRoomConfiguration$RequireCheckIn": "<p>Settings for requiring a check in when a room is reserved. Alexa can cancel a room reservation if it's not checked into to make the room available for others. Users can check in by joining the meeting with Alexa or an AVS device, or by saying “Alexa, check in.” </p>"
       }
     },
     "UpdateRoomRequest": {

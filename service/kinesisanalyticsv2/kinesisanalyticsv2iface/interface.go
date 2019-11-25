@@ -80,6 +80,10 @@ type KinesisAnalyticsV2API interface {
 	AddApplicationReferenceDataSourceWithContext(aws.Context, *kinesisanalyticsv2.AddApplicationReferenceDataSourceInput, ...request.Option) (*kinesisanalyticsv2.AddApplicationReferenceDataSourceOutput, error)
 	AddApplicationReferenceDataSourceRequest(*kinesisanalyticsv2.AddApplicationReferenceDataSourceInput) (*request.Request, *kinesisanalyticsv2.AddApplicationReferenceDataSourceOutput)
 
+	AddApplicationVpcConfiguration(*kinesisanalyticsv2.AddApplicationVpcConfigurationInput) (*kinesisanalyticsv2.AddApplicationVpcConfigurationOutput, error)
+	AddApplicationVpcConfigurationWithContext(aws.Context, *kinesisanalyticsv2.AddApplicationVpcConfigurationInput, ...request.Option) (*kinesisanalyticsv2.AddApplicationVpcConfigurationOutput, error)
+	AddApplicationVpcConfigurationRequest(*kinesisanalyticsv2.AddApplicationVpcConfigurationInput) (*request.Request, *kinesisanalyticsv2.AddApplicationVpcConfigurationOutput)
+
 	CreateApplication(*kinesisanalyticsv2.CreateApplicationInput) (*kinesisanalyticsv2.CreateApplicationOutput, error)
 	CreateApplicationWithContext(aws.Context, *kinesisanalyticsv2.CreateApplicationInput, ...request.Option) (*kinesisanalyticsv2.CreateApplicationOutput, error)
 	CreateApplicationRequest(*kinesisanalyticsv2.CreateApplicationInput) (*request.Request, *kinesisanalyticsv2.CreateApplicationOutput)
@@ -111,6 +115,10 @@ type KinesisAnalyticsV2API interface {
 	DeleteApplicationSnapshot(*kinesisanalyticsv2.DeleteApplicationSnapshotInput) (*kinesisanalyticsv2.DeleteApplicationSnapshotOutput, error)
 	DeleteApplicationSnapshotWithContext(aws.Context, *kinesisanalyticsv2.DeleteApplicationSnapshotInput, ...request.Option) (*kinesisanalyticsv2.DeleteApplicationSnapshotOutput, error)
 	DeleteApplicationSnapshotRequest(*kinesisanalyticsv2.DeleteApplicationSnapshotInput) (*request.Request, *kinesisanalyticsv2.DeleteApplicationSnapshotOutput)
+
+	DeleteApplicationVpcConfiguration(*kinesisanalyticsv2.DeleteApplicationVpcConfigurationInput) (*kinesisanalyticsv2.DeleteApplicationVpcConfigurationOutput, error)
+	DeleteApplicationVpcConfigurationWithContext(aws.Context, *kinesisanalyticsv2.DeleteApplicationVpcConfigurationInput, ...request.Option) (*kinesisanalyticsv2.DeleteApplicationVpcConfigurationOutput, error)
+	DeleteApplicationVpcConfigurationRequest(*kinesisanalyticsv2.DeleteApplicationVpcConfigurationInput) (*request.Request, *kinesisanalyticsv2.DeleteApplicationVpcConfigurationOutput)
 
 	DescribeApplication(*kinesisanalyticsv2.DescribeApplicationInput) (*kinesisanalyticsv2.DescribeApplicationOutput, error)
 	DescribeApplicationWithContext(aws.Context, *kinesisanalyticsv2.DescribeApplicationInput, ...request.Option) (*kinesisanalyticsv2.DescribeApplicationOutput, error)

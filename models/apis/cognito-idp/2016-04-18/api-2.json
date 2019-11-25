@@ -3760,6 +3760,7 @@
         "Facebook",
         "Google",
         "LoginWithAmazon",
+        "SignInWithApple",
         "OIDC"
       ]
     },
