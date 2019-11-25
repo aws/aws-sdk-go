@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "Outposts" // Name of service.
 	EndpointsID = "outposts" // ID to lookup a service endpoint with.
-	ServiceID   = "Outposts" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "Outposts" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the Outposts client with a session.

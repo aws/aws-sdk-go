@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "MigrationHub Config" // Name of service.
 	EndpointsID = "migrationhub-config" // ID to lookup a service endpoint with.
-	ServiceID   = "MigrationHub Config" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "MigrationHub Config" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the MigrationHubConfig client with a session.

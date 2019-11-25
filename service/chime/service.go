@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "Chime" // Name of service.
 	EndpointsID = "chime" // ID to lookup a service endpoint with.
-	ServiceID   = "Chime" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "Chime" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the Chime client with a session.

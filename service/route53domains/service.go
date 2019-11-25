@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "route53domains"   // Name of service.
 	EndpointsID = ServiceName        // ID to lookup a service endpoint with.
-	ServiceID   = "Route 53 Domains" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "Route 53 Domains" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the Route53Domains client with a session.

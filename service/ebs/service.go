@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "EBS" // Name of service.
 	EndpointsID = "ebs" // ID to lookup a service endpoint with.
-	ServiceID   = "EBS" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "EBS" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the EBS client with a session.

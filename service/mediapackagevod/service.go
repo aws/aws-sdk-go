@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "MediaPackage Vod" // Name of service.
 	EndpointsID = "mediapackage-vod" // ID to lookup a service endpoint with.
-	ServiceID   = "MediaPackage Vod" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "MediaPackage Vod" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the MediaPackageVod client with a session.

@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "SESv2" // Name of service.
 	EndpointsID = "email" // ID to lookup a service endpoint with.
-	ServiceID   = "SESv2" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "SESv2" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the SESV2 client with a session.

@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "RoboMaker" // Name of service.
 	EndpointsID = "robomaker" // ID to lookup a service endpoint with.
-	ServiceID   = "RoboMaker" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "RoboMaker" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the RoboMaker client with a session.

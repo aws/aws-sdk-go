@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "rekognition" // Name of service.
 	EndpointsID = ServiceName   // ID to lookup a service endpoint with.
-	ServiceID   = "Rekognition" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "Rekognition" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the Rekognition client with a session.

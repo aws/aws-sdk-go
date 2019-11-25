@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "cloudhsm"  // Name of service.
 	EndpointsID = ServiceName // ID to lookup a service endpoint with.
-	ServiceID   = "CloudHSM"  // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "CloudHSM"  // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the CloudHSM client with a session.

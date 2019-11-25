@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "NetworkManager" // Name of service.
 	EndpointsID = "networkmanager" // ID to lookup a service endpoint with.
-	ServiceID   = "NetworkManager" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "NetworkManager" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the NetworkManager client with a session.

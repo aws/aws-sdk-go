@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "SageMaker A2I Runtime" // Name of service.
 	EndpointsID = "a2i-runtime.sagemaker" // ID to lookup a service endpoint with.
-	ServiceID   = "SageMaker A2I Runtime" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "SageMaker A2I Runtime" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the AugmentedAIRuntime client with a session.

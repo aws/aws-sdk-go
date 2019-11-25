@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "ComprehendMedical" // Name of service.
 	EndpointsID = "comprehendmedical" // ID to lookup a service endpoint with.
-	ServiceID   = "ComprehendMedical" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "ComprehendMedical" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the ComprehendMedical client with a session.

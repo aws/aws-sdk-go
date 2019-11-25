@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "IoT Events Data" // Name of service.
 	EndpointsID = "data.iotevents"  // ID to lookup a service endpoint with.
-	ServiceID   = "IoT Events Data" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "IoT Events Data" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the IoTEventsData client with a session.

@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "CodeGuruProfiler"  // Name of service.
 	EndpointsID = "codeguru-profiler" // ID to lookup a service endpoint with.
-	ServiceID   = "CodeGuruProfiler"  // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "CodeGuruProfiler"  // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the CodeGuruProfiler client with a session.

@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "entitlement.marketplace"         // Name of service.
 	EndpointsID = ServiceName                       // ID to lookup a service endpoint with.
-	ServiceID   = "Marketplace Entitlement Service" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "Marketplace Entitlement Service" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the MarketplaceEntitlementService client with a session.

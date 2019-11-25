@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "SSO"        // Name of service.
 	EndpointsID = "portal.sso" // ID to lookup a service endpoint with.
-	ServiceID   = "SSO"        // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "SSO"        // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the SSO client with a session.

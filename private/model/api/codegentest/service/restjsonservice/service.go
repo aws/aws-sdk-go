@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "RESTJSONService" // Name of service.
 	EndpointsID = "restjsonservice" // ID to lookup a service endpoint with.
-	ServiceID   = "RESTJSONService" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "RESTJSONService" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the RESTJSONService client with a session.

@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "Compute Optimizer" // Name of service.
 	EndpointsID = "compute-optimizer" // ID to lookup a service endpoint with.
-	ServiceID   = "Compute Optimizer" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "Compute Optimizer" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the ComputeOptimizer client with a session.

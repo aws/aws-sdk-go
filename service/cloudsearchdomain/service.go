@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "cloudsearchdomain"  // Name of service.
 	EndpointsID = ServiceName          // ID to lookup a service endpoint with.
-	ServiceID   = "CloudSearch Domain" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "CloudSearch Domain" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the CloudSearchDomain client with a session.
