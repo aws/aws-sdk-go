@@ -184,6 +184,19 @@
       "endpointdiscovery":{
       }
     },
+    "DescribeContributorInsights":{
+      "name":"DescribeContributorInsights",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeContributorInsightsInput"},
+      "output":{"shape":"DescribeContributorInsightsOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "DescribeEndpoints":{
       "name":"DescribeEndpoints",
       "http":{
@@ -311,6 +324,19 @@
       ],
       "endpointdiscovery":{
       }
+    },
+    "ListContributorInsights":{
+      "name":"ListContributorInsights",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListContributorInsightsInput"},
+      "output":{"shape":"ListContributorInsightsOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerError"}
+      ]
     },
     "ListGlobalTables":{
       "name":"ListGlobalTables",
@@ -534,6 +560,19 @@
       "endpointdiscovery":{
       }
     },
+    "UpdateContributorInsights":{
+      "name":"UpdateContributorInsights",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateContributorInsightsInput"},
+      "output":{"shape":"UpdateContributorInsightsOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "UpdateGlobalTable":{
       "name":"UpdateGlobalTable",
       "http":{
@@ -642,6 +681,15 @@
     }
   },
   "shapes":{
+    "ArchivalReason":{"type":"string"},
+    "ArchivalSummary":{
+      "type":"structure",
+      "members":{
+        "ArchivalDateTime":{"shape":"Date"},
+        "ArchivalReason":{"shape":"ArchivalReason"},
+        "ArchivalBackupArn":{"shape":"BackupArn"}
+      }
+    },
     "AttributeAction":{
       "type":"string",
       "enum":[
@@ -1086,6 +1134,43 @@
       },
       "exception":true
     },
+    "ContributorInsightsAction":{
+      "type":"string",
+      "enum":[
+        "ENABLE",
+        "DISABLE"
+      ]
+    },
+    "ContributorInsightsRule":{
+      "type":"string",
+      "pattern":"[A-Za-z0-9][A-Za-z0-9\\-\\_\\.]{0,126}[A-Za-z0-9]"
+    },
+    "ContributorInsightsRuleList":{
+      "type":"list",
+      "member":{"shape":"ContributorInsightsRule"}
+    },
+    "ContributorInsightsStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLING",
+        "ENABLED",
+        "DISABLING",
+        "DISABLED",
+        "FAILED"
+      ]
+    },
+    "ContributorInsightsSummaries":{
+      "type":"list",
+      "member":{"shape":"ContributorInsightsSummary"}
+    },
+    "ContributorInsightsSummary":{
+      "type":"structure",
+      "members":{
+        "TableName":{"shape":"TableName"},
+        "IndexName":{"shape":"IndexName"},
+        "ContributorInsightsStatus":{"shape":"ContributorInsightsStatus"}
+      }
+    },
     "CreateBackupInput":{
       "type":"structure",
       "required":[
@@ -1300,6 +1385,25 @@
         "ContinuousBackupsDescription":{"shape":"ContinuousBackupsDescription"}
       }
     },
+    "DescribeContributorInsightsInput":{
+      "type":"structure",
+      "required":["TableName"],
+      "members":{
+        "TableName":{"shape":"TableName"},
+        "IndexName":{"shape":"IndexName"}
+      }
+    },
+    "DescribeContributorInsightsOutput":{
+      "type":"structure",
+      "members":{
+        "TableName":{"shape":"TableName"},
+        "IndexName":{"shape":"IndexName"},
+        "ContributorInsightsRuleList":{"shape":"ContributorInsightsRuleList"},
+        "ContributorInsightsStatus":{"shape":"ContributorInsightsStatus"},
+        "LastUpdateDateTime":{"shape":"LastUpdateDateTime"},
+        "FailureException":{"shape":"FailureException"}
+      }
+    },
     "DescribeEndpointsRequest":{
       "type":"structure",
       "members":{
@@ -1409,6 +1513,8 @@
       "member":{"shape":"Endpoint"}
     },
     "ErrorMessage":{"type":"string"},
+    "ExceptionDescription":{"type":"string"},
+    "ExceptionName":{"type":"string"},
     "ExpectedAttributeMap":{
       "type":"map",
       "key":{"shape":"AttributeName"},
@@ -1435,6 +1541,13 @@
       "value":{"shape":"AttributeValue"}
     },
     "ExpressionAttributeValueVariable":{"type":"string"},
+    "FailureException":{
+      "type":"structure",
+      "members":{
+        "ExceptionName":{"shape":"ExceptionName"},
+        "ExceptionDescription":{"shape":"ExceptionDescription"}
+      }
+    },
     "FilterConditionMap":{
       "type":"map",
       "key":{"shape":"AttributeName"},
@@ -1767,6 +1880,7 @@
         "ExpressionAttributeNames":{"shape":"ExpressionAttributeNameMap"}
       }
     },
+    "LastUpdateDateTime":{"type":"timestamp"},
     "LimitExceededException":{
       "type":"structure",
       "members":{
@@ -1794,6 +1908,25 @@
       "members":{
         "BackupSummaries":{"shape":"BackupSummaries"},
         "LastEvaluatedBackupArn":{"shape":"BackupArn"}
+      }
+    },
+    "ListContributorInsightsInput":{
+      "type":"structure",
+      "members":{
+        "TableName":{"shape":"TableName"},
+        "NextToken":{"shape":"NextTokenString"},
+        "MaxResults":{"shape":"ListContributorInsightsLimit"}
+      }
+    },
+    "ListContributorInsightsLimit":{
+      "type":"integer",
+      "max":100
+    },
+    "ListContributorInsightsOutput":{
+      "type":"structure",
+      "members":{
+        "ContributorInsightsSummaries":{"shape":"ContributorInsightsSummaries"},
+        "NextToken":{"shape":"NextTokenString"}
       }
     },
     "ListGlobalTablesInput":{
@@ -2430,7 +2563,8 @@
       "members":{
         "Status":{"shape":"SSEStatus"},
         "SSEType":{"shape":"SSEType"},
-        "KMSMasterKeyArn":{"shape":"KMSMasterKeyArn"}
+        "KMSMasterKeyArn":{"shape":"KMSMasterKeyArn"},
+        "InaccessibleEncryptionDateTime":{"shape":"Date"}
       }
     },
     "SSEEnabled":{"type":"boolean"},
@@ -2622,7 +2756,8 @@
         "GlobalTableVersion":{"shape":"String"},
         "Replicas":{"shape":"ReplicaDescriptionList"},
         "RestoreSummary":{"shape":"RestoreSummary"},
-        "SSEDescription":{"shape":"SSEDescription"}
+        "SSEDescription":{"shape":"SSEDescription"},
+        "ArchivalSummary":{"shape":"ArchivalSummary"}
       }
     },
     "TableId":{
@@ -2659,7 +2794,10 @@
         "CREATING",
         "UPDATING",
         "DELETING",
-        "ACTIVE"
+        "ACTIVE",
+        "INACCESSIBLE_ENCRYPTION_CREDENTIALS",
+        "ARCHIVING",
+        "ARCHIVED"
       ]
     },
     "Tag":{
@@ -2865,6 +3003,26 @@
       "type":"structure",
       "members":{
         "ContinuousBackupsDescription":{"shape":"ContinuousBackupsDescription"}
+      }
+    },
+    "UpdateContributorInsightsInput":{
+      "type":"structure",
+      "required":[
+        "TableName",
+        "ContributorInsightsAction"
+      ],
+      "members":{
+        "TableName":{"shape":"TableName"},
+        "IndexName":{"shape":"IndexName"},
+        "ContributorInsightsAction":{"shape":"ContributorInsightsAction"}
+      }
+    },
+    "UpdateContributorInsightsOutput":{
+      "type":"structure",
+      "members":{
+        "TableName":{"shape":"TableName"},
+        "IndexName":{"shape":"IndexName"},
+        "ContributorInsightsStatus":{"shape":"ContributorInsightsStatus"}
       }
     },
     "UpdateExpression":{"type":"string"},

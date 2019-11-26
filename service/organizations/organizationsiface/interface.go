@@ -116,6 +116,10 @@ type OrganizationsAPI interface {
 	DescribeCreateAccountStatusWithContext(aws.Context, *organizations.DescribeCreateAccountStatusInput, ...request.Option) (*organizations.DescribeCreateAccountStatusOutput, error)
 	DescribeCreateAccountStatusRequest(*organizations.DescribeCreateAccountStatusInput) (*request.Request, *organizations.DescribeCreateAccountStatusOutput)
 
+	DescribeEffectivePolicy(*organizations.DescribeEffectivePolicyInput) (*organizations.DescribeEffectivePolicyOutput, error)
+	DescribeEffectivePolicyWithContext(aws.Context, *organizations.DescribeEffectivePolicyInput, ...request.Option) (*organizations.DescribeEffectivePolicyOutput, error)
+	DescribeEffectivePolicyRequest(*organizations.DescribeEffectivePolicyInput) (*request.Request, *organizations.DescribeEffectivePolicyOutput)
+
 	DescribeHandshake(*organizations.DescribeHandshakeInput) (*organizations.DescribeHandshakeOutput, error)
 	DescribeHandshakeWithContext(aws.Context, *organizations.DescribeHandshakeInput, ...request.Option) (*organizations.DescribeHandshakeOutput, error)
 	DescribeHandshakeRequest(*organizations.DescribeHandshakeInput) (*request.Request, *organizations.DescribeHandshakeOutput)

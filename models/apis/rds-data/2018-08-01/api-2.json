@@ -57,6 +57,7 @@
       "output":{"shape":"CommitTransactionResponse"},
       "errors":[
         {"shape":"BadRequestException"},
+        {"shape":"StatementTimeoutException"},
         {"shape":"InternalServerErrorException"},
         {"shape":"ForbiddenException"},
         {"shape":"ServiceUnavailableError"},
@@ -109,6 +110,7 @@
       "output":{"shape":"RollbackTransactionResponse"},
       "errors":[
         {"shape":"BadRequestException"},
+        {"shape":"StatementTimeoutException"},
         {"shape":"InternalServerErrorException"},
         {"shape":"ForbiddenException"},
         {"shape":"ServiceUnavailableError"},
@@ -452,6 +454,7 @@
       "type":"structure",
       "members":{
         "name":{"shape":"ParameterName"},
+        "typeHint":{"shape":"TypeHint"},
         "value":{"shape":"Field"}
       }
     },
@@ -510,6 +513,15 @@
       "type":"string",
       "max":128,
       "min":0
+    },
+    "TypeHint":{
+      "type":"string",
+      "enum":[
+        "DATE",
+        "DECIMAL",
+        "TIME",
+        "TIMESTAMP"
+      ]
     },
     "UpdateResult":{
       "type":"structure",

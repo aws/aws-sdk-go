@@ -164,6 +164,7 @@
     "__boolean" : {
       "base" : null,
       "refs" : {
+        "Application$IsVerifiedAuthor" : "<p>Whether the author of this application has been verified. This means means that AWS has made a good faith review, as a reasonable and prudent service provider, of the information provided by the requester and has confirmed that the requester's identity is as claimed.</p>",
         "ParameterDefinition$NoEcho" : "<p>Whether to mask the parameter value whenever anyone makes a call that describes the stack. If you set the\n value to true, the parameter value is masked with asterisks (*****).</p>",
         "Version$ResourcesSupported" : "<p>Whether all of the AWS resources contained in this application are supported in the region\n in which it is being retrieved.</p>"
       }
@@ -260,6 +261,7 @@
         "Application$Name" : "<p>The name of the application.</p><p>Minimum length=1. Maximum length=140</p><p>Pattern: \"[a-zA-Z0-9\\\\-]+\";</p>",
         "Application$ReadmeUrl" : "<p>A link to the readme file in Markdown language that contains a more detailed description of the application and how it works.</p><p>Maximum size 5 MB</p>",
         "Application$SpdxLicenseId" : "<p>A valid identifier from https://spdx.org/licenses/.</p>",
+        "Application$VerifiedAuthorUrl" : "<p>The URL to the public profile of a verified author. This URL is submitted by the author.</p>",
         "ApplicationDependencyPage$NextToken" : "<p>The token to request the next page of results.</p>",
         "ApplicationDependencySummary$ApplicationId" : "<p>The Amazon Resource Name (ARN) of the nested application.</p>",
         "ApplicationDependencySummary$SemanticVersion" : "<p>The semantic version of the nested application.</p>",

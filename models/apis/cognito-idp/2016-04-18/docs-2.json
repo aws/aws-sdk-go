@@ -28,7 +28,7 @@
     "AdminUpdateAuthEventFeedback": "<p>Provides feedback for an authentication event as to whether it was from a valid user. This feedback is used for improving the risk evaluation decision for the user pool as part of Amazon Cognito advanced security.</p>",
     "AdminUpdateDeviceStatus": "<p>Updates the device status as an administrator.</p> <p>Calling this action requires developer credentials.</p>",
     "AdminUpdateUserAttributes": "<p>Updates the specified user's attributes, including developer attributes, as an administrator. Works on any user.</p> <p>For custom attributes, you must prepend the <code>custom:</code> prefix to the attribute name.</p> <p>In addition to updating user attributes, this API can also be used to mark phone and email as verified.</p> <p>Calling this action requires developer credentials.</p>",
-    "AdminUserGlobalSignOut": "<p>Signs out users from all devices, as an administrator.</p> <p>Calling this action requires developer credentials.</p>",
+    "AdminUserGlobalSignOut": "<p>Signs out users from all devices, as an administrator. It also invalidates all refresh tokens issued to a user. The user's current access and Id tokens remain valid until their expiry. Access and Id tokens expire one hour after they are issued.</p> <p>Calling this action requires developer credentials.</p>",
     "AssociateSoftwareToken": "<p>Returns a unique generated shared secret key code for the user account. The request takes an access token or a session string, but not both.</p>",
     "ChangePassword": "<p>Changes the password for a specified user in a user pool.</p>",
     "ConfirmDevice": "<p>Confirms tracking of the device. This API call is the call that begins device tracking.</p>",
@@ -67,7 +67,7 @@
     "GetUser": "<p>Gets the user attributes and metadata for a user.</p>",
     "GetUserAttributeVerificationCode": "<p>Gets the user attribute verification code for the specified attribute name.</p>",
     "GetUserPoolMfaConfig": "<p>Gets the user pool multi-factor authentication (MFA) configuration.</p>",
-    "GlobalSignOut": "<p>Signs out users from all devices.</p>",
+    "GlobalSignOut": "<p>Signs out users from all devices. It also invalidates all refresh tokens issued to a user. The user's current access and Id tokens remain valid until their expiry. Access and Id tokens expire one hour after they are issued.</p>",
     "InitiateAuth": "<p>Initiates the authentication flow.</p>",
     "ListDevices": "<p>Lists the devices.</p>",
     "ListGroups": "<p>Lists the groups associated with a user pool.</p> <p>Calling this action requires developer credentials.</p>",
@@ -108,6 +108,14 @@
       "base": null,
       "refs": {
         "DomainDescriptionType$AWSAccountId": "<p>The AWS account ID for the user pool owner.</p>"
+      }
+    },
+    "AccountRecoverySettingType": {
+      "base": "<p>The data type for <code>AccountRecoverySetting</code>.</p>",
+      "refs": {
+        "CreateUserPoolRequest$AccountRecoverySetting": "<p>Use this setting to define which verified available method a user can use to recover their password when they call <code>ForgotPassword</code>. It allows you to define a preferred method when a user has more than one method available. With this setting, SMS does not qualify for a valid password recovery mechanism if the user also has SMS MFA enabled. In the absence of this setting, Cognito uses the legacy behavior to determine the recovery method where SMS is preferred over email.</p> <note> <p>Starting February 1, 2020, the value of <code>AccountRecoverySetting</code> will default to <code>verified_email</code> first and <code>verified_phone_number</code> as the second option for newly created user pools if no value is provided.</p> </note>",
+        "UpdateUserPoolRequest$AccountRecoverySetting": "<p>Use this setting to define which verified available method a user can use to recover their password when they call <code>ForgotPassword</code>. It allows you to define a preferred method when a user has more than one method available. With this setting, SMS does not qualify for a valid password recovery mechanism if the user also has SMS MFA enabled. In the absence of this setting, Cognito uses the legacy behavior to determine the recovery method where SMS is preferred over email.</p>",
+        "UserPoolType$AccountRecoverySetting": "<p>Use this setting to define which verified available method a user can use to recover their password when they call <code>ForgotPassword</code>. It allows you to define a preferred method when a user has more than one method available. With this setting, SMS does not qualify for a valid password recovery mechanism if the user also has SMS MFA enabled. In the absence of this setting, Cognito uses the legacy behavior to determine the recovery method where SMS is preferred over email.</p>"
       }
     },
     "AccountTakeoverActionNotifyType": {
@@ -2041,6 +2049,12 @@
         "UserPoolClientType$PreventUserExistenceErrors": "<p>Use this setting to choose which errors and responses are returned by Cognito APIs during authentication, account confirmation, and password recovery when the user does not exist in the user pool. When set to <code>ENABLED</code> and the user does not exist, authentication returns an error indicating either the username or password was incorrect, and account confirmation and password recovery return a response indicating a code was sent to a simulated destination. When set to <code>LEGACY</code>, those APIs will return a <code>UserNotFoundException</code> exception if the user does not exist in the user pool.</p> <p>Valid values include:</p> <ul> <li> <p> <code>ENABLED</code> - This prevents user existence-related errors.</p> </li> <li> <p> <code>LEGACY</code> - This represents the old behavior of Cognito where user existence related errors are not prevented.</p> </li> </ul> <p>This setting affects the behavior of following APIs:</p> <ul> <li> <p> <a>AdminInitiateAuth</a> </p> </li> <li> <p> <a>AdminRespondToAuthChallenge</a> </p> </li> <li> <p> <a>InitiateAuth</a> </p> </li> <li> <p> <a>RespondToAuthChallenge</a> </p> </li> <li> <p> <a>ForgotPassword</a> </p> </li> <li> <p> <a>ConfirmForgotPassword</a> </p> </li> <li> <p> <a>ConfirmSignUp</a> </p> </li> <li> <p> <a>ResendConfirmationCode</a> </p> </li> </ul> <note> <p>After January 1st 2020, the value of <code>PreventUserExistenceErrors</code> will default to <code>ENABLED</code> for newly created user pool clients if no value is provided.</p> </note>"
       }
     },
+    "PriorityType": {
+      "base": null,
+      "refs": {
+        "RecoveryOptionType$Priority": "<p>A positive integer specifying priority of a method with 1 being the highest priority.</p>"
+      }
+    },
     "ProviderDescription": {
       "base": "<p>A container for identity provider details.</p>",
       "refs": {
@@ -2103,6 +2117,24 @@
         "ListGroupsRequest$Limit": "<p>The limit of the request to list groups.</p>",
         "ListUsersInGroupRequest$Limit": "<p>The limit of the request to list users.</p>",
         "ListUsersRequest$Limit": "<p>Maximum number of users to be returned.</p>"
+      }
+    },
+    "RecoveryMechanismsType": {
+      "base": null,
+      "refs": {
+        "AccountRecoverySettingType$RecoveryMechanisms": "<p>The list of <code>RecoveryOptionTypes</code>.</p>"
+      }
+    },
+    "RecoveryOptionNameType": {
+      "base": null,
+      "refs": {
+        "RecoveryOptionType$Name": "<p>Specifies the recovery method for a user.</p>"
+      }
+    },
+    "RecoveryOptionType": {
+      "base": "<p>A map containing a priority as a key, and recovery method name as a value.</p>",
+      "refs": {
+        "RecoveryMechanismsType$member": null
       }
     },
     "RedirectUrlType": {

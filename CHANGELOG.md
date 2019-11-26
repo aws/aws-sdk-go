@@ -1,3 +1,25 @@
+Release v1.25.43 (2019-11-26)
+===
+
+### Service Client Updates
+* `service/cognito-idp`: Updates service API and documentation
+* `service/ds`: Updates service API and documentation
+  * This release will introduce optional encryption over LDAP network traffic using SSL certificates between customer's self-managed AD and AWS Directory Services instances. The release also provides APIs for Certificate management.
+* `service/dynamodb`: Updates service API, documentation, and paginators
+  * 1) Amazon Contributor Insights for Amazon DynamoDB is a diagnostic tool for identifying frequently accessed keys and understanding database traffic trends. 2) Support for displaying new fields when a table's encryption state is Inaccessible or the table have been Archived.
+* `service/elastic-inference`: Adds new service
+* `service/mediatailor`: Updates service API and documentation
+* `service/organizations`: Updates service API and documentation
+  * Introduces the DescribeEffectivePolicy action, which returns the contents of the policy that's in effect for the account.
+* `service/quicksight`: Updates service documentation
+  * Documentation updates for QuickSight
+* `service/rds-data`: Updates service API and documentation
+* `service/resourcegroupstaggingapi`: Updates service API, documentation, and paginators
+  * You can use tag policies to help standardize on tags across your organization's resources.
+* `service/serverlessrepo`: Updates service API and documentation
+* `service/workspaces`: Updates service API and documentation
+  * For the WorkspaceBundle API, added the image identifier and the time of the last update.
+
 Release v1.25.42 (2019-11-25)
 ===
 

@@ -12,6 +12,7 @@
     "DeleteTable": "<p>The <code>DeleteTable</code> operation deletes a table and all of its items. After a <code>DeleteTable</code> request, the specified table is in the <code>DELETING</code> state until DynamoDB completes the deletion. If the table is in the <code>ACTIVE</code> state, you can delete it. If a table is in <code>CREATING</code> or <code>UPDATING</code> states, then DynamoDB returns a <code>ResourceInUseException</code>. If the specified table does not exist, DynamoDB returns a <code>ResourceNotFoundException</code>. If table is already in the <code>DELETING</code> state, no error is returned. </p> <note> <p>DynamoDB might continue to accept data read and write operations, such as <code>GetItem</code> and <code>PutItem</code>, on a table in the <code>DELETING</code> state until the table deletion is complete.</p> </note> <p>When you delete a table, any indexes on that table are also deleted.</p> <p>If you have DynamoDB Streams enabled on the table, then the corresponding stream on that table goes into the <code>DISABLED</code> state, and the stream is automatically deleted after 24 hours.</p> <p>Use the <code>DescribeTable</code> action to check the status of the table. </p>",
     "DescribeBackup": "<p>Describes an existing backup of a table.</p> <p>You can call <code>DescribeBackup</code> at a maximum rate of 10 times per second.</p>",
     "DescribeContinuousBackups": "<p>Checks the status of continuous backups and point in time recovery on the specified table. Continuous backups are <code>ENABLED</code> on all tables at table creation. If point in time recovery is enabled, <code>PointInTimeRecoveryStatus</code> will be set to ENABLED.</p> <p> After continuous backups and point in time recovery are enabled, you can restore to any point in time within <code>EarliestRestorableDateTime</code> and <code>LatestRestorableDateTime</code>. </p> <p> <code>LatestRestorableDateTime</code> is typically 5 minutes before the current time. You can restore your table to any point in time during the last 35 days. </p> <p>You can call <code>DescribeContinuousBackups</code> at a maximum rate of 10 times per second.</p>",
+    "DescribeContributorInsights": "<p>Returns information about contributor insights, for a given table or global secondary index.</p>",
     "DescribeEndpoints": "<p>Returns the regional endpoint information.</p>",
     "DescribeGlobalTable": "<p>Returns information about the specified global table.</p> <note> <p>This method only applies to <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.V1.html\">Version 2017.11.29</a> of global tables.</p> </note>",
     "DescribeGlobalTableSettings": "<p>Describes Region-specific settings for a global table.</p> <note> <p>This method only applies to <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.V1.html\">Version 2017.11.29</a> of global tables.</p> </note>",
@@ -21,6 +22,7 @@
     "DescribeTimeToLive": "<p>Gives a description of the Time to Live (TTL) status on the specified table. </p>",
     "GetItem": "<p>The <code>GetItem</code> operation returns a set of attributes for the item with the given primary key. If there is no matching item, <code>GetItem</code> does not return any data and there will be no <code>Item</code> element in the response.</p> <p> <code>GetItem</code> provides an eventually consistent read by default. If your application requires a strongly consistent read, set <code>ConsistentRead</code> to <code>true</code>. Although a strongly consistent read might take more time than an eventually consistent read, it always returns the last updated value.</p>",
     "ListBackups": "<p>List backups associated with an AWS account. To list backups for a given table, specify <code>TableName</code>. <code>ListBackups</code> returns a paginated list of results with at most 1 MB worth of items in a page. You can also specify a limit for the maximum number of entries to be returned in a page. </p> <p>In the request, start time is inclusive, but end time is exclusive. Note that these limits are for the time at which the original backup was requested.</p> <p>You can call <code>ListBackups</code> a maximum of five times per second.</p>",
+    "ListContributorInsights": "<p>Returns a list of ContributorInsightsSummary for a table and all its global secondary indexes.</p>",
     "ListGlobalTables": "<p>Lists all global tables that have a replica in the specified Region.</p> <note> <p>This method only applies to <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.V1.html\">Version 2017.11.29</a> of global tables.</p> </note>",
     "ListTables": "<p>Returns an array of table names associated with the current account and endpoint. The output from <code>ListTables</code> is paginated, with each page returning a maximum of 100 table names.</p>",
     "ListTagsOfResource": "<p>List all tags on an Amazon DynamoDB resource. You can call ListTagsOfResource up to 10 times per second, per account.</p> <p>For an overview on tagging DynamoDB resources, see <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tagging.html\">Tagging for DynamoDB</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>",
@@ -34,6 +36,7 @@
     "TransactWriteItems": "<p> <code>TransactWriteItems</code> is a synchronous write operation that groups up to 25 action requests. These actions can target items in different tables, but not in different AWS accounts or Regions, and no two actions can target the same item. For example, you cannot both <code>ConditionCheck</code> and <code>Update</code> the same item. The aggregate size of the items in the transaction cannot exceed 4 MB.</p> <p>The actions are completed atomically so that either all of them succeed, or all of them fail. They are defined by the following objects:</p> <ul> <li> <p> <code>Put</code>  &#x97;   Initiates a <code>PutItem</code> operation to write a new item. This structure specifies the primary key of the item to be written, the name of the table to write it in, an optional condition expression that must be satisfied for the write to succeed, a list of the item's attributes, and a field indicating whether to retrieve the item's attributes if the condition is not met.</p> </li> <li> <p> <code>Update</code>  &#x97;   Initiates an <code>UpdateItem</code> operation to update an existing item. This structure specifies the primary key of the item to be updated, the name of the table where it resides, an optional condition expression that must be satisfied for the update to succeed, an expression that defines one or more attributes to be updated, and a field indicating whether to retrieve the item's attributes if the condition is not met.</p> </li> <li> <p> <code>Delete</code>  &#x97;   Initiates a <code>DeleteItem</code> operation to delete an existing item. This structure specifies the primary key of the item to be deleted, the name of the table where it resides, an optional condition expression that must be satisfied for the deletion to succeed, and a field indicating whether to retrieve the item's attributes if the condition is not met.</p> </li> <li> <p> <code>ConditionCheck</code>  &#x97;   Applies a condition to an item that is not being modified by the transaction. This structure specifies the primary key of the item to be checked, the name of the table where it resides, a condition expression that must be satisfied for the transaction to succeed, and a field indicating whether to retrieve the item's attributes if the condition is not met.</p> </li> </ul> <p>DynamoDB rejects the entire <code>TransactWriteItems</code> request if any of the following is true:</p> <ul> <li> <p>A condition in one of the condition expressions is not met.</p> </li> <li> <p>An ongoing operation is in the process of updating the same item.</p> </li> <li> <p>There is insufficient provisioned capacity for the transaction to be completed.</p> </li> <li> <p>An item size becomes too large (bigger than 400 KB), a local secondary index (LSI) becomes too large, or a similar validation error occurs because of changes made by the transaction.</p> </li> <li> <p>The aggregate size of the items in the transaction exceeds 4 MB.</p> </li> <li> <p>There is a user error, such as an invalid data format.</p> </li> </ul>",
     "UntagResource": "<p>Removes the association of tags from an Amazon DynamoDB resource. You can call <code>UntagResource</code> up to five times per second, per account. </p> <p>For an overview on tagging DynamoDB resources, see <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tagging.html\">Tagging for DynamoDB</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>",
     "UpdateContinuousBackups": "<p> <code>UpdateContinuousBackups</code> enables or disables point in time recovery for the specified table. A successful <code>UpdateContinuousBackups</code> call returns the current <code>ContinuousBackupsDescription</code>. Continuous backups are <code>ENABLED</code> on all tables at table creation. If point in time recovery is enabled, <code>PointInTimeRecoveryStatus</code> will be set to ENABLED.</p> <p> Once continuous backups and point in time recovery are enabled, you can restore to any point in time within <code>EarliestRestorableDateTime</code> and <code>LatestRestorableDateTime</code>. </p> <p> <code>LatestRestorableDateTime</code> is typically 5 minutes before the current time. You can restore your table to any point in time during the last 35 days. </p>",
+    "UpdateContributorInsights": "<p>Updates the status for contributor insights for a specific table or index.</p>",
     "UpdateGlobalTable": "<p>Adds or removes replicas in the specified global table. The global table must already exist to be able to use this operation. Any replica to be added must be empty, have the same name as the global table, have the same key schema, have DynamoDB Streams enabled, and have the same provisioned and maximum write capacity units.</p> <note> <p>Although you can use <code>UpdateGlobalTable</code> to add replicas and remove replicas in a single request, for simplicity we recommend that you issue separate requests for adding or removing replicas.</p> </note> <p> If global secondary indexes are specified, then the following conditions must also be met: </p> <ul> <li> <p> The global secondary indexes must have the same name. </p> </li> <li> <p> The global secondary indexes must have the same hash key and sort key (if present). </p> </li> <li> <p> The global secondary indexes must have the same provisioned and maximum write capacity units. </p> </li> </ul>",
     "UpdateGlobalTableSettings": "<p>Updates settings for a global table.</p>",
     "UpdateItem": "<p>Edits an existing item's attributes, or adds a new item to the table if it does not already exist. You can put, delete, or add attribute values. You can also perform a conditional update on an existing item (insert a new attribute name-value pair if it doesn't exist, or replace an existing name-value pair if it has certain expected attribute values).</p> <p>You can also return the item's attribute values in the same <code>UpdateItem</code> operation using the <code>ReturnValues</code> parameter.</p>",
@@ -42,6 +45,18 @@
     "UpdateTimeToLive": "<p>The <code>UpdateTimeToLive</code> method enables or disables Time to Live (TTL) for the specified table. A successful <code>UpdateTimeToLive</code> call returns the current <code>TimeToLiveSpecification</code>. It can take up to one hour for the change to fully process. Any additional <code>UpdateTimeToLive</code> calls for the same table during this one hour duration result in a <code>ValidationException</code>. </p> <p>TTL compares the current time in epoch time format to the time stored in the TTL attribute of an item. If the epoch time value stored in the attribute is less than the current time, the item is marked as expired and subsequently deleted.</p> <note> <p> The epoch time format is the number of seconds elapsed since 12:00:00 AM January 1, 1970 UTC. </p> </note> <p>DynamoDB deletes expired items on a best-effort basis to ensure availability of throughput for other data operations. </p> <important> <p>DynamoDB typically deletes expired items within two days of expiration. The exact duration within which an item gets deleted after expiration is specific to the nature of the workload. Items that have expired and not been deleted will still show up in reads, queries, and scans.</p> </important> <p>As items are deleted, they are removed from any local secondary index and global secondary index immediately in the same eventually consistent way as a standard delete operation.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html\">Time To Live</a> in the Amazon DynamoDB Developer Guide. </p>"
   },
   "shapes": {
+    "ArchivalReason": {
+      "base": null,
+      "refs": {
+        "ArchivalSummary$ArchivalReason": "<p>The reason DynamoDB archived the table. Currently, the only possible value is:</p> <ul> <li> <p> <code>INACCESSIBLE_ENCRYPTION_CREDENTIALS</code> - The table was archived due to the table's AWS KMS key being inaccessible for more than seven days. An On-Demand backup was created at the archival time.</p> </li> </ul>"
+      }
+    },
+    "ArchivalSummary": {
+      "base": "<p>Contains details of a table archival operation.</p>",
+      "refs": {
+        "TableDescription$ArchivalSummary": "<p>Contains information about the table archive.</p>"
+      }
+    },
     "AttributeAction": {
       "base": null,
       "refs": {
@@ -211,6 +226,7 @@
     "BackupArn": {
       "base": null,
       "refs": {
+        "ArchivalSummary$ArchivalBackupArn": "<p>The Amazon Resource Name (ARN) of the backup the table was archived to, when applicable in the archival reason. If you wish to restore this backup to the same table name, you will need to delete the original table.</p>",
         "BackupDetails$BackupArn": "<p>ARN associated with the backup.</p>",
         "BackupSummary$BackupArn": "<p>ARN associated with the backup.</p>",
         "DeleteBackupInput$BackupArn": "<p>The ARN associated with the backup.</p>",
@@ -535,6 +551,44 @@
       "refs": {
       }
     },
+    "ContributorInsightsAction": {
+      "base": null,
+      "refs": {
+        "UpdateContributorInsightsInput$ContributorInsightsAction": "<p>Represents the contributor insights action.</p>"
+      }
+    },
+    "ContributorInsightsRule": {
+      "base": null,
+      "refs": {
+        "ContributorInsightsRuleList$member": null
+      }
+    },
+    "ContributorInsightsRuleList": {
+      "base": null,
+      "refs": {
+        "DescribeContributorInsightsOutput$ContributorInsightsRuleList": "<p>List of names of the associated Alpine rules.</p>"
+      }
+    },
+    "ContributorInsightsStatus": {
+      "base": null,
+      "refs": {
+        "ContributorInsightsSummary$ContributorInsightsStatus": "<p>Describes the current status for contributor insights for the given table and index, if applicable.</p>",
+        "DescribeContributorInsightsOutput$ContributorInsightsStatus": "<p>Current Status contributor insights.</p>",
+        "UpdateContributorInsightsOutput$ContributorInsightsStatus": "<p>The status of contributor insights</p>"
+      }
+    },
+    "ContributorInsightsSummaries": {
+      "base": null,
+      "refs": {
+        "ListContributorInsightsOutput$ContributorInsightsSummaries": "<p>A list of ContributorInsightsSummary.</p>"
+      }
+    },
+    "ContributorInsightsSummary": {
+      "base": "<p>Represents a Contributor Insights summary entry..</p>",
+      "refs": {
+        "ContributorInsightsSummaries$member": null
+      }
+    },
     "CreateBackupInput": {
       "base": null,
       "refs": {
@@ -586,6 +640,7 @@
     "Date": {
       "base": null,
       "refs": {
+        "ArchivalSummary$ArchivalDateTime": "<p>The date and time when table archival was initiated by DynamoDB, in UNIX epoch time format.</p>",
         "BackupDetails$BackupExpiryDateTime": "<p>Time at which the automatic on-demand backup created by DynamoDB will expire. This <code>SYSTEM</code> on-demand backup expires automatically 35 days after its creation.</p>",
         "BackupSummary$BackupExpiryDateTime": "<p>Time at which the automatic on-demand backup created by DynamoDB will expire. This <code>SYSTEM</code> on-demand backup expires automatically 35 days after its creation.</p>",
         "BillingModeSummary$LastUpdateToPayPerRequestDateTime": "<p>Represents the time when <code>PAY_PER_REQUEST</code> was last set as the read/write capacity mode.</p>",
@@ -596,6 +651,7 @@
         "ProvisionedThroughputDescription$LastDecreaseDateTime": "<p>The date and time of the last provisioned throughput decrease for this table.</p>",
         "RestoreSummary$RestoreDateTime": "<p>Point in time or source backup time.</p>",
         "RestoreTableToPointInTimeInput$RestoreDateTime": "<p>Time in the past to restore the table to.</p>",
+        "SSEDescription$InaccessibleEncryptionDateTime": "<p>Indicates the time, in UNIX epoch date format, when DynamoDB detected that the table's AWS KMS key was inaccessible. This attribute will automatically be cleared when DynamoDB detects that the table's AWS KMS key is accessible again. DynamoDB will initiate the table archival process when table's AWS KMS key remains inaccessible for more than seven days from this date.</p>",
         "TableDescription$CreationDateTime": "<p>The date and time when the table was created, in <a href=\"http://www.epochconverter.com/\">UNIX epoch time</a> format.</p>"
       }
     },
@@ -675,6 +731,16 @@
       }
     },
     "DescribeContinuousBackupsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeContributorInsightsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeContributorInsightsOutput": {
       "base": null,
       "refs": {
       }
@@ -799,6 +865,18 @@
         "TransactionInProgressException$Message": null
       }
     },
+    "ExceptionDescription": {
+      "base": null,
+      "refs": {
+        "FailureException$ExceptionDescription": "<p>Description of the failure.</p>"
+      }
+    },
+    "ExceptionName": {
+      "base": null,
+      "refs": {
+        "FailureException$ExceptionName": "<p>Exception name.</p>"
+      }
+    },
     "ExpectedAttributeMap": {
       "base": null,
       "refs": {
@@ -854,6 +932,12 @@
       "base": null,
       "refs": {
         "ExpressionAttributeValueMap$key": null
+      }
+    },
+    "FailureException": {
+      "base": "<p>Represents a failure a contributor insights operation.</p>",
+      "refs": {
+        "DescribeContributorInsightsOutput$FailureException": "<p>Returns information about the last failure that encountered.</p> <p>The most common exceptions for a FAILED status are:</p> <ul> <li> <p>LimitExceededException - Per-account Amazon CloudWatch Contributor Insights rule limit reached. Please disable Contributor Insights for other tables/indexes OR disable Contributor Insights rules before retrying.</p> </li> <li> <p>AccessDeniedException - Amazon CloudWatch Contributor Insights rules cannot be modified due to insufficient permissions.</p> </li> <li> <p>AccessDeniedException - Failed to create service-linked role for Contributor Insights due to insufficient permissions.</p> </li> <li> <p>InternalServerError - Failed to create Amazon CloudWatch Contributor Insights rules. Please retry request.</p> </li> </ul>"
       }
     },
     "FilterConditionMap": {
@@ -1003,8 +1087,11 @@
     "IndexName": {
       "base": null,
       "refs": {
+        "ContributorInsightsSummary$IndexName": "<p>Name of the index associated with the summary, if any.</p>",
         "CreateGlobalSecondaryIndexAction$IndexName": "<p>The name of the global secondary index to be created.</p>",
         "DeleteGlobalSecondaryIndexAction$IndexName": "<p>The name of the global secondary index to be deleted.</p>",
+        "DescribeContributorInsightsInput$IndexName": "<p>The name of the global secondary index to describe, if applicable.</p>",
+        "DescribeContributorInsightsOutput$IndexName": "<p>The name of the global secondary index being described.</p>",
         "GlobalSecondaryIndex$IndexName": "<p>The name of the global secondary index. The name must be unique among all other indexes on this table.</p>",
         "GlobalSecondaryIndexAutoScalingUpdate$IndexName": "<p>The name of the global secondary index.</p>",
         "GlobalSecondaryIndexDescription$IndexName": "<p>The name of the global secondary index.</p>",
@@ -1022,6 +1109,8 @@
         "ReplicaGlobalSecondaryIndexSettingsUpdate$IndexName": "<p>The name of the global secondary index. The name must be unique among all other indexes on this table.</p>",
         "ScanInput$IndexName": "<p>The name of a secondary index to scan. This index can be any local secondary index or global secondary index. Note that if you use the <code>IndexName</code> parameter, you must also provide <code>TableName</code>.</p>",
         "SecondaryIndexesCapacityMap$key": null,
+        "UpdateContributorInsightsInput$IndexName": "<p>The global secondary index name, if applicable.</p>",
+        "UpdateContributorInsightsOutput$IndexName": "<p>The name of the global secondary index, if applicable.</p>",
         "UpdateGlobalSecondaryIndexAction$IndexName": "<p>The name of the global secondary index to be updated.</p>"
       }
     },
@@ -1228,6 +1317,12 @@
         "BatchGetRequestMap$value": null
       }
     },
+    "LastUpdateDateTime": {
+      "base": null,
+      "refs": {
+        "DescribeContributorInsightsOutput$LastUpdateDateTime": "<p>Timestamp of the last time the status was changed.</p>"
+      }
+    },
     "LimitExceededException": {
       "base": "<p>There is no limit to the number of daily on-demand backups that can be taken. </p> <p>Up to 50 simultaneous table operations are allowed per account. These operations include <code>CreateTable</code>, <code>UpdateTable</code>, <code>DeleteTable</code>,<code>UpdateTimeToLive</code>, <code>RestoreTableFromBackup</code>, and <code>RestoreTableToPointInTime</code>. </p> <p>The only exception is when you are creating a table with one or more secondary indexes. You can have up to 25 such requests running at a time; however, if the table or index specifications are complex, DynamoDB might temporarily reduce the number of concurrent operations.</p> <p>There is a soft account limit of 256 tables.</p>",
       "refs": {
@@ -1245,6 +1340,22 @@
       }
     },
     "ListBackupsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListContributorInsightsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListContributorInsightsLimit": {
+      "base": null,
+      "refs": {
+        "ListContributorInsightsInput$MaxResults": "<p>Maximum number of results to return per page.</p>"
+      }
+    },
+    "ListContributorInsightsOutput": {
       "base": null,
       "refs": {
       }
@@ -1345,6 +1456,8 @@
     "NextTokenString": {
       "base": null,
       "refs": {
+        "ListContributorInsightsInput$NextToken": "<p>A token to for the desired page, if there is one.</p>",
+        "ListContributorInsightsOutput$NextToken": "<p>A token to go to the next page if there is one.</p>",
         "ListTagsOfResourceInput$NextToken": "<p>An optional string that, if supplied, must be copied from the output of a previous call to ListTagOfResource. When provided in this manner, this API fetches the next page of results.</p>",
         "ListTagsOfResourceOutput$NextToken": "<p>If this value is returned, there are additional results to be displayed. To retrieve them, call ListTagsOfResource again, with NextToken set to this value.</p>"
       }
@@ -2061,6 +2174,7 @@
         "BatchWriteItemRequestMap$key": null,
         "ConditionCheck$TableName": "<p>Name of the table for the check item request.</p>",
         "ConsumedCapacity$TableName": "<p>The name of the table that was affected by the operation.</p>",
+        "ContributorInsightsSummary$TableName": "<p>Name of the table associated with the summary.</p>",
         "CreateBackupInput$TableName": "<p>The name of the table.</p>",
         "CreateGlobalTableInput$GlobalTableName": "<p>The global table name.</p>",
         "CreateTableInput$TableName": "<p>The name of the table to create.</p>",
@@ -2068,6 +2182,8 @@
         "DeleteItemInput$TableName": "<p>The name of the table from which to delete the item.</p>",
         "DeleteTableInput$TableName": "<p>The name of the table to delete.</p>",
         "DescribeContinuousBackupsInput$TableName": "<p>Name of the table for which the customer wants to check the continuous backups and point in time recovery settings.</p>",
+        "DescribeContributorInsightsInput$TableName": "<p>The name of the table to describe.</p>",
+        "DescribeContributorInsightsOutput$TableName": "<p>The name of the table being described.</p>",
         "DescribeGlobalTableInput$GlobalTableName": "<p>The name of the global table.</p>",
         "DescribeGlobalTableSettingsInput$GlobalTableName": "<p>The name of the global table to describe.</p>",
         "DescribeGlobalTableSettingsOutput$GlobalTableName": "<p>The name of the global table.</p>",
@@ -2080,6 +2196,7 @@
         "GlobalTableDescription$GlobalTableName": "<p>The global table name.</p>",
         "ItemCollectionMetricsPerTable$key": null,
         "ListBackupsInput$TableName": "<p>The backups from the table specified by <code>TableName</code> are listed. </p>",
+        "ListContributorInsightsInput$TableName": "<p>The name of the table.</p>",
         "ListGlobalTablesInput$ExclusiveStartGlobalTableName": "<p>The first global table name that this operation will evaluate.</p>",
         "ListGlobalTablesOutput$LastEvaluatedGlobalTableName": "<p>Last evaluated global table name.</p>",
         "ListTablesInput$ExclusiveStartTableName": "<p>The first table name that this operation will evaluate. Use the value that was returned for <code>LastEvaluatedTableName</code> in a previous operation, so that you can obtain the next page of results.</p>",
@@ -2097,6 +2214,8 @@
         "TableNameList$member": null,
         "Update$TableName": "<p>Name of the table for the <code>UpdateItem</code> request.</p>",
         "UpdateContinuousBackupsInput$TableName": "<p>The name of the table.</p>",
+        "UpdateContributorInsightsInput$TableName": "<p>The name of the table.</p>",
+        "UpdateContributorInsightsOutput$TableName": "<p>The name of the table.</p>",
         "UpdateGlobalTableInput$GlobalTableName": "<p>The global table name.</p>",
         "UpdateGlobalTableSettingsInput$GlobalTableName": "<p>The name of the global table</p>",
         "UpdateGlobalTableSettingsOutput$GlobalTableName": "<p>The name of the global table.</p>",
@@ -2121,7 +2240,7 @@
       "base": null,
       "refs": {
         "TableAutoScalingDescription$TableStatus": "<p>The current state of the table:</p> <ul> <li> <p> <code>CREATING</code> - The table is being created.</p> </li> <li> <p> <code>UPDATING</code> - The table is being updated.</p> </li> <li> <p> <code>DELETING</code> - The table is being deleted.</p> </li> <li> <p> <code>ACTIVE</code> - The table is ready for use.</p> </li> </ul>",
-        "TableDescription$TableStatus": "<p>The current state of the table:</p> <ul> <li> <p> <code>CREATING</code> - The table is being created.</p> </li> <li> <p> <code>UPDATING</code> - The table is being updated.</p> </li> <li> <p> <code>DELETING</code> - The table is being deleted.</p> </li> <li> <p> <code>ACTIVE</code> - The table is ready for use.</p> </li> </ul>"
+        "TableDescription$TableStatus": "<p>The current state of the table:</p> <ul> <li> <p> <code>CREATING</code> - The table is being created.</p> </li> <li> <p> <code>UPDATING</code> - The table is being updated.</p> </li> <li> <p> <code>DELETING</code> - The table is being deleted.</p> </li> <li> <p> <code>ACTIVE</code> - The table is ready for use.</p> </li> <li> <p> <code>INACCESSIBLE_ENCRYPTION_CREDENTIALS</code> - The AWS KMS key used to encrypt the table in inaccessible. Table operations may fail due to failure to use the AWS KMS key. DynamoDB will initiate the table archival process when a table's AWS KMS key remains inaccessible for more than seven days. </p> </li> <li> <p> <code>ARCHIVING</code> - The table is being archived. Operations are not allowed until archival is complete. </p> </li> <li> <p> <code>ARCHIVED</code> - The table has been archived. See the ArchivalReason for more information. </p> </li> </ul>"
       }
     },
     "Tag": {
@@ -2283,6 +2402,16 @@
       }
     },
     "UpdateContinuousBackupsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateContributorInsightsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateContributorInsightsOutput": {
       "base": null,
       "refs": {
       }

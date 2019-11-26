@@ -1768,9 +1768,11 @@
         "Name":{"shape":"NonEmptyString"},
         "Owner":{"shape":"BundleOwner"},
         "Description":{"shape":"Description"},
+        "ImageId":{"shape":"WorkspaceImageId"},
         "RootStorage":{"shape":"RootStorage"},
         "UserStorage":{"shape":"UserStorage"},
-        "ComputeType":{"shape":"ComputeType"}
+        "ComputeType":{"shape":"ComputeType"},
+        "LastUpdatedTime":{"shape":"Timestamp"}
       }
     },
     "WorkspaceConnectionStatus":{

@@ -216,7 +216,10 @@
                 }, 
                 "HlsConfiguration": {
                     "shape": "HlsConfiguration"
-                }, 
+                },
+                "LivePreRollConfiguration" : {
+                    "shape" : "LivePreRollConfiguration"
+                },
                 "Name": {
                     "shape": "__string"
                 }, 
@@ -349,7 +352,18 @@
                 }
             }, 
             "type": "structure"
-        }, 
+        },
+        "LivePreRollConfiguration" : {
+            "type" : "structure",
+            "members" : {
+                "AdDecisionServerUrl" : {
+                    "shape" : "__string"
+                },
+                "MaxDurationSeconds" : {
+                    "shape" : "__integer"
+                }
+            }
+        },
         "PutPlaybackConfigurationRequest": {
             "members": {
                 "AdDecisionServerUrl": {
@@ -360,7 +374,10 @@
                 }, 
                 "DashConfiguration": {
                     "shape": "DashConfigurationForPut"
-                }, 
+                },
+                "LivePreRollConfiguration" : {
+                    "shape" : "LivePreRollConfiguration"
+                },
                 "Name": {
                     "shape": "__string"
                 }, 
@@ -393,7 +410,10 @@
                 }, 
                 "HlsConfiguration": {
                     "shape": "HlsConfiguration"
-                }, 
+                },
+                "LivePreRollConfiguration" : {
+                    "shape" : "LivePreRollConfiguration"
+                },
                 "Name": {
                     "shape": "__string"
                 }, 
