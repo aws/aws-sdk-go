@@ -263,6 +263,9 @@ func (c *RDSDataService) CommitTransactionRequest(input *CommitTransactionInput)
 //   * ErrCodeBadRequestException "BadRequestException"
 //   There is an error in the call or in a SQL statement.
 //
+//   * ErrCodeStatementTimeoutException "StatementTimeoutException"
+//   The execution of the SQL statement timed out.
+//
 //   * ErrCodeInternalServerErrorException "InternalServerErrorException"
 //   An internal error occurred.
 //
@@ -552,6 +555,9 @@ func (c *RDSDataService) RollbackTransactionRequest(input *RollbackTransactionIn
 //   * ErrCodeBadRequestException "BadRequestException"
 //   There is an error in the call or in a SQL statement.
 //
+//   * ErrCodeStatementTimeoutException "StatementTimeoutException"
+//   The execution of the SQL statement timed out.
+//
 //   * ErrCodeInternalServerErrorException "InternalServerErrorException"
 //   An internal error occurred.
 //
@@ -655,6 +661,8 @@ type BatchExecuteStatementInput struct {
 	Database *string `locationName:"database" type:"string"`
 
 	// The parameter set for the batch operation.
+	//
+	// The maximum number of parameters in a parameter set is 1,000.
 	ParameterSets [][]*SqlParameter `locationName:"parameterSets" type:"list"`
 
 	// The Amazon Resource Name (ARN) of the Aurora Serverless DB cluster.
@@ -1757,6 +1765,23 @@ type SqlParameter struct {
 	// The name of the parameter.
 	Name *string `locationName:"name" type:"string"`
 
+	// A hint that specifies the correct object type for data type mapping.
+	//
+	// Values:
+	//
+	//    * DECIMAL - The corresponding String parameter value is sent as an object
+	//    of DECIMAL type to the database.
+	//
+	//    * TIMESTAMP - The corresponding String parameter value is sent as an object
+	//    of TIMESTAMP type to the database. The accepted format is YYYY-MM-DD HH:MM:SS[.FFF].
+	//
+	//    * TIME - The corresponding String parameter value is sent as an object
+	//    of TIME type to the database. The accepted format is HH:MM:SS[.FFF].
+	//
+	//    * DATE - The corresponding String parameter value is sent as an object
+	//    of DATE type to the database. The accepted format is YYYY-MM-DD.
+	TypeHint *string `locationName:"typeHint" type:"string" enum:"TypeHint"`
+
 	// The value of the parameter.
 	Value *Field `locationName:"value" type:"structure"`
 }
@@ -1774,6 +1799,12 @@ func (s SqlParameter) GoString() string {
 // SetName sets the Name field's value.
 func (s *SqlParameter) SetName(v string) *SqlParameter {
 	s.Name = &v
+	return s
+}
+
+// SetTypeHint sets the TypeHint field's value.
+func (s *SqlParameter) SetTypeHint(v string) *SqlParameter {
+	s.TypeHint = &v
 	return s
 }
 
@@ -1981,4 +2012,18 @@ const (
 
 	// DecimalReturnTypeString is a DecimalReturnType enum value
 	DecimalReturnTypeString = "STRING"
+)
+
+const (
+	// TypeHintDate is a TypeHint enum value
+	TypeHintDate = "DATE"
+
+	// TypeHintDecimal is a TypeHint enum value
+	TypeHintDecimal = "DECIMAL"
+
+	// TypeHintTime is a TypeHint enum value
+	TypeHintTime = "TIME"
+
+	// TypeHintTimestamp is a TypeHint enum value
+	TypeHintTimestamp = "TIMESTAMP"
 )

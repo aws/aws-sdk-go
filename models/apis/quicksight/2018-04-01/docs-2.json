@@ -1,72 +1,72 @@
 {
   "version": "2.0",
-  "service": "<fullname>Amazon QuickSight API Reference</fullname> <p>Amazon QuickSight is a fully managed, serverless, cloud business intelligence service that makes it easy to extend data and insights to every user in your organization. This API interface reference contains documentation for a programming interface that you can use to manage Amazon QuickSight. </p>",
+  "service": "<fullname>Amazon QuickSight API Reference</fullname> <p>Amazon QuickSight is a fully managed, serverless business intelligence service for the AWS Cloud that makes it easy to extend data and insights to every user in your organization. This API reference contains documentation for a programming interface that you can use to manage Amazon QuickSight. </p>",
   "operations": {
-    "CancelIngestion": "<p>Cancels an on-going ingestion of data into SPICE.</p>",
-    "CreateDashboard": "<p>Creates a dashboard from a template. To first create a template, see the CreateTemplate API.</p> <p>A dashboard is an entity in QuickSight which identifies Quicksight reports, created from analyses. QuickSight dashboards are sharable. With the right permissions, you can create scheduled email reports from them. The <code>CreateDashboard</code>, <code>DescribeDashboard</code> and <code>ListDashboardsByUser</code> APIs act on the dashboard entity. If you have the correct permissions, you can create a dashboard from a template that exists in a different AWS account.</p> <p>CLI syntax:</p> <p> <code>aws quicksight create-dashboard --cli-input-json file://create-dashboard.json</code> </p>",
-    "CreateDataSet": "<p>Creates a dataset.</p> <p>CLI syntax:</p> <p> <code>aws quicksight create-data-set \\</code> </p> <p> <code>--aws-account-id=111122223333 \\</code> </p> <p> <code>--data-set-id=unique-data-set-id \\</code> </p> <p> <code>--name='My dataset' \\</code> </p> <p> <code>--import-mode=SPICE \\</code> </p> <p> <code>--physical-table-map='{</code> </p> <p> <code> \"physical-table-id\": {</code> </p> <p> <code> \"RelationalTable\": {</code> </p> <p> <code> \"DataSourceArn\": \"arn:aws:quicksight:us-west-2:111111111111:datasource/data-source-id\",</code> </p> <p> <code> \"Name\": \"table1\",</code> </p> <p> <code> \"InputColumns\": [</code> </p> <p> <code> {</code> </p> <p> <code> \"Name\": \"column1\",</code> </p> <p> <code> \"Type\": \"STRING\"</code> </p> <p> <code> }</code> </p> <p> <code> ]</code> </p> <p> <code> }</code> </p> <p> <code> }'</code> </p>",
-    "CreateDataSource": "<p>Creates a data source.</p> <p>The permissions resource is <code>arn:aws:quicksight:region:aws-account-id:datasource/data-source-id</code> </p> <p>CLI syntax:</p> <p> <code>aws quicksight create-data-source \\</code> </p> <p> <code>--aws-account-id=111122223333 \\</code> </p> <p> <code>--data-source-id=unique-data-source-id \\</code> </p> <p> <code>--name='My Data Source' \\</code> </p> <p> <code>--type=POSTGRESQL \\</code> </p> <p> <code>--data-source-parameters='{ \"PostgreSqlParameters\": {</code> </p> <p> <code> \"Host\": \"my-db-host.example.com\",</code> </p> <p> <code> \"Port\": 1234,</code> </p> <p> <code> \"Database\": \"my-db\" } }' \\</code> </p> <p> <code>--credentials='{ \"CredentialPair\": {</code> </p> <p> <code> \"Username\": \"username\",</code> </p> <p> <code> \"Password\": \"password\" } }'</code> </p>",
-    "CreateGroup": "<p>Creates an Amazon QuickSight group.</p> <p>The permissions resource is <code>arn:aws:quicksight:us-east-1:<i>&lt;relevant-aws-account-id&gt;</i>:group/default/<i>&lt;group-name&gt;</i> </code>.</p> <p>The response is a group object.</p> <p> <b>CLI Sample:</b> </p> <p> <code>aws quicksight create-group --aws-account-id=111122223333 --namespace=default --group-name=\"Sales-Management\" --description=\"Sales Management - Forecasting\" </code> </p>",
-    "CreateGroupMembership": "<p>Adds an Amazon QuickSight user to an Amazon QuickSight group. </p> <p>The permissions resource is <code>arn:aws:quicksight:us-east-1:<i>&lt;aws-account-id&gt;</i>:group/default/<i>&lt;group-name&gt;</i> </code>.</p> <p>The condition resource is the user name.</p> <p>The condition key is <code>quicksight:UserName</code>.</p> <p>The response is the group member object.</p> <p> <b>CLI Sample:</b> </p> <p> <code>aws quicksight create-group-membership --aws-account-id=111122223333 --namespace=default --group-name=Sales --member-name=Pat </code> </p>",
-    "CreateIAMPolicyAssignment": "<p>Creates an assignment with one specified IAM policy ARN and will assigned to specified groups or users of QuickSight. Users and groups need to be in the same namespace. </p> <p>CLI syntax:</p> <p> <code>aws quicksight create-iam-policy-assignment --aws-account-id=111122223333 --assignment-name=helpAssignment --policy-arn=arn:aws:iam::aws:policy/AdministratorAccess --identities=\"user=user5,engineer123,group=QS-Admin\" --namespace=default --region=us-west-2</code> </p>",
-    "CreateIngestion": "<p>Creates and starts a new SPICE ingestion on a dataset</p> <p>Any ingestions operating on tagged datasets inherit the same tags automatically for use in access-control. For an example, see <a href=\"https://aws.example.com/premiumsupport/knowledge-center/iam-ec2-resource-tags/\">How do I create an IAM policy to control access to Amazon EC2 resources using tags?</a>. Tags will be visible on the tagged dataset, but not on the ingestion resource.</p>",
-    "CreateTemplate": "<p>Creates a template from an existing QuickSight analysis or template. The resulting template can be used to create a dashboard.</p> <p>A template is an entity in QuickSight which encapsulates the metadata required to create an analysis that can be used to create dashboard. It adds a layer of abstraction by use placeholders to replace the dataset associated with the analysis. You can use templates to create dashboards by replacing dataset placeholders with datasets which follow the same schema that was used to create the source analysis and template.</p> <p>To create a template from an existing analysis, use the analysis's ARN, <code>aws-account-id</code>, <code>template-id</code>, <code>source-entity</code>, and <code>data-set-references</code>.</p> <p>CLI syntax to create a template: </p> <p> <code>aws quicksight create-template —cli-input-json file://create-template.json</code> </p> <p>CLI syntax to create a template from another template in the same AWS account:</p> <p> <code>aws quicksight create-template --aws-account-id 111122223333 --template-id reports_test_template --data-set-references DataSetPlaceholder=reports,DataSetArn=arn:aws:quicksight:us-west-2:111122223333:dataset/0dfc789c-81f6-4f4f-b9ac-7db2453eefc8 DataSetPlaceholder=Elblogs,DataSetArn=arn:aws:quicksight:us-west-2:111122223333:dataset/f60da323-af68-45db-9016-08e0d1d7ded5 --source-entity SourceAnalysis='{Arn=arn:aws:quicksight:us-west-2:111122223333:analysis/7fb74527-c36d-4be8-8139-ac1be4c97365}'</code> </p> <p>To create template from another account’s template, you need to grant cross account resource permission for DescribeTemplate the account that contains the template.</p> <p>You can use a file to pass JSON to the function if you prefer. </p>",
-    "CreateTemplateAlias": "<p>Creates a template alias for a template.</p> <p>CLI syntax:</p> <p> <code>aws quicksight create-template-alias --aws-account-id 111122223333 --template-id 'reports_test_template' --alias-name PROD —version-number 1</code> </p>",
-    "DeleteDashboard": "<p>Deletes a dashboard.</p> <p>CLI syntax:</p> <p> <code>aws quicksight delete-dashboard --aws-account-id 111122223333 —dashboard-id 123123123</code> </p> <p> <code>aws quicksight delete-dashboard --aws-account-id 111122223333 —dashboard-id 123123123 —version-number 3</code> </p>",
-    "DeleteDataSet": "<p>Deletes a dataset.</p> <p>CLI syntax:</p> <p> <code>aws quicksight delete-data-set \\</code> </p> <p> <code>--aws-account-id=111111111111 \\</code> </p> <p> <code>--data-set-id=unique-data-set-id</code> </p>",
-    "DeleteDataSource": "<p>Deletes the data source permanently. This action breaks all the datasets that reference the deleted data source.</p> <p>CLI syntax:</p> <p> <code>aws quicksight delete-data-source \\</code> </p> <p> <code>--aws-account-id=111122223333 \\</code> </p> <p> <code>--data-source-id=unique-data-source-id </code> </p>",
-    "DeleteGroup": "<p>Removes a user group from Amazon QuickSight. </p> <p>The permissions resource is <code>arn:aws:quicksight:us-east-1:<i>&lt;aws-account-id&gt;</i>:group/default/<i>&lt;group-name&gt;</i> </code>.</p> <p> <b>CLI Sample:</b> </p> <p> <code>aws quicksight delete-group -\\-aws-account-id=111122223333 -\\-namespace=default -\\-group-name=Sales-Management </code> </p>",
-    "DeleteGroupMembership": "<p>Removes a user from a group so that the user is no longer a member of the group.</p> <p>The permissions resource is <code>arn:aws:quicksight:us-east-1:<i>&lt;aws-account-id&gt;</i>:group/default/<i>&lt;group-name&gt;</i> </code>.</p> <p>The condition resource is the user name.</p> <p>The condition key is <code>quicksight:UserName</code>.</p> <p> <b>CLI Sample:</b> </p> <p> <code>aws quicksight delete-group-membership --aws-account-id=111122223333 --namespace=default --group-name=Sales-Management --member-name=Charlie </code> </p>",
-    "DeleteIAMPolicyAssignment": "<p>Deletes an existing assignment.</p> <p>CLI syntax:</p> <p> <code>aws quicksight delete-iam-policy-assignment --aws-account-id=111122223333 --assignment-name=testtest --region=us-east-1 --namespace=default</code> </p>",
-    "DeleteTemplate": "<p>Deletes a template.</p> <p>CLI syntax:</p> <ul> <li> <p> <code>aws quicksight delete-template --aws-account-id 111122223333 —-template-id reports_test_template --version-number 2 </code> </p> </li> <li> <p> <code>aws quicksight delete-template —aws-account-id 111122223333 —template-id reports_test_template —alias-name STAGING </code> </p> </li> <li> <p> <code>aws quicksight delete-template —aws-account-id 111122223333 —template-id reports_test_template —alias-name ‘\\$LATEST’ </code> </p> </li> <li> <p> <code>aws quicksight delete-template --aws-account-id 111122223333 —-template-id reports_test_template</code> </p> </li> </ul> <p>If version number which is an optional field is not passed the template (including all the versions) is deleted by the API, if version number is provided, the specific template version is deleted by the API.</p> <p>Users can explicitly describe the latest version of the template by passing <code>$LATEST</code> to the <code>alias-name</code> parameter. <code>$LATEST</code> is an internally supported alias, which points to the latest version of the template. </p>",
-    "DeleteTemplateAlias": "<p>Update template alias of given template.</p> <p>CLI syntax:</p> <p> <code>aws quicksight delete-template-alias --aws-account-id 111122223333 --template-id 'reports_test_template' --alias-name 'STAGING'</code> </p>",
-    "DeleteUser": "<p>Deletes the Amazon QuickSight user that is associated with the identity of the AWS Identity and Access Management (IAM) user or role that's making the call. The IAM user isn't deleted as a result of this call. </p> <p> <b>CLI Sample:</b> </p> <p> <code>aws quicksight delete-user --aws-account-id=111122223333 --namespace=default --user-name=Pat </code> </p>",
-    "DeleteUserByPrincipalId": "<p>Deletes a user identified by its principal ID. </p> <p> <b>CLI Sample:</b> </p> <p> <code>aws quicksight delete-user-by-principal-id --aws-account-id=111122223333 --namespace=default --principal-id=ABCDEFJA26JLI7EUUOEHS </code> </p>",
-    "DescribeDashboard": "<p>Provides a summary for a dashboard.</p> <p>CLI syntax:</p> <ul> <li> <p> <code>aws quicksight describe-dashboard --aws-account-id 111122223333 —dashboard-id reports_test_report -version-number 2</code> </p> </li> <li> <p> <code> aws quicksight describe-dashboard --aws-account-id 111122223333 —dashboard-id reports_test_report -alias-name ‘$PUBLISHED’ </code> </p> </li> </ul> <p/>",
-    "DescribeDashboardPermissions": "<p>Describes read and write permissions on a dashboard.</p> <p>CLI syntax:</p> <p> <code>aws quicksight describe-dashboard-permissions --aws-account-id 735340738645 —dashboard-id reports_test_bob_report</code> </p>",
-    "DescribeDataSet": "<p>Describes a dataset. </p> <p>CLI syntax:</p> <p> <code>aws quicksight describe-data-set \\</code> </p> <p> <code>--aws-account-id=111111111111 \\</code> </p> <p> <code>--data-set-id=unique-data-set-id</code> </p>",
-    "DescribeDataSetPermissions": "<p>Describes the permissions on a dataset.</p> <p>The permissions resource is <code>arn:aws:quicksight:region:aws-account-id:dataset/data-set-id</code> </p> <p>CLI syntax: </p> <p> <code>aws quicksight describe-data-set-permissions \\</code> </p> <p> <code>--aws-account-id=111122223333 \\</code> </p> <p> <code>--data-set-id=unique-data-set-id \\</code> </p>",
-    "DescribeDataSource": "<p>Describes a data source.</p> <p>The permissions resource is <code>arn:aws:quicksight:region:aws-account-id:datasource/data-source-id</code> </p>",
-    "DescribeDataSourcePermissions": "<p>Describes the resource permissions for a data source.</p> <p>The permissions resource is <code>aws:quicksight:region:aws-account-id:datasource/data-source-id</code> </p>",
-    "DescribeGroup": "<p>Returns an Amazon QuickSight group's description and Amazon Resource Name (ARN). </p> <p>The permissions resource is <code>arn:aws:quicksight:us-east-1:<i>&lt;relevant-aws-account-id&gt;</i>:group/default/<i>&lt;group-name&gt;</i> </code>.</p> <p>The response is the group object. </p> <p> <b>CLI Sample:</b> </p> <p> <code>aws quicksight describe-group -\\-aws-account-id=11112222333 -\\-namespace=default -\\-group-name=Sales </code> </p>",
-    "DescribeIAMPolicyAssignment": "<p>Describes an existing IAMPolicy Assignment by specified assignment name.</p> <p>CLI syntax:</p> <p> <code>aws quicksight describe-iam-policy-assignment --aws-account-id=111122223333 --assignment-name=testtest --namespace=default --region=us-east-1 </code> </p>",
+    "CancelIngestion": "<p>Cancels an ongoing ingestion of data into SPICE.</p>",
+    "CreateDashboard": "<p>Creates a dashboard from a template. To first create a template, see the CreateTemplate API.</p> <p>A dashboard is an entity in QuickSight which identifies Quicksight reports, created from analyses. QuickSight dashboards are sharable. With the right permissions, you can create scheduled email reports from them. The <code>CreateDashboard</code>, <code>DescribeDashboard</code> and <code>ListDashboardsByUser</code> APIs act on the dashboard entity. If you have the correct permissions, you can create a dashboard from a template that exists in a different AWS account.</p>",
+    "CreateDataSet": "<p>Creates a dataset.</p>",
+    "CreateDataSource": "<p>Creates a data source.</p>",
+    "CreateGroup": "<p>Creates an Amazon QuickSight group.</p> <p>The permissions resource is <code>arn:aws:quicksight:us-east-1:<i>&lt;relevant-aws-account-id&gt;</i>:group/default/<i>&lt;group-name&gt;</i> </code>.</p> <p>The response is a group object.</p>",
+    "CreateGroupMembership": "<p>Adds an Amazon QuickSight user to an Amazon QuickSight group. </p>",
+    "CreateIAMPolicyAssignment": "<p>Creates an assignment with one specified IAM policy Amazon Resource Name (ARN) and will assigned to specified groups or users of QuickSight. Users and groups need to be in the same namespace. </p>",
+    "CreateIngestion": "<p>Creates and starts a new SPICE ingestion on a dataset</p> <p>Any ingestions operating on tagged datasets inherit the same tags automatically for use in access control. For an example, see <a href=\"https://aws.example.com/premiumsupport/knowledge-center/iam-ec2-resource-tags/\">How do I create an IAM policy to control access to Amazon EC2 resources using tags?</a> in the AWS Knowledge Center. Tags are visible on the tagged dataset, but not on the ingestion resource.</p>",
+    "CreateTemplate": "<p>Creates a template from an existing QuickSight analysis or template. The resulting template can be used to create a dashboard.</p> <p>A template is an entity in QuickSight which encapsulates the metadata required to create an analysis that can be used to create dashboard. It adds a layer of abstraction by use placeholders to replace the dataset associated with the analysis. You can use templates to create dashboards by replacing dataset placeholders with datasets which follow the same schema that was used to create the source analysis and template.</p>",
+    "CreateTemplateAlias": "<p>Creates a template alias for a template.</p>",
+    "DeleteDashboard": "<p>Deletes a dashboard.</p>",
+    "DeleteDataSet": "<p>Deletes a dataset.</p>",
+    "DeleteDataSource": "<p>Deletes the data source permanently. This action breaks all the datasets that reference the deleted data source.</p>",
+    "DeleteGroup": "<p>Removes a user group from Amazon QuickSight. </p>",
+    "DeleteGroupMembership": "<p>Removes a user from a group so that the user is no longer a member of the group.</p>",
+    "DeleteIAMPolicyAssignment": "<p>Deletes an existing assignment.</p>",
+    "DeleteTemplate": "<p>Deletes a template.</p>",
+    "DeleteTemplateAlias": "<p>Update template alias of given template.</p>",
+    "DeleteUser": "<p>Deletes the Amazon QuickSight user that is associated with the identity of the AWS Identity and Access Management (IAM) user or role that's making the call. The IAM user isn't deleted as a result of this call. </p>",
+    "DeleteUserByPrincipalId": "<p>Deletes a user identified by its principal ID. </p>",
+    "DescribeDashboard": "<p>Provides a summary for a dashboard.</p>",
+    "DescribeDashboardPermissions": "<p>Describes read and write permissions on a dashboard.</p>",
+    "DescribeDataSet": "<p>Describes a dataset. </p>",
+    "DescribeDataSetPermissions": "<p>Describes the permissions on a dataset.</p> <p>The permissions resource is <code>arn:aws:quicksight:region:aws-account-id:dataset/data-set-id</code>.</p>",
+    "DescribeDataSource": "<p>Describes a data source.</p>",
+    "DescribeDataSourcePermissions": "<p>Describes the resource permissions for a data source.</p>",
+    "DescribeGroup": "<p>Returns an Amazon QuickSight group's description and Amazon Resource Name (ARN). </p>",
+    "DescribeIAMPolicyAssignment": "<p>Describes an existing IAMPolicy Assignment by specified assignment name.</p>",
     "DescribeIngestion": "<p>Describes a SPICE ingestion.</p>",
-    "DescribeTemplate": "<p>Describes a template's metadata.</p> <p>CLI syntax:</p> <p> <code>aws quicksight describe-template --aws-account-id 111122223333 --template-id reports_test_template </code> </p> <p> <code>aws quicksight describe-template --aws-account-id 111122223333 --template-id reports_test_template --version-number-2</code> </p> <p> <code>aws quicksight describe-template --aws-account-id 111122223333 --template-id reports_test_template --alias-name '\\$LATEST' </code> </p> <p>Users can explicitly describe the latest version of the dashboard by passing <code>$LATEST</code> to the <code>alias-name</code> parameter. <code>$LATEST</code> is an internally supported alias, which points to the latest version of the dashboard. </p>",
-    "DescribeTemplateAlias": "<p>Describes the template aliases of a template.</p> <p>CLI syntax:</p> <p> <code>aws quicksight describe-template-alias --aws-account-id 111122223333 --template-id 'reports_test_template' --alias-name 'STAGING'</code> </p>",
-    "DescribeTemplatePermissions": "<p>Describes read and write permissions on a template.</p> <p>CLI syntax:</p> <p> <code>aws quicksight describe-template-permissions —aws-account-id 735340738645 —template-id reports_test_template</code> </p>",
-    "DescribeUser": "<p>Returns information about a user, given the user name. </p> <p>The response is a user object that contains the user's Amazon Resource Name (ARN), AWS Identity and Access Management (IAM) role, and email address. </p> <p> <b>CLI Sample:</b> </p> <p> <code>aws quicksight describe-user --aws-account-id=111122223333 --namespace=default --user-name=Pat </code> </p>",
-    "GetDashboardEmbedUrl": "<p>Generates a server-side embeddable URL and authorization code. Before this can work properly, first you need to configure the dashboards and user permissions. For more information, see <a href=\"https://docs.aws.example.com/en_us/quicksight/latest/user/embedding.html\"> Embedding Amazon QuickSight Dashboards</a>.</p> <p>Currently, you can use <code>GetDashboardEmbedURL</code> only from the server, not from the user’s browser.</p> <p> <b>CLI Sample:</b> </p> <p>Assume the role with permissions enabled for actions: <code>quickSight:RegisterUser</code> and <code>quicksight:GetDashboardEmbedURL</code>. You can use assume-role, assume-role-with-web-identity, or assume-role-with-saml. </p> <p> <code>aws sts assume-role --role-arn \"arn:aws:iam::111122223333:role/embedding_quicksight_dashboard_role\" --role-session-name embeddingsession</code> </p> <p>If the user does not exist in QuickSight, register the user:</p> <p> <code>aws quicksight register-user --aws-account-id 111122223333 --namespace default --identity-type IAM --iam-arn \"arn:aws:iam::111122223333:role/embedding_quicksight_dashboard_role\" --user-role READER --session-name \"embeddingsession\" --email user123@example.com --region us-east-1</code> </p> <p>Get the URL for the embedded dashboard (<code>IAM</code> identity authentication):</p> <p> <code>aws quicksight get-dashboard-embed-url --aws-account-id 111122223333 --dashboard-id 1a1ac2b2-3fc3-4b44-5e5d-c6db6778df89 --identity-type IAM</code> </p> <p>Get the URL for the embedded dashboard (<code>QUICKSIGHT</code> identity authentication):</p> <p> <code>aws quicksight get-dashboard-embed-url --aws-account-id 111122223333 --dashboard-id 1a1ac2b2-3fc3-4b44-5e5d-c6db6778df89 --identity-type QUICKSIGHT --user-arn arn:aws:quicksight:us-east-1:111122223333:user/default/embedding_quicksight_dashboard_role/embeddingsession</code> </p>",
-    "ListDashboardVersions": "<p>Lists all the versions of the dashboards in the Quicksight subscription.</p> <p>CLI syntax:</p> <p>aws quicksight list-template-versions —aws-account-id 111122223333 —template-id reports-test-template</p>",
-    "ListDashboards": "<p>Lists dashboards in the AWS account.</p> <p>CLI syntax:</p> <p> <code>aws quicksight list-dashboards --aws-account-id 111122223333 --max-results 5 —next-token 'next-10'</code> </p>",
-    "ListDataSets": "<p>Lists all of the datasets belonging to this account in an AWS region.</p> <p>The permissions resource is <code>arn:aws:quicksight:region:aws-account-id:dataset/*</code> </p> <p>CLI syntax: <code>aws quicksight list-data-sets --aws-account-id=111111111111</code> </p>",
-    "ListDataSources": "<p>Lists data sources in current AWS region that belong to this AWS account.</p> <p>The permissions resource is: <code>arn:aws:quicksight:region:aws-account-id:datasource/*</code> </p> <p>CLI syntax: <code>aws quicksight list-data-sources --aws-account-id=111122223333</code> </p>",
-    "ListGroupMemberships": "<p>Lists member users in a group.</p> <p>The permissions resource is <code>arn:aws:quicksight:us-east-1:<i>&lt;aws-account-id&gt;</i>:group/default/<i>&lt;group-name&gt;</i> </code>.</p> <p>The response is a list of group member objects.</p> <p> <b>CLI Sample:</b> </p> <p> <code>aws quicksight list-group-memberships -\\-aws-account-id=111122223333 -\\-namespace=default </code> </p>",
-    "ListGroups": "<p>Lists all user groups in Amazon QuickSight. </p> <p>The permissions resource is <code>arn:aws:quicksight:us-east-1:<i>&lt;aws-account-id&gt;</i>:group/default/*</code>.</p> <p>The response is a list of group objects. </p> <p> <b>CLI Sample:</b> </p> <p> <code>aws quicksight list-groups -\\-aws-account-id=111122223333 -\\-namespace=default </code> </p>",
-    "ListIAMPolicyAssignments": "<p>Lists assignments in current QuickSight account.</p> <p>CLI syntax:</p> <p> <code>aws quicksight list-iam-policy-assignments --aws-account-id=111122223333 --max-result=5 --assignment-status=ENABLED --namespace=default --region=us-east-1 --next-token=3 </code> </p>",
-    "ListIAMPolicyAssignmentsForUser": "<p>Lists all the assignments and the ARNs for the associated IAM policies assigned to the specified user and the group or groups that the user belongs to.</p> <p>CLI syntax:</p> <p> <code>aws quicksight list-iam-policy-assignments-for-user --aws-account-id=111122223333 --user-name=user5 --namespace=default --max-result=6 --region=us-east-1 </code> </p>",
+    "DescribeTemplate": "<p>Describes a template's metadata.</p>",
+    "DescribeTemplateAlias": "<p>Describes the template aliases of a template.</p>",
+    "DescribeTemplatePermissions": "<p>Describes read and write permissions on a template.</p>",
+    "DescribeUser": "<p>Returns information about a user, given the user name. </p>",
+    "GetDashboardEmbedUrl": "<p>Generates a server-side embeddable URL and authorization code. Before this can work properly, first you need to configure the dashboards and user permissions. For more information, see the Amazon QuickSight User Guide section on <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/embedding-dashboards.html\">Embedding Amazon QuickSight Dashboards</a> or see the Amazon QuickSight API Reference section on <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/qs-dev-embedded-dashboards.html\">Embedding Amazon QuickSight Dashboards</a> .</p> <p>Currently, you can use <code>GetDashboardEmbedURL</code> only from the server, not from the user’s browser.</p>",
+    "ListDashboardVersions": "<p>Lists all the versions of the dashboards in the Quicksight subscription.</p>",
+    "ListDashboards": "<p>Lists dashboards in the AWS account.</p>",
+    "ListDataSets": "<p>Lists all of the datasets belonging to this account in an AWS region.</p> <p>The permissions resource is <code>arn:aws:quicksight:region:aws-account-id:dataset/*</code>.</p>",
+    "ListDataSources": "<p>Lists data sources in current AWS Region that belong to this AWS account.</p>",
+    "ListGroupMemberships": "<p>Lists member users in a group.</p>",
+    "ListGroups": "<p>Lists all user groups in Amazon QuickSight. </p>",
+    "ListIAMPolicyAssignments": "<p>Lists assignments in current QuickSight account.</p>",
+    "ListIAMPolicyAssignmentsForUser": "<p>Lists all the assignments and the Amazon Resource Names (ARNs) for the associated IAM policies assigned to the specified user and the group or groups that the user belongs to.</p>",
     "ListIngestions": "<p>Lists the history of SPICE ingestions for a dataset.</p>",
-    "ListTagsForResource": "<p>Lists the tags assigned to a resource.</p> <p>CLI syntax:</p> <ul> <li> <p> <code>aws quicksight list-tags-for-resource --resource-arn arn:aws:quicksight:us-east-1:111111111111:dataset/dataset1 --region us-east-1</code> </p> </li> </ul>",
-    "ListTemplateAliases": "<p>Lists all the aliases of a template.</p> <p>CLI syntax:</p> <p> <code>aws quicksight list-template-aliases --aws-account-id 111122223333 —template-id 'reports_test_template'</code> </p>",
-    "ListTemplateVersions": "<p>Lists all the versions of the templates in the Quicksight account.</p> <p>CLI syntax:</p> <p>aws quicksight list-template-versions --aws-account-id 111122223333 --aws-account-id 196359894473 --template-id reports-test-template</p>",
-    "ListTemplates": "<p>Lists all the templates in the QuickSight account.</p> <p>CLI syntax:</p> <p> <code>aws quicksight list-templates --aws-account-id 111122223333 --max-results 1 —next-token AYADeJuxwOypAndSoOn</code> </p>",
-    "ListUserGroups": "<p>Lists the Amazon QuickSight groups that an Amazon QuickSight user is a member of.</p> <p>The response is a one or more group objects. </p> <p> <b>CLI Sample:</b> </p> <p> <code>aws quicksight list-user-groups -\\-user-name=Pat -\\-aws-account-id=111122223333 -\\-namespace=default -\\-region=us-east-1 </code> </p>",
-    "ListUsers": "<p>Returns a list of all of the Amazon QuickSight users belonging to this account. </p> <p>The response is a list of user objects, containing each user's Amazon Resource Name (ARN), AWS Identity and Access Management (IAM) role, and email address. </p> <p> <b>CLI Sample:</b> </p> <p> <code>aws quicksight list-users --aws-account-id=111122223333 --namespace=default </code> </p>",
-    "RegisterUser": "<p>Creates an Amazon QuickSight user, whose identity is associated with the AWS Identity and Access Management (IAM) identity or role specified in the request. </p> <p> <b>CLI Sample:</b> </p> <p> <code>aws quicksight register-user -\\-aws-account-id=111122223333 -\\-namespace=default -\\-email=pat@example.com -\\-identity-type=IAM -\\-user-role=AUTHOR -\\-iam-arn=arn:aws:iam::111122223333:user/Pat </code> </p>",
-    "TagResource": "<p>Assigns a tag or tags to a resource.</p> <p>Assigns one or more tags (key-value pairs) to the specified QuickSight resource. Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values. You can use the TagResource action with a resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p> <p>You can associate as many as 50 tags with a resource. QuickSight supports tagging on data-set, data-source, dashboard, template. </p> <p>Tagging for QuickSight works in a similar was to tagging for other AWS services, except for the following:</p> <ul> <li> <p>You can't use tags to track AWS costs for QuickSight, because QuickSight costs are based on users and SPICE capacity, which aren't taggable resources.</p> </li> <li> <p>QuickSight doesn't currently support the Tag Editor for AWS Resource Groups.</p> </li> </ul> <p>CLI syntax to tag a resource:</p> <ul> <li> <p> <code>aws quicksight tag-resource --resource-arn arn:aws:quicksight:us-east-1:111111111111:dataset/dataset1 --tags Key=K1,Value=V1 Key=K2,Value=V2 --region us-east-1</code> </p> </li> </ul>",
-    "UntagResource": "<p>Removes a tag or tags from a resource.</p> <p>CLI syntax:</p> <ul> <li> <p> <code>aws quicksight untag-resource --resource-arn arn:aws:quicksight:us-east-1:111111111111:dataset/dataset1 --tag-keys K1 K2 --region us-east-1</code> </p> </li> </ul>",
-    "UpdateDashboard": "<p>Updates a dashboard in the AWS account.</p> <p>CLI syntax:</p> <p> <code>aws quicksight update-dashboard --aws-account-id 111122223333 --dashboard-id 123123123 --dashboard-name \"test-update102\" --source-entity SourceTemplate={Arn=arn:aws:quicksight:us-west-2:111122223333:template/sales-report-template2} --data-set-references DataSetPlaceholder=SalesDataSet,DataSetArn=arn:aws:quicksight:us-west-2:111122223333:dataset/0e251aef-9ebf-46e1-b852-eb4fa33c1d3a</code> </p> <p> <code>aws quicksight update-dashboard --cli-input-json file://update-dashboard.json </code> </p>",
-    "UpdateDashboardPermissions": "<p>Updates read and write permissions on a dashboard.</p> <p>CLI syntax:</p> <p> <code>aws quicksight update-dashboard-permissions —cli-input-json file://update-permission.json</code> </p> <p>A sample update-permissions.json for granting read only permissions:</p> <p> <code>{ \"AwsAccountId\": \"111122223333\", \"DashboardId\": \"reports_test_report\", \"GrantPermissions\": [ { \"Principal\": \"arn:aws:quicksight:us-east-1:111122223333:user/default/user2\", \"Actions\": [ \"quicksight:DescribeDashboard\", \"quicksight:ListDashboardVersions\", \"quicksight:DescribeDashboardVersion\", \"quicksight:QueryDashboard\" ] } ] }</code> </p> <p>A sample update-permissions.json for granting read and write permissions:</p> <p> <code>{ \"AwsAccountId\": \"111122223333\", \"DashboardId\": \"reports_test_report\", \"GrantPermissions\": [ { \"Principal\": \"arn:aws:quicksight:us-east-1:111122223333:user/default/user2\", \"Actions\": [ \"quicksight:DescribeDashboard\", \"quicksight:ListDashboardVersions\", \"quicksight:DescribeDashboardVersion\", \"quicksight:QueryDashboard\", \"quicksight:DescribeDashboardPermissions\", \"quicksight:UpdateDashboardPermissions\", \"quicksight:DeleteDashboardVersion\", \"quicksight:DeleteDashboard\", \"quicksight:UpdateDashboard\", \"quicksight:UpdateDashboardPublishedVersion\", ] } ] }</code> </p> <p>A sample update-permissions.json for revoking write permissions:</p> <p> <code>{ \"AwsAccountId\": \"111122223333\", \"DashboardId\": \"reports_test_report\", \"RevokePermissions\": [ { \"Principal\": \"arn:aws:quicksight:us-east-1:111122223333:user/default/user2\", \"Actions\": [ \"quicksight:DescribeDashboardPermissions\", \"quicksight:UpdateDashboardPermissions\", \"quicksight:DeleteDashboardVersion\", \"quicksight:DeleteDashboard\", \"quicksight:UpdateDashboard\", \"quicksight:UpdateDashboardPublishedVersion\", ] } ] }</code> </p> <p>A sample update-permissions.json for revoking read and write permissions:</p> <p> <code>{ \"AwsAccountId\": \"111122223333\", \"DashboardId\": \"reports_test_report\", \"RevokePermissions\": [ { \"Principal\": \"arn:aws:quicksight:us-east-1:111122223333:user/default/user2\", \"Actions\": [ \"quicksight:DescribeDashboard\", \"quicksight:ListDashboardVersions\", \"quicksight:DescribeDashboardVersion\", \"quicksight:QueryDashboard\", \"quicksight:DescribeDashboardPermissions\", \"quicksight:UpdateDashboardPermissions\", \"quicksight:DeleteDashboardVersion\", \"quicksight:DeleteDashboard\", \"quicksight:UpdateDashboard\", \"quicksight:UpdateDashboardPublishedVersion\", ] } ] }</code> </p> <p>To obtain the principal name of a QuickSight user or group, you can use describe-group or describe-user. For example:</p> <p> <code>aws quicksight describe-user --aws-account-id 111122223333 --namespace default --user-name user2 --region us-east-1 { \"User\": { \"Arn\": \"arn:aws:quicksight:us-east-1:111122223333:user/default/user2\", \"Active\": true, \"Email\": \"user2@example.com\", \"Role\": \"ADMIN\", \"UserName\": \"user2\", \"PrincipalId\": \"federated/iam/abcd2abcdabcdeabc5ab5\" }, \"RequestId\": \"8f74bb31-6291-448a-a71c-a765a44bae31\", \"Status\": 200 }</code> </p>",
-    "UpdateDashboardPublishedVersion": "<p>Updates the published version of a dashboard.</p> <p>CLI syntax:</p> <p> <code>aws quicksight update-dashboard-published-version --aws-account-id 111122223333 --dashboard-id dashboard-w1 ---version-number 2</code> </p>",
-    "UpdateDataSet": "<p>Updates a dataset.</p> <p>CLI syntax:</p> <p> <code>aws quicksight update-data-set \\</code> </p> <p> <code>--aws-account-id=111122223333 \\</code> </p> <p> <code>--data-set-id=unique-data-set-id \\</code> </p> <p> <code>--name='My dataset' \\</code> </p> <p> <code>--import-mode=SPICE \\</code> </p> <p> <code>--physical-table-map='{</code> </p> <p> <code> \"physical-table-id\": {</code> </p> <p> <code> \"RelationalTable\": {</code> </p> <p> <code> \"DataSourceArn\": \"arn:aws:quicksight:us-west-2:111111111111:datasource/data-source-id\",</code> </p> <p> <code> \"Name\": \"table1\",</code> </p> <p> <code> \"InputColumns\": [</code> </p> <p> <code> {</code> </p> <p> <code> \"Name\": \"column1\",</code> </p> <p> <code> \"Type\": \"STRING\"</code> </p> <p> <code> }</code> </p> <p> <code> ]</code> </p> <p> <code> }</code> </p> <p> <code> }'</code> </p>",
-    "UpdateDataSetPermissions": "<p>Updates the permissions on a dataset.</p> <p>The permissions resource is <code>arn:aws:quicksight:region:aws-account-id:dataset/data-set-id</code> </p> <p>CLI syntax: </p> <p> <code>aws quicksight update-data-set-permissions \\</code> </p> <p> <code>--aws-account-id=111122223333 \\</code> </p> <p> <code>--data-set-id=unique-data-set-id \\</code> </p> <p> <code>--grant-permissions='[{\"Principal\":\"arn:aws:quicksight:us-east-1:111122223333:user/default/user1\",\"Actions\":[\"quicksight:DescribeDataSet\",\"quicksight:DescribeDataSetPermissions\",\"quicksight:PassDataSet\",\"quicksight:ListIngestions\",\"quicksight:DescribeIngestion\"]}]' \\</code> </p> <p> <code>--revoke-permissions='[{\"Principal\":\"arn:aws:quicksight:us-east-1:111122223333:user/default/user2\",\"Actions\":[\"quicksight:UpdateDataSet\",\"quicksight:DeleteDataSet\",\"quicksight:UpdateDataSetPermissions\",\"quicksight:CreateIngestion\",\"quicksight:CancelIngestion\"]}]'</code> </p>",
-    "UpdateDataSource": "<p>Updates a data source.</p> <p>The permissions resource is <code>arn:aws:quicksight:region:aws-account-id:datasource/data-source-id</code> </p> <p>CLI syntax:</p> <p> <code>aws quicksight update-data-source \\</code> </p> <p> <code>--aws-account-id=111122223333 \\</code> </p> <p> <code>--data-source-id=unique-data-source-id \\</code> </p> <p> <code>--name='My Data Source' \\</code> </p> <p> <code>--data-source-parameters='{\"PostgreSqlParameters\":{\"Host\":\"my-db-host.example.com\",\"Port\":1234,\"Database\":\"my-db\"}}' \\</code> </p> <p> <code>--credentials='{\"CredentialPair\":{\"Username\":\"username\",\"Password\":\"password\"}}</code> </p>",
-    "UpdateDataSourcePermissions": "<p>Updates the permissions to a data source.</p> <p>The permissions resource is <code>arn:aws:quicksight:region:aws-account-id:datasource/data-source-id</code> </p> <p>CLI syntax:</p> <p> <code>aws quicksight update-data-source-permissions \\</code> </p> <p> <code>--aws-account-id=111122223333 \\</code> </p> <p> <code>--data-source-id=unique-data-source-id \\</code> </p> <p> <code>--name='My Data Source' \\</code> </p> <p> <code>--grant-permissions='[{\"Principal\":\"arn:aws:quicksight:us-east-1:111122223333:user/default/user1\",\"Actions\":[\"quicksight:DescribeDataSource\",\"quicksight:DescribeDataSourcePermissions\",\"quicksight:PassDataSource\"]}]' \\</code> </p> <p> <code>--revoke-permissions='[{\"Principal\":\"arn:aws:quicksight:us-east-1:111122223333:user/default/user2\",\"Actions\":[\"quicksight:UpdateDataSource\",\"quicksight:DeleteDataSource\",\"quicksight:UpdateDataSourcePermissions\"]}]'</code> </p>",
-    "UpdateGroup": "<p>Changes a group description. </p> <p>The permissions resource is <code>arn:aws:quicksight:us-east-1:<i>&lt;aws-account-id&gt;</i>:group/default/<i>&lt;group-name&gt;</i> </code>.</p> <p>The response is a group object.</p> <p> <b>CLI Sample:</b> </p> <p> <code>aws quicksight update-group --aws-account-id=111122223333 --namespace=default --group-name=Sales --description=\"Sales BI Dashboards\" </code> </p>",
-    "UpdateIAMPolicyAssignment": "<p>Updates an existing assignment. This operation updates only the optional parameter or parameters that are specified in the request.</p> <p>CLI syntax:</p> <p> <code/>aws quicksight update-iam-policy-assignment --aws-account-id=111122223333 --assignment-name=FullAccessAssignment --assignment-status=DRAFT --policy-arns=arn:aws:iam::aws:policy/AdministratorAccess --identities=\"user=user-1,user-2,group=admin\" --namespace=default --region=us-east-1</p>",
-    "UpdateTemplate": "<p>Updates a template from an existing QuickSight analysis.</p> <p>CLI syntax:</p> <p> <code>aws quicksight update-template --aws-account-id 111122223333 --template-id reports_test_template --data-set-references DataSetPlaceholder=reports,DataSetArn=arn:aws:quicksight:us-west-2:111122223333:dataset/c684a204-d134-4c53-a63c-451f72c60c28 DataSetPlaceholder=Elblogs,DataSetArn=arn:aws:quicksight:us-west-2:111122223333:dataset/15840b7d-b542-4491-937b-602416b367b3 —source-entity SourceAnalysis=’{Arn=arn:aws:quicksight:us-west-2:111122223333:analysis/c5731fe9-4708-4598-8f6d-cf2a70875b6d}</code> </p> <p>You can also pass in a json file: <code>aws quicksight update-template —cli-input-json file://create-template.json</code> </p>",
-    "UpdateTemplateAlias": "<p>Updates the template alias of a template.</p> <p>CLI syntax:</p> <p> <code>aws quicksight update-template-alias --aws-account-id 111122223333 --template-id 'reports_test_template' --alias-name STAGING —template-version-number 2 </code> </p>",
-    "UpdateTemplatePermissions": "<p>Updates the permissions on a template.</p> <p>CLI syntax:</p> <ul> <li> <p> <code>aws quicksight describe-template-permissions —aws-account-id 111122223333 —template-id reports_test_template</code> </p> </li> <li> <p> <code>aws quicksight update-template-permissions —cli-input-json file://update-permission.json </code> </p> </li> <li> <p>The structure of <code>update-permissions.json</code> to add permissions:</p> <p> <code>{ \"AwsAccountId\": \"111122223333\",</code> </p> <p> <code> \"DashboardId\": \"reports_test_template\",</code> </p> <p> <code> \"GrantPermissions\": [</code> </p> <p> <code> { \"Principal\": \"arn:aws:quicksight:us-east-1:196359894473:user/default/user3\",</code> </p> <p> <code> \"Actions\": [</code> </p> <p> <code> \"quicksight:DescribeTemplate\",</code> </p> <p> <code> \"quicksight:ListTemplateVersions\"</code> </p> <p> <code> ] } ] }</code> </p> <p>The structure of <code>update-permissions.json</code> to add permissions:</p> <p> <code>{ \"AwsAccountId\": \"111122223333\",</code> </p> <p> <code> \"DashboardId\": \"reports_test_template\",</code> </p> <p> <code> \"RevokePermissions\": [</code> </p> <p> <code> { \"Principal\": \"arn:aws:quicksight:us-east-1:196359894473:user/default/user3\",</code> </p> <p> <code> \"Actions\": [</code> </p> <p> <code> \"quicksight:DescribeTemplate\",</code> </p> <p> <code> \"quicksight:ListTemplateVersions\"</code> </p> <p> <code> ] } ] }</code> </p> <p>To obtain the principal name of a QuickSight group or user, use user describe-group or describe-user. For example:</p> <p> <code>aws quicksight describe-user </code> </p> <p> <code>--aws-account-id 111122223333</code> </p> <p> <code>--namespace default</code> </p> <p> <code>--user-name user2 </code> </p> <p> <code>--region us-east-1</code> </p> <p> <code>{</code> </p> <p> <code> \"User\": {</code> </p> <p> <code> \"Arn\": \"arn:aws:quicksight:us-east-1:111122223333:user/default/user2\",</code> </p> <p> <code> \"Active\": true,</code> </p> <p> <code> \"Email\": \"user2@example.com\",</code> </p> <p> <code> \"Role\": \"ADMIN\",</code> </p> <p> <code> \"UserName\": \"user2\",</code> </p> <p> <code> \"PrincipalId\": \"federated/iam/abcd2abcdabcdeabc5ab5\"</code> </p> <p> <code> },</code> </p> <p> <code> \"RequestId\": \"8f74bb31-6291-448a-a71c-a765a44bae31\",</code> </p> <p> <code> \"Status\": 200</code> </p> <p> <code>}</code> </p> </li> </ul>",
-    "UpdateUser": "<p>Updates an Amazon QuickSight user.</p> <p>The response is a user object that contains the user's Amazon QuickSight user name, email address, active or inactive status in Amazon QuickSight, Amazon QuickSight role, and Amazon Resource Name (ARN). </p> <p> <b>CLI Sample:</b> </p> <p> <code>aws quicksight update-user --user-name=Pat --role=ADMIN --email=new_address@example.com --aws-account-id=111122223333 --namespace=default --region=us-east-1 </code> </p>"
+    "ListTagsForResource": "<p>Lists the tags assigned to a resource.</p>",
+    "ListTemplateAliases": "<p>Lists all the aliases of a template.</p>",
+    "ListTemplateVersions": "<p>Lists all the versions of the templates in the Quicksight account.</p>",
+    "ListTemplates": "<p>Lists all the templates in the QuickSight account.</p>",
+    "ListUserGroups": "<p>Lists the Amazon QuickSight groups that an Amazon QuickSight user is a member of.</p>",
+    "ListUsers": "<p>Returns a list of all of the Amazon QuickSight users belonging to this account. </p>",
+    "RegisterUser": "<p>Creates an Amazon QuickSight user, whose identity is associated with the AWS Identity and Access Management (IAM) identity or role specified in the request. </p>",
+    "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified QuickSight resource. </p> <p>Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values. You can use the <code>TagResource</code> operation with a resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p> <p>You can associate as many as 50 tags with a resource. QuickSight supports tagging on data set, data source, dashboard, and template. </p> <p>Tagging for QuickSight works in a similar way to tagging for other AWS services, except for the following:</p> <ul> <li> <p>You can't use tags to track AWS costs for QuickSight. This restriction is because QuickSight costs are based on users and SPICE capacity, which aren't taggable resources.</p> </li> <li> <p>QuickSight doesn't currently support the Tag Editor for AWS Resource Groups.</p> </li> </ul>",
+    "UntagResource": "<p>Removes a tag or tags from a resource.</p>",
+    "UpdateDashboard": "<p>Updates a dashboard in the AWS account.</p>",
+    "UpdateDashboardPermissions": "<p>Updates read and write permissions on a dashboard.</p>",
+    "UpdateDashboardPublishedVersion": "<p>Updates the published version of a dashboard.</p>",
+    "UpdateDataSet": "<p>Updates a dataset.</p>",
+    "UpdateDataSetPermissions": "<p>Updates the permissions on a dataset.</p> <p>The permissions resource is <code>arn:aws:quicksight:region:aws-account-id:dataset/data-set-id</code>.</p>",
+    "UpdateDataSource": "<p>Updates a data source.</p>",
+    "UpdateDataSourcePermissions": "<p>Updates the permissions to a data source.</p>",
+    "UpdateGroup": "<p>Changes a group description. </p>",
+    "UpdateIAMPolicyAssignment": "<p>Updates an existing assignment. This operation updates only the optional parameter or parameters that are specified in the request.</p>",
+    "UpdateTemplate": "<p>Updates a template from an existing QuickSight analysis.</p>",
+    "UpdateTemplateAlias": "<p>Updates the template alias of a template.</p>",
+    "UpdateTemplatePermissions": "<p>Updates the permissions on a template.</p>",
+    "UpdateUser": "<p>Updates an Amazon QuickSight user.</p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -81,7 +81,7 @@
       }
     },
     "ActiveIAMPolicyAssignment": {
-      "base": "<p>The active IAM policy assignment.</p>",
+      "base": "<p>The active AWS Identity and Access Management (IAM) policy assignment.</p>",
       "refs": {
         "ActiveIAMPolicyAssignmentList$member": null
       }
@@ -93,7 +93,7 @@
       }
     },
     "AdHocFilteringOption": {
-      "base": "<p>Ad hoc filtering option.</p>",
+      "base": "<p>Ad hoc (one-time) filtering option.</p>",
       "refs": {
         "DashboardPublishOptions$AdHocFilteringOption": "<p>Ad hoc filtering option.</p>"
       }
@@ -101,18 +101,18 @@
     "AliasName": {
       "base": null,
       "refs": {
-        "CreateTemplateAliasRequest$AliasName": "<p>The name you want to give the template's alias. Alias names can't begin with a <code>$</code>, which is reserved by QuickSight. Alias names that start with ‘$’ sign are QuickSight reserved naming and can't be deleted. </p>",
-        "DeleteTemplateAliasRequest$AliasName": "<p>The alias of the template. If alias-name is provided, the version that the alias-name points to is deleted. Alias names that start with <code>$</code> are reserved by QuickSight and can't be deleted.”</p>",
+        "CreateTemplateAliasRequest$AliasName": "<p>The name that you want to give to the template alias that you're creating. Aliases that start with <code>$</code> are reserved by QuickSight. </p>",
+        "DeleteTemplateAliasRequest$AliasName": "<p>The alias of the template that you want to delete. If you provide a specific alias, you delete the version that the alias points to. You can specify the latest version of the template by providing the keyword <code>$LATEST</code> in the <code>AliasName</code> parameter. </p>",
         "DeleteTemplateAliasResponse$AliasName": "<p>The name of the alias.</p>",
         "DescribeDashboardRequest$AliasName": "<p>The alias name.</p>",
-        "DescribeTemplateAliasRequest$AliasName": "<p>The alias name. <code>$PUBLISHED</code> is not supported for template.</p>",
-        "DescribeTemplateRequest$AliasName": "<p>This is an optional field, when an alias name is provided, the version referenced by the alias is described. Refer to <code>CreateTemplateAlias</code> to create a template alias. <code>$PUBLISHED</code> is not supported for template.</p>",
+        "DescribeTemplateAliasRequest$AliasName": "<p>The alias of the template that you want to describe. If you provide a specific alias, you describe the version that the alias points to. You can specify the latest version of the template by providing the keyword <code>$LATEST</code> in the <code>AliasName</code> parameter. The keyword <code>$PUBLISHED</code> doesn't apply to templates.</p>",
+        "DescribeTemplateRequest$AliasName": "<p>The alias of the template that you want to describe. If you provide a specific alias, you describe the version that the alias points to. You can specify the latest version of the template by providing the keyword <code>$LATEST</code> in the <code>AliasName</code> parameter. The keyword <code>$PUBLISHED</code> doesn't apply to templates.</p>",
         "TemplateAlias$AliasName": "<p>The display name of the template alias.</p>",
-        "UpdateTemplateAliasRequest$AliasName": "<p>The alias name.</p>"
+        "UpdateTemplateAliasRequest$AliasName": "<p>The alias of the template that you want to update. If you provide a specific alias, you update the version that the alias points to. You can specify the latest version of the template by providing the keyword <code>$LATEST</code> in the <code>AliasName</code> parameter. The keyword <code>$PUBLISHED</code> doesn't apply to templates.</p>"
       }
     },
     "AmazonElasticsearchParameters": {
-      "base": "<p>Amazon Elasticsearch parameters.</p>",
+      "base": "<p>Amazon Elasticsearch Service parameters.</p>",
       "refs": {
         "DataSourceParameters$AmazonElasticsearchParameters": "<p>Amazon Elasticsearch parameters.</p>"
       }
@@ -120,19 +120,19 @@
     "Arn": {
       "base": null,
       "refs": {
-        "ActiveIAMPolicyAssignment$PolicyArn": "<p>The ARN of the resource.</p>",
+        "ActiveIAMPolicyAssignment$PolicyArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "CancelIngestionResponse$Arn": "<p>The Amazon Resource Name (ARN) for the data ingestion.</p>",
-        "CreateDashboardResponse$Arn": "<p>The ARN of the dashboard.</p>",
+        "CreateDashboardResponse$Arn": "<p>The Amazon Resource Name (ARN) of the dashboard.</p>",
         "CreateDashboardResponse$VersionArn": "<p>The ARN of the dashboard, including the version number of the first version that is created.</p>",
-        "CreateDataSetResponse$Arn": "<p>The ARN of the dataset.</p>",
-        "CreateDataSetResponse$IngestionArn": "<p>The Amazon Resource Name (ARN) for the ingestion, which is triggered as a result of dataset creation if the import mode is SPICE</p>",
-        "CreateDataSourceResponse$Arn": "<p>The ARN of the data source.</p>",
-        "CreateIAMPolicyAssignmentRequest$PolicyArn": "<p>An IAM policy ARN that you want to apply to the QuickSight users and groups specified in this assignment.</p>",
-        "CreateIAMPolicyAssignmentResponse$PolicyArn": "<p>An IAM policy ARN that is applied to the QuickSight users and groups specified in this assignment.</p>",
+        "CreateDataSetResponse$Arn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
+        "CreateDataSetResponse$IngestionArn": "<p>The ARN for the ingestion, which is triggered as a result of dataset creation if the import mode is SPICE</p>",
+        "CreateDataSourceResponse$Arn": "<p>The Amazon Resource Name (ARN) of the data source.</p>",
+        "CreateIAMPolicyAssignmentRequest$PolicyArn": "<p>An IAM policy Amazon Resource Name (ARN) that you want to apply to the QuickSight users and groups specified in this assignment.</p>",
+        "CreateIAMPolicyAssignmentResponse$PolicyArn": "<p>An IAM policy Amazon Resource Name (ARN) that is applied to the QuickSight users and groups specified in this assignment.</p>",
         "CreateIngestionResponse$Arn": "<p>The Amazon Resource Name (ARN) for the data ingestion.</p>",
         "CreateTemplateResponse$Arn": "<p>The Amazon Resource Name (ARN) for the template.</p>",
-        "CreateTemplateResponse$VersionArn": "<p>The Amazon Resource Name (ARN) for the template, including the version information of the first version.</p>",
-        "CustomSql$DataSourceArn": "<p>The ARN of the data source.</p>",
+        "CreateTemplateResponse$VersionArn": "<p>The ARN for the template, including the version information of the first version.</p>",
+        "CustomSql$DataSourceArn": "<p>The Amazon Resource Name (ARN) of the data source.</p>",
         "Dashboard$Arn": "<p>The Amazon Resource name (ARN) of the resource.</p>",
         "DashboardSourceTemplate$Arn": "<p>The Amazon Resource name (ARN) of the resource.</p>",
         "DashboardSummary$Arn": "<p>The Amazon Resource name (ARN) of the resource.</p>",
@@ -144,49 +144,49 @@
         "DataSetReference$DataSetArn": "<p>Dataset ARN.</p>",
         "DataSetSummary$Arn": "<p>The Amazon Resource name (ARN) of the dataset.</p>",
         "DataSource$Arn": "<p>The Amazon Resource name (ARN) of the data source.</p>",
-        "DeleteDashboardResponse$Arn": "<p>The ARN of the resource.</p>",
-        "DeleteDataSetResponse$Arn": "<p>The ARN of the dataset.</p>",
-        "DeleteDataSourceResponse$Arn": "<p>The ARN of the data source you deleted.</p>",
-        "DeleteTemplateAliasResponse$Arn": "<p>The ARN of the resource.</p>",
-        "DeleteTemplateResponse$Arn": "<p>The ARN of the resource.</p>",
-        "DescribeDashboardPermissionsResponse$DashboardArn": "<p>The ARN of the dashboard.</p>",
-        "DescribeDataSetPermissionsResponse$DataSetArn": "<p>The ARN of the dataset.</p>",
-        "DescribeDataSourcePermissionsResponse$DataSourceArn": "<p>The ARN of the data source.</p>",
-        "DescribeTemplatePermissionsResponse$TemplateArn": "<p>The ARN of the template.</p>",
-        "GetDashboardEmbedUrlRequest$UserArn": "<p>The Amazon QuickSight user's ARN, for use with <code>QUICKSIGHT</code> identity type. You can use this for any Amazon QuickSight users in your account (readers, authors, or admins) authenticated as one of the following:</p> <ul> <li> <p>Active Directory (AD) users or group members</p> </li> <li> <p>Invited non-federated users</p> </li> <li> <p>IAM users and IAM role-based sessions authenticated through Federated Single Sign-On using SAML, OpenID Connect, or IAM Federation</p> </li> </ul>",
+        "DeleteDashboardResponse$Arn": "<p>The Secure Socket Layer (SSL) properties that apply. of the resource.</p>",
+        "DeleteDataSetResponse$Arn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
+        "DeleteDataSourceResponse$Arn": "<p>The Amazon Resource Name (ARN) of the data source that you deleted.</p>",
+        "DeleteTemplateAliasResponse$Arn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "DeleteTemplateResponse$Arn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "DescribeDashboardPermissionsResponse$DashboardArn": "<p>The Amazon Resource Name (ARN) of the dashboard.</p>",
+        "DescribeDataSetPermissionsResponse$DataSetArn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
+        "DescribeDataSourcePermissionsResponse$DataSourceArn": "<p>The Amazon Resource Name (ARN) of the data source.</p>",
+        "DescribeTemplatePermissionsResponse$TemplateArn": "<p>The Amazon Resource Name (ARN) of the template.</p>",
+        "GetDashboardEmbedUrlRequest$UserArn": "<p>The Amazon QuickSight user's Amazon Resource Name (ARN), for use with <code>QUICKSIGHT</code> identity type. You can use this for any Amazon QuickSight users in your account (readers, authors, or admins) authenticated as one of the following:</p> <ul> <li> <p>Active Directory (AD) users or group members</p> </li> <li> <p>Invited non-federated users</p> </li> <li> <p>IAM users and IAM role-based sessions authenticated through Federated Single Sign-On using SAML, OpenID Connect, or IAM Federation</p> </li> </ul>",
         "Group$Arn": "<p>The Amazon Resource name (ARN) for the group.</p>",
         "GroupMember$Arn": "<p>The Amazon Resource name (ARN) for the group member (user).</p>",
-        "IAMPolicyAssignment$PolicyArn": "<p>Policy ARN.</p>",
+        "IAMPolicyAssignment$PolicyArn": "<p>Policy Amazon Resource Name (ARN).</p>",
         "Ingestion$Arn": "<p>The Amazon Resource name (ARN) of the resource.</p>",
-        "ListTagsForResourceRequest$ResourceArn": "<p>The ARN of the resource you want a list of tags for.</p>",
-        "RelationalTable$DataSourceArn": "<p>Data source ARN.</p>",
+        "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource that you want a list of tags for.</p>",
+        "RelationalTable$DataSourceArn": "<p>The Amazon Resource Name (ARN) for the data source.</p>",
         "RowLevelPermissionDataSet$Arn": "<p>The Amazon Resource name (ARN) of the permission dataset.</p>",
         "S3Source$DataSourceArn": "<p>Data source ARN.</p>",
-        "TagResourceRequest$ResourceArn": "<p>The ARN of the resource you want to tag.</p>",
-        "Template$Arn": "<p>The ARN of the template.</p>",
+        "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource that you want to tag.</p>",
+        "Template$Arn": "<p>The Amazon Resource Name (ARN) of the template.</p>",
         "TemplateAlias$Arn": "<p>The ARN of the template alias.</p>",
         "TemplateSourceAnalysis$Arn": "<p>The Amazon Resource name (ARN) of the resource.</p>",
         "TemplateSourceTemplate$Arn": "<p>The Amazon Resource name (ARN) of the resource.</p>",
         "TemplateSummary$Arn": "<p>A summary of a template.</p>",
-        "TemplateVersion$SourceEntityArn": "<p>The ARN of the analysis or template which was used to create this template.</p>",
+        "TemplateVersion$SourceEntityArn": "<p>The Amazon Resource Name (ARN) of the analysis or template which was used to create this template.</p>",
         "TemplateVersionSummary$Arn": "<p>The ARN of the template version.</p>",
-        "UntagResourceRequest$ResourceArn": "<p>The ARN of the resource you to untag.</p>",
-        "UpdateDashboardPermissionsResponse$DashboardArn": "<p>The ARN of the dashboard.</p>",
-        "UpdateDashboardPublishedVersionResponse$DashboardArn": "<p>The ARN of the dashboard.</p>",
-        "UpdateDashboardResponse$Arn": "<p>The ARN of the resource.</p>",
+        "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource that you want to untag.</p>",
+        "UpdateDashboardPermissionsResponse$DashboardArn": "<p>The Amazon Resource Name (ARN) of the dashboard.</p>",
+        "UpdateDashboardPublishedVersionResponse$DashboardArn": "<p>The Amazon Resource Name (ARN) of the dashboard.</p>",
+        "UpdateDashboardResponse$Arn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "UpdateDashboardResponse$VersionArn": "<p>The ARN of the dashboard, including the version number.</p>",
-        "UpdateDataSetPermissionsResponse$DataSetArn": "<p>The ARN of the dataset.</p>",
-        "UpdateDataSetResponse$Arn": "<p>The ARN of the dataset.</p>",
-        "UpdateDataSetResponse$IngestionArn": "<p>The Amazon Resource Name (ARN) for the ingestion, which is triggered as a result of dataset creation if the import mode is SPICE</p>",
-        "UpdateDataSourcePermissionsResponse$DataSourceArn": "<p>The ARN of the data source.</p>",
-        "UpdateDataSourceResponse$Arn": "<p>The ARN of the data source.</p>",
-        "UpdateIAMPolicyAssignmentRequest$PolicyArn": "<p>An IAM policy ARN that will be applied to specified QuickSight users and groups in this assignment.</p>",
+        "UpdateDataSetPermissionsResponse$DataSetArn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
+        "UpdateDataSetResponse$Arn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
+        "UpdateDataSetResponse$IngestionArn": "<p>The ARN for the ingestion, which is triggered as a result of dataset creation if the import mode is SPICE</p>",
+        "UpdateDataSourcePermissionsResponse$DataSourceArn": "<p>The Amazon Resource Name (ARN) of the data source.</p>",
+        "UpdateDataSourceResponse$Arn": "<p>The Amazon Resource Name (ARN) of the data source.</p>",
+        "UpdateIAMPolicyAssignmentRequest$PolicyArn": "<p>An IAM policy Amazon Resource Name (ARN) that will be applied to specified QuickSight users and groups in this assignment.</p>",
         "UpdateIAMPolicyAssignmentResponse$PolicyArn": "<p>The IAM policy ARN assigned to the QuickSight users and groups specified in this request.</p>",
-        "UpdateTemplatePermissionsResponse$TemplateArn": "<p>The ARN of the template.</p>",
+        "UpdateTemplatePermissionsResponse$TemplateArn": "<p>The Amazon Resource Name (ARN) of the template.</p>",
         "UpdateTemplateResponse$Arn": "<p>The Amazon Resource Name (ARN) for the template.</p>",
         "UpdateTemplateResponse$VersionArn": "<p>The Amazon Resource Name (ARN) for the template, including the version information of the first version.</p>",
         "User$Arn": "<p>The Amazon Resource name (ARN) for the user.</p>",
-        "VpcConnectionProperties$VpcConnectionArn": "<p>VPC connection ARN.</p>"
+        "VpcConnectionProperties$VpcConnectionArn": "<p>The Amazon Resource Name (ARN) for the VPC connection.</p>"
       }
     },
     "AssignmentStatus": {
@@ -202,19 +202,19 @@
       }
     },
     "AthenaParameters": {
-      "base": "<p>Athena parameters.</p>",
+      "base": "<p>Amazon Athena parameters.</p>",
       "refs": {
         "DataSourceParameters$AthenaParameters": "<p>Athena parameters.</p>"
       }
     },
     "AuroraParameters": {
-      "base": "<p>Aurora parameters.</p>",
+      "base": "<p>Amazon Aurora parameters.</p>",
       "refs": {
         "DataSourceParameters$AuroraParameters": "<p>Aurora MySQL parameters.</p>"
       }
     },
     "AuroraPostgreSqlParameters": {
-      "base": "<p>Aurora PostgreSQL parameters.</p>",
+      "base": "<p>Amazon Aurora with PostgreSQL compatibility parameters.</p>",
       "refs": {
         "DataSourceParameters$AuroraPostgreSqlParameters": "<p>Aurora PostgreSQL parameters.</p>"
       }
@@ -233,7 +233,7 @@
         "CreateTemplateAliasRequest$AwsAccountId": "<p>AWS account ID that contains the template you are aliasing.</p>",
         "CreateTemplateRequest$AwsAccountId": "<p>The ID for the AWS account that the group is in. Currently, you use the ID for the AWS account that contains your Amazon QuickSight account.</p>",
         "DeleteDashboardRequest$AwsAccountId": "<p>AWS account ID that contains the dashboard you are deleting.</p>",
-        "DeleteDataSetRequest$AwsAccountId": "<p>The AWS Account ID.</p>",
+        "DeleteDataSetRequest$AwsAccountId": "<p>The AWS account ID.</p>",
         "DeleteDataSourceRequest$AwsAccountId": "<p>The AWS account ID.</p>",
         "DeleteGroupMembershipRequest$AwsAccountId": "<p>The ID for the AWS account that the group is in. Currently, you use the ID for the AWS account that contains your Amazon QuickSight account.</p>",
         "DeleteGroupRequest$AwsAccountId": "<p>The ID for the AWS account that the group is in. Currently, you use the ID for the AWS account that contains your Amazon QuickSight account.</p>",
@@ -369,9 +369,9 @@
     "ColumnGroupList": {
       "base": null,
       "refs": {
-        "CreateDataSetRequest$ColumnGroups": "<p>Groupings of columns that work together in certain QuickSight features. Currently only geospatial hierarchy is supported.</p>",
-        "DataSet$ColumnGroups": "<p>Groupings of columns that work together in certain QuickSight features. Currently only geospatial hierarchy is supported.</p>",
-        "UpdateDataSetRequest$ColumnGroups": "<p>Groupings of columns that work together in certain QuickSight features. Currently only geospatial hierarchy is supported.</p>"
+        "CreateDataSetRequest$ColumnGroups": "<p>Groupings of columns that work together in certain QuickSight features. Currently, only geospatial hierarchy is supported.</p>",
+        "DataSet$ColumnGroups": "<p>Groupings of columns that work together in certain QuickSight features. Currently, only geospatial hierarchy is supported.</p>",
+        "UpdateDataSetRequest$ColumnGroups": "<p>Groupings of columns that work together in certain QuickSight features. Currently, only geospatial hierarchy is supported.</p>"
       }
     },
     "ColumnGroupName": {
@@ -608,14 +608,14 @@
     "DashboardPublishOptions": {
       "base": "<p>Dashboard publish options.</p>",
       "refs": {
-        "CreateDashboardRequest$DashboardPublishOptions": "<p>Publishing options when creating dashboard.</p> <ul> <li> <p>AvailabilityStatus for AdHocFilteringOption - This can be either <code>ENABLED</code> or <code>DISABLED</code>. When This is set to set to <code>DISABLED</code>, QuickSight disables the left filter pane on the published dashboard, which can be used for AdHoc filtering. Enabled by default. </p> </li> <li> <p>AvailabilityStatus for ExportToCSVOption - This can be either <code>ENABLED</code> or <code>DISABLED</code>. The visual option to export data to CSV is disabled when this is set to <code>DISABLED</code>. Enabled by default. </p> </li> <li> <p>VisibilityState for SheetControlsOption - This can be either <code>COLLAPSED</code> or <code>EXPANDED</code>. The sheet controls pane is collapsed by default when set to true. Collapsed by default. </p> </li> </ul> <p>Shorthand Syntax:</p> <p> <code>AdHocFilteringDisabled=boolean,ExportToCSVDisabled=boolean,SheetControlsCollapsed=boolean</code> </p>",
+        "CreateDashboardRequest$DashboardPublishOptions": "<p>Publishing options when creating dashboard.</p> <ul> <li> <p>AvailabilityStatus for AdHocFilteringOption - This can be either <code>ENABLED</code> or <code>DISABLED</code>. When This is set to set to <code>DISABLED</code>, QuickSight disables the left filter pane on the published dashboard, which can be used for AdHoc filtering. Enabled by default. </p> </li> <li> <p>AvailabilityStatus for ExportToCSVOption - This can be either <code>ENABLED</code> or <code>DISABLED</code>. The visual option to export data to CSV is disabled when this is set to <code>DISABLED</code>. Enabled by default. </p> </li> <li> <p>VisibilityState for SheetControlsOption - This can be either <code>COLLAPSED</code> or <code>EXPANDED</code>. The sheet controls pane is collapsed by default when set to true. Collapsed by default. </p> </li> </ul>",
         "UpdateDashboardRequest$DashboardPublishOptions": "<p>Publishing options when creating a dashboard.</p> <ul> <li> <p>AvailabilityStatus for AdHocFilteringOption - This can be either <code>ENABLED</code> or <code>DISABLED</code>. When This is set to set to <code>DISABLED</code>, QuickSight disables the left filter pane on the published dashboard, which can be used for AdHoc filtering. Enabled by default. </p> </li> <li> <p>AvailabilityStatus for ExportToCSVOption - This can be either <code>ENABLED</code> or <code>DISABLED</code>. The visual option to export data to CSV is disabled when this is set to <code>DISABLED</code>. Enabled by default. </p> </li> <li> <p>VisibilityState for SheetControlsOption - This can be either <code>COLLAPSED</code> or <code>EXPANDED</code>. The sheet controls pane is collapsed by default when set to true. Collapsed by default. </p> </li> </ul>"
       }
     },
     "DashboardSourceEntity": {
       "base": "<p>Dashboard source entity.</p>",
       "refs": {
-        "CreateDashboardRequest$SourceEntity": "<p>Source entity from which the dashboard is created. The souce entity accepts the ARN of the source template or analysis and also references the replacement datasets for the placeholders set when creating the template. The replacement datasets need to follow the same schema as the datasets for which placeholders were created when creating the template. </p> <p>If you are creating a dashboard from a source entity in a different AWS account, use the ARN of the source template.</p>",
+        "CreateDashboardRequest$SourceEntity": "<p>Source entity from which the dashboard is created. The souce entity accepts the Amazon Resource Name (ARN) of the source template or analysis and also references the replacement datasets for the placeholders set when creating the template. The replacement datasets need to follow the same schema as the datasets for which placeholders were created when creating the template. </p> <p>If you are creating a dashboard from a source entity in a different AWS account, use the ARN of the source template.</p>",
         "UpdateDashboardRequest$SourceEntity": "<p>The template or analysis from which the dashboard is created. The SouceTemplate entity accepts the Arn of the template and also references to replacement datasets for the placeholders set when creating the template. The replacement datasets need to follow the same schema as the datasets for which placeholders were created when creating the template.</p>"
       }
     },
@@ -735,8 +735,8 @@
     "DataSourceCredentials": {
       "base": "<p>Data source credentials.</p>",
       "refs": {
-        "CreateDataSourceRequest$Credentials": "<p>The credentials QuickSight uses to connect to your underlying source. Currently only username/password based credentials are supported.</p>",
-        "UpdateDataSourceRequest$Credentials": "<p>The credentials QuickSight uses to connect to your underlying source. Currently only username/password based credentials are supported.</p>"
+        "CreateDataSourceRequest$Credentials": "<p>The credentials QuickSight that uses to connect to your underlying source. Currently, only credentials based on user name and password are supported.</p>",
+        "UpdateDataSourceRequest$Credentials": "<p>The credentials that QuickSight that uses to connect to your underlying source. Currently, only credentials based on user name and password are supported.</p>"
       }
     },
     "DataSourceErrorInfo": {
@@ -758,17 +758,17 @@
       }
     },
     "DataSourceParameters": {
-      "base": "<p>The parameters QuickSight uses to connect to your underlying source. This is a variant type structure. At most one of the attributes should be non-null for this structure to be valid.</p>",
+      "base": "<p>The parameters that QuickSight uses to connect to your underlying source. This is a variant type structure. At most one of the attributes should be non-null for this structure to be valid.</p>",
       "refs": {
-        "CreateDataSourceRequest$DataSourceParameters": "<p>The parameters QuickSight uses to connect to your underlying source.</p>",
-        "DataSource$DataSourceParameters": "<p>The parameters QuickSight uses to connect to your underlying source. This is a variant type structure. At most one of the attributes should be non-null for this structure to be valid.</p>",
-        "UpdateDataSourceRequest$DataSourceParameters": "<p>The parameters QuickSight uses to connect to your underlying source.</p>"
+        "CreateDataSourceRequest$DataSourceParameters": "<p>The parameters that QuickSight uses to connect to your underlying source.</p>",
+        "DataSource$DataSourceParameters": "<p>The parameters that QuickSight uses to connect to your underlying source. This is a variant type structure. At most one of the attributes should be non-null for this structure to be valid.</p>",
+        "UpdateDataSourceRequest$DataSourceParameters": "<p>The parameters that QuickSight uses to connect to your underlying source.</p>"
       }
     },
     "DataSourceType": {
       "base": null,
       "refs": {
-        "CreateDataSourceRequest$Type": "<p>The type of the data source. Currently the supported types for this operation are: <code>ATHENA, AURORA, AURORA_POSTGRESQL, MARIADB, MYSQL, POSTGRESQL, PRESTO, REDSHIFT, S3, SNOWFLAKE, SPARK, SQLSERVER, TERADATA</code>. Use <code>ListDataSources</code> to return a list of all data sources.</p>",
+        "CreateDataSourceRequest$Type": "<p>The type of the data source. Currently, the supported types for this operation are: <code>ATHENA, AURORA, AURORA_POSTGRESQL, MARIADB, MYSQL, POSTGRESQL, PRESTO, REDSHIFT, S3, SNOWFLAKE, SPARK, SQLSERVER, TERADATA</code>. Use <code>ListDataSources</code> to return a list of all data sources.</p>",
         "DataSource$Type": "<p>The type of the data source. This indicates which database engine the data source connects to.</p>"
       }
     },
@@ -1050,7 +1050,7 @@
     "Domain": {
       "base": null,
       "refs": {
-        "AmazonElasticsearchParameters$Domain": "<p>The Amazon Elasticsearch domain.</p>"
+        "AmazonElasticsearchParameters$Domain": "<p>The Amazon Elasticsearch Service domain.</p>"
       }
     },
     "DomainNotWhitelistedException": {
@@ -1276,7 +1276,7 @@
     "IdentityType": {
       "base": null,
       "refs": {
-        "GetDashboardEmbedUrlRequest$IdentityType": "<p>The authentication method the user uses to sign in (IAM only).</p>",
+        "GetDashboardEmbedUrlRequest$IdentityType": "<p>The authentication method the user uses to sign in.</p>",
         "RegisterUserRequest$IdentityType": "<p>Amazon QuickSight supports several ways of managing the identity of users. This parameter accepts two values:</p> <ul> <li> <p> <code>IAM</code>: A user whose identity maps to an existing IAM user or role. </p> </li> <li> <p> <code>QUICKSIGHT</code>: A user whose identity is owned and managed internally by Amazon QuickSight. </p> </li> </ul>",
         "User$IdentityType": "<p>The type of identity authentication used by the user.</p>"
       }
@@ -1787,7 +1787,7 @@
     "Principal": {
       "base": null,
       "refs": {
-        "ResourcePermission$Principal": "<p>The ARN of a QuickSight user or group, or an IAM ARN. If you are using cross-account resource sharing, this is the IAM ARN of an account root. Otherwise, it is the ARN of a QuickSight user or group. .</p>"
+        "ResourcePermission$Principal": "<p>The Amazon Resource Name (ARN) of a QuickSight user or group, or an IAM ARN. If you are using cross-account resource sharing, this is the IAM ARN of an account root. Otherwise, it is the ARN of a QuickSight user or group. .</p>"
       }
     },
     "ProjectOperation": {
@@ -1873,33 +1873,33 @@
     "ResourceId": {
       "base": null,
       "refs": {
-        "CreateDataSetRequest$DataSetId": "<p>An ID for the dataset you want to create. This is unique per region per AWS account.</p>",
-        "CreateDataSetResponse$DataSetId": "<p>The ID for the dataset you want to create. This is unique per region per AWS account.</p>",
+        "CreateDataSetRequest$DataSetId": "<p>An ID for the dataset that you want to create. This ID is unique per AWS Region for each AWS account.</p>",
+        "CreateDataSetResponse$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per AWS Region for each AWS account.</p>",
         "CreateDataSetResponse$IngestionId": "<p>The ID of the ingestion, which is triggered as a result of dataset creation if the import mode is SPICE</p>",
-        "CreateDataSourceRequest$DataSourceId": "<p>An ID for the data source. This is unique per AWS Region per AWS account. </p>",
-        "CreateDataSourceResponse$DataSourceId": "<p>The ID of the data source. This is unique per AWS Region per AWS account.</p>",
+        "CreateDataSourceRequest$DataSourceId": "<p>An ID for the data source. This ID is unique per AWS Region for each AWS account. </p>",
+        "CreateDataSourceResponse$DataSourceId": "<p>The ID of the data source. This ID is unique per AWS Region for each AWS account.</p>",
         "DataSet$DataSetId": "<p>The ID of the dataset.</p>",
         "DataSetSummary$DataSetId": "<p>The ID of the dataset.</p>",
-        "DataSource$DataSourceId": "<p>The ID of the data source. This is unique per AWS Region per AWS account.</p>",
-        "DeleteDataSetRequest$DataSetId": "<p>The ID for the dataset you want to create. This is unique per region per AWS account.</p>",
-        "DeleteDataSetResponse$DataSetId": "<p>The ID for the dataset you want to create. This is unique per region per AWS account.</p>",
-        "DeleteDataSourceRequest$DataSourceId": "<p>The ID of the data source. This is unique per AWS Region per AWS account.</p>",
-        "DeleteDataSourceResponse$DataSourceId": "<p>The ID of the data source. This is unique per AWS Region per AWS account.</p>",
-        "DescribeDataSetPermissionsRequest$DataSetId": "<p>The ID for the dataset you want to create. This is unique per region per AWS account.</p>",
-        "DescribeDataSetPermissionsResponse$DataSetId": "<p>The ID for the dataset you want to create. This is unique per region per AWS account.</p>",
-        "DescribeDataSetRequest$DataSetId": "<p>The ID for the dataset you want to create. This is unique per region per AWS account.</p>",
-        "DescribeDataSourcePermissionsRequest$DataSourceId": "<p>The ID of the data source. This is unique per AWS Region per AWS account.</p>",
-        "DescribeDataSourcePermissionsResponse$DataSourceId": "<p>The ID of the data source. This is unique per AWS Region per AWS account.</p>",
-        "DescribeDataSourceRequest$DataSourceId": "<p>The ID of the data source. This is unique per AWS Region per AWS account.</p>",
-        "UpdateDataSetPermissionsRequest$DataSetId": "<p>The ID for the dataset you want to create. This is unique per region per AWS account.</p>",
-        "UpdateDataSetPermissionsResponse$DataSetId": "<p>The ID for the dataset you want to create. This is unique per region per AWS account.</p>",
-        "UpdateDataSetRequest$DataSetId": "<p>The ID for the dataset you want to create. This is unique per region per AWS account.</p>",
-        "UpdateDataSetResponse$DataSetId": "<p>The ID for the dataset you want to create. This is unique per region per AWS account.</p>",
+        "DataSource$DataSourceId": "<p>The ID of the data source. This ID is unique per AWS Region for each AWS account.</p>",
+        "DeleteDataSetRequest$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per AWS Region for each AWS account.</p>",
+        "DeleteDataSetResponse$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per AWS Region for each AWS account.</p>",
+        "DeleteDataSourceRequest$DataSourceId": "<p>The ID of the data source. This ID is unique per AWS Region for each AWS account.</p>",
+        "DeleteDataSourceResponse$DataSourceId": "<p>The ID of the data source. This ID is unique per AWS Region for each AWS account.</p>",
+        "DescribeDataSetPermissionsRequest$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per AWS Region for each AWS account.</p>",
+        "DescribeDataSetPermissionsResponse$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per AWS Region for each AWS account.</p>",
+        "DescribeDataSetRequest$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per AWS Region for each AWS account.</p>",
+        "DescribeDataSourcePermissionsRequest$DataSourceId": "<p>The ID of the data source. This ID is unique per AWS Region for each AWS account.</p>",
+        "DescribeDataSourcePermissionsResponse$DataSourceId": "<p>The ID of the data source. This ID is unique per AWS Region for each AWS account.</p>",
+        "DescribeDataSourceRequest$DataSourceId": "<p>The ID of the data source. This ID is unique per AWS Region for each AWS account.</p>",
+        "UpdateDataSetPermissionsRequest$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per AWS Region for each AWS account.</p>",
+        "UpdateDataSetPermissionsResponse$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per AWS Region for each AWS account.</p>",
+        "UpdateDataSetRequest$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per AWS Region for each AWS account.</p>",
+        "UpdateDataSetResponse$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per AWS Region for each AWS account.</p>",
         "UpdateDataSetResponse$IngestionId": "<p>The ID of the ingestion, which is triggered as a result of dataset creation if the import mode is SPICE</p>",
-        "UpdateDataSourcePermissionsRequest$DataSourceId": "<p>The ID of the data source. This is unique per AWS Region per AWS account. </p>",
-        "UpdateDataSourcePermissionsResponse$DataSourceId": "<p>The ID of the data source. This is unique per AWS Region per AWS account.</p>",
-        "UpdateDataSourceRequest$DataSourceId": "<p>The ID of the data source. This is unique per AWS Region per AWS account. </p>",
-        "UpdateDataSourceResponse$DataSourceId": "<p>The ID of the data source. This is unique per AWS Region per AWS account.</p>"
+        "UpdateDataSourcePermissionsRequest$DataSourceId": "<p>The ID of the data source. This ID is unique per AWS Region for each AWS account. </p>",
+        "UpdateDataSourcePermissionsResponse$DataSourceId": "<p>The ID of the data source. This ID is unique per AWS Region for each AWS account.</p>",
+        "UpdateDataSourceRequest$DataSourceId": "<p>The ID of the data source. This ID is unique per AWS Region for each AWS account. </p>",
+        "UpdateDataSourceResponse$DataSourceId": "<p>The ID of the data source. This ID is unique per AWS Region for each AWS account.</p>"
       }
     },
     "ResourceName": {
@@ -1932,7 +1932,7 @@
         "CreateDashboardRequest$Permissions": "<p>A structure that contains the permissions of the dashboard. You can use this for granting permissions with principal and action information.</p>",
         "CreateDataSetRequest$Permissions": "<p>A list of resource permissions on the dataset.</p>",
         "CreateDataSourceRequest$Permissions": "<p>A list of resource permissions on the data source.</p>",
-        "CreateTemplateRequest$Permissions": "<p>A list of resource permissions to be set on the template. The shorthand syntax should look similar to this: <code>Shorthand Syntax: Principal=string,Actions=string,string ... </code> </p>",
+        "CreateTemplateRequest$Permissions": "<p>A list of resource permissions to be set on the template. </p>",
         "DescribeDashboardPermissionsResponse$Permissions": "<p>A structure that contains the permissions of the dashboard.</p>",
         "DescribeDataSetPermissionsResponse$Permissions": "<p>A list of resource permissions on the dataset.</p>",
         "DescribeDataSourcePermissionsResponse$Permissions": "<p>A list of resource permissions on the data source.</p>",
@@ -1951,10 +1951,10 @@
         "CreateDashboardResponse$CreationStatus": "<p>The creation status of the dashboard create request.</p>",
         "CreateDataSourceResponse$CreationStatus": "<p>The status of creating the data source.</p>",
         "CreateTemplateResponse$CreationStatus": "<p>The template creation status.</p>",
-        "DashboardVersion$Status": "<p>The http status of the request.</p>",
-        "DashboardVersionSummary$Status": "<p>The http status of the request.</p>",
-        "DataSource$Status": "<p>The http status of the request.</p>",
-        "TemplateVersion$Status": "<p>The http status of the request.</p>",
+        "DashboardVersion$Status": "<p>The HTTP status of the request.</p>",
+        "DashboardVersionSummary$Status": "<p>The HTTP status of the request.</p>",
+        "DataSource$Status": "<p>The HTTP status of the request.</p>",
+        "TemplateVersion$Status": "<p>The HTTP status of the request.</p>",
         "TemplateVersionSummary$Status": "<p>The status of the template version.</p>",
         "UpdateDashboardResponse$CreationStatus": "<p>The creation status of the request.</p>",
         "UpdateDataSourceResponse$UpdateStatus": "<p>The update status of the data source's last update.</p>",
@@ -1993,8 +1993,8 @@
         "ListDashboardVersionsRequest$DashboardId": "<p>The ID for the dashboard.</p>",
         "ListTemplateAliasesRequest$TemplateId": "<p>The ID for the template.</p>",
         "ListTemplateVersionsRequest$TemplateId": "<p>The ID for the template.</p>",
-        "Template$TemplateId": "<p>The ID for the template. This is unique per region per AWS account.</p>",
-        "TemplateSummary$TemplateId": "<p>The ID of the template. This is unique per region per AWS account.</p>",
+        "Template$TemplateId": "<p>The ID for the template. This is unique per AWS Region for each AWS account.</p>",
+        "TemplateSummary$TemplateId": "<p>The ID of the template. This is unique per AWS Region for each AWS account.</p>",
         "UpdateDashboardPermissionsRequest$DashboardId": "<p>The ID for the dashboard.</p>",
         "UpdateDashboardPermissionsResponse$DashboardId": "<p>The ID for the dashboard.</p>",
         "UpdateDashboardPublishedVersionRequest$DashboardId": "<p>The ID for the dashboard.</p>",
@@ -2114,81 +2114,81 @@
       }
     },
     "SslProperties": {
-      "base": "<p>SSL properties that apply when QuickSight connects to your underlying data source.</p>",
+      "base": "<p>Secure Socket Layer (SSL) properties that apply when QuickSight connects to your underlying data source.</p>",
       "refs": {
-        "CreateDataSourceRequest$SslProperties": "<p>SSL properties that apply when QuickSight connects to your underlying source.</p>",
-        "DataSource$SslProperties": "<p>SSL properties that apply when QuickSight connects to your underlying source.</p>",
-        "UpdateDataSourceRequest$SslProperties": "<p>SSL properties that apply when QuickSight connects to your underlying source.</p>"
+        "CreateDataSourceRequest$SslProperties": "<p>Secure Socket Layer (SSL) properties that apply when QuickSight connects to your underlying source.</p>",
+        "DataSource$SslProperties": "<p>Secure Socket Layer (SSL) properties that apply when QuickSight connects to your underlying source.</p>",
+        "UpdateDataSourceRequest$SslProperties": "<p>Secure Socket Layer (SSL) properties that apply when QuickSight connects to your underlying source.</p>"
       }
     },
     "StatusCode": {
       "base": null,
       "refs": {
-        "CancelIngestionResponse$Status": "<p>The http status of the request.</p>",
-        "CreateDashboardResponse$Status": "<p>The http status of the request.</p>",
-        "CreateDataSetResponse$Status": "<p>The http status of the request.</p>",
-        "CreateDataSourceResponse$Status": "<p>The http status of the request.</p>",
-        "CreateGroupMembershipResponse$Status": "<p>The http status of the request.</p>",
-        "CreateGroupResponse$Status": "<p>The http status of the request.</p>",
-        "CreateIAMPolicyAssignmentResponse$Status": "<p>The http status of the request.</p>",
-        "CreateIngestionResponse$Status": "<p>The http status of the request.</p>",
-        "CreateTemplateAliasResponse$Status": "<p>The http status of the request.</p>",
-        "CreateTemplateResponse$Status": "<p>The http status of the request.</p>",
-        "DeleteDashboardResponse$Status": "<p>The http status of the request.</p>",
-        "DeleteDataSetResponse$Status": "<p>The http status of the request.</p>",
-        "DeleteDataSourceResponse$Status": "<p>The http status of the request.</p>",
-        "DeleteGroupMembershipResponse$Status": "<p>The http status of the request.</p>",
-        "DeleteGroupResponse$Status": "<p>The http status of the request.</p>",
-        "DeleteIAMPolicyAssignmentResponse$Status": "<p>The http status of the request.</p>",
-        "DeleteTemplateAliasResponse$Status": "<p>The http status of the request.</p>",
-        "DeleteTemplateResponse$Status": "<p>The http status of the request.</p>",
-        "DeleteUserByPrincipalIdResponse$Status": "<p>The http status of the request.</p>",
-        "DeleteUserResponse$Status": "<p>The http status of the request.</p>",
-        "DescribeDashboardPermissionsResponse$Status": "<p>The http status of the request.</p>",
+        "CancelIngestionResponse$Status": "<p>The HTTP status of the request.</p>",
+        "CreateDashboardResponse$Status": "<p>The HTTP status of the request.</p>",
+        "CreateDataSetResponse$Status": "<p>The HTTP status of the request.</p>",
+        "CreateDataSourceResponse$Status": "<p>The HTTP status of the request.</p>",
+        "CreateGroupMembershipResponse$Status": "<p>The HTTP status of the request.</p>",
+        "CreateGroupResponse$Status": "<p>The HTTP status of the request.</p>",
+        "CreateIAMPolicyAssignmentResponse$Status": "<p>The HTTP status of the request.</p>",
+        "CreateIngestionResponse$Status": "<p>The HTTP status of the request.</p>",
+        "CreateTemplateAliasResponse$Status": "<p>The HTTP status of the request.</p>",
+        "CreateTemplateResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DeleteDashboardResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DeleteDataSetResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DeleteDataSourceResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DeleteGroupMembershipResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DeleteGroupResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DeleteIAMPolicyAssignmentResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DeleteTemplateAliasResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DeleteTemplateResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DeleteUserByPrincipalIdResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DeleteUserResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeDashboardPermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeDashboardResponse$Status": "<p>The http status of this request.</p>",
-        "DescribeDataSetPermissionsResponse$Status": "<p>The http status of the request.</p>",
-        "DescribeDataSetResponse$Status": "<p>The http status of the request.</p>",
-        "DescribeDataSourcePermissionsResponse$Status": "<p>The http status of the request.</p>",
-        "DescribeDataSourceResponse$Status": "<p>The http status of the request.</p>",
-        "DescribeGroupResponse$Status": "<p>The http status of the request.</p>",
-        "DescribeIAMPolicyAssignmentResponse$Status": "<p>The http status of the request.</p>",
-        "DescribeIngestionResponse$Status": "<p>The http status of the request.</p>",
-        "DescribeTemplateAliasResponse$Status": "<p>The http status of the request.</p>",
-        "DescribeTemplatePermissionsResponse$Status": "<p>The http status of the request.</p>",
-        "DescribeTemplateResponse$Status": "<p>The http status of the request.</p>",
-        "DescribeUserResponse$Status": "<p>The http status of the request.</p>",
-        "GetDashboardEmbedUrlResponse$Status": "<p>The http status of the request.</p>",
-        "ListDashboardVersionsResponse$Status": "<p>The http status of the request.</p>",
-        "ListDashboardsResponse$Status": "<p>The http status of the request.</p>",
-        "ListDataSetsResponse$Status": "<p>The http status of the request.</p>",
-        "ListDataSourcesResponse$Status": "<p>The http status of the request.</p>",
-        "ListGroupMembershipsResponse$Status": "<p>The http status of the request.</p>",
-        "ListGroupsResponse$Status": "<p>The http status of the request.</p>",
-        "ListIAMPolicyAssignmentsForUserResponse$Status": "<p>The http status of the request.</p>",
-        "ListIAMPolicyAssignmentsResponse$Status": "<p>The http status of the request.</p>",
-        "ListIngestionsResponse$Status": "<p>The http status of the request.</p>",
-        "ListTagsForResourceResponse$Status": "<p>The http status of the request.</p>",
-        "ListTemplateAliasesResponse$Status": "<p>The http status of the request.</p>",
-        "ListTemplateVersionsResponse$Status": "<p>The http status of the request.</p>",
-        "ListTemplatesResponse$Status": "<p>The http status of the request.</p>",
+        "DescribeDataSetPermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeDataSetResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeDataSourcePermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeDataSourceResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeGroupResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeIAMPolicyAssignmentResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeIngestionResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeTemplateAliasResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeTemplatePermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeTemplateResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeUserResponse$Status": "<p>The HTTP status of the request.</p>",
+        "GetDashboardEmbedUrlResponse$Status": "<p>The HTTP status of the request.</p>",
+        "ListDashboardVersionsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "ListDashboardsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "ListDataSetsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "ListDataSourcesResponse$Status": "<p>The HTTP status of the request.</p>",
+        "ListGroupMembershipsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "ListGroupsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "ListIAMPolicyAssignmentsForUserResponse$Status": "<p>The HTTP status of the request.</p>",
+        "ListIAMPolicyAssignmentsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "ListIngestionsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "ListTagsForResourceResponse$Status": "<p>The HTTP status of the request.</p>",
+        "ListTemplateAliasesResponse$Status": "<p>The HTTP status of the request.</p>",
+        "ListTemplateVersionsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "ListTemplatesResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListUserGroupsResponse$Status": "<p>The HTTP status of the request.</p>",
-        "ListUsersResponse$Status": "<p>The http status of the request.</p>",
-        "RegisterUserResponse$Status": "<p>The http status of the request.</p>",
-        "TagResourceResponse$Status": "<p>The http status of the request.</p>",
-        "UntagResourceResponse$Status": "<p>The http status of the request.</p>",
-        "UpdateDashboardPermissionsResponse$Status": "<p>The http status of the request.</p>",
-        "UpdateDashboardPublishedVersionResponse$Status": "<p>The http status of the request.</p>",
-        "UpdateDashboardResponse$Status": "<p>The http status of the request.</p>",
-        "UpdateDataSetPermissionsResponse$Status": "<p>The http status of the request.</p>",
-        "UpdateDataSetResponse$Status": "<p>The http status of the request.</p>",
-        "UpdateDataSourcePermissionsResponse$Status": "<p>The http status of the request.</p>",
-        "UpdateDataSourceResponse$Status": "<p>The http status of the request.</p>",
-        "UpdateGroupResponse$Status": "<p>The http status of the request.</p>",
-        "UpdateIAMPolicyAssignmentResponse$Status": "<p>The http status of the request.</p>",
-        "UpdateTemplateAliasResponse$Status": "<p>The http status of the request.</p>",
-        "UpdateTemplatePermissionsResponse$Status": "<p>The http status of the request.</p>",
-        "UpdateTemplateResponse$Status": "<p>The http status of the request.</p>",
-        "UpdateUserResponse$Status": "<p>The http status of the request.</p>"
+        "ListUsersResponse$Status": "<p>The HTTP status of the request.</p>",
+        "RegisterUserResponse$Status": "<p>The HTTP status of the request.</p>",
+        "TagResourceResponse$Status": "<p>The HTTP status of the request.</p>",
+        "UntagResourceResponse$Status": "<p>The HTTP status of the request.</p>",
+        "UpdateDashboardPermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "UpdateDashboardPublishedVersionResponse$Status": "<p>The HTTP status of the request.</p>",
+        "UpdateDashboardResponse$Status": "<p>The HTTP status of the request.</p>",
+        "UpdateDataSetPermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "UpdateDataSetResponse$Status": "<p>The HTTP status of the request.</p>",
+        "UpdateDataSourcePermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "UpdateDataSourceResponse$Status": "<p>The HTTP status of the request.</p>",
+        "UpdateGroupResponse$Status": "<p>The HTTP status of the request.</p>",
+        "UpdateIAMPolicyAssignmentResponse$Status": "<p>The HTTP status of the request.</p>",
+        "UpdateTemplateAliasResponse$Status": "<p>The HTTP status of the request.</p>",
+        "UpdateTemplatePermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "UpdateTemplateResponse$Status": "<p>The HTTP status of the request.</p>",
+        "UpdateUserResponse$Status": "<p>The HTTP status of the request.</p>"
       }
     },
     "String": {
@@ -2426,7 +2426,7 @@
     "TemplateAliasList": {
       "base": null,
       "refs": {
-        "ListTemplateAliasesResponse$TemplateAliasList": "<p>A structure containing the list of template aliases.</p>"
+        "ListTemplateAliasesResponse$TemplateAliasList": "<p>A structure containing the list of the template's aliases.</p>"
       }
     },
     "TemplateError": {
@@ -2465,7 +2465,7 @@
     "TemplateSourceEntity": {
       "base": "<p>The source entity of the template.</p>",
       "refs": {
-        "CreateTemplateRequest$SourceEntity": "<p>The ARN of the source entity from which this template is being created. Templates can be currently created from an analysis or another template. If the ARN is for an analysis, you must include its dataset references. </p>",
+        "CreateTemplateRequest$SourceEntity": "<p>The Amazon Resource Name (ARN) of the source entity from which this template is being created. Templates can be currently created from an analysis or another template. If the ARN is for an analysis, you must include its dataset references. </p>",
         "UpdateTemplateRequest$SourceEntity": "<p>The source QuickSight entity from which this template is being created. Templates can be currently created from an Analysis or another template.</p>"
       }
     },
@@ -2688,8 +2688,8 @@
       "refs": {
         "UpdateDashboardPermissionsRequest$GrantPermissions": "<p>The permissions that you want to grant on this resource.</p>",
         "UpdateDashboardPermissionsRequest$RevokePermissions": "<p>The permissions that you want to revoke from this resource.</p>",
-        "UpdateTemplatePermissionsRequest$GrantPermissions": "<p>A list of resource permissions to be granted on the template. The following example shows the shorthand syntax: </p> <p> <code>Shorthand Syntax: Principal=string,Actions=string,string ... </code> </p>",
-        "UpdateTemplatePermissionsRequest$RevokePermissions": "<p>A list of resource permissions to be revoked from the template. Shorthand syntax: <code>Shorthand Syntax: Principal=string,Actions=string,string ... </code> </p>"
+        "UpdateTemplatePermissionsRequest$GrantPermissions": "<p>A list of resource permissions to be granted on the template. </p>",
+        "UpdateTemplatePermissionsRequest$RevokePermissions": "<p>A list of resource permissions to be revoked from the template. </p>"
       }
     },
     "UpdateTemplateAliasRequest": {
@@ -2789,7 +2789,7 @@
         "TemplateVersion$Description": "<p>The description of the template.</p>",
         "TemplateVersionSummary$Description": "<p>The desription of the template version.</p>",
         "UpdateDashboardRequest$VersionDescription": "<p>A description for the first version of the dashboard being created.</p>",
-        "UpdateTemplateRequest$VersionDescription": "<p>A description of the current template version being created. This API created the first version of the template. Every time UpdateTemplate is called a new version is created. Each version of the template maintains a description of the version in the VersionDescription field.</p>"
+        "UpdateTemplateRequest$VersionDescription": "<p>A description of the current template version being updated. Every time you cal <code>UpdateTemplate</code> you create a new version. Each version of the template maintains a description of the version in the <code>VersionDescription</code> field.</p>"
       }
     },
     "VersionNumber": {
@@ -2800,7 +2800,7 @@
         "DashboardVersion$VersionNumber": "<p>Version number.</p>",
         "DashboardVersionSummary$VersionNumber": "<p>Version number.</p>",
         "DeleteDashboardRequest$VersionNumber": "<p>The version number of the dashboard. If version number property is provided, only the specified version of the dashboard is deleted.</p>",
-        "DeleteTemplateRequest$VersionNumber": "<p>The version number</p>",
+        "DeleteTemplateRequest$VersionNumber": "<p>Specifies the version of the template that you want to delete. If you don't provide a version number, <code>DeleteTemplate</code> deletes all versions of the template. </p>",
         "DescribeDashboardRequest$VersionNumber": "<p>The version number for the dashboard. If version number isn’t passed the latest published dashboard version is described. </p>",
         "DescribeTemplateRequest$VersionNumber": "<p>This is an optional field, when a version number is provided the corresponding version is describe, if it's not provided the latest version of the template is described.</p>",
         "TemplateAlias$TemplateVersionNumber": "<p>The version number of the template alias.</p>",
@@ -2814,9 +2814,9 @@
     "VpcConnectionProperties": {
       "base": "<p>VPC connection properties.</p>",
       "refs": {
-        "CreateDataSourceRequest$VpcConnectionProperties": "<p>You need to use this parameter only when you want QuickSight to use a VPC connection when connecting to your underlying source.</p>",
+        "CreateDataSourceRequest$VpcConnectionProperties": "<p>Use this parameter only when you want QuickSight to use a VPC connection when connecting to your underlying source.</p>",
         "DataSource$VpcConnectionProperties": "<p>The VPC connection information. You need to use this parameter only when you want QuickSight to use a VPC connection when connecting to your underlying source.</p>",
-        "UpdateDataSourceRequest$VpcConnectionProperties": "<p>You need to use this parameter only when you want QuickSight to use a VPC connection when connecting to your underlying source.</p>"
+        "UpdateDataSourceRequest$VpcConnectionProperties": "<p>Use this parameter only when you want QuickSight to use a VPC connection when connecting to your underlying source.</p>"
       }
     },
     "Warehouse": {
@@ -2828,7 +2828,7 @@
     "WorkGroup": {
       "base": null,
       "refs": {
-        "AthenaParameters$WorkGroup": "<p>The workgroup that Athena uses.</p>"
+        "AthenaParameters$WorkGroup": "<p>The workgroup that Amazon Athena uses.</p>"
       }
     },
     "boolean": {

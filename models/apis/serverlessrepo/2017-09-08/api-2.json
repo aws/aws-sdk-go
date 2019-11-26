@@ -358,6 +358,10 @@
           "shape" : "__string",
           "locationName" : "homePageUrl"
         },
+        "IsVerifiedAuthor" : {
+          "shape" : "__boolean",
+          "locationName" : "isVerifiedAuthor"
+        },
         "Labels" : {
           "shape" : "__listOf__string",
           "locationName" : "labels"
@@ -377,6 +381,10 @@
         "SpdxLicenseId" : {
           "shape" : "__string",
           "locationName" : "spdxLicenseId"
+        },
+        "VerifiedAuthorUrl" : {
+          "shape" : "__string",
+          "locationName" : "verifiedAuthorUrl"
         },
         "Version" : {
           "shape" : "Version",
@@ -722,6 +730,10 @@
           "shape" : "__string",
           "locationName" : "homePageUrl"
         },
+        "IsVerifiedAuthor" : {
+          "shape" : "__boolean",
+          "locationName" : "isVerifiedAuthor"
+        },
         "Labels" : {
           "shape" : "__listOf__string",
           "locationName" : "labels"
@@ -741,6 +753,10 @@
         "SpdxLicenseId" : {
           "shape" : "__string",
           "locationName" : "spdxLicenseId"
+        },
+        "VerifiedAuthorUrl" : {
+          "shape" : "__string",
+          "locationName" : "verifiedAuthorUrl"
         },
         "Version" : {
           "shape" : "Version",
@@ -1111,6 +1127,10 @@
           "shape" : "__string",
           "locationName" : "homePageUrl"
         },
+        "IsVerifiedAuthor" : {
+          "shape" : "__boolean",
+          "locationName" : "isVerifiedAuthor"
+        },
         "Labels" : {
           "shape" : "__listOf__string",
           "locationName" : "labels"
@@ -1130,6 +1150,10 @@
         "SpdxLicenseId" : {
           "shape" : "__string",
           "locationName" : "spdxLicenseId"
+        },
+        "VerifiedAuthorUrl" : {
+          "shape" : "__string",
+          "locationName" : "verifiedAuthorUrl"
         },
         "Version" : {
           "shape" : "Version",
@@ -1605,6 +1629,10 @@
           "shape" : "__string",
           "locationName" : "homePageUrl"
         },
+        "IsVerifiedAuthor" : {
+          "shape" : "__boolean",
+          "locationName" : "isVerifiedAuthor"
+        },
         "Labels" : {
           "shape" : "__listOf__string",
           "locationName" : "labels"
@@ -1624,6 +1652,10 @@
         "SpdxLicenseId" : {
           "shape" : "__string",
           "locationName" : "spdxLicenseId"
+        },
+        "VerifiedAuthorUrl" : {
+          "shape" : "__string",
+          "locationName" : "verifiedAuthorUrl"
         },
         "Version" : {
           "shape" : "Version",

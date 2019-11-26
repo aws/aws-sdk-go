@@ -1887,6 +1887,12 @@
   },
   "shapes":{
     "AWSAccountIdType":{"type":"string"},
+    "AccountRecoverySettingType":{
+      "type":"structure",
+      "members":{
+        "RecoveryMechanisms":{"shape":"RecoveryMechanismsType"}
+      }
+    },
     "AccountTakeoverActionNotifyType":{"type":"boolean"},
     "AccountTakeoverActionType":{
       "type":"structure",
@@ -3011,7 +3017,8 @@
         "UserPoolTags":{"shape":"UserPoolTagsType"},
         "AdminCreateUserConfig":{"shape":"AdminCreateUserConfigType"},
         "Schema":{"shape":"SchemaAttributesListType"},
-        "UserPoolAddOns":{"shape":"UserPoolAddOnsType"}
+        "UserPoolAddOns":{"shape":"UserPoolAddOnsType"},
+        "AccountRecoverySetting":{"shape":"AccountRecoverySettingType"}
       }
     },
     "CreateUserPoolResponse":{
@@ -4235,6 +4242,11 @@
         "ENABLED"
       ]
     },
+    "PriorityType":{
+      "type":"integer",
+      "max":2,
+      "min":1
+    },
     "ProviderDescription":{
       "type":"structure",
       "members":{
@@ -4284,6 +4296,31 @@
       "type":"integer",
       "max":60,
       "min":0
+    },
+    "RecoveryMechanismsType":{
+      "type":"list",
+      "member":{"shape":"RecoveryOptionType"},
+      "max":2,
+      "min":1
+    },
+    "RecoveryOptionNameType":{
+      "type":"string",
+      "enum":[
+        "verified_email",
+        "verified_phone_number",
+        "admin_only"
+      ]
+    },
+    "RecoveryOptionType":{
+      "type":"structure",
+      "required":[
+        "Priority",
+        "Name"
+      ],
+      "members":{
+        "Priority":{"shape":"PriorityType"},
+        "Name":{"shape":"RecoveryOptionNameType"}
+      }
     },
     "RedirectUrlType":{
       "type":"string",
@@ -5032,7 +5069,8 @@
         "SmsConfiguration":{"shape":"SmsConfigurationType"},
         "UserPoolTags":{"shape":"UserPoolTagsType"},
         "AdminCreateUserConfig":{"shape":"AdminCreateUserConfigType"},
-        "UserPoolAddOns":{"shape":"UserPoolAddOnsType"}
+        "UserPoolAddOns":{"shape":"UserPoolAddOnsType"},
+        "AccountRecoverySetting":{"shape":"AccountRecoverySettingType"}
       }
     },
     "UpdateUserPoolResponse":{
@@ -5272,7 +5310,8 @@
         "CustomDomain":{"shape":"DomainType"},
         "AdminCreateUserConfig":{"shape":"AdminCreateUserConfigType"},
         "UserPoolAddOns":{"shape":"UserPoolAddOnsType"},
-        "Arn":{"shape":"ArnType"}
+        "Arn":{"shape":"ArnType"},
+        "AccountRecoverySetting":{"shape":"AccountRecoverySettingType"}
       }
     },
     "UserStatusType":{

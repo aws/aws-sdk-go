@@ -50,7 +50,14 @@
         "ListPlaybackConfigurationsResponse": {
             "base": null, 
             "refs": {}
-        }, 
+        },
+        "LivePreRollConfiguration" : {
+            "base" : "<p>The configuration for pre-roll ad insertion.</p>",
+            "refs" : {
+                "GetPlaybackConfigurationResponse$LivePreRollConfiguration" : "<p>The configuration for pre-roll ad insertion.</p>",
+                "PutPlaybackConfigurationRequest$LivePreRollConfiguration" : "<p>The configuration for pre-roll ad insertion.</p>"
+            }
+        },
         "OriginManifestType": {
             "base": null, 
             "refs": {
@@ -70,7 +77,13 @@
         "TagsModel": {
             "base": "<p>A set of tags assigned to a resource. </p>", 
             "refs": {}
-        }, 
+        },
+        "__integer" : {
+            "base" : null,
+            "refs" : {
+                "LivePreRollConfiguration$MaxDurationSeconds" : "The maximum allowed duration for the pre-roll ad avail. AWS Elemental MediaTailor won't play pre-roll ads to exceed this duration, regardless of the total duration of ads that the ADS returns."
+            }
+        },
         "__listOfPlaybackConfigurations": {
             "base": null, 
             "refs": {
@@ -103,7 +116,8 @@
                 "GetPlaybackConfigurationResponse$TranscodeProfileName": "<p>The name that is used to associate this playback configuration with a custom transcode profile. This overrides the dynamic transcoding defaults of MediaTailor. Use this only if you have already set up custom profiles with the help of AWS Support.</p>", 
                 "GetPlaybackConfigurationResponse$VideoContentSourceUrl": "<p>The URL prefix for the master playlist for the stream, minus the asset ID. The maximum length is 512 characters.</p>", 
                 "HlsConfiguration$ManifestEndpointPrefix": "<p>The URL that is used to initiate a playback session for devices that support Apple HLS. The session uses server-side reporting.</p>", 
-                "ListPlaybackConfigurationsResponse$NextToken": "<p>Pagination token returned by the GET list request when results exceed the maximum allowed. Use the token to fetch the next page of results.</p>", 
+                "ListPlaybackConfigurationsResponse$NextToken": "<p>Pagination token returned by the GET list request when results exceed the maximum allowed. Use the token to fetch the next page of results.</p>",
+                "LivePreRollConfiguration$AdDecisionServerUrl" : "<p>The URL for the ad decision server (ADS) for pre-roll ads. This includes the specification of static parameters and placeholders for dynamic parameters. AWS Elemental MediaTailor substitutes player-specific and session-specific parameters as needed when calling the ADS. Alternately, for testing, you can provide a static VAST URL. The maximum length is 25,000 characters.</p>",
                 "PutPlaybackConfigurationRequest$AdDecisionServerUrl": "<p>The URL for the ad decision server (ADS). This includes the specification of static parameters and placeholders for dynamic parameters. AWS Elemental MediaTailor substitutes player-specific and session-specific parameters as needed when calling the ADS. Alternately, for testing you can provide a static VAST URL. The maximum length is 25,000 characters.</p>", 
                 "PutPlaybackConfigurationRequest$Name": "<p>The identifier for the playback configuration.</p>", 
                 "PutPlaybackConfigurationRequest$SlateAdUrl": "<p>The URL for a high-quality video asset to transcode and use to fill in time that's not used by ads. AWS Elemental MediaTailor shows the slate to fill in gaps in media content. Configuring the slate is optional for non-VPAID configurations. For VPAID, the slate is required because MediaTailor provides it in the slots that are designated for dynamic ad content. The slate must be a high-quality asset that contains both audio and video. </p>", 

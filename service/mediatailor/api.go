@@ -806,6 +806,9 @@ type GetPlaybackConfigurationOutput struct {
 	// The configuration for HLS content.
 	HlsConfiguration *HlsConfiguration `type:"structure"`
 
+	// The configuration for pre-roll ad insertion.
+	LivePreRollConfiguration *LivePreRollConfiguration `type:"structure"`
+
 	// The identifier for the playback configuration.
 	Name *string `type:"string"`
 
@@ -873,6 +876,12 @@ func (s *GetPlaybackConfigurationOutput) SetDashConfiguration(v *DashConfigurati
 // SetHlsConfiguration sets the HlsConfiguration field's value.
 func (s *GetPlaybackConfigurationOutput) SetHlsConfiguration(v *HlsConfiguration) *GetPlaybackConfigurationOutput {
 	s.HlsConfiguration = v
+	return s
+}
+
+// SetLivePreRollConfiguration sets the LivePreRollConfiguration field's value.
+func (s *GetPlaybackConfigurationOutput) SetLivePreRollConfiguration(v *LivePreRollConfiguration) *GetPlaybackConfigurationOutput {
+	s.LivePreRollConfiguration = v
 	return s
 }
 
@@ -1088,6 +1097,45 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
+// The configuration for pre-roll ad insertion.
+type LivePreRollConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The URL for the ad decision server (ADS) for pre-roll ads. This includes
+	// the specification of static parameters and placeholders for dynamic parameters.
+	// AWS Elemental MediaTailor substitutes player-specific and session-specific
+	// parameters as needed when calling the ADS. Alternately, for testing, you
+	// can provide a static VAST URL. The maximum length is 25,000 characters.
+	AdDecisionServerUrl *string `type:"string"`
+
+	// The maximum allowed duration for the pre-roll ad avail. AWS Elemental MediaTailor
+	// won't play pre-roll ads to exceed this duration, regardless of the total
+	// duration of ads that the ADS returns.
+	MaxDurationSeconds *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s LivePreRollConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LivePreRollConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAdDecisionServerUrl sets the AdDecisionServerUrl field's value.
+func (s *LivePreRollConfiguration) SetAdDecisionServerUrl(v string) *LivePreRollConfiguration {
+	s.AdDecisionServerUrl = &v
+	return s
+}
+
+// SetMaxDurationSeconds sets the MaxDurationSeconds field's value.
+func (s *LivePreRollConfiguration) SetMaxDurationSeconds(v int64) *LivePreRollConfiguration {
+	s.MaxDurationSeconds = &v
+	return s
+}
+
 type PlaybackConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -1219,6 +1267,9 @@ type PutPlaybackConfigurationInput struct {
 	// The configuration for DASH content.
 	DashConfiguration *DashConfigurationForPut `type:"structure"`
 
+	// The configuration for pre-roll ad insertion.
+	LivePreRollConfiguration *LivePreRollConfiguration `type:"structure"`
+
 	// The identifier for the playback configuration.
 	Name *string `type:"string"`
 
@@ -1272,6 +1323,12 @@ func (s *PutPlaybackConfigurationInput) SetDashConfiguration(v *DashConfiguratio
 	return s
 }
 
+// SetLivePreRollConfiguration sets the LivePreRollConfiguration field's value.
+func (s *PutPlaybackConfigurationInput) SetLivePreRollConfiguration(v *LivePreRollConfiguration) *PutPlaybackConfigurationInput {
+	s.LivePreRollConfiguration = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *PutPlaybackConfigurationInput) SetName(v string) *PutPlaybackConfigurationInput {
 	s.Name = &v
@@ -1316,6 +1373,9 @@ type PutPlaybackConfigurationOutput struct {
 
 	// The configuration for HLS content.
 	HlsConfiguration *HlsConfiguration `type:"structure"`
+
+	// The configuration for pre-roll ad insertion.
+	LivePreRollConfiguration *LivePreRollConfiguration `type:"structure"`
 
 	Name *string `type:"string"`
 
@@ -1365,6 +1425,12 @@ func (s *PutPlaybackConfigurationOutput) SetDashConfiguration(v *DashConfigurati
 // SetHlsConfiguration sets the HlsConfiguration field's value.
 func (s *PutPlaybackConfigurationOutput) SetHlsConfiguration(v *HlsConfiguration) *PutPlaybackConfigurationOutput {
 	s.HlsConfiguration = v
+	return s
+}
+
+// SetLivePreRollConfiguration sets the LivePreRollConfiguration field's value.
+func (s *PutPlaybackConfigurationOutput) SetLivePreRollConfiguration(v *LivePreRollConfiguration) *PutPlaybackConfigurationOutput {
+	s.LivePreRollConfiguration = v
 	return s
 }
 
