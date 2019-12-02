@@ -1,3 +1,9 @@
+Release v1.25.45 (2019-12-02)
+===
+
+### Service Client Updates
+* `service/accessanalyzer`: Adds new service
+
 Release v1.25.44 (2019-12-02)
 ===
 
