@@ -14362,6 +14362,10 @@
         "AvailabilityZoneId":{
           "shape":"String",
           "locationName":"availabilityZoneId"
+        },
+        "MemberOfServiceLinkedResourceGroup":{
+          "shape":"Boolean",
+          "locationName":"memberOfServiceLinkedResourceGroup"
         }
       }
     },
@@ -17608,6 +17612,10 @@
         "SpreadDomain":{
           "shape":"String",
           "locationName":"spreadDomain"
+        },
+        "HostResourceGroupArn":{
+          "shape":"String",
+          "locationName":"hostResourceGroupArn"
         }
       }
     },
@@ -17619,7 +17627,8 @@
         "GroupName":{"shape":"String"},
         "HostId":{"shape":"String"},
         "Tenancy":{"shape":"Tenancy"},
-        "SpreadDomain":{"shape":"String"}
+        "SpreadDomain":{"shape":"String"},
+        "HostResourceGroupArn":{"shape":"String"}
       }
     },
     "LaunchTemplateSet":{
@@ -18312,7 +18321,8 @@
           "shape":"HostTenancy",
           "locationName":"tenancy"
         },
-        "PartitionNumber":{"shape":"Integer"}
+        "PartitionNumber":{"shape":"Integer"},
+        "HostResourceGroupArn":{"shape":"String"}
       }
     },
     "ModifyInstancePlacementResult":{
@@ -19876,6 +19886,10 @@
         "SpreadDomain":{
           "shape":"String",
           "locationName":"spreadDomain"
+        },
+        "HostResourceGroupArn":{
+          "shape":"String",
+          "locationName":"hostResourceGroupArn"
         }
       }
     },
@@ -21838,6 +21852,7 @@
         "route-table",
         "security-group",
         "snapshot",
+        "spot-fleet-request",
         "spot-instances-request",
         "subnet",
         "traffic-mirror-filter",
