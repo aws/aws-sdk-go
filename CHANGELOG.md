@@ -1,3 +1,13 @@
+Release v1.25.44 (2019-12-02)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * AWS now provides a new BYOL experience for software licenses, such as Windows and SQL Server, that require a dedicated physical server. You can now enjoy the flexibility and cost effectiveness of using your own licenses on Amazon EC2 Dedicated Hosts, but with the simplicity, resiliency, and elasticity of AWS. You can specify your Dedicated Host management preferences, such as host allocation, host capacity utilization, and instance placement in AWS License Manager.  Once set up, AWS takes care of these administrative tasks on your behalf, so that you can seamlessly launch virtual machines (instances) on Dedicated Hosts just like you would launch an EC2 instance with AWS provided licenses.
+* `service/imagebuilder`: Adds new service
+* `service/license-manager`: Updates service API and documentation
+* `service/schemas`: Adds new service
+
 Release v1.25.43 (2019-11-26)
 ===
 
