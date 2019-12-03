@@ -13,6 +13,21 @@
     "uid":"ecs-2014-11-13"
   },
   "operations":{
+    "CreateCapacityProvider":{
+      "name":"CreateCapacityProvider",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateCapacityProviderRequest"},
+      "output":{"shape":"CreateCapacityProviderResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ClientException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "CreateCluster":{
       "name":"CreateCluster",
       "http":{
@@ -110,7 +125,8 @@
         {"shape":"ClusterNotFoundException"},
         {"shape":"ClusterContainsContainerInstancesException"},
         {"shape":"ClusterContainsServicesException"},
-        {"shape":"ClusterContainsTasksException"}
+        {"shape":"ClusterContainsTasksException"},
+        {"shape":"UpdateInProgressException"}
       ]
     },
     "DeleteService":{
@@ -172,6 +188,20 @@
       },
       "input":{"shape":"DeregisterTaskDefinitionRequest"},
       "output":{"shape":"DeregisterTaskDefinitionResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ClientException"},
+        {"shape":"InvalidParameterException"}
+      ]
+    },
+    "DescribeCapacityProviders":{
+      "name":"DescribeCapacityProviders",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeCapacityProvidersRequest"},
+      "output":{"shape":"DescribeCapacityProvidersResponse"},
       "errors":[
         {"shape":"ServerException"},
         {"shape":"ClientException"},
@@ -456,6 +486,23 @@
         {"shape":"InvalidParameterException"}
       ]
     },
+    "PutClusterCapacityProviders":{
+      "name":"PutClusterCapacityProviders",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutClusterCapacityProvidersRequest"},
+      "output":{"shape":"PutClusterCapacityProvidersResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ClientException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClusterNotFoundException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"UpdateInProgressException"}
+      ]
+    },
     "RegisterContainerInstance":{
       "name":"RegisterContainerInstance",
       "http":{
@@ -692,7 +739,6 @@
         {"shape":"InvalidParameterException"},
         {"shape":"ClusterNotFoundException"},
         {"shape":"UnsupportedFeatureException"},
-        {"shape":"AccessDeniedException"},
         {"shape":"ServiceNotFoundException"},
         {"shape":"ServiceNotActiveException"},
         {"shape":"TaskSetNotFoundException"},
@@ -797,6 +843,15 @@
       "type":"list",
       "member":{"shape":"Attribute"}
     },
+    "AutoScalingGroupProvider":{
+      "type":"structure",
+      "required":["autoScalingGroupArn"],
+      "members":{
+        "autoScalingGroupArn":{"shape":"String"},
+        "managedScaling":{"shape":"ManagedScaling"},
+        "managedTerminationProtection":{"shape":"ManagedTerminationProtection"}
+      }
+    },
     "AwsVpcConfiguration":{
       "type":"structure",
       "required":["subnets"],
@@ -821,6 +876,55 @@
       "type":"integer",
       "box":true
     },
+    "CapacityProvider":{
+      "type":"structure",
+      "members":{
+        "capacityProviderArn":{"shape":"String"},
+        "name":{"shape":"String"},
+        "status":{"shape":"CapacityProviderStatus"},
+        "autoScalingGroupProvider":{"shape":"AutoScalingGroupProvider"},
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "CapacityProviderField":{
+      "type":"string",
+      "enum":["TAGS"]
+    },
+    "CapacityProviderFieldList":{
+      "type":"list",
+      "member":{"shape":"CapacityProviderField"}
+    },
+    "CapacityProviderStatus":{
+      "type":"string",
+      "enum":["ACTIVE"]
+    },
+    "CapacityProviderStrategy":{
+      "type":"list",
+      "member":{"shape":"CapacityProviderStrategyItem"}
+    },
+    "CapacityProviderStrategyItem":{
+      "type":"structure",
+      "required":["capacityProvider"],
+      "members":{
+        "capacityProvider":{"shape":"String"},
+        "weight":{"shape":"CapacityProviderStrategyItemWeight"},
+        "base":{"shape":"CapacityProviderStrategyItemBase"}
+      }
+    },
+    "CapacityProviderStrategyItemBase":{
+      "type":"integer",
+      "max":100000,
+      "min":0
+    },
+    "CapacityProviderStrategyItemWeight":{
+      "type":"integer",
+      "max":1000,
+      "min":0
+    },
+    "CapacityProviders":{
+      "type":"list",
+      "member":{"shape":"CapacityProvider"}
+    },
     "ClientException":{
       "type":"structure",
       "members":{
@@ -840,7 +944,11 @@
         "activeServicesCount":{"shape":"Integer"},
         "statistics":{"shape":"Statistics"},
         "tags":{"shape":"Tags"},
-        "settings":{"shape":"ClusterSettings"}
+        "settings":{"shape":"ClusterSettings"},
+        "capacityProviders":{"shape":"StringList"},
+        "defaultCapacityProviderStrategy":{"shape":"CapacityProviderStrategy"},
+        "attachments":{"shape":"Attachments"},
+        "attachmentsStatus":{"shape":"String"}
       }
     },
     "ClusterContainsContainerInstancesException":{
@@ -864,6 +972,8 @@
     "ClusterField":{
       "type":"string",
       "enum":[
+        "ATTACHMENTS",
+        "SETTINGS",
         "STATISTICS",
         "TAGS"
       ]
@@ -1012,6 +1122,7 @@
       "members":{
         "containerInstanceArn":{"shape":"String"},
         "ec2InstanceId":{"shape":"String"},
+        "capacityProviderName":{"shape":"String"},
         "version":{"shape":"Long"},
         "versionInfo":{"shape":"VersionInfo"},
         "remainingResources":{"shape":"Resources"},
@@ -1086,12 +1197,32 @@
       "type":"list",
       "member":{"shape":"Container"}
     },
+    "CreateCapacityProviderRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "autoScalingGroupProvider"
+      ],
+      "members":{
+        "name":{"shape":"String"},
+        "autoScalingGroupProvider":{"shape":"AutoScalingGroupProvider"},
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "CreateCapacityProviderResponse":{
+      "type":"structure",
+      "members":{
+        "capacityProvider":{"shape":"CapacityProvider"}
+      }
+    },
     "CreateClusterRequest":{
       "type":"structure",
       "members":{
         "clusterName":{"shape":"String"},
         "tags":{"shape":"Tags"},
-        "settings":{"shape":"ClusterSettings"}
+        "settings":{"shape":"ClusterSettings"},
+        "capacityProviders":{"shape":"StringList"},
+        "defaultCapacityProviderStrategy":{"shape":"CapacityProviderStrategy"}
       }
     },
     "CreateClusterResponse":{
@@ -1112,6 +1243,7 @@
         "desiredCount":{"shape":"BoxedInteger"},
         "clientToken":{"shape":"String"},
         "launchType":{"shape":"LaunchType"},
+        "capacityProviderStrategy":{"shape":"CapacityProviderStrategy"},
         "platformVersion":{"shape":"String"},
         "role":{"shape":"String"},
         "deploymentConfiguration":{"shape":"DeploymentConfiguration"},
@@ -1148,6 +1280,7 @@
         "loadBalancers":{"shape":"LoadBalancers"},
         "serviceRegistries":{"shape":"ServiceRegistries"},
         "launchType":{"shape":"LaunchType"},
+        "capacityProviderStrategy":{"shape":"CapacityProviderStrategy"},
         "platformVersion":{"shape":"String"},
         "scale":{"shape":"Scale"},
         "clientToken":{"shape":"String"}
@@ -1246,6 +1379,7 @@
         "runningCount":{"shape":"Integer"},
         "createdAt":{"shape":"Timestamp"},
         "updatedAt":{"shape":"Timestamp"},
+        "capacityProviderStrategy":{"shape":"CapacityProviderStrategy"},
         "launchType":{"shape":"LaunchType"},
         "platformVersion":{"shape":"String"},
         "networkConfiguration":{"shape":"NetworkConfiguration"}
@@ -1303,6 +1437,23 @@
       "type":"structure",
       "members":{
         "taskDefinition":{"shape":"TaskDefinition"}
+      }
+    },
+    "DescribeCapacityProvidersRequest":{
+      "type":"structure",
+      "members":{
+        "capacityProviders":{"shape":"StringList"},
+        "include":{"shape":"CapacityProviderFieldList"},
+        "maxResults":{"shape":"BoxedInteger"},
+        "nextToken":{"shape":"String"}
+      }
+    },
+    "DescribeCapacityProvidersResponse":{
+      "type":"structure",
+      "members":{
+        "capacityProviders":{"shape":"CapacityProviders"},
+        "failures":{"shape":"Failures"},
+        "nextToken":{"shape":"String"}
       }
     },
     "DescribeClustersRequest":{
@@ -1606,6 +1757,12 @@
         "FARGATE"
       ]
     },
+    "LimitExceededException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "LinuxParameters":{
       "type":"structure",
       "members":{
@@ -1811,6 +1968,39 @@
       ]
     },
     "Long":{"type":"long"},
+    "ManagedScaling":{
+      "type":"structure",
+      "members":{
+        "status":{"shape":"ManagedScalingStatus"},
+        "targetCapacity":{"shape":"ManagedScalingTargetCapacity"},
+        "minimumScalingStepSize":{"shape":"ManagedScalingStepSize"},
+        "maximumScalingStepSize":{"shape":"ManagedScalingStepSize"}
+      }
+    },
+    "ManagedScalingStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
+    "ManagedScalingStepSize":{
+      "type":"integer",
+      "max":10000,
+      "min":1
+    },
+    "ManagedScalingTargetCapacity":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
+    "ManagedTerminationProtection":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "MissingVersionException":{
       "type":"structure",
       "members":{
@@ -2035,6 +2225,25 @@
         "attributes":{"shape":"Attributes"}
       }
     },
+    "PutClusterCapacityProvidersRequest":{
+      "type":"structure",
+      "required":[
+        "cluster",
+        "capacityProviders",
+        "defaultCapacityProviderStrategy"
+      ],
+      "members":{
+        "cluster":{"shape":"String"},
+        "capacityProviders":{"shape":"StringList"},
+        "defaultCapacityProviderStrategy":{"shape":"CapacityProviderStrategy"}
+      }
+    },
+    "PutClusterCapacityProvidersResponse":{
+      "type":"structure",
+      "members":{
+        "cluster":{"shape":"Cluster"}
+      }
+    },
     "RegisterContainerInstanceRequest":{
       "type":"structure",
       "members":{
@@ -2108,6 +2317,12 @@
         "stringSetValue":{"shape":"StringList"}
       }
     },
+    "ResourceInUseException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "ResourceNotFoundException":{
       "type":"structure",
       "members":{
@@ -2144,6 +2359,7 @@
       "type":"structure",
       "required":["taskDefinition"],
       "members":{
+        "capacityProviderStrategy":{"shape":"CapacityProviderStrategy"},
         "cluster":{"shape":"String"},
         "count":{"shape":"BoxedInteger"},
         "enableECSManagedTags":{"shape":"Boolean"},
@@ -2229,6 +2445,7 @@
         "runningCount":{"shape":"Integer"},
         "pendingCount":{"shape":"Integer"},
         "launchType":{"shape":"LaunchType"},
+        "capacityProviderStrategy":{"shape":"CapacityProviderStrategy"},
         "platformVersion":{"shape":"String"},
         "taskDefinition":{"shape":"String"},
         "deploymentConfiguration":{"shape":"DeploymentConfiguration"},
@@ -2515,6 +2732,7 @@
         "attachments":{"shape":"Attachments"},
         "attributes":{"shape":"Attributes"},
         "availabilityZone":{"shape":"String"},
+        "capacityProviderName":{"shape":"String"},
         "clusterArn":{"shape":"String"},
         "connectivity":{"shape":"Connectivity"},
         "connectivityAt":{"shape":"Timestamp"},
@@ -2644,6 +2862,7 @@
         "createdAt":{"shape":"Timestamp"},
         "updatedAt":{"shape":"Timestamp"},
         "launchType":{"shape":"LaunchType"},
+        "capacityProviderStrategy":{"shape":"CapacityProviderStrategy"},
         "platformVersion":{"shape":"String"},
         "networkConfiguration":{"shape":"NetworkConfiguration"},
         "loadBalancers":{"shape":"LoadBalancers"},
@@ -2841,6 +3060,7 @@
         "service":{"shape":"String"},
         "desiredCount":{"shape":"BoxedInteger"},
         "taskDefinition":{"shape":"String"},
+        "capacityProviderStrategy":{"shape":"CapacityProviderStrategy"},
         "deploymentConfiguration":{"shape":"DeploymentConfiguration"},
         "networkConfiguration":{"shape":"NetworkConfiguration"},
         "platformVersion":{"shape":"String"},

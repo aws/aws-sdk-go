@@ -31,6 +31,23 @@
         {"shape":"UnsupportedAvailabilityZoneException"}
       ]
     },
+    "CreateFargateProfile":{
+      "name":"CreateFargateProfile",
+      "http":{
+        "method":"POST",
+        "requestUri":"/clusters/{name}/fargate-profiles"
+      },
+      "input":{"shape":"CreateFargateProfileRequest"},
+      "output":{"shape":"CreateFargateProfileResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ClientException"},
+        {"shape":"ServerException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"UnsupportedAvailabilityZoneException"}
+      ]
+    },
     "CreateNodegroup":{
       "name":"CreateNodegroup",
       "http":{
@@ -65,6 +82,21 @@
         {"shape":"ServiceUnavailableException"}
       ]
     },
+    "DeleteFargateProfile":{
+      "name":"DeleteFargateProfile",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/clusters/{name}/fargate-profiles/{fargateProfileName}"
+      },
+      "input":{"shape":"DeleteFargateProfileRequest"},
+      "output":{"shape":"DeleteFargateProfileResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClientException"},
+        {"shape":"ServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "DeleteNodegroup":{
       "name":"DeleteNodegroup",
       "http":{
@@ -95,6 +127,21 @@
         {"shape":"ClientException"},
         {"shape":"ServerException"},
         {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "DescribeFargateProfile":{
+      "name":"DescribeFargateProfile",
+      "http":{
+        "method":"GET",
+        "requestUri":"/clusters/{name}/fargate-profiles/{fargateProfileName}"
+      },
+      "input":{"shape":"DescribeFargateProfileRequest"},
+      "output":{"shape":"DescribeFargateProfileResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClientException"},
+        {"shape":"ServerException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "DescribeNodegroup":{
@@ -141,6 +188,21 @@
         {"shape":"ClientException"},
         {"shape":"ServerException"},
         {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "ListFargateProfiles":{
+      "name":"ListFargateProfiles",
+      "http":{
+        "method":"GET",
+        "requestUri":"/clusters/{name}/fargate-profiles"
+      },
+      "input":{"shape":"ListFargateProfilesRequest"},
+      "output":{"shape":"ListFargateProfilesResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ClientException"},
+        {"shape":"ServerException"}
       ]
     },
     "ListNodegroups":{
@@ -399,6 +461,36 @@
         "cluster":{"shape":"Cluster"}
       }
     },
+    "CreateFargateProfileRequest":{
+      "type":"structure",
+      "required":[
+        "fargateProfileName",
+        "clusterName",
+        "podExecutionRoleArn"
+      ],
+      "members":{
+        "fargateProfileName":{"shape":"String"},
+        "clusterName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "podExecutionRoleArn":{"shape":"String"},
+        "subnets":{"shape":"StringList"},
+        "selectors":{"shape":"FargateProfileSelectors"},
+        "clientRequestToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        },
+        "tags":{"shape":"TagMap"}
+      }
+    },
+    "CreateFargateProfileResponse":{
+      "type":"structure",
+      "members":{
+        "fargateProfile":{"shape":"FargateProfile"}
+      }
+    },
     "CreateNodegroupRequest":{
       "type":"structure",
       "required":[
@@ -454,6 +546,31 @@
         "cluster":{"shape":"Cluster"}
       }
     },
+    "DeleteFargateProfileRequest":{
+      "type":"structure",
+      "required":[
+        "clusterName",
+        "fargateProfileName"
+      ],
+      "members":{
+        "clusterName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "fargateProfileName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"fargateProfileName"
+        }
+      }
+    },
+    "DeleteFargateProfileResponse":{
+      "type":"structure",
+      "members":{
+        "fargateProfile":{"shape":"FargateProfile"}
+      }
+    },
     "DeleteNodegroupRequest":{
       "type":"structure",
       "required":[
@@ -494,6 +611,31 @@
       "type":"structure",
       "members":{
         "cluster":{"shape":"Cluster"}
+      }
+    },
+    "DescribeFargateProfileRequest":{
+      "type":"structure",
+      "required":[
+        "clusterName",
+        "fargateProfileName"
+      ],
+      "members":{
+        "clusterName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "fargateProfileName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"fargateProfileName"
+        }
+      }
+    },
+    "DescribeFargateProfileResponse":{
+      "type":"structure",
+      "members":{
+        "fargateProfile":{"shape":"FargateProfile"}
       }
     },
     "DescribeNodegroupRequest":{
@@ -579,6 +721,52 @@
       "type":"list",
       "member":{"shape":"ErrorDetail"}
     },
+    "FargateProfile":{
+      "type":"structure",
+      "members":{
+        "fargateProfileName":{"shape":"String"},
+        "fargateProfileArn":{"shape":"String"},
+        "clusterName":{"shape":"String"},
+        "createdAt":{"shape":"Timestamp"},
+        "podExecutionRoleArn":{"shape":"String"},
+        "subnets":{"shape":"StringList"},
+        "selectors":{"shape":"FargateProfileSelectors"},
+        "status":{"shape":"FargateProfileStatus"},
+        "tags":{"shape":"TagMap"}
+      }
+    },
+    "FargateProfileLabel":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"String"}
+    },
+    "FargateProfileSelector":{
+      "type":"structure",
+      "members":{
+        "namespace":{"shape":"String"},
+        "labels":{"shape":"FargateProfileLabel"}
+      }
+    },
+    "FargateProfileSelectors":{
+      "type":"list",
+      "member":{"shape":"FargateProfileSelector"}
+    },
+    "FargateProfileStatus":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "ACTIVE",
+        "DELETING",
+        "CREATE_FAILED",
+        "DELETE_FAILED"
+      ]
+    },
+    "FargateProfilesRequestMaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
     "Identity":{
       "type":"structure",
       "members":{
@@ -590,6 +778,7 @@
       "members":{
         "clusterName":{"shape":"String"},
         "nodegroupName":{"shape":"String"},
+        "fargateProfileName":{"shape":"String"},
         "message":{"shape":"String"}
       },
       "error":{"httpStatusCode":400},
@@ -642,6 +831,34 @@
       "type":"structure",
       "members":{
         "clusters":{"shape":"StringList"},
+        "nextToken":{"shape":"String"}
+      }
+    },
+    "ListFargateProfilesRequest":{
+      "type":"structure",
+      "required":["clusterName"],
+      "members":{
+        "clusterName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "maxResults":{
+          "shape":"FargateProfilesRequestMaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListFargateProfilesResponse":{
+      "type":"structure",
+      "members":{
+        "fargateProfileNames":{"shape":"StringList"},
         "nextToken":{"shape":"String"}
       }
     },
@@ -886,6 +1103,7 @@
       "members":{
         "clusterName":{"shape":"String"},
         "nodegroupName":{"shape":"String"},
+        "fargateProfileName":{"shape":"String"},
         "message":{"shape":"String"}
       },
       "error":{"httpStatusCode":404},

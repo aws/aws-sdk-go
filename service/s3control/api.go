@@ -60,6 +60,8 @@ func (c *S3Control) CreateAccessPointRequest(input *CreateAccessPointInput) (req
 
 // CreateAccessPoint API operation for AWS S3 Control.
 //
+// Creates an access point and associates it with the specified bucket.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -221,6 +223,8 @@ func (c *S3Control) DeleteAccessPointRequest(input *DeleteAccessPointInput) (req
 
 // DeleteAccessPoint API operation for AWS S3 Control.
 //
+// Deletes the specified access point.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -295,6 +299,8 @@ func (c *S3Control) DeleteAccessPointPolicyRequest(input *DeleteAccessPointPolic
 }
 
 // DeleteAccessPointPolicy API operation for AWS S3 Control.
+//
+// Deletes the access point policy for the specified access point.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -371,7 +377,7 @@ func (c *S3Control) DeletePublicAccessBlockRequest(input *DeletePublicAccessBloc
 
 // DeletePublicAccessBlock API operation for AWS S3 Control.
 //
-// Deletes the block public access configuration for the specified account.
+// Removes the PublicAccessBlock configuration for an Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -534,6 +540,8 @@ func (c *S3Control) GetAccessPointRequest(input *GetAccessPointInput) (req *requ
 
 // GetAccessPoint API operation for AWS S3 Control.
 //
+// Returns configuration information about the specified access point.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -607,6 +615,8 @@ func (c *S3Control) GetAccessPointPolicyRequest(input *GetAccessPointPolicyInput
 }
 
 // GetAccessPointPolicy API operation for AWS S3 Control.
+//
+// Returns the access point policy associated with the specified access point.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -682,6 +692,11 @@ func (c *S3Control) GetAccessPointPolicyStatusRequest(input *GetAccessPointPolic
 
 // GetAccessPointPolicyStatus API operation for AWS S3 Control.
 //
+// Indicates whether the specified access point currently has a policy that
+// allows public access. For more information about public access through access
+// points, see Managing Data Access with Amazon S3 Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-points.html)
+// in the Amazon Simple Storage Service Developer Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -756,6 +771,9 @@ func (c *S3Control) GetPublicAccessBlockRequest(input *GetPublicAccessBlockInput
 
 // GetPublicAccessBlock API operation for AWS S3 Control.
 //
+// Retrieves the PublicAccessBlock configuration for an Amazon Web Services
+// account.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -765,6 +783,8 @@ func (c *S3Control) GetPublicAccessBlockRequest(input *GetPublicAccessBlockInput
 //
 // Returned Error Codes:
 //   * ErrCodeNoSuchPublicAccessBlockConfiguration "NoSuchPublicAccessBlockConfiguration"
+//   Amazon S3 throws this exception if you make a GetPublicAccessBlock request
+//   against an account that doesn't have a PublicAccessBlockConfiguration set.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetPublicAccessBlock
 func (c *S3Control) GetPublicAccessBlock(input *GetPublicAccessBlockInput) (*GetPublicAccessBlockOutput, error) {
@@ -839,6 +859,12 @@ func (c *S3Control) ListAccessPointsRequest(input *ListAccessPointsInput) (req *
 }
 
 // ListAccessPoints API operation for AWS S3 Control.
+//
+// Returns a list of the access points currently associated with the specified
+// bucket. You can retrieve up to 1000 access points per call. If the specified
+// bucket has more than 1000 access points (or the number specified in maxResults,
+// whichever is less), then the response will include a continuation token that
+// you can use to list the additional access points.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1110,6 +1136,10 @@ func (c *S3Control) PutAccessPointPolicyRequest(input *PutAccessPointPolicyInput
 
 // PutAccessPointPolicy API operation for AWS S3 Control.
 //
+// Associates an access policy with the specified access point. Each access
+// point can have only one policy, so a request made to this API replaces any
+// existing policy associated with the specified access point.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1184,6 +1214,9 @@ func (c *S3Control) PutPublicAccessBlockRequest(input *PutPublicAccessBlockInput
 }
 
 // PutPublicAccessBlock API operation for AWS S3 Control.
+//
+// Creates or modifies the PublicAccessBlock configuration for an Amazon Web
+// Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1388,18 +1421,31 @@ func (c *S3Control) UpdateJobStatusWithContext(ctx aws.Context, input *UpdateJob
 	return out, req.Send()
 }
 
+// An access point used to access a bucket.
 type AccessPoint struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the bucket associated with this access point.
+	//
 	// Bucket is a required field
 	Bucket *string `min:"3" type:"string" required:"true"`
 
+	// The name of this access point.
+	//
 	// Name is a required field
 	Name *string `min:"3" type:"string" required:"true"`
 
+	// Indicates whether this access point allows access from the public Internet.
+	// If VpcConfiguration is specified for this access point, then NetworkOrigin
+	// is VPC, and the access point doesn't allow access from the public Internet.
+	// Otherwise, NetworkOrigin is Internet, and the access point allows access
+	// from the public Internet, subject to the access point and bucket access policies.
+	//
 	// NetworkOrigin is a required field
 	NetworkOrigin *string `type:"string" required:"true" enum:"NetworkOrigin"`
 
+	// The Virtual Private Cloud (VPC) configuration for this access point, if one
+	// exists.
 	VpcConfiguration *VpcConfiguration `type:"structure"`
 }
 
@@ -1440,17 +1486,31 @@ func (s *AccessPoint) SetVpcConfiguration(v *VpcConfiguration) *AccessPoint {
 type CreateAccessPointInput struct {
 	_ struct{} `locationName:"CreateAccessPointRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 
+	// The AWS account ID for the owner of the bucket for which you want to create
+	// an access point.
+	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
+	// The name of the bucket that you want to associate this access point with.
+	//
 	// Bucket is a required field
 	Bucket *string `min:"3" type:"string" required:"true"`
 
+	// The name you want to assign to this access point.
+	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 
+	// The PublicAccessBlock configuration that you want to apply to this Amazon
+	// S3 bucket. You can enable the configuration options in any combination. For
+	// more information about when Amazon S3 considers a bucket or object public,
+	// see The Meaning of "Public" (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status)
+	// in the Amazon Simple Storage Service Developer Guide.
 	PublicAccessBlockConfiguration *PublicAccessBlockConfiguration `type:"structure"`
 
+	// If you include this field, Amazon S3 restricts access to this access point
+	// to requests from the specified Virtual Private Cloud (VPC).
 	VpcConfiguration *VpcConfiguration `type:"structure"`
 }
 
@@ -1748,9 +1808,13 @@ func (s *CreateJobOutput) SetJobId(v string) *CreateJobOutput {
 type DeleteAccessPointInput struct {
 	_ struct{} `locationName:"DeleteAccessPointRequest" type:"structure"`
 
+	// The account ID for the account that owns the specified access point.
+	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
+	// The name of the access point you want to delete.
+	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
@@ -1822,9 +1886,13 @@ func (s DeleteAccessPointOutput) GoString() string {
 type DeleteAccessPointPolicyInput struct {
 	_ struct{} `locationName:"DeleteAccessPointPolicyRequest" type:"structure"`
 
+	// The account ID for the account that owns the specified access point.
+	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
+	// The name of the access point whose policy you want to delete.
+	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
@@ -1896,8 +1964,8 @@ func (s DeleteAccessPointPolicyOutput) GoString() string {
 type DeletePublicAccessBlockInput struct {
 	_ struct{} `locationName:"DeletePublicAccessBlockRequest" type:"structure"`
 
-	// The account ID for the AWS account whose block public access configuration
-	// you want to delete.
+	// The account ID for the Amazon Web Services account whose PublicAccessBlock
+	// configuration you want to remove.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -2044,9 +2112,14 @@ func (s *DescribeJobOutput) SetJob(v *JobDescriptor) *DescribeJobOutput {
 type GetAccessPointInput struct {
 	_ struct{} `locationName:"GetAccessPointRequest" type:"structure"`
 
+	// The account ID for the account that owns the specified access point.
+	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
+	// The name of the access point whose configuration information you want to
+	// retrieve.
+	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
@@ -2104,16 +2177,31 @@ func (s *GetAccessPointInput) hostLabels() map[string]string {
 type GetAccessPointOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the bucket associated with the specified access point.
 	Bucket *string `min:"3" type:"string"`
 
+	// The date and time when the specified access point was created.
 	CreationDate *time.Time `type:"timestamp"`
 
+	// The name of the specified access point.
 	Name *string `min:"3" type:"string"`
 
+	// Indicates whether this access point allows access from the public Internet.
+	// If VpcConfiguration is specified for this access point, then NetworkOrigin
+	// is VPC, and the access point doesn't allow access from the public Internet.
+	// Otherwise, NetworkOrigin is Internet, and the access point allows access
+	// from the public Internet, subject to the access point and bucket access policies.
 	NetworkOrigin *string `type:"string" enum:"NetworkOrigin"`
 
+	// The PublicAccessBlock configuration that you want to apply to this Amazon
+	// S3 bucket. You can enable the configuration options in any combination. For
+	// more information about when Amazon S3 considers a bucket or object public,
+	// see The Meaning of "Public" (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status)
+	// in the Amazon Simple Storage Service Developer Guide.
 	PublicAccessBlockConfiguration *PublicAccessBlockConfiguration `type:"structure"`
 
+	// Contains the Virtual Private Cloud (VPC) configuration for the specified
+	// access point.
 	VpcConfiguration *VpcConfiguration `type:"structure"`
 }
 
@@ -2166,9 +2254,13 @@ func (s *GetAccessPointOutput) SetVpcConfiguration(v *VpcConfiguration) *GetAcce
 type GetAccessPointPolicyInput struct {
 	_ struct{} `locationName:"GetAccessPointPolicyRequest" type:"structure"`
 
+	// The account ID for the account that owns the specified access point.
+	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
+	// The name of the access point whose policy you want to retrieve.
+	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
@@ -2226,6 +2318,7 @@ func (s *GetAccessPointPolicyInput) hostLabels() map[string]string {
 type GetAccessPointPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The access point policy associated with the specified access point.
 	Policy *string `type:"string"`
 }
 
@@ -2248,9 +2341,13 @@ func (s *GetAccessPointPolicyOutput) SetPolicy(v string) *GetAccessPointPolicyOu
 type GetAccessPointPolicyStatusInput struct {
 	_ struct{} `locationName:"GetAccessPointPolicyStatusRequest" type:"structure"`
 
+	// The account ID for the account that owns the specified access point.
+	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
+	// The name of the access point whose policy status you want to retrieve.
+	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
@@ -2308,6 +2405,7 @@ func (s *GetAccessPointPolicyStatusInput) hostLabels() map[string]string {
 type GetAccessPointPolicyStatusOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates the current policy status of the specified access point.
 	PolicyStatus *PolicyStatus `type:"structure"`
 }
 
@@ -2330,6 +2428,9 @@ func (s *GetAccessPointPolicyStatusOutput) SetPolicyStatus(v *PolicyStatus) *Get
 type GetPublicAccessBlockInput struct {
 	_ struct{} `locationName:"GetPublicAccessBlockRequest" type:"structure"`
 
+	// The account ID for the Amazon Web Services account whose PublicAccessBlock
+	// configuration you want to retrieve.
+	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 }
@@ -2375,6 +2476,8 @@ func (s *GetPublicAccessBlockInput) hostLabels() map[string]string {
 type GetPublicAccessBlockOutput struct {
 	_ struct{} `type:"structure" payload:"PublicAccessBlockConfiguration"`
 
+	// The PublicAccessBlock configuration currently in effect for this Amazon Web
+	// Services account.
 	PublicAccessBlockConfiguration *PublicAccessBlockConfiguration `type:"structure"`
 }
 
@@ -3026,7 +3129,8 @@ func (s *JobProgressSummary) SetTotalNumberOfTasks(v int64) *JobProgressSummary 
 type JobReport struct {
 	_ struct{} `type:"structure"`
 
-	// The bucket where specified job-completion report will be stored.
+	// The Amazon Resource Name (ARN) for the bucket where specified job-completion
+	// report will be stored.
 	Bucket *string `min:"1" type:"string"`
 
 	// Indicates whether the specified job will generate a job-completion report.
@@ -3147,13 +3251,24 @@ func (s *LambdaInvokeOperation) SetFunctionArn(v string) *LambdaInvokeOperation 
 type ListAccessPointsInput struct {
 	_ struct{} `locationName:"ListAccessPointsRequest" type:"structure"`
 
+	// The AWS account ID for owner of the bucket whose access points you want to
+	// list.
+	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
+	// The name of the bucket whose associated access points you want to list.
 	Bucket *string `location:"querystring" locationName:"bucket" min:"3" type:"string"`
 
+	// The maximum number of access points that you want to include in the list.
+	// If the specified bucket has more than this number of access points, then
+	// the response will include a continuation token in the NextToken field that
+	// you can use to retrieve the next page of access points.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// A continuation token. If a previous call to ListAccessPoints returned a continuation
+	// token in the NextToken field, then providing that value here causes Amazon
+	// S3 to retrieve the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -3225,8 +3340,14 @@ func (s *ListAccessPointsInput) hostLabels() map[string]string {
 type ListAccessPointsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Contains identification and configuration information for one or more access
+	// points associated with the specified bucket.
 	AccessPointList []*AccessPoint `locationNameList:"AccessPoint" type:"list"`
 
+	// If the specified bucket has more access points than can be returned in one
+	// call to this API, then this field contains a continuation token that you
+	// can provide in subsequent calls to this API to retrieve additional access
+	// points.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -3369,6 +3490,10 @@ func (s *ListJobsOutput) SetNextToken(v string) *ListJobsOutput {
 	return s
 }
 
+// Indicates whether this access point policy is public. For more information
+// about how Amazon S3 evaluates policies to determine whether they are public,
+// see The Meaning of "Public" (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status)
+// in the Amazon Simple Storage Service Developer Guide.
 type PolicyStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -3391,15 +3516,51 @@ func (s *PolicyStatus) SetIsPublic(v bool) *PolicyStatus {
 	return s
 }
 
+// The PublicAccessBlock configuration that you want to apply to this Amazon
+// S3 bucket. You can enable the configuration options in any combination. For
+// more information about when Amazon S3 considers a bucket or object public,
+// see The Meaning of "Public" (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status)
+// in the Amazon Simple Storage Service Developer Guide.
 type PublicAccessBlockConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies whether Amazon S3 should block public access control lists (ACLs)
+	// for buckets in this account. Setting this element to TRUE causes the following
+	// behavior:
+	//
+	//    * PUT Bucket acl and PUT Object acl calls fail if the specified ACL is
+	//    public.
+	//
+	//    * PUT Object calls fail if the request includes a public ACL.
+	//
+	//    * PUT Bucket calls fail if the request includes a public ACL.
+	//
+	// Enabling this setting doesn't affect existing policies or ACLs.
 	BlockPublicAcls *bool `locationName:"BlockPublicAcls" type:"boolean"`
 
+	// Specifies whether Amazon S3 should block public bucket policies for buckets
+	// in this account. Setting this element to TRUE causes Amazon S3 to reject
+	// calls to PUT Bucket policy if the specified bucket policy allows public access.
+	//
+	// Enabling this setting doesn't affect existing bucket policies.
 	BlockPublicPolicy *bool `locationName:"BlockPublicPolicy" type:"boolean"`
 
+	// Specifies whether Amazon S3 should ignore public ACLs for buckets in this
+	// account. Setting this element to TRUE causes Amazon S3 to ignore all public
+	// ACLs on buckets in this account and any objects that they contain.
+	//
+	// Enabling this setting doesn't affect the persistence of any existing ACLs
+	// and doesn't prevent new public ACLs from being set.
 	IgnorePublicAcls *bool `locationName:"IgnorePublicAcls" type:"boolean"`
 
+	// Specifies whether Amazon S3 should restrict public bucket policies for buckets
+	// in this account. Setting this element to TRUE restricts access to buckets
+	// with public policies to only AWS services and authorized users within this
+	// account.
+	//
+	// Enabling this setting doesn't affect previously stored bucket policies, except
+	// that public and cross-account access within any public bucket policy, including
+	// non-public delegation to specific accounts, is blocked.
 	RestrictPublicBuckets *bool `locationName:"RestrictPublicBuckets" type:"boolean"`
 }
 
@@ -3440,12 +3601,23 @@ func (s *PublicAccessBlockConfiguration) SetRestrictPublicBuckets(v bool) *Publi
 type PutAccessPointPolicyInput struct {
 	_ struct{} `locationName:"PutAccessPointPolicyRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 
+	// The AWS account ID for owner of the bucket associated with the specified
+	// access point.
+	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
+	// The name of the access point that you want to associate with the specified
+	// policy.
+	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 
+	// The policy that you want to apply to the specified access point. For more
+	// information about access point policies, see Managing Data Access with Amazon
+	// S3 Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-points.html)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
 	// Policy is a required field
 	Policy *string `type:"string" required:"true"`
 }
@@ -3526,9 +3698,15 @@ func (s PutAccessPointPolicyOutput) GoString() string {
 type PutPublicAccessBlockInput struct {
 	_ struct{} `locationName:"PutPublicAccessBlockRequest" type:"structure" payload:"PublicAccessBlockConfiguration"`
 
+	// The account ID for the Amazon Web Services account whose PublicAccessBlock
+	// configuration you want to set.
+	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
+	// The PublicAccessBlock configuration that you want to apply to the specified
+	// Amazon Web Services account.
+	//
 	// PublicAccessBlockConfiguration is a required field
 	PublicAccessBlockConfiguration *PublicAccessBlockConfiguration `locationName:"PublicAccessBlockConfiguration" type:"structure" required:"true" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 }
@@ -4580,9 +4758,13 @@ func (s *UpdateJobStatusOutput) SetStatusUpdateReason(v string) *UpdateJobStatus
 	return s
 }
 
+// The Virtual Private Cloud (VPC) configuration for an access point.
 type VpcConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// If this field is specified, this access point will only allow connections
+	// from the specified VPC ID.
+	//
 	// VpcId is a required field
 	VpcId *string `min:"1" type:"string" required:"true"`
 }
