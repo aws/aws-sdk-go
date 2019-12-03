@@ -1,3 +1,34 @@
+Release v1.25.46 (2019-12-03)
+===
+
+### Service Client Updates
+* `service/codeguru-reviewer`: Adds new service
+* `service/codeguruprofiler`: Adds new service
+* `service/compute-optimizer`: Adds new service
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for the following features: 1. An option to enable acceleration for Site-to-Site VPN connections, to improve connection performance by leveraging AWS Global Accelerator; 2. Inf1 instances featuring up to 16 AWS Inferentia chips, custom-built for ML inference applications to deliver low latency and high throughput performance. Use Inf1 instances to run high scale ML inference applications such as image recognition, speech recognition, natural language processing, personalization, and fraud detection at the lowest cost in the cloud. Inf1 instances will soon be available for use with Amazon SageMaker, Amazon EKS and Amazon ECS. To get started, see https://aws.amazon.com/ec2/instance-types/Inf1; 3. The ability to associate route tables with internet gateways and virtual private gateways, and define routes to insert network and security virtual appliances in the path of inbound and outbound traffic. For more information on Amazon VPC Ingress Routing, see https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html#gateway-route-table; 4. AWS Local Zones that place compute, storage, database, and other select services closer to you for applications that require very low latency to your end-users. AWS Local Zones also allow you to seamlessly connect to the full range of services in the AWS Region through the same APIs and tool sets; 5. Launching and viewing EC2 instances and EBS volumes running locally in Outposts. This release also introduces a new local gateway (LGW) with Outposts to enable connectivity between Outposts and local on-premises networks as well as the internet; 6. Peering Transit Gateways between regions simplifying creation of secure and private global networks on AWS; 7. Transit Gateway Multicast, enabling multicast routing within and between VPCs using Transit Gateway as a multicast router.
+* `service/ecs`: Updates service API, documentation, and paginators
+  * This release supports ECS Capacity Providers, Fargate Spot, and ECS Cluster Auto Scaling.  These features enable new ways for ECS to manage compute capacity used by tasks.
+* `service/eks`: Updates service API, documentation, and paginators
+* `service/es`: Updates service API and documentation
+  * UltraWarm storage provides a cost-effective way to store large amounts of read-only data on Amazon Elasticsearch Service. Rather than attached storage, UltraWarm nodes use Amazon S3 and a sophisticated caching solution to improve performance. For indices that you are not actively writing to and query less frequently, UltraWarm storage offers significantly lower costs per GiB. In Elasticsearch, these warm indices behave just like any other index. You can query them using the same APIs or use them to create dashboards in Kibana.
+* `service/frauddetector`: Adds new service
+* `service/kendra`: Adds new service
+  * It is a preview launch of Amazon Kendra. Amazon Kendra is a managed, highly accurate and easy to use enterprise search service that is powered by machine learning.
+* `service/networkmanager`: Adds new service
+* `service/outposts`: Adds new service
+* `service/s3`: Updates service documentation and examples
+  * Amazon S3 Access Points is a new S3 feature that simplifies managing data access at scale for shared data sets on Amazon S3. Access Points provide a customizable way to access the objects in a bucket, with a unique hostname and access policy that enforces the specific permissions and network controls for any request made through the access point. This represents a new way of provisioning access to shared data sets.
+* `service/s3control`: Updates service documentation
+  * Amazon S3 Access Points is a new S3 feature that simplifies managing data access at scale for shared data sets on Amazon S3. Access Points provide a customizable way to access the objects in a bucket, with a unique hostname and access policy that enforces the specific permissions and network controls for any request made through the access point. This represents a new way of provisioning access to shared data sets.
+* `service/sagemaker-a2i-runtime`: Adds new service
+* `service/textract`: Updates service API and documentation
+
+### SDK Enhancements
+* `service/s3`: Add support for Access Point resources
+  * Adds support for using Access Point resource with Amazon S3 API operation calls. The Access Point resource are identified by an Amazon Resource Name (ARN).
+  * To make operation calls to an S3 Access Point instead of a S3 Bucket, provide the Access Point ARN string as the value of the Bucket parameter. You can create an Access Point for your bucket with the Amazon S3 Control API. The Access Point ARN can be obtained from the S3 Control API. You should avoid building the ARN directly.
+
 Release v1.25.45 (2019-12-02)
 ===
 

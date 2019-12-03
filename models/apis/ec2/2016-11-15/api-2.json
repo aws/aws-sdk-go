@@ -21,6 +21,15 @@
       "input":{"shape":"AcceptReservedInstancesExchangeQuoteRequest"},
       "output":{"shape":"AcceptReservedInstancesExchangeQuoteResult"}
     },
+    "AcceptTransitGatewayPeeringAttachment":{
+      "name":"AcceptTransitGatewayPeeringAttachment",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AcceptTransitGatewayPeeringAttachmentRequest"},
+      "output":{"shape":"AcceptTransitGatewayPeeringAttachmentResult"}
+    },
     "AcceptTransitGatewayVpcAttachment":{
       "name":"AcceptTransitGatewayVpcAttachment",
       "http":{
@@ -154,6 +163,15 @@
       },
       "input":{"shape":"AssociateSubnetCidrBlockRequest"},
       "output":{"shape":"AssociateSubnetCidrBlockResult"}
+    },
+    "AssociateTransitGatewayMulticastDomain":{
+      "name":"AssociateTransitGatewayMulticastDomain",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssociateTransitGatewayMulticastDomainRequest"},
+      "output":{"shape":"AssociateTransitGatewayMulticastDomainResult"}
     },
     "AssociateTransitGatewayRouteTable":{
       "name":"AssociateTransitGatewayRouteTable",
@@ -510,6 +528,24 @@
       "input":{"shape":"CreateLaunchTemplateVersionRequest"},
       "output":{"shape":"CreateLaunchTemplateVersionResult"}
     },
+    "CreateLocalGatewayRoute":{
+      "name":"CreateLocalGatewayRoute",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateLocalGatewayRouteRequest"},
+      "output":{"shape":"CreateLocalGatewayRouteResult"}
+    },
+    "CreateLocalGatewayRouteTableVpcAssociation":{
+      "name":"CreateLocalGatewayRouteTableVpcAssociation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateLocalGatewayRouteTableVpcAssociationRequest"},
+      "output":{"shape":"CreateLocalGatewayRouteTableVpcAssociationResult"}
+    },
     "CreateNatGateway":{
       "name":"CreateNatGateway",
       "http":{
@@ -686,6 +722,24 @@
       },
       "input":{"shape":"CreateTransitGatewayRequest"},
       "output":{"shape":"CreateTransitGatewayResult"}
+    },
+    "CreateTransitGatewayMulticastDomain":{
+      "name":"CreateTransitGatewayMulticastDomain",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateTransitGatewayMulticastDomainRequest"},
+      "output":{"shape":"CreateTransitGatewayMulticastDomainResult"}
+    },
+    "CreateTransitGatewayPeeringAttachment":{
+      "name":"CreateTransitGatewayPeeringAttachment",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateTransitGatewayPeeringAttachmentRequest"},
+      "output":{"shape":"CreateTransitGatewayPeeringAttachmentResult"}
     },
     "CreateTransitGatewayRoute":{
       "name":"CreateTransitGatewayRoute",
@@ -898,6 +952,24 @@
       "input":{"shape":"DeleteLaunchTemplateVersionsRequest"},
       "output":{"shape":"DeleteLaunchTemplateVersionsResult"}
     },
+    "DeleteLocalGatewayRoute":{
+      "name":"DeleteLocalGatewayRoute",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteLocalGatewayRouteRequest"},
+      "output":{"shape":"DeleteLocalGatewayRouteResult"}
+    },
+    "DeleteLocalGatewayRouteTableVpcAssociation":{
+      "name":"DeleteLocalGatewayRouteTableVpcAssociation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteLocalGatewayRouteTableVpcAssociationRequest"},
+      "output":{"shape":"DeleteLocalGatewayRouteTableVpcAssociationResult"}
+    },
     "DeleteNatGateway":{
       "name":"DeleteNatGateway",
       "http":{
@@ -1058,6 +1130,24 @@
       "input":{"shape":"DeleteTransitGatewayRequest"},
       "output":{"shape":"DeleteTransitGatewayResult"}
     },
+    "DeleteTransitGatewayMulticastDomain":{
+      "name":"DeleteTransitGatewayMulticastDomain",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteTransitGatewayMulticastDomainRequest"},
+      "output":{"shape":"DeleteTransitGatewayMulticastDomainResult"}
+    },
+    "DeleteTransitGatewayPeeringAttachment":{
+      "name":"DeleteTransitGatewayPeeringAttachment",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteTransitGatewayPeeringAttachmentRequest"},
+      "output":{"shape":"DeleteTransitGatewayPeeringAttachmentResult"}
+    },
     "DeleteTransitGatewayRoute":{
       "name":"DeleteTransitGatewayRoute",
       "http":{
@@ -1178,6 +1268,24 @@
       },
       "input":{"shape":"DeregisterImageRequest"}
     },
+    "DeregisterTransitGatewayMulticastGroupMembers":{
+      "name":"DeregisterTransitGatewayMulticastGroupMembers",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeregisterTransitGatewayMulticastGroupMembersRequest"},
+      "output":{"shape":"DeregisterTransitGatewayMulticastGroupMembersResult"}
+    },
+    "DeregisterTransitGatewayMulticastGroupSources":{
+      "name":"DeregisterTransitGatewayMulticastGroupSources",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeregisterTransitGatewayMulticastGroupSourcesRequest"},
+      "output":{"shape":"DeregisterTransitGatewayMulticastGroupSourcesResult"}
+    },
     "DescribeAccountAttributes":{
       "name":"DescribeAccountAttributes",
       "http":{
@@ -1294,6 +1402,15 @@
       },
       "input":{"shape":"DescribeClientVpnTargetNetworksRequest"},
       "output":{"shape":"DescribeClientVpnTargetNetworksResult"}
+    },
+    "DescribeCoipPools":{
+      "name":"DescribeCoipPools",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeCoipPoolsRequest"},
+      "output":{"shape":"DescribeCoipPoolsResult"}
     },
     "DescribeConversionTasks":{
       "name":"DescribeConversionTasks",
@@ -1600,6 +1717,60 @@
       },
       "input":{"shape":"DescribeLaunchTemplatesRequest"},
       "output":{"shape":"DescribeLaunchTemplatesResult"}
+    },
+    "DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociations":{
+      "name":"DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsRequest"},
+      "output":{"shape":"DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsResult"}
+    },
+    "DescribeLocalGatewayRouteTableVpcAssociations":{
+      "name":"DescribeLocalGatewayRouteTableVpcAssociations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeLocalGatewayRouteTableVpcAssociationsRequest"},
+      "output":{"shape":"DescribeLocalGatewayRouteTableVpcAssociationsResult"}
+    },
+    "DescribeLocalGatewayRouteTables":{
+      "name":"DescribeLocalGatewayRouteTables",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeLocalGatewayRouteTablesRequest"},
+      "output":{"shape":"DescribeLocalGatewayRouteTablesResult"}
+    },
+    "DescribeLocalGatewayVirtualInterfaceGroups":{
+      "name":"DescribeLocalGatewayVirtualInterfaceGroups",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeLocalGatewayVirtualInterfaceGroupsRequest"},
+      "output":{"shape":"DescribeLocalGatewayVirtualInterfaceGroupsResult"}
+    },
+    "DescribeLocalGatewayVirtualInterfaces":{
+      "name":"DescribeLocalGatewayVirtualInterfaces",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeLocalGatewayVirtualInterfacesRequest"},
+      "output":{"shape":"DescribeLocalGatewayVirtualInterfacesResult"}
+    },
+    "DescribeLocalGateways":{
+      "name":"DescribeLocalGateways",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeLocalGatewaysRequest"},
+      "output":{"shape":"DescribeLocalGatewaysResult"}
     },
     "DescribeMovingAddresses":{
       "name":"DescribeMovingAddresses",
@@ -1915,6 +2086,24 @@
       },
       "input":{"shape":"DescribeTransitGatewayAttachmentsRequest"},
       "output":{"shape":"DescribeTransitGatewayAttachmentsResult"}
+    },
+    "DescribeTransitGatewayMulticastDomains":{
+      "name":"DescribeTransitGatewayMulticastDomains",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeTransitGatewayMulticastDomainsRequest"},
+      "output":{"shape":"DescribeTransitGatewayMulticastDomainsResult"}
+    },
+    "DescribeTransitGatewayPeeringAttachments":{
+      "name":"DescribeTransitGatewayPeeringAttachments",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeTransitGatewayPeeringAttachmentsRequest"},
+      "output":{"shape":"DescribeTransitGatewayPeeringAttachmentsResult"}
     },
     "DescribeTransitGatewayRouteTables":{
       "name":"DescribeTransitGatewayRouteTables",
@@ -2234,6 +2423,15 @@
       "input":{"shape":"DisassociateSubnetCidrBlockRequest"},
       "output":{"shape":"DisassociateSubnetCidrBlockResult"}
     },
+    "DisassociateTransitGatewayMulticastDomain":{
+      "name":"DisassociateTransitGatewayMulticastDomain",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisassociateTransitGatewayMulticastDomainRequest"},
+      "output":{"shape":"DisassociateTransitGatewayMulticastDomainResult"}
+    },
     "DisassociateTransitGatewayRouteTable":{
       "name":"DisassociateTransitGatewayRouteTable",
       "http":{
@@ -2358,6 +2556,15 @@
       "input":{"shape":"GetCapacityReservationUsageRequest"},
       "output":{"shape":"GetCapacityReservationUsageResult"}
     },
+    "GetCoipPoolUsage":{
+      "name":"GetCoipPoolUsage",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetCoipPoolUsageRequest"},
+      "output":{"shape":"GetCoipPoolUsageResult"}
+    },
     "GetConsoleOutput":{
       "name":"GetConsoleOutput",
       "http":{
@@ -2447,6 +2654,15 @@
       },
       "input":{"shape":"GetTransitGatewayAttachmentPropagationsRequest"},
       "output":{"shape":"GetTransitGatewayAttachmentPropagationsResult"}
+    },
+    "GetTransitGatewayMulticastDomainAssociations":{
+      "name":"GetTransitGatewayMulticastDomainAssociations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetTransitGatewayMulticastDomainAssociationsRequest"},
+      "output":{"shape":"GetTransitGatewayMulticastDomainAssociationsResult"}
     },
     "GetTransitGatewayRouteTableAssociations":{
       "name":"GetTransitGatewayRouteTableAssociations",
@@ -2924,6 +3140,33 @@
       "input":{"shape":"RegisterImageRequest"},
       "output":{"shape":"RegisterImageResult"}
     },
+    "RegisterTransitGatewayMulticastGroupMembers":{
+      "name":"RegisterTransitGatewayMulticastGroupMembers",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RegisterTransitGatewayMulticastGroupMembersRequest"},
+      "output":{"shape":"RegisterTransitGatewayMulticastGroupMembersResult"}
+    },
+    "RegisterTransitGatewayMulticastGroupSources":{
+      "name":"RegisterTransitGatewayMulticastGroupSources",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RegisterTransitGatewayMulticastGroupSourcesRequest"},
+      "output":{"shape":"RegisterTransitGatewayMulticastGroupSourcesResult"}
+    },
+    "RejectTransitGatewayPeeringAttachment":{
+      "name":"RejectTransitGatewayPeeringAttachment",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RejectTransitGatewayPeeringAttachmentRequest"},
+      "output":{"shape":"RejectTransitGatewayPeeringAttachmentResult"}
+    },
     "RejectTransitGatewayVpcAttachment":{
       "name":"RejectTransitGatewayVpcAttachment",
       "http":{
@@ -3148,6 +3391,24 @@
       "input":{"shape":"RunScheduledInstancesRequest"},
       "output":{"shape":"RunScheduledInstancesResult"}
     },
+    "SearchLocalGatewayRoutes":{
+      "name":"SearchLocalGatewayRoutes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SearchLocalGatewayRoutesRequest"},
+      "output":{"shape":"SearchLocalGatewayRoutesResult"}
+    },
+    "SearchTransitGatewayMulticastGroups":{
+      "name":"SearchTransitGatewayMulticastGroups",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SearchTransitGatewayMulticastGroupsRequest"},
+      "output":{"shape":"SearchTransitGatewayMulticastGroupsResult"}
+    },
     "SearchTransitGatewayRoutes":{
       "name":"SearchTransitGatewayRoutes",
       "http":{
@@ -3280,11 +3541,28 @@
         }
       }
     },
+    "AcceptTransitGatewayPeeringAttachmentRequest":{
+      "type":"structure",
+      "required":["TransitGatewayAttachmentId"],
+      "members":{
+        "TransitGatewayAttachmentId":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "AcceptTransitGatewayPeeringAttachmentResult":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayPeeringAttachment":{
+          "shape":"TransitGatewayPeeringAttachment",
+          "locationName":"transitGatewayPeeringAttachment"
+        }
+      }
+    },
     "AcceptTransitGatewayVpcAttachmentRequest":{
       "type":"structure",
       "required":["TransitGatewayAttachmentId"],
       "members":{
-        "TransitGatewayAttachmentId":{"shape":"TransitGatewayAttachmentId"},
+        "TransitGatewayAttachmentId":{"shape":"String"},
         "DryRun":{"shape":"Boolean"}
       }
     },
@@ -3472,6 +3750,18 @@
         "PublicIpv4Pool":{
           "shape":"String",
           "locationName":"publicIpv4Pool"
+        },
+        "NetworkBorderGroup":{
+          "shape":"String",
+          "locationName":"networkBorderGroup"
+        },
+        "CustomerOwnedIp":{
+          "shape":"String",
+          "locationName":"customerOwnedIp"
+        },
+        "CustomerOwnedIpv4Pool":{
+          "shape":"String",
+          "locationName":"customerOwnedIpv4Pool"
         }
       }
     },
@@ -3512,6 +3802,8 @@
         "Domain":{"shape":"DomainType"},
         "Address":{"shape":"String"},
         "PublicIpv4Pool":{"shape":"String"},
+        "NetworkBorderGroup":{"shape":"String"},
+        "CustomerOwnedIpv4Pool":{"shape":"String"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -3533,9 +3825,21 @@
           "shape":"String",
           "locationName":"publicIpv4Pool"
         },
+        "NetworkBorderGroup":{
+          "shape":"String",
+          "locationName":"networkBorderGroup"
+        },
         "Domain":{
           "shape":"DomainType",
           "locationName":"domain"
+        },
+        "CustomerOwnedIp":{
+          "shape":"String",
+          "locationName":"customerOwnedIp"
+        },
+        "CustomerOwnedIpv4Pool":{
+          "shape":"String",
+          "locationName":"customerOwnedIpv4Pool"
         }
       }
     },
@@ -3867,23 +4171,21 @@
     },
     "AssociateRouteTableRequest":{
       "type":"structure",
-      "required":[
-        "RouteTableId",
-        "SubnetId"
-      ],
+      "required":["RouteTableId"],
       "members":{
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
         },
         "RouteTableId":{
-          "shape":"RouteTableId",
+          "shape":"String",
           "locationName":"routeTableId"
         },
         "SubnetId":{
-          "shape":"SubnetId",
+          "shape":"String",
           "locationName":"subnetId"
-        }
+        },
+        "GatewayId":{"shape":"String"}
       }
     },
     "AssociateRouteTableResult":{
@@ -3892,6 +4194,10 @@
         "AssociationId":{
           "shape":"String",
           "locationName":"associationId"
+        },
+        "AssociationState":{
+          "shape":"RouteTableAssociationState",
+          "locationName":"associationState"
         }
       }
     },
@@ -3907,7 +4213,7 @@
           "locationName":"ipv6CidrBlock"
         },
         "SubnetId":{
-          "shape":"SubnetId",
+          "shape":"String",
           "locationName":"subnetId"
         }
       }
@@ -3925,6 +4231,24 @@
         }
       }
     },
+    "AssociateTransitGatewayMulticastDomainRequest":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayMulticastDomainId":{"shape":"String"},
+        "TransitGatewayAttachmentId":{"shape":"String"},
+        "SubnetIds":{"shape":"ValueStringList"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "AssociateTransitGatewayMulticastDomainResult":{
+      "type":"structure",
+      "members":{
+        "Associations":{
+          "shape":"TransitGatewayMulticastDomainAssociations",
+          "locationName":"associations"
+        }
+      }
+    },
     "AssociateTransitGatewayRouteTableRequest":{
       "type":"structure",
       "required":[
@@ -3932,8 +4256,8 @@
         "TransitGatewayAttachmentId"
       ],
       "members":{
-        "TransitGatewayRouteTableId":{"shape":"TransitGatewayRouteTableId"},
-        "TransitGatewayAttachmentId":{"shape":"TransitGatewayAttachmentId"},
+        "TransitGatewayRouteTableId":{"shape":"String"},
+        "TransitGatewayAttachmentId":{"shape":"String"},
         "DryRun":{"shape":"Boolean"}
       }
     },
@@ -3958,7 +4282,8 @@
         "VpcId":{
           "shape":"VpcId",
           "locationName":"vpcId"
-        }
+        },
+        "Ipv6CidrBlockNetworkBorderGroup":{"shape":"String"}
       }
     },
     "AssociateVpcCidrBlockResult":{
@@ -4338,6 +4663,10 @@
           "shape":"AvailabilityZoneState",
           "locationName":"zoneState"
         },
+        "OptInStatus":{
+          "shape":"AvailabilityZoneOptInStatus",
+          "locationName":"optInStatus"
+        },
         "Messages":{
           "shape":"AvailabilityZoneMessageList",
           "locationName":"messageSet"
@@ -4353,6 +4682,14 @@
         "ZoneId":{
           "shape":"String",
           "locationName":"zoneId"
+        },
+        "GroupName":{
+          "shape":"String",
+          "locationName":"groupName"
+        },
+        "NetworkBorderGroup":{
+          "shape":"String",
+          "locationName":"networkBorderGroup"
         }
       }
     },
@@ -4378,6 +4715,14 @@
         "shape":"AvailabilityZoneMessage",
         "locationName":"item"
       }
+    },
+    "AvailabilityZoneOptInStatus":{
+      "type":"string",
+      "enum":[
+        "opt-in-not-required",
+        "opted-in",
+        "not-opted-in"
+      ]
     },
     "AvailabilityZoneState":{
       "type":"string",
@@ -5511,6 +5856,74 @@
         "locationName":"item"
       }
     },
+    "CoipAddressUsage":{
+      "type":"structure",
+      "members":{
+        "AllocationId":{
+          "shape":"String",
+          "locationName":"allocationId"
+        },
+        "AwsAccountId":{
+          "shape":"String",
+          "locationName":"awsAccountId"
+        },
+        "AwsService":{
+          "shape":"String",
+          "locationName":"awsService"
+        },
+        "CoIp":{
+          "shape":"String",
+          "locationName":"coIp"
+        }
+      }
+    },
+    "CoipAddressUsageSet":{
+      "type":"list",
+      "member":{
+        "shape":"CoipAddressUsage",
+        "locationName":"item"
+      }
+    },
+    "CoipPool":{
+      "type":"structure",
+      "members":{
+        "PoolId":{
+          "shape":"String",
+          "locationName":"poolId"
+        },
+        "PoolCidrs":{
+          "shape":"ValueStringList",
+          "locationName":"poolCidrSet"
+        },
+        "LocalGatewayRouteTableId":{
+          "shape":"String",
+          "locationName":"localGatewayRouteTableId"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
+        }
+      }
+    },
+    "CoipPoolIdSet":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"item"
+      }
+    },
+    "CoipPoolMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":5
+    },
+    "CoipPoolSet":{
+      "type":"list",
+      "member":{
+        "shape":"CoipPool",
+        "locationName":"item"
+      }
+    },
     "ConfirmProductInstanceRequest":{
       "type":"structure",
       "required":[
@@ -6340,6 +6753,50 @@
         }
       }
     },
+    "CreateLocalGatewayRouteRequest":{
+      "type":"structure",
+      "required":[
+        "DestinationCidrBlock",
+        "LocalGatewayRouteTableId",
+        "LocalGatewayVirtualInterfaceGroupId"
+      ],
+      "members":{
+        "DestinationCidrBlock":{"shape":"String"},
+        "LocalGatewayRouteTableId":{"shape":"String"},
+        "LocalGatewayVirtualInterfaceGroupId":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "CreateLocalGatewayRouteResult":{
+      "type":"structure",
+      "members":{
+        "Route":{
+          "shape":"LocalGatewayRoute",
+          "locationName":"route"
+        }
+      }
+    },
+    "CreateLocalGatewayRouteTableVpcAssociationRequest":{
+      "type":"structure",
+      "required":[
+        "LocalGatewayRouteTableId",
+        "VpcId"
+      ],
+      "members":{
+        "LocalGatewayRouteTableId":{"shape":"String"},
+        "VpcId":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "CreateLocalGatewayRouteTableVpcAssociationResult":{
+      "type":"structure",
+      "members":{
+        "LocalGatewayRouteTableVpcAssociation":{
+          "shape":"LocalGatewayRouteTableVpcAssociation",
+          "locationName":"localGatewayRouteTableVpcAssociation"
+        }
+      }
+    },
     "CreateNatGatewayRequest":{
       "type":"structure",
       "required":[
@@ -6602,6 +7059,7 @@
           "locationName":"natGatewayId"
         },
         "TransitGatewayId":{"shape":"TransitGatewayId"},
+        "LocalGatewayId":{"shape":"String"},
         "NetworkInterfaceId":{
           "shape":"NetworkInterfaceId",
           "locationName":"networkInterfaceId"
@@ -6753,7 +7211,8 @@
         "AvailabilityZoneId":{"shape":"String"},
         "CidrBlock":{"shape":"String"},
         "Ipv6CidrBlock":{"shape":"String"},
-        "VpcId":{"shape":"VpcId"},
+        "OutpostArn":{"shape":"String"},
+        "VpcId":{"shape":"String"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -6929,6 +7388,56 @@
         }
       }
     },
+    "CreateTransitGatewayMulticastDomainRequest":{
+      "type":"structure",
+      "required":["TransitGatewayId"],
+      "members":{
+        "TransitGatewayId":{"shape":"String"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        },
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "CreateTransitGatewayMulticastDomainResult":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayMulticastDomain":{
+          "shape":"TransitGatewayMulticastDomain",
+          "locationName":"transitGatewayMulticastDomain"
+        }
+      }
+    },
+    "CreateTransitGatewayPeeringAttachmentRequest":{
+      "type":"structure",
+      "required":[
+        "TransitGatewayId",
+        "PeerTransitGatewayId",
+        "PeerAccountId",
+        "PeerRegion"
+      ],
+      "members":{
+        "TransitGatewayId":{"shape":"String"},
+        "PeerTransitGatewayId":{"shape":"String"},
+        "PeerAccountId":{"shape":"String"},
+        "PeerRegion":{"shape":"String"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        },
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "CreateTransitGatewayPeeringAttachmentResult":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayPeeringAttachment":{
+          "shape":"TransitGatewayPeeringAttachment",
+          "locationName":"transitGatewayPeeringAttachment"
+        }
+      }
+    },
     "CreateTransitGatewayRequest":{
       "type":"structure",
       "members":{
@@ -6958,8 +7467,8 @@
       ],
       "members":{
         "DestinationCidrBlock":{"shape":"String"},
-        "TransitGatewayRouteTableId":{"shape":"TransitGatewayRouteTableId"},
-        "TransitGatewayAttachmentId":{"shape":"TransitGatewayAttachmentId"},
+        "TransitGatewayRouteTableId":{"shape":"String"},
+        "TransitGatewayAttachmentId":{"shape":"String"},
         "Blackhole":{"shape":"Boolean"},
         "DryRun":{"shape":"Boolean"}
       }
@@ -6977,7 +7486,7 @@
       "type":"structure",
       "required":["TransitGatewayId"],
       "members":{
-        "TransitGatewayId":{"shape":"TransitGatewayId"},
+        "TransitGatewayId":{"shape":"String"},
         "TagSpecifications":{"shape":"TagSpecificationList"},
         "DryRun":{"shape":"Boolean"}
       }
@@ -6999,8 +7508,8 @@
         "SubnetIds"
       ],
       "members":{
-        "TransitGatewayId":{"shape":"TransitGatewayId"},
-        "VpcId":{"shape":"VpcId"},
+        "TransitGatewayId":{"shape":"String"},
+        "VpcId":{"shape":"String"},
         "SubnetIds":{"shape":"ValueStringList"},
         "Options":{"shape":"CreateTransitGatewayVpcAttachmentRequestOptions"},
         "TagSpecifications":{"shape":"TagSpecificationList"},
@@ -7061,6 +7570,7 @@
         },
         "Iops":{"shape":"Integer"},
         "KmsKeyId":{"shape":"KmsKeyId"},
+        "OutpostArn":{"shape":"String"},
         "Size":{"shape":"Integer"},
         "SnapshotId":{"shape":"SnapshotId"},
         "VolumeType":{"shape":"VolumeType"},
@@ -7216,7 +7726,8 @@
         "InstanceTenancy":{
           "shape":"Tenancy",
           "locationName":"instanceTenancy"
-        }
+        },
+        "Ipv6CidrBlockNetworkBorderGroup":{"shape":"String"}
       }
     },
     "CreateVpcResult":{
@@ -7733,6 +8244,44 @@
         }
       }
     },
+    "DeleteLocalGatewayRouteRequest":{
+      "type":"structure",
+      "required":[
+        "DestinationCidrBlock",
+        "LocalGatewayRouteTableId"
+      ],
+      "members":{
+        "DestinationCidrBlock":{"shape":"String"},
+        "LocalGatewayRouteTableId":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DeleteLocalGatewayRouteResult":{
+      "type":"structure",
+      "members":{
+        "Route":{
+          "shape":"LocalGatewayRoute",
+          "locationName":"route"
+        }
+      }
+    },
+    "DeleteLocalGatewayRouteTableVpcAssociationRequest":{
+      "type":"structure",
+      "required":["LocalGatewayRouteTableVpcAssociationId"],
+      "members":{
+        "LocalGatewayRouteTableVpcAssociationId":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DeleteLocalGatewayRouteTableVpcAssociationResult":{
+      "type":"structure",
+      "members":{
+        "LocalGatewayRouteTableVpcAssociation":{
+          "shape":"LocalGatewayRouteTableVpcAssociation",
+          "locationName":"localGatewayRouteTableVpcAssociation"
+        }
+      }
+    },
     "DeleteNatGatewayRequest":{
       "type":"structure",
       "required":["NatGatewayId"],
@@ -7960,7 +8509,7 @@
       "type":"structure",
       "required":["SubnetId"],
       "members":{
-        "SubnetId":{"shape":"SubnetId"},
+        "SubnetId":{"shape":"String"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -8053,11 +8602,45 @@
         }
       }
     },
+    "DeleteTransitGatewayMulticastDomainRequest":{
+      "type":"structure",
+      "required":["TransitGatewayMulticastDomainId"],
+      "members":{
+        "TransitGatewayMulticastDomainId":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DeleteTransitGatewayMulticastDomainResult":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayMulticastDomain":{
+          "shape":"TransitGatewayMulticastDomain",
+          "locationName":"transitGatewayMulticastDomain"
+        }
+      }
+    },
+    "DeleteTransitGatewayPeeringAttachmentRequest":{
+      "type":"structure",
+      "required":["TransitGatewayAttachmentId"],
+      "members":{
+        "TransitGatewayAttachmentId":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DeleteTransitGatewayPeeringAttachmentResult":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayPeeringAttachment":{
+          "shape":"TransitGatewayPeeringAttachment",
+          "locationName":"transitGatewayPeeringAttachment"
+        }
+      }
+    },
     "DeleteTransitGatewayRequest":{
       "type":"structure",
       "required":["TransitGatewayId"],
       "members":{
-        "TransitGatewayId":{"shape":"TransitGatewayId"},
+        "TransitGatewayId":{"shape":"String"},
         "DryRun":{"shape":"Boolean"}
       }
     },
@@ -8077,7 +8660,7 @@
         "DestinationCidrBlock"
       ],
       "members":{
-        "TransitGatewayRouteTableId":{"shape":"TransitGatewayRouteTableId"},
+        "TransitGatewayRouteTableId":{"shape":"String"},
         "DestinationCidrBlock":{"shape":"String"},
         "DryRun":{"shape":"Boolean"}
       }
@@ -8095,7 +8678,7 @@
       "type":"structure",
       "required":["TransitGatewayRouteTableId"],
       "members":{
-        "TransitGatewayRouteTableId":{"shape":"TransitGatewayRouteTableId"},
+        "TransitGatewayRouteTableId":{"shape":"String"},
         "DryRun":{"shape":"Boolean"}
       }
     },
@@ -8112,7 +8695,7 @@
       "type":"structure",
       "required":["TransitGatewayAttachmentId"],
       "members":{
-        "TransitGatewayAttachmentId":{"shape":"TransitGatewayAttachmentId"},
+        "TransitGatewayAttachmentId":{"shape":"String"},
         "DryRun":{"shape":"Boolean"}
       }
     },
@@ -8291,6 +8874,42 @@
         }
       }
     },
+    "DeregisterTransitGatewayMulticastGroupMembersRequest":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayMulticastDomainId":{"shape":"String"},
+        "GroupIpAddress":{"shape":"String"},
+        "NetworkInterfaceIds":{"shape":"ValueStringList"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DeregisterTransitGatewayMulticastGroupMembersResult":{
+      "type":"structure",
+      "members":{
+        "DeregisteredMulticastGroupMembers":{
+          "shape":"TransitGatewayMulticastDeregisteredGroupMembers",
+          "locationName":"deregisteredMulticastGroupMembers"
+        }
+      }
+    },
+    "DeregisterTransitGatewayMulticastGroupSourcesRequest":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayMulticastDomainId":{"shape":"String"},
+        "GroupIpAddress":{"shape":"String"},
+        "NetworkInterfaceIds":{"shape":"ValueStringList"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DeregisterTransitGatewayMulticastGroupSourcesResult":{
+      "type":"structure",
+      "members":{
+        "DeregisteredMulticastGroupSources":{
+          "shape":"TransitGatewayMulticastDeregisteredGroupSources",
+          "locationName":"deregisteredMulticastGroupSources"
+        }
+      }
+    },
     "DescribeAccountAttributesRequest":{
       "type":"structure",
       "members":{
@@ -8377,6 +8996,7 @@
           "shape":"ZoneIdStringList",
           "locationName":"ZoneId"
         },
+        "AllAvailabilityZones":{"shape":"Boolean"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -8681,6 +9301,35 @@
         },
         "NextToken":{
           "shape":"NextToken",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "DescribeCoipPoolsRequest":{
+      "type":"structure",
+      "members":{
+        "PoolIds":{
+          "shape":"CoipPoolIdSet",
+          "locationName":"PoolId"
+        },
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"CoipPoolMaxResults"},
+        "NextToken":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DescribeCoipPoolsResult":{
+      "type":"structure",
+      "members":{
+        "CoipPools":{
+          "shape":"CoipPoolSet",
+          "locationName":"coipPoolSet"
+        },
+        "NextToken":{
+          "shape":"String",
           "locationName":"nextToken"
         }
       }
@@ -9796,6 +10445,180 @@
         "LaunchTemplates":{
           "shape":"LaunchTemplateSet",
           "locationName":"launchTemplates"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsRequest":{
+      "type":"structure",
+      "members":{
+        "LocalGatewayRouteTableVirtualInterfaceGroupAssociationIds":{
+          "shape":"LocalGatewayRouteTableVirtualInterfaceGroupAssociationIdSet",
+          "locationName":"LocalGatewayRouteTableVirtualInterfaceGroupAssociationId"
+        },
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"LocalGatewayMaxResults"},
+        "NextToken":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociationsResult":{
+      "type":"structure",
+      "members":{
+        "LocalGatewayRouteTableVirtualInterfaceGroupAssociations":{
+          "shape":"LocalGatewayRouteTableVirtualInterfaceGroupAssociationSet",
+          "locationName":"localGatewayRouteTableVirtualInterfaceGroupAssociationSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "DescribeLocalGatewayRouteTableVpcAssociationsRequest":{
+      "type":"structure",
+      "members":{
+        "LocalGatewayRouteTableVpcAssociationIds":{
+          "shape":"LocalGatewayRouteTableVpcAssociationIdSet",
+          "locationName":"LocalGatewayRouteTableVpcAssociationId"
+        },
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"LocalGatewayMaxResults"},
+        "NextToken":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DescribeLocalGatewayRouteTableVpcAssociationsResult":{
+      "type":"structure",
+      "members":{
+        "LocalGatewayRouteTableVpcAssociations":{
+          "shape":"LocalGatewayRouteTableVpcAssociationSet",
+          "locationName":"localGatewayRouteTableVpcAssociationSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "DescribeLocalGatewayRouteTablesRequest":{
+      "type":"structure",
+      "members":{
+        "LocalGatewayRouteTableIds":{
+          "shape":"LocalGatewayRouteTableIdSet",
+          "locationName":"LocalGatewayRouteTableId"
+        },
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"LocalGatewayMaxResults"},
+        "NextToken":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DescribeLocalGatewayRouteTablesResult":{
+      "type":"structure",
+      "members":{
+        "LocalGatewayRouteTables":{
+          "shape":"LocalGatewayRouteTableSet",
+          "locationName":"localGatewayRouteTableSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "DescribeLocalGatewayVirtualInterfaceGroupsRequest":{
+      "type":"structure",
+      "members":{
+        "LocalGatewayVirtualInterfaceGroupIds":{
+          "shape":"LocalGatewayVirtualInterfaceGroupIdSet",
+          "locationName":"LocalGatewayVirtualInterfaceGroupId"
+        },
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"LocalGatewayMaxResults"},
+        "NextToken":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DescribeLocalGatewayVirtualInterfaceGroupsResult":{
+      "type":"structure",
+      "members":{
+        "LocalGatewayVirtualInterfaceGroups":{
+          "shape":"LocalGatewayVirtualInterfaceGroupSet",
+          "locationName":"localGatewayVirtualInterfaceGroupSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "DescribeLocalGatewayVirtualInterfacesRequest":{
+      "type":"structure",
+      "members":{
+        "LocalGatewayVirtualInterfaceIds":{
+          "shape":"LocalGatewayVirtualInterfaceIdSet",
+          "locationName":"LocalGatewayVirtualInterfaceId"
+        },
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"LocalGatewayMaxResults"},
+        "NextToken":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DescribeLocalGatewayVirtualInterfacesResult":{
+      "type":"structure",
+      "members":{
+        "LocalGatewayVirtualInterfaces":{
+          "shape":"LocalGatewayVirtualInterfaceSet",
+          "locationName":"localGatewayVirtualInterfaceSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "DescribeLocalGatewaysRequest":{
+      "type":"structure",
+      "members":{
+        "LocalGatewayIds":{
+          "shape":"LocalGatewayIdSet",
+          "locationName":"LocalGatewayId"
+        },
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"LocalGatewayMaxResults"},
+        "NextToken":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DescribeLocalGatewaysResult":{
+      "type":"structure",
+      "members":{
+        "LocalGateways":{
+          "shape":"LocalGatewaySet",
+          "locationName":"localGatewaySet"
         },
         "NextToken":{
           "shape":"String",
@@ -11000,6 +11823,58 @@
         }
       }
     },
+    "DescribeTransitGatewayMulticastDomainsRequest":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayMulticastDomainIds":{"shape":"TransitGatewayMulticastDomainIdStringList"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"TransitGatewayMaxResults"},
+        "NextToken":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DescribeTransitGatewayMulticastDomainsResult":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayMulticastDomains":{
+          "shape":"TransitGatewayMulticastDomainList",
+          "locationName":"transitGatewayMulticastDomains"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "DescribeTransitGatewayPeeringAttachmentsRequest":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayAttachmentIds":{"shape":"TransitGatewayAttachmentIdStringList"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"TransitGatewayMaxResults"},
+        "NextToken":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DescribeTransitGatewayPeeringAttachmentsResult":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayPeeringAttachments":{
+          "shape":"TransitGatewayPeeringAttachmentList",
+          "locationName":"transitGatewayPeeringAttachments"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
     "DescribeTransitGatewayRouteTablesRequest":{
       "type":"structure",
       "members":{
@@ -11944,8 +12819,8 @@
         "TransitGatewayAttachmentId"
       ],
       "members":{
-        "TransitGatewayRouteTableId":{"shape":"TransitGatewayRouteTableId"},
-        "TransitGatewayAttachmentId":{"shape":"TransitGatewayAttachmentId"},
+        "TransitGatewayRouteTableId":{"shape":"String"},
+        "TransitGatewayAttachmentId":{"shape":"String"},
         "DryRun":{"shape":"Boolean"}
       }
     },
@@ -12078,7 +12953,7 @@
       "required":["AssociationId"],
       "members":{
         "AssociationId":{
-          "shape":"SubnetCidrAssociationId",
+          "shape":"String",
           "locationName":"associationId"
         }
       }
@@ -12096,6 +12971,24 @@
         }
       }
     },
+    "DisassociateTransitGatewayMulticastDomainRequest":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayMulticastDomainId":{"shape":"String"},
+        "TransitGatewayAttachmentId":{"shape":"String"},
+        "SubnetIds":{"shape":"ValueStringList"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DisassociateTransitGatewayMulticastDomainResult":{
+      "type":"structure",
+      "members":{
+        "Associations":{
+          "shape":"TransitGatewayMulticastDomainAssociations",
+          "locationName":"associations"
+        }
+      }
+    },
     "DisassociateTransitGatewayRouteTableRequest":{
       "type":"structure",
       "required":[
@@ -12103,8 +12996,8 @@
         "TransitGatewayAttachmentId"
       ],
       "members":{
-        "TransitGatewayRouteTableId":{"shape":"TransitGatewayRouteTableId"},
-        "TransitGatewayAttachmentId":{"shape":"TransitGatewayAttachmentId"},
+        "TransitGatewayRouteTableId":{"shape":"String"},
+        "TransitGatewayAttachmentId":{"shape":"String"},
         "DryRun":{"shape":"Boolean"}
       }
     },
@@ -12755,8 +13648,8 @@
         "TransitGatewayAttachmentId"
       ],
       "members":{
-        "TransitGatewayRouteTableId":{"shape":"TransitGatewayRouteTableId"},
-        "TransitGatewayAttachmentId":{"shape":"TransitGatewayAttachmentId"},
+        "TransitGatewayRouteTableId":{"shape":"String"},
+        "TransitGatewayAttachmentId":{"shape":"String"},
         "DryRun":{"shape":"Boolean"}
       }
     },
@@ -13173,7 +14066,7 @@
         "S3Bucket"
       ],
       "members":{
-        "TransitGatewayRouteTableId":{"shape":"TransitGatewayRouteTableId"},
+        "TransitGatewayRouteTableId":{"shape":"String"},
         "Filters":{
           "shape":"FilterList",
           "locationName":"Filter"
@@ -13818,6 +14711,37 @@
         }
       }
     },
+    "GetCoipPoolUsageRequest":{
+      "type":"structure",
+      "required":["PoolId"],
+      "members":{
+        "PoolId":{"shape":"String"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"CoipPoolMaxResults"},
+        "NextToken":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "GetCoipPoolUsageResult":{
+      "type":"structure",
+      "members":{
+        "CoipPoolId":{
+          "shape":"String",
+          "locationName":"coipPoolId"
+        },
+        "CoipAddressUsages":{
+          "shape":"CoipAddressUsageSet",
+          "locationName":"coipAddressUsageSet"
+        },
+        "LocalGatewayRouteTableId":{
+          "shape":"String",
+          "locationName":"localGatewayRouteTableId"
+        }
+      }
+    },
     "GetConsoleOutputRequest":{
       "type":"structure",
       "required":["InstanceId"],
@@ -14053,7 +14977,7 @@
       "type":"structure",
       "required":["TransitGatewayAttachmentId"],
       "members":{
-        "TransitGatewayAttachmentId":{"shape":"TransitGatewayAttachmentId"},
+        "TransitGatewayAttachmentId":{"shape":"String"},
         "Filters":{
           "shape":"FilterList",
           "locationName":"Filter"
@@ -14076,11 +15000,37 @@
         }
       }
     },
+    "GetTransitGatewayMulticastDomainAssociationsRequest":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayMulticastDomainId":{"shape":"String"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"TransitGatewayMaxResults"},
+        "NextToken":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "GetTransitGatewayMulticastDomainAssociationsResult":{
+      "type":"structure",
+      "members":{
+        "MulticastDomainAssociations":{
+          "shape":"TransitGatewayMulticastDomainAssociationList",
+          "locationName":"multicastDomainAssociations"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
     "GetTransitGatewayRouteTableAssociationsRequest":{
       "type":"structure",
       "required":["TransitGatewayRouteTableId"],
       "members":{
-        "TransitGatewayRouteTableId":{"shape":"TransitGatewayRouteTableId"},
+        "TransitGatewayRouteTableId":{"shape":"String"},
         "Filters":{
           "shape":"FilterList",
           "locationName":"Filter"
@@ -14107,7 +15057,7 @@
       "type":"structure",
       "required":["TransitGatewayRouteTableId"],
       "members":{
-        "TransitGatewayRouteTableId":{"shape":"TransitGatewayRouteTableId"},
+        "TransitGatewayRouteTableId":{"shape":"String"},
         "Filters":{
           "shape":"FilterList",
           "locationName":"Filter"
@@ -15410,6 +16360,40 @@
         }
       }
     },
+    "InferenceAcceleratorInfo":{
+      "type":"structure",
+      "members":{
+        "Accelerators":{
+          "shape":"InferenceDeviceInfoList",
+          "locationName":"accelerators"
+        }
+      }
+    },
+    "InferenceDeviceCount":{"type":"integer"},
+    "InferenceDeviceInfo":{
+      "type":"structure",
+      "members":{
+        "Count":{
+          "shape":"InferenceDeviceCount",
+          "locationName":"count"
+        },
+        "Name":{
+          "shape":"InferenceDeviceName",
+          "locationName":"name"
+        },
+        "Manufacturer":{
+          "shape":"InferenceDeviceManufacturerName",
+          "locationName":"manufacturer"
+        }
+      }
+    },
+    "InferenceDeviceInfoList":{
+      "type":"list",
+      "member":{"shape":"InferenceDeviceInfo"},
+      "locationName":"item"
+    },
+    "InferenceDeviceManufacturerName":{"type":"string"},
+    "InferenceDeviceName":{"type":"string"},
     "Instance":{
       "type":"structure",
       "members":{
@@ -15536,6 +16520,10 @@
         "NetworkInterfaces":{
           "shape":"InstanceNetworkInterfaceList",
           "locationName":"networkInterfaceSet"
+        },
+        "OutpostArn":{
+          "shape":"String",
+          "locationName":"outpostArn"
         },
         "RootDeviceName":{
           "shape":"String",
@@ -16264,6 +17252,10 @@
           "shape":"String",
           "locationName":"availabilityZone"
         },
+        "OutpostArn":{
+          "shape":"String",
+          "locationName":"outpostArn"
+        },
         "Events":{
           "shape":"InstanceStatusEventList",
           "locationName":"eventsSet"
@@ -16649,7 +17641,11 @@
         "r5n.8xlarge",
         "r5n.12xlarge",
         "r5n.16xlarge",
-        "r5n.24xlarge"
+        "r5n.24xlarge",
+        "inf1.xlarge",
+        "inf1.2xlarge",
+        "inf1.6xlarge",
+        "inf1.24xlarge"
       ]
     },
     "InstanceTypeHypervisor":{
@@ -16729,6 +17725,10 @@
         "PlacementGroupInfo":{
           "shape":"PlacementGroupInfo",
           "locationName":"placementGroupInfo"
+        },
+        "InferenceAcceleratorInfo":{
+          "shape":"InferenceAcceleratorInfo",
+          "locationName":"inferenceAcceleratorInfo"
         },
         "HibernationSupported":{
           "shape":"HibernationFlag",
@@ -17878,6 +18878,286 @@
         "UserId":{"shape":"String"}
       }
     },
+    "LocalGateway":{
+      "type":"structure",
+      "members":{
+        "LocalGatewayId":{
+          "shape":"String",
+          "locationName":"localGatewayId"
+        },
+        "OutpostArn":{
+          "shape":"String",
+          "locationName":"outpostArn"
+        },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
+        },
+        "State":{
+          "shape":"String",
+          "locationName":"state"
+        }
+      }
+    },
+    "LocalGatewayIdSet":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"item"
+      }
+    },
+    "LocalGatewayMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":5
+    },
+    "LocalGatewayRoute":{
+      "type":"structure",
+      "members":{
+        "DestinationCidrBlock":{
+          "shape":"String",
+          "locationName":"destinationCidrBlock"
+        },
+        "LocalGatewayVirtualInterfaceGroupId":{
+          "shape":"String",
+          "locationName":"localGatewayVirtualInterfaceGroupId"
+        },
+        "Type":{
+          "shape":"LocalGatewayRouteType",
+          "locationName":"type"
+        },
+        "State":{
+          "shape":"LocalGatewayRouteState",
+          "locationName":"state"
+        },
+        "LocalGatewayRouteTableId":{
+          "shape":"String",
+          "locationName":"localGatewayRouteTableId"
+        }
+      }
+    },
+    "LocalGatewayRouteList":{
+      "type":"list",
+      "member":{
+        "shape":"LocalGatewayRoute",
+        "locationName":"item"
+      }
+    },
+    "LocalGatewayRouteState":{
+      "type":"string",
+      "enum":[
+        "pending",
+        "active",
+        "blackhole",
+        "deleting",
+        "deleted"
+      ]
+    },
+    "LocalGatewayRouteTable":{
+      "type":"structure",
+      "members":{
+        "LocalGatewayRouteTableId":{
+          "shape":"String",
+          "locationName":"localGatewayRouteTableId"
+        },
+        "LocalGatewayId":{
+          "shape":"String",
+          "locationName":"localGatewayId"
+        },
+        "OutpostArn":{
+          "shape":"String",
+          "locationName":"outpostArn"
+        },
+        "State":{
+          "shape":"String",
+          "locationName":"state"
+        }
+      }
+    },
+    "LocalGatewayRouteTableIdSet":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"item"
+      }
+    },
+    "LocalGatewayRouteTableSet":{
+      "type":"list",
+      "member":{
+        "shape":"LocalGatewayRouteTable",
+        "locationName":"item"
+      }
+    },
+    "LocalGatewayRouteTableVirtualInterfaceGroupAssociation":{
+      "type":"structure",
+      "members":{
+        "LocalGatewayRouteTableVirtualInterfaceGroupAssociationId":{
+          "shape":"String",
+          "locationName":"localGatewayRouteTableVirtualInterfaceGroupAssociationId"
+        },
+        "LocalGatewayVirtualInterfaceGroupId":{
+          "shape":"String",
+          "locationName":"localGatewayVirtualInterfaceGroupId"
+        },
+        "LocalGatewayId":{
+          "shape":"String",
+          "locationName":"localGatewayId"
+        },
+        "LocalGatewayRouteTableId":{
+          "shape":"String",
+          "locationName":"localGatewayRouteTableId"
+        },
+        "State":{
+          "shape":"String",
+          "locationName":"state"
+        }
+      }
+    },
+    "LocalGatewayRouteTableVirtualInterfaceGroupAssociationIdSet":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"item"
+      }
+    },
+    "LocalGatewayRouteTableVirtualInterfaceGroupAssociationSet":{
+      "type":"list",
+      "member":{
+        "shape":"LocalGatewayRouteTableVirtualInterfaceGroupAssociation",
+        "locationName":"item"
+      }
+    },
+    "LocalGatewayRouteTableVpcAssociation":{
+      "type":"structure",
+      "members":{
+        "LocalGatewayRouteTableVpcAssociationId":{
+          "shape":"String",
+          "locationName":"localGatewayRouteTableVpcAssociationId"
+        },
+        "LocalGatewayRouteTableId":{
+          "shape":"String",
+          "locationName":"localGatewayRouteTableId"
+        },
+        "LocalGatewayId":{
+          "shape":"String",
+          "locationName":"localGatewayId"
+        },
+        "VpcId":{
+          "shape":"String",
+          "locationName":"vpcId"
+        },
+        "State":{
+          "shape":"String",
+          "locationName":"state"
+        }
+      }
+    },
+    "LocalGatewayRouteTableVpcAssociationIdSet":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"item"
+      }
+    },
+    "LocalGatewayRouteTableVpcAssociationSet":{
+      "type":"list",
+      "member":{
+        "shape":"LocalGatewayRouteTableVpcAssociation",
+        "locationName":"item"
+      }
+    },
+    "LocalGatewayRouteType":{
+      "type":"string",
+      "enum":[
+        "static",
+        "propagated"
+      ]
+    },
+    "LocalGatewaySet":{
+      "type":"list",
+      "member":{
+        "shape":"LocalGateway",
+        "locationName":"item"
+      }
+    },
+    "LocalGatewayVirtualInterface":{
+      "type":"structure",
+      "members":{
+        "LocalGatewayVirtualInterfaceId":{
+          "shape":"String",
+          "locationName":"localGatewayVirtualInterfaceId"
+        },
+        "LocalGatewayId":{
+          "shape":"String",
+          "locationName":"localGatewayId"
+        },
+        "Vlan":{
+          "shape":"Integer",
+          "locationName":"vlan"
+        },
+        "LocalAddress":{
+          "shape":"String",
+          "locationName":"localAddress"
+        },
+        "PeerAddress":{
+          "shape":"String",
+          "locationName":"peerAddress"
+        },
+        "LocalBgpAsn":{
+          "shape":"Integer",
+          "locationName":"localBgpAsn"
+        },
+        "PeerBgpAsn":{
+          "shape":"Integer",
+          "locationName":"peerBgpAsn"
+        }
+      }
+    },
+    "LocalGatewayVirtualInterfaceGroup":{
+      "type":"structure",
+      "members":{
+        "LocalGatewayVirtualInterfaceGroupId":{
+          "shape":"String",
+          "locationName":"localGatewayVirtualInterfaceGroupId"
+        },
+        "LocalGatewayVirtualInterfaceIds":{
+          "shape":"LocalGatewayVirtualInterfaceIdSet",
+          "locationName":"localGatewayVirtualInterfaceIdSet"
+        },
+        "LocalGatewayId":{
+          "shape":"String",
+          "locationName":"localGatewayId"
+        }
+      }
+    },
+    "LocalGatewayVirtualInterfaceGroupIdSet":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"item"
+      }
+    },
+    "LocalGatewayVirtualInterfaceGroupSet":{
+      "type":"list",
+      "member":{
+        "shape":"LocalGatewayVirtualInterfaceGroup",
+        "locationName":"item"
+      }
+    },
+    "LocalGatewayVirtualInterfaceIdSet":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"item"
+      }
+    },
+    "LocalGatewayVirtualInterfaceSet":{
+      "type":"list",
+      "member":{
+        "shape":"LocalGatewayVirtualInterface",
+        "locationName":"item"
+      }
+    },
     "Location":{"type":"string"},
     "LocationType":{
       "type":"string",
@@ -17902,6 +19182,14 @@
     "MaxIpv4AddrPerInterface":{"type":"integer"},
     "MaxIpv6AddrPerInterface":{"type":"integer"},
     "MaxNetworkInterfaces":{"type":"integer"},
+    "MaxResults":{"type":"integer"},
+    "MembershipType":{
+      "type":"string",
+      "enum":[
+        "static",
+        "igmp"
+      ]
+    },
     "MemoryInfo":{
       "type":"structure",
       "members":{
@@ -18473,7 +19761,7 @@
         "AssignIpv6AddressOnCreation":{"shape":"AttributeBooleanValue"},
         "MapPublicIpOnLaunch":{"shape":"AttributeBooleanValue"},
         "SubnetId":{
-          "shape":"SubnetId",
+          "shape":"String",
           "locationName":"subnetId"
         }
       }
@@ -18564,7 +19852,7 @@
       "type":"structure",
       "required":["TransitGatewayAttachmentId"],
       "members":{
-        "TransitGatewayAttachmentId":{"shape":"TransitGatewayAttachmentId"},
+        "TransitGatewayAttachmentId":{"shape":"String"},
         "AddSubnetIds":{"shape":"ValueStringList"},
         "RemoveSubnetIds":{"shape":"ValueStringList"},
         "Options":{"shape":"ModifyTransitGatewayVpcAttachmentRequestOptions"},
@@ -18983,6 +20271,13 @@
         "locationName":"item"
       }
     },
+    "MulticastSupportValue":{
+      "type":"string",
+      "enum":[
+        "enable",
+        "disable"
+      ]
+    },
     "NatGateway":{
       "type":"structure",
       "members":{
@@ -19255,6 +20550,10 @@
         "NetworkInterfaceId":{
           "shape":"String",
           "locationName":"networkInterfaceId"
+        },
+        "OutpostArn":{
+          "shape":"String",
+          "locationName":"outpostArn"
         },
         "OwnerId":{
           "shape":"String",
@@ -19653,6 +20952,19 @@
         "SubsystemVendorId":{"shape":"String"}
       }
     },
+    "PeeringAttachmentStatus":{
+      "type":"structure",
+      "members":{
+        "Code":{
+          "shape":"String",
+          "locationName":"code"
+        },
+        "Message":{
+          "shape":"String",
+          "locationName":"message"
+        }
+      }
+    },
     "PeeringConnectionOptions":{
       "type":"structure",
       "members":{
@@ -19676,6 +20988,23 @@
         "AllowDnsResolutionFromRemoteVpc":{"shape":"Boolean"},
         "AllowEgressFromLocalClassicLinkToRemoteVpc":{"shape":"Boolean"},
         "AllowEgressFromLocalVpcToRemoteClassicLink":{"shape":"Boolean"}
+      }
+    },
+    "PeeringTgwInfo":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayId":{
+          "shape":"String",
+          "locationName":"transitGatewayId"
+        },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
+        },
+        "Region":{
+          "shape":"String",
+          "locationName":"region"
+        }
       }
     },
     "PermissionGroup":{
@@ -20676,11 +22005,64 @@
         }
       }
     },
+    "RegisterTransitGatewayMulticastGroupMembersRequest":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayMulticastDomainId":{"shape":"String"},
+        "GroupIpAddress":{"shape":"String"},
+        "NetworkInterfaceIds":{"shape":"ValueStringList"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "RegisterTransitGatewayMulticastGroupMembersResult":{
+      "type":"structure",
+      "members":{
+        "RegisteredMulticastGroupMembers":{
+          "shape":"TransitGatewayMulticastRegisteredGroupMembers",
+          "locationName":"registeredMulticastGroupMembers"
+        }
+      }
+    },
+    "RegisterTransitGatewayMulticastGroupSourcesRequest":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayMulticastDomainId":{"shape":"String"},
+        "GroupIpAddress":{"shape":"String"},
+        "NetworkInterfaceIds":{"shape":"ValueStringList"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "RegisterTransitGatewayMulticastGroupSourcesResult":{
+      "type":"structure",
+      "members":{
+        "RegisteredMulticastGroupSources":{
+          "shape":"TransitGatewayMulticastRegisteredGroupSources",
+          "locationName":"registeredMulticastGroupSources"
+        }
+      }
+    },
+    "RejectTransitGatewayPeeringAttachmentRequest":{
+      "type":"structure",
+      "required":["TransitGatewayAttachmentId"],
+      "members":{
+        "TransitGatewayAttachmentId":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "RejectTransitGatewayPeeringAttachmentResult":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayPeeringAttachment":{
+          "shape":"TransitGatewayPeeringAttachment",
+          "locationName":"transitGatewayPeeringAttachment"
+        }
+      }
+    },
     "RejectTransitGatewayVpcAttachmentRequest":{
       "type":"structure",
       "required":["TransitGatewayAttachmentId"],
       "members":{
-        "TransitGatewayAttachmentId":{"shape":"TransitGatewayAttachmentId"},
+        "TransitGatewayAttachmentId":{"shape":"String"},
         "DryRun":{"shape":"Boolean"}
       }
     },
@@ -20743,8 +22125,9 @@
     "ReleaseAddressRequest":{
       "type":"structure",
       "members":{
-        "AllocationId":{"shape":"AllocationId"},
+        "AllocationId":{"shape":"String"},
         "PublicIp":{"shape":"String"},
+        "NetworkBorderGroup":{"shape":"String"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -20904,11 +22287,13 @@
           "shape":"InstanceId",
           "locationName":"instanceId"
         },
+        "LocalTarget":{"shape":"Boolean"},
         "NatGatewayId":{
           "shape":"NatGatewayId",
           "locationName":"natGatewayId"
         },
         "TransitGatewayId":{"shape":"TransitGatewayId"},
+        "LocalGatewayId":{"shape":"String"},
         "NetworkInterfaceId":{
           "shape":"NetworkInterfaceId",
           "locationName":"networkInterfaceId"
@@ -20950,6 +22335,10 @@
         "NewAssociationId":{
           "shape":"String",
           "locationName":"newAssociationId"
+        },
+        "AssociationState":{
+          "shape":"RouteTableAssociationState",
+          "locationName":"associationState"
         }
       }
     },
@@ -20961,8 +22350,8 @@
       ],
       "members":{
         "DestinationCidrBlock":{"shape":"String"},
-        "TransitGatewayRouteTableId":{"shape":"TransitGatewayRouteTableId"},
-        "TransitGatewayAttachmentId":{"shape":"TransitGatewayAttachmentId"},
+        "TransitGatewayRouteTableId":{"shape":"String"},
+        "TransitGatewayAttachmentId":{"shape":"String"},
         "Blackhole":{"shape":"Boolean"},
         "DryRun":{"shape":"Boolean"}
       }
@@ -21860,6 +23249,7 @@
         "traffic-mirror-target",
         "transit-gateway",
         "transit-gateway-attachment",
+        "transit-gateway-multicast-domain",
         "transit-gateway-route-table",
         "volume",
         "vpc",
@@ -22167,6 +23557,10 @@
           "shape":"String",
           "locationName":"transitGatewayId"
         },
+        "LocalGatewayId":{
+          "shape":"String",
+          "locationName":"localGatewayId"
+        },
         "NetworkInterfaceId":{
           "shape":"String",
           "locationName":"networkInterfaceId"
@@ -22258,6 +23652,14 @@
         "SubnetId":{
           "shape":"String",
           "locationName":"subnetId"
+        },
+        "GatewayId":{
+          "shape":"String",
+          "locationName":"gatewayId"
+        },
+        "AssociationState":{
+          "shape":"RouteTableAssociationState",
+          "locationName":"associationState"
         }
       }
     },
@@ -22268,6 +23670,29 @@
         "shape":"RouteTableAssociation",
         "locationName":"item"
       }
+    },
+    "RouteTableAssociationState":{
+      "type":"structure",
+      "members":{
+        "State":{
+          "shape":"RouteTableAssociationStateCode",
+          "locationName":"state"
+        },
+        "StatusMessage":{
+          "shape":"String",
+          "locationName":"statusMessage"
+        }
+      }
+    },
+    "RouteTableAssociationStateCode":{
+      "type":"string",
+      "enum":[
+        "associating",
+        "associated",
+        "disassociating",
+        "disassociated",
+        "failed"
+      ]
     },
     "RouteTableGatewayId":{"type":"string"},
     "RouteTableId":{"type":"string"},
@@ -22754,6 +24179,62 @@
         "locationName":"SecurityGroupId"
       }
     },
+    "SearchLocalGatewayRoutesRequest":{
+      "type":"structure",
+      "required":[
+        "LocalGatewayRouteTableId",
+        "Filters"
+      ],
+      "members":{
+        "LocalGatewayRouteTableId":{"shape":"String"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "SearchLocalGatewayRoutesResult":{
+      "type":"structure",
+      "members":{
+        "Routes":{
+          "shape":"LocalGatewayRouteList",
+          "locationName":"routeSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "SearchTransitGatewayMulticastGroupsRequest":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayMulticastDomainId":{"shape":"String"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"TransitGatewayMaxResults"},
+        "NextToken":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "SearchTransitGatewayMulticastGroupsResult":{
+      "type":"structure",
+      "members":{
+        "MulticastGroups":{
+          "shape":"TransitGatewayMulticastGroupList",
+          "locationName":"multicastGroups"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
     "SearchTransitGatewayRoutesRequest":{
       "type":"structure",
       "required":[
@@ -22761,7 +24242,7 @@
         "Filters"
       ],
       "members":{
-        "TransitGatewayRouteTableId":{"shape":"TransitGatewayRouteTableId"},
+        "TransitGatewayRouteTableId":{"shape":"String"},
         "Filters":{
           "shape":"FilterList",
           "locationName":"Filter"
@@ -24083,10 +25564,33 @@
         "SubnetArn":{
           "shape":"String",
           "locationName":"subnetArn"
+        },
+        "OutpostArn":{
+          "shape":"String",
+          "locationName":"outpostArn"
         }
       }
     },
-    "SubnetCidrAssociationId":{"type":"string"},
+    "SubnetAssociation":{
+      "type":"structure",
+      "members":{
+        "SubnetId":{
+          "shape":"String",
+          "locationName":"subnetId"
+        },
+        "State":{
+          "shape":"TransitGatewayMulitcastDomainAssociationState",
+          "locationName":"state"
+        }
+      }
+    },
+    "SubnetAssociationList":{
+      "type":"list",
+      "member":{
+        "shape":"SubnetAssociation",
+        "locationName":"item"
+      }
+    },
     "SubnetCidrBlockState":{
       "type":"structure",
       "members":{
@@ -24913,7 +26417,6 @@
         }
       }
     },
-    "TransitGatewayAttachmentId":{"type":"string"},
     "TransitGatewayAttachmentIdStringList":{
       "type":"list",
       "member":{"shape":"String"}
@@ -24950,12 +26453,14 @@
       "enum":[
         "vpc",
         "vpn",
-        "direct-connect-gateway"
+        "direct-connect-gateway",
+        "tgw-peering"
       ]
     },
     "TransitGatewayAttachmentState":{
       "type":"string",
       "enum":[
+        "initiating",
         "pendingAcceptance",
         "rollingBack",
         "pending",
@@ -24988,6 +26493,236 @@
       "type":"integer",
       "max":1000,
       "min":5
+    },
+    "TransitGatewayMulitcastDomainAssociationState":{
+      "type":"string",
+      "enum":[
+        "associating",
+        "associated",
+        "disassociating",
+        "disassociated"
+      ]
+    },
+    "TransitGatewayMulticastDeregisteredGroupMembers":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayMulticastDomainId":{
+          "shape":"String",
+          "locationName":"transitGatewayMulticastDomainId"
+        },
+        "DeregisteredNetworkInterfaceIds":{
+          "shape":"ValueStringList",
+          "locationName":"deregisteredNetworkInterfaceIds"
+        },
+        "GroupIpAddress":{
+          "shape":"String",
+          "locationName":"groupIpAddress"
+        }
+      }
+    },
+    "TransitGatewayMulticastDeregisteredGroupSources":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayMulticastDomainId":{
+          "shape":"String",
+          "locationName":"transitGatewayMulticastDomainId"
+        },
+        "DeregisteredNetworkInterfaceIds":{
+          "shape":"ValueStringList",
+          "locationName":"deregisteredNetworkInterfaceIds"
+        },
+        "GroupIpAddress":{
+          "shape":"String",
+          "locationName":"groupIpAddress"
+        }
+      }
+    },
+    "TransitGatewayMulticastDomain":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayMulticastDomainId":{
+          "shape":"String",
+          "locationName":"transitGatewayMulticastDomainId"
+        },
+        "TransitGatewayId":{
+          "shape":"String",
+          "locationName":"transitGatewayId"
+        },
+        "State":{
+          "shape":"TransitGatewayMulticastDomainState",
+          "locationName":"state"
+        },
+        "CreationTime":{
+          "shape":"DateTime",
+          "locationName":"creationTime"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
+        }
+      }
+    },
+    "TransitGatewayMulticastDomainAssociation":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayAttachmentId":{
+          "shape":"String",
+          "locationName":"transitGatewayAttachmentId"
+        },
+        "ResourceId":{
+          "shape":"String",
+          "locationName":"resourceId"
+        },
+        "ResourceType":{
+          "shape":"TransitGatewayAttachmentResourceType",
+          "locationName":"resourceType"
+        },
+        "Subnet":{
+          "shape":"SubnetAssociation",
+          "locationName":"subnet"
+        }
+      }
+    },
+    "TransitGatewayMulticastDomainAssociationList":{
+      "type":"list",
+      "member":{
+        "shape":"TransitGatewayMulticastDomainAssociation",
+        "locationName":"item"
+      }
+    },
+    "TransitGatewayMulticastDomainAssociations":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayMulticastDomainId":{
+          "shape":"String",
+          "locationName":"transitGatewayMulticastDomainId"
+        },
+        "TransitGatewayAttachmentId":{
+          "shape":"String",
+          "locationName":"transitGatewayAttachmentId"
+        },
+        "ResourceId":{
+          "shape":"String",
+          "locationName":"resourceId"
+        },
+        "ResourceType":{
+          "shape":"TransitGatewayAttachmentResourceType",
+          "locationName":"resourceType"
+        },
+        "Subnets":{
+          "shape":"SubnetAssociationList",
+          "locationName":"subnets"
+        }
+      }
+    },
+    "TransitGatewayMulticastDomainIdStringList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"item"
+      }
+    },
+    "TransitGatewayMulticastDomainList":{
+      "type":"list",
+      "member":{
+        "shape":"TransitGatewayMulticastDomain",
+        "locationName":"item"
+      }
+    },
+    "TransitGatewayMulticastDomainState":{
+      "type":"string",
+      "enum":[
+        "pending",
+        "available",
+        "deleting",
+        "deleted"
+      ]
+    },
+    "TransitGatewayMulticastGroup":{
+      "type":"structure",
+      "members":{
+        "GroupIpAddress":{
+          "shape":"String",
+          "locationName":"groupIpAddress"
+        },
+        "TransitGatewayAttachmentId":{
+          "shape":"String",
+          "locationName":"transitGatewayAttachmentId"
+        },
+        "SubnetId":{
+          "shape":"String",
+          "locationName":"subnetId"
+        },
+        "ResourceId":{
+          "shape":"String",
+          "locationName":"resourceId"
+        },
+        "ResourceType":{
+          "shape":"TransitGatewayAttachmentResourceType",
+          "locationName":"resourceType"
+        },
+        "NetworkInterfaceId":{
+          "shape":"String",
+          "locationName":"networkInterfaceId"
+        },
+        "GroupMember":{
+          "shape":"Boolean",
+          "locationName":"groupMember"
+        },
+        "GroupSource":{
+          "shape":"Boolean",
+          "locationName":"groupSource"
+        },
+        "MemberType":{
+          "shape":"MembershipType",
+          "locationName":"memberType"
+        },
+        "SourceType":{
+          "shape":"MembershipType",
+          "locationName":"sourceType"
+        }
+      }
+    },
+    "TransitGatewayMulticastGroupList":{
+      "type":"list",
+      "member":{
+        "shape":"TransitGatewayMulticastGroup",
+        "locationName":"item"
+      }
+    },
+    "TransitGatewayMulticastRegisteredGroupMembers":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayMulticastDomainId":{
+          "shape":"String",
+          "locationName":"transitGatewayMulticastDomainId"
+        },
+        "RegisteredNetworkInterfaceIds":{
+          "shape":"ValueStringList",
+          "locationName":"registeredNetworkInterfaceIds"
+        },
+        "GroupIpAddress":{
+          "shape":"String",
+          "locationName":"groupIpAddress"
+        }
+      }
+    },
+    "TransitGatewayMulticastRegisteredGroupSources":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayMulticastDomainId":{
+          "shape":"String",
+          "locationName":"transitGatewayMulticastDomainId"
+        },
+        "RegisteredNetworkInterfaceIds":{
+          "shape":"ValueStringList",
+          "locationName":"registeredNetworkInterfaceIds"
+        },
+        "GroupIpAddress":{
+          "shape":"String",
+          "locationName":"groupIpAddress"
+        }
+      }
     },
     "TransitGatewayOptions":{
       "type":"structure",
@@ -25023,7 +26758,51 @@
         "DnsSupport":{
           "shape":"DnsSupportValue",
           "locationName":"dnsSupport"
+        },
+        "MulticastSupport":{
+          "shape":"MulticastSupportValue",
+          "locationName":"multicastSupport"
         }
+      }
+    },
+    "TransitGatewayPeeringAttachment":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayAttachmentId":{
+          "shape":"String",
+          "locationName":"transitGatewayAttachmentId"
+        },
+        "RequesterTgwInfo":{
+          "shape":"PeeringTgwInfo",
+          "locationName":"requesterTgwInfo"
+        },
+        "AccepterTgwInfo":{
+          "shape":"PeeringTgwInfo",
+          "locationName":"accepterTgwInfo"
+        },
+        "Status":{
+          "shape":"PeeringAttachmentStatus",
+          "locationName":"status"
+        },
+        "State":{
+          "shape":"TransitGatewayAttachmentState",
+          "locationName":"state"
+        },
+        "CreationTime":{
+          "shape":"DateTime",
+          "locationName":"creationTime"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
+        }
+      }
+    },
+    "TransitGatewayPeeringAttachmentList":{
+      "type":"list",
+      "member":{
+        "shape":"TransitGatewayPeeringAttachment",
+        "locationName":"item"
       }
     },
     "TransitGatewayPropagation":{
@@ -25068,7 +26847,8 @@
         "DefaultRouteTableAssociation":{"shape":"DefaultRouteTableAssociationValue"},
         "DefaultRouteTablePropagation":{"shape":"DefaultRouteTablePropagationValue"},
         "VpnEcmpSupport":{"shape":"VpnEcmpSupportValue"},
-        "DnsSupport":{"shape":"DnsSupportValue"}
+        "DnsSupport":{"shape":"DnsSupportValue"},
+        "MulticastSupport":{"shape":"MulticastSupportValue"}
       }
     },
     "TransitGatewayRoute":{
@@ -25194,7 +26974,6 @@
         "locationName":"item"
       }
     },
-    "TransitGatewayRouteTableId":{"type":"string"},
     "TransitGatewayRouteTableIdStringList":{
       "type":"list",
       "member":{
@@ -25820,6 +27599,10 @@
           "shape":"String",
           "locationName":"kmsKeyId"
         },
+        "OutpostArn":{
+          "shape":"String",
+          "locationName":"outpostArn"
+        },
         "Size":{
           "shape":"Integer",
           "locationName":"size"
@@ -26076,11 +27859,11 @@
           "locationName":"eventType"
         },
         "NotAfter":{
-          "shape":"DateTime",
+          "shape":"MillisecondDateTime",
           "locationName":"notAfter"
         },
         "NotBefore":{
-          "shape":"DateTime",
+          "shape":"MillisecondDateTime",
           "locationName":"notBefore"
         }
       }
@@ -26123,6 +27906,10 @@
         "AvailabilityZone":{
           "shape":"String",
           "locationName":"availabilityZone"
+        },
+        "OutpostArn":{
+          "shape":"String",
+          "locationName":"outpostArn"
         },
         "Events":{
           "shape":"VolumeStatusEventsList",
@@ -26460,6 +28247,10 @@
         "Ipv6CidrBlockState":{
           "shape":"VpcCidrBlockState",
           "locationName":"ipv6CidrBlockState"
+        },
+        "NetworkBorderGroup":{
+          "shape":"String",
+          "locationName":"networkBorderGroup"
         }
       }
     },
@@ -26673,6 +28464,10 @@
     "VpnConnectionOptions":{
       "type":"structure",
       "members":{
+        "EnableAcceleration":{
+          "shape":"Boolean",
+          "locationName":"enableAcceleration"
+        },
         "StaticRoutesOnly":{
           "shape":"Boolean",
           "locationName":"staticRoutesOnly"
@@ -26686,6 +28481,7 @@
     "VpnConnectionOptionsSpecification":{
       "type":"structure",
       "members":{
+        "EnableAcceleration":{"shape":"Boolean"},
         "StaticRoutesOnly":{
           "shape":"Boolean",
           "locationName":"staticRoutesOnly"

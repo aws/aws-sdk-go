@@ -64,6 +64,10 @@ type EKSAPI interface {
 	CreateClusterWithContext(aws.Context, *eks.CreateClusterInput, ...request.Option) (*eks.CreateClusterOutput, error)
 	CreateClusterRequest(*eks.CreateClusterInput) (*request.Request, *eks.CreateClusterOutput)
 
+	CreateFargateProfile(*eks.CreateFargateProfileInput) (*eks.CreateFargateProfileOutput, error)
+	CreateFargateProfileWithContext(aws.Context, *eks.CreateFargateProfileInput, ...request.Option) (*eks.CreateFargateProfileOutput, error)
+	CreateFargateProfileRequest(*eks.CreateFargateProfileInput) (*request.Request, *eks.CreateFargateProfileOutput)
+
 	CreateNodegroup(*eks.CreateNodegroupInput) (*eks.CreateNodegroupOutput, error)
 	CreateNodegroupWithContext(aws.Context, *eks.CreateNodegroupInput, ...request.Option) (*eks.CreateNodegroupOutput, error)
 	CreateNodegroupRequest(*eks.CreateNodegroupInput) (*request.Request, *eks.CreateNodegroupOutput)
@@ -72,6 +76,10 @@ type EKSAPI interface {
 	DeleteClusterWithContext(aws.Context, *eks.DeleteClusterInput, ...request.Option) (*eks.DeleteClusterOutput, error)
 	DeleteClusterRequest(*eks.DeleteClusterInput) (*request.Request, *eks.DeleteClusterOutput)
 
+	DeleteFargateProfile(*eks.DeleteFargateProfileInput) (*eks.DeleteFargateProfileOutput, error)
+	DeleteFargateProfileWithContext(aws.Context, *eks.DeleteFargateProfileInput, ...request.Option) (*eks.DeleteFargateProfileOutput, error)
+	DeleteFargateProfileRequest(*eks.DeleteFargateProfileInput) (*request.Request, *eks.DeleteFargateProfileOutput)
+
 	DeleteNodegroup(*eks.DeleteNodegroupInput) (*eks.DeleteNodegroupOutput, error)
 	DeleteNodegroupWithContext(aws.Context, *eks.DeleteNodegroupInput, ...request.Option) (*eks.DeleteNodegroupOutput, error)
 	DeleteNodegroupRequest(*eks.DeleteNodegroupInput) (*request.Request, *eks.DeleteNodegroupOutput)
@@ -79,6 +87,10 @@ type EKSAPI interface {
 	DescribeCluster(*eks.DescribeClusterInput) (*eks.DescribeClusterOutput, error)
 	DescribeClusterWithContext(aws.Context, *eks.DescribeClusterInput, ...request.Option) (*eks.DescribeClusterOutput, error)
 	DescribeClusterRequest(*eks.DescribeClusterInput) (*request.Request, *eks.DescribeClusterOutput)
+
+	DescribeFargateProfile(*eks.DescribeFargateProfileInput) (*eks.DescribeFargateProfileOutput, error)
+	DescribeFargateProfileWithContext(aws.Context, *eks.DescribeFargateProfileInput, ...request.Option) (*eks.DescribeFargateProfileOutput, error)
+	DescribeFargateProfileRequest(*eks.DescribeFargateProfileInput) (*request.Request, *eks.DescribeFargateProfileOutput)
 
 	DescribeNodegroup(*eks.DescribeNodegroupInput) (*eks.DescribeNodegroupOutput, error)
 	DescribeNodegroupWithContext(aws.Context, *eks.DescribeNodegroupInput, ...request.Option) (*eks.DescribeNodegroupOutput, error)
@@ -94,6 +106,13 @@ type EKSAPI interface {
 
 	ListClustersPages(*eks.ListClustersInput, func(*eks.ListClustersOutput, bool) bool) error
 	ListClustersPagesWithContext(aws.Context, *eks.ListClustersInput, func(*eks.ListClustersOutput, bool) bool, ...request.Option) error
+
+	ListFargateProfiles(*eks.ListFargateProfilesInput) (*eks.ListFargateProfilesOutput, error)
+	ListFargateProfilesWithContext(aws.Context, *eks.ListFargateProfilesInput, ...request.Option) (*eks.ListFargateProfilesOutput, error)
+	ListFargateProfilesRequest(*eks.ListFargateProfilesInput) (*request.Request, *eks.ListFargateProfilesOutput)
+
+	ListFargateProfilesPages(*eks.ListFargateProfilesInput, func(*eks.ListFargateProfilesOutput, bool) bool) error
+	ListFargateProfilesPagesWithContext(aws.Context, *eks.ListFargateProfilesInput, func(*eks.ListFargateProfilesOutput, bool) bool, ...request.Option) error
 
 	ListNodegroups(*eks.ListNodegroupsInput) (*eks.ListNodegroupsOutput, error)
 	ListNodegroupsWithContext(aws.Context, *eks.ListNodegroupsInput, ...request.Option) (*eks.ListNodegroupsOutput, error)

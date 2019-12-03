@@ -750,6 +750,8 @@
         "c5.4xlarge.elasticsearch",
         "c5.9xlarge.elasticsearch",
         "c5.18xlarge.elasticsearch",
+        "ultrawarm1.medium.elasticsearch",
+        "ultrawarm1.large.elasticsearch",
         "t2.micro.elasticsearch",
         "t2.small.elasticsearch",
         "t2.medium.elasticsearch",
@@ -783,6 +785,13 @@
         "i3.16xlarge.elasticsearch"
       ]
     },
+    "ESWarmPartitionInstanceType":{
+      "type":"string",
+      "enum":[
+        "ultrawarm1.medium.elasticsearch",
+        "ultrawarm1.large.elasticsearch"
+      ]
+    },
     "ElasticsearchClusterConfig":{
       "type":"structure",
       "members":{
@@ -792,7 +801,10 @@
         "ZoneAwarenessEnabled":{"shape":"Boolean"},
         "ZoneAwarenessConfig":{"shape":"ZoneAwarenessConfig"},
         "DedicatedMasterType":{"shape":"ESPartitionInstanceType"},
-        "DedicatedMasterCount":{"shape":"IntegerClass"}
+        "DedicatedMasterCount":{"shape":"IntegerClass"},
+        "WarmEnabled":{"shape":"Boolean"},
+        "WarmType":{"shape":"ESWarmPartitionInstanceType"},
+        "WarmCount":{"shape":"IntegerClass"}
       }
     },
     "ElasticsearchClusterConfigStatus":{

@@ -56,26 +56,28 @@ func (c *Textract) AnalyzeDocumentRequest(input *AnalyzeDocumentInput) (req *req
 //
 // The types of information returned are as follows:
 //
-//    * Words and lines that are related to nearby lines and words. The related
-//    information is returned in two Block objects each of type KEY_VALUE_SET:
-//    a KEY Block object and a VALUE Block object. For example, Name: Ana Silva
-//    Carolina contains a key and value. Name: is the key. Ana Silva Carolina
-//    is the value.
+//    * Form data (key-value pairs). The related information is returned in
+//    two Block objects, each of type KEY_VALUE_SET: a KEY Block object and
+//    a VALUE Block object. For example, Name: Ana Silva Carolina contains a
+//    key and value. Name: is the key. Ana Silva Carolina is the value.
 //
 //    * Table and table cell data. A TABLE Block object contains information
 //    about a detected table. A CELL Block object is returned for each cell
 //    in a table.
 //
-//    * Selectable elements such as checkboxes and radio buttons. A SELECTION_ELEMENT
-//    Block object contains information about a selectable element.
-//
 //    * Lines and words of text. A LINE Block object contains one or more WORD
-//    Block objects.
+//    Block objects. All lines and words that are detected in the document are
+//    returned (including text that doesn't have a relationship with the value
+//    of FeatureTypes).
+//
+// Selection elements such as check boxes and option buttons (radio buttons)
+// can be detected in form data and in tables. A SELECTION_ELEMENT Block object
+// contains information about a selection element, including the selection status.
 //
 // You can choose which type of analysis to perform by specifying the FeatureTypes
 // list.
 //
-// The output is returned in a list of BLOCK objects.
+// The output is returned in a list of Block objects.
 //
 // AnalyzeDocument is a synchronous operation. To analyze documents asynchronously,
 // use StartDocumentAnalysis.
@@ -101,13 +103,14 @@ func (c *Textract) AnalyzeDocumentRequest(input *AnalyzeDocumentInput) (req *req
 //   request.
 //
 //   * ErrCodeUnsupportedDocumentException "UnsupportedDocumentException"
-//   The format of the input document isn't supported. Amazon Textract supports
-//   documents that are .png or .jpg format.
+//   The format of the input document isn't supported. Documents for synchronous
+//   operations can be in PNG or JPEG format. Documents for asynchronous operations
+//   can also be in PDF format.
 //
 //   * ErrCodeDocumentTooLargeException "DocumentTooLargeException"
 //   The document can't be processed because it's too large. The maximum document
 //   size for synchronous operations 5 MB. The maximum document size for asynchronous
-//   operations is 500 MB for PDF format files.
+//   operations is 500 MB for PDF files.
 //
 //   * ErrCodeBadDocumentException "BadDocumentException"
 //   Amazon Textract isn't able to read the document.
@@ -125,6 +128,10 @@ func (c *Textract) AnalyzeDocumentRequest(input *AnalyzeDocumentInput) (req *req
 //   * ErrCodeThrottlingException "ThrottlingException"
 //   Amazon Textract is temporarily unable to process the request. Try your call
 //   again.
+//
+//   * ErrCodeHumanLoopQuotaExceededException "HumanLoopQuotaExceededException"
+//   Indicates you have exceeded the maximum number of active human in the loop
+//   workflows available
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/AnalyzeDocument
 func (c *Textract) AnalyzeDocument(input *AnalyzeDocumentInput) (*AnalyzeDocumentOutput, error) {
@@ -194,7 +201,7 @@ func (c *Textract) DetectDocumentTextRequest(input *DetectDocumentTextInput) (re
 //
 // Detects text in the input document. Amazon Textract can detect lines of text
 // and the words that make up a line of text. The input document must be an
-// image in JPG or PNG format. DetectDocumentText returns the detected text
+// image in JPEG or PNG format. DetectDocumentText returns the detected text
 // in an array of Block objects.
 //
 // Each document page has as an associated Block of type PAGE. Each PAGE Block
@@ -226,13 +233,14 @@ func (c *Textract) DetectDocumentTextRequest(input *DetectDocumentTextInput) (re
 //   request.
 //
 //   * ErrCodeUnsupportedDocumentException "UnsupportedDocumentException"
-//   The format of the input document isn't supported. Amazon Textract supports
-//   documents that are .png or .jpg format.
+//   The format of the input document isn't supported. Documents for synchronous
+//   operations can be in PNG or JPEG format. Documents for asynchronous operations
+//   can also be in PDF format.
 //
 //   * ErrCodeDocumentTooLargeException "DocumentTooLargeException"
 //   The document can't be processed because it's too large. The maximum document
 //   size for synchronous operations 5 MB. The maximum document size for asynchronous
-//   operations is 500 MB for PDF format files.
+//   operations is 500 MB for PDF files.
 //
 //   * ErrCodeBadDocumentException "BadDocumentException"
 //   Amazon Textract isn't able to read the document.
@@ -332,28 +340,30 @@ func (c *Textract) GetDocumentAnalysisRequest(input *GetDocumentAnalysisInput) (
 // GetDocumentAnalysis returns an array of Block objects. The following types
 // of information are returned:
 //
-//    * Words and lines that are related to nearby lines and words. The related
-//    information is returned in two Block objects each of type KEY_VALUE_SET:
-//    a KEY Block object and a VALUE Block object. For example, Name: Ana Silva
-//    Carolina contains a key and value. Name: is the key. Ana Silva Carolina
-//    is the value.
+//    * Form data (key-value pairs). The related information is returned in
+//    two Block objects, each of type KEY_VALUE_SET: a KEY Block object and
+//    a VALUE Block object. For example, Name: Ana Silva Carolina contains a
+//    key and value. Name: is the key. Ana Silva Carolina is the value.
 //
 //    * Table and table cell data. A TABLE Block object contains information
 //    about a detected table. A CELL Block object is returned for each cell
 //    in a table.
 //
-//    * Selectable elements such as checkboxes and radio buttons. A SELECTION_ELEMENT
-//    Block object contains information about a selectable element.
-//
 //    * Lines and words of text. A LINE Block object contains one or more WORD
-//    Block objects.
+//    Block objects. All lines and words that are detected in the document are
+//    returned (including text that doesn't have a relationship with the value
+//    of the StartDocumentAnalysis FeatureTypes input parameter).
 //
-// Use the MaxResults parameter to limit the number of blocks returned. If there
-// are more results than specified in MaxResults, the value of NextToken in
-// the operation response contains a pagination token for getting the next set
-// of results. To get the next page of results, call GetDocumentAnalysis, and
-// populate the NextToken request parameter with the token value that's returned
-// from the previous call to GetDocumentAnalysis.
+// Selection elements such as check boxes and option buttons (radio buttons)
+// can be detected in form data and in tables. A SELECTION_ELEMENT Block object
+// contains information about a selection element, including the selection status.
+//
+// Use the MaxResults parameter to limit the number of blocks that are returned.
+// If there are more results than specified in MaxResults, the value of NextToken
+// in the operation response contains a pagination token for getting the next
+// set of results. To get the next page of results, call GetDocumentAnalysis,
+// and populate the NextToken request parameter with the token value that's
+// returned from the previous call to GetDocumentAnalysis.
 //
 // For more information, see Document Text Analysis (https://docs.aws.amazon.com/textract/latest/dg/how-it-works-analyzing.html).
 //
@@ -580,10 +590,10 @@ func (c *Textract) StartDocumentAnalysisRequest(input *StartDocumentAnalysisInpu
 
 // StartDocumentAnalysis API operation for Amazon Textract.
 //
-// Starts asynchronous analysis of an input document for relationships between
-// detected items such as key and value pairs, tables, and selection elements.
+// Starts the asynchronous analysis of an input document for relationships between
+// detected items such as key-value pairs, tables, and selection elements.
 //
-// StartDocumentAnalysis can analyze text in documents that are in JPG, PNG,
+// StartDocumentAnalysis can analyze text in documents that are in JPEG, PNG,
 // and PDF format. The documents are stored in an Amazon S3 bucket. Use DocumentLocation
 // to specify the bucket name and file name of the document.
 //
@@ -616,13 +626,14 @@ func (c *Textract) StartDocumentAnalysisRequest(input *StartDocumentAnalysisInpu
 //   request.
 //
 //   * ErrCodeUnsupportedDocumentException "UnsupportedDocumentException"
-//   The format of the input document isn't supported. Amazon Textract supports
-//   documents that are .png or .jpg format.
+//   The format of the input document isn't supported. Documents for synchronous
+//   operations can be in PNG or JPEG format. Documents for asynchronous operations
+//   can also be in PDF format.
 //
 //   * ErrCodeDocumentTooLargeException "DocumentTooLargeException"
 //   The document can't be processed because it's too large. The maximum document
 //   size for synchronous operations 5 MB. The maximum document size for asynchronous
-//   operations is 500 MB for PDF format files.
+//   operations is 500 MB for PDF files.
 //
 //   * ErrCodeBadDocumentException "BadDocumentException"
 //   Amazon Textract isn't able to read the document.
@@ -722,7 +733,7 @@ func (c *Textract) StartDocumentTextDetectionRequest(input *StartDocumentTextDet
 // Starts the asynchronous detection of text in a document. Amazon Textract
 // can detect lines of text and the words that make up a line of text.
 //
-// StartDocumentTextDetection can analyze text in documents that are in JPG,
+// StartDocumentTextDetection can analyze text in documents that are in JPEG,
 // PNG, and PDF format. The documents are stored in an Amazon S3 bucket. Use
 // DocumentLocation to specify the bucket name and file name of the document.
 //
@@ -755,13 +766,14 @@ func (c *Textract) StartDocumentTextDetectionRequest(input *StartDocumentTextDet
 //   request.
 //
 //   * ErrCodeUnsupportedDocumentException "UnsupportedDocumentException"
-//   The format of the input document isn't supported. Amazon Textract supports
-//   documents that are .png or .jpg format.
+//   The format of the input document isn't supported. Documents for synchronous
+//   operations can be in PNG or JPEG format. Documents for asynchronous operations
+//   can also be in PDF format.
 //
 //   * ErrCodeDocumentTooLargeException "DocumentTooLargeException"
 //   The document can't be processed because it's too large. The maximum document
 //   size for synchronous operations 5 MB. The maximum document size for asynchronous
-//   operations is 500 MB for PDF format files.
+//   operations is 500 MB for PDF files.
 //
 //   * ErrCodeBadDocumentException "BadDocumentException"
 //   Amazon Textract isn't able to read the document.
@@ -819,21 +831,26 @@ type AnalyzeDocumentInput struct {
 
 	// The input document as base64-encoded bytes or an Amazon S3 object. If you
 	// use the AWS CLI to call Amazon Textract operations, you can't pass image
-	// bytes. The document must be an image in JPG or PNG format.
+	// bytes. The document must be an image in JPEG or PNG format.
 	//
-	// If you are using an AWS SDK to call Amazon Textract, you might not need to
-	// base64-encode image bytes passed using the Bytes field.
+	// If you're using an AWS SDK to call Amazon Textract, you might not need to
+	// base64-encode image bytes that are passed using the Bytes field.
 	//
 	// Document is a required field
 	Document *Document `type:"structure" required:"true"`
 
 	// A list of the types of analysis to perform. Add TABLES to the list to return
-	// information about the tables detected in the input document. Add FORMS to
-	// return detected fields and the associated text. To perform both types of
-	// analysis, add TABLES and FORMS to FeatureTypes.
+	// information about the tables that are detected in the input document. Add
+	// FORMS to return detected form data. To perform both types of analysis, add
+	// TABLES and FORMS to FeatureTypes. All lines and words detected in the document
+	// are included in the response (including text that isn't related to the value
+	// of FeatureTypes).
 	//
 	// FeatureTypes is a required field
 	FeatureTypes []*string `type:"list" required:"true"`
+
+	// Sets the configuration for the human in the loop workflow for analyzing documents.
+	HumanLoopConfig *HumanLoopConfig `type:"structure"`
 }
 
 // String returns the string representation
@@ -860,6 +877,11 @@ func (s *AnalyzeDocumentInput) Validate() error {
 			invalidParams.AddNested("Document", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.HumanLoopConfig != nil {
+		if err := s.HumanLoopConfig.Validate(); err != nil {
+			invalidParams.AddNested("HumanLoopConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -879,14 +901,26 @@ func (s *AnalyzeDocumentInput) SetFeatureTypes(v []*string) *AnalyzeDocumentInpu
 	return s
 }
 
+// SetHumanLoopConfig sets the HumanLoopConfig field's value.
+func (s *AnalyzeDocumentInput) SetHumanLoopConfig(v *HumanLoopConfig) *AnalyzeDocumentInput {
+	s.HumanLoopConfig = v
+	return s
+}
+
 type AnalyzeDocumentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The text that's detected and analyzed by AnalyzeDocument.
+	// The version of the model used to analyze the document.
+	AnalyzeDocumentModelVersion *string `type:"string"`
+
+	// The items that are detected and analyzed by AnalyzeDocument.
 	Blocks []*Block `type:"list"`
 
 	// Metadata about the analyzed document. An example is the number of pages.
 	DocumentMetadata *DocumentMetadata `type:"structure"`
+
+	// Shows the results of the human in the loop evaluation.
+	HumanLoopActivationOutput *HumanLoopActivationOutput `type:"structure"`
 }
 
 // String returns the string representation
@@ -897,6 +931,12 @@ func (s AnalyzeDocumentOutput) String() string {
 // GoString returns the string representation
 func (s AnalyzeDocumentOutput) GoString() string {
 	return s.String()
+}
+
+// SetAnalyzeDocumentModelVersion sets the AnalyzeDocumentModelVersion field's value.
+func (s *AnalyzeDocumentOutput) SetAnalyzeDocumentModelVersion(v string) *AnalyzeDocumentOutput {
+	s.AnalyzeDocumentModelVersion = &v
+	return s
 }
 
 // SetBlocks sets the Blocks field's value.
@@ -911,12 +951,19 @@ func (s *AnalyzeDocumentOutput) SetDocumentMetadata(v *DocumentMetadata) *Analyz
 	return s
 }
 
+// SetHumanLoopActivationOutput sets the HumanLoopActivationOutput field's value.
+func (s *AnalyzeDocumentOutput) SetHumanLoopActivationOutput(v *HumanLoopActivationOutput) *AnalyzeDocumentOutput {
+	s.HumanLoopActivationOutput = v
+	return s
+}
+
 // A Block represents items that are recognized in a document within a group
-// of pixels close to each other. The information returned in a Block depends
-// on the type of operation. In document-text detection (for example DetectDocumentText),
-// you get information about the detected words and lines of text. In text analysis
-// (for example AnalyzeDocument), you can also get information about the fields,
-// tables and selection elements that are detected in the document.
+// of pixels close to each other. The information returned in a Block object
+// depends on the type of operation. In text detection for documents (for example
+// DetectDocumentText), you get information about the detected words and lines
+// of text. In text analysis (for example AnalyzeDocument), you can also get
+// information about the fields, tables, and selection elements that are detected
+// in the document.
 //
 // An array of Block objects is returned by both synchronous and asynchronous
 // operations. In synchronous operations, such as DetectDocumentText, the array
@@ -927,7 +974,7 @@ func (s *AnalyzeDocumentOutput) SetDocumentMetadata(v *DocumentMetadata) *Analyz
 type Block struct {
 	_ struct{} `type:"structure"`
 
-	// The type of text that's recognized in a block. In text-detection operations,
+	// The type of text item that's recognized. In operations for text detection,
 	// the following types are returned:
 	//
 	//    * PAGE - Contains a list of the LINE Block objects that are detected on
@@ -936,46 +983,46 @@ type Block struct {
 	//    * WORD - A word detected on a document page. A word is one or more ISO
 	//    basic Latin script characters that aren't separated by spaces.
 	//
-	//    * LINE - A string of tab-delimited, contiguous words that's detected on
-	//    a document page.
+	//    * LINE - A string of tab-delimited, contiguous words that are detected
+	//    on a document page.
 	//
 	// In text analysis operations, the following types are returned:
 	//
 	//    * PAGE - Contains a list of child Block objects that are detected on a
 	//    document page.
 	//
-	//    * KEY_VALUE_SET - Stores the KEY and VALUE Block objects for a field that's
-	//    detected on a document page. Use the EntityType field to determine if
-	//    a KEY_VALUE_SET object is a KEY Block object or a VALUE Block object.
+	//    * KEY_VALUE_SET - Stores the KEY and VALUE Block objects for linked text
+	//    that's detected on a document page. Use the EntityType field to determine
+	//    if a KEY_VALUE_SET object is a KEY Block object or a VALUE Block object.
 	//
-	//    * WORD - A word detected on a document page. A word is one or more ISO
-	//    basic Latin script characters that aren't separated by spaces that's detected
+	//    * WORD - A word that's detected on a document page. A word is one or more
+	//    ISO basic Latin script characters that aren't separated by spaces.
+	//
+	//    * LINE - A string of tab-delimited, contiguous words that are detected
 	//    on a document page.
 	//
-	//    * LINE - A string of tab-delimited, contiguous words that's detected on
-	//    a document page.
-	//
-	//    * TABLE - A table that's detected on a document page. A table is any grid-based
-	//    information with 2 or more rows or columns with a cell span of 1 row and
-	//    1 column each.
+	//    * TABLE - A table that's detected on a document page. A table is grid-based
+	//    information with two or more rows or columns, with a cell span of one
+	//    row and one column each.
 	//
 	//    * CELL - A cell within a detected table. The cell is the parent of the
 	//    block that contains the text in the cell.
 	//
-	//    * SELECTION_ELEMENT - A selectable element such as a radio button or checkbox
-	//    that's detected on a document page. Use the value of SelectionStatus to
-	//    determine the status of the selection element.
+	//    * SELECTION_ELEMENT - A selection element such as an option button (radio
+	//    button) or a check box that's detected on a document page. Use the value
+	//    of SelectionStatus to determine the status of the selection element.
 	BlockType *string `type:"string" enum:"BlockType"`
 
 	// The column in which a table cell appears. The first column position is 1.
 	// ColumnIndex isn't returned by DetectDocumentText and GetDocumentTextDetection.
 	ColumnIndex *int64 `type:"integer"`
 
-	// The number of columns that a table cell spans. ColumnSpan isn't returned
-	// by DetectDocumentText and GetDocumentTextDetection.
+	// The number of columns that a table cell spans. Currently this value is always
+	// 1, even if the number of columns spanned is greater than 1. ColumnSpan isn't
+	// returned by DetectDocumentText and GetDocumentTextDetection.
 	ColumnSpan *int64 `type:"integer"`
 
-	// The confidence that Amazon Textract has in the accuracy of the recognized
+	// The confidence score that Amazon Textract has in the accuracy of the recognized
 	// text and the accuracy of the geometry points around the recognized text.
 	Confidence *float64 `type:"float"`
 
@@ -997,15 +1044,15 @@ type Block struct {
 	// a single operation.
 	Id *string `type:"string"`
 
-	// The page in which a block was detected. Page is returned by asynchronous
-	// operations. Page values greater than 1 are only returned for multi-page documents
-	// that are in PDF format. A scanned image (JPG/PNG), even if it contains multiple
-	// document pages, is always considered to be a single-page document and the
-	// value of Page is always 1. Synchronous operations don't return Page as every
+	// The page on which a block was detected. Page is returned by asynchronous
+	// operations. Page values greater than 1 are only returned for multipage documents
+	// that are in PDF format. A scanned image (JPEG/PNG), even if it contains multiple
+	// document pages, is considered to be a single-page document. The value of
+	// Page is always 1. Synchronous operations don't return Page because every
 	// input document is considered to be a single-page document.
 	Page *int64 `type:"integer"`
 
-	// A list of child blocks of the current block. For example a LINE object has
+	// A list of child blocks of the current block. For example, a LINE object has
 	// child blocks for each WORD block that's part of the line of text. There aren't
 	// Relationship objects in the list for relationships that don't exist, such
 	// as when the current block has no child blocks. The list size can be the following:
@@ -1019,11 +1066,13 @@ type Block struct {
 	// isn't returned by DetectDocumentText and GetDocumentTextDetection.
 	RowIndex *int64 `type:"integer"`
 
-	// The number of rows that a table spans. RowSpan isn't returned by DetectDocumentText
-	// and GetDocumentTextDetection.
+	// The number of rows that a table cell spans. Currently this value is always
+	// 1, even if the number of rows spanned is greater than 1. RowSpan isn't returned
+	// by DetectDocumentText and GetDocumentTextDetection.
 	RowSpan *int64 `type:"integer"`
 
-	// The selection status of a selectable element such as a radio button or checkbox.
+	// The selection status of a selection element, such as an option button or
+	// check box.
 	SelectionStatus *string `type:"string" enum:"SelectionStatus"`
 
 	// The word or line of text that's recognized by Amazon Textract.
@@ -1118,10 +1167,11 @@ func (s *Block) SetText(v string) *Block {
 	return s
 }
 
-// The bounding box around the recognized text, key, value, table or table cell
-// on a document page. The left (x-coordinate) and top (y-coordinate) are coordinates
-// that represent the top and left sides of the bounding box. Note that the
-// upper-left corner of the image is the origin (0,0).
+// The bounding box around the detected page, text, key-value pair, table, table
+// cell, or selection element on a document page. The left (x-coordinate) and
+// top (y-coordinate) are coordinates that represent the top and left sides
+// of the bounding box. Note that the upper-left corner of the image is the
+// origin (0,0).
 //
 // The top and left values returned are ratios of the overall document page
 // size. For example, if the input image is 700 x 200 pixels, and the top-left
@@ -1189,10 +1239,10 @@ type DetectDocumentTextInput struct {
 
 	// The input document as base64-encoded bytes or an Amazon S3 object. If you
 	// use the AWS CLI to call Amazon Textract operations, you can't pass image
-	// bytes. The document must be an image in JPG or PNG format.
+	// bytes. The document must be an image in JPEG or PNG format.
 	//
-	// If you are using an AWS SDK to call Amazon Textract, you might not need to
-	// base64-encode image bytes passed using the Bytes field.
+	// If you're using an AWS SDK to call Amazon Textract, you might not need to
+	// base64-encode image bytes that are passed using the Bytes field.
 	//
 	// Document is a required field
 	Document *Document `type:"structure" required:"true"`
@@ -1235,10 +1285,12 @@ func (s *DetectDocumentTextInput) SetDocument(v *Document) *DetectDocumentTextIn
 type DetectDocumentTextOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An array of Block objects containing the text detected in the document.
+	// An array of Block objects that contain the text that's detected in the document.
 	Blocks []*Block `type:"list"`
 
-	// Metadata about the document. Contains the number of pages that are detected
+	DetectDocumentTextModelVersion *string `type:"string"`
+
+	// Metadata about the document. It contains the number of pages that are detected
 	// in the document.
 	DocumentMetadata *DocumentMetadata `type:"structure"`
 }
@@ -1256,6 +1308,12 @@ func (s DetectDocumentTextOutput) GoString() string {
 // SetBlocks sets the Blocks field's value.
 func (s *DetectDocumentTextOutput) SetBlocks(v []*Block) *DetectDocumentTextOutput {
 	s.Blocks = v
+	return s
+}
+
+// SetDetectDocumentTextModelVersion sets the DetectDocumentTextModelVersion field's value.
+func (s *DetectDocumentTextOutput) SetDetectDocumentTextModelVersion(v string) *DetectDocumentTextOutput {
+	s.DetectDocumentTextModelVersion = &v
 	return s
 }
 
@@ -1290,18 +1348,18 @@ func (s *DetectDocumentTextOutput) SetDocumentMetadata(v *DocumentMetadata) *Det
 type Document struct {
 	_ struct{} `type:"structure"`
 
-	// A blob of base-64 encoded documents bytes. The maximum size of a document
-	// that's provided in a blob of bytes is 5 MB. The document bytes must be in
-	// PNG or JPG format.
+	// A blob of base64-encoded document bytes. The maximum size of a document that's
+	// provided in a blob of bytes is 5 MB. The document bytes must be in PNG or
+	// JPEG format.
 	//
-	// If you are using an AWS SDK to call Amazon Textract, you might not need to
+	// If you're using an AWS SDK to call Amazon Textract, you might not need to
 	// base64-encode image bytes passed using the Bytes field.
 	//
 	// Bytes is automatically base64 encoded/decoded by the SDK.
 	Bytes []byte `min:"1" type:"blob"`
 
 	// Identifies an S3 object as the document source. The maximum size of a document
-	// stored in an S3 bucket is 5 MB.
+	// that's stored in an S3 bucket is 5 MB.
 	S3Object *S3Object `type:"structure"`
 }
 
@@ -1348,7 +1406,7 @@ func (s *Document) SetS3Object(v *S3Object) *Document {
 // The Amazon S3 bucket that contains the document to be processed. It's used
 // by asynchronous operations such as StartDocumentTextDetection.
 //
-// The input document can be an image file in JPG or PNG format. It can also
+// The input document can be an image file in JPEG or PNG format. It can also
 // be a file in PDF format.
 type DocumentLocation struct {
 	_ struct{} `type:"structure"`
@@ -1392,7 +1450,7 @@ func (s *DocumentLocation) SetS3Object(v *S3Object) *DocumentLocation {
 type DocumentMetadata struct {
 	_ struct{} `type:"structure"`
 
-	// The number of pages detected in the document.
+	// The number of pages that are detected in the document.
 	Pages *int64 `type:"integer"`
 }
 
@@ -1412,16 +1470,17 @@ func (s *DocumentMetadata) SetPages(v int64) *DocumentMetadata {
 	return s
 }
 
-// Information about where a recognized text, key, value, table, or table cell
-// is located on a document page.
+// Information about where the following items are located on a document page:
+// detected page, text, key-value pairs, tables, table cells, and selection
+// elements.
 type Geometry struct {
 	_ struct{} `type:"structure"`
 
-	// An axis-aligned coarse representation of the location of the recognized text
+	// An axis-aligned coarse representation of the location of the recognized item
 	// on the document page.
 	BoundingBox *BoundingBox `type:"structure"`
 
-	// Within the bounding box, a fine-grained polygon around the recognized text.
+	// Within the bounding box, a fine-grained polygon around the recognized item.
 	Polygon []*Point `type:"list"`
 }
 
@@ -1451,7 +1510,7 @@ type GetDocumentAnalysisInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique identifier for the text-detection job. The JobId is returned from
-	// StartDocumentAnalysis.
+	// StartDocumentAnalysis. A JobId value is only valid for 7 days.
 	//
 	// JobId is a required field
 	JobId *string `min:"1" type:"string" required:"true"`
@@ -1520,7 +1579,9 @@ func (s *GetDocumentAnalysisInput) SetNextToken(v string) *GetDocumentAnalysisIn
 type GetDocumentAnalysisOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The results of the text analysis operation.
+	AnalyzeDocumentModelVersion *string `type:"string"`
+
+	// The results of the text-analysis operation.
 	Blocks []*Block `type:"list"`
 
 	// Information about a document that Amazon Textract processed. DocumentMetadata
@@ -1536,10 +1597,10 @@ type GetDocumentAnalysisOutput struct {
 	// detection results.
 	NextToken *string `min:"1" type:"string"`
 
-	// The current status of an asynchronous document analysis operation.
+	// The current status of an asynchronous document-analysis operation.
 	StatusMessage *string `type:"string"`
 
-	// A list of warnings that occurred during the document analysis operation.
+	// A list of warnings that occurred during the document-analysis operation.
 	Warnings []*Warning `type:"list"`
 }
 
@@ -1551,6 +1612,12 @@ func (s GetDocumentAnalysisOutput) String() string {
 // GoString returns the string representation
 func (s GetDocumentAnalysisOutput) GoString() string {
 	return s.String()
+}
+
+// SetAnalyzeDocumentModelVersion sets the AnalyzeDocumentModelVersion field's value.
+func (s *GetDocumentAnalysisOutput) SetAnalyzeDocumentModelVersion(v string) *GetDocumentAnalysisOutput {
+	s.AnalyzeDocumentModelVersion = &v
+	return s
 }
 
 // SetBlocks sets the Blocks field's value.
@@ -1593,7 +1660,7 @@ type GetDocumentTextDetectionInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique identifier for the text detection job. The JobId is returned from
-	// StartDocumentTextDetection.
+	// StartDocumentTextDetection. A JobId value is only valid for 7 days.
 	//
 	// JobId is a required field
 	JobId *string `min:"1" type:"string" required:"true"`
@@ -1665,6 +1732,8 @@ type GetDocumentTextDetectionOutput struct {
 	// The results of the text-detection operation.
 	Blocks []*Block `type:"list"`
 
+	DetectDocumentTextModelVersion *string `type:"string"`
+
 	// Information about a document that Amazon Textract processed. DocumentMetadata
 	// is returned in every page of paginated responses from an Amazon Textract
 	// video operation.
@@ -1678,10 +1747,11 @@ type GetDocumentTextDetectionOutput struct {
 	// results.
 	NextToken *string `min:"1" type:"string"`
 
-	// The current status of an asynchronous document text-detection operation.
+	// The current status of an asynchronous text-detection operation for the document.
 	StatusMessage *string `type:"string"`
 
-	// A list of warnings that occurred during the document text-detection operation.
+	// A list of warnings that occurred during the text-detection operation for
+	// the document.
 	Warnings []*Warning `type:"list"`
 }
 
@@ -1698,6 +1768,12 @@ func (s GetDocumentTextDetectionOutput) GoString() string {
 // SetBlocks sets the Blocks field's value.
 func (s *GetDocumentTextDetectionOutput) SetBlocks(v []*Block) *GetDocumentTextDetectionOutput {
 	s.Blocks = v
+	return s
+}
+
+// SetDetectDocumentTextModelVersion sets the DetectDocumentTextModelVersion field's value.
+func (s *GetDocumentTextDetectionOutput) SetDetectDocumentTextModelVersion(v string) *GetDocumentTextDetectionOutput {
+	s.DetectDocumentTextModelVersion = &v
 	return s
 }
 
@@ -1728,6 +1804,144 @@ func (s *GetDocumentTextDetectionOutput) SetStatusMessage(v string) *GetDocument
 // SetWarnings sets the Warnings field's value.
 func (s *GetDocumentTextDetectionOutput) SetWarnings(v []*Warning) *GetDocumentTextDetectionOutput {
 	s.Warnings = v
+	return s
+}
+
+// Shows the results of the human in the loop evaluation. If there is no HumanLoopArn,
+// the input did not trigger human review.
+type HumanLoopActivationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Shows the result of condition evaluations, including those conditions which
+	// activated a human review.
+	HumanLoopActivationConditionsEvaluationResults aws.JSONValue `type:"jsonvalue"`
+
+	// Shows if and why human review was needed.
+	HumanLoopActivationReasons []*string `min:"1" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the HumanLoop created.
+	HumanLoopArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s HumanLoopActivationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HumanLoopActivationOutput) GoString() string {
+	return s.String()
+}
+
+// SetHumanLoopActivationConditionsEvaluationResults sets the HumanLoopActivationConditionsEvaluationResults field's value.
+func (s *HumanLoopActivationOutput) SetHumanLoopActivationConditionsEvaluationResults(v aws.JSONValue) *HumanLoopActivationOutput {
+	s.HumanLoopActivationConditionsEvaluationResults = v
+	return s
+}
+
+// SetHumanLoopActivationReasons sets the HumanLoopActivationReasons field's value.
+func (s *HumanLoopActivationOutput) SetHumanLoopActivationReasons(v []*string) *HumanLoopActivationOutput {
+	s.HumanLoopActivationReasons = v
+	return s
+}
+
+// SetHumanLoopArn sets the HumanLoopArn field's value.
+func (s *HumanLoopActivationOutput) SetHumanLoopArn(v string) *HumanLoopActivationOutput {
+	s.HumanLoopArn = &v
+	return s
+}
+
+// Sets up the human review workflow the document will be sent to if one of
+// the conditions is met. You can also set certain attributes of the image before
+// review.
+type HumanLoopConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Sets attributes of the input data.
+	DataAttributes *HumanLoopDataAttributes `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the flow definition.
+	//
+	// FlowDefinitionArn is a required field
+	FlowDefinitionArn *string `type:"string" required:"true"`
+
+	// The name of the human workflow used for this image. This should be kept unique
+	// within a region.
+	//
+	// HumanLoopName is a required field
+	HumanLoopName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s HumanLoopConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HumanLoopConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HumanLoopConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HumanLoopConfig"}
+	if s.FlowDefinitionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowDefinitionArn"))
+	}
+	if s.HumanLoopName == nil {
+		invalidParams.Add(request.NewErrParamRequired("HumanLoopName"))
+	}
+	if s.HumanLoopName != nil && len(*s.HumanLoopName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("HumanLoopName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataAttributes sets the DataAttributes field's value.
+func (s *HumanLoopConfig) SetDataAttributes(v *HumanLoopDataAttributes) *HumanLoopConfig {
+	s.DataAttributes = v
+	return s
+}
+
+// SetFlowDefinitionArn sets the FlowDefinitionArn field's value.
+func (s *HumanLoopConfig) SetFlowDefinitionArn(v string) *HumanLoopConfig {
+	s.FlowDefinitionArn = &v
+	return s
+}
+
+// SetHumanLoopName sets the HumanLoopName field's value.
+func (s *HumanLoopConfig) SetHumanLoopName(v string) *HumanLoopConfig {
+	s.HumanLoopName = &v
+	return s
+}
+
+// Allows you to set attributes of the image. Currently, you can declare an
+// image as free of personally identifiable information and adult content.
+type HumanLoopDataAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// Sets whether the input image is free of personally identifiable information
+	// or adult content.
+	ContentClassifiers []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s HumanLoopDataAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HumanLoopDataAttributes) GoString() string {
+	return s.String()
+}
+
+// SetContentClassifiers sets the ContentClassifiers field's value.
+func (s *HumanLoopDataAttributes) SetContentClassifiers(v []*string) *HumanLoopDataAttributes {
+	s.ContentClassifiers = v
 	return s
 }
 
@@ -1794,9 +2008,9 @@ func (s *NotificationChannel) SetSNSTopicArn(v string) *NotificationChannel {
 }
 
 // The X and Y coordinates of a point on a document page. The X and Y values
-// returned are ratios of the overall document page size. For example, if the
-// input document is 700 x 200 and the operation returns X=0.5 and Y=0.25, then
-// the point is at the (350,50) pixel coordinate on the document page.
+// that are returned are ratios of the overall document page size. For example,
+// if the input document is 700 x 200 and the operation returns X=0.5 and Y=0.25,
+// then the point is at the (350,50) pixel coordinate on the document page.
 //
 // An array of Point objects, Polygon, is returned by DetectDocumentText. Polygon
 // represents a fine-grained polygon around detected text. For more information,
@@ -1847,7 +2061,10 @@ type Relationship struct {
 	Ids []*string `type:"list"`
 
 	// The type of relationship that the blocks in the IDs array have with the current
-	// block. The relationship can be VALUE or CHILD.
+	// block. The relationship can be VALUE or CHILD. A relationship of type VALUE
+	// is a list that contains the ID of the VALUE block that's associated with
+	// the KEY of a key-value pair. A relationship of type CHILD is a list of IDs
+	// that identify WORD blocks.
 	Type *string `type:"string" enum:"RelationshipType"`
 }
 
@@ -1886,8 +2103,9 @@ type S3Object struct {
 	// The name of the S3 bucket.
 	Bucket *string `min:"3" type:"string"`
 
-	// The file name of the input document. It must be an image file (.JPG or .PNG
-	// format). Asynchronous operations also support PDF files.
+	// The file name of the input document. Synchronous operations can use image
+	// files that are in JPEG or PNG format. Asynchronous operations also support
+	// PDF format files.
 	Name *string `min:"1" type:"string"`
 
 	// If the bucket has versioning enabled, you can specify the object version.
@@ -1947,7 +2165,8 @@ type StartDocumentAnalysisInput struct {
 	// The idempotent token that you use to identify the start request. If you use
 	// the same token with multiple StartDocumentAnalysis requests, the same JobId
 	// is returned. Use ClientRequestToken to prevent the same job from being accidentally
-	// started more than once.
+	// started more than once. For more information, see Calling Amazon Textract
+	// Asynchronous Operations (https://docs.aws.amazon.com/textract/latest/dg/api-async.html).
 	ClientRequestToken *string `min:"1" type:"string"`
 
 	// The location of the document to be processed.
@@ -1957,18 +2176,18 @@ type StartDocumentAnalysisInput struct {
 
 	// A list of the types of analysis to perform. Add TABLES to the list to return
 	// information about the tables that are detected in the input document. Add
-	// FORMS to return detected fields and the associated text. To perform both
-	// types of analysis, add TABLES and FORMS to FeatureTypes. All selectable elements
-	// (SELECTION_ELEMENT) that are detected are returned, whatever the value of
-	// FeatureTypes.
+	// FORMS to return detected form data. To perform both types of analysis, add
+	// TABLES and FORMS to FeatureTypes. All lines and words detected in the document
+	// are included in the response (including text that isn't related to the value
+	// of FeatureTypes).
 	//
 	// FeatureTypes is a required field
 	FeatureTypes []*string `type:"list" required:"true"`
 
-	// An identifier you specify that's included in the completion notification
-	// that's published to the Amazon SNS topic. For example, you can use JobTag
-	// to identify the type of document, such as a tax form or a receipt, that the
-	// completion notification corresponds to.
+	// An identifier that you specify that's included in the completion notification
+	// published to the Amazon SNS topic. For example, you can use JobTag to identify
+	// the type of document that the completion notification corresponds to (such
+	// as a tax form or a receipt).
 	JobTag *string `min:"1" type:"string"`
 
 	// The Amazon SNS topic ARN that you want Amazon Textract to publish the completion
@@ -2052,7 +2271,8 @@ type StartDocumentAnalysisOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier for the document text detection job. Use JobId to identify
-	// the job in a subsequent call to GetDocumentAnalysis.
+	// the job in a subsequent call to GetDocumentAnalysis. A JobId value is only
+	// valid for 7 days.
 	JobId *string `min:"1" type:"string"`
 }
 
@@ -2078,7 +2298,8 @@ type StartDocumentTextDetectionInput struct {
 	// The idempotent token that's used to identify the start request. If you use
 	// the same token with multiple StartDocumentTextDetection requests, the same
 	// JobId is returned. Use ClientRequestToken to prevent the same job from being
-	// accidentally started more than once.
+	// accidentally started more than once. For more information, see Calling Amazon
+	// Textract Asynchronous Operations (https://docs.aws.amazon.com/textract/latest/dg/api-async.html).
 	ClientRequestToken *string `min:"1" type:"string"`
 
 	// The location of the document to be processed.
@@ -2086,10 +2307,10 @@ type StartDocumentTextDetectionInput struct {
 	// DocumentLocation is a required field
 	DocumentLocation *DocumentLocation `type:"structure" required:"true"`
 
-	// An identifier you specify that's included in the completion notification
-	// that's published to the Amazon SNS topic. For example, you can use JobTag
-	// to identify the type of document, such as a tax form or a receipt, that the
-	// completion notification corresponds to.
+	// An identifier that you specify that's included in the completion notification
+	// published to the Amazon SNS topic. For example, you can use JobTag to identify
+	// the type of document that the completion notification corresponds to (such
+	// as a tax form or a receipt).
 	JobTag *string `min:"1" type:"string"`
 
 	// The Amazon SNS topic ARN that you want Amazon Textract to publish the completion
@@ -2163,8 +2384,9 @@ func (s *StartDocumentTextDetectionInput) SetNotificationChannel(v *Notification
 type StartDocumentTextDetectionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the document text-detection job. Use JobId to identify
-	// the job in a subsequent call to GetDocumentTextDetection.
+	// The identifier of the text detection job for the document. Use JobId to identify
+	// the job in a subsequent call to GetDocumentTextDetection. A JobId value is
+	// only valid for 7 days.
 	JobId *string `min:"1" type:"string"`
 }
 
@@ -2185,7 +2407,7 @@ func (s *StartDocumentTextDetectionOutput) SetJobId(v string) *StartDocumentText
 }
 
 // A warning about an issue that occurred during asynchronous text analysis
-// (StartDocumentAnalysis) or asynchronous document-text detection (StartDocumentTextDetection).
+// (StartDocumentAnalysis) or asynchronous document text detection (StartDocumentTextDetection).
 type Warning struct {
 	_ struct{} `type:"structure"`
 
@@ -2239,6 +2461,14 @@ const (
 
 	// BlockTypeSelectionElement is a BlockType enum value
 	BlockTypeSelectionElement = "SELECTION_ELEMENT"
+)
+
+const (
+	// ContentClassifierFreeOfPersonallyIdentifiableInformation is a ContentClassifier enum value
+	ContentClassifierFreeOfPersonallyIdentifiableInformation = "FreeOfPersonallyIdentifiableInformation"
+
+	// ContentClassifierFreeOfAdultContent is a ContentClassifier enum value
+	ContentClassifierFreeOfAdultContent = "FreeOfAdultContent"
 )
 
 const (
