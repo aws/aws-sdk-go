@@ -222,7 +222,9 @@ func (a *API) Setup() error {
 
 	a.findEndpointDiscoveryOp()
 	a.injectUnboundedOutputStreaming()
-	a.customizationPasses()
+	if err := a.customizationPasses(); err != nil {
+		return err
+	}
 
 	if !a.NoRemoveUnusedShapes {
 		a.removeUnusedShapes()

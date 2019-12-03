@@ -13,6 +13,81 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restxml"
 )
 
+const opCreateAccessPoint = "CreateAccessPoint"
+
+// CreateAccessPointRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAccessPoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateAccessPoint for more information on using the CreateAccessPoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateAccessPointRequest method.
+//    req, resp := client.CreateAccessPointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/CreateAccessPoint
+func (c *S3Control) CreateAccessPointRequest(input *CreateAccessPointInput) (req *request.Request, output *CreateAccessPointOutput) {
+	op := &request.Operation{
+		Name:       opCreateAccessPoint,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v20180820/accesspoint/{name}",
+	}
+
+	if input == nil {
+		input = &CreateAccessPointInput{}
+	}
+
+	output = &CreateAccessPointOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// CreateAccessPoint API operation for AWS S3 Control.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation CreateAccessPoint for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/CreateAccessPoint
+func (c *S3Control) CreateAccessPoint(input *CreateAccessPointInput) (*CreateAccessPointOutput, error) {
+	req, out := c.CreateAccessPointRequest(input)
+	return out, req.Send()
+}
+
+// CreateAccessPointWithContext is the same as CreateAccessPoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateAccessPoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) CreateAccessPointWithContext(ctx aws.Context, input *CreateAccessPointInput, opts ...request.Option) (*CreateAccessPointOutput, error) {
+	req, out := c.CreateAccessPointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateJob = "CreateJob"
 
 // CreateJobRequest generates a "aws/request.Request" representing the
@@ -94,6 +169,156 @@ func (c *S3Control) CreateJob(input *CreateJobInput) (*CreateJobOutput, error) {
 // for more information on using Contexts.
 func (c *S3Control) CreateJobWithContext(ctx aws.Context, input *CreateJobInput, opts ...request.Option) (*CreateJobOutput, error) {
 	req, out := c.CreateJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteAccessPoint = "DeleteAccessPoint"
+
+// DeleteAccessPointRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAccessPoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAccessPoint for more information on using the DeleteAccessPoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteAccessPointRequest method.
+//    req, resp := client.DeleteAccessPointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteAccessPoint
+func (c *S3Control) DeleteAccessPointRequest(input *DeleteAccessPointInput) (req *request.Request, output *DeleteAccessPointOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAccessPoint,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v20180820/accesspoint/{name}",
+	}
+
+	if input == nil {
+		input = &DeleteAccessPointInput{}
+	}
+
+	output = &DeleteAccessPointOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DeleteAccessPoint API operation for AWS S3 Control.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation DeleteAccessPoint for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteAccessPoint
+func (c *S3Control) DeleteAccessPoint(input *DeleteAccessPointInput) (*DeleteAccessPointOutput, error) {
+	req, out := c.DeleteAccessPointRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAccessPointWithContext is the same as DeleteAccessPoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAccessPoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) DeleteAccessPointWithContext(ctx aws.Context, input *DeleteAccessPointInput, opts ...request.Option) (*DeleteAccessPointOutput, error) {
+	req, out := c.DeleteAccessPointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteAccessPointPolicy = "DeleteAccessPointPolicy"
+
+// DeleteAccessPointPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAccessPointPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAccessPointPolicy for more information on using the DeleteAccessPointPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteAccessPointPolicyRequest method.
+//    req, resp := client.DeleteAccessPointPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteAccessPointPolicy
+func (c *S3Control) DeleteAccessPointPolicyRequest(input *DeleteAccessPointPolicyInput) (req *request.Request, output *DeleteAccessPointPolicyOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAccessPointPolicy,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v20180820/accesspoint/{name}/policy",
+	}
+
+	if input == nil {
+		input = &DeleteAccessPointPolicyInput{}
+	}
+
+	output = &DeleteAccessPointPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DeleteAccessPointPolicy API operation for AWS S3 Control.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation DeleteAccessPointPolicy for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteAccessPointPolicy
+func (c *S3Control) DeleteAccessPointPolicy(input *DeleteAccessPointPolicyInput) (*DeleteAccessPointPolicyOutput, error) {
+	req, out := c.DeleteAccessPointPolicyRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAccessPointPolicyWithContext is the same as DeleteAccessPointPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAccessPointPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) DeleteAccessPointPolicyWithContext(ctx aws.Context, input *DeleteAccessPointPolicyInput, opts ...request.Option) (*DeleteAccessPointPolicyOutput, error) {
+	req, out := c.DeleteAccessPointPolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -263,6 +488,228 @@ func (c *S3Control) DescribeJobWithContext(ctx aws.Context, input *DescribeJobIn
 	return out, req.Send()
 }
 
+const opGetAccessPoint = "GetAccessPoint"
+
+// GetAccessPointRequest generates a "aws/request.Request" representing the
+// client's request for the GetAccessPoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAccessPoint for more information on using the GetAccessPoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetAccessPointRequest method.
+//    req, resp := client.GetAccessPointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessPoint
+func (c *S3Control) GetAccessPointRequest(input *GetAccessPointInput) (req *request.Request, output *GetAccessPointOutput) {
+	op := &request.Operation{
+		Name:       opGetAccessPoint,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/accesspoint/{name}",
+	}
+
+	if input == nil {
+		input = &GetAccessPointInput{}
+	}
+
+	output = &GetAccessPointOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetAccessPoint API operation for AWS S3 Control.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetAccessPoint for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessPoint
+func (c *S3Control) GetAccessPoint(input *GetAccessPointInput) (*GetAccessPointOutput, error) {
+	req, out := c.GetAccessPointRequest(input)
+	return out, req.Send()
+}
+
+// GetAccessPointWithContext is the same as GetAccessPoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAccessPoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetAccessPointWithContext(ctx aws.Context, input *GetAccessPointInput, opts ...request.Option) (*GetAccessPointOutput, error) {
+	req, out := c.GetAccessPointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetAccessPointPolicy = "GetAccessPointPolicy"
+
+// GetAccessPointPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetAccessPointPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAccessPointPolicy for more information on using the GetAccessPointPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetAccessPointPolicyRequest method.
+//    req, resp := client.GetAccessPointPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessPointPolicy
+func (c *S3Control) GetAccessPointPolicyRequest(input *GetAccessPointPolicyInput) (req *request.Request, output *GetAccessPointPolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetAccessPointPolicy,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/accesspoint/{name}/policy",
+	}
+
+	if input == nil {
+		input = &GetAccessPointPolicyInput{}
+	}
+
+	output = &GetAccessPointPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetAccessPointPolicy API operation for AWS S3 Control.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetAccessPointPolicy for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessPointPolicy
+func (c *S3Control) GetAccessPointPolicy(input *GetAccessPointPolicyInput) (*GetAccessPointPolicyOutput, error) {
+	req, out := c.GetAccessPointPolicyRequest(input)
+	return out, req.Send()
+}
+
+// GetAccessPointPolicyWithContext is the same as GetAccessPointPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAccessPointPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetAccessPointPolicyWithContext(ctx aws.Context, input *GetAccessPointPolicyInput, opts ...request.Option) (*GetAccessPointPolicyOutput, error) {
+	req, out := c.GetAccessPointPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetAccessPointPolicyStatus = "GetAccessPointPolicyStatus"
+
+// GetAccessPointPolicyStatusRequest generates a "aws/request.Request" representing the
+// client's request for the GetAccessPointPolicyStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAccessPointPolicyStatus for more information on using the GetAccessPointPolicyStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetAccessPointPolicyStatusRequest method.
+//    req, resp := client.GetAccessPointPolicyStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessPointPolicyStatus
+func (c *S3Control) GetAccessPointPolicyStatusRequest(input *GetAccessPointPolicyStatusInput) (req *request.Request, output *GetAccessPointPolicyStatusOutput) {
+	op := &request.Operation{
+		Name:       opGetAccessPointPolicyStatus,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/accesspoint/{name}/policyStatus",
+	}
+
+	if input == nil {
+		input = &GetAccessPointPolicyStatusInput{}
+	}
+
+	output = &GetAccessPointPolicyStatusOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetAccessPointPolicyStatus API operation for AWS S3 Control.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetAccessPointPolicyStatus for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessPointPolicyStatus
+func (c *S3Control) GetAccessPointPolicyStatus(input *GetAccessPointPolicyStatusInput) (*GetAccessPointPolicyStatusOutput, error) {
+	req, out := c.GetAccessPointPolicyStatusRequest(input)
+	return out, req.Send()
+}
+
+// GetAccessPointPolicyStatusWithContext is the same as GetAccessPointPolicyStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAccessPointPolicyStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetAccessPointPolicyStatusWithContext(ctx aws.Context, input *GetAccessPointPolicyStatusInput, opts ...request.Option) (*GetAccessPointPolicyStatusOutput, error) {
+	req, out := c.GetAccessPointPolicyStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetPublicAccessBlock = "GetPublicAccessBlock"
 
 // GetPublicAccessBlockRequest generates a "aws/request.Request" representing the
@@ -339,6 +786,138 @@ func (c *S3Control) GetPublicAccessBlockWithContext(ctx aws.Context, input *GetP
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListAccessPoints = "ListAccessPoints"
+
+// ListAccessPointsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAccessPoints operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAccessPoints for more information on using the ListAccessPoints
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAccessPointsRequest method.
+//    req, resp := client.ListAccessPointsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListAccessPoints
+func (c *S3Control) ListAccessPointsRequest(input *ListAccessPointsInput) (req *request.Request, output *ListAccessPointsOutput) {
+	op := &request.Operation{
+		Name:       opListAccessPoints,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/accesspoint",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAccessPointsInput{}
+	}
+
+	output = &ListAccessPointsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListAccessPoints API operation for AWS S3 Control.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation ListAccessPoints for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListAccessPoints
+func (c *S3Control) ListAccessPoints(input *ListAccessPointsInput) (*ListAccessPointsOutput, error) {
+	req, out := c.ListAccessPointsRequest(input)
+	return out, req.Send()
+}
+
+// ListAccessPointsWithContext is the same as ListAccessPoints with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAccessPoints for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) ListAccessPointsWithContext(ctx aws.Context, input *ListAccessPointsInput, opts ...request.Option) (*ListAccessPointsOutput, error) {
+	req, out := c.ListAccessPointsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAccessPointsPages iterates over the pages of a ListAccessPoints operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAccessPoints method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAccessPoints operation.
+//    pageNum := 0
+//    err := client.ListAccessPointsPages(params,
+//        func(page *s3control.ListAccessPointsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *S3Control) ListAccessPointsPages(input *ListAccessPointsInput, fn func(*ListAccessPointsOutput, bool) bool) error {
+	return c.ListAccessPointsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAccessPointsPagesWithContext same as ListAccessPointsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) ListAccessPointsPagesWithContext(ctx aws.Context, input *ListAccessPointsInput, fn func(*ListAccessPointsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAccessPointsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAccessPointsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAccessPointsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListJobs = "ListJobs"
@@ -482,6 +1061,81 @@ func (c *S3Control) ListJobsPagesWithContext(ctx aws.Context, input *ListJobsInp
 	}
 
 	return p.Err()
+}
+
+const opPutAccessPointPolicy = "PutAccessPointPolicy"
+
+// PutAccessPointPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the PutAccessPointPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutAccessPointPolicy for more information on using the PutAccessPointPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutAccessPointPolicyRequest method.
+//    req, resp := client.PutAccessPointPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutAccessPointPolicy
+func (c *S3Control) PutAccessPointPolicyRequest(input *PutAccessPointPolicyInput) (req *request.Request, output *PutAccessPointPolicyOutput) {
+	op := &request.Operation{
+		Name:       opPutAccessPointPolicy,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v20180820/accesspoint/{name}/policy",
+	}
+
+	if input == nil {
+		input = &PutAccessPointPolicyInput{}
+	}
+
+	output = &PutAccessPointPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// PutAccessPointPolicy API operation for AWS S3 Control.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation PutAccessPointPolicy for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutAccessPointPolicy
+func (c *S3Control) PutAccessPointPolicy(input *PutAccessPointPolicyInput) (*PutAccessPointPolicyOutput, error) {
+	req, out := c.PutAccessPointPolicyRequest(input)
+	return out, req.Send()
+}
+
+// PutAccessPointPolicyWithContext is the same as PutAccessPointPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutAccessPointPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) PutAccessPointPolicyWithContext(ctx aws.Context, input *PutAccessPointPolicyInput, opts ...request.Option) (*PutAccessPointPolicyOutput, error) {
+	req, out := c.PutAccessPointPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opPutPublicAccessBlock = "PutPublicAccessBlock"
@@ -734,6 +1388,165 @@ func (c *S3Control) UpdateJobStatusWithContext(ctx aws.Context, input *UpdateJob
 	return out, req.Send()
 }
 
+type AccessPoint struct {
+	_ struct{} `type:"structure"`
+
+	// Bucket is a required field
+	Bucket *string `min:"3" type:"string" required:"true"`
+
+	// Name is a required field
+	Name *string `min:"3" type:"string" required:"true"`
+
+	// NetworkOrigin is a required field
+	NetworkOrigin *string `type:"string" required:"true" enum:"NetworkOrigin"`
+
+	VpcConfiguration *VpcConfiguration `type:"structure"`
+}
+
+// String returns the string representation
+func (s AccessPoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccessPoint) GoString() string {
+	return s.String()
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *AccessPoint) SetBucket(v string) *AccessPoint {
+	s.Bucket = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AccessPoint) SetName(v string) *AccessPoint {
+	s.Name = &v
+	return s
+}
+
+// SetNetworkOrigin sets the NetworkOrigin field's value.
+func (s *AccessPoint) SetNetworkOrigin(v string) *AccessPoint {
+	s.NetworkOrigin = &v
+	return s
+}
+
+// SetVpcConfiguration sets the VpcConfiguration field's value.
+func (s *AccessPoint) SetVpcConfiguration(v *VpcConfiguration) *AccessPoint {
+	s.VpcConfiguration = v
+	return s
+}
+
+type CreateAccessPointInput struct {
+	_ struct{} `locationName:"CreateAccessPointRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// Bucket is a required field
+	Bucket *string `min:"3" type:"string" required:"true"`
+
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+
+	PublicAccessBlockConfiguration *PublicAccessBlockConfiguration `type:"structure"`
+
+	VpcConfiguration *VpcConfiguration `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateAccessPointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAccessPointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAccessPointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAccessPointInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 3))
+	}
+	if s.VpcConfiguration != nil {
+		if err := s.VpcConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *CreateAccessPointInput) SetAccountId(v string) *CreateAccessPointInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *CreateAccessPointInput) SetBucket(v string) *CreateAccessPointInput {
+	s.Bucket = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateAccessPointInput) SetName(v string) *CreateAccessPointInput {
+	s.Name = &v
+	return s
+}
+
+// SetPublicAccessBlockConfiguration sets the PublicAccessBlockConfiguration field's value.
+func (s *CreateAccessPointInput) SetPublicAccessBlockConfiguration(v *PublicAccessBlockConfiguration) *CreateAccessPointInput {
+	s.PublicAccessBlockConfiguration = v
+	return s
+}
+
+// SetVpcConfiguration sets the VpcConfiguration field's value.
+func (s *CreateAccessPointInput) SetVpcConfiguration(v *VpcConfiguration) *CreateAccessPointInput {
+	s.VpcConfiguration = v
+	return s
+}
+
+func (s *CreateAccessPointInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type CreateAccessPointOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateAccessPointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAccessPointOutput) GoString() string {
+	return s.String()
+}
+
 type CreateJobInput struct {
 	_ struct{} `locationName:"CreateJobRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 
@@ -932,6 +1745,154 @@ func (s *CreateJobOutput) SetJobId(v string) *CreateJobOutput {
 	return s
 }
 
+type DeleteAccessPointInput struct {
+	_ struct{} `locationName:"DeleteAccessPointRequest" type:"structure"`
+
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteAccessPointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAccessPointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAccessPointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAccessPointInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DeleteAccessPointInput) SetAccountId(v string) *DeleteAccessPointInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteAccessPointInput) SetName(v string) *DeleteAccessPointInput {
+	s.Name = &v
+	return s
+}
+
+func (s *DeleteAccessPointInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type DeleteAccessPointOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteAccessPointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAccessPointOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteAccessPointPolicyInput struct {
+	_ struct{} `locationName:"DeleteAccessPointPolicyRequest" type:"structure"`
+
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteAccessPointPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAccessPointPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAccessPointPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAccessPointPolicyInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DeleteAccessPointPolicyInput) SetAccountId(v string) *DeleteAccessPointPolicyInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteAccessPointPolicyInput) SetName(v string) *DeleteAccessPointPolicyInput {
+	s.Name = &v
+	return s
+}
+
+func (s *DeleteAccessPointPolicyInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type DeleteAccessPointPolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteAccessPointPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAccessPointPolicyOutput) GoString() string {
+	return s.String()
+}
+
 type DeletePublicAccessBlockInput struct {
 	_ struct{} `locationName:"DeletePublicAccessBlockRequest" type:"structure"`
 
@@ -1077,6 +2038,292 @@ func (s DescribeJobOutput) GoString() string {
 // SetJob sets the Job field's value.
 func (s *DescribeJobOutput) SetJob(v *JobDescriptor) *DescribeJobOutput {
 	s.Job = v
+	return s
+}
+
+type GetAccessPointInput struct {
+	_ struct{} `locationName:"GetAccessPointRequest" type:"structure"`
+
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetAccessPointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAccessPointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAccessPointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAccessPointInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetAccessPointInput) SetAccountId(v string) *GetAccessPointInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetAccessPointInput) SetName(v string) *GetAccessPointInput {
+	s.Name = &v
+	return s
+}
+
+func (s *GetAccessPointInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type GetAccessPointOutput struct {
+	_ struct{} `type:"structure"`
+
+	Bucket *string `min:"3" type:"string"`
+
+	CreationDate *time.Time `type:"timestamp"`
+
+	Name *string `min:"3" type:"string"`
+
+	NetworkOrigin *string `type:"string" enum:"NetworkOrigin"`
+
+	PublicAccessBlockConfiguration *PublicAccessBlockConfiguration `type:"structure"`
+
+	VpcConfiguration *VpcConfiguration `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetAccessPointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAccessPointOutput) GoString() string {
+	return s.String()
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *GetAccessPointOutput) SetBucket(v string) *GetAccessPointOutput {
+	s.Bucket = &v
+	return s
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *GetAccessPointOutput) SetCreationDate(v time.Time) *GetAccessPointOutput {
+	s.CreationDate = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetAccessPointOutput) SetName(v string) *GetAccessPointOutput {
+	s.Name = &v
+	return s
+}
+
+// SetNetworkOrigin sets the NetworkOrigin field's value.
+func (s *GetAccessPointOutput) SetNetworkOrigin(v string) *GetAccessPointOutput {
+	s.NetworkOrigin = &v
+	return s
+}
+
+// SetPublicAccessBlockConfiguration sets the PublicAccessBlockConfiguration field's value.
+func (s *GetAccessPointOutput) SetPublicAccessBlockConfiguration(v *PublicAccessBlockConfiguration) *GetAccessPointOutput {
+	s.PublicAccessBlockConfiguration = v
+	return s
+}
+
+// SetVpcConfiguration sets the VpcConfiguration field's value.
+func (s *GetAccessPointOutput) SetVpcConfiguration(v *VpcConfiguration) *GetAccessPointOutput {
+	s.VpcConfiguration = v
+	return s
+}
+
+type GetAccessPointPolicyInput struct {
+	_ struct{} `locationName:"GetAccessPointPolicyRequest" type:"structure"`
+
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetAccessPointPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAccessPointPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAccessPointPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAccessPointPolicyInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetAccessPointPolicyInput) SetAccountId(v string) *GetAccessPointPolicyInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetAccessPointPolicyInput) SetName(v string) *GetAccessPointPolicyInput {
+	s.Name = &v
+	return s
+}
+
+func (s *GetAccessPointPolicyInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type GetAccessPointPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	Policy *string `type:"string"`
+}
+
+// String returns the string representation
+func (s GetAccessPointPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAccessPointPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *GetAccessPointPolicyOutput) SetPolicy(v string) *GetAccessPointPolicyOutput {
+	s.Policy = &v
+	return s
+}
+
+type GetAccessPointPolicyStatusInput struct {
+	_ struct{} `locationName:"GetAccessPointPolicyStatusRequest" type:"structure"`
+
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetAccessPointPolicyStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAccessPointPolicyStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAccessPointPolicyStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAccessPointPolicyStatusInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetAccessPointPolicyStatusInput) SetAccountId(v string) *GetAccessPointPolicyStatusInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetAccessPointPolicyStatusInput) SetName(v string) *GetAccessPointPolicyStatusInput {
+	s.Name = &v
+	return s
+}
+
+func (s *GetAccessPointPolicyStatusInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type GetAccessPointPolicyStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	PolicyStatus *PolicyStatus `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetAccessPointPolicyStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAccessPointPolicyStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicyStatus sets the PolicyStatus field's value.
+func (s *GetAccessPointPolicyStatusOutput) SetPolicyStatus(v *PolicyStatus) *GetAccessPointPolicyStatusOutput {
+	s.PolicyStatus = v
 	return s
 }
 
@@ -1897,6 +3144,114 @@ func (s *LambdaInvokeOperation) SetFunctionArn(v string) *LambdaInvokeOperation 
 	return s
 }
 
+type ListAccessPointsInput struct {
+	_ struct{} `locationName:"ListAccessPointsRequest" type:"structure"`
+
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	Bucket *string `location:"querystring" locationName:"bucket" min:"3" type:"string"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListAccessPointsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAccessPointsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAccessPointsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAccessPointsInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListAccessPointsInput) SetAccountId(v string) *ListAccessPointsInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *ListAccessPointsInput) SetBucket(v string) *ListAccessPointsInput {
+	s.Bucket = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAccessPointsInput) SetMaxResults(v int64) *ListAccessPointsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAccessPointsInput) SetNextToken(v string) *ListAccessPointsInput {
+	s.NextToken = &v
+	return s
+}
+
+func (s *ListAccessPointsInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type ListAccessPointsOutput struct {
+	_ struct{} `type:"structure"`
+
+	AccessPointList []*AccessPoint `locationNameList:"AccessPoint" type:"list"`
+
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListAccessPointsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAccessPointsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessPointList sets the AccessPointList field's value.
+func (s *ListAccessPointsOutput) SetAccessPointList(v []*AccessPoint) *ListAccessPointsOutput {
+	s.AccessPointList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAccessPointsOutput) SetNextToken(v string) *ListAccessPointsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListJobsInput struct {
 	_ struct{} `locationName:"ListJobsRequest" type:"structure"`
 
@@ -2014,6 +3369,28 @@ func (s *ListJobsOutput) SetNextToken(v string) *ListJobsOutput {
 	return s
 }
 
+type PolicyStatus struct {
+	_ struct{} `type:"structure"`
+
+	IsPublic *bool `locationName:"IsPublic" type:"boolean"`
+}
+
+// String returns the string representation
+func (s PolicyStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PolicyStatus) GoString() string {
+	return s.String()
+}
+
+// SetIsPublic sets the IsPublic field's value.
+func (s *PolicyStatus) SetIsPublic(v bool) *PolicyStatus {
+	s.IsPublic = &v
+	return s
+}
+
 type PublicAccessBlockConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -2058,6 +3435,92 @@ func (s *PublicAccessBlockConfiguration) SetIgnorePublicAcls(v bool) *PublicAcce
 func (s *PublicAccessBlockConfiguration) SetRestrictPublicBuckets(v bool) *PublicAccessBlockConfiguration {
 	s.RestrictPublicBuckets = &v
 	return s
+}
+
+type PutAccessPointPolicyInput struct {
+	_ struct{} `locationName:"PutAccessPointPolicyRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+
+	// Policy is a required field
+	Policy *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PutAccessPointPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutAccessPointPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutAccessPointPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutAccessPointPolicyInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 3))
+	}
+	if s.Policy == nil {
+		invalidParams.Add(request.NewErrParamRequired("Policy"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *PutAccessPointPolicyInput) SetAccountId(v string) *PutAccessPointPolicyInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PutAccessPointPolicyInput) SetName(v string) *PutAccessPointPolicyInput {
+	s.Name = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *PutAccessPointPolicyInput) SetPolicy(v string) *PutAccessPointPolicyInput {
+	s.Policy = &v
+	return s
+}
+
+func (s *PutAccessPointPolicyInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type PutAccessPointPolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutAccessPointPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutAccessPointPolicyOutput) GoString() string {
+	return s.String()
 }
 
 type PutPublicAccessBlockInput struct {
@@ -3117,6 +4580,45 @@ func (s *UpdateJobStatusOutput) SetStatusUpdateReason(v string) *UpdateJobStatus
 	return s
 }
 
+type VpcConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// VpcId is a required field
+	VpcId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s VpcConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VpcConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VpcConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VpcConfiguration"}
+	if s.VpcId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcId"))
+	}
+	if s.VpcId != nil && len(*s.VpcId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VpcId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *VpcConfiguration) SetVpcId(v string) *VpcConfiguration {
+	s.VpcId = &v
+	return s
+}
+
 const (
 	// JobManifestFieldNameIgnore is a JobManifestFieldName enum value
 	JobManifestFieldNameIgnore = "Ignore"
@@ -3191,6 +4693,14 @@ const (
 
 	// JobStatusSuspended is a JobStatus enum value
 	JobStatusSuspended = "Suspended"
+)
+
+const (
+	// NetworkOriginInternet is a NetworkOrigin enum value
+	NetworkOriginInternet = "Internet"
+
+	// NetworkOriginVpc is a NetworkOrigin enum value
+	NetworkOriginVpc = "VPC"
 )
 
 const (

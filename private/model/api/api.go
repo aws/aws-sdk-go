@@ -62,6 +62,8 @@ type API struct {
 	HasEventStream bool `json:"-"`
 
 	EndpointDiscoveryOp *Operation
+
+	HasEndpointARN bool `json:"-"`
 }
 
 // A Metadata is the metadata about an API's definition.
@@ -318,6 +320,11 @@ func (a *API) APIGoCode() string {
 	a.AddSDKImport("aws")
 	a.AddSDKImport("aws/awsutil")
 	a.AddSDKImport("aws/request")
+
+	if a.HasEndpointARN {
+		a.AddImport("fmt")
+		a.AddSDKImport("service", a.PackageName(), "internal", "arn")
+	}
 
 	var buf bytes.Buffer
 	err := tplAPI.Execute(&buf, a)

@@ -85,3 +85,6 @@ sts_regional_endpoints = regional
 
 [with_s3_us_east_1_regional]
 s3_us_east_1_regional_endpoint = regional
+
+[valid_arn_region]
+s3_use_arn_region=true

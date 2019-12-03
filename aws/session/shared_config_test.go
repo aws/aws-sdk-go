@@ -303,6 +303,12 @@ func TestLoadSharedConfigFromFile(t *testing.T) {
 			Profile: "does_not_exists",
 			Err:     SharedConfigProfileNotExistsError{Profile: "does_not_exists"},
 		},
+		{
+			Profile: "valid_arn_region",
+			Expected: sharedConfig{
+				S3UseARNRegion: true,
+			},
+		},
 	}
 
 	for i, c := range cases {

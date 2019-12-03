@@ -132,9 +132,9 @@ sandbox-test-go1.6: sandbox-build-go1.6
 
 sandbox-build-go1.7:
 	docker build -f ./awstesting/sandbox/Dockerfile.test.go1.7 -t "aws-sdk-go-1.7" .
-sandbox-go1.7: sandbox-build-go17
+sandbox-go1.7: sandbox-build-go1.7
 	docker run -i -t aws-sdk-go-1.7 bash
-sandbox-test-go1.7: sandbox-build-go17
+sandbox-test-go1.7: sandbox-build-go1.7
 	docker run -t aws-sdk-go-1.7
 
 sandbox-build-go1.8:

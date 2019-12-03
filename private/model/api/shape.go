@@ -60,6 +60,9 @@ type ShapeRef struct {
 
 	// Collection of custom tags the shape reference includes.
 	CustomTags ShapeTags
+
+	// Flags whether the member reference is a endpoint ARN
+	EndpointARN bool
 }
 
 // A Shape defines the definition of a shape type
@@ -115,6 +118,15 @@ type Shape struct {
 
 	// Sensitive types should not be logged by SDK type loggers.
 	Sensitive bool `json:"sensitive"`
+
+	// Flags that a member of the shape is an EndpointARN
+	HasEndpointARNMember bool
+
+	// Indicates the Shape is used as an operation input
+	UsedAsInput bool
+
+	// Indicates the Shape is used as an operation output
+	UsedAsOutput bool
 }
 
 // CanBeEmpty returns if the shape value can sent request as an empty value.
@@ -650,6 +662,12 @@ var structShapeTmpl = func() *template.Template {
 			hostLabelsShapeTmpl.Tree),
 	)
 
+	template.Must(
+		shapeTmpl.AddParseTree(
+			"endpointARNShapeTmpl",
+			endpointARNShapeTmpl.Tree),
+	)
+
 	return shapeTmpl
 }()
 
@@ -747,6 +765,10 @@ type {{ .ShapeName }} struct {
 
 {{ if $.HasHostLabelMembers }}
 	{{ template "hostLabelsShapeTmpl" $ }}
+{{ end }}
+
+{{ if $.HasEndpointARNMember }}
+	{{ template "endpointARNShapeTmpl" $ }}
 {{ end }}
 `
 

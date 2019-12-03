@@ -319,9 +319,12 @@ func (a *API) createInputOutputShapes() {
 		createAPIParamShape(a, op.Name, &op.InputRef, op.ExportedName+"Input",
 			shamelist.Input,
 		)
+		op.InputRef.Shape.UsedAsInput = true
+
 		createAPIParamShape(a, op.Name, &op.OutputRef, op.ExportedName+"Output",
 			shamelist.Output,
 		)
+		op.OutputRef.Shape.UsedAsOutput = true
 	}
 }
 
