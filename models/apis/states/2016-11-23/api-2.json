@@ -40,9 +40,11 @@
         {"shape":"InvalidArn"},
         {"shape":"InvalidDefinition"},
         {"shape":"InvalidName"},
+        {"shape":"InvalidLoggingConfiguration"},
         {"shape":"StateMachineAlreadyExists"},
         {"shape":"StateMachineDeleting"},
         {"shape":"StateMachineLimitExceeded"},
+        {"shape":"StateMachineTypeNotSupported"},
         {"shape":"TooManyTags"}
       ],
       "idempotent":true
@@ -174,7 +176,8 @@
       "errors":[
         {"shape":"InvalidArn"},
         {"shape":"InvalidToken"},
-        {"shape":"StateMachineDoesNotExist"}
+        {"shape":"StateMachineDoesNotExist"},
+        {"shape":"StateMachineTypeNotSupported"}
       ]
     },
     "ListStateMachines":{
@@ -315,6 +318,7 @@
       "errors":[
         {"shape":"InvalidArn"},
         {"shape":"InvalidDefinition"},
+        {"shape":"InvalidLoggingConfiguration"},
         {"shape":"MissingRequiredParameter"},
         {"shape":"StateMachineDeleting"},
         {"shape":"StateMachineDoesNotExist"}
@@ -415,6 +419,12 @@
       "max":256,
       "min":1
     },
+    "CloudWatchLogsLogGroup":{
+      "type":"structure",
+      "members":{
+        "logGroupArn":{"shape":"Arn"}
+      }
+    },
     "ConnectorParameters":{
       "type":"string",
       "max":32768,
@@ -451,6 +461,8 @@
         "name":{"shape":"Name"},
         "definition":{"shape":"Definition"},
         "roleArn":{"shape":"Arn"},
+        "type":{"shape":"StateMachineType"},
+        "loggingConfiguration":{"shape":"LoggingConfiguration"},
         "tags":{"shape":"TagList"}
       }
     },
@@ -580,6 +592,7 @@
         "name",
         "definition",
         "roleArn",
+        "type",
         "creationDate"
       ],
       "members":{
@@ -588,7 +601,9 @@
         "status":{"shape":"StateMachineStatus"},
         "definition":{"shape":"Definition"},
         "roleArn":{"shape":"Arn"},
-        "creationDate":{"shape":"Timestamp"}
+        "type":{"shape":"StateMachineType"},
+        "creationDate":{"shape":"Timestamp"},
+        "loggingConfiguration":{"shape":"LoggingConfiguration"}
       }
     },
     "ErrorMessage":{"type":"string"},
@@ -827,6 +842,7 @@
       "type":"string",
       "max":256
     },
+    "IncludeExecutionData":{"type":"boolean"},
     "InvalidArn":{
       "type":"structure",
       "members":{
@@ -842,6 +858,13 @@
       "exception":true
     },
     "InvalidExecutionInput":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "InvalidLoggingConfiguration":{
       "type":"structure",
       "members":{
         "message":{"shape":"ErrorMessage"}
@@ -979,6 +1002,33 @@
       "type":"structure",
       "members":{
         "tags":{"shape":"TagList"}
+      }
+    },
+    "LogDestination":{
+      "type":"structure",
+      "members":{
+        "cloudWatchLogsLogGroup":{"shape":"CloudWatchLogsLogGroup"}
+      }
+    },
+    "LogDestinationList":{
+      "type":"list",
+      "member":{"shape":"LogDestination"}
+    },
+    "LogLevel":{
+      "type":"string",
+      "enum":[
+        "ALL",
+        "ERROR",
+        "FATAL",
+        "OFF"
+      ]
+    },
+    "LoggingConfiguration":{
+      "type":"structure",
+      "members":{
+        "level":{"shape":"LogLevel"},
+        "includeExecutionData":{"shape":"IncludeExecutionData"},
+        "destinations":{"shape":"LogDestinationList"}
       }
     },
     "MapIterationEventDetails":{
@@ -1162,11 +1212,13 @@
       "required":[
         "stateMachineArn",
         "name",
+        "type",
         "creationDate"
       ],
       "members":{
         "stateMachineArn":{"shape":"Arn"},
         "name":{"shape":"Name"},
+        "type":{"shape":"StateMachineType"},
         "creationDate":{"shape":"Timestamp"}
       }
     },
@@ -1176,6 +1228,20 @@
         "ACTIVE",
         "DELETING"
       ]
+    },
+    "StateMachineType":{
+      "type":"string",
+      "enum":[
+        "STANDARD",
+        "EXPRESS"
+      ]
+    },
+    "StateMachineTypeNotSupported":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
     },
     "StopExecutionInput":{
       "type":"structure",
@@ -1395,7 +1461,8 @@
       "members":{
         "stateMachineArn":{"shape":"Arn"},
         "definition":{"shape":"Definition"},
-        "roleArn":{"shape":"Arn"}
+        "roleArn":{"shape":"Arn"},
+        "loggingConfiguration":{"shape":"LoggingConfiguration"}
       }
     },
     "UpdateStateMachineOutput":{

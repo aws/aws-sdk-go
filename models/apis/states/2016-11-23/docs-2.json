@@ -94,6 +94,7 @@
       "refs": {
         "ActivityListItem$activityArn": "<p>The Amazon Resource Name (ARN) that identifies the activity.</p>",
         "ActivityScheduledEventDetails$resource": "<p>The Amazon Resource Name (ARN) of the scheduled activity.</p>",
+        "CloudWatchLogsLogGroup$logGroupArn": "<p>The ARN of the the CloudWatch log group to which you want your logs emitted to. The ARN must end with <code>:*</code> </p>",
         "CreateActivityOutput$activityArn": "<p>The Amazon Resource Name (ARN) that identifies the created activity.</p>",
         "CreateStateMachineInput$roleArn": "<p>The Amazon Resource Name (ARN) of the IAM role to use for this state machine.</p>",
         "CreateStateMachineOutput$stateMachineArn": "<p>The Amazon Resource Name (ARN) that identifies the created state machine.</p>",
@@ -128,6 +129,12 @@
         "UntagResourceInput$resourceArn": "<p>The Amazon Resource Name (ARN) for the Step Functions state machine or activity.</p>",
         "UpdateStateMachineInput$stateMachineArn": "<p>The Amazon Resource Name (ARN) of the state machine.</p>",
         "UpdateStateMachineInput$roleArn": "<p>The Amazon Resource Name (ARN) of the IAM role of the state machine.</p>"
+      }
+    },
+    "CloudWatchLogsLogGroup": {
+      "base": "<p/>",
+      "refs": {
+        "LogDestination$cloudWatchLogsLogGroup": "<p>An object describing a CloudWatch log group. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html\">AWS::Logs::LogGroup</a> in the AWS CloudFormation User Guide.</p>"
       }
     },
     "ConnectorParameters": {
@@ -237,6 +244,7 @@
         "InvalidArn$message": null,
         "InvalidDefinition$message": null,
         "InvalidExecutionInput$message": null,
+        "InvalidLoggingConfiguration$message": null,
         "InvalidName$message": null,
         "InvalidOutput$message": null,
         "InvalidToken$message": null,
@@ -246,6 +254,7 @@
         "StateMachineDeleting$message": null,
         "StateMachineDoesNotExist$message": null,
         "StateMachineLimitExceeded$message": null,
+        "StateMachineTypeNotSupported$message": null,
         "TaskDoesNotExist$message": null,
         "TaskTimedOut$message": null,
         "TooManyTags$message": null
@@ -367,6 +376,12 @@
         "ActivityStartedEventDetails$workerName": "<p>The name of the worker that the task is assigned to. These names are provided by the workers when calling <a>GetActivityTask</a>.</p>"
       }
     },
+    "IncludeExecutionData": {
+      "base": null,
+      "refs": {
+        "LoggingConfiguration$includeExecutionData": "<p>Determines whether execution history data is included in your log. When set to <code>FALSE</code>, data is excluded.</p>"
+      }
+    },
     "InvalidArn": {
       "base": "<p>The provided Amazon Resource Name (ARN) is invalid.</p>",
       "refs": {
@@ -379,6 +394,11 @@
     },
     "InvalidExecutionInput": {
       "base": "<p>The provided JSON input data is invalid.</p>",
+      "refs": {
+      }
+    },
+    "InvalidLoggingConfiguration": {
+      "base": "<p/>",
       "refs": {
       }
     },
@@ -478,6 +498,32 @@
     "ListTagsForResourceOutput": {
       "base": null,
       "refs": {
+      }
+    },
+    "LogDestination": {
+      "base": "<p/>",
+      "refs": {
+        "LogDestinationList$member": null
+      }
+    },
+    "LogDestinationList": {
+      "base": null,
+      "refs": {
+        "LoggingConfiguration$destinations": "<p>An object that describes where your execution history events will be logged. Limited to size 1. Required, if your log level is not set to <code>OFF</code>.</p>"
+      }
+    },
+    "LogLevel": {
+      "base": null,
+      "refs": {
+        "LoggingConfiguration$level": "<p>Defines which category of execution history events are logged.</p>"
+      }
+    },
+    "LoggingConfiguration": {
+      "base": "<p/>",
+      "refs": {
+        "CreateStateMachineInput$loggingConfiguration": "<p>Defines what execution history events are logged and where they are logged.</p>",
+        "DescribeStateMachineOutput$loggingConfiguration": "<p/>",
+        "UpdateStateMachineInput$loggingConfiguration": "<p/>"
       }
     },
     "MapIterationEventDetails": {
@@ -722,6 +768,19 @@
       "base": null,
       "refs": {
         "DescribeStateMachineOutput$status": "<p>The current status of the state machine.</p>"
+      }
+    },
+    "StateMachineType": {
+      "base": null,
+      "refs": {
+        "CreateStateMachineInput$type": "<p>Determines whether a Standard or Express state machine is created. If not set, Standard is created.</p>",
+        "DescribeStateMachineOutput$type": "<p/>",
+        "StateMachineListItem$type": "<p/>"
+      }
+    },
+    "StateMachineTypeNotSupported": {
+      "base": "<p/>",
+      "refs": {
       }
     },
     "StopExecutionInput": {

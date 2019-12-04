@@ -431,7 +431,8 @@
         "ECSServiceAverageCPUUtilization",
         "ECSServiceAverageMemoryUtilization",
         "AppStreamAverageCapacityUtilization",
-        "ComprehendInferenceUtilization"
+        "ComprehendInferenceUtilization",
+        "LambdaProvisionedConcurrencyUtilization"
       ]
     },
     "MetricUnit":{"type":"string"},
@@ -570,7 +571,8 @@
         "rds:cluster:ReadReplicaCount",
         "sagemaker:variant:DesiredInstanceCount",
         "custom-resource:ResourceType:Property",
-        "comprehend:document-classifier-endpoint:DesiredInferenceUnits"
+        "comprehend:document-classifier-endpoint:DesiredInferenceUnits",
+        "lambda:function:ProvisionedConcurrency"
       ]
     },
     "ScalableTarget":{
@@ -721,7 +723,8 @@
         "rds",
         "sagemaker",
         "custom-resource",
-        "comprehend"
+        "comprehend",
+        "lambda"
       ]
     },
     "StepAdjustment":{

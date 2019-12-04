@@ -137,6 +137,8 @@ func ExampleLambda_DeleteAlias_shared00() {
 				fmt.Println(lambda.ErrCodeServiceException, aerr.Error())
 			case lambda.ErrCodeInvalidParameterValueException:
 				fmt.Println(lambda.ErrCodeInvalidParameterValueException, aerr.Error())
+			case lambda.ErrCodeResourceConflictException:
+				fmt.Println(lambda.ErrCodeResourceConflictException, aerr.Error())
 			case lambda.ErrCodeTooManyRequestsException:
 				fmt.Println(lambda.ErrCodeTooManyRequestsException, aerr.Error())
 			default:

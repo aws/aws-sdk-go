@@ -22,6 +22,7 @@
     "CreateDBInstance": "<p>Creates a new DB instance.</p>",
     "CreateDBInstanceReadReplica": "<p>Creates a new DB instance that acts as a Read Replica for an existing source DB instance. You can create a Read Replica for a DB instance running MySQL, MariaDB, Oracle, or PostgreSQL. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html\">Working with Read Replicas</a> in the <i>Amazon RDS User Guide</i>. </p> <p>Amazon Aurora doesn't support this action. You must call the <code>CreateDBInstance</code> action to create a DB instance for an Aurora DB cluster. </p> <p>All Read Replica DB instances are created with backups disabled. All other DB instance attributes (including DB security groups and DB parameter groups) are inherited from the source DB instance, except as specified following. </p> <important> <p>Your source DB instance must have backup retention enabled. </p> </important>",
     "CreateDBParameterGroup": "<p>Creates a new DB parameter group.</p> <p> A DB parameter group is initially created with the default parameters for the database engine used by the DB instance. To provide custom values for any of the parameters, you must modify the group after creating it using <i>ModifyDBParameterGroup</i>. Once you've created a DB parameter group, you need to associate it with your DB instance using <i>ModifyDBInstance</i>. When you associate a new DB parameter group with a running DB instance, you need to reboot the DB instance without failover for the new DB parameter group and associated settings to take effect. </p> <important> <p>After you create a DB parameter group, you should wait at least 5 minutes before creating your first DB instance that uses that DB parameter group as the default parameter group. This allows Amazon RDS to fully complete the create action before the parameter group is used as the default for a new DB instance. This is especially important for parameters that are critical when creating the default database for a DB instance, such as the character set for the default database defined by the <code>character_set_database</code> parameter. You can use the <i>Parameter Groups</i> option of the <a href=\"https://console.aws.amazon.com/rds/\">Amazon RDS console</a> or the <i>DescribeDBParameters</i> command to verify that your DB parameter group has been created or modified.</p> </important>",
+    "CreateDBProxy": "<note> <p>This is prerelease documentation for the RDS Database Proxy feature in preview release. It is subject to change.</p> </note> <p>Creates a new DB proxy.</p>",
     "CreateDBSecurityGroup": "<p>Creates a new DB security group. DB security groups control access to a DB instance.</p> <note> <p>A DB security group controls access to EC2-Classic DB instances that are not in a VPC.</p> </note>",
     "CreateDBSnapshot": "<p>Creates a DBSnapshot. The source DBInstance must be in \"available\" state.</p>",
     "CreateDBSubnetGroup": "<p>Creates a new DB subnet group. DB subnet groups must contain at least one subnet in at least two AZs in the AWS Region.</p>",
@@ -36,6 +37,7 @@
     "DeleteDBInstance": "<p>The DeleteDBInstance action deletes a previously provisioned DB instance. When you delete a DB instance, all automated backups for that instance are deleted and can't be recovered. Manual DB snapshots of the DB instance to be deleted by <code>DeleteDBInstance</code> are not deleted.</p> <p> If you request a final DB snapshot the status of the Amazon RDS DB instance is <code>deleting</code> until the DB snapshot is created. The API action <code>DescribeDBInstance</code> is used to monitor the status of this operation. The action can't be canceled or reverted once submitted. </p> <p>Note that when a DB instance is in a failure state and has a status of <code>failed</code>, <code>incompatible-restore</code>, or <code>incompatible-network</code>, you can only delete it when you skip creation of the final snapshot with the <code>SkipFinalSnapshot</code> parameter.</p> <p>If the specified DB instance is part of an Amazon Aurora DB cluster, you can't delete the DB instance if both of the following conditions are true:</p> <ul> <li> <p>The DB cluster is a Read Replica of another Amazon Aurora DB cluster.</p> </li> <li> <p>The DB instance is the only instance in the DB cluster.</p> </li> </ul> <p>To delete a DB instance in this case, first call the <code>PromoteReadReplicaDBCluster</code> API action to promote the DB cluster so it's no longer a Read Replica. After the promotion completes, then call the <code>DeleteDBInstance</code> API action to delete the final instance in the DB cluster.</p>",
     "DeleteDBInstanceAutomatedBackup": "<p>Deletes automated backups based on the source instance's <code>DbiResourceId</code> value or the restorable instance's resource ID.</p>",
     "DeleteDBParameterGroup": "<p>Deletes a specified DB parameter group. The DB parameter group to be deleted can't be associated with any DB instances.</p>",
+    "DeleteDBProxy": "<note> <p>This is prerelease documentation for the RDS Database Proxy feature in preview release. It is subject to change.</p> </note> <p>Deletes an existing proxy.</p>",
     "DeleteDBSecurityGroup": "<p>Deletes a DB security group.</p> <note> <p>The specified DB security group must not be associated with any DB instances.</p> </note>",
     "DeleteDBSnapshot": "<p>Deletes a DB snapshot. If the snapshot is being copied, the copy operation is terminated.</p> <note> <p>The DB snapshot must be in the <code>available</code> state to be deleted.</p> </note>",
     "DeleteDBSubnetGroup": "<p>Deletes a DB subnet group.</p> <note> <p>The specified database subnet group must not be associated with any DB instances.</p> </note>",
@@ -43,6 +45,7 @@
     "DeleteGlobalCluster": "<p> Deletes a global database cluster. The primary and secondary clusters must already be detached or destroyed first. </p> <note> <p>This action only applies to Aurora DB clusters.</p> </note>",
     "DeleteInstallationMedia": "<p>Deletes the installation medium for a DB engine that requires an on-premises customer provided license, such as Microsoft SQL Server.</p>",
     "DeleteOptionGroup": "<p>Deletes an existing option group.</p>",
+    "DeregisterDBProxyTargets": "<note> <p>This is prerelease documentation for the RDS Database Proxy feature in preview release. It is subject to change.</p> </note> <p>Remove the association between one or more <code>DBProxyTarget</code> data structures and a <code>DBProxyTargetGroup</code>.</p>",
     "DescribeAccountAttributes": "<p>Lists all of the attributes for a customer account. The attributes include Amazon RDS quotas for the account, such as the number of DB instances allowed. The description for a quota includes the quota name, current usage toward that quota, and the quota's maximum value.</p> <p>This command doesn't take any parameters.</p>",
     "DescribeCertificates": "<p>Lists the set of CA certificates provided by Amazon RDS for this AWS account.</p>",
     "DescribeCustomAvailabilityZones": "<p>Returns information about custom Availability Zones (AZs).</p> <p>A custom AZ is an on-premises AZ that is integrated with a VMware vSphere cluster.</p> <p>For more information about RDS on VMware, see the <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/RDSonVMwareUserGuide/rds-on-vmware.html\"> <i>RDS on VMware User Guide.</i> </a> </p>",
@@ -59,6 +62,9 @@
     "DescribeDBLogFiles": "<p>Returns a list of DB log files for the DB instance.</p>",
     "DescribeDBParameterGroups": "<p> Returns a list of <code>DBParameterGroup</code> descriptions. If a <code>DBParameterGroupName</code> is specified, the list will contain only the description of the specified DB parameter group. </p>",
     "DescribeDBParameters": "<p>Returns the detailed parameter list for a particular DB parameter group.</p>",
+    "DescribeDBProxies": "<note> <p>This is prerelease documentation for the RDS Database Proxy feature in preview release. It is subject to change.</p> </note> <p>Returns information about DB proxies.</p>",
+    "DescribeDBProxyTargetGroups": "<note> <p>This is prerelease documentation for the RDS Database Proxy feature in preview release. It is subject to change.</p> </note> <p>Returns information about DB proxy target groups, represented by <code>DBProxyTargetGroup</code> data structures.</p>",
+    "DescribeDBProxyTargets": "<note> <p>This is prerelease documentation for the RDS Database Proxy feature in preview release. It is subject to change.</p> </note> <p>Returns information about <code>DBProxyTarget</code> objects. This API supports pagination.</p>",
     "DescribeDBSecurityGroups": "<p> Returns a list of <code>DBSecurityGroup</code> descriptions. If a <code>DBSecurityGroupName</code> is specified, the list will contain only the descriptions of the specified DB security group. </p>",
     "DescribeDBSnapshotAttributes": "<p>Returns a list of DB snapshot attribute names and values for a manual DB snapshot.</p> <p>When sharing snapshots with other AWS accounts, <code>DescribeDBSnapshotAttributes</code> returns the <code>restore</code> attribute and a list of IDs for the AWS accounts that are authorized to copy or restore the manual DB snapshot. If <code>all</code> is included in the list of values for the <code>restore</code> attribute, then the manual DB snapshot is public and can be copied or restored by all AWS accounts.</p> <p>To add or remove access for an AWS account to copy or restore a manual DB snapshot, or to make the manual DB snapshot public or private, use the <code>ModifyDBSnapshotAttribute</code> API action.</p>",
     "DescribeDBSnapshots": "<p>Returns information about DB snapshots. This API action supports pagination.</p>",
@@ -89,6 +95,8 @@
     "ModifyDBClusterSnapshotAttribute": "<p>Adds an attribute and values to, or removes an attribute and values from, a manual DB cluster snapshot.</p> <p>To share a manual DB cluster snapshot with other AWS accounts, specify <code>restore</code> as the <code>AttributeName</code> and use the <code>ValuesToAdd</code> parameter to add a list of IDs of the AWS accounts that are authorized to restore the manual DB cluster snapshot. Use the value <code>all</code> to make the manual DB cluster snapshot public, which means that it can be copied or restored by all AWS accounts. Do not add the <code>all</code> value for any manual DB cluster snapshots that contain private information that you don't want available to all AWS accounts. If a manual DB cluster snapshot is encrypted, it can be shared, but only by specifying a list of authorized AWS account IDs for the <code>ValuesToAdd</code> parameter. You can't use <code>all</code> as a value for that parameter in this case.</p> <p>To view which AWS accounts have access to copy or restore a manual DB cluster snapshot, or whether a manual DB cluster snapshot public or private, use the <code>DescribeDBClusterSnapshotAttributes</code> API action.</p> <note> <p>This action only applies to Aurora DB clusters.</p> </note>",
     "ModifyDBInstance": "<p>Modifies settings for a DB instance. You can change one or more database configuration parameters by specifying these parameters and the new values in the request. To learn what modifications you can make to your DB instance, call <code>DescribeValidDBInstanceModifications</code> before you call <code>ModifyDBInstance</code>. </p>",
     "ModifyDBParameterGroup": "<p> Modifies the parameters of a DB parameter group. To modify more than one parameter, submit a list of the following: <code>ParameterName</code>, <code>ParameterValue</code>, and <code>ApplyMethod</code>. A maximum of 20 parameters can be modified in a single request. </p> <note> <p>Changes to dynamic parameters are applied immediately. Changes to static parameters require a reboot without failover to the DB instance associated with the parameter group before the change can take effect.</p> </note> <important> <p>After you modify a DB parameter group, you should wait at least 5 minutes before creating your first DB instance that uses that DB parameter group as the default parameter group. This allows Amazon RDS to fully complete the modify action before the parameter group is used as the default for a new DB instance. This is especially important for parameters that are critical when creating the default database for a DB instance, such as the character set for the default database defined by the <code>character_set_database</code> parameter. You can use the <i>Parameter Groups</i> option of the <a href=\"https://console.aws.amazon.com/rds/\">Amazon RDS console</a> or the <i>DescribeDBParameters</i> command to verify that your DB parameter group has been created or modified.</p> </important>",
+    "ModifyDBProxy": "<note> <p>This is prerelease documentation for the RDS Database Proxy feature in preview release. It is subject to change.</p> </note> <p>Changes the settings for an existing DB proxy.</p>",
+    "ModifyDBProxyTargetGroup": "<note> <p>This is prerelease documentation for the RDS Database Proxy feature in preview release. It is subject to change.</p> </note> <p>Modifies the properties of a <code>DBProxyTargetGroup</code>.</p>",
     "ModifyDBSnapshot": "<p>Updates a manual DB snapshot, which can be encrypted or not encrypted, with a new engine version. </p> <p>Amazon RDS supports upgrading DB snapshots for MySQL, Oracle, and PostgreSQL. </p>",
     "ModifyDBSnapshotAttribute": "<p>Adds an attribute and values to, or removes an attribute and values from, a manual DB snapshot.</p> <p>To share a manual DB snapshot with other AWS accounts, specify <code>restore</code> as the <code>AttributeName</code> and use the <code>ValuesToAdd</code> parameter to add a list of IDs of the AWS accounts that are authorized to restore the manual DB snapshot. Uses the value <code>all</code> to make the manual DB snapshot public, which means it can be copied or restored by all AWS accounts. Do not add the <code>all</code> value for any manual DB snapshots that contain private information that you don't want available to all AWS accounts. If the manual DB snapshot is encrypted, it can be shared, but only by specifying a list of authorized AWS account IDs for the <code>ValuesToAdd</code> parameter. You can't use <code>all</code> as a value for that parameter in this case.</p> <p>To view which AWS accounts have access to copy or restore a manual DB snapshot, or whether a manual DB snapshot public or private, use the <code>DescribeDBSnapshotAttributes</code> API action.</p>",
     "ModifyDBSubnetGroup": "<p>Modifies an existing DB subnet group. DB subnet groups must contain at least one subnet in at least two AZs in the AWS Region.</p>",
@@ -99,6 +107,7 @@
     "PromoteReadReplicaDBCluster": "<p>Promotes a Read Replica DB cluster to a standalone DB cluster.</p> <note> <p>This action only applies to Aurora DB clusters.</p> </note>",
     "PurchaseReservedDBInstancesOffering": "<p>Purchases a reserved DB instance offering.</p>",
     "RebootDBInstance": "<p>You might need to reboot your DB instance, usually for maintenance reasons. For example, if you make certain modifications, or if you change the DB parameter group associated with the DB instance, you must reboot the instance for the changes to take effect. </p> <p>Rebooting a DB instance restarts the database engine service. Rebooting a DB instance results in a momentary outage, during which the DB instance status is set to rebooting. </p> <p>For more information about rebooting, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_RebootInstance.html\">Rebooting a DB Instance</a> in the <i>Amazon RDS User Guide.</i> </p>",
+    "RegisterDBProxyTargets": "<note> <p>This is prerelease documentation for the RDS Database Proxy feature in preview release. It is subject to change.</p> </note> <p>Associate one or more <code>DBProxyTarget</code> data structures with a <code>DBProxyTargetGroup</code>.</p>",
     "RemoveFromGlobalCluster": "<p> Detaches an Aurora secondary cluster from an Aurora global database cluster. The cluster becomes a standalone cluster with read-write capability instead of being read-only and receiving data from a primary cluster in a different region. </p> <note> <p>This action only applies to Aurora DB clusters.</p> </note>",
     "RemoveRoleFromDBCluster": "<p>Disassociates an AWS Identity and Access Management (IAM) role from an Amazon Aurora DB cluster. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Integrating.Authorizing.html\">Authorizing Amazon Aurora MySQL to Access Other AWS Services on Your Behalf </a> in the <i>Amazon Aurora User Guide</i>.</p> <note> <p>This action only applies to Aurora DB clusters.</p> </note>",
     "RemoveRoleFromDBInstance": "<p>Disassociates an AWS Identity and Access Management (IAM) role from a DB instance.</p>",
@@ -206,6 +215,13 @@
         "ModifyDBSnapshotAttributeMessage$ValuesToRemove": "<p>A list of DB snapshot attributes to remove from the attribute specified by <code>AttributeName</code>.</p> <p>To remove authorization for other AWS accounts to copy or restore a manual snapshot, set this list to include one or more AWS account identifiers, or <code>all</code> to remove authorization for any AWS account to copy or restore the DB snapshot. If you specify <code>all</code>, an AWS account whose account ID is explicitly added to the <code>restore</code> attribute can still copy or restore the manual DB snapshot.</p>"
       }
     },
+    "AuthScheme": {
+      "base": null,
+      "refs": {
+        "UserAuthConfig$AuthScheme": "<p>The type of authentication that the proxy uses for connections from the proxy to the underlying database.</p>",
+        "UserAuthConfigInfo$AuthScheme": "<p>The type of authentication that the proxy uses for connections from the proxy to the underlying database.</p>"
+      }
+    },
     "AuthorizationAlreadyExistsFault": {
       "base": "<p>The specified CIDR IP range or Amazon EC2 security group is already authorized for the specified DB security group.</p>",
       "refs": {
@@ -280,6 +296,8 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "CreateDBProxyRequest$RequireTLS": "<p>A Boolean parameter that specifies whether Transport Layer Security (TLS) encryption is required for connections to the proxy. By enabling this setting, you can enforce encrypted TLS connections to the proxy.</p>",
+        "CreateDBProxyRequest$DebugLogging": "<p>Whether the proxy includes detailed information about SQL statements in its logs. This information helps you to debug issues involving SQL behavior or the performance and scalability of the proxy connections. The debug information includes the text of SQL statements that you submit through the proxy. Thus, only enable this setting when needed for debugging, and only when you have security measures in place to safeguard any sensitive information that appears in the logs.</p>",
         "DBCluster$StorageEncrypted": "<p>Specifies whether the DB cluster is encrypted.</p>",
         "DBClusterMember$IsClusterWriter": "<p>Value that is <code>true</code> if the cluster member is the primary instance for the DB cluster and <code>false</code> otherwise.</p>",
         "DBClusterSnapshot$StorageEncrypted": "<p>Specifies whether the DB cluster snapshot is encrypted.</p>",
@@ -296,6 +314,9 @@
         "DBInstanceAutomatedBackup$Encrypted": "<p>Specifies whether the automated backup is encrypted.</p>",
         "DBInstanceAutomatedBackup$IAMDatabaseAuthenticationEnabled": "<p>True if mapping of AWS Identity and Access Management (IAM) accounts to database accounts is enabled, and otherwise false.</p>",
         "DBInstanceStatusInfo$Normal": "<p>Boolean value that is true if the instance is operating normally, or false if the instance is in an error state.</p>",
+        "DBProxy$RequireTLS": "<p>Indicates whether Transport Layer Security (TLS) encryption is required for connections to the proxy.</p>",
+        "DBProxy$DebugLogging": "<p>Whether the proxy includes detailed information about SQL statements in its logs. This information helps you to debug issues involving SQL behavior or the performance and scalability of the proxy connections. The debug information includes the text of SQL statements that you submit through the proxy. Thus, only enable this setting when needed for debugging, and only when you have security measures in place to safeguard any sensitive information that appears in the logs.</p>",
+        "DBProxyTargetGroup$IsDefault": "<p>Whether this target group is the first one used for connection requests by the associated proxy. Because each proxy is currently associated with a single target group, currently this setting is always <code>true</code>.</p>",
         "DBSnapshot$Encrypted": "<p>Specifies whether the DB snapshot is encrypted.</p>",
         "DBSnapshot$IAMDatabaseAuthenticationEnabled": "<p>True if mapping of AWS Identity and Access Management (IAM) accounts to database accounts is enabled, and otherwise false.</p>",
         "DeleteDBClusterMessage$SkipFinalSnapshot": "<p>A value that indicates whether to skip the creation of a final DB cluster snapshot before the DB cluster is deleted. If skip is specified, no DB cluster snapshot is created. If skip isn't specified, a DB cluster snapshot is created before the DB cluster is deleted. By default, skip isn't specified, and the DB cluster snapshot is created. By default, this parameter is disabled.</p> <note> <p>You must specify a <code>FinalDBSnapshotIdentifier</code> parameter if <code>SkipFinalSnapshot</code> is disabled.</p> </note>",
@@ -407,6 +428,8 @@
         "ModifyDBInstanceMessage$EnablePerformanceInsights": "<p>A value that indicates whether to enable Performance Insights for the DB instance.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html\">Using Amazon Performance Insights</a> in the <i>Amazon Relational Database Service User Guide</i>. </p>",
         "ModifyDBInstanceMessage$UseDefaultProcessorFeatures": "<p>A value that indicates whether the DB instance class of the DB instance uses its default processor features.</p>",
         "ModifyDBInstanceMessage$DeletionProtection": "<p>A value that indicates whether the DB instance has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is disabled. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DeleteInstance.html\"> Deleting a DB Instance</a>. </p>",
+        "ModifyDBProxyRequest$RequireTLS": "<p>Whether Transport Layer Security (TLS) encryption is required for connections to the proxy. By enabling this setting, you can enforce encrypted TLS connections to the proxy, even if the associated database doesn't use TLS.</p>",
+        "ModifyDBProxyRequest$DebugLogging": "<p>Whether the proxy includes detailed information about SQL statements in its logs. This information helps you to debug issues involving SQL behavior or the performance and scalability of the proxy connections. The debug information includes the text of SQL statements that you submit through the proxy. Thus, only enable this setting when needed for debugging, and only when you have security measures in place to safeguard any sensitive information that appears in the logs.</p>",
         "ModifyEventSubscriptionMessage$Enabled": "<p> A value that indicates whether to activate the subscription. </p>",
         "ModifyGlobalClusterMessage$DeletionProtection": "<p> Indicates if the global database cluster has deletion protection enabled. The global database cluster can't be deleted when deletion protection is enabled. </p>",
         "OptionGroupOption$SupportsOptionVersionDowngrade": "<p>If true, you can change the option to an earlier version of the option. This only applies to options that have different versions available. </p>",
@@ -487,6 +510,18 @@
       "refs": {
         "ModifyDBClusterMessage$CloudwatchLogsExportConfiguration": "<p>The configuration setting for the log types to be enabled for export to CloudWatch Logs for a specific DB cluster.</p>",
         "ModifyDBInstanceMessage$CloudwatchLogsExportConfiguration": "<p>The configuration setting for the log types to be enabled for export to CloudWatch Logs for a specific DB instance.</p> <p>A change to the <code>CloudwatchLogsExportConfiguration</code> parameter is always applied to the DB instance immediately. Therefore, the <code>ApplyImmediately</code> parameter has no effect.</p>"
+      }
+    },
+    "ConnectionPoolConfiguration": {
+      "base": "<note> <p>This is prerelease documentation for the RDS Database Proxy feature in preview release. It is subject to change.</p> </note> <p>Specifies the settings that control the size and behavior of the connection pool associated with a <code>DBProxyTargetGroup</code>.</p>",
+      "refs": {
+        "ModifyDBProxyTargetGroupRequest$ConnectionPoolConfig": "<p>The settings that determine the size and behavior of the connection pool for the target group.</p>"
+      }
+    },
+    "ConnectionPoolConfigurationInfo": {
+      "base": "<note> <p>This is prerelease documentation for the RDS Database Proxy feature in preview release. It is subject to change.</p> </note> <p>Displays the settings that control the size and behavior of the connection pool associated with a <code>DBProxyTarget</code>.</p>",
+      "refs": {
+        "DBProxyTargetGroup$ConnectionPoolConfig": "<p>The settings that determine the size and behavior of the connection pool for the target group.</p>"
       }
     },
     "CopyDBClusterParameterGroupMessage": {
@@ -610,6 +645,16 @@
       }
     },
     "CreateDBParameterGroupResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateDBProxyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateDBProxyResponse": {
       "base": null,
       "refs": {
       }
@@ -1126,6 +1171,70 @@
       "refs": {
       }
     },
+    "DBProxy": {
+      "base": "<note> <p>This is prerelease documentation for the RDS Database Proxy feature in preview release. It is subject to change.</p> </note> <p>The data structure representing a proxy managed by the RDS Proxy.</p> <p>This data type is used as a response element in the <code>DescribeDBProxies</code> action.</p>",
+      "refs": {
+        "CreateDBProxyResponse$DBProxy": "<p>The <code>DBProxy</code> structure corresponding to the new proxy.</p>",
+        "DBProxyList$member": null,
+        "DeleteDBProxyResponse$DBProxy": "<p>The data structure representing the details of the DB proxy that you delete.</p>",
+        "ModifyDBProxyResponse$DBProxy": "<p>The <code>DBProxy</code> object representing the new settings for the proxy.</p>"
+      }
+    },
+    "DBProxyAlreadyExistsFault": {
+      "base": "<p>The specified proxy name must be unique for all proxies owned by your AWS account in the specified AWS Region.</p>",
+      "refs": {
+      }
+    },
+    "DBProxyList": {
+      "base": null,
+      "refs": {
+        "DescribeDBProxiesResponse$DBProxies": "<p>A return value representing an arbitrary number of <code>DBProxy</code> data structures.</p>"
+      }
+    },
+    "DBProxyNotFoundFault": {
+      "base": "<p>The specified proxy name doesn't correspond to a proxy owned by your AWS accoutn in the specified AWS Region.</p>",
+      "refs": {
+      }
+    },
+    "DBProxyQuotaExceededFault": {
+      "base": "<p>Your AWS account already has the maximum number of proxies in the specified AWS Region.</p>",
+      "refs": {
+      }
+    },
+    "DBProxyStatus": {
+      "base": null,
+      "refs": {
+        "DBProxy$Status": "<p>The current status of this proxy. A status of <code>available</code> means the proxy is ready to handle requests. Other values indicate that you must wait for the proxy to be ready, or take some action to resolve an issue.</p>"
+      }
+    },
+    "DBProxyTarget": {
+      "base": "<note> <p>This is prerelease documentation for the RDS Database Proxy feature in preview release. It is subject to change.</p> </note> <p>Contains the details for an RDS Proxy target. It represents an RDS DB instance or Aurora DB cluster that the proxy can connect to. One or more targets are associated with an RDS Proxy target group.</p> <p>This data type is used as a response element in the <code>DescribeDBProxyTargets</code> action.</p>",
+      "refs": {
+        "TargetList$member": null
+      }
+    },
+    "DBProxyTargetAlreadyRegisteredFault": {
+      "base": "<p>The proxy is already associated with the specified RDS DB instance or Aurora DB cluster.</p>",
+      "refs": {
+      }
+    },
+    "DBProxyTargetGroup": {
+      "base": "<note> <p>This is prerelease documentation for the RDS Database Proxy feature in preview release. It is subject to change.</p> </note> <p>Represents a set of RDS DB instances, Aurora DB clusters, or both that a proxy can connect to. Currently, each target group is associated with exactly one RDS DB instance or Aurora DB cluster.</p> <p>This data type is used as a response element in the <code>DescribeDBProxyTargetGroups</code> action.</p>",
+      "refs": {
+        "ModifyDBProxyTargetGroupResponse$DBProxyTargetGroup": "<p>The settings of the modified <code>DBProxyTarget</code>.</p>",
+        "TargetGroupList$member": null
+      }
+    },
+    "DBProxyTargetGroupNotFoundFault": {
+      "base": "<p>The specified target group isn't available for a proxy owned by your AWS account in the specified AWS Region.</p>",
+      "refs": {
+      }
+    },
+    "DBProxyTargetNotFoundFault": {
+      "base": "<p>The specified RDS DB instance or Aurora DB cluster isn't available for a proxy owned by your AWS account in the specified AWS Region.</p>",
+      "refs": {
+      }
+    },
     "DBSecurityGroup": {
       "base": "<p>Contains the details for an Amazon RDS DB security group. </p> <p>This data type is used as a response element in the <code>DescribeDBSecurityGroups</code> action. </p>",
       "refs": {
@@ -1358,6 +1467,16 @@
       "refs": {
       }
     },
+    "DeleteDBProxyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteDBProxyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteDBSecurityGroupMessage": {
       "base": "<p/>",
       "refs": {
@@ -1405,6 +1524,16 @@
     },
     "DeleteOptionGroupMessage": {
       "base": "<p/>",
+      "refs": {
+      }
+    },
+    "DeregisterDBProxyTargetsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeregisterDBProxyTargetsResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -1506,6 +1635,36 @@
       }
     },
     "DescribeDBParametersMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDBProxiesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDBProxiesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDBProxyTargetGroupsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDBProxyTargetGroupsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDBProxyTargetsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDBProxyTargetsResponse": {
       "base": null,
       "refs": {
       }
@@ -1709,6 +1868,12 @@
         "DescribeEngineDefaultParametersResult$EngineDefaults": null
       }
     },
+    "EngineFamily": {
+      "base": null,
+      "refs": {
+        "CreateDBProxyRequest$EngineFamily": "<p>The kinds of databases that the proxy can connect to. This value determines which database network protocol the proxy recognizes when it interprets network traffic to and from the database. Currently, this value is always <code>MYSQL</code>. The engine family applies to both RDS MySQL and Aurora MySQL.</p>"
+      }
+    },
     "EngineModeList": {
       "base": null,
       "refs": {
@@ -1828,6 +1993,9 @@
         "DescribeDBLogFilesMessage$Filters": "<p>This parameter isn't currently supported.</p>",
         "DescribeDBParameterGroupsMessage$Filters": "<p>This parameter isn't currently supported.</p>",
         "DescribeDBParametersMessage$Filters": "<p>This parameter isn't currently supported.</p>",
+        "DescribeDBProxiesRequest$Filters": "<p>This parameter is not currently supported.</p>",
+        "DescribeDBProxyTargetGroupsRequest$Filters": "<p>This parameter is not currently supported.</p>",
+        "DescribeDBProxyTargetsRequest$Filters": "<p>This parameter is not currently supported.</p>",
         "DescribeDBSecurityGroupsMessage$Filters": "<p>This parameter isn't currently supported.</p>",
         "DescribeDBSnapshotsMessage$Filters": "<p>A filter that specifies one or more DB snapshots to describe.</p> <p>Supported filters:</p> <ul> <li> <p> <code>db-instance-id</code> - Accepts DB instance identifiers and DB instance Amazon Resource Names (ARNs).</p> </li> <li> <p> <code>db-snapshot-id</code> - Accepts DB snapshot identifiers.</p> </li> <li> <p> <code>dbi-resource-id</code> - Accepts identifiers of source DB instances.</p> </li> <li> <p> <code>snapshot-type</code> - Accepts types of DB snapshots.</p> </li> <li> <p> <code>engine</code> - Accepts names of database engines.</p> </li> </ul>",
         "DescribeDBSubnetGroupsMessage$Filters": "<p>This parameter isn't currently supported.</p>",
@@ -1900,6 +2068,13 @@
     "GlobalClustersMessage": {
       "base": null,
       "refs": {
+      }
+    },
+    "IAMAuthMode": {
+      "base": null,
+      "refs": {
+        "UserAuthConfig$IAMAuth": "<p>Whether to require or disallow AWS Identity and Access Management (IAM) authentication for connections to the proxy.</p>",
+        "UserAuthConfigInfo$IAMAuth": "<p>Whether to require or disallow AWS Identity and Access Management (IAM) authentication for connections to the proxy.</p>"
       }
     },
     "IPRange": {
@@ -1975,6 +2150,9 @@
     "Integer": {
       "base": null,
       "refs": {
+        "ConnectionPoolConfigurationInfo$MaxConnectionsPercent": "<p>The maximum size of the connection pool for each target in a target group. For Aurora MySQL, it is expressed as a percentage of the <code>max_connections</code> setting for the RDS DB instance or Aurora DB cluster used by the target group.</p>",
+        "ConnectionPoolConfigurationInfo$MaxIdleConnectionsPercent": "<p> Controls how actively the proxy closes idle database connections in the connection pool. A high value enables the proxy to leave a high percentage of idle connections open. A low value causes the proxy to close idle client connections and return the underlying database connections to the connection pool. For Aurora MySQL, it is expressed as a percentage of the <code>max_connections</code> setting for the RDS DB instance or Aurora DB cluster used by the target group. </p>",
+        "ConnectionPoolConfigurationInfo$ConnectionBorrowTimeout": "<p>The number of seconds for a proxy to wait for a connection to become available in the connection pool. Only applies when the proxy has opened its maximum number of connections and all connections are busy with client sessions.</p>",
         "DBClusterSnapshot$AllocatedStorage": "<p>Specifies the allocated storage size in gibibytes (GiB).</p>",
         "DBClusterSnapshot$Port": "<p>Specifies the port that the DB cluster was listening on at the time of the snapshot.</p>",
         "DBClusterSnapshot$PercentProgress": "<p>Specifies the percentage of the estimated data that has been transferred.</p>",
@@ -1983,6 +2161,8 @@
         "DBInstance$DbInstancePort": "<p>Specifies the port that the DB instance listens on. If the DB instance is part of a DB cluster, this can be a different port than the DB cluster port.</p>",
         "DBInstanceAutomatedBackup$AllocatedStorage": "<p>Specifies the allocated storage size in gibibytes (GiB).</p>",
         "DBInstanceAutomatedBackup$Port": "<p>The port number that the automated backup used for connections.</p> <p>Default: Inherits from the source DB instance</p> <p>Valid Values: <code>1150-65535</code> </p>",
+        "DBProxy$IdleClientTimeout": "<p>The number of seconds a connection to the proxy can have no activity before the proxy drops the client connection. The proxy keeps the underlying database connection open and puts it back into the connection pool for reuse by later connection requests.</p> <p>Default: 1800 (30 minutes)</p> <p>Constraints: 1 to 28,800</p>",
+        "DBProxyTarget$Port": "<p>The port that the RDS Proxy uses to connect to the target RDS DB instance or Aurora DB cluster.</p>",
         "DBSnapshot$AllocatedStorage": "<p>Specifies the allocated storage size in gibibytes (GiB).</p>",
         "DBSnapshot$Port": "<p>Specifies the port that the database engine was listening on at the time of the snapshot.</p>",
         "DBSnapshot$PercentProgress": "<p>The percentage of the estimated data that has been transferred.</p>",
@@ -1998,6 +2178,9 @@
     "IntegerOptional": {
       "base": null,
       "refs": {
+        "ConnectionPoolConfiguration$MaxConnectionsPercent": "<p>The maximum size of the connection pool for each target in a target group. For Aurora MySQL, it is expressed as a percentage of the <code>max_connections</code> setting for the RDS DB instance or Aurora DB cluster used by the target group.</p> <p>Default: 100</p> <p>Constraints: between 1 and 100</p>",
+        "ConnectionPoolConfiguration$MaxIdleConnectionsPercent": "<p> Controls how actively the proxy closes idle database connections in the connection pool. A high value enables the proxy to leave a high percentage of idle connections open. A low value causes the proxy to close idle client connections and return the underlying database connections to the connection pool. For Aurora MySQL, it is expressed as a percentage of the <code>max_connections</code> setting for the RDS DB instance or Aurora DB cluster used by the target group. </p> <p>Default: 50</p> <p>Constraints: between 0 and <code>MaxConnectionsPercent</code> </p>",
+        "ConnectionPoolConfiguration$ConnectionBorrowTimeout": "<p>The number of seconds for a proxy to wait for a connection to become available in the connection pool. Only applies when the proxy has opened its maximum number of connections and all connections are busy with client sessions.</p> <p>Default: 120</p> <p>Constraints: between 1 and 3600, or 0 representing unlimited</p>",
         "CreateDBClusterMessage$BackupRetentionPeriod": "<p>The number of days for which automated backups are retained.</p> <p>Default: 1</p> <p>Constraints:</p> <ul> <li> <p>Must be a value from 1 to 35</p> </li> </ul>",
         "CreateDBClusterMessage$Port": "<p>The port number on which the instances in the DB cluster accept connections.</p> <p> Default: <code>3306</code> if engine is set as aurora or <code>5432</code> if set to aurora-postgresql. </p>",
         "CreateDBInstanceMessage$AllocatedStorage": "<p>The amount of storage (in gibibytes) to allocate for the DB instance.</p> <p>Type: Integer</p> <p> <b>Amazon Aurora</b> </p> <p>Not applicable. Aurora cluster volumes automatically grow as the amount of data in your database increases, though you are only charged for the space that you use in an Aurora cluster volume.</p> <p> <b>MySQL</b> </p> <p>Constraints to the amount of storage for each storage type are the following: </p> <ul> <li> <p>General Purpose (SSD) storage (gp2): Must be an integer from 20 to 65536.</p> </li> <li> <p>Provisioned IOPS storage (io1): Must be an integer from 100 to 65536.</p> </li> <li> <p>Magnetic storage (standard): Must be an integer from 5 to 3072.</p> </li> </ul> <p> <b>MariaDB</b> </p> <p>Constraints to the amount of storage for each storage type are the following: </p> <ul> <li> <p>General Purpose (SSD) storage (gp2): Must be an integer from 20 to 65536.</p> </li> <li> <p>Provisioned IOPS storage (io1): Must be an integer from 100 to 65536.</p> </li> <li> <p>Magnetic storage (standard): Must be an integer from 5 to 3072.</p> </li> </ul> <p> <b>PostgreSQL</b> </p> <p>Constraints to the amount of storage for each storage type are the following: </p> <ul> <li> <p>General Purpose (SSD) storage (gp2): Must be an integer from 20 to 65536.</p> </li> <li> <p>Provisioned IOPS storage (io1): Must be an integer from 100 to 65536.</p> </li> <li> <p>Magnetic storage (standard): Must be an integer from 5 to 3072.</p> </li> </ul> <p> <b>Oracle</b> </p> <p>Constraints to the amount of storage for each storage type are the following: </p> <ul> <li> <p>General Purpose (SSD) storage (gp2): Must be an integer from 20 to 65536.</p> </li> <li> <p>Provisioned IOPS storage (io1): Must be an integer from 100 to 65536.</p> </li> <li> <p>Magnetic storage (standard): Must be an integer from 10 to 3072.</p> </li> </ul> <p> <b>SQL Server</b> </p> <p>Constraints to the amount of storage for each storage type are the following: </p> <ul> <li> <p>General Purpose (SSD) storage (gp2):</p> <ul> <li> <p>Enterprise and Standard editions: Must be an integer from 200 to 16384.</p> </li> <li> <p>Web and Express editions: Must be an integer from 20 to 16384.</p> </li> </ul> </li> <li> <p>Provisioned IOPS storage (io1):</p> <ul> <li> <p>Enterprise and Standard editions: Must be an integer from 200 to 16384.</p> </li> <li> <p>Web and Express editions: Must be an integer from 100 to 16384.</p> </li> </ul> </li> <li> <p>Magnetic storage (standard):</p> <ul> <li> <p>Enterprise and Standard editions: Must be an integer from 200 to 1024.</p> </li> <li> <p>Web and Express editions: Must be an integer from 20 to 1024.</p> </li> </ul> </li> </ul>",
@@ -2012,6 +2195,7 @@
         "CreateDBInstanceReadReplicaMessage$Iops": "<p>The amount of Provisioned IOPS (input/output operations per second) to be initially allocated for the DB instance.</p>",
         "CreateDBInstanceReadReplicaMessage$MonitoringInterval": "<p>The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the Read Replica. To disable collecting Enhanced Monitoring metrics, specify 0. The default is 0.</p> <p>If <code>MonitoringRoleArn</code> is specified, then you must also set <code>MonitoringInterval</code> to a value other than 0.</p> <p>Valid Values: <code>0, 1, 5, 10, 15, 30, 60</code> </p>",
         "CreateDBInstanceReadReplicaMessage$PerformanceInsightsRetentionPeriod": "<p>The amount of time, in days, to retain Performance Insights data. Valid values are 7 or 731 (2 years). </p>",
+        "CreateDBProxyRequest$IdleClientTimeout": "<p>The number of seconds that a connection to the proxy can be inactive before the proxy disconnects it. You can set this value higher or lower than the connection timeout limit for the associated database.</p>",
         "DBCluster$AllocatedStorage": "<p>For all database engines except Amazon Aurora, <code>AllocatedStorage</code> specifies the allocated storage size in gibibytes (GiB). For Aurora, <code>AllocatedStorage</code> always returns 1, because Aurora DB cluster storage size isn't fixed, but instead automatically adjusts as needed.</p>",
         "DBCluster$BackupRetentionPeriod": "<p>Specifies the number of days for which automatic DB snapshots are retained.</p>",
         "DBCluster$Port": "<p>Specifies the port that the database engine is listening on.</p>",
@@ -2070,6 +2254,7 @@
         "ModifyDBInstanceMessage$PromotionTier": "<p>A value that specifies the order in which an Aurora Replica is promoted to the primary instance after a failure of the existing primary instance. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Backups.html#Aurora.Managing.FaultTolerance\"> Fault Tolerance for an Aurora DB Cluster</a> in the <i>Amazon Aurora User Guide</i>. </p> <p>Default: 1</p> <p>Valid Values: 0 - 15</p>",
         "ModifyDBInstanceMessage$PerformanceInsightsRetentionPeriod": "<p>The amount of time, in days, to retain Performance Insights data. Valid values are 7 or 731 (2 years). </p>",
         "ModifyDBInstanceMessage$MaxAllocatedStorage": "<p>The upper limit to which Amazon RDS can automatically scale the storage of the DB instance.</p>",
+        "ModifyDBProxyRequest$IdleClientTimeout": "<p>The number of seconds that a connection to the proxy can be inactive before the proxy disconnects it. You can set this value higher or lower than the connection timeout limit for the associated database.</p>",
         "Option$Port": "<p>If required, the port configured for this option to use.</p>",
         "OptionConfiguration$Port": "<p>The optional port for the option.</p>",
         "OptionGroupOption$DefaultPort": "<p>If the option requires a port, specifies the default port for the option.</p>",
@@ -2138,6 +2323,11 @@
     },
     "InvalidDBParameterGroupStateFault": {
       "base": "<p>The DB parameter group is in use or is in an invalid state. If you are attempting to delete the parameter group, you can't delete it when the parameter group is in this state.</p>",
+      "refs": {
+      }
+    },
+    "InvalidDBProxyStateFault": {
+      "base": "<p>The requested operation can't be performed while the proxy is in this state.</p>",
       "refs": {
       }
     },
@@ -2261,6 +2451,14 @@
         "RestoreDBClusterToPointInTimeMessage$BacktrackWindow": "<p>The target backtrack window, in seconds. To disable backtracking, set this value to 0.</p> <p>Default: 0</p> <p>Constraints:</p> <ul> <li> <p>If specified, this value must be set to a number from 0 to 259,200 (72 hours).</p> </li> </ul>"
       }
     },
+    "MaxRecords": {
+      "base": null,
+      "refs": {
+        "DescribeDBProxiesRequest$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
+        "DescribeDBProxyTargetGroupsRequest$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
+        "DescribeDBProxyTargetsRequest$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>"
+      }
+    },
     "MinimumEngineVersionPerAllowedValue": {
       "base": "<p>The minimum DB engine version required for each corresponding allowed value for an option setting.</p>",
       "refs": {
@@ -2320,6 +2518,26 @@
     },
     "ModifyDBParameterGroupMessage": {
       "base": "<p/>",
+      "refs": {
+      }
+    },
+    "ModifyDBProxyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyDBProxyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyDBProxyTargetGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyDBProxyTargetGroupResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -2722,6 +2940,16 @@
         "ReservedDBInstancesOffering$RecurringCharges": "<p>The recurring price charged to run this reserved DB instance.</p>"
       }
     },
+    "RegisterDBProxyTargetsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RegisterDBProxyTargetsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "RemoveFromGlobalClusterMessage": {
       "base": null,
       "refs": {
@@ -3090,6 +3318,8 @@
         "CertificateMessage$Marker": "<p> An optional pagination token provided by a previous <code>DescribeCertificates</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code> . </p>",
         "CharacterSet$CharacterSetName": "<p>The name of the character set.</p>",
         "CharacterSet$CharacterSetDescription": "<p>The description of the character set.</p>",
+        "ConnectionPoolConfiguration$InitQuery": "<p> One or more SQL statements for the proxy to run when opening each new database connection. Typically used with <code>SET</code> statements to make sure that each connection has identical settings such as time zone and character set. For multiple statements, use semicolons as the separator. You can also include multiple variables in a single <code>SET</code> statement, such as <code>SET x=1, y=2</code>. </p> <p>Default: no initialization query</p>",
+        "ConnectionPoolConfigurationInfo$InitQuery": "<p> One or more SQL statements for the proxy to run when opening each new database connection. Typically used with <code>SET</code> statements to make sure that each connection has identical settings such as time zone and character set. This setting is empty by default. For multiple statements, use semicolons as the separator. You can also include multiple variables in a single <code>SET</code> statement, such as <code>SET x=1, y=2</code>. </p>",
         "CopyDBClusterParameterGroupMessage$SourceDBClusterParameterGroupIdentifier": "<p>The identifier or Amazon Resource Name (ARN) for the source DB cluster parameter group. For information about creating an ARN, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_Tagging.ARN.html#USER_Tagging.ARN.Constructing\"> Constructing an ARN for Amazon RDS</a> in the <i>Amazon Aurora User Guide</i>. </p> <p>Constraints:</p> <ul> <li> <p>Must specify a valid DB cluster parameter group.</p> </li> <li> <p>If the source DB cluster parameter group is in the same AWS Region as the copy, specify a valid DB parameter group identifier, for example <code>my-db-cluster-param-group</code>, or a valid ARN.</p> </li> <li> <p>If the source DB parameter group is in a different AWS Region than the copy, specify a valid DB cluster parameter group ARN, for example <code>arn:aws:rds:us-east-1:123456789012:cluster-pg:custom-cluster-group1</code>.</p> </li> </ul>",
         "CopyDBClusterParameterGroupMessage$TargetDBClusterParameterGroupIdentifier": "<p>The identifier for the copied DB cluster parameter group.</p> <p>Constraints:</p> <ul> <li> <p>Can't be null, empty, or blank</p> </li> <li> <p>Must contain from 1 to 255 letters, numbers, or hyphens</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive hyphens</p> </li> </ul> <p>Example: <code>my-cluster-param-group1</code> </p>",
         "CopyDBClusterParameterGroupMessage$TargetDBClusterParameterGroupDescription": "<p>A description for the copied DB cluster parameter group.</p>",
@@ -3179,6 +3409,8 @@
         "CreateDBParameterGroupMessage$DBParameterGroupName": "<p>The name of the DB parameter group.</p> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 letters, numbers, or hyphens.</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive hyphens</p> </li> </ul> <note> <p>This value is stored as a lowercase string.</p> </note>",
         "CreateDBParameterGroupMessage$DBParameterGroupFamily": "<p>The DB parameter group family name. A DB parameter group can be associated with one and only one DB parameter group family, and can be applied only to a DB instance running a database engine and engine version compatible with that DB parameter group family.</p> <p>To list all of the available parameter group families, use the following command:</p> <p> <code>aws rds describe-db-engine-versions --query \"DBEngineVersions[].DBParameterGroupFamily\"</code> </p> <note> <p>The output contains duplicates.</p> </note>",
         "CreateDBParameterGroupMessage$Description": "<p>The description for the DB parameter group.</p>",
+        "CreateDBProxyRequest$DBProxyName": "<p>The identifier for the proxy. This name must be unique for all proxies owned by your AWS account in the specified AWS Region. An identifier must begin with a letter and must contain only ASCII letters, digits, and hyphens; it can't end with a hyphen or contain two consecutive hyphens.</p>",
+        "CreateDBProxyRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that the proxy uses to access secrets in AWS Secrets Manager.</p>",
         "CreateDBSecurityGroupMessage$DBSecurityGroupName": "<p>The name for the DB security group. This value is stored as a lowercase string.</p> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 letters, numbers, or hyphens.</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive hyphens</p> </li> <li> <p>Must not be \"Default\"</p> </li> </ul> <p>Example: <code>mysecuritygroup</code> </p>",
         "CreateDBSecurityGroupMessage$DBSecurityGroupDescription": "<p>The description for the DB security group.</p>",
         "CreateDBSnapshotMessage$DBSnapshotIdentifier": "<p>The identifier for the DB snapshot.</p> <p>Constraints:</p> <ul> <li> <p>Can't be null, empty, or blank</p> </li> <li> <p>Must contain from 1 to 255 letters, numbers, or hyphens</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive hyphens</p> </li> </ul> <p>Example: <code>my-snapshot-id</code> </p>",
@@ -3334,6 +3566,19 @@
         "DBParameterGroupStatus$DBParameterGroupName": "<p>The name of the DB parameter group.</p>",
         "DBParameterGroupStatus$ParameterApplyStatus": "<p>The status of parameter updates.</p>",
         "DBParameterGroupsMessage$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
+        "DBProxy$DBProxyName": "<p>The identifier for the proxy. This name must be unique for all proxies owned by your AWS account in the specified AWS Region.</p>",
+        "DBProxy$DBProxyArn": "<p>The Amazon Resource Name (ARN) for the proxy.</p>",
+        "DBProxy$EngineFamily": "<p>Currently, this value is always <code>MYSQL</code>. The engine family applies to both RDS MySQL and Aurora MySQL.</p>",
+        "DBProxy$RoleArn": "<p>The Amazon Resource Name (ARN) for the IAM role that the proxy uses to access Amazon Secrets Manager.</p>",
+        "DBProxy$Endpoint": "<p>The endpoint that you can use to connect to the proxy. You include the endpoint value in the connection string for a database client application.</p>",
+        "DBProxyTarget$TargetArn": "<p>The Amazon Resource Name (ARN) for the RDS DB instance or Aurora DB cluster.</p>",
+        "DBProxyTarget$Endpoint": "<p>The writer endpoint for the RDS DB instance or Aurora DB cluster.</p>",
+        "DBProxyTarget$TrackedClusterId": "<p>The DB cluster identifier when the target represents an Aurora DB cluster. This field is blank when the target represents an </p>",
+        "DBProxyTarget$RdsResourceId": "<p>The identifier representing the target. It can be the instance identifier for an RDS DB instance, or the cluster identifier for an Aurora DB cluster.</p>",
+        "DBProxyTargetGroup$DBProxyName": "<p>The identifier for the RDS proxy associated with this target group.</p>",
+        "DBProxyTargetGroup$TargetGroupName": "<p>The identifier for the target group. This name must be unique for all target groups owned by your AWS account in the specified AWS Region.</p>",
+        "DBProxyTargetGroup$TargetGroupArn": "<p>The Amazon Resource Name (ARN) representing the target group.</p>",
+        "DBProxyTargetGroup$Status": "<p>The current status of this target group. A status of <code>available</code> means the target group is correctly associated with a database. Other values indicate that you must wait for the target group to be ready, or take some action to resolve an issue.</p>",
         "DBSecurityGroup$OwnerId": "<p>Provides the AWS ID of the owner of a specific DB security group.</p>",
         "DBSecurityGroup$DBSecurityGroupName": "<p>Specifies the name of the DB security group.</p>",
         "DBSecurityGroup$DBSecurityGroupDescription": "<p>Provides the description of the DB security group.</p>",
@@ -3381,6 +3626,7 @@
         "DeleteDBInstanceMessage$DBInstanceIdentifier": "<p>The DB instance identifier for the DB instance to be deleted. This parameter isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must match the name of an existing DB instance.</p> </li> </ul>",
         "DeleteDBInstanceMessage$FinalDBSnapshotIdentifier": "<p> The <code>DBSnapshotIdentifier</code> of the new <code>DBSnapshot</code> created when the <code>SkipFinalSnapshot</code> parameter is disabled. </p> <note> <p>Specifying this parameter and also specifying to skip final DB snapshot creation in SkipFinalShapshot results in an error.</p> </note> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 letters or numbers.</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive hyphens.</p> </li> <li> <p>Can't be specified when deleting a Read Replica.</p> </li> </ul>",
         "DeleteDBParameterGroupMessage$DBParameterGroupName": "<p>The name of the DB parameter group.</p> <p>Constraints:</p> <ul> <li> <p>Must be the name of an existing DB parameter group</p> </li> <li> <p>You can't delete a default DB parameter group</p> </li> <li> <p>Can't be associated with any DB instances</p> </li> </ul>",
+        "DeleteDBProxyRequest$DBProxyName": "<p>The name of the DB proxy to delete.</p>",
         "DeleteDBSecurityGroupMessage$DBSecurityGroupName": "<p>The name of the DB security group to delete.</p> <note> <p>You can't delete the default DB security group.</p> </note> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 letters, numbers, or hyphens.</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Can't end with a hyphen or contain two consecutive hyphens</p> </li> <li> <p>Must not be \"Default\"</p> </li> </ul>",
         "DeleteDBSnapshotMessage$DBSnapshotIdentifier": "<p>The DB snapshot identifier.</p> <p>Constraints: Must be the name of an existing DB snapshot in the <code>available</code> state.</p>",
         "DeleteDBSubnetGroupMessage$DBSubnetGroupName": "<p>The name of the database subnet group to delete.</p> <note> <p>You can't delete the default subnet group.</p> </note> <p>Constraints:</p> <p>Constraints: Must match the name of an existing DBSubnetGroup. Must not be default.</p> <p>Example: <code>mySubnetgroup</code> </p>",
@@ -3388,6 +3634,8 @@
         "DeleteGlobalClusterMessage$GlobalClusterIdentifier": "<p> The cluster identifier of the global database cluster being deleted. </p>",
         "DeleteInstallationMediaMessage$InstallationMediaId": "<p>The installation medium ID.</p>",
         "DeleteOptionGroupMessage$OptionGroupName": "<p>The name of the option group to be deleted.</p> <note> <p>You can't delete default option groups.</p> </note>",
+        "DeregisterDBProxyTargetsRequest$DBProxyName": "<p>The identifier of the <code>DBProxy</code> that is associated with the <code>DBProxyTargetGroup</code>.</p>",
+        "DeregisterDBProxyTargetsRequest$TargetGroupName": "<p>The identifier of the <code>DBProxyTargetGroup</code>.</p>",
         "DescribeCertificatesMessage$CertificateIdentifier": "<p>The user-supplied certificate identifier. If this parameter is specified, information for only the identified certificate is returned. This parameter isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must match an existing CertificateIdentifier.</p> </li> </ul>",
         "DescribeCertificatesMessage$Marker": "<p> An optional pagination token provided by a previous <code>DescribeCertificates</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
         "DescribeCustomAvailabilityZonesMessage$CustomAvailabilityZoneId": "<p>The custom AZ identifier. If this parameter is specified, information from only the specific custom AZ is returned.</p>",
@@ -3429,6 +3677,17 @@
         "DescribeDBParametersMessage$DBParameterGroupName": "<p>The name of a specific DB parameter group to return details for.</p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match the name of an existing DBParameterGroup.</p> </li> </ul>",
         "DescribeDBParametersMessage$Source": "<p>The parameter types to return.</p> <p>Default: All parameter types returned</p> <p>Valid Values: <code>user | system | engine-default</code> </p>",
         "DescribeDBParametersMessage$Marker": "<p> An optional pagination token provided by a previous <code>DescribeDBParameters</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
+        "DescribeDBProxiesRequest$DBProxyName": "<p>The name of the DB proxy.</p>",
+        "DescribeDBProxiesRequest$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
+        "DescribeDBProxiesResponse$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
+        "DescribeDBProxyTargetGroupsRequest$DBProxyName": "<p>The identifier of the <code>DBProxy</code> associated with the target group.</p>",
+        "DescribeDBProxyTargetGroupsRequest$TargetGroupName": "<p>The identifier of the <code>DBProxyTargetGroup</code> to describe.</p>",
+        "DescribeDBProxyTargetGroupsRequest$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
+        "DescribeDBProxyTargetGroupsResponse$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
+        "DescribeDBProxyTargetsRequest$DBProxyName": "<p>The identifier of the <code>DBProxyTarget</code> to describe.</p>",
+        "DescribeDBProxyTargetsRequest$TargetGroupName": "<p>The identifier of the <code>DBProxyTargetGroup</code> to describe.</p>",
+        "DescribeDBProxyTargetsRequest$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
+        "DescribeDBProxyTargetsResponse$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
         "DescribeDBSecurityGroupsMessage$DBSecurityGroupName": "<p>The name of the DB security group to return details for.</p>",
         "DescribeDBSecurityGroupsMessage$Marker": "<p> An optional pagination token provided by a previous <code>DescribeDBSecurityGroups</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
         "DescribeDBSnapshotAttributesMessage$DBSnapshotIdentifier": "<p>The identifier for the DB snapshot to describe the attributes for.</p>",
@@ -3586,6 +3845,12 @@
         "ModifyDBInstanceMessage$DomainIAMRoleName": "<p>The name of the IAM role to use when making API calls to the Directory Service.</p>",
         "ModifyDBInstanceMessage$PerformanceInsightsKMSKeyId": "<p>The AWS KMS key identifier for encryption of Performance Insights data. The KMS key ID is the Amazon Resource Name (ARN), KMS key identifier, or the KMS key alias for the KMS encryption key.</p> <p>If you do not specify a value for <code>PerformanceInsightsKMSKeyId</code>, then Amazon RDS uses your default encryption key. AWS KMS creates the default encryption key for your AWS account. Your AWS account has a different default encryption key for each AWS Region.</p>",
         "ModifyDBParameterGroupMessage$DBParameterGroupName": "<p>The name of the DB parameter group.</p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match the name of an existing <code>DBParameterGroup</code>.</p> </li> </ul>",
+        "ModifyDBProxyRequest$DBProxyName": "<p>The identifier for the <code>DBProxy</code> to modify.</p>",
+        "ModifyDBProxyRequest$NewDBProxyName": "<p>The new identifier for the <code>DBProxy</code>. An identifier must begin with a letter and must contain only ASCII letters, digits, and hyphens; it can't end with a hyphen or contain two consecutive hyphens.</p>",
+        "ModifyDBProxyRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that the proxy uses to access secrets in AWS Secrets Manager.</p>",
+        "ModifyDBProxyTargetGroupRequest$TargetGroupName": "<p>The name of the new target group to assign to the proxy.</p>",
+        "ModifyDBProxyTargetGroupRequest$DBProxyName": "<p>The name of the new proxy to which to assign the target group.</p>",
+        "ModifyDBProxyTargetGroupRequest$NewName": "<p>The new name for the modified <code>DBProxyTarget</code>. An identifier must begin with a letter and must contain only ASCII letters, digits, and hyphens; it can't end with a hyphen or contain two consecutive hyphens.</p>",
         "ModifyDBSnapshotAttributeMessage$DBSnapshotIdentifier": "<p>The identifier for the DB snapshot to modify the attributes for.</p>",
         "ModifyDBSnapshotAttributeMessage$AttributeName": "<p>The name of the DB snapshot attribute to modify.</p> <p>To manage authorization for other AWS accounts to copy or restore a manual DB snapshot, set this value to <code>restore</code>.</p>",
         "ModifyDBSnapshotMessage$DBSnapshotIdentifier": "<p>The identifier of the DB snapshot to modify.</p>",
@@ -3674,6 +3939,8 @@
         "ReadersArnList$member": null,
         "RebootDBInstanceMessage$DBInstanceIdentifier": "<p>The DB instance identifier. This parameter is stored as a lowercase string.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing DBInstance.</p> </li> </ul>",
         "RecurringCharge$RecurringChargeFrequency": "<p>The frequency of the recurring charge.</p>",
+        "RegisterDBProxyTargetsRequest$DBProxyName": "<p>The identifier of the <code>DBProxy</code> that is associated with the <code>DBProxyTargetGroup</code>.</p>",
+        "RegisterDBProxyTargetsRequest$TargetGroupName": "<p>The identifier of the <code>DBProxyTargetGroup</code>.</p>",
         "RemoveFromGlobalClusterMessage$GlobalClusterIdentifier": "<p> The cluster identifier to detach from the Aurora global database cluster. </p>",
         "RemoveFromGlobalClusterMessage$DbClusterIdentifier": "<p> The Amazon Resource Name (ARN) identifying the cluster that was detached from the Aurora global database cluster. </p>",
         "RemoveRoleFromDBClusterMessage$DBClusterIdentifier": "<p>The name of the DB cluster to disassociate the IAM role from.</p>",
@@ -3827,6 +4094,12 @@
         "UpgradeTarget$Engine": "<p>The name of the upgrade target database engine.</p>",
         "UpgradeTarget$EngineVersion": "<p>The version number of the upgrade target database engine.</p>",
         "UpgradeTarget$Description": "<p>The version of the database engine that a DB instance can be upgraded to.</p>",
+        "UserAuthConfig$Description": "<p>A user-specified description about the authentication used by a proxy to log in as a specific database user.</p>",
+        "UserAuthConfig$UserName": "<p>The name of the database user to which the proxy connects.</p>",
+        "UserAuthConfig$SecretArn": "<p>The Amazon Resource Name (ARN) representing the secret that the proxy uses to authenticate to the RDS DB instance or Aurora DB cluster. These secrets are stored within Amazon Secrets Manager.</p>",
+        "UserAuthConfigInfo$Description": "<p>A user-specified description about the authentication used by a proxy to log in as a specific database user.</p>",
+        "UserAuthConfigInfo$UserName": "<p>The name of the database user to which the proxy connects.</p>",
+        "UserAuthConfigInfo$SecretArn": "<p>The Amazon Resource Name (ARN) representing the secret that the proxy uses to authenticate to the RDS DB instance or Aurora DB cluster. These secrets are stored within Amazon Secrets Manager.</p>",
         "ValidStorageOptions$StorageType": "<p>The valid storage types for your DB instance. For example, gp2, io1. </p>",
         "VpcSecurityGroupIdList$member": null,
         "VpcSecurityGroupMembership$VpcSecurityGroupId": "<p>The name of the VPC security group.</p>",
@@ -3841,13 +4114,24 @@
     "StringList": {
       "base": null,
       "refs": {
+        "ConnectionPoolConfiguration$SessionPinningFilters": "<p>Each item in the list represents a class of SQL operations that normally cause all later statements in a session using a proxy to be pinned to the same underlying database connection. Including an item in the list exempts that class of SQL operations from the pinning behavior.</p> <p>Default: no session pinning filters</p>",
+        "ConnectionPoolConfigurationInfo$SessionPinningFilters": "<p>Each item in the list represents a class of SQL operations that normally cause all later statements in a session using a proxy to be pinned to the same underlying database connection. Including an item in the list exempts that class of SQL operations from the pinning behavior. Currently, the only allowed value is <code>EXCLUDE_VARIABLE_SETS</code>.</p>",
         "CreateDBClusterEndpointMessage$StaticMembers": "<p>List of DB instance identifiers that are part of the custom endpoint group.</p>",
         "CreateDBClusterEndpointMessage$ExcludedMembers": "<p>List of DB instance identifiers that aren't part of the custom endpoint group. All other eligible instances are reachable through the custom endpoint. Only relevant if the list of static members is empty.</p>",
+        "CreateDBProxyRequest$VpcSubnetIds": "<p>One or more VPC subnet IDs to associate with the new proxy.</p>",
+        "CreateDBProxyRequest$VpcSecurityGroupIds": "<p>One or more VPC security group IDs to associate with the new proxy.</p>",
         "DBCluster$CustomEndpoints": "<p>Identifies all custom endpoints associated with the cluster.</p>",
         "DBClusterEndpoint$StaticMembers": "<p>List of DB instance identifiers that are part of the custom endpoint group.</p>",
         "DBClusterEndpoint$ExcludedMembers": "<p>List of DB instance identifiers that aren't part of the custom endpoint group. All other eligible instances are reachable through the custom endpoint. Only relevant if the list of static members is empty.</p>",
+        "DBProxy$VpcSecurityGroupIds": "<p>Provides a list of VPC security groups that the proxy belongs to.</p>",
+        "DBProxy$VpcSubnetIds": "<p>The EC2 subnet IDs for the proxy.</p>",
+        "DeregisterDBProxyTargetsRequest$DBInstanceIdentifiers": "<p>One or more DB instance identifiers.</p>",
+        "DeregisterDBProxyTargetsRequest$DBClusterIdentifiers": "<p>One or more DB cluster identifiers.</p>",
         "ModifyDBClusterEndpointMessage$StaticMembers": "<p>List of DB instance identifiers that are part of the custom endpoint group.</p>",
-        "ModifyDBClusterEndpointMessage$ExcludedMembers": "<p>List of DB instance identifiers that aren't part of the custom endpoint group. All other eligible instances are reachable through the custom endpoint. Only relevant if the list of static members is empty.</p>"
+        "ModifyDBClusterEndpointMessage$ExcludedMembers": "<p>List of DB instance identifiers that aren't part of the custom endpoint group. All other eligible instances are reachable through the custom endpoint. Only relevant if the list of static members is empty.</p>",
+        "ModifyDBProxyRequest$SecurityGroups": "<p>The new list of security groups for the <code>DBProxy</code>.</p>",
+        "RegisterDBProxyTargetsRequest$DBInstanceIdentifiers": "<p>One or more DB instance identifiers.</p>",
+        "RegisterDBProxyTargetsRequest$DBClusterIdentifiers": "<p>One or more DB cluster identifiers.</p>"
       }
     },
     "StringSensitive": {
@@ -3925,6 +4209,10 @@
         "DBInstance$InstanceCreateTime": "<p>Provides the date and time the DB instance was created.</p>",
         "DBInstance$LatestRestorableTime": "<p>Specifies the latest time to which a database can be restored with point-in-time restore.</p>",
         "DBInstanceAutomatedBackup$InstanceCreateTime": "<p>Provides the date and time that the DB instance was created. </p>",
+        "DBProxy$CreatedDate": "<p>The date and time when the proxy was first created.</p>",
+        "DBProxy$UpdatedDate": "<p>The date and time when the proxy was last updated.</p>",
+        "DBProxyTargetGroup$CreatedDate": "<p>The date and time when the target group was first created.</p>",
+        "DBProxyTargetGroup$UpdatedDate": "<p>The date and time when the target group was last updated.</p>",
         "DBSnapshot$SnapshotCreateTime": "<p>Provides the time when the snapshot was taken, in Universal Coordinated Time (UTC).</p>",
         "DBSnapshot$InstanceCreateTime": "<p>Specifies the time when the snapshot was taken, in Universal Coordinated Time (UTC).</p>",
         "DescribeEventsMessage$StartTime": "<p> The beginning of the time interval to retrieve events for, specified in ISO 8601 format. For more information about ISO 8601, go to the <a href=\"http://en.wikipedia.org/wiki/ISO_8601\">ISO8601 Wikipedia page.</a> </p> <p>Example: 2009-07-08T18:00Z</p>",
@@ -3962,6 +4250,7 @@
         "CreateDBInstanceMessage$Tags": "<p>Tags to assign to the DB instance.</p>",
         "CreateDBInstanceReadReplicaMessage$Tags": null,
         "CreateDBParameterGroupMessage$Tags": "<p>Tags to assign to the DB parameter group.</p>",
+        "CreateDBProxyRequest$Tags": "<p>An optional set of key-value pairs to associate arbitrary data of your choosing with the proxy.</p>",
         "CreateDBSecurityGroupMessage$Tags": "<p>Tags to assign to the DB security group.</p>",
         "CreateDBSnapshotMessage$Tags": null,
         "CreateDBSubnetGroupMessage$Tags": "<p>Tags to assign to the DB subnet group.</p>",
@@ -3982,6 +4271,25 @@
       "refs": {
       }
     },
+    "TargetGroupList": {
+      "base": null,
+      "refs": {
+        "DescribeDBProxyTargetGroupsResponse$TargetGroups": "<p>An arbitrary number of <code>DBProxyTargetGroup</code> objects, containing details of the corresponding target groups.</p>"
+      }
+    },
+    "TargetList": {
+      "base": null,
+      "refs": {
+        "DescribeDBProxyTargetsResponse$Targets": "<p>An arbitrary number of <code>DBProxyTarget</code> objects, containing details of the corresponding targets.</p>",
+        "RegisterDBProxyTargetsResponse$DBProxyTargets": "<p>One or more <code>DBProxyTarget</code> objects that are created when you register targets with a target group.</p>"
+      }
+    },
+    "TargetType": {
+      "base": null,
+      "refs": {
+        "DBProxyTarget$Type": "<p>Specifies the kind of database, such as an RDS DB instance or an Aurora DB cluster, that the target represents.</p>"
+      }
+    },
     "Timezone": {
       "base": "<p>A time zone associated with a <code>DBInstance</code> or a <code>DBSnapshot</code>. This data type is an element in the response to the <code>DescribeDBInstances</code>, the <code>DescribeDBSnapshots</code>, and the <code>DescribeDBEngineVersions</code> actions. </p>",
       "refs": {
@@ -3992,6 +4300,31 @@
       "base": "<p>The version of the database engine that a DB instance can be upgraded to.</p>",
       "refs": {
         "ValidUpgradeTargetList$member": null
+      }
+    },
+    "UserAuthConfig": {
+      "base": "<note> <p>This is prerelease documentation for the RDS Database Proxy feature in preview release. It is subject to change.</p> </note> <p>Specifies the details of authentication used by a proxy to log in as a specific database user.</p>",
+      "refs": {
+        "UserAuthConfigList$member": null
+      }
+    },
+    "UserAuthConfigInfo": {
+      "base": "<note> <p>This is prerelease documentation for the RDS Database Proxy feature in preview release. It is subject to change.</p> </note> <p>Returns the details of authentication used by a proxy to log in as a specific database user.</p>",
+      "refs": {
+        "UserAuthConfigInfoList$member": null
+      }
+    },
+    "UserAuthConfigInfoList": {
+      "base": null,
+      "refs": {
+        "DBProxy$Auth": "<p>One or more data structures specifying the authorization mechanism to connect to the associated RDS DB instance or Aurora DB cluster.</p>"
+      }
+    },
+    "UserAuthConfigList": {
+      "base": null,
+      "refs": {
+        "CreateDBProxyRequest$Auth": "<p>The authorization mechanism that the proxy uses.</p>",
+        "ModifyDBProxyRequest$Auth": "<p>The new authentication settings for the <code>DBProxy</code>.</p>"
       }
     },
     "ValidDBInstanceModificationsMessage": {
