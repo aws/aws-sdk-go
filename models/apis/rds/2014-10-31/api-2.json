@@ -396,6 +396,23 @@
         {"shape":"DBParameterGroupAlreadyExistsFault"}
       ]
     },
+    "CreateDBProxy":{
+      "name":"CreateDBProxy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateDBProxyRequest"},
+      "output":{
+        "shape":"CreateDBProxyResponse",
+        "resultWrapper":"CreateDBProxyResult"
+      },
+      "errors":[
+        {"shape":"InvalidSubnet"},
+        {"shape":"DBProxyAlreadyExistsFault"},
+        {"shape":"DBProxyQuotaExceededFault"}
+      ]
+    },
     "CreateDBSecurityGroup":{
       "name":"CreateDBSecurityGroup",
       "http":{
@@ -633,6 +650,22 @@
         {"shape":"DBParameterGroupNotFoundFault"}
       ]
     },
+    "DeleteDBProxy":{
+      "name":"DeleteDBProxy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteDBProxyRequest"},
+      "output":{
+        "shape":"DeleteDBProxyResponse",
+        "resultWrapper":"DeleteDBProxyResult"
+      },
+      "errors":[
+        {"shape":"DBProxyNotFoundFault"},
+        {"shape":"InvalidDBProxyStateFault"}
+      ]
+    },
     "DeleteDBSecurityGroup":{
       "name":"DeleteDBSecurityGroup",
       "http":{
@@ -731,6 +764,23 @@
       "errors":[
         {"shape":"OptionGroupNotFoundFault"},
         {"shape":"InvalidOptionGroupStateFault"}
+      ]
+    },
+    "DeregisterDBProxyTargets":{
+      "name":"DeregisterDBProxyTargets",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeregisterDBProxyTargetsRequest"},
+      "output":{
+        "shape":"DeregisterDBProxyTargetsResponse",
+        "resultWrapper":"DeregisterDBProxyTargetsResult"
+      },
+      "errors":[
+        {"shape":"DBProxyTargetNotFoundFault"},
+        {"shape":"DBProxyTargetGroupNotFoundFault"},
+        {"shape":"DBProxyNotFoundFault"}
       ]
     },
     "DescribeAccountAttributes":{
@@ -966,6 +1016,53 @@
       },
       "errors":[
         {"shape":"DBParameterGroupNotFoundFault"}
+      ]
+    },
+    "DescribeDBProxies":{
+      "name":"DescribeDBProxies",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDBProxiesRequest"},
+      "output":{
+        "shape":"DescribeDBProxiesResponse",
+        "resultWrapper":"DescribeDBProxiesResult"
+      },
+      "errors":[
+        {"shape":"DBProxyNotFoundFault"}
+      ]
+    },
+    "DescribeDBProxyTargetGroups":{
+      "name":"DescribeDBProxyTargetGroups",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDBProxyTargetGroupsRequest"},
+      "output":{
+        "shape":"DescribeDBProxyTargetGroupsResponse",
+        "resultWrapper":"DescribeDBProxyTargetGroupsResult"
+      },
+      "errors":[
+        {"shape":"DBProxyTargetGroupNotFoundFault"}
+      ]
+    },
+    "DescribeDBProxyTargets":{
+      "name":"DescribeDBProxyTargets",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDBProxyTargetsRequest"},
+      "output":{
+        "shape":"DescribeDBProxyTargetsResponse",
+        "resultWrapper":"DescribeDBProxyTargetsResult"
+      },
+      "errors":[
+        {"shape":"DBProxyNotFoundFault"},
+        {"shape":"DBProxyTargetNotFoundFault"},
+        {"shape":"DBProxyTargetGroupNotFoundFault"}
       ]
     },
     "DescribeDBSecurityGroups":{
@@ -1441,6 +1538,39 @@
         {"shape":"InvalidDBParameterGroupStateFault"}
       ]
     },
+    "ModifyDBProxy":{
+      "name":"ModifyDBProxy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyDBProxyRequest"},
+      "output":{
+        "shape":"ModifyDBProxyResponse",
+        "resultWrapper":"ModifyDBProxyResult"
+      },
+      "errors":[
+        {"shape":"DBProxyNotFoundFault"},
+        {"shape":"DBProxyAlreadyExistsFault"},
+        {"shape":"InvalidDBProxyStateFault"}
+      ]
+    },
+    "ModifyDBProxyTargetGroup":{
+      "name":"ModifyDBProxyTargetGroup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyDBProxyTargetGroupRequest"},
+      "output":{
+        "shape":"ModifyDBProxyTargetGroupResponse",
+        "resultWrapper":"ModifyDBProxyTargetGroupResult"
+      },
+      "errors":[
+        {"shape":"DBProxyNotFoundFault"},
+        {"shape":"DBProxyTargetGroupNotFoundFault"}
+      ]
+    },
     "ModifyDBSnapshot":{
       "name":"ModifyDBSnapshot",
       "http":{
@@ -1607,6 +1737,27 @@
       "errors":[
         {"shape":"InvalidDBInstanceStateFault"},
         {"shape":"DBInstanceNotFoundFault"}
+      ]
+    },
+    "RegisterDBProxyTargets":{
+      "name":"RegisterDBProxyTargets",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RegisterDBProxyTargetsRequest"},
+      "output":{
+        "shape":"RegisterDBProxyTargetsResponse",
+        "resultWrapper":"RegisterDBProxyTargetsResult"
+      },
+      "errors":[
+        {"shape":"DBProxyNotFoundFault"},
+        {"shape":"DBProxyTargetGroupNotFoundFault"},
+        {"shape":"DBClusterNotFoundFault"},
+        {"shape":"DBInstanceNotFoundFault"},
+        {"shape":"DBProxyTargetAlreadyRegisteredFault"},
+        {"shape":"InvalidDBInstanceStateFault"},
+        {"shape":"InvalidDBClusterStateFault"}
       ]
     },
     "RemoveFromGlobalCluster":{
@@ -2167,6 +2318,10 @@
         "locationName":"AttributeValue"
       }
     },
+    "AuthScheme":{
+      "type":"string",
+      "enum":["SECRETS"]
+    },
     "AuthorizationAlreadyExistsFault":{
       "type":"structure",
       "members":{
@@ -2330,6 +2485,26 @@
       "members":{
         "EnableLogTypes":{"shape":"LogTypeList"},
         "DisableLogTypes":{"shape":"LogTypeList"}
+      }
+    },
+    "ConnectionPoolConfiguration":{
+      "type":"structure",
+      "members":{
+        "MaxConnectionsPercent":{"shape":"IntegerOptional"},
+        "MaxIdleConnectionsPercent":{"shape":"IntegerOptional"},
+        "ConnectionBorrowTimeout":{"shape":"IntegerOptional"},
+        "SessionPinningFilters":{"shape":"StringList"},
+        "InitQuery":{"shape":"String"}
+      }
+    },
+    "ConnectionPoolConfigurationInfo":{
+      "type":"structure",
+      "members":{
+        "MaxConnectionsPercent":{"shape":"Integer"},
+        "MaxIdleConnectionsPercent":{"shape":"Integer"},
+        "ConnectionBorrowTimeout":{"shape":"Integer"},
+        "SessionPinningFilters":{"shape":"StringList"},
+        "InitQuery":{"shape":"String"}
       }
     },
     "CopyDBClusterParameterGroupMessage":{
@@ -2675,6 +2850,34 @@
       "type":"structure",
       "members":{
         "DBParameterGroup":{"shape":"DBParameterGroup"}
+      }
+    },
+    "CreateDBProxyRequest":{
+      "type":"structure",
+      "required":[
+        "DBProxyName",
+        "EngineFamily",
+        "Auth",
+        "RoleArn",
+        "VpcSubnetIds"
+      ],
+      "members":{
+        "DBProxyName":{"shape":"String"},
+        "EngineFamily":{"shape":"EngineFamily"},
+        "Auth":{"shape":"UserAuthConfigList"},
+        "RoleArn":{"shape":"String"},
+        "VpcSubnetIds":{"shape":"StringList"},
+        "VpcSecurityGroupIds":{"shape":"StringList"},
+        "RequireTLS":{"shape":"Boolean"},
+        "IdleClientTimeout":{"shape":"IntegerOptional"},
+        "DebugLogging":{"shape":"Boolean"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateDBProxyResponse":{
+      "type":"structure",
+      "members":{
+        "DBProxy":{"shape":"DBProxy"}
       }
     },
     "CreateDBSecurityGroupMessage":{
@@ -3633,6 +3836,130 @@
         "DBParameterGroups":{"shape":"DBParameterGroupList"}
       }
     },
+    "DBProxy":{
+      "type":"structure",
+      "members":{
+        "DBProxyName":{"shape":"String"},
+        "DBProxyArn":{"shape":"String"},
+        "Status":{"shape":"DBProxyStatus"},
+        "EngineFamily":{"shape":"String"},
+        "VpcSecurityGroupIds":{"shape":"StringList"},
+        "VpcSubnetIds":{"shape":"StringList"},
+        "Auth":{"shape":"UserAuthConfigInfoList"},
+        "RoleArn":{"shape":"String"},
+        "Endpoint":{"shape":"String"},
+        "RequireTLS":{"shape":"Boolean"},
+        "IdleClientTimeout":{"shape":"Integer"},
+        "DebugLogging":{"shape":"Boolean"},
+        "CreatedDate":{"shape":"TStamp"},
+        "UpdatedDate":{"shape":"TStamp"}
+      }
+    },
+    "DBProxyAlreadyExistsFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DBProxyAlreadyExistsFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "DBProxyList":{
+      "type":"list",
+      "member":{"shape":"DBProxy"}
+    },
+    "DBProxyNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DBProxyNotFoundFault",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "DBProxyQuotaExceededFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DBProxyQuotaExceededFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "DBProxyStatus":{
+      "type":"string",
+      "enum":[
+        "available",
+        "modifying",
+        "incompatible-network",
+        "insufficient-resource-limits",
+        "creating",
+        "deleting"
+      ]
+    },
+    "DBProxyTarget":{
+      "type":"structure",
+      "members":{
+        "TargetArn":{"shape":"String"},
+        "Endpoint":{"shape":"String"},
+        "TrackedClusterId":{"shape":"String"},
+        "RdsResourceId":{"shape":"String"},
+        "Port":{"shape":"Integer"},
+        "Type":{"shape":"TargetType"}
+      }
+    },
+    "DBProxyTargetAlreadyRegisteredFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DBProxyTargetAlreadyRegisteredFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "DBProxyTargetGroup":{
+      "type":"structure",
+      "members":{
+        "DBProxyName":{"shape":"String"},
+        "TargetGroupName":{"shape":"String"},
+        "TargetGroupArn":{"shape":"String"},
+        "IsDefault":{"shape":"Boolean"},
+        "Status":{"shape":"String"},
+        "ConnectionPoolConfig":{"shape":"ConnectionPoolConfigurationInfo"},
+        "CreatedDate":{"shape":"TStamp"},
+        "UpdatedDate":{"shape":"TStamp"}
+      }
+    },
+    "DBProxyTargetGroupNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DBProxyTargetGroupNotFoundFault",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "DBProxyTargetNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DBProxyTargetNotFoundFault",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "DBSecurityGroup":{
       "type":"structure",
       "members":{
@@ -4012,6 +4339,19 @@
         "DBParameterGroupName":{"shape":"String"}
       }
     },
+    "DeleteDBProxyRequest":{
+      "type":"structure",
+      "required":["DBProxyName"],
+      "members":{
+        "DBProxyName":{"shape":"String"}
+      }
+    },
+    "DeleteDBProxyResponse":{
+      "type":"structure",
+      "members":{
+        "DBProxy":{"shape":"DBProxy"}
+      }
+    },
     "DeleteDBSecurityGroupMessage":{
       "type":"structure",
       "required":["DBSecurityGroupName"],
@@ -4077,6 +4417,21 @@
       "required":["OptionGroupName"],
       "members":{
         "OptionGroupName":{"shape":"String"}
+      }
+    },
+    "DeregisterDBProxyTargetsRequest":{
+      "type":"structure",
+      "required":["DBProxyName"],
+      "members":{
+        "DBProxyName":{"shape":"String"},
+        "TargetGroupName":{"shape":"String"},
+        "DBInstanceIdentifiers":{"shape":"StringList"},
+        "DBClusterIdentifiers":{"shape":"StringList"}
+      }
+    },
+    "DeregisterDBProxyTargetsResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "DescribeAccountAttributesMessage":{
@@ -4265,6 +4620,58 @@
         "Source":{"shape":"String"},
         "Filters":{"shape":"FilterList"},
         "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"String"}
+      }
+    },
+    "DescribeDBProxiesRequest":{
+      "type":"structure",
+      "members":{
+        "DBProxyName":{"shape":"String"},
+        "Filters":{"shape":"FilterList"},
+        "Marker":{"shape":"String"},
+        "MaxRecords":{"shape":"MaxRecords"}
+      }
+    },
+    "DescribeDBProxiesResponse":{
+      "type":"structure",
+      "members":{
+        "DBProxies":{"shape":"DBProxyList"},
+        "Marker":{"shape":"String"}
+      }
+    },
+    "DescribeDBProxyTargetGroupsRequest":{
+      "type":"structure",
+      "required":["DBProxyName"],
+      "members":{
+        "DBProxyName":{"shape":"String"},
+        "TargetGroupName":{"shape":"String"},
+        "Filters":{"shape":"FilterList"},
+        "Marker":{"shape":"String"},
+        "MaxRecords":{"shape":"MaxRecords"}
+      }
+    },
+    "DescribeDBProxyTargetGroupsResponse":{
+      "type":"structure",
+      "members":{
+        "TargetGroups":{"shape":"TargetGroupList"},
+        "Marker":{"shape":"String"}
+      }
+    },
+    "DescribeDBProxyTargetsRequest":{
+      "type":"structure",
+      "required":["DBProxyName"],
+      "members":{
+        "DBProxyName":{"shape":"String"},
+        "TargetGroupName":{"shape":"String"},
+        "Filters":{"shape":"FilterList"},
+        "Marker":{"shape":"String"},
+        "MaxRecords":{"shape":"MaxRecords"}
+      }
+    },
+    "DescribeDBProxyTargetsResponse":{
+      "type":"structure",
+      "members":{
+        "Targets":{"shape":"TargetList"},
         "Marker":{"shape":"String"}
       }
     },
@@ -4587,6 +4994,10 @@
       },
       "wrapper":true
     },
+    "EngineFamily":{
+      "type":"string",
+      "enum":["MYSQL"]
+    },
     "EngineModeList":{
       "type":"list",
       "member":{"shape":"String"}
@@ -4807,6 +5218,13 @@
         "GlobalClusters":{"shape":"GlobalClusterList"}
       }
     },
+    "IAMAuthMode":{
+      "type":"string",
+      "enum":[
+        "DISABLED",
+        "REQUIRED"
+      ]
+    },
     "IPRange":{
       "type":"structure",
       "members":{
@@ -5016,6 +5434,17 @@
       },
       "exception":true
     },
+    "InvalidDBProxyStateFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidDBProxyStateFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "InvalidDBSecurityGroupStateFault":{
       "type":"structure",
       "members":{
@@ -5177,6 +5606,11 @@
     },
     "Long":{"type":"long"},
     "LongOptional":{"type":"long"},
+    "MaxRecords":{
+      "type":"integer",
+      "max":100,
+      "min":20
+    },
     "MinimumEngineVersionPerAllowedValue":{
       "type":"structure",
       "members":{
@@ -5336,6 +5770,45 @@
       "members":{
         "DBParameterGroupName":{"shape":"String"},
         "Parameters":{"shape":"ParametersList"}
+      }
+    },
+    "ModifyDBProxyRequest":{
+      "type":"structure",
+      "required":["DBProxyName"],
+      "members":{
+        "DBProxyName":{"shape":"String"},
+        "NewDBProxyName":{"shape":"String"},
+        "Auth":{"shape":"UserAuthConfigList"},
+        "RequireTLS":{"shape":"BooleanOptional"},
+        "IdleClientTimeout":{"shape":"IntegerOptional"},
+        "DebugLogging":{"shape":"BooleanOptional"},
+        "RoleArn":{"shape":"String"},
+        "SecurityGroups":{"shape":"StringList"}
+      }
+    },
+    "ModifyDBProxyResponse":{
+      "type":"structure",
+      "members":{
+        "DBProxy":{"shape":"DBProxy"}
+      }
+    },
+    "ModifyDBProxyTargetGroupRequest":{
+      "type":"structure",
+      "required":[
+        "TargetGroupName",
+        "DBProxyName"
+      ],
+      "members":{
+        "TargetGroupName":{"shape":"String"},
+        "DBProxyName":{"shape":"String"},
+        "ConnectionPoolConfig":{"shape":"ConnectionPoolConfiguration"},
+        "NewName":{"shape":"String"}
+      }
+    },
+    "ModifyDBProxyTargetGroupResponse":{
+      "type":"structure",
+      "members":{
+        "DBProxyTargetGroup":{"shape":"DBProxyTargetGroup"}
       }
     },
     "ModifyDBSnapshotAttributeMessage":{
@@ -5940,6 +6413,22 @@
       "member":{
         "shape":"RecurringCharge",
         "locationName":"RecurringCharge"
+      }
+    },
+    "RegisterDBProxyTargetsRequest":{
+      "type":"structure",
+      "required":["DBProxyName"],
+      "members":{
+        "DBProxyName":{"shape":"String"},
+        "TargetGroupName":{"shape":"String"},
+        "DBInstanceIdentifiers":{"shape":"StringList"},
+        "DBClusterIdentifiers":{"shape":"StringList"}
+      }
+    },
+    "RegisterDBProxyTargetsResponse":{
+      "type":"structure",
+      "members":{
+        "DBProxyTargets":{"shape":"TargetList"}
       }
     },
     "RemoveFromGlobalClusterMessage":{
@@ -6797,6 +7286,22 @@
         "TagList":{"shape":"TagList"}
       }
     },
+    "TargetGroupList":{
+      "type":"list",
+      "member":{"shape":"DBProxyTargetGroup"}
+    },
+    "TargetList":{
+      "type":"list",
+      "member":{"shape":"DBProxyTarget"}
+    },
+    "TargetType":{
+      "type":"string",
+      "enum":[
+        "RDS_INSTANCE",
+        "RDS_SERVERLESS_ENDPOINT",
+        "TRACKED_CLUSTER"
+      ]
+    },
     "Timezone":{
       "type":"structure",
       "members":{
@@ -6812,6 +7317,34 @@
         "AutoUpgrade":{"shape":"Boolean"},
         "IsMajorVersionUpgrade":{"shape":"Boolean"}
       }
+    },
+    "UserAuthConfig":{
+      "type":"structure",
+      "members":{
+        "Description":{"shape":"String"},
+        "UserName":{"shape":"String"},
+        "AuthScheme":{"shape":"AuthScheme"},
+        "SecretArn":{"shape":"String"},
+        "IAMAuth":{"shape":"IAMAuthMode"}
+      }
+    },
+    "UserAuthConfigInfo":{
+      "type":"structure",
+      "members":{
+        "Description":{"shape":"String"},
+        "UserName":{"shape":"String"},
+        "AuthScheme":{"shape":"AuthScheme"},
+        "SecretArn":{"shape":"String"},
+        "IAMAuth":{"shape":"IAMAuthMode"}
+      }
+    },
+    "UserAuthConfigInfoList":{
+      "type":"list",
+      "member":{"shape":"UserAuthConfigInfo"}
+    },
+    "UserAuthConfigList":{
+      "type":"list",
+      "member":{"shape":"UserAuthConfig"}
     },
     "ValidDBInstanceModificationsMessage":{
       "type":"structure",

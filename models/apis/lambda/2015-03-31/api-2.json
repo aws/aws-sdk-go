@@ -111,6 +111,7 @@
       "errors":[
         {"shape":"ServiceException"},
         {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceConflictException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -191,6 +192,22 @@
         {"shape":"TooManyRequestsException"}
       ]
     },
+    "DeleteProvisionedConcurrencyConfig":{
+      "name":"DeleteProvisionedConcurrencyConfig",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2019-09-30/functions/{FunctionName}/provisioned-concurrency",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteProvisionedConcurrencyConfigRequest"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ServiceException"}
+      ]
+    },
     "GetAccountSettings":{
       "name":"GetAccountSettings",
       "http":{
@@ -251,6 +268,22 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"InvalidParameterValueException"}
+      ]
+    },
+    "GetFunctionConcurrency":{
+      "name":"GetFunctionConcurrency",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2019-09-30/functions/{FunctionName}/concurrency",
+        "responseCode":200
+      },
+      "input":{"shape":"GetFunctionConcurrencyRequest"},
+      "output":{"shape":"GetFunctionConcurrencyResponse"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ServiceException"}
       ]
     },
     "GetFunctionConfiguration":{
@@ -347,6 +380,23 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"InvalidParameterValueException"}
+      ]
+    },
+    "GetProvisionedConcurrencyConfig":{
+      "name":"GetProvisionedConcurrencyConfig",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2019-09-30/functions/{FunctionName}/provisioned-concurrency",
+        "responseCode":200
+      },
+      "input":{"shape":"GetProvisionedConcurrencyConfigRequest"},
+      "output":{"shape":"GetProvisionedConcurrencyConfigResponse"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ServiceException"},
+        {"shape":"ProvisionedConcurrencyConfigNotFoundException"}
       ]
     },
     "Invoke":{
@@ -494,6 +544,22 @@
         {"shape":"TooManyRequestsException"}
       ]
     },
+    "ListProvisionedConcurrencyConfigs":{
+      "name":"ListProvisionedConcurrencyConfigs",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2019-09-30/functions/{FunctionName}/provisioned-concurrency?List=ALL",
+        "responseCode":200
+      },
+      "input":{"shape":"ListProvisionedConcurrencyConfigsRequest"},
+      "output":{"shape":"ListProvisionedConcurrencyConfigsResponse"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ServiceException"}
+      ]
+    },
     "ListTags":{
       "name":"ListTags",
       "http":{
@@ -592,6 +658,23 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidParameterValueException"},
         {"shape":"TooManyRequestsException"}
+      ]
+    },
+    "PutProvisionedConcurrencyConfig":{
+      "name":"PutProvisionedConcurrencyConfig",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2019-09-30/functions/{FunctionName}/provisioned-concurrency",
+        "responseCode":202
+      },
+      "input":{"shape":"PutProvisionedConcurrencyConfigRequest"},
+      "output":{"shape":"PutProvisionedConcurrencyConfigResponse"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ServiceException"}
       ]
     },
     "RemoveLayerVersionPermission":{
@@ -1084,6 +1167,25 @@
         }
       }
     },
+    "DeleteProvisionedConcurrencyConfigRequest":{
+      "type":"structure",
+      "required":[
+        "FunctionName",
+        "Qualifier"
+      ],
+      "members":{
+        "FunctionName":{
+          "shape":"FunctionName",
+          "location":"uri",
+          "locationName":"FunctionName"
+        },
+        "Qualifier":{
+          "shape":"Qualifier",
+          "location":"querystring",
+          "locationName":"Qualifier"
+        }
+      }
+    },
     "Description":{
       "type":"string",
       "max":256,
@@ -1333,6 +1435,23 @@
         }
       }
     },
+    "GetFunctionConcurrencyRequest":{
+      "type":"structure",
+      "required":["FunctionName"],
+      "members":{
+        "FunctionName":{
+          "shape":"FunctionName",
+          "location":"uri",
+          "locationName":"FunctionName"
+        }
+      }
+    },
+    "GetFunctionConcurrencyResponse":{
+      "type":"structure",
+      "members":{
+        "ReservedConcurrentExecutions":{"shape":"ReservedConcurrentExecutions"}
+      }
+    },
     "GetFunctionConfigurationRequest":{
       "type":"structure",
       "required":["FunctionName"],
@@ -1480,6 +1599,36 @@
       "members":{
         "Policy":{"shape":"String"},
         "RevisionId":{"shape":"String"}
+      }
+    },
+    "GetProvisionedConcurrencyConfigRequest":{
+      "type":"structure",
+      "required":[
+        "FunctionName",
+        "Qualifier"
+      ],
+      "members":{
+        "FunctionName":{
+          "shape":"FunctionName",
+          "location":"uri",
+          "locationName":"FunctionName"
+        },
+        "Qualifier":{
+          "shape":"Qualifier",
+          "location":"querystring",
+          "locationName":"Qualifier"
+        }
+      }
+    },
+    "GetProvisionedConcurrencyConfigResponse":{
+      "type":"structure",
+      "members":{
+        "RequestedProvisionedConcurrentExecutions":{"shape":"PositiveInteger"},
+        "AvailableProvisionedConcurrentExecutions":{"shape":"NonNegativeInteger"},
+        "AllocatedProvisionedConcurrentExecutions":{"shape":"NonNegativeInteger"},
+        "Status":{"shape":"ProvisionedConcurrencyStatusEnum"},
+        "StatusReason":{"shape":"String"},
+        "LastModified":{"shape":"Timestamp"}
       }
     },
     "Handler":{
@@ -1970,6 +2119,34 @@
         "Layers":{"shape":"LayersList"}
       }
     },
+    "ListProvisionedConcurrencyConfigsRequest":{
+      "type":"structure",
+      "required":["FunctionName"],
+      "members":{
+        "FunctionName":{
+          "shape":"FunctionName",
+          "location":"uri",
+          "locationName":"FunctionName"
+        },
+        "Marker":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"Marker"
+        },
+        "MaxItems":{
+          "shape":"MaxProvisionedConcurrencyConfigListItems",
+          "location":"querystring",
+          "locationName":"MaxItems"
+        }
+      }
+    },
+    "ListProvisionedConcurrencyConfigsResponse":{
+      "type":"structure",
+      "members":{
+        "ProvisionedConcurrencyConfigs":{"shape":"ProvisionedConcurrencyConfigList"},
+        "NextMarker":{"shape":"String"}
+      }
+    },
     "ListTagsRequest":{
       "type":"structure",
       "required":["Resource"],
@@ -2042,6 +2219,11 @@
       "max":10000,
       "min":1
     },
+    "MaxProvisionedConcurrencyConfigListItems":{
+      "type":"integer",
+      "max":50,
+      "min":1
+    },
     "MaximumBatchingWindowInSeconds":{
       "type":"integer",
       "max":300,
@@ -2088,6 +2270,10 @@
       "min":1,
       "pattern":"([a-zA-Z0-9-_.]+)"
     },
+    "NonNegativeInteger":{
+      "type":"integer",
+      "min":0
+    },
     "OnFailure":{
       "type":"structure",
       "members":{
@@ -2118,6 +2304,10 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "PositiveInteger":{
+      "type":"integer",
+      "min":1
+    },
     "PreconditionFailedException":{
       "type":"structure",
       "members":{
@@ -2130,6 +2320,39 @@
     "Principal":{
       "type":"string",
       "pattern":".*"
+    },
+    "ProvisionedConcurrencyConfigList":{
+      "type":"list",
+      "member":{"shape":"ProvisionedConcurrencyConfigListItem"}
+    },
+    "ProvisionedConcurrencyConfigListItem":{
+      "type":"structure",
+      "members":{
+        "FunctionArn":{"shape":"FunctionArn"},
+        "RequestedProvisionedConcurrentExecutions":{"shape":"PositiveInteger"},
+        "AvailableProvisionedConcurrentExecutions":{"shape":"NonNegativeInteger"},
+        "AllocatedProvisionedConcurrentExecutions":{"shape":"NonNegativeInteger"},
+        "Status":{"shape":"ProvisionedConcurrencyStatusEnum"},
+        "StatusReason":{"shape":"String"},
+        "LastModified":{"shape":"Timestamp"}
+      }
+    },
+    "ProvisionedConcurrencyConfigNotFoundException":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"String"},
+        "message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":404},
+      "exception":true
+    },
+    "ProvisionedConcurrencyStatusEnum":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "READY",
+        "FAILED"
+      ]
     },
     "PublishLayerVersionRequest":{
       "type":"structure",
@@ -2208,6 +2431,38 @@
         "MaximumRetryAttempts":{"shape":"MaximumRetryAttempts"},
         "MaximumEventAgeInSeconds":{"shape":"MaximumEventAgeInSeconds"},
         "DestinationConfig":{"shape":"DestinationConfig"}
+      }
+    },
+    "PutProvisionedConcurrencyConfigRequest":{
+      "type":"structure",
+      "required":[
+        "FunctionName",
+        "Qualifier",
+        "ProvisionedConcurrentExecutions"
+      ],
+      "members":{
+        "FunctionName":{
+          "shape":"FunctionName",
+          "location":"uri",
+          "locationName":"FunctionName"
+        },
+        "Qualifier":{
+          "shape":"Qualifier",
+          "location":"querystring",
+          "locationName":"Qualifier"
+        },
+        "ProvisionedConcurrentExecutions":{"shape":"PositiveInteger"}
+      }
+    },
+    "PutProvisionedConcurrencyConfigResponse":{
+      "type":"structure",
+      "members":{
+        "RequestedProvisionedConcurrentExecutions":{"shape":"PositiveInteger"},
+        "AvailableProvisionedConcurrentExecutions":{"shape":"NonNegativeInteger"},
+        "AllocatedProvisionedConcurrentExecutions":{"shape":"NonNegativeInteger"},
+        "Status":{"shape":"ProvisionedConcurrencyStatusEnum"},
+        "StatusReason":{"shape":"String"},
+        "LastModified":{"shape":"Timestamp"}
       }
     },
     "Qualifier":{
