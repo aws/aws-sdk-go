@@ -15,24 +15,6 @@ type Unmarshaler interface {
 	UnmarshalEvent(protocol.PayloadUnmarshaler, eventstream.Message) error
 }
 
-// EventStream headers with specific meaning to async API functionality.
-const (
-	MessageTypeHeader    = `:message-type` // Identifies type of message.
-	EventMessageType     = `event`
-	ErrorMessageType     = `error`
-	ExceptionMessageType = `exception`
-
-	// Message Events
-	EventTypeHeader = `:event-type` // Identifies message event type e.g. "Stats".
-
-	// Message Error
-	ErrorCodeHeader    = `:error-code`
-	ErrorMessageHeader = `:error-message`
-
-	// Message Exception
-	ExceptionTypeHeader = `:exception-type`
-)
-
 // EventReader provides reading from the EventStream of an reader.
 type EventReader struct {
 	reader  io.ReadCloser
@@ -95,8 +77,7 @@ func (r *EventReader) ReadEvent() (event interface{}, err error) {
 	case EventMessageType:
 		return r.unmarshalEventMessage(msg)
 	case ExceptionMessageType:
-		err = r.unmarshalEventException(msg)
-		return nil, err
+		return nil, r.unmarshalEventException(msg)
 	case ErrorMessageType:
 		return nil, r.unmarshalErrorMessage(msg)
 	default:
