@@ -124,6 +124,8 @@
         "shape" : "BadRequestException"
       }, {
         "shape" : "ConflictException"
+      }, {
+        "shape" : "AccessDeniedException"
       } ]
     },
     "CreateIntegration" : {
@@ -314,6 +316,22 @@
         "shape" : "TooManyRequestsException"
       } ]
     },
+    "DeleteCorsConfiguration" : {
+      "name" : "DeleteCorsConfiguration",
+      "http" : {
+        "method" : "DELETE",
+        "requestUri" : "/v2/apis/{apiId}/cors",
+        "responseCode" : 204
+      },
+      "input" : {
+        "shape" : "DeleteCorsConfigurationRequest"
+      },
+      "errors" : [ {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
+    },
     "DeleteDeployment" : {
       "name" : "DeleteDeployment",
       "http" : {
@@ -419,6 +437,22 @@
       },
       "input" : {
         "shape" : "DeleteRouteResponseRequest"
+      },
+      "errors" : [ {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
+    },
+    "DeleteRouteSettings" : {
+      "name" : "DeleteRouteSettings",
+      "http" : {
+        "method" : "DELETE",
+        "requestUri" : "/v2/apis/{apiId}/stages/{stageName}/routesettings/{routeKey}",
+        "responseCode" : 204
+      },
+      "input" : {
+        "shape" : "DeleteRouteSettingsRequest"
       },
       "errors" : [ {
         "shape" : "NotFoundException"
@@ -926,6 +960,52 @@
         "shape" : "ConflictException"
       } ]
     },
+    "ImportApi" : {
+      "name" : "ImportApi",
+      "http" : {
+        "method" : "PUT",
+        "requestUri" : "/v2/apis",
+        "responseCode" : 201
+      },
+      "input" : {
+        "shape" : "ImportApiRequest"
+      },
+      "output" : {
+        "shape" : "ImportApiResponse"
+      },
+      "errors" : [ {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      }, {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "ConflictException"
+      } ]
+    },
+    "ReimportApi" : {
+      "name" : "ReimportApi",
+      "http" : {
+        "method" : "PUT",
+        "requestUri" : "/v2/apis/{apiId}",
+        "responseCode" : 201
+      },
+      "input" : {
+        "shape" : "ReimportApiRequest"
+      },
+      "output" : {
+        "shape" : "ReimportApiResponse"
+      },
+      "errors" : [ {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      }, {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "ConflictException"
+      } ]
+    },
     "TagResource" : {
       "name" : "TagResource",
       "http" : {
@@ -1224,6 +1304,19 @@
     }
   },
   "shapes" : {
+    "AccessDeniedException" : {
+      "type" : "structure",
+      "members" : {
+        "Message" : {
+          "shape" : "__string",
+          "locationName" : "message"
+        }
+      },
+      "exception" : true,
+      "error" : {
+        "httpStatusCode" : 403
+      }
+    },
     "AccessLogSettings" : {
       "type" : "structure",
       "members" : {
@@ -1252,6 +1345,10 @@
           "shape" : "SelectionExpression",
           "locationName" : "apiKeySelectionExpression"
         },
+        "CorsConfiguration" : {
+          "shape" : "Cors",
+          "locationName" : "corsConfiguration"
+        },
         "CreatedDate" : {
           "shape" : "__timestampIso8601",
           "locationName" : "createdDate"
@@ -1263,6 +1360,10 @@
         "DisableSchemaValidation" : {
           "shape" : "__boolean",
           "locationName" : "disableSchemaValidation"
+        },
+        "ImportInfo" : {
+          "shape" : "__listOf__string",
+          "locationName" : "importInfo"
         },
         "Name" : {
           "shape" : "StringWithLengthBetween1And128",
@@ -1276,6 +1377,10 @@
           "shape" : "SelectionExpression",
           "locationName" : "routeSelectionExpression"
         },
+        "Tags" : {
+          "shape" : "Tags",
+          "locationName" : "tags"
+        },
         "Version" : {
           "shape" : "StringWithLengthBetween1And64",
           "locationName" : "version"
@@ -1283,13 +1388,9 @@
         "Warnings" : {
           "shape" : "__listOf__string",
           "locationName" : "warnings"
-        },
-        "Tags" : {
-          "shape" : "Tags",
-          "locationName" : "tags"
         }
       },
-      "required" : [ "RouteSelectionExpression", "ProtocolType", "Name" ]
+      "required" : [ "RouteSelectionExpression", "Name", "ProtocolType" ]
     },
     "ApiMapping" : {
       "type" : "structure",
@@ -1350,7 +1451,7 @@
     },
     "AuthorizationType" : {
       "type" : "string",
-      "enum" : [ "NONE", "AWS_IAM", "CUSTOM" ]
+      "enum" : [ "NONE", "AWS_IAM", "CUSTOM", "JWT" ]
     },
     "Authorizer" : {
       "type" : "structure",
@@ -1383,20 +1484,20 @@
           "shape" : "StringWithLengthBetween0And1024",
           "locationName" : "identityValidationExpression"
         },
+        "JwtConfiguration" : {
+          "shape" : "JWTConfiguration",
+          "locationName" : "jwtConfiguration"
+        },
         "Name" : {
           "shape" : "StringWithLengthBetween1And128",
           "locationName" : "name"
-        },
-        "ProviderArns" : {
-          "shape" : "ProviderArnList",
-          "locationName" : "providerArns"
         }
       },
       "required" : [ "Name" ]
     },
     "AuthorizerType" : {
       "type" : "string",
-      "enum" : [ "REQUEST" ]
+      "enum" : [ "REQUEST", "JWT" ]
     },
     "Authorizers" : {
       "type" : "structure",
@@ -1445,12 +1546,67 @@
       "type" : "string",
       "enum" : [ "CONVERT_TO_BINARY", "CONVERT_TO_TEXT" ]
     },
+    "Cors" : {
+      "type" : "structure",
+      "members" : {
+        "AllowCredentials" : {
+          "shape" : "__boolean",
+          "locationName" : "allowCredentials"
+        },
+        "AllowHeaders" : {
+          "shape" : "CorsHeaderList",
+          "locationName" : "allowHeaders"
+        },
+        "AllowMethods" : {
+          "shape" : "CorsMethodList",
+          "locationName" : "allowMethods"
+        },
+        "AllowOrigins" : {
+          "shape" : "CorsOriginList",
+          "locationName" : "allowOrigins"
+        },
+        "ExposeHeaders" : {
+          "shape" : "CorsHeaderList",
+          "locationName" : "exposeHeaders"
+        },
+        "MaxAge" : {
+          "shape" : "IntegerWithLengthBetweenMinus1And86400",
+          "locationName" : "maxAge"
+        }
+      }
+    },
+    "CorsHeaderList" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "__string"
+      }
+    },
+    "CorsMethodList" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "StringWithLengthBetween1And64"
+      }
+    },
+    "CorsOriginList" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "__string"
+      }
+    },
     "CreateApiInput" : {
       "type" : "structure",
       "members" : {
         "ApiKeySelectionExpression" : {
           "shape" : "SelectionExpression",
           "locationName" : "apiKeySelectionExpression"
+        },
+        "CorsConfiguration" : {
+          "shape" : "Cors",
+          "locationName" : "corsConfiguration"
+        },
+        "CredentialsArn" : {
+          "shape" : "Arn",
+          "locationName" : "credentialsArn"
         },
         "Description" : {
           "shape" : "StringWithLengthBetween0And1024",
@@ -1468,20 +1624,28 @@
           "shape" : "ProtocolType",
           "locationName" : "protocolType"
         },
+        "RouteKey" : {
+          "shape" : "SelectionKey",
+          "locationName" : "routeKey"
+        },
         "RouteSelectionExpression" : {
           "shape" : "SelectionExpression",
           "locationName" : "routeSelectionExpression"
         },
-        "Version" : {
-          "shape" : "StringWithLengthBetween1And64",
-          "locationName" : "version"
-        },
         "Tags" : {
           "shape" : "Tags",
           "locationName" : "tags"
+        },
+        "Target" : {
+          "shape" : "UriWithLengthBetween1And2048",
+          "locationName" : "target"
+        },
+        "Version" : {
+          "shape" : "StringWithLengthBetween1And64",
+          "locationName" : "version"
         }
       },
-      "required" : [ "RouteSelectionExpression", "ProtocolType", "Name" ]
+      "required" : [ "ProtocolType", "Name" ]
     },
     "CreateApiMappingInput" : {
       "type" : "structure",
@@ -1552,6 +1716,14 @@
           "shape" : "SelectionExpression",
           "locationName" : "apiKeySelectionExpression"
         },
+        "CorsConfiguration" : {
+          "shape" : "Cors",
+          "locationName" : "corsConfiguration"
+        },
+        "CredentialsArn" : {
+          "shape" : "Arn",
+          "locationName" : "credentialsArn"
+        },
         "Description" : {
           "shape" : "StringWithLengthBetween0And1024",
           "locationName" : "description"
@@ -1568,16 +1740,28 @@
           "shape" : "ProtocolType",
           "locationName" : "protocolType"
         },
+        "RouteKey" : {
+          "shape" : "SelectionKey",
+          "locationName" : "routeKey"
+        },
         "RouteSelectionExpression" : {
           "shape" : "SelectionExpression",
           "locationName" : "routeSelectionExpression"
+        },
+        "Tags" : {
+          "shape" : "Tags",
+          "locationName" : "tags"
+        },
+        "Target" : {
+          "shape" : "UriWithLengthBetween1And2048",
+          "locationName" : "target"
         },
         "Version" : {
           "shape" : "StringWithLengthBetween1And64",
           "locationName" : "version"
         }
       },
-      "required" : [ "RouteSelectionExpression", "ProtocolType", "Name" ]
+      "required" : [ "ProtocolType", "Name" ]
     },
     "CreateApiResponse" : {
       "type" : "structure",
@@ -1594,6 +1778,10 @@
           "shape" : "SelectionExpression",
           "locationName" : "apiKeySelectionExpression"
         },
+        "CorsConfiguration" : {
+          "shape" : "Cors",
+          "locationName" : "corsConfiguration"
+        },
         "CreatedDate" : {
           "shape" : "__timestampIso8601",
           "locationName" : "createdDate"
@@ -1606,6 +1794,10 @@
           "shape" : "__boolean",
           "locationName" : "disableSchemaValidation"
         },
+        "ImportInfo" : {
+          "shape" : "__listOf__string",
+          "locationName" : "importInfo"
+        },
         "Name" : {
           "shape" : "StringWithLengthBetween1And128",
           "locationName" : "name"
@@ -1617,6 +1809,10 @@
         "RouteSelectionExpression" : {
           "shape" : "SelectionExpression",
           "locationName" : "routeSelectionExpression"
+        },
+        "Tags" : {
+          "shape" : "Tags",
+          "locationName" : "tags"
         },
         "Version" : {
           "shape" : "StringWithLengthBetween1And64",
@@ -1655,16 +1851,16 @@
           "shape" : "StringWithLengthBetween0And1024",
           "locationName" : "identityValidationExpression"
         },
+        "JwtConfiguration" : {
+          "shape" : "JWTConfiguration",
+          "locationName" : "jwtConfiguration"
+        },
         "Name" : {
           "shape" : "StringWithLengthBetween1And128",
           "locationName" : "name"
-        },
-        "ProviderArns" : {
-          "shape" : "ProviderArnList",
-          "locationName" : "providerArns"
         }
       },
-      "required" : [ "AuthorizerUri", "AuthorizerType", "IdentitySource", "Name" ]
+      "required" : [ "AuthorizerType", "IdentitySource", "Name" ]
     },
     "CreateAuthorizerRequest" : {
       "type" : "structure",
@@ -1698,16 +1894,16 @@
           "shape" : "StringWithLengthBetween0And1024",
           "locationName" : "identityValidationExpression"
         },
+        "JwtConfiguration" : {
+          "shape" : "JWTConfiguration",
+          "locationName" : "jwtConfiguration"
+        },
         "Name" : {
           "shape" : "StringWithLengthBetween1And128",
           "locationName" : "name"
-        },
-        "ProviderArns" : {
-          "shape" : "ProviderArnList",
-          "locationName" : "providerArns"
         }
       },
-      "required" : [ "ApiId", "AuthorizerUri", "AuthorizerType", "IdentitySource", "Name" ]
+      "required" : [ "ApiId", "AuthorizerType", "IdentitySource", "Name" ]
     },
     "CreateAuthorizerResponse" : {
       "type" : "structure",
@@ -1740,13 +1936,13 @@
           "shape" : "StringWithLengthBetween0And1024",
           "locationName" : "identityValidationExpression"
         },
+        "JwtConfiguration" : {
+          "shape" : "JWTConfiguration",
+          "locationName" : "jwtConfiguration"
+        },
         "Name" : {
           "shape" : "StringWithLengthBetween1And128",
           "locationName" : "name"
-        },
-        "ProviderArns" : {
-          "shape" : "ProviderArnList",
-          "locationName" : "providerArns"
         }
       }
     },
@@ -1785,6 +1981,10 @@
     "CreateDeploymentResponse" : {
       "type" : "structure",
       "members" : {
+        "AutoDeployed" : {
+          "shape" : "__boolean",
+          "locationName" : "autoDeployed"
+        },
         "CreatedDate" : {
           "shape" : "__timestampIso8601",
           "locationName" : "createdDate"
@@ -1903,6 +2103,10 @@
           "shape" : "PassthroughBehavior",
           "locationName" : "passthroughBehavior"
         },
+        "PayloadFormatVersion" : {
+          "shape" : "StringWithLengthBetween1And64",
+          "locationName" : "payloadFormatVersion"
+        },
         "RequestParameters" : {
           "shape" : "IntegrationParameters",
           "locationName" : "requestParameters"
@@ -1966,6 +2170,10 @@
           "shape" : "PassthroughBehavior",
           "locationName" : "passthroughBehavior"
         },
+        "PayloadFormatVersion" : {
+          "shape" : "StringWithLengthBetween1And64",
+          "locationName" : "payloadFormatVersion"
+        },
         "RequestParameters" : {
           "shape" : "IntegrationParameters",
           "locationName" : "requestParameters"
@@ -1988,6 +2196,10 @@
     "CreateIntegrationResult" : {
       "type" : "structure",
       "members" : {
+        "ApiGatewayManaged" : {
+          "shape" : "__boolean",
+          "locationName" : "apiGatewayManaged"
+        },
         "ConnectionId" : {
           "shape" : "StringWithLengthBetween1And1024",
           "locationName" : "connectionId"
@@ -2031,6 +2243,10 @@
         "PassthroughBehavior" : {
           "shape" : "PassthroughBehavior",
           "locationName" : "passthroughBehavior"
+        },
+        "PayloadFormatVersion" : {
+          "shape" : "StringWithLengthBetween1And64",
+          "locationName" : "payloadFormatVersion"
         },
         "RequestParameters" : {
           "shape" : "IntegrationParameters",
@@ -2323,6 +2539,10 @@
     "CreateRouteResult" : {
       "type" : "structure",
       "members" : {
+        "ApiGatewayManaged" : {
+          "shape" : "__boolean",
+          "locationName" : "apiGatewayManaged"
+        },
         "ApiKeyRequired" : {
           "shape" : "__boolean",
           "locationName" : "apiKeyRequired"
@@ -2459,6 +2679,10 @@
           "shape" : "AccessLogSettings",
           "locationName" : "accessLogSettings"
         },
+        "AutoDeploy" : {
+          "shape" : "__boolean",
+          "locationName" : "autoDeploy"
+        },
         "ClientCertificateId" : {
           "shape" : "Id",
           "locationName" : "clientCertificateId"
@@ -2506,6 +2730,10 @@
           "location" : "uri",
           "locationName" : "apiId"
         },
+        "AutoDeploy" : {
+          "shape" : "__boolean",
+          "locationName" : "autoDeploy"
+        },
         "ClientCertificateId" : {
           "shape" : "Id",
           "locationName" : "clientCertificateId"
@@ -2548,6 +2776,14 @@
           "shape" : "AccessLogSettings",
           "locationName" : "accessLogSettings"
         },
+        "ApiGatewayManaged" : {
+          "shape" : "__boolean",
+          "locationName" : "apiGatewayManaged"
+        },
+        "AutoDeploy" : {
+          "shape" : "__boolean",
+          "locationName" : "autoDeploy"
+        },
         "ClientCertificateId" : {
           "shape" : "Id",
           "locationName" : "clientCertificateId"
@@ -2568,6 +2804,10 @@
           "shape" : "StringWithLengthBetween0And1024",
           "locationName" : "description"
         },
+        "LastDeploymentStatusMessage" : {
+          "shape" : "__string",
+          "locationName" : "lastDeploymentStatusMessage"
+        },
         "LastUpdatedDate" : {
           "shape" : "__timestampIso8601",
           "locationName" : "lastUpdatedDate"
@@ -2583,10 +2823,6 @@
         "StageVariables" : {
           "shape" : "StageVariablesMap",
           "locationName" : "stageVariables"
-        },
-        "Tags" : {
-          "shape" : "Tags",
-          "locationName" : "tags"
         },
         "Tags" : {
           "shape" : "Tags",
@@ -2636,6 +2872,17 @@
         }
       },
       "required" : [ "AuthorizerId", "ApiId" ]
+    },
+    "DeleteCorsConfigurationRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ApiId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "apiId"
+        }
+      },
+      "required" : [ "ApiId" ]
     },
     "DeleteDeploymentRequest" : {
       "type" : "structure",
@@ -2754,6 +3001,27 @@
       },
       "required" : [ "RouteResponseId", "ApiId", "RouteId" ]
     },
+    "DeleteRouteSettingsRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ApiId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "apiId"
+        },
+        "RouteKey" : {
+          "shape" : "SelectionKey",
+          "location" : "uri",
+          "locationName" : "routeKey"
+        },
+        "StageName" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "stageName"
+        }
+      },
+      "required" : [ "StageName", "ApiId", "RouteKey" ]
+    },
     "DeleteStageRequest" : {
       "type" : "structure",
       "members" : {
@@ -2773,6 +3041,10 @@
     "Deployment" : {
       "type" : "structure",
       "members" : {
+        "AutoDeployed" : {
+          "shape" : "__boolean",
+          "locationName" : "autoDeployed"
+        },
         "CreatedDate" : {
           "shape" : "__timestampIso8601",
           "locationName" : "createdDate"
@@ -2853,6 +3125,14 @@
           "shape" : "__timestampIso8601",
           "locationName" : "certificateUploadDate"
         },
+        "DomainNameStatus" : {
+          "shape" : "DomainNameStatus",
+          "locationName" : "domainNameStatus"
+        },
+        "DomainNameStatusMessage" : {
+          "shape" : "__string",
+          "locationName" : "domainNameStatusMessage"
+        },
         "EndpointType" : {
           "shape" : "EndpointType",
           "locationName" : "endpointType"
@@ -2864,14 +3144,6 @@
         "SecurityPolicy" : {
           "shape" : "SecurityPolicy",
           "locationName" : "securityPolicy"
-        },
-        "DomainNameStatus" : {
-          "shape" : "DomainNameStatus",
-          "locationName" : "domainNameStatus"
-        },
-        "DomainNameStatusMessage" : {
-          "shape" : "__string",
-          "locationName" : "domainNameStatusMessage"
         }
       }
     },
@@ -2880,6 +3152,10 @@
       "member" : {
         "shape" : "DomainNameConfiguration"
       }
+    },
+    "DomainNameStatus" : {
+      "type" : "string",
+      "enum" : [ "AVAILABLE", "UPDATING" ]
     },
     "DomainNames" : {
       "type" : "structure",
@@ -2897,14 +3173,6 @@
     "EndpointType" : {
       "type" : "string",
       "enum" : [ "REGIONAL", "EDGE" ]
-    },
-    "SecurityPolicy" : {
-      "type" : "string",
-      "enum" : [ "TLS_1_0", "TLS_1_2" ]
-    },
-    "DomainNameStatus" : {
-      "type" : "string",
-      "enum" : [ "AVAILABLE", "UPDATING" ]
     },
     "GetApiMappingRequest" : {
       "type" : "structure",
@@ -3003,6 +3271,10 @@
           "shape" : "SelectionExpression",
           "locationName" : "apiKeySelectionExpression"
         },
+        "CorsConfiguration" : {
+          "shape" : "Cors",
+          "locationName" : "corsConfiguration"
+        },
         "CreatedDate" : {
           "shape" : "__timestampIso8601",
           "locationName" : "createdDate"
@@ -3014,6 +3286,10 @@
         "DisableSchemaValidation" : {
           "shape" : "__boolean",
           "locationName" : "disableSchemaValidation"
+        },
+        "ImportInfo" : {
+          "shape" : "__listOf__string",
+          "locationName" : "importInfo"
         },
         "Name" : {
           "shape" : "StringWithLengthBetween1And128",
@@ -3027,6 +3303,10 @@
           "shape" : "SelectionExpression",
           "locationName" : "routeSelectionExpression"
         },
+        "Tags" : {
+          "shape" : "Tags",
+          "locationName" : "tags"
+        },
         "Version" : {
           "shape" : "StringWithLengthBetween1And64",
           "locationName" : "version"
@@ -3034,10 +3314,6 @@
         "Warnings" : {
           "shape" : "__listOf__string",
           "locationName" : "warnings"
-        },
-        "Tags" : {
-          "shape" : "Tags",
-          "locationName" : "tags"
         }
       }
     },
@@ -3116,13 +3392,13 @@
           "shape" : "StringWithLengthBetween0And1024",
           "locationName" : "identityValidationExpression"
         },
+        "JwtConfiguration" : {
+          "shape" : "JWTConfiguration",
+          "locationName" : "jwtConfiguration"
+        },
         "Name" : {
           "shape" : "StringWithLengthBetween1And128",
           "locationName" : "name"
-        },
-        "ProviderArns" : {
-          "shape" : "ProviderArnList",
-          "locationName" : "providerArns"
         }
       }
     },
@@ -3179,6 +3455,10 @@
     "GetDeploymentResponse" : {
       "type" : "structure",
       "members" : {
+        "AutoDeployed" : {
+          "shape" : "__boolean",
+          "locationName" : "autoDeployed"
+        },
         "CreatedDate" : {
           "shape" : "__timestampIso8601",
           "locationName" : "createdDate"
@@ -3314,6 +3594,10 @@
     "GetIntegrationResult" : {
       "type" : "structure",
       "members" : {
+        "ApiGatewayManaged" : {
+          "shape" : "__boolean",
+          "locationName" : "apiGatewayManaged"
+        },
         "ConnectionId" : {
           "shape" : "StringWithLengthBetween1And1024",
           "locationName" : "connectionId"
@@ -3357,6 +3641,10 @@
         "PassthroughBehavior" : {
           "shape" : "PassthroughBehavior",
           "locationName" : "passthroughBehavior"
+        },
+        "PayloadFormatVersion" : {
+          "shape" : "StringWithLengthBetween1And64",
+          "locationName" : "payloadFormatVersion"
         },
         "RequestParameters" : {
           "shape" : "IntegrationParameters",
@@ -3618,6 +3906,10 @@
     "GetRouteResult" : {
       "type" : "structure",
       "members" : {
+        "ApiGatewayManaged" : {
+          "shape" : "__boolean",
+          "locationName" : "apiGatewayManaged"
+        },
         "ApiKeyRequired" : {
           "shape" : "__boolean",
           "locationName" : "apiKeyRequired"
@@ -3810,6 +4102,14 @@
           "shape" : "AccessLogSettings",
           "locationName" : "accessLogSettings"
         },
+        "ApiGatewayManaged" : {
+          "shape" : "__boolean",
+          "locationName" : "apiGatewayManaged"
+        },
+        "AutoDeploy" : {
+          "shape" : "__boolean",
+          "locationName" : "autoDeploy"
+        },
         "ClientCertificateId" : {
           "shape" : "Id",
           "locationName" : "clientCertificateId"
@@ -3829,6 +4129,10 @@
         "Description" : {
           "shape" : "StringWithLengthBetween0And1024",
           "locationName" : "description"
+        },
+        "LastDeploymentStatusMessage" : {
+          "shape" : "__string",
+          "locationName" : "lastDeploymentStatusMessage"
         },
         "LastUpdatedDate" : {
           "shape" : "__timestampIso8601",
@@ -3886,6 +4190,27 @@
         }
       }
     },
+    "GetTagsRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ResourceArn" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "resource-arn"
+        }
+      },
+      "required" : [ "ResourceArn" ]
+    },
+    "GetTagsResponse" : {
+      "type" : "structure",
+      "members" : {
+        "Tags" : {
+          "shape" : "Tags",
+          "locationName" : "tags"
+        }
+      },
+      "required" : [ "Tags" ]
+    },
     "Id" : {
       "type" : "string"
     },
@@ -3893,6 +4218,97 @@
       "type" : "list",
       "member" : {
         "shape" : "__string"
+      }
+    },
+    "ImportApiInput" : {
+      "type" : "structure",
+      "members" : {
+        "Body" : {
+          "shape" : "__string",
+          "locationName" : "body"
+        }
+      },
+      "required" : [ "Body" ]
+    },
+    "ImportApiRequest" : {
+      "type" : "structure",
+      "members" : {
+        "Basepath" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "basepath"
+        },
+        "Body" : {
+          "shape" : "__string",
+          "locationName" : "body"
+        },
+        "FailOnWarnings" : {
+          "shape" : "__boolean",
+          "location" : "querystring",
+          "locationName" : "failOnWarnings"
+        }
+      },
+      "required" : [ "Body" ]
+    },
+    "ImportApiResponse" : {
+      "type" : "structure",
+      "members" : {
+        "ApiEndpoint" : {
+          "shape" : "__string",
+          "locationName" : "apiEndpoint"
+        },
+        "ApiId" : {
+          "shape" : "Id",
+          "locationName" : "apiId"
+        },
+        "ApiKeySelectionExpression" : {
+          "shape" : "SelectionExpression",
+          "locationName" : "apiKeySelectionExpression"
+        },
+        "CorsConfiguration" : {
+          "shape" : "Cors",
+          "locationName" : "corsConfiguration"
+        },
+        "CreatedDate" : {
+          "shape" : "__timestampIso8601",
+          "locationName" : "createdDate"
+        },
+        "Description" : {
+          "shape" : "StringWithLengthBetween0And1024",
+          "locationName" : "description"
+        },
+        "DisableSchemaValidation" : {
+          "shape" : "__boolean",
+          "locationName" : "disableSchemaValidation"
+        },
+        "ImportInfo" : {
+          "shape" : "__listOf__string",
+          "locationName" : "importInfo"
+        },
+        "Name" : {
+          "shape" : "StringWithLengthBetween1And128",
+          "locationName" : "name"
+        },
+        "ProtocolType" : {
+          "shape" : "ProtocolType",
+          "locationName" : "protocolType"
+        },
+        "RouteSelectionExpression" : {
+          "shape" : "SelectionExpression",
+          "locationName" : "routeSelectionExpression"
+        },
+        "Tags" : {
+          "shape" : "Tags",
+          "locationName" : "tags"
+        },
+        "Version" : {
+          "shape" : "StringWithLengthBetween1And64",
+          "locationName" : "version"
+        },
+        "Warnings" : {
+          "shape" : "__listOf__string",
+          "locationName" : "warnings"
+        }
       }
     },
     "IntegerWithLengthBetween0And3600" : {
@@ -3905,9 +4321,18 @@
       "min" : 50,
       "max" : 29000
     },
+    "IntegerWithLengthBetweenMinus1And86400" : {
+      "type" : "integer",
+      "min" : -1,
+      "max" : 86400
+    },
     "Integration" : {
       "type" : "structure",
       "members" : {
+        "ApiGatewayManaged" : {
+          "shape" : "__boolean",
+          "locationName" : "apiGatewayManaged"
+        },
         "ConnectionId" : {
           "shape" : "StringWithLengthBetween1And1024",
           "locationName" : "connectionId"
@@ -3951,6 +4376,10 @@
         "PassthroughBehavior" : {
           "shape" : "PassthroughBehavior",
           "locationName" : "passthroughBehavior"
+        },
+        "PayloadFormatVersion" : {
+          "shape" : "StringWithLengthBetween1And64",
+          "locationName" : "payloadFormatVersion"
         },
         "RequestParameters" : {
           "shape" : "IntegrationParameters",
@@ -4039,6 +4468,19 @@
         }
       }
     },
+    "JWTConfiguration" : {
+      "type" : "structure",
+      "members" : {
+        "Audience" : {
+          "shape" : "__listOf__string",
+          "locationName" : "audience"
+        },
+        "Issuer" : {
+          "shape" : "UriWithLengthBetween1And2048",
+          "locationName" : "issuer"
+        }
+      }
+    },
     "LimitExceededException" : {
       "type" : "structure",
       "members" : {
@@ -4049,26 +4491,6 @@
         "Message" : {
           "shape" : "__string",
           "locationName" : "message"
-        }
-      }
-    },
-    "GetTagsRequest" : {
-      "type" : "structure",
-      "members" : {
-        "ResourceArn" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "resource-arn"
-        }
-      },
-      "required" : [ "ResourceArn" ]
-    },
-    "GetTagsResponse" : {
-      "type" : "structure",
-      "members" : {
-        "Tags" : {
-          "shape" : "__mapOf__string",
-          "locationName" : "tags"
         }
       }
     },
@@ -4150,17 +4572,111 @@
     },
     "ProtocolType" : {
       "type" : "string",
-      "enum" : [ "WEBSOCKET" ]
+      "enum" : [ "WEBSOCKET", "HTTP" ]
     },
-    "ProviderArnList" : {
-      "type" : "list",
-      "member" : {
-        "shape" : "Arn"
+    "ReimportApiInput" : {
+      "type" : "structure",
+      "members" : {
+        "Body" : {
+          "shape" : "__string",
+          "locationName" : "body"
+        }
+      },
+      "required" : [ "Body" ]
+    },
+    "ReimportApiRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ApiId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "apiId"
+        },
+        "Basepath" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "basepath"
+        },
+        "Body" : {
+          "shape" : "__string",
+          "locationName" : "body"
+        },
+        "FailOnWarnings" : {
+          "shape" : "__boolean",
+          "location" : "querystring",
+          "locationName" : "failOnWarnings"
+        }
+      },
+      "required" : [ "ApiId", "Body" ]
+    },
+    "ReimportApiResponse" : {
+      "type" : "structure",
+      "members" : {
+        "ApiEndpoint" : {
+          "shape" : "__string",
+          "locationName" : "apiEndpoint"
+        },
+        "ApiId" : {
+          "shape" : "Id",
+          "locationName" : "apiId"
+        },
+        "ApiKeySelectionExpression" : {
+          "shape" : "SelectionExpression",
+          "locationName" : "apiKeySelectionExpression"
+        },
+        "CorsConfiguration" : {
+          "shape" : "Cors",
+          "locationName" : "corsConfiguration"
+        },
+        "CreatedDate" : {
+          "shape" : "__timestampIso8601",
+          "locationName" : "createdDate"
+        },
+        "Description" : {
+          "shape" : "StringWithLengthBetween0And1024",
+          "locationName" : "description"
+        },
+        "DisableSchemaValidation" : {
+          "shape" : "__boolean",
+          "locationName" : "disableSchemaValidation"
+        },
+        "ImportInfo" : {
+          "shape" : "__listOf__string",
+          "locationName" : "importInfo"
+        },
+        "Name" : {
+          "shape" : "StringWithLengthBetween1And128",
+          "locationName" : "name"
+        },
+        "ProtocolType" : {
+          "shape" : "ProtocolType",
+          "locationName" : "protocolType"
+        },
+        "RouteSelectionExpression" : {
+          "shape" : "SelectionExpression",
+          "locationName" : "routeSelectionExpression"
+        },
+        "Tags" : {
+          "shape" : "Tags",
+          "locationName" : "tags"
+        },
+        "Version" : {
+          "shape" : "StringWithLengthBetween1And64",
+          "locationName" : "version"
+        },
+        "Warnings" : {
+          "shape" : "__listOf__string",
+          "locationName" : "warnings"
+        }
       }
     },
     "Route" : {
       "type" : "structure",
       "members" : {
+        "ApiGatewayManaged" : {
+          "shape" : "__boolean",
+          "locationName" : "apiGatewayManaged"
+        },
         "ApiKeyRequired" : {
           "shape" : "__boolean",
           "locationName" : "apiKeyRequired"
@@ -4316,6 +4832,10 @@
         }
       }
     },
+    "SecurityPolicy" : {
+      "type" : "string",
+      "enum" : [ "TLS_1_0", "TLS_1_2" ]
+    },
     "SelectionExpression" : {
       "type" : "string"
     },
@@ -4328,6 +4848,14 @@
         "AccessLogSettings" : {
           "shape" : "AccessLogSettings",
           "locationName" : "accessLogSettings"
+        },
+        "ApiGatewayManaged" : {
+          "shape" : "__boolean",
+          "locationName" : "apiGatewayManaged"
+        },
+        "AutoDeploy" : {
+          "shape" : "__boolean",
+          "locationName" : "autoDeploy"
         },
         "ClientCertificateId" : {
           "shape" : "Id",
@@ -4348,6 +4876,10 @@
         "Description" : {
           "shape" : "StringWithLengthBetween0And1024",
           "locationName" : "description"
+        },
+        "LastDeploymentStatusMessage" : {
+          "shape" : "__string",
+          "locationName" : "lastDeploymentStatusMessage"
         },
         "LastUpdatedDate" : {
           "shape" : "__timestampIso8601",
@@ -4409,6 +4941,9 @@
     "StringWithLengthBetween1And128" : {
       "type" : "string"
     },
+    "StringWithLengthBetween1And1600" : {
+      "type" : "string"
+    },
     "StringWithLengthBetween1And256" : {
       "type" : "string"
     },
@@ -4417,10 +4952,6 @@
     },
     "StringWithLengthBetween1And64" : {
       "type" : "string"
-    },
-     "StringWithLengthBetween1And1600" : {
-      "type" : "string",
-      "documentation" : "<p>A string with a length between [1-1600].</p>"
     },
     "TagResourceInput" : {
       "type" : "structure",
@@ -4459,22 +4990,6 @@
         "shape" : "StringWithLengthBetween1And1600"
       }
     },
-    "UntagResourceRequest" : {
-      "type" : "structure",
-      "members" : {
-        "ResourceArn" : {
-          "shape" : "__string",
-          "location" : "uri",
-          "locationName" : "resource-arn"
-        },
-        "TagKeys" : {
-          "shape" : "__listOf__string",
-          "location" : "querystring",
-          "locationName" : "tagKeys"
-        }
-      },
-      "required" : [ "TagKeys", "ResourceArn" ]
-    },
     "Template" : {
       "type" : "structure",
       "members" : {
@@ -4510,12 +5025,36 @@
         "httpStatusCode" : 429
       }
     },
+    "UntagResourceRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ResourceArn" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "resource-arn"
+        },
+        "TagKeys" : {
+          "shape" : "__listOf__string",
+          "location" : "querystring",
+          "locationName" : "tagKeys"
+        }
+      },
+      "required" : [ "ResourceArn", "TagKeys" ]
+    },
     "UpdateApiInput" : {
       "type" : "structure",
       "members" : {
         "ApiKeySelectionExpression" : {
           "shape" : "SelectionExpression",
           "locationName" : "apiKeySelectionExpression"
+        },
+        "CorsConfiguration" : {
+          "shape" : "Cors",
+          "locationName" : "corsConfiguration"
+        },
+        "CredentialsArn" : {
+          "shape" : "Arn",
+          "locationName" : "credentialsArn"
         },
         "Description" : {
           "shape" : "StringWithLengthBetween0And1024",
@@ -4529,9 +5068,17 @@
           "shape" : "StringWithLengthBetween1And128",
           "locationName" : "name"
         },
+        "RouteKey" : {
+          "shape" : "SelectionKey",
+          "locationName" : "routeKey"
+        },
         "RouteSelectionExpression" : {
           "shape" : "SelectionExpression",
           "locationName" : "routeSelectionExpression"
+        },
+        "Target" : {
+          "shape" : "UriWithLengthBetween1And2048",
+          "locationName" : "target"
         },
         "Version" : {
           "shape" : "StringWithLengthBetween1And64",
@@ -4617,6 +5164,14 @@
           "shape" : "SelectionExpression",
           "locationName" : "apiKeySelectionExpression"
         },
+        "CorsConfiguration" : {
+          "shape" : "Cors",
+          "locationName" : "corsConfiguration"
+        },
+        "CredentialsArn" : {
+          "shape" : "Arn",
+          "locationName" : "credentialsArn"
+        },
         "Description" : {
           "shape" : "StringWithLengthBetween0And1024",
           "locationName" : "description"
@@ -4629,9 +5184,17 @@
           "shape" : "StringWithLengthBetween1And128",
           "locationName" : "name"
         },
+        "RouteKey" : {
+          "shape" : "SelectionKey",
+          "locationName" : "routeKey"
+        },
         "RouteSelectionExpression" : {
           "shape" : "SelectionExpression",
           "locationName" : "routeSelectionExpression"
+        },
+        "Target" : {
+          "shape" : "UriWithLengthBetween1And2048",
+          "locationName" : "target"
         },
         "Version" : {
           "shape" : "StringWithLengthBetween1And64",
@@ -4655,6 +5218,10 @@
           "shape" : "SelectionExpression",
           "locationName" : "apiKeySelectionExpression"
         },
+        "CorsConfiguration" : {
+          "shape" : "Cors",
+          "locationName" : "corsConfiguration"
+        },
         "CreatedDate" : {
           "shape" : "__timestampIso8601",
           "locationName" : "createdDate"
@@ -4666,6 +5233,10 @@
         "DisableSchemaValidation" : {
           "shape" : "__boolean",
           "locationName" : "disableSchemaValidation"
+        },
+        "ImportInfo" : {
+          "shape" : "__listOf__string",
+          "locationName" : "importInfo"
         },
         "Name" : {
           "shape" : "StringWithLengthBetween1And128",
@@ -4679,6 +5250,10 @@
           "shape" : "SelectionExpression",
           "locationName" : "routeSelectionExpression"
         },
+        "Tags" : {
+          "shape" : "Tags",
+          "locationName" : "tags"
+        },
         "Version" : {
           "shape" : "StringWithLengthBetween1And64",
           "locationName" : "version"
@@ -4686,10 +5261,6 @@
         "Warnings" : {
           "shape" : "__listOf__string",
           "locationName" : "warnings"
-        },
-        "Tags" : {
-          "shape" : "Tags",
-          "locationName" : "tags"
         }
       }
     },
@@ -4720,13 +5291,13 @@
           "shape" : "StringWithLengthBetween0And1024",
           "locationName" : "identityValidationExpression"
         },
+        "JwtConfiguration" : {
+          "shape" : "JWTConfiguration",
+          "locationName" : "jwtConfiguration"
+        },
         "Name" : {
           "shape" : "StringWithLengthBetween1And128",
           "locationName" : "name"
-        },
-        "ProviderArns" : {
-          "shape" : "ProviderArnList",
-          "locationName" : "providerArns"
         }
       }
     },
@@ -4767,13 +5338,13 @@
           "shape" : "StringWithLengthBetween0And1024",
           "locationName" : "identityValidationExpression"
         },
+        "JwtConfiguration" : {
+          "shape" : "JWTConfiguration",
+          "locationName" : "jwtConfiguration"
+        },
         "Name" : {
           "shape" : "StringWithLengthBetween1And128",
           "locationName" : "name"
-        },
-        "ProviderArns" : {
-          "shape" : "ProviderArnList",
-          "locationName" : "providerArns"
         }
       },
       "required" : [ "AuthorizerId", "ApiId" ]
@@ -4809,13 +5380,13 @@
           "shape" : "StringWithLengthBetween0And1024",
           "locationName" : "identityValidationExpression"
         },
+        "JwtConfiguration" : {
+          "shape" : "JWTConfiguration",
+          "locationName" : "jwtConfiguration"
+        },
         "Name" : {
           "shape" : "StringWithLengthBetween1And128",
           "locationName" : "name"
-        },
-        "ProviderArns" : {
-          "shape" : "ProviderArnList",
-          "locationName" : "providerArns"
         }
       }
     },
@@ -4851,6 +5422,10 @@
     "UpdateDeploymentResponse" : {
       "type" : "structure",
       "members" : {
+        "AutoDeployed" : {
+          "shape" : "__boolean",
+          "locationName" : "autoDeployed"
+        },
         "CreatedDate" : {
           "shape" : "__timestampIso8601",
           "locationName" : "createdDate"
@@ -4957,6 +5532,10 @@
           "shape" : "PassthroughBehavior",
           "locationName" : "passthroughBehavior"
         },
+        "PayloadFormatVersion" : {
+          "shape" : "StringWithLengthBetween1And64",
+          "locationName" : "payloadFormatVersion"
+        },
         "RequestParameters" : {
           "shape" : "IntegrationParameters",
           "locationName" : "requestParameters"
@@ -5024,6 +5603,10 @@
           "shape" : "PassthroughBehavior",
           "locationName" : "passthroughBehavior"
         },
+        "PayloadFormatVersion" : {
+          "shape" : "StringWithLengthBetween1And64",
+          "locationName" : "payloadFormatVersion"
+        },
         "RequestParameters" : {
           "shape" : "IntegrationParameters",
           "locationName" : "requestParameters"
@@ -5046,6 +5629,10 @@
     "UpdateIntegrationResult" : {
       "type" : "structure",
       "members" : {
+        "ApiGatewayManaged" : {
+          "shape" : "__boolean",
+          "locationName" : "apiGatewayManaged"
+        },
         "ConnectionId" : {
           "shape" : "StringWithLengthBetween1And1024",
           "locationName" : "connectionId"
@@ -5089,6 +5676,10 @@
         "PassthroughBehavior" : {
           "shape" : "PassthroughBehavior",
           "locationName" : "passthroughBehavior"
+        },
+        "PayloadFormatVersion" : {
+          "shape" : "StringWithLengthBetween1And64",
+          "locationName" : "payloadFormatVersion"
         },
         "RequestParameters" : {
           "shape" : "IntegrationParameters",
@@ -5393,6 +5984,10 @@
     "UpdateRouteResult" : {
       "type" : "structure",
       "members" : {
+        "ApiGatewayManaged" : {
+          "shape" : "__boolean",
+          "locationName" : "apiGatewayManaged"
+        },
         "ApiKeyRequired" : {
           "shape" : "__boolean",
           "locationName" : "apiKeyRequired"
@@ -5533,6 +6128,10 @@
           "shape" : "AccessLogSettings",
           "locationName" : "accessLogSettings"
         },
+        "AutoDeploy" : {
+          "shape" : "__boolean",
+          "locationName" : "autoDeploy"
+        },
         "ClientCertificateId" : {
           "shape" : "Id",
           "locationName" : "clientCertificateId"
@@ -5570,6 +6169,10 @@
           "shape" : "__string",
           "location" : "uri",
           "locationName" : "apiId"
+        },
+        "AutoDeploy" : {
+          "shape" : "__boolean",
+          "locationName" : "autoDeploy"
         },
         "ClientCertificateId" : {
           "shape" : "Id",
@@ -5610,6 +6213,14 @@
           "shape" : "AccessLogSettings",
           "locationName" : "accessLogSettings"
         },
+        "ApiGatewayManaged" : {
+          "shape" : "__boolean",
+          "locationName" : "apiGatewayManaged"
+        },
+        "AutoDeploy" : {
+          "shape" : "__boolean",
+          "locationName" : "autoDeploy"
+        },
         "ClientCertificateId" : {
           "shape" : "Id",
           "locationName" : "clientCertificateId"
@@ -5629,6 +6240,10 @@
         "Description" : {
           "shape" : "StringWithLengthBetween0And1024",
           "locationName" : "description"
+        },
+        "LastDeploymentStatusMessage" : {
+          "shape" : "__string",
+          "locationName" : "lastDeploymentStatusMessage"
         },
         "LastUpdatedDate" : {
           "shape" : "__timestampIso8601",
@@ -5741,15 +6356,6 @@
     },
     "__string" : {
       "type" : "string"
-    },
-    "__mapOf__string" : {
-      "type" : "map",
-      "key" : {
-        "shape" : "__string"
-      },
-      "value" : {
-        "shape" : "__string"
-      }
     },
     "__timestampIso8601" : {
       "type" : "timestamp",

@@ -116,6 +116,10 @@ type ApiGatewayV2API interface {
 	DeleteAuthorizerWithContext(aws.Context, *apigatewayv2.DeleteAuthorizerInput, ...request.Option) (*apigatewayv2.DeleteAuthorizerOutput, error)
 	DeleteAuthorizerRequest(*apigatewayv2.DeleteAuthorizerInput) (*request.Request, *apigatewayv2.DeleteAuthorizerOutput)
 
+	DeleteCorsConfiguration(*apigatewayv2.DeleteCorsConfigurationInput) (*apigatewayv2.DeleteCorsConfigurationOutput, error)
+	DeleteCorsConfigurationWithContext(aws.Context, *apigatewayv2.DeleteCorsConfigurationInput, ...request.Option) (*apigatewayv2.DeleteCorsConfigurationOutput, error)
+	DeleteCorsConfigurationRequest(*apigatewayv2.DeleteCorsConfigurationInput) (*request.Request, *apigatewayv2.DeleteCorsConfigurationOutput)
+
 	DeleteDeployment(*apigatewayv2.DeleteDeploymentInput) (*apigatewayv2.DeleteDeploymentOutput, error)
 	DeleteDeploymentWithContext(aws.Context, *apigatewayv2.DeleteDeploymentInput, ...request.Option) (*apigatewayv2.DeleteDeploymentOutput, error)
 	DeleteDeploymentRequest(*apigatewayv2.DeleteDeploymentInput) (*request.Request, *apigatewayv2.DeleteDeploymentOutput)
@@ -143,6 +147,10 @@ type ApiGatewayV2API interface {
 	DeleteRouteResponse(*apigatewayv2.DeleteRouteResponseInput) (*apigatewayv2.DeleteRouteResponseOutput, error)
 	DeleteRouteResponseWithContext(aws.Context, *apigatewayv2.DeleteRouteResponseInput, ...request.Option) (*apigatewayv2.DeleteRouteResponseOutput, error)
 	DeleteRouteResponseRequest(*apigatewayv2.DeleteRouteResponseInput) (*request.Request, *apigatewayv2.DeleteRouteResponseOutput)
+
+	DeleteRouteSettings(*apigatewayv2.DeleteRouteSettingsInput) (*apigatewayv2.DeleteRouteSettingsOutput, error)
+	DeleteRouteSettingsWithContext(aws.Context, *apigatewayv2.DeleteRouteSettingsInput, ...request.Option) (*apigatewayv2.DeleteRouteSettingsOutput, error)
+	DeleteRouteSettingsRequest(*apigatewayv2.DeleteRouteSettingsInput) (*request.Request, *apigatewayv2.DeleteRouteSettingsOutput)
 
 	DeleteStage(*apigatewayv2.DeleteStageInput) (*apigatewayv2.DeleteStageOutput, error)
 	DeleteStageWithContext(aws.Context, *apigatewayv2.DeleteStageInput, ...request.Option) (*apigatewayv2.DeleteStageOutput, error)
@@ -243,6 +251,14 @@ type ApiGatewayV2API interface {
 	GetTags(*apigatewayv2.GetTagsInput) (*apigatewayv2.GetTagsOutput, error)
 	GetTagsWithContext(aws.Context, *apigatewayv2.GetTagsInput, ...request.Option) (*apigatewayv2.GetTagsOutput, error)
 	GetTagsRequest(*apigatewayv2.GetTagsInput) (*request.Request, *apigatewayv2.GetTagsOutput)
+
+	ImportApi(*apigatewayv2.ImportApiInput) (*apigatewayv2.ImportApiOutput, error)
+	ImportApiWithContext(aws.Context, *apigatewayv2.ImportApiInput, ...request.Option) (*apigatewayv2.ImportApiOutput, error)
+	ImportApiRequest(*apigatewayv2.ImportApiInput) (*request.Request, *apigatewayv2.ImportApiOutput)
+
+	ReimportApi(*apigatewayv2.ReimportApiInput) (*apigatewayv2.ReimportApiOutput, error)
+	ReimportApiWithContext(aws.Context, *apigatewayv2.ReimportApiInput, ...request.Option) (*apigatewayv2.ReimportApiOutput, error)
+	ReimportApiRequest(*apigatewayv2.ReimportApiInput) (*request.Request, *apigatewayv2.ReimportApiOutput)
 
 	TagResource(*apigatewayv2.TagResourceInput) (*apigatewayv2.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *apigatewayv2.TagResourceInput, ...request.Option) (*apigatewayv2.TagResourceOutput, error)
