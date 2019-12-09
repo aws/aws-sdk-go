@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "EC2 Instance Connect" // Name of service.
 	EndpointsID = "ec2-instance-connect" // ID to lookup a service endpoint with.
-	ServiceID   = "EC2 Instance Connect" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "EC2 Instance Connect" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the EC2InstanceConnect client with a session.

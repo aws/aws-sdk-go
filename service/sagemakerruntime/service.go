@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "runtime.sagemaker" // Name of service.
 	EndpointsID = ServiceName         // ID to lookup a service endpoint with.
-	ServiceID   = "SageMaker Runtime" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "SageMaker Runtime" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the SageMakerRuntime client with a session.

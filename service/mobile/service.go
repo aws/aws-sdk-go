@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "mobile"    // Name of service.
 	EndpointsID = ServiceName // ID to lookup a service endpoint with.
-	ServiceID   = "Mobile"    // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "Mobile"    // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the Mobile client with a session.

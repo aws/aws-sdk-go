@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "Kinesis Video Signaling" // Name of service.
 	EndpointsID = "kinesisvideo"            // ID to lookup a service endpoint with.
-	ServiceID   = "Kinesis Video Signaling" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "Kinesis Video Signaling" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the KinesisVideoSignalingChannels client with a session.

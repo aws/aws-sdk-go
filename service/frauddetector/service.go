@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "FraudDetector" // Name of service.
 	EndpointsID = "frauddetector" // ID to lookup a service endpoint with.
-	ServiceID   = "FraudDetector" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "FraudDetector" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the FraudDetector client with a session.

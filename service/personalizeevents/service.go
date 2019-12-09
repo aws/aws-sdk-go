@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "Personalize Events" // Name of service.
 	EndpointsID = "personalize-events" // ID to lookup a service endpoint with.
-	ServiceID   = "Personalize Events" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "Personalize Events" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the PersonalizeEvents client with a session.

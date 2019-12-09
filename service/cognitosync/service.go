@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "cognito-sync" // Name of service.
 	EndpointsID = ServiceName    // ID to lookup a service endpoint with.
-	ServiceID   = "Cognito Sync" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "Cognito Sync" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the CognitoSync client with a session.

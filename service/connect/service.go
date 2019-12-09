@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "connect"   // Name of service.
 	EndpointsID = ServiceName // ID to lookup a service endpoint with.
-	ServiceID   = "Connect"   // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "Connect"   // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the Connect client with a session.

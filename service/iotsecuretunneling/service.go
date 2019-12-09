@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "IoTSecureTunneling" // Name of service.
 	EndpointsID = "api.tunneling.iot"  // ID to lookup a service endpoint with.
-	ServiceID   = "IoTSecureTunneling" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "IoTSecureTunneling" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the IoTSecureTunneling client with a session.

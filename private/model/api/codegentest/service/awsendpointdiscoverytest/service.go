@@ -33,7 +33,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "AwsEndpointDiscoveryTest"        // Name of service.
 	EndpointsID = "awsendpointdiscoverytestservice" // ID to lookup a service endpoint with.
-	ServiceID   = "AwsEndpointDiscoveryTest"        // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "AwsEndpointDiscoveryTest"        // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the AwsEndpointDiscoveryTest client with a session.

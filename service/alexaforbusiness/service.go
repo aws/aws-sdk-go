@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "a4b"                // Name of service.
 	EndpointsID = ServiceName          // ID to lookup a service endpoint with.
-	ServiceID   = "Alexa For Business" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "Alexa For Business" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the AlexaForBusiness client with a session.

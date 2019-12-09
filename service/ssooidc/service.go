@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "SSO OIDC" // Name of service.
 	EndpointsID = "oidc"     // ID to lookup a service endpoint with.
-	ServiceID   = "SSO OIDC" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "SSO OIDC" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the SSOOIDC client with a session.

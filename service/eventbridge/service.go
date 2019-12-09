@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "EventBridge" // Name of service.
 	EndpointsID = "events"      // ID to lookup a service endpoint with.
-	ServiceID   = "EventBridge" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "EventBridge" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the EventBridge client with a session.

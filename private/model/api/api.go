@@ -515,7 +515,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "{{ ServiceNameConstValue . }}" // Name of service.
 	EndpointsID = {{ EndpointsIDConstValue . }} // ID to lookup a service endpoint with.
-	ServiceID = "{{ ServiceID . }}" // ServiceID is a unique identifer of a specific service.
+	ServiceID = "{{ ServiceID . }}" // ServiceID is a unique identifier of a specific service.
 )
 {{- end }}
 

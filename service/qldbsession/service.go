@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "QLDB Session" // Name of service.
 	EndpointsID = "session.qldb" // ID to lookup a service endpoint with.
-	ServiceID   = "QLDB Session" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "QLDB Session" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the QLDBSession client with a session.

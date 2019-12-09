@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "GroundStation" // Name of service.
 	EndpointsID = "groundstation" // ID to lookup a service endpoint with.
-	ServiceID   = "GroundStation" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "GroundStation" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the GroundStation client with a session.

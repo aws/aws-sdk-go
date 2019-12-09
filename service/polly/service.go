@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "polly"     // Name of service.
 	EndpointsID = ServiceName // ID to lookup a service endpoint with.
-	ServiceID   = "Polly"     // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "Polly"     // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the Polly client with a session.

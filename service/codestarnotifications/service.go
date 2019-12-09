@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "codestar notifications" // Name of service.
 	EndpointsID = "codestar-notifications" // ID to lookup a service endpoint with.
-	ServiceID   = "codestar notifications" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "codestar notifications" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the CodeStarNotifications client with a session.

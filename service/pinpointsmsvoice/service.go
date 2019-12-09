@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "Pinpoint SMS Voice" // Name of service.
 	EndpointsID = "sms-voice.pinpoint" // ID to lookup a service endpoint with.
-	ServiceID   = "Pinpoint SMS Voice" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "Pinpoint SMS Voice" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the PinpointSMSVoice client with a session.

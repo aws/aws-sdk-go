@@ -31,7 +31,7 @@ var initRequest func(*request.Request)
 const (
 	ServiceName = "streams.dynamodb" // Name of service.
 	EndpointsID = ServiceName        // ID to lookup a service endpoint with.
-	ServiceID   = "DynamoDB Streams" // ServiceID is a unique identifer of a specific service.
+	ServiceID   = "DynamoDB Streams" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the DynamoDBStreams client with a session.
