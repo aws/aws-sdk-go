@@ -634,7 +634,6 @@ var structShapeTmpl = func() *template.Template {
 	shapeTmpl := template.Must(
 		template.New("structShapeTmpl").
 			Funcs(template.FuncMap{
-				"GetCrosslinkURL":  GetCrosslinkURL,
 				"GetDeprecatedMsg": getDeprecatedMessage,
 			}).
 			Parse(structShapeTmplDef),
