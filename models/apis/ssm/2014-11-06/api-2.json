@@ -817,6 +817,21 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "GetCalendarState":{
+      "name":"GetCalendarState",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetCalendarStateRequest"},
+      "output":{"shape":"GetCalendarStateResponse"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"InvalidDocument"},
+        {"shape":"InvalidDocumentType"},
+        {"shape":"UnsupportedCalendarException"}
+      ]
+    },
     "GetCommandInvocation":{
       "name":"GetCommandInvocation",
       "http":{
@@ -2504,6 +2519,18 @@
     },
     "BatchErrorMessage":{"type":"string"},
     "Boolean":{"type":"boolean"},
+    "CalendarNameOrARN":{"type":"string"},
+    "CalendarNameOrARNList":{
+      "type":"list",
+      "member":{"shape":"CalendarNameOrARN"}
+    },
+    "CalendarState":{
+      "type":"string",
+      "enum":[
+        "OPEN",
+        "CLOSED"
+      ]
+    },
     "CancelCommandRequest":{
       "type":"structure",
       "required":["CommandId"],
@@ -2779,11 +2806,7 @@
       "max":10000,
       "min":0
     },
-    "ComplianceItemId":{
-      "type":"string",
-      "max":100,
-      "min":1
-    },
+    "ComplianceItemId":{"type":"string"},
     "ComplianceItemList":{
       "type":"list",
       "member":{"shape":"ComplianceItem"}
@@ -4069,7 +4092,8 @@
       "type":"string",
       "enum":[
         "YAML",
-        "JSON"
+        "JSON",
+        "TEXT"
       ]
     },
     "DocumentHash":{
@@ -4215,7 +4239,8 @@
         "Package",
         "ApplicationConfiguration",
         "ApplicationConfigurationSchema",
-        "DeploymentStrategy"
+        "DeploymentStrategy",
+        "ChangeCalendar"
       ]
     },
     "DocumentVersion":{
@@ -4359,6 +4384,22 @@
       "type":"structure",
       "members":{
         "AutomationExecution":{"shape":"AutomationExecution"}
+      }
+    },
+    "GetCalendarStateRequest":{
+      "type":"structure",
+      "required":["CalendarNames"],
+      "members":{
+        "CalendarNames":{"shape":"CalendarNameOrARNList"},
+        "AtTime":{"shape":"ISO8601String"}
+      }
+    },
+    "GetCalendarStateResponse":{
+      "type":"structure",
+      "members":{
+        "State":{"shape":"CalendarState"},
+        "AtTime":{"shape":"ISO8601String"},
+        "NextTransitionTime":{"shape":"ISO8601String"}
       }
     },
     "GetCommandInvocationRequest":{
@@ -4851,6 +4892,7 @@
       "max":46,
       "min":1
     },
+    "ISO8601String":{"type":"string"},
     "IamRole":{
       "type":"string",
       "max":64
@@ -5261,6 +5303,13 @@
       "exception":true
     },
     "InvalidDocumentSchemaVersion":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "InvalidDocumentType":{
       "type":"structure",
       "members":{
         "Message":{"shape":"String"}
@@ -8756,6 +8805,13 @@
     },
     "TotalCount":{"type":"integer"},
     "TotalSizeLimitExceededException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "UnsupportedCalendarException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"String"}

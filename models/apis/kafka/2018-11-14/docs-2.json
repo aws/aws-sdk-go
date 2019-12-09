@@ -20,7 +20,8 @@
     "UntagResource" : "<p>Removes the tags associated with the keys that are provided in the query.</p>",
     "UpdateBrokerCount" : "<p>Updates the number of broker nodes in the cluster. You can use this operation to increase the number of brokers in an existing cluster. You can't decrease the number of brokers.</p>",
     "UpdateBrokerStorage" : "<p>Updates the EBS storage associated with MSK brokers.</p>",
-    "UpdateClusterConfiguration" : "<p>Updates the cluster with the configuration that is specified in the request body.</p>"
+    "UpdateClusterConfiguration" : "<p>Updates the cluster with the configuration that is specified in the request body.</p>",
+    "UpdateMonitoring" : "<p>Updates the monitoring settings for the cluster. You can use this operation to specify which Apache Kafka metrics you want Amazon MSK to send to Amazon CloudWatch. You can also specify settings for open monitoring with Prometheus.</p>"
   },
   "shapes" : {
     "BadRequestException" : {
@@ -186,7 +187,9 @@
       "base" : "<p>Specifies which metrics are gathered for the MSK cluster. This property has three possible values: DEFAULT, PER_BROKER, and PER_TOPIC_PER_BROKER. For a list of the metrics associated with each of these three levels of monitoring, see <a href=\"https://docs.aws.amazon.com/msk/latest/developerguide/monitoring.html\">Monitoring</a>.</p>",
       "refs" : {
         "ClusterInfo$EnhancedMonitoring" : "<p>Specifies which metrics are gathered for the MSK cluster. This property has three possible values: DEFAULT, PER_BROKER, and PER_TOPIC_PER_BROKER. For a list of the metrics associated with each of these three levels of monitoring, see <a href=\"https://docs.aws.amazon.com/msk/latest/developerguide/monitoring.html\">Monitoring</a>.</p>",
-        "CreateClusterRequest$EnhancedMonitoring" : "<p>Specifies the level of monitoring for the MSK cluster. The possible values are DEFAULT, PER_BROKER, and PER_TOPIC_PER_BROKER.</p>"
+        "CreateClusterRequest$EnhancedMonitoring" : "<p>Specifies the level of monitoring for the MSK cluster. The possible values are DEFAULT, PER_BROKER, and PER_TOPIC_PER_BROKER.</p>",
+        "MutableClusterInfo$EnhancedMonitoring" : "<p>Specifies which Apache Kafka metrics Amazon MSK gathers and sends to Amazon CloudWatch for this cluster.</p>",
+        "UpdateMonitoringRequest$EnhancedMonitoring" : "<p>Specifies which Apache Kafka metrics Amazon MSK gathers and sends to Amazon CloudWatch for this cluster.</p>"
       }
     },
     "Error" : {
@@ -210,6 +213,18 @@
     "InternalServerErrorException" : {
       "base" : "<p>Returns information about an error.</p>",
       "refs" : { }
+    },
+    "JmxExporter" : {
+      "base" : "<p>Indicates whether you want to enable or disable the JMX Exporter.</p>",
+      "refs" : {
+        "Prometheus$JmxExporter" : "<p>Indicates whether you want to enable or disable the JMX Exporter.</p>"
+      }
+    },
+    "JmxExporterInfo" : {
+      "base" : "<p>Indicates whether you want to enable or disable the JMX Exporter.</p>",
+      "refs" : {
+        "PrometheusInfo$JmxExporter" : "<p>JMX Exporter settings.</p>"
+      }
     },
     "ListClusterOperationsResponse" : {
       "base" : "<p>The response contains an array containing cluster operation information and a next token if the response is truncated.</p>",
@@ -242,6 +257,18 @@
         "ClusterOperationInfo$TargetClusterInfo" : "<p>Information about cluster attributes after a cluster is updated.</p>"
       }
     },
+    "NodeExporter" : {
+      "base" : "<p>Indicates whether you want to enable or disable the Node Exporter.</p>",
+      "refs" : {
+        "Prometheus$NodeExporter" : "<p>Indicates whether you want to enable or disable the Node Exporter.</p>"
+      }
+    },
+    "NodeExporterInfo" : {
+      "base" : "<p>Indicates whether you want to enable or disable the Node Exporter.</p>",
+      "refs" : {
+        "PrometheusInfo$NodeExporter" : "<p>Node Exporter settings.</p>"
+      }
+    },
     "NodeInfo" : {
       "base" : "<p>The node information object.</p>",
       "refs" : {
@@ -257,6 +284,32 @@
     "NotFoundException" : {
       "base" : "<p>Returns information about an error.</p>",
       "refs" : { }
+    },
+    "OpenMonitoring" : {
+      "base" : "<p>JMX and Node monitoring for the MSK cluster.</p>",
+      "refs" : {
+        "ClusterInfo$OpenMonitoring" : "<p>Settings for open monitoring using Prometheus.</p>",
+        "MutableClusterInfo$OpenMonitoring" : "<p>Settings for open monitoring using Prometheus.</p>"
+      }
+    },
+    "OpenMonitoringInfo" : {
+      "base" : "<p>JMX and Node monitoring for the MSK cluster.</p>",
+      "refs" : {
+        "CreateClusterRequest$OpenMonitoring" : "<p>The settings for open monitoring.</p>",
+        "UpdateMonitoringRequest$OpenMonitoring" : "<p>The settings for open monitoring.</p>"
+      }
+    },
+    "Prometheus" : {
+      "base" : "<p>Prometheus settings for open monitoring.</p>",
+      "refs" : {
+        "OpenMonitoring$Prometheus" : "<p>Prometheus settings.</p>"
+      }
+    },
+    "PrometheusInfo" : {
+      "base" : "<p>Prometheus settings.</p>",
+      "refs" : {
+        "OpenMonitoringInfo$Prometheus" : "<p>Prometheus settings.</p>"
+      }
     },
     "ServiceUnavailableException" : {
       "base" : "<p>Returns information about an error.</p>",
@@ -310,6 +363,14 @@
       "base" : "<p>Response body for UpdateClusterConfiguration.</p>",
       "refs" : { }
     },
+    "UpdateMonitoringRequest" : {
+      "base" : "<p>Request body for UpdateMonitoring.</p>",
+      "refs" : { }
+    },
+    "UpdateMonitoringResponse" : {
+      "base" : "<p>Response body for UpdateMonitoring.</p>",
+      "refs" : { }
+    },
     "ZookeeperNodeInfo" : {
       "base" : "<p>Zookeeper node information.</p>",
       "refs" : {
@@ -319,7 +380,11 @@
     "__boolean" : {
       "base" : null,
       "refs" : {
-        "EncryptionInTransit$InCluster" : "<p>When set to true, it indicates that data communication among the broker nodes of the cluster is encrypted. When set to false, the communication happens in plaintext.</p> <p>The default value is true.</p>"
+        "EncryptionInTransit$InCluster" : "<p>When set to true, it indicates that data communication among the broker nodes of the cluster is encrypted. When set to false, the communication happens in plaintext.</p> <p>The default value is true.</p>",
+        "JmxExporter$EnabledInBroker" : "<p>Indicates whether you want to enable or disable the JMX Exporter.</p>",
+        "JmxExporterInfo$EnabledInBroker" : "<p>Indicates whether you want to enable or disable the JMX Exporter.</p>",
+        "NodeExporter$EnabledInBroker" : "<p>Indicates whether you want to enable or disable the Node Exporter.</p>",
+        "NodeExporterInfo$EnabledInBroker" : "<p>Indicates whether you want to enable or disable the Node Exporter.</p>"
       }
     },
     "__double" : {
@@ -479,6 +544,9 @@
         "UpdateClusterConfigurationRequest$CurrentVersion" : "<p>The version of the cluster that you want to update.</p>",
         "UpdateClusterConfigurationResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "UpdateClusterConfigurationResponse$ClusterOperationArn" : "<p>The Amazon Resource Name (ARN) of the cluster operation.</p>",
+        "UpdateMonitoringRequest$CurrentVersion" : "<p>The version of cluster to update from. A successful operation will then generate a new version.</p>",
+        "UpdateMonitoringResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
+        "UpdateMonitoringResponse$ClusterOperationArn" : "<p>The Amazon Resource Name (ARN) of the cluster operation.</p>",
         "ZookeeperNodeInfo$AttachedENIId" : "<p>The attached elastic network interface of the broker.</p>",
         "ZookeeperNodeInfo$ClientVpcIpAddress" : "<p>The virtual private cloud (VPC) IP address of the client.</p>",
         "ZookeeperNodeInfo$ZookeeperVersion" : "<p>The version of Zookeeper.</p>",

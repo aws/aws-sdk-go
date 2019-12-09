@@ -1,3 +1,19 @@
+Release v1.25.49 (2019-12-09)
+===
+
+### Service Client Updates
+* `service/kafka`: Updates service API and documentation
+* `service/kms`: Updates service API and documentation
+  * The Verify operation now returns KMSInvalidSignatureException on invalid signatures. The Sign and Verify operations now return KMSInvalidStateException when a request is made against a CMK pending deletion.
+* `service/quicksight`: Updates service documentation
+  * Documentation updates for QuickSight
+* `service/ssm`: Updates service API and documentation
+  * Adds the SSM GetCalendarState API and ChangeCalendar SSM Document type. These features enable the forthcoming Systems Manager Change Calendar feature, which will allow you to schedule events during which actions should (or should not) be performed.
+
+### SDK Bugs
+* `service/s3`: Fix SDK support for Accesspoint ARNs with slash in resource ([#3001](https://github.com/aws/aws-sdk-go/pull/3001))
+  * Fixes the SDK's handling of S3 Accesspoint ARNs to correctly parse ARNs with slashes in the resource component as valid. Previously the SDK's ARN parsing incorrectly identify ARN resources with slash delimiters as invalid ARNs.
+
 Release v1.25.48 (2019-12-05)
 ===
 

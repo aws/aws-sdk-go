@@ -588,6 +588,31 @@
           "shape": "ServiceUnavailableException"
         }
       ]
+    },
+    "UpdateMonitoring" : {
+      "name" : "UpdateMonitoring",
+      "http" : {
+        "method" : "PUT",
+        "requestUri" : "/v1/clusters/{clusterArn}/monitoring",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "UpdateMonitoringRequest"
+      },
+      "output" : {
+        "shape" : "UpdateMonitoringResponse"
+      },
+      "errors" : [ {
+        "shape" : "ServiceUnavailableException"
+      }, {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "UnauthorizedException"
+      }, {
+        "shape" : "InternalServerErrorException"
+      }, {
+        "shape" : "ForbiddenException"
+      } ]
     }
   },
   "shapes": {
@@ -769,6 +794,10 @@
         "NumberOfBrokerNodes": {
           "shape": "__integer",
           "locationName": "numberOfBrokerNodes"
+        },
+        "OpenMonitoring" : {
+          "shape" : "OpenMonitoring",
+          "locationName" : "openMonitoring"
         },
         "State": {
           "shape": "ClusterState",
@@ -965,6 +994,10 @@
         "NumberOfBrokerNodes": {
           "shape": "__integerMin1Max15",
           "locationName": "numberOfBrokerNodes"
+        },
+        "OpenMonitoring" : {
+          "shape" : "OpenMonitoringInfo",
+          "locationName" : "openMonitoring"
         },
         "Tags": {
           "shape": "__mapOf__string",
@@ -1554,6 +1587,14 @@
         "NumberOfBrokerNodes": {
           "shape": "__integer",
           "locationName": "numberOfBrokerNodes"
+        },
+        "OpenMonitoring" : {
+          "shape" : "OpenMonitoring",
+          "locationName" : "openMonitoring"
+        },
+        "EnhancedMonitoring" : {
+          "shape" : "EnhancedMonitoring",
+          "locationName" : "enhancedMonitoring"
         }
       }
     },
@@ -1823,6 +1864,42 @@
         }
       }
     },
+    "UpdateMonitoringRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ClusterArn" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "clusterArn"
+        },
+        "CurrentVersion" : {
+          "shape" : "__string",
+          "locationName" : "currentVersion"
+        },
+        "EnhancedMonitoring" : {
+          "shape" : "EnhancedMonitoring",
+          "locationName" : "enhancedMonitoring"
+        },
+        "OpenMonitoring" : {
+          "shape" : "OpenMonitoringInfo",
+          "locationName" : "openMonitoring"
+        }
+      },
+      "required" : [ "ClusterArn", "CurrentVersion" ]
+    },
+    "UpdateMonitoringResponse" : {
+      "type" : "structure",
+      "members" : {
+        "ClusterArn" : {
+          "shape" : "__string",
+          "locationName" : "clusterArn"
+        },
+        "ClusterOperationArn" : {
+          "shape" : "__string",
+          "locationName" : "clusterOperationArn"
+        }
+      }
+    },
     "ZookeeperNodeInfo": {
       "type": "structure",
       "members": {
@@ -1847,6 +1924,92 @@
           "locationName": "zookeeperVersion"
         }
       }
+    },
+    "OpenMonitoring" : {
+      "type" : "structure",
+      "members" : {
+        "Prometheus" : {
+          "shape" : "Prometheus",
+          "locationName" : "prometheus"
+        }
+      },
+      "required" : [ "Prometheus" ]
+    },
+    "OpenMonitoringInfo" : {
+      "type" : "structure",
+      "members" : {
+        "Prometheus" : {
+          "shape" : "PrometheusInfo",
+          "locationName" : "prometheus"
+        }
+      },
+      "required" : [ "Prometheus" ]
+    },
+    "Prometheus" : {
+      "type" : "structure",
+      "members" : {
+        "JmxExporter" : {
+          "shape" : "JmxExporter",
+          "locationName" : "jmxExporter"
+        },
+        "NodeExporter" : {
+          "shape" : "NodeExporter",
+          "locationName" : "nodeExporter"
+        }
+      }
+    },
+    "PrometheusInfo" : {
+      "type" : "structure",
+      "members" : {
+        "JmxExporter" : {
+          "shape" : "JmxExporterInfo",
+          "locationName" : "jmxExporter"
+        },
+        "NodeExporter" : {
+          "shape" : "NodeExporterInfo",
+          "locationName" : "nodeExporter"
+        }
+      }
+    },
+    "JmxExporter" : {
+      "type" : "structure",
+      "members" : {
+        "EnabledInBroker" : {
+          "shape" : "__boolean",
+          "locationName" : "enabledInBroker"
+        }
+      },
+      "required" : [ "EnabledInBroker" ]
+    },
+    "JmxExporterInfo" : {
+      "type" : "structure",
+      "members" : {
+        "EnabledInBroker" : {
+          "shape" : "__boolean",
+          "locationName" : "enabledInBroker"
+        }
+      },
+      "required" : [ "EnabledInBroker" ]
+    },
+    "NodeExporter" : {
+      "type" : "structure",
+      "members" : {
+        "EnabledInBroker" : {
+          "shape" : "__boolean",
+          "locationName" : "enabledInBroker"
+        }
+      },
+      "required" : [ "EnabledInBroker" ]
+    },
+    "NodeExporterInfo" : {
+      "type" : "structure",
+      "members" : {
+        "EnabledInBroker" : {
+          "shape" : "__boolean",
+          "locationName" : "enabledInBroker"
+        }
+      },
+      "required" : [ "EnabledInBroker" ]
     },
     "__boolean": {
       "type": "boolean"

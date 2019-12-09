@@ -59,6 +59,7 @@
     "DescribePatchProperties": "<p>Lists the properties of available patches organized by product, product family, classification, severity, and other properties of available patches. You can use the reported properties in the filters you specify in requests for actions such as <a>CreatePatchBaseline</a>, <a>UpdatePatchBaseline</a>, <a>DescribeAvailablePatches</a>, and <a>DescribePatchBaselines</a>.</p> <p>The following section lists the properties that can be used in filters for each major operating system type:</p> <dl> <dt>WINDOWS</dt> <dd> <p>Valid properties: PRODUCT, PRODUCT_FAMILY, CLASSIFICATION, MSRC_SEVERITY</p> </dd> <dt>AMAZON_LINUX</dt> <dd> <p>Valid properties: PRODUCT, CLASSIFICATION, SEVERITY</p> </dd> <dt>AMAZON_LINUX_2</dt> <dd> <p>Valid properties: PRODUCT, CLASSIFICATION, SEVERITY</p> </dd> <dt>UBUNTU </dt> <dd> <p>Valid properties: PRODUCT, PRIORITY</p> </dd> <dt>REDHAT_ENTERPRISE_LINUX</dt> <dd> <p>Valid properties: PRODUCT, CLASSIFICATION, SEVERITY</p> </dd> <dt>SUSE</dt> <dd> <p>Valid properties: PRODUCT, CLASSIFICATION, SEVERITY</p> </dd> <dt>CENTOS</dt> <dd> <p>Valid properties: PRODUCT, CLASSIFICATION, SEVERITY</p> </dd> </dl>",
     "DescribeSessions": "<p>Retrieves a list of all active sessions (both connected and disconnected) or terminated sessions from the past 30 days.</p>",
     "GetAutomationExecution": "<p>Get detailed information about a particular Automation execution.</p>",
+    "GetCalendarState": "<p>Gets the state of the AWS Systems Manager Change Calendar at an optional, specified time. If you specify a time, <code>GetCalendarState</code> returns the state of the calendar at a specific time, and returns the next time that the Change Calendar state will transition. If you do not specify a time, <code>GetCalendarState</code> assumes the current time. Change Calendar entries have two possible states: <code>OPEN</code> or <code>CLOSED</code>. For more information about Systems Manager Change Calendar, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-change-calendar.html\">AWS Systems Manager Change Calendar</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
     "GetCommandInvocation": "<p>Returns detailed information about command execution for an invocation or plugin. </p>",
     "GetConnectionStatus": "<p>Retrieves the Session Manager connection status for an instance to determine whether it is connected and ready to receive Session Manager connections.</p>",
     "GetDefaultPatchBaseline": "<p>Retrieves the default patch baseline. Note that Systems Manager supports creating multiple default patch baselines. For example, you can create a default patch baseline for each operating system.</p> <p>If you do not specify an operating system value, the default patch baseline for Windows is returned.</p>",
@@ -855,6 +856,24 @@
         "UpdatePatchBaselineResult$ApprovedPatchesEnableNonSecurity": "<p>Indicates whether the list of approved patches includes non-security updates that should be applied to the instances. The default value is 'false'. Applies to Linux instances only.</p>"
       }
     },
+    "CalendarNameOrARN": {
+      "base": null,
+      "refs": {
+        "CalendarNameOrARNList$member": null
+      }
+    },
+    "CalendarNameOrARNList": {
+      "base": null,
+      "refs": {
+        "GetCalendarStateRequest$CalendarNames": "<p>The names or Amazon Resource Names (ARNs) of the Systems Manager documents that represent the calendar entries for which you want to get the state.</p>"
+      }
+    },
+    "CalendarState": {
+      "base": null,
+      "refs": {
+        "GetCalendarStateResponse$State": "<p>The state of the calendar. An <code>OPEN</code> calendar indicates that actions are allowed to proceed, and a <code>CLOSED</code> calendar indicates that actions are not allowed to proceed.</p>"
+      }
+    },
     "CancelCommandRequest": {
       "base": "<p/>",
       "refs": {
@@ -1401,7 +1420,7 @@
         "InstanceInformation$LastSuccessfulAssociationExecutionDate": "<p>The last date the association was successfully run.</p>",
         "InstancePatchState$OperationStartTime": "<p>The time the most recent patching operation was started on the instance.</p>",
         "InstancePatchState$OperationEndTime": "<p>The time the most recent patching operation completed on the instance.</p>",
-        "InstancePatchState$LastNoRebootInstallOperationTime": "<p>The time of the last attempt to patch the instance with <code>NoReboot</code> specified as the reboot option.</p>",
+        "InstancePatchState$LastNoRebootInstallOperationTime": "<p>Reserved for future use. </p>",
         "MaintenanceWindowExecution$StartTime": "<p>The time the execution started.</p>",
         "MaintenanceWindowExecution$EndTime": "<p>The time the execution finished.</p>",
         "MaintenanceWindowExecutionTaskIdentity$StartTime": "<p>The time the task execution started.</p>",
@@ -2379,6 +2398,16 @@
       "refs": {
       }
     },
+    "GetCalendarStateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetCalendarStateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetCommandInvocationRequest": {
       "base": null,
       "refs": {
@@ -2615,6 +2644,14 @@
       "base": null,
       "refs": {
         "InstanceInformation$IPAddress": "<p>The IP address of the managed instance.</p>"
+      }
+    },
+    "ISO8601String": {
+      "base": null,
+      "refs": {
+        "GetCalendarStateRequest$AtTime": "<p>(Optional) The specific time for which you want to get calendar state information, in <a href=\"https://en.wikipedia.org/wiki/ISO_8601\">ISO 8601</a> format. If you do not add <code>AtTime</code>, the current time is assumed.</p>",
+        "GetCalendarStateResponse$AtTime": "<p>The time, as an <a href=\"https://en.wikipedia.org/wiki/ISO_8601\">ISO 8601</a> string, that you specified in your command. If you did not specify a time, <code>GetCalendarState</code> uses the current time.</p>",
+        "GetCalendarStateResponse$NextTransitionTime": "<p>The time, as an <a href=\"https://en.wikipedia.org/wiki/ISO_8601\">ISO 8601</a> string, that the calendar state will change. If the current calendar state is <code>OPEN</code>, <code>NextTransitionTime</code> indicates when the calendar state changes to <code>CLOSED</code>, and vice-versa.</p>"
       }
     },
     "IamRole": {
@@ -2877,7 +2914,7 @@
     "InstancesCount": {
       "base": null,
       "refs": {
-        "DescribePatchGroupStateResult$InstancesWithInstalledPendingRebootPatches": "<p>The number of instances with patches installed that have not been rebooted after the patch installation. The status of these instances is NON_COMPLIANT.</p>",
+        "DescribePatchGroupStateResult$InstancesWithInstalledPendingRebootPatches": "<p>Reserved for future use. </p>",
         "DescribePatchGroupStateResult$InstancesWithInstalledRejectedPatches": "<p>The number of instances with patches installed that are specified in a RejectedPatches list. Patches with a status of <i>INSTALLED_REJECTED</i> were typically installed before they were added to a RejectedPatches list.</p> <note> <p>If ALLOW_AS_DEPENDENCY is the specified option for RejectedPatchesAction, the value of InstancesWithInstalledRejectedPatches will always be 0 (zero).</p> </note>"
       }
     },
@@ -2982,6 +3019,11 @@
     },
     "InvalidDocumentSchemaVersion": {
       "base": "<p>The version of the document schema is not supported.</p>",
+      "refs": {
+      }
+    },
+    "InvalidDocumentType": {
+      "base": "<p>The document type is not valid. Valid document types are described in the <code>DocumentType</code> property.</p>",
       "refs": {
       }
     },
@@ -5333,7 +5375,7 @@
     "PatchInstalledPendingRebootCount": {
       "base": null,
       "refs": {
-        "InstancePatchState$InstalledPendingRebootCount": "<p>The number of patches installed since the last time the instance was rebooted.</p>"
+        "InstancePatchState$InstalledPendingRebootCount": "<p>Reserved for future use.</p>"
       }
     },
     "PatchInstalledRejectedCount": {
@@ -5628,7 +5670,7 @@
     "RebootOption": {
       "base": null,
       "refs": {
-        "InstancePatchState$RebootOption": "<p>Indicates the reboot option specified in the patch baseline.</p> <note> <p>Reboot options apply to <code>Install</code> operations only. Reboots are not attempted for Patch Manager <code>Scan</code> operations.</p> </note> <ul> <li> <p> <b>RebootIfNeeded</b>: Patch Manager tries to reboot the instance if it installed any patches, or if any patches are detected with a status of <code>InstalledPendingReboot</code>.</p> </li> <li> <p> <b>NoReboot</b>: Patch Manager attempts to install missing packages without trying to reboot the system. Patches installed with this option are assigned a status of <code>InstalledPendingReboot</code>. These patches might not be in effect until a reboot is performed.</p> </li> </ul>"
+        "InstancePatchState$RebootOption": "<p>Reserved for future use. </p>"
       }
     },
     "Region": {
@@ -6519,6 +6561,7 @@
         "InvalidDocumentContent$Message": "<p>A description of the validation error.</p>",
         "InvalidDocumentOperation$Message": null,
         "InvalidDocumentSchemaVersion$Message": null,
+        "InvalidDocumentType$Message": null,
         "InvalidDocumentVersion$Message": null,
         "InvalidFilter$Message": null,
         "InvalidFilterOption$message": "<p>The specified filter option is not valid. Valid options are Equals and BeginsWith. For Path filter, valid options are Recursive and OneLevel.</p>",
@@ -6601,6 +6644,7 @@
         "TargetNotConnected$Message": null,
         "TooManyUpdates$Message": null,
         "TotalSizeLimitExceededException$Message": null,
+        "UnsupportedCalendarException$Message": null,
         "UnsupportedFeatureRequiredException$Message": null,
         "UnsupportedInventoryItemContextException$Message": null,
         "UnsupportedInventorySchemaVersionException$Message": null,
@@ -6834,6 +6878,11 @@
     },
     "TotalSizeLimitExceededException": {
       "base": "<p>The size of inventory data has exceeded the total size limit for the resource.</p>",
+      "refs": {
+      }
+    },
+    "UnsupportedCalendarException": {
+      "base": "<p>The calendar entry contained in the specified Systems Manager document is not supported.</p>",
       "refs": {
       }
     },
