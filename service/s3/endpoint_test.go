@@ -34,6 +34,15 @@ func TestEndpointARN(t *testing.T) {
 			expectedSigningName:   "s3",
 			expectedSigningRegion: "us-west-2",
 		},
+		"AccessPoint slash delimiter": {
+			bucket: "arn:aws:s3:us-west-2:123456789012:accesspoint/myendpoint",
+			config: &aws.Config{
+				Region: aws.String("us-west-2"),
+			},
+			expectedEndpoint:      "https://myendpoint-123456789012.s3-accesspoint.us-west-2.amazonaws.com",
+			expectedSigningName:   "s3",
+			expectedSigningRegion: "us-west-2",
+		},
 		"AccessPoint other partition": {
 			bucket: "arn:aws-cn:s3:cn-north-1:123456789012:accesspoint:myendpoint",
 			config: &aws.Config{

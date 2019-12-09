@@ -263,7 +263,7 @@ func setupAccessPoints() (func(), error) {
 			Service:   "s3",
 			Region:    s3ControlSvc.SigningRegion,
 			AccountID: integMetadata.AccountID,
-			Resource:  fmt.Sprintf("accesspoint:%s", *ap.name),
+			Resource:  fmt.Sprintf("accesspoint/%s", *ap.name),
 		}.String()
 
 		*ap.arn = apARN
