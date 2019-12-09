@@ -692,7 +692,8 @@
         {"shape":"DependencyTimeoutException"},
         {"shape":"InvalidKeyUsageException"},
         {"shape":"InvalidGrantTokenException"},
-        {"shape":"KMSInternalException"}
+        {"shape":"KMSInternalException"},
+        {"shape":"KMSInvalidStateException"}
       ]
     },
     "TagResource":{
@@ -789,7 +790,9 @@
         {"shape":"DependencyTimeoutException"},
         {"shape":"InvalidKeyUsageException"},
         {"shape":"InvalidGrantTokenException"},
-        {"shape":"KMSInternalException"}
+        {"shape":"KMSInternalException"},
+        {"shape":"KMSInvalidStateException"},
+        {"shape":"KMSInvalidSignatureException"}
       ]
     }
   },
@@ -1619,6 +1622,13 @@
       },
       "exception":true,
       "fault":true
+    },
+    "KMSInvalidSignatureException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessageType"}
+      },
+      "exception":true
     },
     "KMSInvalidStateException":{
       "type":"structure",
