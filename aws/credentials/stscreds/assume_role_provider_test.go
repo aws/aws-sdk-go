@@ -208,15 +208,15 @@ func TestAssumeRoleProvider_WithTags(t *testing.T) {
 		},
 	}
 	p := &AssumeRoleProvider{
-		Client:       stub,
-		RoleARN:      "roleARN",
+		Client:  stub,
+		RoleARN: "roleARN",
 		Tags: []*sts.Tag{
-			&sts.Tag {
+			{
 				Key:   aws.String("TagName"),
 				Value: aws.String("TagValue"),
 			},
 		},
-		TransitiveTagKeys: []*string { aws.String("TagName") },
+		TransitiveTagKeys: []*string{aws.String("TagName")},
 	}
 	_, err := p.Retrieve()
 	if err != nil {

@@ -280,7 +280,7 @@ func (p *AssumeRoleProvider) Retrieve() (credentials.Value, error) {
 		RoleArn:           aws.String(p.RoleARN),
 		RoleSessionName:   aws.String(p.RoleSessionName),
 		ExternalId:        p.ExternalID,
-		Tags:	           p.Tags,
+		Tags:              p.Tags,
 		TransitiveTagKeys: p.TransitiveTagKeys,
 	}
 	if p.Policy != nil {
