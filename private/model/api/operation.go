@@ -134,7 +134,6 @@ func (o *Operation) GetSigner() string {
 
 // operationTmpl defines a template for rendering an API Operation
 var operationTmpl = template.Must(template.New("operation").Funcs(template.FuncMap{
-	"GetCrosslinkURL":       GetCrosslinkURL,
 	"EnableStopOnSameToken": enableStopOnSameToken,
 	"GetDeprecatedMsg":      getDeprecatedMessage,
 }).Parse(`
@@ -162,7 +161,7 @@ const op{{ .ExportedName }} = "{{ .Name }}"
 //    if err == nil { // resp is now filled
 //        fmt.Println(resp)
 //    }
-{{ $crosslinkURL := GetCrosslinkURL $.API.BaseCrosslinkURL $.API.Metadata.UID $.ExportedName -}}
+{{ $crosslinkURL := $.API.GetCrosslinkURL $.ExportedName -}}
 {{ if ne $crosslinkURL "" -}}
 //
 // See also, {{ $crosslinkURL }}
@@ -274,7 +273,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 //
 {{ end -}}
 {{ end -}}
-{{ $crosslinkURL := GetCrosslinkURL $.API.BaseCrosslinkURL $.API.Metadata.UID $.ExportedName -}}
+{{ $crosslinkURL := $.API.GetCrosslinkURL $.ExportedName -}}
 {{ if ne $crosslinkURL "" -}}
 // See also, {{ $crosslinkURL }}
 {{ end -}}
