@@ -3210,7 +3210,8 @@ type CreateIndexInput struct {
 	// RoleArn is a required field
 	RoleArn *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the KMS key to use to encrypt data indexed by Amazon Kendra.
+	// The identifier of the AWS KMS customer managed key (CMK) to use to encrypt
+	// data indexed by Amazon Kendra. Amazon Kendra doesn't support asymmetric CMKs.
 	ServerSideEncryptionConfiguration *ServerSideEncryptionConfiguration `type:"structure"`
 }
 
@@ -4314,7 +4315,8 @@ type DescribeIndexOutput struct {
 	// to write to your Amazon Cloudwatch logs.
 	RoleArn *string `min:"1" type:"string"`
 
-	// The identifier of the KMS key used to encrypt your data.
+	// The identifier of the AWS KMS customer master key (CMK) used to encrypt your
+	// data. Amazon Kendra doesn't support asymmetric CMKs.
 	ServerSideEncryptionConfiguration *ServerSideEncryptionConfiguration `type:"structure"`
 
 	// The current status of the index. When the value is ACTIVE, the index is ready
@@ -6118,7 +6120,7 @@ type S3DataSourceConfiguration struct {
 	// that matches an inclusion prefix also matches an exclusion pattern, the document
 	// is not indexed.
 	//
-	// For more information about glob patterns, see glob (programming) (http://wikipedia.org/wiki/Glob_%28programming529)
+	// For more information about glob patterns, see glob (programming) (http://wikipedia.org/wiki/Glob_%28programming%29)
 	// in Wikipedia.
 	ExclusionPatterns []*string `type:"list"`
 
@@ -6298,12 +6300,14 @@ func (s *Search) SetSearchable(v bool) *Search {
 	return s
 }
 
-// Provides the identifier of the KMS key used to encrypt data indexed by Amazon
-// Kendra.
+// Provides the identifier of the AWS KMS customer master key (CMK) used to
+// encrypt data indexed by Amazon Kendra. Amazon Kendra doesn't support asymmetric
+// CMKs.
 type ServerSideEncryptionConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the KMS key.
+	// The identifier of the AWS KMS customer master key (CMK). Amazon Kendra doesn't
+	// support asymmetric CMKs.
 	KmsKeyId *string `min:"1" type:"string" sensitive:"true"`
 }
 
@@ -6344,6 +6348,9 @@ type SharePointConfiguration struct {
 	// TRUE to include attachments to documents stored in your Microsoft SharePoint
 	// site in the index; otherwise, FALSE.
 	CrawlAttachments *bool `type:"boolean"`
+
+	// The Microsoft SharePoint attribute field that contains the title of the document.
+	DocumentTitleFieldName *string `min:"1" type:"string"`
 
 	// A list of DataSourceToIndexFieldMapping objects that map Microsoft SharePoint
 	// attributes to custom fields in the Amazon Kendra index. You must first create
@@ -6389,6 +6396,9 @@ func (s SharePointConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *SharePointConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "SharePointConfiguration"}
+	if s.DocumentTitleFieldName != nil && len(*s.DocumentTitleFieldName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DocumentTitleFieldName", 1))
+	}
 	if s.FieldMappings != nil && len(s.FieldMappings) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("FieldMappings", 1))
 	}
@@ -6432,6 +6442,12 @@ func (s *SharePointConfiguration) Validate() error {
 // SetCrawlAttachments sets the CrawlAttachments field's value.
 func (s *SharePointConfiguration) SetCrawlAttachments(v bool) *SharePointConfiguration {
 	s.CrawlAttachments = &v
+	return s
+}
+
+// SetDocumentTitleFieldName sets the DocumentTitleFieldName field's value.
+func (s *SharePointConfiguration) SetDocumentTitleFieldName(v string) *SharePointConfiguration {
+	s.DocumentTitleFieldName = &v
 	return s
 }
 
