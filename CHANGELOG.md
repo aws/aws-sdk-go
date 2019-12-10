@@ -1,3 +1,10 @@
+Release v1.25.50 (2019-12-10)
+===
+
+### Service Client Updates
+* `service/kendra`: Updates service API and documentation
+  * 1. Adding DocumentTitleFieldName as an optional configuration for SharePoint. 2. updating s3 object pattern to  support all s3 keys.
+
 Release v1.25.49 (2019-12-09)
 ===
 

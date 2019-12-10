@@ -1336,7 +1336,7 @@
       "type":"string",
       "max":200,
       "min":1,
-      "pattern":"^[^'/\\[\\]:=,;?*\\\\\\u0022\\u003C\\u003E]*$"
+      "pattern":"^\\P{C}*$"
     },
     "PrincipalType":{
       "type":"string",
@@ -1506,7 +1506,7 @@
       "type":"string",
       "max":1024,
       "min":1,
-      "pattern":"^\\P{C}*$"
+      "pattern":".*"
     },
     "S3Path":{
       "type":"structure",
@@ -1566,7 +1566,8 @@
         "SecretArn":{"shape":"SecretArn"},
         "CrawlAttachments":{"shape":"Boolean"},
         "VpcConfiguration":{"shape":"DataSourceVpcConfiguration"},
-        "FieldMappings":{"shape":"DataSourceToIndexFieldMappingList"}
+        "FieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
+        "DocumentTitleFieldName":{"shape":"DataSourceFieldName"}
       }
     },
     "SharePointUrlList":{
