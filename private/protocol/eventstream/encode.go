@@ -3,14 +3,20 @@ package eventstream
 import (
 	"bytes"
 	"encoding/binary"
+	"encoding/hex"
+	"encoding/json"
+	"fmt"
 	"hash"
 	"hash/crc32"
 	"io"
+
+	"github.com/aws/aws-sdk-go/aws"
 )
 
 // Encoder provides EventStream message encoding.
 type Encoder struct {
-	w io.Writer
+	w      io.Writer
+	logger aws.Logger
 
 	headersBuf *bytes.Buffer
 }
@@ -26,38 +32,70 @@ func NewEncoder(w io.Writer) *Encoder {
 
 // Encode encodes a single EventStream message to the io.Writer the Encoder
 // was created with. An error is returned if writing the message fails.
-func (e *Encoder) Encode(msg Message) error {
+func (e *Encoder) Encode(msg Message) (err error) {
 	e.headersBuf.Reset()
 
-	err := encodeHeaders(e.headersBuf, msg.Headers)
-	if err != nil {
+	writer := e.w
+	if e.logger != nil {
+		encodeMsgBuf := bytes.NewBuffer(nil)
+		writer = io.MultiWriter(writer, encodeMsgBuf)
+		defer func() {
+			logMessageEncode(e.logger, encodeMsgBuf, msg, err)
+		}()
+	}
+
+	if err = encodeHeaders(e.headersBuf, msg.Headers); err != nil {
 		return err
 	}
 
 	crc := crc32.New(crc32IEEETable)
-	hashWriter := io.MultiWriter(e.w, crc)
+	hashWriter := io.MultiWriter(writer, crc)
 
 	headersLen := uint32(e.headersBuf.Len())
 	payloadLen := uint32(len(msg.Payload))
 
-	if err := encodePrelude(hashWriter, crc, headersLen, payloadLen); err != nil {
+	if err = encodePrelude(hashWriter, crc, headersLen, payloadLen); err != nil {
 		return err
 	}
 
 	if headersLen > 0 {
-		if _, err := io.Copy(hashWriter, e.headersBuf); err != nil {
+		if _, err = io.Copy(hashWriter, e.headersBuf); err != nil {
 			return err
 		}
 	}
 
 	if payloadLen > 0 {
-		if _, err := hashWriter.Write(msg.Payload); err != nil {
+		if _, err = hashWriter.Write(msg.Payload); err != nil {
 			return err
 		}
 	}
 
 	msgCRC := crc.Sum32()
-	return binary.Write(e.w, binary.BigEndian, msgCRC)
+	return binary.Write(writer, binary.BigEndian, msgCRC)
+}
+
+// UseLogger specifies the Logger that that the encoder should use to log the
+// encoded messages.
+func (e *Encoder) UseLogger(logger aws.Logger) {
+	e.logger = logger
+}
+
+func logMessageEncode(logger aws.Logger, msgBuf *bytes.Buffer, msg Message, encodeErr error) {
+	w := bytes.NewBuffer(nil)
+	defer func() { logger.Log(w.String()) }()
+
+	fmt.Fprintf(w, "Message to encode:\n")
+	encoder := json.NewEncoder(w)
+	if err := encoder.Encode(msg); err != nil {
+		fmt.Fprintf(w, "Failed to get encoded message, %v\n", err)
+	}
+
+	if encodeErr != nil {
+		fmt.Fprintf(w, "Encode error: %v\n", encodeErr)
+		return
+	}
+
+	fmt.Fprintf(w, "Raw message:\n%s\n", hex.Dump(msgBuf.Bytes()))
 }
 
 func encodePrelude(w io.Writer, crc hash.Hash32, headersLen, payloadLen uint32) error {
@@ -86,6 +124,8 @@ func encodePrelude(w io.Writer, crc hash.Hash32, headersLen, payloadLen uint32) 
 	return nil
 }
 
+// encodeHeaders writes the header values to the writer encoded in the event
+// stream format. Returns an error if a header fails to encode.
 func encodeHeaders(w io.Writer, headers Headers) error {
 	for _, h := range headers {
 		hn := headerName{

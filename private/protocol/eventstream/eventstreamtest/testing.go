@@ -94,7 +94,7 @@ var EventMessageTypeHeader = eventstream.Header{
 }
 
 // EventExceptionTypeHeader is an event exception type header for specifying an
-// event is an exeption type.
+// event is an exception type.
 var EventExceptionTypeHeader = eventstream.Header{
 	Name:  eventstreamapi.MessageTypeHeader,
 	Value: eventstream.StringValue(eventstreamapi.ExceptionMessageType),
