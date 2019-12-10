@@ -5,5 +5,6 @@
   * https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html
 
 ### SDK Enhancements
+* `aws/request`: Adds `ThrottledException` to the list of retryable request exceptions ([#3006](https://github.com/aws/aws-sdk-go/pull/3006))
 
 ### SDK Bugs

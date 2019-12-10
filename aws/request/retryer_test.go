@@ -12,10 +12,43 @@ import (
 
 func TestRequestThrottling(t *testing.T) {
 	req := Request{}
+	cases := []struct {
+		ecode string
+	}{
+		{
+			ecode: "ProvisionedThroughputExceededException",
+		},
+		{
+			ecode: "ThrottledException",
+		},
+		{
+			ecode: "Throttling",
+		},
+		{
+			ecode: "ThrottlingException",
+		},
+		{
+			ecode: "RequestLimitExceeded",
+		},
+		{
+			ecode: "RequestThrottled",
+		},
+		{
+			ecode: "TooManyRequestsException",
+		},
+		{
+			ecode: "PriorRequestNotComplete",
+		},
+		{
+			ecode: "TransactionInProgressException",
+		},
+	}
 
-	req.Error = awserr.New("Throttling", "", nil)
-	if e, a := true, req.IsErrorThrottle(); e != a {
-		t.Errorf("expect %t to be throttled, was %t", e, a)
+	for _, c := range cases {
+		req.Error = awserr.New(c.ecode, "", nil)
+		if e, a := true, req.IsErrorThrottle(); e != a {
+			t.Errorf("expect %s to be throttled, was %t", c.ecode, a)
+		}
 	}
 }
 
