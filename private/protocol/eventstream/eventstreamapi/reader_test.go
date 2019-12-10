@@ -164,9 +164,10 @@ func BenchmarkEventReader(b *testing.B) {
 			eventMessageTypeHeader,
 			eventstream.Header{
 				Name:  EventTypeHeader,
-				Value: eventstream.StringValue("eventABC"),
+				Value: eventstream.StringValue("eventStructured"),
 			},
 		},
+		Payload: []byte(`{"String":"stringfield","Number":123,"Nested":{"String":"fieldstring","Number":321}}`),
 	}
 	if err := encoder.Encode(msg); err != nil {
 		b.Fatalf("failed to encode message, %v", err)
@@ -182,8 +183,8 @@ func BenchmarkEventReader(b *testing.B) {
 		},
 		unmarshalerForEventType,
 	)
-	b.ResetTimer()
 
+	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		stream.Seek(0, 0)
 
@@ -201,6 +202,8 @@ func unmarshalerForEventType(eventType string) (Unmarshaler, error) {
 	switch eventType {
 	case "eventABC":
 		return &eventABC{}, nil
+	case "eventStructured":
+		return &eventStructured{}, nil
 	case "exception":
 		return &exceptionType{}, nil
 	default:
