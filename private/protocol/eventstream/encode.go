@@ -44,7 +44,7 @@ func (e *Encoder) Encode(msg Message) (err error) {
 		}()
 	}
 
-	if err = encodeHeaders(e.headersBuf, msg.Headers); err != nil {
+	if err = EncodeHeaders(e.headersBuf, msg.Headers); err != nil {
 		return err
 	}
 
@@ -124,9 +124,9 @@ func encodePrelude(w io.Writer, crc hash.Hash32, headersLen, payloadLen uint32) 
 	return nil
 }
 
-// encodeHeaders writes the header values to the writer encoded in the event
+// EncodeHeaders writes the header values to the writer encoded in the event
 // stream format. Returns an error if a header fails to encode.
-func encodeHeaders(w io.Writer, headers Headers) error {
+func EncodeHeaders(w io.Writer, headers Headers) error {
 	for _, h := range headers {
 		hn := headerName{
 			Len: uint8(len(h.Name)),
