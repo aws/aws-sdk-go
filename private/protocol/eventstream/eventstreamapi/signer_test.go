@@ -13,15 +13,6 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/eventstream"
 )
 
-type mockChunkSigner struct {
-	signature string
-	err       error
-}
-
-func (m mockChunkSigner) GetSignature(_, _ []byte, _ time.Time) ([]byte, error) {
-	return mustDecodeHex(hex.DecodeString(m.signature)), m.err
-}
-
 func TestMessageSigner(t *testing.T) {
 	currentTime := time.Date(2019, 1, 27, 22, 37, 54, 0, time.UTC)
 
@@ -95,12 +86,4 @@ func TestMessageSigner(t *testing.T) {
 			}
 		})
 	}
-}
-
-func mustDecodeHex(b []byte, err error) []byte {
-	if err != nil {
-		panic(err)
-	}
-
-	return b
 }
