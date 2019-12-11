@@ -5466,6 +5466,12 @@
         "Instance$ElasticInferenceAcceleratorAssociations": "<p> The elastic inference accelerator associated with the instance.</p>"
       }
     },
+    "ElasticInferenceAcceleratorCount": {
+      "base": null,
+      "refs": {
+        "ElasticInferenceAccelerator$Count": "<p> The number of elastic inference accelerators of given type to be attached to the instance. Only positive values allowed. If not specified defaults to 1. </p>"
+      }
+    },
     "ElasticInferenceAccelerators": {
       "base": null,
       "refs": {
@@ -7482,6 +7488,7 @@
         "LaunchTemplateEbsBlockDevice$VolumeSize": "<p>The size of the volume, in GiB.</p>",
         "LaunchTemplateEbsBlockDeviceRequest$Iops": "<p>The number of I/O operations per second (IOPS) that the volume supports. For io1, this represents the number of IOPS that are provisioned for the volume. For gp2, this represents the baseline performance of the volume and the rate at which the volume accumulates I/O credits for bursting. For more information about General Purpose SSD baseline performance, I/O credits, and bursting, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html\">Amazon EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Condition: This parameter is required for requests to create io1 volumes; it is not used in requests to create gp2, st1, sc1, or standard volumes.</p>",
         "LaunchTemplateEbsBlockDeviceRequest$VolumeSize": "<p>The size of the volume, in GiB.</p> <p>Default: If you're creating the volume from a snapshot and don't specify a volume size, the default is the snapshot size.</p>",
+        "LaunchTemplateElasticInferenceAcceleratorResponse$Count": "<p> The number of elastic inference accelerators of given type to be attached to the instance. Only positive values allowed. If not specified defaults to 1. </p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecification$DeviceIndex": "<p>The device index for the network interface attachment.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecification$Ipv6AddressCount": "<p>The number of IPv6 addresses for the network interface.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecification$SecondaryPrivateIpAddressCount": "<p>The number of secondary private IPv4 addresses for the network interface.</p>",
@@ -7907,6 +7914,12 @@
       "base": "<p> Describes an elastic inference accelerator. </p>",
       "refs": {
         "LaunchTemplateElasticInferenceAcceleratorList$member": null
+      }
+    },
+    "LaunchTemplateElasticInferenceAcceleratorCount": {
+      "base": null,
+      "refs": {
+        "LaunchTemplateElasticInferenceAccelerator$Count": "<p> The number of elastic inference accelerators of given type to be attached to the instance. Only positive values allowed. If not specified defaults to 1. </p>"
       }
     },
     "LaunchTemplateElasticInferenceAcceleratorList": {
@@ -11774,7 +11787,7 @@
         "ElasticGpus$AvailabilityZone": "<p>The Availability Zone in the which the Elastic Graphics accelerator resides.</p>",
         "ElasticGpus$ElasticGpuType": "<p>The type of Elastic Graphics accelerator.</p>",
         "ElasticGpus$InstanceId": "<p>The ID of the instance to which the Elastic Graphics accelerator is attached.</p>",
-        "ElasticInferenceAccelerator$Type": "<p> The type of elastic inference accelerator. The possible values are <code>eia1.small</code>, <code>eia1.medium</code>, and <code>eia1.large</code>. </p>",
+        "ElasticInferenceAccelerator$Type": "<p> The type of elastic inference accelerator. The possible values are <code>eia1.medium</code>, <code>eia1.large</code>, and <code>eia1.xlarge</code>. </p>",
         "ElasticInferenceAcceleratorAssociation$ElasticInferenceAcceleratorArn": "<p> The Amazon Resource Name (ARN) of the elastic inference accelerator. </p>",
         "ElasticInferenceAcceleratorAssociation$ElasticInferenceAcceleratorAssociationId": "<p> The ID of the association. </p>",
         "ElasticInferenceAcceleratorAssociation$ElasticInferenceAcceleratorAssociationState": "<p> The state of the elastic inference accelerator. </p>",

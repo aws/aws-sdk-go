@@ -13440,7 +13440,8 @@
       "type":"structure",
       "required":["Type"],
       "members":{
-        "Type":{"shape":"String"}
+        "Type":{"shape":"String"},
+        "Count":{"shape":"ElasticInferenceAcceleratorCount"}
       }
     },
     "ElasticInferenceAcceleratorAssociation":{
@@ -13470,6 +13471,10 @@
         "shape":"ElasticInferenceAcceleratorAssociation",
         "locationName":"item"
       }
+    },
+    "ElasticInferenceAcceleratorCount":{
+      "type":"integer",
+      "min":1
     },
     "ElasticInferenceAccelerators":{
       "type":"list",
@@ -18323,8 +18328,13 @@
       "type":"structure",
       "required":["Type"],
       "members":{
-        "Type":{"shape":"String"}
+        "Type":{"shape":"String"},
+        "Count":{"shape":"LaunchTemplateElasticInferenceAcceleratorCount"}
       }
+    },
+    "LaunchTemplateElasticInferenceAcceleratorCount":{
+      "type":"integer",
+      "min":1
     },
     "LaunchTemplateElasticInferenceAcceleratorList":{
       "type":"list",
@@ -18339,6 +18349,10 @@
         "Type":{
           "shape":"String",
           "locationName":"type"
+        },
+        "Count":{
+          "shape":"Integer",
+          "locationName":"count"
         }
       }
     },
