@@ -1,3 +1,19 @@
+Release v1.26.0 (2019-12-11)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * This release allows customers to attach multiple Elastic Inference Accelerators to a single EC2 instance. It adds support for a Count parameter for each Elastic Inference Accelerator type you specify on the RunInstances and LaunchTemplate APIs.
+
+### SDK Features
+
+* `aws/credentials/stscreds`: Add support for session tags to `AssumeRoleProvider` ([#2993](https://github.com/aws/aws-sdk-go/pull/2993))
+  * Adds support for session tags to the AssumeRoleProvider. This feature is used to enable modeling Attribute Based Access Control (ABAC) on top of AWS IAM Policies, User and Roles.
+  * https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html
+
+### SDK Enhancements
+* `aws/request`: Adds `ThrottledException` to the list of retryable request exceptions ([#3006](https://github.com/aws/aws-sdk-go/pull/3006))
+
 Release v1.25.50 (2019-12-10)
 ===
 
