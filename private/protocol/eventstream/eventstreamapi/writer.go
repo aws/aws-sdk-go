@@ -15,7 +15,7 @@ type Marshaler interface {
 }
 
 // EventWriter provides a wrapper around the underlying event stream encoder
-// for an io.Writer.
+// for an io.WriteCloser.
 type EventWriter struct {
 	writer  io.Writer
 	encoder *eventstream.Encoder

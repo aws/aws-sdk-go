@@ -36,7 +36,7 @@ type Operation struct {
 	Endpoint              *EndpointTrait     `json:"endpoint"`
 }
 
-// EndpointTrait provides the structure of the modeled enpdoint trait, and its
+// EndpointTrait provides the structure of the modeled endpoint trait, and its
 // properties.
 type EndpointTrait struct {
 	// Specifies the hostPrefix template to prepend to the operation's request
@@ -110,6 +110,17 @@ const (
 	NoneAuthType           AuthType = "none"
 	V4UnsignedBodyAuthType AuthType = "v4-unsigned-body"
 )
+
+// ShouldSignRequestBody returns if the operation request body should be signed
+// or not.
+func (o *Operation) ShouldSignRequestBody() bool {
+	switch o.AuthType {
+	case NoneAuthType, V4UnsignedBodyAuthType:
+		return false
+	default:
+		return true
+	}
+}
 
 // GetSigner returns the signer that should be used for a API request.
 func (o *Operation) GetSigner() string {
@@ -194,38 +205,80 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 
 	output = &{{ .OutputRef.GoTypeElem }}{}
 	req = c.newRequest(op, input, output)
-	{{ if ne .AuthType "" }}{{ .GetSigner }}{{ end }}
+	{{- if ne .AuthType "" }}
+		{{ .GetSigner }}
+	{{- end }}
+
 	{{- if .ShouldDiscardResponse -}}
-		{{- $_ := .API.AddSDKImport "private/protocol" -}}
-		{{- $_ := .API.AddSDKImport "private/protocol" .API.ProtocolPackage -}}
+		{{- $_ := .API.AddSDKImport "private/protocol" }}
+		{{- $_ := .API.AddSDKImport "private/protocol" .API.ProtocolPackage }}
 		req.Handlers.Unmarshal.Swap({{ .API.ProtocolPackage }}.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-	{{ else if .OutputRef.Shape.EventStreamsMemberName -}}
-		{{- $_ := .API.AddSDKImport "private/protocol" .API.ProtocolPackage -}}
-		{{- $_ := .API.AddSDKImport "private/protocol/rest" -}}
-		req.Handlers.Send.Swap(client.LogHTTPResponseHandler.Name, client.LogHTTPResponseHeaderHandler)
-		req.Handlers.Unmarshal.Swap({{ .API.ProtocolPackage }}.UnmarshalHandler.Name, rest.UnmarshalHandler)
-		req.Handlers.Unmarshal.PushBack(output.runEventStreamLoop)
-		{{ if eq .API.Metadata.Protocol "json" -}}
-			req.Handlers.Unmarshal.PushBack(output.unmarshalInitialResponse)
-		{{ end -}}
-	{{ end -}}
-	{{ if .EndpointDiscovery -}}
-		{{if not .EndpointDiscovery.Required -}}
+	{{- else }}
+		{{- if $.EventStreamAPI }}
+
+			es := &{{ $.EventStreamAPI.Name }}{}
+			req.Handlers.Unmarshal.PushBack(es.setStreamCloser)
+			output.{{ $.OutputRef.Shape.EventStreamMemberName }} = es
+
+			{{- $inputStream := $.EventStreamAPI.InputStream }}
+			{{- $outputStream := $.EventStreamAPI.OutputStream }}
+
+			{{- $_ := .API.AddSDKImport "private/protocol" .API.ProtocolPackage }}
+			{{- $_ := .API.AddSDKImport "private/protocol/rest" }}
+
+			{{- if $inputStream }}
+
+				inputReader, inputWriter := io.Pipe()
+				req.SetReaderBody(aws.ReadSeekCloser(inputReader))
+				es.inputWriter = inputWriter
+
+				req.Handlers.Build.PushBack(request.WithSetRequestHeaders(map[string]string{
+					"Content-Type": "application/vnd.amazon.eventstream",
+					"X-Amz-Content-Sha256": "STREAMING-AWS4-HMAC-SHA256-EVENTS",
+				}))
+				req.Handlers.Build.Swap({{ .API.ProtocolPackage }}.BuildHandler.Name, rest.BuildHandler)
+				req.Handlers.Send.Swap(client.LogHTTPRequestHandler.Name, client.LogHTTPRequestHeaderHandler)
+				req.Handlers.Unmarshal.PushBack(es.runInputStream)
+
+				{{- if eq .API.Metadata.Protocol "json" }}
+					es.input = input
+					req.Handlers.Unmarshal.PushBack(es.sendInitialRequestEvent)
+				{{- end }}
+			{{- end }}
+
+			{{- if $outputStream }}
+
+				req.Handlers.Send.Swap(client.LogHTTPResponseHandler.Name, client.LogHTTPResponseHeaderHandler)
+				req.Handlers.Unmarshal.Swap({{ .API.ProtocolPackage }}.UnmarshalHandler.Name, rest.UnmarshalHandler)
+				req.Handlers.Unmarshal.PushBack(es.runOutputStream)
+
+				{{- if eq .API.Metadata.Protocol "json" }}
+					es.output = output
+					req.Handlers.Unmarshal.PushBack(es.recvInitialResponseEvent)
+				{{- end }}
+			{{- end }}
+
+		{{- end }}
+	{{- end }}
+
+
+	{{- if .EndpointDiscovery }}
+		{{- if not .EndpointDiscovery.Required }}
 			if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
-		{{end -}}
+		{{- end }}
 		de := discoverer{{ .API.EndpointDiscoveryOp.Name }}{
 			Required: {{ .EndpointDiscovery.Required }},
 			EndpointCache: c.endpointCache,
 			Params: map[string]*string{
 				"op": aws.String(req.Operation.Name),
-				{{ range $key, $ref := .InputRef.Shape.MemberRefs -}}
-				{{ if $ref.EndpointDiscoveryID -}}
-				{{ if ne (len $ref.LocationName) 0 -}}
-				"{{ $ref.LocationName }}": input.{{ $key }},
-				{{ else -}}
-				"{{ $key }}": input.{{ $key }},
-				{{ end -}}
-				{{ end -}}
+				{{- range $key, $ref := .InputRef.Shape.MemberRefs -}}
+					{{- if $ref.EndpointDiscoveryID -}}
+						{{- if ne (len $ref.LocationName) 0 -}}
+							"{{ $ref.LocationName }}": input.{{ $key }},
+						{{- else }}
+							"{{ $key }}": input.{{ $key }},
+						{{- end }}
+					{{- end }}
 				{{- end }}
 			},
 			Client: c,
@@ -241,14 +294,15 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 			Name: "crr.endpointdiscovery",
 			Fn: de.Handler,
 		})
-		{{if not .EndpointDiscovery.Required -}}
+		{{- if not .EndpointDiscovery.Required }}
 			}
-		{{ end -}}
-	{{ end -}}
-	{{- range $_, $handler := $.CustomBuildHandlers -}}
+		{{ end }}
+	{{- end }}
+
+	{{- range $_, $handler := $.CustomBuildHandlers }}
 		req.Handlers.Build.PushBackNamed({{ $handler }})
-	{{ end -}}
-	return
+	{{- end }}
+	return req, output
 }
 
 // {{ .ExportedName }} API operation for {{ .API.Metadata.ServiceFullName }}.
@@ -375,8 +429,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}PagesWithContext(` +
 }
 {{ end }}
 
-{{ if .IsEndpointDiscoveryOp -}}
-
+{{- if .IsEndpointDiscoveryOp }}
 type discoverer{{ .ExportedName }} struct {
 	Client *{{ .API.StructName }}
 	Required bool
@@ -442,20 +495,12 @@ func (d *discoverer{{ .ExportedName }}) Handler(r *request.Request) {
 		r.HTTPRequest.URL = endpoint.URL
 	}
 }
-{{ end -}}
-
+{{- end }}
 `))
 
 // GoCode returns a string of rendered GoCode for this Operation
 func (o *Operation) GoCode() string {
 	var buf bytes.Buffer
-
-	if len(o.OutputRef.Shape.EventStreamsMemberName) != 0 {
-		o.API.AddSDKImport("aws/client")
-		o.API.AddSDKImport("private/protocol")
-		o.API.AddSDKImport("private/protocol/rest")
-		o.API.AddSDKImport("private/protocol", o.API.ProtocolPackage())
-	}
 
 	if o.API.EndpointDiscoveryOp != nil {
 		o.API.AddSDKImport("aws/crr")
@@ -467,9 +512,18 @@ func (o *Operation) GoCode() string {
 		setupEndpointHostPrefix(o)
 	}
 
-	err := operationTmpl.Execute(&buf, o)
-	if err != nil {
-		panic(err)
+	if err := operationTmpl.Execute(&buf, o); err != nil {
+		panic(fmt.Sprintf("failed to render operation, %v, %v", o.ExportedName, err))
+	}
+
+	if o.EventStreamAPI != nil {
+		o.API.AddSDKImport("aws/client")
+		o.API.AddSDKImport("private/protocol")
+		o.API.AddSDKImport("private/protocol/rest")
+		o.API.AddSDKImport("private/protocol", o.API.ProtocolPackage())
+		if err := renderEventStreamAPI(&buf, o); err != nil {
+			panic(fmt.Sprintf("failed to render EventStreamAPI for %v, %v", o.ExportedName, err))
+		}
 	}
 
 	return strings.TrimSpace(buf.String())

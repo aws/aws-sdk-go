@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws/request"
@@ -177,7 +176,7 @@ func BenchmarkEventReader(b *testing.B) {
 	var unmarshalers request.HandlerList
 	unmarshalers.PushBackNamed(restjson.UnmarshalHandler)
 
-	eventReader := NewEventReader(ioutil.NopCloser(stream),
+	eventReader := NewEventReader(stream,
 		protocol.HandlerPayloadUnmarshal{
 			Unmarshalers: unmarshalers,
 		},
@@ -225,7 +224,7 @@ func (e *eventABC) UnmarshalEvent(
 	return nil
 }
 
-func createStream(msgs ...eventstream.Message) io.ReadCloser {
+func createStream(msgs ...eventstream.Message) io.Reader {
 	w := bytes.NewBuffer(nil)
 
 	encoder := eventstream.NewEncoder(w)
@@ -236,7 +235,7 @@ func createStream(msgs ...eventstream.Message) io.ReadCloser {
 		}
 	}
 
-	return ioutil.NopCloser(w)
+	return w
 }
 
 type exceptionType struct {

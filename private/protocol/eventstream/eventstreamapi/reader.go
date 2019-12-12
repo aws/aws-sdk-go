@@ -17,7 +17,7 @@ type Unmarshaler interface {
 
 // EventReader provides reading from the EventStream of an reader.
 type EventReader struct {
-	reader  io.ReadCloser
+	reader  io.Reader
 	decoder *eventstream.Decoder
 
 	unmarshalerForEventType func(string) (Unmarshaler, error)
@@ -29,7 +29,7 @@ type EventReader struct {
 // NewEventReader returns a EventReader built from the reader and unmarshaler
 // provided.  Use ReadStream method to start reading from the EventStream.
 func NewEventReader(
-	reader io.ReadCloser,
+	reader io.Reader,
 	payloadUnmarshaler protocol.PayloadUnmarshaler,
 	unmarshalerForEventType func(string) (Unmarshaler, error),
 ) *EventReader {
@@ -153,11 +153,6 @@ func (r *EventReader) unmarshalErrorMessage(msg eventstream.Message) (err error)
 	}
 
 	return msgErr
-}
-
-// Close closes the EventReader's EventStream reader.
-func (r *EventReader) Close() error {
-	return r.reader.Close()
 }
 
 // GetHeaderString returns the value of the header as a string. If the header
