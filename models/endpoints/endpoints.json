@@ -447,6 +447,7 @@
           "eu-west-2" : { },
           "eu-west-3" : { },
           "me-south-1" : { },
+          "sa-east-1" : { },
           "us-east-1" : { },
           "us-east-2" : { },
           "us-west-1" : { },
@@ -767,6 +768,7 @@
       },
       "codecommit" : {
         "endpoints" : {
+          "ap-east-1" : { },
           "ap-northeast-1" : { },
           "ap-northeast-2" : { },
           "ap-south-1" : { },
@@ -1197,6 +1199,12 @@
               "region" : "ap-southeast-2"
             },
             "hostname" : "rds.ap-southeast-2.amazonaws.com"
+          },
+          "ca-central-1" : {
+            "credentialScope" : {
+              "region" : "ca-central-1"
+            },
+            "hostname" : "rds.ca-central-1.amazonaws.com"
           },
           "eu-central-1" : {
             "credentialScope" : {
