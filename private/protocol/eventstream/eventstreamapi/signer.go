@@ -7,10 +7,7 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/eventstream"
 )
 
-const (
-	chunkSignatureHeader = ":chunk-signature"
-	chunkDateHeader      = ":date"
-)
+var timeNow = time.Now
 
 // StreamSigner defines an interface for the implementation of signing of event stream payloads
 type StreamSigner interface {
@@ -25,7 +22,7 @@ type MessageSigner struct {
 // SignMessage takes the given event stream message generates and adds signature information
 // to the event stream message.
 func (s MessageSigner) SignMessage(msg *eventstream.Message, date time.Time) error {
-	msg.Headers.Set(chunkDateHeader, eventstream.TimestampValue(date))
+	msg.Headers.Set(DateHeader, eventstream.TimestampValue(date))
 
 	var headers bytes.Buffer
 	if err := eventstream.EncodeHeaders(&headers, msg.Headers); err != nil {
@@ -37,7 +34,7 @@ func (s MessageSigner) SignMessage(msg *eventstream.Message, date time.Time) err
 		return err
 	}
 
-	msg.Headers.Set(chunkSignatureHeader, eventstream.BytesValue(sig))
+	msg.Headers.Set(ChunkSignatureHeader, eventstream.BytesValue(sig))
 
 	return nil
 }
