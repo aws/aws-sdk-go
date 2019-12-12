@@ -1002,7 +1002,10 @@
       },
       "exception":true
     },
-    "Timestamp":{"type":"timestamp"},
+    "Timestamp":{
+      "type":"timestamp",
+      "timestampFormat":"iso8601"
+    },
     "Token":{"type":"string"},
     "Type":{
       "type":"string",
