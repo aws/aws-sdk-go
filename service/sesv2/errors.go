@@ -32,8 +32,7 @@ const (
 	// ErrCodeInvalidNextTokenException for service response error code
 	// "InvalidNextTokenException".
 	//
-	// The specified request includes an invalid or expired token. Please attempt
-	// to get a new token.
+	// The specified request includes an invalid or expired token.
 	ErrCodeInvalidNextTokenException = "InvalidNextTokenException"
 
 	// ErrCodeLimitExceededException for service response error code
