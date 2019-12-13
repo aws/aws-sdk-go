@@ -7588,8 +7588,8 @@ func (s *SubscribeToShardEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg 
 	return msg, err
 }
 
-// SubscribeToShardEventStreamEvent groups together all events read from the
-// SubscribeToShard API.
+// SubscribeToShardEventStreamEvent groups together all EventStream
+// events writes for SubscribeToShardEventStream.
 //
 // These events are:
 //
@@ -7597,11 +7597,12 @@ func (s *SubscribeToShardEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg 
 //     * SubscribeToShardEvent
 type SubscribeToShardEventStreamEvent interface {
 	eventSubscribeToShardEventStream()
+	eventstreamapi.Marshaler
+	eventstreamapi.Unmarshaler
 }
 
-// SubscribeToShardEventStreamReader provides the interface for reading EventStream Events
-// from the SubscribeToShard API. The default implementation for this interface
-// will be SubscribeToShardEventStreamData.
+// SubscribeToShardEventStreamReader provides the interface for reading to the stream. The
+// default implementation for this interface will be SubscribeToShardEventStreamData.
 //
 // The reader's Close method must allow multiple concurrent calls.
 //

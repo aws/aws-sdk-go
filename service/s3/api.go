@@ -28064,8 +28064,8 @@ func (s *ScanRange) SetStart(v int64) *ScanRange {
 	return s
 }
 
-// SelectObjectContentEventStreamEvent groups together all events read from the
-// SelectObjectContent API.
+// SelectObjectContentEventStreamEvent groups together all EventStream
+// events writes for SelectObjectContentEventStream.
 //
 // These events are:
 //
@@ -28076,11 +28076,12 @@ func (s *ScanRange) SetStart(v int64) *ScanRange {
 //     * StatsEvent
 type SelectObjectContentEventStreamEvent interface {
 	eventSelectObjectContentEventStream()
+	eventstreamapi.Marshaler
+	eventstreamapi.Unmarshaler
 }
 
-// SelectObjectContentEventStreamReader provides the interface for reading EventStream Events
-// from the SelectObjectContent API. The default implementation for this interface
-// will be SelectObjectContentEventStreamData.
+// SelectObjectContentEventStreamReader provides the interface for reading to the stream. The
+// default implementation for this interface will be SelectObjectContentEventStreamData.
 //
 // The reader's Close method must allow multiple concurrent calls.
 //

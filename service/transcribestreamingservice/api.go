@@ -353,6 +353,7 @@ func (s *AudioEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream
 type AudioStreamEvent interface {
 	eventAudioStream()
 	eventstreamapi.Marshaler
+	eventstreamapi.Unmarshaler
 }
 
 // AudioStreamWriter provides the interface for writing events to the stream.
@@ -1112,19 +1113,20 @@ func (s *TranscriptEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg events
 	return msg, err
 }
 
-// TranscriptResultStreamEvent groups together all events read from the
-// StartStreamTranscription API.
+// TranscriptResultStreamEvent groups together all EventStream
+// events writes for TranscriptResultStream.
 //
 // These events are:
 //
 //     * TranscriptEvent
 type TranscriptResultStreamEvent interface {
 	eventTranscriptResultStream()
+	eventstreamapi.Marshaler
+	eventstreamapi.Unmarshaler
 }
 
-// TranscriptResultStreamReader provides the interface for reading EventStream Events
-// from the StartStreamTranscription API. The default implementation for this interface
-// will be TranscriptResultStream.
+// TranscriptResultStreamReader provides the interface for reading to the stream. The
+// default implementation for this interface will be TranscriptResultStream.
 //
 // The reader's Close method must allow multiple concurrent calls.
 //
