@@ -3292,7 +3292,6 @@ func (es *SubscribeToShardEventStream) recvInitialResponseEvent(r *request.Reque
 			return
 		}
 
-		esVar := es.output.EventStream
 		v, ok := event.(*SubscribeToShardOutput)
 		if !ok || v == nil {
 			r.Error = awserr.New(
@@ -3303,8 +3302,9 @@ func (es *SubscribeToShardEventStream) recvInitialResponseEvent(r *request.Reque
 			)
 			return
 		}
+
 		*es.output = *v
-		es.output.EventStream = esVar
+		es.output.EventStream = es
 	}
 }
 
@@ -3320,8 +3320,8 @@ func (es *SubscribeToShardEventStream) recvInitialResponseEvent(r *request.Reque
 // may result in resource leaks.
 func (es *SubscribeToShardEventStream) Close() (err error) {
 	es.Reader.Close()
-
 	es.StreamCloser.Close()
+
 	return es.Err()
 }
 
@@ -7837,6 +7837,10 @@ func (s SubscribeToShardOutput) String() string {
 // GoString returns the string representation
 func (s SubscribeToShardOutput) GoString() string {
 	return s.String()
+}
+
+func (s *SubscribeToShardOutput) GetEventStream() *SubscribeToShardEventStream {
+	return s.EventStream
 }
 
 // GetStream returns the type to interact with the event stream.

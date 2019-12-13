@@ -9670,8 +9670,8 @@ func (es *SelectObjectContentEventStream) runOutputStream(r *request.Request) {
 // may result in resource leaks.
 func (es *SelectObjectContentEventStream) Close() (err error) {
 	es.Reader.Close()
-
 	es.StreamCloser.Close()
+
 	return es.Err()
 }
 
@@ -28437,6 +28437,10 @@ func (s SelectObjectContentOutput) String() string {
 // GoString returns the string representation
 func (s SelectObjectContentOutput) GoString() string {
 	return s.String()
+}
+
+func (s *SelectObjectContentOutput) GetEventStream() *SelectObjectContentEventStream {
+	return s.EventStream
 }
 
 // GetStream returns the type to interact with the event stream.

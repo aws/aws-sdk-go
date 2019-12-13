@@ -63,7 +63,7 @@ func (c *TranscribeStreamingService) StartStreamTranscriptionRequest(input *Star
 
 	es := &StartStreamTranscriptionEventStream{}
 	req.Handlers.Unmarshal.PushBack(es.setStreamCloser)
-	output.transcriptresultstream = es
+	output.eventStream = es
 
 	inputReader, inputWriter := io.Pipe()
 	req.SetReaderBody(aws.ReadSeekCloser(inputReader))
@@ -244,8 +244,8 @@ func (es *StartStreamTranscriptionEventStream) runOutputStream(r *request.Reques
 func (es *StartStreamTranscriptionEventStream) Close() (err error) {
 	es.Reader.Close()
 	es.Writer.Close()
-
 	es.StreamCloser.Close()
+
 	return es.Err()
 }
 
@@ -958,7 +958,7 @@ func (s *StartStreamTranscriptionInput) SetVocabularyName(v string) *StartStream
 type StartStreamTranscriptionOutput struct {
 	_ struct{} `type:"structure" payload:"TranscriptResultStream"`
 
-	transcriptresultstream *StartStreamTranscriptionEventStream
+	eventStream *StartStreamTranscriptionEventStream
 
 	// The language code for the input audio stream.
 	LanguageCode *string `location:"header" locationName:"x-amzn-transcribe-language-code" type:"string" enum:"LanguageCode"`
@@ -1028,7 +1028,7 @@ func (s *StartStreamTranscriptionOutput) SetVocabularyName(v string) *StartStrea
 
 // GetStream returns the type to interact with the event stream.
 func (s *StartStreamTranscriptionOutput) GetStream() *StartStreamTranscriptionEventStream {
-	return s.transcriptresultstream
+	return s.eventStream
 }
 
 // The transcription in a TranscriptEvent.
