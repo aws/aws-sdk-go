@@ -215,7 +215,6 @@ func (a *API) Setup() error {
 	a.renameAPIPayloadShapes()
 	a.renameCollidingFields()
 	a.updateTopLevelShapeReferences()
-	a.renameS3EventStreamMember()
 	if err := a.setupEventStreams(); err != nil {
 		return err
 	}

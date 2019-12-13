@@ -148,7 +148,12 @@ func (a *API) setupEventStreams() error {
 			op.OutputRef.Shape.EventStreamAPI = op.EventStreamAPI
 			outputStream.Shape.EventStreamAPI = op.EventStreamAPI
 			outputStream.Shape.IsOutputEventStream = true
-			op.OutputRef.Shape.EventStreamMemberName = strings.ToLower(outRefName)
+
+			outputMemberName := strings.ToLower(outRefName)
+			if v, ok := getLegacyEventStreamMemberName(a, op); ok {
+				outputMemberName = v
+			}
+			op.OutputRef.Shape.EventStreamMemberName = outputMemberName
 		}
 
 		if s, ok := a.Shapes[op.EventStreamAPI.Name]; ok {
@@ -163,6 +168,25 @@ func (a *API) setupEventStreams() error {
 	}
 
 	return nil
+}
+
+var legacyEventStreamMemberNames = map[string]map[string]string{
+	"s3": {
+		"SelectObjectContent": "EventStream",
+	},
+	"kinesis": {
+		"SubscribeToShard": "EventStream",
+	},
+}
+
+func getLegacyEventStreamMemberName(a *API, op *Operation) (string, bool) {
+	s, ok := legacyEventStreamMemberNames[a.PackageName()]
+	if !ok {
+		return "", false
+	}
+
+	name, ok := s[op.ExportedName]
+	return name, ok
 }
 
 func getEventStream(topShape *Shape) (string, *ShapeRef) {
