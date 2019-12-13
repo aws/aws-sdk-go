@@ -147,7 +147,7 @@ func (c *TranscribeStreamingService) StartStreamTranscriptionWithContext(ctx aws
 	return out, req.Send()
 }
 
-// TODO documentation StartStreamTranscriptionEventStream
+// StartStreamTranscriptionEventStream provides the event stream handling for the StartStreamTranscription.
 type StartStreamTranscriptionEventStream struct {
 
 	// Writer is the EventStream writer for the AudioStream
