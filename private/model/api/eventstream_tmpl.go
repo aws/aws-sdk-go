@@ -276,11 +276,11 @@ var eventStreamShapeTmpl = func() *template.Template {
 	)
 	template.Must(
 		t.AddParseTree(
-			"eventStreamAPIWriterTmpl", eventStreamAPIWriterTmpl.Tree),
+			"eventStreamShapeWriterTmpl", eventStreamShapeWriterTmpl.Tree),
 	)
 	template.Must(
 		t.AddParseTree(
-			"eventStreamAPIReaderTmpl", eventStreamAPIReaderTmpl.Tree),
+			"eventStreamShapeReaderTmpl", eventStreamShapeReaderTmpl.Tree),
 	)
 
 	return t
@@ -304,11 +304,11 @@ type {{ $eventStreamEventGroup }} interface {
 }
 
 {{- if $.IsInputEventStream }}
-	{{- template "eventStreamAPIWriterTmpl" $ }}
+	{{- template "eventStreamShapeWriterTmpl" $ }}
 {{- end }}
 
 {{- if $.IsOutputEventStream }}
-	{{- template "eventStreamAPIReaderTmpl" $ }}
+	{{- template "eventStreamShapeReaderTmpl" $ }}
 {{- end }}
 `
 

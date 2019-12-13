@@ -89,11 +89,9 @@ type Shape struct {
 	XMLNamespace     XMLInfo
 	Min              float64 // optional Minimum length (string, list) or value (number)
 
-	EventStreamOutput *EventStreamAPI
-	EventStream       *EventStream
-
-	EventStreamAPI *EventStreamAPI `json:"-"`
-	EventFor       []*EventStream  `json:"-"`
+	OutputEventStreamAPI *EventStreamAPI
+	EventStream          *EventStream
+	EventFor             []*EventStream `json:"-"`
 
 	IsInputEventStream  bool `json:"-"`
 	IsOutputEventStream bool `json:"-"`
@@ -692,9 +690,9 @@ const structShapeTmplDef = `
 type {{ $.ShapeName }} struct {
 	_ struct{} {{ $.GoTags true false }}
 
-	{{- if and $.EventStreamAPI $.UsedAsOutput }}
+	{{- if and $.OutputEventStreamAPI }}
 
-		{{ $.EventStreamAPI.OutputMemberName }} *{{ $.EventStreamAPI.Name }}
+		{{ $.OutputEventStreamAPI.OutputMemberName }} *{{ $.OutputEventStreamAPI.Name }}
 	{{- end }}
 
 	{{- range $name, $elem := (TrimExportedMembers $) }}
@@ -764,16 +762,16 @@ type {{ $.ShapeName }} struct {
 	{{- end }}
 {{- end }}
 
-{{- if and $.EventStreamAPI $.UsedAsOutput }}
-	{{- $esMemberName := $.EventStreamAPI.OutputMemberName }}
-	{{- if $.EventStreamAPI.Legacy }}
-		func (s *{{ $.ShapeName }}) Get{{ $esMemberName }}() *{{ $.EventStreamAPI.Name }} {
+{{- if and $.OutputEventStreamAPI }}
+	{{- $esMemberName := $.OutputEventStreamAPI.OutputMemberName }}
+	{{- if $.OutputEventStreamAPI.Legacy }}
+		func (s *{{ $.ShapeName }}) Get{{ $esMemberName }}() *{{ $.OutputEventStreamAPI.Name }} {
 			return s.{{ $esMemberName }}
 		}
 	{{- end }}
 
 	// GetStream returns the type to interact with the event stream.
-	func (s *{{ $.ShapeName }}) GetStream() *{{ $.EventStreamAPI.Name }} {
+	func (s *{{ $.ShapeName }}) GetStream() *{{ $.OutputEventStreamAPI.Name }} {
 		return s.{{ $esMemberName }}
 	}
 {{- end }}

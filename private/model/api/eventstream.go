@@ -128,11 +128,13 @@ func (a *API) setupEventStreams() error {
 		var inputStream *EventStream
 		if inRef != nil {
 			inputStream = setupEventStream(op.InputRef.Shape, inRefName, inRef)
+			inputStream.Shape.IsInputEventStream = true
 		}
 
 		var outputStream *EventStream
 		if outRef != nil {
 			outputStream = setupEventStream(op.OutputRef.Shape, outRefName, outRef)
+			outputStream.Shape.IsOutputEventStream = true
 		}
 
 		a.HasEventStream = true
@@ -144,20 +146,7 @@ func (a *API) setupEventStreams() error {
 			OutputStream: outputStream,
 			Legacy:       isLegacyEventStream(op),
 		}
-		if inputStream != nil {
-			op.InputRef.Shape.EventStreamAPI = op.EventStreamAPI
-
-			inputStream.Shape.EventStream = inputStream
-			//inputStream.Shape.EventStreamAPI = op.EventStreamAPI
-			inputStream.Shape.IsInputEventStream = true
-		}
-		if outputStream != nil {
-			op.OutputRef.Shape.EventStreamAPI = op.EventStreamAPI
-
-			outputStream.Shape.EventStream = outputStream
-			//outputStream.Shape.EventStreamAPI = op.EventStreamAPI
-			outputStream.Shape.IsOutputEventStream = true
-		}
+		op.OutputRef.Shape.OutputEventStreamAPI = op.EventStreamAPI
 
 		if s, ok := a.Shapes[op.EventStreamAPI.Name]; ok {
 			newName := op.EventStreamAPI.Name + "Data"
@@ -224,6 +213,7 @@ func setupEventStream(topShape *Shape, refName string, ref *ShapeRef) *EventStre
 		RefName: refName,
 		Shape:   ref.Shape,
 	}
+	ref.Shape.EventStream = eventStream
 
 	if topShape.API.Metadata.Protocol == "json" {
 		var eventName string

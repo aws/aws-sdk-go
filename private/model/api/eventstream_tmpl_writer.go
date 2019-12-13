@@ -4,7 +4,7 @@ package api
 
 import "text/template"
 
-var eventStreamAPIWriterTmpl = template.Must(template.New("eventStreamAPIWriterTmpl").
+var eventStreamShapeWriterTmpl = template.Must(template.New("eventStreamShapeWriterTmpl").
 	Funcs(template.FuncMap{}).
 	Parse(`
 {{- $eventStream := $.EventStream }}
