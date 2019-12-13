@@ -3169,7 +3169,7 @@ func (c *Kinesis) SubscribeToShardRequest(input *SubscribeToShardInput) (req *re
 	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, rest.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBack(es.runOutputStream)
 	es.output = output
-	req.Handlers.Unmarshal.PushBack(es.recvInitialResponseEvent)
+	req.Handlers.Unmarshal.PushBack(es.recvInitialEvent)
 	return
 }
 
@@ -3266,7 +3266,6 @@ func (es *SubscribeToShardEventStream) setStreamCloser(r *request.Request) {
 //
 // These events are:
 //
-//     * SubscribeToShardOutput
 //     * SubscribeToShardEvent
 func (es *SubscribeToShardEventStream) Events() <-chan SubscribeToShardEventStreamEvent {
 	return es.Reader.Events()
@@ -3278,12 +3277,17 @@ func (es *SubscribeToShardEventStream) runOutputStream(r *request.Request) {
 		r.Handlers.UnmarshalStream,
 		r.Config.Logger,
 		r.Config.LogLevel.Value(),
+		func(typ string) (eventstreamapi.Unmarshaler, error) {
+			if typ == "initial-response" {
+				return es.output, nil
+			}
+			return unmarshalerForSubscribeToShardEventStreamEvent(typ)
+		},
 	)
 	es.Reader = reader
 	go reader.readEventStream()
 }
-
-func (es *SubscribeToShardEventStream) recvInitialResponseEvent(r *request.Request) {
+func (es *SubscribeToShardEventStream) recvInitialEvent(r *request.Request) {
 	// Wait for the initial response event, which must be the first
 	// event to be received from the API.
 	select {
@@ -7593,7 +7597,6 @@ func (s *SubscribeToShardEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg 
 //
 // These events are:
 //
-//     * SubscribeToShardOutput
 //     * SubscribeToShardEvent
 type SubscribeToShardEventStreamEvent interface {
 	eventSubscribeToShardEventStream()
@@ -7608,7 +7611,6 @@ type SubscribeToShardEventStreamEvent interface {
 //
 // These events are:
 //
-//     * SubscribeToShardOutput
 //     * SubscribeToShardEvent
 type SubscribeToShardEventStreamReader interface {
 	// Returns a channel of events as they are read from the event stream.
@@ -7635,6 +7637,7 @@ func newReadSubscribeToShardEventStream(
 	unmarshalers request.HandlerList,
 	logger aws.Logger,
 	logLevel aws.LogLevelType,
+	unmarshalerForEvent func(string) (eventstreamapi.Unmarshaler, error),
 ) *readSubscribeToShardEventStream {
 	r := &readSubscribeToShardEventStream{
 		stream: make(chan SubscribeToShardEventStreamEvent),
@@ -7646,7 +7649,7 @@ func newReadSubscribeToShardEventStream(
 		protocol.HandlerPayloadUnmarshal{
 			Unmarshalers: unmarshalers,
 		},
-		r.unmarshalerForEventType,
+		unmarshalerForEvent,
 	)
 	r.eventReader.UseLogger(logger, logLevel)
 
@@ -7703,13 +7706,8 @@ func (r *readSubscribeToShardEventStream) readEventStream() {
 	}
 }
 
-func (r *readSubscribeToShardEventStream) unmarshalerForEventType(
-	eventType string,
-) (eventstreamapi.Unmarshaler, error) {
+func unmarshalerForSubscribeToShardEventStreamEvent(eventType string) (eventstreamapi.Unmarshaler, error) {
 	switch eventType {
-	case "initial-response":
-		return &SubscribeToShardOutput{}, nil
-
 	case "SubscribeToShardEvent":
 		return &SubscribeToShardEvent{}, nil
 

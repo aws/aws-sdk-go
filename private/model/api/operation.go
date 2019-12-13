@@ -92,7 +92,7 @@ func (o *Operation) Methods() []string {
 	return methods
 }
 
-// HasInput returns if the Operation accepts an input paramater
+// HasInput returns if the Operation accepts an input parameter
 func (o *Operation) HasInput() bool {
 	return o.InputRef.ShapeName != ""
 }
@@ -241,7 +241,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 
 				{{- if eq .API.Metadata.Protocol "json" }}
 					es.input = input
-					req.Handlers.Unmarshal.PushBack(es.sendInitialRequestEvent)
+					req.Handlers.Unmarshal.PushBack(es.sendInitialEvent)
 				{{- end }}
 			{{- end }}
 
@@ -253,7 +253,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 
 				{{- if eq .API.Metadata.Protocol "json" }}
 					es.output = output
-					req.Handlers.Unmarshal.PushBack(es.recvInitialResponseEvent)
+					req.Handlers.Unmarshal.PushBack(es.recvInitialEvent)
 				{{- end }}
 			{{- end }}
 

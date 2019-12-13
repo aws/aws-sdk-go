@@ -28,7 +28,6 @@ type EventStreamAPI struct {
 // modeled events that are known for the stream.
 type EventStream struct {
 	Name       string
-	RefName    string
 	Shape      *Shape
 	Events     []*Event
 	Exceptions []*Event
@@ -98,8 +97,8 @@ func eventStreamAPIShapeRefDoc(refName string) string {
 
 func (a *API) setupEventStreams() error {
 	for opName, op := range a.Operations {
-		inRefName, inRef := getEventStream(op.InputRef.Shape)
-		outRefName, outRef := getEventStream(op.OutputRef.Shape)
+		_, inRef := getEventStream(op.InputRef.Shape)
+		_, outRef := getEventStream(op.OutputRef.Shape)
 
 		if inRef == nil && outRef == nil {
 			continue
@@ -127,14 +126,22 @@ func (a *API) setupEventStreams() error {
 
 		var inputStream *EventStream
 		if inRef != nil {
-			inputStream = setupEventStream(op.InputRef.Shape, inRefName, inRef)
+			inputStream = setupEventStream(inRef)
 			inputStream.Shape.IsInputEventStream = true
+
+			if op.API.Metadata.Protocol == "json" {
+				op.InputRef.Shape.EventFor = append(op.InputRef.Shape.EventFor, inputStream)
+			}
 		}
 
 		var outputStream *EventStream
 		if outRef != nil {
-			outputStream = setupEventStream(op.OutputRef.Shape, outRefName, outRef)
+			outputStream = setupEventStream(outRef)
 			outputStream.Shape.IsOutputEventStream = true
+
+			if op.API.Metadata.Protocol == "json" {
+				op.OutputRef.Shape.EventFor = append(op.OutputRef.Shape.EventFor, outputStream)
+			}
 		}
 
 		a.HasEventStream = true
@@ -199,7 +206,7 @@ func getEventStream(topShape *Shape) (string, *ShapeRef) {
 	return "", nil
 }
 
-func setupEventStream(topShape *Shape, refName string, ref *ShapeRef) *EventStream {
+func setupEventStream(ref *ShapeRef) *EventStream {
 	//	// Swap out the modeled shape with a copy so that references to the
 	//	// events are not lost, and the modeled shape can be dropped if
 	//	// unneeded.
@@ -209,29 +216,10 @@ func setupEventStream(topShape *Shape, refName string, ref *ShapeRef) *EventStre
 	//	clonedShape.refs = append(clonedShape.refs, ref)
 
 	eventStream := &EventStream{
-		Name:    ref.Shape.ShapeName,
-		RefName: refName,
-		Shape:   ref.Shape,
+		Name:  ref.Shape.ShapeName,
+		Shape: ref.Shape,
 	}
 	ref.Shape.EventStream = eventStream
-
-	if topShape.API.Metadata.Protocol == "json" {
-		var eventName string
-		if topShape.UsedAsInput {
-			eventName = "initial-request"
-		} else {
-			eventName = "initial-response"
-		}
-		// For JSONRPC protocol, the top level shape is the initial event
-		// for the stream.
-		topShape.EventFor = append(topShape.EventFor, eventStream)
-		eventStream.Events = append(eventStream.Events, &Event{
-			Name:    eventName,
-			Shape:   topShape,
-			For:     eventStream,
-			Private: true,
-		})
-	}
 
 	for _, eventRefName := range ref.Shape.MemberNames() {
 		eventRef := ref.Shape.MemberRefs[eventRefName]

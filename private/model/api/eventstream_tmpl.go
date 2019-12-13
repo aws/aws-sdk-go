@@ -60,9 +60,7 @@ type {{ $esName }} struct {
 		Writer {{ $inputStream.Name }}Writer
 
 		inputWriter io.WriteCloser
-
 		{{- if eq .API.Metadata.Protocol "json" }}
-
 			input {{ $.InputRef.GoType }}
 		{{- end }}
 	{{- end }}
@@ -141,14 +139,14 @@ func (es *{{ $esName }}) setStreamCloser(r *request.Request) {
 			signer,
 			r.Config.Logger,
 			r.Config.LogLevel.Value(),
+			{{/* TODO need to need a provide func to derive event name */}}
 		)
 		es.Writer = writer
 		go writer.writeEventStream()
 	}
 
 	{{- if eq .API.Metadata.Protocol "json" }}
-
-		func (es *{{ $esName }}) sendInitialRequestEvent(r *request.Request) {
+		func (es *{{ $esName }}) sendInitialEvent(r *request.Request) {
 			if err := es.Send(es.input); err != nil {
 				r.Error = err
 			}
@@ -174,14 +172,23 @@ func (es *{{ $esName }}) setStreamCloser(r *request.Request) {
 			r.Handlers.UnmarshalStream,
 			r.Config.Logger,
 			r.Config.LogLevel.Value(),
+			{{- if eq .API.Metadata.Protocol "json" }}
+				func(typ string) (eventstreamapi.Unmarshaler, error) {
+					if typ == "initial-response" {
+						return es.output, nil
+					}
+					return unmarshalerFor{{ $outputStream.Name }}Event(typ)
+				},
+			{{- else }}
+				unmarshalerFor{{ $outputStream.Name }}Event,
+			{{- end }}
 		)
 		es.Reader = reader
 		go reader.readEventStream()
 	}
 
 	{{- if eq .API.Metadata.Protocol "json" }}
-
-		func (es *{{ $esName }}) recvInitialResponseEvent(r *request.Request) {
+		func (es *{{ $esName }}) recvInitialEvent(r *request.Request) {
 			// Wait for the initial response event, which must be the first
 			// event to be received from the API.
 			select {

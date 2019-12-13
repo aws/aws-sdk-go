@@ -47,6 +47,7 @@ func newRead{{ $eventStream.Name }}(
 	unmarshalers request.HandlerList,
 	logger aws.Logger,
 	logLevel aws.LogLevelType,
+	unmarshalerForEvent func(string) (eventstreamapi.Unmarshaler, error),
 ) *{{ $esReaderImpl }} {
 	r := &{{ $esReaderImpl }}{
 		stream: make(chan {{ $eventStreamEventGroup }}),
@@ -58,7 +59,7 @@ func newRead{{ $eventStream.Name }}(
 		protocol.HandlerPayloadUnmarshal{
 			Unmarshalers: unmarshalers,
 		},
-		r.unmarshalerForEventType,
+		unmarshalerForEvent,
 	)
 	r.eventReader.UseLogger(logger, logLevel)
 
@@ -115,9 +116,7 @@ func (r *{{ $esReaderImpl }}) readEventStream() {
 	}
 }
 
-func (r *{{ $esReaderImpl }}) unmarshalerForEventType(
-	eventType string,
-) (eventstreamapi.Unmarshaler, error) {
+func unmarshalerFor{{ $eventStream.Name }}Event(eventType string) (eventstreamapi.Unmarshaler, error) {
 	switch eventType {
 		{{- range $_, $event := $eventStream.Events }}
 			case {{ printf "%q" $event.Name }}:

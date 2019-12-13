@@ -224,6 +224,7 @@ func (es *StartStreamTranscriptionEventStream) runOutputStream(r *request.Reques
 		r.Handlers.UnmarshalStream,
 		r.Config.Logger,
 		r.Config.LogLevel.Value(),
+		unmarshalerForTranscriptResultStreamEvent,
 	)
 	es.Reader = reader
 	go reader.readEventStream()
@@ -1158,6 +1159,7 @@ func newReadTranscriptResultStream(
 	unmarshalers request.HandlerList,
 	logger aws.Logger,
 	logLevel aws.LogLevelType,
+	unmarshalerForEvent func(string) (eventstreamapi.Unmarshaler, error),
 ) *readTranscriptResultStream {
 	r := &readTranscriptResultStream{
 		stream: make(chan TranscriptResultStreamEvent),
@@ -1169,7 +1171,7 @@ func newReadTranscriptResultStream(
 		protocol.HandlerPayloadUnmarshal{
 			Unmarshalers: unmarshalers,
 		},
-		r.unmarshalerForEventType,
+		unmarshalerForEvent,
 	)
 	r.eventReader.UseLogger(logger, logLevel)
 
@@ -1226,9 +1228,7 @@ func (r *readTranscriptResultStream) readEventStream() {
 	}
 }
 
-func (r *readTranscriptResultStream) unmarshalerForEventType(
-	eventType string,
-) (eventstreamapi.Unmarshaler, error) {
+func unmarshalerForTranscriptResultStreamEvent(eventType string) (eventstreamapi.Unmarshaler, error) {
 	switch eventType {
 	case "TranscriptEvent":
 		return &TranscriptEvent{}, nil

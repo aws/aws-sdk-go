@@ -9653,6 +9653,7 @@ func (es *SelectObjectContentEventStream) runOutputStream(r *request.Request) {
 		r.Handlers.UnmarshalStream,
 		r.Config.Logger,
 		r.Config.LogLevel.Value(),
+		unmarshalerForSelectObjectContentEventStreamEvent,
 	)
 	es.Reader = reader
 	go reader.readEventStream()
@@ -28117,6 +28118,7 @@ func newReadSelectObjectContentEventStream(
 	unmarshalers request.HandlerList,
 	logger aws.Logger,
 	logLevel aws.LogLevelType,
+	unmarshalerForEvent func(string) (eventstreamapi.Unmarshaler, error),
 ) *readSelectObjectContentEventStream {
 	r := &readSelectObjectContentEventStream{
 		stream: make(chan SelectObjectContentEventStreamEvent),
@@ -28128,7 +28130,7 @@ func newReadSelectObjectContentEventStream(
 		protocol.HandlerPayloadUnmarshal{
 			Unmarshalers: unmarshalers,
 		},
-		r.unmarshalerForEventType,
+		unmarshalerForEvent,
 	)
 	r.eventReader.UseLogger(logger, logLevel)
 
@@ -28185,9 +28187,7 @@ func (r *readSelectObjectContentEventStream) readEventStream() {
 	}
 }
 
-func (r *readSelectObjectContentEventStream) unmarshalerForEventType(
-	eventType string,
-) (eventstreamapi.Unmarshaler, error) {
+func unmarshalerForSelectObjectContentEventStreamEvent(eventType string) (eventstreamapi.Unmarshaler, error) {
 	switch eventType {
 	case "Cont":
 		return &ContinuationEvent{}, nil

@@ -157,7 +157,6 @@ func mockSubscribeToShardReadEvents() (
 ) {
 	expectEvents := []SubscribeToShardEventStreamEvent{
 		&SubscribeToShardOutput{},
-		&SubscribeToShardOutput{},
 		&SubscribeToShardEvent{
 			ContinuationSequenceNumber: aws.String("string value goes here"),
 			MillisBehindLatest:         aws.Int64(1234),
@@ -210,20 +209,10 @@ func mockSubscribeToShardReadEvents() (
 				eventstreamtest.EventMessageTypeHeader,
 				{
 					Name:  eventstreamapi.EventTypeHeader,
-					Value: eventstream.StringValue("initial-response"),
-				},
-			},
-			Payload: eventstreamtest.MarshalEventPayload(payloadMarshaler, expectEvents[1]),
-		},
-		{
-			Headers: eventstream.Headers{
-				eventstreamtest.EventMessageTypeHeader,
-				{
-					Name:  eventstreamapi.EventTypeHeader,
 					Value: eventstream.StringValue("SubscribeToShardEvent"),
 				},
 			},
-			Payload: eventstreamtest.MarshalEventPayload(payloadMarshaler, expectEvents[2]),
+			Payload: eventstreamtest.MarshalEventPayload(payloadMarshaler, expectEvents[1]),
 		},
 	}
 
