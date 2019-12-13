@@ -104,6 +104,10 @@ type CodeBuildAPI interface {
 	DeleteReportGroupWithContext(aws.Context, *codebuild.DeleteReportGroupInput, ...request.Option) (*codebuild.DeleteReportGroupOutput, error)
 	DeleteReportGroupRequest(*codebuild.DeleteReportGroupInput) (*request.Request, *codebuild.DeleteReportGroupOutput)
 
+	DeleteResourcePolicy(*codebuild.DeleteResourcePolicyInput) (*codebuild.DeleteResourcePolicyOutput, error)
+	DeleteResourcePolicyWithContext(aws.Context, *codebuild.DeleteResourcePolicyInput, ...request.Option) (*codebuild.DeleteResourcePolicyOutput, error)
+	DeleteResourcePolicyRequest(*codebuild.DeleteResourcePolicyInput) (*request.Request, *codebuild.DeleteResourcePolicyOutput)
+
 	DeleteSourceCredentials(*codebuild.DeleteSourceCredentialsInput) (*codebuild.DeleteSourceCredentialsOutput, error)
 	DeleteSourceCredentialsWithContext(aws.Context, *codebuild.DeleteSourceCredentialsInput, ...request.Option) (*codebuild.DeleteSourceCredentialsOutput, error)
 	DeleteSourceCredentialsRequest(*codebuild.DeleteSourceCredentialsInput) (*request.Request, *codebuild.DeleteSourceCredentialsOutput)
@@ -115,6 +119,10 @@ type CodeBuildAPI interface {
 	DescribeTestCases(*codebuild.DescribeTestCasesInput) (*codebuild.DescribeTestCasesOutput, error)
 	DescribeTestCasesWithContext(aws.Context, *codebuild.DescribeTestCasesInput, ...request.Option) (*codebuild.DescribeTestCasesOutput, error)
 	DescribeTestCasesRequest(*codebuild.DescribeTestCasesInput) (*request.Request, *codebuild.DescribeTestCasesOutput)
+
+	GetResourcePolicy(*codebuild.GetResourcePolicyInput) (*codebuild.GetResourcePolicyOutput, error)
+	GetResourcePolicyWithContext(aws.Context, *codebuild.GetResourcePolicyInput, ...request.Option) (*codebuild.GetResourcePolicyOutput, error)
+	GetResourcePolicyRequest(*codebuild.GetResourcePolicyInput) (*request.Request, *codebuild.GetResourcePolicyOutput)
 
 	ImportSourceCredentials(*codebuild.ImportSourceCredentialsInput) (*codebuild.ImportSourceCredentialsOutput, error)
 	ImportSourceCredentialsWithContext(aws.Context, *codebuild.ImportSourceCredentialsInput, ...request.Option) (*codebuild.ImportSourceCredentialsOutput, error)
@@ -152,9 +160,21 @@ type CodeBuildAPI interface {
 	ListReportsForReportGroupWithContext(aws.Context, *codebuild.ListReportsForReportGroupInput, ...request.Option) (*codebuild.ListReportsForReportGroupOutput, error)
 	ListReportsForReportGroupRequest(*codebuild.ListReportsForReportGroupInput) (*request.Request, *codebuild.ListReportsForReportGroupOutput)
 
+	ListSharedProjects(*codebuild.ListSharedProjectsInput) (*codebuild.ListSharedProjectsOutput, error)
+	ListSharedProjectsWithContext(aws.Context, *codebuild.ListSharedProjectsInput, ...request.Option) (*codebuild.ListSharedProjectsOutput, error)
+	ListSharedProjectsRequest(*codebuild.ListSharedProjectsInput) (*request.Request, *codebuild.ListSharedProjectsOutput)
+
+	ListSharedReportGroups(*codebuild.ListSharedReportGroupsInput) (*codebuild.ListSharedReportGroupsOutput, error)
+	ListSharedReportGroupsWithContext(aws.Context, *codebuild.ListSharedReportGroupsInput, ...request.Option) (*codebuild.ListSharedReportGroupsOutput, error)
+	ListSharedReportGroupsRequest(*codebuild.ListSharedReportGroupsInput) (*request.Request, *codebuild.ListSharedReportGroupsOutput)
+
 	ListSourceCredentials(*codebuild.ListSourceCredentialsInput) (*codebuild.ListSourceCredentialsOutput, error)
 	ListSourceCredentialsWithContext(aws.Context, *codebuild.ListSourceCredentialsInput, ...request.Option) (*codebuild.ListSourceCredentialsOutput, error)
 	ListSourceCredentialsRequest(*codebuild.ListSourceCredentialsInput) (*request.Request, *codebuild.ListSourceCredentialsOutput)
+
+	PutResourcePolicy(*codebuild.PutResourcePolicyInput) (*codebuild.PutResourcePolicyOutput, error)
+	PutResourcePolicyWithContext(aws.Context, *codebuild.PutResourcePolicyInput, ...request.Option) (*codebuild.PutResourcePolicyOutput, error)
+	PutResourcePolicyRequest(*codebuild.PutResourcePolicyInput) (*request.Request, *codebuild.PutResourcePolicyOutput)
 
 	StartBuild(*codebuild.StartBuildInput) (*codebuild.StartBuildOutput, error)
 	StartBuildWithContext(aws.Context, *codebuild.StartBuildInput, ...request.Option) (*codebuild.StartBuildOutput, error)

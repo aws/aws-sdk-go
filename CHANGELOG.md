@@ -1,3 +1,12 @@
+Release v1.26.2 (2019-12-13)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * CodeBuild adds support for cross account
+* `service/detective`: Adds new service
+* `service/sesv2`: Updates service API and documentation
+
 Release v1.26.1 (2019-12-12)
 ===
 

@@ -245,6 +245,10 @@ type SESV2API interface {
 	PutEmailIdentityDkimAttributesWithContext(aws.Context, *sesv2.PutEmailIdentityDkimAttributesInput, ...request.Option) (*sesv2.PutEmailIdentityDkimAttributesOutput, error)
 	PutEmailIdentityDkimAttributesRequest(*sesv2.PutEmailIdentityDkimAttributesInput) (*request.Request, *sesv2.PutEmailIdentityDkimAttributesOutput)
 
+	PutEmailIdentityDkimSigningAttributes(*sesv2.PutEmailIdentityDkimSigningAttributesInput) (*sesv2.PutEmailIdentityDkimSigningAttributesOutput, error)
+	PutEmailIdentityDkimSigningAttributesWithContext(aws.Context, *sesv2.PutEmailIdentityDkimSigningAttributesInput, ...request.Option) (*sesv2.PutEmailIdentityDkimSigningAttributesOutput, error)
+	PutEmailIdentityDkimSigningAttributesRequest(*sesv2.PutEmailIdentityDkimSigningAttributesInput) (*request.Request, *sesv2.PutEmailIdentityDkimSigningAttributesOutput)
+
 	PutEmailIdentityFeedbackAttributes(*sesv2.PutEmailIdentityFeedbackAttributesInput) (*sesv2.PutEmailIdentityFeedbackAttributesOutput, error)
 	PutEmailIdentityFeedbackAttributesWithContext(aws.Context, *sesv2.PutEmailIdentityFeedbackAttributesInput, ...request.Option) (*sesv2.PutEmailIdentityFeedbackAttributesOutput, error)
 	PutEmailIdentityFeedbackAttributesRequest(*sesv2.PutEmailIdentityFeedbackAttributesInput) (*request.Request, *sesv2.PutEmailIdentityFeedbackAttributesOutput)

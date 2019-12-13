@@ -151,6 +151,18 @@
         {"shape":"InvalidInputException"}
       ]
     },
+    "DeleteResourcePolicy":{
+      "name":"DeleteResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteResourcePolicyInput"},
+      "output":{"shape":"DeleteResourcePolicyOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"}
+      ]
+    },
     "DeleteSourceCredentials":{
       "name":"DeleteSourceCredentials",
       "http":{
@@ -189,6 +201,19 @@
       "errors":[
         {"shape":"InvalidInputException"},
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "GetResourcePolicy":{
+      "name":"GetResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetResourcePolicyInput"},
+      "output":{"shape":"GetResourcePolicyOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidInputException"}
       ]
     },
     "ImportSourceCredentials":{
@@ -301,6 +326,30 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "ListSharedProjects":{
+      "name":"ListSharedProjects",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListSharedProjectsInput"},
+      "output":{"shape":"ListSharedProjectsOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"}
+      ]
+    },
+    "ListSharedReportGroups":{
+      "name":"ListSharedReportGroups",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListSharedReportGroupsInput"},
+      "output":{"shape":"ListSharedReportGroupsOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"}
+      ]
+    },
     "ListSourceCredentials":{
       "name":"ListSourceCredentials",
       "http":{
@@ -309,6 +358,19 @@
       },
       "input":{"shape":"ListSourceCredentialsInput"},
       "output":{"shape":"ListSourceCredentialsOutput"}
+    },
+    "PutResourcePolicy":{
+      "name":"PutResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutResourcePolicyInput"},
+      "output":{"shape":"PutResourcePolicyOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidInputException"}
+      ]
     },
     "StartBuild":{
       "name":"StartBuild",
@@ -737,6 +799,18 @@
       "members":{
       }
     },
+    "DeleteResourcePolicyInput":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "resourceArn":{"shape":"NonEmptyString"}
+      }
+    },
+    "DeleteResourcePolicyOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteSourceCredentialsInput":{
       "type":"structure",
       "required":["arn"],
@@ -864,6 +938,19 @@
     "FilterGroups":{
       "type":"list",
       "member":{"shape":"FilterGroup"}
+    },
+    "GetResourcePolicyInput":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "resourceArn":{"shape":"NonEmptyString"}
+      }
+    },
+    "GetResourcePolicyOutput":{
+      "type":"structure",
+      "members":{
+        "policy":{"shape":"NonEmptyString"}
+      }
     },
     "GitCloneDepth":{
       "type":"integer",
@@ -1053,6 +1140,38 @@
         "reports":{"shape":"ReportArns"}
       }
     },
+    "ListSharedProjectsInput":{
+      "type":"structure",
+      "members":{
+        "sortBy":{"shape":"SharedResourceSortByType"},
+        "sortOrder":{"shape":"SortOrderType"},
+        "maxResults":{"shape":"PageSize"},
+        "nextToken":{"shape":"NonEmptyString"}
+      }
+    },
+    "ListSharedProjectsOutput":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"String"},
+        "projects":{"shape":"ProjectArns"}
+      }
+    },
+    "ListSharedReportGroupsInput":{
+      "type":"structure",
+      "members":{
+        "sortOrder":{"shape":"SortOrderType"},
+        "sortBy":{"shape":"SharedResourceSortByType"},
+        "nextToken":{"shape":"String"},
+        "maxResults":{"shape":"PageSize"}
+      }
+    },
+    "ListSharedReportGroupsOutput":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"String"},
+        "reportGroups":{"shape":"ReportGroupArns"}
+      }
+    },
     "ListSourceCredentialsInput":{
       "type":"structure",
       "members":{
@@ -1159,6 +1278,12 @@
         "badge":{"shape":"ProjectBadge"},
         "logsConfig":{"shape":"LogsConfig"}
       }
+    },
+    "ProjectArns":{
+      "type":"list",
+      "member":{"shape":"NonEmptyString"},
+      "max":100,
+      "min":1
     },
     "ProjectArtifacts":{
       "type":"structure",
@@ -1285,6 +1410,23 @@
     "Projects":{
       "type":"list",
       "member":{"shape":"Project"}
+    },
+    "PutResourcePolicyInput":{
+      "type":"structure",
+      "required":[
+        "policy",
+        "resourceArn"
+      ],
+      "members":{
+        "policy":{"shape":"NonEmptyString"},
+        "resourceArn":{"shape":"NonEmptyString"}
+      }
+    },
+    "PutResourcePolicyOutput":{
+      "type":"structure",
+      "members":{
+        "resourceArn":{"shape":"NonEmptyString"}
+      }
     },
     "RegistryCredential":{
       "type":"structure",
@@ -1454,6 +1596,13 @@
         "GITHUB",
         "BITBUCKET",
         "GITHUB_ENTERPRISE"
+      ]
+    },
+    "SharedResourceSortByType":{
+      "type":"string",
+      "enum":[
+        "ARN",
+        "MODIFIED_TIME"
       ]
     },
     "SortOrderType":{

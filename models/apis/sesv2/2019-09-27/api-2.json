@@ -91,6 +91,7 @@
       "input":{"shape":"CreateEmailIdentityRequest"},
       "output":{"shape":"CreateEmailIdentityResponse"},
       "errors":[
+        {"shape":"AlreadyExistsException"},
         {"shape":"LimitExceededException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"BadRequestException"},
@@ -599,6 +600,20 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "PutEmailIdentityDkimSigningAttributes":{
+      "name":"PutEmailIdentityDkimSigningAttributes",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v1/email/identities/{EmailIdentity}/dkim/signing"
+      },
+      "input":{"shape":"PutEmailIdentityDkimSigningAttributesRequest"},
+      "output":{"shape":"PutEmailIdentityDkimSigningAttributesResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
     "PutEmailIdentityFeedbackAttributes":{
       "name":"PutEmailIdentityFeedbackAttributes",
       "http":{
@@ -892,7 +907,8 @@
       "required":["EmailIdentity"],
       "members":{
         "EmailIdentity":{"shape":"Identity"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "DkimSigningAttributes":{"shape":"DkimSigningAttributes"}
       }
     },
     "CreateEmailIdentityResponse":{
@@ -1083,8 +1099,27 @@
       "members":{
         "SigningEnabled":{"shape":"Enabled"},
         "Status":{"shape":"DkimStatus"},
-        "Tokens":{"shape":"DnsTokenList"}
+        "Tokens":{"shape":"DnsTokenList"},
+        "SigningAttributesOrigin":{"shape":"DkimSigningAttributesOrigin"}
       }
+    },
+    "DkimSigningAttributes":{
+      "type":"structure",
+      "required":[
+        "DomainSigningSelector",
+        "DomainSigningPrivateKey"
+      ],
+      "members":{
+        "DomainSigningSelector":{"shape":"Selector"},
+        "DomainSigningPrivateKey":{"shape":"PrivateKey"}
+      }
+    },
+    "DkimSigningAttributesOrigin":{
+      "type":"string",
+      "enum":[
+        "AWS_SES",
+        "EXTERNAL"
+      ]
     },
     "DkimStatus":{
       "type":"string",
@@ -1848,6 +1883,13 @@
       }
     },
     "PoolName":{"type":"string"},
+    "PrivateKey":{
+      "type":"string",
+      "max":20480,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9+\\/]+={0,2}$",
+      "sensitive":true
+    },
     "PutAccountDedicatedIpWarmupAttributesRequest":{
       "type":"structure",
       "members":{
@@ -2037,6 +2079,29 @@
       "members":{
       }
     },
+    "PutEmailIdentityDkimSigningAttributesRequest":{
+      "type":"structure",
+      "required":[
+        "EmailIdentity",
+        "SigningAttributesOrigin"
+      ],
+      "members":{
+        "EmailIdentity":{
+          "shape":"Identity",
+          "location":"uri",
+          "locationName":"EmailIdentity"
+        },
+        "SigningAttributesOrigin":{"shape":"DkimSigningAttributesOrigin"},
+        "SigningAttributes":{"shape":"DkimSigningAttributes"}
+      }
+    },
+    "PutEmailIdentityDkimSigningAttributesResponse":{
+      "type":"structure",
+      "members":{
+        "DkimStatus":{"shape":"DkimStatus"},
+        "DkimTokens":{"shape":"DnsTokenList"}
+      }
+    },
     "PutEmailIdentityFeedbackAttributesRequest":{
       "type":"structure",
       "required":["EmailIdentity"],
@@ -2105,6 +2170,12 @@
         "ReputationMetricsEnabled":{"shape":"Enabled"},
         "LastFreshStart":{"shape":"LastFreshStart"}
       }
+    },
+    "Selector":{
+      "type":"string",
+      "max":63,
+      "min":1,
+      "pattern":"^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9]))$"
     },
     "SendEmailRequest":{
       "type":"structure",

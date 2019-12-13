@@ -355,7 +355,7 @@ func (c *SESV2) CreateDeliverabilityTestReportRequest(input *CreateDeliverabilit
 // tests can help you predict how your messages will be handled by various email
 // providers around the world. When you perform a predictive inbox placement
 // test, you provide a sample message that contains the content that you plan
-// to send to your customers. Amazon SES API v2 then sends that message to special
+// to send to your customers. Amazon SES then sends that message to special
 // email addresses spread across several major email providers. After about
 // 24 hours, the test is complete, and you can use the GetDeliverabilityTestReport
 // operation to view the results of the test.
@@ -473,11 +473,20 @@ func (c *SESV2) CreateEmailIdentityRequest(input *CreateEmailIdentityInput) (req
 // Your email address is verified as soon as you follow the link in the verification
 // email.
 //
-// When you verify a domain, this operation provides a set of DKIM tokens, which
-// you can convert into CNAME tokens. You add these CNAME tokens to the DNS
-// configuration for your domain. Your domain is verified when Amazon SES detects
-// these records in the DNS configuration for your domain. For some DNS providers,
-// it can take 72 hours or more to complete the domain verification process.
+// When you verify a domain without specifying the DkimSigningAttributes object,
+// this operation provides a set of DKIM tokens. You can convert these tokens
+// into CNAME records, which you then add to the DNS configuration for your
+// domain. Your domain is verified when Amazon SES detects these records in
+// the DNS configuration for your domain. This verification method is known
+// as Easy DKIM (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html).
+//
+// Alternatively, you can perform the verification process by providing your
+// own public-private key pair. This verification method is known as Bring Your
+// Own DKIM (BYODKIM). To use BYODKIM, your call to the CreateEmailIdentity
+// operation has to include the DkimSigningAttributes object. When you specify
+// this object, you provide a selector (a component of the DNS record name that
+// identifies the public key that you want to use for DKIM authentication) and
+// a private key.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -487,6 +496,9 @@ func (c *SESV2) CreateEmailIdentityRequest(input *CreateEmailIdentityInput) (req
 // API operation CreateEmailIdentity for usage and error information.
 //
 // Returned Error Codes:
+//   * ErrCodeAlreadyExistsException "AlreadyExistsException"
+//   The resource specified in your request already exists.
+//
 //   * ErrCodeLimitExceededException "LimitExceededException"
 //   There are too many instances of the specified resource type.
 //
@@ -932,7 +944,7 @@ func (c *SESV2) DeleteSuppressedDestinationRequest(input *DeleteSuppressedDestin
 
 // DeleteSuppressedDestination API operation for Amazon Simple Email Service.
 //
-// Used to delete a suppressed email destination from your suppression list.
+// Removes an email address from the suppression list for your account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1610,7 +1622,7 @@ func (c *SESV2) GetDeliverabilityDashboardOptionsRequest(input *GetDeliverabilit
 // When you use the Deliverability dashboard, you pay a monthly subscription
 // charge, in addition to any other fees that you accrue by using Amazon SES
 // and other AWS services. For more information about the features and cost
-// of a Deliverability dashboard subscription, see Amazon Pinpoint Pricing (http://aws.amazon.com/pinpoint/pricing/).
+// of a Deliverability dashboard subscription, see Amazon SES Pricing (http://aws.amazon.com/ses/pricing/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2040,8 +2052,8 @@ func (c *SESV2) GetSuppressedDestinationRequest(input *GetSuppressedDestinationI
 
 // GetSuppressedDestination API operation for Amazon Simple Email Service.
 //
-// Used to fetch a single suppressed email destination from your suppression
-// list.
+// Retrieves information about a specific email address that's on the suppression
+// list for your account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2855,8 +2867,8 @@ func (c *SESV2) ListSuppressedDestinationsRequest(input *ListSuppressedDestinati
 
 // ListSuppressedDestinations API operation for Amazon Simple Email Service.
 //
-// Used to fetch a list suppressed email destinations from your suppression
-// list.
+// Retrieves a list of email addresses that are on the suppression list for
+// your account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2873,8 +2885,7 @@ func (c *SESV2) ListSuppressedDestinationsRequest(input *ListSuppressedDestinati
 //   Too many requests have been made to the operation.
 //
 //   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
-//   The specified request includes an invalid or expired token. Please attempt
-//   to get a new token.
+//   The specified request includes an invalid or expired token.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/ListSuppressedDestinations
 func (c *SESV2) ListSuppressedDestinations(input *ListSuppressedDestinationsInput) (*ListSuppressedDestinationsOutput, error) {
@@ -3251,7 +3262,7 @@ func (c *SESV2) PutAccountSuppressionAttributesRequest(input *PutAccountSuppress
 
 // PutAccountSuppressionAttributes API operation for Amazon Simple Email Service.
 //
-// Change your account's suppression preferences for your account.
+// Change the settings for the account-level suppression list.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3596,7 +3607,7 @@ func (c *SESV2) PutConfigurationSetSuppressionOptionsRequest(input *PutConfigura
 
 // PutConfigurationSetSuppressionOptions API operation for Amazon Simple Email Service.
 //
-// Specify your account's suppression preferences for a configuration set.
+// Specify the account suppression list preferences for a configuration set.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3953,7 +3964,7 @@ func (c *SESV2) PutDeliverabilityDashboardOptionRequest(input *PutDeliverability
 // When you use the Deliverability dashboard, you pay a monthly subscription
 // charge, in addition to any other fees that you accrue by using Amazon SES
 // and other AWS services. For more information about the features and cost
-// of a Deliverability dashboard subscription, see Amazon Pinpoint Pricing (http://aws.amazon.com/pinpoint/pricing/).
+// of a Deliverability dashboard subscription, see Amazon SES Pricing (http://aws.amazon.com/ses/pricing/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4081,6 +4092,103 @@ func (c *SESV2) PutEmailIdentityDkimAttributes(input *PutEmailIdentityDkimAttrib
 // for more information on using Contexts.
 func (c *SESV2) PutEmailIdentityDkimAttributesWithContext(ctx aws.Context, input *PutEmailIdentityDkimAttributesInput, opts ...request.Option) (*PutEmailIdentityDkimAttributesOutput, error) {
 	req, out := c.PutEmailIdentityDkimAttributesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutEmailIdentityDkimSigningAttributes = "PutEmailIdentityDkimSigningAttributes"
+
+// PutEmailIdentityDkimSigningAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the PutEmailIdentityDkimSigningAttributes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutEmailIdentityDkimSigningAttributes for more information on using the PutEmailIdentityDkimSigningAttributes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutEmailIdentityDkimSigningAttributesRequest method.
+//    req, resp := client.PutEmailIdentityDkimSigningAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutEmailIdentityDkimSigningAttributes
+func (c *SESV2) PutEmailIdentityDkimSigningAttributesRequest(input *PutEmailIdentityDkimSigningAttributesInput) (req *request.Request, output *PutEmailIdentityDkimSigningAttributesOutput) {
+	op := &request.Operation{
+		Name:       opPutEmailIdentityDkimSigningAttributes,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v1/email/identities/{EmailIdentity}/dkim/signing",
+	}
+
+	if input == nil {
+		input = &PutEmailIdentityDkimSigningAttributesInput{}
+	}
+
+	output = &PutEmailIdentityDkimSigningAttributesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutEmailIdentityDkimSigningAttributes API operation for Amazon Simple Email Service.
+//
+// Used to configure or change the DKIM authentication settings for an email
+// domain identity. You can use this operation to do any of the following:
+//
+//    * Update the signing attributes for an identity that uses Bring Your Own
+//    DKIM (BYODKIM).
+//
+//    * Change from using no DKIM authentication to using Easy DKIM.
+//
+//    * Change from using no DKIM authentication to using BYODKIM.
+//
+//    * Change from using Easy DKIM to using BYODKIM.
+//
+//    * Change from using BYODKIM to using Easy DKIM.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation PutEmailIdentityDkimSigningAttributes for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeNotFoundException "NotFoundException"
+//   The resource you attempted to access doesn't exist.
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   Too many requests have been made to the operation.
+//
+//   * ErrCodeBadRequestException "BadRequestException"
+//   The input you provided is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutEmailIdentityDkimSigningAttributes
+func (c *SESV2) PutEmailIdentityDkimSigningAttributes(input *PutEmailIdentityDkimSigningAttributesInput) (*PutEmailIdentityDkimSigningAttributesOutput, error) {
+	req, out := c.PutEmailIdentityDkimSigningAttributesRequest(input)
+	return out, req.Send()
+}
+
+// PutEmailIdentityDkimSigningAttributesWithContext is the same as PutEmailIdentityDkimSigningAttributes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutEmailIdentityDkimSigningAttributes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) PutEmailIdentityDkimSigningAttributesWithContext(ctx aws.Context, input *PutEmailIdentityDkimSigningAttributesInput, opts ...request.Option) (*PutEmailIdentityDkimSigningAttributesOutput, error) {
+	req, out := c.PutEmailIdentityDkimSigningAttributesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4315,7 +4423,7 @@ func (c *SESV2) PutSuppressedDestinationRequest(input *PutSuppressedDestinationI
 
 // PutSuppressedDestination API operation for Amazon Simple Email Service.
 //
-// Puts (overwrites) an email destination in your suppression list.
+// Adds an email address to the suppression list for your account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4401,8 +4509,8 @@ func (c *SESV2) SendEmailRequest(input *SendEmailInput) (req *request.Request, o
 // of messages:
 //
 //    * Simple – A standard email message. When you create this type of message,
-//    you specify the sender, the recipient, and the message body, and the Amazon
-//    SES API v2 assembles the message for you.
+//    you specify the sender, the recipient, and the message body, and Amazon
+//    SES assembles the message for you.
 //
 //    * Raw – A raw, MIME-formatted email message. When you send this type
 //    of email, you have to specify all of the message headers, as well as the
@@ -4988,9 +5096,9 @@ type Content struct {
 	_ struct{} `type:"structure"`
 
 	// The character set for the content. Because of the constraints of the SMTP
-	// protocol, the Amazon SES API v2 uses 7-bit ASCII by default. If the text
-	// includes characters outside of the ASCII range, you have to specify a character
-	// set. For example, you could specify UTF-8, ISO-8859-1, or Shift_JIS.
+	// protocol, Amazon SES uses 7-bit ASCII by default. If the text includes characters
+	// outside of the ASCII range, you have to specify a character set. For example,
+	// you could specify UTF-8, ISO-8859-1, or Shift_JIS.
 	Charset *string `type:"string"`
 
 	// The content of the message itself.
@@ -5147,7 +5255,8 @@ type CreateConfigurationSetInput struct {
 	// send using the configuration set.
 	SendingOptions *SendingOptions `type:"structure"`
 
-	// An object that contains information about your account's suppression preferences.
+	// An object that contains information about the suppression list preferences
+	// for your account.
 	SuppressionOptions *SuppressionOptions `type:"structure"`
 
 	// An array of objects that define the tags (keys and values) that you want
@@ -5474,6 +5583,14 @@ func (s *CreateDeliverabilityTestReportOutput) SetReportId(v string) *CreateDeli
 type CreateEmailIdentityInput struct {
 	_ struct{} `type:"structure"`
 
+	// If your request includes this object, Amazon SES configures the identity
+	// to use Bring Your Own DKIM (BYODKIM) for DKIM authentication purposes, as
+	// opposed to the default method, Easy DKIM (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html).
+	//
+	// You can only specify this object if the email identity is a domain, as opposed
+	// to an address.
+	DkimSigningAttributes *DkimSigningAttributes `type:"structure"`
+
 	// The email address or domain that you want to verify.
 	//
 	// EmailIdentity is a required field
@@ -5500,6 +5617,11 @@ func (s *CreateEmailIdentityInput) Validate() error {
 	if s.EmailIdentity == nil {
 		invalidParams.Add(request.NewErrParamRequired("EmailIdentity"))
 	}
+	if s.DkimSigningAttributes != nil {
+		if err := s.DkimSigningAttributes.Validate(); err != nil {
+			invalidParams.AddNested("DkimSigningAttributes", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
 			if v == nil {
@@ -5517,6 +5639,12 @@ func (s *CreateEmailIdentityInput) Validate() error {
 	return nil
 }
 
+// SetDkimSigningAttributes sets the DkimSigningAttributes field's value.
+func (s *CreateEmailIdentityInput) SetDkimSigningAttributes(v *DkimSigningAttributes) *CreateEmailIdentityInput {
+	s.DkimSigningAttributes = v
+	return s
+}
+
 // SetEmailIdentity sets the EmailIdentity field's value.
 func (s *CreateEmailIdentityInput) SetEmailIdentity(v string) *CreateEmailIdentityInput {
 	s.EmailIdentity = &v
@@ -5529,17 +5657,14 @@ func (s *CreateEmailIdentityInput) SetTags(v []*Tag) *CreateEmailIdentityInput {
 	return s
 }
 
-// If the email identity is a domain, this object contains tokens that you can
-// use to create a set of CNAME records. To sucessfully verify your domain,
-// you have to add these records to the DNS configuration for your domain.
+// If the email identity is a domain, this object contains information about
+// the DKIM verification status for the domain.
 //
 // If the email identity is an email address, this object is empty.
 type CreateEmailIdentityOutput struct {
 	_ struct{} `type:"structure"`
 
 	// An object that contains information about the DKIM attributes for the identity.
-	// This object includes the tokens that you use to create the CNAME records
-	// that are required to complete the DKIM verification process.
 	DkimAttributes *DkimAttributes `type:"structure"`
 
 	// The email identity type.
@@ -5625,7 +5750,7 @@ func (s *DailyVolume) SetVolumeStatistics(v *VolumeStatistics) *DailyVolume {
 }
 
 // Contains information about a dedicated IP address that is associated with
-// your Amazon SES API v2 account.
+// your Amazon SES account.
 //
 // To learn more about requesting dedicated IP addresses, see Requesting and
 // Relinquishing Dedicated IP Addresses (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/dedicated-ip-case.html)
@@ -5948,11 +6073,11 @@ func (s DeleteEmailIdentityOutput) GoString() string {
 	return s.String()
 }
 
-// A request to delete a suppressed email destination.
+// A request to remove an email address from the suppression list for your account.
 type DeleteSuppressedDestinationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The suppressed email destination to delete.
+	// The suppressed email destination to remove from the account suppression list.
 	//
 	// EmailAddress is a required field
 	EmailAddress *string `location:"uri" locationName:"EmailAddress" type:"string" required:"true"`
@@ -6165,10 +6290,29 @@ func (s *Destination) SetToAddresses(v []*string) *Destination {
 	return s
 }
 
-// An object that contains information about the DKIM configuration for an email
-// identity.
+// An object that contains information about the DKIM authentication status
+// for an email identity.
+//
+// Amazon SES determines the authentication status by searching for specific
+// records in the DNS configuration for the domain. If you used Easy DKIM (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html)
+// to set up DKIM authentication, Amazon SES tries to find three unique CNAME
+// records in the DNS configuration for your domain. If you provided a public
+// key to perform DKIM authentication, Amazon SES tries to find a TXT record
+// that uses the selector that you specified. The value of the TXT record must
+// be a public key that's paired with the private key that you specified in
+// the process of creating the identity
 type DkimAttributes struct {
 	_ struct{} `type:"structure"`
+
+	// A string that indicates how DKIM was configured for the identity. There are
+	// two possible values:
+	//
+	//    * AWS_SES – Indicates that DKIM was configured for the identity by using
+	//    Easy DKIM (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html).
+	//
+	//    * EXTERNAL – Indicates that DKIM was configured for the identity by
+	//    using Bring Your Own DKIM (BYODKIM).
+	SigningAttributesOrigin *string `type:"string" enum:"DkimSigningAttributesOrigin"`
 
 	// If the value is true, then the messages that you send from the identity are
 	// signed using DKIM. If the value is false, then the messages that you send
@@ -6178,28 +6322,36 @@ type DkimAttributes struct {
 	// Describes whether or not Amazon SES has successfully located the DKIM records
 	// in the DNS records for the domain. The status can be one of the following:
 	//
-	//    * PENDING – Amazon SES hasn't yet detected the DKIM records in the DNS
-	//    configuration for the domain, but will continue to attempt to locate them.
+	//    * PENDING – The verification process was initiated, but Amazon SES hasn't
+	//    yet detected the DKIM records in the DNS configuration for the domain.
 	//
-	//    * SUCCESS – Amazon SES located the DKIM records in the DNS configuration
-	//    for the domain and determined that they're correct. You can now send DKIM-signed
-	//    email from the identity.
+	//    * SUCCESS – The verification process completed successfully.
 	//
-	//    * FAILED – Amazon SES wasn't able to locate the DKIM records in the
-	//    DNS settings for the domain, and won't continue to search for them.
+	//    * FAILED – The verification process failed. This typically occurs when
+	//    Amazon SES fails to find the DKIM records in the DNS configuration of
+	//    the domain.
 	//
-	//    * TEMPORARY_FAILURE – A temporary issue occurred, which prevented Amazon
-	//    SES from determining the DKIM status for the domain.
+	//    * TEMPORARY_FAILURE – A temporary issue is preventing Amazon SES from
+	//    determining the DKIM authentication status of the domain.
 	//
-	//    * NOT_STARTED – Amazon SES hasn't yet started searching for the DKIM
-	//    records in the DKIM records for the domain.
+	//    * NOT_STARTED – The DKIM verification process hasn't been initiated
+	//    for the domain.
 	Status *string `type:"string" enum:"DkimStatus"`
 
-	// A set of unique strings that you use to create a set of CNAME records that
+	// If you used Easy DKIM (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html)
+	// to configure DKIM authentication for the domain, then this object contains
+	// a set of unique strings that you use to create a set of CNAME records that
 	// you add to the DNS configuration for your domain. When Amazon SES detects
 	// these records in the DNS configuration for your domain, the DKIM authentication
-	// process is complete. Amazon SES usually detects these records within about
-	// 72 hours of adding them to the DNS configuration for your domain.
+	// process is complete.
+	//
+	// If you configured DKIM authentication for the domain by providing your own
+	// public-private key pair, then this object contains the selector for the public
+	// key.
+	//
+	// Regardless of the DKIM authentication method you use, Amazon SES searches
+	// for the appropriate records in the DNS configuration of the domain for up
+	// to 72 hours.
 	Tokens []*string `type:"list"`
 }
 
@@ -6211,6 +6363,12 @@ func (s DkimAttributes) String() string {
 // GoString returns the string representation
 func (s DkimAttributes) GoString() string {
 	return s.String()
+}
+
+// SetSigningAttributesOrigin sets the SigningAttributesOrigin field's value.
+func (s *DkimAttributes) SetSigningAttributesOrigin(v string) *DkimAttributes {
+	s.SigningAttributesOrigin = &v
+	return s
 }
 
 // SetSigningEnabled sets the SigningEnabled field's value.
@@ -6228,6 +6386,70 @@ func (s *DkimAttributes) SetStatus(v string) *DkimAttributes {
 // SetTokens sets the Tokens field's value.
 func (s *DkimAttributes) SetTokens(v []*string) *DkimAttributes {
 	s.Tokens = v
+	return s
+}
+
+// An object that contains information about the tokens used for setting up
+// Bring Your Own DKIM (BYODKIM).
+type DkimSigningAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// A private key that's used to generate a DKIM signature.
+	//
+	// The private key must use 1024-bit RSA encryption, and must be encoded using
+	// base64 encoding.
+	//
+	// DomainSigningPrivateKey is a required field
+	DomainSigningPrivateKey *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// A string that's used to identify a public key in the DNS configuration for
+	// a domain.
+	//
+	// DomainSigningSelector is a required field
+	DomainSigningSelector *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DkimSigningAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DkimSigningAttributes) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DkimSigningAttributes) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DkimSigningAttributes"}
+	if s.DomainSigningPrivateKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainSigningPrivateKey"))
+	}
+	if s.DomainSigningPrivateKey != nil && len(*s.DomainSigningPrivateKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainSigningPrivateKey", 1))
+	}
+	if s.DomainSigningSelector == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainSigningSelector"))
+	}
+	if s.DomainSigningSelector != nil && len(*s.DomainSigningSelector) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainSigningSelector", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainSigningPrivateKey sets the DomainSigningPrivateKey field's value.
+func (s *DkimSigningAttributes) SetDomainSigningPrivateKey(v string) *DkimSigningAttributes {
+	s.DomainSigningPrivateKey = &v
+	return s
+}
+
+// SetDomainSigningSelector sets the DomainSigningSelector field's value.
+func (s *DkimSigningAttributes) SetDomainSigningSelector(v string) *DkimSigningAttributes {
+	s.DomainSigningSelector = &v
 	return s
 }
 
@@ -6864,7 +7086,8 @@ type GetAccountOutput struct {
 	// in the current AWS Region.
 	SendingEnabled *bool `type:"boolean"`
 
-	// An object that contains information about your account's suppression preferences.
+	// An object that contains information about the email address suppression preferences
+	// for your account in the current AWS Region.
 	SuppressionAttributes *SuppressionAttributes `type:"structure"`
 }
 
@@ -7113,7 +7336,8 @@ type GetConfigurationSetOutput struct {
 	// send using the configuration set.
 	SendingOptions *SendingOptions `type:"structure"`
 
-	// An object that contains information about your account's suppression preferences.
+	// An object that contains information about the suppression list preferences
+	// for your account.
 	SuppressionOptions *SuppressionOptions `type:"structure"`
 
 	// An array of objects that define the tags (keys and values) that are associated
@@ -7771,8 +7995,6 @@ type GetEmailIdentityOutput struct {
 	_ struct{} `type:"structure"`
 
 	// An object that contains information about the DKIM attributes for the identity.
-	// This object includes the tokens that you use to create the CNAME records
-	// that are required to complete the DKIM verification process.
 	DkimAttributes *DkimAttributes `type:"structure"`
 
 	// The feedback forwarding configuration for the identity.
@@ -7850,11 +8072,12 @@ func (s *GetEmailIdentityOutput) SetVerifiedForSendingStatus(v bool) *GetEmailId
 	return s
 }
 
-// A request to get a suppressed email destination.
+// A request to retrieve information about an email address that's on the suppression
+// list for your account.
 type GetSuppressedDestinationInput struct {
 	_ struct{} `type:"structure"`
 
-	// Email destination to fetch from the suppression list.
+	// The email address that's on the account suppression list.
 	//
 	// EmailAddress is a required field
 	EmailAddress *string `location:"uri" locationName:"EmailAddress" type:"string" required:"true"`
@@ -7892,11 +8115,11 @@ func (s *GetSuppressedDestinationInput) SetEmailAddress(v string) *GetSuppressed
 	return s
 }
 
-// Information about the suppressed email destination.
+// Information about the suppressed email address.
 type GetSuppressedDestinationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An object containing information about the suppressed email destination.
+	// An object containing information about the suppressed email address.
 	//
 	// SuppressedDestination is a required field
 	SuppressedDestination *SuppressedDestination `type:"structure" required:"true"`
@@ -8543,15 +8766,18 @@ func (s *ListEmailIdentitiesOutput) SetNextToken(v string) *ListEmailIdentitiesO
 	return s
 }
 
-// A request to obtain a list of suppressed email destinations.
+// A request to obtain a list of email destinations that are on the suppression
+// list for your account.
 type ListSuppressedDestinationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Filters email destinations suppressed after the given time.
+	// Used to filter the list of suppressed email destinations so that it only
+	// includes addresses that were added to the list before a specific date. The
+	// date that you specify should be in Unix time format.
 	EndDate *time.Time `location:"querystring" locationName:"EndDate" type:"timestamp"`
 
 	// A token returned from a previous call to ListSuppressedDestinations to indicate
-	// the position in the list of suppressed email destinations.
+	// the position in the list of suppressed email addresses.
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 
 	// The number of results to show in a single call to ListSuppressedDestinations.
@@ -8560,10 +8786,12 @@ type ListSuppressedDestinationsInput struct {
 	// use to obtain additional results.
 	PageSize *int64 `location:"querystring" locationName:"PageSize" type:"integer"`
 
-	// Filters email destinations suppressed by the given reasons.
+	// The factors that caused the email address to be added to .
 	Reasons []*string `location:"querystring" locationName:"Reason" type:"list"`
 
-	// Filters email destinations suppressed before the given time.
+	// Used to filter the list of suppressed email destinations so that it only
+	// includes addresses that were added to the list after a specific date. The
+	// date that you specify should be in Unix time format.
 	StartDate *time.Time `location:"querystring" locationName:"StartDate" type:"timestamp"`
 }
 
@@ -8607,13 +8835,14 @@ func (s *ListSuppressedDestinationsInput) SetStartDate(v time.Time) *ListSuppres
 	return s
 }
 
-// A list of suppressed email destinations.
+// A list of suppressed email addresses.
 type ListSuppressedDestinationsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token that indicates that there are additional suppressed destinations
-	// to list. To view additional suppressed destinations, issue another request
-	// to ListSuppressedDestinations, and pass this token in the NextToken parameter.
+	// A token that indicates that there are additional email addresses on the suppression
+	// list for your account. To view additional suppressed addresses, issue another
+	// request to ListSuppressedDestinations, and pass this token in the NextToken
+	// parameter.
 	NextToken *string `type:"string"`
 
 	// A list of summaries, each containing a summary for a suppressed email destination.
@@ -9137,12 +9366,16 @@ func (s PutAccountSendingAttributesOutput) GoString() string {
 type PutAccountSuppressionAttributesInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of reasons to suppress email addresses. The only valid reasons are:
+	// A list that contains the reasons that email addresses will be automatically
+	// added to the suppression list for your account. This list can contain any
+	// or all of the following:
 	//
-	//    * COMPLAINT – Amazon SES will suppress an email address that receives
-	//    a complaint.
+	//    * COMPLAINT – Amazon SES adds an email address to the suppression list
+	//    for your account when a message sent to that address results in a complaint.
 	//
-	//    * BOUNCE – Amazon SES will suppress an email address that hard bounces.
+	//    * BOUNCE – Amazon SES adds an email address to the suppression list
+	//    for your account when a message sent to that address results in a hard
+	//    bounce.
 	SuppressedReasons []*string `type:"list"`
 }
 
@@ -9400,23 +9633,27 @@ func (s PutConfigurationSetSendingOptionsOutput) GoString() string {
 	return s.String()
 }
 
-// A request to change your account's suppression preferences for an specific
+// A request to change the account suppression list preferences for a specific
 // configuration set.
 type PutConfigurationSetSuppressionOptionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the configuration set that you want to enable or disable email
-	// sending for.
+	// The name of the configuration set that you want to change the suppression
+	// list preferences for.
 	//
 	// ConfigurationSetName is a required field
 	ConfigurationSetName *string `location:"uri" locationName:"ConfigurationSetName" type:"string" required:"true"`
 
-	// A list of reasons to suppress email addresses. The only valid reasons are:
+	// A list that contains the reasons that email addresses are automatically added
+	// to the suppression list for your account. This list can contain any or all
+	// of the following:
 	//
-	//    * COMPLAINT – Amazon SES will suppress an email address that receives
-	//    a complaint.
+	//    * COMPLAINT – Amazon SES adds an email address to the suppression list
+	//    for your account when a message sent to that address results in a complaint.
 	//
-	//    * BOUNCE – Amazon SES will suppress an email address that hard bounces.
+	//    * BOUNCE – Amazon SES adds an email address to the suppression list
+	//    for your account when a message sent to that address results in a hard
+	//    bounce.
 	SuppressedReasons []*string `type:"list"`
 }
 
@@ -9837,6 +10074,158 @@ func (s PutEmailIdentityDkimAttributesOutput) GoString() string {
 	return s.String()
 }
 
+// A request to change the DKIM attributes for an email identity.
+type PutEmailIdentityDkimSigningAttributesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The email identity that you want to configure DKIM for.
+	//
+	// EmailIdentity is a required field
+	EmailIdentity *string `location:"uri" locationName:"EmailIdentity" type:"string" required:"true"`
+
+	// An object that contains information about the private key and selector that
+	// you want to use to configure DKIM for the identity. This object is only required
+	// if you want to configure Bring Your Own DKIM (BYODKIM) for the identity.
+	SigningAttributes *DkimSigningAttributes `type:"structure"`
+
+	// The method that you want to use to configure DKIM for the identity. There
+	// are two possible values:
+	//
+	//    * AWS_SES – Configure DKIM for the identity by using Easy DKIM (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html).
+	//
+	//    * EXTERNAL – Configure DKIM for the identity by using Bring Your Own
+	//    DKIM (BYODKIM).
+	//
+	// SigningAttributesOrigin is a required field
+	SigningAttributesOrigin *string `type:"string" required:"true" enum:"DkimSigningAttributesOrigin"`
+}
+
+// String returns the string representation
+func (s PutEmailIdentityDkimSigningAttributesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutEmailIdentityDkimSigningAttributesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutEmailIdentityDkimSigningAttributesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutEmailIdentityDkimSigningAttributesInput"}
+	if s.EmailIdentity == nil {
+		invalidParams.Add(request.NewErrParamRequired("EmailIdentity"))
+	}
+	if s.EmailIdentity != nil && len(*s.EmailIdentity) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EmailIdentity", 1))
+	}
+	if s.SigningAttributesOrigin == nil {
+		invalidParams.Add(request.NewErrParamRequired("SigningAttributesOrigin"))
+	}
+	if s.SigningAttributes != nil {
+		if err := s.SigningAttributes.Validate(); err != nil {
+			invalidParams.AddNested("SigningAttributes", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEmailIdentity sets the EmailIdentity field's value.
+func (s *PutEmailIdentityDkimSigningAttributesInput) SetEmailIdentity(v string) *PutEmailIdentityDkimSigningAttributesInput {
+	s.EmailIdentity = &v
+	return s
+}
+
+// SetSigningAttributes sets the SigningAttributes field's value.
+func (s *PutEmailIdentityDkimSigningAttributesInput) SetSigningAttributes(v *DkimSigningAttributes) *PutEmailIdentityDkimSigningAttributesInput {
+	s.SigningAttributes = v
+	return s
+}
+
+// SetSigningAttributesOrigin sets the SigningAttributesOrigin field's value.
+func (s *PutEmailIdentityDkimSigningAttributesInput) SetSigningAttributesOrigin(v string) *PutEmailIdentityDkimSigningAttributesInput {
+	s.SigningAttributesOrigin = &v
+	return s
+}
+
+// If the action is successful, the service sends back an HTTP 200 response.
+//
+// The following data is returned in JSON format by the service.
+type PutEmailIdentityDkimSigningAttributesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The DKIM authentication status of the identity. Amazon SES determines the
+	// authentication status by searching for specific records in the DNS configuration
+	// for your domain. If you used Easy DKIM (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html)
+	// to set up DKIM authentication, Amazon SES tries to find three unique CNAME
+	// records in the DNS configuration for your domain.
+	//
+	// If you provided a public key to perform DKIM authentication, Amazon SES tries
+	// to find a TXT record that uses the selector that you specified. The value
+	// of the TXT record must be a public key that's paired with the private key
+	// that you specified in the process of creating the identity.
+	//
+	// The status can be one of the following:
+	//
+	//    * PENDING – The verification process was initiated, but Amazon SES hasn't
+	//    yet detected the DKIM records in the DNS configuration for the domain.
+	//
+	//    * SUCCESS – The verification process completed successfully.
+	//
+	//    * FAILED – The verification process failed. This typically occurs when
+	//    Amazon SES fails to find the DKIM records in the DNS configuration of
+	//    the domain.
+	//
+	//    * TEMPORARY_FAILURE – A temporary issue is preventing Amazon SES from
+	//    determining the DKIM authentication status of the domain.
+	//
+	//    * NOT_STARTED – The DKIM verification process hasn't been initiated
+	//    for the domain.
+	DkimStatus *string `type:"string" enum:"DkimStatus"`
+
+	// If you used Easy DKIM (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html)
+	// to configure DKIM authentication for the domain, then this object contains
+	// a set of unique strings that you use to create a set of CNAME records that
+	// you add to the DNS configuration for your domain. When Amazon SES detects
+	// these records in the DNS configuration for your domain, the DKIM authentication
+	// process is complete.
+	//
+	// If you configured DKIM authentication for the domain by providing your own
+	// public-private key pair, then this object contains the selector that's associated
+	// with your public key.
+	//
+	// Regardless of the DKIM authentication method you use, Amazon SES searches
+	// for the appropriate records in the DNS configuration of the domain for up
+	// to 72 hours.
+	DkimTokens []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s PutEmailIdentityDkimSigningAttributesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutEmailIdentityDkimSigningAttributesOutput) GoString() string {
+	return s.String()
+}
+
+// SetDkimStatus sets the DkimStatus field's value.
+func (s *PutEmailIdentityDkimSigningAttributesOutput) SetDkimStatus(v string) *PutEmailIdentityDkimSigningAttributesOutput {
+	s.DkimStatus = &v
+	return s
+}
+
+// SetDkimTokens sets the DkimTokens field's value.
+func (s *PutEmailIdentityDkimSigningAttributesOutput) SetDkimTokens(v []*string) *PutEmailIdentityDkimSigningAttributesOutput {
+	s.DkimTokens = v
+	return s
+}
+
 // A request to set the attributes that control how bounce and complaint events
 // are processed.
 type PutEmailIdentityFeedbackAttributesInput struct {
@@ -10007,16 +10396,17 @@ func (s PutEmailIdentityMailFromAttributesOutput) GoString() string {
 	return s.String()
 }
 
-// A request to suppress an email destination.
+// A request to add an email destination to the suppression list for your account.
 type PutSuppressedDestinationInput struct {
 	_ struct{} `type:"structure"`
 
-	// Email destination to be suppressed.
+	// The email address that should be added to the suppression list for your account.
 	//
 	// EmailAddress is a required field
 	EmailAddress *string `type:"string" required:"true"`
 
-	// Reason for which the email destination is suppressed.
+	// The factors that should cause the email address to be added to the suppression
+	// list for your account.
 	//
 	// Reason is a required field
 	Reason *string `type:"string" required:"true" enum:"SuppressionListReason"`
@@ -10076,7 +10466,7 @@ func (s PutSuppressedDestinationOutput) GoString() string {
 	return s.String()
 }
 
-// The raw email message.
+// Represents the raw content of an email message.
 type RawMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -10089,7 +10479,7 @@ type RawMessage struct {
 	//
 	//    * Each part of a multipart MIME message must be formatted properly.
 	//
-	//    * Attachments must be in a file format that the Amazon SES API v2 supports.
+	//    * Attachments must be in a file format that the Amazon SES supports.
 	//
 	//    * The entire message must be Base64 encoded.
 	//
@@ -10298,8 +10688,8 @@ type SendEmailOutput struct {
 	// A unique identifier for the message that is generated when the message is
 	// accepted.
 	//
-	// It is possible for the Amazon SES API v2 to accept a message without sending
-	// it. This can happen when the message that you're trying to send has an attachment
+	// It's possible for Amazon SES to accept a message without sending it. This
+	// can happen when the message that you're trying to send has an attachment
 	// contains a virus, or when you send a templated email that contains invalid
 	// personalization content, for example.
 	MessageId *string `type:"string"`
@@ -10436,24 +10826,27 @@ func (s *SnsDestination) SetTopicArn(v string) *SnsDestination {
 	return s
 }
 
-// An object containing information about the suppressed email destination.
+// An object that contains information about an email address that is on the
+// suppression list for your account.
 type SuppressedDestination struct {
 	_ struct{} `type:"structure"`
 
-	// Optional value with information about the sources of the suppression.
+	// An optional value that can contain additional information about the reasons
+	// that the address was added to the suppression list for your account.
 	Attributes *SuppressedDestinationAttributes `type:"structure"`
 
-	// The suppressed email destination.
+	// The email address that is on the suppression list for your account.
 	//
 	// EmailAddress is a required field
 	EmailAddress *string `type:"string" required:"true"`
 
-	// The last time the suppressed destination was updated.
+	// The date and time when the suppressed destination was last updated, shown
+	// in Unix time format.
 	//
 	// LastUpdateTime is a required field
 	LastUpdateTime *time.Time `type:"timestamp" required:"true"`
 
-	// The reason for which the email destination is suppressed.
+	// The reason that the address was added to the suppression list for your account.
 	//
 	// Reason is a required field
 	Reason *string `type:"string" required:"true" enum:"SuppressionListReason"`
@@ -10493,15 +10886,17 @@ func (s *SuppressedDestination) SetReason(v string) *SuppressedDestination {
 	return s
 }
 
-// An object containing additional attributes related to a suppressed destination.
+// An object that contains additional attributes that are related an email address
+// that is on the suppression list for your account.
 type SuppressedDestinationAttributes struct {
 	_ struct{} `type:"structure"`
 
-	// A unique identifier of the suppression cause.
+	// A unique identifier that's generated when an email address is added to the
+	// suppression list for your account.
 	FeedbackId *string `type:"string"`
 
-	// A unique identifier of the message that caused the suppression of the email
-	// destination.
+	// The unique identifier of the email message that caused the email address
+	// to be added to the suppression list for your account.
 	MessageId *string `type:"string"`
 }
 
@@ -10527,21 +10922,22 @@ func (s *SuppressedDestinationAttributes) SetMessageId(v string) *SuppressedDest
 	return s
 }
 
-// A summary for the suppressed email destination.
+// A summary that describes the suppressed email address.
 type SuppressedDestinationSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The suppressed email destination.
+	// The email address that's on the suppression list for your account.
 	//
 	// EmailAddress is a required field
 	EmailAddress *string `type:"string" required:"true"`
 
-	// The last time the suppressed destination was updated.
+	// The date and time when the suppressed destination was last updated, shown
+	// in Unix time format.
 	//
 	// LastUpdateTime is a required field
 	LastUpdateTime *time.Time `type:"timestamp" required:"true"`
 
-	// The reason for which the email destination is suppressed.
+	// The reason that the address was added to the suppression list for your account.
 	//
 	// Reason is a required field
 	Reason *string `type:"string" required:"true" enum:"SuppressionListReason"`
@@ -10575,16 +10971,21 @@ func (s *SuppressedDestinationSummary) SetReason(v string) *SuppressedDestinatio
 	return s
 }
 
-// An object that contains information about your account's suppression preferences.
+// An object that contains information about the email address suppression preferences
+// for your account in the current AWS Region.
 type SuppressionAttributes struct {
 	_ struct{} `type:"structure"`
 
-	// A list of reasons to suppress email addresses. The only valid reasons are:
+	// A list that contains the reasons that email addresses will be automatically
+	// added to the suppression list for your account. This list can contain any
+	// or all of the following:
 	//
-	//    * COMPLAINT – Amazon SES will suppress an email address that receives
-	//    a complaint.
+	//    * COMPLAINT – Amazon SES adds an email address to the suppression list
+	//    for your account when a message sent to that address results in a complaint.
 	//
-	//    * BOUNCE – Amazon SES will suppress an email address that hard bounces.
+	//    * BOUNCE – Amazon SES adds an email address to the suppression list
+	//    for your account when a message sent to that address results in a hard
+	//    bounce.
 	SuppressedReasons []*string `type:"list"`
 }
 
@@ -10604,16 +11005,21 @@ func (s *SuppressionAttributes) SetSuppressedReasons(v []*string) *SuppressionAt
 	return s
 }
 
-// An object that contains information about your account's suppression preferences.
+// An object that contains information about the suppression list preferences
+// for your account.
 type SuppressionOptions struct {
 	_ struct{} `type:"structure"`
 
-	// A list of reasons to suppress email addresses. The only valid reasons are:
+	// A list that contains the reasons that email addresses are automatically added
+	// to the suppression list for your account. This list can contain any or all
+	// of the following:
 	//
-	//    * COMPLAINT – Amazon SES will suppress an email address that receives
-	//    a complaint.
+	//    * COMPLAINT – Amazon SES adds an email address to the suppression list
+	//    for your account when a message sent to that address results in a complaint.
 	//
-	//    * BOUNCE – Amazon SES will suppress an email address that hard bounces.
+	//    * BOUNCE – Amazon SES adds an email address to the suppression list
+	//    for your account when a message sent to that address results in a hard
+	//    bounce.
 	SuppressedReasons []*string `type:"list"`
 }
 
@@ -11166,18 +11572,25 @@ const (
 	DimensionValueSourceLinkTag = "LINK_TAG"
 )
 
+const (
+	// DkimSigningAttributesOriginAwsSes is a DkimSigningAttributesOrigin enum value
+	DkimSigningAttributesOriginAwsSes = "AWS_SES"
+
+	// DkimSigningAttributesOriginExternal is a DkimSigningAttributesOrigin enum value
+	DkimSigningAttributesOriginExternal = "EXTERNAL"
+)
+
 // The DKIM authentication status of the identity. The status can be one of
 // the following:
 //
-//    * PENDING – The DKIM verification process was initiated, and Amazon
-//    SES hasn't yet detected the CNAME records in the DNS configuration for
+//    * PENDING – The verification process was initiated, but Amazon SES hasn't
+//    yet detected the DKIM records in the DNS configuration for the domain.
+//
+//    * SUCCESS – The verification process completed successfully.
+//
+//    * FAILED – The verification process failed. This typically occurs when
+//    Amazon SES fails to find the DKIM records in the DNS configuration of
 //    the domain.
-//
-//    * SUCCESS – The DKIM authentication process completed successfully.
-//
-//    * FAILED – The DKIM authentication process failed. This can happen when
-//    Amazon SES fails to find the required CNAME records in the DNS configuration
-//    of the domain.
 //
 //    * TEMPORARY_FAILURE – A temporary issue is preventing Amazon SES from
 //    determining the DKIM authentication status of the domain.
@@ -11271,13 +11684,15 @@ const (
 	MailFromDomainStatusTemporaryFailure = "TEMPORARY_FAILURE"
 )
 
-// A string representing the cause for suppression for an email destination.
-// It can be one of the following:
+// The reason that the address was added to the suppression list for your account.
+// The value can be one of the following:
 //
-//    * COMPLAINT – Amazon SES will suppress an email address that receive
-//    a complaint.
+//    * COMPLAINT – Amazon SES added an email address to the suppression list
+//    for your account because a message sent to that address results in a complaint.
 //
-//    * BOUNCE – Amazon SES will suppress an email address that hard bounces.
+//    * BOUNCE – Amazon SES added an email address to the suppression list
+//    for your account because a message sent to that address results in a hard
+//    bounce.
 const (
 	// SuppressionListReasonBounce is a SuppressionListReason enum value
 	SuppressionListReasonBounce = "BOUNCE"
