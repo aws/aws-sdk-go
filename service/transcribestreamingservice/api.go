@@ -80,7 +80,7 @@ func (c *TranscribeStreamingService) StartStreamTranscriptionRequest(input *Star
 	req.Handlers.Send.Swap(client.LogHTTPResponseHandler.Name, client.LogHTTPResponseHeaderHandler)
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, rest.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBack(es.runOutputStream)
-	return req, output
+	return
 }
 
 // StartStreamTranscription API operation for Amazon Transcribe Streaming Service.

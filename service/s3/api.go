@@ -9481,9 +9481,14 @@ func (c *S3) SelectObjectContentRequest(input *SelectObjectContentInput) (req *r
 
 	output = &SelectObjectContentOutput{}
 	req = c.newRequest(op, input, output)
+
+	es := &SelectObjectContentEventStream{}
+	req.Handlers.Unmarshal.PushBack(es.setStreamCloser)
+	output.EventStream = es
+
 	req.Handlers.Send.Swap(client.LogHTTPResponseHandler.Name, client.LogHTTPResponseHeaderHandler)
 	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, rest.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBack(output.runEventStreamLoop)
+	req.Handlers.Unmarshal.PushBack(es.runOutputStream)
 	return
 }
 
@@ -9600,6 +9605,84 @@ func (c *S3) SelectObjectContentWithContext(ctx aws.Context, input *SelectObject
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// SelectObjectContentEventStream provides the event stream handling for the SelectObjectContent.
+type SelectObjectContentEventStream struct {
+
+	// Reader is the EventStream reader for the SelectObjectContentEventStream
+	// events. This value is automatically set by the SDK when the API call is made
+	// Use this member when unit testing your code with the SDK to mock out the
+	// EventStream Reader.
+	//
+	// Must not be nil.
+	Reader SelectObjectContentEventStreamReader
+
+	// StreamCloser is the io.Closer for the EventStream connection. For HTTP
+	// EventStream this is the response Body. The stream will be closed when
+	// the Close method of the EventStream is called.
+	StreamCloser io.Closer
+}
+
+func (es *SelectObjectContentEventStream) setStreamCloser(r *request.Request) {
+	var closers aws.MultiCloser
+	if es.StreamCloser != nil {
+		closers = append(closers, es.StreamCloser)
+	}
+	closers = append(closers, r.HTTPResponse.Body)
+
+	es.StreamCloser = closers
+}
+
+// Events returns a channel to read events from.
+//
+// These events are:
+//
+//     * ContinuationEvent
+//     * EndEvent
+//     * ProgressEvent
+//     * RecordsEvent
+//     * StatsEvent
+func (es *SelectObjectContentEventStream) Events() <-chan SelectObjectContentEventStreamEvent {
+	return es.Reader.Events()
+}
+
+func (es *SelectObjectContentEventStream) runOutputStream(r *request.Request) {
+	reader := newReadSelectObjectContentEventStream(
+		r.HTTPResponse.Body,
+		r.Handlers.UnmarshalStream,
+		r.Config.Logger,
+		r.Config.LogLevel.Value(),
+	)
+	es.Reader = reader
+	go reader.readEventStream()
+}
+
+// Close closes the EventStream. This will also cause the Events channel to be
+// closed. You can use the closing of the Events channel to terminate your
+// application's read from the API's EventStream.
+//
+// Will close the underlying EventStream reader.
+//
+// For EventStream over HTTP connection this will also close the HTTP connection.
+//
+// Close must be called when done using the EventStream API. Not calling Close
+// may result in resource leaks.
+func (es *SelectObjectContentEventStream) Close() (err error) {
+	es.Reader.Close()
+
+	es.StreamCloser.Close()
+	return es.Err()
+}
+
+// Err returns any error that occurred while reading or writing EventStream
+// Events from the service API's response. Returns nil if there were no errors.
+func (es *SelectObjectContentEventStream) Err() error {
+	if err := es.Reader.Err(); err != nil {
+		return err
+	}
+
+	return nil
 }
 
 const opUploadPart = "UploadPart"
@@ -11414,6 +11497,14 @@ func (s *ContinuationEvent) UnmarshalEvent(
 	msg eventstream.Message,
 ) error {
 	return nil
+}
+
+func (s *ContinuationEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
+		eventstream.StringValue(eventstreamapi.EventMessageType))
+	msg.Headers.Set(eventstreamapi.EventTypeHeader,
+		eventstream.StringValue("ContinuationEvent"))
+	return msg, err
 }
 
 type CopyObjectInput struct {
@@ -14616,6 +14707,14 @@ func (s *EndEvent) UnmarshalEvent(
 	msg eventstream.Message,
 ) error {
 	return nil
+}
+
+func (s *EndEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
+		eventstream.StringValue(eventstreamapi.EventMessageType))
+	msg.Headers.Set(eventstreamapi.EventTypeHeader,
+		eventstream.StringValue("EndEvent"))
+	return msg, err
 }
 
 // Container for all error elements.
@@ -23339,6 +23438,19 @@ func (s *ProgressEvent) UnmarshalEvent(
 	return nil
 }
 
+func (s *ProgressEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
+		eventstream.StringValue(eventstreamapi.EventMessageType))
+	msg.Headers.Set(eventstreamapi.EventTypeHeader,
+		eventstream.StringValue("ProgressEvent"))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
+	return msg, err
+}
+
 // The PublicAccessBlock configuration that you want to apply to this Amazon
 // S3 bucket. You can enable the configuration options in any combination. For
 // more information about when Amazon S3 considers a bucket or object public,
@@ -26762,6 +26874,15 @@ func (s *RecordsEvent) UnmarshalEvent(
 	return nil
 }
 
+func (s *RecordsEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
+		eventstream.StringValue(eventstreamapi.EventMessageType))
+	msg.Headers.Set(eventstreamapi.EventTypeHeader,
+		eventstream.StringValue("RecordsEvent"))
+	msg.Payload = s.Payload
+	return msg, err
+}
+
 // Specifies how requests are redirected. In the event of an error, you can
 // specify a different error code to return.
 type Redirect struct {
@@ -27943,75 +28064,8 @@ func (s *ScanRange) SetStart(v int64) *ScanRange {
 	return s
 }
 
-// SelectObjectContentEventStream provides handling of EventStreams for
-// the SelectObjectContent API.
-//
-// Use this type to receive SelectObjectContentEventStream events. The events
-// can be read from the Events channel member.
-//
-// The events that can be received are:
-//
-//     * ContinuationEvent
-//     * EndEvent
-//     * ProgressEvent
-//     * RecordsEvent
-//     * StatsEvent
-type SelectObjectContentEventStream struct {
-	// Reader is the EventStream reader for the SelectObjectContentEventStream
-	// events. This value is automatically set by the SDK when the API call is made
-	// Use this member when unit testing your code with the SDK to mock out the
-	// EventStream Reader.
-	//
-	// Must not be nil.
-	Reader SelectObjectContentEventStreamReader
-
-	// StreamCloser is the io.Closer for the EventStream connection. For HTTP
-	// EventStream this is the response Body. The stream will be closed when
-	// the Close method of the EventStream is called.
-	StreamCloser io.Closer
-}
-
-// Close closes the EventStream. This will also cause the Events channel to be
-// closed. You can use the closing of the Events channel to terminate your
-// application's read from the API's EventStream.
-//
-// Will close the underlying EventStream reader. For EventStream over HTTP
-// connection this will also close the HTTP connection.
-//
-// Close must be called when done using the EventStream API. Not calling Close
-// may result in resource leaks.
-func (es *SelectObjectContentEventStream) Close() (err error) {
-	es.Reader.Close()
-	es.StreamCloser.Close()
-
-	return es.Err()
-}
-
-// Err returns any error that occurred while reading EventStream Events from
-// the service API's response. Returns nil if there were no errors.
-func (es *SelectObjectContentEventStream) Err() error {
-	if err := es.Reader.Err(); err != nil {
-		return err
-	}
-	return nil
-}
-
-// Events returns a channel to read EventStream Events from the
+// SelectObjectContentEventStreamEvent groups together all events read from the
 // SelectObjectContent API.
-//
-// These events are:
-//
-//     * ContinuationEvent
-//     * EndEvent
-//     * ProgressEvent
-//     * RecordsEvent
-//     * StatsEvent
-func (es *SelectObjectContentEventStream) Events() <-chan SelectObjectContentEventStreamEvent {
-	return es.Reader.Events()
-}
-
-// SelectObjectContentEventStreamEvent groups together all EventStream
-// events read from the SelectObjectContent API.
 //
 // These events are:
 //
@@ -28024,9 +28078,9 @@ type SelectObjectContentEventStreamEvent interface {
 	eventSelectObjectContentEventStream()
 }
 
-// SelectObjectContentEventStreamReader provides the interface for reading EventStream
-// Events from the SelectObjectContent API. The
-// default implementation for this interface will be SelectObjectContentEventStream.
+// SelectObjectContentEventStreamReader provides the interface for reading EventStream Events
+// from the SelectObjectContent API. The default implementation for this interface
+// will be SelectObjectContentEventStreamData.
 //
 // The reader's Close method must allow multiple concurrent calls.
 //
@@ -28041,8 +28095,7 @@ type SelectObjectContentEventStreamReader interface {
 	// Returns a channel of events as they are read from the event stream.
 	Events() <-chan SelectObjectContentEventStreamEvent
 
-	// Close will close the underlying event stream reader. For event stream over
-	// HTTP this will also close the HTTP connection.
+	// Close will stop the reader reading events from the stream.
 	Close() error
 
 	// Returns any error that has occurred while reading from the event stream.
@@ -28059,7 +28112,7 @@ type readSelectObjectContentEventStream struct {
 }
 
 func newReadSelectObjectContentEventStream(
-	reader io.ReadCloser,
+	reader io.Reader,
 	unmarshalers request.HandlerList,
 	logger aws.Logger,
 	logLevel aws.LogLevelType,
@@ -28081,8 +28134,7 @@ func newReadSelectObjectContentEventStream(
 	return r
 }
 
-// Close will close the underlying event stream reader. For EventStream over
-// HTTP this will also close the HTTP connection.
+// Close will close the underlying event stream reader.
 func (r *readSelectObjectContentEventStream) Close() error {
 	r.closeOnce.Do(r.safeClose)
 
@@ -28091,10 +28143,6 @@ func (r *readSelectObjectContentEventStream) Close() error {
 
 func (r *readSelectObjectContentEventStream) safeClose() {
 	close(r.done)
-	err := r.eventReader.Close()
-	if err != nil {
-		r.errVal.Store(err)
-	}
 }
 
 func (r *readSelectObjectContentEventStream) Err() error {
@@ -28378,8 +28426,7 @@ func (s *SelectObjectContentInput) hasEndpointARN() bool {
 type SelectObjectContentOutput struct {
 	_ struct{} `type:"structure" payload:"Payload"`
 
-	// Use EventStream to use the API's stream.
-	EventStream *SelectObjectContentEventStream `type:"structure"`
+	EventStream *SelectObjectContentEventStream
 }
 
 // String returns the string representation
@@ -28392,29 +28439,9 @@ func (s SelectObjectContentOutput) GoString() string {
 	return s.String()
 }
 
-// SetEventStream sets the EventStream field's value.
-func (s *SelectObjectContentOutput) SetEventStream(v *SelectObjectContentEventStream) *SelectObjectContentOutput {
-	s.EventStream = v
-	return s
-}
-
-func (s *SelectObjectContentOutput) runEventStreamLoop(r *request.Request) {
-	if r.Error != nil {
-		return
-	}
-	reader := newReadSelectObjectContentEventStream(
-		r.HTTPResponse.Body,
-		r.Handlers.UnmarshalStream,
-		r.Config.Logger,
-		r.Config.LogLevel.Value(),
-	)
-	go reader.readEventStream()
-
-	eventStream := &SelectObjectContentEventStream{
-		StreamCloser: r.HTTPResponse.Body,
-		Reader:       reader,
-	}
-	s.EventStream = eventStream
+// GetStream returns the type to interact with the event stream.
+func (s *SelectObjectContentOutput) GetStream() *SelectObjectContentEventStream {
+	return s.EventStream
 }
 
 // Describes the parameters for Select job types.
@@ -28809,6 +28836,19 @@ func (s *StatsEvent) UnmarshalEvent(
 		return err
 	}
 	return nil
+}
+
+func (s *StatsEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
+		eventstream.StringValue(eventstreamapi.EventMessageType))
+	msg.Headers.Set(eventstreamapi.EventTypeHeader,
+		eventstream.StringValue("StatsEvent"))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
+	return msg, err
 }
 
 // Specifies data related to access patterns to be collected and made available
