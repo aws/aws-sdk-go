@@ -7,22 +7,10 @@ import "text/template"
 var eventStreamAPIWriterTmpl = template.Must(template.New("eventStreamAPIWriterTmpl").
 	Funcs(template.FuncMap{}).
 	Parse(`
-{{- $eventStream := $.EventStreamAPI.InputStream }}
+{{- $eventStream := $.EventStream }}
 {{- $eventStreamEventGroup := printf "%sEvent" $eventStream.Name }}
 {{- $esWriterAPI := printf "%sWriter" $eventStream.Name }}
 {{- $esWriterImpl := printf "write%s" $eventStream.Name }}
-
-// {{ $eventStreamEventGroup }} groups together all EventStream
-// events writes for {{ $eventStream.Name }}.
-//
-// These events are:
-// {{ range $_, $event := $eventStream.Events }}
-//     * {{ $event.Shape.ShapeName }}
-{{- end }}
-type {{ $eventStreamEventGroup }} interface {
-	event{{ $eventStream.Name }}()
-	eventstreamapi.Marshaler
-}
 
 // {{ $esWriterAPI }} provides the interface for writing events to the stream.
 // The default implementation for this interface will be {{ $.ShapeName }}.

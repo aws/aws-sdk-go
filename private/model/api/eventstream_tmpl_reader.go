@@ -7,26 +7,13 @@ import "text/template"
 var eventStreamAPIReaderTmpl = template.Must(template.New("eventStreamAPIReaderTmpl").
 	Funcs(template.FuncMap{}).
 	Parse(`
-{{- $eventStream := $.EventStreamAPI.OutputStream }}
+{{- $eventStream := $.EventStream }}
 {{- $eventStreamEventGroup := printf "%sEvent" $eventStream.Name }}
-{{- $opName := $.EventStreamAPI.Operation.ExportedName }}
 {{- $esReaderAPI := printf "%sReader" $eventStream.Name }}
 {{- $esReaderImpl := printf "read%s" $eventStream.Name }}
 
-// {{ $eventStreamEventGroup }} groups together all events read from the
-// {{ $opName }} API.
-//
-// These events are:
-// {{ range $_, $event := $eventStream.Events }}
-//     * {{ $event.Shape.ShapeName }}
-{{- end }}
-type {{ $eventStreamEventGroup }} interface {
-	event{{ $eventStream.Name }}()
-}
-
-// {{ $esReaderAPI }} provides the interface for reading EventStream Events
-// from the {{ $opName }} API. The default implementation for this interface
-// will be {{ $.ShapeName }}.
+// {{ $esReaderAPI }} provides the interface for reading to the stream. The
+// default implementation for this interface will be {{ $.ShapeName }}.
 //
 // The reader's Close method must allow multiple concurrent calls.
 //

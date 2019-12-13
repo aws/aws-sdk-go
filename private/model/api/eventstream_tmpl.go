@@ -287,6 +287,22 @@ var eventStreamShapeTmpl = func() *template.Template {
 }()
 
 const eventStreamShapeTmplDef = `
+{{- $eventStream := $.EventStream }}
+{{- $eventStreamEventGroup := printf "%sEvent" $eventStream.Name }}
+
+// {{ $eventStreamEventGroup }} groups together all EventStream
+// events writes for {{ $eventStream.Name }}.
+//
+// These events are:
+// {{ range $_, $event := $eventStream.Events }}
+//     * {{ $event.Shape.ShapeName }}
+{{- end }}
+type {{ $eventStreamEventGroup }} interface {
+	event{{ $eventStream.Name }}()
+	eventstreamapi.Marshaler
+	eventstreamapi.Unmarshaler
+}
+
 {{- if $.IsInputEventStream }}
 	{{- template "eventStreamAPIWriterTmpl" $ }}
 {{- end }}

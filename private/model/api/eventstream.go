@@ -146,12 +146,16 @@ func (a *API) setupEventStreams() error {
 		}
 		if inputStream != nil {
 			op.InputRef.Shape.EventStreamAPI = op.EventStreamAPI
-			inputStream.Shape.EventStreamAPI = op.EventStreamAPI
+
+			inputStream.Shape.EventStream = inputStream
+			//inputStream.Shape.EventStreamAPI = op.EventStreamAPI
 			inputStream.Shape.IsInputEventStream = true
 		}
 		if outputStream != nil {
 			op.OutputRef.Shape.EventStreamAPI = op.EventStreamAPI
-			outputStream.Shape.EventStreamAPI = op.EventStreamAPI
+
+			outputStream.Shape.EventStream = outputStream
+			//outputStream.Shape.EventStreamAPI = op.EventStreamAPI
 			outputStream.Shape.IsOutputEventStream = true
 		}
 

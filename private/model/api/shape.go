@@ -89,6 +89,9 @@ type Shape struct {
 	XMLNamespace     XMLInfo
 	Min              float64 // optional Minimum length (string, list) or value (number)
 
+	EventStreamOutput *EventStreamAPI
+	EventStream       *EventStream
+
 	EventStreamAPI *EventStreamAPI `json:"-"`
 	EventFor       []*EventStream  `json:"-"`
 
