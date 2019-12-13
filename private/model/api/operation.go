@@ -217,7 +217,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 
 			es := &{{ $.EventStreamAPI.Name }}{}
 			req.Handlers.Unmarshal.PushBack(es.setStreamCloser)
-			output.{{ $.OutputRef.Shape.EventStreamMemberName }} = es
+			output.{{ $.EventStreamAPI.OutputMemberName }} = es
 
 			{{- $inputStream := $.EventStreamAPI.InputStream }}
 			{{- $outputStream := $.EventStreamAPI.OutputStream }}

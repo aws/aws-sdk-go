@@ -190,9 +190,6 @@ func (es *{{ $esName }}) setStreamCloser(r *request.Request) {
 					return
 				}
 
-				{{- $outputMemberName := $.OutputRef.Shape.EventStreamMemberName }}
-
-				esVar := es.output.{{ $outputMemberName }}
 				v, ok := event.({{ $.OutputRef.GoType }})
 				if !ok || v == nil {
 					r.Error = awserr.New(
@@ -203,8 +200,9 @@ func (es *{{ $esName }}) setStreamCloser(r *request.Request) {
 					)
 					return
 				}
+
 				*es.output = *v
-				es.output.{{ $outputMemberName  }} = esVar
+				es.output.{{ $.EventStreamAPI.OutputMemberName  }} = es
 			}
 		}
 	{{- end }}
@@ -227,16 +225,14 @@ func (es *{{ $esName }}) setStreamCloser(r *request.Request) {
 // Close must be called when done using the EventStream API. Not calling Close
 // may result in resource leaks.
 func (es *{{ $esName }}) Close() (err error) {
-
 	{{- if $outputStream }}
 		es.Reader.Close()
 	{{- end }}
-
 	{{- if $inputStream }}
 		es.Writer.Close()
 	{{- end }}
-
 	es.StreamCloser.Close()
+
 	return es.Err()
 }
 
@@ -248,7 +244,6 @@ func (es *{{ $esName }}) Err() error {
 			return err
 		}
 	{{- end }}
-
 	{{- if $outputStream }}
 		if err := es.Reader.Err(); err != nil {
 			return err

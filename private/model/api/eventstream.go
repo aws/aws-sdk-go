@@ -5,7 +5,6 @@ package api
 import (
 	"bytes"
 	"fmt"
-	"strings"
 	"text/template"
 )
 
@@ -18,6 +17,11 @@ type EventStreamAPI struct {
 	Name         string
 	InputStream  *EventStream
 	OutputStream *EventStream
+
+	// The eventstream generated code was generated with an older model that
+	// does not scale with bi-directional models. This drives the need to
+	// expose the output shape's event stream member as an exported member.
+	Legacy bool
 }
 
 // EventStream represents a single eventstream group (input/output) and the
@@ -138,6 +142,7 @@ func (a *API) setupEventStreams() error {
 			Name:         op.ExportedName + "EventStream",
 			InputStream:  inputStream,
 			OutputStream: outputStream,
+			Legacy:       isLegacyEventStream(op),
 		}
 		if inputStream != nil {
 			op.InputRef.Shape.EventStreamAPI = op.EventStreamAPI
@@ -148,12 +153,6 @@ func (a *API) setupEventStreams() error {
 			op.OutputRef.Shape.EventStreamAPI = op.EventStreamAPI
 			outputStream.Shape.EventStreamAPI = op.EventStreamAPI
 			outputStream.Shape.IsOutputEventStream = true
-
-			outputMemberName := strings.ToLower(outRefName)
-			if v, ok := getLegacyEventStreamMemberName(a, op); ok {
-				outputMemberName = v
-			}
-			op.OutputRef.Shape.EventStreamMemberName = outputMemberName
 		}
 
 		if s, ok := a.Shapes[op.EventStreamAPI.Name]; ok {
@@ -170,23 +169,30 @@ func (a *API) setupEventStreams() error {
 	return nil
 }
 
-var legacyEventStreamMemberNames = map[string]map[string]string{
+var legacyEventStream = map[string]map[string]struct{}{
 	"s3": {
-		"SelectObjectContent": "EventStream",
+		"SelectObjectContent": struct{}{},
 	},
 	"kinesis": {
-		"SubscribeToShard": "EventStream",
+		"SubscribeToShard": struct{}{},
 	},
 }
 
-func getLegacyEventStreamMemberName(a *API, op *Operation) (string, bool) {
-	s, ok := legacyEventStreamMemberNames[a.PackageName()]
-	if !ok {
-		return "", false
+func isLegacyEventStream(op *Operation) bool {
+	if s, ok := legacyEventStream[op.API.PackageName()]; ok {
+		if _, ok = s[op.ExportedName]; ok {
+			return true
+		}
+	}
+	return false
+}
+
+func (e EventStreamAPI) OutputMemberName() string {
+	if e.Legacy {
+		return "EventStream"
 	}
 
-	name, ok := s[op.ExportedName]
-	return name, ok
+	return "eventStream"
 }
 
 func getEventStream(topShape *Shape) (string, *ShapeRef) {

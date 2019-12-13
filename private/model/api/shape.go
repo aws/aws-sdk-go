@@ -89,9 +89,8 @@ type Shape struct {
 	XMLNamespace     XMLInfo
 	Min              float64 // optional Minimum length (string, list) or value (number)
 
-	EventStreamMemberName string          `json:"-"`
-	EventStreamAPI        *EventStreamAPI `json:"-"`
-	EventFor              []*EventStream  `json:"-"`
+	EventStreamAPI *EventStreamAPI `json:"-"`
+	EventFor       []*EventStream  `json:"-"`
 
 	IsInputEventStream  bool `json:"-"`
 	IsOutputEventStream bool `json:"-"`
@@ -692,7 +691,7 @@ type {{ $.ShapeName }} struct {
 
 	{{- if and $.EventStreamAPI $.UsedAsOutput }}
 
-		{{ $.EventStreamMemberName }} *{{ $.EventStreamAPI.Name }}
+		{{ $.EventStreamAPI.OutputMemberName }} *{{ $.EventStreamAPI.Name }}
 	{{- end }}
 
 	{{- range $name, $elem := (TrimExportedMembers $) }}
@@ -732,40 +731,49 @@ type {{ $.ShapeName }} struct {
 	{{ end }}
 {{ end }}
 
-{{ if not (or $.API.NoGenStructFieldAccessors $.Exception) }}
-	{{ $builderShapeName := print $.ShapeName -}}
-	{{ range $name, $elem := (TrimExportedMembers $) -}}
+{{- if not (or $.API.NoGenStructFieldAccessors $.Exception) }}
+	{{- $builderShapeName := print $.ShapeName }}
+
+	{{- range $name, $elem := (TrimExportedMembers $) }}
 		// Set{{ $name }} sets the {{ $name }} field's value.
 		func (s *{{ $builderShapeName }}) Set{{ $name }}(v {{ $.GoStructValueType $name $elem }}) *{{ $builderShapeName }} {
-			{{ if $elem.UseIndirection -}}
+			{{- if $elem.UseIndirection }}
 				s.{{ $name }} = &v
-			{{ else -}}
+			{{- else }}
 				s.{{ $name }} = v
-			{{ end -}}
+			{{- end }}
 			return s
 		}
 
-		{{ if $elem.GenerateGetter -}}
+		{{- if $elem.GenerateGetter }}
+
 			func (s *{{ $builderShapeName }}) get{{ $name }}() (v {{ $.GoStructValueType $name $elem }}) {
-				{{ if $elem.UseIndirection -}}
+				{{- if $elem.UseIndirection }}
 					if s.{{ $name }} == nil {
 						return v
 					}
 					return *s.{{ $name }}
-				{{ else -}}
+				{{- else }}
 					return s.{{ $name }}
-				{{ end -}}
+				{{- end }}
 			}
 		{{- end }}
-	{{ end }}
-{{ end }}
+	{{- end }}
+{{- end }}
 
-{{ if and $.EventStreamAPI $.UsedAsOutput }}
+{{- if and $.EventStreamAPI $.UsedAsOutput }}
+	{{- $esMemberName := $.EventStreamAPI.OutputMemberName }}
+	{{- if $.EventStreamAPI.Legacy }}
+		func (s *{{ $.ShapeName }}) Get{{ $esMemberName }}() *{{ $.EventStreamAPI.Name }} {
+			return s.{{ $esMemberName }}
+		}
+	{{- end }}
+
 	// GetStream returns the type to interact with the event stream.
 	func (s *{{ $.ShapeName }}) GetStream() *{{ $.EventStreamAPI.Name }} {
-		return s.{{ $.EventStreamMemberName }}
+		return s.{{ $esMemberName }}
 	}
-{{ end }}
+{{- end }}
 
 {{ if $.EventFor }}
 	{{ template "eventStreamEventShapeTmpl" $ }}
