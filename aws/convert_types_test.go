@@ -1495,28 +1495,38 @@ func TestTimeMap(t *testing.T) {
 }
 
 type TimeValueTestCase struct {
-	in        int64
+	in        *int64
 	outSecs   time.Time
 	outMillis time.Time
 }
 
 var testCasesTimeValue = []TimeValueTestCase{
 	{
-		in:        int64(1501558289000),
-		outSecs:   time.Unix(1501558289, 0),
+		in:        nil,
+		outSecs:   time.Time{},
+		outMillis: time.Time{},
+	},
+	{
+		in:        Int64(0),
+		outSecs:   time.Unix(0, 0),
+		outMillis: time.Unix(0, 0),
+	},
+	{
+		in:        Int64(1501558289000),
+		outSecs:   time.Unix(1501558289000, 0),
 		outMillis: time.Unix(1501558289, 0),
 	},
 	{
-		in:        int64(1501558289001),
-		outSecs:   time.Unix(1501558289, 0),
-		outMillis: time.Unix(1501558289, 1*1000000),
+		in:        Int64(1501558289001),
+		outSecs:   time.Unix(1501558289001, 0),
+		outMillis: time.Unix(1501558289, 1*int64(time.Millisecond)),
 	},
 }
 
 func TestSecondsTimeValue(t *testing.T) {
 	for idx, testCase := range testCasesTimeValue {
-		out := SecondsTimeValue(&testCase.in)
-		if e, a := testCase.outSecs, out; e != a {
+		out := SecondsTimeValue(testCase.in)
+		if testCase.outSecs != out {
 			t.Errorf("Unexpected value for time value at %d", idx)
 		}
 	}
@@ -1524,8 +1534,8 @@ func TestSecondsTimeValue(t *testing.T) {
 
 func TestMillisecondsTimeValue(t *testing.T) {
 	for idx, testCase := range testCasesTimeValue {
-		out := MillisecondsTimeValue(&testCase.in)
-		if e, a := testCase.outMillis, out; e != a {
+		out := MillisecondsTimeValue(testCase.in)
+		if testCase.outMillis != out {
 			t.Errorf("Unexpected value for time value at %d", idx)
 		}
 	}
