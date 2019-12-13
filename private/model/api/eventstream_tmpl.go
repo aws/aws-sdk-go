@@ -47,7 +47,7 @@ const eventStreamAPITmplDef = `
 {{- $outputStream := $.EventStreamAPI.OutputStream }}
 {{- $inputStream := $.EventStreamAPI.InputStream }}
 
-// TODO documentation {{ $esName }}
+// {{ $esName }} provides the event stream handling for the {{ $.ExportedName }}.
 type {{ $esName }} struct {
 	{{- if $inputStream }}
 
