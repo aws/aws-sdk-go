@@ -139,7 +139,6 @@ func (o *Operation) GetSigner() string {
 		buf.WriteString("req.Handlers.Sign.PushFrontNamed(handler)")
 	}
 
-	buf.WriteString("\n")
 	return buf.String()
 }
 
@@ -261,7 +260,6 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 		{{- end }}
 	{{- end }}
 
-
 	{{- if .EndpointDiscovery }}
 		{{- if not .EndpointDiscovery.Required }}
 			if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
@@ -296,13 +294,13 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 		})
 		{{- if not .EndpointDiscovery.Required }}
 			}
-		{{ end }}
+		{{- end }}
 	{{- end }}
 
 	{{- range $_, $handler := $.CustomBuildHandlers }}
 		req.Handlers.Build.PushBackNamed({{ $handler }})
 	{{- end }}
-	return req, output
+	return
 }
 
 // {{ .ExportedName }} API operation for {{ .API.Metadata.ServiceFullName }}.

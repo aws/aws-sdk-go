@@ -190,21 +190,21 @@ func (es *{{ $esName }}) setStreamCloser(r *request.Request) {
 					return
 				}
 
-				esVar := es.output.{{ $.EventStreamMemberName }}
+				{{- $outputMemberName := $.OutputRef.Shape.EventStreamMemberName }}
 
+				esVar := es.output.{{ $outputMemberName }}
 				v, ok := event.({{ $.OutputRef.GoType }})
 				if !ok || v == nil {
 					r.Error = awserr.New(
 						request.ErrCodeSerialization,
 						fmt.Sprintf("invalid event, %T, expect %T, %v",
-							event, ({{ $.OutputRef.GoType }})(nil) v),
+							event, ({{ $.OutputRef.GoType }})(nil), v),
 						nil,
 					)
 					return
 				}
 				*es.output = *v
-				es.output.{{ $.EventStreamMemberName }} = esVar
-				s.{{ $.EventStreamMemberName }} = es
+				es.output.{{ $outputMemberName  }} = esVar
 			}
 		}
 	{{- end }}
@@ -300,66 +300,6 @@ const eventStreamShapeTmplDef = `
 	{{- template "eventStreamAPIReaderTmpl" $ }}
 {{- end }}
 `
-
-//// Template for the EventStream API Output shape that contains the EventStream
-//// member.
-////
-//// Executed in the context of a Shape.
-//var eventStreamAPILoopMethodTmpl = template.Must(
-//	template.New("eventStreamAPILoopMethodTmpl").Parse(`
-//func (s *{{ $.ShapeName }}) runEventStreamLoop(r *request.Request) {
-//	if r.Error != nil {
-//		return
-//	}
-//
-//	{{- $esMemberRef := index $.MemberRefs $.EventStreamMemberName }}
-//	{{- if $esMemberRef.Shape.EventStreamAPI.OutputStream }}
-//		reader := newRead{{ $esMemberRef.ShapeName }}(
-//			r.HTTPResponse.Body,
-//			r.Handlers.UnmarshalStream,
-//			r.Config.Logger,
-//			r.Config.LogLevel.Value(),
-//			{{ if eq $.API.Metadata.Protocol "json" -}}
-//				s,
-//			{{ end -}}
-//		)
-//		go reader.readEventStream()
-//
-//		eventStream := &{{ $esMemberRef.ShapeName }} {
-//			StreamCloser: r.HTTPResponse.Body,
-//			Reader: reader,
-//		}
-//	{{ end -}}
-//
-//	s.{{ $.EventStreamMemberName }} = eventStream
-//}
-//
-//{{ if eq $.API.Metadata.Protocol "json" -}}
-//	func (s *{{ $.ShapeName }}) unmarshalInitialResponse(r *request.Request) {
-//		// Wait for the initial response event, which must be the first event to be
-//		// received from the API.
-//		select {
-//		case event, ok := <-s.{{ $.EventStreamMemberName }}.Events():
-//			if !ok {
-//				return
-//			}
-//			es := s.{{ $.EventStreamMemberName }}
-//			v, ok := event.(*{{ $.ShapeName }})
-//			if !ok || v == nil {
-//				r.Error = awserr.New(
-//					request.ErrCodeSerialization,
-//					fmt.Sprintf("invalid event, %T, expect %T, %v",
-//						event, (*{{ $.ShapeName }})(nil) v),
-//					nil,
-//				)
-//				return
-//			}
-//			*s = *v
-//			s.{{ $.EventStreamMemberName }} = es
-//		}
-//	}
-//{{ end -}}
-//`))
 
 // EventStreamHeaderTypeMap provides the mapping of a EventStream Header's
 // Value type to the shape reference's member type.
