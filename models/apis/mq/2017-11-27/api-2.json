@@ -603,6 +603,14 @@
           "shape" : "__string",
           "locationName" : "hostInstanceType"
         },
+        "StorageType" : {
+          "shape" : "BrokerStorageType",
+          "locationName" : "storageType"
+        },
+        "SupportedDeploymentModes" : {
+          "shape" : "__listOfDeploymentMode",
+          "locationName" : "supportedDeploymentModes"
+        },
         "SupportedEngineVersions" : {
           "shape" : "__listOf__string",
           "locationName" : "supportedEngineVersions"
@@ -629,6 +637,10 @@
     "BrokerState" : {
       "type" : "string",
       "enum" : [ "CREATION_IN_PROGRESS", "CREATION_FAILED", "DELETION_IN_PROGRESS", "RUNNING", "REBOOT_IN_PROGRESS" ]
+    },
+    "BrokerStorageType" : {
+      "type" : "string",
+      "enum" : [ "EBS", "EFS" ]
     },
     "BrokerSummary" : {
       "type" : "structure",
@@ -828,6 +840,10 @@
           "shape" : "__listOf__string",
           "locationName" : "securityGroups"
         },
+        "StorageType" : {
+          "shape" : "BrokerStorageType",
+          "locationName" : "storageType"
+        },
         "SubnetIds" : {
           "shape" : "__listOf__string",
           "locationName" : "subnetIds"
@@ -910,6 +926,10 @@
         "SecurityGroups" : {
           "shape" : "__listOf__string",
           "locationName" : "securityGroups"
+        },
+        "StorageType" : {
+          "shape" : "BrokerStorageType",
+          "locationName" : "storageType"
         },
         "SubnetIds" : {
           "shape" : "__listOf__string",
@@ -1226,6 +1246,11 @@
           "shape" : "__string",
           "location" : "querystring",
           "locationName" : "nextToken"
+        },
+        "StorageType" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "storageType"
         }
       }
     },
@@ -1313,13 +1338,13 @@
           "shape" : "__string",
           "locationName" : "pendingEngineVersion"
         },
-        "PendingSecurityGroups" : {
-          "shape": "__listOf__string",
-          "locationName": "pendingSecurityGroups"
-        },
         "PendingHostInstanceType" : {
           "shape" : "__string",
           "locationName" : "pendingHostInstanceType"
+        },
+        "PendingSecurityGroups" : {
+          "shape" : "__listOf__string",
+          "locationName" : "pendingSecurityGroups"
         },
         "PubliclyAccessible" : {
           "shape" : "__boolean",
@@ -1328,6 +1353,10 @@
         "SecurityGroups" : {
           "shape" : "__listOf__string",
           "locationName" : "securityGroups"
+        },
+        "StorageType" : {
+          "shape" : "BrokerStorageType",
+          "locationName" : "storageType"
         },
         "SubnetIds" : {
           "shape" : "__listOf__string",
@@ -1421,13 +1450,13 @@
           "shape" : "__string",
           "locationName" : "pendingEngineVersion"
         },
+        "PendingHostInstanceType" : {
+          "shape" : "__string",
+          "locationName" : "pendingHostInstanceType"
+        },
         "PendingSecurityGroups" : {
           "shape" : "__listOf__string",
           "locationName" : "pendingSecurityGroups"
-        },
-          "PendingHostInstanceType" : {
-          "shape" : "__string",
-          "locationName" : "pendingHostInstanceType"
         },
         "PubliclyAccessible" : {
           "shape" : "__boolean",
@@ -1436,6 +1465,10 @@
         "SecurityGroups" : {
           "shape" : "__listOf__string",
           "locationName" : "securityGroups"
+        },
+        "StorageType" : {
+          "shape" : "BrokerStorageType",
+          "locationName" : "storageType"
         },
         "SubnetIds" : {
           "shape" : "__listOf__string",
@@ -2469,6 +2502,12 @@
       "type" : "list",
       "member" : {
         "shape" : "ConfigurationRevision"
+      }
+    },
+    "__listOfDeploymentMode" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "DeploymentMode"
       }
     },
     "__listOfEngineVersion" : {

@@ -97,6 +97,40 @@
         {"shape":"TextSizeLimitExceededException"}
       ]
     },
+    "InferICD10CM":{
+      "name":"InferICD10CM",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"InferICD10CMRequest"},
+      "output":{"shape":"InferICD10CMResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidEncodingException"},
+        {"shape":"TextSizeLimitExceededException"}
+      ]
+    },
+    "InferRxNorm":{
+      "name":"InferRxNorm",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"InferRxNormRequest"},
+      "output":{"shape":"InferRxNormResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidEncodingException"},
+        {"shape":"TextSizeLimitExceededException"}
+      ]
+    },
     "ListEntitiesDetectionV2Jobs":{
       "name":"ListEntitiesDetectionV2Jobs",
       "http":{
@@ -404,11 +438,129 @@
       ]
     },
     "Float":{"type":"float"},
+    "ICD10CMAttribute":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"ICD10CMAttributeType"},
+        "Score":{"shape":"Float"},
+        "RelationshipScore":{"shape":"Float"},
+        "Id":{"shape":"Integer"},
+        "BeginOffset":{"shape":"Integer"},
+        "EndOffset":{"shape":"Integer"},
+        "Text":{"shape":"String"},
+        "Traits":{"shape":"ICD10CMTraitList"}
+      }
+    },
+    "ICD10CMAttributeList":{
+      "type":"list",
+      "member":{"shape":"ICD10CMAttribute"}
+    },
+    "ICD10CMAttributeType":{
+      "type":"string",
+      "enum":[
+        "ACUITY",
+        "DIRECTION",
+        "SYSTEM_ORGAN_SITE",
+        "QUALITY",
+        "QUANTITY"
+      ]
+    },
+    "ICD10CMConcept":{
+      "type":"structure",
+      "members":{
+        "Description":{"shape":"String"},
+        "Code":{"shape":"String"},
+        "Score":{"shape":"Float"}
+      }
+    },
+    "ICD10CMConceptList":{
+      "type":"list",
+      "member":{"shape":"ICD10CMConcept"}
+    },
+    "ICD10CMEntity":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"Integer"},
+        "Text":{"shape":"OntologyLinkingBoundedLengthString"},
+        "Category":{"shape":"ICD10CMEntityCategory"},
+        "Type":{"shape":"ICD10CMEntityType"},
+        "Score":{"shape":"Float"},
+        "BeginOffset":{"shape":"Integer"},
+        "EndOffset":{"shape":"Integer"},
+        "Attributes":{"shape":"ICD10CMAttributeList"},
+        "Traits":{"shape":"ICD10CMTraitList"},
+        "ICD10CMConcepts":{"shape":"ICD10CMConceptList"}
+      }
+    },
+    "ICD10CMEntityCategory":{
+      "type":"string",
+      "enum":["MEDICAL_CONDITION"]
+    },
+    "ICD10CMEntityList":{
+      "type":"list",
+      "member":{"shape":"ICD10CMEntity"}
+    },
+    "ICD10CMEntityType":{
+      "type":"string",
+      "enum":["DX_NAME"]
+    },
+    "ICD10CMTrait":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"ICD10CMTraitName"},
+        "Score":{"shape":"Float"}
+      }
+    },
+    "ICD10CMTraitList":{
+      "type":"list",
+      "member":{"shape":"ICD10CMTrait"}
+    },
+    "ICD10CMTraitName":{
+      "type":"string",
+      "enum":[
+        "NEGATION",
+        "DIAGNOSIS",
+        "SIGN",
+        "SYMPTOM"
+      ]
+    },
     "IamRoleArn":{
       "type":"string",
       "max":2048,
       "min":20,
       "pattern":"arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+"
+    },
+    "InferICD10CMRequest":{
+      "type":"structure",
+      "required":["Text"],
+      "members":{
+        "Text":{"shape":"OntologyLinkingBoundedLengthString"}
+      }
+    },
+    "InferICD10CMResponse":{
+      "type":"structure",
+      "required":["Entities"],
+      "members":{
+        "Entities":{"shape":"ICD10CMEntityList"},
+        "PaginationToken":{"shape":"String"},
+        "ModelVersion":{"shape":"String"}
+      }
+    },
+    "InferRxNormRequest":{
+      "type":"structure",
+      "required":["Text"],
+      "members":{
+        "Text":{"shape":"OntologyLinkingBoundedLengthString"}
+      }
+    },
+    "InferRxNormResponse":{
+      "type":"structure",
+      "required":["Entities"],
+      "members":{
+        "Entities":{"shape":"RxNormEntityList"},
+        "PaginationToken":{"shape":"String"},
+        "ModelVersion":{"shape":"String"}
+      }
     },
     "InputDataConfig":{
       "type":"structure",
@@ -516,6 +668,11 @@
       "min":1
     },
     "ModelVersion":{"type":"string"},
+    "OntologyLinkingBoundedLengthString":{
+      "type":"string",
+      "max":10000,
+      "min":1
+    },
     "OutputDataConfig":{
       "type":"structure",
       "required":["S3Bucket"],
@@ -530,6 +687,92 @@
         "Message":{"shape":"String"}
       },
       "exception":true
+    },
+    "RxNormAttribute":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"RxNormAttributeType"},
+        "Score":{"shape":"Float"},
+        "RelationshipScore":{"shape":"Float"},
+        "Id":{"shape":"Integer"},
+        "BeginOffset":{"shape":"Integer"},
+        "EndOffset":{"shape":"Integer"},
+        "Text":{"shape":"String"},
+        "Traits":{"shape":"RxNormTraitList"}
+      }
+    },
+    "RxNormAttributeList":{
+      "type":"list",
+      "member":{"shape":"RxNormAttribute"}
+    },
+    "RxNormAttributeType":{
+      "type":"string",
+      "enum":[
+        "DOSAGE",
+        "DURATION",
+        "FORM",
+        "FREQUENCY",
+        "RATE",
+        "ROUTE_OR_MODE",
+        "STRENGTH"
+      ]
+    },
+    "RxNormConcept":{
+      "type":"structure",
+      "members":{
+        "Description":{"shape":"String"},
+        "Code":{"shape":"String"},
+        "Score":{"shape":"Float"}
+      }
+    },
+    "RxNormConceptList":{
+      "type":"list",
+      "member":{"shape":"RxNormConcept"}
+    },
+    "RxNormEntity":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"Integer"},
+        "Text":{"shape":"OntologyLinkingBoundedLengthString"},
+        "Category":{"shape":"RxNormEntityCategory"},
+        "Type":{"shape":"RxNormEntityType"},
+        "Score":{"shape":"Float"},
+        "BeginOffset":{"shape":"Integer"},
+        "EndOffset":{"shape":"Integer"},
+        "Attributes":{"shape":"RxNormAttributeList"},
+        "Traits":{"shape":"RxNormTraitList"},
+        "RxNormConcepts":{"shape":"RxNormConceptList"}
+      }
+    },
+    "RxNormEntityCategory":{
+      "type":"string",
+      "enum":["MEDICATION"]
+    },
+    "RxNormEntityList":{
+      "type":"list",
+      "member":{"shape":"RxNormEntity"}
+    },
+    "RxNormEntityType":{
+      "type":"string",
+      "enum":[
+        "BRAND_NAME",
+        "GENERIC_NAME"
+      ]
+    },
+    "RxNormTrait":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"RxNormTraitName"},
+        "Score":{"shape":"Float"}
+      }
+    },
+    "RxNormTraitList":{
+      "type":"list",
+      "member":{"shape":"RxNormTrait"}
+    },
+    "RxNormTraitName":{
+      "type":"string",
+      "enum":["NEGATION"]
     },
     "S3Bucket":{
       "type":"string",

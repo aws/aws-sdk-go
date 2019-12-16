@@ -364,8 +364,7 @@ func (c *ComprehendMedical) DetectEntitiesV2Request(input *DetectEntitiesV2Input
 // should use the DetectEntitiesV2 operation in all new applications.
 //
 // The DetectEntitiesV2 operation returns the Acuity and Direction entities
-// as attributes instead of types. It does not return the Quality or Quantity
-// entities.
+// as attributes instead of types.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -517,6 +516,210 @@ func (c *ComprehendMedical) DetectPHI(input *DetectPHIInput) (*DetectPHIOutput, 
 // for more information on using Contexts.
 func (c *ComprehendMedical) DetectPHIWithContext(ctx aws.Context, input *DetectPHIInput, opts ...request.Option) (*DetectPHIOutput, error) {
 	req, out := c.DetectPHIRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opInferICD10CM = "InferICD10CM"
+
+// InferICD10CMRequest generates a "aws/request.Request" representing the
+// client's request for the InferICD10CM operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See InferICD10CM for more information on using the InferICD10CM
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the InferICD10CMRequest method.
+//    req, resp := client.InferICD10CMRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/InferICD10CM
+func (c *ComprehendMedical) InferICD10CMRequest(input *InferICD10CMInput) (req *request.Request, output *InferICD10CMOutput) {
+	op := &request.Operation{
+		Name:       opInferICD10CM,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &InferICD10CMInput{}
+	}
+
+	output = &InferICD10CMOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// InferICD10CM API operation for AWS Comprehend Medical.
+//
+// InferICD10CM detects medical conditions as entities listed in a patient record
+// and links those entities to normalized concept identifiers in the ICD-10-CM
+// knowledge base from the Centers for Disease Control.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Comprehend Medical's
+// API operation InferICD10CM for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInternalServerException "InternalServerException"
+//   An internal server error occurred. Retry your request.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   The Amazon Comprehend Medical service is temporarily unavailable. Please
+//   wait and then retry your request.
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   You have made too many requests within a short period of time. Wait for a
+//   short time and then try your request again. Contact customer support for
+//   more information about a service limit increase.
+//
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request that you made is invalid. Check your request to determine why
+//   it's invalid and then retry the request.
+//
+//   * ErrCodeInvalidEncodingException "InvalidEncodingException"
+//   The input text was not in valid UTF-8 character encoding. Check your text
+//   then retry your request.
+//
+//   * ErrCodeTextSizeLimitExceededException "TextSizeLimitExceededException"
+//   The size of the text you submitted exceeds the size limit. Reduce the size
+//   of the text or use a smaller document and then retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/InferICD10CM
+func (c *ComprehendMedical) InferICD10CM(input *InferICD10CMInput) (*InferICD10CMOutput, error) {
+	req, out := c.InferICD10CMRequest(input)
+	return out, req.Send()
+}
+
+// InferICD10CMWithContext is the same as InferICD10CM with the addition of
+// the ability to pass a context and additional request options.
+//
+// See InferICD10CM for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ComprehendMedical) InferICD10CMWithContext(ctx aws.Context, input *InferICD10CMInput, opts ...request.Option) (*InferICD10CMOutput, error) {
+	req, out := c.InferICD10CMRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opInferRxNorm = "InferRxNorm"
+
+// InferRxNormRequest generates a "aws/request.Request" representing the
+// client's request for the InferRxNorm operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See InferRxNorm for more information on using the InferRxNorm
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the InferRxNormRequest method.
+//    req, resp := client.InferRxNormRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/InferRxNorm
+func (c *ComprehendMedical) InferRxNormRequest(input *InferRxNormInput) (req *request.Request, output *InferRxNormOutput) {
+	op := &request.Operation{
+		Name:       opInferRxNorm,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &InferRxNormInput{}
+	}
+
+	output = &InferRxNormOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// InferRxNorm API operation for AWS Comprehend Medical.
+//
+// InferRxNorm detects medications as entities listed in a patient record and
+// links to the normalized concept identifiers in the RxNorm database from the
+// National Library of Medicine.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Comprehend Medical's
+// API operation InferRxNorm for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInternalServerException "InternalServerException"
+//   An internal server error occurred. Retry your request.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   The Amazon Comprehend Medical service is temporarily unavailable. Please
+//   wait and then retry your request.
+//
+//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   You have made too many requests within a short period of time. Wait for a
+//   short time and then try your request again. Contact customer support for
+//   more information about a service limit increase.
+//
+//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   The request that you made is invalid. Check your request to determine why
+//   it's invalid and then retry the request.
+//
+//   * ErrCodeInvalidEncodingException "InvalidEncodingException"
+//   The input text was not in valid UTF-8 character encoding. Check your text
+//   then retry your request.
+//
+//   * ErrCodeTextSizeLimitExceededException "TextSizeLimitExceededException"
+//   The size of the text you submitted exceeds the size limit. Reduce the size
+//   of the text or use a smaller document and then retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/InferRxNorm
+func (c *ComprehendMedical) InferRxNorm(input *InferRxNormInput) (*InferRxNormOutput, error) {
+	req, out := c.InferRxNormRequest(input)
+	return out, req.Send()
+}
+
+// InferRxNormWithContext is the same as InferRxNorm with the addition of
+// the ability to pass a context and additional request options.
+//
+// See InferRxNorm for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ComprehendMedical) InferRxNormWithContext(ctx aws.Context, input *InferRxNormInput, opts ...request.Option) (*InferRxNormOutput, error) {
+	req, out := c.InferRxNormRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1841,7 +2044,7 @@ type Entity struct {
 	// The segment of input text extracted as this entity.
 	Text *string `min:"1" type:"string"`
 
-	// Contextual information for the entity
+	// Contextual information for the entity.
 	Traits []*Trait `type:"list"`
 
 	// Describes the specific type of entity with category of entities.
@@ -1909,6 +2112,481 @@ func (s *Entity) SetTraits(v []*Trait) *Entity {
 // SetType sets the Type field's value.
 func (s *Entity) SetType(v string) *Entity {
 	s.Type = &v
+	return s
+}
+
+// The detected attributes that relate to an entity. This includes an extracted
+// segment of the text that is an attribute of an entity, or otherwise related
+// to an entity. InferICD10CM detects the following attributes: Direction, System,
+// Organ or Site, and Acuity.
+type ICD10CMAttribute struct {
+	_ struct{} `type:"structure"`
+
+	// The 0-based character offset in the input text that shows where the attribute
+	// begins. The offset returns the UTF-8 code point in the string.
+	BeginOffset *int64 `type:"integer"`
+
+	// The 0-based character offset in the input text that shows where the attribute
+	// ends. The offset returns the UTF-8 code point in the string.
+	EndOffset *int64 `type:"integer"`
+
+	// The numeric identifier for this attribute. This is a monotonically increasing
+	// id unique within this response rather than a global unique identifier.
+	Id *int64 `type:"integer"`
+
+	// The level of confidence that Amazon Comprehend Medical has that this attribute
+	// is correctly related to this entity.
+	RelationshipScore *float64 `type:"float"`
+
+	// The level of confidence that Amazon Comprehend Medical has that the segment
+	// of text is correctly recognized as an attribute.
+	Score *float64 `type:"float"`
+
+	// The segment of input text which contains the detected attribute.
+	Text *string `min:"1" type:"string"`
+
+	// The contextual information for the attribute. The traits recognized by InferICD10CM
+	// are DIAGNOSIS, SIGN, SYMPTOM, and NEGATION.
+	Traits []*ICD10CMTrait `type:"list"`
+
+	// The type of attribute. InferICD10CM detects entities of the type DX_NAME.
+	Type *string `type:"string" enum:"ICD10CMAttributeType"`
+}
+
+// String returns the string representation
+func (s ICD10CMAttribute) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ICD10CMAttribute) GoString() string {
+	return s.String()
+}
+
+// SetBeginOffset sets the BeginOffset field's value.
+func (s *ICD10CMAttribute) SetBeginOffset(v int64) *ICD10CMAttribute {
+	s.BeginOffset = &v
+	return s
+}
+
+// SetEndOffset sets the EndOffset field's value.
+func (s *ICD10CMAttribute) SetEndOffset(v int64) *ICD10CMAttribute {
+	s.EndOffset = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ICD10CMAttribute) SetId(v int64) *ICD10CMAttribute {
+	s.Id = &v
+	return s
+}
+
+// SetRelationshipScore sets the RelationshipScore field's value.
+func (s *ICD10CMAttribute) SetRelationshipScore(v float64) *ICD10CMAttribute {
+	s.RelationshipScore = &v
+	return s
+}
+
+// SetScore sets the Score field's value.
+func (s *ICD10CMAttribute) SetScore(v float64) *ICD10CMAttribute {
+	s.Score = &v
+	return s
+}
+
+// SetText sets the Text field's value.
+func (s *ICD10CMAttribute) SetText(v string) *ICD10CMAttribute {
+	s.Text = &v
+	return s
+}
+
+// SetTraits sets the Traits field's value.
+func (s *ICD10CMAttribute) SetTraits(v []*ICD10CMTrait) *ICD10CMAttribute {
+	s.Traits = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ICD10CMAttribute) SetType(v string) *ICD10CMAttribute {
+	s.Type = &v
+	return s
+}
+
+// The ICD-10-CM concepts that the entity could refer to, along with a score
+// indicating the likelihood of the match.
+type ICD10CMConcept struct {
+	_ struct{} `type:"structure"`
+
+	// The ICD-10-CM code that identifies the concept found in the knowledge base
+	// from the Centers for Disease Control.
+	Code *string `min:"1" type:"string"`
+
+	// The long description of the ICD-10-CM code in the ontology.
+	Description *string `min:"1" type:"string"`
+
+	// The level of confidence that Amazon Comprehend Medical has that the entity
+	// is accurately linked to an ICD-10-CM concept.
+	Score *float64 `type:"float"`
+}
+
+// String returns the string representation
+func (s ICD10CMConcept) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ICD10CMConcept) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *ICD10CMConcept) SetCode(v string) *ICD10CMConcept {
+	s.Code = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ICD10CMConcept) SetDescription(v string) *ICD10CMConcept {
+	s.Description = &v
+	return s
+}
+
+// SetScore sets the Score field's value.
+func (s *ICD10CMConcept) SetScore(v float64) *ICD10CMConcept {
+	s.Score = &v
+	return s
+}
+
+// The collection of medical entities extracted from the input text and their
+// associated information. For each entity, the response provides the entity
+// text, the entity category, where the entity text begins and ends, and the
+// level of confidence that Amazon Comprehend Medical has in the detection and
+// analysis. Attributes and traits of the entity are also returned.
+type ICD10CMEntity struct {
+	_ struct{} `type:"structure"`
+
+	// The detected attributes that relate to the entity. An extracted segment of
+	// the text that is an attribute of an entity, or otherwise related to an entity,
+	// such as the nature of a medical condition.
+	Attributes []*ICD10CMAttribute `type:"list"`
+
+	// The 0-based character offset in the input text that shows where the entity
+	// begins. The offset returns the UTF-8 code point in the string.
+	BeginOffset *int64 `type:"integer"`
+
+	// The category of the entity. InferICD10CM detects entities in the MEDICAL_CONDITION
+	// category.
+	Category *string `type:"string" enum:"ICD10CMEntityCategory"`
+
+	// The 0-based character offset in the input text that shows where the entity
+	// ends. The offset returns the UTF-8 code point in the string.
+	EndOffset *int64 `type:"integer"`
+
+	// The ICD-10-CM concepts that the entity could refer to, along with a score
+	// indicating the likelihood of the match.
+	ICD10CMConcepts []*ICD10CMConcept `type:"list"`
+
+	// The numeric identifier for the entity. This is a monotonically increasing
+	// id unique within this response rather than a global unique identifier.
+	Id *int64 `type:"integer"`
+
+	// The level of confidence that Amazon Comprehend Medical has in the accuracy
+	// of the detection.
+	Score *float64 `type:"float"`
+
+	// The segment of input text that is matched to the detected entity.
+	Text *string `min:"1" type:"string"`
+
+	// Provides Contextual information for the entity. The traits recognized by
+	// InferICD10CM are DIAGNOSIS, SIGN, SYMPTOM, and NEGATION.
+	Traits []*ICD10CMTrait `type:"list"`
+
+	// Describes the specific type of entity with category of entities. InferICD10CM
+	// detects entities of the type DX_NAME.
+	Type *string `type:"string" enum:"ICD10CMEntityType"`
+}
+
+// String returns the string representation
+func (s ICD10CMEntity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ICD10CMEntity) GoString() string {
+	return s.String()
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *ICD10CMEntity) SetAttributes(v []*ICD10CMAttribute) *ICD10CMEntity {
+	s.Attributes = v
+	return s
+}
+
+// SetBeginOffset sets the BeginOffset field's value.
+func (s *ICD10CMEntity) SetBeginOffset(v int64) *ICD10CMEntity {
+	s.BeginOffset = &v
+	return s
+}
+
+// SetCategory sets the Category field's value.
+func (s *ICD10CMEntity) SetCategory(v string) *ICD10CMEntity {
+	s.Category = &v
+	return s
+}
+
+// SetEndOffset sets the EndOffset field's value.
+func (s *ICD10CMEntity) SetEndOffset(v int64) *ICD10CMEntity {
+	s.EndOffset = &v
+	return s
+}
+
+// SetICD10CMConcepts sets the ICD10CMConcepts field's value.
+func (s *ICD10CMEntity) SetICD10CMConcepts(v []*ICD10CMConcept) *ICD10CMEntity {
+	s.ICD10CMConcepts = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ICD10CMEntity) SetId(v int64) *ICD10CMEntity {
+	s.Id = &v
+	return s
+}
+
+// SetScore sets the Score field's value.
+func (s *ICD10CMEntity) SetScore(v float64) *ICD10CMEntity {
+	s.Score = &v
+	return s
+}
+
+// SetText sets the Text field's value.
+func (s *ICD10CMEntity) SetText(v string) *ICD10CMEntity {
+	s.Text = &v
+	return s
+}
+
+// SetTraits sets the Traits field's value.
+func (s *ICD10CMEntity) SetTraits(v []*ICD10CMTrait) *ICD10CMEntity {
+	s.Traits = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ICD10CMEntity) SetType(v string) *ICD10CMEntity {
+	s.Type = &v
+	return s
+}
+
+// Contextual information for the entity. The traits recognized by InferICD10CM
+// are DIAGNOSIS, SIGN, SYMPTOM, and NEGATION.
+type ICD10CMTrait struct {
+	_ struct{} `type:"structure"`
+
+	// Provides a name or contextual description about the trait.
+	Name *string `type:"string" enum:"ICD10CMTraitName"`
+
+	// The level of confidence that Amazon Comprehend Medical has that the segment
+	// of text is correctly recognized as a trait.
+	Score *float64 `type:"float"`
+}
+
+// String returns the string representation
+func (s ICD10CMTrait) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ICD10CMTrait) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *ICD10CMTrait) SetName(v string) *ICD10CMTrait {
+	s.Name = &v
+	return s
+}
+
+// SetScore sets the Score field's value.
+func (s *ICD10CMTrait) SetScore(v float64) *ICD10CMTrait {
+	s.Score = &v
+	return s
+}
+
+type InferICD10CMInput struct {
+	_ struct{} `type:"structure"`
+
+	// The input text used for analysis. The input for InferICD10CM is a string
+	// from 1 to 10000 characters.
+	//
+	// Text is a required field
+	Text *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s InferICD10CMInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InferICD10CMInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InferICD10CMInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InferICD10CMInput"}
+	if s.Text == nil {
+		invalidParams.Add(request.NewErrParamRequired("Text"))
+	}
+	if s.Text != nil && len(*s.Text) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Text", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetText sets the Text field's value.
+func (s *InferICD10CMInput) SetText(v string) *InferICD10CMInput {
+	s.Text = &v
+	return s
+}
+
+type InferICD10CMOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The medical conditions detected in the text linked to ICD-10-CM concepts.
+	// If the action is successful, the service sends back an HTTP 200 response,
+	// as well as the entities detected.
+	//
+	// Entities is a required field
+	Entities []*ICD10CMEntity `type:"list" required:"true"`
+
+	// The version of the model used to analyze the documents, in the format n.n.n
+	// You can use this information to track the model used for a particular batch
+	// of documents.
+	ModelVersion *string `min:"1" type:"string"`
+
+	// If the result of the previous request to InferICD10CM was truncated, include
+	// the PaginationToken to fetch the next page of medical condition entities.
+	PaginationToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s InferICD10CMOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InferICD10CMOutput) GoString() string {
+	return s.String()
+}
+
+// SetEntities sets the Entities field's value.
+func (s *InferICD10CMOutput) SetEntities(v []*ICD10CMEntity) *InferICD10CMOutput {
+	s.Entities = v
+	return s
+}
+
+// SetModelVersion sets the ModelVersion field's value.
+func (s *InferICD10CMOutput) SetModelVersion(v string) *InferICD10CMOutput {
+	s.ModelVersion = &v
+	return s
+}
+
+// SetPaginationToken sets the PaginationToken field's value.
+func (s *InferICD10CMOutput) SetPaginationToken(v string) *InferICD10CMOutput {
+	s.PaginationToken = &v
+	return s
+}
+
+type InferRxNormInput struct {
+	_ struct{} `type:"structure"`
+
+	// The input text used for analysis. The input for InferRxNorm is a string from
+	// 1 to 10000 characters.
+	//
+	// Text is a required field
+	Text *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s InferRxNormInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InferRxNormInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InferRxNormInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InferRxNormInput"}
+	if s.Text == nil {
+		invalidParams.Add(request.NewErrParamRequired("Text"))
+	}
+	if s.Text != nil && len(*s.Text) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Text", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetText sets the Text field's value.
+func (s *InferRxNormInput) SetText(v string) *InferRxNormInput {
+	s.Text = &v
+	return s
+}
+
+type InferRxNormOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The medication entities detected in the text linked to RxNorm concepts. If
+	// the action is successful, the service sends back an HTTP 200 response, as
+	// well as the entities detected.
+	//
+	// Entities is a required field
+	Entities []*RxNormEntity `type:"list" required:"true"`
+
+	// The version of the model used to analyze the documents, in the format n.n.n
+	// You can use this information to track the model used for a particular batch
+	// of documents.
+	ModelVersion *string `min:"1" type:"string"`
+
+	// If the result of the previous request to InferRxNorm was truncated, include
+	// the PaginationToken to fetch the next page of medication entities.
+	PaginationToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s InferRxNormOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InferRxNormOutput) GoString() string {
+	return s.String()
+}
+
+// SetEntities sets the Entities field's value.
+func (s *InferRxNormOutput) SetEntities(v []*RxNormEntity) *InferRxNormOutput {
+	s.Entities = v
+	return s
+}
+
+// SetModelVersion sets the ModelVersion field's value.
+func (s *InferRxNormOutput) SetModelVersion(v string) *InferRxNormOutput {
+	s.ModelVersion = &v
+	return s
+}
+
+// SetPaginationToken sets the PaginationToken field's value.
+func (s *InferRxNormOutput) SetPaginationToken(v string) *InferRxNormOutput {
+	s.PaginationToken = &v
 	return s
 }
 
@@ -2212,6 +2890,298 @@ func (s *OutputDataConfig) SetS3Bucket(v string) *OutputDataConfig {
 // SetS3Key sets the S3Key field's value.
 func (s *OutputDataConfig) SetS3Key(v string) *OutputDataConfig {
 	s.S3Key = &v
+	return s
+}
+
+// The extracted attributes that relate to this entity. The attributes recognized
+// by InferRxNorm are DOSAGE, DURATION, FORM, FREQUENCY, RATE, ROUTE_OR_MODE.
+type RxNormAttribute struct {
+	_ struct{} `type:"structure"`
+
+	// The 0-based character offset in the input text that shows where the attribute
+	// begins. The offset returns the UTF-8 code point in the string.
+	BeginOffset *int64 `type:"integer"`
+
+	// The 0-based character offset in the input text that shows where the attribute
+	// ends. The offset returns the UTF-8 code point in the string.
+	EndOffset *int64 `type:"integer"`
+
+	// The numeric identifier for this attribute. This is a monotonically increasing
+	// id unique within this response rather than a global unique identifier.
+	Id *int64 `type:"integer"`
+
+	// The level of confidence that Amazon Comprehend Medical has that the attribute
+	// is accurately linked to an entity.
+	RelationshipScore *float64 `type:"float"`
+
+	// The level of confidence that Comprehend Medical has that the segment of text
+	// is correctly recognized as an attribute.
+	Score *float64 `type:"float"`
+
+	// The segment of input text which corresponds to the detected attribute.
+	Text *string `min:"1" type:"string"`
+
+	// Contextual information for the attribute. InferRxNorm recognizes the trait
+	// NEGATION for attributes, i.e. that the patient is not taking a specific dose
+	// or form of a medication.
+	Traits []*RxNormTrait `type:"list"`
+
+	// The type of attribute. The types of attributes recognized by InferRxNorm
+	// are BRAND_NAME and GENERIC_NAME.
+	Type *string `type:"string" enum:"RxNormAttributeType"`
+}
+
+// String returns the string representation
+func (s RxNormAttribute) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RxNormAttribute) GoString() string {
+	return s.String()
+}
+
+// SetBeginOffset sets the BeginOffset field's value.
+func (s *RxNormAttribute) SetBeginOffset(v int64) *RxNormAttribute {
+	s.BeginOffset = &v
+	return s
+}
+
+// SetEndOffset sets the EndOffset field's value.
+func (s *RxNormAttribute) SetEndOffset(v int64) *RxNormAttribute {
+	s.EndOffset = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *RxNormAttribute) SetId(v int64) *RxNormAttribute {
+	s.Id = &v
+	return s
+}
+
+// SetRelationshipScore sets the RelationshipScore field's value.
+func (s *RxNormAttribute) SetRelationshipScore(v float64) *RxNormAttribute {
+	s.RelationshipScore = &v
+	return s
+}
+
+// SetScore sets the Score field's value.
+func (s *RxNormAttribute) SetScore(v float64) *RxNormAttribute {
+	s.Score = &v
+	return s
+}
+
+// SetText sets the Text field's value.
+func (s *RxNormAttribute) SetText(v string) *RxNormAttribute {
+	s.Text = &v
+	return s
+}
+
+// SetTraits sets the Traits field's value.
+func (s *RxNormAttribute) SetTraits(v []*RxNormTrait) *RxNormAttribute {
+	s.Traits = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *RxNormAttribute) SetType(v string) *RxNormAttribute {
+	s.Type = &v
+	return s
+}
+
+// The RxNorm concept that the entity could refer to, along with a score indicating
+// the likelihood of the match.
+type RxNormConcept struct {
+	_ struct{} `type:"structure"`
+
+	// RxNorm concept ID, also known as the RxCUI.
+	Code *string `min:"1" type:"string"`
+
+	// The description of the RxNorm concept.
+	Description *string `min:"1" type:"string"`
+
+	// The level of confidence that Amazon Comprehend Medical has that the entity
+	// is accurately linked to the reported RxNorm concept.
+	Score *float64 `type:"float"`
+}
+
+// String returns the string representation
+func (s RxNormConcept) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RxNormConcept) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *RxNormConcept) SetCode(v string) *RxNormConcept {
+	s.Code = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *RxNormConcept) SetDescription(v string) *RxNormConcept {
+	s.Description = &v
+	return s
+}
+
+// SetScore sets the Score field's value.
+func (s *RxNormConcept) SetScore(v float64) *RxNormConcept {
+	s.Score = &v
+	return s
+}
+
+// The collection of medical entities extracted from the input text and their
+// associated information. For each entity, the response provides the entity
+// text, the entity category, where the entity text begins and ends, and the
+// level of confidence that Amazon Comprehend Medical has in the detection and
+// analysis. Attributes and traits of the entity are also returned.
+type RxNormEntity struct {
+	_ struct{} `type:"structure"`
+
+	// The extracted attributes that relate to the entity. The attributes recognized
+	// by InferRxNorm are DOSAGE, DURATION, FORM, FREQUENCY, RATE, ROUTE_OR_MODE,
+	// and STRENGTH.
+	Attributes []*RxNormAttribute `type:"list"`
+
+	// The 0-based character offset in the input text that shows where the entity
+	// begins. The offset returns the UTF-8 code point in the string.
+	BeginOffset *int64 `type:"integer"`
+
+	// The category of the entity. The recognized categories are GENERIC or BRAND_NAME.
+	Category *string `type:"string" enum:"RxNormEntityCategory"`
+
+	// The 0-based character offset in the input text that shows where the entity
+	// ends. The offset returns the UTF-8 code point in the string.
+	EndOffset *int64 `type:"integer"`
+
+	// The numeric identifier for the entity. This is a monotonically increasing
+	// id unique within this response rather than a global unique identifier.
+	Id *int64 `type:"integer"`
+
+	// The RxNorm concepts that the entity could refer to, along with a score indicating
+	// the likelihood of the match.
+	RxNormConcepts []*RxNormConcept `type:"list"`
+
+	// The level of confidence that Amazon Comprehend Medical has in the accuracy
+	// of the detected entity.
+	Score *float64 `type:"float"`
+
+	// The segment of input text extracted from which the entity was detected.
+	Text *string `min:"1" type:"string"`
+
+	// Contextual information for the entity.
+	Traits []*RxNormTrait `type:"list"`
+
+	// Describes the specific type of entity. For InferRxNorm, the recognized entity
+	// type is MEDICATION.
+	Type *string `type:"string" enum:"RxNormEntityType"`
+}
+
+// String returns the string representation
+func (s RxNormEntity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RxNormEntity) GoString() string {
+	return s.String()
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *RxNormEntity) SetAttributes(v []*RxNormAttribute) *RxNormEntity {
+	s.Attributes = v
+	return s
+}
+
+// SetBeginOffset sets the BeginOffset field's value.
+func (s *RxNormEntity) SetBeginOffset(v int64) *RxNormEntity {
+	s.BeginOffset = &v
+	return s
+}
+
+// SetCategory sets the Category field's value.
+func (s *RxNormEntity) SetCategory(v string) *RxNormEntity {
+	s.Category = &v
+	return s
+}
+
+// SetEndOffset sets the EndOffset field's value.
+func (s *RxNormEntity) SetEndOffset(v int64) *RxNormEntity {
+	s.EndOffset = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *RxNormEntity) SetId(v int64) *RxNormEntity {
+	s.Id = &v
+	return s
+}
+
+// SetRxNormConcepts sets the RxNormConcepts field's value.
+func (s *RxNormEntity) SetRxNormConcepts(v []*RxNormConcept) *RxNormEntity {
+	s.RxNormConcepts = v
+	return s
+}
+
+// SetScore sets the Score field's value.
+func (s *RxNormEntity) SetScore(v float64) *RxNormEntity {
+	s.Score = &v
+	return s
+}
+
+// SetText sets the Text field's value.
+func (s *RxNormEntity) SetText(v string) *RxNormEntity {
+	s.Text = &v
+	return s
+}
+
+// SetTraits sets the Traits field's value.
+func (s *RxNormEntity) SetTraits(v []*RxNormTrait) *RxNormEntity {
+	s.Traits = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *RxNormEntity) SetType(v string) *RxNormEntity {
+	s.Type = &v
+	return s
+}
+
+// The contextual information for the entity. InferRxNorm recognizes the trait
+// NEGATION, which is any indication that the patient is not taking a medication.
+type RxNormTrait struct {
+	_ struct{} `type:"structure"`
+
+	// Provides a name or contextual description about the trait.
+	Name *string `type:"string" enum:"RxNormTraitName"`
+
+	// The level of confidence that Amazon Comprehend Medical has in the accuracy
+	// of the detected trait.
+	Score *float64 `type:"float"`
+}
+
+// String returns the string representation
+func (s RxNormTrait) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RxNormTrait) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *RxNormTrait) SetName(v string) *RxNormTrait {
+	s.Name = &v
+	return s
+}
+
+// SetScore sets the Score field's value.
+func (s *RxNormTrait) SetScore(v float64) *RxNormTrait {
+	s.Score = &v
 	return s
 }
 
@@ -2845,6 +3815,47 @@ const (
 )
 
 const (
+	// ICD10CMAttributeTypeAcuity is a ICD10CMAttributeType enum value
+	ICD10CMAttributeTypeAcuity = "ACUITY"
+
+	// ICD10CMAttributeTypeDirection is a ICD10CMAttributeType enum value
+	ICD10CMAttributeTypeDirection = "DIRECTION"
+
+	// ICD10CMAttributeTypeSystemOrganSite is a ICD10CMAttributeType enum value
+	ICD10CMAttributeTypeSystemOrganSite = "SYSTEM_ORGAN_SITE"
+
+	// ICD10CMAttributeTypeQuality is a ICD10CMAttributeType enum value
+	ICD10CMAttributeTypeQuality = "QUALITY"
+
+	// ICD10CMAttributeTypeQuantity is a ICD10CMAttributeType enum value
+	ICD10CMAttributeTypeQuantity = "QUANTITY"
+)
+
+const (
+	// ICD10CMEntityCategoryMedicalCondition is a ICD10CMEntityCategory enum value
+	ICD10CMEntityCategoryMedicalCondition = "MEDICAL_CONDITION"
+)
+
+const (
+	// ICD10CMEntityTypeDxName is a ICD10CMEntityType enum value
+	ICD10CMEntityTypeDxName = "DX_NAME"
+)
+
+const (
+	// ICD10CMTraitNameNegation is a ICD10CMTraitName enum value
+	ICD10CMTraitNameNegation = "NEGATION"
+
+	// ICD10CMTraitNameDiagnosis is a ICD10CMTraitName enum value
+	ICD10CMTraitNameDiagnosis = "DIAGNOSIS"
+
+	// ICD10CMTraitNameSign is a ICD10CMTraitName enum value
+	ICD10CMTraitNameSign = "SIGN"
+
+	// ICD10CMTraitNameSymptom is a ICD10CMTraitName enum value
+	ICD10CMTraitNameSymptom = "SYMPTOM"
+)
+
+const (
 	// JobStatusSubmitted is a JobStatus enum value
 	JobStatusSubmitted = "SUBMITTED"
 
@@ -2870,4 +3881,45 @@ const (
 const (
 	// LanguageCodeEn is a LanguageCode enum value
 	LanguageCodeEn = "en"
+)
+
+const (
+	// RxNormAttributeTypeDosage is a RxNormAttributeType enum value
+	RxNormAttributeTypeDosage = "DOSAGE"
+
+	// RxNormAttributeTypeDuration is a RxNormAttributeType enum value
+	RxNormAttributeTypeDuration = "DURATION"
+
+	// RxNormAttributeTypeForm is a RxNormAttributeType enum value
+	RxNormAttributeTypeForm = "FORM"
+
+	// RxNormAttributeTypeFrequency is a RxNormAttributeType enum value
+	RxNormAttributeTypeFrequency = "FREQUENCY"
+
+	// RxNormAttributeTypeRate is a RxNormAttributeType enum value
+	RxNormAttributeTypeRate = "RATE"
+
+	// RxNormAttributeTypeRouteOrMode is a RxNormAttributeType enum value
+	RxNormAttributeTypeRouteOrMode = "ROUTE_OR_MODE"
+
+	// RxNormAttributeTypeStrength is a RxNormAttributeType enum value
+	RxNormAttributeTypeStrength = "STRENGTH"
+)
+
+const (
+	// RxNormEntityCategoryMedication is a RxNormEntityCategory enum value
+	RxNormEntityCategoryMedication = "MEDICATION"
+)
+
+const (
+	// RxNormEntityTypeBrandName is a RxNormEntityType enum value
+	RxNormEntityTypeBrandName = "BRAND_NAME"
+
+	// RxNormEntityTypeGenericName is a RxNormEntityType enum value
+	RxNormEntityTypeGenericName = "GENERIC_NAME"
+)
+
+const (
+	// RxNormTraitNameNegation is a RxNormTraitName enum value
+	RxNormTraitNameNegation = "NEGATION"
 )

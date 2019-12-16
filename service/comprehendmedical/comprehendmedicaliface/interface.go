@@ -80,6 +80,14 @@ type ComprehendMedicalAPI interface {
 	DetectPHIWithContext(aws.Context, *comprehendmedical.DetectPHIInput, ...request.Option) (*comprehendmedical.DetectPHIOutput, error)
 	DetectPHIRequest(*comprehendmedical.DetectPHIInput) (*request.Request, *comprehendmedical.DetectPHIOutput)
 
+	InferICD10CM(*comprehendmedical.InferICD10CMInput) (*comprehendmedical.InferICD10CMOutput, error)
+	InferICD10CMWithContext(aws.Context, *comprehendmedical.InferICD10CMInput, ...request.Option) (*comprehendmedical.InferICD10CMOutput, error)
+	InferICD10CMRequest(*comprehendmedical.InferICD10CMInput) (*request.Request, *comprehendmedical.InferICD10CMOutput)
+
+	InferRxNorm(*comprehendmedical.InferRxNormInput) (*comprehendmedical.InferRxNormOutput, error)
+	InferRxNormWithContext(aws.Context, *comprehendmedical.InferRxNormInput, ...request.Option) (*comprehendmedical.InferRxNormOutput, error)
+	InferRxNormRequest(*comprehendmedical.InferRxNormInput) (*request.Request, *comprehendmedical.InferRxNormOutput)
+
 	ListEntitiesDetectionV2Jobs(*comprehendmedical.ListEntitiesDetectionV2JobsInput) (*comprehendmedical.ListEntitiesDetectionV2JobsOutput, error)
 	ListEntitiesDetectionV2JobsWithContext(aws.Context, *comprehendmedical.ListEntitiesDetectionV2JobsInput, ...request.Option) (*comprehendmedical.ListEntitiesDetectionV2JobsOutput, error)
 	ListEntitiesDetectionV2JobsRequest(*comprehendmedical.ListEntitiesDetectionV2JobsInput) (*request.Request, *comprehendmedical.ListEntitiesDetectionV2JobsOutput)

@@ -69,6 +69,14 @@
         "DescribeBrokerOutput$BrokerState" : "The status of the broker."
       }
     },
+    "BrokerStorageType" : {
+      "base" : "The storage type of the broker.",
+      "refs" : {
+        "BrokerInstanceOption$StorageType" : "The broker's storage type.",
+        "CreateBrokerInput$StorageType" : "The broker's storage type.",
+        "DescribeBrokerOutput$StorageType" : "The broker's storage type."
+      }
+    },
     "BrokerSummary" : {
       "base" : "The Amazon Resource Name (ARN) of the broker.",
       "refs" : {
@@ -153,7 +161,8 @@
       "refs" : {
         "BrokerSummary$DeploymentMode" : "Required. The deployment mode of the broker.",
         "CreateBrokerInput$DeploymentMode" : "Required. The deployment mode of the broker.",
-        "DescribeBrokerOutput$DeploymentMode" : "Required. The deployment mode of the broker."
+        "DescribeBrokerOutput$DeploymentMode" : "Required. The deployment mode of the broker.",
+        "__listOfDeploymentMode$member" : null
       }
     },
     "DescribeBrokerOutput" : {
@@ -397,6 +406,12 @@
         "ListConfigurationRevisionsOutput$Revisions" : "The list of all revisions for the specified configuration."
       }
     },
+    "__listOfDeploymentMode" : {
+      "base" : null,
+      "refs" : {
+        "BrokerInstanceOption$SupportedDeploymentModes" : "The list of supported deployment modes."
+      }
+    },
     "__listOfEngineVersion" : {
       "base" : null,
       "refs" : {
@@ -427,15 +442,15 @@
       "refs" : {
         "BrokerInstance$Endpoints" : "The broker's wire-level protocol endpoints.",
         "BrokerInstanceOption$SupportedEngineVersions" : "The list of supported engine versions.",
-        "CreateBrokerInput$SecurityGroups" : "The list of security groups (1 minimum, 5 maximum) that authorize connections to brokers.",
+        "CreateBrokerInput$SecurityGroups" : "The list of security groups (1 minimum, 5 maximum) that authorizes connections to brokers.",
         "CreateBrokerInput$SubnetIds" : "The list of groups (2 maximum) that define which subnets and IP ranges the broker can use from different Availability Zones. A SINGLE_INSTANCE deployment requires one subnet (for example, the default subnet). An ACTIVE_STANDBY_MULTI_AZ deployment requires two subnets.",
         "CreateUserInput$Groups" : "The list of groups (20 maximum) to which the ActiveMQ user belongs. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
         "DescribeBrokerOutput$PendingSecurityGroups" : "The list of pending security groups to authorize connections to brokers.",
-        "DescribeBrokerOutput$SecurityGroups" : "The list of security groups (1 minimum, 5 maximum) that authorize connections to brokers.",
+        "DescribeBrokerOutput$SecurityGroups" : "The list of security groups (1 minimum, 5 maximum) that authorizes connections to brokers.",
         "DescribeBrokerOutput$SubnetIds" : "The list of groups (2 maximum) that define which subnets and IP ranges the broker can use from different Availability Zones. A SINGLE_INSTANCE deployment requires one subnet (for example, the default subnet). An ACTIVE_STANDBY_MULTI_AZ deployment requires two subnets.",
         "DescribeUserOutput$Groups" : "The list of groups (20 maximum) to which the ActiveMQ user belongs. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
-        "UpdateBrokerInput$SecurityGroups" : "The list of security groups (1 minimum, 5 maximum) that authorize connections to brokers.",
-        "UpdateBrokerOutput$SecurityGroups" : "The list of security groups (1 minimum, 5 maximum) that authorize connections to brokers.",
+        "UpdateBrokerInput$SecurityGroups" : "The list of security groups (1 minimum, 5 maximum) that authorizes connections to brokers.",
+        "UpdateBrokerOutput$SecurityGroups" : "The list of security groups (1 minimum, 5 maximum) that authorizes connections to brokers.",
         "UpdateUserInput$Groups" : "The list of groups (20 maximum) to which the ActiveMQ user belongs. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
         "User$Groups" : "The list of groups (20 maximum) to which the ActiveMQ user belongs. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
         "UserPendingChanges$Groups" : "The list of groups (20 maximum) to which the ActiveMQ user belongs. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long."

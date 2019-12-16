@@ -1,3 +1,13 @@
+Release v1.26.3 (2019-12-16)
+===
+
+### Service Client Updates
+* `service/comprehendmedical`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * You can now configure your EC2 Fleet to preferentially use EC2 Capacity Reservations for launching On-Demand instances, enabling you to fully utilize the available (and unused) Capacity Reservations before launching On-Demand instances on net new capacity.
+* `service/mq`: Updates service API and documentation
+  * Amazon MQ now supports throughput-optimized message brokers, backed by Amazon EBS.
+
 Release v1.26.2 (2019-12-13)
 ===
 

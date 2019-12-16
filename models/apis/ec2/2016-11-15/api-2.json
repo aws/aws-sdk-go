@@ -5330,6 +5330,21 @@
         "Linux with SQL Server Enterprise"
       ]
     },
+    "CapacityReservationOptions":{
+      "type":"structure",
+      "members":{
+        "UsageStrategy":{
+          "shape":"FleetCapacityReservationUsageStrategy",
+          "locationName":"usageStrategy"
+        }
+      }
+    },
+    "CapacityReservationOptionsRequest":{
+      "type":"structure",
+      "members":{
+        "UsageStrategy":{"shape":"FleetCapacityReservationUsageStrategy"}
+      }
+    },
     "CapacityReservationPreference":{
       "type":"string",
       "enum":[
@@ -14145,6 +14160,10 @@
         "fulfilled"
       ]
     },
+    "FleetCapacityReservationUsageStrategy":{
+      "type":"string",
+      "enum":["use-capacity-reservations-first"]
+    },
     "FleetData":{
       "type":"structure",
       "members":{
@@ -20907,6 +20926,10 @@
           "shape":"FleetOnDemandAllocationStrategy",
           "locationName":"allocationStrategy"
         },
+        "CapacityReservationOptions":{
+          "shape":"CapacityReservationOptions",
+          "locationName":"capacityReservationOptions"
+        },
         "SingleInstanceType":{
           "shape":"Boolean",
           "locationName":"singleInstanceType"
@@ -20929,6 +20952,7 @@
       "type":"structure",
       "members":{
         "AllocationStrategy":{"shape":"FleetOnDemandAllocationStrategy"},
+        "CapacityReservationOptions":{"shape":"CapacityReservationOptionsRequest"},
         "SingleInstanceType":{"shape":"Boolean"},
         "SingleAvailabilityZone":{"shape":"Boolean"},
         "MinTargetCapacity":{"shape":"Integer"},
