@@ -61,9 +61,14 @@ func (c *RESTJSONService) EmptyStreamRequest(input *EmptyStreamInput) (req *requ
 
 	output = &EmptyStreamOutput{}
 	req = c.newRequest(op, input, output)
+
+	es := &EmptyStreamEventStream{}
+	req.Handlers.Unmarshal.PushBack(es.setStreamCloser)
+	output.eventStream = es
+
 	req.Handlers.Send.Swap(client.LogHTTPResponseHandler.Name, client.LogHTTPResponseHeaderHandler)
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, rest.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBack(output.runEventStreamLoop)
+	req.Handlers.Unmarshal.PushBack(es.runOutputStream)
 	return
 }
 
@@ -95,6 +100,85 @@ func (c *RESTJSONService) EmptyStreamWithContext(ctx aws.Context, input *EmptySt
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// EmptyStreamEventStream provides the event stream handling for the EmptyStream.
+type EmptyStreamEventStream struct {
+
+	// Reader is the EventStream reader for the EmptyEventStream
+	// events. This value is automatically set by the SDK when the API call is made
+	// Use this member when unit testing your code with the SDK to mock out the
+	// EventStream Reader.
+	//
+	// Must not be nil.
+	Reader EmptyEventStreamReader
+
+	// StreamCloser is the io.Closer for the EventStream connection. For HTTP
+	// EventStream this is the response Body. The stream will be closed when
+	// the Close method of the EventStream is called.
+	StreamCloser io.Closer
+}
+
+func (es *EmptyStreamEventStream) setStreamCloser(r *request.Request) {
+	var closers aws.MultiCloser
+	if es.StreamCloser != nil {
+		closers = append(closers, es.StreamCloser)
+	}
+	closers = append(closers, r.HTTPResponse.Body)
+
+	es.StreamCloser = closers
+}
+
+// Events returns a channel to read events from.
+//
+// These events are:
+//
+func (es *EmptyStreamEventStream) Events() <-chan EmptyEventStreamEvent {
+	return es.Reader.Events()
+}
+
+func (es *EmptyStreamEventStream) runOutputStream(r *request.Request) {
+	var opts []func(*eventstream.Decoder)
+	if r.Config.Logger != nil && r.Config.LogLevel.Matches(aws.LogDebugWithEventStreamBody) {
+		opts = append(opts, eventstream.DecodeWithLogger(r.Config.Logger))
+	}
+
+	decoder := eventstream.NewDecoder(r.HTTPResponse.Body, opts...)
+	eventReader := eventstreamapi.NewEventReader(decoder,
+		protocol.HandlerPayloadUnmarshal{
+			Unmarshalers: r.Handlers.UnmarshalStream,
+		},
+		unmarshalerForEmptyEventStreamEvent,
+	)
+
+	es.Reader = newReadEmptyEventStream(eventReader)
+}
+
+// Close closes the EventStream. This will also cause the Events channel to be
+// closed. You can use the closing of the Events channel to terminate your
+// application's read from the API's EventStream.
+//
+// Will close the underlying EventStream reader.
+//
+// For EventStream over HTTP connection this will also close the HTTP connection.
+//
+// Close must be called when done using the EventStream API. Not calling Close
+// may result in resource leaks.
+func (es *EmptyStreamEventStream) Close() (err error) {
+	es.Reader.Close()
+	es.StreamCloser.Close()
+
+	return es.Err()
+}
+
+// Err returns any error that occurred while reading or writing EventStream
+// Events from the service API's response. Returns nil if there were no errors.
+func (es *EmptyStreamEventStream) Err() error {
+	if err := es.Reader.Err(); err != nil {
+		return err
+	}
+
+	return nil
 }
 
 const opGetEventStream = "GetEventStream"
@@ -136,9 +220,14 @@ func (c *RESTJSONService) GetEventStreamRequest(input *GetEventStreamInput) (req
 
 	output = &GetEventStreamOutput{}
 	req = c.newRequest(op, input, output)
+
+	es := &GetEventStreamEventStream{}
+	req.Handlers.Unmarshal.PushBack(es.setStreamCloser)
+	output.eventStream = es
+
 	req.Handlers.Send.Swap(client.LogHTTPResponseHandler.Name, client.LogHTTPResponseHeaderHandler)
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, rest.UnmarshalHandler)
-	req.Handlers.Unmarshal.PushBack(output.runEventStreamLoop)
+	req.Handlers.Unmarshal.PushBack(es.runOutputStream)
 	return
 }
 
@@ -170,6 +259,92 @@ func (c *RESTJSONService) GetEventStreamWithContext(ctx aws.Context, input *GetE
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// GetEventStreamEventStream provides the event stream handling for the GetEventStream.
+type GetEventStreamEventStream struct {
+
+	// Reader is the EventStream reader for the EventStream
+	// events. This value is automatically set by the SDK when the API call is made
+	// Use this member when unit testing your code with the SDK to mock out the
+	// EventStream Reader.
+	//
+	// Must not be nil.
+	Reader EventStreamReader
+
+	// StreamCloser is the io.Closer for the EventStream connection. For HTTP
+	// EventStream this is the response Body. The stream will be closed when
+	// the Close method of the EventStream is called.
+	StreamCloser io.Closer
+}
+
+func (es *GetEventStreamEventStream) setStreamCloser(r *request.Request) {
+	var closers aws.MultiCloser
+	if es.StreamCloser != nil {
+		closers = append(closers, es.StreamCloser)
+	}
+	closers = append(closers, r.HTTPResponse.Body)
+
+	es.StreamCloser = closers
+}
+
+// Events returns a channel to read events from.
+//
+// These events are:
+//
+//     * EmptyEvent
+//     * ExplicitPayloadEvent
+//     * HeaderOnlyEvent
+//     * ImplicitPayloadEvent
+//     * PayloadOnlyEvent
+//     * PayloadOnlyBlobEvent
+//     * PayloadOnlyStringEvent
+func (es *GetEventStreamEventStream) Events() <-chan EventStreamEvent {
+	return es.Reader.Events()
+}
+
+func (es *GetEventStreamEventStream) runOutputStream(r *request.Request) {
+	var opts []func(*eventstream.Decoder)
+	if r.Config.Logger != nil && r.Config.LogLevel.Matches(aws.LogDebugWithEventStreamBody) {
+		opts = append(opts, eventstream.DecodeWithLogger(r.Config.Logger))
+	}
+
+	decoder := eventstream.NewDecoder(r.HTTPResponse.Body, opts...)
+	eventReader := eventstreamapi.NewEventReader(decoder,
+		protocol.HandlerPayloadUnmarshal{
+			Unmarshalers: r.Handlers.UnmarshalStream,
+		},
+		unmarshalerForEventStreamEvent,
+	)
+
+	es.Reader = newReadEventStream(eventReader)
+}
+
+// Close closes the EventStream. This will also cause the Events channel to be
+// closed. You can use the closing of the Events channel to terminate your
+// application's read from the API's EventStream.
+//
+// Will close the underlying EventStream reader.
+//
+// For EventStream over HTTP connection this will also close the HTTP connection.
+//
+// Close must be called when done using the EventStream API. Not calling Close
+// may result in resource leaks.
+func (es *GetEventStreamEventStream) Close() (err error) {
+	es.Reader.Close()
+	es.StreamCloser.Close()
+
+	return es.Err()
+}
+
+// Err returns any error that occurred while reading or writing EventStream
+// Events from the service API's response. Returns nil if there were no errors.
+func (es *GetEventStreamEventStream) Err() error {
+	if err := es.Reader.Err(); err != nil {
+		return err
+	}
+
+	return nil
 }
 
 const opOtherOperation = "OtherOperation"
@@ -275,93 +450,41 @@ func (s *EmptyEvent) UnmarshalEvent(
 	return nil
 }
 
-// EmptyStreamEventStream provides handling of EventStreams for
-// the EmptyStream API.
-//
-// Use this type to receive EmptyEventStream events. The events
-// can be read from the Events channel member.
-//
-// The events that can be received are:
-//
-type EmptyStreamEventStream struct {
-	// Reader is the EventStream reader for the EmptyEventStream
-	// events. This value is automatically set by the SDK when the API call is made
-	// Use this member when unit testing your code with the SDK to mock out the
-	// EventStream Reader.
-	//
-	// Must not be nil.
-	Reader EmptyStreamEventStreamReader
-
-	// StreamCloser is the io.Closer for the EventStream connection. For HTTP
-	// EventStream this is the response Body. The stream will be closed when
-	// the Close method of the EventStream is called.
-	StreamCloser io.Closer
-}
-
-// Close closes the EventStream. This will also cause the Events channel to be
-// closed. You can use the closing of the Events channel to terminate your
-// application's read from the API's EventStream.
-//
-// Will close the underlying EventStream reader. For EventStream over HTTP
-// connection this will also close the HTTP connection.
-//
-// Close must be called when done using the EventStream API. Not calling Close
-// may result in resource leaks.
-func (es *EmptyStreamEventStream) Close() (err error) {
-	es.Reader.Close()
-	es.StreamCloser.Close()
-
-	return es.Err()
-}
-
-// Err returns any error that occurred while reading EventStream Events from
-// the service API's response. Returns nil if there were no errors.
-func (es *EmptyStreamEventStream) Err() error {
-	if err := es.Reader.Err(); err != nil {
-		return err
-	}
-	return nil
-}
-
-// Events returns a channel to read EventStream Events from the
-// EmptyStream API.
-//
-// These events are:
-//
-func (es *EmptyStreamEventStream) Events() <-chan EmptyEventStreamEvent {
-	return es.Reader.Events()
+func (s *EmptyEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	return msg, err
 }
 
 // EmptyEventStreamEvent groups together all EventStream
-// events read from the EmptyStream API.
+// events writes for EmptyEventStream.
 //
 // These events are:
 //
 type EmptyEventStreamEvent interface {
 	eventEmptyEventStream()
+	eventstreamapi.Marshaler
+	eventstreamapi.Unmarshaler
 }
 
-// EmptyStreamEventStreamReader provides the interface for reading EventStream
-// Events from the EmptyStream API. The
-// default implementation for this interface will be EmptyStreamEventStream.
+// EmptyEventStreamReader provides the interface for reading to the stream. The
+// default implementation for this interface will be EmptyEventStream.
 //
 // The reader's Close method must allow multiple concurrent calls.
 //
 // These events are:
 //
-type EmptyStreamEventStreamReader interface {
+type EmptyEventStreamReader interface {
 	// Returns a channel of events as they are read from the event stream.
 	Events() <-chan EmptyEventStreamEvent
 
-	// Close will close the underlying event stream reader. For event stream over
-	// HTTP this will also close the HTTP connection.
+	// Close will stop the reader reading events from the stream.
 	Close() error
 
 	// Returns any error that has occurred while reading from the event stream.
 	Err() error
 }
 
-type readEmptyStreamEventStream struct {
+type readEmptyEventStream struct {
 	eventReader *eventstreamapi.EventReader
 	stream      chan EmptyEventStreamEvent
 	errVal      atomic.Value
@@ -370,58 +493,39 @@ type readEmptyStreamEventStream struct {
 	closeOnce sync.Once
 }
 
-func newReadEmptyStreamEventStream(
-	reader io.ReadCloser,
-	unmarshalers request.HandlerList,
-	logger aws.Logger,
-	logLevel aws.LogLevelType,
-) *readEmptyStreamEventStream {
-	r := &readEmptyStreamEventStream{
-		stream: make(chan EmptyEventStreamEvent),
-		done:   make(chan struct{}),
+func newReadEmptyEventStream(eventReader *eventstreamapi.EventReader) *readEmptyEventStream {
+	r := &readEmptyEventStream{
+		eventReader: eventReader,
+		stream:      make(chan EmptyEventStreamEvent),
+		done:        make(chan struct{}),
 	}
-
-	r.eventReader = eventstreamapi.NewEventReader(
-		reader,
-		protocol.HandlerPayloadUnmarshal{
-			Unmarshalers: unmarshalers,
-		},
-		r.unmarshalerForEventType,
-	)
-	r.eventReader.UseLogger(logger, logLevel)
+	go r.readEventStream()
 
 	return r
 }
 
-// Close will close the underlying event stream reader. For EventStream over
-// HTTP this will also close the HTTP connection.
-func (r *readEmptyStreamEventStream) Close() error {
+// Close will close the underlying event stream reader.
+func (r *readEmptyEventStream) Close() error {
 	r.closeOnce.Do(r.safeClose)
-
 	return r.Err()
 }
 
-func (r *readEmptyStreamEventStream) safeClose() {
+func (r *readEmptyEventStream) safeClose() {
 	close(r.done)
-	err := r.eventReader.Close()
-	if err != nil {
-		r.errVal.Store(err)
-	}
 }
 
-func (r *readEmptyStreamEventStream) Err() error {
+func (r *readEmptyEventStream) Err() error {
 	if v := r.errVal.Load(); v != nil {
 		return v.(error)
 	}
-
 	return nil
 }
 
-func (r *readEmptyStreamEventStream) Events() <-chan EmptyEventStreamEvent {
+func (r *readEmptyEventStream) Events() <-chan EmptyEventStreamEvent {
 	return r.stream
 }
 
-func (r *readEmptyStreamEventStream) readEventStream() {
+func (r *readEmptyEventStream) readEventStream() {
 	defer close(r.stream)
 
 	for {
@@ -448,14 +552,12 @@ func (r *readEmptyStreamEventStream) readEventStream() {
 	}
 }
 
-func (r *readEmptyStreamEventStream) unmarshalerForEventType(
-	eventType string,
-) (eventstreamapi.Unmarshaler, error) {
+func unmarshalerForEmptyEventStreamEvent(eventType string) (eventstreamapi.Unmarshaler, error) {
 	switch eventType {
 	default:
 		return nil, awserr.New(
 			request.ErrCodeSerialization,
-			fmt.Sprintf("unknown event type name, %s, for EmptyStreamEventStream", eventType),
+			fmt.Sprintf("unknown event type name, %s, for EmptyEventStream", eventType),
 			nil,
 		)
 	}
@@ -478,8 +580,7 @@ func (s EmptyStreamInput) GoString() string {
 type EmptyStreamOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Use EventStream to use the API's stream.
-	EventStream *EmptyStreamEventStream `type:"structure"`
+	eventStream *EmptyStreamEventStream
 }
 
 // String returns the string representation
@@ -492,29 +593,149 @@ func (s EmptyStreamOutput) GoString() string {
 	return s.String()
 }
 
-// SetEventStream sets the EventStream field's value.
-func (s *EmptyStreamOutput) SetEventStream(v *EmptyStreamEventStream) *EmptyStreamOutput {
-	s.EventStream = v
-	return s
+// GetStream returns the type to interact with the event stream.
+func (s *EmptyStreamOutput) GetStream() *EmptyStreamEventStream {
+	return s.eventStream
 }
 
-func (s *EmptyStreamOutput) runEventStreamLoop(r *request.Request) {
-	if r.Error != nil {
-		return
-	}
-	reader := newReadEmptyStreamEventStream(
-		r.HTTPResponse.Body,
-		r.Handlers.UnmarshalStream,
-		r.Config.Logger,
-		r.Config.LogLevel.Value(),
-	)
-	go reader.readEventStream()
+// EventStreamEvent groups together all EventStream
+// events writes for EventStream.
+//
+// These events are:
+//
+//     * EmptyEvent
+//     * ExplicitPayloadEvent
+//     * HeaderOnlyEvent
+//     * ImplicitPayloadEvent
+//     * PayloadOnlyEvent
+//     * PayloadOnlyBlobEvent
+//     * PayloadOnlyStringEvent
+type EventStreamEvent interface {
+	eventEventStream()
+	eventstreamapi.Marshaler
+	eventstreamapi.Unmarshaler
+}
 
-	eventStream := &EmptyStreamEventStream{
-		StreamCloser: r.HTTPResponse.Body,
-		Reader:       reader,
+// EventStreamReader provides the interface for reading to the stream. The
+// default implementation for this interface will be EventStream.
+//
+// The reader's Close method must allow multiple concurrent calls.
+//
+// These events are:
+//
+//     * EmptyEvent
+//     * ExplicitPayloadEvent
+//     * HeaderOnlyEvent
+//     * ImplicitPayloadEvent
+//     * PayloadOnlyEvent
+//     * PayloadOnlyBlobEvent
+//     * PayloadOnlyStringEvent
+type EventStreamReader interface {
+	// Returns a channel of events as they are read from the event stream.
+	Events() <-chan EventStreamEvent
+
+	// Close will stop the reader reading events from the stream.
+	Close() error
+
+	// Returns any error that has occurred while reading from the event stream.
+	Err() error
+}
+
+type readEventStream struct {
+	eventReader *eventstreamapi.EventReader
+	stream      chan EventStreamEvent
+	errVal      atomic.Value
+
+	done      chan struct{}
+	closeOnce sync.Once
+}
+
+func newReadEventStream(eventReader *eventstreamapi.EventReader) *readEventStream {
+	r := &readEventStream{
+		eventReader: eventReader,
+		stream:      make(chan EventStreamEvent),
+		done:        make(chan struct{}),
 	}
-	s.EventStream = eventStream
+	go r.readEventStream()
+
+	return r
+}
+
+// Close will close the underlying event stream reader.
+func (r *readEventStream) Close() error {
+	r.closeOnce.Do(r.safeClose)
+	return r.Err()
+}
+
+func (r *readEventStream) safeClose() {
+	close(r.done)
+}
+
+func (r *readEventStream) Err() error {
+	if v := r.errVal.Load(); v != nil {
+		return v.(error)
+	}
+	return nil
+}
+
+func (r *readEventStream) Events() <-chan EventStreamEvent {
+	return r.stream
+}
+
+func (r *readEventStream) readEventStream() {
+	defer close(r.stream)
+
+	for {
+		event, err := r.eventReader.ReadEvent()
+		if err != nil {
+			if err == io.EOF {
+				return
+			}
+			select {
+			case <-r.done:
+				// If closed already ignore the error
+				return
+			default:
+			}
+			r.errVal.Store(err)
+			return
+		}
+
+		select {
+		case r.stream <- event.(EventStreamEvent):
+		case <-r.done:
+			return
+		}
+	}
+}
+
+func unmarshalerForEventStreamEvent(eventType string) (eventstreamapi.Unmarshaler, error) {
+	switch eventType {
+	case "Empty":
+		return &EmptyEvent{}, nil
+	case "ExplicitPayload":
+		return &ExplicitPayloadEvent{}, nil
+	case "Headers":
+		return &HeaderOnlyEvent{}, nil
+	case "ImplicitPayload":
+		return &ImplicitPayloadEvent{}, nil
+	case "PayloadOnly":
+		return &PayloadOnlyEvent{}, nil
+	case "PayloadOnlyBlob":
+		return &PayloadOnlyBlobEvent{}, nil
+	case "PayloadOnlyString":
+		return &PayloadOnlyStringEvent{}, nil
+	case "Exception":
+		return &ExceptionEvent{}, nil
+	case "Exception2":
+		return &ExceptionEvent2{}, nil
+	default:
+		return nil, awserr.New(
+			request.ErrCodeSerialization,
+			fmt.Sprintf("unknown event type name, %s, for EventStream", eventType),
+			nil,
+		)
+	}
 }
 
 type ExceptionEvent struct {
@@ -550,6 +771,16 @@ func (s *ExceptionEvent) UnmarshalEvent(
 		return err
 	}
 	return nil
+}
+
+func (s *ExceptionEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ExceptionMessageType))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
+	return msg, err
 }
 
 // Code returns the exception type name.
@@ -595,6 +826,11 @@ func (s *ExceptionEvent2) UnmarshalEvent(
 	msg eventstream.Message,
 ) error {
 	return nil
+}
+
+func (s *ExceptionEvent2) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ExceptionMessageType))
+	return msg, err
 }
 
 // Code returns the exception type name.
@@ -679,244 +915,16 @@ func (s *ExplicitPayloadEvent) UnmarshalEvent(
 	return nil
 }
 
-// GetEventStreamEventStream provides handling of EventStreams for
-// the GetEventStream API.
-//
-// Use this type to receive EventStream events. The events
-// can be read from the Events channel member.
-//
-// The events that can be received are:
-//
-//     * EmptyEvent
-//     * ExplicitPayloadEvent
-//     * HeaderOnlyEvent
-//     * ImplicitPayloadEvent
-//     * PayloadOnlyEvent
-//     * PayloadOnlyBlobEvent
-//     * PayloadOnlyStringEvent
-type GetEventStreamEventStream struct {
-	// Reader is the EventStream reader for the EventStream
-	// events. This value is automatically set by the SDK when the API call is made
-	// Use this member when unit testing your code with the SDK to mock out the
-	// EventStream Reader.
-	//
-	// Must not be nil.
-	Reader GetEventStreamEventStreamReader
-
-	// StreamCloser is the io.Closer for the EventStream connection. For HTTP
-	// EventStream this is the response Body. The stream will be closed when
-	// the Close method of the EventStream is called.
-	StreamCloser io.Closer
-}
-
-// Close closes the EventStream. This will also cause the Events channel to be
-// closed. You can use the closing of the Events channel to terminate your
-// application's read from the API's EventStream.
-//
-// Will close the underlying EventStream reader. For EventStream over HTTP
-// connection this will also close the HTTP connection.
-//
-// Close must be called when done using the EventStream API. Not calling Close
-// may result in resource leaks.
-func (es *GetEventStreamEventStream) Close() (err error) {
-	es.Reader.Close()
-	es.StreamCloser.Close()
-
-	return es.Err()
-}
-
-// Err returns any error that occurred while reading EventStream Events from
-// the service API's response. Returns nil if there were no errors.
-func (es *GetEventStreamEventStream) Err() error {
-	if err := es.Reader.Err(); err != nil {
-		return err
+func (s *ExplicitPayloadEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	msg.Headers.Set("LongVal", eventstream.Int64Value(*s.LongVal))
+	msg.Headers.Set("StringVal", eventstream.StringValue(*s.StringVal))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
 	}
-	return nil
-}
-
-// Events returns a channel to read EventStream Events from the
-// GetEventStream API.
-//
-// These events are:
-//
-//     * EmptyEvent
-//     * ExplicitPayloadEvent
-//     * HeaderOnlyEvent
-//     * ImplicitPayloadEvent
-//     * PayloadOnlyEvent
-//     * PayloadOnlyBlobEvent
-//     * PayloadOnlyStringEvent
-func (es *GetEventStreamEventStream) Events() <-chan EventStreamEvent {
-	return es.Reader.Events()
-}
-
-// EventStreamEvent groups together all EventStream
-// events read from the GetEventStream API.
-//
-// These events are:
-//
-//     * EmptyEvent
-//     * ExplicitPayloadEvent
-//     * HeaderOnlyEvent
-//     * ImplicitPayloadEvent
-//     * PayloadOnlyEvent
-//     * PayloadOnlyBlobEvent
-//     * PayloadOnlyStringEvent
-type EventStreamEvent interface {
-	eventEventStream()
-}
-
-// GetEventStreamEventStreamReader provides the interface for reading EventStream
-// Events from the GetEventStream API. The
-// default implementation for this interface will be GetEventStreamEventStream.
-//
-// The reader's Close method must allow multiple concurrent calls.
-//
-// These events are:
-//
-//     * EmptyEvent
-//     * ExplicitPayloadEvent
-//     * HeaderOnlyEvent
-//     * ImplicitPayloadEvent
-//     * PayloadOnlyEvent
-//     * PayloadOnlyBlobEvent
-//     * PayloadOnlyStringEvent
-type GetEventStreamEventStreamReader interface {
-	// Returns a channel of events as they are read from the event stream.
-	Events() <-chan EventStreamEvent
-
-	// Close will close the underlying event stream reader. For event stream over
-	// HTTP this will also close the HTTP connection.
-	Close() error
-
-	// Returns any error that has occurred while reading from the event stream.
-	Err() error
-}
-
-type readGetEventStreamEventStream struct {
-	eventReader *eventstreamapi.EventReader
-	stream      chan EventStreamEvent
-	errVal      atomic.Value
-
-	done      chan struct{}
-	closeOnce sync.Once
-}
-
-func newReadGetEventStreamEventStream(
-	reader io.ReadCloser,
-	unmarshalers request.HandlerList,
-	logger aws.Logger,
-	logLevel aws.LogLevelType,
-) *readGetEventStreamEventStream {
-	r := &readGetEventStreamEventStream{
-		stream: make(chan EventStreamEvent),
-		done:   make(chan struct{}),
-	}
-
-	r.eventReader = eventstreamapi.NewEventReader(
-		reader,
-		protocol.HandlerPayloadUnmarshal{
-			Unmarshalers: unmarshalers,
-		},
-		r.unmarshalerForEventType,
-	)
-	r.eventReader.UseLogger(logger, logLevel)
-
-	return r
-}
-
-// Close will close the underlying event stream reader. For EventStream over
-// HTTP this will also close the HTTP connection.
-func (r *readGetEventStreamEventStream) Close() error {
-	r.closeOnce.Do(r.safeClose)
-
-	return r.Err()
-}
-
-func (r *readGetEventStreamEventStream) safeClose() {
-	close(r.done)
-	err := r.eventReader.Close()
-	if err != nil {
-		r.errVal.Store(err)
-	}
-}
-
-func (r *readGetEventStreamEventStream) Err() error {
-	if v := r.errVal.Load(); v != nil {
-		return v.(error)
-	}
-
-	return nil
-}
-
-func (r *readGetEventStreamEventStream) Events() <-chan EventStreamEvent {
-	return r.stream
-}
-
-func (r *readGetEventStreamEventStream) readEventStream() {
-	defer close(r.stream)
-
-	for {
-		event, err := r.eventReader.ReadEvent()
-		if err != nil {
-			if err == io.EOF {
-				return
-			}
-			select {
-			case <-r.done:
-				// If closed already ignore the error
-				return
-			default:
-			}
-			r.errVal.Store(err)
-			return
-		}
-
-		select {
-		case r.stream <- event.(EventStreamEvent):
-		case <-r.done:
-			return
-		}
-	}
-}
-
-func (r *readGetEventStreamEventStream) unmarshalerForEventType(
-	eventType string,
-) (eventstreamapi.Unmarshaler, error) {
-	switch eventType {
-	case "Empty":
-		return &EmptyEvent{}, nil
-
-	case "ExplicitPayload":
-		return &ExplicitPayloadEvent{}, nil
-
-	case "Headers":
-		return &HeaderOnlyEvent{}, nil
-
-	case "ImplicitPayload":
-		return &ImplicitPayloadEvent{}, nil
-
-	case "PayloadOnly":
-		return &PayloadOnlyEvent{}, nil
-
-	case "PayloadOnlyBlob":
-		return &PayloadOnlyBlobEvent{}, nil
-
-	case "PayloadOnlyString":
-		return &PayloadOnlyStringEvent{}, nil
-
-	case "Exception":
-		return &ExceptionEvent{}, nil
-
-	case "Exception2":
-		return &ExceptionEvent2{}, nil
-	default:
-		return nil, awserr.New(
-			request.ErrCodeSerialization,
-			fmt.Sprintf("unknown event type name, %s, for GetEventStreamEventStream", eventType),
-			nil,
-		)
-	}
+	msg.Payload = buf.Bytes()
+	return msg, err
 }
 
 type GetEventStreamInput struct {
@@ -944,8 +952,7 @@ func (s *GetEventStreamInput) SetInputVal(v string) *GetEventStreamInput {
 type GetEventStreamOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Use EventStream to use the API's stream.
-	EventStream *GetEventStreamEventStream `type:"structure"`
+	eventStream *GetEventStreamEventStream
 
 	IntVal *int64 `type:"integer"`
 
@@ -962,12 +969,6 @@ func (s GetEventStreamOutput) GoString() string {
 	return s.String()
 }
 
-// SetEventStream sets the EventStream field's value.
-func (s *GetEventStreamOutput) SetEventStream(v *GetEventStreamEventStream) *GetEventStreamOutput {
-	s.EventStream = v
-	return s
-}
-
 // SetIntVal sets the IntVal field's value.
 func (s *GetEventStreamOutput) SetIntVal(v int64) *GetEventStreamOutput {
 	s.IntVal = &v
@@ -980,23 +981,9 @@ func (s *GetEventStreamOutput) SetStrVal(v string) *GetEventStreamOutput {
 	return s
 }
 
-func (s *GetEventStreamOutput) runEventStreamLoop(r *request.Request) {
-	if r.Error != nil {
-		return
-	}
-	reader := newReadGetEventStreamEventStream(
-		r.HTTPResponse.Body,
-		r.Handlers.UnmarshalStream,
-		r.Config.Logger,
-		r.Config.LogLevel.Value(),
-	)
-	go reader.readEventStream()
-
-	eventStream := &GetEventStreamEventStream{
-		StreamCloser: r.HTTPResponse.Body,
-		Reader:       reader,
-	}
-	s.EventStream = eventStream
+// GetStream returns the type to interact with the event stream.
+func (s *GetEventStreamOutput) GetStream() *GetEventStreamEventStream {
+	return s.eventStream
 }
 
 type HeaderOnlyEvent struct {
@@ -1125,6 +1112,19 @@ func (s *HeaderOnlyEvent) UnmarshalEvent(
 	return nil
 }
 
+func (s *HeaderOnlyEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	msg.Headers.Set("BlobVal", eventstream.BytesValue(s.BlobVal))
+	msg.Headers.Set("BoolVal", eventstream.BoolValue(*s.BoolVal))
+	msg.Headers.Set("ByteVal", eventstream.Int8Value(int8(*s.ByteVal)))
+	msg.Headers.Set("IntegerVal", eventstream.Int32Value(int32(*s.IntegerVal)))
+	msg.Headers.Set("LongVal", eventstream.Int64Value(*s.LongVal))
+	msg.Headers.Set("ShortVal", eventstream.Int16Value(int16(*s.ShortVal)))
+	msg.Headers.Set("StringVal", eventstream.StringValue(*s.StringVal))
+	msg.Headers.Set("TimeVal", eventstream.TimestampValue(*s.TimeVal))
+	return msg, err
+}
+
 type ImplicitPayloadEvent struct {
 	_ struct{} `type:"structure"`
 
@@ -1183,6 +1183,17 @@ func (s *ImplicitPayloadEvent) UnmarshalEvent(
 		return err
 	}
 	return nil
+}
+
+func (s *ImplicitPayloadEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	msg.Headers.Set("ByteVal", eventstream.Int8Value(int8(*s.ByteVal)))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
+	return msg, err
 }
 
 type NestedShape struct {
@@ -1280,6 +1291,12 @@ func (s *PayloadOnlyBlobEvent) UnmarshalEvent(
 	return nil
 }
 
+func (s *PayloadOnlyBlobEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	msg.Payload = s.BlobPayload
+	return msg, err
+}
+
 type PayloadOnlyEvent struct {
 	_ struct{} `type:"structure" payload:"NestedVal"`
 
@@ -1319,6 +1336,16 @@ func (s *PayloadOnlyEvent) UnmarshalEvent(
 	return nil
 }
 
+func (s *PayloadOnlyEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
+	return msg, err
+}
+
 type PayloadOnlyStringEvent struct {
 	_ struct{} `type:"structure" payload:"StringPayload"`
 
@@ -1352,4 +1379,10 @@ func (s *PayloadOnlyStringEvent) UnmarshalEvent(
 ) error {
 	s.StringPayload = aws.String(string(msg.Payload))
 	return nil
+}
+
+func (s *PayloadOnlyStringEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	msg.Payload = []byte(aws.StringValue(s.StringPayload))
+	return msg, err
 }

@@ -9648,15 +9648,20 @@ func (es *SelectObjectContentEventStream) Events() <-chan SelectObjectContentEve
 }
 
 func (es *SelectObjectContentEventStream) runOutputStream(r *request.Request) {
-	reader := newReadSelectObjectContentEventStream(
-		r.HTTPResponse.Body,
-		r.Handlers.UnmarshalStream,
-		r.Config.Logger,
-		r.Config.LogLevel.Value(),
+	var opts []func(*eventstream.Decoder)
+	if r.Config.Logger != nil && r.Config.LogLevel.Matches(aws.LogDebugWithEventStreamBody) {
+		opts = append(opts, eventstream.DecodeWithLogger(r.Config.Logger))
+	}
+
+	decoder := eventstream.NewDecoder(r.HTTPResponse.Body, opts...)
+	eventReader := eventstreamapi.NewEventReader(decoder,
+		protocol.HandlerPayloadUnmarshal{
+			Unmarshalers: r.Handlers.UnmarshalStream,
+		},
 		unmarshalerForSelectObjectContentEventStreamEvent,
 	)
-	es.Reader = reader
-	go reader.readEventStream()
+
+	es.Reader = newReadSelectObjectContentEventStream(eventReader)
 }
 
 // Close closes the EventStream. This will also cause the Events channel to be
@@ -11501,10 +11506,7 @@ func (s *ContinuationEvent) UnmarshalEvent(
 }
 
 func (s *ContinuationEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
-	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
-		eventstream.StringValue(eventstreamapi.EventMessageType))
-	msg.Headers.Set(eventstreamapi.EventTypeHeader,
-		eventstream.StringValue("ContinuationEvent"))
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
 	return msg, err
 }
 
@@ -14711,10 +14713,7 @@ func (s *EndEvent) UnmarshalEvent(
 }
 
 func (s *EndEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
-	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
-		eventstream.StringValue(eventstreamapi.EventMessageType))
-	msg.Headers.Set(eventstreamapi.EventTypeHeader,
-		eventstream.StringValue("EndEvent"))
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
 	return msg, err
 }
 
@@ -23440,10 +23439,7 @@ func (s *ProgressEvent) UnmarshalEvent(
 }
 
 func (s *ProgressEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
-	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
-		eventstream.StringValue(eventstreamapi.EventMessageType))
-	msg.Headers.Set(eventstreamapi.EventTypeHeader,
-		eventstream.StringValue("ProgressEvent"))
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
 	var buf bytes.Buffer
 	if err = pm.MarshalPayload(&buf, s); err != nil {
 		return eventstream.Message{}, err
@@ -26876,10 +26872,7 @@ func (s *RecordsEvent) UnmarshalEvent(
 }
 
 func (s *RecordsEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
-	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
-		eventstream.StringValue(eventstreamapi.EventMessageType))
-	msg.Headers.Set(eventstreamapi.EventTypeHeader,
-		eventstream.StringValue("RecordsEvent"))
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
 	msg.Payload = s.Payload
 	return msg, err
 }
@@ -28113,26 +28106,13 @@ type readSelectObjectContentEventStream struct {
 	closeOnce sync.Once
 }
 
-func newReadSelectObjectContentEventStream(
-	reader io.Reader,
-	unmarshalers request.HandlerList,
-	logger aws.Logger,
-	logLevel aws.LogLevelType,
-	unmarshalerForEvent func(string) (eventstreamapi.Unmarshaler, error),
-) *readSelectObjectContentEventStream {
+func newReadSelectObjectContentEventStream(eventReader *eventstreamapi.EventReader) *readSelectObjectContentEventStream {
 	r := &readSelectObjectContentEventStream{
-		stream: make(chan SelectObjectContentEventStreamEvent),
-		done:   make(chan struct{}),
+		eventReader: eventReader,
+		stream:      make(chan SelectObjectContentEventStreamEvent),
+		done:        make(chan struct{}),
 	}
-
-	r.eventReader = eventstreamapi.NewEventReader(
-		reader,
-		protocol.HandlerPayloadUnmarshal{
-			Unmarshalers: unmarshalers,
-		},
-		unmarshalerForEvent,
-	)
-	r.eventReader.UseLogger(logger, logLevel)
+	go r.readEventStream()
 
 	return r
 }
@@ -28140,7 +28120,6 @@ func newReadSelectObjectContentEventStream(
 // Close will close the underlying event stream reader.
 func (r *readSelectObjectContentEventStream) Close() error {
 	r.closeOnce.Do(r.safeClose)
-
 	return r.Err()
 }
 
@@ -28152,7 +28131,6 @@ func (r *readSelectObjectContentEventStream) Err() error {
 	if v := r.errVal.Load(); v != nil {
 		return v.(error)
 	}
-
 	return nil
 }
 
@@ -28191,16 +28169,12 @@ func unmarshalerForSelectObjectContentEventStreamEvent(eventType string) (events
 	switch eventType {
 	case "Cont":
 		return &ContinuationEvent{}, nil
-
 	case "End":
 		return &EndEvent{}, nil
-
 	case "Progress":
 		return &ProgressEvent{}, nil
-
 	case "Records":
 		return &RecordsEvent{}, nil
-
 	case "Stats":
 		return &StatsEvent{}, nil
 	default:
@@ -28844,10 +28818,7 @@ func (s *StatsEvent) UnmarshalEvent(
 }
 
 func (s *StatsEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
-	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
-		eventstream.StringValue(eventstreamapi.EventMessageType))
-	msg.Headers.Set(eventstreamapi.EventTypeHeader,
-		eventstream.StringValue("StatsEvent"))
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
 	var buf bytes.Buffer
 	if err = pm.MarshalPayload(&buf, s); err != nil {
 		return eventstream.Message{}, err

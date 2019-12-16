@@ -3262,6 +3262,13 @@ func (es *SubscribeToShardEventStream) setStreamCloser(r *request.Request) {
 	es.StreamCloser = closers
 }
 
+func (es *SubscribeToShardEventStream) eventTypeForSubscribeToShardEventStreamInputEvent(eventType string) (eventstreamapi.Unmarshaler, error) {
+	if eventType == "initial-response" {
+		return es.output, nil
+	}
+	return unmarshalerForSubscribeToShardEventStreamEvent(eventType)
+}
+
 // Events returns a channel to read events from.
 //
 // These events are:
@@ -3272,20 +3279,20 @@ func (es *SubscribeToShardEventStream) Events() <-chan SubscribeToShardEventStre
 }
 
 func (es *SubscribeToShardEventStream) runOutputStream(r *request.Request) {
-	reader := newReadSubscribeToShardEventStream(
-		r.HTTPResponse.Body,
-		r.Handlers.UnmarshalStream,
-		r.Config.Logger,
-		r.Config.LogLevel.Value(),
-		func(typ string) (eventstreamapi.Unmarshaler, error) {
-			if typ == "initial-response" {
-				return es.output, nil
-			}
-			return unmarshalerForSubscribeToShardEventStreamEvent(typ)
+	var opts []func(*eventstream.Decoder)
+	if r.Config.Logger != nil && r.Config.LogLevel.Matches(aws.LogDebugWithEventStreamBody) {
+		opts = append(opts, eventstream.DecodeWithLogger(r.Config.Logger))
+	}
+
+	decoder := eventstream.NewDecoder(r.HTTPResponse.Body, opts...)
+	eventReader := eventstreamapi.NewEventReader(decoder,
+		protocol.HandlerPayloadUnmarshal{
+			Unmarshalers: r.Handlers.UnmarshalStream,
 		},
+		es.eventTypeForSubscribeToShardEventStreamInputEvent,
 	)
-	es.Reader = reader
-	go reader.readEventStream()
+
+	es.Reader = newReadSubscribeToShardEventStream(eventReader)
 }
 func (es *SubscribeToShardEventStream) recvInitialEvent(r *request.Request) {
 	// Wait for the initial response event, which must be the first
@@ -4923,10 +4930,7 @@ func (s *InternalFailureException) UnmarshalEvent(
 }
 
 func (s *InternalFailureException) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
-	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
-		eventstream.StringValue(eventstreamapi.ExceptionMessageType))
-	msg.Headers.Set(eventstreamapi.EventTypeHeader,
-		eventstream.StringValue("InternalFailureException"))
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ExceptionMessageType))
 	var buf bytes.Buffer
 	if err = pm.MarshalPayload(&buf, s); err != nil {
 		return eventstream.Message{}, err
@@ -4991,10 +4995,7 @@ func (s *KMSAccessDeniedException) UnmarshalEvent(
 }
 
 func (s *KMSAccessDeniedException) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
-	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
-		eventstream.StringValue(eventstreamapi.ExceptionMessageType))
-	msg.Headers.Set(eventstreamapi.EventTypeHeader,
-		eventstream.StringValue("KMSAccessDeniedException"))
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ExceptionMessageType))
 	var buf bytes.Buffer
 	if err = pm.MarshalPayload(&buf, s); err != nil {
 		return eventstream.Message{}, err
@@ -5059,10 +5060,7 @@ func (s *KMSDisabledException) UnmarshalEvent(
 }
 
 func (s *KMSDisabledException) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
-	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
-		eventstream.StringValue(eventstreamapi.ExceptionMessageType))
-	msg.Headers.Set(eventstreamapi.EventTypeHeader,
-		eventstream.StringValue("KMSDisabledException"))
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ExceptionMessageType))
 	var buf bytes.Buffer
 	if err = pm.MarshalPayload(&buf, s); err != nil {
 		return eventstream.Message{}, err
@@ -5129,10 +5127,7 @@ func (s *KMSInvalidStateException) UnmarshalEvent(
 }
 
 func (s *KMSInvalidStateException) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
-	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
-		eventstream.StringValue(eventstreamapi.ExceptionMessageType))
-	msg.Headers.Set(eventstreamapi.EventTypeHeader,
-		eventstream.StringValue("KMSInvalidStateException"))
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ExceptionMessageType))
 	var buf bytes.Buffer
 	if err = pm.MarshalPayload(&buf, s); err != nil {
 		return eventstream.Message{}, err
@@ -5197,10 +5192,7 @@ func (s *KMSNotFoundException) UnmarshalEvent(
 }
 
 func (s *KMSNotFoundException) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
-	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
-		eventstream.StringValue(eventstreamapi.ExceptionMessageType))
-	msg.Headers.Set(eventstreamapi.EventTypeHeader,
-		eventstream.StringValue("KMSNotFoundException"))
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ExceptionMessageType))
 	var buf bytes.Buffer
 	if err = pm.MarshalPayload(&buf, s); err != nil {
 		return eventstream.Message{}, err
@@ -5264,10 +5256,7 @@ func (s *KMSOptInRequired) UnmarshalEvent(
 }
 
 func (s *KMSOptInRequired) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
-	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
-		eventstream.StringValue(eventstreamapi.ExceptionMessageType))
-	msg.Headers.Set(eventstreamapi.EventTypeHeader,
-		eventstream.StringValue("KMSOptInRequired"))
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ExceptionMessageType))
 	var buf bytes.Buffer
 	if err = pm.MarshalPayload(&buf, s); err != nil {
 		return eventstream.Message{}, err
@@ -5333,10 +5322,7 @@ func (s *KMSThrottlingException) UnmarshalEvent(
 }
 
 func (s *KMSThrottlingException) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
-	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
-		eventstream.StringValue(eventstreamapi.ExceptionMessageType))
-	msg.Headers.Set(eventstreamapi.EventTypeHeader,
-		eventstream.StringValue("KMSThrottlingException"))
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ExceptionMessageType))
 	var buf bytes.Buffer
 	if err = pm.MarshalPayload(&buf, s); err != nil {
 		return eventstream.Message{}, err
@@ -6659,10 +6645,7 @@ func (s *ResourceInUseException) UnmarshalEvent(
 }
 
 func (s *ResourceInUseException) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
-	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
-		eventstream.StringValue(eventstreamapi.ExceptionMessageType))
-	msg.Headers.Set(eventstreamapi.EventTypeHeader,
-		eventstream.StringValue("ResourceInUseException"))
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ExceptionMessageType))
 	var buf bytes.Buffer
 	if err = pm.MarshalPayload(&buf, s); err != nil {
 		return eventstream.Message{}, err
@@ -6727,10 +6710,7 @@ func (s *ResourceNotFoundException) UnmarshalEvent(
 }
 
 func (s *ResourceNotFoundException) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
-	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
-		eventstream.StringValue(eventstreamapi.ExceptionMessageType))
-	msg.Headers.Set(eventstreamapi.EventTypeHeader,
-		eventstream.StringValue("ResourceNotFoundException"))
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ExceptionMessageType))
 	var buf bytes.Buffer
 	if err = pm.MarshalPayload(&buf, s); err != nil {
 		return eventstream.Message{}, err
@@ -7580,10 +7560,7 @@ func (s *SubscribeToShardEvent) UnmarshalEvent(
 }
 
 func (s *SubscribeToShardEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
-	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
-		eventstream.StringValue(eventstreamapi.EventMessageType))
-	msg.Headers.Set(eventstreamapi.EventTypeHeader,
-		eventstream.StringValue("SubscribeToShardEvent"))
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
 	var buf bytes.Buffer
 	if err = pm.MarshalPayload(&buf, s); err != nil {
 		return eventstream.Message{}, err
@@ -7632,26 +7609,13 @@ type readSubscribeToShardEventStream struct {
 	closeOnce sync.Once
 }
 
-func newReadSubscribeToShardEventStream(
-	reader io.Reader,
-	unmarshalers request.HandlerList,
-	logger aws.Logger,
-	logLevel aws.LogLevelType,
-	unmarshalerForEvent func(string) (eventstreamapi.Unmarshaler, error),
-) *readSubscribeToShardEventStream {
+func newReadSubscribeToShardEventStream(eventReader *eventstreamapi.EventReader) *readSubscribeToShardEventStream {
 	r := &readSubscribeToShardEventStream{
-		stream: make(chan SubscribeToShardEventStreamEvent),
-		done:   make(chan struct{}),
+		eventReader: eventReader,
+		stream:      make(chan SubscribeToShardEventStreamEvent),
+		done:        make(chan struct{}),
 	}
-
-	r.eventReader = eventstreamapi.NewEventReader(
-		reader,
-		protocol.HandlerPayloadUnmarshal{
-			Unmarshalers: unmarshalers,
-		},
-		unmarshalerForEvent,
-	)
-	r.eventReader.UseLogger(logger, logLevel)
+	go r.readEventStream()
 
 	return r
 }
@@ -7659,7 +7623,6 @@ func newReadSubscribeToShardEventStream(
 // Close will close the underlying event stream reader.
 func (r *readSubscribeToShardEventStream) Close() error {
 	r.closeOnce.Do(r.safeClose)
-
 	return r.Err()
 }
 
@@ -7671,7 +7634,6 @@ func (r *readSubscribeToShardEventStream) Err() error {
 	if v := r.errVal.Load(); v != nil {
 		return v.(error)
 	}
-
 	return nil
 }
 
@@ -7710,31 +7672,22 @@ func unmarshalerForSubscribeToShardEventStreamEvent(eventType string) (eventstre
 	switch eventType {
 	case "SubscribeToShardEvent":
 		return &SubscribeToShardEvent{}, nil
-
 	case "InternalFailureException":
 		return &InternalFailureException{}, nil
-
 	case "KMSAccessDeniedException":
 		return &KMSAccessDeniedException{}, nil
-
 	case "KMSDisabledException":
 		return &KMSDisabledException{}, nil
-
 	case "KMSInvalidStateException":
 		return &KMSInvalidStateException{}, nil
-
 	case "KMSNotFoundException":
 		return &KMSNotFoundException{}, nil
-
 	case "KMSOptInRequired":
 		return &KMSOptInRequired{}, nil
-
 	case "KMSThrottlingException":
 		return &KMSThrottlingException{}, nil
-
 	case "ResourceInUseException":
 		return &ResourceInUseException{}, nil
-
 	case "ResourceNotFoundException":
 		return &ResourceNotFoundException{}, nil
 	default:
@@ -7865,10 +7818,7 @@ func (s *SubscribeToShardOutput) UnmarshalEvent(
 }
 
 func (s *SubscribeToShardOutput) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
-	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
-		eventstream.StringValue(eventstreamapi.EventMessageType))
-	msg.Headers.Set(eventstreamapi.EventTypeHeader,
-		eventstream.StringValue("SubscribeToShardOutput"))
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
 	var buf bytes.Buffer
 	if err = pm.MarshalPayload(&buf, s); err != nil {
 		return eventstream.Message{}, err

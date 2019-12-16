@@ -14,6 +14,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/aws/signer/v4"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/eventstream"
 	"github.com/aws/aws-sdk-go/private/protocol/eventstream/eventstreamapi"
@@ -191,22 +192,39 @@ func (es *StartStreamTranscriptionEventStream) setStreamCloser(r *request.Reques
 // These events are:
 //
 //     * AudioEvent
-func (es *StartStreamTranscriptionEventStream) Send(event AudioStreamEvent) {
-	es.Writer.Send(event)
+func (es *StartStreamTranscriptionEventStream) Send(ctx aws.Context, event AudioStreamEvent) {
+	es.Writer.Send(ctx, event)
 }
 
 func (es *StartStreamTranscriptionEventStream) runInputStream(r *request.Request) {
 	var signer *eventstreamapi.MessageSigner
+	sigSeed, err := v4.GetSignedRequestSignature(r.HTTPRequest)
+	if err != nil {
+		r.Error = awserr.New("TODO", "unable to get initial request's signature", err)
+		return
+	}
+	signer = &eventstreamapi.MessageSigner{
+		Signer: v4.NewStreamSigner(
+			r.ClientInfo.SigningRegion, r.ClientInfo.SigningName,
+			sigSeed, r.Config.Credentials),
+	}
 
-	writer := newWriteAudioStream(
-		es.inputWriter,
-		r.Handlers.BuildStream,
-		signer,
-		r.Config.Logger,
-		r.Config.LogLevel.Value(),
+	var opts []func(*eventstream.Encoder)
+	if r.Config.Logger != nil && r.Config.LogLevel.Matches(aws.LogDebugWithEventStreamBody) {
+		opts = append(opts, eventstream.EncodeWithLogger(r.Config.Logger))
+	}
+
+	eventEncoder := eventstream.NewEncoder(es.inputWriter, opts...)
+	eventWriter := eventstreamapi.NewEventWriter(eventEncoder, signer,
+		protocol.HandlerPayloadMarshal{
+			Marshalers: r.Handlers.BuildStream,
+		},
+		eventTypeForAudioStreamEvent,
 	)
-	es.Writer = writer
-	go writer.writeEventStream()
+
+	es.Writer = &writeAudioStream{
+		StreamWriter: eventstreamapi.NewStreamWriter(eventWriter),
+	}
 }
 
 // Events returns a channel to read events from.
@@ -219,15 +237,20 @@ func (es *StartStreamTranscriptionEventStream) Events() <-chan TranscriptResultS
 }
 
 func (es *StartStreamTranscriptionEventStream) runOutputStream(r *request.Request) {
-	reader := newReadTranscriptResultStream(
-		r.HTTPResponse.Body,
-		r.Handlers.UnmarshalStream,
-		r.Config.Logger,
-		r.Config.LogLevel.Value(),
+	var opts []func(*eventstream.Decoder)
+	if r.Config.Logger != nil && r.Config.LogLevel.Matches(aws.LogDebugWithEventStreamBody) {
+		opts = append(opts, eventstream.DecodeWithLogger(r.Config.Logger))
+	}
+
+	decoder := eventstream.NewDecoder(r.HTTPResponse.Body, opts...)
+	eventReader := eventstreamapi.NewEventReader(decoder,
+		protocol.HandlerPayloadUnmarshal{
+			Unmarshalers: r.Handlers.UnmarshalStream,
+		},
 		unmarshalerForTranscriptResultStreamEvent,
 	)
-	es.Reader = reader
-	go reader.readEventStream()
+
+	es.Reader = newReadTranscriptResultStream(eventReader)
 }
 
 // Close closes the EventStream. This will also cause the Events channel to be
@@ -337,10 +360,7 @@ func (s *AudioEvent) UnmarshalEvent(
 }
 
 func (s *AudioEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
-	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
-		eventstream.StringValue(eventstreamapi.EventMessageType))
-	msg.Headers.Set(eventstreamapi.EventTypeHeader,
-		eventstream.StringValue("AudioEvent"))
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
 	msg.Payload = s.AudioChunk
 	return msg, err
 }
@@ -368,7 +388,7 @@ type AudioStreamEvent interface {
 type AudioStreamWriter interface {
 	// Sends writes events to the stream blocking until the event has been
 	// written. An error is returned if the write fails.
-	Send(AudioStreamEvent) error
+	Send(aws.Context, AudioStreamEvent) error
 
 	// Close will stop the writer writing to the event stream.
 	Close() error
@@ -376,100 +396,25 @@ type AudioStreamWriter interface {
 	// Returns any error that has occurred while writing to the event stream.
 	Err() error
 }
-type outboundAudioStreamEvent struct {
-	Event  AudioStreamEvent
-	Result chan<- error
-}
 
 type writeAudioStream struct {
-	eventWriter *eventstreamapi.EventWriter
-	stream      chan outboundAudioStreamEvent
-	errVal      atomic.Value
-
-	done      chan struct{}
-	closeOnce sync.Once
+	*eventstreamapi.StreamWriter
 }
 
-func newWriteAudioStream(
-	writer io.Writer,
-	buildHandlers request.HandlerList,
-	signer *eventstreamapi.MessageSigner,
-	logger aws.Logger, logLevel aws.LogLevelType,
-) *writeAudioStream {
-	w := &writeAudioStream{
-		stream: make(chan outboundAudioStreamEvent),
-		done:   make(chan struct{}),
-	}
-	w.eventWriter = eventstreamapi.NewEventWriter(writer,
-		protocol.HandlerPayloadMarshal{
-			Marshalers: buildHandlers,
-		},
-		signer,
-	)
-	w.eventWriter.UseLogger(logger, logLevel)
-
-	return w
+func (w *writeAudioStream) Send(ctx aws.Context, event AudioStreamEvent) error {
+	return w.StreamWriter.Send(ctx, event)
 }
 
-// Close will stop the writer writing to the event stream.
-func (w *writeAudioStream) Close() error {
-	w.closeOnce.Do(w.safeClose)
-	return w.Err()
-}
-
-func (w *writeAudioStream) safeClose() {
-	close(w.done)
-}
-
-// Err returns any error occurred writing events..
-func (w *writeAudioStream) Err() error {
-	if v := w.errVal.Load(); v != nil {
-		return v.(error)
-	}
-
-	return nil
-}
-
-func (w *writeAudioStream) Send(event AudioStreamEvent) error {
-	if err := w.Err(); err != nil {
-		return err
-	}
-	resultCh := make(chan error)
-	wrapped := outboundAudioStreamEvent{
-		Event:  event,
-		Result: resultCh,
-	}
-
-	select {
-	case w.stream <- wrapped:
-	case <-w.done:
-		return fmt.Errorf("stream closed, unable to send event")
-	}
-
-	select {
-	case err := <-resultCh:
-		return err
-	case <-w.done:
-		return fmt.Errorf("stream closed, unable to send event")
-	}
-}
-
-func (w *writeAudioStream) writeEventStream() {
-	defer close(w.stream)
-
-	for {
-		select {
-		case wrapper := <-w.stream:
-			err := w.eventWriter.WriteEvent(wrapper.Event)
-			select {
-			case wrapper.Result <- err:
-			case <-w.done:
-				return
-			}
-
-		case <-w.done:
-			return
-		}
+func eventTypeForAudioStreamEvent(event eventstreamapi.Marshaler) (string, error) {
+	switch event.(type) {
+	case *AudioEvent:
+		return "AudioEvent", nil
+	default:
+		return "", awserr.New(
+			request.ErrCodeSerialization,
+			fmt.Sprintf("unknown event type, %T, for AudioStream", event),
+			nil,
+		)
 	}
 }
 
@@ -510,10 +455,7 @@ func (s *BadRequestException) UnmarshalEvent(
 }
 
 func (s *BadRequestException) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
-	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
-		eventstream.StringValue(eventstreamapi.ExceptionMessageType))
-	msg.Headers.Set(eventstreamapi.EventTypeHeader,
-		eventstream.StringValue("BadRequestException"))
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ExceptionMessageType))
 	var buf bytes.Buffer
 	if err = pm.MarshalPayload(&buf, s); err != nil {
 		return eventstream.Message{}, err
@@ -577,10 +519,7 @@ func (s *ConflictException) UnmarshalEvent(
 }
 
 func (s *ConflictException) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
-	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
-		eventstream.StringValue(eventstreamapi.ExceptionMessageType))
-	msg.Headers.Set(eventstreamapi.EventTypeHeader,
-		eventstream.StringValue("ConflictException"))
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ExceptionMessageType))
 	var buf bytes.Buffer
 	if err = pm.MarshalPayload(&buf, s); err != nil {
 		return eventstream.Message{}, err
@@ -644,10 +583,7 @@ func (s *InternalFailureException) UnmarshalEvent(
 }
 
 func (s *InternalFailureException) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
-	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
-		eventstream.StringValue(eventstreamapi.ExceptionMessageType))
-	msg.Headers.Set(eventstreamapi.EventTypeHeader,
-		eventstream.StringValue("InternalFailureException"))
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ExceptionMessageType))
 	var buf bytes.Buffer
 	if err = pm.MarshalPayload(&buf, s); err != nil {
 		return eventstream.Message{}, err
@@ -768,10 +704,7 @@ func (s *LimitExceededException) UnmarshalEvent(
 }
 
 func (s *LimitExceededException) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
-	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
-		eventstream.StringValue(eventstreamapi.ExceptionMessageType))
-	msg.Headers.Set(eventstreamapi.EventTypeHeader,
-		eventstream.StringValue("LimitExceededException"))
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ExceptionMessageType))
 	var buf bytes.Buffer
 	if err = pm.MarshalPayload(&buf, s); err != nil {
 		return eventstream.Message{}, err
@@ -1102,10 +1035,7 @@ func (s *TranscriptEvent) UnmarshalEvent(
 }
 
 func (s *TranscriptEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
-	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
-		eventstream.StringValue(eventstreamapi.EventMessageType))
-	msg.Headers.Set(eventstreamapi.EventTypeHeader,
-		eventstream.StringValue("TranscriptEvent"))
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
 	var buf bytes.Buffer
 	if err = pm.MarshalPayload(&buf, s); err != nil {
 		return eventstream.Message{}, err
@@ -1154,26 +1084,13 @@ type readTranscriptResultStream struct {
 	closeOnce sync.Once
 }
 
-func newReadTranscriptResultStream(
-	reader io.Reader,
-	unmarshalers request.HandlerList,
-	logger aws.Logger,
-	logLevel aws.LogLevelType,
-	unmarshalerForEvent func(string) (eventstreamapi.Unmarshaler, error),
-) *readTranscriptResultStream {
+func newReadTranscriptResultStream(eventReader *eventstreamapi.EventReader) *readTranscriptResultStream {
 	r := &readTranscriptResultStream{
-		stream: make(chan TranscriptResultStreamEvent),
-		done:   make(chan struct{}),
+		eventReader: eventReader,
+		stream:      make(chan TranscriptResultStreamEvent),
+		done:        make(chan struct{}),
 	}
-
-	r.eventReader = eventstreamapi.NewEventReader(
-		reader,
-		protocol.HandlerPayloadUnmarshal{
-			Unmarshalers: unmarshalers,
-		},
-		unmarshalerForEvent,
-	)
-	r.eventReader.UseLogger(logger, logLevel)
+	go r.readEventStream()
 
 	return r
 }
@@ -1181,7 +1098,6 @@ func newReadTranscriptResultStream(
 // Close will close the underlying event stream reader.
 func (r *readTranscriptResultStream) Close() error {
 	r.closeOnce.Do(r.safeClose)
-
 	return r.Err()
 }
 
@@ -1193,7 +1109,6 @@ func (r *readTranscriptResultStream) Err() error {
 	if v := r.errVal.Load(); v != nil {
 		return v.(error)
 	}
-
 	return nil
 }
 
@@ -1232,16 +1147,12 @@ func unmarshalerForTranscriptResultStreamEvent(eventType string) (eventstreamapi
 	switch eventType {
 	case "TranscriptEvent":
 		return &TranscriptEvent{}, nil
-
 	case "BadRequestException":
 		return &BadRequestException{}, nil
-
 	case "ConflictException":
 		return &ConflictException{}, nil
-
 	case "InternalFailureException":
 		return &InternalFailureException{}, nil
-
 	case "LimitExceededException":
 		return &LimitExceededException{}, nil
 	default:
