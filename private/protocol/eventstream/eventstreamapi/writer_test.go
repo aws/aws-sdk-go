@@ -89,16 +89,18 @@ func TestEventWriter(t *testing.T) {
 
 			stream.Reset()
 
-			eventWriter := NewEventWriter(&stream,
+			encoder := eventstream.NewEncoder(&stream, eventstream.EncodeWithLogger(t))
+			eventWriter := NewEventWriter(encoder,
+				c.Signer,
 				protocol.HandlerPayloadMarshal{
 					Marshalers: marshalers,
 				},
-				c.Signer,
+				func(event Marshaler) (string, error) {
+					return "eventStructured", nil
+				},
 			)
 
 			decoder := eventstream.NewDecoder(&stream)
-
-			eventWriter.UseLogger(t, aws.LogDebugWithEventStreamBody)
 
 			if err := eventWriter.WriteEvent(c.Event); err != nil {
 				t.Fatalf("expect no write error, got %v", err)
@@ -121,11 +123,15 @@ func BenchmarkEventWriter(b *testing.B) {
 	marshalers.PushBackNamed(restjson.BuildHandler)
 
 	var stream bytes.Buffer
-	eventWriter := NewEventWriter(&stream,
+	encoder := eventstream.NewEncoder(&stream)
+	eventWriter := NewEventWriter(encoder,
+		nil,
 		protocol.HandlerPayloadMarshal{
 			Marshalers: marshalers,
 		},
-		nil,
+		func(event Marshaler) (string, error) {
+			return "eventStructured", nil
+		},
 	)
 
 	event := &eventStructured{

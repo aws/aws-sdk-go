@@ -2,9 +2,7 @@ package eventstreamapi
 
 import (
 	"fmt"
-	"io"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/eventstream"
 )
@@ -17,7 +15,6 @@ type Unmarshaler interface {
 
 // EventReader provides reading from the EventStream of an reader.
 type EventReader struct {
-	reader  io.Reader
 	decoder *eventstream.Decoder
 
 	unmarshalerForEventType func(string) (Unmarshaler, error)
@@ -29,24 +26,15 @@ type EventReader struct {
 // NewEventReader returns a EventReader built from the reader and unmarshaler
 // provided.  Use ReadStream method to start reading from the EventStream.
 func NewEventReader(
-	reader io.Reader,
+	decoder *eventstream.Decoder,
 	payloadUnmarshaler protocol.PayloadUnmarshaler,
 	unmarshalerForEventType func(string) (Unmarshaler, error),
 ) *EventReader {
 	return &EventReader{
-		reader:                  reader,
-		decoder:                 eventstream.NewDecoder(reader),
+		decoder:                 decoder,
 		payloadUnmarshaler:      payloadUnmarshaler,
 		unmarshalerForEventType: unmarshalerForEventType,
 		payloadBuf:              make([]byte, 10*1024),
-	}
-}
-
-// UseLogger instructs the EventReader to use the logger and log level
-// specified.
-func (r *EventReader) UseLogger(logger aws.Logger, logLevel aws.LogLevelType) {
-	if logger != nil && logLevel.Matches(aws.LogDebugWithEventStreamBody) {
-		r.decoder.UseLogger(logger)
 	}
 }
 

@@ -7,24 +7,21 @@ import "text/template"
 var eventStreamShapeWriterTmpl = template.Must(template.New("eventStreamShapeWriterTmpl").
 	Funcs(template.FuncMap{}).
 	Parse(`
-{{- $eventStream := $.EventStream }}
-{{- $eventStreamEventGroup := printf "%sEvent" $eventStream.Name }}
-{{- $esWriterAPI := printf "%sWriter" $eventStream.Name }}
-{{- $esWriterImpl := printf "write%s" $eventStream.Name }}
+{{- $es := $.EventStream }}
 
-// {{ $esWriterAPI }} provides the interface for writing events to the stream.
+// {{ $es.StreamWriterAPIName }} provides the interface for writing events to the stream.
 // The default implementation for this interface will be {{ $.ShapeName }}.
 //
 // The writer's Close method must allow multiple concurrent calls.
 //
 // These events are:
-// {{ range $_, $event := $eventStream.Events }}
+// {{ range $_, $event := $es.Events }}
 //     * {{ $event.Shape.ShapeName }}
 {{- end }}
-type {{ $esWriterAPI }} interface {
+type {{ $es.StreamWriterAPIName }} interface {
 	// Sends writes events to the stream blocking until the event has been
 	// written. An error is returned if the write fails.
-	Send({{ $eventStreamEventGroup }}) error
+	Send(aws.Context, {{ $es.EventGroupName }}) error
 
 	// Close will stop the writer writing to the event stream.
 	Close() error
@@ -33,101 +30,30 @@ type {{ $esWriterAPI }} interface {
 	Err() error
 }
 
-{{- $eventGroupWrapperName := printf "outbound%s" $eventStreamEventGroup }}
-type {{ $eventGroupWrapperName }} struct {
-	Event {{ $eventStreamEventGroup }}
-	Result chan <- error
+type {{ $es.StreamWriterImplName }} struct {
+	*eventstreamapi.StreamWriter
 }
 
-type {{ $esWriterImpl }} struct {
-	eventWriter *eventstreamapi.EventWriter
-	stream chan {{ $eventGroupWrapperName }}
-	errVal atomic.Value
-
-	done chan struct{}
-	closeOnce sync.Once
+func (w *{{ $es.StreamWriterImplName }}) Send(ctx aws.Context, event {{ $es.EventGroupName }}) error {
+	return w.StreamWriter.Send(ctx, event)
 }
 
-func newWrite{{ $eventStream.Name }}(
-	writer io.Writer,
-	buildHandlers request.HandlerList,
-	signer *eventstreamapi.MessageSigner,
-	logger aws.Logger, logLevel aws.LogLevelType,
-) *{{ $esWriterImpl }} {
-	w := & {{ $esWriterImpl }}{
-		stream: make(chan {{ $eventGroupWrapperName }}),
-		done: make(chan struct{}),
-	}
-	w.eventWriter = eventstreamapi.NewEventWriter(writer,
-		protocol.HandlerPayloadMarshal{
-			Marshalers: buildHandlers,
-		},
-		 signer,
-	)
-	w.eventWriter.UseLogger(logger, logLevel)
-
-	return w
-}
-
-// Close will stop the writer writing to the event stream.
-func (w *{{ $esWriterImpl }}) Close() error {
-	w.closeOnce.Do(w.safeClose)
-	return w.Err()
-}
-
-func (w *{{ $esWriterImpl }}) safeClose() {
-	close(w.done)
-}
-
-// Err returns any error occurred writing events..
-func (w *{{ $esWriterImpl }}) Err() error {
-	if v := w.errVal.Load(); v != nil {
-		return v.(error)
-	}
-
-	return nil
-}
-
-func (w *{{ $esWriterImpl }}) Send(event {{ $eventStreamEventGroup }}) error {
-	if err := w.Err(); err != nil {
-		return err
-	}
-	resultCh := make(chan error)
-	wrapped := {{ $eventGroupWrapperName }}{
-		Event: event,
-		Result: resultCh,
-	}
-
-	select {
-	case w.stream <- wrapped:
-	case <- w.done:
-		return fmt.Errorf("stream closed, unable to send event")
-	}
-
-	select {
-	case err := <- resultCh:
-		return err
-	case <- w.done:
-		return fmt.Errorf("stream closed, unable to send event")
-	}
-}
-
-func (w *{{ $esWriterImpl }}) writeEventStream() {
-	defer close(w.stream)
-
-	for {
-		select { 
-		case wrapper := <- w.stream:
-			err := w.eventWriter.WriteEvent(wrapper.Event)
-			select {
-			case wrapper.Result <- err:
-			case <-w.done:
-				return
-			}
-
-		case <- w.done:
-			return
-		}
+func {{ $es.StreamEventTypeGetterName }}(event eventstreamapi.Marshaler) (string, error) {
+	switch event.(type) {
+		{{- range $_, $event := $es.Events }}
+			case *{{ $event.Shape.ShapeName }}:
+				return {{ printf "%q" $event.Name }}, nil
+		{{- end }}
+		{{- range $_, $event := $es.Exceptions }}
+			case *{{ $event.Shape.ShapeName }}:
+				return {{ printf "%q" $event.Name }}, nil
+		{{- end }}
+	default:
+		return "", awserr.New(
+			request.ErrCodeSerialization,
+			fmt.Sprintf("unknown event type, %T, for {{ $es.Name }}", event),
+			nil,
+		)
 	}
 }
 `))

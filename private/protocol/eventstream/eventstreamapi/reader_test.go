@@ -42,7 +42,8 @@ func TestEventReader(t *testing.T) {
 	var unmarshalers request.HandlerList
 	unmarshalers.PushBackNamed(restjson.UnmarshalHandler)
 
-	eventReader := NewEventReader(stream,
+	decoder := eventstream.NewDecoder(stream)
+	eventReader := NewEventReader(decoder,
 		protocol.HandlerPayloadUnmarshal{
 			Unmarshalers: unmarshalers,
 		},
@@ -91,7 +92,8 @@ func TestEventReader_Error(t *testing.T) {
 	var unmarshalers request.HandlerList
 	unmarshalers.PushBackNamed(restjson.UnmarshalHandler)
 
-	eventReader := NewEventReader(stream,
+	decoder := eventstream.NewDecoder(stream)
+	eventReader := NewEventReader(decoder,
 		protocol.HandlerPayloadUnmarshal{
 			Unmarshalers: unmarshalers,
 		},
@@ -133,7 +135,8 @@ func TestEventReader_Exception(t *testing.T) {
 	var unmarshalers request.HandlerList
 	unmarshalers.PushBackNamed(restjson.UnmarshalHandler)
 
-	eventReader := NewEventReader(stream,
+	decoder := eventstream.NewDecoder(stream)
+	eventReader := NewEventReader(decoder,
 		protocol.HandlerPayloadUnmarshal{
 			Unmarshalers: unmarshalers,
 		},
@@ -176,7 +179,8 @@ func BenchmarkEventReader(b *testing.B) {
 	var unmarshalers request.HandlerList
 	unmarshalers.PushBackNamed(restjson.UnmarshalHandler)
 
-	eventReader := NewEventReader(stream,
+	decoder := eventstream.NewDecoder(stream)
+	eventReader := NewEventReader(decoder,
 		protocol.HandlerPayloadUnmarshal{
 			Unmarshalers: unmarshalers,
 		},

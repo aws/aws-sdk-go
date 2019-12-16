@@ -23,10 +23,24 @@ type Encoder struct {
 
 // NewEncoder initializes and returns an Encoder to encode Event Stream
 // messages to an io.Writer.
-func NewEncoder(w io.Writer) *Encoder {
-	return &Encoder{
+func NewEncoder(w io.Writer, opts ...func(*Encoder)) *Encoder {
+	e := &Encoder{
 		w:          w,
 		headersBuf: bytes.NewBuffer(nil),
+	}
+
+	for _, opt := range opts {
+		opt(e)
+	}
+
+	return e
+}
+
+// EncodeWithLogger adds a logger to be used by the encode when decoding
+// stream events.
+func EncodeWithLogger(logger aws.Logger) func(*Encoder) {
+	return func(d *Encoder) {
+		d.logger = logger
 	}
 }
 
@@ -72,12 +86,6 @@ func (e *Encoder) Encode(msg Message) (err error) {
 
 	msgCRC := crc.Sum32()
 	return binary.Write(writer, binary.BigEndian, msgCRC)
-}
-
-// UseLogger specifies the Logger that that the encoder should use to log the
-// encoded messages.
-func (e *Encoder) UseLogger(logger aws.Logger) {
-	e.logger = logger
 }
 
 func logMessageEncode(logger aws.Logger, msgBuf *bytes.Buffer, msg Message, encodeErr error) {

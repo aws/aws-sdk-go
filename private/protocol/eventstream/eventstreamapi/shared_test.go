@@ -29,7 +29,6 @@ type eventStructured struct {
 func (e *eventStructured) MarshalEvent(pm protocol.PayloadMarshaler) (eventstream.Message, error) {
 	var msg eventstream.Message
 	msg.Headers.Set(MessageTypeHeader, eventstream.StringValue(EventMessageType))
-	msg.Headers.Set(EventTypeHeader, eventstream.StringValue("eventStructured"))
 
 	var buf bytes.Buffer
 	if err := pm.MarshalPayload(&buf, e); err != nil {

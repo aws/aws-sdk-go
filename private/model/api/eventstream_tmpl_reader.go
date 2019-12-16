@@ -7,23 +7,20 @@ import "text/template"
 var eventStreamShapeReaderTmpl = template.Must(template.New("eventStreamShapeReaderTmpl").
 	Funcs(template.FuncMap{}).
 	Parse(`
-{{- $eventStream := $.EventStream }}
-{{- $eventStreamEventGroup := printf "%sEvent" $eventStream.Name }}
-{{- $esReaderAPI := printf "%sReader" $eventStream.Name }}
-{{- $esReaderImpl := printf "read%s" $eventStream.Name }}
+{{- $es := $.EventStream }}
 
-// {{ $esReaderAPI }} provides the interface for reading to the stream. The
+// {{ $es.StreamReaderAPIName }} provides the interface for reading to the stream. The
 // default implementation for this interface will be {{ $.ShapeName }}.
 //
 // The reader's Close method must allow multiple concurrent calls.
 //
 // These events are:
-// {{ range $_, $event := $eventStream.Events }}
+// {{ range $_, $event := $es.Events }}
 //     * {{ $event.Shape.ShapeName }}
 {{- end }}
-type {{ $esReaderAPI }} interface {
+type {{ $es.StreamReaderAPIName }} interface {
 	// Returns a channel of events as they are read from the event stream.
-	Events() <-chan {{ $eventStreamEventGroup }}
+	Events() <-chan {{ $es.EventGroupName }}
 
 	// Close will stop the reader reading events from the stream.
 	Close() error
@@ -32,64 +29,48 @@ type {{ $esReaderAPI }} interface {
 	Err() error
 }
 
-
-type {{ $esReaderImpl }} struct {
+type {{ $es.StreamReaderImplName }} struct {
 	eventReader *eventstreamapi.EventReader
-	stream chan {{ $eventStreamEventGroup }}
+	stream chan {{ $es.EventGroupName }}
 	errVal atomic.Value
 
 	done      chan struct{}
 	closeOnce sync.Once
 }
 
-func newRead{{ $eventStream.Name }}(
-	reader io.Reader,
-	unmarshalers request.HandlerList,
-	logger aws.Logger,
-	logLevel aws.LogLevelType,
-	unmarshalerForEvent func(string) (eventstreamapi.Unmarshaler, error),
-) *{{ $esReaderImpl }} {
-	r := &{{ $esReaderImpl }}{
-		stream: make(chan {{ $eventStreamEventGroup }}),
+func {{ $es.StreamReaderImplConstructorName }}(eventReader *eventstreamapi.EventReader) *{{ $es.StreamReaderImplName }} {
+	r := &{{ $es.StreamReaderImplName }}{
+		eventReader: eventReader,
+		stream: make(chan {{ $es.EventGroupName }}),
 		done: make(chan struct{}),
 	}
-
-	r.eventReader = eventstreamapi.NewEventReader(
-		reader,
-		protocol.HandlerPayloadUnmarshal{
-			Unmarshalers: unmarshalers,
-		},
-		unmarshalerForEvent,
-	)
-	r.eventReader.UseLogger(logger, logLevel)
+	go r.readEventStream()
 
 	return r
 }
 
 // Close will close the underlying event stream reader.
-func (r *{{ $esReaderImpl }}) Close() error {
+func (r *{{ $es.StreamReaderImplName }}) Close() error {
 	r.closeOnce.Do(r.safeClose)
-
 	return r.Err()
 }
 
-func (r *{{ $esReaderImpl }}) safeClose() {
+func (r *{{ $es.StreamReaderImplName }}) safeClose() {
 	close(r.done)
 }
 
-func (r *{{ $esReaderImpl }}) Err() error {
+func (r *{{ $es.StreamReaderImplName }}) Err() error {
 	if v := r.errVal.Load(); v != nil {
 		return v.(error)
 	}
-
 	return nil
 }
 
-func (r *{{ $esReaderImpl }}) Events() <-chan {{ $eventStreamEventGroup }} {
+func (r *{{ $es.StreamReaderImplName }}) Events() <-chan {{ $es.EventGroupName }} {
 	return r.stream
 }
 
-func (r *{{ $esReaderImpl }}) readEventStream() {
+func (r *{{ $es.StreamReaderImplName }}) readEventStream() {
 	defer close(r.stream)
 
 	for {
@@ -109,27 +90,27 @@ func (r *{{ $esReaderImpl }}) readEventStream() {
 		}
 
 		select {
-		case r.stream <- event.({{ $eventStreamEventGroup }}):
+		case r.stream <- event.({{ $es.EventGroupName }}):
 		case <-r.done:
 			return
 		}
 	}
 }
 
-func unmarshalerFor{{ $eventStream.Name }}Event(eventType string) (eventstreamapi.Unmarshaler, error) {
+func {{ $es.StreamUnmarshalerForEventName }}(eventType string) (eventstreamapi.Unmarshaler, error) {
 	switch eventType {
-		{{- range $_, $event := $eventStream.Events }}
+		{{- range $_, $event := $es.Events }}
 			case {{ printf "%q" $event.Name }}:
 				return &{{ $event.Shape.ShapeName }}{}, nil
-		{{ end -}}
-		{{- range $_, $event := $eventStream.Exceptions }}
+		{{- end }}
+		{{- range $_, $event := $es.Exceptions }}
 			case {{ printf "%q" $event.Name }}:
 				return &{{ $event.Shape.ShapeName }}{}, nil
-		{{ end -}}
+		{{- end }}
 	default:
 		return nil, awserr.New(
 			request.ErrCodeSerialization,
-			fmt.Sprintf("unknown event type name, %s, for {{ $eventStream.Name }}", eventType),
+			fmt.Sprintf("unknown event type name, %s, for {{ $es.Name }}", eventType),
 			nil,
 		)
 	}

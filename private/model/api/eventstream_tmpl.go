@@ -41,14 +41,12 @@ var eventStreamAPITmpl = template.Must(
 )
 
 const eventStreamAPITmplDef = `
-{{- $esName := $.EventStreamAPI.Name }}
-{{- $writerName := printf "%sWriter" $.EventStreamAPI.Name }}
-{{- $readerName := printf "%sReader" $.EventStreamAPI.Name }}
-{{- $outputStream := $.EventStreamAPI.OutputStream }}
-{{- $inputStream := $.EventStreamAPI.InputStream }}
+{{- $esapi := $.EventStreamAPI }}
+{{- $outputStream := $esapi.OutputStream }}
+{{- $inputStream := $esapi.InputStream }}
 
-// {{ $esName }} provides the event stream handling for the {{ $.ExportedName }}.
-type {{ $esName }} struct {
+// {{ $esapi.Name }} provides the event stream handling for the {{ $.ExportedName }}.
+type {{ $esapi.Name }} struct {
 	{{- if $inputStream }}
 
 		// Writer is the EventStream writer for the {{ $inputStream.Name }}
@@ -57,7 +55,7 @@ type {{ $esName }} struct {
 		// EventStream Writer.
 		//
 		// Must not be nil.
-		Writer {{ $inputStream.Name }}Writer
+		Writer {{ $inputStream.StreamWriterAPIName }}
 
 		inputWriter io.WriteCloser
 		{{- if eq .API.Metadata.Protocol "json" }}
@@ -73,7 +71,7 @@ type {{ $esName }} struct {
 		// EventStream Reader.
 		//
 		// Must not be nil.
-		Reader {{ $outputStream.Name }}Reader
+		Reader {{ $outputStream.StreamReaderAPIName }}
 
 		{{- if eq .API.Metadata.Protocol "json" }}
 
@@ -87,7 +85,7 @@ type {{ $esName }} struct {
 	StreamCloser io.Closer
 }
 
-func (es *{{ $esName }}) setStreamCloser(r *request.Request) {
+func (es *{{ $esapi.Name }}) setStreamCloser(r *request.Request) {
 	var closers aws.MultiCloser
 	if es.StreamCloser != nil {
 		closers = append(closers, es.StreamCloser)
@@ -106,6 +104,16 @@ func (es *{{ $esName }}) setStreamCloser(r *request.Request) {
 
 {{- if $inputStream }}
 
+	{{- if eq .API.Metadata.Protocol "json" }}
+
+		func {{ $esapi.StreamInputEventTypeGetterName }}(event {{ $inputStream.EventGroupName }}) (string, error) {
+			if _, ok := event.({{ $.InputRef.GoType }}); ok {
+				return "initial-request", nil
+			}
+			return {{ $inputStream.StreamEventTypeGetterName }}(event)
+		}
+	{{- end }}
+
 	// Send writes the event to the stream blocking until the event is written.
 	// Returns an error if the event was not written.
 	//
@@ -113,17 +121,17 @@ func (es *{{ $esName }}) setStreamCloser(r *request.Request) {
 	// {{ range $_, $event := $inputStream.Events }}
 	//     * {{ $event.Shape.ShapeName }}
 	{{- end }}
-	func (es *{{ $esName }}) Send(event {{ $inputStream.Name }}Event) {
-		es.Writer.Send(event)
+	func (es *{{ $esapi.Name }}) Send(ctx aws.Context, event {{ $inputStream.EventGroupName }}) {
+		es.Writer.Send(ctx, event)
 	}
 
-	func (es *{{ $esName }}) runInputStream(r *request.Request) {
+	func (es *{{ $esapi.Name }}) runInputStream(r *request.Request) {
 		var signer *eventstreamapi.MessageSigner
-		{{- if and false $.ShouldSignRequestBody }}
-			{{- $.API.AddSDKImport "aws/signer/v4" }}
+		{{- if $.ShouldSignRequestBody }}
+			{{- $_ := $.API.AddSDKImport "aws/signer/v4" }}
 			sigSeed, err := v4.GetSignedRequestSignature(r.HTTPRequest)
 			if err != nil {
-				r.Error = awserr.New("", "unable to get initial request's signature", err)
+				r.Error = awserr.New("TODO", "unable to get initial request's signature", err)
 				return
 			}
 			signer = &eventstreamapi.MessageSigner{
@@ -133,20 +141,30 @@ func (es *{{ $esName }}) setStreamCloser(r *request.Request) {
 			}
 		{{- end }}
 
-		writer := newWrite{{ $inputStream.Name }}(
-			es.inputWriter, 
-			r.Handlers.BuildStream,
-			signer,
-			r.Config.Logger,
-			r.Config.LogLevel.Value(),
-			{{/* TODO need to need a provide func to derive event name */}}
+		var opts []func(*eventstream.Encoder)
+		if r.Config.Logger != nil && r.Config.LogLevel.Matches(aws.LogDebugWithEventStreamBody) {
+			opts = append(opts, eventstream.EncodeWithLogger(r.Config.Logger))
+		}
+
+		eventEncoder := eventstream.NewEncoder(es.inputWriter, opts...)
+		eventWriter := eventstreamapi.NewEventWriter(eventEncoder, signer,
+			protocol.HandlerPayloadMarshal{
+				Marshalers: r.Handlers.BuildStream,
+			},
+			{{- if eq .API.Metadata.Protocol "json" }}
+				{{ $esapi.StreamInputEventTypeGetterName }},
+			{{- else }}
+				{{ $inputStream.StreamEventTypeGetterName }},
+			{{- end }}
 		)
-		es.Writer = writer
-		go writer.writeEventStream()
+
+		es.Writer = &{{ $inputStream.StreamWriterImplName }}{
+			StreamWriter: eventstreamapi.NewStreamWriter(eventWriter),
+		}
 	}
 
 	{{- if eq .API.Metadata.Protocol "json" }}
-		func (es *{{ $esName }}) sendInitialEvent(r *request.Request) {
+		func (es *{{ $esapi.Name }}) sendInitialEvent(r *request.Request) {
 			if err := es.Send(es.input); err != nil {
 				r.Error = err
 			}
@@ -156,39 +174,49 @@ func (es *{{ $esName }}) setStreamCloser(r *request.Request) {
 
 {{- if $outputStream }}
 
+	{{- if eq .API.Metadata.Protocol "json" }}
+
+		func (es *{{ $esapi.Name}}) {{ $esapi.StreamOutputUnmarshalerForEventName }}(eventType string) (eventstreamapi.Unmarshaler, error) {
+			if eventType == "initial-response" {
+				return es.output, nil
+			}
+			return {{ $outputStream.StreamUnmarshalerForEventName }}(eventType)
+		}
+	{{- end }}
+
 	// Events returns a channel to read events from.
 	//
 	// These events are:
 	// {{ range $_, $event := $outputStream.Events }}
 	//     * {{ $event.Shape.ShapeName }}
 	{{- end }}
-	func (es *{{ $esName }}) Events() <-chan {{ $outputStream.Name }}Event {
+	func (es *{{ $esapi.Name }}) Events() <-chan {{ $outputStream.EventGroupName }} {
 		return es.Reader.Events()
 	}
 
-	func (es *{{ $esName }}) runOutputStream(r *request.Request) {
-		reader := newRead{{ $outputStream.Name }}(
-			r.HTTPResponse.Body,
-			r.Handlers.UnmarshalStream,
-			r.Config.Logger,
-			r.Config.LogLevel.Value(),
+	func (es *{{ $esapi.Name }}) runOutputStream(r *request.Request) {
+		var opts []func(*eventstream.Decoder)
+		if r.Config.Logger != nil && r.Config.LogLevel.Matches(aws.LogDebugWithEventStreamBody) {
+			opts = append(opts, eventstream.DecodeWithLogger(r.Config.Logger))
+		}
+
+		decoder := eventstream.NewDecoder(r.HTTPResponse.Body, opts...)
+		eventReader := eventstreamapi.NewEventReader(decoder,
+			protocol.HandlerPayloadUnmarshal{
+				Unmarshalers: r.Handlers.UnmarshalStream,
+			},
 			{{- if eq .API.Metadata.Protocol "json" }}
-				func(typ string) (eventstreamapi.Unmarshaler, error) {
-					if typ == "initial-response" {
-						return es.output, nil
-					}
-					return unmarshalerFor{{ $outputStream.Name }}Event(typ)
-				},
+				es.{{ $esapi.StreamOutputUnmarshalerForEventName }},
 			{{- else }}
-				unmarshalerFor{{ $outputStream.Name }}Event,
+				{{ $outputStream.StreamUnmarshalerForEventName }},
 			{{- end }}
 		)
-		es.Reader = reader
-		go reader.readEventStream()
+
+		es.Reader = {{ $outputStream.StreamReaderImplConstructorName }}(eventReader)
 	}
 
 	{{- if eq .API.Metadata.Protocol "json" }}
-		func (es *{{ $esName }}) recvInitialEvent(r *request.Request) {
+		func (es *{{ $esapi.Name }}) recvInitialEvent(r *request.Request) {
 			// Wait for the initial response event, which must be the first
 			// event to be received from the API.
 			select {
@@ -231,7 +259,7 @@ func (es *{{ $esName }}) setStreamCloser(r *request.Request) {
 //
 // Close must be called when done using the EventStream API. Not calling Close
 // may result in resource leaks.
-func (es *{{ $esName }}) Close() (err error) {
+func (es *{{ $esapi.Name }}) Close() (err error) {
 	{{- if $outputStream }}
 		es.Reader.Close()
 	{{- end }}
@@ -245,7 +273,7 @@ func (es *{{ $esName }}) Close() (err error) {
 
 // Err returns any error that occurred while reading or writing EventStream
 // Events from the service API's response. Returns nil if there were no errors.
-func (es *{{ $esName }}) Err() error {
+func (es *{{ $esapi.Name }}) Err() error {
 	{{- if $inputStream }}
 		if err := es.Writer.Err(); err != nil {
 			return err
@@ -449,20 +477,17 @@ func (s *{{ $.ShapeName }}) UnmarshalEvent(
 }
 
 func (s *{{ $.ShapeName}}) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
-	{{- $messageType := ShapeMessageType $ }}
-	msg.Headers.Set(eventstreamapi.MessageTypeHeader,
-		eventstream.StringValue({{ $messageType }}))
-	msg.Headers.Set(eventstreamapi.EventTypeHeader,
-		eventstream.StringValue("{{ $.OrigShapeName }}"))
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue({{ ShapeMessageType $ }}))
+
 	{{- range $memName, $memRef := $.MemberRefs }}
 		{{- if $memRef.IsEventHeader }}
 			{{ $memVar := printf "s.%s" $memName -}}
-			{{ $typedMem := EventHeaderValueForType $memRef $memVar -}}
-			msg.Header.Set("{{ $memName }}", {{ $typedMem }})
+			{{ $typedMem := EventHeaderValueForType $memRef.Shape $memVar -}}
+			msg.Headers.Set("{{ $memName }}", {{ $typedMem }})
 		{{- else if (and ($memRef.IsEventPayload) (eq $memRef.Shape.Type "blob")) }}
 			msg.Payload = s.{{ $memName }}
 		{{- else if (and ($memRef.IsEventPayload) (eq $memRef.Shape.Type "string")) }}
-			msg.Payload = []byte(s.{{ $memName }})
+			msg.Payload = []byte(aws.StringValue(s.{{ $memName }}))
 		{{- end }}
 	{{- end }}
 	{{- if HasNonBlobPayloadMembers $ }}

@@ -1,9 +1,6 @@
 package eventstreamapi
 
 import (
-	"io"
-
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/eventstream"
 )
@@ -17,33 +14,38 @@ type Marshaler interface {
 // EventWriter provides a wrapper around the underlying event stream encoder
 // for an io.WriteCloser.
 type EventWriter struct {
-	writer  io.Writer
-	encoder *eventstream.Encoder
-	signer  *MessageSigner
-
+	encoder          *eventstream.Encoder
+	signer           *MessageSigner
 	payloadMarshaler protocol.PayloadMarshaler
+	eventTypeFor     func(Marshaler) (string, error)
 }
 
 // NewEventWriter returns a new event stream writer, that will write to the
-// writer provided. Use the WriteStream method to write an event to the stream.
-func NewEventWriter(writer io.Writer,
-	payloadMarshaler protocol.PayloadMarshaler,
-	signer *MessageSigner,
+// writer provided. Use the WriteEvent method to write an event to the stream.
+func NewEventWriter(encoder *eventstream.Encoder, signer *MessageSigner,
+	pm protocol.PayloadMarshaler, eventTypeFor func(Marshaler) (string, error),
 ) *EventWriter {
 	return &EventWriter{
-		writer:           writer,
-		encoder:          eventstream.NewEncoder(writer),
-		payloadMarshaler: payloadMarshaler,
+		encoder:          encoder,
 		signer:           signer,
+		payloadMarshaler: pm,
+		eventTypeFor:     eventTypeFor,
 	}
 }
 
-// UseLogger instructs the EventWriter to use the logger and log level
-// specified.
-func (w *EventWriter) UseLogger(logger aws.Logger, logLevel aws.LogLevelType) {
-	if logger != nil && logLevel.Matches(aws.LogDebugWithEventStreamBody) {
-		w.encoder.UseLogger(logger)
+func (w *EventWriter) marshal(event Marshaler) (eventstream.Message, error) {
+	eventType, err := w.eventTypeFor(event)
+	if err != nil {
+		return eventstream.Message{}, err
 	}
+
+	msg, err := event.MarshalEvent(w.payloadMarshaler)
+	if err != nil {
+		return eventstream.Message{}, err
+	}
+
+	msg.Headers.Set(EventTypeHeader, eventstream.StringValue(eventType))
+	return msg, nil
 }
 
 func (w *EventWriter) signMessage(msg *eventstream.Message) error {
@@ -57,7 +59,7 @@ func (w *EventWriter) signMessage(msg *eventstream.Message) error {
 // WriteEvent writes an event to the stream. Returns an error if the event
 // fails to marshal into a message, or writing to the underlying writer fails.
 func (w *EventWriter) WriteEvent(event Marshaler) error {
-	msg, err := event.MarshalEvent(w.payloadMarshaler)
+	msg, err := w.marshal(event)
 	if err != nil {
 		return err
 	}

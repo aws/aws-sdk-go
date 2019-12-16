@@ -24,6 +24,13 @@ type EventStreamAPI struct {
 	Legacy bool
 }
 
+func (es *EventStreamAPI) StreamInputEventTypeGetterName() string {
+	return "eventTypeFor" + es.Name + "InputEvent"
+}
+func (es *EventStreamAPI) StreamOutputUnmarshalerForEventName() string {
+	return "eventTypeFor" + es.Name + "InputEvent"
+}
+
 // EventStream represents a single eventstream group (input/output) and the
 // modeled events that are known for the stream.
 type EventStream struct {
@@ -31,6 +38,37 @@ type EventStream struct {
 	Shape      *Shape
 	Events     []*Event
 	Exceptions []*Event
+}
+
+func (es *EventStream) EventGroupName() string {
+	return es.Name + "Event"
+}
+
+func (es *EventStream) StreamWriterAPIName() string {
+	return es.Name + "Writer"
+}
+
+func (es *EventStream) StreamWriterImplName() string {
+	return "write" + es.Name
+}
+
+func (es *EventStream) StreamEventTypeGetterName() string {
+	return "eventTypeFor" + es.Name + "Event"
+}
+
+func (es *EventStream) StreamReaderAPIName() string {
+	return es.Name + "Reader"
+}
+
+func (es *EventStream) StreamReaderImplName() string {
+	return "read" + es.Name
+}
+func (es *EventStream) StreamReaderImplConstructorName() string {
+	return "newRead" + es.Name
+}
+
+func (es *EventStream) StreamUnmarshalerForEventName() string {
+	return "unmarshalerFor" + es.Name + "Event"
 }
 
 // Event is a single EventStream event that can be sent or received in an
