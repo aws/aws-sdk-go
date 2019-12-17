@@ -2565,8 +2565,7 @@
     "CloudWatchLogGroupName":{
       "type":"string",
       "max":512,
-      "min":1,
-      "pattern":"[\\.\\-_/#A-Za-z0-9]+"
+      "min":1
     },
     "CloudWatchOutputConfig":{
       "type":"structure",
@@ -6338,8 +6337,10 @@
       "type":"structure",
       "members":{
         "Comment":{"shape":"Comment"},
+        "CloudWatchOutputConfig":{"shape":"CloudWatchOutputConfig"},
         "DocumentHash":{"shape":"DocumentHash"},
         "DocumentHashType":{"shape":"DocumentHashType"},
+        "DocumentVersion":{"shape":"DocumentVersion"},
         "NotificationConfig":{"shape":"NotificationConfig"},
         "OutputS3BucketName":{"shape":"S3BucketName"},
         "OutputS3KeyPrefix":{"shape":"S3KeyPrefix"},

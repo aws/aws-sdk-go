@@ -408,7 +408,7 @@
     "AssetId": {
       "base": null,
       "refs": {
-        "PutAssetPropertyValueEntry$assetId": "<p>The ID of the AWS IoT SiteWise asset. You must specify either a <code>propertyAlias</code> or both an <code>analiasId</code> and a <code>propertyId</code>. Accepts substitution templates.</p>"
+        "PutAssetPropertyValueEntry$assetId": "<p>The ID of the AWS IoT SiteWise asset. You must specify either a <code>propertyAlias</code> or both an <code>aliasId</code> and a <code>propertyId</code>. Accepts substitution templates.</p>"
       }
     },
     "AssetPropertyAlias": {
@@ -438,7 +438,7 @@
     "AssetPropertyId": {
       "base": null,
       "refs": {
-        "PutAssetPropertyValueEntry$propertyId": "<p>The ID of the asset's property. You must specify either a <code>propertyAlias</code> or both an <code>analiasId</code> and a <code>propertyId</code>. Accepts substitution templates.</p>"
+        "PutAssetPropertyValueEntry$propertyId": "<p>The ID of the asset's property. You must specify either a <code>propertyAlias</code> or both an <code>aliasId</code> and a <code>propertyId</code>. Accepts substitution templates.</p>"
       }
     },
     "AssetPropertyIntegerValue": {
@@ -975,6 +975,13 @@
       "refs": {
         "CreateOTAUpdateRequest$awsJobExecutionsRolloutConfig": "<p>Configuration for the rollout of OTA updates.</p>",
         "OTAUpdateInfo$awsJobExecutionsRolloutConfig": "<p>Configuration for the rollout of OTA updates.</p>"
+      }
+    },
+    "AwsJobPresignedUrlConfig": {
+      "base": "<p>Configuration information for pre-signed URLs. Valid when <code>protocols</code> contains HTTP.</p>",
+      "refs": {
+        "CreateOTAUpdateRequest$awsJobPresignedUrlConfig": "<p>Configuration information for pre-signed URLs.</p>",
+        "OTAUpdateInfo$awsJobPresignedUrlConfig": "<p>Configuration information for pre-signed URLs. Valid when <code>protocols</code> contains HTTP.</p>"
       }
     },
     "Behavior": {
@@ -2683,6 +2690,12 @@
         "PresignedUrlConfig$expiresInSec": "<p>How long (in seconds) pre-signed URLs are valid. Valid values are 60 - 3600, the default value is 3600 seconds. Pre-signed URLs are generated when Jobs receives an MQTT request for the job document.</p>"
       }
     },
+    "ExpiresInSeconds": {
+      "base": null,
+      "refs": {
+        "AwsJobPresignedUrlConfig$expiresInSec": "<p>How long (in seconds) pre-signed URLs are valid. Valid values are 60 - 3600, the default value is 1800 seconds. Pre-signed URLs are generated when a request for the job document is received.</p>"
+      }
+    },
     "ExplicitDeny": {
       "base": "<p>Information that explicitly denies authorization.</p>",
       "refs": {
@@ -4209,7 +4222,7 @@
     "MqttContext": {
       "base": "<p>Specifies the MQTT context to use for the test authorizer request</p>",
       "refs": {
-        "TestInvokeAuthorizerRequest$mqttContext": "<p>Specifies a test MQTT authorization request.&gt;</p>"
+        "TestInvokeAuthorizerRequest$mqttContext": "<p>Specifies a test MQTT authorization request.</p>"
       }
     },
     "MqttPassword": {
@@ -4730,6 +4743,19 @@
       "base": null,
       "refs": {
         "JobProcessDetails$processingTargets": "<p>The target devices to which the job execution is being rolled out. This value will be null after the job execution has finished rolling out to all the target devices.</p>"
+      }
+    },
+    "Protocol": {
+      "base": null,
+      "refs": {
+        "Protocols$member": null
+      }
+    },
+    "Protocols": {
+      "base": null,
+      "refs": {
+        "CreateOTAUpdateRequest$protocols": "<p>The protocol used to transfer the OTA update image. Valid values are [HTTP], [MQTT], [HTTP, MQTT]. When both HTTP and MQTT are specified, the target device can choose the protocol.</p>",
+        "OTAUpdateInfo$protocols": "<p>The protocol used to transfer the OTA update image. Valid values are [HTTP], [MQTT], [HTTP, MQTT]. When both HTTP and MQTT are specified, the target device can choose the protocol.</p>"
       }
     },
     "ProvisioningTemplateListing": {

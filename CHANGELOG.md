@@ -1,3 +1,19 @@
+Release v1.26.4 (2019-12-17)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service documentation
+  * Documentation updates for Amazon EC2
+* `service/ecs`: Updates service documentation
+  * Documentation updates for Amazon ECS.
+* `service/iot`: Updates service API and documentation
+  * Added a new Over-the-Air (OTA) Update feature that allows you to use different, or multiple, protocols to transfer an image from the AWS cloud to IoT devices.
+* `service/kinesisanalyticsv2`: Updates service API
+* `service/medialive`: Updates service API and documentation
+  * AWS Elemental MediaLive now supports HLS ID3 segment tagging, HLS redundant manifests for CDNs that support different publishing/viewing endpoints, fragmented MP4 (fMP4), and frame capture intervals specified in milliseconds.
+* `service/ssm`: Updates service API and documentation
+  * Added support for Cloud Watch Output and Document Version to the Run Command tasks in Maintenance Windows.
+
 Release v1.26.3 (2019-12-16)
 ===
 

@@ -916,6 +916,7 @@
         "Command$CloudWatchOutputConfig": "<p>CloudWatch Logs information where you want Systems Manager to send the command output.</p>",
         "CommandInvocation$CloudWatchOutputConfig": "<p>CloudWatch Logs information where you want Systems Manager to send the command output.</p>",
         "GetCommandInvocationResult$CloudWatchOutputConfig": "<p>CloudWatch Logs information where Systems Manager sent the command output.</p>",
+        "MaintenanceWindowRunCommandParameters$CloudWatchOutputConfig": null,
         "SendCommandRequest$CloudWatchOutputConfig": "<p>Enables Systems Manager to send Run Command output to Amazon CloudWatch Logs. </p>"
       }
     },
@@ -2019,7 +2020,7 @@
     "DocumentFormat": {
       "base": null,
       "refs": {
-        "CreateDocumentRequest$DocumentFormat": "<p>Specify the document format for the request. The document format can be either JSON or YAML. JSON is the default format.</p>",
+        "CreateDocumentRequest$DocumentFormat": "<p>Specify the document format for the request. The document format can be JSON, YAML, or TEXT. JSON is the default format.</p>",
         "DocumentDescription$DocumentFormat": "<p>The document format, either JSON or YAML.</p>",
         "DocumentIdentifier$DocumentFormat": "<p>The document format, either JSON or YAML.</p>",
         "DocumentVersionInfo$DocumentFormat": "<p>The document format, either JSON or YAML.</p>",
@@ -2244,6 +2245,7 @@
         "GetDocumentResult$DocumentVersion": "<p>The document version.</p>",
         "InstanceAssociationStatusInfo$DocumentVersion": "<p>The association document versions.</p>",
         "MaintenanceWindowAutomationParameters$DocumentVersion": "<p>The version of an Automation document to use during task execution.</p>",
+        "MaintenanceWindowRunCommandParameters$DocumentVersion": "<p>The SSM document version to use in the request. You can specify $DEFAULT, $LATEST, or a specific version number. If you run commands by using the AWS CLI, then you must escape the first two options by using a backslash. If you specify a version number, then you don't need to use the backslash. For example:</p> <p>--document-version \"\\$DEFAULT\"</p> <p>--document-version \"\\$LATEST\"</p> <p>--document-version \"3\"</p>",
         "SendCommandRequest$DocumentVersion": "<p>The SSM document version to use in the request. You can specify $DEFAULT, $LATEST, or a specific version number. If you run commands by using the AWS CLI, then you must escape the first two options by using a backslash. If you specify a version number, then you don't need to use the backslash. For example:</p> <p>--document-version \"\\$DEFAULT\"</p> <p>--document-version \"\\$LATEST\"</p> <p>--document-version \"3\"</p>",
         "StartAutomationExecutionRequest$DocumentVersion": "<p>The version of the Automation document to use for this execution.</p>",
         "UpdateAssociationRequest$DocumentVersion": "<p>The document version you want update for the association. </p>",
@@ -2289,7 +2291,7 @@
       }
     },
     "DoesNotExistException": {
-      "base": "<p>Error returned when the ID specified for a resource, such as a maintenance window or Patch baseline, doesn't exist.</p> <p>For information about resource limits in Systems Manager, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_ssm\">AWS Systems Manager Limits</a>.</p>",
+      "base": "<p>Error returned when the ID specified for a resource, such as a maintenance window or Patch baseline, doesn't exist.</p> <p>For information about resource quotas in Systems Manager, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/ssm.html#limits_ssm\">Systems Manager Service Quotas</a> in the <i>AWS General Reference</i>.</p>",
       "refs": {
       }
     },
@@ -2757,7 +2759,7 @@
         "AssociationDescription$InstanceId": "<p>The ID of the instance.</p>",
         "CommandInvocation$InstanceId": "<p>The instance ID in which this invocation was requested.</p>",
         "CreateAssociationBatchRequestEntry$InstanceId": "<p>The ID of the instance. </p>",
-        "CreateAssociationRequest$InstanceId": "<p>The instance ID.</p> <note> <p> <code>InstanceId</code> has been deprecated. To specify an instance ID for an association, use the <code>Targets</code> parameter. If you use the parameter <code>InstanceId</code>, you cannot use the parameters <code>AssociationName</code>, <code>DocumentVersion</code>, <code>MaxErrors</code>, <code>MaxConcurrency</code>, <code>OutputLocation</code>, or <code>ScheduleExpression</code>. To use these parameters, you must use the <code>Targets</code> parameter.</p> </note>",
+        "CreateAssociationRequest$InstanceId": "<p>The instance ID.</p> <note> <p> <code>InstanceId</code> has been deprecated. To specify an instance ID for an association, use the <code>Targets</code> parameter. Requests that include the parameter <code>InstanceID</code> with SSM documents that use schema version 2.0 or later will fail. In addition, if you use the parameter <code>InstanceId</code>, you cannot use the parameters <code>AssociationName</code>, <code>DocumentVersion</code>, <code>MaxErrors</code>, <code>MaxConcurrency</code>, <code>OutputLocation</code>, or <code>ScheduleExpression</code>. To use these parameters, you must use the <code>Targets</code> parameter.</p> </note>",
         "DeleteAssociationRequest$InstanceId": "<p>The ID of the instance.</p>",
         "DescribeAssociationRequest$InstanceId": "<p>The instance ID.</p>",
         "DescribeEffectiveInstanceAssociationsRequest$InstanceId": "<p>The instance ID for which you want to view all associations.</p>",
@@ -4723,7 +4725,7 @@
       }
     },
     "OpsItemLimitExceededException": {
-      "base": "<p>The request caused OpsItems to exceed one or more limits. For information about OpsItem limits, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter-learn-more.html#OpsCenter-learn-more-limits\">What are the resource limits for OpsCenter?</a>.</p>",
+      "base": "<p>The request caused OpsItems to exceed one or more quotas. For information about OpsItem quotas, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter-learn-more.html#OpsCenter-learn-more-limits\">What are the resource limits for OpsCenter?</a>.</p>",
       "refs": {
       }
     },
@@ -6010,7 +6012,7 @@
       }
     },
     "ResourceLimitExceededException": {
-      "base": "<p>Error returned when the caller has exceeded the default resource limits. For example, too many maintenance windows or patch baselines have been created.</p> <p>For information about resource limits in Systems Manager, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_ssm\">AWS Systems Manager Limits</a>.</p>",
+      "base": "<p>Error returned when the caller has exceeded the default resource quotas. For example, too many maintenance windows or patch baselines have been created.</p> <p>For information about resource quotas in Systems Manager, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/ssm.html#limits_ssm\">Systems Manager Service Quotas</a> in the <i>AWS General Reference</i>.</p>",
       "refs": {
       }
     },
@@ -6496,8 +6498,8 @@
     "StreamUrl": {
       "base": null,
       "refs": {
-        "ResumeSessionResponse$StreamUrl": "<p>A URL back to SSM Agent on the instance that the Session Manager client uses to send commands and receive output from the instance. Format: <code>wss://ssmmessages.<b>region</b>.amazonaws.com/v1/data-channel/<b>session-id</b>?stream=(input|output)</code>.</p> <p> <b>region</b> represents the Region identifier for an AWS Region supported by AWS Systems Manager, such as <code>us-east-2</code> for the US East (Ohio) Region. For a list of supported <b>region</b> values, see the <b>Region</b> column in the <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html#ssm_region\">AWS Systems Manager table of regions and endpoints</a> in the <i>AWS General Reference</i>.</p> <p> <b>session-id</b> represents the ID of a Session Manager session, such as <code>1a2b3c4dEXAMPLE</code>.</p>",
-        "StartSessionResponse$StreamUrl": "<p>A URL back to SSM Agent on the instance that the Session Manager client uses to send commands and receive output from the instance. Format: <code>wss://ssmmessages.<b>region</b>.amazonaws.com/v1/data-channel/<b>session-id</b>?stream=(input|output)</code> </p> <p> <b>region</b> represents the Region identifier for an AWS Region supported by AWS Systems Manager, such as <code>us-east-2</code> for the US East (Ohio) Region. For a list of supported <b>region</b> values, see the <b>Region</b> column in the <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html#ssm_region\">AWS Systems Manager table of regions and endpoints</a> in the <i>AWS General Reference</i>.</p> <p> <b>session-id</b> represents the ID of a Session Manager session, such as <code>1a2b3c4dEXAMPLE</code>.</p>"
+        "ResumeSessionResponse$StreamUrl": "<p>A URL back to SSM Agent on the instance that the Session Manager client uses to send commands and receive output from the instance. Format: <code>wss://ssmmessages.<b>region</b>.amazonaws.com/v1/data-channel/<b>session-id</b>?stream=(input|output)</code>.</p> <p> <b>region</b> represents the Region identifier for an AWS Region supported by AWS Systems Manager, such as <code>us-east-2</code> for the US East (Ohio) Region. For a list of supported <b>region</b> values, see the <b>Region</b> column in <a href=\"http://docs.aws.amazon.com/general/latest/gr/ssm.html#ssm_region\">Systems Manager Service Endpoints</a> in the <i>AWS General Reference</i>.</p> <p> <b>session-id</b> represents the ID of a Session Manager session, such as <code>1a2b3c4dEXAMPLE</code>.</p>",
+        "StartSessionResponse$StreamUrl": "<p>A URL back to SSM Agent on the instance that the Session Manager client uses to send commands and receive output from the instance. Format: <code>wss://ssmmessages.<b>region</b>.amazonaws.com/v1/data-channel/<b>session-id</b>?stream=(input|output)</code> </p> <p> <b>region</b> represents the Region identifier for an AWS Region supported by AWS Systems Manager, such as <code>us-east-2</code> for the US East (Ohio) Region. For a list of supported <b>region</b> values, see the <b>Region</b> column in <a href=\"http://docs.aws.amazon.com/general/latest/gr/ssm.html#ssm_region\">Systems Manager Service Endpoints</a> in the <i>AWS General Reference</i>.</p> <p> <b>session-id</b> represents the ID of a Session Manager session, such as <code>1a2b3c4dEXAMPLE</code>.</p>"
       }
     },
     "String": {

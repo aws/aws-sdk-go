@@ -2007,6 +2007,13 @@
         }
       }
     },
+    "AudioOnlyHlsSegmentType": {
+      "type": "string",
+      "enum": [
+        "AAC",
+        "FMP4"
+      ]
+    },
     "AudioOnlyHlsSettings": {
       "type": "structure",
       "members": {
@@ -2021,6 +2028,10 @@
         "AudioTrackType": {
           "shape": "AudioOnlyHlsTrackType",
           "locationName": "audioTrackType"
+        },
+        "SegmentType": {
+          "shape": "AudioOnlyHlsSegmentType",
+          "locationName": "segmentType"
         }
       }
     },
@@ -4552,6 +4563,15 @@
         "Time"
       ]
     },
+    "Fmp4HlsSettings": {
+      "type": "structure",
+      "members": {
+        "AudioRenditionSets": {
+          "shape": "__string",
+          "locationName": "audioRenditionSets"
+        }
+      }
+    },
     "FollowModeScheduleActionStartSettings": {
       "type": "structure",
       "members": {
@@ -4601,6 +4621,13 @@
         "Destination"
       ]
     },
+    "FrameCaptureIntervalUnit": {
+      "type": "string",
+      "enum": [
+        "MILLISECONDS",
+        "SECONDS"
+      ]
+    },
     "FrameCaptureOutputSettings": {
       "type": "structure",
       "members": {
@@ -4616,6 +4643,10 @@
         "CaptureInterval": {
           "shape": "__integerMin1Max3600000",
           "locationName": "captureInterval"
+        },
+        "CaptureIntervalUnits": {
+          "shape": "FrameCaptureIntervalUnit",
+          "locationName": "captureIntervalUnits"
         }
       },
       "required": [
@@ -5425,9 +5456,17 @@
           "shape": "__string",
           "locationName": "baseUrlContent"
         },
+        "BaseUrlContent1": {
+          "shape": "__string",
+          "locationName": "baseUrlContent1"
+        },
         "BaseUrlManifest": {
           "shape": "__string",
           "locationName": "baseUrlManifest"
+        },
+        "BaseUrlManifest1": {
+          "shape": "__string",
+          "locationName": "baseUrlManifest1"
         },
         "CaptionLanguageMappings": {
           "shape": "__listOfCaptionLanguageMapping",
@@ -5464,6 +5503,10 @@
         "HlsCdnSettings": {
           "shape": "HlsCdnSettings",
           "locationName": "hlsCdnSettings"
+        },
+        "HlsId3SegmentTagging": {
+          "shape": "HlsId3SegmentTaggingState",
+          "locationName": "hlsId3SegmentTagging"
         },
         "IFrameOnlyPlaylists": {
           "shape": "IFrameOnlyPlaylistType",
@@ -5570,6 +5613,32 @@
         "Destination"
       ]
     },
+    "HlsH265PackagingType": {
+      "type": "string",
+      "enum": [
+        "HEV1",
+        "HVC1"
+      ]
+    },
+    "HlsId3SegmentTaggingScheduleActionSettings": {
+      "type": "structure",
+      "members": {
+        "Tag": {
+          "shape": "__string",
+          "locationName": "tag"
+        }
+      },
+      "required": [
+        "Tag"
+      ]
+    },
+    "HlsId3SegmentTaggingState": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "ENABLED"
+      ]
+    },
     "HlsInputSettings": {
       "type": "structure",
       "members": {
@@ -5667,6 +5736,10 @@
     "HlsOutputSettings": {
       "type": "structure",
       "members": {
+        "H265PackagingType": {
+          "shape": "HlsH265PackagingType",
+          "locationName": "h265PackagingType"
+        },
         "HlsSettings": {
           "shape": "HlsSettings",
           "locationName": "hlsSettings"
@@ -5711,6 +5784,10 @@
         "AudioOnlyHlsSettings": {
           "shape": "AudioOnlyHlsSettings",
           "locationName": "audioOnlyHlsSettings"
+        },
+        "Fmp4HlsSettings": {
+          "shape": "Fmp4HlsSettings",
+          "locationName": "fmp4HlsSettings"
         },
         "StandardHlsSettings": {
           "shape": "StandardHlsSettings",
@@ -8524,6 +8601,10 @@
     "ScheduleActionSettings": {
       "type": "structure",
       "members": {
+        "HlsId3SegmentTaggingSettings": {
+          "shape": "HlsId3SegmentTaggingScheduleActionSettings",
+          "locationName": "hlsId3SegmentTaggingSettings"
+        },
         "HlsTimedMetadataSettings": {
           "shape": "HlsTimedMetadataScheduleActionSettings",
           "locationName": "hlsTimedMetadataSettings"
@@ -9479,7 +9560,7 @@
           "locationName": "message"
         },
         "ValidationErrors": {
-          "shape": "__listOfMultiplexValidationError",
+          "shape": "__listOfValidationError",
           "locationName": "validationErrors"
         }
       },
