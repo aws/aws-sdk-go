@@ -3943,6 +3943,12 @@
         "maximumPerMinute":{"shape":"MaximumPerMinute"}
       }
     },
+    "AwsJobPresignedUrlConfig":{
+      "type":"structure",
+      "members":{
+        "expiresInSec":{"shape":"ExpiresInSeconds"}
+      }
+    },
     "Behavior":{
       "type":"structure",
       "required":["name"],
@@ -4617,8 +4623,10 @@
         },
         "description":{"shape":"OTAUpdateDescription"},
         "targets":{"shape":"Targets"},
+        "protocols":{"shape":"Protocols"},
         "targetSelection":{"shape":"TargetSelection"},
         "awsJobExecutionsRolloutConfig":{"shape":"AwsJobExecutionsRolloutConfig"},
+        "awsJobPresignedUrlConfig":{"shape":"AwsJobPresignedUrlConfig"},
         "files":{"shape":"OTAUpdateFiles"},
         "roleArn":{"shape":"RoleArn"},
         "additionalParameters":{"shape":"AdditionalParameterMap"},
@@ -6359,6 +6367,7 @@
       "max":3600,
       "min":60
     },
+    "ExpiresInSeconds":{"type":"long"},
     "ExplicitDeny":{
       "type":"structure",
       "members":{
@@ -8797,7 +8806,9 @@
         "lastModifiedDate":{"shape":"DateType"},
         "description":{"shape":"OTAUpdateDescription"},
         "targets":{"shape":"Targets"},
+        "protocols":{"shape":"Protocols"},
         "awsJobExecutionsRolloutConfig":{"shape":"AwsJobExecutionsRolloutConfig"},
+        "awsJobPresignedUrlConfig":{"shape":"AwsJobPresignedUrlConfig"},
         "targetSelection":{"shape":"TargetSelection"},
         "otaUpdateFiles":{"shape":"OTAUpdateFiles"},
         "otaUpdateStatus":{"shape":"OTAUpdateStatus"},
@@ -8982,6 +8993,19 @@
     "ProcessingTargetNameList":{
       "type":"list",
       "member":{"shape":"ProcessingTargetName"}
+    },
+    "Protocol":{
+      "type":"string",
+      "enum":[
+        "MQTT",
+        "HTTP"
+      ]
+    },
+    "Protocols":{
+      "type":"list",
+      "member":{"shape":"Protocol"},
+      "max":2,
+      "min":1
     },
     "ProvisioningTemplateListing":{
       "type":"list",

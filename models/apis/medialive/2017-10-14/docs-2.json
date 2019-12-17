@@ -233,6 +233,12 @@
         "AudioDescription$AudioNormalizationSettings": "Advanced audio normalization settings."
       }
     },
+    "AudioOnlyHlsSegmentType": {
+      "base": "Audio Only Hls Segment Type",
+      "refs": {
+        "AudioOnlyHlsSettings$SegmentType": "Specifies the segment type."
+      }
+    },
     "AudioOnlyHlsSettings": {
       "base": "Audio Only Hls Settings",
       "refs": {
@@ -761,6 +767,12 @@
         "ScheduleActionStartSettings$FixedModeScheduleActionStartSettings": "Option for specifying the start time for an action."
       }
     },
+    "Fmp4HlsSettings": {
+      "base": "Fmp4 Hls Settings",
+      "refs": {
+        "HlsSettings$Fmp4HlsSettings": null
+      }
+    },
     "FollowModeScheduleActionStartSettings": {
       "base": "Settings to specify if an action follows another.",
       "refs": {
@@ -782,6 +794,12 @@
       "base": "Frame Capture Group Settings",
       "refs": {
         "OutputGroupSettings$FrameCaptureGroupSettings": null
+      }
+    },
+    "FrameCaptureIntervalUnit": {
+      "base": "Frame Capture Interval Unit",
+      "refs": {
+        "FrameCaptureSettings$CaptureIntervalUnits": "Unit for the frame capture interval."
       }
     },
     "FrameCaptureOutputSettings": {
@@ -906,7 +924,7 @@
     "H264RateControlMode": {
       "base": "H264 Rate Control Mode",
       "refs": {
-        "H264Settings$RateControlMode": "Rate control mode.\n\nQVBR: Quality will match the specified quality level except when it is constrained by the\nmaximum bitrate.  Recommended if you or your viewers pay for bandwidth.\n\nVBR: Quality and bitrate vary, depending on the video complexity. Recommended instead of QVBR\nif you want to maintain a specific average bitrate over the duration of the channel.\n\nCBR: Quality varies, depending on the video complexity. Recommended only if you distribute\nyour assets to devices that cannot handle variable bitrates."
+        "H264Settings$RateControlMode": "Rate control mode.\n\nQVBR: Quality will match the specified quality level except when it is constrained by the\nmaximum bitrate.  Recommended if you or your viewers pay for bandwidth.\n\nVBR: Quality and bitrate vary, depending on the video complexity. Recommended instead of QVBR\nif you want to maintain a specific average bitrate over the duration of the channel.\n\nCBR: Quality varies, depending on the video complexity. Recommended only if you distribute\nyour assets to devices that cannot handle variable bitrates.\n\nMultiplex: This rate control mode is only supported (and is required) when the video is being\ndelivered to a MediaLive Multiplex in which case the rate control configuration is controlled\nby the properties within the Multiplex Program."
       }
     },
     "H264ScanType": {
@@ -1117,6 +1135,24 @@
       "base": "Hls Group Settings",
       "refs": {
         "OutputGroupSettings$HlsGroupSettings": null
+      }
+    },
+    "HlsH265PackagingType": {
+      "base": "Hls H265 Packaging Type",
+      "refs": {
+        "HlsOutputSettings$H265PackagingType": "Only applicable when this output is referencing an H.265 video description.\nSpecifies whether MP4 segments should be packaged as HEV1 or HVC1."
+      }
+    },
+    "HlsId3SegmentTaggingScheduleActionSettings": {
+      "base": "Settings for the action to insert a user-defined ID3 tag in each HLS segment",
+      "refs": {
+        "ScheduleActionSettings$HlsId3SegmentTaggingSettings": "Action to insert HLS ID3 segment tagging"
+      }
+    },
+    "HlsId3SegmentTaggingState": {
+      "base": "State of HLS ID3 Segment Tagging",
+      "refs": {
+        "HlsGroupSettings$HlsId3SegmentTagging": "State of HLS ID3 Segment Tagging"
       }
     },
     "HlsInputSettings": {
@@ -3439,15 +3475,19 @@
         "CreateMultiplexProgram$RequestId": "Unique request ID. This prevents retries from creating multiple\nresources.\n",
         "DvbSubDestinationSettings$FontSize": "When set to auto fontSize will scale depending on the size of the output.  Giving a positive integer will specify the exact font size in points.  All burn-in and DVB-Sub font settings must match.",
         "FixedModeScheduleActionStartSettings$Time": "Start time for the action to start in the channel. (Not the time for the action to be added to the schedule: actions are always added to the schedule immediately.) UTC format: yyyy-mm-ddThh:mm:ss.nnnZ. All the letters are digits (for example, mm might be 01) except for the two constants \"T\" for time and \"Z\" for \"UTC format\".",
+        "Fmp4HlsSettings$AudioRenditionSets": "List all the audio groups that are used with the video output stream. Input all the audio GROUP-IDs that are associated to the video, separate by ','.",
         "FollowModeScheduleActionStartSettings$ReferenceActionName": "The action name of another action that this one refers to.",
         "FrameCaptureOutputSettings$NameModifier": "Required if the output group contains more than one output. This modifier forms part of the output file name.",
         "GatewayTimeoutException$Message": null,
         "HlsAkamaiSettings$Salt": "Salt for authenticated Akamai.",
         "HlsAkamaiSettings$Token": "Token parameter for authenticated akamai. If not specified, _gda_ is used.",
         "HlsGroupSettings$BaseUrlContent": "A partial URI prefix that will be prepended to each output in the media .m3u8 file. Can be used if base manifest is delivered from a different URL than the main .m3u8 file.",
+        "HlsGroupSettings$BaseUrlContent1": "Optional. One value per output group.\n\nThis field is required only if you are completing Base URL content A, and the downstream system has notified you that the media files for pipeline 1 of all outputs are in a location different from the media files for pipeline 0.",
         "HlsGroupSettings$BaseUrlManifest": "A partial URI prefix that will be prepended to each output in the media .m3u8 file. Can be used if base manifest is delivered from a different URL than the main .m3u8 file.",
+        "HlsGroupSettings$BaseUrlManifest1": "Optional. One value per output group.\n\nComplete this field only if you are completing Base URL manifest A, and the downstream system has notified you that the child manifest files for pipeline 1 of all outputs are in a location different from the child manifest files for pipeline 0.",
         "HlsGroupSettings$KeyFormat": "The value specifies how the key is represented in the resource identified by the URI.  If parameter is absent, an implicit value of \"identity\" is used.  A reverse DNS string can also be given.",
         "HlsGroupSettings$KeyFormatVersions": "Either a single positive integer version value or a slash delimited list of version values (1/2/3).",
+        "HlsId3SegmentTaggingScheduleActionSettings$Tag": "ID3 tag to insert into each segment. Supports special keyword identifiers to substitute in segment-related values.\\nSupported keyword identifiers: https://docs.aws.amazon.com/medialive/latest/ug/variable-data-identifiers.html",
         "HlsOutputSettings$SegmentModifier": "String concatenated to end of segment filenames.",
         "HlsTimedMetadataScheduleActionSettings$Id3": "Base64 string formatted according to the ID3 specification: http://id3.org/id3v2.4.0-structure",
         "Input$Arn": "The Unique ARN of the input (generated, immutable).",

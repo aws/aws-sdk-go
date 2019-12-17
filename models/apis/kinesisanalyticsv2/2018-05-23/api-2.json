@@ -1889,7 +1889,8 @@
       "type":"string",
       "enum":[
         "SQL-1_0",
-        "FLINK-1_6"
+        "FLINK-1_6",
+        "FLINK-1_8"
       ]
     },
     "S3ApplicationCodeLocationDescription":{
