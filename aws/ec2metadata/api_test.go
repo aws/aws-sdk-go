@@ -997,9 +997,12 @@ func TestRequestTimeOut(t *testing.T) {
 
 	c.Handlers.Complete.PushBack(op.addToOperationPerformedList)
 
+	start := time.Now()
 	resp, err := c.GetMetadata("/some/path")
 
-	expectedOperationsPerformed := []string{"GetToken", "GetMetadata"}
+	if e, a := 1*time.Second, time.Since(start); e < a {
+		t.Fatalf("expected duration of test to be less than %v, got %v", e, a)
+	}
 
 	if e, a := "IMDSProfileForSDKGo", resp; e != a {
 		t.Fatalf("Expected %v, got %v", e, a)
@@ -1009,13 +1012,16 @@ func TestRequestTimeOut(t *testing.T) {
 		t.Fatalf("Expected no error, got %v", err)
 	}
 
+	expectedOperationsPerformed := []string{"GetToken", "GetMetadata"}
 	if e, a := expectedOperationsPerformed, op.operationsPerformed; !reflect.DeepEqual(e, a) {
 		t.Fatalf("expect %v operations, got %v", e, a)
 	}
 
+	start = time.Now()
 	resp, err = c.GetMetadata("/some/path")
-
-	expectedOperationsPerformed = []string{"GetToken", "GetMetadata", "GetMetadata"}
+	if e, a := 1*time.Second, time.Since(start); e < a {
+		t.Fatalf("expected duration of test to be less than %v, got %v", e, a)
+	}
 
 	if e, a := "IMDSProfileForSDKGo", resp; e != a {
 		t.Fatalf("Expected %v, got %v", e, a)
@@ -1025,6 +1031,7 @@ func TestRequestTimeOut(t *testing.T) {
 		t.Fatalf("Expected no error, got %v", err)
 	}
 
+	expectedOperationsPerformed = []string{"GetToken", "GetMetadata", "GetMetadata"}
 	if e, a := expectedOperationsPerformed, op.operationsPerformed; !reflect.DeepEqual(e, a) {
 		t.Fatalf("expect %v operations, got %v", e, a)
 	}
