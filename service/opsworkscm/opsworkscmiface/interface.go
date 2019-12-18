@@ -108,6 +108,10 @@ type OpsWorksCMAPI interface {
 	ExportServerEngineAttributeWithContext(aws.Context, *opsworkscm.ExportServerEngineAttributeInput, ...request.Option) (*opsworkscm.ExportServerEngineAttributeOutput, error)
 	ExportServerEngineAttributeRequest(*opsworkscm.ExportServerEngineAttributeInput) (*request.Request, *opsworkscm.ExportServerEngineAttributeOutput)
 
+	ListTagsForResource(*opsworkscm.ListTagsForResourceInput) (*opsworkscm.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *opsworkscm.ListTagsForResourceInput, ...request.Option) (*opsworkscm.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*opsworkscm.ListTagsForResourceInput) (*request.Request, *opsworkscm.ListTagsForResourceOutput)
+
 	RestoreServer(*opsworkscm.RestoreServerInput) (*opsworkscm.RestoreServerOutput, error)
 	RestoreServerWithContext(aws.Context, *opsworkscm.RestoreServerInput, ...request.Option) (*opsworkscm.RestoreServerOutput, error)
 	RestoreServerRequest(*opsworkscm.RestoreServerInput) (*request.Request, *opsworkscm.RestoreServerOutput)
@@ -115,6 +119,14 @@ type OpsWorksCMAPI interface {
 	StartMaintenance(*opsworkscm.StartMaintenanceInput) (*opsworkscm.StartMaintenanceOutput, error)
 	StartMaintenanceWithContext(aws.Context, *opsworkscm.StartMaintenanceInput, ...request.Option) (*opsworkscm.StartMaintenanceOutput, error)
 	StartMaintenanceRequest(*opsworkscm.StartMaintenanceInput) (*request.Request, *opsworkscm.StartMaintenanceOutput)
+
+	TagResource(*opsworkscm.TagResourceInput) (*opsworkscm.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *opsworkscm.TagResourceInput, ...request.Option) (*opsworkscm.TagResourceOutput, error)
+	TagResourceRequest(*opsworkscm.TagResourceInput) (*request.Request, *opsworkscm.TagResourceOutput)
+
+	UntagResource(*opsworkscm.UntagResourceInput) (*opsworkscm.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *opsworkscm.UntagResourceInput, ...request.Option) (*opsworkscm.UntagResourceOutput, error)
+	UntagResourceRequest(*opsworkscm.UntagResourceInput) (*request.Request, *opsworkscm.UntagResourceOutput)
 
 	UpdateServer(*opsworkscm.UpdateServerInput) (*opsworkscm.UpdateServerOutput, error)
 	UpdateServerWithContext(aws.Context, *opsworkscm.UpdateServerInput, ...request.Option) (*opsworkscm.UpdateServerOutput, error)

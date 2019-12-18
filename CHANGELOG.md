@@ -1,3 +1,21 @@
+Release v1.26.5 (2019-12-18)
+===
+
+### Service Client Updates
+* `service/cloudfront`: Updates service documentation
+  * Documentation updates for CloudFront
+* `service/ec2`: Updates service API and documentation
+  * This release introduces the ability to tag Elastic Graphics accelerators. You can use tags to organize and identify your accelerators for cost allocation.
+* `service/opsworkscm`: Updates service API and documentation
+  * AWS OpsWorks CM now supports tagging, and tag-based access control, of servers and backups.
+* `service/resourcegroupstaggingapi`: Updates service documentation
+  * Documentation updates for resourcegroupstaggingapi
+* `service/s3`: Updates service documentation
+  * Updates Amazon S3 endpoints allowing you to configure your client to opt-in to using S3 with the us-east-1 regional endpoint, instead of global.
+
+### SDK Bugs
+* `aws/request`: Fix shouldRetry behavior for nested errors ([#3017](https://github.com/aws/aws-sdk-go/pull/3017))
+
 Release v1.26.4 (2019-12-17)
 ===
 

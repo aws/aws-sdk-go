@@ -336,8 +336,8 @@
     "TagKeyList": {
       "base": null,
       "refs": {
-        "ComplianceDetails$NoncompliantKeys": "<p>The tag key is noncompliant with the effective tag policy.</p>",
-        "ComplianceDetails$KeysWithNoncompliantValues": "<p>The tag value is noncompliant with the effective tag policy.</p>",
+        "ComplianceDetails$NoncompliantKeys": "<p>These tag keys on the resource are noncompliant with the effective tag policy.</p>",
+        "ComplianceDetails$KeysWithNoncompliantValues": "<p>These are keys defined in the effective policy that are on the resource with either incorrect case treatment or noncompliant values. </p>",
         "GetTagKeysOutput$TagKeys": "<p>A list of all tag keys in the AWS account.</p>"
       }
     },

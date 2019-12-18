@@ -13448,6 +13448,10 @@
         "InstanceId":{
           "shape":"String",
           "locationName":"instanceId"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },
