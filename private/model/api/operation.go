@@ -214,13 +214,16 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 		req.Handlers.Unmarshal.Swap({{ .API.ProtocolPackage }}.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	{{- else }}
 		{{- if $.EventStreamAPI }}
+			{{- $esapi := $.EventStreamAPI }}
 
-			es := &{{ $.EventStreamAPI.Name }}{}
-			req.Handlers.Unmarshal.PushBack(es.setStreamCloser)
-			output.{{ $.EventStreamAPI.OutputMemberName }} = es
+			es := new{{ $esapi.Name }}()
+			{{- if $esapi.Legacy }}
+				req.Handlers.Unmarshal.PushBack(es.setStreamCloser)
+			{{- end }}
+			output.{{ $esapi.OutputMemberName }} = es
 
-			{{- $inputStream := $.EventStreamAPI.InputStream }}
-			{{- $outputStream := $.EventStreamAPI.OutputStream }}
+			{{- $inputStream := $esapi.InputStream }}
+			{{- $outputStream := $esapi.OutputStream }}
 
 			{{- $_ := .API.AddSDKImport "private/protocol" .API.ProtocolPackage }}
 			{{- $_ := .API.AddSDKImport "private/protocol/rest" }}

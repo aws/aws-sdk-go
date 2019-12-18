@@ -2,30 +2,37 @@ package eventstreamapi
 
 import (
 	"fmt"
+	"io"
 	"sync"
-	"sync/atomic"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 )
 
+// StreamWriter provides concurrent safe writing to an event stream.
 type StreamWriter struct {
 	eventWriter *EventWriter
 	stream      chan eventWriteAsyncReport
 
-	errVal    atomic.Value
 	done      chan struct{}
 	closeOnce sync.Once
+	err       OnceError
+
+	streamCloser io.Closer
 }
 
-func NewStreamWriter(eventWriter *EventWriter) *StreamWriter {
-	writer := &StreamWriter{
-		eventWriter: eventWriter,
-		stream:      make(chan eventWriteAsyncReport),
-		done:        make(chan struct{}),
+// NewStreamWriter returns a StreamWriter for the event writer, and stream
+// closer provided.
+func NewStreamWriter(eventWriter *EventWriter, streamCloser io.Closer) *StreamWriter {
+	w := &StreamWriter{
+		eventWriter:  eventWriter,
+		streamCloser: streamCloser,
+		stream:       make(chan eventWriteAsyncReport),
+		done:         make(chan struct{}),
 	}
-	go writer.writeStream()
+	go w.writeStream()
 
-	return writer
+	return w
 }
 
 // Close terminates the writers ability to write new events to the stream. Any
@@ -37,16 +44,29 @@ func (w *StreamWriter) Close() error {
 
 func (w *StreamWriter) safeClose() {
 	close(w.done)
+	if w.streamCloser != nil {
+		// closing the stream may block need to close it asynchronously.
+		t := time.NewTicker(time.Second)
+		defer t.Stop()
+		streamClosed := make(chan struct{})
+		go func() {
+			if err := w.streamCloser.Close(); err != nil {
+				w.err.SetOnce(err)
+			}
+			close(streamClosed)
+		}()
+		select {
+		case <-streamClosed:
+		case <-t.C:
+		}
+	}
+	w.stream = nil
 }
 
 // Err returns any error that occurred while attempting to write an event to the
 // stream.
 func (w *StreamWriter) Err() error {
-	if v := w.errVal.Load(); v != nil {
-		return v.(error)
-	}
-
-	return nil
+	return w.err.Err()
 }
 
 // Send writes a single event to the stream returning an error if the write
@@ -84,7 +104,7 @@ func (w *StreamWriter) Send(ctx aws.Context, event Marshaler) error {
 }
 
 func (w *StreamWriter) writeStream() {
-	defer close(w.stream)
+	defer w.Close()
 
 	for {
 		select {
@@ -92,7 +112,7 @@ func (w *StreamWriter) writeStream() {
 			err := w.eventWriter.WriteEvent(wrapper.Event)
 			wrapper.ReportResult(w.done, err)
 			if err != nil {
-				w.errVal.Store(err)
+				w.err.SetOnce(err)
 				return
 			}
 

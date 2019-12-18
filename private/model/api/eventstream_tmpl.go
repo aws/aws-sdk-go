@@ -14,8 +14,6 @@ func renderEventStreamAPI(w io.Writer, op *Operation) error {
 	op.API.AddImport("fmt")
 	op.API.AddImport("bytes")
 	op.API.AddImport("io")
-	op.API.AddImport("sync")
-	op.API.AddImport("sync/atomic")
 	op.API.AddSDKImport("aws")
 	op.API.AddSDKImport("aws/awserr")
 	op.API.AddSDKImport("aws/request")
@@ -79,28 +77,31 @@ type {{ $esapi.Name }} struct {
 		{{- end }}
 	{{- end }}
 
-	// StreamCloser is the io.Closer for the EventStream connection. For HTTP
-	// EventStream this is the response Body. The stream will be closed when
-	// the Close method of the EventStream is called.
-	StreamCloser io.Closer
+	{{- if $esapi.Legacy }}
+
+		// StreamCloser is the io.Closer for the EventStream connection. For HTTP
+		// EventStream this is the response Body. The stream will be closed when
+		// the Close method of the EventStream is called.
+		StreamCloser io.Closer
+	{{- end }}
+
+	done chan struct{}
+	closeOnce sync.Once
+	err eventstreamapi.OnceError
 }
 
-func (es *{{ $esapi.Name }}) setStreamCloser(r *request.Request) {
-	var closers aws.MultiCloser
-	if es.StreamCloser != nil {
-		closers = append(closers, es.StreamCloser)
+func new{{ $esapi.Name }}() *{{ $esapi.Name }} {
+	return &{{ $esapi.Name }} {
+		done: make(chan struct{}),
 	}
-
-	{{- if $inputStream }}
-		closers = append(closers, es.inputWriter)
-	{{- end }}
-
-	{{- if $outputStream }}
-		closers = append(closers, r.HTTPResponse.Body)
-	{{- end }}
-
-	es.StreamCloser =  closers
 }
+
+{{- if $esapi.Legacy }}
+
+	func (es *{{ $esapi.Name }}) setStreamCloser(r *request.Request) {
+		es.StreamCloser = r.HTTPResponse.Body
+	}
+{{- end }}
 
 {{- if $inputStream }}
 
@@ -121,12 +122,18 @@ func (es *{{ $esapi.Name }}) setStreamCloser(r *request.Request) {
 	// {{ range $_, $event := $inputStream.Events }}
 	//     * {{ $event.Shape.ShapeName }}
 	{{- end }}
-	func (es *{{ $esapi.Name }}) Send(ctx aws.Context, event {{ $inputStream.EventGroupName }}) {
-		es.Writer.Send(ctx, event)
+	func (es *{{ $esapi.Name }}) Send(ctx aws.Context, event {{ $inputStream.EventGroupName }}) error {
+		return es.Writer.Send(ctx, event)
 	}
 
 	func (es *{{ $esapi.Name }}) runInputStream(r *request.Request) {
-		var signer *eventstreamapi.MessageSigner
+		var opts []func(*eventstream.Encoder)
+		if r.Config.Logger != nil && r.Config.LogLevel.Matches(aws.LogDebugWithEventStreamBody) {
+			opts = append(opts, eventstream.EncodeWithLogger(r.Config.Logger))
+		}
+		var encoder eventstreamapi.Encoder = eventstream.NewEncoder(es.inputWriter, opts...)
+
+		var closer aws.MultiCloser
 		{{- if $.ShouldSignRequestBody }}
 			{{- $_ := $.API.AddSDKImport "aws/signer/v4" }}
 			sigSeed, err := v4.GetSignedRequestSignature(r.HTTPRequest)
@@ -134,20 +141,17 @@ func (es *{{ $esapi.Name }}) setStreamCloser(r *request.Request) {
 				r.Error = awserr.New("TODO", "unable to get initial request's signature", err)
 				return
 			}
-			signer = &eventstreamapi.MessageSigner{
-					Signer: v4.NewStreamSigner(
-						r.ClientInfo.SigningRegion, r.ClientInfo.SigningName,
-						sigSeed, r.Config.Credentials),
-			}
+			signer := eventstreamapi.NewSignEncoder(
+				v4.NewStreamSigner(r.ClientInfo.SigningRegion, r.ClientInfo.SigningName,
+					sigSeed, r.Config.Credentials),
+				encoder,
+			)
+			encoder = signer
+			closer = append(closer, signer)
 		{{- end }}
+		closer = append(closer, es.inputWriter)
 
-		var opts []func(*eventstream.Encoder)
-		if r.Config.Logger != nil && r.Config.LogLevel.Matches(aws.LogDebugWithEventStreamBody) {
-			opts = append(opts, eventstream.EncodeWithLogger(r.Config.Logger))
-		}
-
-		eventEncoder := eventstream.NewEncoder(es.inputWriter, opts...)
-		eventWriter := eventstreamapi.NewEventWriter(eventEncoder, signer,
+		eventWriter := eventstreamapi.NewEventWriter(encoder,
 			protocol.HandlerPayloadMarshal{
 				Marshalers: r.Handlers.BuildStream,
 			},
@@ -159,8 +163,12 @@ func (es *{{ $esapi.Name }}) setStreamCloser(r *request.Request) {
 		)
 
 		es.Writer = &{{ $inputStream.StreamWriterImplName }}{
-			StreamWriter: eventstreamapi.NewStreamWriter(eventWriter),
+			StreamWriter: eventstreamapi.NewStreamWriter(eventWriter, closer),
 		}
+		go func() {
+			<-es.done
+			es.Writer.Close()
+		}()
 	}
 
 	{{- if eq .API.Metadata.Protocol "json" }}
@@ -212,7 +220,12 @@ func (es *{{ $esapi.Name }}) setStreamCloser(r *request.Request) {
 			{{- end }}
 		)
 
-		es.Reader = {{ $outputStream.StreamReaderImplConstructorName }}(eventReader)
+		var closer io.Closer = r.HTTPResponse.Body
+		es.Reader = {{ $outputStream.StreamReaderImplConstructorName }}(eventReader, closer)
+		go func() {
+			<-es.done
+			es.Reader.Close()
+		}()
 	}
 
 	{{- if eq .API.Metadata.Protocol "json" }}
@@ -243,32 +256,38 @@ func (es *{{ $esapi.Name }}) setStreamCloser(r *request.Request) {
 	{{- end }}
 {{- end }}
 
-// Close closes the EventStream. This will also cause the Events channel to be
-// closed. You can use the closing of the Events channel to terminate your
-// application's read from the API's EventStream.
+// Close closes the stream. This will also cause the stream to be closed.
+// Close must be called when done using the stream API. Not calling Close
+// may result in resource leaks.
 {{- if $inputStream }}
 //
-// Will close the underlying EventStream writer. 
+// Will close the underlying EventStream writer, and no more events can be
+// sent. 
 {{- end }}
 {{- if $outputStream }}
 //
-// Will close the underlying EventStream reader.
+// You can use the closing of the Reader's Events channel to terminate your
+// application's read from the API's stream.
 {{- end }}
 //
-// For EventStream over HTTP connection this will also close the HTTP connection.
-//
-// Close must be called when done using the EventStream API. Not calling Close
-// may result in resource leaks.
 func (es *{{ $esapi.Name }}) Close() (err error) {
-	{{- if $outputStream }}
-		es.Reader.Close()
-	{{- end }}
+	es.closeOnce.Do(es.safeClose)
+	return es.Err()
+}
+
+func (es *{{ $esapi.Name }}) safeClose() {
+	if es.done != nil {
+		close(es.done)
+	}
 	{{- if $inputStream }}
 		es.Writer.Close()
 	{{- end }}
-	es.StreamCloser.Close()
-
-	return es.Err()
+	{{- if $outputStream }}
+		es.Reader.Close()
+	{{- end }}
+	{{- if $esapi.Legacy }}
+		es.StreamCloser.Close()
+	{{- end }}
 }
 
 // Err returns any error that occurred while reading or writing EventStream
@@ -295,7 +314,6 @@ func renderEventStreamShape(w io.Writer, s *Shape) error {
 	s.API.AddImport("bytes")
 	s.API.AddImport("io")
 	s.API.AddImport("sync")
-	s.API.AddImport("sync/atomic")
 	s.API.AddSDKImport("aws")
 	s.API.AddSDKImport("aws/awserr")
 	s.API.AddSDKImport("private/protocol/eventstream")
@@ -485,6 +503,7 @@ func (s *{{ $.ShapeName}}) MarshalEvent(pm protocol.PayloadMarshaler) (msg event
 			{{ $typedMem := EventHeaderValueForType $memRef.Shape $memVar -}}
 			msg.Headers.Set("{{ $memName }}", {{ $typedMem }})
 		{{- else if (and ($memRef.IsEventPayload) (eq $memRef.Shape.Type "blob")) }}
+			msg.Headers.Set(":content-type", eventstream.StringValue("application/octet-stream"))
 			msg.Payload = s.{{ $memName }}
 		{{- else if (and ($memRef.IsEventPayload) (eq $memRef.Shape.Type "string")) }}
 			msg.Payload = []byte(aws.StringValue(s.{{ $memName }}))

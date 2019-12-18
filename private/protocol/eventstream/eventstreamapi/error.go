@@ -1,6 +1,9 @@
 package eventstreamapi
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+)
 
 type messageError struct {
 	code string
@@ -21,4 +24,27 @@ func (e messageError) Error() string {
 
 func (e messageError) OrigErr() error {
 	return nil
+}
+
+type OnceError struct {
+	mu  sync.RWMutex
+	err error
+}
+
+func (e *OnceError) Err() error {
+	e.mu.RLock()
+	defer e.mu.RUnlock()
+	return e.err
+}
+
+func (e *OnceError) SetOnce(err error) {
+	if err == nil {
+		return
+	}
+
+	e.mu.Lock()
+	defer e.mu.Unlock()
+	if e.err == nil {
+		e.err = err
+	}
 }

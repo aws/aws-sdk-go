@@ -222,7 +222,11 @@ func (m MultiCloser) Close() error {
 			errs = append(errs, err)
 		}
 	}
-	return errs
+	if len(errs) != 0 {
+		return errs
+	}
+
+	return nil
 }
 
 type errors []error

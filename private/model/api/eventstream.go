@@ -28,7 +28,7 @@ func (es *EventStreamAPI) StreamInputEventTypeGetterName() string {
 	return "eventTypeFor" + es.Name + "InputEvent"
 }
 func (es *EventStreamAPI) StreamOutputUnmarshalerForEventName() string {
-	return "eventTypeFor" + es.Name + "InputEvent"
+	return "eventTypeFor" + es.Name + "OutputEvent"
 }
 
 // EventStream represents a single eventstream group (input/output) and the

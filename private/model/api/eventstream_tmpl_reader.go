@@ -32,17 +32,21 @@ type {{ $es.StreamReaderAPIName }} interface {
 type {{ $es.StreamReaderImplName }} struct {
 	eventReader *eventstreamapi.EventReader
 	stream chan {{ $es.EventGroupName }}
-	errVal atomic.Value
+	onceErr eventstreamapi.OnceError
 
 	done      chan struct{}
 	closeOnce sync.Once
+	streamCloser io.Closer
 }
 
-func {{ $es.StreamReaderImplConstructorName }}(eventReader *eventstreamapi.EventReader) *{{ $es.StreamReaderImplName }} {
+func {{ $es.StreamReaderImplConstructorName }}(
+	eventReader *eventstreamapi.EventReader, streamCloser io.Closer,
+) *{{ $es.StreamReaderImplName }} {
 	r := &{{ $es.StreamReaderImplName }}{
 		eventReader: eventReader,
 		stream: make(chan {{ $es.EventGroupName }}),
-		done: make(chan struct{}),
+		done:   make(chan struct{}),
+		streamCloser: streamCloser,
 	}
 	go r.readEventStream()
 
@@ -57,13 +61,13 @@ func (r *{{ $es.StreamReaderImplName }}) Close() error {
 
 func (r *{{ $es.StreamReaderImplName }}) safeClose() {
 	close(r.done)
+	if err := r.streamCloser.Close(); err != nil {
+		r.onceErr.SetOnce(err)
+	}
 }
 
 func (r *{{ $es.StreamReaderImplName }}) Err() error {
-	if v := r.errVal.Load(); v != nil {
-		return v.(error)
-	}
-	return nil
+	return r.onceErr.Err()
 }
 
 func (r *{{ $es.StreamReaderImplName }}) Events() <-chan {{ $es.EventGroupName }} {
@@ -71,6 +75,7 @@ func (r *{{ $es.StreamReaderImplName }}) Events() <-chan {{ $es.EventGroupName }
 }
 
 func (r *{{ $es.StreamReaderImplName }}) readEventStream() {
+	defer r.Close()
 	defer close(r.stream)
 
 	for {
@@ -85,7 +90,7 @@ func (r *{{ $es.StreamReaderImplName }}) readEventStream() {
 				return
 			default:
 			}
-			r.errVal.Store(err)
+			r.onceErr.SetOnce(err)
 			return
 		}
 

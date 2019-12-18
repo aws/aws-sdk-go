@@ -460,6 +460,9 @@ func (v *TimestampValue) decode(r io.Reader) error {
 	*v = TimestampValue(timeFromEpochMilli(int64(n)))
 	return nil
 }
+func (v TimestampValue) MarshalJSON() ([]byte, error) {
+	return []byte(v.String()), nil
+}
 
 func timeFromEpochMilli(t int64) time.Time {
 	secs := t / 1e3
