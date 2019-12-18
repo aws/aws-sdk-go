@@ -76,7 +76,7 @@ func TestIsErrorRetryable(t *testing.T) {
 		},
 		{
 			Err:       awserr.New(ErrCodeSerialization, "some error", errors.New("blah")),
-			Retryable: false,
+			Retryable: true,
 		},
 		{
 			Err:       awserr.New("SomeError", "some error", nil),

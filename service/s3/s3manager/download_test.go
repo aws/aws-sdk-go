@@ -2,6 +2,7 @@ package s3manager_test
 
 import (
 	"bytes"
+	"encoding/xml"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -101,9 +102,19 @@ func dlLoggingSvcNoContentRangeLength(data []byte, states []int) (*s3.S3, *[]str
 
 		names = append(names, r.Operation.Name)
 
+		var body io.Reader
+		if states[index] < 400 {
+			body = bytes.NewReader(data[:])
+		} else {
+			var buffer bytes.Buffer
+			encoder := xml.NewEncoder(&buffer)
+			_ = encoder.Encode(&mockErrorResponse)
+			body = &buffer
+		}
+
 		r.HTTPResponse = &http.Response{
 			StatusCode: states[index],
-			Body:       ioutil.NopCloser(bytes.NewReader(data[:])),
+			Body:       ioutil.NopCloser(body),
 			Header:     http.Header{},
 		}
 		index++
@@ -839,4 +850,13 @@ func (b *badReader) Read(p []byte) (int, error) {
 	copy(p, tb)
 
 	return len(p), b.err
+}
+
+var mockErrorResponse = struct {
+	XMLName xml.Name `xml:"Error"`
+	Code    string   `xml:"Code"`
+	Message string   `xml:"Message"`
+}{
+	Code:    "MOCK_S3_ERROR_CODE",
+	Message: "Mocked S3 Error Message",
 }
