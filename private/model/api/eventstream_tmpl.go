@@ -167,6 +167,7 @@ func new{{ $esapi.Name }}() *{{ $esapi.Name }} {
 		}
 		go func() {
 			<-es.done
+			es.inputWriter.Close()
 			es.Writer.Close()
 		}()
 	}

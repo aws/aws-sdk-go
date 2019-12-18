@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"io"
 	"sync"
-	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 )
@@ -44,21 +43,8 @@ func (w *StreamWriter) Close() error {
 
 func (w *StreamWriter) safeClose() {
 	close(w.done)
-	if w.streamCloser != nil {
-		// closing the stream may block need to close it asynchronously.
-		t := time.NewTicker(time.Second)
-		defer t.Stop()
-		streamClosed := make(chan struct{})
-		go func() {
-			if err := w.streamCloser.Close(); err != nil {
-				w.err.SetOnce(err)
-			}
-			close(streamClosed)
-		}()
-		select {
-		case <-streamClosed:
-		case <-t.C:
-		}
+	if err := w.streamCloser.Close(); err != nil {
+		w.err.SetOnce(err)
 	}
 	w.stream = nil
 }

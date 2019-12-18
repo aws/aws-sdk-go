@@ -222,6 +222,7 @@ func (es *StartStreamTranscriptionEventStream) runInputStream(r *request.Request
 	}
 	go func() {
 		<-es.done
+		es.inputWriter.Close()
 		es.Writer.Close()
 	}()
 }

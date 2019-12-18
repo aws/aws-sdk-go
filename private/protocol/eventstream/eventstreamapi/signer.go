@@ -2,6 +2,7 @@ package eventstreamapi
 
 import (
 	"bytes"
+	"strings"
 	"time"
 
 	"github.com/aws/aws-sdk-go/private/protocol/eventstream"
@@ -38,9 +39,17 @@ func (s *SignEncoder) Close() error {
 		return s.closeErr
 	}
 
-	s.closeErr = s.encode([]byte{})
-	s.closed = true
-	return s.closeErr
+	if err := s.encode([]byte{}); err != nil {
+		if strings.Contains(err.Error(), "on closed pipe") {
+			return nil
+		}
+
+		s.closeErr = err
+		s.closed = true
+		return s.closeErr
+	}
+
+	return nil
 }
 
 func (s *SignEncoder) Encode(msg eventstream.Message) error {
