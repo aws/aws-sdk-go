@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"io"
 	"sync"
-	"sync/atomic"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -62,8 +61,7 @@ func (c *RESTXMLService) EmptyStreamRequest(input *EmptyStreamInput) (req *reque
 	output = &EmptyStreamOutput{}
 	req = c.newRequest(op, input, output)
 
-	es := &EmptyStreamEventStream{}
-	req.Handlers.Unmarshal.PushBack(es.setStreamCloser)
+	es := newEmptyStreamEventStream()
 	output.eventStream = es
 
 	req.Handlers.Send.Swap(client.LogHTTPResponseHandler.Name, client.LogHTTPResponseHeaderHandler)
@@ -113,20 +111,15 @@ type EmptyStreamEventStream struct {
 	// Must not be nil.
 	Reader EmptyEventStreamReader
 
-	// StreamCloser is the io.Closer for the EventStream connection. For HTTP
-	// EventStream this is the response Body. The stream will be closed when
-	// the Close method of the EventStream is called.
-	StreamCloser io.Closer
+	done      chan struct{}
+	closeOnce sync.Once
+	err       eventstreamapi.OnceError
 }
 
-func (es *EmptyStreamEventStream) setStreamCloser(r *request.Request) {
-	var closers aws.MultiCloser
-	if es.StreamCloser != nil {
-		closers = append(closers, es.StreamCloser)
+func newEmptyStreamEventStream() *EmptyStreamEventStream {
+	return &EmptyStreamEventStream{
+		done: make(chan struct{}),
 	}
-	closers = append(closers, r.HTTPResponse.Body)
-
-	es.StreamCloser = closers
 }
 
 // Events returns a channel to read events from.
@@ -151,24 +144,31 @@ func (es *EmptyStreamEventStream) runOutputStream(r *request.Request) {
 		unmarshalerForEmptyEventStreamEvent,
 	)
 
-	es.Reader = newReadEmptyEventStream(eventReader)
+	var closer io.Closer = r.HTTPResponse.Body
+	es.Reader = newReadEmptyEventStream(eventReader, closer)
+	go func() {
+		<-es.done
+		es.Reader.Close()
+	}()
 }
 
-// Close closes the EventStream. This will also cause the Events channel to be
-// closed. You can use the closing of the Events channel to terminate your
-// application's read from the API's EventStream.
-//
-// Will close the underlying EventStream reader.
-//
-// For EventStream over HTTP connection this will also close the HTTP connection.
-//
-// Close must be called when done using the EventStream API. Not calling Close
+// Close closes the stream. This will also cause the stream to be closed.
+// Close must be called when done using the stream API. Not calling Close
 // may result in resource leaks.
+//
+// You can use the closing of the Reader's Events channel to terminate your
+// application's read from the API's stream.
+//
 func (es *EmptyStreamEventStream) Close() (err error) {
-	es.Reader.Close()
-	es.StreamCloser.Close()
-
+	es.closeOnce.Do(es.safeClose)
 	return es.Err()
+}
+
+func (es *EmptyStreamEventStream) safeClose() {
+	if es.done != nil {
+		close(es.done)
+	}
+	es.Reader.Close()
 }
 
 // Err returns any error that occurred while reading or writing EventStream
@@ -221,8 +221,7 @@ func (c *RESTXMLService) GetEventStreamRequest(input *GetEventStreamInput) (req 
 	output = &GetEventStreamOutput{}
 	req = c.newRequest(op, input, output)
 
-	es := &GetEventStreamEventStream{}
-	req.Handlers.Unmarshal.PushBack(es.setStreamCloser)
+	es := newGetEventStreamEventStream()
 	output.eventStream = es
 
 	req.Handlers.Send.Swap(client.LogHTTPResponseHandler.Name, client.LogHTTPResponseHeaderHandler)
@@ -272,20 +271,15 @@ type GetEventStreamEventStream struct {
 	// Must not be nil.
 	Reader EventStreamReader
 
-	// StreamCloser is the io.Closer for the EventStream connection. For HTTP
-	// EventStream this is the response Body. The stream will be closed when
-	// the Close method of the EventStream is called.
-	StreamCloser io.Closer
+	done      chan struct{}
+	closeOnce sync.Once
+	err       eventstreamapi.OnceError
 }
 
-func (es *GetEventStreamEventStream) setStreamCloser(r *request.Request) {
-	var closers aws.MultiCloser
-	if es.StreamCloser != nil {
-		closers = append(closers, es.StreamCloser)
+func newGetEventStreamEventStream() *GetEventStreamEventStream {
+	return &GetEventStreamEventStream{
+		done: make(chan struct{}),
 	}
-	closers = append(closers, r.HTTPResponse.Body)
-
-	es.StreamCloser = closers
 }
 
 // Events returns a channel to read events from.
@@ -317,24 +311,31 @@ func (es *GetEventStreamEventStream) runOutputStream(r *request.Request) {
 		unmarshalerForEventStreamEvent,
 	)
 
-	es.Reader = newReadEventStream(eventReader)
+	var closer io.Closer = r.HTTPResponse.Body
+	es.Reader = newReadEventStream(eventReader, closer)
+	go func() {
+		<-es.done
+		es.Reader.Close()
+	}()
 }
 
-// Close closes the EventStream. This will also cause the Events channel to be
-// closed. You can use the closing of the Events channel to terminate your
-// application's read from the API's EventStream.
-//
-// Will close the underlying EventStream reader.
-//
-// For EventStream over HTTP connection this will also close the HTTP connection.
-//
-// Close must be called when done using the EventStream API. Not calling Close
+// Close closes the stream. This will also cause the stream to be closed.
+// Close must be called when done using the stream API. Not calling Close
 // may result in resource leaks.
+//
+// You can use the closing of the Reader's Events channel to terminate your
+// application's read from the API's stream.
+//
 func (es *GetEventStreamEventStream) Close() (err error) {
-	es.Reader.Close()
-	es.StreamCloser.Close()
-
+	es.closeOnce.Do(es.safeClose)
 	return es.Err()
+}
+
+func (es *GetEventStreamEventStream) safeClose() {
+	if es.done != nil {
+		close(es.done)
+	}
+	es.Reader.Close()
 }
 
 // Err returns any error that occurred while reading or writing EventStream
@@ -487,17 +488,21 @@ type EmptyEventStreamReader interface {
 type readEmptyEventStream struct {
 	eventReader *eventstreamapi.EventReader
 	stream      chan EmptyEventStreamEvent
-	errVal      atomic.Value
+	onceErr     eventstreamapi.OnceError
 
-	done      chan struct{}
-	closeOnce sync.Once
+	done         chan struct{}
+	closeOnce    sync.Once
+	streamCloser io.Closer
 }
 
-func newReadEmptyEventStream(eventReader *eventstreamapi.EventReader) *readEmptyEventStream {
+func newReadEmptyEventStream(
+	eventReader *eventstreamapi.EventReader, streamCloser io.Closer,
+) *readEmptyEventStream {
 	r := &readEmptyEventStream{
-		eventReader: eventReader,
-		stream:      make(chan EmptyEventStreamEvent),
-		done:        make(chan struct{}),
+		eventReader:  eventReader,
+		stream:       make(chan EmptyEventStreamEvent),
+		done:         make(chan struct{}),
+		streamCloser: streamCloser,
 	}
 	go r.readEventStream()
 
@@ -512,13 +517,13 @@ func (r *readEmptyEventStream) Close() error {
 
 func (r *readEmptyEventStream) safeClose() {
 	close(r.done)
+	if err := r.streamCloser.Close(); err != nil {
+		r.onceErr.SetOnce(err)
+	}
 }
 
 func (r *readEmptyEventStream) Err() error {
-	if v := r.errVal.Load(); v != nil {
-		return v.(error)
-	}
-	return nil
+	return r.onceErr.Err()
 }
 
 func (r *readEmptyEventStream) Events() <-chan EmptyEventStreamEvent {
@@ -526,6 +531,7 @@ func (r *readEmptyEventStream) Events() <-chan EmptyEventStreamEvent {
 }
 
 func (r *readEmptyEventStream) readEventStream() {
+	defer r.Close()
 	defer close(r.stream)
 
 	for {
@@ -540,7 +546,7 @@ func (r *readEmptyEventStream) readEventStream() {
 				return
 			default:
 			}
-			r.errVal.Store(err)
+			r.onceErr.SetOnce(err)
 			return
 		}
 
@@ -644,17 +650,21 @@ type EventStreamReader interface {
 type readEventStream struct {
 	eventReader *eventstreamapi.EventReader
 	stream      chan EventStreamEvent
-	errVal      atomic.Value
+	onceErr     eventstreamapi.OnceError
 
-	done      chan struct{}
-	closeOnce sync.Once
+	done         chan struct{}
+	closeOnce    sync.Once
+	streamCloser io.Closer
 }
 
-func newReadEventStream(eventReader *eventstreamapi.EventReader) *readEventStream {
+func newReadEventStream(
+	eventReader *eventstreamapi.EventReader, streamCloser io.Closer,
+) *readEventStream {
 	r := &readEventStream{
-		eventReader: eventReader,
-		stream:      make(chan EventStreamEvent),
-		done:        make(chan struct{}),
+		eventReader:  eventReader,
+		stream:       make(chan EventStreamEvent),
+		done:         make(chan struct{}),
+		streamCloser: streamCloser,
 	}
 	go r.readEventStream()
 
@@ -669,13 +679,13 @@ func (r *readEventStream) Close() error {
 
 func (r *readEventStream) safeClose() {
 	close(r.done)
+	if err := r.streamCloser.Close(); err != nil {
+		r.onceErr.SetOnce(err)
+	}
 }
 
 func (r *readEventStream) Err() error {
-	if v := r.errVal.Load(); v != nil {
-		return v.(error)
-	}
-	return nil
+	return r.onceErr.Err()
 }
 
 func (r *readEventStream) Events() <-chan EventStreamEvent {
@@ -683,6 +693,7 @@ func (r *readEventStream) Events() <-chan EventStreamEvent {
 }
 
 func (r *readEventStream) readEventStream() {
+	defer r.Close()
 	defer close(r.stream)
 
 	for {
@@ -697,7 +708,7 @@ func (r *readEventStream) readEventStream() {
 				return
 			default:
 			}
-			r.errVal.Store(err)
+			r.onceErr.SetOnce(err)
 			return
 		}
 
@@ -1293,6 +1304,7 @@ func (s *PayloadOnlyBlobEvent) UnmarshalEvent(
 
 func (s *PayloadOnlyBlobEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
 	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	msg.Headers.Set(":content-type", eventstream.StringValue("application/octet-stream"))
 	msg.Payload = s.BlobPayload
 	return msg, err
 }

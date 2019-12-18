@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"io"
 	"sync"
-	"sync/atomic"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -9482,7 +9481,7 @@ func (c *S3) SelectObjectContentRequest(input *SelectObjectContentInput) (req *r
 	output = &SelectObjectContentOutput{}
 	req = c.newRequest(op, input, output)
 
-	es := &SelectObjectContentEventStream{}
+	es := newSelectObjectContentEventStream()
 	req.Handlers.Unmarshal.PushBack(es.setStreamCloser)
 	output.EventStream = es
 
@@ -9622,16 +9621,20 @@ type SelectObjectContentEventStream struct {
 	// EventStream this is the response Body. The stream will be closed when
 	// the Close method of the EventStream is called.
 	StreamCloser io.Closer
+
+	done      chan struct{}
+	closeOnce sync.Once
+	err       eventstreamapi.OnceError
+}
+
+func newSelectObjectContentEventStream() *SelectObjectContentEventStream {
+	return &SelectObjectContentEventStream{
+		done: make(chan struct{}),
+	}
 }
 
 func (es *SelectObjectContentEventStream) setStreamCloser(r *request.Request) {
-	var closers aws.MultiCloser
-	if es.StreamCloser != nil {
-		closers = append(closers, es.StreamCloser)
-	}
-	closers = append(closers, r.HTTPResponse.Body)
-
-	es.StreamCloser = closers
+	es.StreamCloser = r.HTTPResponse.Body
 }
 
 // Events returns a channel to read events from.
@@ -9661,24 +9664,32 @@ func (es *SelectObjectContentEventStream) runOutputStream(r *request.Request) {
 		unmarshalerForSelectObjectContentEventStreamEvent,
 	)
 
-	es.Reader = newReadSelectObjectContentEventStream(eventReader)
+	var closer io.Closer = r.HTTPResponse.Body
+	es.Reader = newReadSelectObjectContentEventStream(eventReader, closer)
+	go func() {
+		<-es.done
+		es.Reader.Close()
+	}()
 }
 
-// Close closes the EventStream. This will also cause the Events channel to be
-// closed. You can use the closing of the Events channel to terminate your
-// application's read from the API's EventStream.
-//
-// Will close the underlying EventStream reader.
-//
-// For EventStream over HTTP connection this will also close the HTTP connection.
-//
-// Close must be called when done using the EventStream API. Not calling Close
+// Close closes the stream. This will also cause the stream to be closed.
+// Close must be called when done using the stream API. Not calling Close
 // may result in resource leaks.
+//
+// You can use the closing of the Reader's Events channel to terminate your
+// application's read from the API's stream.
+//
 func (es *SelectObjectContentEventStream) Close() (err error) {
+	es.closeOnce.Do(es.safeClose)
+	return es.Err()
+}
+
+func (es *SelectObjectContentEventStream) safeClose() {
+	if es.done != nil {
+		close(es.done)
+	}
 	es.Reader.Close()
 	es.StreamCloser.Close()
-
-	return es.Err()
 }
 
 // Err returns any error that occurred while reading or writing EventStream
@@ -26873,6 +26884,7 @@ func (s *RecordsEvent) UnmarshalEvent(
 
 func (s *RecordsEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
 	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	msg.Headers.Set(":content-type", eventstream.StringValue("application/octet-stream"))
 	msg.Payload = s.Payload
 	return msg, err
 }
@@ -28100,17 +28112,21 @@ type SelectObjectContentEventStreamReader interface {
 type readSelectObjectContentEventStream struct {
 	eventReader *eventstreamapi.EventReader
 	stream      chan SelectObjectContentEventStreamEvent
-	errVal      atomic.Value
+	onceErr     eventstreamapi.OnceError
 
-	done      chan struct{}
-	closeOnce sync.Once
+	done         chan struct{}
+	closeOnce    sync.Once
+	streamCloser io.Closer
 }
 
-func newReadSelectObjectContentEventStream(eventReader *eventstreamapi.EventReader) *readSelectObjectContentEventStream {
+func newReadSelectObjectContentEventStream(
+	eventReader *eventstreamapi.EventReader, streamCloser io.Closer,
+) *readSelectObjectContentEventStream {
 	r := &readSelectObjectContentEventStream{
-		eventReader: eventReader,
-		stream:      make(chan SelectObjectContentEventStreamEvent),
-		done:        make(chan struct{}),
+		eventReader:  eventReader,
+		stream:       make(chan SelectObjectContentEventStreamEvent),
+		done:         make(chan struct{}),
+		streamCloser: streamCloser,
 	}
 	go r.readEventStream()
 
@@ -28125,13 +28141,13 @@ func (r *readSelectObjectContentEventStream) Close() error {
 
 func (r *readSelectObjectContentEventStream) safeClose() {
 	close(r.done)
+	if err := r.streamCloser.Close(); err != nil {
+		r.onceErr.SetOnce(err)
+	}
 }
 
 func (r *readSelectObjectContentEventStream) Err() error {
-	if v := r.errVal.Load(); v != nil {
-		return v.(error)
-	}
-	return nil
+	return r.onceErr.Err()
 }
 
 func (r *readSelectObjectContentEventStream) Events() <-chan SelectObjectContentEventStreamEvent {
@@ -28139,6 +28155,7 @@ func (r *readSelectObjectContentEventStream) Events() <-chan SelectObjectContent
 }
 
 func (r *readSelectObjectContentEventStream) readEventStream() {
+	defer r.Close()
 	defer close(r.stream)
 
 	for {
@@ -28153,7 +28170,7 @@ func (r *readSelectObjectContentEventStream) readEventStream() {
 				return
 			default:
 			}
-			r.errVal.Store(err)
+			r.onceErr.SetOnce(err)
 			return
 		}
 

@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"io"
 	"sync"
-	"sync/atomic"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
@@ -62,8 +61,7 @@ func (c *TranscribeStreamingService) StartStreamTranscriptionRequest(input *Star
 	output = &StartStreamTranscriptionOutput{}
 	req = c.newRequest(op, input, output)
 
-	es := &StartStreamTranscriptionEventStream{}
-	req.Handlers.Unmarshal.PushBack(es.setStreamCloser)
+	es := newStartStreamTranscriptionEventStream()
 	output.eventStream = es
 
 	inputReader, inputWriter := io.Pipe()
@@ -169,21 +167,15 @@ type StartStreamTranscriptionEventStream struct {
 	// Must not be nil.
 	Reader TranscriptResultStreamReader
 
-	// StreamCloser is the io.Closer for the EventStream connection. For HTTP
-	// EventStream this is the response Body. The stream will be closed when
-	// the Close method of the EventStream is called.
-	StreamCloser io.Closer
+	done      chan struct{}
+	closeOnce sync.Once
+	err       eventstreamapi.OnceError
 }
 
-func (es *StartStreamTranscriptionEventStream) setStreamCloser(r *request.Request) {
-	var closers aws.MultiCloser
-	if es.StreamCloser != nil {
-		closers = append(closers, es.StreamCloser)
+func newStartStreamTranscriptionEventStream() *StartStreamTranscriptionEventStream {
+	return &StartStreamTranscriptionEventStream{
+		done: make(chan struct{}),
 	}
-	closers = append(closers, es.inputWriter)
-	closers = append(closers, r.HTTPResponse.Body)
-
-	es.StreamCloser = closers
 }
 
 // Send writes the event to the stream blocking until the event is written.
@@ -192,30 +184,33 @@ func (es *StartStreamTranscriptionEventStream) setStreamCloser(r *request.Reques
 // These events are:
 //
 //     * AudioEvent
-func (es *StartStreamTranscriptionEventStream) Send(ctx aws.Context, event AudioStreamEvent) {
-	es.Writer.Send(ctx, event)
+func (es *StartStreamTranscriptionEventStream) Send(ctx aws.Context, event AudioStreamEvent) error {
+	return es.Writer.Send(ctx, event)
 }
 
 func (es *StartStreamTranscriptionEventStream) runInputStream(r *request.Request) {
-	var signer *eventstreamapi.MessageSigner
+	var opts []func(*eventstream.Encoder)
+	if r.Config.Logger != nil && r.Config.LogLevel.Matches(aws.LogDebugWithEventStreamBody) {
+		opts = append(opts, eventstream.EncodeWithLogger(r.Config.Logger))
+	}
+	var encoder eventstreamapi.Encoder = eventstream.NewEncoder(es.inputWriter, opts...)
+
+	var closer aws.MultiCloser
 	sigSeed, err := v4.GetSignedRequestSignature(r.HTTPRequest)
 	if err != nil {
 		r.Error = awserr.New("TODO", "unable to get initial request's signature", err)
 		return
 	}
-	signer = &eventstreamapi.MessageSigner{
-		Signer: v4.NewStreamSigner(
-			r.ClientInfo.SigningRegion, r.ClientInfo.SigningName,
+	signer := eventstreamapi.NewSignEncoder(
+		v4.NewStreamSigner(r.ClientInfo.SigningRegion, r.ClientInfo.SigningName,
 			sigSeed, r.Config.Credentials),
-	}
+		encoder,
+	)
+	encoder = signer
+	closer = append(closer, signer)
+	closer = append(closer, es.inputWriter)
 
-	var opts []func(*eventstream.Encoder)
-	if r.Config.Logger != nil && r.Config.LogLevel.Matches(aws.LogDebugWithEventStreamBody) {
-		opts = append(opts, eventstream.EncodeWithLogger(r.Config.Logger))
-	}
-
-	eventEncoder := eventstream.NewEncoder(es.inputWriter, opts...)
-	eventWriter := eventstreamapi.NewEventWriter(eventEncoder, signer,
+	eventWriter := eventstreamapi.NewEventWriter(encoder,
 		protocol.HandlerPayloadMarshal{
 			Marshalers: r.Handlers.BuildStream,
 		},
@@ -223,8 +218,12 @@ func (es *StartStreamTranscriptionEventStream) runInputStream(r *request.Request
 	)
 
 	es.Writer = &writeAudioStream{
-		StreamWriter: eventstreamapi.NewStreamWriter(eventWriter),
+		StreamWriter: eventstreamapi.NewStreamWriter(eventWriter, closer),
 	}
+	go func() {
+		<-es.done
+		es.Writer.Close()
+	}()
 }
 
 // Events returns a channel to read events from.
@@ -250,27 +249,35 @@ func (es *StartStreamTranscriptionEventStream) runOutputStream(r *request.Reques
 		unmarshalerForTranscriptResultStreamEvent,
 	)
 
-	es.Reader = newReadTranscriptResultStream(eventReader)
+	var closer io.Closer = r.HTTPResponse.Body
+	es.Reader = newReadTranscriptResultStream(eventReader, closer)
+	go func() {
+		<-es.done
+		es.Reader.Close()
+	}()
 }
 
-// Close closes the EventStream. This will also cause the Events channel to be
-// closed. You can use the closing of the Events channel to terminate your
-// application's read from the API's EventStream.
-//
-// Will close the underlying EventStream writer.
-//
-// Will close the underlying EventStream reader.
-//
-// For EventStream over HTTP connection this will also close the HTTP connection.
-//
-// Close must be called when done using the EventStream API. Not calling Close
+// Close closes the stream. This will also cause the stream to be closed.
+// Close must be called when done using the stream API. Not calling Close
 // may result in resource leaks.
+//
+// Will close the underlying EventStream writer, and no more events can be
+// sent.
+//
+// You can use the closing of the Reader's Events channel to terminate your
+// application's read from the API's stream.
+//
 func (es *StartStreamTranscriptionEventStream) Close() (err error) {
-	es.Reader.Close()
-	es.Writer.Close()
-	es.StreamCloser.Close()
-
+	es.closeOnce.Do(es.safeClose)
 	return es.Err()
+}
+
+func (es *StartStreamTranscriptionEventStream) safeClose() {
+	if es.done != nil {
+		close(es.done)
+	}
+	es.Writer.Close()
+	es.Reader.Close()
 }
 
 // Err returns any error that occurred while reading or writing EventStream
@@ -361,6 +368,7 @@ func (s *AudioEvent) UnmarshalEvent(
 
 func (s *AudioEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
 	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	msg.Headers.Set(":content-type", eventstream.StringValue("application/octet-stream"))
 	msg.Payload = s.AudioChunk
 	return msg, err
 }
@@ -1078,17 +1086,21 @@ type TranscriptResultStreamReader interface {
 type readTranscriptResultStream struct {
 	eventReader *eventstreamapi.EventReader
 	stream      chan TranscriptResultStreamEvent
-	errVal      atomic.Value
+	onceErr     eventstreamapi.OnceError
 
-	done      chan struct{}
-	closeOnce sync.Once
+	done         chan struct{}
+	closeOnce    sync.Once
+	streamCloser io.Closer
 }
 
-func newReadTranscriptResultStream(eventReader *eventstreamapi.EventReader) *readTranscriptResultStream {
+func newReadTranscriptResultStream(
+	eventReader *eventstreamapi.EventReader, streamCloser io.Closer,
+) *readTranscriptResultStream {
 	r := &readTranscriptResultStream{
-		eventReader: eventReader,
-		stream:      make(chan TranscriptResultStreamEvent),
-		done:        make(chan struct{}),
+		eventReader:  eventReader,
+		stream:       make(chan TranscriptResultStreamEvent),
+		done:         make(chan struct{}),
+		streamCloser: streamCloser,
 	}
 	go r.readEventStream()
 
@@ -1103,13 +1115,13 @@ func (r *readTranscriptResultStream) Close() error {
 
 func (r *readTranscriptResultStream) safeClose() {
 	close(r.done)
+	if err := r.streamCloser.Close(); err != nil {
+		r.onceErr.SetOnce(err)
+	}
 }
 
 func (r *readTranscriptResultStream) Err() error {
-	if v := r.errVal.Load(); v != nil {
-		return v.(error)
-	}
-	return nil
+	return r.onceErr.Err()
 }
 
 func (r *readTranscriptResultStream) Events() <-chan TranscriptResultStreamEvent {
@@ -1117,6 +1129,7 @@ func (r *readTranscriptResultStream) Events() <-chan TranscriptResultStreamEvent
 }
 
 func (r *readTranscriptResultStream) readEventStream() {
+	defer r.Close()
 	defer close(r.stream)
 
 	for {
@@ -1131,7 +1144,7 @@ func (r *readTranscriptResultStream) readEventStream() {
 				return
 			default:
 			}
-			r.errVal.Store(err)
+			r.onceErr.SetOnce(err)
 			return
 		}
 
