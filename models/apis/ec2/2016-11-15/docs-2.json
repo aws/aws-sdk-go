@@ -12993,6 +12993,7 @@
         "CustomerGateway$Tags": "<p>Any tags assigned to the customer gateway.</p>",
         "DeleteTagsRequest$Tags": "<p>The tags to delete. Specify a tag key and an optional tag value to delete specific tags. If you specify a tag key without a tag value, we delete any tag with this key regardless of its value. If you specify a tag key with an empty string as the tag value, we delete the tag only if its value is an empty string.</p> <p>If you omit this parameter, we delete all user-defined tags for the specified resources. We do not delete AWS-generated tags (tags that have the <code>aws:</code> prefix).</p>",
         "DhcpOptions$Tags": "<p>Any tags assigned to the DHCP options set.</p>",
+        "ElasticGpus$Tags": "<p>The tags assigned to the Elastic Graphics accelerator.</p>",
         "FleetData$Tags": "<p>The tags for an EC2 Fleet resource.</p>",
         "FpgaImage$Tags": "<p>Any tags assigned to the AFI.</p>",
         "Host$Tags": "<p>Any tags assigned to the Dedicated Host.</p>",
