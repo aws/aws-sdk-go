@@ -1,3 +1,19 @@
+Release v1.26.6 (2019-12-19)
+===
+
+### Service Client Updates
+* `service/codestar-connections`: Adds new service
+* `service/dlm`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * We are updating the supportedRootDevices field to supportedRootDeviceTypes for DescribeInstanceTypes API to ensure that the actual value is returned, correcting a previous error in the model.
+* `service/gamelift`: Updates service API and documentation
+  * Amazon GameLift now supports ARNs for all key GameLift resources, tagging for GameLift resource authorization management, and updated documentation that articulates GameLift's resource authorization strategy.
+* `service/lex-models`: Updates service API and documentation
+* `service/personalize-runtime`: Updates service API and documentation
+* `service/ssm`: Updates service API and documentation
+  * This release allows customers to add tags to Automation execution, enabling them to sort and filter executions in different ways, such as by resource, purpose, owner, or environment.
+* `service/transcribe`: Updates service API and documentation
+
 Release v1.26.5 (2019-12-18)
 ===
 

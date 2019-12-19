@@ -2375,7 +2375,8 @@
         "CurrentAction",
         "StartTimeBefore",
         "StartTimeAfter",
-        "AutomationType"
+        "AutomationType",
+        "TagKey"
       ]
     },
     "AutomationExecutionFilterList":{
@@ -8461,7 +8462,8 @@
         "TargetLocations":{
           "shape":"TargetLocations",
           "box":true
-        }
+        },
+        "Tags":{"shape":"TagList"}
       }
     },
     "StartAutomationExecutionResult":{

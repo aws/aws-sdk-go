@@ -24,10 +24,22 @@
         "FastRestoreRule$AvailabilityZones": "<p>The Availability Zones in which to enable fast snapshot restore.</p>"
       }
     },
+    "CmkArn": {
+      "base": null,
+      "refs": {
+        "CrossRegionCopyRule$CmkArn": "<p>The Amazon Resource Name (ARN) of the AWS KMS customer master key (CMK) to use for EBS encryption. If this parameter is not specified, your AWS managed CMK for EBS is used.</p>"
+      }
+    },
     "CopyTags": {
       "base": null,
       "refs": {
         "Schedule$CopyTags": "<p>Copy all user-defined tags on a source volume to snapshots of the volume created by this policy.</p>"
+      }
+    },
+    "CopyTagsNullable": {
+      "base": null,
+      "refs": {
+        "CrossRegionCopyRule$CopyTags": "<p>Copy all user-defined tags from the source snapshot to the copied snapshot.</p>"
       }
     },
     "Count": {
@@ -50,7 +62,25 @@
     "CreateRule": {
       "base": "<p>Specifies when to create snapshots of EBS volumes.</p>",
       "refs": {
-        "Schedule$CreateRule": "<p>The create rule.</p>"
+        "Schedule$CreateRule": "<p>The creation rule.</p>"
+      }
+    },
+    "CrossRegionCopyRetainRule": {
+      "base": "<p>Specifies the retention rule for cross-Region snapshot copies.</p>",
+      "refs": {
+        "CrossRegionCopyRule$RetainRule": "<p>The retention rule.</p>"
+      }
+    },
+    "CrossRegionCopyRule": {
+      "base": "<p>Specifies a rule for cross-Region snapshot copies.</p>",
+      "refs": {
+        "CrossRegionCopyRules$member": null
+      }
+    },
+    "CrossRegionCopyRules": {
+      "base": null,
+      "refs": {
+        "Schedule$CrossRegionCopyRules": "<p>The rule for cross-Region snapshot copies.</p>"
       }
     },
     "DeleteLifecyclePolicyRequest": {
@@ -61,6 +91,12 @@
     "DeleteLifecyclePolicyResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "Encrypted": {
+      "base": null,
+      "refs": {
+        "CrossRegionCopyRule$Encrypted": "<p>To encrypt a copy of an unencrypted snapshot if encryption by default is not enabled, enable encryption using this parameter. Copies of encrypted snapshots are encrypted, even if this parameter is false or if encryption by default is not enabled.</p>"
       }
     },
     "ErrorCode": {
@@ -98,7 +134,7 @@
     "FastRestoreRule": {
       "base": "<p>Specifies a rule for enabling fast snapshot restore. You can enable fast snapshot restore based on either a count or a time interval.</p>",
       "refs": {
-        "Schedule$FastRestoreRule": "<p>Enable fast snapshot restore.</p>"
+        "Schedule$FastRestoreRule": "<p>The rule for enabling fast snapshot restore.</p>"
       }
     },
     "GetLifecyclePoliciesRequest": {
@@ -138,6 +174,7 @@
       "base": null,
       "refs": {
         "CreateRule$Interval": "<p>The interval between snapshots. The supported values are 2, 3, 4, 6, 8, 12, and 24.</p>",
+        "CrossRegionCopyRetainRule$Interval": "<p>The amount of time to retain each snapshot. The maximum is 100 years. This is equivalent to 1200 months, 5200 weeks, or 36500 days.</p>",
         "FastRestoreRule$Interval": "<p>The amount of time to enable fast snapshot restore. The maximum is 100 years. This is equivalent to 1200 months, 5200 weeks, or 36500 days.</p>",
         "RetainRule$Interval": "<p>The amount of time to retain each snapshot. The maximum is 100 years. This is equivalent to 1200 months, 5200 weeks, or 36500 days.</p>"
       }
@@ -283,6 +320,7 @@
     "RetentionIntervalUnitValues": {
       "base": null,
       "refs": {
+        "CrossRegionCopyRetainRule$IntervalUnit": "<p>The unit of time for time-based retention.</p>",
         "FastRestoreRule$IntervalUnit": "<p>The unit of time for enabling fast snapshot restore.</p>",
         "RetainRule$IntervalUnit": "<p>The unit of time for time-based retention.</p>"
       }
@@ -391,6 +429,12 @@
       "base": null,
       "refs": {
         "Schedule$TagsToAdd": "<p>The tags to apply to policy-created resources. These user-defined tags are in addition to the AWS-added lifecycle tags.</p>"
+      }
+    },
+    "TargetRegion": {
+      "base": null,
+      "refs": {
+        "CrossRegionCopyRule$TargetRegion": "<p>The target Region.</p>"
       }
     },
     "TargetTagList": {

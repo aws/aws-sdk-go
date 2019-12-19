@@ -17702,9 +17702,9 @@
           "shape":"UsageClassTypeList",
           "locationName":"supportedUsageClasses"
         },
-        "SupportedRootDevices":{
+        "SupportedRootDeviceTypes":{
           "shape":"RootDeviceTypeList",
-          "locationName":"supportedRootDevices"
+          "locationName":"supportedRootDeviceTypes"
         },
         "BareMetal":{
           "shape":"BareMetalFlag",

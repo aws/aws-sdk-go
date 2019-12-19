@@ -264,6 +264,10 @@ type GameLiftAPI interface {
 	ListScriptsWithContext(aws.Context, *gamelift.ListScriptsInput, ...request.Option) (*gamelift.ListScriptsOutput, error)
 	ListScriptsRequest(*gamelift.ListScriptsInput) (*request.Request, *gamelift.ListScriptsOutput)
 
+	ListTagsForResource(*gamelift.ListTagsForResourceInput) (*gamelift.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *gamelift.ListTagsForResourceInput, ...request.Option) (*gamelift.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*gamelift.ListTagsForResourceInput) (*request.Request, *gamelift.ListTagsForResourceOutput)
+
 	PutScalingPolicy(*gamelift.PutScalingPolicyInput) (*gamelift.PutScalingPolicyOutput, error)
 	PutScalingPolicyWithContext(aws.Context, *gamelift.PutScalingPolicyInput, ...request.Option) (*gamelift.PutScalingPolicyOutput, error)
 	PutScalingPolicyRequest(*gamelift.PutScalingPolicyInput) (*request.Request, *gamelift.PutScalingPolicyOutput)
@@ -307,6 +311,14 @@ type GameLiftAPI interface {
 	StopMatchmaking(*gamelift.StopMatchmakingInput) (*gamelift.StopMatchmakingOutput, error)
 	StopMatchmakingWithContext(aws.Context, *gamelift.StopMatchmakingInput, ...request.Option) (*gamelift.StopMatchmakingOutput, error)
 	StopMatchmakingRequest(*gamelift.StopMatchmakingInput) (*request.Request, *gamelift.StopMatchmakingOutput)
+
+	TagResource(*gamelift.TagResourceInput) (*gamelift.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *gamelift.TagResourceInput, ...request.Option) (*gamelift.TagResourceOutput, error)
+	TagResourceRequest(*gamelift.TagResourceInput) (*request.Request, *gamelift.TagResourceOutput)
+
+	UntagResource(*gamelift.UntagResourceInput) (*gamelift.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *gamelift.UntagResourceInput, ...request.Option) (*gamelift.UntagResourceOutput, error)
+	UntagResourceRequest(*gamelift.UntagResourceInput) (*request.Request, *gamelift.UntagResourceOutput)
 
 	UpdateAlias(*gamelift.UpdateAliasInput) (*gamelift.UpdateAliasOutput, error)
 	UpdateAliasWithContext(aws.Context, *gamelift.UpdateAliasInput, ...request.Option) (*gamelift.UpdateAliasOutput, error)

@@ -10441,7 +10441,7 @@
     "RootDeviceTypeList": {
       "base": null,
       "refs": {
-        "InstanceTypeInfo$SupportedRootDevices": "<p>Indicates the supported root devices.</p>"
+        "InstanceTypeInfo$SupportedRootDeviceTypes": "<p>Indicates the supported root device types.</p>"
       }
     },
     "Route": {
