@@ -113,7 +113,8 @@ type EmptyStreamEventStream struct {
 	// Must not be nil.
 	Reader EmptyEventStreamReader
 
-	output *EmptyStreamOutput
+	outputReader io.ReadCloser
+	output       *EmptyStreamOutput
 
 	done      chan struct{}
 	closeOnce sync.Once
@@ -155,12 +156,8 @@ func (es *EmptyStreamEventStream) runOutputStream(r *request.Request) {
 		es.eventTypeForEmptyStreamEventStreamOutputEvent,
 	)
 
-	var closer io.Closer = r.HTTPResponse.Body
-	es.Reader = newReadEmptyEventStream(eventReader, closer)
-	go func() {
-		<-es.done
-		es.Reader.Close()
-	}()
+	es.outputReader = r.HTTPResponse.Body
+	es.Reader = newReadEmptyEventStream(eventReader)
 }
 func (es *EmptyStreamEventStream) recvInitialEvent(r *request.Request) {
 	// Wait for the initial response event, which must be the first
@@ -203,7 +200,13 @@ func (es *EmptyStreamEventStream) safeClose() {
 	if es.done != nil {
 		close(es.done)
 	}
+	// TODO Reader and Writer need to expose error channels that ES waits on
+	// when error is received it closes the whole stream.
+
 	es.Reader.Close()
+	if es.outputReader != nil {
+		es.outputReader.Close()
+	}
 }
 
 // Err returns any error that occurred while reading or writing EventStream
@@ -308,7 +311,8 @@ type GetEventStreamEventStream struct {
 	// Must not be nil.
 	Reader EventStreamReader
 
-	output *GetEventStreamOutput
+	outputReader io.ReadCloser
+	output       *GetEventStreamOutput
 
 	done      chan struct{}
 	closeOnce sync.Once
@@ -357,12 +361,8 @@ func (es *GetEventStreamEventStream) runOutputStream(r *request.Request) {
 		es.eventTypeForGetEventStreamEventStreamOutputEvent,
 	)
 
-	var closer io.Closer = r.HTTPResponse.Body
-	es.Reader = newReadEventStream(eventReader, closer)
-	go func() {
-		<-es.done
-		es.Reader.Close()
-	}()
+	es.outputReader = r.HTTPResponse.Body
+	es.Reader = newReadEventStream(eventReader)
 }
 func (es *GetEventStreamEventStream) recvInitialEvent(r *request.Request) {
 	// Wait for the initial response event, which must be the first
@@ -405,7 +405,13 @@ func (es *GetEventStreamEventStream) safeClose() {
 	if es.done != nil {
 		close(es.done)
 	}
+	// TODO Reader and Writer need to expose error channels that ES waits on
+	// when error is received it closes the whole stream.
+
 	es.Reader.Close()
+	if es.outputReader != nil {
+		es.outputReader.Close()
+	}
 }
 
 // Err returns any error that occurred while reading or writing EventStream
@@ -560,19 +566,15 @@ type readEmptyEventStream struct {
 	stream      chan EmptyEventStreamEvent
 	onceErr     eventstreamapi.OnceError
 
-	done         chan struct{}
-	closeOnce    sync.Once
-	streamCloser io.Closer
+	done      chan struct{}
+	closeOnce sync.Once
 }
 
-func newReadEmptyEventStream(
-	eventReader *eventstreamapi.EventReader, streamCloser io.Closer,
-) *readEmptyEventStream {
+func newReadEmptyEventStream(eventReader *eventstreamapi.EventReader) *readEmptyEventStream {
 	r := &readEmptyEventStream{
-		eventReader:  eventReader,
-		stream:       make(chan EmptyEventStreamEvent),
-		done:         make(chan struct{}),
-		streamCloser: streamCloser,
+		eventReader: eventReader,
+		stream:      make(chan EmptyEventStreamEvent),
+		done:        make(chan struct{}),
 	}
 	go r.readEventStream()
 
@@ -587,9 +589,6 @@ func (r *readEmptyEventStream) Close() error {
 
 func (r *readEmptyEventStream) safeClose() {
 	close(r.done)
-	if err := r.streamCloser.Close(); err != nil {
-		r.onceErr.SetOnce(err)
-	}
 }
 
 func (r *readEmptyEventStream) Err() error {
@@ -749,19 +748,15 @@ type readEventStream struct {
 	stream      chan EventStreamEvent
 	onceErr     eventstreamapi.OnceError
 
-	done         chan struct{}
-	closeOnce    sync.Once
-	streamCloser io.Closer
+	done      chan struct{}
+	closeOnce sync.Once
 }
 
-func newReadEventStream(
-	eventReader *eventstreamapi.EventReader, streamCloser io.Closer,
-) *readEventStream {
+func newReadEventStream(eventReader *eventstreamapi.EventReader) *readEventStream {
 	r := &readEventStream{
-		eventReader:  eventReader,
-		stream:       make(chan EventStreamEvent),
-		done:         make(chan struct{}),
-		streamCloser: streamCloser,
+		eventReader: eventReader,
+		stream:      make(chan EventStreamEvent),
+		done:        make(chan struct{}),
 	}
 	go r.readEventStream()
 
@@ -776,9 +771,6 @@ func (r *readEventStream) Close() error {
 
 func (r *readEventStream) safeClose() {
 	close(r.done)
-	if err := r.streamCloser.Close(); err != nil {
-		r.onceErr.SetOnce(err)
-	}
 }
 
 func (r *readEventStream) Err() error {

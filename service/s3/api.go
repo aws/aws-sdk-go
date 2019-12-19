@@ -9617,6 +9617,8 @@ type SelectObjectContentEventStream struct {
 	// Must not be nil.
 	Reader SelectObjectContentEventStreamReader
 
+	outputReader io.ReadCloser
+
 	// StreamCloser is the io.Closer for the EventStream connection. For HTTP
 	// EventStream this is the response Body. The stream will be closed when
 	// the Close method of the EventStream is called.
@@ -9664,12 +9666,8 @@ func (es *SelectObjectContentEventStream) runOutputStream(r *request.Request) {
 		unmarshalerForSelectObjectContentEventStreamEvent,
 	)
 
-	var closer io.Closer = r.HTTPResponse.Body
-	es.Reader = newReadSelectObjectContentEventStream(eventReader, closer)
-	go func() {
-		<-es.done
-		es.Reader.Close()
-	}()
+	es.outputReader = r.HTTPResponse.Body
+	es.Reader = newReadSelectObjectContentEventStream(eventReader)
 }
 
 // Close closes the stream. This will also cause the stream to be closed.
@@ -9688,7 +9686,14 @@ func (es *SelectObjectContentEventStream) safeClose() {
 	if es.done != nil {
 		close(es.done)
 	}
+	// TODO Reader and Writer need to expose error channels that ES waits on
+	// when error is received it closes the whole stream.
+
 	es.Reader.Close()
+	if es.outputReader != nil {
+		es.outputReader.Close()
+	}
+
 	es.StreamCloser.Close()
 }
 
@@ -28114,19 +28119,15 @@ type readSelectObjectContentEventStream struct {
 	stream      chan SelectObjectContentEventStreamEvent
 	onceErr     eventstreamapi.OnceError
 
-	done         chan struct{}
-	closeOnce    sync.Once
-	streamCloser io.Closer
+	done      chan struct{}
+	closeOnce sync.Once
 }
 
-func newReadSelectObjectContentEventStream(
-	eventReader *eventstreamapi.EventReader, streamCloser io.Closer,
-) *readSelectObjectContentEventStream {
+func newReadSelectObjectContentEventStream(eventReader *eventstreamapi.EventReader) *readSelectObjectContentEventStream {
 	r := &readSelectObjectContentEventStream{
-		eventReader:  eventReader,
-		stream:       make(chan SelectObjectContentEventStreamEvent),
-		done:         make(chan struct{}),
-		streamCloser: streamCloser,
+		eventReader: eventReader,
+		stream:      make(chan SelectObjectContentEventStreamEvent),
+		done:        make(chan struct{}),
 	}
 	go r.readEventStream()
 
@@ -28141,9 +28142,6 @@ func (r *readSelectObjectContentEventStream) Close() error {
 
 func (r *readSelectObjectContentEventStream) safeClose() {
 	close(r.done)
-	if err := r.streamCloser.Close(); err != nil {
-		r.onceErr.SetOnce(err)
-	}
 }
 
 func (r *readSelectObjectContentEventStream) Err() error {

@@ -3243,7 +3243,8 @@ type SubscribeToShardEventStream struct {
 	// Must not be nil.
 	Reader SubscribeToShardEventStreamReader
 
-	output *SubscribeToShardOutput
+	outputReader io.ReadCloser
+	output       *SubscribeToShardOutput
 
 	// StreamCloser is the io.Closer for the EventStream connection. For HTTP
 	// EventStream this is the response Body. The stream will be closed when
@@ -3295,12 +3296,8 @@ func (es *SubscribeToShardEventStream) runOutputStream(r *request.Request) {
 		es.eventTypeForSubscribeToShardEventStreamOutputEvent,
 	)
 
-	var closer io.Closer = r.HTTPResponse.Body
-	es.Reader = newReadSubscribeToShardEventStream(eventReader, closer)
-	go func() {
-		<-es.done
-		es.Reader.Close()
-	}()
+	es.outputReader = r.HTTPResponse.Body
+	es.Reader = newReadSubscribeToShardEventStream(eventReader)
 }
 func (es *SubscribeToShardEventStream) recvInitialEvent(r *request.Request) {
 	// Wait for the initial response event, which must be the first
@@ -3343,7 +3340,14 @@ func (es *SubscribeToShardEventStream) safeClose() {
 	if es.done != nil {
 		close(es.done)
 	}
+	// TODO Reader and Writer need to expose error channels that ES waits on
+	// when error is received it closes the whole stream.
+
 	es.Reader.Close()
+	if es.outputReader != nil {
+		es.outputReader.Close()
+	}
+
 	es.StreamCloser.Close()
 }
 
@@ -7616,19 +7620,15 @@ type readSubscribeToShardEventStream struct {
 	stream      chan SubscribeToShardEventStreamEvent
 	onceErr     eventstreamapi.OnceError
 
-	done         chan struct{}
-	closeOnce    sync.Once
-	streamCloser io.Closer
+	done      chan struct{}
+	closeOnce sync.Once
 }
 
-func newReadSubscribeToShardEventStream(
-	eventReader *eventstreamapi.EventReader, streamCloser io.Closer,
-) *readSubscribeToShardEventStream {
+func newReadSubscribeToShardEventStream(eventReader *eventstreamapi.EventReader) *readSubscribeToShardEventStream {
 	r := &readSubscribeToShardEventStream{
-		eventReader:  eventReader,
-		stream:       make(chan SubscribeToShardEventStreamEvent),
-		done:         make(chan struct{}),
-		streamCloser: streamCloser,
+		eventReader: eventReader,
+		stream:      make(chan SubscribeToShardEventStreamEvent),
+		done:        make(chan struct{}),
 	}
 	go r.readEventStream()
 
@@ -7643,9 +7643,6 @@ func (r *readSubscribeToShardEventStream) Close() error {
 
 func (r *readSubscribeToShardEventStream) safeClose() {
 	close(r.done)
-	if err := r.streamCloser.Close(); err != nil {
-		r.onceErr.SetOnce(err)
-	}
 }
 
 func (r *readSubscribeToShardEventStream) Err() error {
