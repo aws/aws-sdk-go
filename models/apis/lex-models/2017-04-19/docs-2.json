@@ -278,6 +278,20 @@
         "Message$contentType": "<p>The content type of the message string.</p>"
       }
     },
+    "ConversationLogsRequest": {
+      "base": "<p>Provides the settings needed for conversation logs.</p>",
+      "refs": {
+        "PutBotAliasRequest$conversationLogs": "<p>Settings that determine how Amazon Lex uses conversation logs for the alias.</p>"
+      }
+    },
+    "ConversationLogsResponse": {
+      "base": "<p>Contains information about conversation log settings.</p>",
+      "refs": {
+        "BotAliasMetadata$conversationLogs": "<p>Settings that determine how Amazon Lex uses conversation logs for the alias.</p>",
+        "GetBotAliasResponse$conversationLogs": "<p>The settings that determine how Amazon Lex uses conversation logs for the alias.</p>",
+        "PutBotAliasResponse$conversationLogs": "<p>The settings that determine how Amazon Lex uses conversation logs for the alias.</p>"
+      }
+    },
     "Count": {
       "base": null,
       "refs": {
@@ -391,6 +405,13 @@
         "PutSlotTypeResponse$description": "<p>A description of the slot type.</p>",
         "Slot$description": "<p>A description of the slot.</p>",
         "SlotTypeMetadata$description": "<p>A description of the slot type.</p>"
+      }
+    },
+    "Destination": {
+      "base": null,
+      "refs": {
+        "LogSettingsRequest$destination": "<p>Where the logs will be delivered. Text logs are delivered to a CloudWatch Logs log group. Audio logs are delivered to an S3 bucket.</p>",
+        "LogSettingsResponse$destination": "<p>The destination where logs are delivered.</p>"
       }
     },
     "EnumerationValue": {
@@ -641,6 +662,13 @@
         "Message$groupNumber": "<p>Identifies the message group that the message belongs to. When a group is assigned to a message, Amazon Lex returns one message from each group in the response.</p>"
       }
     },
+    "IamRoleArn": {
+      "base": null,
+      "refs": {
+        "ConversationLogsRequest$iamRoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role with permission to write to your CloudWatch Logs for text logs and your S3 bucket for audio logs. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/conversation-logs.html\">Creating Conversation Logs</a>.</p>",
+        "ConversationLogsResponse$iamRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role used to write your logs to CloudWatch Logs or an S3 bucket.</p>"
+      }
+    },
     "ImportStatus": {
       "base": null,
       "refs": {
@@ -707,6 +735,13 @@
       "refs": {
       }
     },
+    "KmsKeyArn": {
+      "base": null,
+      "refs": {
+        "LogSettingsRequest$kmsKeyArn": "<p>The Amazon Resource Name (ARN) of the AWS KMS customer managed key for encrypting audio logs delivered to an S3 bucket. The key does not apply to CloudWatch Logs and is optional for S3 buckets.</p>",
+        "LogSettingsResponse$kmsKeyArn": "<p>The Amazon Resource Name (ARN) of the key used to encrypt audio logs in an S3 bucket.</p>"
+      }
+    },
     "LambdaARN": {
       "base": null,
       "refs": {
@@ -748,6 +783,37 @@
         "BuiltinIntentMetadata$supportedLocales": "<p>A list of identifiers for the locales that the intent supports.</p>",
         "BuiltinSlotTypeMetadata$supportedLocales": "<p>A list of target locales for the slot. </p>",
         "GetBuiltinIntentResponse$supportedLocales": "<p>A list of locales that the intent supports.</p>"
+      }
+    },
+    "LogSettingsRequest": {
+      "base": "<p>Settings used to configure conversation logs.</p>",
+      "refs": {
+        "LogSettingsRequestList$member": null
+      }
+    },
+    "LogSettingsRequestList": {
+      "base": null,
+      "refs": {
+        "ConversationLogsRequest$logSettings": "<p>The settings for your conversation logs. You can log the conversation text, conversation audio, or both.</p>"
+      }
+    },
+    "LogSettingsResponse": {
+      "base": "<p>The settings for conversation logs.</p>",
+      "refs": {
+        "LogSettingsResponseList$member": null
+      }
+    },
+    "LogSettingsResponseList": {
+      "base": null,
+      "refs": {
+        "ConversationLogsResponse$logSettings": "<p>The settings for your conversation logs.</p>"
+      }
+    },
+    "LogType": {
+      "base": null,
+      "refs": {
+        "LogSettingsRequest$logType": "<p>The type of logging to enable. Text logs are delivered to a CloudWatch Logs log group. Audio logs are delivered to an S3 bucket.</p>",
+        "LogSettingsResponse$logType": "<p>The type of logging that is enabled.</p>"
       }
     },
     "MaxResults": {
@@ -842,6 +908,12 @@
         "GetExportResponse$version": "<p>The version of the bot being exported.</p>"
       }
     },
+    "ObfuscationSetting": {
+      "base": null,
+      "refs": {
+        "Slot$obfuscationSetting": "<p>Determines whether a slot is obfuscated in conversation logs and stored utterances. When you obfuscate a slot, the value is replaced by the slot name in curly braces ({}). For example, if the slot name is \"full_name\", obfuscated values are replaced with \"{full_name}\". For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/how-obfuscate.html\"> Slot Obfuscation </a>. </p>"
+      }
+    },
     "PreconditionFailedException": {
       "base": "<p> The checksum of the resource that you are trying to change does not match the checksum in the request. Check the resource's checksum and try again.</p>",
       "refs": {
@@ -926,9 +998,22 @@
         "ResourceInUseException$referenceType": null
       }
     },
+    "ResourceArn": {
+      "base": null,
+      "refs": {
+        "LogSettingsRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the CloudWatch Logs log group or S3 bucket where the logs should be delivered.</p>",
+        "LogSettingsResponse$resourceArn": "<p>The Amazon Resource Name (ARN) of the CloudWatch Logs log group or S3 bucket where the logs are delivered.</p>"
+      }
+    },
     "ResourceInUseException": {
       "base": "<p>The resource that you are attempting to delete is referred to by another resource. Use this information to remove references to the resource that you are trying to delete.</p> <p>The body of the exception contains a JSON object that describes the resource.</p> <p> <code>{ \"resourceType\": BOT | BOTALIAS | BOTCHANNEL | INTENT,</code> </p> <p> <code>\"resourceReference\": {</code> </p> <p> <code>\"name\": <i>string</i>, \"version\": <i>string</i> } }</code> </p>",
       "refs": {
+      }
+    },
+    "ResourcePrefix": {
+      "base": null,
+      "refs": {
+        "LogSettingsResponse$resourcePrefix": "<p>The resource prefix of the S3 object or CloudWatch Logs log entry where logs are delivered. For both S3 and CloudWatch Logs, the prefix is:</p> <p> <code>aws/lex/bot-name/bot-alias/bot-version</code> </p>"
       }
     },
     "ResourceReference": {

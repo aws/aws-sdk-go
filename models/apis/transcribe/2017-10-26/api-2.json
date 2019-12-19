@@ -184,6 +184,10 @@
         "FailureReason":{"shape":"FailureReason"}
       }
     },
+    "DataAccessRoleArn":{
+      "type":"string",
+      "pattern":"^arn:aws:iam::[0-9]{0,63}:role/[A-Za-z0-9:_/+=,@.-]{0,1023}$"
+    },
     "DateTime":{"type":"timestamp"},
     "DeleteTranscriptionJobRequest":{
       "type":"structure",
@@ -238,6 +242,13 @@
       },
       "exception":true,
       "fault":true
+    },
+    "JobExecutionSettings":{
+      "type":"structure",
+      "members":{
+        "AllowDeferredExecution":{"shape":"Boolean"},
+        "DataAccessRoleArn":{"shape":"DataAccessRoleArn"}
+      }
     },
     "KMSKeyId":{
       "type":"string",
@@ -417,7 +428,8 @@
         "Media":{"shape":"Media"},
         "OutputBucketName":{"shape":"OutputBucketName"},
         "OutputEncryptionKMSKeyId":{"shape":"KMSKeyId"},
-        "Settings":{"shape":"Settings"}
+        "Settings":{"shape":"Settings"},
+        "JobExecutionSettings":{"shape":"JobExecutionSettings"}
       }
     },
     "StartTranscriptionJobResponse":{
@@ -443,10 +455,12 @@
         "MediaFormat":{"shape":"MediaFormat"},
         "Media":{"shape":"Media"},
         "Transcript":{"shape":"Transcript"},
+        "StartTime":{"shape":"DateTime"},
         "CreationTime":{"shape":"DateTime"},
         "CompletionTime":{"shape":"DateTime"},
         "FailureReason":{"shape":"FailureReason"},
-        "Settings":{"shape":"Settings"}
+        "Settings":{"shape":"Settings"},
+        "JobExecutionSettings":{"shape":"JobExecutionSettings"}
       }
     },
     "TranscriptionJobName":{
@@ -458,6 +472,7 @@
     "TranscriptionJobStatus":{
       "type":"string",
       "enum":[
+        "QUEUED",
         "IN_PROGRESS",
         "FAILED",
         "COMPLETED"
@@ -472,6 +487,7 @@
       "members":{
         "TranscriptionJobName":{"shape":"TranscriptionJobName"},
         "CreationTime":{"shape":"DateTime"},
+        "StartTime":{"shape":"DateTime"},
         "CompletionTime":{"shape":"DateTime"},
         "LanguageCode":{"shape":"LanguageCode"},
         "TranscriptionJobStatus":{"shape":"TranscriptionJobStatus"},

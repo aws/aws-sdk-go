@@ -193,8 +193,15 @@ type GetPersonalizedRankingInput struct {
 	// CampaignArn is a required field
 	CampaignArn *string `locationName:"campaignArn" type:"string" required:"true"`
 
+	// The contextual metadata to use when getting recommendations. Contextual metadata
+	// includes any interaction information that might be relevant when getting
+	// a user's recommendations, such as the user's current location or device type.
+	// For more information, see Contextual Metadata.
+	Context map[string]*string `locationName:"context" type:"map"`
+
 	// A list of items (itemId's) to rank. If an item was not included in the training
-	// dataset, the item is appended to the end of the reranked list.
+	// dataset, the item is appended to the end of the reranked list. The maximum
+	// is 500.
 	//
 	// InputList is a required field
 	InputList []*string `locationName:"inputList" type:"list" required:"true"`
@@ -240,6 +247,12 @@ func (s *GetPersonalizedRankingInput) SetCampaignArn(v string) *GetPersonalizedR
 	return s
 }
 
+// SetContext sets the Context field's value.
+func (s *GetPersonalizedRankingInput) SetContext(v map[string]*string) *GetPersonalizedRankingInput {
+	s.Context = v
+	return s
+}
+
 // SetInputList sets the InputList field's value.
 func (s *GetPersonalizedRankingInput) SetInputList(v []*string) *GetPersonalizedRankingInput {
 	s.InputList = v
@@ -255,7 +268,8 @@ func (s *GetPersonalizedRankingInput) SetUserId(v string) *GetPersonalizedRankin
 type GetPersonalizedRankingOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of items in order of most likely interest to the user.
+	// A list of items in order of most likely interest to the user. The maximum
+	// is 500.
 	PersonalizedRanking []*PredictedItem `locationName:"personalizedRanking" type:"list"`
 }
 
@@ -283,12 +297,18 @@ type GetRecommendationsInput struct {
 	// CampaignArn is a required field
 	CampaignArn *string `locationName:"campaignArn" type:"string" required:"true"`
 
+	// The contextual metadata to use when getting recommendations. Contextual metadata
+	// includes any interaction information that might be relevant when getting
+	// a user's recommendations, such as the user's current location or device type.
+	// For more information, see Contextual Metadata.
+	Context map[string]*string `locationName:"context" type:"map"`
+
 	// The item ID to provide recommendations for.
 	//
 	// Required for RELATED_ITEMS recipe type.
 	ItemId *string `locationName:"itemId" type:"string"`
 
-	// The number of results to return. The default is 25. The maximum is 100.
+	// The number of results to return. The default is 25. The maximum is 500.
 	NumResults *int64 `locationName:"numResults" type:"integer"`
 
 	// The user ID to provide recommendations for.
@@ -326,6 +346,12 @@ func (s *GetRecommendationsInput) SetCampaignArn(v string) *GetRecommendationsIn
 	return s
 }
 
+// SetContext sets the Context field's value.
+func (s *GetRecommendationsInput) SetContext(v map[string]*string) *GetRecommendationsInput {
+	s.Context = v
+	return s
+}
+
 // SetItemId sets the ItemId field's value.
 func (s *GetRecommendationsInput) SetItemId(v string) *GetRecommendationsInput {
 	s.ItemId = &v
@@ -347,7 +373,8 @@ func (s *GetRecommendationsInput) SetUserId(v string) *GetRecommendationsInput {
 type GetRecommendationsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of recommendations.
+	// A list of recommendations sorted in ascending order by prediction score.
+	// There can be a maximum of 500 items in the list.
 	ItemList []*PredictedItem `locationName:"itemList" type:"list"`
 }
 

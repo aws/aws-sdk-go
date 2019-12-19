@@ -1424,6 +1424,53 @@ func (s *GetVocabularyOutput) SetVocabularyState(v string) *GetVocabularyOutput 
 	return s
 }
 
+// Provides information about when a transcription job should be executed.
+type JobExecutionSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether a job should be queued by Amazon Transcribe when the concurrent
+	// execution limit is exceeded. When the AllowDeferredExecution field is true,
+	// jobs are queued and will be executed when the number of executing jobs falls
+	// below the concurrent execution limit. If the field is false, Amazon Transcribe
+	// returns a LimitExceededException exception.
+	//
+	// If you specify the AllowDeferredExecution field, you must specify the DataAccessRoleArn
+	// field.
+	AllowDeferredExecution *bool `type:"boolean"`
+
+	// The Amazon Resource Name (ARN) of a role that has access to the S3 bucket
+	// that contains the input files. Amazon Transcribe will assume this role to
+	// read queued media files. If you have specified an output S3 bucket for the
+	// transcription results, this role should have access to the output bucket
+	// as well.
+	//
+	// If you specify the AllowDeferredExecution field, you must specify the DataAccessRoleArn
+	// field.
+	DataAccessRoleArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s JobExecutionSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s JobExecutionSettings) GoString() string {
+	return s.String()
+}
+
+// SetAllowDeferredExecution sets the AllowDeferredExecution field's value.
+func (s *JobExecutionSettings) SetAllowDeferredExecution(v bool) *JobExecutionSettings {
+	s.AllowDeferredExecution = &v
+	return s
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *JobExecutionSettings) SetDataAccessRoleArn(v string) *JobExecutionSettings {
+	s.DataAccessRoleArn = &v
+	return s
+}
+
 type ListTranscriptionJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1821,6 +1868,12 @@ func (s *Settings) SetVocabularyName(v string) *Settings {
 type StartTranscriptionJobInput struct {
 	_ struct{} `type:"structure"`
 
+	// Provides information about how a transcription job is executed. Use this
+	// field to indicate that the job can be queued for deferred execution if the
+	// concurrency limit is reached and there are no slots available to immediately
+	// run the job.
+	JobExecutionSettings *JobExecutionSettings `type:"structure"`
+
 	// The language code for the language used in the input media file.
 	//
 	// LanguageCode is a required field
@@ -1944,6 +1997,12 @@ func (s *StartTranscriptionJobInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetJobExecutionSettings sets the JobExecutionSettings field's value.
+func (s *StartTranscriptionJobInput) SetJobExecutionSettings(v *JobExecutionSettings) *StartTranscriptionJobInput {
+	s.JobExecutionSettings = v
+	return s
 }
 
 // SetLanguageCode sets the LanguageCode field's value.
@@ -2091,6 +2150,9 @@ type TranscriptionJob struct {
 	//    in the Amazon Web Services General Reference.
 	FailureReason *string `type:"string"`
 
+	// Provides information about how a transcription job is executed.
+	JobExecutionSettings *JobExecutionSettings `type:"structure"`
+
 	// The language code for the input speech.
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
 
@@ -2108,6 +2170,9 @@ type TranscriptionJob struct {
 	// identified and to specify a custom vocabulary to use when processing the
 	// transcription job.
 	Settings *Settings `type:"structure"`
+
+	// A timestamp that shows with the job was started processing.
+	StartTime *time.Time `type:"timestamp"`
 
 	// An object that describes the output of the transcription job.
 	Transcript *Transcript `type:"structure"`
@@ -2147,6 +2212,12 @@ func (s *TranscriptionJob) SetFailureReason(v string) *TranscriptionJob {
 	return s
 }
 
+// SetJobExecutionSettings sets the JobExecutionSettings field's value.
+func (s *TranscriptionJob) SetJobExecutionSettings(v *JobExecutionSettings) *TranscriptionJob {
+	s.JobExecutionSettings = v
+	return s
+}
+
 // SetLanguageCode sets the LanguageCode field's value.
 func (s *TranscriptionJob) SetLanguageCode(v string) *TranscriptionJob {
 	s.LanguageCode = &v
@@ -2174,6 +2245,12 @@ func (s *TranscriptionJob) SetMediaSampleRateHertz(v int64) *TranscriptionJob {
 // SetSettings sets the Settings field's value.
 func (s *TranscriptionJob) SetSettings(v *Settings) *TranscriptionJob {
 	s.Settings = v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *TranscriptionJob) SetStartTime(v time.Time) *TranscriptionJob {
+	s.StartTime = &v
 	return s
 }
 
@@ -2222,6 +2299,9 @@ type TranscriptionJobSummary struct {
 	// TranscriptFileUri field.
 	OutputLocationType *string `type:"string" enum:"OutputLocationType"`
 
+	// A timestamp that shows when the job started processing.
+	StartTime *time.Time `type:"timestamp"`
+
 	// The name of the transcription job.
 	TranscriptionJobName *string `min:"1" type:"string"`
 
@@ -2267,6 +2347,12 @@ func (s *TranscriptionJobSummary) SetLanguageCode(v string) *TranscriptionJobSum
 // SetOutputLocationType sets the OutputLocationType field's value.
 func (s *TranscriptionJobSummary) SetOutputLocationType(v string) *TranscriptionJobSummary {
 	s.OutputLocationType = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *TranscriptionJobSummary) SetStartTime(v time.Time) *TranscriptionJobSummary {
+	s.StartTime = &v
 	return s
 }
 
@@ -2592,6 +2678,9 @@ const (
 )
 
 const (
+	// TranscriptionJobStatusQueued is a TranscriptionJobStatus enum value
+	TranscriptionJobStatusQueued = "QUEUED"
+
 	// TranscriptionJobStatusInProgress is a TranscriptionJobStatus enum value
 	TranscriptionJobStatusInProgress = "IN_PROGRESS"
 

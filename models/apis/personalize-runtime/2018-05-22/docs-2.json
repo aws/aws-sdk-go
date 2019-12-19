@@ -13,6 +13,25 @@
         "GetRecommendationsRequest$campaignArn": "<p>The Amazon Resource Name (ARN) of the campaign to use for getting recommendations.</p>"
       }
     },
+    "AttributeName": {
+      "base": null,
+      "refs": {
+        "Context$key": null
+      }
+    },
+    "AttributeValue": {
+      "base": null,
+      "refs": {
+        "Context$value": null
+      }
+    },
+    "Context": {
+      "base": null,
+      "refs": {
+        "GetPersonalizedRankingRequest$context": "<p>The contextual metadata to use when getting recommendations. Contextual metadata includes any interaction information that might be relevant when getting a user's recommendations, such as the user's current location or device type. For more information, see Contextual Metadata.</p>",
+        "GetRecommendationsRequest$context": "<p>The contextual metadata to use when getting recommendations. Contextual metadata includes any interaction information that might be relevant when getting a user's recommendations, such as the user's current location or device type. For more information, see Contextual Metadata.</p>"
+      }
+    },
     "ErrorMessage": {
       "base": null,
       "refs": {
@@ -43,7 +62,7 @@
     "InputList": {
       "base": null,
       "refs": {
-        "GetPersonalizedRankingRequest$inputList": "<p>A list of items (itemId's) to rank. If an item was not included in the training dataset, the item is appended to the end of the reranked list.</p>"
+        "GetPersonalizedRankingRequest$inputList": "<p>A list of items (itemId's) to rank. If an item was not included in the training dataset, the item is appended to the end of the reranked list. The maximum is 500.</p>"
       }
     },
     "InvalidInputException": {
@@ -62,14 +81,14 @@
     "ItemList": {
       "base": null,
       "refs": {
-        "GetPersonalizedRankingResponse$personalizedRanking": "<p>A list of items in order of most likely interest to the user.</p>",
-        "GetRecommendationsResponse$itemList": "<p>A list of recommendations.</p>"
+        "GetPersonalizedRankingResponse$personalizedRanking": "<p>A list of items in order of most likely interest to the user. The maximum is 500.</p>",
+        "GetRecommendationsResponse$itemList": "<p>A list of recommendations sorted in ascending order by prediction score. There can be a maximum of 500 items in the list.</p>"
       }
     },
     "NumResults": {
       "base": null,
       "refs": {
-        "GetRecommendationsRequest$numResults": "<p>The number of results to return. The default is 25. The maximum is 100.</p>"
+        "GetRecommendationsRequest$numResults": "<p>The number of results to return. The default is 25. The maximum is 500.</p>"
       }
     },
     "PredictedItem": {
