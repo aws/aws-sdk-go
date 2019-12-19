@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"sync"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
@@ -167,6 +168,8 @@ type StartStreamTranscriptionEventStream struct {
 	// Must not be nil.
 	Reader TranscriptResultStreamReader
 
+	outputReader io.ReadCloser
+
 	done      chan struct{}
 	closeOnce sync.Once
 	err       eventstreamapi.OnceError
@@ -220,11 +223,6 @@ func (es *StartStreamTranscriptionEventStream) runInputStream(r *request.Request
 	es.Writer = &writeAudioStream{
 		StreamWriter: eventstreamapi.NewStreamWriter(eventWriter, closer),
 	}
-	go func() {
-		<-es.done
-		es.inputWriter.Close()
-		es.Writer.Close()
-	}()
 }
 
 // Events returns a channel to read events from.
@@ -250,12 +248,8 @@ func (es *StartStreamTranscriptionEventStream) runOutputStream(r *request.Reques
 		unmarshalerForTranscriptResultStreamEvent,
 	)
 
-	var closer io.Closer = r.HTTPResponse.Body
-	es.Reader = newReadTranscriptResultStream(eventReader, closer)
-	go func() {
-		<-es.done
-		es.Reader.Close()
-	}()
+	es.outputReader = r.HTTPResponse.Body
+	es.Reader = newReadTranscriptResultStream(eventReader)
 }
 
 // Close closes the stream. This will also cause the stream to be closed.
@@ -277,8 +271,31 @@ func (es *StartStreamTranscriptionEventStream) safeClose() {
 	if es.done != nil {
 		close(es.done)
 	}
-	es.Writer.Close()
+	// TODO Reader and Writer need to expose error channels that ES waits on
+	// when error is received it closes the whole stream.
+
+	t := time.NewTicker(time.Second)
+	defer t.Stop()
+	writeCloseDone := make(chan error)
+	go func() {
+		if err := es.Writer.Close(); err != nil {
+			writeCloseDone <- err
+		}
+		close(writeCloseDone)
+	}()
+	select {
+	case <-t.C:
+		if es.inputWriter != nil {
+			es.inputWriter.Close()
+		}
+	case err := <-writeCloseDone:
+		es.err.SetOnce(err)
+	}
+
 	es.Reader.Close()
+	if es.outputReader != nil {
+		es.outputReader.Close()
+	}
 }
 
 // Err returns any error that occurred while reading or writing EventStream
@@ -1089,19 +1106,15 @@ type readTranscriptResultStream struct {
 	stream      chan TranscriptResultStreamEvent
 	onceErr     eventstreamapi.OnceError
 
-	done         chan struct{}
-	closeOnce    sync.Once
-	streamCloser io.Closer
+	done      chan struct{}
+	closeOnce sync.Once
 }
 
-func newReadTranscriptResultStream(
-	eventReader *eventstreamapi.EventReader, streamCloser io.Closer,
-) *readTranscriptResultStream {
+func newReadTranscriptResultStream(eventReader *eventstreamapi.EventReader) *readTranscriptResultStream {
 	r := &readTranscriptResultStream{
-		eventReader:  eventReader,
-		stream:       make(chan TranscriptResultStreamEvent),
-		done:         make(chan struct{}),
-		streamCloser: streamCloser,
+		eventReader: eventReader,
+		stream:      make(chan TranscriptResultStreamEvent),
+		done:        make(chan struct{}),
 	}
 	go r.readEventStream()
 
@@ -1116,9 +1129,6 @@ func (r *readTranscriptResultStream) Close() error {
 
 func (r *readTranscriptResultStream) safeClose() {
 	close(r.done)
-	if err := r.streamCloser.Close(); err != nil {
-		r.onceErr.SetOnce(err)
-	}
 }
 
 func (r *readTranscriptResultStream) Err() error {

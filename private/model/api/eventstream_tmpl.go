@@ -14,6 +14,7 @@ func renderEventStreamAPI(w io.Writer, op *Operation) error {
 	op.API.AddImport("fmt")
 	op.API.AddImport("bytes")
 	op.API.AddImport("io")
+	op.API.AddImport("time")
 	op.API.AddSDKImport("aws")
 	op.API.AddSDKImport("aws/awserr")
 	op.API.AddSDKImport("aws/request")
@@ -71,8 +72,8 @@ type {{ $esapi.Name }} struct {
 		// Must not be nil.
 		Reader {{ $outputStream.StreamReaderAPIName }}
 
+		outputReader io.ReadCloser
 		{{- if eq .API.Metadata.Protocol "json" }}
-
 			output {{ $.OutputRef.GoType }}
 		{{- end }}
 	{{- end }}
@@ -165,11 +166,6 @@ func new{{ $esapi.Name }}() *{{ $esapi.Name }} {
 		es.Writer = &{{ $inputStream.StreamWriterImplName }}{
 			StreamWriter: eventstreamapi.NewStreamWriter(eventWriter, closer),
 		}
-		go func() {
-			<-es.done
-			es.inputWriter.Close()
-			es.Writer.Close()
-		}()
 	}
 
 	{{- if eq .API.Metadata.Protocol "json" }}
@@ -221,12 +217,8 @@ func new{{ $esapi.Name }}() *{{ $esapi.Name }} {
 			{{- end }}
 		)
 
-		var closer io.Closer = r.HTTPResponse.Body
-		es.Reader = {{ $outputStream.StreamReaderImplConstructorName }}(eventReader, closer)
-		go func() {
-			<-es.done
-			es.Reader.Close()
-		}()
+		es.outputReader = r.HTTPResponse.Body
+		es.Reader = {{ $outputStream.StreamReaderImplConstructorName }}(eventReader)
 	}
 
 	{{- if eq .API.Metadata.Protocol "json" }}
@@ -280,13 +272,40 @@ func (es *{{ $esapi.Name }}) safeClose() {
 	if es.done != nil {
 		close(es.done)
 	}
+	// TODO Reader and Writer need to expose error channels that ES waits on
+	// when error is received it closes the whole stream.
+
 	{{- if $inputStream }}
-		es.Writer.Close()
+
+		t := time.NewTicker(time.Second)
+		defer t.Stop()
+		writeCloseDone := make(chan error)
+		go func() {
+			if err := es.Writer.Close(); err != nil {
+				writeCloseDone <- err
+			}
+			close(writeCloseDone)
+		}()
+		select {
+		case <-t.C:
+			if es.inputWriter != nil {
+				es.inputWriter.Close()
+			}
+		case err := <-writeCloseDone:
+			es.err.SetOnce(err)
+		}
 	{{- end }}
+
 	{{- if $outputStream }}
+
 		es.Reader.Close()
+		if es.outputReader != nil {
+			es.outputReader.Close()
+		}
 	{{- end }}
+
 	{{- if $esapi.Legacy }}
+
 		es.StreamCloser.Close()
 	{{- end }}
 }

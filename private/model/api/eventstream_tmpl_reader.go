@@ -36,17 +36,13 @@ type {{ $es.StreamReaderImplName }} struct {
 
 	done      chan struct{}
 	closeOnce sync.Once
-	streamCloser io.Closer
 }
 
-func {{ $es.StreamReaderImplConstructorName }}(
-	eventReader *eventstreamapi.EventReader, streamCloser io.Closer,
-) *{{ $es.StreamReaderImplName }} {
+func {{ $es.StreamReaderImplConstructorName }}(eventReader *eventstreamapi.EventReader) *{{ $es.StreamReaderImplName }} {
 	r := &{{ $es.StreamReaderImplName }}{
 		eventReader: eventReader,
 		stream: make(chan {{ $es.EventGroupName }}),
 		done:   make(chan struct{}),
-		streamCloser: streamCloser,
 	}
 	go r.readEventStream()
 
@@ -61,9 +57,6 @@ func (r *{{ $es.StreamReaderImplName }}) Close() error {
 
 func (r *{{ $es.StreamReaderImplName }}) safeClose() {
 	close(r.done)
-	if err := r.streamCloser.Close(); err != nil {
-		r.onceErr.SetOnce(err)
-	}
 }
 
 func (r *{{ $es.StreamReaderImplName }}) Err() error {

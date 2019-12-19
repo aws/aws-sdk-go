@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -26,6 +27,8 @@ type ServeEventStream struct {
 func (s ServeEventStream) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	encoder := eventstream.NewEncoder(flushWriter{w})
+
+	go io.Copy(ioutil.Discard, r.Body)
 
 	for _, event := range s.Events {
 		encoder.Encode(event)

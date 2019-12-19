@@ -19,6 +19,7 @@ import (
 func TestEventWriter(t *testing.T) {
 	cases := map[string]struct {
 		Event    Marshaler
+		Encoder  Encoder
 		Signer   *MessageSigner
 		TimeFunc func() time.Time
 		Expect   eventstream.Message

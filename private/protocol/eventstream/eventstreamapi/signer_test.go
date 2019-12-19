@@ -66,11 +66,16 @@ func TestMessageSigner(t *testing.T) {
 		},
 	}
 
+	origNowFn := timeNow
+	timeNow = func() time.Time { return currentTime }
+	defer func() { timeNow = origNowFn }()
+
 	for name, tt := range cases {
 		t.Run(name, func(t *testing.T) {
-			messageSigner := MessageSigner{Signer: tt.signer}
+			encoder := &mockEncoder{}
+			signer := NewSignEncoder(tt.signer, encoder)
 
-			err := messageSigner.SignMessage(&tt.input, currentTime)
+			err := signer.Encode(tt.input)
 			if err == nil && len(tt.expectedError) > 0 {
 				t.Fatalf("expected error, but got nil")
 			} else if err != nil && len(tt.expectedError) == 0 {
@@ -81,9 +86,18 @@ func TestMessageSigner(t *testing.T) {
 				return
 			}
 
-			if e, a := tt.expected, tt.input; !reflect.DeepEqual(e, a) {
+			if e, a := tt.expected, encoder.msgs[0]; !reflect.DeepEqual(e, a) {
 				t.Errorf("expected %v, got %v", e, a)
 			}
 		})
 	}
+}
+
+type mockEncoder struct {
+	msgs []eventstream.Message
+}
+
+func (m *mockEncoder) Encode(msg eventstream.Message) error {
+	m.msgs = append(m.msgs, msg)
+	return nil
 }
