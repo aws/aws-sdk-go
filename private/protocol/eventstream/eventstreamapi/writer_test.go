@@ -4,8 +4,8 @@ package eventstreamapi
 
 import (
 	"bytes"
+	"encoding/base64"
 	"encoding/hex"
-	"reflect"
 	"testing"
 	"time"
 
@@ -13,16 +13,17 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/eventstream"
+	"github.com/aws/aws-sdk-go/private/protocol/eventstream/eventstreamtest"
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
 func TestEventWriter(t *testing.T) {
 	cases := map[string]struct {
-		Event    Marshaler
-		Encoder  Encoder
-		Signer   *MessageSigner
-		TimeFunc func() time.Time
-		Expect   eventstream.Message
+		Event         Marshaler
+		EncodeWrapper func(e Encoder) Encoder
+		TimeFunc      func() time.Time
+		Expect        eventstream.Message
+		NestedExpect  *eventstream.Message
 	}{
 		"structured event": {
 			Event: &eventStructured{
@@ -53,27 +54,33 @@ func TestEventWriter(t *testing.T) {
 					Number: aws.Int64(321),
 				},
 			},
-			Signer: &MessageSigner{Signer: &mockChunkSigner{signature: "524f1d03d1d81e94a099042736d40bd9681b867321443ff58a4568e274dbd83bff"}},
+			EncodeWrapper: func(e Encoder) Encoder {
+				return NewSignEncoder(
+					&mockChunkSigner{
+						signature: "524f1d03d1d81e94a099042736d40bd9681b867321443ff58a4568e274dbd83bff",
+					},
+					e,
+				)
+			},
 			TimeFunc: func() time.Time {
 				return time.Date(2019, 1, 27, 22, 37, 54, 0, time.UTC)
 			},
 			Expect: eventstream.Message{
 				Headers: eventstream.Headers{
-					eventMessageTypeHeader,
-					eventstream.Header{
-						Name:  EventTypeHeader,
-						Value: eventstream.StringValue("eventStructured"),
-					},
 					{
 						Name:  DateHeader,
 						Value: eventstream.TimestampValue(time.Date(2019, 1, 27, 22, 37, 54, 0, time.UTC)),
 					},
 					{
-						Name:  ChunkSignatureHeader,
-						Value: eventstream.BytesValue(mustDecodeHex(hex.DecodeString("524f1d03d1d81e94a099042736d40bd9681b867321443ff58a4568e274dbd83bff"))),
+						Name: ChunkSignatureHeader,
+						Value: eventstream.BytesValue(mustDecodeBytes(
+							hex.DecodeString("524f1d03d1d81e94a099042736d40bd9681b867321443ff58a4568e274dbd83bff"),
+						)),
 					},
 				},
-				Payload: []byte(`{"String":"stringfield","Number":123,"Nested":{"String":"fieldstring","Number":321}}`),
+				Payload: mustDecodeBytes(base64.StdEncoding.DecodeString(
+					`AAAAmAAAADSl4EcNDTptZXNzYWdlLXR5cGUHAAVldmVudAs6ZXZlbnQtdHlwZQcAD2V2ZW50U3RydWN0dXJlZHsiU3RyaW5nIjoic3RyaW5nZmllbGQiLCJOdW1iZXIiOjEyMywiTmVzdGVkIjp7IlN0cmluZyI6ImZpZWxkc3RyaW5nIiwiTnVtYmVyIjozMjF9fdVW3Ow=`,
+				)),
 			},
 		},
 	}
@@ -90,9 +97,13 @@ func TestEventWriter(t *testing.T) {
 
 			stream.Reset()
 
-			encoder := eventstream.NewEncoder(&stream, eventstream.EncodeWithLogger(t))
+			var encoder Encoder
+			encoder = eventstream.NewEncoder(&stream, eventstream.EncodeWithLogger(t))
+			if c.EncodeWrapper != nil {
+				encoder = c.EncodeWrapper(encoder)
+			}
+
 			eventWriter := NewEventWriter(encoder,
-				c.Signer,
 				protocol.HandlerPayloadMarshal{
 					Marshalers: marshalers,
 				},
@@ -112,9 +123,7 @@ func TestEventWriter(t *testing.T) {
 				t.Fatalf("expect no decode error got, %v", err)
 			}
 
-			if e, a := c.Expect, msg; !reflect.DeepEqual(e, a) {
-				t.Errorf("expect:%v\nactual:%v\n", e, a)
-			}
+			eventstreamtest.AssertMessageEqual(t, c.Expect, msg)
 		})
 	}
 }
@@ -126,7 +135,6 @@ func BenchmarkEventWriter(b *testing.B) {
 	var stream bytes.Buffer
 	encoder := eventstream.NewEncoder(&stream)
 	eventWriter := NewEventWriter(encoder,
-		nil,
 		protocol.HandlerPayloadMarshal{
 			Marshalers: marshalers,
 		},
