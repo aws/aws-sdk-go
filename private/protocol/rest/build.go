@@ -107,7 +107,7 @@ func buildLocationElements(r *request.Request, v reflect.Value, buildGETQuery bo
 			var err error
 			switch field.Tag.Get("location") {
 			case "headers": // header maps
-				err = buildHeaderMap(&r.HTTPRequest.Header, m, field.Tag)
+				err = buildHeaderMap(&r.HTTPRequest.Header, m, field.Tag, aws.BoolValue(r.Config.NormalizeHeaders))
 			case "header":
 				err = buildHeader(&r.HTTPRequest.Header, m, name, field.Tag)
 			case "uri":
@@ -173,7 +173,7 @@ func buildHeader(header *http.Header, v reflect.Value, name string, tag reflect.
 	return nil
 }
 
-func buildHeaderMap(header *http.Header, v reflect.Value, tag reflect.StructTag) error {
+func buildHeaderMap(header *http.Header, v reflect.Value, tag reflect.StructTag, normalize bool) error {
 	prefix := tag.Get("locationName")
 	for _, key := range v.MapKeys() {
 		str, err := convertType(v.MapIndex(key), tag)
@@ -186,7 +186,12 @@ func buildHeaderMap(header *http.Header, v reflect.Value, tag reflect.StructTag)
 		keyStr := strings.TrimSpace(key.String())
 		str = strings.TrimSpace(str)
 
-		header.Add(prefix+keyStr, str)
+		if normalize {
+			lk := strings.ToLower(prefix + keyStr)
+			(*header)[lk] = append((*header)[lk], str)
+		} else {
+			header.Add(prefix+keyStr, str)
+		}
 	}
 	return nil
 }
