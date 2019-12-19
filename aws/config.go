@@ -165,6 +165,11 @@ type Config struct {
 	// in the ARN, when an ARN is provided as an argument to a bucket parameter.
 	S3UseARNRegion *bool
 
+	// Set this to `true` to have header names normalized in API responses.
+	// This settings affects S3 x-amz-meta headers, and normalizes the key names
+	// to lower case.
+	NormalizeHeaders *bool
+
 	// Set this to `true` to disable the EC2Metadata client from overriding the
 	// default http.Client's Timeout. This is helpful if you do not want the
 	// EC2Metadata client to create a new http.Client. This options is only
