@@ -360,6 +360,10 @@ type PinpointAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *pinpoint.ListTagsForResourceInput, ...request.Option) (*pinpoint.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*pinpoint.ListTagsForResourceInput) (*request.Request, *pinpoint.ListTagsForResourceOutput)
 
+	ListTemplateVersions(*pinpoint.ListTemplateVersionsInput) (*pinpoint.ListTemplateVersionsOutput, error)
+	ListTemplateVersionsWithContext(aws.Context, *pinpoint.ListTemplateVersionsInput, ...request.Option) (*pinpoint.ListTemplateVersionsOutput, error)
+	ListTemplateVersionsRequest(*pinpoint.ListTemplateVersionsInput) (*request.Request, *pinpoint.ListTemplateVersionsOutput)
+
 	ListTemplates(*pinpoint.ListTemplatesInput) (*pinpoint.ListTemplatesOutput, error)
 	ListTemplatesWithContext(aws.Context, *pinpoint.ListTemplatesInput, ...request.Option) (*pinpoint.ListTemplatesOutput, error)
 	ListTemplatesRequest(*pinpoint.ListTemplatesInput) (*request.Request, *pinpoint.ListTemplatesOutput)
@@ -471,6 +475,10 @@ type PinpointAPI interface {
 	UpdateSmsTemplate(*pinpoint.UpdateSmsTemplateInput) (*pinpoint.UpdateSmsTemplateOutput, error)
 	UpdateSmsTemplateWithContext(aws.Context, *pinpoint.UpdateSmsTemplateInput, ...request.Option) (*pinpoint.UpdateSmsTemplateOutput, error)
 	UpdateSmsTemplateRequest(*pinpoint.UpdateSmsTemplateInput) (*request.Request, *pinpoint.UpdateSmsTemplateOutput)
+
+	UpdateTemplateActiveVersion(*pinpoint.UpdateTemplateActiveVersionInput) (*pinpoint.UpdateTemplateActiveVersionOutput, error)
+	UpdateTemplateActiveVersionWithContext(aws.Context, *pinpoint.UpdateTemplateActiveVersionInput, ...request.Option) (*pinpoint.UpdateTemplateActiveVersionOutput, error)
+	UpdateTemplateActiveVersionRequest(*pinpoint.UpdateTemplateActiveVersionInput) (*request.Request, *pinpoint.UpdateTemplateActiveVersionOutput)
 
 	UpdateVoiceChannel(*pinpoint.UpdateVoiceChannelInput) (*pinpoint.UpdateVoiceChannelOutput, error)
 	UpdateVoiceChannelWithContext(aws.Context, *pinpoint.UpdateVoiceChannelInput, ...request.Option) (*pinpoint.UpdateVoiceChannelOutput, error)

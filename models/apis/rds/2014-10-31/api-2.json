@@ -5752,7 +5752,8 @@
         "ProcessorFeatures":{"shape":"ProcessorFeatureList"},
         "UseDefaultProcessorFeatures":{"shape":"BooleanOptional"},
         "DeletionProtection":{"shape":"BooleanOptional"},
-        "MaxAllocatedStorage":{"shape":"IntegerOptional"}
+        "MaxAllocatedStorage":{"shape":"IntegerOptional"},
+        "CertificateRotationRestart":{"shape":"BooleanOptional"}
       }
     },
     "ModifyDBInstanceResult":{

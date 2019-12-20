@@ -1,3 +1,23 @@
+Release v1.26.7 (2019-12-20)
+===
+
+### Service Client Updates
+* `service/devicefarm`: Updates service API, documentation, and paginators
+  * Introduced browser testing support through AWS Device Farm
+* `service/ec2`: Updates service API and documentation
+  * This release introduces the ability to tag key pairs, placement groups, export tasks, import image tasks, import snapshot tasks and export image tasks. You can use tags to organize and identify your resources for cost allocation.
+* `service/eks`: Updates service API and documentation
+* `service/pinpoint`: Updates service API and documentation
+  * This release of the Amazon Pinpoint API introduces versioning support for message templates.
+* `service/rds`: Updates service API and documentation
+  * This release adds an operation that enables users to specify whether a database is restarted when its SSL/TLS certificate is rotated. Only customers who do not use SSL/TLS should use this operation.
+* `service/redshift`: Updates service documentation
+  * Documentation updates for Amazon Redshift RA3 node types.
+* `service/securityhub`: Updates service API and documentation
+* `service/ssm`: Updates service API and documentation
+  * This release updates the attachments support to include AttachmentReference source for Automation documents.
+* `service/transcribe`: Updates service API, documentation, and paginators
+
 Release v1.26.6 (2019-12-19)
 ===
 

@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>Security Hub provides you with a comprehensive view of the security state of your AWS environment and resources. It also provides you with the compliance status of your environment based on CIS AWS Foundations compliance checks. Security Hub collects security data from AWS accounts, services, and integrated third-party products and helps you analyze security trends in your environment to identify the highest priority security issues. For more information about Security Hub, see the <i> <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html\">AWS Security Hub User Guide</a> </i>.</p> <p>When you use operations in the Security Hub API, the requests are executed only in the AWS Region that is currently active or in the specific AWS Region that you specify in your request. Any configuration or settings change that results from the operation is applied only to that Region. To make the same change in other Regions, execute the same command for each Region to apply the change to. For example, if your Region is set to <code>us-west-2</code>, when you use <code>CreateMembers</code> to add a member account to Security Hub, the association of the member account with the master account is created only in the us-west-2 Region. Security Hub must be enabled for the member account in the same Region that the invite was sent from.</p>",
+  "service": "<p>Security Hub provides you with a comprehensive view of the security state of your AWS environment and resources. It also provides you with the compliance status of your environment based on CIS AWS Foundations compliance checks. Security Hub collects security data from AWS accounts, services, and integrated third-party products and helps you analyze security trends in your environment to identify the highest priority security issues. For more information about Security Hub, see the <i> <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html\">AWS Security Hub User Guide</a> </i>.</p> <p>When you use operations in the Security Hub API, the requests are executed only in the AWS Region that is currently active or in the specific AWS Region that you specify in your request. Any configuration or settings change that results from the operation is applied only to that Region. To make the same change in other Regions, execute the same command for each Region to apply the change to. For example, if your Region is set to <code>us-west-2</code>, when you use <code>CreateMembers</code> to add a member account to Security Hub, the association of the member account with the master account is created only in the us-west-2 Region. Security Hub must be enabled for the member account in the same Region that the invite was sent from.</p> <p>The following throttling limits apply to using Security Hub API operations:</p> <ul> <li> <p> <code>GetFindings</code> - RateLimit of 3 requests per second, and a BurstLimit of 6 requests per second.</p> </li> <li> <p> <code>UpdateFindings</code> - RateLimit of 1 request per second, and a BurstLimit of 5 requests per second.</p> </li> <li> <p>All other operations - RateLimit of 10 request per second, and a BurstLimit of 30 requests per second.</p> </li> </ul>",
   "operations": {
     "AcceptInvitation": "<p>Accepts the invitation to be a member account and be monitored by the Security Hub master account that the invitation was sent from. When the member account accepts the invitation, permission is granted to the master account to view findings generated in the member account.</p>",
     "BatchDisableStandards": "<p>Disables the standards specified by the provided <code>StandardsSubscriptionArns</code>. For more information, see <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards.html\">Standards Supported in AWS Security Hub</a>.</p>",
@@ -22,7 +22,7 @@
     "DisassociateFromMasterAccount": "<p>Disassociates the current Security Hub member account from the associated master account.</p>",
     "DisassociateMembers": "<p>Disassociates the specified member accounts from the associated master account.</p>",
     "EnableImportFindingsForProduct": "<p>Enables the integration of a partner product with Security Hub. Integrated products send findings to Security Hub. When you enable a product integration, a permission policy that grants permission for the product to send findings to Security Hub is applied.</p>",
-    "EnableSecurityHub": "<p>Enables Security Hub for your account in the current Region or the Region you specify in the request. When you enable Security Hub, you grant to Security Hub the permissions necessary to gather findings from AWS Config, Amazon GuardDuty, Amazon Inspector, and Amazon Macie. To learn more, see <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-settingup.html\">Setting Up AWS Security Hub</a>.</p>",
+    "EnableSecurityHub": "<p>Enables Security Hub for your account in the current Region or the Region you specify in the request. Enabling Security Hub also enables the CIS AWS Foundations standard. When you enable Security Hub, you grant to Security Hub the permissions necessary to gather findings from AWS Config, Amazon GuardDuty, Amazon Inspector, and Amazon Macie. To learn more, see <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-settingup.html\">Setting Up AWS Security Hub</a>.</p>",
     "GetEnabledStandards": "<p>Returns a list of the standards that are currently enabled.</p>",
     "GetFindings": "<p>Returns a list of findings that match the specified criteria.</p>",
     "GetInsightResults": "<p>Lists the results of the Security Hub insight that the insight ARN specifies.</p>",
@@ -108,10 +108,58 @@
         "GetInsightsRequest$InsightArns": "<p>The ARNs of the insights that you want to describe.</p>"
       }
     },
+    "AvailabilityZone": {
+      "base": "<p>Information about an Availability Zone.</p>",
+      "refs": {
+        "AvailabilityZones$member": null
+      }
+    },
+    "AvailabilityZones": {
+      "base": null,
+      "refs": {
+        "AwsElbv2LoadBalancerDetails$AvailabilityZones": "<p>The Availability Zones for the load balancer.</p>"
+      }
+    },
+    "AwsCloudFrontDistributionDetails": {
+      "base": "<p>A distribution configuration.</p>",
+      "refs": {
+        "ResourceDetails$AwsCloudFrontDistribution": "<p>Details about a CloudFront distribution.</p>"
+      }
+    },
+    "AwsCloudFrontDistributionLogging": {
+      "base": "<p>A complex type that controls whether access logs are written for the distribution.</p>",
+      "refs": {
+        "AwsCloudFrontDistributionDetails$Logging": "<p>A complex type that controls whether access logs are written for the distribution.</p>"
+      }
+    },
+    "AwsCloudFrontDistributionOriginItem": {
+      "base": "<p>A complex type that describes the Amazon S3 bucket, HTTP server (for example, a web server), Amazon MediaStore, or other server from which CloudFront gets your files.</p>",
+      "refs": {
+        "AwsCloudFrontDistributionOriginItemList$member": null
+      }
+    },
+    "AwsCloudFrontDistributionOriginItemList": {
+      "base": null,
+      "refs": {
+        "AwsCloudFrontDistributionOrigins$Items": "<p>A complex type that contains origins or origin groups for this distribution.</p>"
+      }
+    },
+    "AwsCloudFrontDistributionOrigins": {
+      "base": "<p>A complex type that contains information about origins and origin groups for this distribution.</p>",
+      "refs": {
+        "AwsCloudFrontDistributionDetails$Origins": "<p>A complex type that contains information about origins for this distribution.</p>"
+      }
+    },
     "AwsEc2InstanceDetails": {
       "base": "<p>The details of an Amazon EC2 instance.</p>",
       "refs": {
         "ResourceDetails$AwsEc2Instance": "<p>Details about an Amazon EC2 instance related to a finding.</p>"
+      }
+    },
+    "AwsElbv2LoadBalancerDetails": {
+      "base": "<p>Information about a load balancer.</p>",
+      "refs": {
+        "ResourceDetails$AwsElbv2LoadBalancer": "<p>Details about a load balancer.</p>"
       }
     },
     "AwsIamAccessKeyDetails": {
@@ -124,6 +172,78 @@
       "base": null,
       "refs": {
         "AwsIamAccessKeyDetails$Status": "<p>The status of the IAM access key related to a finding.</p>"
+      }
+    },
+    "AwsIamRoleAssumeRolePolicyDocument": {
+      "base": null,
+      "refs": {
+        "AwsIamRoleDetails$AssumeRolePolicyDocument": "<p>The trust policy that grants permission to assume the role.</p>"
+      }
+    },
+    "AwsIamRoleDetails": {
+      "base": "<p>Contains information about an IAM role, including all of the role's policies.</p>",
+      "refs": {
+        "ResourceDetails$AwsIamRole": "<p>Details about an IAM role.</p>"
+      }
+    },
+    "AwsKmsKeyDetails": {
+      "base": "<p>Contains metadata about a customer master key (CMK).</p>",
+      "refs": {
+        "ResourceDetails$AwsKmsKey": "<p>Details about a KMS key.</p>"
+      }
+    },
+    "AwsLambdaFunctionCode": {
+      "base": "<p>The code for the Lambda function. You can specify either an object in Amazon S3, or upload a deployment package directly.</p>",
+      "refs": {
+        "AwsLambdaFunctionDetails$Code": "<p>An <code>AwsLambdaFunctionCode</code> object.</p>"
+      }
+    },
+    "AwsLambdaFunctionDeadLetterConfig": {
+      "base": "<p>The dead-letter queue for failed asynchronous invocations.</p>",
+      "refs": {
+        "AwsLambdaFunctionDetails$DeadLetterConfig": "<p>The function's dead letter queue.</p>"
+      }
+    },
+    "AwsLambdaFunctionDetails": {
+      "base": "<p>Details about a function's configuration.</p>",
+      "refs": {
+        "ResourceDetails$AwsLambdaFunction": "<p>Details about a Lambda function.</p>"
+      }
+    },
+    "AwsLambdaFunctionEnvironment": {
+      "base": "<p>A function's environment variable settings.</p>",
+      "refs": {
+        "AwsLambdaFunctionDetails$Environment": "<p>The function's environment variables.</p>"
+      }
+    },
+    "AwsLambdaFunctionEnvironmentError": {
+      "base": "<p>Error messages for environment variables that couldn't be applied.</p>",
+      "refs": {
+        "AwsLambdaFunctionEnvironment$Error": "<p>An <code>AwsLambdaFunctionEnvironmentError</code> object.</p>"
+      }
+    },
+    "AwsLambdaFunctionLayer": {
+      "base": "<p>An AWS Lambda layer.</p>",
+      "refs": {
+        "AwsLambdaFunctionLayerList$member": null
+      }
+    },
+    "AwsLambdaFunctionLayerList": {
+      "base": null,
+      "refs": {
+        "AwsLambdaFunctionDetails$Layers": "<p>The function's layers.</p>"
+      }
+    },
+    "AwsLambdaFunctionTracingConfig": {
+      "base": "<p>The function's AWS X-Ray tracing configuration.</p>",
+      "refs": {
+        "AwsLambdaFunctionDetails$TracingConfig": "<p>The function's AWS X-Ray tracing configuration.</p>"
+      }
+    },
+    "AwsLambdaFunctionVpcConfig": {
+      "base": "<p>The VPC security groups and subnets that are attached to a Lambda function. For more information, see VPC Settings.</p>",
+      "refs": {
+        "AwsLambdaFunctionDetails$VpcConfig": "<p>The function's networking configuration.</p>"
       }
     },
     "AwsS3BucketDetails": {
@@ -151,8 +271,32 @@
     "AwsSecurityFindingList": {
       "base": null,
       "refs": {
-        "BatchImportFindingsRequest$Findings": "<p>A list of findings to import. To successfully import a finding, it must follow the <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-findings-format.html\">AWS Security Finding Format</a>.</p>",
+        "BatchImportFindingsRequest$Findings": "<p>A list of findings to import. To successfully import a finding, it must follow the <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-findings-format.html\">AWS Security Finding Format</a>. Maximum of 100 findings per request.</p>",
         "GetFindingsResponse$Findings": "<p>The findings that matched the filters specified in the request.</p>"
+      }
+    },
+    "AwsSnsTopicDetails": {
+      "base": "<p>A wrapper type for the topic's Amazon Resource Name (ARN).</p>",
+      "refs": {
+        "ResourceDetails$AwsSnsTopic": "<p>Details about an SNS topic.</p>"
+      }
+    },
+    "AwsSnsTopicSubscription": {
+      "base": "<p>A wrapper type for the attributes of an Amazon SNS subscription.</p>",
+      "refs": {
+        "AwsSnsTopicSubscriptionList$member": null
+      }
+    },
+    "AwsSnsTopicSubscriptionList": {
+      "base": null,
+      "refs": {
+        "AwsSnsTopicDetails$Subscription": "<p>Subscription is an embedded property that describes the subscription endpoints of an Amazon SNS topic.</p>"
+      }
+    },
+    "AwsSqsQueueDetails": {
+      "base": "<p>Data about a queue.</p>",
+      "refs": {
+        "ResourceDetails$AwsSqsQueue": "<p>Details about an SQS queue.</p>"
       }
     },
     "BatchDisableStandardsRequest": {
@@ -188,6 +332,8 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "AwsCloudFrontDistributionLogging$Enabled": "<p>With this field, you can enable or disable the selected distribution.</p>",
+        "AwsCloudFrontDistributionLogging$IncludeCookies": "<p>Specifies whether you want CloudFront to include cookies in access logs.</p>",
         "ListMembersRequest$OnlyAssociated": "<p>Specifies which member accounts the response includes based on their relationship status with the master account. The default value is <code>TRUE</code>. If <code>onlyAssociated</code> is set to <code>TRUE</code>, the response includes member accounts whose relationship status with the master is set to <code>ENABLED</code> or <code>DISABLED</code>. If <code>onlyAssociated</code> is set to <code>FALSE</code>, the response includes all existing member accounts. </p>"
       }
     },
@@ -198,7 +344,7 @@
       }
     },
     "Compliance": {
-      "base": "<p>Exclusive to findings that are generated as the result of a check run against a specific rule in a supported standard (for example, CIS AWS Foundations). Contains compliance-related finding details.</p>",
+      "base": "<p>Exclusive to findings that are generated as the result of a check run against a specific rule in a supported standard (for example, CIS AWS Foundations). Contains compliance-related finding details.</p> <p>Values include the following:</p> <ul> <li> <p>Allowed values are the following:</p> <ul> <li> <p> <code>PASSED</code> - Compliance check passed for all evaluated resources.</p> </li> <li> <p> <code>WARNING</code> - Some information is missing or this check is not supported given your configuration.</p> </li> <li> <p> <code>FAILED</code> - Compliance check failed for at least one evaluated resource.</p> </li> <li> <p> <code>NOT_AVAILABLE</code> - Check could not be performed due to a service outage or API error.</p> </li> </ul> </li> </ul>",
       "refs": {
         "AwsSecurityFinding$Compliance": "<p>This data type is exclusive to findings that are generated as the result of a check run against a specific rule in a supported standard (for example, CIS AWS Foundations). Contains compliance-related finding details.</p>"
       }
@@ -402,6 +548,7 @@
     "Double": {
       "base": null,
       "refs": {
+        "AwsKmsKeyDetails$CreationDate": "<p>The date and time when the CMK was created.</p>",
         "NumberFilter$Gte": "<p>The greater-than-equal condition to be applied to a single field when querying for findings. </p>",
         "NumberFilter$Lte": "<p>The less-than-equal condition to be applied to a single field when querying for findings. </p>",
         "NumberFilter$Eq": "<p>The equal-to condition to be applied to a single field when querying for findings.</p>",
@@ -431,6 +578,7 @@
     "FieldMap": {
       "base": null,
       "refs": {
+        "AwsLambdaFunctionEnvironment$Variables": "<p>Environment variable key-value pairs.</p>",
         "AwsSecurityFinding$ProductFields": "<p>A data type where security-findings providers can include additional solution-specific details that aren't part of the defined <code>AwsSecurityFinding</code> format.</p>",
         "AwsSecurityFinding$UserDefinedFields": "<p>A list of name/value string pairs associated with the finding. These are custom, user-defined fields added to a finding. </p>",
         "Resource$Tags": "<p>A list of AWS tags associated with a resource at the time the finding was processed.</p>",
@@ -552,8 +700,13 @@
     "Integer": {
       "base": null,
       "refs": {
+        "AwsIamRoleDetails$MaxSessionDuration": "<p>The maximum session duration (in seconds) that you want to set for the specified role.</p>",
+        "AwsLambdaFunctionDetails$MemorySize": "<p>The memory that's allocated to the function.</p>",
+        "AwsLambdaFunctionDetails$Timeout": "<p>The amount of time that Lambda allows a function to run before stopping it.</p>",
+        "AwsLambdaFunctionLayer$CodeSize": "<p>The size of the layer archive in bytes.</p>",
         "AwsSecurityFinding$Confidence": "<p>A finding's confidence. Confidence is defined as the likelihood that a finding accurately identifies the behavior or issue that it was intended to identify. Confidence is scored on a 0-100 basis using a ratio scale, where 0 means zero percent confidence and 100 means 100 percent confidence.</p>",
         "AwsSecurityFinding$Criticality": "<p>The level of importance assigned to the resources associated with the finding. A score of 0 means that the underlying resources have no criticality, and a score of 100 is reserved for the most critical resources.</p>",
+        "AwsSqsQueueDetails$KmsDataKeyReusePeriodSeconds": "<p>The length of time, in seconds, for which Amazon SQS can reuse a data key to encrypt or decrypt messages before calling AWS KMS again.</p>",
         "BatchImportFindingsResponse$FailedCount": "<p>The number of findings that failed to import.</p>",
         "BatchImportFindingsResponse$SuccessCount": "<p>The number of findings that were successfully imported.</p>",
         "DateRange$Value": "<p>A date range value for the date filter.</p>",
@@ -678,6 +831,12 @@
       "refs": {
       }
     },
+    "LoadBalancerState": {
+      "base": "<p>Information about the state of the load balancer.</p>",
+      "refs": {
+        "AwsElbv2LoadBalancerDetails$State": "<p>The state of the load balancer.</p>"
+      }
+    },
     "Malware": {
       "base": "<p>A list of malware related to a finding.</p>",
       "refs": {
@@ -793,6 +952,18 @@
         "ActionTarget$Name": "<p>The name of the action target.</p>",
         "ActionTarget$Description": "<p>The description of the target action.</p>",
         "ArnList$member": null,
+        "AvailabilityZone$ZoneName": "<p>The name of the Availability Zone.</p>",
+        "AvailabilityZone$SubnetId": "<p>The ID of the subnet. You can specify one subnet per Availability Zone.</p>",
+        "AwsCloudFrontDistributionDetails$DomainName": "<p>The domain name corresponding to the distribution.</p>",
+        "AwsCloudFrontDistributionDetails$ETag": "<p>The entity tag is a hash of the object.</p>",
+        "AwsCloudFrontDistributionDetails$LastModifiedTime": "<p>The date and time that the distribution was last modified.</p>",
+        "AwsCloudFrontDistributionDetails$Status": "<p>Indicates the current status of the distribution.</p>",
+        "AwsCloudFrontDistributionDetails$WebAclId": "<p>A unique identifier that specifies the AWS WAF web ACL, if any, to associate with this distribution.</p>",
+        "AwsCloudFrontDistributionLogging$Bucket": "<p>The Amazon S3 bucket to store the access logs in.</p>",
+        "AwsCloudFrontDistributionLogging$Prefix": "<p>An optional string that you want CloudFront to prefix to the access log filenames for this distribution.</p>",
+        "AwsCloudFrontDistributionOriginItem$DomainName": "<p>Amazon S3 origins: The DNS name of the Amazon S3 bucket from which you want CloudFront to get objects for this origin.</p>",
+        "AwsCloudFrontDistributionOriginItem$Id": "<p>A unique identifier for the origin or origin group.</p>",
+        "AwsCloudFrontDistributionOriginItem$OriginPath": "<p>An optional element that causes CloudFront to request your content from a directory in your Amazon S3 bucket or your custom origin.</p>",
         "AwsEc2InstanceDetails$Type": "<p>The instance type of the instance. </p>",
         "AwsEc2InstanceDetails$ImageId": "<p>The Amazon Machine Image (AMI) ID of the instance.</p>",
         "AwsEc2InstanceDetails$KeyName": "<p>The key name associated with the instance.</p>",
@@ -800,8 +971,47 @@
         "AwsEc2InstanceDetails$VpcId": "<p>The identifier of the VPC that the instance was launched in.</p>",
         "AwsEc2InstanceDetails$SubnetId": "<p>The identifier of the subnet that the instance was launched in.</p>",
         "AwsEc2InstanceDetails$LaunchedAt": "<p>The date/time the instance was launched.</p>",
-        "AwsIamAccessKeyDetails$UserName": "<p>The user associated with the IAM access key related to a finding.</p>",
+        "AwsElbv2LoadBalancerDetails$CanonicalHostedZoneId": "<p>The ID of the Amazon Route 53 hosted zone associated with the load balancer.</p>",
+        "AwsElbv2LoadBalancerDetails$CreatedTime": "<p>The date and time the load balancer was created.</p>",
+        "AwsElbv2LoadBalancerDetails$DNSName": "<p>The public DNS name of the load balancer.</p>",
+        "AwsElbv2LoadBalancerDetails$IpAddressType": "<p>The type of IP addresses used by the subnets for your load balancer. The possible values are ipv4 (for IPv4 addresses) and dualstack (for IPv4 and IPv6 addresses).</p>",
+        "AwsElbv2LoadBalancerDetails$Scheme": "<p>The nodes of an Internet-facing load balancer have public IP addresses.</p>",
+        "AwsElbv2LoadBalancerDetails$Type": "<p>The type of load balancer.</p>",
+        "AwsElbv2LoadBalancerDetails$VpcId": "<p>The ID of the VPC for the load balancer.</p>",
+        "AwsIamAccessKeyDetails$UserName": "<p>The user associated with the IAM access key related to a finding.</p> <p>The <code>UserName</code> parameter has been replaced with the <code>PrincipalName</code> parameter because access keys can also be assigned to principals that are not IAM users.</p>",
         "AwsIamAccessKeyDetails$CreatedAt": "<p>The creation date/time of the IAM access key related to a finding.</p>",
+        "AwsIamAccessKeyDetails$PrincipalId": "<p>The ID of the principal associated with an access key.</p>",
+        "AwsIamAccessKeyDetails$PrincipalType": "<p>The type of principal associated with an access key.</p>",
+        "AwsIamAccessKeyDetails$PrincipalName": "<p>The name of the principal.</p>",
+        "AwsIamRoleDetails$CreateDate": "<p>The date and time, in ISO 8601 date-time format, when the role was created.</p>",
+        "AwsIamRoleDetails$RoleId": "<p>The stable and unique string identifying the role.</p>",
+        "AwsIamRoleDetails$RoleName": "<p>The friendly name that identifies the role.</p>",
+        "AwsIamRoleDetails$Path": "<p>The path to the role.</p>",
+        "AwsKmsKeyDetails$AWSAccountId": "<p>The twelve-digit account ID of the AWS account that owns the CMK.</p>",
+        "AwsKmsKeyDetails$KeyId": "<p>The globally unique identifier for the CMK.</p>",
+        "AwsKmsKeyDetails$KeyManager": "<p>The manager of the CMK. CMKs in your AWS account are either customer managed or AWS managed.</p>",
+        "AwsKmsKeyDetails$KeyState": "<p>The state of the CMK.</p>",
+        "AwsKmsKeyDetails$Origin": "<p>The source of the CMK's key material. When this value is AWS_KMS, AWS KMS created the key material. When this value is EXTERNAL, the key material was imported from your existing key management infrastructure or the CMK lacks key material. When this value is AWS_CLOUDHSM, the key material was created in the AWS CloudHSM cluster associated with a custom key store.</p>",
+        "AwsLambdaFunctionCode$S3Bucket": "<p>An Amazon S3 bucket in the same AWS Region as your function. The bucket can be in a different AWS account.</p>",
+        "AwsLambdaFunctionCode$S3Key": "<p>The Amazon S3 key of the deployment package.</p>",
+        "AwsLambdaFunctionCode$S3ObjectVersion": "<p>For versioned objects, the version of the deployment package object to use.</p>",
+        "AwsLambdaFunctionCode$ZipFile": "<p>The base64-encoded contents of the deployment package. AWS SDK and AWS CLI clients handle the encoding for you.</p>",
+        "AwsLambdaFunctionDeadLetterConfig$TargetArn": "<p>The Amazon Resource Name (ARN) of an Amazon SQS queue or Amazon SNS topic.</p>",
+        "AwsLambdaFunctionDetails$CodeSha256": "<p>The SHA256 hash of the function's deployment package.</p>",
+        "AwsLambdaFunctionDetails$FunctionName": "<p>The name of the function.</p>",
+        "AwsLambdaFunctionDetails$Handler": "<p>The function that Lambda calls to begin executing your function.</p>",
+        "AwsLambdaFunctionDetails$KmsKeyArn": "<p>The KMS key that's used to encrypt the function's environment variables. This key is only returned if you've configured a customer managed CMK.</p>",
+        "AwsLambdaFunctionDetails$LastModified": "<p>The date and time that the function was last updated, in ISO-8601 format (YYYY-MM-DDThh:mm:ss.sTZD).</p>",
+        "AwsLambdaFunctionDetails$MasterArn": "<p>For Lambda@Edge functions, the ARN of the master function.</p>",
+        "AwsLambdaFunctionDetails$RevisionId": "<p>The latest updated revision of the function or alias.</p>",
+        "AwsLambdaFunctionDetails$Role": "<p>The function's execution role.</p>",
+        "AwsLambdaFunctionDetails$Runtime": "<p>The runtime environment for the Lambda function.</p>",
+        "AwsLambdaFunctionDetails$Version": "<p>The version of the Lambda function.</p>",
+        "AwsLambdaFunctionEnvironmentError$ErrorCode": "<p>The error code.</p>",
+        "AwsLambdaFunctionEnvironmentError$Message": "<p>The error message.</p>",
+        "AwsLambdaFunctionLayer$Arn": "<p>The Amazon Resource Name (ARN) of the function layer.</p>",
+        "AwsLambdaFunctionTracingConfig$Mode": "<p>The tracing mode.</p>",
+        "AwsLambdaFunctionVpcConfig$VpcId": "<p>The ID of the VPC.</p>",
         "AwsS3BucketDetails$OwnerId": "<p>The canonical user ID of the owner of the S3 bucket.</p>",
         "AwsS3BucketDetails$OwnerName": "<p>The display name of the owner of the S3 bucket.</p>",
         "AwsSecurityFinding$SchemaVersion": "<p>The schema version that a finding is formatted for.</p>",
@@ -816,6 +1026,14 @@
         "AwsSecurityFinding$Title": "<p>A finding's title.</p> <note> <p>In this release, <code>Title</code> is a required property.</p> </note>",
         "AwsSecurityFinding$Description": "<p>A finding's description.</p> <note> <p>In this release, <code>Description</code> is a required property.</p> </note>",
         "AwsSecurityFinding$SourceUrl": "<p>A URL that links to a page about the current finding in the security-findings provider's solution.</p>",
+        "AwsSnsTopicDetails$KmsMasterKeyId": "<p>The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CMK.</p>",
+        "AwsSnsTopicDetails$TopicName": "<p>The name of the topic.</p>",
+        "AwsSnsTopicDetails$Owner": "<p>The subscription's owner.</p>",
+        "AwsSnsTopicSubscription$Endpoint": "<p>The subscription's endpoint (format depends on the protocol).</p>",
+        "AwsSnsTopicSubscription$Protocol": "<p>The subscription's protocol.</p>",
+        "AwsSqsQueueDetails$KmsMasterKeyId": "<p>The ID of an AWS-managed customer master key (CMK) for Amazon SQS or a custom CMK.</p>",
+        "AwsSqsQueueDetails$QueueName": "<p>The name of the new queue.</p>",
+        "AwsSqsQueueDetails$DeadLetterTargetArn": "<p>The Amazon Resource Name (ARN) of the dead-letter queue to which Amazon SQS moves messages after the value of maxReceiveCount is exceeded. </p>",
         "CategoryList$member": null,
         "ContainerDetails$Name": "<p>The name of the container related to a finding.</p>",
         "ContainerDetails$ImageId": "<p>The identifier of the image related to a finding.</p>",
@@ -866,6 +1084,8 @@
         "LimitExceededException$Code": null,
         "ListInvitationsResponse$NextToken": "<p>The token that is required for pagination.</p>",
         "ListMembersResponse$NextToken": "<p>The token that is required for pagination.</p>",
+        "LoadBalancerState$Code": "<p>The state code. The initial state of the load balancer is provisioning. After the load balancer is fully set up and ready to route traffic, its state is active. If the load balancer could not be set up, its state is failed. </p>",
+        "LoadBalancerState$Reason": "<p>A description of the state.</p>",
         "Malware$Name": "<p>The name of the malware that was observed.</p>",
         "Malware$Path": "<p>The file system path of the malware that was observed.</p>",
         "MapFilter$Key": "<p>The key of the map filter.</p>",
@@ -881,6 +1101,7 @@
         "Network$DestinationIpV4": "<p>The destination IPv4 address of network-related information about a finding.</p>",
         "Network$DestinationIpV6": "<p>The destination IPv6 address of network-related information about a finding.</p>",
         "Network$DestinationDomain": "<p>The destination domain of network-related information about a finding.</p>",
+        "NonEmptyStringList$member": null,
         "Note$Text": "<p>The text of a note.</p>",
         "Note$UpdatedBy": "<p>The principal that created a note.</p>",
         "Note$UpdatedAt": "<p>The timestamp of when the note was updated.</p>",
@@ -910,6 +1131,7 @@
         "ResourceNotFoundException$Message": null,
         "ResourceNotFoundException$Code": null,
         "Result$ProcessingResult": "<p>The reason that the account wasn't be processed.</p>",
+        "SecurityGroups$member": null,
         "SortCriterion$Field": "<p>The finding attribute used to sort findings.</p>",
         "StandardsInputParameterMap$key": null,
         "StandardsInputParameterMap$value": null,
@@ -930,6 +1152,13 @@
         "UpdateInsightRequest$InsightArn": "<p>The ARN of the insight that you want to update.</p>",
         "UpdateInsightRequest$Name": "<p>The updated name for the insight.</p>",
         "UpdateInsightRequest$GroupByAttribute": "<p>The updated <code>GroupBy</code> attribute that defines this insight.</p>"
+      }
+    },
+    "NonEmptyStringList": {
+      "base": null,
+      "refs": {
+        "AwsLambdaFunctionVpcConfig$SecurityGroupIds": "<p>A list of VPC security groups IDs.</p>",
+        "AwsLambdaFunctionVpcConfig$SubnetIds": "<p>A list of VPC subnet IDs.</p>"
       }
     },
     "Note": {
@@ -1075,6 +1304,12 @@
         "DeleteMembersResponse$UnprocessedAccounts": "<p>A list of account ID and email address pairs of the AWS accounts that weren't deleted.</p>",
         "GetMembersResponse$UnprocessedAccounts": "<p>A list of account ID and email address pairs of the AWS accounts that couldn't be processed.</p>",
         "InviteMembersResponse$UnprocessedAccounts": "<p>A list of account ID and email address pairs of the AWS accounts that couldn't be processed. </p>"
+      }
+    },
+    "SecurityGroups": {
+      "base": null,
+      "refs": {
+        "AwsElbv2LoadBalancerDetails$SecurityGroups": "<p>The IDs of the security groups for the load balancer.</p>"
       }
     },
     "Severity": {
