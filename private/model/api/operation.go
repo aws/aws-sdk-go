@@ -259,6 +259,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 					req.Handlers.Unmarshal.PushBack(es.recvInitialEvent)
 				{{- end }}
 			{{- end }}
+			req.Handlers.Unmarshal.PushBack(es.runOnStreamPartClose)
 
 		{{- end }}
 	{{- end }}

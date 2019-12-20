@@ -15,7 +15,7 @@ type StreamWriter struct {
 
 	done      chan struct{}
 	closeOnce sync.Once
-	err       OnceError
+	err       *OnceError
 
 	streamCloser io.Closer
 }
@@ -28,6 +28,7 @@ func NewStreamWriter(eventWriter *EventWriter, streamCloser io.Closer) *StreamWr
 		streamCloser: streamCloser,
 		stream:       make(chan eventWriteAsyncReport),
 		done:         make(chan struct{}),
+		err:          NewOnceError(),
 	}
 	go w.writeStream()
 
@@ -44,9 +45,12 @@ func (w *StreamWriter) Close() error {
 func (w *StreamWriter) safeClose() {
 	close(w.done)
 	if err := w.streamCloser.Close(); err != nil {
-		w.err.SetOnce(err)
+		w.err.SetError(err)
 	}
-	w.stream = nil
+}
+
+func (w *StreamWriter) ErrorSet() <-chan struct{} {
+	return w.err.ErrorSet()
 }
 
 // Err returns any error that occurred while attempting to write an event to the
@@ -98,7 +102,7 @@ func (w *StreamWriter) writeStream() {
 			err := w.eventWriter.WriteEvent(wrapper.Event)
 			wrapper.ReportResult(w.done, err)
 			if err != nil {
-				w.err.SetOnce(err)
+				w.err.SetError(err)
 				return
 			}
 

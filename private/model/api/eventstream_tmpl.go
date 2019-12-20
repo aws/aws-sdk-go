@@ -86,14 +86,15 @@ type {{ $esapi.Name }} struct {
 		StreamCloser io.Closer
 	{{- end }}
 
-	done chan struct{}
+	done      chan struct{}
 	closeOnce sync.Once
-	err eventstreamapi.OnceError
+	err       *eventstreamapi.OnceError
 }
 
 func new{{ $esapi.Name }}() *{{ $esapi.Name }} {
 	return &{{ $esapi.Name }} {
 		done: make(chan struct{}),
+		err: eventstreamapi.NewOnceError(),
 	}
 }
 
@@ -103,6 +104,45 @@ func new{{ $esapi.Name }}() *{{ $esapi.Name }} {
 		es.StreamCloser = r.HTTPResponse.Body
 	}
 {{- end }}
+
+func (es *{{ $esapi.Name }}) runOnStreamPartClose(r *request.Request) {
+	if es.done == nil {
+		return
+	}
+	go es.waitStreamPartClose()
+
+}
+
+func (es *{{ $esapi.Name }}) waitStreamPartClose() {
+	{{- if $inputStream }}
+		var inputC <-chan struct{}
+		if v, ok := es.Writer.(interface{ErrorSet() <-chan struct{}}); ok {
+			inputC = v.ErrorSet()
+		}
+	{{- end }}
+	{{- if $outputStream }}
+		var outputC <-chan struct{}
+		if v, ok := es.Reader.(interface{ErrorSet() <-chan struct{}}); ok {
+			outputC = v.ErrorSet()
+		}
+	{{- end }}
+
+	select {
+		case <-es.done:
+
+		{{- if $inputStream }}
+		case <-inputC:
+			es.err.SetError(es.Writer.Err())
+			es.Close()
+		{{- end }}
+
+		{{- if $outputStream }}
+		case <-outputC:
+			es.err.SetError(es.Reader.Err())
+			es.Close()
+		{{- end }}
+	}
+}
 
 {{- if $inputStream }}
 
@@ -139,7 +179,8 @@ func new{{ $esapi.Name }}() *{{ $esapi.Name }} {
 			{{- $_ := $.API.AddSDKImport "aws/signer/v4" }}
 			sigSeed, err := v4.GetSignedRequestSignature(r.HTTPRequest)
 			if err != nil {
-				r.Error = awserr.New("TODO", "unable to get initial request's signature", err)
+				r.Error = awserr.New(request.ErrCodeSerialization,
+					"unable to get initial request's signature", err)
 				return
 			}
 			signer := eventstreamapi.NewSignEncoder(
@@ -272,8 +313,6 @@ func (es *{{ $esapi.Name }}) safeClose() {
 	if es.done != nil {
 		close(es.done)
 	}
-	// TODO Reader and Writer need to expose error channels that ES waits on
-	// when error is received it closes the whole stream.
 
 	{{- if $inputStream }}
 
@@ -282,17 +321,16 @@ func (es *{{ $esapi.Name }}) safeClose() {
 		writeCloseDone := make(chan error)
 		go func() {
 			if err := es.Writer.Close(); err != nil {
-				writeCloseDone <- err
+				es.err.SetError(err)
 			}
 			close(writeCloseDone)
 		}()
 		select {
 		case <-t.C:
-			if es.inputWriter != nil {
-				es.inputWriter.Close()
-			}
-		case err := <-writeCloseDone:
-			es.err.SetOnce(err)
+		case <-writeCloseDone:
+		}
+		if es.inputWriter != nil {
+			es.inputWriter.Close()
 		}
 	{{- end }}
 
@@ -313,11 +351,16 @@ func (es *{{ $esapi.Name }}) safeClose() {
 // Err returns any error that occurred while reading or writing EventStream
 // Events from the service API's response. Returns nil if there were no errors.
 func (es *{{ $esapi.Name }}) Err() error {
+	if err := es.err.Err(); err != nil {
+		return err
+	}
+
 	{{- if $inputStream }}
 		if err := es.Writer.Err(); err != nil {
 			return err
 		}
 	{{- end }}
+
 	{{- if $outputStream }}
 		if err := es.Reader.Err(); err != nil {
 			return err

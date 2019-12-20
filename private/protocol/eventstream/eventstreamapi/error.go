@@ -29,22 +29,36 @@ func (e messageError) OrigErr() error {
 type OnceError struct {
 	mu  sync.RWMutex
 	err error
+	ch  chan struct{}
+}
+
+func NewOnceError() *OnceError {
+	return &OnceError{
+		ch: make(chan struct{}, 1),
+	}
 }
 
 func (e *OnceError) Err() error {
 	e.mu.RLock()
-	defer e.mu.RUnlock()
-	return e.err
+	err := e.err
+	e.mu.RUnlock()
+
+	return err
 }
 
-func (e *OnceError) SetOnce(err error) {
+func (e *OnceError) SetError(err error) {
 	if err == nil {
 		return
 	}
 
 	e.mu.Lock()
-	defer e.mu.Unlock()
 	if e.err == nil {
 		e.err = err
+		close(e.ch)
 	}
+	e.mu.Unlock()
+}
+
+func (e *OnceError) ErrorSet() <-chan struct{} {
+	return e.ch
 }

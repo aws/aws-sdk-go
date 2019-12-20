@@ -31,8 +31,8 @@ type {{ $es.StreamReaderAPIName }} interface {
 
 type {{ $es.StreamReaderImplName }} struct {
 	eventReader *eventstreamapi.EventReader
-	stream chan {{ $es.EventGroupName }}
-	onceErr eventstreamapi.OnceError
+	stream      chan {{ $es.EventGroupName }}
+	err         *eventstreamapi.OnceError
 
 	done      chan struct{}
 	closeOnce sync.Once
@@ -43,6 +43,7 @@ func {{ $es.StreamReaderImplConstructorName }}(eventReader *eventstreamapi.Event
 		eventReader: eventReader,
 		stream: make(chan {{ $es.EventGroupName }}),
 		done:   make(chan struct{}),
+		err:    eventstreamapi.NewOnceError(),
 	}
 	go r.readEventStream()
 
@@ -55,12 +56,16 @@ func (r *{{ $es.StreamReaderImplName }}) Close() error {
 	return r.Err()
 }
 
+func (r *{{ $es.StreamReaderImplName }}) ErrorSet() <-chan struct{} {
+	return r.err.ErrorSet()
+}
+
 func (r *{{ $es.StreamReaderImplName }}) safeClose() {
 	close(r.done)
 }
 
 func (r *{{ $es.StreamReaderImplName }}) Err() error {
-	return r.onceErr.Err()
+	return r.err.Err()
 }
 
 func (r *{{ $es.StreamReaderImplName }}) Events() <-chan {{ $es.EventGroupName }} {
@@ -83,7 +88,7 @@ func (r *{{ $es.StreamReaderImplName }}) readEventStream() {
 				return
 			default:
 			}
-			r.onceErr.SetOnce(err)
+			r.err.SetError(err)
 			return
 		}
 
