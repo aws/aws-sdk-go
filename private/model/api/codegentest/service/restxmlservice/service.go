@@ -76,6 +76,7 @@ func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint,
 	svc.Handlers.UnmarshalMeta.PushBackNamed(restxml.UnmarshalMetaHandler)
 	svc.Handlers.UnmarshalError.PushBackNamed(restxml.UnmarshalErrorHandler)
 
+	svc.Handlers.BuildStream.PushBackNamed(restxml.BuildHandler)
 	svc.Handlers.UnmarshalStream.PushBackNamed(restxml.UnmarshalHandler)
 
 	// Run custom client initialization if present
