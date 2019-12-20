@@ -61,6 +61,9 @@ func (c *TranscribeStreamingService) StartStreamTranscriptionRequest(input *Star
 
 	output = &StartStreamTranscriptionOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.UnmarshalMeta.PushBack(
+		protocol.RequireHTTPMinProtocol{Major: 2}.Handler,
+	)
 
 	es := newStartStreamTranscriptionEventStream()
 	output.eventStream = es
