@@ -7834,6 +7834,9 @@ func (s SubscribeToShardOutput) GoString() string {
 	return s.String()
 }
 
+func (s *SubscribeToShardOutput) SetEventStream(v *SubscribeToShardEventStream) {
+	s.EventStream = v
+}
 func (s *SubscribeToShardOutput) GetEventStream() *SubscribeToShardEventStream {
 	return s.EventStream
 }
