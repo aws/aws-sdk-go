@@ -17,6 +17,7 @@ type EventStreamAPI struct {
 	Name         string
 	InputStream  *EventStream
 	OutputStream *EventStream
+	RequireHTTP2 bool
 
 	// The eventstream generated code was generated with an older model that
 	// does not scale with bi-directional models. This drives the need to
@@ -182,6 +183,9 @@ func (a *API) setupEventStreams() error {
 			}
 		}
 
+		requireHTTP2 := op.API.Metadata.ProtocolSettings.HTTP2 == "eventstream" &&
+			inputStream != nil && outputStream != nil
+
 		a.HasEventStream = true
 		op.EventStreamAPI = &EventStreamAPI{
 			API:          a,
@@ -190,6 +194,7 @@ func (a *API) setupEventStreams() error {
 			InputStream:  inputStream,
 			OutputStream: outputStream,
 			Legacy:       isLegacyEventStream(op),
+			RequireHTTP2: requireHTTP2,
 		}
 		op.OutputRef.Shape.OutputEventStreamAPI = op.EventStreamAPI
 

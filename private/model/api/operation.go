@@ -216,6 +216,12 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 		{{- if $.EventStreamAPI }}
 			{{- $esapi := $.EventStreamAPI }}
 
+			{{- if $esapi.RequireHTTP2 }}
+				req.Handlers.UnmarshalMeta.PushBack(
+					protocol.RequireHTTPMinProtocol{Major:2}.Handler,
+				)
+			{{- end }}
+
 			es := new{{ $esapi.Name }}()
 			{{- if $esapi.Legacy }}
 				req.Handlers.Unmarshal.PushBack(es.setStreamCloser)
