@@ -3277,15 +3277,24 @@ func (es *SubscribeToShardEventStream) runOnStreamPartClose(r *request.Request) 
 }
 
 func (es *SubscribeToShardEventStream) waitStreamPartClose() {
-	var outputC <-chan struct{}
+	var outputErrCh <-chan struct{}
 	if v, ok := es.Reader.(interface{ ErrorSet() <-chan struct{} }); ok {
-		outputC = v.ErrorSet()
+		outputErrCh = v.ErrorSet()
+	}
+	var outputClosedCh <-chan struct{}
+	if v, ok := es.Reader.(interface{ Closed() <-chan struct{} }); ok {
+		outputClosedCh = v.Closed()
 	}
 
 	select {
 	case <-es.done:
-	case <-outputC:
+	case <-outputErrCh:
 		es.err.SetError(es.Reader.Err())
+		es.Close()
+	case <-outputClosedCh:
+		if err := es.Reader.Err(); err != nil {
+			es.err.SetError(es.Reader.Err())
+		}
 		es.Close()
 	}
 }
@@ -7671,6 +7680,10 @@ func (r *readSubscribeToShardEventStream) ErrorSet() <-chan struct{} {
 	return r.err.ErrorSet()
 }
 
+func (r *readSubscribeToShardEventStream) Closed() <-chan struct{} {
+	return r.done
+}
+
 func (r *readSubscribeToShardEventStream) safeClose() {
 	close(r.done)
 }
@@ -7836,6 +7849,7 @@ func (s SubscribeToShardOutput) GoString() string {
 
 func (s *SubscribeToShardOutput) SetEventStream(v *SubscribeToShardEventStream) *SubscribeToShardOutput {
 	s.EventStream = v
+	return s
 }
 func (s *SubscribeToShardOutput) GetEventStream() *SubscribeToShardEventStream {
 	return s.EventStream

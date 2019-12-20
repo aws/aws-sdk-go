@@ -60,6 +60,10 @@ func (r *{{ $es.StreamReaderImplName }}) ErrorSet() <-chan struct{} {
 	return r.err.ErrorSet()
 }
 
+func (r *{{ $es.StreamReaderImplName }}) Closed() <-chan struct{} {
+	return r.done
+}
+
 func (r *{{ $es.StreamReaderImplName }}) safeClose() {
 	close(r.done)
 }

@@ -766,6 +766,7 @@ type {{ $.ShapeName }} struct {
 	{{- if $.OutputEventStreamAPI.Legacy }}
 		func (s *{{ $.ShapeName }}) Set{{ $esMemberName }}(v *{{ $.OutputEventStreamAPI.Name }}) *{{ $.ShapeName }} {
 			s.{{ $esMemberName }} = v
+			return s
 		}
 		func (s *{{ $.ShapeName }}) Get{{ $esMemberName }}() *{{ $.OutputEventStreamAPI.Name }} {
 			return s.{{ $esMemberName }}

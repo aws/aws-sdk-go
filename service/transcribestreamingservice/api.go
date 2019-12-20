@@ -195,22 +195,31 @@ func (es *StartStreamTranscriptionEventStream) runOnStreamPartClose(r *request.R
 }
 
 func (es *StartStreamTranscriptionEventStream) waitStreamPartClose() {
-	var inputC <-chan struct{}
+	var inputErrCh <-chan struct{}
 	if v, ok := es.Writer.(interface{ ErrorSet() <-chan struct{} }); ok {
-		inputC = v.ErrorSet()
+		inputErrCh = v.ErrorSet()
 	}
-	var outputC <-chan struct{}
+	var outputErrCh <-chan struct{}
 	if v, ok := es.Reader.(interface{ ErrorSet() <-chan struct{} }); ok {
-		outputC = v.ErrorSet()
+		outputErrCh = v.ErrorSet()
+	}
+	var outputClosedCh <-chan struct{}
+	if v, ok := es.Reader.(interface{ Closed() <-chan struct{} }); ok {
+		outputClosedCh = v.Closed()
 	}
 
 	select {
 	case <-es.done:
-	case <-inputC:
+	case <-inputErrCh:
 		es.err.SetError(es.Writer.Err())
 		es.Close()
-	case <-outputC:
+	case <-outputErrCh:
 		es.err.SetError(es.Reader.Err())
+		es.Close()
+	case <-outputClosedCh:
+		if err := es.Reader.Err(); err != nil {
+			es.err.SetError(es.Reader.Err())
+		}
 		es.Close()
 	}
 }
@@ -1165,6 +1174,10 @@ func (r *readTranscriptResultStream) Close() error {
 
 func (r *readTranscriptResultStream) ErrorSet() <-chan struct{} {
 	return r.err.ErrorSet()
+}
+
+func (r *readTranscriptResultStream) Closed() <-chan struct{} {
+	return r.done
 }
 
 func (r *readTranscriptResultStream) safeClose() {

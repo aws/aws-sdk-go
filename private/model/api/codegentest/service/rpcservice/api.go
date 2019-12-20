@@ -138,15 +138,24 @@ func (es *EmptyStreamEventStream) runOnStreamPartClose(r *request.Request) {
 }
 
 func (es *EmptyStreamEventStream) waitStreamPartClose() {
-	var outputC <-chan struct{}
+	var outputErrCh <-chan struct{}
 	if v, ok := es.Reader.(interface{ ErrorSet() <-chan struct{} }); ok {
-		outputC = v.ErrorSet()
+		outputErrCh = v.ErrorSet()
+	}
+	var outputClosedCh <-chan struct{}
+	if v, ok := es.Reader.(interface{ Closed() <-chan struct{} }); ok {
+		outputClosedCh = v.Closed()
 	}
 
 	select {
 	case <-es.done:
-	case <-outputC:
+	case <-outputErrCh:
 		es.err.SetError(es.Reader.Err())
+		es.Close()
+	case <-outputClosedCh:
+		if err := es.Reader.Err(); err != nil {
+			es.err.SetError(es.Reader.Err())
+		}
 		es.Close()
 	}
 }
@@ -361,15 +370,24 @@ func (es *GetEventStreamEventStream) runOnStreamPartClose(r *request.Request) {
 }
 
 func (es *GetEventStreamEventStream) waitStreamPartClose() {
-	var outputC <-chan struct{}
+	var outputErrCh <-chan struct{}
 	if v, ok := es.Reader.(interface{ ErrorSet() <-chan struct{} }); ok {
-		outputC = v.ErrorSet()
+		outputErrCh = v.ErrorSet()
+	}
+	var outputClosedCh <-chan struct{}
+	if v, ok := es.Reader.(interface{ Closed() <-chan struct{} }); ok {
+		outputClosedCh = v.Closed()
 	}
 
 	select {
 	case <-es.done:
-	case <-outputC:
+	case <-outputErrCh:
 		es.err.SetError(es.Reader.Err())
+		es.Close()
+	case <-outputClosedCh:
+		if err := es.Reader.Err(); err != nil {
+			es.err.SetError(es.Reader.Err())
+		}
 		es.Close()
 	}
 }
@@ -642,6 +660,10 @@ func (r *readEmptyEventStream) ErrorSet() <-chan struct{} {
 	return r.err.ErrorSet()
 }
 
+func (r *readEmptyEventStream) Closed() <-chan struct{} {
+	return r.done
+}
+
 func (r *readEmptyEventStream) safeClose() {
 	close(r.done)
 }
@@ -827,6 +849,10 @@ func (r *readEventStream) Close() error {
 
 func (r *readEventStream) ErrorSet() <-chan struct{} {
 	return r.err.ErrorSet()
+}
+
+func (r *readEventStream) Closed() <-chan struct{} {
+	return r.done
 }
 
 func (r *readEventStream) safeClose() {
