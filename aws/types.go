@@ -232,13 +232,10 @@ func (m MultiCloser) Close() error {
 type errors []error
 
 func (es errors) Error() string {
-	var buf strings.Builder
-	for i, e := range es {
-		buf.WriteString(e.Error())
-		if i < len(es)-1 {
-			buf.WriteString("\n")
-		}
+	var parts []string
+	for _, e := range es {
+		parts = append(parts, e.Error())
 	}
 
-	return buf.String()
+	return strings.Join(parts, "\n")
 }
