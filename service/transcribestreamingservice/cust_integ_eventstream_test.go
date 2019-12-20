@@ -7,9 +7,10 @@ import (
 	"context"
 	"encoding/base64"
 	"flag"
-	"fmt"
 	"io"
 	"os"
+	"strings"
+	"sync"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -74,7 +75,7 @@ func TestInteg_StartStreamTranscription(t *testing.T) {
 	stream := resp.GetStream()
 	defer stream.Close()
 
-	go StreamAudio(stream.Writer, audioFrameSize, audio)
+	go StreamAudioFromReader(context.Background(), stream.Writer, audioFrameSize, audio)
 
 	for event := range stream.Events() {
 		switch e := event.(type) {
@@ -95,31 +96,72 @@ func TestInteg_StartStreamTranscription(t *testing.T) {
 	}
 }
 
-func StreamAudio(stream AudioStreamWriter, frameSize int, input io.Reader) (err error) {
-	defer func() {
-		if closeErr := stream.Close(); closeErr != nil && err == nil {
-			err = fmt.Errorf("failed to close stream, %v", closeErr)
+func TestInteg_StartStreamTranscription_contextClose(t *testing.T) {
+	b, err := base64.StdEncoding.DecodeString(
+		`UklGRjzxPQBXQVZFZm10IBAAAAABAAEAgD4AAAB9AAACABAAZGF0YVTwPQAAAAAAAAAAAAAAAAD//wIA/f8EAA==`,
+	)
+	if err != nil {
+		t.Fatalf("expect decode audio bytes, %v", err)
+	}
+	audio := bytes.NewReader(b)
+
+	sess := integration.SessionWithDefaultRegion("us-west-2")
+	var cfgs []*aws.Config
+
+	client := New(sess, cfgs...)
+	resp, err := client.StartStreamTranscription(&StartStreamTranscriptionInput{
+		LanguageCode:         aws.String(LanguageCodeEnUs),
+		MediaEncoding:        aws.String(MediaEncodingPcm),
+		MediaSampleRateHertz: aws.Int64(16000),
+	})
+	if err != nil {
+		t.Fatalf("failed to start streaming, %v", err)
+	}
+	stream := resp.GetStream()
+	defer stream.Close()
+
+	ctx, cancelFn := context.WithCancel(context.Background())
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go func() {
+		err := StreamAudioFromReader(ctx, stream.Writer, audioFrameSize, audio)
+		if err == nil {
+			t.Errorf("expect error")
 		}
+		if e, a := "context canceled", err.Error(); !strings.Contains(a, e) {
+			t.Errorf("expect %q error in %q", e, a)
+		}
+		wg.Done()
 	}()
 
-	frame := make([]byte, frameSize)
+	cancelFn()
+
+Loop:
 	for {
-		var n int
-		n, err = input.Read(frame)
-		if n > 0 {
-			err = stream.Send(context.Background(), &AudioEvent{
-				AudioChunk: frame[:n],
-			})
-			if err != nil {
-				return fmt.Errorf("failed to send audio event, %v", err)
+		select {
+		case <-ctx.Done():
+			break Loop
+		case event, ok := <-stream.Events():
+			if !ok {
+				break Loop
+			}
+			switch e := event.(type) {
+			case *TranscriptEvent:
+				t.Logf("got event, %v results", len(e.Transcript.Results))
+				for _, res := range e.Transcript.Results {
+					for _, alt := range res.Alternatives {
+						t.Logf("* %s", aws.StringValue(alt.Transcript))
+					}
+				}
+			default:
+				t.Fatalf("unexpected event, %T", event)
 			}
 		}
+	}
 
-		if err == io.EOF {
-			return nil
-		}
-		if err != nil {
-			return fmt.Errorf("failed to read audio, %v", err)
-		}
+	wg.Wait()
+
+	if err := stream.Err(); err != nil {
+		t.Fatalf("expect no error from stream, got %v", err)
 	}
 }
