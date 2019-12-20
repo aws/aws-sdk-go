@@ -28459,7 +28459,7 @@ func (s SelectObjectContentOutput) GoString() string {
 	return s.String()
 }
 
-func (s *SelectObjectContentOutput) SetEventStream(v *SelectObjectContentEventStream) {
+func (s *SelectObjectContentOutput) SetEventStream(v *SelectObjectContentEventStream) *SelectObjectContentOutput {
 	s.EventStream = v
 }
 func (s *SelectObjectContentOutput) GetEventStream() *SelectObjectContentEventStream {
