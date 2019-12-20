@@ -15,7 +15,7 @@ type mockChunkSigner struct {
 }
 
 func (m mockChunkSigner) GetSignature(_, _ []byte, _ time.Time) ([]byte, error) {
-	return mustDecodeHex(hex.DecodeString(m.signature)), m.err
+	return mustDecodeBytes(hex.DecodeString(m.signature)), m.err
 }
 
 type eventStructured struct {
@@ -29,7 +29,6 @@ type eventStructured struct {
 func (e *eventStructured) MarshalEvent(pm protocol.PayloadMarshaler) (eventstream.Message, error) {
 	var msg eventstream.Message
 	msg.Headers.Set(MessageTypeHeader, eventstream.StringValue(EventMessageType))
-	msg.Headers.Set(EventTypeHeader, eventstream.StringValue("eventStructured"))
 
 	var buf bytes.Buffer
 	if err := pm.MarshalPayload(&buf, e); err != nil {
@@ -45,7 +44,7 @@ func (e *eventStructured) UnmarshalEvent(pm protocol.PayloadUnmarshaler, msg eve
 	return pm.UnmarshalPayload(bytes.NewReader(msg.Payload), e)
 }
 
-func mustDecodeHex(b []byte, err error) []byte {
+func mustDecodeBytes(b []byte, err error) []byte {
 	if err != nil {
 		panic(err)
 	}

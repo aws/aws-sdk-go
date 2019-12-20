@@ -46,12 +46,12 @@ func TestSubscribeToShard_Read(t *testing.T) {
 	if err != nil {
 		t.Fatalf("expect no error got, %v", err)
 	}
-	defer resp.EventStream.Close()
+	defer resp.GetStream().Close()
 	// Trim off response output type pseudo event so only event messages remain.
 	expectEvents = expectEvents[1:]
 
 	var i int
-	for event := range resp.EventStream.Events() {
+	for event := range resp.GetStream().Events() {
 		if event == nil {
 			t.Errorf("%d, expect event, got nil", i)
 		}
@@ -61,7 +61,7 @@ func TestSubscribeToShard_Read(t *testing.T) {
 		i++
 	}
 
-	if err := resp.EventStream.Err(); err != nil {
+	if err := resp.GetStream().Err(); err != nil {
 		t.Errorf("expect no error, %v", err)
 	}
 }
@@ -87,19 +87,19 @@ func TestSubscribeToShard_ReadClose(t *testing.T) {
 	}
 
 	// Assert calling Err before close does not close the stream.
-	resp.EventStream.Err()
+	resp.GetStream().Err()
 	select {
-	case _, ok := <-resp.EventStream.Events():
+	case _, ok := <-resp.GetStream().Events():
 		if !ok {
 			t.Fatalf("expect stream not to be closed, but was")
 		}
 	default:
 	}
 
-	resp.EventStream.Close()
-	<-resp.EventStream.Events()
+	resp.GetStream().Close()
+	<-resp.GetStream().Events()
 
-	if err := resp.EventStream.Err(); err != nil {
+	if err := resp.GetStream().Err(); err != nil {
 		t.Errorf("expect no error, %v", err)
 	}
 }
@@ -137,16 +137,16 @@ func BenchmarkSubscribeToShard_Read(b *testing.B) {
 	if err != nil {
 		b.Fatalf("failed to create request, %v", err)
 	}
-	defer resp.EventStream.Close()
+	defer resp.GetStream().Close()
 	b.ResetTimer()
 
 	for i := 0; i < b.N; i++ {
-		if err = resp.EventStream.Err(); err != nil {
+		if err = resp.GetStream().Err(); err != nil {
 			b.Fatalf("expect no error, got %v", err)
 		}
-		event := <-resp.EventStream.Events()
+		event := <-resp.GetStream().Events()
 		if event == nil {
-			b.Fatalf("expect event, got nil, %v, %d", resp.EventStream.Err(), i)
+			b.Fatalf("expect event, got nil, %v, %d", resp.GetStream().Err(), i)
 		}
 	}
 }
@@ -273,11 +273,11 @@ func TestSubscribeToShard_ReadException(t *testing.T) {
 		t.Fatalf("expect no error got, %v", err)
 	}
 
-	defer resp.EventStream.Close()
+	defer resp.GetStream().Close()
 
-	<-resp.EventStream.Events()
+	<-resp.GetStream().Events()
 
-	err = resp.EventStream.Err()
+	err = resp.GetStream().Err()
 	if err == nil {
 		t.Fatalf("expect err, got none")
 	}

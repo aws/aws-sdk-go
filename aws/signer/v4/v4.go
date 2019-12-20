@@ -76,6 +76,10 @@ import (
 )
 
 const (
+	authorizationHeader     = "Authorization"
+	authHeaderSignatureElem = "Signature="
+	signatureQueryKey       = "X-Amz-Signature"
+
 	authHeaderPrefix = "AWS4-HMAC-SHA256"
 	timeFormat       = "20060102T150405Z"
 	shortTimeFormat  = "20060102"
@@ -88,9 +92,9 @@ const (
 var ignoredHeaders = rules{
 	blacklist{
 		mapRule{
-			"Authorization":   struct{}{},
-			"User-Agent":      struct{}{},
-			"X-Amzn-Trace-Id": struct{}{},
+			authorizationHeader: struct{}{},
+			"User-Agent":        struct{}{},
+			"X-Amzn-Trace-Id":   struct{}{},
 		},
 	},
 }
@@ -531,17 +535,42 @@ func (ctx *signingCtx) build(disableHeaderHoisting bool) error {
 	ctx.buildSignature()       // depends on string to sign
 
 	if ctx.isPresign {
-		ctx.Request.URL.RawQuery += "&X-Amz-Signature=" + ctx.signature
+		ctx.Request.URL.RawQuery += "&" + signatureQueryKey + "=" + ctx.signature
 	} else {
 		parts := []string{
 			authHeaderPrefix + " Credential=" + ctx.credValues.AccessKeyID + "/" + ctx.credentialString,
 			"SignedHeaders=" + ctx.signedHeaders,
-			"Signature=" + ctx.signature,
+			authHeaderSignatureElem + ctx.signature,
 		}
-		ctx.Request.Header.Set("Authorization", strings.Join(parts, ", "))
+		ctx.Request.Header.Set(authorizationHeader, strings.Join(parts, ", "))
 	}
 
 	return nil
+}
+
+// GetSignedRequestSignature attempts to extract the signature of the request.
+// Returning an error if the request is unsigned, or unable to extract the
+// signature.
+func GetSignedRequestSignature(r *http.Request) ([]byte, error) {
+
+	if auth := r.Header.Get(authorizationHeader); len(auth) != 0 {
+		ps := strings.Split(auth, ", ")
+		for _, p := range ps {
+			if idx := strings.Index(p, authHeaderSignatureElem); idx >= 0 {
+				sig := p[len(authHeaderSignatureElem):]
+				if len(sig) == 0 {
+					return nil, fmt.Errorf("invalid request signature authorization header")
+				}
+				return hex.DecodeString(sig)
+			}
+		}
+	}
+
+	if sig := r.URL.Query().Get("X-Amz-Signature"); len(sig) != 0 {
+		return hex.DecodeString(sig)
+	}
+
+	return nil, fmt.Errorf("request not signed")
 }
 
 func (ctx *signingCtx) buildTime() {

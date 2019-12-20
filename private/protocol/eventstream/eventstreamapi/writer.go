@@ -1,9 +1,6 @@
 package eventstreamapi
 
 import (
-	"io"
-
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/eventstream"
 )
@@ -14,57 +11,99 @@ type Marshaler interface {
 	MarshalEvent(protocol.PayloadMarshaler) (eventstream.Message, error)
 }
 
-// EventWriter provides a wrapper around the underlying event stream encoder
-// for an io.Writer.
-type EventWriter struct {
-	writer  io.Writer
-	encoder *eventstream.Encoder
-	signer  *MessageSigner
+// Encoder is an stream encoder that will encode an event stream message for
+// the transport.
+type Encoder interface {
+	Encode(eventstream.Message) error
+}
 
+// EventWriter provides a wrapper around the underlying event stream encoder
+// for an io.WriteCloser.
+type EventWriter struct {
+	encoder          Encoder
 	payloadMarshaler protocol.PayloadMarshaler
+	eventTypeFor     func(Marshaler) (string, error)
 }
 
 // NewEventWriter returns a new event stream writer, that will write to the
-// writer provided. Use the WriteStream method to write an event to the stream.
-func NewEventWriter(writer io.Writer,
-	payloadMarshaler protocol.PayloadMarshaler,
-	signer *MessageSigner,
+// writer provided. Use the WriteEvent method to write an event to the stream.
+func NewEventWriter(encoder Encoder, pm protocol.PayloadMarshaler, eventTypeFor func(Marshaler) (string, error),
 ) *EventWriter {
 	return &EventWriter{
-		writer:           writer,
-		encoder:          eventstream.NewEncoder(writer),
-		payloadMarshaler: payloadMarshaler,
-		signer:           signer,
+		encoder:          encoder,
+		payloadMarshaler: pm,
+		eventTypeFor:     eventTypeFor,
 	}
-}
-
-// UseLogger instructs the EventWriter to use the logger and log level
-// specified.
-func (w *EventWriter) UseLogger(logger aws.Logger, logLevel aws.LogLevelType) {
-	if logger != nil && logLevel.Matches(aws.LogDebugWithEventStreamBody) {
-		w.encoder.UseLogger(logger)
-	}
-}
-
-func (w *EventWriter) signMessage(msg *eventstream.Message) error {
-	if w.signer == nil {
-		return nil
-	}
-
-	return w.signer.SignMessage(msg, timeNow())
 }
 
 // WriteEvent writes an event to the stream. Returns an error if the event
 // fails to marshal into a message, or writing to the underlying writer fails.
 func (w *EventWriter) WriteEvent(event Marshaler) error {
-	msg, err := event.MarshalEvent(w.payloadMarshaler)
+	msg, err := w.marshal(event)
 	if err != nil {
-		return err
-	}
-
-	if err = w.signMessage(&msg); err != nil {
 		return err
 	}
 
 	return w.encoder.Encode(msg)
 }
+
+func (w *EventWriter) marshal(event Marshaler) (eventstream.Message, error) {
+	eventType, err := w.eventTypeFor(event)
+	if err != nil {
+		return eventstream.Message{}, err
+	}
+
+	msg, err := event.MarshalEvent(w.payloadMarshaler)
+	if err != nil {
+		return eventstream.Message{}, err
+	}
+
+	msg.Headers.Set(EventTypeHeader, eventstream.StringValue(eventType))
+	return msg, nil
+}
+
+//type EventEncoder struct {
+//	encoder           Encoder
+//	ppayloadMarshaler protocol.PayloadMarshaler
+//	eventTypeFor      func(Marshaler) (string, error)
+//}
+//
+//func (e EventEncoder) Encode(event Marshaler) error {
+//	msg, err := e.marshal(event)
+//	if err != nil {
+//		return err
+//	}
+//
+//	return w.encoder.Encode(msg)
+//}
+//
+//func (e EventEncoder) marshal(event Marshaler) (eventstream.Message, error) {
+//	eventType, err := w.eventTypeFor(event)
+//	if err != nil {
+//		return eventstream.Message{}, err
+//	}
+//
+//	msg, err := event.MarshalEvent(w.payloadMarshaler)
+//	if err != nil {
+//		return eventstream.Message{}, err
+//	}
+//
+//	msg.Headers.Set(EventTypeHeader, eventstream.StringValue(eventType))
+//	return msg, nil
+//}
+//
+//func (w *EventWriter) marshal(event Marshaler) (eventstream.Message, error) {
+//	eventType, err := w.eventTypeFor(event)
+//	if err != nil {
+//		return eventstream.Message{}, err
+//	}
+//
+//	msg, err := event.MarshalEvent(w.payloadMarshaler)
+//	if err != nil {
+//		return eventstream.Message{}, err
+//	}
+//
+//	msg.Headers.Set(EventTypeHeader, eventstream.StringValue(eventType))
+//	return msg, nil
+//}
+//

@@ -3,29 +3,34 @@
 package eventstreamapi
 
 import (
+	"bytes"
+	"encoding/base64"
 	"encoding/hex"
 	"fmt"
-	"reflect"
 	"strings"
 	"testing"
 	"time"
 
 	"github.com/aws/aws-sdk-go/private/protocol/eventstream"
+	"github.com/aws/aws-sdk-go/private/protocol/eventstream/eventstreamtest"
 )
 
-func TestMessageSigner(t *testing.T) {
+func TestSignEncoder(t *testing.T) {
 	currentTime := time.Date(2019, 1, 27, 22, 37, 54, 0, time.UTC)
 
 	cases := map[string]struct {
-		signer        StreamSigner
-		input         eventstream.Message
-		expected      eventstream.Message
-		expectedError string
+		Signer       StreamSigner
+		Input        eventstream.Message
+		Expect       eventstream.Message
+		NestedExpect *eventstream.Message
+		Err          string
 	}{
 		"sign message": {
-			signer: mockChunkSigner{signature: "524f1d03d1d81e94a099042736d40bd9681b867321443ff58a4568e274dbd83bff"},
-			input: eventstream.Message{
-				Headers: []eventstream.Header{
+			Signer: mockChunkSigner{
+				signature: "524f1d03d1d81e94a099042736d40bd9681b867321443ff58a4568e274dbd83bff",
+			},
+			Input: eventstream.Message{
+				Headers: eventstream.Headers{
 					{
 						Name:  "header_name",
 						Value: eventstream.StringValue("header value"),
@@ -33,27 +38,38 @@ func TestMessageSigner(t *testing.T) {
 				},
 				Payload: []byte("payload"),
 			},
-			expected: eventstream.Message{
-				Headers: []eventstream.Header{
-					{
-						Name:  "header_name",
-						Value: eventstream.StringValue("header value"),
-					},
+			Expect: eventstream.Message{
+				Headers: eventstream.Headers{
 					{
 						Name:  ":date",
 						Value: eventstream.TimestampValue(currentTime),
 					},
 					{
-						Name:  ":chunk-signature",
-						Value: eventstream.BytesValue(mustDecodeHex(hex.DecodeString("524f1d03d1d81e94a099042736d40bd9681b867321443ff58a4568e274dbd83bff"))),
+						Name: ":chunk-signature",
+						Value: eventstream.BytesValue(mustDecodeBytes(
+							hex.DecodeString("524f1d03d1d81e94a099042736d40bd9681b867321443ff58a4568e274dbd83bff"),
+						)),
 					},
 				},
-				Payload: []byte("payload"),
+				Payload: mustDecodeBytes(
+					base64.StdEncoding.DecodeString(
+						`AAAAMgAAABs0pv1jC2hlYWRlcl9uYW1lBwAMaGVhZGVyIHZhbHVlcGF5bG9hZH4tKFg=`,
+					),
+				),
+			},
+			NestedExpect: &eventstream.Message{
+				Headers: eventstream.Headers{
+					{
+						Name:  "header_name",
+						Value: eventstream.StringValue("header value"),
+					},
+				},
+				Payload: []byte(`payload`),
 			},
 		},
 		"signing error": {
-			signer: mockChunkSigner{err: fmt.Errorf("signing error")},
-			input: eventstream.Message{
+			Signer: mockChunkSigner{err: fmt.Errorf("signing error")},
+			Input: eventstream.Message{
 				Headers: []eventstream.Header{
 					{
 						Name:  "header_name",
@@ -62,28 +78,51 @@ func TestMessageSigner(t *testing.T) {
 				},
 				Payload: []byte("payload"),
 			},
-			expectedError: "signing error",
+			Err: "signing error",
 		},
 	}
 
-	for name, tt := range cases {
-		t.Run(name, func(t *testing.T) {
-			messageSigner := MessageSigner{Signer: tt.signer}
+	origNowFn := timeNow
+	timeNow = func() time.Time { return currentTime }
+	defer func() { timeNow = origNowFn }()
 
-			err := messageSigner.SignMessage(&tt.input, currentTime)
-			if err == nil && len(tt.expectedError) > 0 {
+	decodeBuf := make([]byte, 1024)
+	for name, c := range cases {
+		t.Run(name, func(t *testing.T) {
+			encoder := &mockEncoder{}
+			signer := NewSignEncoder(c.Signer, encoder)
+
+			err := signer.Encode(c.Input)
+			if err == nil && len(c.Err) > 0 {
 				t.Fatalf("expected error, but got nil")
-			} else if err != nil && len(tt.expectedError) == 0 {
+			} else if err != nil && len(c.Err) == 0 {
 				t.Fatalf("expected no error, but got %v", err)
-			} else if err != nil && len(tt.expectedError) > 0 && !strings.Contains(err.Error(), tt.expectedError) {
-				t.Fatalf("expected %v, but got %v", tt.expectedError, err)
-			} else if len(tt.expectedError) > 0 {
+			} else if err != nil && len(c.Err) > 0 && !strings.Contains(err.Error(), c.Err) {
+				t.Fatalf("expected %v, but got %v", c.Err, err)
+			} else if len(c.Err) > 0 {
 				return
 			}
 
-			if e, a := tt.expected, tt.input; !reflect.DeepEqual(e, a) {
-				t.Errorf("expected %v, got %v", e, a)
+			eventstreamtest.AssertMessageEqual(t, c.Expect, encoder.msgs[0], "envelope msg")
+
+			if c.NestedExpect != nil {
+				nested := eventstream.NewDecoder(bytes.NewReader(encoder.msgs[0].Payload))
+				nestedMsg, err := nested.Decode(decodeBuf)
+				if err != nil {
+					t.Fatalf("expect no decode error got, %v", err)
+				}
+
+				eventstreamtest.AssertMessageEqual(t, *c.NestedExpect, nestedMsg, "nested msg")
 			}
 		})
 	}
+}
+
+type mockEncoder struct {
+	msgs []eventstream.Message
+}
+
+func (m *mockEncoder) Encode(msg eventstream.Message) error {
+	m.msgs = append(m.msgs, msg)
+	return nil
 }
