@@ -690,7 +690,7 @@ const structShapeTmplDef = `
 type {{ $.ShapeName }} struct {
 	_ struct{} {{ $.GoTags true false }}
 
-	{{- if and $.OutputEventStreamAPI }}
+	{{- if $.OutputEventStreamAPI }}
 
 		{{ $.OutputEventStreamAPI.OutputMemberName }} *{{ $.OutputEventStreamAPI.Name }}
 	{{- end }}
@@ -762,9 +762,12 @@ type {{ $.ShapeName }} struct {
 	{{- end }}
 {{- end }}
 
-{{- if and $.OutputEventStreamAPI }}
+{{- if $.OutputEventStreamAPI }}
 	{{- $esMemberName := $.OutputEventStreamAPI.OutputMemberName }}
 	{{- if $.OutputEventStreamAPI.Legacy }}
+		func (s *{{ $.ShapeName }}) Set{{ $esMemberName }}(v *{{ $.OutputEventStreamAPI.Name }}) {
+			s.{{ $esMemberName }} = v
+		}
 		func (s *{{ $.ShapeName }}) Get{{ $esMemberName }}() *{{ $.OutputEventStreamAPI.Name }} {
 			return s.{{ $esMemberName }}
 		}
