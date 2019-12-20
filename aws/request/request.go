@@ -36,6 +36,10 @@ const (
 	// API request that was canceled. Requests given a aws.Context may
 	// return this error when canceled.
 	CanceledErrorCode = "RequestCanceled"
+
+	// ErrCodeRequestError is an error preventing the SDK from continuing to
+	// process the request.
+	ErrCodeRequestError = "RequestError"
 )
 
 // A Request is the service request to be made.

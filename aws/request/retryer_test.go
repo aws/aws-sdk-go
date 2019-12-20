@@ -83,7 +83,7 @@ func TestIsErrorRetryable(t *testing.T) {
 			Retryable: false,
 		},
 		{
-			Err:       awserr.New("RequestError", "some error", nil),
+			Err:       awserr.New(ErrCodeRequestError, "some error", nil),
 			Retryable: true,
 		},
 		{

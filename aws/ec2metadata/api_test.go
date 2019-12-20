@@ -602,7 +602,7 @@ func TestMetadataNotAvailable(t *testing.T) {
 			Status:     http.StatusText(int(0)),
 			Body:       ioutil.NopCloser(bytes.NewReader([]byte{})),
 		}
-		r.Error = awserr.New("RequestError", "send request failed", nil)
+		r.Error = awserr.New(request.ErrCodeRequestError, "send request failed", nil)
 		r.Retryable = aws.Bool(true) // network errors are retryable
 	})
 
