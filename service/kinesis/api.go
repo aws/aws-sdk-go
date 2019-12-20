@@ -3169,6 +3169,7 @@ func (c *Kinesis) SubscribeToShardRequest(input *SubscribeToShardInput) (req *re
 	req.Handlers.Unmarshal.PushBack(es.runOutputStream)
 	es.output = output
 	req.Handlers.Unmarshal.PushBack(es.recvInitialEvent)
+	req.Handlers.Unmarshal.PushBack(es.runOnStreamPartClose)
 	return
 }
 
@@ -3253,17 +3254,40 @@ type SubscribeToShardEventStream struct {
 
 	done      chan struct{}
 	closeOnce sync.Once
-	err       eventstreamapi.OnceError
+	err       *eventstreamapi.OnceError
 }
 
 func newSubscribeToShardEventStream() *SubscribeToShardEventStream {
 	return &SubscribeToShardEventStream{
 		done: make(chan struct{}),
+		err:  eventstreamapi.NewOnceError(),
 	}
 }
 
 func (es *SubscribeToShardEventStream) setStreamCloser(r *request.Request) {
 	es.StreamCloser = r.HTTPResponse.Body
+}
+
+func (es *SubscribeToShardEventStream) runOnStreamPartClose(r *request.Request) {
+	if es.done == nil {
+		return
+	}
+	go es.waitStreamPartClose()
+
+}
+
+func (es *SubscribeToShardEventStream) waitStreamPartClose() {
+	var outputC <-chan struct{}
+	if v, ok := es.Reader.(interface{ ErrorSet() <-chan struct{} }); ok {
+		outputC = v.ErrorSet()
+	}
+
+	select {
+	case <-es.done:
+	case <-outputC:
+		es.err.SetError(es.Reader.Err())
+		es.Close()
+	}
 }
 
 func (es *SubscribeToShardEventStream) eventTypeForSubscribeToShardEventStreamOutputEvent(eventType string) (eventstreamapi.Unmarshaler, error) {
@@ -3340,8 +3364,6 @@ func (es *SubscribeToShardEventStream) safeClose() {
 	if es.done != nil {
 		close(es.done)
 	}
-	// TODO Reader and Writer need to expose error channels that ES waits on
-	// when error is received it closes the whole stream.
 
 	es.Reader.Close()
 	if es.outputReader != nil {
@@ -3354,6 +3376,9 @@ func (es *SubscribeToShardEventStream) safeClose() {
 // Err returns any error that occurred while reading or writing EventStream
 // Events from the service API's response. Returns nil if there were no errors.
 func (es *SubscribeToShardEventStream) Err() error {
+	if err := es.err.Err(); err != nil {
+		return err
+	}
 	if err := es.Reader.Err(); err != nil {
 		return err
 	}
@@ -7618,7 +7643,7 @@ type SubscribeToShardEventStreamReader interface {
 type readSubscribeToShardEventStream struct {
 	eventReader *eventstreamapi.EventReader
 	stream      chan SubscribeToShardEventStreamEvent
-	onceErr     eventstreamapi.OnceError
+	err         *eventstreamapi.OnceError
 
 	done      chan struct{}
 	closeOnce sync.Once
@@ -7629,6 +7654,7 @@ func newReadSubscribeToShardEventStream(eventReader *eventstreamapi.EventReader)
 		eventReader: eventReader,
 		stream:      make(chan SubscribeToShardEventStreamEvent),
 		done:        make(chan struct{}),
+		err:         eventstreamapi.NewOnceError(),
 	}
 	go r.readEventStream()
 
@@ -7641,12 +7667,16 @@ func (r *readSubscribeToShardEventStream) Close() error {
 	return r.Err()
 }
 
+func (r *readSubscribeToShardEventStream) ErrorSet() <-chan struct{} {
+	return r.err.ErrorSet()
+}
+
 func (r *readSubscribeToShardEventStream) safeClose() {
 	close(r.done)
 }
 
 func (r *readSubscribeToShardEventStream) Err() error {
-	return r.onceErr.Err()
+	return r.err.Err()
 }
 
 func (r *readSubscribeToShardEventStream) Events() <-chan SubscribeToShardEventStreamEvent {
@@ -7669,7 +7699,7 @@ func (r *readSubscribeToShardEventStream) readEventStream() {
 				return
 			default:
 			}
-			r.onceErr.SetOnce(err)
+			r.err.SetError(err)
 			return
 		}
 

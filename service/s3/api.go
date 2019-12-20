@@ -9488,6 +9488,7 @@ func (c *S3) SelectObjectContentRequest(input *SelectObjectContentInput) (req *r
 	req.Handlers.Send.Swap(client.LogHTTPResponseHandler.Name, client.LogHTTPResponseHeaderHandler)
 	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, rest.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBack(es.runOutputStream)
+	req.Handlers.Unmarshal.PushBack(es.runOnStreamPartClose)
 	return
 }
 
@@ -9626,17 +9627,40 @@ type SelectObjectContentEventStream struct {
 
 	done      chan struct{}
 	closeOnce sync.Once
-	err       eventstreamapi.OnceError
+	err       *eventstreamapi.OnceError
 }
 
 func newSelectObjectContentEventStream() *SelectObjectContentEventStream {
 	return &SelectObjectContentEventStream{
 		done: make(chan struct{}),
+		err:  eventstreamapi.NewOnceError(),
 	}
 }
 
 func (es *SelectObjectContentEventStream) setStreamCloser(r *request.Request) {
 	es.StreamCloser = r.HTTPResponse.Body
+}
+
+func (es *SelectObjectContentEventStream) runOnStreamPartClose(r *request.Request) {
+	if es.done == nil {
+		return
+	}
+	go es.waitStreamPartClose()
+
+}
+
+func (es *SelectObjectContentEventStream) waitStreamPartClose() {
+	var outputC <-chan struct{}
+	if v, ok := es.Reader.(interface{ ErrorSet() <-chan struct{} }); ok {
+		outputC = v.ErrorSet()
+	}
+
+	select {
+	case <-es.done:
+	case <-outputC:
+		es.err.SetError(es.Reader.Err())
+		es.Close()
+	}
 }
 
 // Events returns a channel to read events from.
@@ -9686,8 +9710,6 @@ func (es *SelectObjectContentEventStream) safeClose() {
 	if es.done != nil {
 		close(es.done)
 	}
-	// TODO Reader and Writer need to expose error channels that ES waits on
-	// when error is received it closes the whole stream.
 
 	es.Reader.Close()
 	if es.outputReader != nil {
@@ -9700,6 +9722,9 @@ func (es *SelectObjectContentEventStream) safeClose() {
 // Err returns any error that occurred while reading or writing EventStream
 // Events from the service API's response. Returns nil if there were no errors.
 func (es *SelectObjectContentEventStream) Err() error {
+	if err := es.err.Err(); err != nil {
+		return err
+	}
 	if err := es.Reader.Err(); err != nil {
 		return err
 	}
@@ -28117,7 +28142,7 @@ type SelectObjectContentEventStreamReader interface {
 type readSelectObjectContentEventStream struct {
 	eventReader *eventstreamapi.EventReader
 	stream      chan SelectObjectContentEventStreamEvent
-	onceErr     eventstreamapi.OnceError
+	err         *eventstreamapi.OnceError
 
 	done      chan struct{}
 	closeOnce sync.Once
@@ -28128,6 +28153,7 @@ func newReadSelectObjectContentEventStream(eventReader *eventstreamapi.EventRead
 		eventReader: eventReader,
 		stream:      make(chan SelectObjectContentEventStreamEvent),
 		done:        make(chan struct{}),
+		err:         eventstreamapi.NewOnceError(),
 	}
 	go r.readEventStream()
 
@@ -28140,12 +28166,16 @@ func (r *readSelectObjectContentEventStream) Close() error {
 	return r.Err()
 }
 
+func (r *readSelectObjectContentEventStream) ErrorSet() <-chan struct{} {
+	return r.err.ErrorSet()
+}
+
 func (r *readSelectObjectContentEventStream) safeClose() {
 	close(r.done)
 }
 
 func (r *readSelectObjectContentEventStream) Err() error {
-	return r.onceErr.Err()
+	return r.err.Err()
 }
 
 func (r *readSelectObjectContentEventStream) Events() <-chan SelectObjectContentEventStreamEvent {
@@ -28168,7 +28198,7 @@ func (r *readSelectObjectContentEventStream) readEventStream() {
 				return
 			default:
 			}
-			r.onceErr.SetOnce(err)
+			r.err.SetError(err)
 			return
 		}
 

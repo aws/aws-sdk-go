@@ -80,6 +80,7 @@ func (c *TranscribeStreamingService) StartStreamTranscriptionRequest(input *Star
 	req.Handlers.Send.Swap(client.LogHTTPResponseHandler.Name, client.LogHTTPResponseHeaderHandler)
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, rest.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBack(es.runOutputStream)
+	req.Handlers.Unmarshal.PushBack(es.runOnStreamPartClose)
 	return
 }
 
@@ -172,12 +173,42 @@ type StartStreamTranscriptionEventStream struct {
 
 	done      chan struct{}
 	closeOnce sync.Once
-	err       eventstreamapi.OnceError
+	err       *eventstreamapi.OnceError
 }
 
 func newStartStreamTranscriptionEventStream() *StartStreamTranscriptionEventStream {
 	return &StartStreamTranscriptionEventStream{
 		done: make(chan struct{}),
+		err:  eventstreamapi.NewOnceError(),
+	}
+}
+
+func (es *StartStreamTranscriptionEventStream) runOnStreamPartClose(r *request.Request) {
+	if es.done == nil {
+		return
+	}
+	go es.waitStreamPartClose()
+
+}
+
+func (es *StartStreamTranscriptionEventStream) waitStreamPartClose() {
+	var inputC <-chan struct{}
+	if v, ok := es.Writer.(interface{ ErrorSet() <-chan struct{} }); ok {
+		inputC = v.ErrorSet()
+	}
+	var outputC <-chan struct{}
+	if v, ok := es.Reader.(interface{ ErrorSet() <-chan struct{} }); ok {
+		outputC = v.ErrorSet()
+	}
+
+	select {
+	case <-es.done:
+	case <-inputC:
+		es.err.SetError(es.Writer.Err())
+		es.Close()
+	case <-outputC:
+		es.err.SetError(es.Reader.Err())
+		es.Close()
 	}
 }
 
@@ -201,7 +232,8 @@ func (es *StartStreamTranscriptionEventStream) runInputStream(r *request.Request
 	var closer aws.MultiCloser
 	sigSeed, err := v4.GetSignedRequestSignature(r.HTTPRequest)
 	if err != nil {
-		r.Error = awserr.New("TODO", "unable to get initial request's signature", err)
+		r.Error = awserr.New(request.ErrCodeSerialization,
+			"unable to get initial request's signature", err)
 		return
 	}
 	signer := eventstreamapi.NewSignEncoder(
@@ -271,25 +303,22 @@ func (es *StartStreamTranscriptionEventStream) safeClose() {
 	if es.done != nil {
 		close(es.done)
 	}
-	// TODO Reader and Writer need to expose error channels that ES waits on
-	// when error is received it closes the whole stream.
 
 	t := time.NewTicker(time.Second)
 	defer t.Stop()
 	writeCloseDone := make(chan error)
 	go func() {
 		if err := es.Writer.Close(); err != nil {
-			writeCloseDone <- err
+			es.err.SetError(err)
 		}
 		close(writeCloseDone)
 	}()
 	select {
 	case <-t.C:
-		if es.inputWriter != nil {
-			es.inputWriter.Close()
-		}
-	case err := <-writeCloseDone:
-		es.err.SetOnce(err)
+	case <-writeCloseDone:
+	}
+	if es.inputWriter != nil {
+		es.inputWriter.Close()
 	}
 
 	es.Reader.Close()
@@ -301,6 +330,9 @@ func (es *StartStreamTranscriptionEventStream) safeClose() {
 // Err returns any error that occurred while reading or writing EventStream
 // Events from the service API's response. Returns nil if there were no errors.
 func (es *StartStreamTranscriptionEventStream) Err() error {
+	if err := es.err.Err(); err != nil {
+		return err
+	}
 	if err := es.Writer.Err(); err != nil {
 		return err
 	}
@@ -1104,7 +1136,7 @@ type TranscriptResultStreamReader interface {
 type readTranscriptResultStream struct {
 	eventReader *eventstreamapi.EventReader
 	stream      chan TranscriptResultStreamEvent
-	onceErr     eventstreamapi.OnceError
+	err         *eventstreamapi.OnceError
 
 	done      chan struct{}
 	closeOnce sync.Once
@@ -1115,6 +1147,7 @@ func newReadTranscriptResultStream(eventReader *eventstreamapi.EventReader) *rea
 		eventReader: eventReader,
 		stream:      make(chan TranscriptResultStreamEvent),
 		done:        make(chan struct{}),
+		err:         eventstreamapi.NewOnceError(),
 	}
 	go r.readEventStream()
 
@@ -1127,12 +1160,16 @@ func (r *readTranscriptResultStream) Close() error {
 	return r.Err()
 }
 
+func (r *readTranscriptResultStream) ErrorSet() <-chan struct{} {
+	return r.err.ErrorSet()
+}
+
 func (r *readTranscriptResultStream) safeClose() {
 	close(r.done)
 }
 
 func (r *readTranscriptResultStream) Err() error {
-	return r.onceErr.Err()
+	return r.err.Err()
 }
 
 func (r *readTranscriptResultStream) Events() <-chan TranscriptResultStreamEvent {
@@ -1155,7 +1192,7 @@ func (r *readTranscriptResultStream) readEventStream() {
 				return
 			default:
 			}
-			r.onceErr.SetOnce(err)
+			r.err.SetError(err)
 			return
 		}
 

@@ -67,6 +67,7 @@ func (c *RESTXMLService) EmptyStreamRequest(input *EmptyStreamInput) (req *reque
 	req.Handlers.Send.Swap(client.LogHTTPResponseHandler.Name, client.LogHTTPResponseHeaderHandler)
 	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, rest.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBack(es.runOutputStream)
+	req.Handlers.Unmarshal.PushBack(es.runOnStreamPartClose)
 	return
 }
 
@@ -115,12 +116,35 @@ type EmptyStreamEventStream struct {
 
 	done      chan struct{}
 	closeOnce sync.Once
-	err       eventstreamapi.OnceError
+	err       *eventstreamapi.OnceError
 }
 
 func newEmptyStreamEventStream() *EmptyStreamEventStream {
 	return &EmptyStreamEventStream{
 		done: make(chan struct{}),
+		err:  eventstreamapi.NewOnceError(),
+	}
+}
+
+func (es *EmptyStreamEventStream) runOnStreamPartClose(r *request.Request) {
+	if es.done == nil {
+		return
+	}
+	go es.waitStreamPartClose()
+
+}
+
+func (es *EmptyStreamEventStream) waitStreamPartClose() {
+	var outputC <-chan struct{}
+	if v, ok := es.Reader.(interface{ ErrorSet() <-chan struct{} }); ok {
+		outputC = v.ErrorSet()
+	}
+
+	select {
+	case <-es.done:
+	case <-outputC:
+		es.err.SetError(es.Reader.Err())
+		es.Close()
 	}
 }
 
@@ -166,8 +190,6 @@ func (es *EmptyStreamEventStream) safeClose() {
 	if es.done != nil {
 		close(es.done)
 	}
-	// TODO Reader and Writer need to expose error channels that ES waits on
-	// when error is received it closes the whole stream.
 
 	es.Reader.Close()
 	if es.outputReader != nil {
@@ -178,6 +200,9 @@ func (es *EmptyStreamEventStream) safeClose() {
 // Err returns any error that occurred while reading or writing EventStream
 // Events from the service API's response. Returns nil if there were no errors.
 func (es *EmptyStreamEventStream) Err() error {
+	if err := es.err.Err(); err != nil {
+		return err
+	}
 	if err := es.Reader.Err(); err != nil {
 		return err
 	}
@@ -231,6 +256,7 @@ func (c *RESTXMLService) GetEventStreamRequest(input *GetEventStreamInput) (req 
 	req.Handlers.Send.Swap(client.LogHTTPResponseHandler.Name, client.LogHTTPResponseHeaderHandler)
 	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, rest.UnmarshalHandler)
 	req.Handlers.Unmarshal.PushBack(es.runOutputStream)
+	req.Handlers.Unmarshal.PushBack(es.runOnStreamPartClose)
 	return
 }
 
@@ -279,12 +305,35 @@ type GetEventStreamEventStream struct {
 
 	done      chan struct{}
 	closeOnce sync.Once
-	err       eventstreamapi.OnceError
+	err       *eventstreamapi.OnceError
 }
 
 func newGetEventStreamEventStream() *GetEventStreamEventStream {
 	return &GetEventStreamEventStream{
 		done: make(chan struct{}),
+		err:  eventstreamapi.NewOnceError(),
+	}
+}
+
+func (es *GetEventStreamEventStream) runOnStreamPartClose(r *request.Request) {
+	if es.done == nil {
+		return
+	}
+	go es.waitStreamPartClose()
+
+}
+
+func (es *GetEventStreamEventStream) waitStreamPartClose() {
+	var outputC <-chan struct{}
+	if v, ok := es.Reader.(interface{ ErrorSet() <-chan struct{} }); ok {
+		outputC = v.ErrorSet()
+	}
+
+	select {
+	case <-es.done:
+	case <-outputC:
+		es.err.SetError(es.Reader.Err())
+		es.Close()
 	}
 }
 
@@ -337,8 +386,6 @@ func (es *GetEventStreamEventStream) safeClose() {
 	if es.done != nil {
 		close(es.done)
 	}
-	// TODO Reader and Writer need to expose error channels that ES waits on
-	// when error is received it closes the whole stream.
 
 	es.Reader.Close()
 	if es.outputReader != nil {
@@ -349,6 +396,9 @@ func (es *GetEventStreamEventStream) safeClose() {
 // Err returns any error that occurred while reading or writing EventStream
 // Events from the service API's response. Returns nil if there were no errors.
 func (es *GetEventStreamEventStream) Err() error {
+	if err := es.err.Err(); err != nil {
+		return err
+	}
 	if err := es.Reader.Err(); err != nil {
 		return err
 	}
@@ -496,7 +546,7 @@ type EmptyEventStreamReader interface {
 type readEmptyEventStream struct {
 	eventReader *eventstreamapi.EventReader
 	stream      chan EmptyEventStreamEvent
-	onceErr     eventstreamapi.OnceError
+	err         *eventstreamapi.OnceError
 
 	done      chan struct{}
 	closeOnce sync.Once
@@ -507,6 +557,7 @@ func newReadEmptyEventStream(eventReader *eventstreamapi.EventReader) *readEmpty
 		eventReader: eventReader,
 		stream:      make(chan EmptyEventStreamEvent),
 		done:        make(chan struct{}),
+		err:         eventstreamapi.NewOnceError(),
 	}
 	go r.readEventStream()
 
@@ -519,12 +570,16 @@ func (r *readEmptyEventStream) Close() error {
 	return r.Err()
 }
 
+func (r *readEmptyEventStream) ErrorSet() <-chan struct{} {
+	return r.err.ErrorSet()
+}
+
 func (r *readEmptyEventStream) safeClose() {
 	close(r.done)
 }
 
 func (r *readEmptyEventStream) Err() error {
-	return r.onceErr.Err()
+	return r.err.Err()
 }
 
 func (r *readEmptyEventStream) Events() <-chan EmptyEventStreamEvent {
@@ -547,7 +602,7 @@ func (r *readEmptyEventStream) readEventStream() {
 				return
 			default:
 			}
-			r.onceErr.SetOnce(err)
+			r.err.SetError(err)
 			return
 		}
 
@@ -651,7 +706,7 @@ type EventStreamReader interface {
 type readEventStream struct {
 	eventReader *eventstreamapi.EventReader
 	stream      chan EventStreamEvent
-	onceErr     eventstreamapi.OnceError
+	err         *eventstreamapi.OnceError
 
 	done      chan struct{}
 	closeOnce sync.Once
@@ -662,6 +717,7 @@ func newReadEventStream(eventReader *eventstreamapi.EventReader) *readEventStrea
 		eventReader: eventReader,
 		stream:      make(chan EventStreamEvent),
 		done:        make(chan struct{}),
+		err:         eventstreamapi.NewOnceError(),
 	}
 	go r.readEventStream()
 
@@ -674,12 +730,16 @@ func (r *readEventStream) Close() error {
 	return r.Err()
 }
 
+func (r *readEventStream) ErrorSet() <-chan struct{} {
+	return r.err.ErrorSet()
+}
+
 func (r *readEventStream) safeClose() {
 	close(r.done)
 }
 
 func (r *readEventStream) Err() error {
-	return r.onceErr.Err()
+	return r.err.Err()
 }
 
 func (r *readEventStream) Events() <-chan EventStreamEvent {
@@ -702,7 +762,7 @@ func (r *readEventStream) readEventStream() {
 				return
 			default:
 			}
-			r.onceErr.SetOnce(err)
+			r.err.SetError(err)
 			return
 		}
 
