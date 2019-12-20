@@ -4,14 +4,14 @@
   "operations" : {
     "CreateApp" : " <p>Creates an application.</p>",
     "CreateCampaign" : "<p>Creates a new campaign for an application or updates the settings of an existing campaign for an application.</p>",
-    "CreateEmailTemplate" : "<p>Creates a message template that you can use in messages that are sent through the email channel.</p>",
+    "CreateEmailTemplate" : "<p>Creates a message template for messages that are sent through the email channel.</p>",
     "CreateExportJob" : "<p>Creates an export job for an application.</p>",
     "CreateImportJob" : "<p>Creates an import job for an application.</p>",
     "CreateJourney" : "<p>Creates a journey for an application.</p>",
-    "CreatePushTemplate" : "<p>Creates a message template that you can use in messages that are sent through a push notification channel.</p>",
+    "CreatePushTemplate" : "<p>Creates a message template for messages that are sent through a push notification channel.</p>",
     "CreateSegment" : "<p>Creates a new segment for an application or updates the configuration, dimension, and other settings for an existing segment that's associated with an application.</p>",
-    "CreateSmsTemplate" : "<p>Creates a message template that you can use in messages that are sent through the SMS channel.</p>",
-    "CreateVoiceTemplate" : "<p>Creates a message template that you can use in messages that are sent through the voice channel.</p>",
+    "CreateSmsTemplate" : "<p>Creates a message template for messages that are sent through the SMS channel.</p>",
+    "CreateVoiceTemplate" : "<p>Creates a message template for messages that are sent through the voice channel.</p>",
     "DeleteAdmChannel" : "<p>Disables the ADM channel for an application and deletes any existing settings for the channel.</p>",
     "DeleteApnsChannel" : "<p>Disables the APNs channel for an application and deletes any existing settings for the channel.</p>",
     "DeleteApnsSandboxChannel" : "<p>Disables the APNs sandbox channel for an application and deletes any existing settings for the channel.</p>",
@@ -21,18 +21,18 @@
     "DeleteBaiduChannel" : "<p>Disables the Baidu channel for an application and deletes any existing settings for the channel.</p>",
     "DeleteCampaign" : "<p>Deletes a campaign from an application.</p>",
     "DeleteEmailChannel" : "<p>Disables the email channel for an application and deletes any existing settings for the channel.</p>",
-    "DeleteEmailTemplate" : "<p>Deletes a message template that was designed for use in messages that were sent through the email channel.</p>",
+    "DeleteEmailTemplate" : "<p>Deletes a message template for messages that were sent through the email channel.</p>",
     "DeleteEndpoint" : "<p>Deletes an endpoint from an application.</p>",
     "DeleteEventStream" : "<p>Deletes the event stream for an application.</p>",
     "DeleteGcmChannel" : "<p>Disables the GCM channel for an application and deletes any existing settings for the channel.</p>",
     "DeleteJourney" : "<p>Deletes a journey from an application.</p>",
-    "DeletePushTemplate" : "<p>Deletes a message template that was designed for use in messages that were sent through a push notification channel.</p>",
+    "DeletePushTemplate" : "<p>Deletes a message template for messages that were sent through a push notification channel.</p>",
     "DeleteSegment" : "<p>Deletes a segment from an application.</p>",
     "DeleteSmsChannel" : "<p>Disables the SMS channel for an application and deletes any existing settings for the channel.</p>",
-    "DeleteSmsTemplate" : "<p>Deletes a message template that was designed for use in messages that were sent through the SMS channel.</p>",
+    "DeleteSmsTemplate" : "<p>Deletes a message template for messages that were sent through the SMS channel.</p>",
     "DeleteUserEndpoints" : "<p>Deletes all the endpoints that are associated with a specific user ID.</p>",
     "DeleteVoiceChannel" : "<p>Disables the voice channel for an application and deletes any existing settings for the channel.</p>",
-    "DeleteVoiceTemplate" : "<p>Deletes a message template that was designed for use in messages that were sent through the voice channel.</p>",
+    "DeleteVoiceTemplate" : "<p>Deletes a message template for messages that were sent through the voice channel.</p>",
     "GetAdmChannel" : "<p>Retrieves information about the status and settings of the ADM channel for an application.</p>",
     "GetApnsChannel" : "<p>Retrieves information about the status and settings of the APNs channel for an application.</p>",
     "GetApnsSandboxChannel" : "<p>Retrieves information about the status and settings of the APNs sandbox channel for an application.</p>",
@@ -41,7 +41,7 @@
     "GetApp" : "<p>Retrieves information about an application.</p>",
     "GetApplicationDateRangeKpi" : "<p>Retrieves (queries) pre-aggregated data for a standard metric that applies to an application.</p>",
     "GetApplicationSettings" : "<p>Retrieves information about the settings for an application.</p>",
-    "GetApps" : "<p>Retrieves information about all of your applications.</p>",
+    "GetApps" : "<p>Retrieves information about all the applications that are associated with your Amazon Pinpoint account.</p>",
     "GetBaiduChannel" : "<p>Retrieves information about the status and settings of the Baidu channel for an application.</p>",
     "GetCampaign" : "<p>Retrieves information about the status, configuration, and other settings for a campaign.</p>",
     "GetCampaignActivities" : "<p>Retrieves information about all the activities for a campaign.</p>",
@@ -51,7 +51,7 @@
     "GetCampaigns" : "<p>Retrieves information about the status, configuration, and other settings for all the campaigns that are associated with an application.</p>",
     "GetChannels" : "<p>Retrieves information about the history and status of each channel for an application.</p>",
     "GetEmailChannel" : "<p>Retrieves information about the status and settings of the email channel for an application.</p>",
-    "GetEmailTemplate" : "<p>Retrieves the content and settings for a message template that you can use in messages that are sent through the email channel.</p>",
+    "GetEmailTemplate" : "<p>Retrieves the content and settings of a message template for messages that are sent through the email channel.</p>",
     "GetEndpoint" : "<p>Retrieves information about the settings and attributes of a specific endpoint for an application.</p>",
     "GetEventStream" : "<p>Retrieves information about the event stream settings for an application.</p>",
     "GetExportJob" : "<p>Retrieves information about the status and settings of a specific export job for an application.</p>",
@@ -63,20 +63,21 @@
     "GetJourneyDateRangeKpi" : "<p>Retrieves (queries) pre-aggregated data for a standard engagement metric that applies to a journey.</p>",
     "GetJourneyExecutionActivityMetrics" : "<p>Retrieves (queries) pre-aggregated data for a standard execution metric that applies to a journey activity.</p>",
     "GetJourneyExecutionMetrics" : "<p>Retrieves (queries) pre-aggregated data for a standard execution metric that applies to a journey.</p>",
-    "GetPushTemplate" : "<p>Retrieves the content and settings for a message template that you can use in messages that are sent through a push notification channel.</p>",
+    "GetPushTemplate" : "<p>Retrieves the content and settings of a message template for messages that are sent through a push notification channel.</p>",
     "GetSegment" : "<p>Retrieves information about the configuration, dimension, and other settings for a specific segment that's associated with an application.</p>",
     "GetSegmentExportJobs" : "<p>Retrieves information about the status and settings of the export jobs for a segment.</p>",
     "GetSegmentImportJobs" : "<p>Retrieves information about the status and settings of the import jobs for a segment.</p>",
     "GetSegmentVersion" : "<p>Retrieves information about the configuration, dimension, and other settings for a specific version of a segment that's associated with an application.</p>",
-    "GetSegmentVersions" : "<p>Retrieves information about the configuration, dimension, and other settings for all versions of a specific segment that's associated with an application.</p>",
+    "GetSegmentVersions" : "<p>Retrieves information about the configuration, dimension, and other settings for all the versions of a specific segment that's associated with an application.</p>",
     "GetSegments" : "<p>Retrieves information about the configuration, dimension, and other settings for all the segments that are associated with an application.</p>",
     "GetSmsChannel" : "<p>Retrieves information about the status and settings of the SMS channel for an application.</p>",
-    "GetSmsTemplate" : "<p>Retrieves the content and settings for a message template that you can use in messages that are sent through the SMS channel.</p>",
+    "GetSmsTemplate" : "<p>Retrieves the content and settings of a message template for messages that are sent through the SMS channel.</p>",
     "GetUserEndpoints" : "<p>Retrieves information about all the endpoints that are associated with a specific user ID.</p>",
     "GetVoiceChannel" : "<p>Retrieves information about the status and settings of the voice channel for an application.</p>",
-    "GetVoiceTemplate" : "<p>Retrieves the content and settings for a message template that you can use in messages that are sent through the voice channel.</p>",
+    "GetVoiceTemplate" : "<p>Retrieves the content and settings of a message template for messages that are sent through the voice channel.</p>",
     "ListJourneys" : "<p>Retrieves information about the status, configuration, and other settings for all the journeys that are associated with an application.</p>",
     "ListTagsForResource" : "<p>Retrieves all the tags (keys and values) that are associated with an application, campaign, journey, message template, or segment.</p>",
+    "ListTemplateVersions" : "<p>Retrieves information about all the versions of a specific message template.</p>",
     "ListTemplates" : "<p>Retrieves information about all the message templates that are associated with your Amazon Pinpoint account.</p>",
     "PhoneNumberValidate" : "<p>Retrieves information about a phone number.</p>",
     "PutEventStream" : "<p>Creates a new event stream for an application or updates the settings of an existing event stream for an application.</p>",
@@ -95,18 +96,19 @@
     "UpdateBaiduChannel" : "<p>Enables the Baidu channel for an application or updates the status and settings of the Baidu channel for an application.</p>",
     "UpdateCampaign" : "<p>Updates the configuration and other settings for a campaign.</p>",
     "UpdateEmailChannel" : "<p>Enables the email channel for an application or updates the status and settings of the email channel for an application.</p>",
-    "UpdateEmailTemplate" : "<p>Updates an existing message template that you can use in messages that are sent through the email channel.</p>",
+    "UpdateEmailTemplate" : "<p>Updates an existing message template for messages that are sent through the email channel.</p>",
     "UpdateEndpoint" : "<p>Creates a new endpoint for an application or updates the settings and attributes of an existing endpoint for an application. You can also use this operation to define custom attributes (Attributes, Metrics, and UserAttributes properties) for an endpoint.</p>",
     "UpdateEndpointsBatch" : " <p>Creates a new batch of endpoints for an application or updates the settings and attributes of a batch of existing endpoints for an application. You can also use this operation to define custom attributes (Attributes, Metrics, and UserAttributes properties) for a batch of endpoints.</p>",
     "UpdateGcmChannel" : "<p>Enables the GCM channel for an application or updates the status and settings of the GCM channel for an application.</p>",
     "UpdateJourney" : "<p>Updates the configuration and other settings for a journey.</p>",
-    "UpdateJourneyState" : "<p>Cancels an active journey.</p>",
-    "UpdatePushTemplate" : "<p>Updates an existing message template that you can use in messages that are sent through a push notification channel.</p>",
+    "UpdateJourneyState" : "<p>Cancels (stops) an active journey.</p>",
+    "UpdatePushTemplate" : "<p>Updates an existing message template for messages that are sent through a push notification channel.</p>",
     "UpdateSegment" : "<p>Creates a new segment for an application or updates the configuration, dimension, and other settings for an existing segment that's associated with an application.</p>",
     "UpdateSmsChannel" : "<p>Enables the SMS channel for an application or updates the status and settings of the SMS channel for an application.</p>",
-    "UpdateSmsTemplate" : "<p>Updates an existing message template that you can use in messages that are sent through the SMS channel.</p>",
+    "UpdateSmsTemplate" : "<p>Updates an existing message template for messages that are sent through the SMS channel.</p>",
+    "UpdateTemplateActiveVersion" : "<p>Changes the status of a specific version of a message template to <i>active</i>.</p>",
     "UpdateVoiceChannel" : "<p>Enables the voice channel for an application or updates the status and settings of the voice channel for an application.</p>",
-    "UpdateVoiceTemplate" : "<p>Updates an existing message template that you can use in messages that are sent through the voice channel.</p>"
+    "UpdateVoiceTemplate" : "<p>Updates an existing message template for messages that are sent through the voice channel.</p>"
   },
   "shapes" : {
     "ADMChannelRequest" : {
@@ -698,7 +700,7 @@
       "refs" : { }
     },
     "JourneyExecutionMetricsResponse" : {
-      "base" : "<p>Provides the results of a query that retrieved the data for a standard execution metric that applies to a journey.</p>",
+      "base" : "<p>Provides the results of a query that retrieved the data for a standard execution metric that applies to a journey, and provides information about that query.</p>",
       "refs" : { }
     },
     "JourneyLimits" : {
@@ -796,9 +798,9 @@
       }
     },
     "MultiConditionalSplitActivity" : {
-      "base" : "<p>Specifies the settings for a multivariate split activity in a journey. This type of activity sends participants down one of as many as five paths in a journey, based on conditions that you specify.</p>",
+      "base" : "<p>Specifies the settings for a multivariate split activity in a journey. This type of activity sends participants down one of as many as five paths (including a default <i>Else</i> path) in a journey, based on conditions that you specify.</p>",
       "refs" : {
-        "Activity$MultiCondition" : "<p>The settings for a multivariate split activity. This type of activity sends participants down one of as many as five paths in a journey, based on conditions that you specify.</p>"
+        "Activity$MultiCondition" : "<p>The settings for a multivariate split activity. This type of activity sends participants down one of as many as five paths (including a default <i>Else</i> path) in a journey, based on conditions that you specify.</p>"
       }
     },
     "NotFoundException" : {
@@ -1055,7 +1057,7 @@
     "State" : {
       "base" : null,
       "refs" : {
-        "JourneyResponse$State" : "<p>The current status of the journey. Possible values are:</p> <ul><li><p>DRAFT - The journey is being developed and hasn't been published yet.</p></li> <li><p>ACTIVE - The journey has been developed and published. Depending on the journey's schedule, the journey may currently be running or scheduled to start running at a later time. If a journey's status is ACTIVE, you can't add, change, or remove activities from it.</p></li> <li><p>COMPLETED - The journey has been published and has finished running. All participants have entered the journey and no participants are waiting to complete the journey or any activities in the journey.</p></li> <li><p>CANCELLED - The journey has been stopped. If a journey's status is CANCELLED, you can't add, change, or remove activities or segment settings from the journey.</p></li> <li><p>CLOSED - The journey has been published and has started running. It may have also passed its scheduled end time, or passed its scheduled start time and a refresh frequency hasn't been specified for it. If a journey's status is CLOSED, you can't add participants to it, and no existing participants can enter the journey for the first time. However, any existing participants who are currently waiting to start an activity may resume the journey.</p></li></ul>",
+        "JourneyResponse$State" : "<p>The current status of the journey. Possible values are:</p> <ul><li><p>DRAFT - The journey is being developed and hasn't been published yet.</p></li> <li><p>ACTIVE - The journey has been developed and published. Depending on the journey's schedule, the journey may currently be running or scheduled to start running at a later time. If a journey's status is ACTIVE, you can't add, change, or remove activities from it.</p></li> <li><p>COMPLETED - The journey has been published and has finished running. All participants have entered the journey and no participants are waiting to complete the journey or any activities in the journey.</p></li> <li><p>CANCELLED - The journey has been stopped. If a journey's status is CANCELLED, you can't add, change, or remove activities or segment settings from the journey.</p></li> <li><p>CLOSED - The journey has been published and has started running. It may have also passed its scheduled end time, or passed its scheduled start time and a refresh frequency hasn't been specified for it. If a journey's status is CLOSED, you can't add participants to it, and no existing participants can enter the journey for the first time. However, any existing participants who are currently waiting to start an activity may continue the journey.</p></li></ul>",
         "JourneyStateRequest$State" : "<p>The status of the journey. Currently, the only supported value is CANCELLED.</p> <p>If you cancel a journey, Amazon Pinpoint continues to perform activities that are currently in progress, until those activities are complete. Amazon Pinpoint also continues to collect and aggregate analytics data for those activities, until they are complete, and any activities that were complete when you cancelled the journey.</p> <p>After you cancel a journey, you can't add, change, or remove any activities from the journey. In addition, Amazon Pinpoint stops evaluating the journey and doesn't perform any activities that haven't started.</p>",
         "WriteJourneyRequest$State" : "<p>The status of the journey. Valid values are:</p> <ul><li><p>DRAFT - Saves the journey and doesn't publish it.</p></li> <li><p>ACTIVE - Saves and publishes the journey. Depending on the journey's schedule, the journey starts running immediately or at the scheduled start time. If a journey's status is ACTIVE, you can't add, change, or remove activities from it.</p></li></ul> <p>The CANCELLED, COMPLETED, and CLOSED values are not supported in requests to create or update a journey. To cancel a journey, use the <link  linkend=\"apps-application-id-journeys-journey-id-state\">Journey State</link> resource.</p>"
       }
@@ -1065,13 +1067,17 @@
       "refs" : { }
     },
     "Template" : {
-      "base" : "<p>Specifies the name of the message template to use for the message.</p>",
+      "base" : "<p>Specifies the name and version of the message template to use for the message.</p>",
       "refs" : {
         "TemplateConfiguration$EmailTemplate" : "<p>The email template to use for the message.</p>",
         "TemplateConfiguration$PushTemplate" : "<p>The push notification template to use for the message.</p>",
         "TemplateConfiguration$SMSTemplate" : "<p>The SMS template to use for the message.</p>",
         "TemplateConfiguration$VoiceTemplate" : "<p>The voice template to use for the message.</p>"
       }
+    },
+    "TemplateActiveVersionRequest" : {
+      "base" : "<p>Specifies which version of a message template to use as the active version of the template.</p>",
+      "refs" : { }
     },
     "TemplateConfiguration" : {
       "base" : "<p>Specifies the message template to use for the message, for each type of channel.</p>",
@@ -1096,9 +1102,19 @@
         "EmailTemplateResponse$TemplateType" : "<p>The type of channel that the message template is designed for. For an email template, this value is EMAIL.</p>",
         "PushNotificationTemplateResponse$TemplateType" : "<p>The type of channel that the message template is designed for. For a push notification template, this value is PUSH.</p>",
         "SMSTemplateResponse$TemplateType" : "<p>The type of channel that the message template is designed for. For an SMS template, this value is SMS.</p>",
-        "TemplateResponse$TemplateType" : "<p>The type of channel that the message template is designed for.</p>",
+        "TemplateResponse$TemplateType" : "<p>The type of channel that the message template is designed for. Possible values are: EMAIL, PUSH, SMS, and VOICE.</p>",
         "VoiceTemplateResponse$TemplateType" : "<p>The type of channel that the message template is designed for. For a voice template, this value is VOICE.</p>"
       }
+    },
+    "TemplateVersionResponse" : {
+      "base" : "<p>Provides information about a specific version of a message template.</p>",
+      "refs" : {
+        "ListOfTemplateVersionResponse$member" : null
+      }
+    },
+    "TemplateVersionsResponse" : {
+      "base" : "<p>Provides information about all the versions of a specific message template.</p>",
+      "refs" : { }
     },
     "TemplatesResponse" : {
       "base" : "<p>Provides information about all the message templates that are associated with your Amazon Pinpoint account.</p>",
@@ -1304,7 +1320,7 @@
         "ExportJobResponse$TotalProcessed" : "<p>The total number of endpoint definitions that were processed by the export job.</p>",
         "GCMChannelResponse$Version" : "<p>The current version of the GCM channel.</p>",
         "GCMMessage$TimeToLive" : "<p>The amount of time, in seconds, that FCM should store and attempt to deliver the push notification, if the service is unable to deliver the notification the first time. If you don't specify this value, FCM defaults to the maximum value, which is 2,419,200 seconds (28 days).</p> <p>Amazon Pinpoint specifies this value in the FCM time_to_live parameter when it sends the notification message to FCM.</p>",
-        "HoldoutActivity$Percentage" : "<p>The percentage of participants who shouldn't continue the journey.</p>",
+        "HoldoutActivity$Percentage" : "<p>The percentage of participants who shouldn't continue the journey.</p> <p>To determine which participants are held out, Amazon Pinpoint applies a probability-based algorithm to the percentage that you specify. Therefore, the actual percentage of participants who are held out may not be equal to the percentage that you specify.</p>",
         "ImportJobResponse$CompletedPieces" : "<p>The number of pieces that were processed successfully (completed) by the import job, as of the time of the request.</p>",
         "ImportJobResponse$FailedPieces" : "<p>The number of pieces that weren't processed successfully (failed) by the import job, as of the time of the request.</p>",
         "ImportJobResponse$TotalFailures" : "<p>The total number of endpoint definitions that weren't processed successfully (failed) by the import job, typically because an error, such as a syntax error, occurred.</p>",
@@ -1316,7 +1332,7 @@
         "Message$TimeToLive" : "<p>The number of seconds that the push-notification service should keep the message, if the service is unable to deliver the notification the first time. This value is converted to an expiration value when it's sent to a push-notification service. If this value is 0, the service treats the notification as if it expires immediately and the service doesn't store or try to deliver the notification again.</p> <p>This value doesn't apply to messages that are sent through the Amazon Device Messaging (ADM) service.</p>",
         "MessageResult$StatusCode" : "<p>The downstream service status code for delivering the message.</p>",
         "NumberValidateResponse$PhoneTypeCode" : "<p>The phone type, represented by an integer. Valid values are: 0 (mobile), 1 (landline), 2 (VoIP), 3 (invalid), 4 (other), and 5 (prepaid).</p>",
-        "RandomSplitEntry$Percentage" : "<p>The percentage of participants to send down the activity path.</p>",
+        "RandomSplitEntry$Percentage" : "<p>The percentage of participants to send down the activity path.</p> <p>To determine which participants are sent down each path, Amazon Pinpoint applies a probability-based algorithm to the percentages that you specify for the paths. Therefore, the actual percentage of participants who are sent down a path may not be equal to the percentage that you specify.</p>",
         "SMSChannelResponse$PromotionalMessagesPerSecond" : "<p>The maximum number of promotional messages that you can send through the SMS channel each second.</p>",
         "SMSChannelResponse$TransactionalMessagesPerSecond" : "<p>The maximum number of transactional messages that you can send through the SMS channel each second.</p>",
         "SMSChannelResponse$Version" : "<p>The current version of the SMS channel.</p>",
@@ -1441,6 +1457,12 @@
         "TemplatesResponse$Item" : "<p>An array of responses, one for each message template that's associated with your Amazon Pinpoint account and meets any filter criteria that you specified in the request.</p>"
       }
     },
+    "ListOfTemplateVersionResponse" : {
+      "base" : null,
+      "refs" : {
+        "TemplateVersionsResponse$Item" : "<p>An array of responses, one for each version of the message template.</p>"
+      }
+    },
     "ListOfTreatmentResource" : {
       "base" : null,
       "refs" : {
@@ -1469,8 +1491,8 @@
     "MapOfActivity" : {
       "base" : null,
       "refs" : {
-        "JourneyResponse$Activities" : "<p>The configuration and other settings for the activities that comprise the journey.</p>",
-        "WriteJourneyRequest$Activities" : "<p>The configuration and other settings for the activities that comprise the journey.</p>"
+        "JourneyResponse$Activities" : "<p>A map that contains a set of Activity objects, one object for each activity in the journey. For each Activity object, the key is the unique identifier (string) for an activity and the value is the settings for the activity.</p>",
+        "WriteJourneyRequest$Activities" : "<p>A map that contains a set of Activity objects, one object for each activity in the journey. For each Activity object, the key is the unique identifier (string) for an activity and the value is the settings for the activity. An activity identifier can contain a maximum of 128 characters. The characters must be alphanumeric characters.</p>"
       }
     },
     "MapOfAddressConfiguration" : {
@@ -1785,7 +1807,7 @@
         "CampaignHook$WebUrl" : " <p>The web URL that Amazon Pinpoint calls to invoke the AWS Lambda function over HTTPS.</p>",
         "CampaignResponse$ApplicationId" : "<p>The unique identifier for the application that the campaign applies to.</p>",
         "CampaignResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the campaign.</p>",
-        "CampaignResponse$CreationDate" : "<p>The date, ISO 8601 format, when the campaign was created.</p>",
+        "CampaignResponse$CreationDate" : "<p>The date, in ISO 8601 format, when the campaign was created.</p>",
         "CampaignResponse$Description" : "<p>The custom description of the campaign.</p>",
         "CampaignResponse$Id" : "<p>The unique identifier for the campaign.</p>",
         "CampaignResponse$LastModifiedDate" : "<p>The date, in ISO 8601 format, when the campaign was last modified.</p>",
@@ -1801,8 +1823,8 @@
         "ChannelResponse$Id" : "<p>(Deprecated) An identifier for the channel. This property is retained only for backward compatibility.</p>",
         "ChannelResponse$LastModifiedBy" : "<p>The user who last modified the channel.</p>",
         "ChannelResponse$LastModifiedDate" : "<p>The date and time, in ISO 8601 format, when the channel was last modified.</p>",
-        "ConditionalSplitActivity$FalseActivity" : "<p>The unique identifier for the activity to perform if the condition isn't met.</p>",
-        "ConditionalSplitActivity$TrueActivity" : "<p>The unique identifier for the activity to perform if the condition is met.</p>",
+        "ConditionalSplitActivity$FalseActivity" : "<p>The unique identifier for the activity to perform if the conditions aren't met.</p>",
+        "ConditionalSplitActivity$TrueActivity" : "<p>The unique identifier for the activity to perform if the conditions are met.</p>",
         "CreateApplicationRequest$Name" : "<p>The display name of the application. This name is displayed as the <b>Project name</b> on the Amazon Pinpoint console.</p>",
         "CreateTemplateMessageBody$Arn" : "<p>The Amazon Resource Name (ARN) of the message template that was created.</p>",
         "CreateTemplateMessageBody$Message" : "<p>The message that's returned from the API for the request to create the message template.</p>",
@@ -1834,20 +1856,22 @@
         "EmailMessage$FromAddress" : "<p>The verified email address to send the email message from. The default value is the FromAddress specified for the email channel.</p>",
         "EmailMessageActivity$NextActivity" : "<p>The unique identifier for the next activity to perform, after the message is sent.</p>",
         "EmailMessageActivity$TemplateName" : "<p>The name of the email template to use for the message.</p>",
+        "EmailMessageActivity$TemplateVersion" : "<p>The unique identifier for the version of the email template to use for the message. If specified, this value must match the identifier for an existing template version. To retrieve a list of versions and version identifiers for a template, use the <link  linkend=\"templates-template-name-template-type-versions\">Template Versions</link> resource.</p> <p>If you don't specify a value for this property, Amazon Pinpoint uses the <i>active</i> version of the template. The <i>active</i> version is typically the version of a template that's been most recently reviewed and approved for use, depending on your workflow. It isn't necessarily the latest version of a template.</p>",
         "EmailTemplateRequest$DefaultSubstitutions" : "<p>A JSON object that specifies the default values to use for message variables in the message template. This object is a set of key-value pairs. Each key defines a message variable in the template. The corresponding value defines the default value for that variable. When you create a message that's based on the template, you can override these defaults with message-specific and address-specific variables and values.</p>",
         "EmailTemplateRequest$HtmlPart" : "<p>The message body, in HTML format, to use in email messages that are based on the message template. We recommend using HTML format for email clients that render HTML content. You can include links, formatted text, and more in an HTML message.</p>",
         "EmailTemplateRequest$Subject" : "<p>The subject line, or title, to use in email messages that are based on the message template.</p>",
         "EmailTemplateRequest$TemplateDescription" : "<p>A custom description of the message template.</p>",
         "EmailTemplateRequest$TextPart" : "<p>The message body, in plain text format, to use in email messages that are based on the message template. We recommend using plain text format for email clients that don't render HTML content and clients that are connected to high-latency networks, such as mobile devices.</p>",
         "EmailTemplateResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the message template.</p>",
-        "EmailTemplateResponse$CreationDate" : "<p>The date when the message template was created.</p>",
+        "EmailTemplateResponse$CreationDate" : "<p>The date, in ISO 8601 format, when the message template was created.</p>",
         "EmailTemplateResponse$DefaultSubstitutions" : "<p>The JSON object that specifies the default values that are used for message variables in the message template. This object is a set of key-value pairs. Each key defines a message variable in the template. The corresponding value defines the default value for that variable.</p>",
         "EmailTemplateResponse$HtmlPart" : "<p>The message body, in HTML format, that's used in email messages that are based on the message template.</p>",
-        "EmailTemplateResponse$LastModifiedDate" : "<p>The date when the message template was last modified.</p>",
+        "EmailTemplateResponse$LastModifiedDate" : "<p>The date, in ISO 8601 format, when the message template was last modified.</p>",
         "EmailTemplateResponse$Subject" : "<p>The subject line, or title, that's used in email messages that are based on the message template.</p>",
         "EmailTemplateResponse$TemplateDescription" : "<p>The custom description of the message template.</p>",
         "EmailTemplateResponse$TemplateName" : "<p>The name of the message template.</p>",
         "EmailTemplateResponse$TextPart" : "<p>The message body, in plain text format, that's used in email messages that are based on the message template.</p>",
+        "EmailTemplateResponse$Version" : "<p>The unique identifier, as an integer, for the active version of the message template, or the version of the template that you specified by using the version parameter in your request.</p>",
         "EndpointBatchItem$Address" : "<p>The destination address for messages or push notifications that you send to the endpoint. The address varies by channel. For a push-notification channel, use the token provided by the push notification service, such as an Apple Push Notification service (APNs) device token or a Firebase Cloud Messaging (FCM) registration token. For the SMS channel, use a phone number in E.164 format, such as +12065550100. For the email channel, use an email address.</p>",
         "EndpointBatchItem$EffectiveDate" : "<p>The date and time, in ISO 8601 format, when the endpoint was created or updated.</p>",
         "EndpointBatchItem$EndpointStatus" : "<p>Specifies whether to send messages or push notifications to the endpoint. Valid values are: ACTIVE, messages are sent to the endpoint; and, INACTIVE, messages aren’t sent to the endpoint.</p> <p>Amazon Pinpoint automatically sets this value to ACTIVE when you create an endpoint or update an existing endpoint. Amazon Pinpoint automatically sets this value to INACTIVE if you update another endpoint that has the same address specified by the Address property.</p>",
@@ -1856,10 +1880,10 @@
         "EndpointBatchItem$RequestId" : "<p>The unique identifier for the request to create or update the endpoint.</p>",
         "EndpointDemographic$AppVersion" : "<p>The version of the app that's associated with the endpoint.</p>",
         "EndpointDemographic$Locale" : "<p>The locale of the endpoint, in the following format: the ISO 639-1 alpha-2 code, followed by an underscore (_), followed by an ISO 3166-1 alpha-2 value.</p>",
-        "EndpointDemographic$Make" : "<p>The manufacturer of the endpoint device, such as Apple or Samsung.</p>",
-        "EndpointDemographic$Model" : "<p>The model name or number of the endpoint device, such as iPhone.</p>",
+        "EndpointDemographic$Make" : "<p>The manufacturer of the endpoint device, such as apple or samsung.</p>",
+        "EndpointDemographic$Model" : "<p>The model name or number of the endpoint device, such as iPhone or SM-G900F.</p>",
         "EndpointDemographic$ModelVersion" : "<p>The model version of the endpoint device.</p>",
-        "EndpointDemographic$Platform" : "<p>The platform of the endpoint device, such as iOS or Android.</p>",
+        "EndpointDemographic$Platform" : "<p>The platform of the endpoint device, such as ios.</p>",
         "EndpointDemographic$PlatformVersion" : "<p>The platform version of the endpoint device.</p>",
         "EndpointDemographic$Timezone" : "<p>The time zone of the endpoint, specified as a tz database name value, such as America/Los_Angeles.</p>",
         "EndpointItemResponse$Message" : "<p>The custom message that's returned in the response as a result of processing the endpoint data.</p>",
@@ -1998,7 +2022,7 @@
         "MessageResult$UpdatedToken" : "<p>For push notifications that are sent through the GCM channel, specifies whether the endpoint's device registration token was updated as part of delivering the message.</p>",
         "MetricDimension$ComparisonOperator" : "<p>The operator to use when comparing metric values. Valid values are: GREATER_THAN, LESS_THAN, GREATER_THAN_OR_EQUAL, LESS_THAN_OR_EQUAL, and EQUAL.</p>",
         "MultiConditionalBranch$NextActivity" : "<p>The unique identifier for the next activity to perform, after completing the activity for the path.</p>",
-        "MultiConditionalSplitActivity$DefaultActivity" : "<p>The activity to perform by default for any path in the activity.</p>",
+        "MultiConditionalSplitActivity$DefaultActivity" : "<p>The unique identifier for the activity to perform for participants who don't meet any of the conditions specified for other paths in the activity.</p>",
         "NumberValidateRequest$IsoCountryCode" : "<p>The two-character code, in ISO 3166-1 alpha-2 format, for the country or region where the phone number was originally registered.</p>",
         "NumberValidateRequest$PhoneNumber" : "<p>The phone number to retrieve information about. The phone number that you provide should include a valid numeric country code. Otherwise, the operation might result in an error.</p>",
         "NumberValidateResponse$Carrier" : "<p>The carrier or service provider that the phone number is currently registered with. In some countries and regions, this value may be the carrier or service provider that the phone number was originally registered with.</p>",
@@ -2022,11 +2046,12 @@
         "PushNotificationTemplateRequest$DefaultSubstitutions" : "<p>A JSON object that specifies the default values to use for message variables in the message template. This object is a set of key-value pairs. Each key defines a message variable in the template. The corresponding value defines the default value for that variable. When you create a message that's based on the template, you can override these defaults with message-specific and address-specific variables and values.</p>",
         "PushNotificationTemplateRequest$TemplateDescription" : "<p>A custom description of the message template.</p>",
         "PushNotificationTemplateResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the message template.</p>",
-        "PushNotificationTemplateResponse$CreationDate" : "<p>The date when the message template was created.</p>",
+        "PushNotificationTemplateResponse$CreationDate" : "<p>The date, in ISO 8601 format, when the message template was created.</p>",
         "PushNotificationTemplateResponse$DefaultSubstitutions" : "<p>The JSON object that specifies the default values that are used for message variables in the message template. This object is a set of key-value pairs. Each key defines a message variable in the template. The corresponding value defines the default value for that variable.</p>",
-        "PushNotificationTemplateResponse$LastModifiedDate" : "<p>The date when the message template was last modified.</p>",
+        "PushNotificationTemplateResponse$LastModifiedDate" : "<p>The date, in ISO 8601 format, when the message template was last modified.</p>",
         "PushNotificationTemplateResponse$TemplateDescription" : "<p>The custom description of the message template.</p>",
         "PushNotificationTemplateResponse$TemplateName" : "<p>The name of the message template.</p>",
+        "PushNotificationTemplateResponse$Version" : "<p>The unique identifier, as an integer, for the active version of the message template, or the version of the template that you specified by using the version parameter in your request.</p>",
         "QuietTime$End" : "<p>The specific time when quiet time ends. This value has to use 24-hour notation and be in HH:MM format, where HH is the hour (with a leading zero, if applicable) and MM is the minutes. For example, use 02:30 to represent 2:30 AM, or 14:30 to represent 2:30 PM.</p>",
         "QuietTime$Start" : "<p>The specific time when quiet time begins. This value has to use 24-hour notation and be in HH:MM format, where HH is the hour (with a leading zero, if applicable) and MM is the minutes. For example, use 02:30 to represent 2:30 AM, or 14:30 to represent 2:30 PM.</p>",
         "RandomSplitEntry$NextActivity" : "<p>The unique identifier for the next activity to perform, after completing the activity for the path.</p>",
@@ -2053,11 +2078,12 @@
         "SMSTemplateRequest$TemplateDescription" : "<p>A custom description of the message template.</p>",
         "SMSTemplateResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the message template.</p>",
         "SMSTemplateResponse$Body" : "<p>The message body that's used in text messages that are based on the message template.</p>",
-        "SMSTemplateResponse$CreationDate" : "<p>The date when the message template was created.</p>",
+        "SMSTemplateResponse$CreationDate" : "<p>The date, in ISO 8601 format, when the message template was created.</p>",
         "SMSTemplateResponse$DefaultSubstitutions" : "<p>The JSON object that specifies the default values that are used for message variables in the message template. This object is a set of key-value pairs. Each key defines a message variable in the template. The corresponding value defines the default value for that variable.</p>",
-        "SMSTemplateResponse$LastModifiedDate" : "<p>The date when the message template was last modified.</p>",
+        "SMSTemplateResponse$LastModifiedDate" : "<p>The date, in ISO 8601 format, when the message template was last modified.</p>",
         "SMSTemplateResponse$TemplateDescription" : "<p>The custom description of the message template.</p>",
         "SMSTemplateResponse$TemplateName" : "<p>The name of the message template.</p>",
+        "SMSTemplateResponse$Version" : "<p>The unique identifier, as an integer, for the active version of the message template, or the version of the template that you specified by using the version parameter in your request.</p>",
         "Schedule$EndTime" : "<p>The scheduled time, in ISO 8601 format, when the campaign ended or will end.</p>",
         "Schedule$StartTime" : "<p>The scheduled time, in ISO 8601 format, when the campaign began or will begin.</p>",
         "Schedule$Timezone" : "<p>The starting UTC offset for the campaign schedule, if the value of the IsLocalTime property is true. Valid values are: UTC, UTC+01, UTC+02, UTC+03, UTC+03:30, UTC+04, UTC+04:30, UTC+05,\n                  UTC+05:30, UTC+05:45, UTC+06, UTC+06:30, UTC+07, UTC+08, UTC+09, UTC+09:30,\n                  UTC+10, UTC+10:30, UTC+11, UTC+12, UTC+13, UTC-02, UTC-03, UTC-04, UTC-05, UTC-06,\n                  UTC-07, UTC-08, UTC-09, UTC-10, and UTC-11.</p>",
@@ -2083,12 +2109,25 @@
         "SimpleEmailPart$Data" : "<p>The textual data of the message content.</p>",
         "StartCondition$Description" : "<p>The custom description of the condition.</p>",
         "Template$Name" : "<p>The name of the message template to use for the message. If specified, this value must match the name of an existing message template.</p>",
+        "Template$Version" : "<p>The unique identifier for the version of the message template to use for the message. If specified, this value must match the identifier for an existing template version. To retrieve a list of versions and version identifiers for a template, use the <link  linkend=\"templates-template-name-template-type-versions\">Template Versions</link> resource.</p> <p>If you don't specify a value for this property, Amazon Pinpoint uses the <i>active</i> version of the template. The <i>active</i> version is typically the version of a template that's been most recently reviewed and approved for use, depending on your workflow. It isn't necessarily the latest version of a template.</p>",
+        "TemplateActiveVersionRequest$Version" : "<p>The unique identifier for the version of the message template to use as the active version of the template. If specified, this value must match the identifier for an existing template version. To retrieve a list of versions and version identifiers for a template, use the <link  linkend=\"templates-template-name-template-type-versions\">Template Versions</link> resource.</p>",
         "TemplateResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the message template.</p>",
-        "TemplateResponse$CreationDate" : "<p>The date when the message template was created.</p>",
+        "TemplateResponse$CreationDate" : "<p>The date, in ISO 8601 format, when the message template was created.</p>",
         "TemplateResponse$DefaultSubstitutions" : "<p>The JSON object that specifies the default values that are used for message variables in the message template. This object is a set of key-value pairs. Each key defines a message variable in the template. The corresponding value defines the default value for that variable.</p>",
-        "TemplateResponse$LastModifiedDate" : "<p>The date when the message template was last modified.</p>",
+        "TemplateResponse$LastModifiedDate" : "<p>The date, in ISO 8601 format, when the message template was last modified.</p>",
         "TemplateResponse$TemplateDescription" : "<p>The custom description of the message template.</p>",
         "TemplateResponse$TemplateName" : "<p>The name of the message template.</p>",
+        "TemplateResponse$Version" : "<p>The unique identifier, as an integer, for the active version of the message template.</p>",
+        "TemplateVersionResponse$CreationDate" : "<p>The date, in ISO 8601 format, when the version of the message template was created.</p>",
+        "TemplateVersionResponse$DefaultSubstitutions" : "<p>A JSON object that specifies the default values that are used for message variables in the version of the message template. This object is a set of key-value pairs. Each key defines a message variable in the template. The corresponding value defines the default value for that variable.</p>",
+        "TemplateVersionResponse$LastModifiedDate" : "<p>The date, in ISO 8601 format, when the version of the message template was last modified.</p>",
+        "TemplateVersionResponse$TemplateDescription" : "<p>The custom description of the version of the message template.</p>",
+        "TemplateVersionResponse$TemplateName" : "<p>The name of the message template.</p>",
+        "TemplateVersionResponse$TemplateType" : "<p>The type of channel that the message template is designed for. Possible values are: EMAIL, PUSH, SMS, and VOICE.</p>",
+        "TemplateVersionResponse$Version" : "<p>The unique identifier for the version of the message template. This value is an integer that Amazon Pinpoint automatically increments and assigns to each new version of a template.</p>",
+        "TemplateVersionsResponse$Message" : "<p>The message that's returned from the API for the request to retrieve information about all the versions of the message template.</p>",
+        "TemplateVersionsResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null if there are no additional pages.</p>",
+        "TemplateVersionsResponse$RequestID" : "<p>The unique identifier for the request to retrieve information about all the versions of the message template.</p>",
         "TemplatesResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null if there are no additional pages.</p>",
         "TreatmentResource$Id" : "<p>The unique identifier for the treatment.</p>",
         "TreatmentResource$TreatmentDescription" : "<p>The custom description of the treatment.</p>",
@@ -2110,12 +2149,13 @@
         "VoiceTemplateRequest$VoiceId" : "<p>The name of the voice to use when delivering messages that are based on the message template. For a list of supported voices, see the <a href=\"https://docs.aws.amazon.com/polly/latest/dg/what-is.html\">Amazon Polly Developer Guide</a>.</p>",
         "VoiceTemplateResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the message template.</p>",
         "VoiceTemplateResponse$Body" : "<p>The text of the script that's used in messages that are based on the message template, in plain text format.</p>",
-        "VoiceTemplateResponse$CreationDate" : "<p>The date when the message template was created.</p>",
+        "VoiceTemplateResponse$CreationDate" : "<p>The date, in ISO 8601 format, when the message template was created.</p>",
         "VoiceTemplateResponse$DefaultSubstitutions" : "<p>The JSON object that specifies the default values that are used for message variables in the message template. This object is a set of key-value pairs. Each key defines a message variable in the template. The corresponding value defines the default value for that variable.</p>",
         "VoiceTemplateResponse$LanguageCode" : "<p>The code for the language that's used when synthesizing the text of the script in messages that are based on the message template. For a list of supported languages and the code for each one, see the <a href=\"https://docs.aws.amazon.com/polly/latest/dg/what-is.html\">Amazon Polly Developer Guide</a>.</p>",
-        "VoiceTemplateResponse$LastModifiedDate" : "<p>The date when the message template was last modified.</p>",
+        "VoiceTemplateResponse$LastModifiedDate" : "<p>The date, in ISO 8601 format, when the message template was last modified.</p>",
         "VoiceTemplateResponse$TemplateDescription" : "<p>The custom description of the message template.</p>",
         "VoiceTemplateResponse$TemplateName" : "<p>The name of the message template.</p>",
+        "VoiceTemplateResponse$Version" : "<p>The unique identifier, as an integer, for the active version of the message template, or the version of the template that you specified by using the version parameter in your request.</p>",
         "VoiceTemplateResponse$VoiceId" : "<p>The name of the voice that's used when delivering messages that are based on the message template. For a list of supported voices, see the <a href=\"https://docs.aws.amazon.com/polly/latest/dg/what-is.html\">Amazon Polly Developer Guide</a>.</p>",
         "WaitActivity$NextActivity" : "<p>The unique identifier for the next activity to perform, after performing the wait activity.</p>",
         "WaitTime$WaitFor" : "<p>The amount of time to wait, as a duration in ISO 8601 format, before determining whether the activity's conditions have been met or moving participants to the next activity in the journey.</p>",
@@ -2131,7 +2171,7 @@
         "WriteJourneyRequest$LastModifiedDate" : "<p>The date, in ISO 8601 format, when the journey was last modified.</p>",
         "WriteJourneyRequest$Name" : "<p>The name of the journey. A journey name can contain a maximum of 150 characters. The characters can be alphanumeric characters or symbols, such as underscores (_) or hyphens (-). A journey name can't contain any spaces.</p>",
         "WriteJourneyRequest$RefreshFrequency" : "<p>The frequency with which Amazon Pinpoint evaluates segment and event data for the journey, as a duration in ISO 8601 format.</p>",
-        "WriteJourneyRequest$StartActivity" : "<p>The unique identifier for the first activity in the journey.</p>",
+        "WriteJourneyRequest$StartActivity" : "<p>The unique identifier for the first activity in the journey. An activity identifier can contain a maximum of 128 characters. The characters must be alphanumeric characters.</p>",
         "WriteSegmentRequest$Name" : "<p>The name of the segment.</p>",
         "WriteTreatmentResource$TreatmentDescription" : "<p>A custom description of the treatment.</p>",
         "WriteTreatmentResource$TreatmentName" : "<p>The custom name of the treatment. A treatment is a variation of a campaign that's used for A/B testing of a campaign.</p>",

@@ -28,6 +28,21 @@
         {"shape":"ConflictException"}
       ]
     },
+    "CreateVocabularyFilter":{
+      "name":"CreateVocabularyFilter",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateVocabularyFilterRequest"},
+      "output":{"shape":"CreateVocabularyFilterResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ConflictException"}
+      ]
+    },
     "DeleteTranscriptionJob":{
       "name":"DeleteTranscriptionJob",
       "http":{
@@ -48,6 +63,20 @@
         "requestUri":"/"
       },
       "input":{"shape":"DeleteVocabularyRequest"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"BadRequestException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "DeleteVocabularyFilter":{
+      "name":"DeleteVocabularyFilter",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteVocabularyFilterRequest"},
       "errors":[
         {"shape":"NotFoundException"},
         {"shape":"LimitExceededException"},
@@ -85,6 +114,21 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "GetVocabularyFilter":{
+      "name":"GetVocabularyFilter",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetVocabularyFilterRequest"},
+      "output":{"shape":"GetVocabularyFilterResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
     "ListTranscriptionJobs":{
       "name":"ListTranscriptionJobs",
       "http":{
@@ -107,6 +151,20 @@
       },
       "input":{"shape":"ListVocabulariesRequest"},
       "output":{"shape":"ListVocabulariesResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "ListVocabularyFilters":{
+      "name":"ListVocabularyFilters",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListVocabularyFiltersRequest"},
+      "output":{"shape":"ListVocabularyFiltersResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"LimitExceededException"},
@@ -143,6 +201,21 @@
         {"shape":"NotFoundException"},
         {"shape":"ConflictException"}
       ]
+    },
+    "UpdateVocabularyFilter":{
+      "name":"UpdateVocabularyFilter",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateVocabularyFilterRequest"},
+      "output":{"shape":"UpdateVocabularyFilterResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"NotFoundException"}
+      ]
     }
   },
   "shapes":{
@@ -160,6 +233,27 @@
         "Message":{"shape":"String"}
       },
       "exception":true
+    },
+    "CreateVocabularyFilterRequest":{
+      "type":"structure",
+      "required":[
+        "VocabularyFilterName",
+        "LanguageCode"
+      ],
+      "members":{
+        "VocabularyFilterName":{"shape":"VocabularyFilterName"},
+        "LanguageCode":{"shape":"LanguageCode"},
+        "Words":{"shape":"Words"},
+        "VocabularyFilterFileUri":{"shape":"Uri"}
+      }
+    },
+    "CreateVocabularyFilterResponse":{
+      "type":"structure",
+      "members":{
+        "VocabularyFilterName":{"shape":"VocabularyFilterName"},
+        "LanguageCode":{"shape":"LanguageCode"},
+        "LastModifiedTime":{"shape":"DateTime"}
+      }
     },
     "CreateVocabularyRequest":{
       "type":"structure",
@@ -196,6 +290,13 @@
         "TranscriptionJobName":{"shape":"TranscriptionJobName"}
       }
     },
+    "DeleteVocabularyFilterRequest":{
+      "type":"structure",
+      "required":["VocabularyFilterName"],
+      "members":{
+        "VocabularyFilterName":{"shape":"VocabularyFilterName"}
+      }
+    },
     "DeleteVocabularyRequest":{
       "type":"structure",
       "required":["VocabularyName"],
@@ -215,6 +316,22 @@
       "type":"structure",
       "members":{
         "TranscriptionJob":{"shape":"TranscriptionJob"}
+      }
+    },
+    "GetVocabularyFilterRequest":{
+      "type":"structure",
+      "required":["VocabularyFilterName"],
+      "members":{
+        "VocabularyFilterName":{"shape":"VocabularyFilterName"}
+      }
+    },
+    "GetVocabularyFilterResponse":{
+      "type":"structure",
+      "members":{
+        "VocabularyFilterName":{"shape":"VocabularyFilterName"},
+        "LanguageCode":{"shape":"LanguageCode"},
+        "LastModifiedTime":{"shape":"DateTime"},
+        "DownloadUri":{"shape":"Uri"}
       }
     },
     "GetVocabularyRequest":{
@@ -333,6 +450,21 @@
         "Vocabularies":{"shape":"Vocabularies"}
       }
     },
+    "ListVocabularyFiltersRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NameContains":{"shape":"VocabularyFilterName"}
+      }
+    },
+    "ListVocabularyFiltersResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "VocabularyFilters":{"shape":"VocabularyFilters"}
+      }
+    },
     "MaxAlternatives":{
       "type":"integer",
       "max":10,
@@ -410,7 +542,9 @@
         "MaxSpeakerLabels":{"shape":"MaxSpeakers"},
         "ChannelIdentification":{"shape":"Boolean"},
         "ShowAlternatives":{"shape":"Boolean"},
-        "MaxAlternatives":{"shape":"MaxAlternatives"}
+        "MaxAlternatives":{"shape":"MaxAlternatives"},
+        "VocabularyFilterName":{"shape":"VocabularyFilterName"},
+        "VocabularyFilterMethod":{"shape":"VocabularyFilterMethod"}
       }
     },
     "StartTranscriptionJobRequest":{
@@ -495,6 +629,23 @@
         "OutputLocationType":{"shape":"OutputLocationType"}
       }
     },
+    "UpdateVocabularyFilterRequest":{
+      "type":"structure",
+      "required":["VocabularyFilterName"],
+      "members":{
+        "VocabularyFilterName":{"shape":"VocabularyFilterName"},
+        "Words":{"shape":"Words"},
+        "VocabularyFilterFileUri":{"shape":"Uri"}
+      }
+    },
+    "UpdateVocabularyFilterResponse":{
+      "type":"structure",
+      "members":{
+        "VocabularyFilterName":{"shape":"VocabularyFilterName"},
+        "LanguageCode":{"shape":"LanguageCode"},
+        "LastModifiedTime":{"shape":"DateTime"}
+      }
+    },
     "UpdateVocabularyRequest":{
       "type":"structure",
       "required":[
@@ -527,6 +678,31 @@
       "type":"list",
       "member":{"shape":"VocabularyInfo"}
     },
+    "VocabularyFilterInfo":{
+      "type":"structure",
+      "members":{
+        "VocabularyFilterName":{"shape":"VocabularyFilterName"},
+        "LanguageCode":{"shape":"LanguageCode"},
+        "LastModifiedTime":{"shape":"DateTime"}
+      }
+    },
+    "VocabularyFilterMethod":{
+      "type":"string",
+      "enum":[
+        "remove",
+        "mask"
+      ]
+    },
+    "VocabularyFilterName":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"^[0-9a-zA-Z._-]+"
+    },
+    "VocabularyFilters":{
+      "type":"list",
+      "member":{"shape":"VocabularyFilterInfo"}
+    },
     "VocabularyInfo":{
       "type":"structure",
       "members":{
@@ -549,6 +725,16 @@
         "READY",
         "FAILED"
       ]
+    },
+    "Word":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "Words":{
+      "type":"list",
+      "member":{"shape":"Word"},
+      "min":1
     }
   }
 }

@@ -2273,7 +2273,8 @@
       "type":"string",
       "enum":[
         "SourceUrl",
-        "S3FileUrl"
+        "S3FileUrl",
+        "AttachmentReference"
       ]
     },
     "AttachmentsSourceList":{

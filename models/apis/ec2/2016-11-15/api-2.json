@@ -7909,6 +7909,7 @@
     },
     "DateTime":{"type":"timestamp"},
     "DedicatedHostFlag":{"type":"boolean"},
+    "DedicatedHostId":{"type":"string"},
     "DefaultRouteTableAssociationValue":{
       "type":"string",
       "enum":[
@@ -8157,7 +8158,7 @@
       "type":"structure",
       "required":["KeyName"],
       "members":{
-        "KeyName":{"shape":"String"},
+        "KeyName":{"shape":"KeyPairName"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -9549,6 +9550,10 @@
         "ExportTaskIds":{
           "shape":"ExportTaskIdStringList",
           "locationName":"exportTaskId"
+        },
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
         }
       }
     },
@@ -10381,6 +10386,10 @@
           "shape":"KeyNameStringList",
           "locationName":"KeyName"
         },
+        "KeyPairIds":{
+          "shape":"KeyPairIdStringList",
+          "locationName":"KeyPairId"
+        },
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -10878,6 +10887,10 @@
         "GroupNames":{
           "shape":"PlacementGroupStringList",
           "locationName":"groupName"
+        },
+        "GroupIds":{
+          "shape":"PlacementGroupIdStringList",
+          "locationName":"GroupId"
         }
       }
     },
@@ -13993,6 +14006,10 @@
         "StatusMessage":{
           "shape":"String",
           "locationName":"statusMessage"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },
@@ -15347,7 +15364,6 @@
         }
       }
     },
-    "HostId":{"type":"string"},
     "HostInstance":{
       "type":"structure",
       "members":{
@@ -16070,6 +16086,10 @@
           "shape":"String",
           "locationName":"statusMessage"
         },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
+        },
         "LicenseSpecifications":{
           "shape":"ImportImageLicenseSpecificationListResponse",
           "locationName":"licenseSpecifications"
@@ -16240,7 +16260,7 @@
           "locationName":"dryRun"
         },
         "KeyName":{
-          "shape":"String",
+          "shape":"KeyPairName",
           "locationName":"keyName"
         },
         "PublicKeyMaterial":{
@@ -16306,6 +16326,10 @@
         "SnapshotTaskDetail":{
           "shape":"SnapshotTaskDetail",
           "locationName":"snapshotTaskDetail"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },
@@ -18028,12 +18052,27 @@
         "KeyName":{
           "shape":"String",
           "locationName":"keyName"
+        },
+        "KeyPairId":{
+          "shape":"String",
+          "locationName":"keyPairId"
         }
+      }
+    },
+    "KeyPairIdStringList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"KeyPairId"
       }
     },
     "KeyPairInfo":{
       "type":"structure",
       "members":{
+        "KeyPairId":{
+          "shape":"String",
+          "locationName":"keyPairId"
+        },
         "KeyFingerprint":{
           "shape":"String",
           "locationName":"keyFingerprint"
@@ -18041,6 +18080,10 @@
         "KeyName":{
           "shape":"String",
           "locationName":"keyName"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },
@@ -19635,7 +19678,7 @@
         },
         "GroupName":{"shape":"PlacementGroupName"},
         "HostId":{
-          "shape":"HostId",
+          "shape":"DedicatedHostId",
           "locationName":"hostId"
         },
         "InstanceId":{
@@ -21282,7 +21325,22 @@
         "PartitionCount":{
           "shape":"Integer",
           "locationName":"partitionCount"
+        },
+        "GroupId":{
+          "shape":"String",
+          "locationName":"groupId"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
+      }
+    },
+    "PlacementGroupIdStringList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"GroupId"
       }
     },
     "PlacementGroupInfo":{
@@ -22476,7 +22534,7 @@
     "RequestHostIdSet":{
       "type":"list",
       "member":{
-        "shape":"HostId",
+        "shape":"DedicatedHostId",
         "locationName":"item"
       }
     },
@@ -23275,10 +23333,12 @@
         "image",
         "instance",
         "internet-gateway",
+        "key-pair",
         "launch-template",
         "natgateway",
         "network-acl",
         "network-interface",
+        "placement-group",
         "reserved-instances",
         "route-table",
         "security-group",

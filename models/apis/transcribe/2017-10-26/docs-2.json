@@ -3,14 +3,19 @@
   "service": "<p>Operations and objects for transcribing speech to text.</p>",
   "operations": {
     "CreateVocabulary": "<p>Creates a new custom vocabulary that you can use to change the way Amazon Transcribe handles transcription of an audio file. </p>",
+    "CreateVocabularyFilter": "<p>Creates a new vocabulary filter that you can use to filter words, such as profane words, from the output of a transcription job.</p>",
     "DeleteTranscriptionJob": "<p>Deletes a previously submitted transcription job along with any other generated results such as the transcription, models, and so on.</p>",
     "DeleteVocabulary": "<p>Deletes a vocabulary from Amazon Transcribe. </p>",
+    "DeleteVocabularyFilter": "<p>Removes a vocabulary filter.</p>",
     "GetTranscriptionJob": "<p>Returns information about a transcription job. To see the status of the job, check the <code>TranscriptionJobStatus</code> field. If the status is <code>COMPLETED</code>, the job is finished and you can find the results at the location specified in the <code>TranscriptionFileUri</code> field.</p>",
     "GetVocabulary": "<p>Gets information about a vocabulary. </p>",
+    "GetVocabularyFilter": "<p>Returns information about a vocabulary filter.</p>",
     "ListTranscriptionJobs": "<p>Lists transcription jobs with the specified status.</p>",
     "ListVocabularies": "<p>Returns a list of vocabularies that match the specified criteria. If no criteria are specified, returns the entire list of vocabularies.</p>",
+    "ListVocabularyFilters": "<p>Gets information about vocabulary filters.</p>",
     "StartTranscriptionJob": "<p>Starts an asynchronous job to transcribe speech to text. </p>",
-    "UpdateVocabulary": "<p>Updates an existing vocabulary with new values. The <code>UpdateVocabulary</code> operation overwrites all of the existing information with the values that you provide in the request. </p>"
+    "UpdateVocabulary": "<p>Updates an existing vocabulary with new values. The <code>UpdateVocabulary</code> operation overwrites all of the existing information with the values that you provide in the request. </p>",
+    "UpdateVocabularyFilter": "<p>Updates a vocabulary filter with a new list of filtered words.</p>"
   },
   "shapes": {
     "BadRequestException": {
@@ -29,6 +34,16 @@
     },
     "ConflictException": {
       "base": "<p>When you are using the <code>CreateVocabulary</code> operation, the <code>JobName</code> field is a duplicate of a previously entered job name. Resend your request with a different name.</p> <p>When you are using the <code>UpdateVocabulary</code> operation, there are two jobs running at the same time. Resend the second request later.</p>",
+      "refs": {
+      }
+    },
+    "CreateVocabularyFilterRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateVocabularyFilterResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -51,7 +66,9 @@
     "DateTime": {
       "base": null,
       "refs": {
+        "CreateVocabularyFilterResponse$LastModifiedTime": "<p>The date and time that the vocabulary filter was modified.</p>",
         "CreateVocabularyResponse$LastModifiedTime": "<p>The date and time that the vocabulary was created.</p>",
+        "GetVocabularyFilterResponse$LastModifiedTime": "<p>The date and time that the contents of the vocabulary filter were updated.</p>",
         "GetVocabularyResponse$LastModifiedTime": "<p>The date and time that the vocabulary was last modified.</p>",
         "TranscriptionJob$StartTime": "<p>A timestamp that shows with the job was started processing.</p>",
         "TranscriptionJob$CreationTime": "<p>A timestamp that shows when the job was created.</p>",
@@ -59,11 +76,18 @@
         "TranscriptionJobSummary$CreationTime": "<p>A timestamp that shows when the job was created.</p>",
         "TranscriptionJobSummary$StartTime": "<p>A timestamp that shows when the job started processing.</p>",
         "TranscriptionJobSummary$CompletionTime": "<p>A timestamp that shows when the job was completed.</p>",
+        "UpdateVocabularyFilterResponse$LastModifiedTime": "<p>The date and time that the vocabulary filter was updated.</p>",
         "UpdateVocabularyResponse$LastModifiedTime": "<p>The date and time that the vocabulary was updated.</p>",
+        "VocabularyFilterInfo$LastModifiedTime": "<p>The date and time that the vocabulary was last updated.</p>",
         "VocabularyInfo$LastModifiedTime": "<p>The date and time that the vocabulary was last modified.</p>"
       }
     },
     "DeleteTranscriptionJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteVocabularyFilterRequest": {
       "base": null,
       "refs": {
       }
@@ -89,6 +113,16 @@
       }
     },
     "GetTranscriptionJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVocabularyFilterRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVocabularyFilterResponse": {
       "base": null,
       "refs": {
       }
@@ -124,14 +158,19 @@
     "LanguageCode": {
       "base": null,
       "refs": {
+        "CreateVocabularyFilterRequest$LanguageCode": "<p>The language code of the words in the vocabulary filter. All words in the filter must be in the same language. The vocabulary filter can only be used with transcription jobs in the specified language.</p>",
+        "CreateVocabularyFilterResponse$LanguageCode": "<p>The language code of the words in the collection.</p>",
         "CreateVocabularyRequest$LanguageCode": "<p>The language code of the vocabulary entries.</p>",
         "CreateVocabularyResponse$LanguageCode": "<p>The language code of the vocabulary entries.</p>",
+        "GetVocabularyFilterResponse$LanguageCode": "<p>The language code of the words in the vocabulary filter.</p>",
         "GetVocabularyResponse$LanguageCode": "<p>The language code of the vocabulary entries.</p>",
         "StartTranscriptionJobRequest$LanguageCode": "<p>The language code for the language used in the input media file.</p>",
         "TranscriptionJob$LanguageCode": "<p>The language code for the input speech.</p>",
         "TranscriptionJobSummary$LanguageCode": "<p>The language code for the input speech.</p>",
+        "UpdateVocabularyFilterResponse$LanguageCode": "<p>The language code of the words in the vocabulary filter.</p>",
         "UpdateVocabularyRequest$LanguageCode": "<p>The language code of the vocabulary entries.</p>",
         "UpdateVocabularyResponse$LanguageCode": "<p>The language code of the vocabulary entries.</p>",
+        "VocabularyFilterInfo$LanguageCode": "<p>The language code of the words in the vocabulary filter.</p>",
         "VocabularyInfo$LanguageCode": "<p>The language code of the vocabulary entries.</p>"
       }
     },
@@ -160,6 +199,16 @@
       "refs": {
       }
     },
+    "ListVocabularyFiltersRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListVocabularyFiltersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "MaxAlternatives": {
       "base": null,
       "refs": {
@@ -170,7 +219,8 @@
       "base": null,
       "refs": {
         "ListTranscriptionJobsRequest$MaxResults": "<p>The maximum number of jobs to return in the response. If there are fewer results in the list, this response contains only the actual results.</p>",
-        "ListVocabulariesRequest$MaxResults": "<p>The maximum number of vocabularies to return in the response. If there are fewer results in the list, this response contains only the actual results.</p>"
+        "ListVocabulariesRequest$MaxResults": "<p>The maximum number of vocabularies to return in the response. If there are fewer results in the list, this response contains only the actual results.</p>",
+        "ListVocabularyFiltersRequest$MaxResults": "<p>The maximum number of filters to return in the response. If there are fewer results in the list, this response contains only the actual results.</p>"
       }
     },
     "MaxSpeakers": {
@@ -206,7 +256,9 @@
         "ListTranscriptionJobsRequest$NextToken": "<p>If the result of the previous request to <code>ListTranscriptionJobs</code> was truncated, include the <code>NextToken</code> to fetch the next set of jobs.</p>",
         "ListTranscriptionJobsResponse$NextToken": "<p>The <code>ListTranscriptionJobs</code> operation returns a page of jobs at a time. The maximum size of the page is set by the <code>MaxResults</code> parameter. If there are more jobs in the list than the page size, Amazon Transcribe returns the <code>NextPage</code> token. Include the token in the next request to the <code>ListTranscriptionJobs</code> operation to return in the next page of jobs.</p>",
         "ListVocabulariesRequest$NextToken": "<p>If the result of the previous request to <code>ListVocabularies</code> was truncated, include the <code>NextToken</code> to fetch the next set of jobs.</p>",
-        "ListVocabulariesResponse$NextToken": "<p>The <code>ListVocabularies</code> operation returns a page of vocabularies at a time. The maximum size of the page is set by the <code>MaxResults</code> parameter. If there are more jobs in the list than the page size, Amazon Transcribe returns the <code>NextPage</code> token. Include the token in the next request to the <code>ListVocabularies</code> operation to return in the next page of jobs.</p>"
+        "ListVocabulariesResponse$NextToken": "<p>The <code>ListVocabularies</code> operation returns a page of vocabularies at a time. The maximum size of the page is set by the <code>MaxResults</code> parameter. If there are more jobs in the list than the page size, Amazon Transcribe returns the <code>NextPage</code> token. Include the token in the next request to the <code>ListVocabularies</code> operation to return in the next page of jobs.</p>",
+        "ListVocabularyFiltersRequest$NextToken": "<p>If the result of the previous request to <code>ListVocabularyFilters</code> was truncated, include the <code>NextToken</code> to fetch the next set of collections.</p>",
+        "ListVocabularyFiltersResponse$NextToken": "<p>The <code>ListVocabularyFilters</code> operation returns a page of collections at a time. The maximum size of the page is set by the <code>MaxResults</code> parameter. If there are more jobs in the list than the page size, Amazon Transcribe returns the <code>NextPage</code> token. Include the token in the next request to the <code>ListVocabularyFilters</code> operation to return in the next page of jobs.</p>"
       }
     },
     "NotFoundException": {
@@ -311,6 +363,16 @@
         "TranscriptionJobSummaries$member": null
       }
     },
+    "UpdateVocabularyFilterRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateVocabularyFilterResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateVocabularyRequest": {
       "base": null,
       "refs": {
@@ -324,10 +386,13 @@
     "Uri": {
       "base": null,
       "refs": {
+        "CreateVocabularyFilterRequest$VocabularyFilterFileUri": "<p>The Amazon S3 location of a text file used as input to create the vocabulary filter. Only use characters from the character set defined for custom vocabularies. For a list of character sets, see <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary.html#charsets\">Character Sets for Custom Vocabularies</a>.</p> <p>The specified file must be less than 50 KB of UTF-8 characters.</p> <p>If you provide the location of a list of words in the <code>VocabularyFilterFileUri</code> parameter, you can't use the <code>Words</code> parameter.</p>",
         "CreateVocabularyRequest$VocabularyFileUri": "<p>The S3 location of the text file that contains the definition of the custom vocabulary. The URI must be in the same region as the API endpoint that you are calling. The general form is </p> <p> <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code> </p> <p>For example:</p> <p> <code>https://s3.us-east-1.amazonaws.com/examplebucket/vocab.txt</code> </p> <p>For more information about S3 object names, see <a href=\"http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys\">Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.</p> <p>For more information about custom vocabularies, see <a href=\"http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary\">Custom Vocabularies</a>.</p>",
+        "GetVocabularyFilterResponse$DownloadUri": "<p>The URI of the list of words in the vocabulary filter. You can use this URI to get the list of words.</p>",
         "GetVocabularyResponse$DownloadUri": "<p>The S3 location where the vocabulary is stored. Use this URI to get the contents of the vocabulary. The URI is available for a limited time.</p>",
         "Media$MediaFileUri": "<p>The S3 location of the input media file. The URI must be in the same region as the API endpoint that you are calling. The general form is:</p> <p> <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code> </p> <p>For example:</p> <p> <code>https://s3.us-east-1.amazonaws.com/examplebucket/example.mp4</code> </p> <p> <code>https://s3.us-east-1.amazonaws.com/examplebucket/mediadocs/example.mp4</code> </p> <p>For more information about S3 object names, see <a href=\"http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys\">Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.</p>",
         "Transcript$TranscriptFileUri": "<p>The location where the transcription is stored.</p> <p>Use this URI to access the transcription. If you specified an S3 bucket in the <code>OutputBucketName</code> field when you created the job, this is the URI of that bucket. If you chose to store the transcription in Amazon Transcribe, this is a shareable URL that provides secure access to that location.</p>",
+        "UpdateVocabularyFilterRequest$VocabularyFilterFileUri": "<p>The Amazon S3 location of a text file used as input to create the vocabulary filter. Only use characters from the character set defined for custom vocabularies. For a list of character sets, see <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary.html#charsets\">Character Sets for Custom Vocabularies</a>.</p> <p>The specified file must be less than 50 KB of UTF-8 characters.</p> <p>If you provide the location of a list of words in the <code>VocabularyFilterFileUri</code> parameter, you can't use the <code>Words</code> parameter.</p>",
         "UpdateVocabularyRequest$VocabularyFileUri": "<p>The S3 location of the text file that contains the definition of the custom vocabulary. The URI must be in the same region as the API endpoint that you are calling. The general form is </p> <p> <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code> </p> <p>For example:</p> <p> <code>https://s3.us-east-1.amazonaws.com/examplebucket/vocab.txt</code> </p> <p>For more information about S3 object names, see <a href=\"http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys\">Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.</p> <p>For more information about custom vocabularies, see <a href=\"http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary\">Custom Vocabularies</a>.</p>"
       }
     },
@@ -335,6 +400,39 @@
       "base": null,
       "refs": {
         "ListVocabulariesResponse$Vocabularies": "<p>A list of objects that describe the vocabularies that match the search criteria in the request.</p>"
+      }
+    },
+    "VocabularyFilterInfo": {
+      "base": "<p>Provides information about a vocabulary filter.</p>",
+      "refs": {
+        "VocabularyFilters$member": null
+      }
+    },
+    "VocabularyFilterMethod": {
+      "base": null,
+      "refs": {
+        "Settings$VocabularyFilterMethod": "<p>Set to <code>mask</code> to remove filtered text from the transcript and replace it with three asterisks (\"***\") as placeholder text. Set to <code>remove</code> to remove filtered text from the transcript without using placeholder text.</p>"
+      }
+    },
+    "VocabularyFilterName": {
+      "base": null,
+      "refs": {
+        "CreateVocabularyFilterRequest$VocabularyFilterName": "<p>The vocabulary filter name. The name must be unique within the account that contains it.</p>",
+        "CreateVocabularyFilterResponse$VocabularyFilterName": "<p>The name of the vocabulary filter.</p>",
+        "DeleteVocabularyFilterRequest$VocabularyFilterName": "<p>The name of the vocabulary filter to remove.</p>",
+        "GetVocabularyFilterRequest$VocabularyFilterName": "<p>The name of the vocabulary filter for which to return information.</p>",
+        "GetVocabularyFilterResponse$VocabularyFilterName": "<p>The name of the vocabulary filter.</p>",
+        "ListVocabularyFiltersRequest$NameContains": "<p>Filters the response so that it only contains vocabulary filters whose name contains the specified string.</p>",
+        "Settings$VocabularyFilterName": "<p>The name of the vocabulary filter to use when transcribing the audio. The filter that you specify must have the same language code as the transcription job.</p>",
+        "UpdateVocabularyFilterRequest$VocabularyFilterName": "<p>The name of the vocabulary filter to update.</p>",
+        "UpdateVocabularyFilterResponse$VocabularyFilterName": "<p>The name of the updated vocabulary filter.</p>",
+        "VocabularyFilterInfo$VocabularyFilterName": "<p>The name of the vocabulary filter. The name must be unique in the account that holds the filter.</p>"
+      }
+    },
+    "VocabularyFilters": {
+      "base": null,
+      "refs": {
+        "ListVocabularyFiltersResponse$VocabularyFilters": "<p>The list of vocabulary filters. It will contain at most <code>MaxResults</code> number of filters. If there are more filters, call the <code>ListVocabularyFilters</code> operation again with the <code>NextToken</code> parameter in the request set to the value of the <code>NextToken</code> field in the response.</p>"
       }
     },
     "VocabularyInfo": {
@@ -366,6 +464,19 @@
         "ListVocabulariesRequest$StateEquals": "<p>When specified, only returns vocabularies with the <code>VocabularyState</code> field equal to the specified state.</p>",
         "UpdateVocabularyResponse$VocabularyState": "<p>The processing state of the vocabulary. When the <code>VocabularyState</code> field contains <code>READY</code> the vocabulary is ready to be used in a <code>StartTranscriptionJob</code> request.</p>",
         "VocabularyInfo$VocabularyState": "<p>The processing state of the vocabulary. If the state is <code>READY</code> you can use the vocabulary in a <code>StartTranscriptionJob</code> request.</p>"
+      }
+    },
+    "Word": {
+      "base": null,
+      "refs": {
+        "Words$member": null
+      }
+    },
+    "Words": {
+      "base": null,
+      "refs": {
+        "CreateVocabularyFilterRequest$Words": "<p>The words to use in the vocabulary filter. Only use characters from the character set defined for custom vocabularies. For a list of character sets, see <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary.html#charsets\">Character Sets for Custom Vocabularies</a>.</p> <p>If you provide a list of words in the <code>Words</code> parameter, you can't use the <code>VocabularyFilterFileUri</code> parameter.</p>",
+        "UpdateVocabularyFilterRequest$Words": "<p>The words to use in the vocabulary filter. Only use characters from the character set defined for custom vocabularies. For a list of character sets, see <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary.html#charsets\">Character Sets for Custom Vocabularies</a>.</p> <p>If you provide a list of words in the <code>Words</code> parameter, you can't use the <code>VocabularyFilterFileUri</code> parameter.</p>"
       }
     }
   }

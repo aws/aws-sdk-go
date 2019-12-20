@@ -13,7 +13,7 @@
     "ApplySecurityGroupsToClientVpnTargetNetwork": "<p>Applies a security group to the association between the target network and the Client VPN endpoint. This action replaces the existing security groups with the specified security groups.</p>",
     "AssignIpv6Addresses": "<p>Assigns one or more IPv6 addresses to the specified network interface. You can specify one or more specific IPv6 addresses, or you can specify the number of IPv6 addresses to be automatically assigned from within the subnet's IPv6 CIDR block range. You can assign as many IPv6 addresses to a network interface as you can assign private IPv4 addresses, and the limit varies per instance type. For information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#AvailableIpPerENI\">IP Addresses Per Network Interface Per Instance Type</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "AssignPrivateIpAddresses": "<p>Assigns one or more secondary private IP addresses to the specified network interface.</p> <p>You can specify one or more specific secondary IP addresses, or you can specify the number of secondary IP addresses to be automatically assigned within the subnet's CIDR block range. The number of secondary IP addresses that you can assign to an instance varies by instance type. For information about instance types, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. For more information about Elastic IP addresses, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html\">Elastic IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>When you move a secondary private IP address to another network interface, any Elastic IP address that is associated with the IP address is also moved.</p> <p>Remapping an IP address is an asynchronous operation. When you move an IP address from one network interface to another, check <code>network/interfaces/macs/mac/local-ipv4s</code> in the instance metadata to confirm that the remapping is complete.</p>",
-    "AssociateAddress": "<p>Associates an Elastic IP address with an instance or a network interface. Before you can use an Elastic IP address, you must allocate it to your account.</p> <p>An Elastic IP address is for use in either the EC2-Classic platform or in a VPC. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html\">Elastic IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>[EC2-Classic, VPC in an EC2-VPC-only account] If the Elastic IP address is already associated with a different instance, it is disassociated from that instance and associated with the specified instance. If you associate an Elastic IP address with an instance that has an existing Elastic IP address, the existing address is disassociated from the instance, but remains allocated to your account.</p> <p>[VPC in an EC2-Classic account] If you don't specify a private IP address, the Elastic IP address is associated with the primary IP address. If the Elastic IP address is already associated with a different instance or a network interface, you get an error unless you allow reassociation. You cannot associate an Elastic IP address with an instance or network interface that has an existing Elastic IP address.</p> <important> <p>This is an idempotent operation. If you perform the operation more than once, Amazon EC2 doesn't return an error, and you may be charged for each time the Elastic IP address is remapped to the same instance. For more information, see the <i>Elastic IP Addresses</i> section of <a href=\"http://aws.amazon.com/ec2/pricing/\">Amazon EC2 Pricing</a>.</p> </important>",
+    "AssociateAddress": "<p>Associates an Elastic IP address with an instance or a network interface. Before you can use an Elastic IP address, you must allocate it to your account.</p> <p>An Elastic IP address is for use in either the EC2-Classic platform or in a VPC. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html\">Elastic IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>[EC2-Classic, VPC in an EC2-VPC-only account] If the Elastic IP address is already associated with a different instance, it is disassociated from that instance and associated with the specified instance. If you associate an Elastic IP address with an instance that has an existing Elastic IP address, the existing address is disassociated from the instance, but remains allocated to your account.</p> <p>[VPC in an EC2-Classic account] If you don't specify a private IP address, the Elastic IP address is associated with the primary IP address. If the Elastic IP address is already associated with a different instance or a network interface, you get an error unless you allow reassociation. You cannot associate an Elastic IP address with an instance or network interface that has an existing Elastic IP address.</p> <p>You cannot associate an Elastic IP address with an interface in a different network border group.</p> <important> <p>This is an idempotent operation. If you perform the operation more than once, Amazon EC2 doesn't return an error, and you may be charged for each time the Elastic IP address is remapped to the same instance. For more information, see the <i>Elastic IP Addresses</i> section of <a href=\"http://aws.amazon.com/ec2/pricing/\">Amazon EC2 Pricing</a>.</p> </important>",
     "AssociateClientVpnTargetNetwork": "<p>Associates a target network with a Client VPN endpoint. A target network is a subnet in a VPC. You can associate multiple subnets from the same VPC with a Client VPN endpoint. You can associate only one subnet in each Availability Zone. We recommend that you associate at least two subnets to provide Availability Zone redundancy.</p>",
     "AssociateDhcpOptions": "<p>Associates a set of DHCP options (that you've previously created) with the specified VPC, or associates no DHCP options with the VPC.</p> <p>After you associate the options with the VPC, any existing instances and all new instances that you launch in that VPC use the options. You don't need to restart or relaunch the instances. They automatically pick up the changes within a few hours, depending on how frequently the instance renews its DHCP lease. You can explicitly renew the lease using the operating system on the instance.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html\">DHCP Options Sets</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "AssociateIamInstanceProfile": "<p>Associates an IAM instance profile with a running or stopped instance. You cannot associate more than one IAM instance profile with an instance.</p>",
@@ -312,7 +312,7 @@
     "ModifyCapacityReservation": "<p>Modifies a Capacity Reservation's capacity and the conditions under which it is to be released. You cannot change a Capacity Reservation's instance type, EBS optimization, instance store settings, platform, Availability Zone, or instance eligibility. If you need to modify any of these attributes, we recommend that you cancel the Capacity Reservation, and then create a new one with the required attributes.</p>",
     "ModifyClientVpnEndpoint": "<p>Modifies the specified Client VPN endpoint. You can only modify an endpoint's server certificate information, client connection logging information, DNS server, and description. Modifying the DNS server resets existing client connections.</p>",
     "ModifyDefaultCreditSpecification": "<p>Modifies the default credit option for CPU usage of burstable performance instances. The default credit option is set at the account level per AWS Region, and is specified per instance family. All new burstable performance instances in the account launch using the default credit option.</p> <p> <code>ModifyDefaultCreditSpecification</code> is an asynchronous operation, which works at an AWS Region level and modifies the credit option for each Availability Zone. All zones in a Region are updated within five minutes. But if instances are launched during this operation, they might not get the new credit option until the zone is updated. To verify whether the update has occurred, you can call <code>GetDefaultCreditSpecification</code> and check <code>DefaultCreditSpecification</code> for updates.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html\">Burstable Performance Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
-    "ModifyEbsDefaultKmsKeyId": "<p>Changes the default customer master key (CMK) for EBS encryption by default for your account in this Region.</p> <p>AWS creates a unique AWS managed CMK in each Region for use with encryption by default. If you change the default CMK to a customer managed CMK, it is used instead of the AWS managed CMK. To reset the default CMK to the AWS managed CMK for EBS, use <a>ResetEbsDefaultKmsKeyId</a>.</p> <p>If you delete or disable the customer managed CMK that you specified for use with encryption by default, your instances will fail to launch.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+    "ModifyEbsDefaultKmsKeyId": "<p>Changes the default customer master key (CMK) for EBS encryption by default for your account in this Region.</p> <p>AWS creates a unique AWS managed CMK in each Region for use with encryption by default. If you change the default CMK to a symmetric customer managed CMK, it is used instead of the AWS managed CMK. To reset the default CMK to the AWS managed CMK for EBS, use <a>ResetEbsDefaultKmsKeyId</a>. Amazon EBS does not support asymmetric CMKs.</p> <p>If you delete or disable the customer managed CMK that you specified for use with encryption by default, your instances will fail to launch.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "ModifyFleet": "<p>Modifies the specified EC2 Fleet.</p> <p>You can only modify an EC2 Fleet request of type <code>maintain</code>.</p> <p>While the EC2 Fleet is being modified, it is in the <code>modifying</code> state.</p> <p>To scale up your EC2 Fleet, increase its target capacity. The EC2 Fleet launches the additional Spot Instances according to the allocation strategy for the EC2 Fleet request. If the allocation strategy is <code>lowest-price</code>, the EC2 Fleet launches instances using the Spot Instance pool with the lowest price. If the allocation strategy is <code>diversified</code>, the EC2 Fleet distributes the instances across the Spot Instance pools. If the allocation strategy is <code>capacity-optimized</code>, EC2 Fleet launches instances from Spot Instance pools with optimal capacity for the number of instances that are launching.</p> <p>To scale down your EC2 Fleet, decrease its target capacity. First, the EC2 Fleet cancels any open requests that exceed the new target capacity. You can request that the EC2 Fleet terminate Spot Instances until the size of the fleet no longer exceeds the new target capacity. If the allocation strategy is <code>lowest-price</code>, the EC2 Fleet terminates the instances with the highest price per unit. If the allocation strategy is <code>capacity-optimized</code>, the EC2 Fleet terminates the instances in the Spot Instance pools that have the least available Spot Instance capacity. If the allocation strategy is <code>diversified</code>, the EC2 Fleet terminates instances across the Spot Instance pools. Alternatively, you can request that the EC2 Fleet keep the fleet at its current size, but not replace any Spot Instances that are interrupted or that you terminate manually.</p> <p>If you are finished with your EC2 Fleet for now, but will use it again later, you can set the target capacity to 0.</p>",
     "ModifyFpgaImageAttribute": "<p>Modifies the specified attribute of the specified Amazon FPGA Image (AFI).</p>",
     "ModifyHosts": "<p>Modify the auto-placement setting of a Dedicated Host. When auto-placement is enabled, any instances that you launch with a tenancy of <code>host</code> but without a specific host ID are placed onto any available Dedicated Host in your account that has auto-placement enabled. When auto-placement is disabled, you need to provide a host ID to have the instance launch onto a specific host. If no host ID is provided, the instance is launched onto a suitable host with auto-placement enabled.</p> <p>You can also use this API action to modify a Dedicated Host to support either multiple instance types in an instance family, or to support a specific instance type only.</p>",
@@ -1484,10 +1484,10 @@
         "NetworkInterfaceAttachment$DeleteOnTermination": "<p>Indicates whether the network interface is deleted when the instance is terminated.</p>",
         "NetworkInterfaceAttachmentChanges$DeleteOnTermination": "<p>Indicates whether the network interface is deleted when the instance is terminated.</p>",
         "NetworkInterfacePrivateIpAddress$Primary": "<p>Indicates whether this IPv4 address is the primary private IPv4 address of the network interface.</p>",
-        "OnDemandOptions$SingleInstanceType": "<p>Indicates that the fleet uses a single instance type to launch all On-Demand Instances in the fleet.</p>",
-        "OnDemandOptions$SingleAvailabilityZone": "<p>Indicates that the fleet launches all On-Demand Instances into a single Availability Zone.</p>",
-        "OnDemandOptionsRequest$SingleInstanceType": "<p>Indicates that the fleet uses a single instance type to launch all On-Demand Instances in the fleet.</p>",
-        "OnDemandOptionsRequest$SingleAvailabilityZone": "<p>Indicates that the fleet launches all On-Demand Instances into a single Availability Zone.</p>",
+        "OnDemandOptions$SingleInstanceType": "<p>Indicates that the fleet uses a single instance type to launch all On-Demand Instances in the fleet. Supported only for fleets of type <code>instant</code>.</p>",
+        "OnDemandOptions$SingleAvailabilityZone": "<p>Indicates that the fleet launches all On-Demand Instances into a single Availability Zone. Supported only for fleets of type <code>instant</code>.</p>",
+        "OnDemandOptionsRequest$SingleInstanceType": "<p>Indicates that the fleet uses a single instance type to launch all On-Demand Instances in the fleet. Supported only for fleets of type <code>instant</code>.</p>",
+        "OnDemandOptionsRequest$SingleAvailabilityZone": "<p>Indicates that the fleet launches all On-Demand Instances into a single Availability Zone. Supported only for fleets of type <code>instant</code>.</p>",
         "PeeringConnectionOptions$AllowDnsResolutionFromRemoteVpc": "<p>If true, the public DNS hostnames of instances in the specified VPC resolve to private IP addresses when queried from instances in the peer VPC.</p>",
         "PeeringConnectionOptions$AllowEgressFromLocalClassicLinkToRemoteVpc": "<p>If true, enables outbound communication from an EC2-Classic instance that's linked to a local VPC using ClassicLink to instances in a peer VPC.</p>",
         "PeeringConnectionOptions$AllowEgressFromLocalVpcToRemoteClassicLink": "<p>If true, enables outbound communication from instances in a local VPC to an EC2-Classic instance that's linked to a peer VPC using ClassicLink.</p>",
@@ -1571,10 +1571,10 @@
         "SpotFleetMonitoring$Enabled": "<p>Enables monitoring for the instance.</p> <p>Default: <code>false</code> </p>",
         "SpotFleetRequestConfigData$TerminateInstancesWithExpiration": "<p>Indicates whether running Spot Instances are terminated when the Spot Fleet request expires.</p>",
         "SpotFleetRequestConfigData$ReplaceUnhealthyInstances": "<p>Indicates whether Spot Fleet should replace unhealthy instances.</p>",
-        "SpotOptions$SingleInstanceType": "<p>Indicates that the fleet uses a single instance type to launch all Spot Instances in the fleet.</p>",
-        "SpotOptions$SingleAvailabilityZone": "<p>Indicates that the fleet launches all Spot Instances into a single Availability Zone.</p>",
-        "SpotOptionsRequest$SingleInstanceType": "<p>Indicates that the fleet uses a single instance type to launch all Spot Instances in the fleet.</p>",
-        "SpotOptionsRequest$SingleAvailabilityZone": "<p>Indicates that the fleet launches all Spot Instances into a single Availability Zone.</p>",
+        "SpotOptions$SingleInstanceType": "<p>Indicates that the fleet uses a single instance type to launch all Spot Instances in the fleet. Supported only for fleets of type <code>instant</code>.</p>",
+        "SpotOptions$SingleAvailabilityZone": "<p>Indicates that the fleet launches all Spot Instances into a single Availability Zone. Supported only for fleets of type <code>instant</code>.</p>",
+        "SpotOptionsRequest$SingleInstanceType": "<p>Indicates that the fleet uses a single instance type to launch all Spot Instances in the fleet. Supported only for fleets of type <code>instant</code>.</p>",
+        "SpotOptionsRequest$SingleAvailabilityZone": "<p>Indicates that the fleet launches all Spot Instances into a single Availability Zone. Supported only for fleets of type <code>instant</code>.</p>",
         "StartInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "StopInstancesRequest$Hibernate": "<p>Hibernates the instance if the instance was enabled for hibernation at launch. If the instance cannot hibernate successfully, a normal shutdown occurs. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html\">Hibernate Your Instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p> Default: <code>false</code> </p>",
         "StopInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1835,13 +1835,13 @@
     "CapacityReservationOptions": {
       "base": "<p>Describes the strategy for using unused Capacity Reservations for fulfilling On-Demand capacity.</p> <note> <p>This strategy can only be used if the EC2 Fleet is of type <code>instant</code>.</p> </note> <p>For more information about Capacity Reservations, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-capacity-reservations.html\">On-Demand Capacity Reservations</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. For examples of using Capacity Reservations in an EC2 Fleet, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-examples.html\">EC2 Fleet Example Configurations</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
       "refs": {
-        "OnDemandOptions$CapacityReservationOptions": "<p>The strategy for using unused Capacity Reservations for fulfilling On-Demand capacity. Only available for fleets of type <code>instant</code>. </p>"
+        "OnDemandOptions$CapacityReservationOptions": "<p>The strategy for using unused Capacity Reservations for fulfilling On-Demand capacity. Supported only for fleets of type <code>instant</code>.</p>"
       }
     },
     "CapacityReservationOptionsRequest": {
       "base": "<p>Describes the strategy for using unused Capacity Reservations for fulfilling On-Demand capacity.</p> <note> <p>This strategy can only be used if the EC2 Fleet is of type <code>instant</code>.</p> </note> <p>For more information about Capacity Reservations, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-capacity-reservations.html\">On-Demand Capacity Reservations</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. For examples of using Capacity Reservations in an EC2 Fleet, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-examples.html\">EC2 Fleet Example Configurations</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
       "refs": {
-        "OnDemandOptionsRequest$CapacityReservationOptions": "<p>The strategy for using unused Capacity Reservations for fulfilling On-Demand capacity. Only available for fleets of type <code>instant</code>.</p>"
+        "OnDemandOptionsRequest$CapacityReservationOptions": "<p>The strategy for using unused Capacity Reservations for fulfilling On-Demand capacity. Supported only for fleets of type <code>instant</code>.</p>"
       }
     },
     "CapacityReservationPreference": {
@@ -3049,6 +3049,13 @@
       "base": null,
       "refs": {
         "InstanceTypeInfo$DedicatedHostsSupported": "<p>Indicates whether Dedicated Hosts are supported on the instance type.</p>"
+      }
+    },
+    "DedicatedHostId": {
+      "base": null,
+      "refs": {
+        "ModifyInstancePlacementRequest$HostId": "<p>The ID of the Dedicated Host with which to associate the instance.</p>",
+        "RequestHostIdSet$member": null
       }
     },
     "DefaultRouteTableAssociationValue": {
@@ -4318,7 +4325,7 @@
     "DescribeNetworkInterfacesMaxResults": {
       "base": null,
       "refs": {
-        "DescribeNetworkInterfacesRequest$MaxResults": "<p>The maximum number of items to return for this request. The request returns a token that you can specify in a subsequent call to get the next set of results.</p>"
+        "DescribeNetworkInterfacesRequest$MaxResults": "<p>The maximum number of items to return for this request. The request returns a token that you can specify in a subsequent call to get the next set of results. You cannot specify this parameter and the network interface IDs parameter in the same request.</p>"
       }
     },
     "DescribeNetworkInterfacesRequest": {
@@ -5481,7 +5488,7 @@
     "ElasticInferenceAcceleratorCount": {
       "base": null,
       "refs": {
-        "ElasticInferenceAccelerator$Count": "<p> The number of elastic inference accelerators of given type to be attached to the instance. Only positive values allowed. If not specified defaults to 1. </p>"
+        "ElasticInferenceAccelerator$Count": "<p> The number of elastic inference accelerators to attach to the instance. </p> <p>Default: 1</p>"
       }
     },
     "ElasticInferenceAccelerators": {
@@ -5795,7 +5802,7 @@
     "FilterList": {
       "base": null,
       "refs": {
-        "DescribeAddressesRequest$Filters": "<p>One or more filters. Filter names and values are case-sensitive.</p> <ul> <li> <p> <code>allocation-id</code> - [EC2-VPC] The allocation ID for the address.</p> </li> <li> <p> <code>association-id</code> - [EC2-VPC] The association ID for the address.</p> </li> <li> <p> <code>domain</code> - Indicates whether the address is for use in EC2-Classic (<code>standard</code>) or in a VPC (<code>vpc</code>).</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance the address is associated with, if any.</p> </li> <li> <p> <code>network-interface-id</code> - [EC2-VPC] The ID of the network interface that the address is associated with, if any.</p> </li> <li> <p> <code>network-interface-owner-id</code> - The AWS account ID of the owner.</p> </li> <li> <p> <code>private-ip-address</code> - [EC2-VPC] The private IP address associated with the Elastic IP address.</p> </li> <li> <p> <code>public-ip</code> - The Elastic IP address.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
+        "DescribeAddressesRequest$Filters": "<p>One or more filters. Filter names and values are case-sensitive.</p> <ul> <li> <p> <code>allocation-id</code> - [EC2-VPC] The allocation ID for the address.</p> </li> <li> <p> <code>association-id</code> - [EC2-VPC] The association ID for the address.</p> </li> <li> <p> <code>domain</code> - Indicates whether the address is for use in EC2-Classic (<code>standard</code>) or in a VPC (<code>vpc</code>).</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance the address is associated with, if any.</p> </li> <li> <p> <code>network-border-group</code> - The location from where the IP address is advertised.</p> </li> <li> <p> <code>network-interface-id</code> - [EC2-VPC] The ID of the network interface that the address is associated with, if any.</p> </li> <li> <p> <code>network-interface-owner-id</code> - The AWS account ID of the owner.</p> </li> <li> <p> <code>private-ip-address</code> - [EC2-VPC] The private IP address associated with the Elastic IP address.</p> </li> <li> <p> <code>public-ip</code> - The Elastic IP address.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
         "DescribeAvailabilityZonesRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>group-name</code> - For Availability Zones, use the Region name. For Local Zones, use the name of the group associated with the Local Zone (for example, <code>us-west-2-lax-1</code>).</p> </li> <li> <p> <code>message</code> - The Availability Zone or Local Zone message.</p> </li> <li> <p> <code>opt-in-status</code> - The opt in status (<code>opted-in</code>, and <code>not-opted-in</code> | <code>opt-in-not-required</code>).</p> </li> <li> <p> <code>region-name</code> - The name of the Region for the Availability Zone or Local Zone (for example, <code>us-east-1</code>).</p> </li> <li> <p> <code>state</code> - The state of the Availability Zone or Local Zone (<code>available</code> | <code>information</code> | <code>impaired</code> | <code>unavailable</code>).</p> </li> <li> <p> <code>zone-id</code> - The ID of the Availability Zone (for example, <code>use1-az1</code>) or the Local Zone (for example, use <code>usw2-lax1-az1</code>).</p> </li> <li> <p> <code>zone-name</code> - The name of the Availability Zone (for example, <code>us-east-1a</code>) or the Local Zone (for example, use <code>us-west-2-lax-1a</code>).</p> </li> </ul>",
         "DescribeBundleTasksRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>bundle-id</code> - The ID of the bundle task.</p> </li> <li> <p> <code>error-code</code> - If the task failed, the error code returned.</p> </li> <li> <p> <code>error-message</code> - If the task failed, the error message returned.</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance.</p> </li> <li> <p> <code>progress</code> - The level of task completion, as a percentage (for example, 20%).</p> </li> <li> <p> <code>s3-bucket</code> - The Amazon S3 bucket to store the AMI.</p> </li> <li> <p> <code>s3-prefix</code> - The beginning of the AMI name.</p> </li> <li> <p> <code>start-time</code> - The time the task started (for example, 2013-09-15T17:15:20.000Z).</p> </li> <li> <p> <code>state</code> - The state of the task (<code>pending</code> | <code>waiting-for-shutdown</code> | <code>bundling</code> | <code>storing</code> | <code>cancelling</code> | <code>complete</code> | <code>failed</code>).</p> </li> <li> <p> <code>update-time</code> - The time of the most recent update for the task.</p> </li> </ul>",
         "DescribeCapacityReservationsRequest$Filters": "<p>One or more filters.</p>",
@@ -5810,6 +5817,7 @@
         "DescribeDhcpOptionsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>dhcp-options-id</code> - The ID of a DHCP options set.</p> </li> <li> <p> <code>key</code> - The key for one of the options (for example, <code>domain-name</code>).</p> </li> <li> <p> <code>value</code> - The value for one of the options.</p> </li> <li> <p> <code>owner-id</code> - The ID of the AWS account that owns the DHCP options set.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
         "DescribeElasticGpusRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>availability-zone</code> - The Availability Zone in which the Elastic Graphics accelerator resides.</p> </li> <li> <p> <code>elastic-gpu-health</code> - The status of the Elastic Graphics accelerator (<code>OK</code> | <code>IMPAIRED</code>).</p> </li> <li> <p> <code>elastic-gpu-state</code> - The state of the Elastic Graphics accelerator (<code>ATTACHED</code>).</p> </li> <li> <p> <code>elastic-gpu-type</code> - The type of Elastic Graphics accelerator; for example, <code>eg1.medium</code>.</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance to which the Elastic Graphics accelerator is associated.</p> </li> </ul>",
         "DescribeExportImageTasksRequest$Filters": "<p>Filter tasks using the <code>task-state</code> filter and one of the following values: <code>active</code>, <code>completed</code>, <code>deleting</code>, or <code>deleted</code>.</p>",
+        "DescribeExportTasksRequest$Filters": null,
         "DescribeFastSnapshotRestoresRequest$Filters": "<p>The filters. The possible values are:</p> <ul> <li> <p> <code>availability-zone</code>: The Availability Zone of the snapshot.</p> </li> <li> <p> <code>owner-id</code>: The ID of the AWS account that owns the snapshot.</p> </li> <li> <p> <code>snapshot-id</code>: The ID of the snapshot.</p> </li> <li> <p> <code>state</code>: The state of fast snapshot restores for the snapshot (<code>enabling</code> | <code>optimizing</code> | <code>enabled</code> | <code>disabling</code> | <code>disabled</code>).</p> </li> </ul>",
         "DescribeFleetInstancesRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>instance-type</code> - The instance type.</p> </li> </ul>",
         "DescribeFleetsRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>activity-status</code> - The progress of the EC2 Fleet ( <code>error</code> | <code>pending-fulfillment</code> | <code>pending-termination</code> | <code>fulfilled</code>).</p> </li> <li> <p> <code>excess-capacity-termination-policy</code> - Indicates whether to terminate running instances if the target capacity is decreased below the current EC2 Fleet size (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>fleet-state</code> - The state of the EC2 Fleet (<code>submitted</code> | <code>active</code> | <code>deleted</code> | <code>failed</code> | <code>deleted-running</code> | <code>deleted-terminating</code> | <code>modifying</code>).</p> </li> <li> <p> <code>replace-unhealthy-instances</code> - Indicates whether EC2 Fleet should replace unhealthy instances (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>type</code> - The type of request (<code>instant</code> | <code>request</code> | <code>maintain</code>).</p> </li> </ul>",
@@ -6482,13 +6490,6 @@
         "HostList$member": null
       }
     },
-    "HostId": {
-      "base": null,
-      "refs": {
-        "ModifyInstancePlacementRequest$HostId": "<p>The ID of the Dedicated Host with which to associate the instance.</p>",
-        "RequestHostIdSet$member": null
-      }
-    },
     "HostInstance": {
       "base": "<p>Describes an instance running on a Dedicated Host.</p>",
       "refs": {
@@ -6736,7 +6737,7 @@
       }
     },
     "ImportImageLicenseConfigurationResponse": {
-      "base": "<p> The response information of license configurations.</p>",
+      "base": "<p> The response information for license configurations.</p>",
       "refs": {
         "ImportImageLicenseSpecificationListResponse$member": null
       }
@@ -6751,7 +6752,7 @@
       "base": null,
       "refs": {
         "ImportImageResult$LicenseSpecifications": "<p>The ARNs of the license configurations.</p>",
-        "ImportImageTask$LicenseSpecifications": "<p>The ARNs of the license configurations associated to the import image task.</p>"
+        "ImportImageTask$LicenseSpecifications": "<p>The ARNs of the license configurations that are associated with the import image task.</p>"
       }
     },
     "ImportImageRequest": {
@@ -7507,7 +7508,7 @@
         "LaunchTemplateEbsBlockDevice$VolumeSize": "<p>The size of the volume, in GiB.</p>",
         "LaunchTemplateEbsBlockDeviceRequest$Iops": "<p>The number of I/O operations per second (IOPS) that the volume supports. For io1, this represents the number of IOPS that are provisioned for the volume. For gp2, this represents the baseline performance of the volume and the rate at which the volume accumulates I/O credits for bursting. For more information about General Purpose SSD baseline performance, I/O credits, and bursting, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html\">Amazon EBS Volume Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Condition: This parameter is required for requests to create io1 volumes; it is not used in requests to create gp2, st1, sc1, or standard volumes.</p>",
         "LaunchTemplateEbsBlockDeviceRequest$VolumeSize": "<p>The size of the volume, in GiB.</p> <p>Default: If you're creating the volume from a snapshot and don't specify a volume size, the default is the snapshot size.</p>",
-        "LaunchTemplateElasticInferenceAcceleratorResponse$Count": "<p> The number of elastic inference accelerators of given type to be attached to the instance. Only positive values allowed. If not specified defaults to 1. </p>",
+        "LaunchTemplateElasticInferenceAcceleratorResponse$Count": "<p> The number of elastic inference accelerators to attach to the instance. </p> <p>Default: 1</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecification$DeviceIndex": "<p>The device index for the network interface attachment.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecification$Ipv6AddressCount": "<p>The number of IPv6 addresses for the network interface.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecification$SecondaryPrivateIpAddressCount": "<p>The number of secondary private IPv4 addresses for the network interface.</p>",
@@ -7781,6 +7782,12 @@
       "refs": {
       }
     },
+    "KeyPairIdStringList": {
+      "base": null,
+      "refs": {
+        "DescribeKeyPairsRequest$KeyPairIds": "<p>The IDs of the key pairs.</p>"
+      }
+    },
     "KeyPairInfo": {
       "base": "<p>Describes a key pair.</p>",
       "refs": {
@@ -7796,15 +7803,17 @@
     "KeyPairName": {
       "base": null,
       "refs": {
-        "CreateKeyPairRequest$KeyName": "<p>A unique name for the key pair.</p> <p>Constraints: Up to 255 ASCII characters</p>"
+        "CreateKeyPairRequest$KeyName": "<p>A unique name for the key pair.</p> <p>Constraints: Up to 255 ASCII characters</p>",
+        "DeleteKeyPairRequest$KeyName": "<p>The name of the key pair.</p>",
+        "ImportKeyPairRequest$KeyName": "<p>A unique name for the key pair.</p>"
       }
     },
     "KmsKeyId": {
       "base": null,
       "refs": {
         "CreateVolumeRequest$KmsKeyId": "<p>The identifier of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use for Amazon EBS encryption. If this parameter is not specified, your AWS managed CMK for EBS is used. If <code>KmsKeyId</code> is specified, the encrypted state must be <code>true</code>.</p> <p>You can specify the CMK using any of the following:</p> <ul> <li> <p>Key ID. For example, key/1234abcd-12ab-34cd-56ef-1234567890ab.</p> </li> <li> <p>Key alias. For example, alias/ExampleAlias.</p> </li> <li> <p>Key ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p> </li> <li> <p>Alias ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.</p> </li> </ul> <p>AWS authenticates the CMK asynchronously. Therefore, if you specify an ID, alias, or ARN that is not valid, the action can appear to complete, but eventually fails.</p>",
-        "ImportSnapshotRequest$KmsKeyId": "<p>An identifier for the AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted snapshot. This parameter is only required if you want to use a non-default CMK; if this parameter is not specified, the default CMK for EBS is used. If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must also be set. </p> <p>The CMK identifier may be provided in any of the following formats: </p> <ul> <li> <p>Key ID</p> </li> <li> <p>Key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.</p> </li> <li> <p>ARN using key ID. The ID ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>key</code> namespace, and then the CMK ID. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p> </li> <li> <p>ARN using key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>. </p> </li> </ul> <p>AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action you call may appear to complete even though you provided an invalid identifier. This action will eventually report failure. </p> <p>The specified CMK must exist in the Region that the snapshot is being copied to.</p>",
-        "ModifyEbsDefaultKmsKeyIdRequest$KmsKeyId": "<p>The identifier of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use for Amazon EBS encryption. If this parameter is not specified, your AWS managed CMK for EBS is used. If <code>KmsKeyId</code> is specified, the encrypted state must be <code>true</code>.</p> <p>You can specify the CMK using any of the following:</p> <ul> <li> <p>Key ID. For example, key/1234abcd-12ab-34cd-56ef-1234567890ab.</p> </li> <li> <p>Key alias. For example, alias/ExampleAlias.</p> </li> <li> <p>Key ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p> </li> <li> <p>Alias ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.</p> </li> </ul> <p>AWS authenticates the CMK asynchronously. Therefore, if you specify an ID, alias, or ARN that is not valid, the action can appear to complete, but eventually fails.</p>"
+        "ImportSnapshotRequest$KmsKeyId": "<p>An identifier for the symmetric AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted snapshot. This parameter is only required if you want to use a non-default CMK; if this parameter is not specified, the default CMK for EBS is used. If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must also be set. </p> <p>The CMK identifier may be provided in any of the following formats: </p> <ul> <li> <p>Key ID</p> </li> <li> <p>Key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.</p> </li> <li> <p>ARN using key ID. The ID ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>key</code> namespace, and then the CMK ID. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p> </li> <li> <p>ARN using key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>. </p> </li> </ul> <p>AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action you call may appear to complete even though you provided an invalid identifier. This action will eventually report failure. </p> <p>The specified CMK must exist in the Region that the snapshot is being copied to.</p> <p>Amazon EBS does not support asymmetric CMKs.</p>",
+        "ModifyEbsDefaultKmsKeyIdRequest$KmsKeyId": "<p>The identifier of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use for Amazon EBS encryption. If this parameter is not specified, your AWS managed CMK for EBS is used. If <code>KmsKeyId</code> is specified, the encrypted state must be <code>true</code>.</p> <p>You can specify the CMK using any of the following:</p> <ul> <li> <p>Key ID. For example, key/1234abcd-12ab-34cd-56ef-1234567890ab.</p> </li> <li> <p>Key alias. For example, alias/ExampleAlias.</p> </li> <li> <p>Key ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p> </li> <li> <p>Alias ARN. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.</p> </li> </ul> <p>AWS authenticates the CMK asynchronously. Therefore, if you specify an ID, alias, or ARN that is not valid, the action can appear to complete, but eventually fails.</p> <p>Amazon EBS does not support asymmetric CMKs.</p>"
       }
     },
     "LaunchPermission": {
@@ -7938,7 +7947,7 @@
     "LaunchTemplateElasticInferenceAcceleratorCount": {
       "base": null,
       "refs": {
-        "LaunchTemplateElasticInferenceAccelerator$Count": "<p> The number of elastic inference accelerators of given type to be attached to the instance. Only positive values allowed. If not specified defaults to 1. </p>"
+        "LaunchTemplateElasticInferenceAccelerator$Count": "<p> The number of elastic inference accelerators to attach to the instance. </p> <p>Default: 1</p>"
       }
     },
     "LaunchTemplateElasticInferenceAcceleratorList": {
@@ -8744,7 +8753,7 @@
     "ModifyTransitGatewayVpcAttachmentRequestOptions": {
       "base": "<p>Describes the options for a VPC attachment.</p>",
       "refs": {
-        "ModifyTransitGatewayVpcAttachmentRequest$Options": "<p>The new VPC attachment options.</p>"
+        "ModifyTransitGatewayVpcAttachmentRequest$Options": "<p>The new VPC attachment options.</p> <note> <p>You cannot modify the IPv6 options.</p> </note>"
       }
     },
     "ModifyTransitGatewayVpcAttachmentResult": {
@@ -9496,6 +9505,12 @@
       "base": "<p>Describes a placement group.</p>",
       "refs": {
         "PlacementGroupList$member": null
+      }
+    },
+    "PlacementGroupIdStringList": {
+      "base": null,
+      "refs": {
+        "DescribePlacementGroupsRequest$GroupIds": "<p>The IDs of the placement groups.</p>"
       }
     },
     "PlacementGroupInfo": {
@@ -10365,7 +10380,7 @@
         "LaunchTemplateTagSpecificationRequest$ResourceType": "<p>The type of resource to tag. Currently, the resource types that support tagging on creation are <code>instance</code> and <code>volume</code>. To tag a resource after it has been created, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTags.html\">CreateTags</a>.</p>",
         "SpotFleetTagSpecification$ResourceType": "<p>The type of resource. Currently, the only resource type that is supported is <code>instance</code>.</p>",
         "TagDescription$ResourceType": "<p>The resource type.</p>",
-        "TagSpecification$ResourceType": "<p>The type of resource to tag. Currently, the resource types that support tagging on creation are: <code>capacity-reservation</code> | <code>client-vpn-endpoint</code> | <code>dedicated-host</code> | <code>fleet</code> | <code>fpga-image</code> | <code>instance</code> | <code>launch-template</code> | <code>snapshot</code> | <code>traffic-mirror-filter</code> | <code>traffic-mirror-session</code> | <code>traffic-mirror-target</code> | <code>transit-gateway</code> | <code>transit-gateway-attachment</code> | <code>transit-gateway-route-table</code> | <code>volume</code>.</p> <p>To tag a resource after it has been created, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTags.html\">CreateTags</a>.</p>"
+        "TagSpecification$ResourceType": "<p>The type of resource to tag. Currently, the resource types that support tagging on creation are: <code>capacity-reservation</code> | <code>client-vpn-endpoint</code> | <code>dedicated-host</code> | <code>fleet</code> | <code>fpga-image</code> | <code>instance</code> | <code>key-pair</code> | <code>launch-template</code> | <code>placement-group</code> | <code>snapshot</code> | <code>traffic-mirror-filter</code> | <code>traffic-mirror-session</code> | <code>traffic-mirror-target</code> | <code>transit-gateway</code> | <code>transit-gateway-attachment</code> | <code>transit-gateway-route-table</code> | <code>volume</code>.</p> <p>To tag a resource after it has been created, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateTags.html\">CreateTags</a>.</p>"
       }
     },
     "ResponseError": {
@@ -11395,7 +11410,7 @@
         "CopyFpgaImageResult$FpgaImageId": "<p>The ID of the new AFI.</p>",
         "CopyImageRequest$ClientToken": "<p>Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
         "CopyImageRequest$Description": "<p>A description for the new AMI in the destination Region.</p>",
-        "CopyImageRequest$KmsKeyId": "<p>An identifier for the AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted volume. This parameter is only required if you want to use a non-default CMK; if this parameter is not specified, the default CMK for EBS is used. If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must also be set. </p> <p>To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name, or alias ARN. When using an alias name, prefix it with \"alias/\". For example:</p> <ul> <li> <p>Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Key ARN: <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Alias name: <code>alias/ExampleAlias</code> </p> </li> <li> <p>Alias ARN: <code>arn:aws:kms:us-east-2:111122223333:alias/ExampleAlias</code> </p> </li> </ul> <p>AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action you call may appear to complete even though you provided an invalid identifier. This action will eventually report failure. </p> <p>The specified CMK must exist in the Region that the snapshot is being copied to. </p>",
+        "CopyImageRequest$KmsKeyId": "<p>An identifier for the symmetric AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted volume. This parameter is only required if you want to use a non-default CMK; if this parameter is not specified, the default CMK for EBS is used. If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must also be set. </p> <p>To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name, or alias ARN. When using an alias name, prefix it with \"alias/\". For example:</p> <ul> <li> <p>Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Key ARN: <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Alias name: <code>alias/ExampleAlias</code> </p> </li> <li> <p>Alias ARN: <code>arn:aws:kms:us-east-2:111122223333:alias/ExampleAlias</code> </p> </li> </ul> <p>AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action you call may appear to complete even though you provided an invalid identifier. This action will eventually report failure. </p> <p>The specified CMK must exist in the Region that the snapshot is being copied to. </p> <p>Amazon EBS does not support asymmetric CMKs.</p>",
         "CopyImageRequest$Name": "<p>The name of the new AMI in the destination Region.</p>",
         "CopyImageRequest$SourceImageId": "<p>The ID of the AMI to copy.</p>",
         "CopyImageRequest$SourceRegion": "<p>The name of the Region that contains the AMI to copy.</p>",
@@ -11542,7 +11557,6 @@
         "DeleteClientVpnRouteRequest$TargetVpcSubnetId": "<p>The ID of the target subnet used by the route.</p>",
         "DeleteClientVpnRouteRequest$DestinationCidrBlock": "<p>The IPv4 address range, in CIDR notation, of the route to be deleted.</p>",
         "DeleteFleetError$Message": "<p>The description for the error code.</p>",
-        "DeleteKeyPairRequest$KeyName": "<p>The name of the key pair.</p>",
         "DeleteLaunchTemplateVersionsResponseErrorItem$LaunchTemplateId": "<p>The ID of the launch template.</p>",
         "DeleteLaunchTemplateVersionsResponseErrorItem$LaunchTemplateName": "<p>The name of the launch template.</p>",
         "DeleteLaunchTemplateVersionsResponseSuccessItem$LaunchTemplateId": "<p>The ID of the launch template.</p>",
@@ -11800,7 +11814,7 @@
         "ElasticGpuAssociation$ElasticGpuAssociationState": "<p>The state of the association between the instance and the Elastic Graphics accelerator.</p>",
         "ElasticGpuAssociation$ElasticGpuAssociationTime": "<p>The time the Elastic Graphics accelerator was associated with the instance.</p>",
         "ElasticGpuIdSet$member": null,
-        "ElasticGpuSpecification$Type": "<p>The type of Elastic Graphics accelerator.</p>",
+        "ElasticGpuSpecification$Type": "<p>The type of Elastic Graphics accelerator. For more information about the values to specify for <code>Type</code>, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/elastic-graphics.html#elastic-graphics-basics\">Elastic Graphics Basics</a>, specifically the Elastic Graphics accelerator column, in the <i>Amazon Elastic Compute Cloud User Guide for Windows Instances</i>.</p>",
         "ElasticGpuSpecificationResponse$Type": "<p>The elastic GPU type.</p>",
         "ElasticGpus$ElasticGpuId": "<p>The ID of the Elastic Graphics accelerator.</p>",
         "ElasticGpus$AvailabilityZone": "<p>The Availability Zone in the which the Elastic Graphics accelerator resides.</p>",
@@ -11985,7 +11999,7 @@
         "ImportImageRequest$ClientToken": "<p>The token to enable idempotency for VM import requests.</p>",
         "ImportImageRequest$Description": "<p>A description string for the import image task.</p>",
         "ImportImageRequest$Hypervisor": "<p>The target hypervisor platform.</p> <p>Valid values: <code>xen</code> </p>",
-        "ImportImageRequest$KmsKeyId": "<p>An identifier for the AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted AMI. This parameter is only required if you want to use a non-default CMK; if this parameter is not specified, the default CMK for EBS is used. If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must also be set. </p> <p>The CMK identifier may be provided in any of the following formats: </p> <ul> <li> <p>Key ID</p> </li> <li> <p>Key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.</p> </li> <li> <p>ARN using key ID. The ID ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>key</code> namespace, and then the CMK ID. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p> </li> <li> <p>ARN using key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>. </p> </li> </ul> <p>AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action you call may appear to complete even though you provided an invalid identifier. This action will eventually report failure. </p> <p>The specified CMK must exist in the Region that the AMI is being copied to.</p>",
+        "ImportImageRequest$KmsKeyId": "<p>An identifier for the symmetric AWS Key Management Service (AWS KMS) customer master key (CMK) to use when creating the encrypted AMI. This parameter is only required if you want to use a non-default CMK; if this parameter is not specified, the default CMK for EBS is used. If a <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must also be set. </p> <p>The CMK identifier may be provided in any of the following formats: </p> <ul> <li> <p>Key ID</p> </li> <li> <p>Key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.</p> </li> <li> <p>ARN using key ID. The ID ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>key</code> namespace, and then the CMK ID. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.</p> </li> <li> <p>ARN using key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace, followed by the Region of the CMK, the AWS account ID of the CMK owner, the <code>alias</code> namespace, and then the CMK alias. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>. </p> </li> </ul> <p>AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action you call may appear to complete even though you provided an invalid identifier. This action will eventually report failure. </p> <p>The specified CMK must exist in the Region that the AMI is being copied to.</p> <p>Amazon EBS does not support asymmetric CMKs.</p>",
         "ImportImageRequest$LicenseType": "<p>The license type to be used for the Amazon Machine Image (AMI) after importing.</p> <p>By default, we detect the source-system operating system (OS) and apply the appropriate license. Specify <code>AWS</code> to replace the source-system license with an AWS license, if appropriate. Specify <code>BYOL</code> to retain the source-system license, if appropriate.</p> <p>To use <code>BYOL</code>, you must have existing licenses with rights to use these licenses in a third party cloud, such as AWS. For more information, see <a href=\"https://docs.aws.amazon.com/vm-import/latest/userguide/vmimport-image-import.html#prerequisites-image\">Prerequisites</a> in the VM Import/Export User Guide.</p>",
         "ImportImageRequest$Platform": "<p>The operating system of the virtual machine.</p> <p>Valid values: <code>Windows</code> | <code>Linux</code> </p>",
         "ImportImageRequest$RoleName": "<p>The name of the role to use when not using the default role, 'vmimport'.</p>",
@@ -11994,7 +12008,7 @@
         "ImportImageResult$Hypervisor": "<p>The target hypervisor of the import task.</p>",
         "ImportImageResult$ImageId": "<p>The ID of the Amazon Machine Image (AMI) created by the import task.</p>",
         "ImportImageResult$ImportTaskId": "<p>The task ID of the import image task.</p>",
-        "ImportImageResult$KmsKeyId": "<p>The identifier for the AWS Key Management Service (AWS KMS) customer master key (CMK) that was used to create the encrypted AMI.</p>",
+        "ImportImageResult$KmsKeyId": "<p>The identifier for the symmetric AWS Key Management Service (AWS KMS) customer master key (CMK) that was used to create the encrypted AMI.</p>",
         "ImportImageResult$LicenseType": "<p>The license type of the virtual machine.</p>",
         "ImportImageResult$Platform": "<p>The operating system of the virtual machine.</p>",
         "ImportImageResult$Progress": "<p>The progress of the task.</p>",
@@ -12021,7 +12035,6 @@
         "ImportInstanceVolumeDetailItem$Description": "<p>A description of the task.</p>",
         "ImportInstanceVolumeDetailItem$Status": "<p>The status of the import of this particular disk image.</p>",
         "ImportInstanceVolumeDetailItem$StatusMessage": "<p>The status information or errors related to the disk image.</p>",
-        "ImportKeyPairRequest$KeyName": "<p>A unique name for the key pair.</p>",
         "ImportKeyPairResult$KeyFingerprint": "<p>The MD5 public key fingerprint as specified in section 4 of RFC 4716.</p>",
         "ImportKeyPairResult$KeyName": "<p>The key pair name you provided.</p>",
         "ImportSnapshotRequest$ClientToken": "<p>Token to enable idempotency for VM import requests.</p>",
@@ -12103,15 +12116,18 @@
         "InternetGatewayAttachment$VpcId": "<p>The ID of the VPC.</p>",
         "IpPermission$IpProtocol": "<p>The IP protocol name (<code>tcp</code>, <code>udp</code>, <code>icmp</code>, <code>icmpv6</code>) or number (see <a href=\"http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml\">Protocol Numbers</a>).</p> <p>[VPC only] Use <code>-1</code> to specify all protocols. When authorizing security group rules, specifying <code>-1</code> or a protocol number other than <code>tcp</code>, <code>udp</code>, <code>icmp</code>, or <code>icmpv6</code> allows traffic on all ports, regardless of any port range you specify. For <code>tcp</code>, <code>udp</code>, and <code>icmp</code>, you must specify a port range. For <code>icmpv6</code>, the port range is optional; if you omit the port range, traffic for all types and codes is allowed.</p>",
         "IpRange$CidrIp": "<p>The IPv4 CIDR range. You can either specify a CIDR range or a source security group, not both. To specify a single IPv4 address, use the /32 prefix length.</p>",
-        "IpRange$Description": "<p>A description for the security group rule that references this IPv4 address range.</p> <p>Constraints: Up to 255 characters in length. Allowed characters are a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=;{}!$*</p>",
+        "IpRange$Description": "<p>A description for the security group rule that references this IPv4 address range.</p> <p>Constraints: Up to 255 characters in length. Allowed characters are a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&amp;;{}!$*</p>",
         "IpRanges$member": null,
         "Ipv6AddressList$member": null,
         "Ipv6CidrBlock$Ipv6CidrBlock": "<p>The IPv6 CIDR block.</p>",
         "Ipv6Range$CidrIpv6": "<p>The IPv6 CIDR range. You can either specify a CIDR range or a source security group, not both. To specify a single IPv6 address, use the /128 prefix length.</p>",
-        "Ipv6Range$Description": "<p>A description for the security group rule that references this IPv6 address range.</p> <p>Constraints: Up to 255 characters in length. Allowed characters are a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=;{}!$*</p>",
+        "Ipv6Range$Description": "<p>A description for the security group rule that references this IPv6 address range.</p> <p>Constraints: Up to 255 characters in length. Allowed characters are a-z, A-Z, 0-9, spaces, and ._-:/()#,@[]+=&amp;;{}!$*</p>",
         "KeyNameStringList$member": null,
         "KeyPair$KeyFingerprint": "<p>The SHA-1 digest of the DER encoded private key.</p>",
         "KeyPair$KeyName": "<p>The name of the key pair.</p>",
+        "KeyPair$KeyPairId": "<p>The ID of the key pair.</p>",
+        "KeyPairIdStringList$member": null,
+        "KeyPairInfo$KeyPairId": "<p>The ID of the key pair.</p>",
         "KeyPairInfo$KeyFingerprint": "<p>If you used <a>CreateKeyPair</a> to create the key pair, this is the SHA-1 digest of the DER encoded private key. If you used <a>ImportKeyPair</a> to provide AWS the public key, this is the MD5 public key fingerprint as specified in section 4 of RFC4716.</p>",
         "KeyPairInfo$KeyName": "<p>The name of the key pair.</p>",
         "LaunchPermission$UserId": "<p>The AWS account ID.</p>",
@@ -12132,7 +12148,7 @@
         "LaunchTemplateBlockDeviceMappingRequest$NoDevice": "<p>Suppresses the specified device included in the block device mapping of the AMI.</p>",
         "LaunchTemplateEbsBlockDevice$KmsKeyId": "<p>The ARN of the AWS Key Management Service (AWS KMS) CMK used for encryption.</p>",
         "LaunchTemplateEbsBlockDevice$SnapshotId": "<p>The ID of the snapshot.</p>",
-        "LaunchTemplateEbsBlockDeviceRequest$KmsKeyId": "<p>The ARN of the AWS Key Management Service (AWS KMS) CMK used for encryption.</p>",
+        "LaunchTemplateEbsBlockDeviceRequest$KmsKeyId": "<p>The ARN of the symmetric AWS Key Management Service (AWS KMS) CMK used for encryption.</p>",
         "LaunchTemplateEbsBlockDeviceRequest$SnapshotId": "<p>The ID of the snapshot.</p>",
         "LaunchTemplateElasticInferenceAccelerator$Type": "<p> The type of elastic inference accelerator. The possible values are eia1.medium, eia1.large, and eia1.xlarge. </p>",
         "LaunchTemplateElasticInferenceAcceleratorResponse$Type": "<p> The type of elastic inference accelerator. The possible values are eia1.medium, eia1.large, and eia1.xlarge. </p>",
@@ -12327,6 +12343,8 @@
         "Placement$SpreadDomain": "<p>Reserved for future use.</p>",
         "Placement$HostResourceGroupArn": "<p>The ARN of the host resource group in which to launch the instances. If you specify a host resource group ARN, omit the <b>Tenancy</b> parameter or set it to <code>host</code>.</p>",
         "PlacementGroup$GroupName": "<p>The name of the placement group.</p>",
+        "PlacementGroup$GroupId": "<p>The ID of the placement group.</p>",
+        "PlacementGroupIdStringList$member": null,
         "PlacementGroupStringList$member": null,
         "PlacementResponse$GroupName": "<p>The name of the placement group that the instance is in.</p>",
         "PrefixList$PrefixListId": "<p>The ID of the prefix.</p>",
@@ -12994,19 +13012,24 @@
         "DeleteTagsRequest$Tags": "<p>The tags to delete. Specify a tag key and an optional tag value to delete specific tags. If you specify a tag key without a tag value, we delete any tag with this key regardless of its value. If you specify a tag key with an empty string as the tag value, we delete the tag only if its value is an empty string.</p> <p>If you omit this parameter, we delete all user-defined tags for the specified resources. We do not delete AWS-generated tags (tags that have the <code>aws:</code> prefix).</p>",
         "DhcpOptions$Tags": "<p>Any tags assigned to the DHCP options set.</p>",
         "ElasticGpus$Tags": "<p>The tags assigned to the Elastic Graphics accelerator.</p>",
+        "ExportTask$Tags": null,
         "FleetData$Tags": "<p>The tags for an EC2 Fleet resource.</p>",
         "FpgaImage$Tags": "<p>Any tags assigned to the AFI.</p>",
         "Host$Tags": "<p>Any tags assigned to the Dedicated Host.</p>",
         "HostReservation$Tags": "<p>Any tags assigned to the Dedicated Host Reservation.</p>",
         "Image$Tags": "<p>Any tags assigned to the image.</p>",
+        "ImportImageTask$Tags": "<p>Any tags applied to the import image task.</p>",
+        "ImportSnapshotTask$Tags": "<p>Any tags applied to the import snapshot task.</p>",
         "Instance$Tags": "<p>Any tags assigned to the instance.</p>",
         "InternetGateway$Tags": "<p>Any tags assigned to the internet gateway.</p>",
+        "KeyPairInfo$Tags": "<p>Any tags applied to the key pair.</p>",
         "LaunchTemplate$Tags": "<p>The tags for the launch template.</p>",
         "LaunchTemplateTagSpecification$Tags": "<p>The tags for the resource.</p>",
         "LaunchTemplateTagSpecificationRequest$Tags": "<p>The tags to apply to the resource.</p>",
         "NatGateway$Tags": "<p>The tags for the NAT gateway.</p>",
         "NetworkAcl$Tags": "<p>Any tags assigned to the network ACL.</p>",
         "NetworkInterface$TagSet": "<p>Any tags assigned to the network interface.</p>",
+        "PlacementGroup$Tags": "<p>Any tags applied to the placement group.</p>",
         "ReservedInstances$Tags": "<p>Any tags assigned to the resource.</p>",
         "ReservedInstancesListing$Tags": "<p>Any tags assigned to the resource.</p>",
         "RouteTable$Tags": "<p>Any tags assigned to the route table.</p>",

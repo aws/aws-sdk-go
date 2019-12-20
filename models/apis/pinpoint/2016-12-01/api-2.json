@@ -2528,8 +2528,40 @@
       "output": {
         "shape": "ListTagsForResourceResponse"
       },
+      "errors": []
+    },
+    "ListTemplateVersions": {
+      "name": "ListTemplateVersions",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/templates/{template-name}/{template-type}/versions",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListTemplateVersionsRequest"
+      },
+      "output": {
+        "shape": "ListTemplateVersionsResponse"
+      },
       "errors": [
-
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
       ]
     },
     "ListTemplates": {
@@ -2777,9 +2809,7 @@
       "input": {
         "shape": "TagResourceRequest"
       },
-      "errors": [
-
-      ]
+      "errors": []
     },
     "UntagResource": {
       "name": "UntagResource",
@@ -2791,9 +2821,7 @@
       "input": {
         "shape": "UntagResourceRequest"
       },
-      "errors": [
-
-      ]
+      "errors": []
     },
     "UpdateAdmChannel": {
       "name": "UpdateAdmChannel",
@@ -3419,6 +3447,40 @@
       },
       "output": {
         "shape": "UpdateSmsTemplateResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "UpdateTemplateActiveVersion": {
+      "name": "UpdateTemplateActiveVersion",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v1/templates/{template-name}/{template-type}/active-version",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateTemplateActiveVersionRequest"
+      },
+      "output": {
+        "shape": "UpdateTemplateActiveVersionResponse"
       },
       "errors": [
         {
@@ -5344,6 +5406,11 @@
           "shape": "__string",
           "location": "uri",
           "locationName": "template-name"
+        },
+        "Version": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "version"
         }
       },
       "required": [
@@ -5481,6 +5548,11 @@
           "shape": "__string",
           "location": "uri",
           "locationName": "template-name"
+        },
+        "Version": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "version"
         }
       },
       "required": [
@@ -5562,6 +5634,11 @@
           "shape": "__string",
           "location": "uri",
           "locationName": "template-name"
+        },
+        "Version": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "version"
         }
       },
       "required": [
@@ -5643,6 +5720,11 @@
           "shape": "__string",
           "location": "uri",
           "locationName": "template-name"
+        },
+        "Version": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "version"
         }
       },
       "required": [
@@ -5835,6 +5917,9 @@
         },
         "TemplateName": {
           "shape": "__string"
+        },
+        "TemplateVersion": {
+          "shape": "__string"
         }
       }
     },
@@ -5897,6 +5982,9 @@
           "shape": "TemplateType"
         },
         "TextPart": {
+          "shape": "__string"
+        },
+        "Version": {
           "shape": "__string"
         }
       },
@@ -7185,6 +7273,11 @@
           "shape": "__string",
           "location": "uri",
           "locationName": "template-name"
+        },
+        "Version": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "version"
         }
       },
       "required": [
@@ -7599,6 +7692,11 @@
           "shape": "__string",
           "location": "uri",
           "locationName": "template-name"
+        },
+        "Version": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "version"
         }
       },
       "required": [
@@ -7875,6 +7973,11 @@
           "shape": "__string",
           "location": "uri",
           "locationName": "template-name"
+        },
+        "Version": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "version"
         }
       },
       "required": [
@@ -7956,6 +8059,11 @@
           "shape": "__string",
           "location": "uri",
           "locationName": "template-name"
+        },
+        "Version": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "version"
         }
       },
       "required": [
@@ -8432,6 +8540,47 @@
       ],
       "payload": "TagsModel"
     },
+    "ListTemplateVersionsRequest": {
+      "type": "structure",
+      "members": {
+        "NextToken": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "next-token"
+        },
+        "PageSize": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "page-size"
+        },
+        "TemplateName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "template-name"
+        },
+        "TemplateType": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "template-type"
+        }
+      },
+      "required": [
+        "TemplateName",
+        "TemplateType"
+      ]
+    },
+    "ListTemplateVersionsResponse": {
+      "type": "structure",
+      "members": {
+        "TemplateVersionsResponse": {
+          "shape": "TemplateVersionsResponse"
+        }
+      },
+      "required": [
+        "TemplateVersionsResponse"
+      ],
+      "payload": "TemplateVersionsResponse"
+    },
     "ListTemplatesRequest": {
       "type": "structure",
       "members": {
@@ -8900,13 +9049,16 @@
         },
         "TemplateType": {
           "shape": "TemplateType"
+        },
+        "Version": {
+          "shape": "__string"
         }
       },
       "required": [
         "LastModifiedDate",
         "CreationDate",
-        "TemplateName",
-        "TemplateType"
+        "TemplateType",
+        "TemplateName"
       ]
     },
     "PutEventStreamRequest": {
@@ -9237,6 +9389,9 @@
         },
         "TemplateType": {
           "shape": "TemplateType"
+        },
+        "Version": {
+          "shape": "__string"
         }
       },
       "required": [
@@ -9733,6 +9888,17 @@
       "members": {
         "Name": {
           "shape": "__string"
+        },
+        "Version": {
+          "shape": "__string"
+        }
+      }
+    },
+    "TemplateActiveVersionRequest": {
+      "type": "structure",
+      "members": {
+        "Version": {
+          "shape": "__string"
         }
       }
     },
@@ -9780,6 +9946,9 @@
         },
         "TemplateType": {
           "shape": "TemplateType"
+        },
+        "Version": {
+          "shape": "__string"
         }
       },
       "required": [
@@ -9796,6 +9965,58 @@
         "SMS",
         "VOICE",
         "PUSH"
+      ]
+    },
+    "TemplateVersionResponse": {
+      "type": "structure",
+      "members": {
+        "CreationDate": {
+          "shape": "__string"
+        },
+        "DefaultSubstitutions": {
+          "shape": "__string"
+        },
+        "LastModifiedDate": {
+          "shape": "__string"
+        },
+        "TemplateDescription": {
+          "shape": "__string"
+        },
+        "TemplateName": {
+          "shape": "__string"
+        },
+        "TemplateType": {
+          "shape": "__string"
+        },
+        "Version": {
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "LastModifiedDate",
+        "CreationDate",
+        "TemplateName",
+        "TemplateType"
+      ]
+    },
+    "TemplateVersionsResponse": {
+      "type": "structure",
+      "members": {
+        "Item": {
+          "shape": "ListOfTemplateVersionResponse"
+        },
+        "Message": {
+          "shape": "__string"
+        },
+        "NextToken": {
+          "shape": "__string"
+        },
+        "RequestID": {
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "Item"
       ]
     },
     "TemplatesResponse": {
@@ -10174,6 +10395,11 @@
     "UpdateEmailTemplateRequest": {
       "type": "structure",
       "members": {
+        "CreateNewVersion": {
+          "shape": "__boolean",
+          "location": "querystring",
+          "locationName": "create-new-version"
+        },
         "EmailTemplateRequest": {
           "shape": "EmailTemplateRequest"
         },
@@ -10181,6 +10407,11 @@
           "shape": "__string",
           "location": "uri",
           "locationName": "template-name"
+        },
+        "Version": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "version"
         }
       },
       "required": [
@@ -10372,6 +10603,11 @@
     "UpdatePushTemplateRequest": {
       "type": "structure",
       "members": {
+        "CreateNewVersion": {
+          "shape": "__boolean",
+          "location": "querystring",
+          "locationName": "create-new-version"
+        },
         "PushNotificationTemplateRequest": {
           "shape": "PushNotificationTemplateRequest"
         },
@@ -10379,6 +10615,11 @@
           "shape": "__string",
           "location": "uri",
           "locationName": "template-name"
+        },
+        "Version": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "version"
         }
       },
       "required": [
@@ -10468,6 +10709,11 @@
     "UpdateSmsTemplateRequest": {
       "type": "structure",
       "members": {
+        "CreateNewVersion": {
+          "shape": "__boolean",
+          "location": "querystring",
+          "locationName": "create-new-version"
+        },
         "SMSTemplateRequest": {
           "shape": "SMSTemplateRequest"
         },
@@ -10475,6 +10721,11 @@
           "shape": "__string",
           "location": "uri",
           "locationName": "template-name"
+        },
+        "Version": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "version"
         }
       },
       "required": [
@@ -10484,6 +10735,42 @@
       "payload": "SMSTemplateRequest"
     },
     "UpdateSmsTemplateResponse": {
+      "type": "structure",
+      "members": {
+        "MessageBody": {
+          "shape": "MessageBody"
+        }
+      },
+      "required": [
+        "MessageBody"
+      ],
+      "payload": "MessageBody"
+    },
+    "UpdateTemplateActiveVersionRequest": {
+      "type": "structure",
+      "members": {
+        "TemplateActiveVersionRequest": {
+          "shape": "TemplateActiveVersionRequest"
+        },
+        "TemplateName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "template-name"
+        },
+        "TemplateType": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "template-type"
+        }
+      },
+      "required": [
+        "TemplateName",
+        "TemplateType",
+        "TemplateActiveVersionRequest"
+      ],
+      "payload": "TemplateActiveVersionRequest"
+    },
+    "UpdateTemplateActiveVersionResponse": {
       "type": "structure",
       "members": {
         "MessageBody": {
@@ -10528,10 +10815,20 @@
     "UpdateVoiceTemplateRequest": {
       "type": "structure",
       "members": {
+        "CreateNewVersion": {
+          "shape": "__boolean",
+          "location": "querystring",
+          "locationName": "create-new-version"
+        },
         "TemplateName": {
           "shape": "__string",
           "location": "uri",
           "locationName": "template-name"
+        },
+        "Version": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "version"
         },
         "VoiceTemplateRequest": {
           "shape": "VoiceTemplateRequest"
@@ -10678,6 +10975,9 @@
         },
         "TemplateType": {
           "shape": "TemplateType"
+        },
+        "Version": {
+          "shape": "__string"
         },
         "VoiceId": {
           "shape": "__string"
@@ -10998,6 +11298,12 @@
       "type": "list",
       "member": {
         "shape": "TemplateResponse"
+      }
+    },
+    "ListOfTemplateVersionResponse": {
+      "type": "list",
+      "member": {
+        "shape": "TemplateVersionResponse"
       }
     },
     "ListOfTreatmentResource": {
