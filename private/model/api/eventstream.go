@@ -11,9 +11,8 @@ import (
 // EventStreamAPI provides details about the event stream async API and
 // associated EventStream shapes.
 type EventStreamAPI struct {
-	API       *API
-	Operation *Operation
-	//	Shape     *Shape
+	API          *API
+	Operation    *Operation
 	Name         string
 	InputStream  *EventStream
 	OutputStream *EventStream
@@ -135,6 +134,8 @@ func eventStreamAPIShapeRefDoc(refName string) string {
 }
 
 func (a *API) setupEventStreams() error {
+	streams := EventStreams{}
+
 	for opName, op := range a.Operations {
 		_, inRef := getEventStream(op.InputRef.Shape)
 		_, outRef := getEventStream(op.OutputRef.Shape)
@@ -155,32 +156,16 @@ func (a *API) setupEventStreams() error {
 			}
 		}
 
-		// TODO inputStream and outputStream are generated per Operation, not
-		// per instance of that event type. This will cause conflicts if an
-		// eventstream decorated shape is stream between multiple operations.
-		//
-		// This needs to be split into two passes:
-		// 1.) Gather EventStream with their associated set of events.
-		// 2.) Gather operations that use EventStreams for an EventStreamAPI.
-
 		var inputStream *EventStream
 		if inRef != nil {
-			inputStream = setupEventStream(inRef)
+			inputStream = streams.GetStream(op.InputRef.Shape, inRef)
 			inputStream.Shape.IsInputEventStream = true
-
-			if op.API.Metadata.Protocol == "json" {
-				op.InputRef.Shape.EventFor = append(op.InputRef.Shape.EventFor, inputStream)
-			}
 		}
 
 		var outputStream *EventStream
 		if outRef != nil {
-			outputStream = setupEventStream(outRef)
+			outputStream = streams.GetStream(op.OutputRef.Shape, outRef)
 			outputStream.Shape.IsOutputEventStream = true
-
-			if op.API.Metadata.Protocol == "json" {
-				op.OutputRef.Shape.EventFor = append(op.OutputRef.Shape.EventFor, outputStream)
-			}
 		}
 
 		requireHTTP2 := op.API.Metadata.ProtocolSettings.HTTP2 == "eventstream" &&
@@ -210,6 +195,28 @@ func (a *API) setupEventStreams() error {
 	}
 
 	return nil
+}
+
+// EventStreams is a map of streams for the API shared across all operations.
+// Ensurs that no stream is duplicated.
+type EventStreams map[*Shape]*EventStream
+
+// GetStream returns an EventStream for the operations top level shape, and
+// member reference to the stream shape.
+func (es *EventStreams) GetStream(topShape *Shape, ref *ShapeRef) *EventStream {
+	var stream *EventStream
+	if v, ok := (*es)[ref.Shape]; ok {
+		stream = v
+	} else {
+		stream = setupEventStream(ref)
+		(*es)[ref.Shape] = stream
+	}
+
+	if topShape.API.Metadata.Protocol == "json" {
+		topShape.EventFor = append(topShape.EventFor, stream)
+	}
+
+	return stream
 }
 
 var legacyEventStream = map[string]map[string]struct{}{
