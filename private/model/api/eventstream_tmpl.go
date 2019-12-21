@@ -115,15 +115,19 @@ func (es *{{ $esapi.Name }}) runOnStreamPartClose(r *request.Request) {
 
 func (es *{{ $esapi.Name }}) waitStreamPartClose() {
 	{{- if $inputStream }}
-		var inputC <-chan struct{}
+		var inputErrCh <-chan struct{}
 		if v, ok := es.Writer.(interface{ErrorSet() <-chan struct{}}); ok {
-			inputC = v.ErrorSet()
+			inputErrCh = v.ErrorSet()
 		}
 	{{- end }}
 	{{- if $outputStream }}
-		var outputC <-chan struct{}
+		var outputErrCh <-chan struct{}
 		if v, ok := es.Reader.(interface{ErrorSet() <-chan struct{}}); ok {
-			outputC = v.ErrorSet()
+			outputErrCh = v.ErrorSet()
+		}
+		var outputClosedCh <- chan struct{}
+		if v, ok := es.Reader.(interface{Closed() <-chan struct{}}); ok {
+			outputClosedCh = v.Closed()
 		}
 	{{- end }}
 
@@ -131,14 +135,19 @@ func (es *{{ $esapi.Name }}) waitStreamPartClose() {
 		case <-es.done:
 
 		{{- if $inputStream }}
-		case <-inputC:
+		case <-inputErrCh:
 			es.err.SetError(es.Writer.Err())
 			es.Close()
 		{{- end }}
 
 		{{- if $outputStream }}
-		case <-outputC:
+		case <-outputErrCh:
 			es.err.SetError(es.Reader.Err())
+			es.Close()
+		case <-outputClosedCh:
+			if err := es.Reader.Err(); err != nil {
+				es.err.SetError(es.Reader.Err())
+			}
 			es.Close()
 		{{- end }}
 	}
@@ -155,6 +164,12 @@ func (es *{{ $esapi.Name }}) waitStreamPartClose() {
 			return {{ $inputStream.StreamEventTypeGetterName }}(event)
 		}
 	{{- end }}
+
+	func (es *{{ $esapi.Name }}) setupInputPipe(r *request.Request) {
+			inputReader, inputWriter := io.Pipe()
+			r.SetStreamingBody(inputReader)
+			es.inputWriter = inputWriter
+	}
 
 	// Send writes the event to the stream blocking until the event is written.
 	// Returns an error if the event was not written.

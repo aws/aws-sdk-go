@@ -9665,15 +9665,24 @@ func (es *SelectObjectContentEventStream) runOnStreamPartClose(r *request.Reques
 }
 
 func (es *SelectObjectContentEventStream) waitStreamPartClose() {
-	var outputC <-chan struct{}
+	var outputErrCh <-chan struct{}
 	if v, ok := es.Reader.(interface{ ErrorSet() <-chan struct{} }); ok {
-		outputC = v.ErrorSet()
+		outputErrCh = v.ErrorSet()
+	}
+	var outputClosedCh <-chan struct{}
+	if v, ok := es.Reader.(interface{ Closed() <-chan struct{} }); ok {
+		outputClosedCh = v.Closed()
 	}
 
 	select {
 	case <-es.done:
-	case <-outputC:
+	case <-outputErrCh:
 		es.err.SetError(es.Reader.Err())
+		es.Close()
+	case <-outputClosedCh:
+		if err := es.Reader.Err(); err != nil {
+			es.err.SetError(es.Reader.Err())
+		}
 		es.Close()
 	}
 }
@@ -28200,6 +28209,10 @@ func (r *readSelectObjectContentEventStream) ErrorSet() <-chan struct{} {
 	return r.err.ErrorSet()
 }
 
+func (r *readSelectObjectContentEventStream) Closed() <-chan struct{} {
+	return r.done
+}
+
 func (r *readSelectObjectContentEventStream) safeClose() {
 	close(r.done)
 }
@@ -28491,6 +28504,7 @@ func (s SelectObjectContentOutput) GoString() string {
 
 func (s *SelectObjectContentOutput) SetEventStream(v *SelectObjectContentEventStream) *SelectObjectContentOutput {
 	s.EventStream = v
+	return s
 }
 func (s *SelectObjectContentOutput) GetEventStream() *SelectObjectContentEventStream {
 	return s.EventStream
