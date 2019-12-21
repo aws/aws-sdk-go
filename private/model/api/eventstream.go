@@ -137,13 +137,13 @@ func (a *API) setupEventStreams() error {
 	streams := EventStreams{}
 
 	for opName, op := range a.Operations {
-		_, inRef := getEventStream(op.InputRef.Shape)
-		_, outRef := getEventStream(op.OutputRef.Shape)
+		inputRef := getEventStreamMember(op.InputRef.Shape)
+		outputRef := getEventStreamMember(op.OutputRef.Shape)
 
-		if inRef == nil && outRef == nil {
+		if inputRef == nil && outputRef == nil {
 			continue
 		}
-		if inRef != nil && outRef == nil {
+		if inputRef != nil && outputRef == nil {
 			return fmt.Errorf("event stream input only stream not supported for protocol %s, %s, %v",
 				a.NiceName(), opName, a.Metadata.Protocol)
 		}
@@ -157,14 +157,14 @@ func (a *API) setupEventStreams() error {
 		}
 
 		var inputStream *EventStream
-		if inRef != nil {
-			inputStream = streams.GetStream(op.InputRef.Shape, inRef)
+		if inputRef != nil {
+			inputStream = streams.GetStream(op.InputRef.Shape, inputRef.Shape)
 			inputStream.Shape.IsInputEventStream = true
 		}
 
 		var outputStream *EventStream
-		if outRef != nil {
-			outputStream = streams.GetStream(op.OutputRef.Shape, outRef)
+		if outputRef != nil {
+			outputStream = streams.GetStream(op.OutputRef.Shape, outputRef.Shape)
 			outputStream.Shape.IsOutputEventStream = true
 		}
 
@@ -203,13 +203,13 @@ type EventStreams map[*Shape]*EventStream
 
 // GetStream returns an EventStream for the operations top level shape, and
 // member reference to the stream shape.
-func (es *EventStreams) GetStream(topShape *Shape, ref *ShapeRef) *EventStream {
+func (es *EventStreams) GetStream(topShape *Shape, streamShape *Shape) *EventStream {
 	var stream *EventStream
-	if v, ok := (*es)[ref.Shape]; ok {
+	if v, ok := (*es)[streamShape]; ok {
 		stream = v
 	} else {
-		stream = setupEventStream(ref)
-		(*es)[ref.Shape] = stream
+		stream = setupEventStream(streamShape)
+		(*es)[streamShape] = stream
 	}
 
 	if topShape.API.Metadata.Protocol == "json" {
@@ -245,37 +245,29 @@ func (e EventStreamAPI) OutputMemberName() string {
 	return "eventStream"
 }
 
-func getEventStream(topShape *Shape) (string, *ShapeRef) {
-	for refName, ref := range topShape.MemberRefs {
+func getEventStreamMember(topShape *Shape) *ShapeRef {
+	for _, ref := range topShape.MemberRefs {
 		if !ref.Shape.IsEventStream {
 			continue
 		}
-		return refName, ref
+		return ref
 	}
 
-	return "", nil
+	return nil
 }
 
-func setupEventStream(ref *ShapeRef) *EventStream {
-	//	// Swap out the modeled shape with a copy so that references to the
-	//	// events are not lost, and the modeled shape can be dropped if
-	//	// unneeded.
-	//	ref.Shape.removeRef(ref)
-	//	clonedShape := ref.Shape.Clone(ref.Shape.ShapeName + "EventStream")
-	//	ref.Shape = clonedShape
-	//	clonedShape.refs = append(clonedShape.refs, ref)
-
+func setupEventStream(s *Shape) *EventStream {
 	eventStream := &EventStream{
-		Name:  ref.Shape.ShapeName,
-		Shape: ref.Shape,
+		Name:  s.ShapeName,
+		Shape: s,
 	}
-	ref.Shape.EventStream = eventStream
+	s.EventStream = eventStream
 
-	for _, eventRefName := range ref.Shape.MemberNames() {
-		eventRef := ref.Shape.MemberRefs[eventRefName]
+	for _, eventRefName := range s.MemberNames() {
+		eventRef := s.MemberRefs[eventRefName]
 		if !(eventRef.Shape.IsEvent || eventRef.Shape.Exception) {
 			panic(fmt.Sprintf("unexpected non-event member reference %s.%s",
-				ref.Shape.ShapeName, eventRefName))
+				s.ShapeName, eventRefName))
 		}
 
 		updateEventPayloadRef(eventRef.Shape)
