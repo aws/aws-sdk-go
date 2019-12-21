@@ -44,9 +44,6 @@ func (w *StreamWriter) Close() error {
 
 func (w *StreamWriter) safeClose() {
 	close(w.done)
-	if err := w.streamCloser.Close(); err != nil {
-		w.err.SetError(err)
-	}
 }
 
 func (w *StreamWriter) ErrorSet() <-chan struct{} {
@@ -107,6 +104,9 @@ func (w *StreamWriter) writeStream() {
 			}
 
 		case <-w.done:
+			if err := w.streamCloser.Close(); err != nil {
+				w.err.SetError(err)
+			}
 			return
 		}
 	}
