@@ -235,10 +235,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 
 			{{- if $inputStream }}
 
-				inputReader, inputWriter := io.Pipe()
-				req.SetReaderBody(aws.ReadSeekCloser(inputReader))
-				es.inputWriter = inputWriter
-
+				req.Handlers.Sign.PushFront(es.setupInputPipe)
 				req.Handlers.Build.PushBack(request.WithSetRequestHeaders(map[string]string{
 					"Content-Type": "application/vnd.amazon.eventstream",
 					"X-Amz-Content-Sha256": "STREAMING-AWS4-HMAC-SHA256-EVENTS",

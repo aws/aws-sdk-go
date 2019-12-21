@@ -68,10 +68,7 @@ func (c *TranscribeStreamingService) StartStreamTranscriptionRequest(input *Star
 	es := newStartStreamTranscriptionEventStream()
 	output.eventStream = es
 
-	inputReader, inputWriter := io.Pipe()
-	req.SetReaderBody(aws.ReadSeekCloser(inputReader))
-	es.inputWriter = inputWriter
-
+	req.Handlers.Sign.PushFront(es.setupInputPipe)
 	req.Handlers.Build.PushBack(request.WithSetRequestHeaders(map[string]string{
 		"Content-Type":         "application/vnd.amazon.eventstream",
 		"X-Amz-Content-Sha256": "STREAMING-AWS4-HMAC-SHA256-EVENTS",
@@ -222,6 +219,12 @@ func (es *StartStreamTranscriptionEventStream) waitStreamPartClose() {
 		}
 		es.Close()
 	}
+}
+
+func (es *StartStreamTranscriptionEventStream) setupInputPipe(r *request.Request) {
+	inputReader, inputWriter := io.Pipe()
+	r.SetStreamingBody(inputReader)
+	es.inputWriter = inputWriter
 }
 
 // Send writes the event to the stream blocking until the event is written.

@@ -165,6 +165,12 @@ func (es *{{ $esapi.Name }}) waitStreamPartClose() {
 		}
 	{{- end }}
 
+	func (es *{{ $esapi.Name }}) setupInputPipe(r *request.Request) {
+			inputReader, inputWriter := io.Pipe()
+			r.SetStreamingBody(inputReader)
+			es.inputWriter = inputWriter
+	}
+
 	// Send writes the event to the stream blocking until the event is written.
 	// Returns an error if the event was not written.
 	//
