@@ -12,6 +12,23 @@
     "uid":"fsx-2018-03-01"
   },
   "operations":{
+    "CancelDataRepositoryTask":{
+      "name":"CancelDataRepositoryTask",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CancelDataRepositoryTaskRequest"},
+      "output":{"shape":"CancelDataRepositoryTaskResponse"},
+      "errors":[
+        {"shape":"BadRequest"},
+        {"shape":"UnsupportedOperation"},
+        {"shape":"DataRepositoryTaskNotFound"},
+        {"shape":"DataRepositoryTaskEnded"},
+        {"shape":"InternalServerError"}
+      ],
+      "idempotent":true
+    },
     "CreateBackup":{
       "name":"CreateBackup",
       "http":{
@@ -28,6 +45,25 @@
         {"shape":"IncompatibleParameterError"},
         {"shape":"ServiceLimitExceeded"},
         {"shape":"InternalServerError"}
+      ],
+      "idempotent":true
+    },
+    "CreateDataRepositoryTask":{
+      "name":"CreateDataRepositoryTask",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateDataRepositoryTaskRequest"},
+      "output":{"shape":"CreateDataRepositoryTaskResponse"},
+      "errors":[
+        {"shape":"BadRequest"},
+        {"shape":"UnsupportedOperation"},
+        {"shape":"FileSystemNotFound"},
+        {"shape":"IncompatibleParameterError"},
+        {"shape":"ServiceLimitExceeded"},
+        {"shape":"InternalServerError"},
+        {"shape":"DataRepositoryTaskExecuting"}
       ],
       "idempotent":true
     },
@@ -117,6 +153,21 @@
         {"shape":"BadRequest"},
         {"shape":"FileSystemNotFound"},
         {"shape":"BackupNotFound"},
+        {"shape":"InternalServerError"}
+      ]
+    },
+    "DescribeDataRepositoryTasks":{
+      "name":"DescribeDataRepositoryTasks",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDataRepositoryTasksRequest"},
+      "output":{"shape":"DescribeDataRepositoryTasksResponse"},
+      "errors":[
+        {"shape":"BadRequest"},
+        {"shape":"FileSystemNotFound"},
+        {"shape":"DataRepositoryTaskNotFound"},
         {"shape":"InternalServerError"}
       ]
     },
@@ -235,11 +286,17 @@
         "INVALID_DOMAIN_STAGE"
       ]
     },
-    "ActiveDirectoryFullyQualifiedName":{"type":"string"},
+    "ActiveDirectoryFullyQualifiedName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^.{1,255}$"
+    },
     "ArchivePath":{
       "type":"string",
       "max":900,
-      "min":3
+      "min":3,
+      "pattern":"^.{3,900}$"
     },
     "AutomaticBackupRetentionDays":{
       "type":"integer",
@@ -336,11 +393,35 @@
       },
       "exception":true
     },
+    "CancelDataRepositoryTaskRequest":{
+      "type":"structure",
+      "required":["TaskId"],
+      "members":{
+        "TaskId":{"shape":"TaskId"}
+      }
+    },
+    "CancelDataRepositoryTaskResponse":{
+      "type":"structure",
+      "members":{
+        "Lifecycle":{"shape":"DataRepositoryTaskLifecycle"},
+        "TaskId":{"shape":"TaskId"}
+      }
+    },
     "ClientRequestToken":{
       "type":"string",
-      "max":255,
+      "max":63,
       "min":1,
-      "pattern":"[A-za-z0-9_.-]{0,255}$"
+      "pattern":"[A-za-z0-9_.-]{0,63}$"
+    },
+    "CompletionReport":{
+      "type":"structure",
+      "required":["Enabled"],
+      "members":{
+        "Enabled":{"shape":"Flag"},
+        "Path":{"shape":"ArchivePath"},
+        "Format":{"shape":"ReportFormat"},
+        "Scope":{"shape":"ReportScope"}
+      }
     },
     "CreateBackupRequest":{
       "type":"structure",
@@ -358,6 +439,31 @@
       "type":"structure",
       "members":{
         "Backup":{"shape":"Backup"}
+      }
+    },
+    "CreateDataRepositoryTaskRequest":{
+      "type":"structure",
+      "required":[
+        "Type",
+        "FileSystemId",
+        "Report"
+      ],
+      "members":{
+        "Type":{"shape":"DataRepositoryTaskType"},
+        "Paths":{"shape":"DataRepositoryTaskPaths"},
+        "FileSystemId":{"shape":"FileSystemId"},
+        "Report":{"shape":"CompletionReport"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        },
+        "Tags":{"shape":"Tags"}
+      }
+    },
+    "CreateDataRepositoryTaskResponse":{
+      "type":"structure",
+      "members":{
+        "DataRepositoryTask":{"shape":"DataRepositoryTask"}
       }
     },
     "CreateFileSystemFromBackupRequest":{
@@ -457,6 +563,128 @@
         "ImportedFileChunkSize":{"shape":"Megabytes"}
       }
     },
+    "DataRepositoryTask":{
+      "type":"structure",
+      "required":[
+        "TaskId",
+        "Lifecycle",
+        "Type",
+        "CreationTime",
+        "FileSystemId"
+      ],
+      "members":{
+        "TaskId":{"shape":"TaskId"},
+        "Lifecycle":{"shape":"DataRepositoryTaskLifecycle"},
+        "Type":{"shape":"DataRepositoryTaskType"},
+        "CreationTime":{"shape":"CreationTime"},
+        "StartTime":{"shape":"StartTime"},
+        "EndTime":{"shape":"EndTime"},
+        "ResourceARN":{"shape":"ResourceARN"},
+        "Tags":{"shape":"Tags"},
+        "FileSystemId":{"shape":"FileSystemId"},
+        "Paths":{"shape":"DataRepositoryTaskPaths"},
+        "FailureDetails":{"shape":"DataRepositoryTaskFailureDetails"},
+        "Status":{"shape":"DataRepositoryTaskStatus"},
+        "Report":{"shape":"CompletionReport"}
+      }
+    },
+    "DataRepositoryTaskEnded":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "DataRepositoryTaskExecuting":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "DataRepositoryTaskFailureDetails":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      }
+    },
+    "DataRepositoryTaskFilter":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"DataRepositoryTaskFilterName"},
+        "Values":{"shape":"DataRepositoryTaskFilterValues"}
+      }
+    },
+    "DataRepositoryTaskFilterName":{
+      "type":"string",
+      "enum":[
+        "file-system-id",
+        "task-lifecycle"
+      ]
+    },
+    "DataRepositoryTaskFilterValue":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^[0-9a-zA-Z\\*\\.\\\\/\\?\\-\\_]*$"
+    },
+    "DataRepositoryTaskFilterValues":{
+      "type":"list",
+      "member":{"shape":"DataRepositoryTaskFilterValue"},
+      "max":20
+    },
+    "DataRepositoryTaskFilters":{
+      "type":"list",
+      "member":{"shape":"DataRepositoryTaskFilter"},
+      "max":3
+    },
+    "DataRepositoryTaskLifecycle":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "EXECUTING",
+        "FAILED",
+        "SUCCEEDED",
+        "CANCELED",
+        "CANCELING"
+      ]
+    },
+    "DataRepositoryTaskNotFound":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "DataRepositoryTaskPath":{
+      "type":"string",
+      "max":4096,
+      "min":0,
+      "pattern":"^.{0,4096}$"
+    },
+    "DataRepositoryTaskPaths":{
+      "type":"list",
+      "member":{"shape":"DataRepositoryTaskPath"},
+      "max":100
+    },
+    "DataRepositoryTaskStatus":{
+      "type":"structure",
+      "members":{
+        "TotalCount":{"shape":"TotalCount"},
+        "SucceededCount":{"shape":"SucceededCount"},
+        "FailedCount":{"shape":"FailedCount"},
+        "LastUpdatedTime":{"shape":"LastUpdatedTime"}
+      }
+    },
+    "DataRepositoryTaskType":{
+      "type":"string",
+      "enum":["EXPORT_TO_REPOSITORY"]
+    },
+    "DataRepositoryTasks":{
+      "type":"list",
+      "member":{"shape":"DataRepositoryTask"},
+      "max":50
+    },
     "DeleteBackupRequest":{
       "type":"structure",
       "required":["BackupId"],
@@ -525,6 +753,22 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "DescribeDataRepositoryTasksRequest":{
+      "type":"structure",
+      "members":{
+        "TaskIds":{"shape":"TaskIds"},
+        "Filters":{"shape":"DataRepositoryTaskFilters"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeDataRepositoryTasksResponse":{
+      "type":"structure",
+      "members":{
+        "DataRepositoryTasks":{"shape":"DataRepositoryTasks"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "DescribeFileSystemsRequest":{
       "type":"structure",
       "members":{
@@ -550,12 +794,14 @@
       "type":"string",
       "max":256,
       "min":1,
+      "pattern":"^.{1,256}$",
       "sensitive":true
     },
     "DirectoryUserName":{
       "type":"string",
       "max":256,
-      "min":1
+      "min":1,
+      "pattern":"^.{1,256}$"
     },
     "DnsIps":{
       "type":"list",
@@ -563,11 +809,13 @@
       "max":2,
       "min":1
     },
+    "EndTime":{"type":"timestamp"},
     "ErrorMessage":{
       "type":"string",
       "max":256,
       "min":1
     },
+    "FailedCount":{"type":"long"},
     "FileSystem":{
       "type":"structure",
       "members":{
@@ -592,7 +840,8 @@
     "FileSystemAdministratorsGroupName":{
       "type":"string",
       "max":256,
-      "min":1
+      "min":1,
+      "pattern":"^.{1,256}$"
     },
     "FileSystemFailureDetails":{
       "type":"structure",
@@ -726,6 +975,8 @@
     },
     "IpAddress":{
       "type":"string",
+      "max":15,
+      "min":7,
       "pattern":"^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$"
     },
     "KmsKeyId":{
@@ -734,6 +985,7 @@
       "min":1,
       "pattern":"^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89aAbB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}|arn:aws[a-z-]{0,7}:kms:[a-z]{2}-[a-z-]{4,}-\\d+:\\d{12}:(key|alias)\\/([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89aAbB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}|[a-zA-Z0-9:\\/_-]+)|alias\\/[a-zA-Z0-9:\\/_-]+$"
     },
+    "LastUpdatedTime":{"type":"timestamp"},
     "ListTagsForResourceRequest":{
       "type":"structure",
       "required":["ResourceARN"],
@@ -807,7 +1059,8 @@
     "OrganizationalUnitDistinguishedName":{
       "type":"string",
       "max":2000,
-      "min":1
+      "min":1,
+      "pattern":"^.{1,2000}$"
     },
     "Parameter":{
       "type":"string",
@@ -817,6 +1070,14 @@
       "type":"integer",
       "max":100,
       "min":0
+    },
+    "ReportFormat":{
+      "type":"string",
+      "enum":["REPORT_CSV_20191124"]
+    },
+    "ReportScope":{
+      "type":"string",
+      "enum":["FAILED_FILES_ONLY"]
     },
     "ResourceARN":{
       "type":"string",
@@ -906,9 +1167,10 @@
       },
       "exception":true
     },
+    "StartTime":{"type":"timestamp"},
     "StorageCapacity":{
       "type":"integer",
-      "min":1
+      "min":0
     },
     "SubnetId":{
       "type":"string",
@@ -921,6 +1183,7 @@
       "member":{"shape":"SubnetId"},
       "max":50
     },
+    "SucceededCount":{"type":"long"},
     "Tag":{
       "type":"structure",
       "members":{
@@ -931,7 +1194,8 @@
     "TagKey":{
       "type":"string",
       "max":128,
-      "min":1
+      "min":1,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
     "TagKeys":{
       "type":"list",
@@ -958,7 +1222,8 @@
     "TagValue":{
       "type":"string",
       "max":256,
-      "min":0
+      "min":0,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
     "Tags":{
       "type":"list",
@@ -966,6 +1231,18 @@
       "max":50,
       "min":1
     },
+    "TaskId":{
+      "type":"string",
+      "max":128,
+      "min":12,
+      "pattern":"^(task-[0-9a-f]{17,})$"
+    },
+    "TaskIds":{
+      "type":"list",
+      "member":{"shape":"TaskId"},
+      "max":50
+    },
+    "TotalCount":{"type":"long"},
     "UnsupportedOperation":{
       "type":"structure",
       "members":{

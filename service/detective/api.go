@@ -455,7 +455,7 @@ func (c *Detective) DeleteMembersRequest(input *DeleteMembersInput) (req *reques
 //
 // Deletes one or more member accounts from the master account behavior graph.
 // This operation can only be called by a Detective master account. That account
-// cannot use DeleteMembers to delete their own account from the Morocco graph.
+// cannot use DeleteMembers to delete their own account from the behavior graph.
 // To disable a behavior graph, the master account uses the DeleteGraph API
 // method.
 //

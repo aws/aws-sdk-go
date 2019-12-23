@@ -1,3 +1,12 @@
+Release v1.26.8 (2019-12-23)
+===
+
+### Service Client Updates
+* `service/detective`: Updates service documentation
+* `service/fsx`: Updates service API, documentation, and paginators
+* `service/health`: Updates service API, documentation, and paginators
+  * With this release, you can now centrally aggregate AWS Health events from all accounts in your AWS organization. Visit AWS Health documentation to learn more about enabling and using this feature: https://docs.aws.amazon.com/health/latest/ug/organizational-view-health.html.
+
 Release v1.26.7 (2019-12-20)
 ===
 
