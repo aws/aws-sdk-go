@@ -15,6 +15,9 @@ type StreamSigner interface {
 	GetSignature(headers, payload []byte, date time.Time) ([]byte, error)
 }
 
+// SignEncoder envelopes event stream messages
+// into an event stream message payload with included
+// signature headers using the provided signer and encoder.
 type SignEncoder struct {
 	signer     StreamSigner
 	encoder    Encoder
@@ -24,6 +27,8 @@ type SignEncoder struct {
 	closed   bool
 }
 
+// NewSignEncoder returns a new SignEncoder using the provided stream signer and
+// event stream encoder.
 func NewSignEncoder(signer StreamSigner, encoder Encoder) *SignEncoder {
 	// TODO: Need to pass down logging
 
@@ -34,6 +39,8 @@ func NewSignEncoder(signer StreamSigner, encoder Encoder) *SignEncoder {
 	}
 }
 
+// Close encodes a final event stream signing envelope with an empty event stream
+// payload. This final end-frame is used to mark the conclusion of the stream.
 func (s *SignEncoder) Close() error {
 	if s.closed {
 		return s.closeErr
@@ -52,6 +59,8 @@ func (s *SignEncoder) Close() error {
 	return nil
 }
 
+// Encode takes the provided message and add envelopes the message
+// with the required signature.
 func (s *SignEncoder) Encode(msg eventstream.Message) error {
 	payload, err := s.bufEncoder.Encode(msg)
 	if err != nil {
@@ -83,11 +92,15 @@ func (s SignEncoder) encode(payload []byte) error {
 	return s.encoder.Encode(msg)
 }
 
+// BufferEncoder is a utility that provides a buffered
+// event stream encoder
 type BufferEncoder struct {
 	encoder Encoder
 	buffer  *bytes.Buffer
 }
 
+// NewBufferEncoder returns a new BufferEncoder initialized
+// with a 1024 byte buffer.
 func NewBufferEncoder() *BufferEncoder {
 	buf := bytes.NewBuffer(make([]byte, 1024))
 	return &BufferEncoder{
@@ -96,6 +109,9 @@ func NewBufferEncoder() *BufferEncoder {
 	}
 }
 
+// Encode returns the encoded message as a byte slice.
+// The returned byte slice will be modified on the next encode call
+// and should not be held onto.
 func (e *BufferEncoder) Encode(msg eventstream.Message) ([]byte, error) {
 	e.buffer.Reset()
 
@@ -105,25 +121,3 @@ func (e *BufferEncoder) Encode(msg eventstream.Message) ([]byte, error) {
 
 	return e.buffer.Bytes(), nil
 }
-
-//// MessageSigner encapsulates signing and attaching signatures to event stream messages
-//type MessageSigner struct {
-//	Signer StreamSigner
-//}
-//
-//// SignMessage takes the given event stream message generates and adds signature information
-//// to the event stream message.
-//func (s MessageSigner) SignMessage(msg *eventstream.Message, date time.Time) error {
-//	var headers bytes.Buffer
-//	if err := eventstream.EncodeHeaders(&headers, msg.Headers); err != nil {
-//		return err
-//	}
-//
-//	sig, err := s.Signer.GetSignature(headers.Bytes(), msg.Payload, date)
-//	if err != nil {
-//		return err
-//	}
-//
-//	msg.Headers.Set(ChunkSignatureHeader, eventstream.BytesValue(sig))
-//	return nil
-//}
