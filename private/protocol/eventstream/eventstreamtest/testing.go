@@ -2,38 +2,177 @@ package eventstreamtest
 
 import (
 	"bytes"
+	"context"
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
+	"reflect"
+	"sync"
 	"testing"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/eventstream"
+	"golang.org/x/net/http2"
 )
 
 // ServeEventStream provides serving EventStream messages from a HTTP server to
 // the client. The events are sent sequentially to the client without delay.
 type ServeEventStream struct {
-	T      *testing.T
-	Events []eventstream.Message
+	T             *testing.T
+	BiDirectional bool
+
+	Events       []eventstream.Message
+	ClientEvents []eventstream.Message
+
+	ForceCloseAfter time.Duration
+
+	requestsIdx int
 }
 
 func (s ServeEventStream) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
-	encoder := eventstream.NewEncoder(flushWriter{w})
+	w.(http.Flusher).Flush()
 
-	go io.Copy(ioutil.Discard, r.Body)
+	if s.BiDirectional {
+		s.serveBiDirectionalStream(w, r)
+	} else {
+		s.serveReadOnlyStream(w, r)
+	}
+}
+
+func (s *ServeEventStream) serveReadOnlyStream(w http.ResponseWriter, r *http.Request) {
+	encoder := eventstream.NewEncoder(flushWriter{w})
 
 	for _, event := range s.Events {
 		encoder.Encode(event)
 	}
+}
+
+func (s *ServeEventStream) serveBiDirectionalStream(w http.ResponseWriter, r *http.Request) {
+	var wg sync.WaitGroup
+
+	ctx := context.Background()
+	if s.ForceCloseAfter > 0 {
+		var cancelFunc func()
+		ctx, cancelFunc = context.WithTimeout(context.Background(), s.ForceCloseAfter)
+		defer cancelFunc()
+	}
+
+	var (
+		err error
+		m   sync.Mutex
+	)
+
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		readErr := s.readEvents(ctx, r)
+		if readErr != nil {
+			m.Lock()
+			if err == nil {
+				err = readErr
+			}
+			m.Unlock()
+		}
+	}()
+
+	writeErr := s.writeEvents(ctx, w)
+	if writeErr != nil {
+		m.Lock()
+		if err != nil {
+			err = writeErr
+		}
+		m.Unlock()
+	}
+	wg.Wait()
+
+	if err != nil {
+		switch err.(type) {
+		case http2.StreamError:
+			break
+		default:
+			s.T.Error(err.Error())
+		}
+	}
+}
+
+func (s ServeEventStream) readEvents(ctx context.Context, r *http.Request) error {
+	signBuffer := make([]byte, 1024)
+	messageBuffer := make([]byte, 1024)
+	decoder := eventstream.NewDecoder(r.Body)
+
+	for {
+		select {
+		case <-ctx.Done():
+			return nil
+		default:
+		}
+		// unwrap signing envelope
+		signedMessage, err := decoder.Decode(signBuffer)
+		if err != nil {
+			if err == io.EOF {
+				break
+			}
+			return err
+		}
+
+		// get service event message from payload
+		msg, err := eventstream.Decode(bytes.NewReader(signedMessage.Payload), messageBuffer)
+		if err != nil {
+			if err == io.EOF {
+				break
+			}
+			return err
+		}
+
+		// empty payload is expected for the last signing message
+		if len(msg.Payload) == 0 {
+			break
+		}
+
+		if len(s.ClientEvents) > 0 {
+			i := s.requestsIdx
+			s.requestsIdx++
+
+			if e, a := s.ClientEvents[i], msg; !reflect.DeepEqual(e, a) {
+				return fmt.Errorf("expected %v, got %v", e, a)
+			}
+		}
+	}
+
+	return nil
+}
+
+func (s *ServeEventStream) writeEvents(ctx context.Context, w http.ResponseWriter) error {
+	encoder := eventstream.NewEncoder(flushWriter{w})
+
+	var event eventstream.Message
+	pendingEvents := s.Events
+
+	for len(pendingEvents) > 0 {
+		event, pendingEvents = pendingEvents[0], pendingEvents[1:]
+		select {
+		case <-ctx.Done():
+			return nil
+		default:
+			err := encoder.Encode(event)
+			if err != nil {
+				if err == io.EOF {
+					return nil
+				}
+				return fmt.Errorf("expected no error encoding event, got %v", err)
+			}
+		}
+	}
+
+	return nil
 }
 
 // SetupEventStreamSession creates a HTTP server SDK session for communicating
