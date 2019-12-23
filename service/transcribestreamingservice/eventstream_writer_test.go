@@ -37,13 +37,16 @@ func TestStartStreamTranscription_Write(t *testing.T) {
 	}
 
 	stream := resp.GetStream()
-	defer stream.Close()
 
 	for _, event := range writeRequests {
 		err = stream.Send(context.Background(), &event)
 		if err != nil {
 			t.Fatalf("expect no error, got %v", err)
 		}
+	}
+
+	if err := stream.Close(); err != nil {
+		t.Errorf("expect no error, got %v", err)
 	}
 }
 

@@ -15,11 +15,11 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/defaults"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/eventstream"
+	"golang.org/x/net/http2"
 )
 
 // ServeEventStream provides serving EventStream messages from a HTTP server to
@@ -65,112 +65,114 @@ func (s *ServeEventStream) serveBiDirectionalStream(w http.ResponseWriter, r *ht
 		defer cancelFunc()
 	}
 
-	wg.Add(1)
-	go func() {
-		defer wg.Done()
-		s.readEvents(ctx, r)
-	}()
+	var (
+		err error
+		m   sync.Mutex
+	)
 
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
-		s.writeEvents(ctx, w)
-	}()
-
-	wg.Wait()
-}
-
-func (s ServeEventStream) readEvents(ctx context.Context, r *http.Request) {
-	messages := make(chan eventstream.Message)
-
-	go func() {
-		defer close(messages)
-
-		payloadBuffer := make([]byte, 1024)
-		decoder := eventstream.NewDecoder(r.Body, eventstream.DecodeWithLogger(defaults.Config().Logger))
-
-		for {
-			// unwrap signing envelope
-			message, err := decoder.Decode(payloadBuffer)
-			if err != nil {
-				break
+		readErr := s.readEvents(ctx, r)
+		if readErr != nil {
+			m.Lock()
+			if err == nil {
+				err = readErr
 			}
-			messages <- message
+			m.Unlock()
 		}
 	}()
 
-	payloadBuffer := make([]byte, 1024)
+	writeErr := s.writeEvents(ctx, w)
+	if writeErr != nil {
+		m.Lock()
+		if err != nil {
+			err = writeErr
+		}
+		m.Unlock()
+	}
+	wg.Wait()
 
-eventLoop:
+	if err != nil {
+		switch err.(type) {
+		case http2.StreamError:
+			break
+		default:
+			s.T.Error(err.Error())
+		}
+	}
+}
+
+func (s ServeEventStream) readEvents(ctx context.Context, r *http.Request) error {
+	signBuffer := make([]byte, 1024)
+	messageBuffer := make([]byte, 1024)
+	decoder := eventstream.NewDecoder(r.Body)
+
 	for {
 		select {
-		case message, ok := <-messages:
-			if !ok {
-				break eventLoop
-			}
-
-			// get service event message from payload
-			message, err := eventstream.Decode(bytes.NewReader(message.Payload), payloadBuffer)
-			if err != nil {
-				if err == io.EOF {
-					break eventLoop
-				}
-				s.T.Errorf("expected no error decoding event, got %v", err)
-				break eventLoop
-			}
-
-			// empty payload is expected for the last signing message
-			if len(message.Payload) == 0 {
-				break eventLoop
-			}
-
-			if len(s.ClientEvents) > 0 {
-				i := s.requestsIdx
-				s.requestsIdx++
-
-				if e, a := s.ClientEvents[i], message; !reflect.DeepEqual(e, a) {
-					s.T.Errorf("expected %v, got %v", e, a)
-					break eventLoop
-				}
-			}
 		case <-ctx.Done():
-			break eventLoop
+			return nil
+		default:
+		}
+		// unwrap signing envelope
+		signedMessage, err := decoder.Decode(signBuffer)
+		if err != nil {
+			if err == io.EOF {
+				break
+			}
+			return err
+		}
+
+		// get service event message from payload
+		msg, err := eventstream.Decode(bytes.NewReader(signedMessage.Payload), messageBuffer)
+		if err != nil {
+			if err == io.EOF {
+				break
+			}
+			return err
+		}
+
+		// empty payload is expected for the last signing message
+		if len(msg.Payload) == 0 {
+			break
+		}
+
+		if len(s.ClientEvents) > 0 {
+			i := s.requestsIdx
+			s.requestsIdx++
+
+			if e, a := s.ClientEvents[i], msg; !reflect.DeepEqual(e, a) {
+				return fmt.Errorf("expected %v, got %v", e, a)
+			}
 		}
 	}
 
-	return
+	return nil
 }
 
-func (s *ServeEventStream) writeEvents(ctx context.Context, w http.ResponseWriter) {
-	events := make(chan eventstream.Message)
-	defer close(events)
-
-	go func() {
-		encoder := eventstream.NewEncoder(flushWriter{w})
-		for event := range events {
-			err := encoder.Encode(event)
-			if err != nil {
-				if err == io.EOF {
-					return
-				}
-				s.T.Errorf("expected no error encoding event, got %v", err)
-			}
-		}
-	}()
+func (s *ServeEventStream) writeEvents(ctx context.Context, w http.ResponseWriter) error {
+	encoder := eventstream.NewEncoder(flushWriter{w})
 
 	var event eventstream.Message
 	pendingEvents := s.Events
 
-eventLoop:
 	for len(pendingEvents) > 0 {
 		event, pendingEvents = pendingEvents[0], pendingEvents[1:]
 		select {
-		case events <- event:
-			continue
 		case <-ctx.Done():
-			break eventLoop
+			return nil
+		default:
+			err := encoder.Encode(event)
+			if err != nil {
+				if err == io.EOF {
+					return nil
+				}
+				return fmt.Errorf("expected no error encoding event, got %v", err)
+			}
 		}
 	}
+
+	return nil
 }
 
 // SetupEventStreamSession creates a HTTP server SDK session for communicating
