@@ -101,8 +101,8 @@
     "ItemType":{
       "type":"string",
       "enum":[
-        "PRONUNCIATION",
-        "PUNCTUATION"
+        "pronunciation",
+        "punctuation"
       ]
     },
     "LanguageCode":{
@@ -112,7 +112,8 @@
         "en-GB",
         "es-US",
         "fr-CA",
-        "fr-FR"
+        "fr-FR",
+        "en-AU"
       ]
     },
     "LimitExceededException":{
