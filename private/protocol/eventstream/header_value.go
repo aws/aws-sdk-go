@@ -460,6 +460,8 @@ func (v *TimestampValue) decode(r io.Reader) error {
 	*v = TimestampValue(timeFromEpochMilli(int64(n)))
 	return nil
 }
+
+// MarshalJSON implements the json.Marshaler interface
 func (v TimestampValue) MarshalJSON() ([]byte, error) {
 	return []byte(v.String()), nil
 }
