@@ -8,10 +8,15 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 )
 
+// RequireHTTPMinProtocol request handler is used to enforce that
+// the target endpoint supports the given major and minor HTTP protocol version.
 type RequireHTTPMinProtocol struct {
 	Major, Minor int
 }
 
+// Handler will mark the request.Request with an error if the
+// target endpoint did not connect with the required HTTP protocol
+// major and minor version.
 func (p RequireHTTPMinProtocol) Handler(r *request.Request) {
 	if r.Error != nil || r.HTTPResponse == nil {
 		return
@@ -26,6 +31,8 @@ func (p RequireHTTPMinProtocol) Handler(r *request.Request) {
 	}
 }
 
+// ErrCodeMinimumHTTPProtocolError error code is returned when the target endpoint
+// did not match the required HTTP major and minor protocol version.
 const ErrCodeMinimumHTTPProtocolError = "MinimumHTTPProtocolError"
 
 func newMinHTTPProtoError(major, minor int, r *request.Request) error {

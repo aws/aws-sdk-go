@@ -46,6 +46,8 @@ func (w *StreamWriter) safeClose() {
 	close(w.done)
 }
 
+// ErrorSet returns a channel which will be closed
+// if an error occurs.
 func (w *StreamWriter) ErrorSet() <-chan struct{} {
 	return w.err.ErrorSet()
 }
