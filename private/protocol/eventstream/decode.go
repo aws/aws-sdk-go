@@ -54,6 +54,15 @@ func (d *Decoder) Decode(payloadBuf []byte) (m Message, err error) {
 		}()
 	}
 
+	m, err = Decode(reader, payloadBuf)
+
+	return m, err
+}
+
+// Decode attempts to decode a single message from the event stream reader.
+// Will return the event stream message, or error if Decode fails to read
+// the message from the reader.
+func Decode(reader io.Reader, payloadBuf []byte) (m Message, err error) {
 	crc := crc32.New(crc32IEEETable)
 	hashReader := io.TeeReader(reader, crc)
 
