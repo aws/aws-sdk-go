@@ -26,6 +26,33 @@
 //    * DescribeEntityAggregates: A count of the number of affected entities
 //    that meet specified criteria.
 //
+// AWS Health integrates with AWS Organizations to provide a centralized view
+// of AWS Health events across all accounts in your organization.
+//
+//    * DescribeEventsForOrganization: Summary information about events across
+//    the organization.
+//
+//    * DescribeAffectedAccountsForOrganization: List of accounts in your organization
+//    impacted by an event.
+//
+//    * DescribeEventDetailsForOrganization: Detailed information about events
+//    in your organization.
+//
+//    * DescribeAffectedEntitiesForOrganization: Information about AWS resources
+//    in your organization that are affected by events.
+//
+// You can use the following operations to enable or disable AWS Health from
+// working with AWS Organizations.
+//
+//    * EnableHealthServiceAccessForOrganization: Enables AWS Health to work
+//    with AWS Organizations.
+//
+//    * DisableHealthServiceAccessForOrganization: Disables AWS Health from
+//    working with AWS Organizations.
+//
+//    * DescribeHealthServiceStatusForOrganization: Status information about
+//    enabling or disabling AWS Health from working with AWS Organizations.
+//
 // The Health API requires a Business or Enterprise support plan from AWS Support
 // (http://aws.amazon.com/premiumsupport/). Calling the Health API from an account
 // that does not have a Business or Enterprise support plan causes a SubscriptionRequiredException.
