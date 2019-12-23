@@ -813,20 +813,23 @@ type Result struct {
 	// contains one item that contains the result of the transcription.
 	Alternatives []*Alternative `type:"list"`
 
-	// The offset in milliseconds from the beginning of the audio stream to the
-	// end of the result.
+	// The offset in seconds from the beginning of the audio stream to the end of
+	// the result.
 	EndTime *float64 `type:"double"`
 
-	// true to indicate that Amazon Transcribe has additional transcription data
-	// to send, false to indicate that this is the last transcription result for
-	// the audio stream.
+	// Amazon Transcribe divides the incoming audio stream into segments at natural
+	// points in the audio. Transcription results are returned based on these segments.
+	//
+	// The IsPartial field is true to indicate that Amazon Transcribe has additional
+	// transcription data to send, false to indicate that this is the last transcription
+	// result for the segment.
 	IsPartial *bool `type:"boolean"`
 
 	// A unique identifier for the result.
 	ResultId *string `type:"string"`
 
-	// The offset in milliseconds from the beginning of the audio stream to the
-	// beginning of the result.
+	// The offset in seconds from the beginning of the audio stream to the beginning
+	// of the result.
 	StartTime *float64 `type:"double"`
 }
 
@@ -873,7 +876,7 @@ func (s *Result) SetStartTime(v float64) *Result {
 type StartStreamTranscriptionInput struct {
 	_ struct{} `type:"structure" payload:"AudioStream"`
 
-	// Indicates the language used in the input audio stream.
+	// Indicates the source language used in the input audio stream.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `location:"header" locationName:"x-amzn-transcribe-language-code" type:"string" required:"true" enum:"LanguageCode"`
@@ -1246,10 +1249,10 @@ func unmarshalerForTranscriptResultStreamEvent(eventType string) (eventstreamapi
 
 const (
 	// ItemTypePronunciation is a ItemType enum value
-	ItemTypePronunciation = "PRONUNCIATION"
+	ItemTypePronunciation = "pronunciation"
 
 	// ItemTypePunctuation is a ItemType enum value
-	ItemTypePunctuation = "PUNCTUATION"
+	ItemTypePunctuation = "punctuation"
 )
 
 const (
@@ -1267,6 +1270,9 @@ const (
 
 	// LanguageCodeFrFr is a LanguageCode enum value
 	LanguageCodeFrFr = "fr-FR"
+
+	// LanguageCodeEnAu is a LanguageCode enum value
+	LanguageCodeEnAu = "en-AU"
 )
 
 const (
