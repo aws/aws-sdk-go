@@ -6,9 +6,12 @@ package kinesis
 
 import (
 	"bytes"
+	"context"
 	"io/ioutil"
 	"net/http"
 	"reflect"
+	"strings"
+	"sync"
 	"testing"
 	"time"
 
@@ -26,6 +29,9 @@ import (
 
 var _ time.Time
 var _ awserr.Error
+var _ context.Context
+var _ sync.WaitGroup
+var _ strings.Reader
 
 func TestSubscribeToShard_Read(t *testing.T) {
 	expectEvents, eventMsgs := mockSubscribeToShardReadEvents()
