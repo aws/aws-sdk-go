@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws/request"
@@ -43,7 +42,8 @@ func TestEventReader(t *testing.T) {
 	var unmarshalers request.HandlerList
 	unmarshalers.PushBackNamed(restjson.UnmarshalHandler)
 
-	eventReader := NewEventReader(stream,
+	decoder := eventstream.NewDecoder(stream)
+	eventReader := NewEventReader(decoder,
 		protocol.HandlerPayloadUnmarshal{
 			Unmarshalers: unmarshalers,
 		},
@@ -92,7 +92,8 @@ func TestEventReader_Error(t *testing.T) {
 	var unmarshalers request.HandlerList
 	unmarshalers.PushBackNamed(restjson.UnmarshalHandler)
 
-	eventReader := NewEventReader(stream,
+	decoder := eventstream.NewDecoder(stream)
+	eventReader := NewEventReader(decoder,
 		protocol.HandlerPayloadUnmarshal{
 			Unmarshalers: unmarshalers,
 		},
@@ -134,7 +135,8 @@ func TestEventReader_Exception(t *testing.T) {
 	var unmarshalers request.HandlerList
 	unmarshalers.PushBackNamed(restjson.UnmarshalHandler)
 
-	eventReader := NewEventReader(stream,
+	decoder := eventstream.NewDecoder(stream)
+	eventReader := NewEventReader(decoder,
 		protocol.HandlerPayloadUnmarshal{
 			Unmarshalers: unmarshalers,
 		},
@@ -164,9 +166,10 @@ func BenchmarkEventReader(b *testing.B) {
 			eventMessageTypeHeader,
 			eventstream.Header{
 				Name:  EventTypeHeader,
-				Value: eventstream.StringValue("eventABC"),
+				Value: eventstream.StringValue("eventStructured"),
 			},
 		},
+		Payload: []byte(`{"String":"stringfield","Number":123,"Nested":{"String":"fieldstring","Number":321}}`),
 	}
 	if err := encoder.Encode(msg); err != nil {
 		b.Fatalf("failed to encode message, %v", err)
@@ -176,14 +179,15 @@ func BenchmarkEventReader(b *testing.B) {
 	var unmarshalers request.HandlerList
 	unmarshalers.PushBackNamed(restjson.UnmarshalHandler)
 
-	eventReader := NewEventReader(ioutil.NopCloser(stream),
+	decoder := eventstream.NewDecoder(stream)
+	eventReader := NewEventReader(decoder,
 		protocol.HandlerPayloadUnmarshal{
 			Unmarshalers: unmarshalers,
 		},
 		unmarshalerForEventType,
 	)
-	b.ResetTimer()
 
+	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		stream.Seek(0, 0)
 
@@ -201,6 +205,8 @@ func unmarshalerForEventType(eventType string) (Unmarshaler, error) {
 	switch eventType {
 	case "eventABC":
 		return &eventABC{}, nil
+	case "eventStructured":
+		return &eventStructured{}, nil
 	case "exception":
 		return &exceptionType{}, nil
 	default:
@@ -222,7 +228,7 @@ func (e *eventABC) UnmarshalEvent(
 	return nil
 }
 
-func createStream(msgs ...eventstream.Message) io.ReadCloser {
+func createStream(msgs ...eventstream.Message) io.Reader {
 	w := bytes.NewBuffer(nil)
 
 	encoder := eventstream.NewEncoder(w)
@@ -233,7 +239,7 @@ func createStream(msgs ...eventstream.Message) io.ReadCloser {
 		}
 	}
 
-	return ioutil.NopCloser(w)
+	return w
 }
 
 type exceptionType struct {

@@ -306,38 +306,3 @@ func backfillAuthType(typ AuthType, opNames ...string) func(*API) error {
 		return nil
 	}
 }
-
-func (a *API) renameS3EventStreamMember() {
-	if a.PackageName() != "s3" {
-		return
-	}
-
-	// Rewrite the S3 SelectObjectContent EventStream response member ref name
-	// with "EventStream" for backwards compatibility.
-	customizeEventStreamOutputMember(a, "SelectObjectContent", "Payload")
-}
-
-// Customize an operation's event stream output member to be "EventStream" for
-// backwards compatible behavior with APIs that incorrectly renamed the member
-// when event stream support was first added.
-func customizeEventStreamOutputMember(a *API, opName, memberName string) error {
-	const replaceName = "EventStream"
-
-	op, ok := a.Operations[opName]
-
-	if !ok {
-		return fmt.Errorf("unable to customize %s, operation not found", opName)
-	} else if _, ok = op.OutputRef.Shape.MemberRefs[replaceName]; ok {
-		return fmt.Errorf("unable to customize %s operation, output shape has %s member",
-			opName, replaceName)
-	} else if _, ok = op.OutputRef.Shape.MemberRefs[memberName]; !ok {
-		return fmt.Errorf("unable to customize %s operation, %s member not found",
-			opName, memberName)
-	}
-
-	ref := op.OutputRef.Shape.MemberRefs[memberName]
-	delete(op.OutputRef.Shape.MemberRefs, memberName)
-	op.OutputRef.Shape.MemberRefs[replaceName] = ref
-
-	return nil
-}
