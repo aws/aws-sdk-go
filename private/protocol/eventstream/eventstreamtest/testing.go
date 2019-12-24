@@ -10,6 +10,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"reflect"
+	"strings"
 	"sync"
 	"testing"
 	"time"
@@ -20,6 +21,11 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/eventstream"
 	"golang.org/x/net/http2"
+)
+
+const (
+	errClientDisconnected = "client disconnected"
+	errStreamClosed       = "http2: stream closed"
 )
 
 // ServeEventStream provides serving EventStream messages from a HTTP server to
@@ -93,14 +99,24 @@ func (s *ServeEventStream) serveBiDirectionalStream(w http.ResponseWriter, r *ht
 	}
 	wg.Wait()
 
-	if err != nil {
-		switch err.(type) {
-		case http2.StreamError:
-			break
-		default:
-			s.T.Error(err.Error())
+	if err != nil && isError(err) {
+		s.T.Error(err.Error())
+	}
+}
+
+func isError(err error) bool {
+	switch err.(type) {
+	case http2.StreamError:
+		return false
+	}
+
+	for _, s := range []string{errClientDisconnected, errStreamClosed} {
+		if strings.Contains(err.Error(), s) {
+			return false
 		}
 	}
+
+	return true
 }
 
 func (s ServeEventStream) readEvents(ctx context.Context, r *http.Request) error {
