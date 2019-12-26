@@ -11658,6 +11658,9 @@ type CopyObjectInput struct {
 	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// A map of metadata to store with the object in S3.
+	// By default keys received from the service api response will be formatted
+	// using net/http.CanonicalHeaderKey.
+	// Set aws.Config.LowerCaseHeaderMaps to `true` to lower case keys.
 	Metadata map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
 
 	// Specifies whether the metadata is copied from the source object or replaced
@@ -12425,6 +12428,9 @@ type CreateMultipartUploadInput struct {
 	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// A map of metadata to store with the object in S3.
+	// By default keys received from the service api response will be formatted
+	// using net/http.CanonicalHeaderKey.
+	// Set aws.Config.LowerCaseHeaderMaps to `true` to lower case keys.
 	Metadata map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
 
 	// Specifies whether you want to apply a Legal Hold to the uploaded object.
@@ -17692,6 +17698,9 @@ type GetObjectOutput struct {
 	LastModified *time.Time `location:"header" locationName:"Last-Modified" type:"timestamp"`
 
 	// A map of metadata to store with the object in S3.
+	// By default keys received from the service api response will be formatted
+	// using net/http.CanonicalHeaderKey.
+	// Set aws.Config.LowerCaseHeaderMaps to `true` to lower case keys.
 	Metadata map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
 
 	// This is set to the number of metadata entries not returned in x-amz-meta
@@ -18919,6 +18928,9 @@ type HeadObjectOutput struct {
 	LastModified *time.Time `location:"header" locationName:"Last-Modified" type:"timestamp"`
 
 	// A map of metadata to store with the object in S3.
+	// By default keys received from the service api response will be formatted
+	// using net/http.CanonicalHeaderKey.
+	// Set aws.Config.LowerCaseHeaderMaps to `true` to lower case keys.
 	Metadata map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
 
 	// This is set to the number of metadata entries not returned in x-amz-meta
@@ -25696,6 +25708,9 @@ type PutObjectInput struct {
 	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// A map of metadata to store with the object in S3.
+	// By default keys received from the service api response will be formatted
+	// using net/http.CanonicalHeaderKey.
+	// Set aws.Config.LowerCaseHeaderMaps to `true` to lower case keys.
 	Metadata map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
 
 	// Specifies whether a legal hold will be applied to this object. For more information

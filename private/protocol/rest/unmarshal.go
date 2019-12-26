@@ -121,7 +121,7 @@ func unmarshalLocationElements(r *request.Request, v reflect.Value) {
 				}
 			case "headers":
 				prefix := field.Tag.Get("locationName")
-				err := unmarshalHeaderMap(m, r.HTTPResponse.Header, prefix, aws.BoolValue(r.Config.NormalizeHeaders))
+				err := unmarshalHeaderMap(m, r.HTTPResponse.Header, prefix, aws.BoolValue(r.Config.LowerCaseHeaderMaps))
 				if err != nil {
 					r.Error = awserr.New(request.ErrCodeSerialization, "failed to decode REST response", err)
 					break

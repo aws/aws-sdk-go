@@ -114,7 +114,7 @@ func TestNormalizedHeaders(t *testing.T) {
 
 	for name, tt := range cases {
 		t.Run(name, func(t *testing.T) {
-			cfg := &aws.Config{Region: aws.String("us-west-2"), NormalizeHeaders: &tt.normalize}
+			cfg := &aws.Config{Region: aws.String("us-west-2"), LowerCaseHeaderMaps: &tt.normalize}
 			c := unit.Session.ClientConfig("testService", cfg)
 			svc := client.New(
 				*cfg,

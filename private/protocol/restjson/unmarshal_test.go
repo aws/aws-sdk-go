@@ -1708,8 +1708,14 @@ type OutputService10TestShapeOutputService10TestCaseOperation1Input struct {
 type OutputService10TestShapeOutputService10TestCaseOperation1Output struct {
 	_ struct{} `type:"structure"`
 
+	// By default keys received from the service api response will be formatted
+	// using net/http.CanonicalHeaderKey.
+	// Set aws.Config.LowerCaseHeaderMaps to `true` to lower case keys.
 	AllHeaders map[string]*string `location:"headers" type:"map"`
 
+	// By default keys received from the service api response will be formatted
+	// using net/http.CanonicalHeaderKey.
+	// Set aws.Config.LowerCaseHeaderMaps to `true` to lower case keys.
 	PrefixedHeaders map[string]*string `location:"headers" locationName:"X-" type:"map"`
 }
 

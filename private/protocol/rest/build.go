@@ -107,7 +107,7 @@ func buildLocationElements(r *request.Request, v reflect.Value, buildGETQuery bo
 			var err error
 			switch field.Tag.Get("location") {
 			case "headers": // header maps
-				err = buildHeaderMap(&r.HTTPRequest.Header, m, field.Tag, aws.BoolValue(r.Config.NormalizeHeaders))
+				err = buildHeaderMap(&r.HTTPRequest.Header, m, field.Tag, aws.BoolValue(r.Config.LowerCaseHeaderMaps))
 			case "header":
 				err = buildHeader(&r.HTTPRequest.Header, m, name, field.Tag)
 			case "uri":
