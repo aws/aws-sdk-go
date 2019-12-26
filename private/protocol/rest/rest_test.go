@@ -1,3 +1,5 @@
+// +build go1.7
+
 package rest_test
 
 import (

@@ -1,13 +1,13 @@
 // +build go1.7
 
-package awsutil
+package strings
 
 import (
 	"strings"
 	"testing"
 )
 
-func TestStringPrefixFold(t *testing.T) {
+func TestHasPrefixFold(t *testing.T) {
 	type args struct {
 		s      string
 		prefix string
@@ -57,18 +57,25 @@ func TestStringPrefixFold(t *testing.T) {
 			},
 			want: true,
 		},
+		"mixed-case prefixes": {
+			args: args{
+				s:      "SoMe String",
+				prefix: "sOme",
+			},
+			want: true,
+		},
 	}
 	for name, tt := range tests {
 		t.Run(name, func(t *testing.T) {
-			if got := StringHasPrefixFold(tt.args.s, tt.args.prefix); got != tt.want {
-				t.Errorf("StringHasPrefixFold() = %v, want %v", got, tt.want)
+			if got := HasPrefixFold(tt.args.s, tt.args.prefix); got != tt.want {
+				t.Errorf("HasPrefixFold() = %v, want %v", got, tt.want)
 			}
 		})
 	}
 }
 
-func BenchmarkStringHasPrefixFold(b *testing.B) {
-	StringHasPrefixFold("SoME string", "sOmE")
+func BenchmarkHasPrefixFold(b *testing.B) {
+	HasPrefixFold("SoME string", "sOmE")
 }
 
 func BenchmarkHasPrefix(b *testing.B) {

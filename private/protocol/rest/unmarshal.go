@@ -14,8 +14,8 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	awsStrings "github.com/aws/aws-sdk-go/internal/strings"
 	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
@@ -154,7 +154,7 @@ func unmarshalHeaderMap(r reflect.Value, headers http.Header, prefix string, nor
 	case map[string]*string: // we only support string map value types
 		out := map[string]*string{}
 		for k, v := range headers {
-			if awsutil.StringHasPrefixFold(k, prefix) {
+			if awsStrings.HasPrefixFold(k, prefix) {
 				if normalize == true {
 					k = strings.ToLower(k)
 				} else {
