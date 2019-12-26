@@ -951,6 +951,20 @@ func (a *API) writeInputOutputLocationName() {
 	}
 }
 
+func (a *API) addHeaderMapDocumentation() {
+	for _, shape := range a.Shapes {
+		for _, shapeRef := range shape.MemberRefs {
+			if shapeRef.Location == "headers" {
+				shapeRef.Documentation += `
+// By default keys received from the service api response will be formatted
+// using net/http.CanonicalHeaderKey.
+// Set aws.Config.LowerCaseHeaderMaps to ` + "`true`" + ` to lower case keys.
+`
+			}
+		}
+	}
+}
+
 func getDeprecatedMessage(msg string, name string) string {
 	if len(msg) == 0 {
 		return name + " has been deprecated"
