@@ -168,7 +168,7 @@ type Config struct {
 	// Set this to `true` to have header names normalized in API responses.
 	// This settings affects S3 x-amz-meta headers, and normalizes the key names
 	// to lower case.
-	NormalizeHeaders *bool
+	LowerCaseHeaderMaps *bool
 
 	// Set this to `true` to disable the EC2Metadata client from overriding the
 	// default http.Client's Timeout. This is helpful if you do not want the
