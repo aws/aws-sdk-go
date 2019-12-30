@@ -291,6 +291,7 @@ func NewSessionWithOptions(opts Options) (*Session, error) {
 
 	if len(opts.Profile) != 0 {
 		envCfg.Profile = opts.Profile
+		envCfg.EnableSharedConfig = true
 	}
 
 	switch opts.SharedConfigState {
