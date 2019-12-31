@@ -68,7 +68,10 @@ func TestNew_WithSessionLoadError(t *testing.T) {
 	os.Setenv("AWS_PROFILE", "assume_role_invalid_source_profile")
 
 	logger := bytes.Buffer{}
-	s := New(&aws.Config{Logger: &mockLogger{&logger}})
+	s := New(&aws.Config{
+		Region: aws.String("us-west-2"),
+		Logger: &mockLogger{&logger},
+	})
 
 	if s == nil {
 		t.Errorf("expect not nil")
@@ -178,8 +181,8 @@ func TestNewSession_ResolveEndpointError(t *testing.T) {
 		t.Errorf("expect %v validation error, got %v", e, a)
 	}
 
-	if e, a := "unable to resolve", logger.Buffer.String(); !strings.Contains(a, e) {
-		t.Errorf("expect %v logged, got %v", e, a)
+	if v := logger.Buffer.String(); len(v) != 0 {
+		t.Errorf("expect nothing logged, got %s", v)
 	}
 }
 
