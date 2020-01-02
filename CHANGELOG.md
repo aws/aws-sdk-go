@@ -1,3 +1,20 @@
+Release v1.27.0 (2020-01-02)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service documentation
+* `service/ecr`: Updates service waiters
+  * Adds waiters for ImageScanComplete and LifecyclePolicyPreviewComplete
+* `service/lex-models`: Updates service documentation
+* `service/lightsail`: Updates service API and documentation
+  * This release adds support for Certificate Authority (CA) certificate identifier to managed databases in Amazon Lightsail.
+
+### SDK Features
+* `services/transcribestreamingservice`: Support for Amazon Transcribe Streaming ([#3048](https://github.com/aws/aws-sdk-go/pull/3048))
+  * The SDK now supports the Amazon Transcribe Streaming APIs by utilizing event stream encoding over HTTP/2
+  * See [Amazon Transcribe Developer Guide](https://docs.aws.amazon.com/transcribe/latest/dg)
+  * Fixes [#2487](https://github.com/aws/aws-sdk-go/issues/2487)
+
 Release v1.26.8 (2019-12-23)
 ===
 

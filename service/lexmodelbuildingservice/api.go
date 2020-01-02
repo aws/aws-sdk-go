@@ -4691,8 +4691,10 @@ type ConversationLogsRequest struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of an IAM role with permission to write to
-	// your CloudWatch Logs for text logs and your S3 bucket for audio logs. For
-	// more information, see Creating Conversation Logs (https://docs.aws.amazon.com/lex/latest/dg/conversation-logs.html).
+	// your CloudWatch Logs for text logs and your S3 bucket for audio logs. If
+	// audio encryption is enabled, this role also provides access permission for
+	// the AWS KMS key used for encrypting audio logs. For more information, see
+	// Creating an IAM Role and Policy for Conversation Logs (https://docs.aws.amazon.com/lex/latest/dg/conversation-logs-role-and-policy.html).
 	//
 	// IamRoleArn is a required field
 	IamRoleArn *string `locationName:"iamRoleArn" min:"20" type:"string" required:"true"`
@@ -4763,7 +4765,7 @@ type ConversationLogsResponse struct {
 	// CloudWatch Logs or an S3 bucket.
 	IamRoleArn *string `locationName:"iamRoleArn" min:"20" type:"string"`
 
-	// The settings for your conversation logs.
+	// The settings for your conversation logs. You can log text, audio, or both.
 	LogSettings []*LogSettingsResponse `locationName:"logSettings" type:"list"`
 }
 
@@ -8809,7 +8811,8 @@ func (s *IntentMetadata) SetVersion(v string) *IntentMetadata {
 	return s
 }
 
-// Settings used to configure conversation logs.
+// Settings used to configure delivery mode and destination for conversation
+// logs.
 type LogSettingsRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -8914,10 +8917,9 @@ type LogSettingsResponse struct {
 	// where the logs are delivered.
 	ResourceArn *string `locationName:"resourceArn" min:"1" type:"string"`
 
-	// The resource prefix of the S3 object or CloudWatch Logs log entry where logs
-	// are delivered. For both S3 and CloudWatch Logs, the prefix is:
-	//
-	// aws/lex/bot-name/bot-alias/bot-version
+	// The resource prefix is the first part of the S3 object key within the S3
+	// bucket that you specified to contain audio logs. For CloudWatch Logs it is
+	// the prefix of the log stream name within the log group that you specified.
 	ResourcePrefix *string `locationName:"resourcePrefix" type:"string"`
 }
 
@@ -9143,7 +9145,7 @@ type PutBotAliasInput struct {
 	// you get a PreconditionFailedException exception.
 	Checksum *string `locationName:"checksum" type:"string"`
 
-	// Settings that determine how Amazon Lex uses conversation logs for the alias.
+	// Settings for conversation logs for the alias.
 	ConversationLogs *ConversationLogsRequest `locationName:"conversationLogs" type:"structure"`
 
 	// A description of the alias.
