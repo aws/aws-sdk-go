@@ -190,6 +190,12 @@ type ECRAPI interface {
 	UploadLayerPart(*ecr.UploadLayerPartInput) (*ecr.UploadLayerPartOutput, error)
 	UploadLayerPartWithContext(aws.Context, *ecr.UploadLayerPartInput, ...request.Option) (*ecr.UploadLayerPartOutput, error)
 	UploadLayerPartRequest(*ecr.UploadLayerPartInput) (*request.Request, *ecr.UploadLayerPartOutput)
+
+	WaitUntilImageScanComplete(*ecr.DescribeImageScanFindingsInput) error
+	WaitUntilImageScanCompleteWithContext(aws.Context, *ecr.DescribeImageScanFindingsInput, ...request.WaiterOption) error
+
+	WaitUntilLifecyclePolicyPreviewComplete(*ecr.GetLifecyclePolicyPreviewInput) error
+	WaitUntilLifecyclePolicyPreviewCompleteWithContext(aws.Context, *ecr.GetLifecyclePolicyPreviewInput, ...request.WaiterOption) error
 }
 
 var _ ECRAPI = (*ecr.ECR)(nil)

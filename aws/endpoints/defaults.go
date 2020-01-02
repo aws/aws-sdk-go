@@ -4561,6 +4561,13 @@ var awscnPartition = partition{
 				"cn-north-1": endpoint{},
 			},
 		},
+		"health": service{
+
+			Endpoints: endpoints{
+				"cn-north-1":     endpoint{},
+				"cn-northwest-1": endpoint{},
+			},
+		},
 		"iam": service{
 			PartitionEndpoint: "aws-cn-global",
 			IsRegionalized:    boxedFalse,
@@ -5715,7 +5722,6 @@ var awsisoPartition = partition{
 		},
 		"application-autoscaling": service{
 			Defaults: endpoint{
-				Hostname:  "autoscaling.us-iso-east-1.c2s.ic.gov",
 				Protocols: []string{"http", "https"},
 			},
 			Endpoints: endpoints{
@@ -6044,7 +6050,6 @@ var awsisobPartition = partition{
 	Services: services{
 		"application-autoscaling": service{
 			Defaults: endpoint{
-				Hostname:  "autoscaling.us-isob-east-1.sc2s.sgov.gov",
 				Protocols: []string{"http", "https"},
 			},
 			Endpoints: endpoints{

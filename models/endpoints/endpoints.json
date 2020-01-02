@@ -4313,6 +4313,12 @@
         },
         "isRegionalized" : true
       },
+      "health" : {
+        "endpoints" : {
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
+        }
+      },
       "iam" : {
         "endpoints" : {
           "aws-cn-global" : {
@@ -5348,7 +5354,6 @@
       },
       "application-autoscaling" : {
         "defaults" : {
-          "hostname" : "autoscaling.us-iso-east-1.c2s.ic.gov",
           "protocols" : [ "http", "https" ]
         },
         "endpoints" : {
@@ -5618,7 +5623,6 @@
     "services" : {
       "application-autoscaling" : {
         "defaults" : {
-          "hostname" : "autoscaling.us-isob-east-1.sc2s.sgov.gov",
           "protocols" : [ "http", "https" ]
         },
         "endpoints" : {

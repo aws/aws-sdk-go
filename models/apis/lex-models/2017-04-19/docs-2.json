@@ -281,7 +281,7 @@
     "ConversationLogsRequest": {
       "base": "<p>Provides the settings needed for conversation logs.</p>",
       "refs": {
-        "PutBotAliasRequest$conversationLogs": "<p>Settings that determine how Amazon Lex uses conversation logs for the alias.</p>"
+        "PutBotAliasRequest$conversationLogs": "<p>Settings for conversation logs for the alias.</p>"
       }
     },
     "ConversationLogsResponse": {
@@ -665,7 +665,7 @@
     "IamRoleArn": {
       "base": null,
       "refs": {
-        "ConversationLogsRequest$iamRoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role with permission to write to your CloudWatch Logs for text logs and your S3 bucket for audio logs. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/conversation-logs.html\">Creating Conversation Logs</a>.</p>",
+        "ConversationLogsRequest$iamRoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role with permission to write to your CloudWatch Logs for text logs and your S3 bucket for audio logs. If audio encryption is enabled, this role also provides access permission for the AWS KMS key used for encrypting audio logs. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/conversation-logs-role-and-policy.html\">Creating an IAM Role and Policy for Conversation Logs</a>.</p>",
         "ConversationLogsResponse$iamRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role used to write your logs to CloudWatch Logs or an S3 bucket.</p>"
       }
     },
@@ -786,7 +786,7 @@
       }
     },
     "LogSettingsRequest": {
-      "base": "<p>Settings used to configure conversation logs.</p>",
+      "base": "<p>Settings used to configure delivery mode and destination for conversation logs.</p>",
       "refs": {
         "LogSettingsRequestList$member": null
       }
@@ -806,7 +806,7 @@
     "LogSettingsResponseList": {
       "base": null,
       "refs": {
-        "ConversationLogsResponse$logSettings": "<p>The settings for your conversation logs.</p>"
+        "ConversationLogsResponse$logSettings": "<p>The settings for your conversation logs. You can log text, audio, or both.</p>"
       }
     },
     "LogType": {
@@ -1013,7 +1013,7 @@
     "ResourcePrefix": {
       "base": null,
       "refs": {
-        "LogSettingsResponse$resourcePrefix": "<p>The resource prefix of the S3 object or CloudWatch Logs log entry where logs are delivered. For both S3 and CloudWatch Logs, the prefix is:</p> <p> <code>aws/lex/bot-name/bot-alias/bot-version</code> </p>"
+        "LogSettingsResponse$resourcePrefix": "<p>The resource prefix is the first part of the S3 object key within the S3 bucket that you specified to contain audio logs. For CloudWatch Logs it is the prefix of the log stream name within the log group that you specified. </p>"
       }
     },
     "ResourceReference": {
