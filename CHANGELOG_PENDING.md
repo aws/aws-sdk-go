@@ -5,6 +5,8 @@
   * For Go 1.9 and above, adds struct field caching to the SDK's DynamoDB AttributeValue marshalers and unmarshalers. This significantly reduces time, and overall allocations of the (un)marshalers by caching the reflected structure's fields. This should improve the performance of applications using DynamoDB AttributeValue (un)marshalers.
 
 ### SDK Enhancements
+* `service/s3/s3crypto`: Added X-Ray support to encrypt/decrypt clients ([#2912](https://github.com/aws/aws-sdk-go/pull/2912))
+  * Adds support for passing Context down to the crypto client's KMS client enabling tracing for tools like X-Ray, and metrics.
 
 ### SDK Bugs
 * `service/s3/s3manager`: Fix resource leak on failed CreateMultipartUpload calls ([#3069](https://github.com/aws/aws-sdk-go/pull/3069))
