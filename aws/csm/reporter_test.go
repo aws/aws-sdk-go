@@ -147,7 +147,7 @@ func TestReportingMetrics(t *testing.T) {
 				req := request.New(*sess.Config, md, sess.Handlers, client.DefaultRetryer{NumMaxRetries: 3}, op, nil, nil)
 				errs := []error{
 					awserr.New("AWSError", "aws error", nil),
-					awserr.New("RequestError", "sdk error", nil),
+					awserr.New(request.ErrCodeRequestError, "sdk error", nil),
 					nil,
 				}
 				resps := []*http.Response{
@@ -182,8 +182,8 @@ func TestReportingMetrics(t *testing.T) {
 				},
 				{
 					"Type":                "ApiCallAttempt",
-					"SdkException":        "RequestError",
-					"SdkExceptionMessage": "RequestError: sdk error",
+					"SdkException":        request.ErrCodeRequestError,
+					"SdkExceptionMessage": request.ErrCodeRequestError+": sdk error",
 					"HttpStatusCode":      float64(500),
 				},
 				{
