@@ -64,6 +64,8 @@ type API struct {
 	EndpointDiscoveryOp *Operation
 
 	HasEndpointARN bool `json:"-"`
+
+	WithGeneratedTypedErrors bool
 }
 
 // A Metadata is the metadata about an API's definition.
@@ -282,20 +284,27 @@ func (a *API) importsGoCode() string {
 
 // A tplAPI is the top level template for the API
 var tplAPI = template.Must(template.New("api").Parse(`
-{{ range $_, $o := .OperationList }}
-{{ $o.GoCode }}
+{{- range $_, $o := .OperationList }}
 
-{{ end }}
+	{{ $o.GoCode }}
+{{- end }}
 
-{{ range $_, $s := .ShapeList }}
-{{ if and $s.IsInternal (eq $s.Type "structure") }}{{ $s.GoCode }}{{ end }}
+{{- range $_, $s := $.Shapes }}
+	{{- if and $s.IsInternal (eq $s.Type "structure") (not $s.Exception) }}
 
-{{ end }}
+		{{ $s.GoCode }}
+	{{- else if and $s.Exception (or $.WithGeneratedTypedErrors $s.EventFor) }}
 
-{{ range $_, $s := .ShapeList }}
-{{ if $s.IsEnum }}{{ $s.GoCode }}{{ end }}
+		{{ $s.GoCode }}
+	{{- end }}
+{{- end }}
 
-{{ end }}
+{{- range $_, $s := $.Shapes }}
+	{{- if $s.IsEnum }}
+
+		{{ $s.GoCode }}
+	{{- end }}
+{{- end }}
 `))
 
 // AddImport adds the import path to the generated file's import.
@@ -598,7 +607,14 @@ func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint,
 	svc.Handlers.Build.PushBackNamed({{ .ProtocolPackage }}.BuildHandler)
 	svc.Handlers.Unmarshal.PushBackNamed({{ .ProtocolPackage }}.UnmarshalHandler)
 	svc.Handlers.UnmarshalMeta.PushBackNamed({{ .ProtocolPackage }}.UnmarshalMetaHandler)
-	svc.Handlers.UnmarshalError.PushBackNamed({{ .ProtocolPackage }}.UnmarshalErrorHandler)
+	{{- if and $.WithGeneratedTypedErrors (gt (len $.ShapeListErrors) 0) }}
+		{{- $_ := $.AddSDKImport "private/protocol" }}
+		svc.Handlers.UnmarshalError.PushBackNamed(
+			protocol.NewUnmarshalErrorHandler({{ .ProtocolPackage }}.NewUnmarshalTypedError(exceptionFromCode)).NamedHandler(),
+		)
+	{{- else }}
+		svc.Handlers.UnmarshalError.PushBackNamed({{ .ProtocolPackage }}.UnmarshalErrorHandler)
+	{{- end }}
 	{{ if .HasEventStream }}
 	svc.Handlers.BuildStream.PushBackNamed({{ .ProtocolPackage }}.BuildHandler)
 	svc.Handlers.UnmarshalStream.PushBackNamed({{ .ProtocolPackage }}.UnmarshalHandler)
@@ -862,19 +878,33 @@ func resolveShapeValidations(s *Shape, ancestry ...*Shape) {
 // A tplAPIErrors is the top level template for the API
 var tplAPIErrors = template.Must(template.New("api").Parse(`
 const (
-{{ range $_, $s := $.ShapeListErrors }}
-	// {{ $s.ErrorCodeName }} for service response error code
-	// {{ printf "%q" $s.ErrorName }}.
-	{{ if $s.Docstring -}}
-	//
-	{{ $s.Docstring }}
-	{{ end -}}
-	{{ $s.ErrorCodeName }} = {{ printf "%q" $s.ErrorName }}
-{{ end }}
+	{{- range $_, $s := $.ShapeListErrors }}
+
+		// {{ $s.ErrorCodeName }} for service response error code
+		// {{ printf "%q" $s.ErrorName }}.
+		{{ if $s.Docstring -}}
+		//
+		{{ $s.Docstring }}
+		{{ end -}}
+		{{ $s.ErrorCodeName }} = {{ printf "%q" $s.ErrorName }}
+	{{- end }}
 )
+
+{{- if $.WithGeneratedTypedErrors }}
+	{{- $_ := $.AddSDKImport "private/protocol" }}
+
+	var exceptionFromCode = map[string]func(protocol.ResponseMetadata)error {
+		{{- range $_, $s := $.ShapeListErrors }}
+			"{{ $s.ErrorName }}": newError{{ $s.ShapeName }},
+		{{- end }}
+	}
+{{- end }}
 `))
 
+// APIErrorsGoCode returns the Go code for the errors.go file.
 func (a *API) APIErrorsGoCode() string {
+	a.resetImports()
+
 	var buf bytes.Buffer
 	err := tplAPIErrors.Execute(&buf, a)
 
@@ -882,7 +912,7 @@ func (a *API) APIErrorsGoCode() string {
 		panic(err)
 	}
 
-	return strings.TrimSpace(buf.String())
+	return a.importsGoCode() + strings.TrimSpace(buf.String())
 }
 
 // removeOperation removes an operation, its input/output shapes, as well as

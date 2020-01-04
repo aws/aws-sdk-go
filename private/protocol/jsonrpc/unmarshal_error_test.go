@@ -1,6 +1,4 @@
-// +build go1.8
-
-package restjson
+package jsonrpc
 
 import (
 	"bytes"
@@ -17,8 +15,8 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
-const unknownErrJSON = `{"code":"UnknownError", "message":"error message", "something":123}`
-const simpleErrJSON = `{"code":"SimpleError", "message":"some message", "foo":123}`
+const unknownErrJSON = `{"__type":"UnknownError", "message":"error message", "something":123}`
+const simpleErrJSON = `{"__type":"SimpleError", "message":"some message", "foo":123}`
 
 type SimpleError struct {
 	_ struct{} `type:"structure"`
@@ -28,8 +26,8 @@ type SimpleError struct {
 	Foo      *int64  `type:"integer" locationName:"foo"`
 }
 
-const otherErrJSON = `{"code":"OtherError", "message":"some message"}`
-const complexCodeErrJSON = `{"code":"OtherError:foo:bar", "message":"some message"}`
+const otherErrJSON = `{"__type":"OtherError", "message":"some message"}`
+const complexCodeErrJSON = `{"__type":"foo.bar#OtherError", "message":"some message"}`
 
 type OtherError struct {
 	_ struct{} `type:"structure"`
@@ -38,16 +36,14 @@ type OtherError struct {
 	Message2 *string `type:"string" locationName:"message"`
 }
 
-const complexErrJSON = `{"code":"ComplexError", "message":"some message", "foo": {"bar":"abc123", "baz":123}}`
+const complexErrJSON = `{"__type":"ComplexError", "message":"some message", "foo": {"bar":"abc123", "baz":123}}`
 
 type ComplexError struct {
 	_ struct{} `type:"structure"`
 	error
 
-	Message2  *string      `type:"string" locationName:"message"`
-	Foo       *ErrorNested `type:"structure" locationName:"foo"`
-	HeaderVal *string      `type:"string" location:"header" locationName:"some-header"`
-	Status    *int64       `type:"integer" location:"statusCode"`
+	Message2 *string      `type:"string" locationName:"message"`
+	Foo      *ErrorNested `type:"structure" locationName:"foo"`
 }
 type ErrorNested struct {
 	_ struct{} `type:"structure"`
@@ -110,16 +106,11 @@ func TestUnmarshalTypedError(t *testing.T) {
 		},
 		"complex error": {
 			Response: &http.Response{
-				StatusCode: 400,
-				Header: http.Header{
-					"Some-Header": []string{"headval"},
-				},
-				Body: ioutil.NopCloser(strings.NewReader(complexErrJSON)),
+				Header: http.Header{},
+				Body:   ioutil.NopCloser(strings.NewReader(complexErrJSON)),
 			},
 			Expect: &ComplexError{
-				Message2:  aws.String("some message"),
-				HeaderVal: aws.String("headval"),
-				Status:    aws.Int64(400),
+				Message2: aws.String("some message"),
 				Foo: &ErrorNested{
 					Bar: aws.String("abc123"),
 					Baz: aws.Int64(123),

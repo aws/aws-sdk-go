@@ -7,6 +7,17 @@ import (
 	"strings"
 )
 
+func (a *API) enableGeneratedTypedErrors() {
+	switch a.Metadata.Protocol {
+	case "json":
+	case "rest-json":
+	default:
+		return
+	}
+
+	a.WithGeneratedTypedErrors = true
+}
+
 // updateTopLevelShapeReferences moves resultWrapper, locationName, and
 // xmlNamespace traits from toplevel shape references to the toplevel
 // shapes for easier code generation
@@ -290,7 +301,12 @@ func exceptionCollides(name string) bool {
 	switch name {
 	case "Code",
 		"Message",
-		"OrigErr":
+		"OrigErr",
+		"Error",
+		"String",
+		"GoString",
+		"RequestID",
+		"StatusCode":
 		return true
 	}
 	return false

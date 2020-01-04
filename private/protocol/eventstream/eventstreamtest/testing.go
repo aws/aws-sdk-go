@@ -239,7 +239,7 @@ func MarshalEventPayload(
 	var w bytes.Buffer
 	err := payloadMarshaler.MarshalPayload(&w, v)
 	if err != nil {
-		panic(fmt.Sprintf("failed to marshal event %T, %v", v, v))
+		panic(fmt.Sprintf("failed to marshal event %T, %v, %v", v, v, err))
 	}
 
 	return w.Bytes()
