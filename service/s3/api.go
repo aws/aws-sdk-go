@@ -9706,12 +9706,19 @@ func (es *SelectObjectContentEventStream) runOutputStream(r *request.Request) {
 		opts = append(opts, eventstream.DecodeWithLogger(r.Config.Logger))
 	}
 
+	unmarshalerForEvent := unmarshalerForSelectObjectContentEventStreamEvent{
+		metadata: protocol.ResponseMetadata{
+			StatusCode: r.HTTPResponse.StatusCode,
+			RequestID:  r.RequestID,
+		},
+	}.UnmarshalerForEventName
+
 	decoder := eventstream.NewDecoder(r.HTTPResponse.Body, opts...)
 	eventReader := eventstreamapi.NewEventReader(decoder,
 		protocol.HandlerPayloadUnmarshal{
 			Unmarshalers: r.Handlers.UnmarshalStream,
 		},
-		unmarshalerForSelectObjectContentEventStreamEvent,
+		unmarshalerForEvent,
 	)
 
 	es.outputReader = r.HTTPResponse.Body
@@ -28261,7 +28268,11 @@ func (r *readSelectObjectContentEventStream) readEventStream() {
 	}
 }
 
-func unmarshalerForSelectObjectContentEventStreamEvent(eventType string) (eventstreamapi.Unmarshaler, error) {
+type unmarshalerForSelectObjectContentEventStreamEvent struct {
+	metadata protocol.ResponseMetadata
+}
+
+func (u unmarshalerForSelectObjectContentEventStreamEvent) UnmarshalerForEventName(eventType string) (eventstreamapi.Unmarshaler, error) {
 	switch eventType {
 	case "Cont":
 		return &ContinuationEvent{}, nil
