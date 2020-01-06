@@ -508,6 +508,13 @@
         "DocumentClassifierProperties$InputDataConfig": "<p>The input data configuration that you supplied when you created the document classifier for training.</p>"
       }
     },
+    "DocumentClassifierMode": {
+      "base": null,
+      "refs": {
+        "CreateDocumentClassifierRequest$Mode": "<p>Indicates the mode in which the classifier will be trained. The classifier can be trained in multi-class mode, which identifies one and only one class for each document, or multi-label mode, which identifies one or more labels for each document. In multi-label mode, multiple labels for an individual document are separated by a delimiter. The default delimiter between labels is a pipe (|).</p>",
+        "DocumentClassifierProperties$Mode": "<p>Indicates the mode in which the specific classifier was trained. This also indicates the format of input documents and the format of the confusion matrix. Each classifier can only be trained in one mode and this cannot be changed once the classifier is trained.</p>"
+      }
+    },
     "DocumentClassifierOutputDataConfig": {
       "base": "<p>Provides output results configuration parameters for custom classifier jobs. </p>",
       "refs": {
@@ -526,6 +533,12 @@
       "base": null,
       "refs": {
         "ListDocumentClassifiersResponse$DocumentClassifierPropertiesList": "<p>A list containing the properties of each job returned.</p>"
+      }
+    },
+    "DocumentLabel": {
+      "base": "<p>Specifies one of the label or labels that categorize the document being analyzed.</p>",
+      "refs": {
+        "ListOfLabels$member": null
       }
     },
     "DominantLanguage": {
@@ -560,6 +573,10 @@
         "ClassifierEvaluationMetrics$Precision": "<p>A measure of the usefulness of the classifier results in the test data. High precision means that the classifier returned substantially more relevant results than irrelevant ones.</p>",
         "ClassifierEvaluationMetrics$Recall": "<p>A measure of how complete the classifier results are for the test data. High recall means that the classifier returned most of the relevant results. </p>",
         "ClassifierEvaluationMetrics$F1Score": "<p>A measure of how accurate the classifier results are for the test data. It is derived from the <code>Precision</code> and <code>Recall</code> values. The <code>F1Score</code> is the harmonic average of the two scores. The highest score is 1, and the worst score is 0. </p>",
+        "ClassifierEvaluationMetrics$MicroPrecision": "<p>A measure of the usefulness of the recognizer results in the test data. High precision means that the recognizer returned substantially more relevant results than irrelevant ones. Unlike the Precision metric which comes from averaging the precision of all available labels, this is based on the overall score of all precision scores added together.</p>",
+        "ClassifierEvaluationMetrics$MicroRecall": "<p>A measure of how complete the classifier results are for the test data. High recall means that the classifier returned most of the relevant results. Specifically, this indicates how many of the correct categories in the text that the model can predict. It is a percentage of correct categories in the text that can found. Instead of averaging the recall scores of all labels (as with Recall), micro Recall is based on the overall score of all recall scores added together.</p>",
+        "ClassifierEvaluationMetrics$MicroF1Score": "<p>A measure of how accurate the classifier results are for the test data. It is a combination of the <code>Micro Precision</code> and <code>Micro Recall</code> values. The <code>Micro F1Score</code> is the harmonic mean of the two scores. The highest score is 1, and the worst score is 0.</p>",
+        "ClassifierEvaluationMetrics$HammingLoss": "<p>Indicates the fraction of labels that are incorrectly predicted. Also seen as the fraction of wrong labels compared to the total number of labels. Scores closer to zero are better.</p>",
         "EntityRecognizerEvaluationMetrics$Precision": "<p>A measure of the usefulness of the recognizer results in the test data. High precision means that the recognizer returned substantially more relevant results than irrelevant ones. </p>",
         "EntityRecognizerEvaluationMetrics$Recall": "<p>A measure of how complete the recognizer results are for the test data. High recall means that the recognizer returned most of the relevant results.</p>",
         "EntityRecognizerEvaluationMetrics$F1Score": "<p>A measure of how accurate the recognizer results are for the test data. It is derived from the <code>Precision</code> and <code>Recall</code> values. The <code>F1Score</code> is the harmonic average of the two scores. The highest score is 1, and the worst score is 0. </p>",
@@ -733,6 +750,7 @@
       "base": null,
       "refs": {
         "DocumentClass$Score": "<p>The confidence score that Amazon Comprehend has this class correctly attributed.</p>",
+        "DocumentLabel$Score": "<p>The confidence score that Amazon Comprehend has this label correctly attributed.</p>",
         "DominantLanguage$Score": "<p>The level of confidence that Amazon Comprehend has in the accuracy of the detection.</p>",
         "Entity$Score": "<p>The level of confidence that Amazon Comprehend has in the accuracy of the detection.</p>",
         "KeyPhrase$Score": "<p>The level of confidence that Amazon Comprehend has in the accuracy of the detection.</p>",
@@ -975,6 +993,12 @@
       "refs": {
       }
     },
+    "LabelDelimiter": {
+      "base": null,
+      "refs": {
+        "DocumentClassifierInputDataConfig$LabelDelimiter": "<p>Indicates the delimiter used to separate each label for training a multi-label classifier. The default delimiter between labels is a pipe (|). You can use a different character as a delimiter (if it's an allowed character) by specifying it under Delimiter for labels. If the training documents use a delimiter other than the default or the delimiter you specify, the labels on that line will be combined to make a single unique label, such as LABELLABELLABEL.</p>"
+      }
+    },
     "LanguageCode": {
       "base": null,
       "refs": {
@@ -1121,6 +1145,12 @@
       "refs": {
         "BatchDetectKeyPhrasesItemResult$KeyPhrases": "<p>One or more <a>KeyPhrase</a> objects, one for each key phrase detected in the document.</p>",
         "DetectKeyPhrasesResponse$KeyPhrases": "<p>A collection of key phrases that Amazon Comprehend identified in the input text. For each key phrase, the response provides the text of the key phrase, where the key phrase begins and ends, and the level of confidence that Amazon Comprehend has in the accuracy of the detection. </p>"
+      }
+    },
+    "ListOfLabels": {
+      "base": null,
+      "refs": {
+        "ClassifyDocumentResponse$Labels": "<p>The labels used the document being analyzed. These are used for multi-label trained models. Individual labels represent different categories that are related in some manner and are not multually exclusive. For example, a movie can be just an action movie, or it can be an action movie, a science fiction movie, and a comedy, all at the same time. </p>"
       }
     },
     "ListOfSyntaxTokens": {
@@ -1429,6 +1459,7 @@
         "DetectSentimentRequest$Text": "<p>A UTF-8 text string. Each string must contain fewer that 5,000 bytes of UTF-8 encoded characters.</p>",
         "DetectSyntaxRequest$Text": "<p>A UTF-8 string. Each string must contain fewer that 5,000 bytes of UTF encoded characters.</p>",
         "DocumentClass$Name": "<p>The name of the class.</p>",
+        "DocumentLabel$Name": "<p>The name of the label.</p>",
         "DominantLanguage$LanguageCode": "<p>The RFC 5646 language code for the dominant language. For more information about RFC 5646, see <a href=\"https://tools.ietf.org/html/rfc5646\">Tags for Identifying Languages</a> on the <i>IETF Tools</i> web site.</p>",
         "Entity$Text": "<p>The text of the entity.</p>",
         "InternalServerException$Message": null,

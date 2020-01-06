@@ -1737,6 +1737,62 @@ func (c *MediaPackage) UpdateOriginEndpointWithContext(ctx aws.Context, input *U
 	return out, req.Send()
 }
 
+// CDN Authorization credentials
+type Authorization struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the secret in Secrets Manager that your
+	// Content Distribution Network (CDN) uses for authorization to access your
+	// endpoint.
+	//
+	// CdnIdentifierSecret is a required field
+	CdnIdentifierSecret *string `locationName:"cdnIdentifierSecret" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) for the IAM role that allows MediaPackage
+	// to communicate with AWS Secrets Manager.
+	//
+	// SecretsRoleArn is a required field
+	SecretsRoleArn *string `locationName:"secretsRoleArn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Authorization) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Authorization) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Authorization) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Authorization"}
+	if s.CdnIdentifierSecret == nil {
+		invalidParams.Add(request.NewErrParamRequired("CdnIdentifierSecret"))
+	}
+	if s.SecretsRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecretsRoleArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCdnIdentifierSecret sets the CdnIdentifierSecret field's value.
+func (s *Authorization) SetCdnIdentifierSecret(v string) *Authorization {
+	s.CdnIdentifierSecret = &v
+	return s
+}
+
+// SetSecretsRoleArn sets the SecretsRoleArn field's value.
+func (s *Authorization) SetSecretsRoleArn(v string) *Authorization {
+	s.SecretsRoleArn = &v
+	return s
+}
+
 // A Channel resource configuration.
 type Channel struct {
 	_ struct{} `type:"structure"`
@@ -2292,6 +2348,9 @@ func (s *CreateHarvestJobOutput) SetStatus(v string) *CreateHarvestJobOutput {
 type CreateOriginEndpointInput struct {
 	_ struct{} `type:"structure"`
 
+	// CDN Authorization credentials
+	Authorization *Authorization `locationName:"authorization" type:"structure"`
+
 	// ChannelId is a required field
 	ChannelId *string `locationName:"channelId" type:"string" required:"true"`
 
@@ -2345,6 +2404,11 @@ func (s *CreateOriginEndpointInput) Validate() error {
 	if s.Id == nil {
 		invalidParams.Add(request.NewErrParamRequired("Id"))
 	}
+	if s.Authorization != nil {
+		if err := s.Authorization.Validate(); err != nil {
+			invalidParams.AddNested("Authorization", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.CmafPackage != nil {
 		if err := s.CmafPackage.Validate(); err != nil {
 			invalidParams.AddNested("CmafPackage", err.(request.ErrInvalidParams))
@@ -2370,6 +2434,12 @@ func (s *CreateOriginEndpointInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAuthorization sets the Authorization field's value.
+func (s *CreateOriginEndpointInput) SetAuthorization(v *Authorization) *CreateOriginEndpointInput {
+	s.Authorization = v
+	return s
 }
 
 // SetChannelId sets the ChannelId field's value.
@@ -2455,6 +2525,9 @@ type CreateOriginEndpointOutput struct {
 
 	Arn *string `locationName:"arn" type:"string"`
 
+	// CDN Authorization credentials
+	Authorization *Authorization `locationName:"authorization" type:"structure"`
+
 	ChannelId *string `locationName:"channelId" type:"string"`
 
 	// A Common Media Application Format (CMAF) packaging configuration.
@@ -2502,6 +2575,12 @@ func (s CreateOriginEndpointOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *CreateOriginEndpointOutput) SetArn(v string) *CreateOriginEndpointOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetAuthorization sets the Authorization field's value.
+func (s *CreateOriginEndpointOutput) SetAuthorization(v *Authorization) *CreateOriginEndpointOutput {
+	s.Authorization = v
 	return s
 }
 
@@ -3189,6 +3268,9 @@ type DescribeOriginEndpointOutput struct {
 
 	Arn *string `locationName:"arn" type:"string"`
 
+	// CDN Authorization credentials
+	Authorization *Authorization `locationName:"authorization" type:"structure"`
+
 	ChannelId *string `locationName:"channelId" type:"string"`
 
 	// A Common Media Application Format (CMAF) packaging configuration.
@@ -3236,6 +3318,12 @@ func (s DescribeOriginEndpointOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *DescribeOriginEndpointOutput) SetArn(v string) *DescribeOriginEndpointOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetAuthorization sets the Authorization field's value.
+func (s *DescribeOriginEndpointOutput) SetAuthorization(v *Authorization) *DescribeOriginEndpointOutput {
+	s.Authorization = v
 	return s
 }
 
@@ -4398,6 +4486,9 @@ type OriginEndpoint struct {
 	// The Amazon Resource Name (ARN) assigned to the OriginEndpoint.
 	Arn *string `locationName:"arn" type:"string"`
 
+	// CDN Authorization credentials
+	Authorization *Authorization `locationName:"authorization" type:"structure"`
+
 	// The ID of the Channel the OriginEndpoint is associated with.
 	ChannelId *string `locationName:"channelId" type:"string"`
 
@@ -4460,6 +4551,12 @@ func (s OriginEndpoint) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *OriginEndpoint) SetArn(v string) *OriginEndpoint {
 	s.Arn = &v
+	return s
+}
+
+// SetAuthorization sets the Authorization field's value.
+func (s *OriginEndpoint) SetAuthorization(v *Authorization) *OriginEndpoint {
+	s.Authorization = v
 	return s
 }
 
@@ -5195,6 +5292,9 @@ func (s *UpdateChannelOutput) SetTags(v map[string]*string) *UpdateChannelOutput
 type UpdateOriginEndpointInput struct {
 	_ struct{} `type:"structure"`
 
+	// CDN Authorization credentials
+	Authorization *Authorization `locationName:"authorization" type:"structure"`
+
 	// A Common Media Application Format (CMAF) packaging configuration.
 	CmafPackage *CmafPackageCreateOrUpdateParameters `locationName:"cmafPackage" type:"structure"`
 
@@ -5242,6 +5342,11 @@ func (s *UpdateOriginEndpointInput) Validate() error {
 	if s.Id != nil && len(*s.Id) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
 	}
+	if s.Authorization != nil {
+		if err := s.Authorization.Validate(); err != nil {
+			invalidParams.AddNested("Authorization", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.CmafPackage != nil {
 		if err := s.CmafPackage.Validate(); err != nil {
 			invalidParams.AddNested("CmafPackage", err.(request.ErrInvalidParams))
@@ -5267,6 +5372,12 @@ func (s *UpdateOriginEndpointInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAuthorization sets the Authorization field's value.
+func (s *UpdateOriginEndpointInput) SetAuthorization(v *Authorization) *UpdateOriginEndpointInput {
+	s.Authorization = v
+	return s
 }
 
 // SetCmafPackage sets the CmafPackage field's value.
@@ -5340,6 +5451,9 @@ type UpdateOriginEndpointOutput struct {
 
 	Arn *string `locationName:"arn" type:"string"`
 
+	// CDN Authorization credentials
+	Authorization *Authorization `locationName:"authorization" type:"structure"`
+
 	ChannelId *string `locationName:"channelId" type:"string"`
 
 	// A Common Media Application Format (CMAF) packaging configuration.
@@ -5387,6 +5501,12 @@ func (s UpdateOriginEndpointOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *UpdateOriginEndpointOutput) SetArn(v string) *UpdateOriginEndpointOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetAuthorization sets the Authorization field's value.
+func (s *UpdateOriginEndpointOutput) SetAuthorization(v *Authorization) *UpdateOriginEndpointOutput {
+	s.Authorization = v
 	return s
 }
 

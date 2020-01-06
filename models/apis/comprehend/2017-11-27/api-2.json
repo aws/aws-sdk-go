@@ -971,7 +971,11 @@
         "Accuracy":{"shape":"Double"},
         "Precision":{"shape":"Double"},
         "Recall":{"shape":"Double"},
-        "F1Score":{"shape":"Double"}
+        "F1Score":{"shape":"Double"},
+        "MicroPrecision":{"shape":"Double"},
+        "MicroRecall":{"shape":"Double"},
+        "MicroF1Score":{"shape":"Double"},
+        "HammingLoss":{"shape":"Double"}
       }
     },
     "ClassifierMetadata":{
@@ -997,7 +1001,8 @@
     "ClassifyDocumentResponse":{
       "type":"structure",
       "members":{
-        "Classes":{"shape":"ListOfClasses"}
+        "Classes":{"shape":"ListOfClasses"},
+        "Labels":{"shape":"ListOfLabels"}
       }
     },
     "ClientRequestTokenString":{
@@ -1058,7 +1063,8 @@
         },
         "LanguageCode":{"shape":"LanguageCode"},
         "VolumeKmsKeyId":{"shape":"KmsKeyId"},
-        "VpcConfig":{"shape":"VpcConfig"}
+        "VpcConfig":{"shape":"VpcConfig"},
+        "Mode":{"shape":"DocumentClassifierMode"}
       }
     },
     "CreateDocumentClassifierResponse":{
@@ -1413,8 +1419,16 @@
       "type":"structure",
       "required":["S3Uri"],
       "members":{
-        "S3Uri":{"shape":"S3Uri"}
+        "S3Uri":{"shape":"S3Uri"},
+        "LabelDelimiter":{"shape":"LabelDelimiter"}
       }
+    },
+    "DocumentClassifierMode":{
+      "type":"string",
+      "enum":[
+        "MULTI_CLASS",
+        "MULTI_LABEL"
+      ]
     },
     "DocumentClassifierOutputDataConfig":{
       "type":"structure",
@@ -1439,12 +1453,20 @@
         "ClassifierMetadata":{"shape":"ClassifierMetadata"},
         "DataAccessRoleArn":{"shape":"IamRoleArn"},
         "VolumeKmsKeyId":{"shape":"KmsKeyId"},
-        "VpcConfig":{"shape":"VpcConfig"}
+        "VpcConfig":{"shape":"VpcConfig"},
+        "Mode":{"shape":"DocumentClassifierMode"}
       }
     },
     "DocumentClassifierPropertiesList":{
       "type":"list",
       "member":{"shape":"DocumentClassifierProperties"}
+    },
+    "DocumentLabel":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"String"},
+        "Score":{"shape":"Float"}
+      }
     },
     "DominantLanguage":{
       "type":"structure",
@@ -1825,6 +1847,12 @@
       },
       "exception":true
     },
+    "LabelDelimiter":{
+      "type":"string",
+      "max":1,
+      "min":1,
+      "pattern":"^[ ~!@#$%^*\\-_+=|\\\\:;\\t>?/]$"
+    },
     "LanguageCode":{
       "type":"string",
       "enum":[
@@ -1982,6 +2010,10 @@
     "ListOfKeyPhrases":{
       "type":"list",
       "member":{"shape":"KeyPhrase"}
+    },
+    "ListOfLabels":{
+      "type":"list",
+      "member":{"shape":"DocumentLabel"}
     },
     "ListOfSyntaxTokens":{
       "type":"list",

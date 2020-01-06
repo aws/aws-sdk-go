@@ -1815,6 +1815,10 @@ type EC2API interface {
 	StartInstancesWithContext(aws.Context, *ec2.StartInstancesInput, ...request.Option) (*ec2.StartInstancesOutput, error)
 	StartInstancesRequest(*ec2.StartInstancesInput) (*request.Request, *ec2.StartInstancesOutput)
 
+	StartVpcEndpointServicePrivateDnsVerification(*ec2.StartVpcEndpointServicePrivateDnsVerificationInput) (*ec2.StartVpcEndpointServicePrivateDnsVerificationOutput, error)
+	StartVpcEndpointServicePrivateDnsVerificationWithContext(aws.Context, *ec2.StartVpcEndpointServicePrivateDnsVerificationInput, ...request.Option) (*ec2.StartVpcEndpointServicePrivateDnsVerificationOutput, error)
+	StartVpcEndpointServicePrivateDnsVerificationRequest(*ec2.StartVpcEndpointServicePrivateDnsVerificationInput) (*request.Request, *ec2.StartVpcEndpointServicePrivateDnsVerificationOutput)
+
 	StopInstances(*ec2.StopInstancesInput) (*ec2.StopInstancesOutput, error)
 	StopInstancesWithContext(aws.Context, *ec2.StopInstancesInput, ...request.Option) (*ec2.StopInstancesOutput, error)
 	StopInstancesRequest(*ec2.StopInstancesInput) (*request.Request, *ec2.StopInstancesOutput)

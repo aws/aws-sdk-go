@@ -1,3 +1,17 @@
+Release v1.27.1 (2020-01-06)
+===
+
+### Service Client Updates
+* `service/comprehend`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * This release supports service providers configuring a private DNS name for services other than AWS services and services available in the AWS marketplace. This feature allows consumers to access the service using an existing DNS name without making changes to their applications.
+* `service/mediapackage`: Updates service API and documentation
+  * You can now restrict direct access to AWS Elemental MediaPackage by securing requests for live content using CDN authorization. With CDN authorization, content requests require a specific HTTP header and authorization code.
+
+### SDK Bugs
+* `aws/session`: Fix client init not exposing endpoint resolve error ([#3059](https://github.com/aws/aws-sdk-go/pull/3059))
+  * Fixes the SDK API clients not surfacing endpoint resolution errors, when the EndpointResolver is unable to resolve an endpoint for the client and region.
+
 Release v1.27.0 (2020-01-02)
 ===
 

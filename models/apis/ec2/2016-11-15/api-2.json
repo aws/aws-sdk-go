@@ -3435,6 +3435,15 @@
       "input":{"shape":"StartInstancesRequest"},
       "output":{"shape":"StartInstancesResult"}
     },
+    "StartVpcEndpointServicePrivateDnsVerification":{
+      "name":"StartVpcEndpointServicePrivateDnsVerification",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartVpcEndpointServicePrivateDnsVerificationRequest"},
+      "output":{"shape":"StartVpcEndpointServicePrivateDnsVerificationResult"}
+    },
     "StopInstances":{
       "name":"StopInstances",
       "http":{
@@ -7674,6 +7683,7 @@
       "members":{
         "DryRun":{"shape":"Boolean"},
         "AcceptanceRequired":{"shape":"Boolean"},
+        "PrivateDnsName":{"shape":"String"},
         "NetworkLoadBalancerArns":{
           "shape":"ValueStringList",
           "locationName":"NetworkLoadBalancerArn"
@@ -13194,6 +13204,14 @@
         "locationName":"item"
       }
     },
+    "DnsNameState":{
+      "type":"string",
+      "enum":[
+        "pendingVerification",
+        "verified",
+        "failed"
+      ]
+    },
     "DnsServersOptionsModifyStructure":{
       "type":"structure",
       "members":{
@@ -18096,6 +18114,19 @@
     },
     "KeyPairName":{"type":"string"},
     "KmsKeyId":{"type":"string"},
+    "LastError":{
+      "type":"structure",
+      "members":{
+        "Message":{
+          "shape":"String",
+          "locationName":"message"
+        },
+        "Code":{
+          "shape":"String",
+          "locationName":"code"
+        }
+      }
+    },
     "LaunchPermission":{
       "type":"structure",
       "members":{
@@ -20068,6 +20099,8 @@
       "members":{
         "DryRun":{"shape":"Boolean"},
         "ServiceId":{"shape":"ServiceId"},
+        "PrivateDnsName":{"shape":"String"},
+        "RemovePrivateDnsName":{"shape":"Boolean"},
         "AcceptanceRequired":{"shape":"Boolean"},
         "AddNetworkLoadBalancerArns":{
           "shape":"ValueStringList",
@@ -21580,6 +21613,27 @@
         "User",
         "Role"
       ]
+    },
+    "PrivateDnsNameConfiguration":{
+      "type":"structure",
+      "members":{
+        "State":{
+          "shape":"DnsNameState",
+          "locationName":"state"
+        },
+        "Type":{
+          "shape":"String",
+          "locationName":"type"
+        },
+        "Value":{
+          "shape":"String",
+          "locationName":"value"
+        },
+        "Name":{
+          "shape":"String",
+          "locationName":"name"
+        }
+      }
     },
     "PrivateIpAddressConfigSet":{
       "type":"list",
@@ -24516,6 +24570,10 @@
           "shape":"String",
           "locationName":"privateDnsName"
         },
+        "PrivateDnsNameConfiguration":{
+          "shape":"PrivateDnsNameConfiguration",
+          "locationName":"privateDnsNameConfiguration"
+        },
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
@@ -24575,6 +24633,10 @@
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
+        },
+        "PrivateDnsNameVerificationState":{
+          "shape":"DnsNameState",
+          "locationName":"privateDnsNameVerificationState"
         }
       }
     },
@@ -25516,6 +25578,23 @@
         "StartingInstances":{
           "shape":"InstanceStateChangeList",
           "locationName":"instancesSet"
+        }
+      }
+    },
+    "StartVpcEndpointServicePrivateDnsVerificationRequest":{
+      "type":"structure",
+      "required":["ServiceId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "ServiceId":{"shape":"ServiceId"}
+      }
+    },
+    "StartVpcEndpointServicePrivateDnsVerificationResult":{
+      "type":"structure",
+      "members":{
+        "ReturnValue":{
+          "shape":"Boolean",
+          "locationName":"return"
         }
       }
     },
@@ -28269,6 +28348,10 @@
         "OwnerId":{
           "shape":"String",
           "locationName":"ownerId"
+        },
+        "LastError":{
+          "shape":"LastError",
+          "locationName":"lastError"
         }
       }
     },
