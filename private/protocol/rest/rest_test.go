@@ -97,8 +97,8 @@ func TestNormalizedHeaders(t *testing.T) {
 				"BAR": aws.String("barValue"),
 			},
 			expectedInputHeaders: http.Header{
-				"x-amz-meta-baz": []string{"bazValue"},
-				"x-amz-meta-bar": []string{"barValue"},
+				"X-Amz-Meta-Baz": []string{"bazValue"},
+				"X-Amz-Meta-Bar": []string{"barValue"},
 			},
 			outputValues: http.Header{
 				"X-Amz-Meta-Baz": []string{"bazValue"},
