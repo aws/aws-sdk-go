@@ -2,6 +2,10 @@
 
 package apigatewaymanagementapi
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeForbiddenException for service response error code
@@ -29,3 +33,10 @@ const (
 	// The data has exceeded the maximum size allowed.
 	ErrCodePayloadTooLargeException = "PayloadTooLargeException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"ForbiddenException":       newErrorForbiddenException,
+	"GoneException":            newErrorGoneException,
+	"LimitExceededException":   newErrorLimitExceededException,
+	"PayloadTooLargeException": newErrorPayloadTooLargeException,
+}

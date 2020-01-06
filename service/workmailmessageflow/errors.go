@@ -2,6 +2,10 @@
 
 package workmailmessageflow
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeResourceNotFoundException for service response error code
@@ -10,3 +14,7 @@ const (
 	// The requested email message is not found.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"ResourceNotFoundException": newErrorResourceNotFoundException,
+}

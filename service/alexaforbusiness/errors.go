@@ -2,6 +2,10 @@
 
 package alexaforbusiness
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeAlreadyExistsException for service response error code
@@ -96,3 +100,21 @@ const (
 	// API call.
 	ErrCodeUnauthorizedException = "UnauthorizedException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"AlreadyExistsException":                 newErrorAlreadyExistsException,
+	"ConcurrentModificationException":        newErrorConcurrentModificationException,
+	"DeviceNotRegisteredException":           newErrorDeviceNotRegisteredException,
+	"InvalidCertificateAuthorityException":   newErrorInvalidCertificateAuthorityException,
+	"InvalidDeviceException":                 newErrorInvalidDeviceException,
+	"InvalidSecretsManagerResourceException": newErrorInvalidSecretsManagerResourceException,
+	"InvalidServiceLinkedRoleStateException": newErrorInvalidServiceLinkedRoleStateException,
+	"InvalidUserStatusException":             newErrorInvalidUserStatusException,
+	"LimitExceededException":                 newErrorLimitExceededException,
+	"NameInUseException":                     newErrorNameInUseException,
+	"NotFoundException":                      newErrorNotFoundException,
+	"ResourceAssociatedException":            newErrorResourceAssociatedException,
+	"ResourceInUseException":                 newErrorResourceInUseException,
+	"SkillNotLinkedException":                newErrorSkillNotLinkedException,
+	"UnauthorizedException":                  newErrorUnauthorizedException,
+}

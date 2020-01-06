@@ -86,15 +86,15 @@ func (c *OpsWorksCM) AssociateNodeRequest(input *AssociateNodeInput) (req *reque
 // See the AWS API reference guide for AWS OpsWorks CM's
 // API operation AssociateNode for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidStateException "InvalidStateException"
+// Returned Error Types:
+//   * InvalidStateException
 //   The resource is in a state that does not allow you to perform a specified
 //   action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/AssociateNode
@@ -185,18 +185,18 @@ func (c *OpsWorksCM) CreateBackupRequest(input *CreateBackupInput) (req *request
 // See the AWS API reference guide for AWS OpsWorks CM's
 // API operation CreateBackup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidStateException "InvalidStateException"
+// Returned Error Types:
+//   * InvalidStateException
 //   The resource is in a state that does not allow you to perform a specified
 //   action.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The limit of servers or backups has been reached.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/CreateBackup
@@ -304,17 +304,17 @@ func (c *OpsWorksCM) CreateServerRequest(input *CreateServerInput) (req *request
 // See the AWS API reference guide for AWS OpsWorks CM's
 // API operation CreateServer for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   The limit of servers or backups has been reached.
 //
-//   * ErrCodeResourceAlreadyExistsException "ResourceAlreadyExistsException"
+//   * ResourceAlreadyExistsException
 //   The requested resource cannot be created because it already exists.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/CreateServer
@@ -398,15 +398,15 @@ func (c *OpsWorksCM) DeleteBackupRequest(input *DeleteBackupInput) (req *request
 // See the AWS API reference guide for AWS OpsWorks CM's
 // API operation DeleteBackup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidStateException "InvalidStateException"
+// Returned Error Types:
+//   * InvalidStateException
 //   The resource is in a state that does not allow you to perform a specified
 //   action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DeleteBackup
@@ -495,15 +495,15 @@ func (c *OpsWorksCM) DeleteServerRequest(input *DeleteServerInput) (req *request
 // See the AWS API reference guide for AWS OpsWorks CM's
 // API operation DeleteServer for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidStateException "InvalidStateException"
+// Returned Error Types:
+//   * InvalidStateException
 //   The resource is in a state that does not allow you to perform a specified
 //   action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DeleteServer
@@ -663,14 +663,14 @@ func (c *OpsWorksCM) DescribeBackupsRequest(input *DescribeBackupsInput) (req *r
 // See the AWS API reference guide for AWS OpsWorks CM's
 // API operation DescribeBackups for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   * InvalidNextTokenException
 //   This occurs when the provided nextToken is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeBackups
@@ -754,14 +754,14 @@ func (c *OpsWorksCM) DescribeEventsRequest(input *DescribeEventsInput) (req *req
 // See the AWS API reference guide for AWS OpsWorks CM's
 // API operation DescribeEvents for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
-//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   * InvalidNextTokenException
 //   This occurs when the provided nextToken is not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeEvents
@@ -843,11 +843,11 @@ func (c *OpsWorksCM) DescribeNodeAssociationStatusRequest(input *DescribeNodeAss
 // See the AWS API reference guide for AWS OpsWorks CM's
 // API operation DescribeNodeAssociationStatus for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeNodeAssociationStatus
@@ -932,14 +932,14 @@ func (c *OpsWorksCM) DescribeServersRequest(input *DescribeServersInput) (req *r
 // See the AWS API reference guide for AWS OpsWorks CM's
 // API operation DescribeServers for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   * InvalidNextTokenException
 //   This occurs when the provided nextToken is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DescribeServers
@@ -1025,15 +1025,15 @@ func (c *OpsWorksCM) DisassociateNodeRequest(input *DisassociateNodeInput) (req 
 // See the AWS API reference guide for AWS OpsWorks CM's
 // API operation DisassociateNode for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidStateException "InvalidStateException"
+// Returned Error Types:
+//   * InvalidStateException
 //   The resource is in a state that does not allow you to perform a specified
 //   action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/DisassociateNode
@@ -1120,14 +1120,14 @@ func (c *OpsWorksCM) ExportServerEngineAttributeRequest(input *ExportServerEngin
 // See the AWS API reference guide for AWS OpsWorks CM's
 // API operation ExportServerEngineAttribute for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeInvalidStateException "InvalidStateException"
+//   * InvalidStateException
 //   The resource is in a state that does not allow you to perform a specified
 //   action.
 //
@@ -1207,11 +1207,11 @@ func (c *OpsWorksCM) ListTagsForResourceRequest(input *ListTagsForResourceInput)
 // See the AWS API reference guide for AWS OpsWorks CM's
 // API operation ListTagsForResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/ListTagsForResource
@@ -1306,15 +1306,15 @@ func (c *OpsWorksCM) RestoreServerRequest(input *RestoreServerInput) (req *reque
 // See the AWS API reference guide for AWS OpsWorks CM's
 // API operation RestoreServer for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidStateException "InvalidStateException"
+// Returned Error Types:
+//   * InvalidStateException
 //   The resource is in a state that does not allow you to perform a specified
 //   action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/RestoreServer
@@ -1400,15 +1400,15 @@ func (c *OpsWorksCM) StartMaintenanceRequest(input *StartMaintenanceInput) (req 
 // See the AWS API reference guide for AWS OpsWorks CM's
 // API operation StartMaintenance for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidStateException "InvalidStateException"
+// Returned Error Types:
+//   * InvalidStateException
 //   The resource is in a state that does not allow you to perform a specified
 //   action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/StartMaintenance
@@ -1488,14 +1488,14 @@ func (c *OpsWorksCM) TagResourceRequest(input *TagResourceInput) (req *request.R
 // See the AWS API reference guide for AWS OpsWorks CM's
 // API operation TagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
-//   * ErrCodeInvalidStateException "InvalidStateException"
+//   * InvalidStateException
 //   The resource is in a state that does not allow you to perform a specified
 //   action.
 //
@@ -1575,14 +1575,14 @@ func (c *OpsWorksCM) UntagResourceRequest(input *UntagResourceInput) (req *reque
 // See the AWS API reference guide for AWS OpsWorks CM's
 // API operation UntagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
-//   * ErrCodeInvalidStateException "InvalidStateException"
+//   * InvalidStateException
 //   The resource is in a state that does not allow you to perform a specified
 //   action.
 //
@@ -1663,15 +1663,15 @@ func (c *OpsWorksCM) UpdateServerRequest(input *UpdateServerInput) (req *request
 // See the AWS API reference guide for AWS OpsWorks CM's
 // API operation UpdateServer for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidStateException "InvalidStateException"
+// Returned Error Types:
+//   * InvalidStateException
 //   The resource is in a state that does not allow you to perform a specified
 //   action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/UpdateServer
@@ -1759,15 +1759,15 @@ func (c *OpsWorksCM) UpdateServerEngineAttributesRequest(input *UpdateServerEngi
 // See the AWS API reference guide for AWS OpsWorks CM's
 // API operation UpdateServerEngineAttributes for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidStateException "InvalidStateException"
+// Returned Error Types:
+//   * InvalidStateException
 //   The resource is in a state that does not allow you to perform a specified
 //   action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource does not exist, or access was denied.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more of the provided request parameters are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/opsworkscm-2016-11-01/UpdateServerEngineAttributes
@@ -3493,6 +3493,181 @@ func (s *ExportServerEngineAttributeOutput) SetServerName(v string) *ExportServe
 	return s
 }
 
+// This occurs when the provided nextToken is not valid.
+type InvalidNextTokenException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// Error or informational message that can contain more detail about a nextToken
+	// failure.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidNextTokenException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidNextTokenException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidNextTokenException(v protocol.ResponseMetadata) error {
+	return &InvalidNextTokenException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidNextTokenException) Code() string {
+	return "InvalidNextTokenException"
+}
+
+// Message returns the exception's message.
+func (s InvalidNextTokenException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidNextTokenException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidNextTokenException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidNextTokenException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidNextTokenException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The resource is in a state that does not allow you to perform a specified
+// action.
+type InvalidStateException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// Error or informational message that provides more detail if a resource is
+	// in a state that is not valid for performing a specified action.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidStateException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidStateException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidStateException(v protocol.ResponseMetadata) error {
+	return &InvalidStateException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidStateException) Code() string {
+	return "InvalidStateException"
+}
+
+// Message returns the exception's message.
+func (s InvalidStateException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidStateException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidStateException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidStateException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidStateException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The limit of servers or backups has been reached.
+type LimitExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// Error or informational message that the maximum allowed number of servers
+	// or backups has been exceeded.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s LimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
+	return &LimitExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s LimitExceededException) Code() string {
+	return "LimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s LimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s LimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s LimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s LimitExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s LimitExceededException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3596,6 +3771,122 @@ func (s *ListTagsForResourceOutput) SetNextToken(v string) *ListTagsForResourceO
 func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput {
 	s.Tags = v
 	return s
+}
+
+// The requested resource cannot be created because it already exists.
+type ResourceAlreadyExistsException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// Error or informational message in response to a CreateServer request that
+	// a resource cannot be created because it already exists.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceAlreadyExistsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceAlreadyExistsException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceAlreadyExistsException(v protocol.ResponseMetadata) error {
+	return &ResourceAlreadyExistsException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceAlreadyExistsException) Code() string {
+	return "ResourceAlreadyExistsException"
+}
+
+// Message returns the exception's message.
+func (s ResourceAlreadyExistsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceAlreadyExistsException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceAlreadyExistsException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceAlreadyExistsException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceAlreadyExistsException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The requested resource does not exist, or access was denied.
+type ResourceNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// Error or informational message that can contain more detail about problems
+	// locating or accessing a resource.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type RestoreServerInput struct {
@@ -4504,6 +4795,64 @@ func (s UpdateServerOutput) GoString() string {
 func (s *UpdateServerOutput) SetServer(v *Server) *UpdateServerOutput {
 	s.Server = v
 	return s
+}
+
+// One or more of the provided request parameters are not valid.
+type ValidationException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// Error or informational message that can contain more detail about a validation
+	// failure.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ValidationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ValidationException) GoString() string {
+	return s.String()
+}
+
+func newErrorValidationException(v protocol.ResponseMetadata) error {
+	return &ValidationException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ValidationException) Code() string {
+	return "ValidationException"
+}
+
+// Message returns the exception's message.
+func (s ValidationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ValidationException) OrigErr() error {
+	return nil
+}
+
+func (s ValidationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ValidationException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ValidationException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 const (

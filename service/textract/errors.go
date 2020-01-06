@@ -2,6 +2,10 @@
 
 package textract
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeAccessDeniedException for service response error code
@@ -99,3 +103,19 @@ const (
 	// can also be in PDF format.
 	ErrCodeUnsupportedDocumentException = "UnsupportedDocumentException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"AccessDeniedException":                  newErrorAccessDeniedException,
+	"BadDocumentException":                   newErrorBadDocumentException,
+	"DocumentTooLargeException":              newErrorDocumentTooLargeException,
+	"HumanLoopQuotaExceededException":        newErrorHumanLoopQuotaExceededException,
+	"IdempotentParameterMismatchException":   newErrorIdempotentParameterMismatchException,
+	"InternalServerError":                    newErrorInternalServerError,
+	"InvalidJobIdException":                  newErrorInvalidJobIdException,
+	"InvalidParameterException":              newErrorInvalidParameterException,
+	"InvalidS3ObjectException":               newErrorInvalidS3ObjectException,
+	"LimitExceededException":                 newErrorLimitExceededException,
+	"ProvisionedThroughputExceededException": newErrorProvisionedThroughputExceededException,
+	"ThrottlingException":                    newErrorThrottlingException,
+	"UnsupportedDocumentException":           newErrorUnsupportedDocumentException,
+}

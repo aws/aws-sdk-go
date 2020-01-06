@@ -2,6 +2,10 @@
 
 package appconfig
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeBadRequestException for service response error code
@@ -29,3 +33,10 @@ const (
 	// The requested resource could not be found.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"BadRequestException":       newErrorBadRequestException,
+	"ConflictException":         newErrorConflictException,
+	"InternalServerException":   newErrorInternalServerException,
+	"ResourceNotFoundException": newErrorResourceNotFoundException,
+}

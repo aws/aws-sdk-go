@@ -70,11 +70,11 @@ func (c *AppConfig) CreateApplicationRequest(input *CreateApplicationInput) (req
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation CreateApplication for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateApplication
@@ -162,14 +162,14 @@ func (c *AppConfig) CreateConfigurationProfileRequest(input *CreateConfiguration
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation CreateConfigurationProfile for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource could not be found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateConfigurationProfile
@@ -250,11 +250,11 @@ func (c *AppConfig) CreateDeploymentStrategyRequest(input *CreateDeploymentStrat
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation CreateDeploymentStrategy for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerException "InternalServerException"
+// Returned Error Types:
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateDeploymentStrategy
@@ -338,14 +338,14 @@ func (c *AppConfig) CreateEnvironmentRequest(input *CreateEnvironmentInput) (req
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation CreateEnvironment for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerException "InternalServerException"
+// Returned Error Types:
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource could not be found.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateEnvironment
@@ -425,14 +425,14 @@ func (c *AppConfig) DeleteApplicationRequest(input *DeleteApplicationInput) (req
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation DeleteApplication for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The requested resource could not be found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteApplication
@@ -512,18 +512,18 @@ func (c *AppConfig) DeleteConfigurationProfileRequest(input *DeleteConfiguration
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation DeleteConfigurationProfile for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The requested resource could not be found.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   The request could not be processed because of conflict in the current state
 //   of the resource.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteConfigurationProfile
@@ -603,14 +603,14 @@ func (c *AppConfig) DeleteDeploymentStrategyRequest(input *DeleteDeploymentStrat
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation DeleteDeploymentStrategy for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The requested resource could not be found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteDeploymentStrategy
@@ -690,18 +690,18 @@ func (c *AppConfig) DeleteEnvironmentRequest(input *DeleteEnvironmentInput) (req
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation DeleteEnvironment for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The requested resource could not be found.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   The request could not be processed because of conflict in the current state
 //   of the resource.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteEnvironment
@@ -779,14 +779,14 @@ func (c *AppConfig) GetApplicationRequest(input *GetApplicationInput) (req *requ
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation GetApplication for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The requested resource could not be found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetApplication
@@ -864,17 +864,17 @@ func (c *AppConfig) GetConfigurationRequest(input *GetConfigurationInput) (req *
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation GetConfiguration for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The requested resource could not be found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource could not be found.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetConfiguration
@@ -952,14 +952,14 @@ func (c *AppConfig) GetConfigurationProfileRequest(input *GetConfigurationProfil
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation GetConfigurationProfile for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The requested resource could not be found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetConfigurationProfile
@@ -1037,14 +1037,14 @@ func (c *AppConfig) GetDeploymentRequest(input *GetDeploymentInput) (req *reques
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation GetDeployment for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The requested resource could not be found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetDeployment
@@ -1126,14 +1126,14 @@ func (c *AppConfig) GetDeploymentStrategyRequest(input *GetDeploymentStrategyInp
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation GetDeploymentStrategy for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The requested resource could not be found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetDeploymentStrategy
@@ -1215,14 +1215,14 @@ func (c *AppConfig) GetEnvironmentRequest(input *GetEnvironmentInput) (req *requ
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation GetEnvironment for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The requested resource could not be found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetEnvironment
@@ -1306,11 +1306,11 @@ func (c *AppConfig) ListApplicationsRequest(input *ListApplicationsInput) (req *
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation ListApplications for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerException "InternalServerException"
+// Returned Error Types:
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListApplications
@@ -1446,14 +1446,14 @@ func (c *AppConfig) ListConfigurationProfilesRequest(input *ListConfigurationPro
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation ListConfigurationProfiles for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The requested resource could not be found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListConfigurationProfiles
@@ -1589,11 +1589,11 @@ func (c *AppConfig) ListDeploymentStrategiesRequest(input *ListDeploymentStrateg
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation ListDeploymentStrategies for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerException "InternalServerException"
+// Returned Error Types:
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListDeploymentStrategies
@@ -1729,14 +1729,14 @@ func (c *AppConfig) ListDeploymentsRequest(input *ListDeploymentsInput) (req *re
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation ListDeployments for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The requested resource could not be found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListDeployments
@@ -1872,14 +1872,14 @@ func (c *AppConfig) ListEnvironmentsRequest(input *ListEnvironmentsInput) (req *
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation ListEnvironments for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The requested resource could not be found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListEnvironments
@@ -2009,14 +2009,14 @@ func (c *AppConfig) ListTagsForResourceRequest(input *ListTagsForResourceInput) 
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation ListTagsForResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The requested resource could not be found.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListTagsForResource
@@ -2094,18 +2094,18 @@ func (c *AppConfig) StartDeploymentRequest(input *StartDeploymentInput) (req *re
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation StartDeployment for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource could not be found.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   The request could not be processed because of conflict in the current state
 //   of the resource.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/StartDeployment
@@ -2184,14 +2184,14 @@ func (c *AppConfig) StopDeploymentRequest(input *StopDeploymentInput) (req *requ
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation StopDeployment for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The requested resource could not be found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/StopDeployment
@@ -2272,14 +2272,14 @@ func (c *AppConfig) TagResourceRequest(input *TagResourceInput) (req *request.Re
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation TagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The requested resource could not be found.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/TagResource
@@ -2358,14 +2358,14 @@ func (c *AppConfig) UntagResourceRequest(input *UntagResourceInput) (req *reques
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation UntagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The requested resource could not be found.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/UntagResource
@@ -2443,14 +2443,14 @@ func (c *AppConfig) UpdateApplicationRequest(input *UpdateApplicationInput) (req
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation UpdateApplication for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource could not be found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/UpdateApplication
@@ -2528,14 +2528,14 @@ func (c *AppConfig) UpdateConfigurationProfileRequest(input *UpdateConfiguration
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation UpdateConfigurationProfile for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource could not be found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/UpdateConfigurationProfile
@@ -2613,14 +2613,14 @@ func (c *AppConfig) UpdateDeploymentStrategyRequest(input *UpdateDeploymentStrat
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation UpdateDeploymentStrategy for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource could not be found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/UpdateDeploymentStrategy
@@ -2698,14 +2698,14 @@ func (c *AppConfig) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation UpdateEnvironment for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource could not be found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/UpdateEnvironment
@@ -2784,14 +2784,14 @@ func (c *AppConfig) ValidateConfigurationRequest(input *ValidateConfigurationInp
 // See the AWS API reference guide for Amazon AppConfig's
 // API operation ValidateConfiguration for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The requested resource could not be found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   There was an internal failure in the AppConfig service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ValidateConfiguration
@@ -2857,6 +2857,62 @@ func (s *Application) SetName(v string) *Application {
 	return s
 }
 
+// The input fails to satisfy the constraints specified by an AWS service.
+type BadRequestException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s BadRequestException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BadRequestException) GoString() string {
+	return s.String()
+}
+
+func newErrorBadRequestException(v protocol.ResponseMetadata) error {
+	return &BadRequestException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s BadRequestException) Code() string {
+	return "BadRequestException"
+}
+
+// Message returns the exception's message.
+func (s BadRequestException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s BadRequestException) OrigErr() error {
+	return nil
+}
+
+func (s BadRequestException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s BadRequestException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s BadRequestException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // A summary of a configuration profile.
 type ConfigurationProfileSummary struct {
 	_ struct{} `type:"structure"`
@@ -2915,6 +2971,63 @@ func (s *ConfigurationProfileSummary) SetName(v string) *ConfigurationProfileSum
 func (s *ConfigurationProfileSummary) SetValidatorTypes(v []*string) *ConfigurationProfileSummary {
 	s.ValidatorTypes = v
 	return s
+}
+
+// The request could not be processed because of conflict in the current state
+// of the resource.
+type ConflictException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ConflictException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ConflictException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type CreateApplicationInput struct {
@@ -5004,6 +5117,62 @@ func (s *GetEnvironmentOutput) SetState(v string) *GetEnvironmentOutput {
 	return s
 }
 
+// There was an internal failure in the AppConfig service.
+type InternalServerException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InternalServerException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternalServerException) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalServerException(v protocol.ResponseMetadata) error {
+	return &InternalServerException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InternalServerException) Code() string {
+	return "InternalServerException"
+}
+
+// Message returns the exception's message.
+func (s InternalServerException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InternalServerException) OrigErr() error {
+	return nil
+}
+
+func (s InternalServerException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InternalServerException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InternalServerException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type ListApplicationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5600,6 +5769,64 @@ func (s *Monitor) SetAlarmArn(v string) *Monitor {
 func (s *Monitor) SetAlarmRoleArn(v string) *Monitor {
 	s.AlarmRoleArn = &v
 	return s
+}
+
+// The requested resource could not be found.
+type ResourceNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	ResourceName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type StartDeploymentInput struct {

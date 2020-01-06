@@ -74,11 +74,11 @@ func (c *XRay) BatchGetTracesRequest(input *BatchGetTracesInput) (req *request.R
 // See the AWS API reference guide for AWS X-Ray's
 // API operation BatchGetTraces for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is missing required parameters or has invalid parameters.
 //
-//   * ErrCodeThrottledException "ThrottledException"
+//   * ThrottledException
 //   The request exceeds the maximum number of requests per second.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/BatchGetTraces
@@ -208,11 +208,11 @@ func (c *XRay) CreateGroupRequest(input *CreateGroupInput) (req *request.Request
 // See the AWS API reference guide for AWS X-Ray's
 // API operation CreateGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is missing required parameters or has invalid parameters.
 //
-//   * ErrCodeThrottledException "ThrottledException"
+//   * ThrottledException
 //   The request exceeds the maximum number of requests per second.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/CreateGroup
@@ -296,14 +296,14 @@ func (c *XRay) CreateSamplingRuleRequest(input *CreateSamplingRuleInput) (req *r
 // See the AWS API reference guide for AWS X-Ray's
 // API operation CreateSamplingRule for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is missing required parameters or has invalid parameters.
 //
-//   * ErrCodeThrottledException "ThrottledException"
+//   * ThrottledException
 //   The request exceeds the maximum number of requests per second.
 //
-//   * ErrCodeRuleLimitExceededException "RuleLimitExceededException"
+//   * RuleLimitExceededException
 //   You have reached the maximum number of sampling rules.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/CreateSamplingRule
@@ -382,11 +382,11 @@ func (c *XRay) DeleteGroupRequest(input *DeleteGroupInput) (req *request.Request
 // See the AWS API reference guide for AWS X-Ray's
 // API operation DeleteGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is missing required parameters or has invalid parameters.
 //
-//   * ErrCodeThrottledException "ThrottledException"
+//   * ThrottledException
 //   The request exceeds the maximum number of requests per second.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/DeleteGroup
@@ -464,11 +464,11 @@ func (c *XRay) DeleteSamplingRuleRequest(input *DeleteSamplingRuleInput) (req *r
 // See the AWS API reference guide for AWS X-Ray's
 // API operation DeleteSamplingRule for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is missing required parameters or has invalid parameters.
 //
-//   * ErrCodeThrottledException "ThrottledException"
+//   * ThrottledException
 //   The request exceeds the maximum number of requests per second.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/DeleteSamplingRule
@@ -546,11 +546,11 @@ func (c *XRay) GetEncryptionConfigRequest(input *GetEncryptionConfigInput) (req 
 // See the AWS API reference guide for AWS X-Ray's
 // API operation GetEncryptionConfig for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is missing required parameters or has invalid parameters.
 //
-//   * ErrCodeThrottledException "ThrottledException"
+//   * ThrottledException
 //   The request exceeds the maximum number of requests per second.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetEncryptionConfig
@@ -628,11 +628,11 @@ func (c *XRay) GetGroupRequest(input *GetGroupInput) (req *request.Request, outp
 // See the AWS API reference guide for AWS X-Ray's
 // API operation GetGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is missing required parameters or has invalid parameters.
 //
-//   * ErrCodeThrottledException "ThrottledException"
+//   * ThrottledException
 //   The request exceeds the maximum number of requests per second.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetGroup
@@ -716,11 +716,11 @@ func (c *XRay) GetGroupsRequest(input *GetGroupsInput) (req *request.Request, ou
 // See the AWS API reference guide for AWS X-Ray's
 // API operation GetGroups for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is missing required parameters or has invalid parameters.
 //
-//   * ErrCodeThrottledException "ThrottledException"
+//   * ThrottledException
 //   The request exceeds the maximum number of requests per second.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetGroups
@@ -856,11 +856,11 @@ func (c *XRay) GetSamplingRulesRequest(input *GetSamplingRulesInput) (req *reque
 // See the AWS API reference guide for AWS X-Ray's
 // API operation GetSamplingRules for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is missing required parameters or has invalid parameters.
 //
-//   * ErrCodeThrottledException "ThrottledException"
+//   * ThrottledException
 //   The request exceeds the maximum number of requests per second.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetSamplingRules
@@ -996,11 +996,11 @@ func (c *XRay) GetSamplingStatisticSummariesRequest(input *GetSamplingStatisticS
 // See the AWS API reference guide for AWS X-Ray's
 // API operation GetSamplingStatisticSummaries for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is missing required parameters or has invalid parameters.
 //
-//   * ErrCodeThrottledException "ThrottledException"
+//   * ThrottledException
 //   The request exceeds the maximum number of requests per second.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetSamplingStatisticSummaries
@@ -1130,11 +1130,11 @@ func (c *XRay) GetSamplingTargetsRequest(input *GetSamplingTargetsInput) (req *r
 // See the AWS API reference guide for AWS X-Ray's
 // API operation GetSamplingTargets for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is missing required parameters or has invalid parameters.
 //
-//   * ErrCodeThrottledException "ThrottledException"
+//   * ThrottledException
 //   The request exceeds the maximum number of requests per second.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetSamplingTargets
@@ -1223,11 +1223,11 @@ func (c *XRay) GetServiceGraphRequest(input *GetServiceGraphInput) (req *request
 // See the AWS API reference guide for AWS X-Ray's
 // API operation GetServiceGraph for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is missing required parameters or has invalid parameters.
 //
-//   * ErrCodeThrottledException "ThrottledException"
+//   * ThrottledException
 //   The request exceeds the maximum number of requests per second.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetServiceGraph
@@ -1363,11 +1363,11 @@ func (c *XRay) GetTimeSeriesServiceStatisticsRequest(input *GetTimeSeriesService
 // See the AWS API reference guide for AWS X-Ray's
 // API operation GetTimeSeriesServiceStatistics for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is missing required parameters or has invalid parameters.
 //
-//   * ErrCodeThrottledException "ThrottledException"
+//   * ThrottledException
 //   The request exceeds the maximum number of requests per second.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetTimeSeriesServiceStatistics
@@ -1503,11 +1503,11 @@ func (c *XRay) GetTraceGraphRequest(input *GetTraceGraphInput) (req *request.Req
 // See the AWS API reference guide for AWS X-Ray's
 // API operation GetTraceGraph for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is missing required parameters or has invalid parameters.
 //
-//   * ErrCodeThrottledException "ThrottledException"
+//   * ThrottledException
 //   The request exceeds the maximum number of requests per second.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetTraceGraph
@@ -1659,11 +1659,11 @@ func (c *XRay) GetTraceSummariesRequest(input *GetTraceSummariesInput) (req *req
 // See the AWS API reference guide for AWS X-Ray's
 // API operation GetTraceSummaries for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is missing required parameters or has invalid parameters.
 //
-//   * ErrCodeThrottledException "ThrottledException"
+//   * ThrottledException
 //   The request exceeds the maximum number of requests per second.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetTraceSummaries
@@ -1793,11 +1793,11 @@ func (c *XRay) PutEncryptionConfigRequest(input *PutEncryptionConfigInput) (req 
 // See the AWS API reference guide for AWS X-Ray's
 // API operation PutEncryptionConfig for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is missing required parameters or has invalid parameters.
 //
-//   * ErrCodeThrottledException "ThrottledException"
+//   * ThrottledException
 //   The request exceeds the maximum number of requests per second.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/PutEncryptionConfig
@@ -1876,11 +1876,11 @@ func (c *XRay) PutTelemetryRecordsRequest(input *PutTelemetryRecordsInput) (req 
 // See the AWS API reference guide for AWS X-Ray's
 // API operation PutTelemetryRecords for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is missing required parameters or has invalid parameters.
 //
-//   * ErrCodeThrottledException "ThrottledException"
+//   * ThrottledException
 //   The request exceeds the maximum number of requests per second.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/PutTelemetryRecords
@@ -2003,11 +2003,11 @@ func (c *XRay) PutTraceSegmentsRequest(input *PutTraceSegmentsInput) (req *reque
 // See the AWS API reference guide for AWS X-Ray's
 // API operation PutTraceSegments for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is missing required parameters or has invalid parameters.
 //
-//   * ErrCodeThrottledException "ThrottledException"
+//   * ThrottledException
 //   The request exceeds the maximum number of requests per second.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/PutTraceSegments
@@ -2085,11 +2085,11 @@ func (c *XRay) UpdateGroupRequest(input *UpdateGroupInput) (req *request.Request
 // See the AWS API reference guide for AWS X-Ray's
 // API operation UpdateGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is missing required parameters or has invalid parameters.
 //
-//   * ErrCodeThrottledException "ThrottledException"
+//   * ThrottledException
 //   The request exceeds the maximum number of requests per second.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/UpdateGroup
@@ -2167,11 +2167,11 @@ func (c *XRay) UpdateSamplingRuleRequest(input *UpdateSamplingRuleInput) (req *r
 // See the AWS API reference guide for AWS X-Ray's
 // API operation UpdateSamplingRule for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is missing required parameters or has invalid parameters.
 //
-//   * ErrCodeThrottledException "ThrottledException"
+//   * ThrottledException
 //   The request exceeds the maximum number of requests per second.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/UpdateSamplingRule
@@ -4352,6 +4352,62 @@ func (s *InstanceIdDetail) SetId(v string) *InstanceIdDetail {
 	return s
 }
 
+// The request is missing required parameters or has invalid parameters.
+type InvalidRequestException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidRequestException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidRequestException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidRequestException(v protocol.ResponseMetadata) error {
+	return &InvalidRequestException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidRequestException) Code() string {
+	return "InvalidRequestException"
+}
+
+// Message returns the exception's message.
+func (s InvalidRequestException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidRequestException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidRequestException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidRequestException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidRequestException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type PutEncryptionConfigInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4774,6 +4830,62 @@ func (s *RootCauseException) SetMessage(v string) *RootCauseException {
 func (s *RootCauseException) SetName(v string) *RootCauseException {
 	s.Name = &v
 	return s
+}
+
+// You have reached the maximum number of sampling rules.
+type RuleLimitExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s RuleLimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RuleLimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorRuleLimitExceededException(v protocol.ResponseMetadata) error {
+	return &RuleLimitExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s RuleLimitExceededException) Code() string {
+	return "RuleLimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s RuleLimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s RuleLimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s RuleLimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s RuleLimitExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s RuleLimitExceededException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // A sampling rule that services use to decide whether to instrument a request.
@@ -5802,6 +5914,62 @@ func (s *TelemetryRecord) SetSegmentsSpilloverCount(v int64) *TelemetryRecord {
 func (s *TelemetryRecord) SetTimestamp(v time.Time) *TelemetryRecord {
 	s.Timestamp = &v
 	return s
+}
+
+// The request exceeds the maximum number of requests per second.
+type ThrottledException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ThrottledException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ThrottledException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottledException(v protocol.ResponseMetadata) error {
+	return &ThrottledException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ThrottledException) Code() string {
+	return "ThrottledException"
+}
+
+// Message returns the exception's message.
+func (s ThrottledException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ThrottledException) OrigErr() error {
+	return nil
+}
+
+func (s ThrottledException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ThrottledException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ThrottledException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // A list of TimeSeriesStatistic structures.

@@ -74,17 +74,17 @@ func (c *Detective) AcceptInvitationRequest(input *AcceptInvitationInput) (req *
 // See the AWS API reference guide for Amazon Detective's
 // API operation AcceptInvitation for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeConflictException "ConflictException"
+// Returned Error Types:
+//   * ConflictException
 //   The request attempted an invalid action.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request was valid but failed because of a problem with the service.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request refers to a nonexistent resource.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   The request parameters are invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/AcceptInvitation
@@ -177,11 +177,11 @@ func (c *Detective) CreateGraphRequest(input *CreateGraphInput) (req *request.Re
 // See the AWS API reference guide for Amazon Detective's
 // API operation CreateGraph for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeConflictException "ConflictException"
+// Returned Error Types:
+//   * ConflictException
 //   The request attempted an invalid action.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request was valid but failed because of a problem with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/CreateGraph
@@ -279,17 +279,17 @@ func (c *Detective) CreateMembersRequest(input *CreateMembersInput) (req *reques
 // See the AWS API reference guide for Amazon Detective's
 // API operation CreateMembers for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerException "InternalServerException"
+// Returned Error Types:
+//   * InternalServerException
 //   The request was valid but failed because of a problem with the service.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request refers to a nonexistent resource.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   The request parameters are invalid.
 //
-//   * ErrCodeServiceQuotaExceededException "ServiceQuotaExceededException"
+//   * ServiceQuotaExceededException
 //   This request would cause the number of member accounts in the behavior graph
 //   to exceed the maximum allowed. A behavior graph cannot have more than 1000
 //   member accounts.
@@ -375,14 +375,14 @@ func (c *Detective) DeleteGraphRequest(input *DeleteGraphInput) (req *request.Re
 // See the AWS API reference guide for Amazon Detective's
 // API operation DeleteGraph for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerException "InternalServerException"
+// Returned Error Types:
+//   * InternalServerException
 //   The request was valid but failed because of a problem with the service.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request refers to a nonexistent resource.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   The request parameters are invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/DeleteGraph
@@ -466,17 +466,17 @@ func (c *Detective) DeleteMembersRequest(input *DeleteMembersInput) (req *reques
 // See the AWS API reference guide for Amazon Detective's
 // API operation DeleteMembers for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeConflictException "ConflictException"
+// Returned Error Types:
+//   * ConflictException
 //   The request attempted an invalid action.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request was valid but failed because of a problem with the service.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request refers to a nonexistent resource.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   The request parameters are invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/DeleteMembers
@@ -558,17 +558,17 @@ func (c *Detective) DisassociateMembershipRequest(input *DisassociateMembershipI
 // See the AWS API reference guide for Amazon Detective's
 // API operation DisassociateMembership for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeConflictException "ConflictException"
+// Returned Error Types:
+//   * ConflictException
 //   The request attempted an invalid action.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request was valid but failed because of a problem with the service.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request refers to a nonexistent resource.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   The request parameters are invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/DisassociateMembership
@@ -649,14 +649,14 @@ func (c *Detective) GetMembersRequest(input *GetMembersInput) (req *request.Requ
 // See the AWS API reference guide for Amazon Detective's
 // API operation GetMembers for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerException "InternalServerException"
+// Returned Error Types:
+//   * InternalServerException
 //   The request was valid but failed because of a problem with the service.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request refers to a nonexistent resource.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   The request parameters are invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/GetMembers
@@ -746,11 +746,11 @@ func (c *Detective) ListGraphsRequest(input *ListGraphsInput) (req *request.Requ
 // See the AWS API reference guide for Amazon Detective's
 // API operation ListGraphs for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerException "InternalServerException"
+// Returned Error Types:
+//   * InternalServerException
 //   The request was valid but failed because of a problem with the service.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   The request parameters are invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/ListGraphs
@@ -896,11 +896,11 @@ func (c *Detective) ListInvitationsRequest(input *ListInvitationsInput) (req *re
 // See the AWS API reference guide for Amazon Detective's
 // API operation ListInvitations for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerException "InternalServerException"
+// Returned Error Types:
+//   * InternalServerException
 //   The request was valid but failed because of a problem with the service.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   The request parameters are invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/ListInvitations
@@ -1039,14 +1039,14 @@ func (c *Detective) ListMembersRequest(input *ListMembersInput) (req *request.Re
 // See the AWS API reference guide for Amazon Detective's
 // API operation ListMembers for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerException "InternalServerException"
+// Returned Error Types:
+//   * InternalServerException
 //   The request was valid but failed because of a problem with the service.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request refers to a nonexistent resource.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   The request parameters are invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/ListMembers
@@ -1180,17 +1180,17 @@ func (c *Detective) RejectInvitationRequest(input *RejectInvitationInput) (req *
 // See the AWS API reference guide for Amazon Detective's
 // API operation RejectInvitation for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeConflictException "ConflictException"
+// Returned Error Types:
+//   * ConflictException
 //   The request attempted an invalid action.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request was valid but failed because of a problem with the service.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request refers to a nonexistent resource.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   The request parameters are invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/RejectInvitation
@@ -1329,6 +1329,62 @@ func (s *Account) SetAccountId(v string) *Account {
 func (s *Account) SetEmailAddress(v string) *Account {
 	s.EmailAddress = &v
 	return s
+}
+
+// The request attempted an invalid action.
+type ConflictException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ConflictException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ConflictException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type CreateGraphInput struct {
@@ -1814,6 +1870,62 @@ func (s *Graph) SetCreatedTime(v time.Time) *Graph {
 	return s
 }
 
+// The request was valid but failed because of a problem with the service.
+type InternalServerException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InternalServerException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternalServerException) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalServerException(v protocol.ResponseMetadata) error {
+	return &InternalServerException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InternalServerException) Code() string {
+	return "InternalServerException"
+}
+
+// Message returns the exception's message.
+func (s InternalServerException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InternalServerException) OrigErr() error {
+	return nil
+}
+
+func (s InternalServerException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InternalServerException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InternalServerException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type ListGraphsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2247,6 +2359,120 @@ func (s RejectInvitationOutput) GoString() string {
 	return s.String()
 }
 
+// The request refers to a nonexistent resource.
+type ResourceNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// This request would cause the number of member accounts in the behavior graph
+// to exceed the maximum allowed. A behavior graph cannot have more than 1000
+// member accounts.
+type ServiceQuotaExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ServiceQuotaExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceQuotaExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceQuotaExceededException(v protocol.ResponseMetadata) error {
+	return &ServiceQuotaExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ServiceQuotaExceededException) Code() string {
+	return "ServiceQuotaExceededException"
+}
+
+// Message returns the exception's message.
+func (s ServiceQuotaExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ServiceQuotaExceededException) OrigErr() error {
+	return nil
+}
+
+func (s ServiceQuotaExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ServiceQuotaExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ServiceQuotaExceededException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // Amazon Detective is currently in preview.
 //
 // A member account that was included in a request but for which the request
@@ -2281,6 +2507,62 @@ func (s *UnprocessedAccount) SetAccountId(v string) *UnprocessedAccount {
 func (s *UnprocessedAccount) SetReason(v string) *UnprocessedAccount {
 	s.Reason = &v
 	return s
+}
+
+// The request parameters are invalid.
+type ValidationException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ValidationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ValidationException) GoString() string {
+	return s.String()
+}
+
+func newErrorValidationException(v protocol.ResponseMetadata) error {
+	return &ValidationException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ValidationException) Code() string {
+	return "ValidationException"
+}
+
+// Message returns the exception's message.
+func (s ValidationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ValidationException) OrigErr() error {
+	return nil
+}
+
+func (s ValidationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ValidationException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ValidationException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 const (

@@ -2,6 +2,10 @@
 
 package signer
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeAccessDeniedException for service response error code
@@ -47,3 +51,13 @@ const (
 	// You signing certificate could not be validated.
 	ErrCodeValidationException = "ValidationException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"AccessDeniedException":         newErrorAccessDeniedException,
+	"BadRequestException":           newErrorBadRequestException,
+	"InternalServiceErrorException": newErrorInternalServiceErrorException,
+	"NotFoundException":             newErrorNotFoundException,
+	"ResourceNotFoundException":     newErrorResourceNotFoundException,
+	"ThrottlingException":           newErrorThrottlingException,
+	"ValidationException":           newErrorValidationException,
+}

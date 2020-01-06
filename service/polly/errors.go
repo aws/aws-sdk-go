@@ -2,6 +2,10 @@
 
 package polly
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeEngineNotSupportedException for service response error code
@@ -152,3 +156,27 @@ const (
 	// languages, see Lexicon Attributes (https://docs.aws.amazon.com/polly/latest/dg/API_LexiconAttributes.html).
 	ErrCodeUnsupportedPlsLanguageException = "UnsupportedPlsLanguageException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"EngineNotSupportedException":               newErrorEngineNotSupportedException,
+	"InvalidLexiconException":                   newErrorInvalidLexiconException,
+	"InvalidNextTokenException":                 newErrorInvalidNextTokenException,
+	"InvalidS3BucketException":                  newErrorInvalidS3BucketException,
+	"InvalidS3KeyException":                     newErrorInvalidS3KeyException,
+	"InvalidSampleRateException":                newErrorInvalidSampleRateException,
+	"InvalidSnsTopicArnException":               newErrorInvalidSnsTopicArnException,
+	"InvalidSsmlException":                      newErrorInvalidSsmlException,
+	"InvalidTaskIdException":                    newErrorInvalidTaskIdException,
+	"LanguageNotSupportedException":             newErrorLanguageNotSupportedException,
+	"LexiconNotFoundException":                  newErrorLexiconNotFoundException,
+	"LexiconSizeExceededException":              newErrorLexiconSizeExceededException,
+	"MarksNotSupportedForFormatException":       newErrorMarksNotSupportedForFormatException,
+	"MaxLexemeLengthExceededException":          newErrorMaxLexemeLengthExceededException,
+	"MaxLexiconsNumberExceededException":        newErrorMaxLexiconsNumberExceededException,
+	"ServiceFailureException":                   newErrorServiceFailureException,
+	"SsmlMarksNotSupportedForTextTypeException": newErrorSsmlMarksNotSupportedForTextTypeException,
+	"SynthesisTaskNotFoundException":            newErrorSynthesisTaskNotFoundException,
+	"TextLengthExceededException":               newErrorTextLengthExceededException,
+	"UnsupportedPlsAlphabetException":           newErrorUnsupportedPlsAlphabetException,
+	"UnsupportedPlsLanguageException":           newErrorUnsupportedPlsLanguageException,
+}

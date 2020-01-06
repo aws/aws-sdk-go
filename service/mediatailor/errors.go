@@ -2,6 +2,10 @@
 
 package mediatailor
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeBadRequestException for service response error code
@@ -10,3 +14,7 @@ const (
 	// One of the parameters in the request is invalid.
 	ErrCodeBadRequestException = "BadRequestException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"BadRequestException": newErrorBadRequestException,
+}

@@ -2,6 +2,10 @@
 
 package sagemakerruntime
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeInternalFailure for service response error code
@@ -29,3 +33,10 @@ const (
 	// Inspect your request and try again.
 	ErrCodeValidationError = "ValidationError"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"InternalFailure":    newErrorInternalFailure,
+	"ModelError":         newErrorModelError,
+	"ServiceUnavailable": newErrorServiceUnavailable,
+	"ValidationError":    newErrorValidationError,
+}

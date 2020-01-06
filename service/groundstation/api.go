@@ -66,14 +66,14 @@ func (c *GroundStation) CancelContactRequest(input *CancelContactInput) (req *re
 // See the AWS API reference guide for AWS Ground Station's
 // API operation CancelContact for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
+// Returned Error Types:
+//   * DependencyException
 //   Dependency encountered an error.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/CancelContact
@@ -153,14 +153,14 @@ func (c *GroundStation) CreateConfigRequest(input *CreateConfigInput) (req *requ
 // See the AWS API reference guide for AWS Ground Station's
 // API operation CreateConfig for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
+// Returned Error Types:
+//   * DependencyException
 //   Dependency encountered an error.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/CreateConfig
@@ -245,14 +245,14 @@ func (c *GroundStation) CreateDataflowEndpointGroupRequest(input *CreateDataflow
 // See the AWS API reference guide for AWS Ground Station's
 // API operation CreateDataflowEndpointGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
+// Returned Error Types:
+//   * DependencyException
 //   Dependency encountered an error.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/CreateDataflowEndpointGroup
@@ -333,14 +333,14 @@ func (c *GroundStation) CreateMissionProfileRequest(input *CreateMissionProfileI
 // See the AWS API reference guide for AWS Ground Station's
 // API operation CreateMissionProfile for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
+// Returned Error Types:
+//   * DependencyException
 //   Dependency encountered an error.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/CreateMissionProfile
@@ -418,14 +418,14 @@ func (c *GroundStation) DeleteConfigRequest(input *DeleteConfigInput) (req *requ
 // See the AWS API reference guide for AWS Ground Station's
 // API operation DeleteConfig for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
+// Returned Error Types:
+//   * DependencyException
 //   Dependency encountered an error.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/DeleteConfig
@@ -503,14 +503,14 @@ func (c *GroundStation) DeleteDataflowEndpointGroupRequest(input *DeleteDataflow
 // See the AWS API reference guide for AWS Ground Station's
 // API operation DeleteDataflowEndpointGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
+// Returned Error Types:
+//   * DependencyException
 //   Dependency encountered an error.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/DeleteDataflowEndpointGroup
@@ -588,14 +588,14 @@ func (c *GroundStation) DeleteMissionProfileRequest(input *DeleteMissionProfileI
 // See the AWS API reference guide for AWS Ground Station's
 // API operation DeleteMissionProfile for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
+// Returned Error Types:
+//   * DependencyException
 //   Dependency encountered an error.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/DeleteMissionProfile
@@ -673,14 +673,14 @@ func (c *GroundStation) DescribeContactRequest(input *DescribeContactInput) (req
 // See the AWS API reference guide for AWS Ground Station's
 // API operation DescribeContact for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
+// Returned Error Types:
+//   * DependencyException
 //   Dependency encountered an error.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/DescribeContact
@@ -760,14 +760,14 @@ func (c *GroundStation) GetConfigRequest(input *GetConfigInput) (req *request.Re
 // See the AWS API reference guide for AWS Ground Station's
 // API operation GetConfig for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
+// Returned Error Types:
+//   * DependencyException
 //   Dependency encountered an error.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/GetConfig
@@ -845,14 +845,14 @@ func (c *GroundStation) GetDataflowEndpointGroupRequest(input *GetDataflowEndpoi
 // See the AWS API reference guide for AWS Ground Station's
 // API operation GetDataflowEndpointGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
+// Returned Error Types:
+//   * DependencyException
 //   Dependency encountered an error.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/GetDataflowEndpointGroup
@@ -930,14 +930,14 @@ func (c *GroundStation) GetMinuteUsageRequest(input *GetMinuteUsageInput) (req *
 // See the AWS API reference guide for AWS Ground Station's
 // API operation GetMinuteUsage for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
+// Returned Error Types:
+//   * DependencyException
 //   Dependency encountered an error.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/GetMinuteUsage
@@ -1015,14 +1015,14 @@ func (c *GroundStation) GetMissionProfileRequest(input *GetMissionProfileInput) 
 // See the AWS API reference guide for AWS Ground Station's
 // API operation GetMissionProfile for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
+// Returned Error Types:
+//   * DependencyException
 //   Dependency encountered an error.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/GetMissionProfile
@@ -1100,14 +1100,14 @@ func (c *GroundStation) GetSatelliteRequest(input *GetSatelliteInput) (req *requ
 // See the AWS API reference guide for AWS Ground Station's
 // API operation GetSatellite for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
+// Returned Error Types:
+//   * DependencyException
 //   Dependency encountered an error.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/GetSatellite
@@ -1191,14 +1191,14 @@ func (c *GroundStation) ListConfigsRequest(input *ListConfigsInput) (req *reques
 // See the AWS API reference guide for AWS Ground Station's
 // API operation ListConfigs for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
+// Returned Error Types:
+//   * DependencyException
 //   Dependency encountered an error.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/ListConfigs
@@ -1337,14 +1337,14 @@ func (c *GroundStation) ListContactsRequest(input *ListContactsInput) (req *requ
 // See the AWS API reference guide for AWS Ground Station's
 // API operation ListContacts for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
+// Returned Error Types:
+//   * DependencyException
 //   Dependency encountered an error.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/ListContacts
@@ -1480,14 +1480,14 @@ func (c *GroundStation) ListDataflowEndpointGroupsRequest(input *ListDataflowEnd
 // See the AWS API reference guide for AWS Ground Station's
 // API operation ListDataflowEndpointGroups for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
+// Returned Error Types:
+//   * DependencyException
 //   Dependency encountered an error.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/ListDataflowEndpointGroups
@@ -1623,14 +1623,14 @@ func (c *GroundStation) ListGroundStationsRequest(input *ListGroundStationsInput
 // See the AWS API reference guide for AWS Ground Station's
 // API operation ListGroundStations for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
+// Returned Error Types:
+//   * DependencyException
 //   Dependency encountered an error.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/ListGroundStations
@@ -1766,14 +1766,14 @@ func (c *GroundStation) ListMissionProfilesRequest(input *ListMissionProfilesInp
 // See the AWS API reference guide for AWS Ground Station's
 // API operation ListMissionProfiles for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
+// Returned Error Types:
+//   * DependencyException
 //   Dependency encountered an error.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/ListMissionProfiles
@@ -1909,14 +1909,14 @@ func (c *GroundStation) ListSatellitesRequest(input *ListSatellitesInput) (req *
 // See the AWS API reference guide for AWS Ground Station's
 // API operation ListSatellites for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
+// Returned Error Types:
+//   * DependencyException
 //   Dependency encountered an error.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/ListSatellites
@@ -2046,14 +2046,14 @@ func (c *GroundStation) ListTagsForResourceRequest(input *ListTagsForResourceInp
 // See the AWS API reference guide for AWS Ground Station's
 // API operation ListTagsForResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
+// Returned Error Types:
+//   * DependencyException
 //   Dependency encountered an error.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/ListTagsForResource
@@ -2131,14 +2131,14 @@ func (c *GroundStation) ReserveContactRequest(input *ReserveContactInput) (req *
 // See the AWS API reference guide for AWS Ground Station's
 // API operation ReserveContact for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
+// Returned Error Types:
+//   * DependencyException
 //   Dependency encountered an error.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/ReserveContact
@@ -2217,14 +2217,14 @@ func (c *GroundStation) TagResourceRequest(input *TagResourceInput) (req *reques
 // See the AWS API reference guide for AWS Ground Station's
 // API operation TagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
+// Returned Error Types:
+//   * DependencyException
 //   Dependency encountered an error.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/TagResource
@@ -2303,14 +2303,14 @@ func (c *GroundStation) UntagResourceRequest(input *UntagResourceInput) (req *re
 // See the AWS API reference guide for AWS Ground Station's
 // API operation UntagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
+// Returned Error Types:
+//   * DependencyException
 //   Dependency encountered an error.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/UntagResource
@@ -2391,14 +2391,14 @@ func (c *GroundStation) UpdateConfigRequest(input *UpdateConfigInput) (req *requ
 // See the AWS API reference guide for AWS Ground Station's
 // API operation UpdateConfig for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
+// Returned Error Types:
+//   * DependencyException
 //   Dependency encountered an error.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/UpdateConfig
@@ -2479,14 +2479,14 @@ func (c *GroundStation) UpdateMissionProfileRequest(input *UpdateMissionProfileI
 // See the AWS API reference guide for AWS Ground Station's
 // API operation UpdateMissionProfile for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDependencyException "DependencyException"
+// Returned Error Types:
+//   * DependencyException
 //   Dependency encountered an error.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/groundstation-2019-05-23/UpdateMissionProfile
@@ -3810,6 +3810,64 @@ func (s *DemodulationConfig) SetUnvalidatedJSON(v string) *DemodulationConfig {
 	return s
 }
 
+// Dependency encountered an error.
+type DependencyException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+
+	ParameterName *string `locationName:"parameterName" type:"string"`
+}
+
+// String returns the string representation
+func (s DependencyException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DependencyException) GoString() string {
+	return s.String()
+}
+
+func newErrorDependencyException(v protocol.ResponseMetadata) error {
+	return &DependencyException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s DependencyException) Code() string {
+	return "DependencyException"
+}
+
+// Message returns the exception's message.
+func (s DependencyException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s DependencyException) OrigErr() error {
+	return nil
+}
+
+func (s DependencyException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s DependencyException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s DependencyException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type DescribeContactInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4738,6 +4796,64 @@ func (s *GetSatelliteOutput) SetTags(v map[string]*string) *GetSatelliteOutput {
 	return s
 }
 
+// One or more parameters are not valid.
+type InvalidParameterException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+
+	ParameterName *string `locationName:"parameterName" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidParameterException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidParameterException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidParameterException(v protocol.ResponseMetadata) error {
+	return &InvalidParameterException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidParameterException) Code() string {
+	return "InvalidParameterException"
+}
+
+// Message returns the exception's message.
+func (s InvalidParameterException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidParameterException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidParameterException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidParameterException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidParameterException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type ListConfigsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5388,6 +5504,62 @@ func (s ReserveContactOutput) GoString() string {
 func (s *ReserveContactOutput) SetContactId(v string) *ReserveContactOutput {
 	s.ContactId = &v
 	return s
+}
+
+// Resource was not found.
+type ResourceNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Item in a list of satellites.

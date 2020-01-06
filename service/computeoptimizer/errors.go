@@ -2,6 +2,10 @@
 
 package computeoptimizer
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeAccessDeniedException for service response error code
@@ -54,3 +58,14 @@ const (
 	// The limit on the number of requests per second was exceeded.
 	ErrCodeThrottlingException = "ThrottlingException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"AccessDeniedException":          newErrorAccessDeniedException,
+	"InternalServerException":        newErrorInternalServerException,
+	"InvalidParameterValueException": newErrorInvalidParameterValueException,
+	"MissingAuthenticationToken":     newErrorMissingAuthenticationToken,
+	"OptInRequiredException":         newErrorOptInRequiredException,
+	"ResourceNotFoundException":      newErrorResourceNotFoundException,
+	"ServiceUnavailableException":    newErrorServiceUnavailableException,
+	"ThrottlingException":            newErrorThrottlingException,
+}

@@ -68,27 +68,27 @@ func (c *CodeStarNotifications) CreateNotificationRuleRequest(input *CreateNotif
 // See the AWS API reference guide for AWS CodeStar Notifications's
 // API operation CreateNotificationRule for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceAlreadyExistsException "ResourceAlreadyExistsException"
+// Returned Error Types:
+//   * ResourceAlreadyExistsException
 //   A resource with the same name or ID already exists. Notification rule names
 //   must be unique in your AWS account.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more parameter values are not valid.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   One of the AWS CodeStar Notifications limits has been exceeded. Limits apply
 //   to accounts, notification rules, notifications, resources, and targets. For
 //   more information, see Limits.
 //
-//   * ErrCodeConfigurationException "ConfigurationException"
+//   * ConfigurationException
 //   Some or all of the configuration is incomplete, missing, or not valid.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   AWS CodeStar Notifications can't complete the request because the resource
 //   is being modified by another process. Wait a few minutes and try again.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   AWS CodeStar Notifications can't create the notification rule because you
 //   do not have sufficient permissions.
 //
@@ -167,16 +167,16 @@ func (c *CodeStarNotifications) DeleteNotificationRuleRequest(input *DeleteNotif
 // See the AWS API reference guide for AWS CodeStar Notifications's
 // API operation DeleteNotificationRule for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   One or more parameter values are not valid.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   One of the AWS CodeStar Notifications limits has been exceeded. Limits apply
 //   to accounts, notification rules, notifications, resources, and targets. For
 //   more information, see Limits.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   AWS CodeStar Notifications can't complete the request because the resource
 //   is being modified by another process. Wait a few minutes and try again.
 //
@@ -256,8 +256,8 @@ func (c *CodeStarNotifications) DeleteTargetRequest(input *DeleteTargetInput) (r
 // See the AWS API reference guide for AWS CodeStar Notifications's
 // API operation DeleteTarget for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   One or more parameter values are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codestar-notifications-2019-10-15/DeleteTarget
@@ -335,12 +335,12 @@ func (c *CodeStarNotifications) DescribeNotificationRuleRequest(input *DescribeN
 // See the AWS API reference guide for AWS CodeStar Notifications's
 // API operation DescribeNotificationRule for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   AWS CodeStar Notifications can't find a resource that matches the provided
 //   ARN.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more parameter values are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codestar-notifications-2019-10-15/DescribeNotificationRule
@@ -424,12 +424,12 @@ func (c *CodeStarNotifications) ListEventTypesRequest(input *ListEventTypesInput
 // See the AWS API reference guide for AWS CodeStar Notifications's
 // API operation ListEventTypes for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+// Returned Error Types:
+//   * InvalidNextTokenException
 //   The value for the enumeration token used in the request to return the next
 //   batch of the results is not valid.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more parameter values are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codestar-notifications-2019-10-15/ListEventTypes
@@ -565,12 +565,12 @@ func (c *CodeStarNotifications) ListNotificationRulesRequest(input *ListNotifica
 // See the AWS API reference guide for AWS CodeStar Notifications's
 // API operation ListNotificationRules for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+// Returned Error Types:
+//   * InvalidNextTokenException
 //   The value for the enumeration token used in the request to return the next
 //   batch of the results is not valid.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more parameter values are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codestar-notifications-2019-10-15/ListNotificationRules
@@ -700,12 +700,12 @@ func (c *CodeStarNotifications) ListTagsForResourceRequest(input *ListTagsForRes
 // See the AWS API reference guide for AWS CodeStar Notifications's
 // API operation ListTagsForResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   AWS CodeStar Notifications can't find a resource that matches the provided
 //   ARN.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more parameter values are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codestar-notifications-2019-10-15/ListTagsForResource
@@ -789,12 +789,12 @@ func (c *CodeStarNotifications) ListTargetsRequest(input *ListTargetsInput) (req
 // See the AWS API reference guide for AWS CodeStar Notifications's
 // API operation ListTargets for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+// Returned Error Types:
+//   * InvalidNextTokenException
 //   The value for the enumeration token used in the request to return the next
 //   batch of the results is not valid.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more parameter values are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codestar-notifications-2019-10-15/ListTargets
@@ -926,11 +926,11 @@ func (c *CodeStarNotifications) SubscribeRequest(input *SubscribeInput) (req *re
 // See the AWS API reference guide for AWS CodeStar Notifications's
 // API operation Subscribe for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   One or more parameter values are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   AWS CodeStar Notifications can't find a resource that matches the provided
 //   ARN.
 //
@@ -1009,15 +1009,15 @@ func (c *CodeStarNotifications) TagResourceRequest(input *TagResourceInput) (req
 // See the AWS API reference guide for AWS CodeStar Notifications's
 // API operation TagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   AWS CodeStar Notifications can't find a resource that matches the provided
 //   ARN.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more parameter values are not valid.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   AWS CodeStar Notifications can't complete the request because the resource
 //   is being modified by another process. Wait a few minutes and try again.
 //
@@ -1098,8 +1098,8 @@ func (c *CodeStarNotifications) UnsubscribeRequest(input *UnsubscribeInput) (req
 // See the AWS API reference guide for AWS CodeStar Notifications's
 // API operation Unsubscribe for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   One or more parameter values are not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codestar-notifications-2019-10-15/Unsubscribe
@@ -1179,15 +1179,15 @@ func (c *CodeStarNotifications) UntagResourceRequest(input *UntagResourceInput) 
 // See the AWS API reference guide for AWS CodeStar Notifications's
 // API operation UntagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   AWS CodeStar Notifications can't find a resource that matches the provided
 //   ARN.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   One or more parameter values are not valid.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   AWS CodeStar Notifications can't complete the request because the resource
 //   is being modified by another process. Wait a few minutes and try again.
 //
@@ -1272,11 +1272,11 @@ func (c *CodeStarNotifications) UpdateNotificationRuleRequest(input *UpdateNotif
 // See the AWS API reference guide for AWS CodeStar Notifications's
 // API operation UpdateNotificationRule for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   One or more parameter values are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   AWS CodeStar Notifications can't find a resource that matches the provided
 //   ARN.
 //
@@ -1300,6 +1300,176 @@ func (c *CodeStarNotifications) UpdateNotificationRuleWithContext(ctx aws.Contex
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// AWS CodeStar Notifications can't create the notification rule because you
+// do not have sufficient permissions.
+type AccessDeniedException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s AccessDeniedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccessDeniedException) GoString() string {
+	return s.String()
+}
+
+func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
+	return &AccessDeniedException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s AccessDeniedException) Code() string {
+	return "AccessDeniedException"
+}
+
+// Message returns the exception's message.
+func (s AccessDeniedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s AccessDeniedException) OrigErr() error {
+	return nil
+}
+
+func (s AccessDeniedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s AccessDeniedException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s AccessDeniedException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// AWS CodeStar Notifications can't complete the request because the resource
+// is being modified by another process. Wait a few minutes and try again.
+type ConcurrentModificationException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ConcurrentModificationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConcurrentModificationException) GoString() string {
+	return s.String()
+}
+
+func newErrorConcurrentModificationException(v protocol.ResponseMetadata) error {
+	return &ConcurrentModificationException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ConcurrentModificationException) Code() string {
+	return "ConcurrentModificationException"
+}
+
+// Message returns the exception's message.
+func (s ConcurrentModificationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ConcurrentModificationException) OrigErr() error {
+	return nil
+}
+
+func (s ConcurrentModificationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ConcurrentModificationException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ConcurrentModificationException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Some or all of the configuration is incomplete, missing, or not valid.
+type ConfigurationException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ConfigurationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConfigurationException) GoString() string {
+	return s.String()
+}
+
+func newErrorConfigurationException(v protocol.ResponseMetadata) error {
+	return &ConfigurationException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ConfigurationException) Code() string {
+	return "ConfigurationException"
+}
+
+// Message returns the exception's message.
+func (s ConfigurationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ConfigurationException) OrigErr() error {
+	return nil
+}
+
+func (s ConfigurationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ConfigurationException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ConfigurationException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type CreateNotificationRuleInput struct {
@@ -1814,6 +1984,121 @@ func (s *EventTypeSummary) SetResourceType(v string) *EventTypeSummary {
 func (s *EventTypeSummary) SetServiceName(v string) *EventTypeSummary {
 	s.ServiceName = &v
 	return s
+}
+
+// The value for the enumeration token used in the request to return the next
+// batch of the results is not valid.
+type InvalidNextTokenException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidNextTokenException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidNextTokenException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidNextTokenException(v protocol.ResponseMetadata) error {
+	return &InvalidNextTokenException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidNextTokenException) Code() string {
+	return "InvalidNextTokenException"
+}
+
+// Message returns the exception's message.
+func (s InvalidNextTokenException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidNextTokenException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidNextTokenException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidNextTokenException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidNextTokenException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// One of the AWS CodeStar Notifications limits has been exceeded. Limits apply
+// to accounts, notification rules, notifications, resources, and targets. For
+// more information, see Limits.
+type LimitExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s LimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
+	return &LimitExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s LimitExceededException) Code() string {
+	return "LimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s LimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s LimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s LimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s LimitExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s LimitExceededException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Information about a filter to apply to the list of returned event types.
@@ -2389,6 +2674,120 @@ func (s *NotificationRuleSummary) SetId(v string) *NotificationRuleSummary {
 	return s
 }
 
+// A resource with the same name or ID already exists. Notification rule names
+// must be unique in your AWS account.
+type ResourceAlreadyExistsException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceAlreadyExistsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceAlreadyExistsException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceAlreadyExistsException(v protocol.ResponseMetadata) error {
+	return &ResourceAlreadyExistsException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceAlreadyExistsException) Code() string {
+	return "ResourceAlreadyExistsException"
+}
+
+// Message returns the exception's message.
+func (s ResourceAlreadyExistsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceAlreadyExistsException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceAlreadyExistsException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceAlreadyExistsException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceAlreadyExistsException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// AWS CodeStar Notifications can't find a resource that matches the provided
+// ARN.
+type ResourceNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type SubscribeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2909,6 +3308,62 @@ func (s UpdateNotificationRuleOutput) String() string {
 // GoString returns the string representation
 func (s UpdateNotificationRuleOutput) GoString() string {
 	return s.String()
+}
+
+// One or more parameter values are not valid.
+type ValidationException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ValidationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ValidationException) GoString() string {
+	return s.String()
+}
+
+func newErrorValidationException(v protocol.ResponseMetadata) error {
+	return &ValidationException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ValidationException) Code() string {
+	return "ValidationException"
+}
+
+// Message returns the exception's message.
+func (s ValidationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ValidationException) OrigErr() error {
+	return nil
+}
+
+func (s ValidationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ValidationException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ValidationException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 const (

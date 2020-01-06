@@ -2,6 +2,10 @@
 
 package groundstation
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeDependencyException for service response error code
@@ -22,3 +26,9 @@ const (
 	// Resource was not found.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"DependencyException":       newErrorDependencyException,
+	"InvalidParameterException": newErrorInvalidParameterException,
+	"ResourceNotFoundException": newErrorResourceNotFoundException,
+}

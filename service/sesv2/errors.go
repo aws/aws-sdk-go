@@ -2,6 +2,10 @@
 
 package sesv2
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeAccountSuspendedException for service response error code
@@ -72,3 +76,17 @@ const (
 	// Too many requests have been made to the operation.
 	ErrCodeTooManyRequestsException = "TooManyRequestsException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"AccountSuspendedException":          newErrorAccountSuspendedException,
+	"AlreadyExistsException":             newErrorAlreadyExistsException,
+	"BadRequestException":                newErrorBadRequestException,
+	"ConcurrentModificationException":    newErrorConcurrentModificationException,
+	"InvalidNextTokenException":          newErrorInvalidNextTokenException,
+	"LimitExceededException":             newErrorLimitExceededException,
+	"MailFromDomainNotVerifiedException": newErrorMailFromDomainNotVerifiedException,
+	"MessageRejected":                    newErrorMessageRejected,
+	"NotFoundException":                  newErrorNotFoundException,
+	"SendingPausedException":             newErrorSendingPausedException,
+	"TooManyRequestsException":           newErrorTooManyRequestsException,
+}

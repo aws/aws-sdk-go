@@ -3,6 +3,7 @@
 package transcribeservice
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -66,22 +67,22 @@ func (c *TranscribeService) CreateVocabularyRequest(input *CreateVocabularyInput
 // See the AWS API reference guide for Amazon Transcribe Service's
 // API operation CreateVocabulary for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
 //   transcription you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   Either you have sent too many requests or your input file is too long. Wait
 //   before you resend your request, or use a smaller file and resend the request.
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //   There was an internal error. Check the error message and try your request
 //   again.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   When you are using the CreateVocabulary operation, the JobName field is a
 //   duplicate of a previously entered job name. Resend your request with a different
 //   name.
@@ -165,22 +166,22 @@ func (c *TranscribeService) CreateVocabularyFilterRequest(input *CreateVocabular
 // See the AWS API reference guide for Amazon Transcribe Service's
 // API operation CreateVocabularyFilter for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
 //   transcription you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   Either you have sent too many requests or your input file is too long. Wait
 //   before you resend your request, or use a smaller file and resend the request.
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //   There was an internal error. Check the error message and try your request
 //   again.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   When you are using the CreateVocabulary operation, the JobName field is a
 //   duplicate of a previously entered job name. Resend your request with a different
 //   name.
@@ -265,18 +266,18 @@ func (c *TranscribeService) DeleteTranscriptionJobRequest(input *DeleteTranscrip
 // See the AWS API reference guide for Amazon Transcribe Service's
 // API operation DeleteTranscriptionJob for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   Either you have sent too many requests or your input file is too long. Wait
 //   before you resend your request, or use a smaller file and resend the request.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
 //   transcription you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //   There was an internal error. Check the error message and try your request
 //   again.
 //
@@ -356,22 +357,22 @@ func (c *TranscribeService) DeleteVocabularyRequest(input *DeleteVocabularyInput
 // See the AWS API reference guide for Amazon Transcribe Service's
 // API operation DeleteVocabulary for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   We can't find the requested resource. Check the name and try your request
 //   again.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   Either you have sent too many requests or your input file is too long. Wait
 //   before you resend your request, or use a smaller file and resend the request.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
 //   transcription you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //   There was an internal error. Check the error message and try your request
 //   again.
 //
@@ -451,22 +452,22 @@ func (c *TranscribeService) DeleteVocabularyFilterRequest(input *DeleteVocabular
 // See the AWS API reference guide for Amazon Transcribe Service's
 // API operation DeleteVocabularyFilter for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   We can't find the requested resource. Check the name and try your request
 //   again.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   Either you have sent too many requests or your input file is too long. Wait
 //   before you resend your request, or use a smaller file and resend the request.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
 //   transcription you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //   There was an internal error. Check the error message and try your request
 //   again.
 //
@@ -548,22 +549,22 @@ func (c *TranscribeService) GetTranscriptionJobRequest(input *GetTranscriptionJo
 // See the AWS API reference guide for Amazon Transcribe Service's
 // API operation GetTranscriptionJob for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
 //   transcription you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   Either you have sent too many requests or your input file is too long. Wait
 //   before you resend your request, or use a smaller file and resend the request.
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //   There was an internal error. Check the error message and try your request
 //   again.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   We can't find the requested resource. Check the name and try your request
 //   again.
 //
@@ -642,20 +643,20 @@ func (c *TranscribeService) GetVocabularyRequest(input *GetVocabularyInput) (req
 // See the AWS API reference guide for Amazon Transcribe Service's
 // API operation GetVocabulary for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   We can't find the requested resource. Check the name and try your request
 //   again.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   Either you have sent too many requests or your input file is too long. Wait
 //   before you resend your request, or use a smaller file and resend the request.
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //   There was an internal error. Check the error message and try your request
 //   again.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
 //   transcription you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
@@ -736,20 +737,20 @@ func (c *TranscribeService) GetVocabularyFilterRequest(input *GetVocabularyFilte
 // See the AWS API reference guide for Amazon Transcribe Service's
 // API operation GetVocabularyFilter for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   We can't find the requested resource. Check the name and try your request
 //   again.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   Either you have sent too many requests or your input file is too long. Wait
 //   before you resend your request, or use a smaller file and resend the request.
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //   There was an internal error. Check the error message and try your request
 //   again.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
 //   transcription you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
@@ -836,18 +837,18 @@ func (c *TranscribeService) ListTranscriptionJobsRequest(input *ListTranscriptio
 // See the AWS API reference guide for Amazon Transcribe Service's
 // API operation ListTranscriptionJobs for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
 //   transcription you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   Either you have sent too many requests or your input file is too long. Wait
 //   before you resend your request, or use a smaller file and resend the request.
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //   There was an internal error. Check the error message and try your request
 //   again.
 //
@@ -985,18 +986,18 @@ func (c *TranscribeService) ListVocabulariesRequest(input *ListVocabulariesInput
 // See the AWS API reference guide for Amazon Transcribe Service's
 // API operation ListVocabularies for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
 //   transcription you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   Either you have sent too many requests or your input file is too long. Wait
 //   before you resend your request, or use a smaller file and resend the request.
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //   There was an internal error. Check the error message and try your request
 //   again.
 //
@@ -1133,18 +1134,18 @@ func (c *TranscribeService) ListVocabularyFiltersRequest(input *ListVocabularyFi
 // See the AWS API reference guide for Amazon Transcribe Service's
 // API operation ListVocabularyFilters for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
 //   transcription you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   Either you have sent too many requests or your input file is too long. Wait
 //   before you resend your request, or use a smaller file and resend the request.
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //   There was an internal error. Check the error message and try your request
 //   again.
 //
@@ -1275,22 +1276,22 @@ func (c *TranscribeService) StartTranscriptionJobRequest(input *StartTranscripti
 // See the AWS API reference guide for Amazon Transcribe Service's
 // API operation StartTranscriptionJob for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
 //   transcription you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   Either you have sent too many requests or your input file is too long. Wait
 //   before you resend your request, or use a smaller file and resend the request.
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //   There was an internal error. Check the error message and try your request
 //   again.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   When you are using the CreateVocabulary operation, the JobName field is a
 //   duplicate of a previously entered job name. Resend your request with a different
 //   name.
@@ -1375,26 +1376,26 @@ func (c *TranscribeService) UpdateVocabularyRequest(input *UpdateVocabularyInput
 // See the AWS API reference guide for Amazon Transcribe Service's
 // API operation UpdateVocabulary for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
 //   transcription you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   Either you have sent too many requests or your input file is too long. Wait
 //   before you resend your request, or use a smaller file and resend the request.
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //   There was an internal error. Check the error message and try your request
 //   again.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   We can't find the requested resource. Check the name and try your request
 //   again.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   When you are using the CreateVocabulary operation, the JobName field is a
 //   duplicate of a previously entered job name. Resend your request with a different
 //   name.
@@ -1477,22 +1478,22 @@ func (c *TranscribeService) UpdateVocabularyFilterRequest(input *UpdateVocabular
 // See the AWS API reference guide for Amazon Transcribe Service's
 // API operation UpdateVocabularyFilter for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   Your request didn't pass one or more validation tests. For example, if the
 //   transcription you're trying to delete doesn't exist or if it is in a non-terminal
 //   state (for example, it's "in progress"). See the exception Message field
 //   for more information.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   Either you have sent too many requests or your input file is too long. Wait
 //   before you resend your request, or use a smaller file and resend the request.
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //   There was an internal error. Check the error message and try your request
 //   again.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   We can't find the requested resource. Check the name and try your request
 //   again.
 //
@@ -1516,6 +1517,126 @@ func (c *TranscribeService) UpdateVocabularyFilterWithContext(ctx aws.Context, i
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// Your request didn't pass one or more validation tests. For example, if the
+// transcription you're trying to delete doesn't exist or if it is in a non-terminal
+// state (for example, it's "in progress"). See the exception Message field
+// for more information.
+type BadRequestException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s BadRequestException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BadRequestException) GoString() string {
+	return s.String()
+}
+
+func newErrorBadRequestException(v protocol.ResponseMetadata) error {
+	return &BadRequestException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s BadRequestException) Code() string {
+	return "BadRequestException"
+}
+
+// Message returns the exception's message.
+func (s BadRequestException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s BadRequestException) OrigErr() error {
+	return nil
+}
+
+func (s BadRequestException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s BadRequestException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s BadRequestException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// When you are using the CreateVocabulary operation, the JobName field is a
+// duplicate of a previously entered job name. Resend your request with a different
+// name.
+//
+// When you are using the UpdateVocabulary operation, there are two jobs running
+// at the same time. Resend the second request later.
+type ConflictException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ConflictException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ConflictException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type CreateVocabularyFilterInput struct {
@@ -2237,6 +2358,63 @@ func (s *GetVocabularyOutput) SetVocabularyState(v string) *GetVocabularyOutput 
 	return s
 }
 
+// There was an internal error. Check the error message and try your request
+// again.
+type InternalFailureException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InternalFailureException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternalFailureException) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalFailureException(v protocol.ResponseMetadata) error {
+	return &InternalFailureException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InternalFailureException) Code() string {
+	return "InternalFailureException"
+}
+
+// Message returns the exception's message.
+func (s InternalFailureException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InternalFailureException) OrigErr() error {
+	return nil
+}
+
+func (s InternalFailureException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InternalFailureException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InternalFailureException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // Provides information about when a transcription job should be executed.
 type JobExecutionSettings struct {
 	_ struct{} `type:"structure"`
@@ -2282,6 +2460,63 @@ func (s *JobExecutionSettings) SetAllowDeferredExecution(v bool) *JobExecutionSe
 func (s *JobExecutionSettings) SetDataAccessRoleArn(v string) *JobExecutionSettings {
 	s.DataAccessRoleArn = &v
 	return s
+}
+
+// Either you have sent too many requests or your input file is too long. Wait
+// before you resend your request, or use a smaller file and resend the request.
+type LimitExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s LimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
+	return &LimitExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s LimitExceededException) Code() string {
+	return "LimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s LimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s LimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s LimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s LimitExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s LimitExceededException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type ListTranscriptionJobsInput struct {
@@ -2665,6 +2900,63 @@ func (s *Media) Validate() error {
 func (s *Media) SetMediaFileUri(v string) *Media {
 	s.MediaFileUri = &v
 	return s
+}
+
+// We can't find the requested resource. Check the name and try your request
+// again.
+type NotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s NotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorNotFoundException(v protocol.ResponseMetadata) error {
+	return &NotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s NotFoundException) Code() string {
+	return "NotFoundException"
+}
+
+// Message returns the exception's message.
+func (s NotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s NotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s NotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s NotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s NotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Provides optional settings for the StartTranscriptionJob operation.

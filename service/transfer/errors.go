@@ -2,6 +2,10 @@
 
 package transfer
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeInternalServiceError for service response error code
@@ -50,3 +54,13 @@ const (
 	// HTTP Status Code: 400
 	ErrCodeThrottlingException = "ThrottlingException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"InternalServiceError":        newErrorInternalServiceError,
+	"InvalidNextTokenException":   newErrorInvalidNextTokenException,
+	"InvalidRequestException":     newErrorInvalidRequestException,
+	"ResourceExistsException":     newErrorResourceExistsException,
+	"ResourceNotFoundException":   newErrorResourceNotFoundException,
+	"ServiceUnavailableException": newErrorServiceUnavailableException,
+	"ThrottlingException":         newErrorThrottlingException,
+}

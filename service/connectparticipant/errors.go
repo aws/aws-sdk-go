@@ -2,6 +2,10 @@
 
 package connectparticipant
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeAccessDeniedException for service response error code
@@ -29,3 +33,10 @@ const (
 	// The input fails to satisfy the constraints specified by Amazon Connect.
 	ErrCodeValidationException = "ValidationException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"AccessDeniedException":   newErrorAccessDeniedException,
+	"InternalServerException": newErrorInternalServerException,
+	"ThrottlingException":     newErrorThrottlingException,
+	"ValidationException":     newErrorValidationException,
+}

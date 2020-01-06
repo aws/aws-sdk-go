@@ -2,6 +2,10 @@
 
 package kinesisvideoarchivedmedia
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeClientLimitExceededException for service response error code
@@ -67,3 +71,14 @@ const (
 	// and, optionally, the codec ID for track 2 should be A_AAC.
 	ErrCodeUnsupportedStreamMediaTypeException = "UnsupportedStreamMediaTypeException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"ClientLimitExceededException":        newErrorClientLimitExceededException,
+	"InvalidArgumentException":            newErrorInvalidArgumentException,
+	"InvalidCodecPrivateDataException":    newErrorInvalidCodecPrivateDataException,
+	"MissingCodecPrivateDataException":    newErrorMissingCodecPrivateDataException,
+	"NoDataRetentionException":            newErrorNoDataRetentionException,
+	"NotAuthorizedException":              newErrorNotAuthorizedException,
+	"ResourceNotFoundException":           newErrorResourceNotFoundException,
+	"UnsupportedStreamMediaTypeException": newErrorUnsupportedStreamMediaTypeException,
+}

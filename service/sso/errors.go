@@ -2,6 +2,10 @@
 
 package sso
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeInvalidRequestException for service response error code
@@ -31,3 +35,10 @@ const (
 	// access token in the request.
 	ErrCodeUnauthorizedException = "UnauthorizedException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"InvalidRequestException":   newErrorInvalidRequestException,
+	"ResourceNotFoundException": newErrorResourceNotFoundException,
+	"TooManyRequestsException":  newErrorTooManyRequestsException,
+	"UnauthorizedException":     newErrorUnauthorizedException,
+}

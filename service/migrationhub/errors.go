@@ -2,6 +2,10 @@
 
 package migrationhub
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeAccessDeniedException for service response error code
@@ -68,3 +72,15 @@ const (
 	// flag is set to "true".
 	ErrCodeUnauthorizedOperation = "UnauthorizedOperation"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"AccessDeniedException":       newErrorAccessDeniedException,
+	"DryRunOperation":             newErrorDryRunOperation,
+	"HomeRegionNotSetException":   newErrorHomeRegionNotSetException,
+	"InternalServerError":         newErrorInternalServerError,
+	"InvalidInputException":       newErrorInvalidInputException,
+	"PolicyErrorException":        newErrorPolicyErrorException,
+	"ResourceNotFoundException":   newErrorResourceNotFoundException,
+	"ServiceUnavailableException": newErrorServiceUnavailableException,
+	"UnauthorizedOperation":       newErrorUnauthorizedOperation,
+}

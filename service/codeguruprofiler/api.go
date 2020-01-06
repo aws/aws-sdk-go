@@ -3,6 +3,7 @@
 package codeguruprofiler
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -65,17 +66,17 @@ func (c *CodeGuruProfiler) ConfigureAgentRequest(input *ConfigureAgentInput) (re
 // See the AWS API reference guide for Amazon CodeGuru Profiler's
 // API operation ConfigureAgent for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerException "InternalServerException"
+// Returned Error Types:
+//   * InternalServerException
 //   Unexpected error during processing of request.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   The input fails to satisfy the constraints of the API.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Request was denied due to request throttling.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Request references a resource which does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/ConfigureAgent
@@ -153,20 +154,20 @@ func (c *CodeGuruProfiler) CreateProfilingGroupRequest(input *CreateProfilingGro
 // See the AWS API reference guide for Amazon CodeGuru Profiler's
 // API operation CreateProfilingGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeServiceQuotaExceededException "ServiceQuotaExceededException"
+// Returned Error Types:
+//   * ServiceQuotaExceededException
 //   Request would cause a service quota to be exceeded.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   Unexpected error during processing of request.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   Request can can cause an inconsistent state for the resource.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   The input fails to satisfy the constraints of the API.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/CreateProfilingGroup
@@ -245,17 +246,17 @@ func (c *CodeGuruProfiler) DeleteProfilingGroupRequest(input *DeleteProfilingGro
 // See the AWS API reference guide for Amazon CodeGuru Profiler's
 // API operation DeleteProfilingGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerException "InternalServerException"
+// Returned Error Types:
+//   * InternalServerException
 //   Unexpected error during processing of request.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   The input fails to satisfy the constraints of the API.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Request was denied due to request throttling.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Request references a resource which does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/DeleteProfilingGroup
@@ -333,17 +334,17 @@ func (c *CodeGuruProfiler) DescribeProfilingGroupRequest(input *DescribeProfilin
 // See the AWS API reference guide for Amazon CodeGuru Profiler's
 // API operation DescribeProfilingGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerException "InternalServerException"
+// Returned Error Types:
+//   * InternalServerException
 //   Unexpected error during processing of request.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   The input fails to satisfy the constraints of the API.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Request was denied due to request throttling.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Request references a resource which does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/DescribeProfilingGroup
@@ -428,17 +429,17 @@ func (c *CodeGuruProfiler) GetProfileRequest(input *GetProfileInput) (req *reque
 // See the AWS API reference guide for Amazon CodeGuru Profiler's
 // API operation GetProfile for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerException "InternalServerException"
+// Returned Error Types:
+//   * InternalServerException
 //   Unexpected error during processing of request.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   The input fails to satisfy the constraints of the API.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Request was denied due to request throttling.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Request references a resource which does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/GetProfile
@@ -523,17 +524,17 @@ func (c *CodeGuruProfiler) ListProfileTimesRequest(input *ListProfileTimesInput)
 // See the AWS API reference guide for Amazon CodeGuru Profiler's
 // API operation ListProfileTimes for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerException "InternalServerException"
+// Returned Error Types:
+//   * InternalServerException
 //   Unexpected error during processing of request.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   The input fails to satisfy the constraints of the API.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Request was denied due to request throttling.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Request references a resource which does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/ListProfileTimes
@@ -669,11 +670,11 @@ func (c *CodeGuruProfiler) ListProfilingGroupsRequest(input *ListProfilingGroups
 // See the AWS API reference guide for Amazon CodeGuru Profiler's
 // API operation ListProfilingGroups for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerException "InternalServerException"
+// Returned Error Types:
+//   * InternalServerException
 //   Unexpected error during processing of request.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/ListProfilingGroups
@@ -804,17 +805,17 @@ func (c *CodeGuruProfiler) PostAgentProfileRequest(input *PostAgentProfileInput)
 // See the AWS API reference guide for Amazon CodeGuru Profiler's
 // API operation PostAgentProfile for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerException "InternalServerException"
+// Returned Error Types:
+//   * InternalServerException
 //   Unexpected error during processing of request.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   The input fails to satisfy the constraints of the API.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Request was denied due to request throttling.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Request references a resource which does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/PostAgentProfile
@@ -892,20 +893,20 @@ func (c *CodeGuruProfiler) UpdateProfilingGroupRequest(input *UpdateProfilingGro
 // See the AWS API reference guide for Amazon CodeGuru Profiler's
 // API operation UpdateProfilingGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerException "InternalServerException"
+// Returned Error Types:
+//   * InternalServerException
 //   Unexpected error during processing of request.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   Request can can cause an inconsistent state for the resource.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   The input fails to satisfy the constraints of the API.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Request was denied due to request throttling.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   Request references a resource which does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/UpdateProfilingGroup
@@ -1121,6 +1122,62 @@ func (s ConfigureAgentOutput) GoString() string {
 func (s *ConfigureAgentOutput) SetConfiguration(v *AgentConfiguration) *ConfigureAgentOutput {
 	s.Configuration = v
 	return s
+}
+
+// Request can can cause an inconsistent state for the resource.
+type ConflictException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ConflictException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ConflictException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Request for CreateProfilingGroup operation.
@@ -1488,6 +1545,62 @@ func (s *GetProfileOutput) SetContentType(v string) *GetProfileOutput {
 func (s *GetProfileOutput) SetProfile(v []byte) *GetProfileOutput {
 	s.Profile = v
 	return s
+}
+
+// Unexpected error during processing of request.
+type InternalServerException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s InternalServerException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternalServerException) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalServerException(v protocol.ResponseMetadata) error {
+	return &InternalServerException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InternalServerException) Code() string {
+	return "InternalServerException"
+}
+
+// Message returns the exception's message.
+func (s InternalServerException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InternalServerException) OrigErr() error {
+	return nil
+}
+
+func (s InternalServerException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InternalServerException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InternalServerException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Request for ListProfileTimes operation.
@@ -1986,6 +2099,174 @@ func (s *ProfilingStatus) SetLatestAggregatedProfile(v *AggregatedProfileTime) *
 	return s
 }
 
+// Request references a resource which does not exist.
+type ResourceNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Request would cause a service quota to be exceeded.
+type ServiceQuotaExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ServiceQuotaExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceQuotaExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceQuotaExceededException(v protocol.ResponseMetadata) error {
+	return &ServiceQuotaExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ServiceQuotaExceededException) Code() string {
+	return "ServiceQuotaExceededException"
+}
+
+// Message returns the exception's message.
+func (s ServiceQuotaExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ServiceQuotaExceededException) OrigErr() error {
+	return nil
+}
+
+func (s ServiceQuotaExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ServiceQuotaExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ServiceQuotaExceededException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Request was denied due to request throttling.
+type ThrottlingException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ThrottlingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ThrottlingException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottlingException(v protocol.ResponseMetadata) error {
+	return &ThrottlingException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ThrottlingException) Code() string {
+	return "ThrottlingException"
+}
+
+// Message returns the exception's message.
+func (s ThrottlingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ThrottlingException) OrigErr() error {
+	return nil
+}
+
+func (s ThrottlingException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ThrottlingException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ThrottlingException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // Request for UpdateProfilingGroup operation.
 type UpdateProfilingGroupInput struct {
 	_ struct{} `type:"structure"`
@@ -2071,6 +2352,62 @@ func (s UpdateProfilingGroupOutput) GoString() string {
 func (s *UpdateProfilingGroupOutput) SetProfilingGroup(v *ProfilingGroupDescription) *UpdateProfilingGroupOutput {
 	s.ProfilingGroup = v
 	return s
+}
+
+// The input fails to satisfy the constraints of the API.
+type ValidationException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ValidationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ValidationException) GoString() string {
+	return s.String()
+}
+
+func newErrorValidationException(v protocol.ResponseMetadata) error {
+	return &ValidationException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ValidationException) Code() string {
+	return "ValidationException"
+}
+
+// Message returns the exception's message.
+func (s ValidationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ValidationException) OrigErr() error {
+	return nil
+}
+
+func (s ValidationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ValidationException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ValidationException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Periods of time used for aggregation of profiles, represented using ISO 8601

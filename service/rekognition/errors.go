@@ -2,6 +2,10 @@
 
 package rekognition
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeAccessDeniedException for service response error code
@@ -117,3 +121,23 @@ const (
 	// file size is 8GB. The maximum duration is 2 hours.
 	ErrCodeVideoTooLargeException = "VideoTooLargeException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"AccessDeniedException":                  newErrorAccessDeniedException,
+	"HumanLoopQuotaExceededException":        newErrorHumanLoopQuotaExceededException,
+	"IdempotentParameterMismatchException":   newErrorIdempotentParameterMismatchException,
+	"ImageTooLargeException":                 newErrorImageTooLargeException,
+	"InternalServerError":                    newErrorInternalServerError,
+	"InvalidImageFormatException":            newErrorInvalidImageFormatException,
+	"InvalidPaginationTokenException":        newErrorInvalidPaginationTokenException,
+	"InvalidParameterException":              newErrorInvalidParameterException,
+	"InvalidS3ObjectException":               newErrorInvalidS3ObjectException,
+	"LimitExceededException":                 newErrorLimitExceededException,
+	"ProvisionedThroughputExceededException": newErrorProvisionedThroughputExceededException,
+	"ResourceAlreadyExistsException":         newErrorResourceAlreadyExistsException,
+	"ResourceInUseException":                 newErrorResourceInUseException,
+	"ResourceNotFoundException":              newErrorResourceNotFoundException,
+	"ResourceNotReadyException":              newErrorResourceNotReadyException,
+	"ThrottlingException":                    newErrorThrottlingException,
+	"VideoTooLargeException":                 newErrorVideoTooLargeException,
+}

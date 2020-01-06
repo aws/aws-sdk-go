@@ -70,22 +70,22 @@ func (c *SecurityHub) AcceptInvitationRequest(input *AcceptInvitationInput) (req
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation AcceptInvitation for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request was rejected because we can't find the specified resource.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/AcceptInvitation
@@ -164,18 +164,18 @@ func (c *SecurityHub) BatchDisableStandardsRequest(input *BatchDisableStandardsI
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation BatchDisableStandards for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
@@ -256,18 +256,18 @@ func (c *SecurityHub) BatchEnableStandardsRequest(input *BatchEnableStandardsInp
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation BatchEnableStandards for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
@@ -349,19 +349,19 @@ func (c *SecurityHub) BatchImportFindingsRequest(input *BatchImportFindingsInput
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation BatchImportFindings for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/BatchImportFindings
@@ -441,22 +441,22 @@ func (c *SecurityHub) CreateActionTargetRequest(input *CreateActionTargetInput) 
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation CreateActionTarget for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
-//   * ErrCodeResourceConflictException "ResourceConflictException"
+//   * ResourceConflictException
 //   The resource specified in the request conflicts with an existing resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/CreateActionTarget
@@ -536,22 +536,22 @@ func (c *SecurityHub) CreateInsightRequest(input *CreateInsightInput) (req *requ
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation CreateInsight for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeResourceConflictException "ResourceConflictException"
+//   * ResourceConflictException
 //   The resource specified in the request conflicts with an existing resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/CreateInsight
@@ -645,22 +645,22 @@ func (c *SecurityHub) CreateMembersRequest(input *CreateMembersInput) (req *requ
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation CreateMembers for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeResourceConflictException "ResourceConflictException"
+//   * ResourceConflictException
 //   The resource specified in the request conflicts with an existing resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/CreateMembers
@@ -738,18 +738,18 @@ func (c *SecurityHub) DeclineInvitationsRequest(input *DeclineInvitationsInput) 
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation DeclineInvitations for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request was rejected because we can't find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DeclineInvitations
@@ -829,18 +829,18 @@ func (c *SecurityHub) DeleteActionTargetRequest(input *DeleteActionTargetInput) 
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation DeleteActionTarget for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request was rejected because we can't find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DeleteActionTarget
@@ -918,22 +918,22 @@ func (c *SecurityHub) DeleteInsightRequest(input *DeleteInsightInput) (req *requ
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation DeleteInsight for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request was rejected because we can't find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DeleteInsight
@@ -1011,22 +1011,22 @@ func (c *SecurityHub) DeleteInvitationsRequest(input *DeleteInvitationsInput) (r
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation DeleteInvitations for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request was rejected because we can't find the specified resource.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DeleteInvitations
@@ -1104,22 +1104,22 @@ func (c *SecurityHub) DeleteMembersRequest(input *DeleteMembersInput) (req *requ
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation DeleteMembers for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request was rejected because we can't find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DeleteMembers
@@ -1203,18 +1203,18 @@ func (c *SecurityHub) DescribeActionTargetsRequest(input *DescribeActionTargetsI
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation DescribeActionTargets for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request was rejected because we can't find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DescribeActionTargets
@@ -1345,22 +1345,22 @@ func (c *SecurityHub) DescribeHubRequest(input *DescribeHubInput) (req *request.
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation DescribeHub for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request was rejected because we can't find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DescribeHub
@@ -1445,18 +1445,18 @@ func (c *SecurityHub) DescribeProductsRequest(input *DescribeProductsInput) (req
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation DescribeProducts for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
@@ -1590,21 +1590,21 @@ func (c *SecurityHub) DisableImportFindingsForProductRequest(input *DisableImpor
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation DisableImportFindingsForProduct for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request was rejected because we can't find the specified resource.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
@@ -1693,18 +1693,18 @@ func (c *SecurityHub) DisableSecurityHubRequest(input *DisableSecurityHubInput) 
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation DisableSecurityHub for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request was rejected because we can't find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DisableSecurityHub
@@ -1784,22 +1784,22 @@ func (c *SecurityHub) DisassociateFromMasterAccountRequest(input *DisassociateFr
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation DisassociateFromMasterAccount for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request was rejected because we can't find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DisassociateFromMasterAccount
@@ -1878,22 +1878,22 @@ func (c *SecurityHub) DisassociateMembersRequest(input *DisassociateMembersInput
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation DisassociateMembers for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request was rejected because we can't find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DisassociateMembers
@@ -1974,21 +1974,21 @@ func (c *SecurityHub) EnableImportFindingsForProductRequest(input *EnableImportF
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation EnableImportFindingsForProduct for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeResourceConflictException "ResourceConflictException"
+//   * ResourceConflictException
 //   The resource specified in the request conflicts with an existing resource.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
@@ -2073,21 +2073,21 @@ func (c *SecurityHub) EnableSecurityHubRequest(input *EnableSecurityHubInput) (r
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation EnableSecurityHub for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeResourceConflictException "ResourceConflictException"
+//   * ResourceConflictException
 //   The resource specified in the request conflicts with an existing resource.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You don't have permission to perform the action specified in the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/EnableSecurityHub
@@ -2165,18 +2165,18 @@ func (c *SecurityHub) GetEnabledStandardsRequest(input *GetEnabledStandardsInput
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation GetEnabledStandards for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
@@ -2261,18 +2261,18 @@ func (c *SecurityHub) GetFindingsRequest(input *GetFindingsInput) (req *request.
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation GetFindings for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
@@ -2403,22 +2403,22 @@ func (c *SecurityHub) GetInsightResultsRequest(input *GetInsightResultsInput) (r
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation GetInsightResults for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request was rejected because we can't find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/GetInsightResults
@@ -2502,22 +2502,22 @@ func (c *SecurityHub) GetInsightsRequest(input *GetInsightsInput) (req *request.
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation GetInsights for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request was rejected because we can't find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/GetInsights
@@ -2648,18 +2648,18 @@ func (c *SecurityHub) GetInvitationsCountRequest(input *GetInvitationsCountInput
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation GetInvitationsCount for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
@@ -2739,22 +2739,22 @@ func (c *SecurityHub) GetMasterAccountRequest(input *GetMasterAccountInput) (req
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation GetMasterAccount for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request was rejected because we can't find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/GetMasterAccount
@@ -2833,22 +2833,22 @@ func (c *SecurityHub) GetMembersRequest(input *GetMembersInput) (req *request.Re
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation GetMembers for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request was rejected because we can't find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/GetMembers
@@ -2931,22 +2931,22 @@ func (c *SecurityHub) InviteMembersRequest(input *InviteMembersInput) (req *requ
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation InviteMembers for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request was rejected because we can't find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/InviteMembers
@@ -3031,15 +3031,15 @@ func (c *SecurityHub) ListEnabledProductsForImportRequest(input *ListEnabledProd
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation ListEnabledProductsForImport for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/ListEnabledProductsForImport
@@ -3170,18 +3170,18 @@ func (c *SecurityHub) ListInvitationsRequest(input *ListInvitationsInput) (req *
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation ListInvitations for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
@@ -3261,18 +3261,18 @@ func (c *SecurityHub) ListMembersRequest(input *ListMembersInput) (req *request.
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation ListMembers for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
@@ -3351,15 +3351,15 @@ func (c *SecurityHub) ListTagsForResourceRequest(input *ListTagsForResourceInput
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation ListTagsForResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request was rejected because we can't find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/ListTagsForResource
@@ -3438,15 +3438,15 @@ func (c *SecurityHub) TagResourceRequest(input *TagResourceInput) (req *request.
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation TagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request was rejected because we can't find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/TagResource
@@ -3525,15 +3525,15 @@ func (c *SecurityHub) UntagResourceRequest(input *UntagResourceInput) (req *requ
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation UntagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request was rejected because we can't find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/UntagResource
@@ -3612,21 +3612,21 @@ func (c *SecurityHub) UpdateActionTargetRequest(input *UpdateActionTargetInput) 
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation UpdateActionTarget for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request was rejected because we can't find the specified resource.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request was rejected because we can't find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/UpdateActionTarget
@@ -3707,22 +3707,22 @@ func (c *SecurityHub) UpdateFindingsRequest(input *UpdateFindingsInput) (req *re
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation UpdateFindings for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request was rejected because we can't find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/UpdateFindings
@@ -3801,22 +3801,22 @@ func (c *SecurityHub) UpdateInsightRequest(input *UpdateInsightInput) (req *requ
 // See the AWS API reference guide for AWS SecurityHub's
 // API operation UpdateInsight for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalException "InternalException"
+// Returned Error Types:
+//   * InternalException
 //   Internal server error.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The request was rejected because you supplied an invalid or out-of-range
 //   value for an input parameter.
 //
-//   * ErrCodeInvalidAccessException "InvalidAccessException"
+//   * InvalidAccessException
 //   AWS Security Hub isn't enabled for the account used to make this request.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The request was rejected because it attempted to create resources beyond
 //   the current AWS account limits. The error code describes the limit exceeded.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The request was rejected because we can't find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/UpdateInsight
@@ -3905,6 +3905,64 @@ func (s AcceptInvitationOutput) String() string {
 // GoString returns the string representation
 func (s AcceptInvitationOutput) GoString() string {
 	return s.String()
+}
+
+// You don't have permission to perform the action specified in the request.
+type AccessDeniedException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s AccessDeniedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccessDeniedException) GoString() string {
+	return s.String()
+}
+
+func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
+	return &AccessDeniedException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s AccessDeniedException) Code() string {
+	return "AccessDeniedException"
+}
+
+// Message returns the exception's message.
+func (s AccessDeniedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s AccessDeniedException) OrigErr() error {
+	return nil
+}
+
+func (s AccessDeniedException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s AccessDeniedException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s AccessDeniedException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // The details of an AWS account.
@@ -8584,6 +8642,181 @@ func (s *InsightResults) SetResultValues(v []*InsightResultValue) *InsightResult
 	return s
 }
 
+// Internal server error.
+type InternalException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InternalException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternalException) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalException(v protocol.ResponseMetadata) error {
+	return &InternalException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InternalException) Code() string {
+	return "InternalException"
+}
+
+// Message returns the exception's message.
+func (s InternalException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InternalException) OrigErr() error {
+	return nil
+}
+
+func (s InternalException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InternalException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InternalException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// AWS Security Hub isn't enabled for the account used to make this request.
+type InvalidAccessException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidAccessException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidAccessException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidAccessException(v protocol.ResponseMetadata) error {
+	return &InvalidAccessException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidAccessException) Code() string {
+	return "InvalidAccessException"
+}
+
+// Message returns the exception's message.
+func (s InvalidAccessException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidAccessException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidAccessException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidAccessException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidAccessException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The request was rejected because you supplied an invalid or out-of-range
+// value for an input parameter.
+type InvalidInputException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidInputException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidInputException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidInputException(v protocol.ResponseMetadata) error {
+	return &InvalidInputException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidInputException) Code() string {
+	return "InvalidInputException"
+}
+
+// Message returns the exception's message.
+func (s InvalidInputException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidInputException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidInputException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidInputException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidInputException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // Details about an invitation.
 type Invitation struct {
 	_ struct{} `type:"structure"`
@@ -8730,6 +8963,65 @@ func (s KeywordFilter) GoString() string {
 func (s *KeywordFilter) SetValue(v string) *KeywordFilter {
 	s.Value = &v
 	return s
+}
+
+// The request was rejected because it attempted to create resources beyond
+// the current AWS account limits. The error code describes the limit exceeded.
+type LimitExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s LimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
+	return &LimitExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s LimitExceededException) Code() string {
+	return "LimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s LimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s LimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s LimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s LimitExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s LimitExceededException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type ListEnabledProductsForImportInput struct {
@@ -9911,6 +10203,64 @@ func (s *Resource) SetType(v string) *Resource {
 	return s
 }
 
+// The resource specified in the request conflicts with an existing resource.
+type ResourceConflictException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceConflictException(v protocol.ResponseMetadata) error {
+	return &ResourceConflictException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceConflictException) Code() string {
+	return "ResourceConflictException"
+}
+
+// Message returns the exception's message.
+func (s ResourceConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceConflictException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceConflictException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceConflictException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceConflictException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // Additional details about a resource related to a finding.
 type ResourceDetails struct {
 	_ struct{} `type:"structure"`
@@ -10047,6 +10397,64 @@ func (s *ResourceDetails) SetContainer(v *ContainerDetails) *ResourceDetails {
 func (s *ResourceDetails) SetOther(v map[string]*string) *ResourceDetails {
 	s.Other = v
 	return s
+}
+
+// The request was rejected because we can't find the specified resource.
+type ResourceNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Details about the account that wasn't processed.

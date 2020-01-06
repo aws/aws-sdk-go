@@ -3,6 +3,7 @@
 package translate
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -66,17 +67,17 @@ func (c *Translate) DeleteTerminologyRequest(input *DeleteTerminologyInput) (req
 // See the AWS API reference guide for Amazon Translate's
 // API operation DeleteTerminology for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The resource you are looking for has not been found. Review the resource
 //   you're looking for and see if a different resource will accomplish your needs
 //   before retrying the revised request.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   You have made too many requests within a short period of time. Wait for a
 //   short time and then try your request again.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/DeleteTerminology
@@ -156,17 +157,17 @@ func (c *Translate) DescribeTextTranslationJobRequest(input *DescribeTextTransla
 // See the AWS API reference guide for Amazon Translate's
 // API operation DescribeTextTranslationJob for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The resource you are looking for has not been found. Review the resource
 //   you're looking for and see if a different resource will accomplish your needs
 //   before retrying the revised request.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   You have made too many requests within a short period of time. Wait for a
 //   short time and then try your request again.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/DescribeTextTranslationJob
@@ -244,21 +245,21 @@ func (c *Translate) GetTerminologyRequest(input *GetTerminologyInput) (req *requ
 // See the AWS API reference guide for Amazon Translate's
 // API operation GetTerminology for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The resource you are looking for has not been found. Review the resource
 //   you're looking for and see if a different resource will accomplish your needs
 //   before retrying the revised request.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   The value of the parameter is invalid. Review the value of the parameter
 //   you are using to correct it, and then retry your operation.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   You have made too many requests within a short period of time. Wait for a
 //   short time and then try your request again.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/GetTerminology
@@ -345,20 +346,20 @@ func (c *Translate) ImportTerminologyRequest(input *ImportTerminologyInput) (req
 // See the AWS API reference guide for Amazon Translate's
 // API operation ImportTerminology for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+// Returned Error Types:
+//   * InvalidParameterValueException
 //   The value of the parameter is invalid. Review the value of the parameter
 //   you are using to correct it, and then retry your operation.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The specified limit has been exceeded. Review your request and retry it with
 //   a quantity below the stated limit.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   You have made too many requests within a short period of time. Wait for a
 //   short time and then try your request again.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/ImportTerminology
@@ -442,16 +443,16 @@ func (c *Translate) ListTerminologiesRequest(input *ListTerminologiesInput) (req
 // See the AWS API reference guide for Amazon Translate's
 // API operation ListTerminologies for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+// Returned Error Types:
+//   * InvalidParameterValueException
 //   The value of the parameter is invalid. Review the value of the parameter
 //   you are using to correct it, and then retry your operation.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   You have made too many requests within a short period of time. Wait for a
 //   short time and then try your request again.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/ListTerminologies
@@ -587,19 +588,19 @@ func (c *Translate) ListTextTranslationJobsRequest(input *ListTextTranslationJob
 // See the AWS API reference guide for Amazon Translate's
 // API operation ListTextTranslationJobs for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request that you made is invalid. Check your request to determine why
 //   it's invalid and then retry the request.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   You have made too many requests within a short period of time. Wait for a
 //   short time and then try your request again.
 //
-//   * ErrCodeInvalidFilterException "InvalidFilterException"
+//   * InvalidFilterException
 //   The filter specified for the operation is invalid. Specify a different filter.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/ListTextTranslationJobs
@@ -738,25 +739,25 @@ func (c *Translate) StartTextTranslationJobRequest(input *StartTextTranslationJo
 // See the AWS API reference guide for Amazon Translate's
 // API operation StartTextTranslationJob for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+// Returned Error Types:
+//   * TooManyRequestsException
 //   You have made too many requests within a short period of time. Wait for a
 //   short time and then try your request again.
 //
-//   * ErrCodeUnsupportedLanguagePairException "UnsupportedLanguagePairException"
+//   * UnsupportedLanguagePairException
 //   Amazon Translate does not support translation from the language of the source
 //   text into the requested target language. For more information, see how-to-error-msg.
 //
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   * InvalidRequestException
 //   The request that you made is invalid. Check your request to determine why
 //   it's invalid and then retry the request.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The resource you are looking for has not been found. Review the resource
 //   you're looking for and see if a different resource will accomplish your needs
 //   before retrying the revised request.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/StartTextTranslationJob
@@ -843,17 +844,17 @@ func (c *Translate) StopTextTranslationJobRequest(input *StopTextTranslationJobI
 // See the AWS API reference guide for Amazon Translate's
 // API operation StopTextTranslationJob for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The resource you are looking for has not been found. Review the resource
 //   you're looking for and see if a different resource will accomplish your needs
 //   before retrying the revised request.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   You have made too many requests within a short period of time. Wait for a
 //   short time and then try your request again.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/StopTextTranslationJob
@@ -932,39 +933,39 @@ func (c *Translate) TextRequest(input *TextInput) (req *request.Request, output 
 // See the AWS API reference guide for Amazon Translate's
 // API operation Text for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request that you made is invalid. Check your request to determine why
 //   it's invalid and then retry the request.
 //
-//   * ErrCodeTextSizeLimitExceededException "TextSizeLimitExceededException"
+//   * TextSizeLimitExceededException
 //   The size of the text you submitted exceeds the size limit. Reduce the size
 //   of the text or use a smaller document and then retry your request.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   You have made too many requests within a short period of time. Wait for a
 //   short time and then try your request again.
 //
-//   * ErrCodeUnsupportedLanguagePairException "UnsupportedLanguagePairException"
+//   * UnsupportedLanguagePairException
 //   Amazon Translate does not support translation from the language of the source
 //   text into the requested target language. For more information, see how-to-error-msg.
 //
-//   * ErrCodeDetectedLanguageLowConfidenceException "DetectedLanguageLowConfidenceException"
+//   * DetectedLanguageLowConfidenceException
 //   The confidence that Amazon Comprehend accurately detected the source language
 //   is low. If a low confidence level is acceptable for your application, you
 //   can use the language in the exception to call Amazon Translate again. For
 //   more information, see the DetectDominantLanguage (https://docs.aws.amazon.com/comprehend/latest/dg/API_DetectDominantLanguage.html)
 //   operation in the Amazon Comprehend Developer Guide.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The resource you are looking for has not been found. Review the resource
 //   you're looking for and see if a different resource will accomplish your needs
 //   before retrying the revised request.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An internal server error occurred. Retry your request.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The Amazon Translate service is temporarily unavailable. Please wait a bit
 //   and then retry your request.
 //
@@ -1149,6 +1150,69 @@ func (s DescribeTextTranslationJobOutput) GoString() string {
 func (s *DescribeTextTranslationJobOutput) SetTextTranslationJobProperties(v *TextTranslationJobProperties) *DescribeTextTranslationJobOutput {
 	s.TextTranslationJobProperties = v
 	return s
+}
+
+// The confidence that Amazon Comprehend accurately detected the source language
+// is low. If a low confidence level is acceptable for your application, you
+// can use the language in the exception to call Amazon Translate again. For
+// more information, see the DetectDominantLanguage (https://docs.aws.amazon.com/comprehend/latest/dg/API_DetectDominantLanguage.html)
+// operation in the Amazon Comprehend Developer Guide.
+type DetectedLanguageLowConfidenceException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// The language code of the auto-detected language from Amazon Comprehend.
+	DetectedLanguageCode *string `min:"2" type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s DetectedLanguageLowConfidenceException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DetectedLanguageLowConfidenceException) GoString() string {
+	return s.String()
+}
+
+func newErrorDetectedLanguageLowConfidenceException(v protocol.ResponseMetadata) error {
+	return &DetectedLanguageLowConfidenceException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s DetectedLanguageLowConfidenceException) Code() string {
+	return "DetectedLanguageLowConfidenceException"
+}
+
+// Message returns the exception's message.
+func (s DetectedLanguageLowConfidenceException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s DetectedLanguageLowConfidenceException) OrigErr() error {
+	return nil
+}
+
+func (s DetectedLanguageLowConfidenceException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s DetectedLanguageLowConfidenceException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s DetectedLanguageLowConfidenceException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // The encryption key used to encrypt the custom terminologies used by Amazon
@@ -1475,6 +1539,232 @@ func (s *InputDataConfig) SetS3Uri(v string) *InputDataConfig {
 	return s
 }
 
+// An internal server error occurred. Retry your request.
+type InternalServerException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InternalServerException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternalServerException) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalServerException(v protocol.ResponseMetadata) error {
+	return &InternalServerException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InternalServerException) Code() string {
+	return "InternalServerException"
+}
+
+// Message returns the exception's message.
+func (s InternalServerException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InternalServerException) OrigErr() error {
+	return nil
+}
+
+func (s InternalServerException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InternalServerException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InternalServerException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The filter specified for the operation is invalid. Specify a different filter.
+type InvalidFilterException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidFilterException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidFilterException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidFilterException(v protocol.ResponseMetadata) error {
+	return &InvalidFilterException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidFilterException) Code() string {
+	return "InvalidFilterException"
+}
+
+// Message returns the exception's message.
+func (s InvalidFilterException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidFilterException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidFilterException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidFilterException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidFilterException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The value of the parameter is invalid. Review the value of the parameter
+// you are using to correct it, and then retry your operation.
+type InvalidParameterValueException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidParameterValueException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidParameterValueException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidParameterValueException(v protocol.ResponseMetadata) error {
+	return &InvalidParameterValueException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidParameterValueException) Code() string {
+	return "InvalidParameterValueException"
+}
+
+// Message returns the exception's message.
+func (s InvalidParameterValueException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidParameterValueException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidParameterValueException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidParameterValueException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidParameterValueException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The request that you made is invalid. Check your request to determine why
+// it's invalid and then retry the request.
+type InvalidRequestException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidRequestException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidRequestException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidRequestException(v protocol.ResponseMetadata) error {
+	return &InvalidRequestException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidRequestException) Code() string {
+	return "InvalidRequestException"
+}
+
+// Message returns the exception's message.
+func (s InvalidRequestException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidRequestException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidRequestException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidRequestException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidRequestException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // The number of documents successfully and unsuccessfully processed during
 // a translation job.
 type JobDetails struct {
@@ -1517,6 +1807,63 @@ func (s *JobDetails) SetInputDocumentsCount(v int64) *JobDetails {
 func (s *JobDetails) SetTranslatedDocumentsCount(v int64) *JobDetails {
 	s.TranslatedDocumentsCount = &v
 	return s
+}
+
+// The specified limit has been exceeded. Review your request and retry it with
+// a quantity below the stated limit.
+type LimitExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s LimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
+	return &LimitExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s LimitExceededException) Code() string {
+	return "LimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s LimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s LimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s LimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s LimitExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s LimitExceededException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type ListTerminologiesInput struct {
@@ -1731,6 +2078,121 @@ func (s *OutputDataConfig) Validate() error {
 func (s *OutputDataConfig) SetS3Uri(v string) *OutputDataConfig {
 	s.S3Uri = &v
 	return s
+}
+
+// The resource you are looking for has not been found. Review the resource
+// you're looking for and see if a different resource will accomplish your needs
+// before retrying the revised request.
+type ResourceNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The Amazon Translate service is temporarily unavailable. Please wait a bit
+// and then retry your request.
+type ServiceUnavailableException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ServiceUnavailableException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceUnavailableException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceUnavailableException(v protocol.ResponseMetadata) error {
+	return &ServiceUnavailableException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ServiceUnavailableException) Code() string {
+	return "ServiceUnavailableException"
+}
+
+// Message returns the exception's message.
+func (s ServiceUnavailableException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ServiceUnavailableException) OrigErr() error {
+	return nil
+}
+
+func (s ServiceUnavailableException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ServiceUnavailableException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ServiceUnavailableException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type StartTextTranslationJobInput struct {
@@ -2402,6 +2864,63 @@ func (s *TextOutput) SetTranslatedText(v string) *TextOutput {
 	return s
 }
 
+// The size of the text you submitted exceeds the size limit. Reduce the size
+// of the text or use a smaller document and then retry your request.
+type TextSizeLimitExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s TextSizeLimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TextSizeLimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorTextSizeLimitExceededException(v protocol.ResponseMetadata) error {
+	return &TextSizeLimitExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s TextSizeLimitExceededException) Code() string {
+	return "TextSizeLimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s TextSizeLimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s TextSizeLimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s TextSizeLimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s TextSizeLimitExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s TextSizeLimitExceededException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // Provides information for filtering a list of translation jobs. For more information,
 // see ListTextTranslationJobs.
 type TextTranslationJobFilter struct {
@@ -2609,6 +3128,126 @@ func (s *TextTranslationJobProperties) SetTargetLanguageCodes(v []*string) *Text
 func (s *TextTranslationJobProperties) SetTerminologyNames(v []*string) *TextTranslationJobProperties {
 	s.TerminologyNames = v
 	return s
+}
+
+// You have made too many requests within a short period of time. Wait for a
+// short time and then try your request again.
+type TooManyRequestsException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s TooManyRequestsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TooManyRequestsException) GoString() string {
+	return s.String()
+}
+
+func newErrorTooManyRequestsException(v protocol.ResponseMetadata) error {
+	return &TooManyRequestsException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s TooManyRequestsException) Code() string {
+	return "TooManyRequestsException"
+}
+
+// Message returns the exception's message.
+func (s TooManyRequestsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s TooManyRequestsException) OrigErr() error {
+	return nil
+}
+
+func (s TooManyRequestsException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s TooManyRequestsException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s TooManyRequestsException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Amazon Translate does not support translation from the language of the source
+// text into the requested target language. For more information, see how-to-error-msg.
+type UnsupportedLanguagePairException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// The language code for the language of the input text.
+	SourceLanguageCode *string `min:"2" type:"string"`
+
+	// The language code for the language of the translated text.
+	TargetLanguageCode *string `min:"2" type:"string"`
+}
+
+// String returns the string representation
+func (s UnsupportedLanguagePairException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UnsupportedLanguagePairException) GoString() string {
+	return s.String()
+}
+
+func newErrorUnsupportedLanguagePairException(v protocol.ResponseMetadata) error {
+	return &UnsupportedLanguagePairException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s UnsupportedLanguagePairException) Code() string {
+	return "UnsupportedLanguagePairException"
+}
+
+// Message returns the exception's message.
+func (s UnsupportedLanguagePairException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s UnsupportedLanguagePairException) OrigErr() error {
+	return nil
+}
+
+func (s UnsupportedLanguagePairException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s UnsupportedLanguagePairException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s UnsupportedLanguagePairException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 const (

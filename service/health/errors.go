@@ -2,6 +2,10 @@
 
 package health
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeConcurrentModificationException for service response error code
@@ -24,3 +28,9 @@ const (
 	// The specified locale is not supported.
 	ErrCodeUnsupportedLocale = "UnsupportedLocale"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"ConcurrentModificationException": newErrorConcurrentModificationException,
+	"InvalidPaginationToken":          newErrorInvalidPaginationToken,
+	"UnsupportedLocale":               newErrorUnsupportedLocale,
+}

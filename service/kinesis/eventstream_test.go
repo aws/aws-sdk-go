@@ -290,9 +290,6 @@ func TestSubscribeToShard_ReadException(t *testing.T) {
 
 	expectErr := &InternalFailureException{
 		Message_: aws.String("string value goes here"),
-		respMetadata: protocol.ResponseMetadata{
-			StatusCode: 200,
-		},
 	}
 	aerr, ok := err.(awserr.Error)
 	if !ok {

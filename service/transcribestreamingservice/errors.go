@@ -2,6 +2,10 @@
 
 package transcribestreamingservice
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeBadRequestException for service response error code
@@ -35,3 +39,10 @@ const (
 	// stream into smaller chunks and try your request again.
 	ErrCodeLimitExceededException = "LimitExceededException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"BadRequestException":      newErrorBadRequestException,
+	"ConflictException":        newErrorConflictException,
+	"InternalFailureException": newErrorInternalFailureException,
+	"LimitExceededException":   newErrorLimitExceededException,
+}

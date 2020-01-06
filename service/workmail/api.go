@@ -3,6 +3,7 @@
 package workmail
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -66,23 +67,23 @@ func (c *WorkMail) AssociateDelegateToResourceRequest(input *AssociateDelegateTo
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation AssociateDelegateToResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeEntityNotFoundException "EntityNotFoundException"
+// Returned Error Types:
+//   * EntityNotFoundException
 //   The identifier supplied for the user, group, or resource does not exist in
 //   your organization.
 //
-//   * ErrCodeEntityStateException "EntityStateException"
+//   * EntityStateException
 //   You are performing an operation on a user, group, or resource that isn't
 //   in the expected state, such as trying to delete an active user.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
@@ -162,33 +163,33 @@ func (c *WorkMail) AssociateMemberToGroupRequest(input *AssociateMemberToGroupIn
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation AssociateMemberToGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDirectoryServiceAuthenticationFailedException "DirectoryServiceAuthenticationFailedException"
+// Returned Error Types:
+//   * DirectoryServiceAuthenticationFailedException
 //   The directory service doesn't recognize the credentials supplied by WorkMail.
 //
-//   * ErrCodeDirectoryUnavailableException "DirectoryUnavailableException"
+//   * DirectoryUnavailableException
 //   The directory on which you are trying to perform operations isn't available.
 //
-//   * ErrCodeEntityNotFoundException "EntityNotFoundException"
+//   * EntityNotFoundException
 //   The identifier supplied for the user, group, or resource does not exist in
 //   your organization.
 //
-//   * ErrCodeEntityStateException "EntityStateException"
+//   * EntityStateException
 //   You are performing an operation on a user, group, or resource that isn't
 //   in the expected state, such as trying to delete an active user.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
-//   * ErrCodeUnsupportedOperationException "UnsupportedOperationException"
+//   * UnsupportedOperationException
 //   You can't perform a write operation against a read-only directory.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/AssociateMemberToGroup
@@ -267,35 +268,35 @@ func (c *WorkMail) CreateAliasRequest(input *CreateAliasInput) (req *request.Req
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation CreateAlias for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeEmailAddressInUseException "EmailAddressInUseException"
+// Returned Error Types:
+//   * EmailAddressInUseException
 //   The email address that you're trying to assign is already created for a different
 //   user, group, or resource.
 //
-//   * ErrCodeEntityNotFoundException "EntityNotFoundException"
+//   * EntityNotFoundException
 //   The identifier supplied for the user, group, or resource does not exist in
 //   your organization.
 //
-//   * ErrCodeEntityStateException "EntityStateException"
+//   * EntityStateException
 //   You are performing an operation on a user, group, or resource that isn't
 //   in the expected state, such as trying to delete an active user.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeMailDomainNotFoundException "MailDomainNotFoundException"
+//   * MailDomainNotFoundException
 //   For an email or alias to be created in Amazon WorkMail, the included domain
 //   must be defined in the organization.
 //
-//   * ErrCodeMailDomainStateException "MailDomainStateException"
+//   * MailDomainStateException
 //   After a domain has been added to the organization, it must be verified. The
 //   domain is not yet verified.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
@@ -375,31 +376,31 @@ func (c *WorkMail) CreateGroupRequest(input *CreateGroupInput) (req *request.Req
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation CreateGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDirectoryServiceAuthenticationFailedException "DirectoryServiceAuthenticationFailedException"
+// Returned Error Types:
+//   * DirectoryServiceAuthenticationFailedException
 //   The directory service doesn't recognize the credentials supplied by WorkMail.
 //
-//   * ErrCodeDirectoryUnavailableException "DirectoryUnavailableException"
+//   * DirectoryUnavailableException
 //   The directory on which you are trying to perform operations isn't available.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeNameAvailabilityException "NameAvailabilityException"
+//   * NameAvailabilityException
 //   The user, group, or resource name isn't unique in Amazon WorkMail.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
-//   * ErrCodeReservedNameException "ReservedNameException"
+//   * ReservedNameException
 //   This user, group, or resource name is not allowed in Amazon WorkMail.
 //
-//   * ErrCodeUnsupportedOperationException "UnsupportedOperationException"
+//   * UnsupportedOperationException
 //   You can't perform a write operation against a read-only directory.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/CreateGroup
@@ -477,28 +478,28 @@ func (c *WorkMail) CreateResourceRequest(input *CreateResourceInput) (req *reque
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation CreateResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDirectoryServiceAuthenticationFailedException "DirectoryServiceAuthenticationFailedException"
+// Returned Error Types:
+//   * DirectoryServiceAuthenticationFailedException
 //   The directory service doesn't recognize the credentials supplied by WorkMail.
 //
-//   * ErrCodeDirectoryUnavailableException "DirectoryUnavailableException"
+//   * DirectoryUnavailableException
 //   The directory on which you are trying to perform operations isn't available.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeNameAvailabilityException "NameAvailabilityException"
+//   * NameAvailabilityException
 //   The user, group, or resource name isn't unique in Amazon WorkMail.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
-//   * ErrCodeReservedNameException "ReservedNameException"
+//   * ReservedNameException
 //   This user, group, or resource name is not allowed in Amazon WorkMail.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/CreateResource
@@ -577,35 +578,35 @@ func (c *WorkMail) CreateUserRequest(input *CreateUserInput) (req *request.Reque
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation CreateUser for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDirectoryServiceAuthenticationFailedException "DirectoryServiceAuthenticationFailedException"
+// Returned Error Types:
+//   * DirectoryServiceAuthenticationFailedException
 //   The directory service doesn't recognize the credentials supplied by WorkMail.
 //
-//   * ErrCodeDirectoryUnavailableException "DirectoryUnavailableException"
+//   * DirectoryUnavailableException
 //   The directory on which you are trying to perform operations isn't available.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeInvalidPasswordException "InvalidPasswordException"
+//   * InvalidPasswordException
 //   The supplied password doesn't match the minimum security constraints, such
 //   as length or use of special characters.
 //
-//   * ErrCodeNameAvailabilityException "NameAvailabilityException"
+//   * NameAvailabilityException
 //   The user, group, or resource name isn't unique in Amazon WorkMail.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
-//   * ErrCodeReservedNameException "ReservedNameException"
+//   * ReservedNameException
 //   This user, group, or resource name is not allowed in Amazon WorkMail.
 //
-//   * ErrCodeUnsupportedOperationException "UnsupportedOperationException"
+//   * UnsupportedOperationException
 //   You can't perform a write operation against a read-only directory.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/CreateUser
@@ -684,23 +685,23 @@ func (c *WorkMail) DeleteAliasRequest(input *DeleteAliasInput) (req *request.Req
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation DeleteAlias for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeEntityNotFoundException "EntityNotFoundException"
+// Returned Error Types:
+//   * EntityNotFoundException
 //   The identifier supplied for the user, group, or resource does not exist in
 //   your organization.
 //
-//   * ErrCodeEntityStateException "EntityStateException"
+//   * EntityStateException
 //   You are performing an operation on a user, group, or resource that isn't
 //   in the expected state, such as trying to delete an active user.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
@@ -780,29 +781,29 @@ func (c *WorkMail) DeleteGroupRequest(input *DeleteGroupInput) (req *request.Req
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation DeleteGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDirectoryServiceAuthenticationFailedException "DirectoryServiceAuthenticationFailedException"
+// Returned Error Types:
+//   * DirectoryServiceAuthenticationFailedException
 //   The directory service doesn't recognize the credentials supplied by WorkMail.
 //
-//   * ErrCodeDirectoryUnavailableException "DirectoryUnavailableException"
+//   * DirectoryUnavailableException
 //   The directory on which you are trying to perform operations isn't available.
 //
-//   * ErrCodeEntityStateException "EntityStateException"
+//   * EntityStateException
 //   You are performing an operation on a user, group, or resource that isn't
 //   in the expected state, such as trying to delete an active user.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
-//   * ErrCodeUnsupportedOperationException "UnsupportedOperationException"
+//   * UnsupportedOperationException
 //   You can't perform a write operation against a read-only directory.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DeleteGroup
@@ -881,23 +882,23 @@ func (c *WorkMail) DeleteMailboxPermissionsRequest(input *DeleteMailboxPermissio
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation DeleteMailboxPermissions for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeEntityNotFoundException "EntityNotFoundException"
+// Returned Error Types:
+//   * EntityNotFoundException
 //   The identifier supplied for the user, group, or resource does not exist in
 //   your organization.
 //
-//   * ErrCodeEntityStateException "EntityStateException"
+//   * EntityStateException
 //   You are performing an operation on a user, group, or resource that isn't
 //   in the expected state, such as trying to delete an active user.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
@@ -977,19 +978,19 @@ func (c *WorkMail) DeleteResourceRequest(input *DeleteResourceInput) (req *reque
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation DeleteResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeEntityStateException "EntityStateException"
+// Returned Error Types:
+//   * EntityStateException
 //   You are performing an operation on a user, group, or resource that isn't
 //   in the expected state, such as trying to delete an active user.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
@@ -1074,29 +1075,29 @@ func (c *WorkMail) DeleteUserRequest(input *DeleteUserInput) (req *request.Reque
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation DeleteUser for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDirectoryServiceAuthenticationFailedException "DirectoryServiceAuthenticationFailedException"
+// Returned Error Types:
+//   * DirectoryServiceAuthenticationFailedException
 //   The directory service doesn't recognize the credentials supplied by WorkMail.
 //
-//   * ErrCodeDirectoryUnavailableException "DirectoryUnavailableException"
+//   * DirectoryUnavailableException
 //   The directory on which you are trying to perform operations isn't available.
 //
-//   * ErrCodeEntityStateException "EntityStateException"
+//   * EntityStateException
 //   You are performing an operation on a user, group, or resource that isn't
 //   in the expected state, such as trying to delete an active user.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
-//   * ErrCodeUnsupportedOperationException "UnsupportedOperationException"
+//   * UnsupportedOperationException
 //   You can't perform a write operation against a read-only directory.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DeleteUser
@@ -1178,23 +1179,23 @@ func (c *WorkMail) DeregisterFromWorkMailRequest(input *DeregisterFromWorkMailIn
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation DeregisterFromWorkMail for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeEntityNotFoundException "EntityNotFoundException"
+// Returned Error Types:
+//   * EntityNotFoundException
 //   The identifier supplied for the user, group, or resource does not exist in
 //   your organization.
 //
-//   * ErrCodeEntityStateException "EntityStateException"
+//   * EntityStateException
 //   You are performing an operation on a user, group, or resource that isn't
 //   in the expected state, such as trying to delete an active user.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
@@ -1273,19 +1274,19 @@ func (c *WorkMail) DescribeGroupRequest(input *DescribeGroupInput) (req *request
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation DescribeGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeEntityNotFoundException "EntityNotFoundException"
+// Returned Error Types:
+//   * EntityNotFoundException
 //   The identifier supplied for the user, group, or resource does not exist in
 //   your organization.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
@@ -1364,11 +1365,11 @@ func (c *WorkMail) DescribeOrganizationRequest(input *DescribeOrganizationInput)
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation DescribeOrganization for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
@@ -1447,19 +1448,19 @@ func (c *WorkMail) DescribeResourceRequest(input *DescribeResourceInput) (req *r
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation DescribeResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeEntityNotFoundException "EntityNotFoundException"
+// Returned Error Types:
+//   * EntityNotFoundException
 //   The identifier supplied for the user, group, or resource does not exist in
 //   your organization.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
@@ -1538,19 +1539,19 @@ func (c *WorkMail) DescribeUserRequest(input *DescribeUserInput) (req *request.R
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation DescribeUser for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeEntityNotFoundException "EntityNotFoundException"
+// Returned Error Types:
+//   * EntityNotFoundException
 //   The identifier supplied for the user, group, or resource does not exist in
 //   your organization.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
@@ -1630,23 +1631,23 @@ func (c *WorkMail) DisassociateDelegateFromResourceRequest(input *DisassociateDe
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation DisassociateDelegateFromResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeEntityNotFoundException "EntityNotFoundException"
+// Returned Error Types:
+//   * EntityNotFoundException
 //   The identifier supplied for the user, group, or resource does not exist in
 //   your organization.
 //
-//   * ErrCodeEntityStateException "EntityStateException"
+//   * EntityStateException
 //   You are performing an operation on a user, group, or resource that isn't
 //   in the expected state, such as trying to delete an active user.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
@@ -1726,33 +1727,33 @@ func (c *WorkMail) DisassociateMemberFromGroupRequest(input *DisassociateMemberF
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation DisassociateMemberFromGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDirectoryServiceAuthenticationFailedException "DirectoryServiceAuthenticationFailedException"
+// Returned Error Types:
+//   * DirectoryServiceAuthenticationFailedException
 //   The directory service doesn't recognize the credentials supplied by WorkMail.
 //
-//   * ErrCodeDirectoryUnavailableException "DirectoryUnavailableException"
+//   * DirectoryUnavailableException
 //   The directory on which you are trying to perform operations isn't available.
 //
-//   * ErrCodeEntityNotFoundException "EntityNotFoundException"
+//   * EntityNotFoundException
 //   The identifier supplied for the user, group, or resource does not exist in
 //   your organization.
 //
-//   * ErrCodeEntityStateException "EntityStateException"
+//   * EntityStateException
 //   You are performing an operation on a user, group, or resource that isn't
 //   in the expected state, such as trying to delete an active user.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
-//   * ErrCodeUnsupportedOperationException "UnsupportedOperationException"
+//   * UnsupportedOperationException
 //   You can't perform a write operation against a read-only directory.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DisassociateMemberFromGroup
@@ -1830,16 +1831,16 @@ func (c *WorkMail) GetMailboxDetailsRequest(input *GetMailboxDetailsInput) (req 
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation GetMailboxDetails for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+// Returned Error Types:
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
-//   * ErrCodeEntityNotFoundException "EntityNotFoundException"
+//   * EntityNotFoundException
 //   The identifier supplied for the user, group, or resource does not exist in
 //   your organization.
 //
@@ -1924,23 +1925,23 @@ func (c *WorkMail) ListAliasesRequest(input *ListAliasesInput) (req *request.Req
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation ListAliases for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeEntityNotFoundException "EntityNotFoundException"
+// Returned Error Types:
+//   * EntityNotFoundException
 //   The identifier supplied for the user, group, or resource does not exist in
 //   your organization.
 //
-//   * ErrCodeEntityStateException "EntityStateException"
+//   * EntityStateException
 //   You are performing an operation on a user, group, or resource that isn't
 //   in the expected state, such as trying to delete an active user.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
@@ -2078,23 +2079,23 @@ func (c *WorkMail) ListGroupMembersRequest(input *ListGroupMembersInput) (req *r
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation ListGroupMembers for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeEntityNotFoundException "EntityNotFoundException"
+// Returned Error Types:
+//   * EntityNotFoundException
 //   The identifier supplied for the user, group, or resource does not exist in
 //   your organization.
 //
-//   * ErrCodeEntityStateException "EntityStateException"
+//   * EntityStateException
 //   You are performing an operation on a user, group, or resource that isn't
 //   in the expected state, such as trying to delete an active user.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
@@ -2231,19 +2232,19 @@ func (c *WorkMail) ListGroupsRequest(input *ListGroupsInput) (req *request.Reque
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation ListGroups for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeEntityNotFoundException "EntityNotFoundException"
+// Returned Error Types:
+//   * EntityNotFoundException
 //   The identifier supplied for the user, group, or resource does not exist in
 //   your organization.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
@@ -2381,19 +2382,19 @@ func (c *WorkMail) ListMailboxPermissionsRequest(input *ListMailboxPermissionsIn
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation ListMailboxPermissions for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeEntityNotFoundException "EntityNotFoundException"
+// Returned Error Types:
+//   * EntityNotFoundException
 //   The identifier supplied for the user, group, or resource does not exist in
 //   your organization.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
@@ -2530,8 +2531,8 @@ func (c *WorkMail) ListOrganizationsRequest(input *ListOrganizationsInput) (req 
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation ListOrganizations for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/ListOrganizations
@@ -2668,23 +2669,23 @@ func (c *WorkMail) ListResourceDelegatesRequest(input *ListResourceDelegatesInpu
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation ListResourceDelegates for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeEntityNotFoundException "EntityNotFoundException"
+// Returned Error Types:
+//   * EntityNotFoundException
 //   The identifier supplied for the user, group, or resource does not exist in
 //   your organization.
 //
-//   * ErrCodeEntityStateException "EntityStateException"
+//   * EntityStateException
 //   You are performing an operation on a user, group, or resource that isn't
 //   in the expected state, such as trying to delete an active user.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
@@ -2821,15 +2822,15 @@ func (c *WorkMail) ListResourcesRequest(input *ListResourcesInput) (req *request
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation ListResources for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
@@ -2966,15 +2967,15 @@ func (c *WorkMail) ListUsersRequest(input *ListUsersInput) (req *request.Request
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation ListUsers for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
@@ -3107,23 +3108,23 @@ func (c *WorkMail) PutMailboxPermissionsRequest(input *PutMailboxPermissionsInpu
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation PutMailboxPermissions for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeEntityNotFoundException "EntityNotFoundException"
+// Returned Error Types:
+//   * EntityNotFoundException
 //   The identifier supplied for the user, group, or resource does not exist in
 //   your organization.
 //
-//   * ErrCodeEntityStateException "EntityStateException"
+//   * EntityStateException
 //   You are performing an operation on a user, group, or resource that isn't
 //   in the expected state, such as trying to delete an active user.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
@@ -3211,44 +3212,44 @@ func (c *WorkMail) RegisterToWorkMailRequest(input *RegisterToWorkMailInput) (re
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation RegisterToWorkMail for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDirectoryServiceAuthenticationFailedException "DirectoryServiceAuthenticationFailedException"
+// Returned Error Types:
+//   * DirectoryServiceAuthenticationFailedException
 //   The directory service doesn't recognize the credentials supplied by WorkMail.
 //
-//   * ErrCodeDirectoryUnavailableException "DirectoryUnavailableException"
+//   * DirectoryUnavailableException
 //   The directory on which you are trying to perform operations isn't available.
 //
-//   * ErrCodeEmailAddressInUseException "EmailAddressInUseException"
+//   * EmailAddressInUseException
 //   The email address that you're trying to assign is already created for a different
 //   user, group, or resource.
 //
-//   * ErrCodeEntityNotFoundException "EntityNotFoundException"
+//   * EntityNotFoundException
 //   The identifier supplied for the user, group, or resource does not exist in
 //   your organization.
 //
-//   * ErrCodeEntityStateException "EntityStateException"
+//   * EntityStateException
 //   You are performing an operation on a user, group, or resource that isn't
 //   in the expected state, such as trying to delete an active user.
 //
-//   * ErrCodeEntityAlreadyRegisteredException "EntityAlreadyRegisteredException"
+//   * EntityAlreadyRegisteredException
 //   The user, group, or resource that you're trying to register is already registered.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeMailDomainNotFoundException "MailDomainNotFoundException"
+//   * MailDomainNotFoundException
 //   For an email or alias to be created in Amazon WorkMail, the included domain
 //   must be defined in the organization.
 //
-//   * ErrCodeMailDomainStateException "MailDomainStateException"
+//   * MailDomainStateException
 //   After a domain has been added to the organization, it must be verified. The
 //   domain is not yet verified.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
@@ -3328,37 +3329,37 @@ func (c *WorkMail) ResetPasswordRequest(input *ResetPasswordInput) (req *request
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation ResetPassword for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDirectoryServiceAuthenticationFailedException "DirectoryServiceAuthenticationFailedException"
+// Returned Error Types:
+//   * DirectoryServiceAuthenticationFailedException
 //   The directory service doesn't recognize the credentials supplied by WorkMail.
 //
-//   * ErrCodeDirectoryUnavailableException "DirectoryUnavailableException"
+//   * DirectoryUnavailableException
 //   The directory on which you are trying to perform operations isn't available.
 //
-//   * ErrCodeEntityNotFoundException "EntityNotFoundException"
+//   * EntityNotFoundException
 //   The identifier supplied for the user, group, or resource does not exist in
 //   your organization.
 //
-//   * ErrCodeEntityStateException "EntityStateException"
+//   * EntityStateException
 //   You are performing an operation on a user, group, or resource that isn't
 //   in the expected state, such as trying to delete an active user.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeInvalidPasswordException "InvalidPasswordException"
+//   * InvalidPasswordException
 //   The supplied password doesn't match the minimum security constraints, such
 //   as length or use of special characters.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
-//   * ErrCodeUnsupportedOperationException "UnsupportedOperationException"
+//   * UnsupportedOperationException
 //   You can't perform a write operation against a read-only directory.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/ResetPassword
@@ -3437,23 +3438,23 @@ func (c *WorkMail) UpdateMailboxQuotaRequest(input *UpdateMailboxQuotaInput) (re
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation UpdateMailboxQuota for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
-//   * ErrCodeEntityNotFoundException "EntityNotFoundException"
+//   * EntityNotFoundException
 //   The identifier supplied for the user, group, or resource does not exist in
 //   your organization.
 //
-//   * ErrCodeEntityStateException "EntityStateException"
+//   * EntityStateException
 //   You are performing an operation on a user, group, or resource that isn't
 //   in the expected state, such as trying to delete an active user.
 //
@@ -3536,48 +3537,48 @@ func (c *WorkMail) UpdatePrimaryEmailAddressRequest(input *UpdatePrimaryEmailAdd
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation UpdatePrimaryEmailAddress for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDirectoryServiceAuthenticationFailedException "DirectoryServiceAuthenticationFailedException"
+// Returned Error Types:
+//   * DirectoryServiceAuthenticationFailedException
 //   The directory service doesn't recognize the credentials supplied by WorkMail.
 //
-//   * ErrCodeDirectoryUnavailableException "DirectoryUnavailableException"
+//   * DirectoryUnavailableException
 //   The directory on which you are trying to perform operations isn't available.
 //
-//   * ErrCodeEmailAddressInUseException "EmailAddressInUseException"
+//   * EmailAddressInUseException
 //   The email address that you're trying to assign is already created for a different
 //   user, group, or resource.
 //
-//   * ErrCodeEntityNotFoundException "EntityNotFoundException"
+//   * EntityNotFoundException
 //   The identifier supplied for the user, group, or resource does not exist in
 //   your organization.
 //
-//   * ErrCodeEntityStateException "EntityStateException"
+//   * EntityStateException
 //   You are performing an operation on a user, group, or resource that isn't
 //   in the expected state, such as trying to delete an active user.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeMailDomainNotFoundException "MailDomainNotFoundException"
+//   * MailDomainNotFoundException
 //   For an email or alias to be created in Amazon WorkMail, the included domain
 //   must be defined in the organization.
 //
-//   * ErrCodeMailDomainStateException "MailDomainStateException"
+//   * MailDomainStateException
 //   After a domain has been added to the organization, it must be verified. The
 //   domain is not yet verified.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the input parameters don't match the service's restrictions.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
-//   * ErrCodeUnsupportedOperationException "UnsupportedOperationException"
+//   * UnsupportedOperationException
 //   You can't perform a write operation against a read-only directory.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/UpdatePrimaryEmailAddress
@@ -3658,43 +3659,43 @@ func (c *WorkMail) UpdateResourceRequest(input *UpdateResourceInput) (req *reque
 // See the AWS API reference guide for Amazon WorkMail's
 // API operation UpdateResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDirectoryUnavailableException "DirectoryUnavailableException"
+// Returned Error Types:
+//   * DirectoryUnavailableException
 //   The directory on which you are trying to perform operations isn't available.
 //
-//   * ErrCodeEntityNotFoundException "EntityNotFoundException"
+//   * EntityNotFoundException
 //   The identifier supplied for the user, group, or resource does not exist in
 //   your organization.
 //
-//   * ErrCodeEntityStateException "EntityStateException"
+//   * EntityStateException
 //   You are performing an operation on a user, group, or resource that isn't
 //   in the expected state, such as trying to delete an active user.
 //
-//   * ErrCodeInvalidConfigurationException "InvalidConfigurationException"
+//   * InvalidConfigurationException
 //   The configuration for a resource isn't valid. A resource must either be able
 //   to auto-respond to requests or have at least one delegate associated that
 //   can do so on its behalf.
 //
-//   * ErrCodeEmailAddressInUseException "EmailAddressInUseException"
+//   * EmailAddressInUseException
 //   The email address that you're trying to assign is already created for a different
 //   user, group, or resource.
 //
-//   * ErrCodeMailDomainNotFoundException "MailDomainNotFoundException"
+//   * MailDomainNotFoundException
 //   For an email or alias to be created in Amazon WorkMail, the included domain
 //   must be defined in the organization.
 //
-//   * ErrCodeMailDomainStateException "MailDomainStateException"
+//   * MailDomainStateException
 //   After a domain has been added to the organization, it must be verified. The
 //   domain is not yet verified.
 //
-//   * ErrCodeNameAvailabilityException "NameAvailabilityException"
+//   * NameAvailabilityException
 //   The user, group, or resource name isn't unique in Amazon WorkMail.
 //
-//   * ErrCodeOrganizationNotFoundException "OrganizationNotFoundException"
+//   * OrganizationNotFoundException
 //   An operation received a valid organization identifier that either doesn't
 //   belong or exist in the system.
 //
-//   * ErrCodeOrganizationStateException "OrganizationStateException"
+//   * OrganizationStateException
 //   The organization must have a valid state (Active or Synchronizing) to perform
 //   certain operations on the organization or its members.
 //
@@ -5330,6 +5331,118 @@ func (s *DescribeUserOutput) SetUserRole(v string) *DescribeUserOutput {
 	return s
 }
 
+// The directory service doesn't recognize the credentials supplied by WorkMail.
+type DirectoryServiceAuthenticationFailedException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s DirectoryServiceAuthenticationFailedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DirectoryServiceAuthenticationFailedException) GoString() string {
+	return s.String()
+}
+
+func newErrorDirectoryServiceAuthenticationFailedException(v protocol.ResponseMetadata) error {
+	return &DirectoryServiceAuthenticationFailedException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s DirectoryServiceAuthenticationFailedException) Code() string {
+	return "DirectoryServiceAuthenticationFailedException"
+}
+
+// Message returns the exception's message.
+func (s DirectoryServiceAuthenticationFailedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s DirectoryServiceAuthenticationFailedException) OrigErr() error {
+	return nil
+}
+
+func (s DirectoryServiceAuthenticationFailedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s DirectoryServiceAuthenticationFailedException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s DirectoryServiceAuthenticationFailedException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The directory on which you are trying to perform operations isn't available.
+type DirectoryUnavailableException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s DirectoryUnavailableException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DirectoryUnavailableException) GoString() string {
+	return s.String()
+}
+
+func newErrorDirectoryUnavailableException(v protocol.ResponseMetadata) error {
+	return &DirectoryUnavailableException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s DirectoryUnavailableException) Code() string {
+	return "DirectoryUnavailableException"
+}
+
+// Message returns the exception's message.
+func (s DirectoryUnavailableException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s DirectoryUnavailableException) OrigErr() error {
+	return nil
+}
+
+func (s DirectoryUnavailableException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s DirectoryUnavailableException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s DirectoryUnavailableException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type DisassociateDelegateFromResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5500,6 +5613,233 @@ func (s DisassociateMemberFromGroupOutput) GoString() string {
 	return s.String()
 }
 
+// The email address that you're trying to assign is already created for a different
+// user, group, or resource.
+type EmailAddressInUseException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s EmailAddressInUseException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EmailAddressInUseException) GoString() string {
+	return s.String()
+}
+
+func newErrorEmailAddressInUseException(v protocol.ResponseMetadata) error {
+	return &EmailAddressInUseException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s EmailAddressInUseException) Code() string {
+	return "EmailAddressInUseException"
+}
+
+// Message returns the exception's message.
+func (s EmailAddressInUseException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s EmailAddressInUseException) OrigErr() error {
+	return nil
+}
+
+func (s EmailAddressInUseException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s EmailAddressInUseException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s EmailAddressInUseException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The user, group, or resource that you're trying to register is already registered.
+type EntityAlreadyRegisteredException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s EntityAlreadyRegisteredException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EntityAlreadyRegisteredException) GoString() string {
+	return s.String()
+}
+
+func newErrorEntityAlreadyRegisteredException(v protocol.ResponseMetadata) error {
+	return &EntityAlreadyRegisteredException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s EntityAlreadyRegisteredException) Code() string {
+	return "EntityAlreadyRegisteredException"
+}
+
+// Message returns the exception's message.
+func (s EntityAlreadyRegisteredException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s EntityAlreadyRegisteredException) OrigErr() error {
+	return nil
+}
+
+func (s EntityAlreadyRegisteredException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s EntityAlreadyRegisteredException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s EntityAlreadyRegisteredException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The identifier supplied for the user, group, or resource does not exist in
+// your organization.
+type EntityNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s EntityNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EntityNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorEntityNotFoundException(v protocol.ResponseMetadata) error {
+	return &EntityNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s EntityNotFoundException) Code() string {
+	return "EntityNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s EntityNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s EntityNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s EntityNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s EntityNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s EntityNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// You are performing an operation on a user, group, or resource that isn't
+// in the expected state, such as trying to delete an active user.
+type EntityStateException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s EntityStateException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EntityStateException) GoString() string {
+	return s.String()
+}
+
+func newErrorEntityStateException(v protocol.ResponseMetadata) error {
+	return &EntityStateException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s EntityStateException) Code() string {
+	return "EntityStateException"
+}
+
+// Message returns the exception's message.
+func (s EntityStateException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s EntityStateException) OrigErr() error {
+	return nil
+}
+
+func (s EntityStateException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s EntityStateException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s EntityStateException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type GetMailboxDetailsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5655,6 +5995,177 @@ func (s *Group) SetName(v string) *Group {
 func (s *Group) SetState(v string) *Group {
 	s.State = &v
 	return s
+}
+
+// The configuration for a resource isn't valid. A resource must either be able
+// to auto-respond to requests or have at least one delegate associated that
+// can do so on its behalf.
+type InvalidConfigurationException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidConfigurationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidConfigurationException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidConfigurationException(v protocol.ResponseMetadata) error {
+	return &InvalidConfigurationException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidConfigurationException) Code() string {
+	return "InvalidConfigurationException"
+}
+
+// Message returns the exception's message.
+func (s InvalidConfigurationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidConfigurationException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidConfigurationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidConfigurationException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidConfigurationException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// One or more of the input parameters don't match the service's restrictions.
+type InvalidParameterException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidParameterException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidParameterException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidParameterException(v protocol.ResponseMetadata) error {
+	return &InvalidParameterException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidParameterException) Code() string {
+	return "InvalidParameterException"
+}
+
+// Message returns the exception's message.
+func (s InvalidParameterException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidParameterException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidParameterException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidParameterException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidParameterException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The supplied password doesn't match the minimum security constraints, such
+// as length or use of special characters.
+type InvalidPasswordException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidPasswordException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidPasswordException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidPasswordException(v protocol.ResponseMetadata) error {
+	return &InvalidPasswordException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidPasswordException) Code() string {
+	return "InvalidPasswordException"
+}
+
+// Message returns the exception's message.
+func (s InvalidPasswordException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidPasswordException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidPasswordException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidPasswordException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidPasswordException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type ListAliasesInput struct {
@@ -6483,6 +6994,120 @@ func (s *ListUsersOutput) SetUsers(v []*User) *ListUsersOutput {
 	return s
 }
 
+// For an email or alias to be created in Amazon WorkMail, the included domain
+// must be defined in the organization.
+type MailDomainNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s MailDomainNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MailDomainNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorMailDomainNotFoundException(v protocol.ResponseMetadata) error {
+	return &MailDomainNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s MailDomainNotFoundException) Code() string {
+	return "MailDomainNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s MailDomainNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s MailDomainNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s MailDomainNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s MailDomainNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s MailDomainNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// After a domain has been added to the organization, it must be verified. The
+// domain is not yet verified.
+type MailDomainStateException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s MailDomainStateException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MailDomainStateException) GoString() string {
+	return s.String()
+}
+
+func newErrorMailDomainStateException(v protocol.ResponseMetadata) error {
+	return &MailDomainStateException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s MailDomainStateException) Code() string {
+	return "MailDomainStateException"
+}
+
+// Message returns the exception's message.
+func (s MailDomainStateException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s MailDomainStateException) OrigErr() error {
+	return nil
+}
+
+func (s MailDomainStateException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s MailDomainStateException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s MailDomainStateException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // The representation of a user or group.
 type Member struct {
 	_ struct{} `type:"structure"`
@@ -6550,6 +7175,176 @@ func (s *Member) SetState(v string) *Member {
 func (s *Member) SetType(v string) *Member {
 	s.Type = &v
 	return s
+}
+
+// The user, group, or resource name isn't unique in Amazon WorkMail.
+type NameAvailabilityException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s NameAvailabilityException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NameAvailabilityException) GoString() string {
+	return s.String()
+}
+
+func newErrorNameAvailabilityException(v protocol.ResponseMetadata) error {
+	return &NameAvailabilityException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s NameAvailabilityException) Code() string {
+	return "NameAvailabilityException"
+}
+
+// Message returns the exception's message.
+func (s NameAvailabilityException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s NameAvailabilityException) OrigErr() error {
+	return nil
+}
+
+func (s NameAvailabilityException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s NameAvailabilityException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s NameAvailabilityException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// An operation received a valid organization identifier that either doesn't
+// belong or exist in the system.
+type OrganizationNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s OrganizationNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OrganizationNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorOrganizationNotFoundException(v protocol.ResponseMetadata) error {
+	return &OrganizationNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s OrganizationNotFoundException) Code() string {
+	return "OrganizationNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s OrganizationNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s OrganizationNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s OrganizationNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s OrganizationNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s OrganizationNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The organization must have a valid state (Active or Synchronizing) to perform
+// certain operations on the organization or its members.
+type OrganizationStateException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s OrganizationStateException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OrganizationStateException) GoString() string {
+	return s.String()
+}
+
+func newErrorOrganizationStateException(v protocol.ResponseMetadata) error {
+	return &OrganizationStateException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s OrganizationStateException) Code() string {
+	return "OrganizationStateException"
+}
+
+// Message returns the exception's message.
+func (s OrganizationStateException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s OrganizationStateException) OrigErr() error {
+	return nil
+}
+
+func (s OrganizationStateException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s OrganizationStateException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s OrganizationStateException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // The representation of an organization.
@@ -6854,6 +7649,62 @@ func (s RegisterToWorkMailOutput) GoString() string {
 	return s.String()
 }
 
+// This user, group, or resource name is not allowed in Amazon WorkMail.
+type ReservedNameException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ReservedNameException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ReservedNameException) GoString() string {
+	return s.String()
+}
+
+func newErrorReservedNameException(v protocol.ResponseMetadata) error {
+	return &ReservedNameException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ReservedNameException) Code() string {
+	return "ReservedNameException"
+}
+
+// Message returns the exception's message.
+func (s ReservedNameException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ReservedNameException) OrigErr() error {
+	return nil
+}
+
+func (s ReservedNameException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ReservedNameException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ReservedNameException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type ResetPasswordInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7014,6 +7865,62 @@ func (s *Resource) SetState(v string) *Resource {
 func (s *Resource) SetType(v string) *Resource {
 	s.Type = &v
 	return s
+}
+
+// You can't perform a write operation against a read-only directory.
+type UnsupportedOperationException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s UnsupportedOperationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UnsupportedOperationException) GoString() string {
+	return s.String()
+}
+
+func newErrorUnsupportedOperationException(v protocol.ResponseMetadata) error {
+	return &UnsupportedOperationException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s UnsupportedOperationException) Code() string {
+	return "UnsupportedOperationException"
+}
+
+// Message returns the exception's message.
+func (s UnsupportedOperationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s UnsupportedOperationException) OrigErr() error {
+	return nil
+}
+
+func (s UnsupportedOperationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s UnsupportedOperationException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s UnsupportedOperationException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type UpdateMailboxQuotaInput struct {

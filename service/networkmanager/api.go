@@ -3,6 +3,7 @@
 package networkmanager
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -76,27 +77,27 @@ func (c *NetworkManager) AssociateCustomerGatewayRequest(input *AssociateCustome
 // See the AWS API reference guide for AWS Network Manager's
 // API operation AssociateCustomerGateway for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeServiceQuotaExceededException "ServiceQuotaExceededException"
+//   * ServiceQuotaExceededException
 //   A service limit was exceeded.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   There was a conflict processing the request. Updating or deleting the resource
 //   can cause an inconsistent state.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/AssociateCustomerGateway
@@ -176,27 +177,27 @@ func (c *NetworkManager) AssociateLinkRequest(input *AssociateLinkInput) (req *r
 // See the AWS API reference guide for AWS Network Manager's
 // API operation AssociateLink for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeServiceQuotaExceededException "ServiceQuotaExceededException"
+//   * ServiceQuotaExceededException
 //   A service limit was exceeded.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   There was a conflict processing the request. Updating or deleting the resource
 //   can cause an inconsistent state.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/AssociateLink
@@ -276,27 +277,27 @@ func (c *NetworkManager) CreateDeviceRequest(input *CreateDeviceInput) (req *req
 // See the AWS API reference guide for AWS Network Manager's
 // API operation CreateDevice for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeServiceQuotaExceededException "ServiceQuotaExceededException"
+//   * ServiceQuotaExceededException
 //   A service limit was exceeded.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   There was a conflict processing the request. Updating or deleting the resource
 //   can cause an inconsistent state.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/CreateDevice
@@ -374,24 +375,24 @@ func (c *NetworkManager) CreateGlobalNetworkRequest(input *CreateGlobalNetworkIn
 // See the AWS API reference guide for AWS Network Manager's
 // API operation CreateGlobalNetwork for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeServiceQuotaExceededException "ServiceQuotaExceededException"
+//   * ServiceQuotaExceededException
 //   A service limit was exceeded.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   There was a conflict processing the request. Updating or deleting the resource
 //   can cause an inconsistent state.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/CreateGlobalNetwork
@@ -469,27 +470,27 @@ func (c *NetworkManager) CreateLinkRequest(input *CreateLinkInput) (req *request
 // See the AWS API reference guide for AWS Network Manager's
 // API operation CreateLink for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeServiceQuotaExceededException "ServiceQuotaExceededException"
+//   * ServiceQuotaExceededException
 //   A service limit was exceeded.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   There was a conflict processing the request. Updating or deleting the resource
 //   can cause an inconsistent state.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/CreateLink
@@ -567,27 +568,27 @@ func (c *NetworkManager) CreateSiteRequest(input *CreateSiteInput) (req *request
 // See the AWS API reference guide for AWS Network Manager's
 // API operation CreateSite for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeServiceQuotaExceededException "ServiceQuotaExceededException"
+//   * ServiceQuotaExceededException
 //   A service limit was exceeded.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   There was a conflict processing the request. Updating or deleting the resource
 //   can cause an inconsistent state.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/CreateSite
@@ -666,24 +667,24 @@ func (c *NetworkManager) DeleteDeviceRequest(input *DeleteDeviceInput) (req *req
 // See the AWS API reference guide for AWS Network Manager's
 // API operation DeleteDevice for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   There was a conflict processing the request. Updating or deleting the resource
 //   can cause an inconsistent state.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/DeleteDevice
@@ -762,24 +763,24 @@ func (c *NetworkManager) DeleteGlobalNetworkRequest(input *DeleteGlobalNetworkIn
 // See the AWS API reference guide for AWS Network Manager's
 // API operation DeleteGlobalNetwork for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   There was a conflict processing the request. Updating or deleting the resource
 //   can cause an inconsistent state.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/DeleteGlobalNetwork
@@ -858,24 +859,24 @@ func (c *NetworkManager) DeleteLinkRequest(input *DeleteLinkInput) (req *request
 // See the AWS API reference guide for AWS Network Manager's
 // API operation DeleteLink for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   There was a conflict processing the request. Updating or deleting the resource
 //   can cause an inconsistent state.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/DeleteLink
@@ -954,24 +955,24 @@ func (c *NetworkManager) DeleteSiteRequest(input *DeleteSiteInput) (req *request
 // See the AWS API reference guide for AWS Network Manager's
 // API operation DeleteSite for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   There was a conflict processing the request. Updating or deleting the resource
 //   can cause an inconsistent state.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/DeleteSite
@@ -1051,24 +1052,24 @@ func (c *NetworkManager) DeregisterTransitGatewayRequest(input *DeregisterTransi
 // See the AWS API reference guide for AWS Network Manager's
 // API operation DeregisterTransitGateway for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   There was a conflict processing the request. Updating or deleting the resource
 //   can cause an inconsistent state.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/DeregisterTransitGateway
@@ -1155,20 +1156,20 @@ func (c *NetworkManager) DescribeGlobalNetworksRequest(input *DescribeGlobalNetw
 // See the AWS API reference guide for AWS Network Manager's
 // API operation DescribeGlobalNetworks for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/DescribeGlobalNetworks
@@ -1298,24 +1299,24 @@ func (c *NetworkManager) DisassociateCustomerGatewayRequest(input *DisassociateC
 // See the AWS API reference guide for AWS Network Manager's
 // API operation DisassociateCustomerGateway for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   There was a conflict processing the request. Updating or deleting the resource
 //   can cause an inconsistent state.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/DisassociateCustomerGateway
@@ -1394,24 +1395,24 @@ func (c *NetworkManager) DisassociateLinkRequest(input *DisassociateLinkInput) (
 // See the AWS API reference guide for AWS Network Manager's
 // API operation DisassociateLink for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   There was a conflict processing the request. Updating or deleting the resource
 //   can cause an inconsistent state.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/DisassociateLink
@@ -1496,24 +1497,24 @@ func (c *NetworkManager) GetCustomerGatewayAssociationsRequest(input *GetCustome
 // See the AWS API reference guide for AWS Network Manager's
 // API operation GetCustomerGatewayAssociations for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   There was a conflict processing the request. Updating or deleting the resource
 //   can cause an inconsistent state.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/GetCustomerGatewayAssociations
@@ -1649,20 +1650,20 @@ func (c *NetworkManager) GetDevicesRequest(input *GetDevicesInput) (req *request
 // See the AWS API reference guide for AWS Network Manager's
 // API operation GetDevices for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/GetDevices
@@ -1799,20 +1800,20 @@ func (c *NetworkManager) GetLinkAssociationsRequest(input *GetLinkAssociationsIn
 // See the AWS API reference guide for AWS Network Manager's
 // API operation GetLinkAssociations for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/GetLinkAssociations
@@ -1951,20 +1952,20 @@ func (c *NetworkManager) GetLinksRequest(input *GetLinksInput) (req *request.Req
 // See the AWS API reference guide for AWS Network Manager's
 // API operation GetLinks for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/GetLinks
@@ -2100,20 +2101,20 @@ func (c *NetworkManager) GetSitesRequest(input *GetSitesInput) (req *request.Req
 // See the AWS API reference guide for AWS Network Manager's
 // API operation GetSites for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/GetSites
@@ -2250,20 +2251,20 @@ func (c *NetworkManager) GetTransitGatewayRegistrationsRequest(input *GetTransit
 // See the AWS API reference guide for AWS Network Manager's
 // API operation GetTransitGatewayRegistrations for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/GetTransitGatewayRegistrations
@@ -2393,20 +2394,20 @@ func (c *NetworkManager) ListTagsForResourceRequest(input *ListTagsForResourceIn
 // See the AWS API reference guide for AWS Network Manager's
 // API operation ListTagsForResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/ListTagsForResource
@@ -2487,24 +2488,24 @@ func (c *NetworkManager) RegisterTransitGatewayRequest(input *RegisterTransitGat
 // See the AWS API reference guide for AWS Network Manager's
 // API operation RegisterTransitGateway for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   There was a conflict processing the request. Updating or deleting the resource
 //   can cause an inconsistent state.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/RegisterTransitGateway
@@ -2583,27 +2584,27 @@ func (c *NetworkManager) TagResourceRequest(input *TagResourceInput) (req *reque
 // See the AWS API reference guide for AWS Network Manager's
 // API operation TagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeServiceQuotaExceededException "ServiceQuotaExceededException"
+//   * ServiceQuotaExceededException
 //   A service limit was exceeded.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   There was a conflict processing the request. Updating or deleting the resource
 //   can cause an inconsistent state.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/TagResource
@@ -2682,24 +2683,24 @@ func (c *NetworkManager) UntagResourceRequest(input *UntagResourceInput) (req *r
 // See the AWS API reference guide for AWS Network Manager's
 // API operation UntagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   There was a conflict processing the request. Updating or deleting the resource
 //   can cause an inconsistent state.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/UntagResource
@@ -2778,24 +2779,24 @@ func (c *NetworkManager) UpdateDeviceRequest(input *UpdateDeviceInput) (req *req
 // See the AWS API reference guide for AWS Network Manager's
 // API operation UpdateDevice for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   There was a conflict processing the request. Updating or deleting the resource
 //   can cause an inconsistent state.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/UpdateDevice
@@ -2874,24 +2875,24 @@ func (c *NetworkManager) UpdateGlobalNetworkRequest(input *UpdateGlobalNetworkIn
 // See the AWS API reference guide for AWS Network Manager's
 // API operation UpdateGlobalNetwork for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   There was a conflict processing the request. Updating or deleting the resource
 //   can cause an inconsistent state.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/UpdateGlobalNetwork
@@ -2970,27 +2971,27 @@ func (c *NetworkManager) UpdateLinkRequest(input *UpdateLinkInput) (req *request
 // See the AWS API reference guide for AWS Network Manager's
 // API operation UpdateLink for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeServiceQuotaExceededException "ServiceQuotaExceededException"
+//   * ServiceQuotaExceededException
 //   A service limit was exceeded.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   There was a conflict processing the request. Updating or deleting the resource
 //   can cause an inconsistent state.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/UpdateLink
@@ -3069,24 +3070,24 @@ func (c *NetworkManager) UpdateSiteRequest(input *UpdateSiteInput) (req *request
 // See the AWS API reference guide for AWS Network Manager's
 // API operation UpdateSite for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   The input fails to satisfy the constraints.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource could not be found.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   There was a conflict processing the request. Updating or deleting the resource
 //   can cause an inconsistent state.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The request was denied due to request throttling.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request has failed due to an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/UpdateSite
@@ -3109,6 +3110,62 @@ func (c *NetworkManager) UpdateSiteWithContext(ctx aws.Context, input *UpdateSit
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// You do not have sufficient access to perform this action.
+type AccessDeniedException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s AccessDeniedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccessDeniedException) GoString() string {
+	return s.String()
+}
+
+func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
+	return &AccessDeniedException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s AccessDeniedException) Code() string {
+	return "AccessDeniedException"
+}
+
+// Message returns the exception's message.
+func (s AccessDeniedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s AccessDeniedException) OrigErr() error {
+	return nil
+}
+
+func (s AccessDeniedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s AccessDeniedException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s AccessDeniedException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type AssociateCustomerGatewayInput struct {
@@ -3336,6 +3393,73 @@ func (s *Bandwidth) SetDownloadSpeed(v int64) *Bandwidth {
 func (s *Bandwidth) SetUploadSpeed(v int64) *Bandwidth {
 	s.UploadSpeed = &v
 	return s
+}
+
+// There was a conflict processing the request. Updating or deleting the resource
+// can cause an inconsistent state.
+type ConflictException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// The ID of the resource.
+	//
+	// ResourceId is a required field
+	ResourceId *string `type:"string" required:"true"`
+
+	// The resource type.
+	//
+	// ResourceType is a required field
+	ResourceType *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ConflictException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ConflictException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type CreateDeviceInput struct {
@@ -5353,6 +5477,65 @@ func (s *GlobalNetwork) SetTags(v []*Tag) *GlobalNetwork {
 	return s
 }
 
+// The request has failed due to an internal error.
+type InternalServerException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// Indicates when to retry the request.
+	RetryAfterSeconds *int64 `location:"header" locationName:"Retry-After" type:"integer"`
+}
+
+// String returns the string representation
+func (s InternalServerException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternalServerException) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalServerException(v protocol.ResponseMetadata) error {
+	return &InternalServerException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InternalServerException) Code() string {
+	return "InternalServerException"
+}
+
+// Message returns the exception's message.
+func (s InternalServerException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InternalServerException) OrigErr() error {
+	return nil
+}
+
+func (s InternalServerException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InternalServerException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InternalServerException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // Describes a link.
 type Link struct {
 	_ struct{} `type:"structure"`
@@ -5703,6 +5886,145 @@ func (s *RegisterTransitGatewayOutput) SetTransitGatewayRegistration(v *TransitG
 	return s
 }
 
+// The specified resource could not be found.
+type ResourceNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// The ID of the resource.
+	//
+	// ResourceId is a required field
+	ResourceId *string `type:"string" required:"true"`
+
+	// The resource type.
+	//
+	// ResourceType is a required field
+	ResourceType *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// A service limit was exceeded.
+type ServiceQuotaExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// The limit code.
+	//
+	// LimitCode is a required field
+	LimitCode *string `type:"string" required:"true"`
+
+	// The error message.
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// The ID of the resource.
+	ResourceId *string `type:"string"`
+
+	// The resource type.
+	ResourceType *string `type:"string"`
+
+	// The service code.
+	//
+	// ServiceCode is a required field
+	ServiceCode *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ServiceQuotaExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceQuotaExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceQuotaExceededException(v protocol.ResponseMetadata) error {
+	return &ServiceQuotaExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ServiceQuotaExceededException) Code() string {
+	return "ServiceQuotaExceededException"
+}
+
+// Message returns the exception's message.
+func (s ServiceQuotaExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ServiceQuotaExceededException) OrigErr() error {
+	return nil
+}
+
+func (s ServiceQuotaExceededException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ServiceQuotaExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ServiceQuotaExceededException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // Describes a site.
 type Site struct {
 	_ struct{} `type:"structure"`
@@ -5894,6 +6216,65 @@ func (s TagResourceOutput) String() string {
 // GoString returns the string representation
 func (s TagResourceOutput) GoString() string {
 	return s.String()
+}
+
+// The request was denied due to request throttling.
+type ThrottlingException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// Indicates when to retry the request.
+	RetryAfterSeconds *int64 `location:"header" locationName:"Retry-After" type:"integer"`
+}
+
+// String returns the string representation
+func (s ThrottlingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ThrottlingException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottlingException(v protocol.ResponseMetadata) error {
+	return &ThrottlingException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ThrottlingException) Code() string {
+	return "ThrottlingException"
+}
+
+// Message returns the exception's message.
+func (s ThrottlingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ThrottlingException) OrigErr() error {
+	return nil
+}
+
+func (s ThrottlingException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ThrottlingException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ThrottlingException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Describes the registration of a transit gateway to a global network.
@@ -6495,6 +6876,68 @@ func (s UpdateSiteOutput) GoString() string {
 func (s *UpdateSiteOutput) SetSite(v *Site) *UpdateSiteOutput {
 	s.Site = v
 	return s
+}
+
+// The input fails to satisfy the constraints.
+type ValidationException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// The fields that caused the error, if applicable.
+	Fields []*ValidationExceptionField `type:"list"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// The reason for the error.
+	Reason *string `type:"string" enum:"ValidationExceptionReason"`
+}
+
+// String returns the string representation
+func (s ValidationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ValidationException) GoString() string {
+	return s.String()
+}
+
+func newErrorValidationException(v protocol.ResponseMetadata) error {
+	return &ValidationException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ValidationException) Code() string {
+	return "ValidationException"
+}
+
+// Message returns the exception's message.
+func (s ValidationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ValidationException) OrigErr() error {
+	return nil
+}
+
+func (s ValidationException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ValidationException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ValidationException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Describes a validation exception for a field.

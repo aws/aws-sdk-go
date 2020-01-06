@@ -116,33 +116,33 @@ func (c *Rekognition) CompareFacesRequest(input *CompareFacesInput) (req *reques
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation CompareFaces for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeInvalidS3ObjectException "InvalidS3ObjectException"
+//   * InvalidS3ObjectException
 //   Amazon Rekognition is unable to access the S3 object specified in the request.
 //
-//   * ErrCodeImageTooLargeException "ImageTooLargeException"
+//   * ImageTooLargeException
 //   The input image size exceeds the allowed limit. For more information, see
 //   Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeInvalidImageFormatException "InvalidImageFormatException"
+//   * InvalidImageFormatException
 //   The provided image format is not supported.
 //
 func (c *Rekognition) CompareFaces(input *CompareFacesInput) (*CompareFacesOutput, error) {
@@ -231,26 +231,26 @@ func (c *Rekognition) CreateCollectionRequest(input *CreateCollectionInput) (req
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation CreateCollection for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeResourceAlreadyExistsException "ResourceAlreadyExistsException"
+//   * ResourceAlreadyExistsException
 //   A collection with the specified ID already exists.
 //
 func (c *Rekognition) CreateCollection(input *CreateCollectionInput) (*CreateCollectionOutput, error) {
@@ -330,31 +330,31 @@ func (c *Rekognition) CreateProjectRequest(input *CreateProjectInput) (req *requ
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation CreateProject for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceInUseException "ResourceInUseException"
+// Returned Error Types:
+//   * ResourceInUseException
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   An Amazon Rekognition service limit was exceeded. For example, if you start
 //   too many Amazon Rekognition Video jobs concurrently, calls to start operations
 //   (StartLabelDetection, for example) will raise a LimitExceededException exception
 //   (HTTP status code: 400) until the number of concurrently running jobs is
 //   below the Amazon Rekognition service limit.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
@@ -444,34 +444,34 @@ func (c *Rekognition) CreateProjectVersionRequest(input *CreateProjectVersionInp
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation CreateProjectVersion for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceInUseException "ResourceInUseException"
+// Returned Error Types:
+//   * ResourceInUseException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The collection specified in the request cannot be found.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   An Amazon Rekognition service limit was exceeded. For example, if you start
 //   too many Amazon Rekognition Video jobs concurrently, calls to start operations
 //   (StartLabelDetection, for example) will raise a LimitExceededException exception
 //   (HTTP status code: 400) until the number of concurrently running jobs is
 //   below the Amazon Rekognition service limit.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
@@ -562,31 +562,31 @@ func (c *Rekognition) CreateStreamProcessorRequest(input *CreateStreamProcessorI
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation CreateStreamProcessor for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+// Returned Error Types:
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   An Amazon Rekognition service limit was exceeded. For example, if you start
 //   too many Amazon Rekognition Video jobs concurrently, calls to start operations
 //   (StartLabelDetection, for example) will raise a LimitExceededException exception
 //   (HTTP status code: 400) until the number of concurrently running jobs is
 //   below the Amazon Rekognition service limit.
 //
-//   * ErrCodeResourceInUseException "ResourceInUseException"
+//   * ResourceInUseException
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
@@ -666,26 +666,26 @@ func (c *Rekognition) DeleteCollectionRequest(input *DeleteCollectionInput) (req
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation DeleteCollection for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The collection specified in the request cannot be found.
 //
 func (c *Rekognition) DeleteCollection(input *DeleteCollectionInput) (*DeleteCollectionOutput, error) {
@@ -764,26 +764,26 @@ func (c *Rekognition) DeleteFacesRequest(input *DeleteFacesInput) (req *request.
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation DeleteFaces for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The collection specified in the request cannot be found.
 //
 func (c *Rekognition) DeleteFaces(input *DeleteFacesInput) (*DeleteFacesOutput, error) {
@@ -862,27 +862,27 @@ func (c *Rekognition) DeleteStreamProcessorRequest(input *DeleteStreamProcessorI
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation DeleteStreamProcessor for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+// Returned Error Types:
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The collection specified in the request cannot be found.
 //
-//   * ErrCodeResourceInUseException "ResourceInUseException"
+//   * ResourceInUseException
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
@@ -963,26 +963,26 @@ func (c *Rekognition) DescribeCollectionRequest(input *DescribeCollectionInput) 
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation DescribeCollection for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The collection specified in the request cannot be found.
 //
 func (c *Rekognition) DescribeCollection(input *DescribeCollectionInput) (*DescribeCollectionOutput, error) {
@@ -1068,28 +1068,28 @@ func (c *Rekognition) DescribeProjectVersionsRequest(input *DescribeProjectVersi
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation DescribeProjectVersions for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The collection specified in the request cannot be found.
 //
-//   * ErrCodeInvalidPaginationTokenException "InvalidPaginationTokenException"
+//   * InvalidPaginationTokenException
 //   Pagination token in the request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
@@ -1226,25 +1226,25 @@ func (c *Rekognition) DescribeProjectsRequest(input *DescribeProjectsInput) (req
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation DescribeProjects for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidPaginationTokenException "InvalidPaginationTokenException"
+// Returned Error Types:
+//   * InvalidPaginationTokenException
 //   Pagination token in the request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
@@ -1375,25 +1375,25 @@ func (c *Rekognition) DescribeStreamProcessorRequest(input *DescribeStreamProces
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation DescribeStreamProcessor for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+// Returned Error Types:
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The collection specified in the request cannot be found.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
@@ -1501,47 +1501,47 @@ func (c *Rekognition) DetectCustomLabelsRequest(input *DetectCustomLabelsInput) 
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation DetectCustomLabels for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The collection specified in the request cannot be found.
 //
-//   * ErrCodeResourceNotReadyException "ResourceNotReadyException"
+//   * ResourceNotReadyException
 //   The requested resource isn't ready. For example, this exception occurs when
 //   you call DetectCustomLabels with a model version that isn't deployed.
 //
-//   * ErrCodeInvalidS3ObjectException "InvalidS3ObjectException"
+//   * InvalidS3ObjectException
 //   Amazon Rekognition is unable to access the S3 object specified in the request.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeImageTooLargeException "ImageTooLargeException"
+//   * ImageTooLargeException
 //   The input image size exceeds the allowed limit. For more information, see
 //   Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   An Amazon Rekognition service limit was exceeded. For example, if you start
 //   too many Amazon Rekognition Video jobs concurrently, calls to start operations
 //   (StartLabelDetection, for example) will raise a LimitExceededException exception
 //   (HTTP status code: 400) until the number of concurrently running jobs is
 //   below the Amazon Rekognition service limit.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeInvalidImageFormatException "InvalidImageFormatException"
+//   * InvalidImageFormatException
 //   The provided image format is not supported.
 //
 func (c *Rekognition) DetectCustomLabels(input *DetectCustomLabelsInput) (*DetectCustomLabelsOutput, error) {
@@ -1637,33 +1637,33 @@ func (c *Rekognition) DetectFacesRequest(input *DetectFacesInput) (req *request.
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation DetectFaces for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidS3ObjectException "InvalidS3ObjectException"
+// Returned Error Types:
+//   * InvalidS3ObjectException
 //   Amazon Rekognition is unable to access the S3 object specified in the request.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeImageTooLargeException "ImageTooLargeException"
+//   * ImageTooLargeException
 //   The input image size exceeds the allowed limit. For more information, see
 //   Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeInvalidImageFormatException "InvalidImageFormatException"
+//   * InvalidImageFormatException
 //   The provided image format is not supported.
 //
 func (c *Rekognition) DetectFaces(input *DetectFacesInput) (*DetectFacesOutput, error) {
@@ -1806,33 +1806,33 @@ func (c *Rekognition) DetectLabelsRequest(input *DetectLabelsInput) (req *reques
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation DetectLabels for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidS3ObjectException "InvalidS3ObjectException"
+// Returned Error Types:
+//   * InvalidS3ObjectException
 //   Amazon Rekognition is unable to access the S3 object specified in the request.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeImageTooLargeException "ImageTooLargeException"
+//   * ImageTooLargeException
 //   The input image size exceeds the allowed limit. For more information, see
 //   Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeInvalidImageFormatException "InvalidImageFormatException"
+//   * InvalidImageFormatException
 //   The provided image format is not supported.
 //
 func (c *Rekognition) DetectLabels(input *DetectLabelsInput) (*DetectLabelsOutput, error) {
@@ -1921,36 +1921,36 @@ func (c *Rekognition) DetectModerationLabelsRequest(input *DetectModerationLabel
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation DetectModerationLabels for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidS3ObjectException "InvalidS3ObjectException"
+// Returned Error Types:
+//   * InvalidS3ObjectException
 //   Amazon Rekognition is unable to access the S3 object specified in the request.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeImageTooLargeException "ImageTooLargeException"
+//   * ImageTooLargeException
 //   The input image size exceeds the allowed limit. For more information, see
 //   Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeInvalidImageFormatException "InvalidImageFormatException"
+//   * InvalidImageFormatException
 //   The provided image format is not supported.
 //
-//   * ErrCodeHumanLoopQuotaExceededException "HumanLoopQuotaExceededException"
+//   * HumanLoopQuotaExceededException
 //   The number of in-progress human reviews you have has exceeded the number
 //   allowed.
 //
@@ -2057,33 +2057,33 @@ func (c *Rekognition) DetectTextRequest(input *DetectTextInput) (req *request.Re
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation DetectText for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidS3ObjectException "InvalidS3ObjectException"
+// Returned Error Types:
+//   * InvalidS3ObjectException
 //   Amazon Rekognition is unable to access the S3 object specified in the request.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeImageTooLargeException "ImageTooLargeException"
+//   * ImageTooLargeException
 //   The input image size exceeds the allowed limit. For more information, see
 //   Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeInvalidImageFormatException "InvalidImageFormatException"
+//   * InvalidImageFormatException
 //   The provided image format is not supported.
 //
 func (c *Rekognition) DetectText(input *DetectTextInput) (*DetectTextOutput, error) {
@@ -2167,26 +2167,26 @@ func (c *Rekognition) GetCelebrityInfoRequest(input *GetCelebrityInfoInput) (req
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation GetCelebrityInfo for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The collection specified in the request cannot be found.
 //
 func (c *Rekognition) GetCelebrityInfo(input *GetCelebrityInfoInput) (*GetCelebrityInfoOutput, error) {
@@ -2307,28 +2307,28 @@ func (c *Rekognition) GetCelebrityRecognitionRequest(input *GetCelebrityRecognit
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation GetCelebrityRecognition for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+// Returned Error Types:
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeInvalidPaginationTokenException "InvalidPaginationTokenException"
+//   * InvalidPaginationTokenException
 //   Pagination token in the request is not valid.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The collection specified in the request cannot be found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
@@ -2494,28 +2494,28 @@ func (c *Rekognition) GetContentModerationRequest(input *GetContentModerationInp
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation GetContentModeration for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+// Returned Error Types:
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeInvalidPaginationTokenException "InvalidPaginationTokenException"
+//   * InvalidPaginationTokenException
 //   Pagination token in the request is not valid.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The collection specified in the request cannot be found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
@@ -2669,28 +2669,28 @@ func (c *Rekognition) GetFaceDetectionRequest(input *GetFaceDetectionInput) (req
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation GetFaceDetection for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+// Returned Error Types:
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeInvalidPaginationTokenException "InvalidPaginationTokenException"
+//   * InvalidPaginationTokenException
 //   Pagination token in the request is not valid.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The collection specified in the request cannot be found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
@@ -2854,28 +2854,28 @@ func (c *Rekognition) GetFaceSearchRequest(input *GetFaceSearchInput) (req *requ
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation GetFaceSearch for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+// Returned Error Types:
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeInvalidPaginationTokenException "InvalidPaginationTokenException"
+//   * InvalidPaginationTokenException
 //   Pagination token in the request is not valid.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The collection specified in the request cannot be found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
@@ -3038,28 +3038,28 @@ func (c *Rekognition) GetLabelDetectionRequest(input *GetLabelDetectionInput) (r
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation GetLabelDetection for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+// Returned Error Types:
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeInvalidPaginationTokenException "InvalidPaginationTokenException"
+//   * InvalidPaginationTokenException
 //   Pagination token in the request is not valid.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The collection specified in the request cannot be found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
@@ -3225,28 +3225,28 @@ func (c *Rekognition) GetPersonTrackingRequest(input *GetPersonTrackingInput) (r
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation GetPersonTracking for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+// Returned Error Types:
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeInvalidPaginationTokenException "InvalidPaginationTokenException"
+//   * InvalidPaginationTokenException
 //   Pagination token in the request is not valid.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The collection specified in the request cannot be found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
@@ -3468,36 +3468,36 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation IndexFaces for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidS3ObjectException "InvalidS3ObjectException"
+// Returned Error Types:
+//   * InvalidS3ObjectException
 //   Amazon Rekognition is unable to access the S3 object specified in the request.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeImageTooLargeException "ImageTooLargeException"
+//   * ImageTooLargeException
 //   The input image size exceeds the allowed limit. For more information, see
 //   Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The collection specified in the request cannot be found.
 //
-//   * ErrCodeInvalidImageFormatException "InvalidImageFormatException"
+//   * InvalidImageFormatException
 //   The provided image format is not supported.
 //
 func (c *Rekognition) IndexFaces(input *IndexFacesInput) (*IndexFacesOutput, error) {
@@ -3586,29 +3586,29 @@ func (c *Rekognition) ListCollectionsRequest(input *ListCollectionsInput) (req *
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation ListCollections for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeInvalidPaginationTokenException "InvalidPaginationTokenException"
+//   * InvalidPaginationTokenException
 //   Pagination token in the request is not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The collection specified in the request cannot be found.
 //
 func (c *Rekognition) ListCollections(input *ListCollectionsInput) (*ListCollectionsOutput, error) {
@@ -3747,29 +3747,29 @@ func (c *Rekognition) ListFacesRequest(input *ListFacesInput) (req *request.Requ
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation ListFaces for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeInvalidPaginationTokenException "InvalidPaginationTokenException"
+//   * InvalidPaginationTokenException
 //   Pagination token in the request is not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The collection specified in the request cannot be found.
 //
 func (c *Rekognition) ListFaces(input *ListFacesInput) (*ListFacesOutput, error) {
@@ -3902,25 +3902,25 @@ func (c *Rekognition) ListStreamProcessorsRequest(input *ListStreamProcessorsInp
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation ListStreamProcessors for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+// Returned Error Types:
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeInvalidPaginationTokenException "InvalidPaginationTokenException"
+//   * InvalidPaginationTokenException
 //   Pagination token in the request is not valid.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
@@ -4077,36 +4077,36 @@ func (c *Rekognition) RecognizeCelebritiesRequest(input *RecognizeCelebritiesInp
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation RecognizeCelebrities for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidS3ObjectException "InvalidS3ObjectException"
+// Returned Error Types:
+//   * InvalidS3ObjectException
 //   Amazon Rekognition is unable to access the S3 object specified in the request.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeInvalidImageFormatException "InvalidImageFormatException"
+//   * InvalidImageFormatException
 //   The provided image format is not supported.
 //
-//   * ErrCodeImageTooLargeException "ImageTooLargeException"
+//   * ImageTooLargeException
 //   The input image size exceeds the allowed limit. For more information, see
 //   Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeInvalidImageFormatException "InvalidImageFormatException"
+//   * InvalidImageFormatException
 //   The provided image format is not supported.
 //
 func (c *Rekognition) RecognizeCelebrities(input *RecognizeCelebritiesInput) (*RecognizeCelebritiesOutput, error) {
@@ -4199,26 +4199,26 @@ func (c *Rekognition) SearchFacesRequest(input *SearchFacesInput) (req *request.
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation SearchFaces for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The collection specified in the request cannot be found.
 //
 func (c *Rekognition) SearchFaces(input *SearchFacesInput) (*SearchFacesOutput, error) {
@@ -4332,36 +4332,36 @@ func (c *Rekognition) SearchFacesByImageRequest(input *SearchFacesByImageInput) 
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation SearchFacesByImage for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidS3ObjectException "InvalidS3ObjectException"
+// Returned Error Types:
+//   * InvalidS3ObjectException
 //   Amazon Rekognition is unable to access the S3 object specified in the request.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeImageTooLargeException "ImageTooLargeException"
+//   * ImageTooLargeException
 //   The input image size exceeds the allowed limit. For more information, see
 //   Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The collection specified in the request cannot be found.
 //
-//   * ErrCodeInvalidImageFormatException "InvalidImageFormatException"
+//   * InvalidImageFormatException
 //   The provided image format is not supported.
 //
 func (c *Rekognition) SearchFacesByImage(input *SearchFacesByImageInput) (*SearchFacesByImageOutput, error) {
@@ -4450,41 +4450,41 @@ func (c *Rekognition) StartCelebrityRecognitionRequest(input *StartCelebrityReco
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation StartCelebrityRecognition for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+// Returned Error Types:
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeIdempotentParameterMismatchException "IdempotentParameterMismatchException"
+//   * IdempotentParameterMismatchException
 //   A ClientRequestToken input parameter was reused with an operation, but at
 //   least one of the other input parameters is different from the previous call
 //   to the operation.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeInvalidS3ObjectException "InvalidS3ObjectException"
+//   * InvalidS3ObjectException
 //   Amazon Rekognition is unable to access the S3 object specified in the request.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeVideoTooLargeException "VideoTooLargeException"
+//   * VideoTooLargeException
 //   The file size or duration of the supplied media is too large. The maximum
 //   file size is 8GB. The maximum duration is 2 hours.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   An Amazon Rekognition service limit was exceeded. For example, if you start
 //   too many Amazon Rekognition Video jobs concurrently, calls to start operations
 //   (StartLabelDetection, for example) will raise a LimitExceededException exception
 //   (HTTP status code: 400) until the number of concurrently running jobs is
 //   below the Amazon Rekognition service limit.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
@@ -4574,41 +4574,41 @@ func (c *Rekognition) StartContentModerationRequest(input *StartContentModeratio
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation StartContentModeration for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+// Returned Error Types:
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeIdempotentParameterMismatchException "IdempotentParameterMismatchException"
+//   * IdempotentParameterMismatchException
 //   A ClientRequestToken input parameter was reused with an operation, but at
 //   least one of the other input parameters is different from the previous call
 //   to the operation.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeInvalidS3ObjectException "InvalidS3ObjectException"
+//   * InvalidS3ObjectException
 //   Amazon Rekognition is unable to access the S3 object specified in the request.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeVideoTooLargeException "VideoTooLargeException"
+//   * VideoTooLargeException
 //   The file size or duration of the supplied media is too large. The maximum
 //   file size is 8GB. The maximum duration is 2 hours.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   An Amazon Rekognition service limit was exceeded. For example, if you start
 //   too many Amazon Rekognition Video jobs concurrently, calls to start operations
 //   (StartLabelDetection, for example) will raise a LimitExceededException exception
 //   (HTTP status code: 400) until the number of concurrently running jobs is
 //   below the Amazon Rekognition service limit.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
@@ -4697,41 +4697,41 @@ func (c *Rekognition) StartFaceDetectionRequest(input *StartFaceDetectionInput) 
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation StartFaceDetection for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+// Returned Error Types:
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeIdempotentParameterMismatchException "IdempotentParameterMismatchException"
+//   * IdempotentParameterMismatchException
 //   A ClientRequestToken input parameter was reused with an operation, but at
 //   least one of the other input parameters is different from the previous call
 //   to the operation.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeInvalidS3ObjectException "InvalidS3ObjectException"
+//   * InvalidS3ObjectException
 //   Amazon Rekognition is unable to access the S3 object specified in the request.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeVideoTooLargeException "VideoTooLargeException"
+//   * VideoTooLargeException
 //   The file size or duration of the supplied media is too large. The maximum
 //   file size is 8GB. The maximum duration is 2 hours.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   An Amazon Rekognition service limit was exceeded. For example, if you start
 //   too many Amazon Rekognition Video jobs concurrently, calls to start operations
 //   (StartLabelDetection, for example) will raise a LimitExceededException exception
 //   (HTTP status code: 400) until the number of concurrently running jobs is
 //   below the Amazon Rekognition service limit.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
@@ -4818,44 +4818,44 @@ func (c *Rekognition) StartFaceSearchRequest(input *StartFaceSearchInput) (req *
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation StartFaceSearch for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+// Returned Error Types:
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeIdempotentParameterMismatchException "IdempotentParameterMismatchException"
+//   * IdempotentParameterMismatchException
 //   A ClientRequestToken input parameter was reused with an operation, but at
 //   least one of the other input parameters is different from the previous call
 //   to the operation.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeInvalidS3ObjectException "InvalidS3ObjectException"
+//   * InvalidS3ObjectException
 //   Amazon Rekognition is unable to access the S3 object specified in the request.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeVideoTooLargeException "VideoTooLargeException"
+//   * VideoTooLargeException
 //   The file size or duration of the supplied media is too large. The maximum
 //   file size is 8GB. The maximum duration is 2 hours.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   An Amazon Rekognition service limit was exceeded. For example, if you start
 //   too many Amazon Rekognition Video jobs concurrently, calls to start operations
 //   (StartLabelDetection, for example) will raise a LimitExceededException exception
 //   (HTTP status code: 400) until the number of concurrently running jobs is
 //   below the Amazon Rekognition service limit.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The collection specified in the request cannot be found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
@@ -4949,41 +4949,41 @@ func (c *Rekognition) StartLabelDetectionRequest(input *StartLabelDetectionInput
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation StartLabelDetection for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+// Returned Error Types:
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeIdempotentParameterMismatchException "IdempotentParameterMismatchException"
+//   * IdempotentParameterMismatchException
 //   A ClientRequestToken input parameter was reused with an operation, but at
 //   least one of the other input parameters is different from the previous call
 //   to the operation.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeInvalidS3ObjectException "InvalidS3ObjectException"
+//   * InvalidS3ObjectException
 //   Amazon Rekognition is unable to access the S3 object specified in the request.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeVideoTooLargeException "VideoTooLargeException"
+//   * VideoTooLargeException
 //   The file size or duration of the supplied media is too large. The maximum
 //   file size is 8GB. The maximum duration is 2 hours.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   An Amazon Rekognition service limit was exceeded. For example, if you start
 //   too many Amazon Rekognition Video jobs concurrently, calls to start operations
 //   (StartLabelDetection, for example) will raise a LimitExceededException exception
 //   (HTTP status code: 400) until the number of concurrently running jobs is
 //   below the Amazon Rekognition service limit.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
@@ -5071,41 +5071,41 @@ func (c *Rekognition) StartPersonTrackingRequest(input *StartPersonTrackingInput
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation StartPersonTracking for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+// Returned Error Types:
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeIdempotentParameterMismatchException "IdempotentParameterMismatchException"
+//   * IdempotentParameterMismatchException
 //   A ClientRequestToken input parameter was reused with an operation, but at
 //   least one of the other input parameters is different from the previous call
 //   to the operation.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeInvalidS3ObjectException "InvalidS3ObjectException"
+//   * InvalidS3ObjectException
 //   Amazon Rekognition is unable to access the S3 object specified in the request.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeVideoTooLargeException "VideoTooLargeException"
+//   * VideoTooLargeException
 //   The file size or duration of the supplied media is too large. The maximum
 //   file size is 8GB. The maximum duration is 2 hours.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   An Amazon Rekognition service limit was exceeded. For example, if you start
 //   too many Amazon Rekognition Video jobs concurrently, calls to start operations
 //   (StartLabelDetection, for example) will raise a LimitExceededException exception
 //   (HTTP status code: 400) until the number of concurrently running jobs is
 //   below the Amazon Rekognition service limit.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
@@ -5191,34 +5191,34 @@ func (c *Rekognition) StartProjectVersionRequest(input *StartProjectVersionInput
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation StartProjectVersion for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The collection specified in the request cannot be found.
 //
-//   * ErrCodeResourceInUseException "ResourceInUseException"
+//   * ResourceInUseException
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   An Amazon Rekognition service limit was exceeded. For example, if you start
 //   too many Amazon Rekognition Video jobs concurrently, calls to start operations
 //   (StartLabelDetection, for example) will raise a LimitExceededException exception
 //   (HTTP status code: 400) until the number of concurrently running jobs is
 //   below the Amazon Rekognition service limit.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
@@ -5297,27 +5297,27 @@ func (c *Rekognition) StartStreamProcessorRequest(input *StartStreamProcessorInp
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation StartStreamProcessor for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+// Returned Error Types:
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The collection specified in the request cannot be found.
 //
-//   * ErrCodeResourceInUseException "ResourceInUseException"
+//   * ResourceInUseException
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
@@ -5394,27 +5394,27 @@ func (c *Rekognition) StopProjectVersionRequest(input *StopProjectVersionInput) 
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation StopProjectVersion for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The collection specified in the request cannot be found.
 //
-//   * ErrCodeResourceInUseException "ResourceInUseException"
+//   * ResourceInUseException
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
@@ -5491,27 +5491,27 @@ func (c *Rekognition) StopStreamProcessorRequest(input *StopStreamProcessorInput
 // See the AWS API reference guide for Amazon Rekognition's
 // API operation StopStreamProcessor for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+// Returned Error Types:
+//   * AccessDeniedException
 //   You are not authorized to perform the action.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Rekognition experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
 //   call again.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The collection specified in the request cannot be found.
 //
-//   * ErrCodeResourceInUseException "ResourceInUseException"
+//   * ResourceInUseException
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
@@ -5534,6 +5534,57 @@ func (c *Rekognition) StopStreamProcessorWithContext(ctx aws.Context, input *Sto
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// You are not authorized to perform the action.
+type AccessDeniedException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s AccessDeniedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccessDeniedException) GoString() string {
+	return s.String()
+}
+
+func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
+	return &AccessDeniedException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s AccessDeniedException) Code() string {
+	return "AccessDeniedException"
+}
+
+// Message returns the exception's message.
+func (s AccessDeniedException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s AccessDeniedException) OrigErr() error {
+	return nil
+}
+
+func (s AccessDeniedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s AccessDeniedException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s AccessDeniedException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Structure containing the estimated age range, in years, for a face.
@@ -9661,6 +9712,117 @@ func (s *HumanLoopDataAttributes) SetContentClassifiers(v []*string) *HumanLoopD
 	return s
 }
 
+// The number of in-progress human reviews you have has exceeded the number
+// allowed.
+type HumanLoopQuotaExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	QuotaCode *string `type:"string"`
+
+	ResourceType *string `type:"string"`
+
+	ServiceCode *string `type:"string"`
+}
+
+// String returns the string representation
+func (s HumanLoopQuotaExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HumanLoopQuotaExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorHumanLoopQuotaExceededException(v protocol.ResponseMetadata) error {
+	return &HumanLoopQuotaExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s HumanLoopQuotaExceededException) Code() string {
+	return "HumanLoopQuotaExceededException"
+}
+
+// Message returns the exception's message.
+func (s HumanLoopQuotaExceededException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s HumanLoopQuotaExceededException) OrigErr() error {
+	return nil
+}
+
+func (s HumanLoopQuotaExceededException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s HumanLoopQuotaExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s HumanLoopQuotaExceededException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// A ClientRequestToken input parameter was reused with an operation, but at
+// least one of the other input parameters is different from the previous call
+// to the operation.
+type IdempotentParameterMismatchException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s IdempotentParameterMismatchException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s IdempotentParameterMismatchException) GoString() string {
+	return s.String()
+}
+
+func newErrorIdempotentParameterMismatchException(v protocol.ResponseMetadata) error {
+	return &IdempotentParameterMismatchException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s IdempotentParameterMismatchException) Code() string {
+	return "IdempotentParameterMismatchException"
+}
+
+// Message returns the exception's message.
+func (s IdempotentParameterMismatchException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s IdempotentParameterMismatchException) OrigErr() error {
+	return nil
+}
+
+func (s IdempotentParameterMismatchException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s IdempotentParameterMismatchException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s IdempotentParameterMismatchException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // Provides the input image either as bytes or an S3 object.
 //
 // You pass image bytes to an Amazon Rekognition API operation by using the
@@ -9772,6 +9934,58 @@ func (s *ImageQuality) SetBrightness(v float64) *ImageQuality {
 func (s *ImageQuality) SetSharpness(v float64) *ImageQuality {
 	s.Sharpness = &v
 	return s
+}
+
+// The input image size exceeds the allowed limit. For more information, see
+// Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+type ImageTooLargeException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s ImageTooLargeException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ImageTooLargeException) GoString() string {
+	return s.String()
+}
+
+func newErrorImageTooLargeException(v protocol.ResponseMetadata) error {
+	return &ImageTooLargeException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ImageTooLargeException) Code() string {
+	return "ImageTooLargeException"
+}
+
+// Message returns the exception's message.
+func (s ImageTooLargeException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ImageTooLargeException) OrigErr() error {
+	return nil
+}
+
+func (s ImageTooLargeException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ImageTooLargeException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ImageTooLargeException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type IndexFacesInput struct {
@@ -10028,6 +10242,262 @@ func (s *Instance) SetConfidence(v float64) *Instance {
 	return s
 }
 
+// Amazon Rekognition experienced a service issue. Try your call again.
+type InternalServerError struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s InternalServerError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternalServerError) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalServerError(v protocol.ResponseMetadata) error {
+	return &InternalServerError{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InternalServerError) Code() string {
+	return "InternalServerError"
+}
+
+// Message returns the exception's message.
+func (s InternalServerError) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InternalServerError) OrigErr() error {
+	return nil
+}
+
+func (s InternalServerError) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InternalServerError) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InternalServerError) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The provided image format is not supported.
+type InvalidImageFormatException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s InvalidImageFormatException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidImageFormatException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidImageFormatException(v protocol.ResponseMetadata) error {
+	return &InvalidImageFormatException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidImageFormatException) Code() string {
+	return "InvalidImageFormatException"
+}
+
+// Message returns the exception's message.
+func (s InvalidImageFormatException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidImageFormatException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidImageFormatException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidImageFormatException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidImageFormatException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Pagination token in the request is not valid.
+type InvalidPaginationTokenException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s InvalidPaginationTokenException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidPaginationTokenException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidPaginationTokenException(v protocol.ResponseMetadata) error {
+	return &InvalidPaginationTokenException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidPaginationTokenException) Code() string {
+	return "InvalidPaginationTokenException"
+}
+
+// Message returns the exception's message.
+func (s InvalidPaginationTokenException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidPaginationTokenException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidPaginationTokenException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidPaginationTokenException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidPaginationTokenException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Input parameter violated a constraint. Validate your parameter before calling
+// the API operation again.
+type InvalidParameterException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s InvalidParameterException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidParameterException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidParameterException(v protocol.ResponseMetadata) error {
+	return &InvalidParameterException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidParameterException) Code() string {
+	return "InvalidParameterException"
+}
+
+// Message returns the exception's message.
+func (s InvalidParameterException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidParameterException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidParameterException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidParameterException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidParameterException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Amazon Rekognition is unable to access the S3 object specified in the request.
+type InvalidS3ObjectException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s InvalidS3ObjectException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidS3ObjectException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidS3ObjectException(v protocol.ResponseMetadata) error {
+	return &InvalidS3ObjectException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidS3ObjectException) Code() string {
+	return "InvalidS3ObjectException"
+}
+
+// Message returns the exception's message.
+func (s InvalidS3ObjectException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidS3ObjectException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidS3ObjectException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidS3ObjectException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidS3ObjectException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // The Kinesis data stream Amazon Rekognition to which the analysis results
 // of a Amazon Rekognition stream processor are streamed. For more information,
 // see CreateStreamProcessor in the Amazon Rekognition Developer Guide.
@@ -10212,6 +10682,61 @@ func (s *Landmark) SetX(v float64) *Landmark {
 func (s *Landmark) SetY(v float64) *Landmark {
 	s.Y = &v
 	return s
+}
+
+// An Amazon Rekognition service limit was exceeded. For example, if you start
+// too many Amazon Rekognition Video jobs concurrently, calls to start operations
+// (StartLabelDetection, for example) will raise a LimitExceededException exception
+// (HTTP status code: 400) until the number of concurrently running jobs is
+// below the Amazon Rekognition service limit.
+type LimitExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s LimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
+	return &LimitExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s LimitExceededException) Code() string {
+	return "LimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s LimitExceededException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s LimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s LimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s LimitExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s LimitExceededException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type ListCollectionsInput struct {
@@ -11096,6 +11621,58 @@ func (s *ProjectVersionDescription) SetTrainingEndTimestamp(v time.Time) *Projec
 	return s
 }
 
+// The number of requests exceeded your throughput limit. If you want to increase
+// this limit, contact Amazon Rekognition.
+type ProvisionedThroughputExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s ProvisionedThroughputExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ProvisionedThroughputExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorProvisionedThroughputExceededException(v protocol.ResponseMetadata) error {
+	return &ProvisionedThroughputExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ProvisionedThroughputExceededException) Code() string {
+	return "ProvisionedThroughputExceededException"
+}
+
+// Message returns the exception's message.
+func (s ProvisionedThroughputExceededException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ProvisionedThroughputExceededException) OrigErr() error {
+	return nil
+}
+
+func (s ProvisionedThroughputExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ProvisionedThroughputExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ProvisionedThroughputExceededException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type RecognizeCelebritiesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11195,6 +11772,210 @@ func (s *RecognizeCelebritiesOutput) SetOrientationCorrection(v string) *Recogni
 func (s *RecognizeCelebritiesOutput) SetUnrecognizedFaces(v []*ComparedFace) *RecognizeCelebritiesOutput {
 	s.UnrecognizedFaces = v
 	return s
+}
+
+// A collection with the specified ID already exists.
+type ResourceAlreadyExistsException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s ResourceAlreadyExistsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceAlreadyExistsException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceAlreadyExistsException(v protocol.ResponseMetadata) error {
+	return &ResourceAlreadyExistsException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceAlreadyExistsException) Code() string {
+	return "ResourceAlreadyExistsException"
+}
+
+// Message returns the exception's message.
+func (s ResourceAlreadyExistsException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceAlreadyExistsException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceAlreadyExistsException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceAlreadyExistsException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceAlreadyExistsException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+type ResourceInUseException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s ResourceInUseException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceInUseException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceInUseException(v protocol.ResponseMetadata) error {
+	return &ResourceInUseException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceInUseException) Code() string {
+	return "ResourceInUseException"
+}
+
+// Message returns the exception's message.
+func (s ResourceInUseException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceInUseException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceInUseException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceInUseException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceInUseException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The collection specified in the request cannot be found.
+type ResourceNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s ResourceNotFoundException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The requested resource isn't ready. For example, this exception occurs when
+// you call DetectCustomLabels with a model version that isn't deployed.
+type ResourceNotReadyException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s ResourceNotReadyException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotReadyException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotReadyException(v protocol.ResponseMetadata) error {
+	return &ResourceNotReadyException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceNotReadyException) Code() string {
+	return "ResourceNotReadyException"
+}
+
+// Message returns the exception's message.
+func (s ResourceNotReadyException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceNotReadyException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceNotReadyException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceNotReadyException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceNotReadyException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Provides the S3 bucket name and object name.
@@ -12969,6 +13750,58 @@ func (s *TextDetection) SetType(v string) *TextDetection {
 	return s
 }
 
+// Amazon Rekognition is temporarily unable to process the request. Try your
+// call again.
+type ThrottlingException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s ThrottlingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ThrottlingException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottlingException(v protocol.ResponseMetadata) error {
+	return &ThrottlingException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ThrottlingException) Code() string {
+	return "ThrottlingException"
+}
+
+// Message returns the exception's message.
+func (s ThrottlingException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ThrottlingException) OrigErr() error {
+	return nil
+}
+
+func (s ThrottlingException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ThrottlingException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ThrottlingException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // The dataset used for training.
 type TrainingData struct {
 	_ struct{} `type:"structure"`
@@ -13207,6 +14040,58 @@ func (s *VideoMetadata) SetFrameRate(v float64) *VideoMetadata {
 func (s *VideoMetadata) SetFrameWidth(v int64) *VideoMetadata {
 	s.FrameWidth = &v
 	return s
+}
+
+// The file size or duration of the supplied media is too large. The maximum
+// file size is 8GB. The maximum duration is 2 hours.
+type VideoTooLargeException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s VideoTooLargeException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VideoTooLargeException) GoString() string {
+	return s.String()
+}
+
+func newErrorVideoTooLargeException(v protocol.ResponseMetadata) error {
+	return &VideoTooLargeException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s VideoTooLargeException) Code() string {
+	return "VideoTooLargeException"
+}
+
+// Message returns the exception's message.
+func (s VideoTooLargeException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s VideoTooLargeException) OrigErr() error {
+	return nil
+}
+
+func (s VideoTooLargeException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s VideoTooLargeException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s VideoTooLargeException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 const (

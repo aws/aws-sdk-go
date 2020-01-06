@@ -2,6 +2,10 @@
 
 package iotthingsgraph
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeInternalFailureException for service response error code
@@ -32,3 +36,13 @@ const (
 	// "ThrottlingException".
 	ErrCodeThrottlingException = "ThrottlingException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"InternalFailureException":       newErrorInternalFailureException,
+	"InvalidRequestException":        newErrorInvalidRequestException,
+	"LimitExceededException":         newErrorLimitExceededException,
+	"ResourceAlreadyExistsException": newErrorResourceAlreadyExistsException,
+	"ResourceInUseException":         newErrorResourceInUseException,
+	"ResourceNotFoundException":      newErrorResourceNotFoundException,
+	"ThrottlingException":            newErrorThrottlingException,
+}

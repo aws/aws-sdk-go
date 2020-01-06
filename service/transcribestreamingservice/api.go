@@ -106,23 +106,23 @@ func (c *TranscribeStreamingService) StartStreamTranscriptionRequest(input *Star
 // See the AWS API reference guide for Amazon Transcribe Streaming Service's
 // API operation StartStreamTranscription for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   One or more arguments to the StartStreamTranscription operation was invalid.
 //   For example, MediaEncoding was not set to pcm or LanguageCode was not set
 //   to a valid code. Check the parameters and try your request again.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   You have exceeded the maximum number of concurrent transcription streams,
 //   are starting transcription streams too quickly, or the maximum audio length
 //   of 4 hours. Wait until a stream has finished processing, or break your audio
 //   stream into smaller chunks and try your request again.
 //
-//   * ErrCodeInternalFailureException "InternalFailureException"
+//   * InternalFailureException
 //   A problem occurred while processing the audio. Amazon Transcribe terminated
 //   processing. Try your request again.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   A new stream started with the same session ID. The current stream has been
 //   terminated.
 //
@@ -287,12 +287,19 @@ func (es *StartStreamTranscriptionEventStream) runOutputStream(r *request.Reques
 		opts = append(opts, eventstream.DecodeWithLogger(r.Config.Logger))
 	}
 
+	unmarshalerForEvent := unmarshalerForTranscriptResultStreamEvent{
+		metadata: protocol.ResponseMetadata{
+			StatusCode: r.HTTPResponse.StatusCode,
+			RequestID:  r.RequestID,
+		},
+	}.UnmarshalerForEventName
+
 	decoder := eventstream.NewDecoder(r.HTTPResponse.Body, opts...)
 	eventReader := eventstreamapi.NewEventReader(decoder,
 		protocol.HandlerPayloadUnmarshal{
 			Unmarshalers: r.Handlers.UnmarshalStream,
 		},
-		unmarshalerForTranscriptResultStreamEvent,
+		unmarshalerForEvent,
 	)
 
 	es.outputReader = r.HTTPResponse.Body
@@ -495,7 +502,8 @@ func eventTypeForAudioStreamEvent(event eventstreamapi.Marshaler) (string, error
 // For example, MediaEncoding was not set to pcm or LanguageCode was not set
 // to a valid code. Check the parameters and try your request again.
 type BadRequestException struct {
-	_ struct{} `type:"structure"`
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -537,6 +545,12 @@ func (s *BadRequestException) MarshalEvent(pm protocol.PayloadMarshaler) (msg ev
 	return msg, err
 }
 
+func newErrorBadRequestException(v protocol.ResponseMetadata) error {
+	return &BadRequestException{
+		respMetadata: v,
+	}
+}
+
 // Code returns the exception type name.
 func (s BadRequestException) Code() string {
 	return "BadRequestException"
@@ -544,7 +558,10 @@ func (s BadRequestException) Code() string {
 
 // Message returns the exception's message.
 func (s BadRequestException) Message() string {
-	return *s.Message_
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
@@ -556,10 +573,21 @@ func (s BadRequestException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
+// Status code returns the HTTP status code for the request's response error.
+func (s BadRequestException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s BadRequestException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // A new stream started with the same session ID. The current stream has been
 // terminated.
 type ConflictException struct {
-	_ struct{} `type:"structure"`
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -601,6 +629,12 @@ func (s *ConflictException) MarshalEvent(pm protocol.PayloadMarshaler) (msg even
 	return msg, err
 }
 
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		respMetadata: v,
+	}
+}
+
 // Code returns the exception type name.
 func (s ConflictException) Code() string {
 	return "ConflictException"
@@ -608,7 +642,10 @@ func (s ConflictException) Code() string {
 
 // Message returns the exception's message.
 func (s ConflictException) Message() string {
-	return *s.Message_
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
@@ -620,10 +657,21 @@ func (s ConflictException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
+// Status code returns the HTTP status code for the request's response error.
+func (s ConflictException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ConflictException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // A problem occurred while processing the audio. Amazon Transcribe terminated
 // processing. Try your request again.
 type InternalFailureException struct {
-	_ struct{} `type:"structure"`
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -665,6 +713,12 @@ func (s *InternalFailureException) MarshalEvent(pm protocol.PayloadMarshaler) (m
 	return msg, err
 }
 
+func newErrorInternalFailureException(v protocol.ResponseMetadata) error {
+	return &InternalFailureException{
+		respMetadata: v,
+	}
+}
+
 // Code returns the exception type name.
 func (s InternalFailureException) Code() string {
 	return "InternalFailureException"
@@ -672,7 +726,10 @@ func (s InternalFailureException) Code() string {
 
 // Message returns the exception's message.
 func (s InternalFailureException) Message() string {
-	return *s.Message_
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
@@ -682,6 +739,16 @@ func (s InternalFailureException) OrigErr() error {
 
 func (s InternalFailureException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InternalFailureException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InternalFailureException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // A word or phrase transcribed from the input audio.
@@ -744,7 +811,8 @@ func (s *Item) SetType(v string) *Item {
 // of 4 hours. Wait until a stream has finished processing, or break your audio
 // stream into smaller chunks and try your request again.
 type LimitExceededException struct {
-	_ struct{} `type:"structure"`
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -786,6 +854,12 @@ func (s *LimitExceededException) MarshalEvent(pm protocol.PayloadMarshaler) (msg
 	return msg, err
 }
 
+func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
+	return &LimitExceededException{
+		respMetadata: v,
+	}
+}
+
 // Code returns the exception type name.
 func (s LimitExceededException) Code() string {
 	return "LimitExceededException"
@@ -793,7 +867,10 @@ func (s LimitExceededException) Code() string {
 
 // Message returns the exception's message.
 func (s LimitExceededException) Message() string {
-	return *s.Message_
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
@@ -803,6 +880,16 @@ func (s LimitExceededException) OrigErr() error {
 
 func (s LimitExceededException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s LimitExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s LimitExceededException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // The result of transcribing a portion of the input audio stream.
@@ -1226,18 +1313,22 @@ func (r *readTranscriptResultStream) readEventStream() {
 	}
 }
 
-func unmarshalerForTranscriptResultStreamEvent(eventType string) (eventstreamapi.Unmarshaler, error) {
+type unmarshalerForTranscriptResultStreamEvent struct {
+	metadata protocol.ResponseMetadata
+}
+
+func (u unmarshalerForTranscriptResultStreamEvent) UnmarshalerForEventName(eventType string) (eventstreamapi.Unmarshaler, error) {
 	switch eventType {
 	case "TranscriptEvent":
 		return &TranscriptEvent{}, nil
 	case "BadRequestException":
-		return &BadRequestException{}, nil
+		return newErrorBadRequestException(u.metadata).(eventstreamapi.Unmarshaler), nil
 	case "ConflictException":
-		return &ConflictException{}, nil
+		return newErrorConflictException(u.metadata).(eventstreamapi.Unmarshaler), nil
 	case "InternalFailureException":
-		return &InternalFailureException{}, nil
+		return newErrorInternalFailureException(u.metadata).(eventstreamapi.Unmarshaler), nil
 	case "LimitExceededException":
-		return &LimitExceededException{}, nil
+		return newErrorLimitExceededException(u.metadata).(eventstreamapi.Unmarshaler), nil
 	default:
 		return nil, awserr.New(
 			request.ErrCodeSerialization,

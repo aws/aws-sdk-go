@@ -3,6 +3,7 @@
 package apigatewaymanagementapi
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -66,15 +67,15 @@ func (c *ApiGatewayManagementApi) DeleteConnectionRequest(input *DeleteConnectio
 // See the AWS API reference guide for AmazonApiGatewayManagementApi's
 // API operation DeleteConnection for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeGoneException "GoneException"
+// Returned Error Types:
+//   * GoneException
 //   The connection with the provided id no longer exists.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The client is sending more than the allowed number of requests per unit of
 //   time or the WebSocket client side buffer is full.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The caller is not authorized to invoke this operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/apigatewaymanagementapi-2018-11-29/DeleteConnection
@@ -152,15 +153,15 @@ func (c *ApiGatewayManagementApi) GetConnectionRequest(input *GetConnectionInput
 // See the AWS API reference guide for AmazonApiGatewayManagementApi's
 // API operation GetConnection for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeGoneException "GoneException"
+// Returned Error Types:
+//   * GoneException
 //   The connection with the provided id no longer exists.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The client is sending more than the allowed number of requests per unit of
 //   time or the WebSocket client side buffer is full.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The caller is not authorized to invoke this operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/apigatewaymanagementapi-2018-11-29/GetConnection
@@ -239,18 +240,18 @@ func (c *ApiGatewayManagementApi) PostToConnectionRequest(input *PostToConnectio
 // See the AWS API reference guide for AmazonApiGatewayManagementApi's
 // API operation PostToConnection for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeGoneException "GoneException"
+// Returned Error Types:
+//   * GoneException
 //   The connection with the provided id no longer exists.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The client is sending more than the allowed number of requests per unit of
 //   time or the WebSocket client side buffer is full.
 //
-//   * ErrCodePayloadTooLargeException "PayloadTooLargeException"
+//   * PayloadTooLargeException
 //   The data has exceeded the maximum size allowed.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The caller is not authorized to invoke this operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/apigatewaymanagementapi-2018-11-29/PostToConnection
@@ -326,6 +327,57 @@ func (s DeleteConnectionOutput) String() string {
 // GoString returns the string representation
 func (s DeleteConnectionOutput) GoString() string {
 	return s.String()
+}
+
+// The caller is not authorized to invoke this operation.
+type ForbiddenException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s ForbiddenException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ForbiddenException) GoString() string {
+	return s.String()
+}
+
+func newErrorForbiddenException(v protocol.ResponseMetadata) error {
+	return &ForbiddenException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ForbiddenException) Code() string {
+	return "ForbiddenException"
+}
+
+// Message returns the exception's message.
+func (s ForbiddenException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ForbiddenException) OrigErr() error {
+	return nil
+}
+
+func (s ForbiddenException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ForbiddenException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ForbiddenException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type GetConnectionInput struct {
@@ -405,6 +457,57 @@ func (s *GetConnectionOutput) SetLastActiveAt(v time.Time) *GetConnectionOutput 
 	return s
 }
 
+// The connection with the provided id no longer exists.
+type GoneException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s GoneException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GoneException) GoString() string {
+	return s.String()
+}
+
+func newErrorGoneException(v protocol.ResponseMetadata) error {
+	return &GoneException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s GoneException) Code() string {
+	return "GoneException"
+}
+
+// Message returns the exception's message.
+func (s GoneException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s GoneException) OrigErr() error {
+	return nil
+}
+
+func (s GoneException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s GoneException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s GoneException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type Identity struct {
 	_ struct{} `type:"structure"`
 
@@ -439,6 +542,114 @@ func (s *Identity) SetSourceIp(v string) *Identity {
 func (s *Identity) SetUserAgent(v string) *Identity {
 	s.UserAgent = &v
 	return s
+}
+
+// The client is sending more than the allowed number of requests per unit of
+// time or the WebSocket client side buffer is full.
+type LimitExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s LimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
+	return &LimitExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s LimitExceededException) Code() string {
+	return "LimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s LimitExceededException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s LimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s LimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s LimitExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s LimitExceededException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The data has exceeded the maximum size allowed.
+type PayloadTooLargeException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s PayloadTooLargeException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PayloadTooLargeException) GoString() string {
+	return s.String()
+}
+
+func newErrorPayloadTooLargeException(v protocol.ResponseMetadata) error {
+	return &PayloadTooLargeException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s PayloadTooLargeException) Code() string {
+	return "PayloadTooLargeException"
+}
+
+// Message returns the exception's message.
+func (s PayloadTooLargeException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s PayloadTooLargeException) OrigErr() error {
+	return nil
+}
+
+func (s PayloadTooLargeException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s PayloadTooLargeException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s PayloadTooLargeException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type PostToConnectionInput struct {

@@ -2,6 +2,10 @@
 
 package translate
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeDetectedLanguageLowConfidenceException for service response error code
@@ -83,3 +87,17 @@ const (
 	// text into the requested target language. For more information, see how-to-error-msg.
 	ErrCodeUnsupportedLanguagePairException = "UnsupportedLanguagePairException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"DetectedLanguageLowConfidenceException": newErrorDetectedLanguageLowConfidenceException,
+	"InternalServerException":                newErrorInternalServerException,
+	"InvalidFilterException":                 newErrorInvalidFilterException,
+	"InvalidParameterValueException":         newErrorInvalidParameterValueException,
+	"InvalidRequestException":                newErrorInvalidRequestException,
+	"LimitExceededException":                 newErrorLimitExceededException,
+	"ResourceNotFoundException":              newErrorResourceNotFoundException,
+	"ServiceUnavailableException":            newErrorServiceUnavailableException,
+	"TextSizeLimitExceededException":         newErrorTextSizeLimitExceededException,
+	"TooManyRequestsException":               newErrorTooManyRequestsException,
+	"UnsupportedLanguagePairException":       newErrorUnsupportedLanguagePairException,
+}

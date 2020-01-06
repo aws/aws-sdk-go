@@ -67,22 +67,22 @@ func (c *ApplicationDiscoveryService) AssociateConfigurationItemsToApplicationRe
 // See the AWS API reference guide for AWS Application Discovery Service's
 // API operation AssociateConfigurationItemsToApplication for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAuthorizationErrorException "AuthorizationErrorException"
+// Returned Error Types:
+//   * AuthorizationErrorException
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
-//   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
+//   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   * HomeRegionNotSetException
 //   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/AssociateConfigurationItemsToApplication
@@ -168,22 +168,22 @@ func (c *ApplicationDiscoveryService) BatchDeleteImportDataRequest(input *BatchD
 // See the AWS API reference guide for AWS Application Discovery Service's
 // API operation BatchDeleteImportData for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAuthorizationErrorException "AuthorizationErrorException"
+// Returned Error Types:
+//   * AuthorizationErrorException
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
-//   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
+//   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   * HomeRegionNotSetException
 //   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/BatchDeleteImportData
@@ -261,22 +261,22 @@ func (c *ApplicationDiscoveryService) CreateApplicationRequest(input *CreateAppl
 // See the AWS API reference guide for AWS Application Discovery Service's
 // API operation CreateApplication for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAuthorizationErrorException "AuthorizationErrorException"
+// Returned Error Types:
+//   * AuthorizationErrorException
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
-//   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
+//   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   * HomeRegionNotSetException
 //   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/CreateApplication
@@ -357,26 +357,26 @@ func (c *ApplicationDiscoveryService) CreateTagsRequest(input *CreateTagsInput) 
 // See the AWS API reference guide for AWS Application Discovery Service's
 // API operation CreateTags for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAuthorizationErrorException "AuthorizationErrorException"
+// Returned Error Types:
+//   * AuthorizationErrorException
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified configuration ID was not located. Verify the configuration
 //   ID and try again.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
-//   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
+//   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   * HomeRegionNotSetException
 //   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/CreateTags
@@ -456,22 +456,22 @@ func (c *ApplicationDiscoveryService) DeleteApplicationsRequest(input *DeleteApp
 // See the AWS API reference guide for AWS Application Discovery Service's
 // API operation DeleteApplications for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAuthorizationErrorException "AuthorizationErrorException"
+// Returned Error Types:
+//   * AuthorizationErrorException
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
-//   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
+//   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   * HomeRegionNotSetException
 //   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DeleteApplications
@@ -551,26 +551,26 @@ func (c *ApplicationDiscoveryService) DeleteTagsRequest(input *DeleteTagsInput) 
 // See the AWS API reference guide for AWS Application Discovery Service's
 // API operation DeleteTags for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAuthorizationErrorException "AuthorizationErrorException"
+// Returned Error Types:
+//   * AuthorizationErrorException
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified configuration ID was not located. Verify the configuration
 //   ID and try again.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
-//   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
+//   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   * HomeRegionNotSetException
 //   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DeleteTags
@@ -650,22 +650,22 @@ func (c *ApplicationDiscoveryService) DescribeAgentsRequest(input *DescribeAgent
 // See the AWS API reference guide for AWS Application Discovery Service's
 // API operation DescribeAgents for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAuthorizationErrorException "AuthorizationErrorException"
+// Returned Error Types:
+//   * AuthorizationErrorException
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
-//   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
+//   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   * HomeRegionNotSetException
 //   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeAgents
@@ -761,22 +761,22 @@ func (c *ApplicationDiscoveryService) DescribeConfigurationsRequest(input *Descr
 // See the AWS API reference guide for AWS Application Discovery Service's
 // API operation DescribeConfigurations for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAuthorizationErrorException "AuthorizationErrorException"
+// Returned Error Types:
+//   * AuthorizationErrorException
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
-//   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
+//   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   * HomeRegionNotSetException
 //   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeConfigurations
@@ -862,29 +862,29 @@ func (c *ApplicationDiscoveryService) DescribeContinuousExportsRequest(input *De
 // See the AWS API reference guide for AWS Application Discovery Service's
 // API operation DescribeContinuousExports for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAuthorizationErrorException "AuthorizationErrorException"
+// Returned Error Types:
+//   * AuthorizationErrorException
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
-//   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
+//   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-//   * ErrCodeOperationNotPermittedException "OperationNotPermittedException"
+//   * OperationNotPermittedException
 //   This operation is not permitted.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified configuration ID was not located. Verify the configuration
 //   ID and try again.
 //
-//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   * HomeRegionNotSetException
 //   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeContinuousExports
@@ -1020,26 +1020,26 @@ func (c *ApplicationDiscoveryService) DescribeExportConfigurationsRequest(input 
 // See the AWS API reference guide for AWS Application Discovery Service's
 // API operation DescribeExportConfigurations for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAuthorizationErrorException "AuthorizationErrorException"
+// Returned Error Types:
+//   * AuthorizationErrorException
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified configuration ID was not located. Verify the configuration
 //   ID and try again.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
-//   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
+//   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   * HomeRegionNotSetException
 //   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeExportConfigurations
@@ -1122,22 +1122,22 @@ func (c *ApplicationDiscoveryService) DescribeExportTasksRequest(input *Describe
 // See the AWS API reference guide for AWS Application Discovery Service's
 // API operation DescribeExportTasks for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAuthorizationErrorException "AuthorizationErrorException"
+// Returned Error Types:
+//   * AuthorizationErrorException
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
-//   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
+//   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   * HomeRegionNotSetException
 //   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeExportTasks
@@ -1222,22 +1222,22 @@ func (c *ApplicationDiscoveryService) DescribeImportTasksRequest(input *Describe
 // See the AWS API reference guide for AWS Application Discovery Service's
 // API operation DescribeImportTasks for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAuthorizationErrorException "AuthorizationErrorException"
+// Returned Error Types:
+//   * AuthorizationErrorException
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
-//   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
+//   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   * HomeRegionNotSetException
 //   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeImportTasks
@@ -1379,26 +1379,26 @@ func (c *ApplicationDiscoveryService) DescribeTagsRequest(input *DescribeTagsInp
 // See the AWS API reference guide for AWS Application Discovery Service's
 // API operation DescribeTags for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAuthorizationErrorException "AuthorizationErrorException"
+// Returned Error Types:
+//   * AuthorizationErrorException
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified configuration ID was not located. Verify the configuration
 //   ID and try again.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
-//   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
+//   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   * HomeRegionNotSetException
 //   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DescribeTags
@@ -1477,22 +1477,22 @@ func (c *ApplicationDiscoveryService) DisassociateConfigurationItemsFromApplicat
 // See the AWS API reference guide for AWS Application Discovery Service's
 // API operation DisassociateConfigurationItemsFromApplication for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAuthorizationErrorException "AuthorizationErrorException"
+// Returned Error Types:
+//   * AuthorizationErrorException
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
-//   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
+//   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   * HomeRegionNotSetException
 //   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/DisassociateConfigurationItemsFromApplication
@@ -1581,25 +1581,25 @@ func (c *ApplicationDiscoveryService) ExportConfigurationsRequest(input *ExportC
 // See the AWS API reference guide for AWS Application Discovery Service's
 // API operation ExportConfigurations for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAuthorizationErrorException "AuthorizationErrorException"
+// Returned Error Types:
+//   * AuthorizationErrorException
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
-//   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
+//   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-//   * ErrCodeOperationNotPermittedException "OperationNotPermittedException"
+//   * OperationNotPermittedException
 //   This operation is not permitted.
 //
-//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   * HomeRegionNotSetException
 //   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/ExportConfigurations
@@ -1684,22 +1684,22 @@ func (c *ApplicationDiscoveryService) GetDiscoverySummaryRequest(input *GetDisco
 // See the AWS API reference guide for AWS Application Discovery Service's
 // API operation GetDiscoverySummary for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAuthorizationErrorException "AuthorizationErrorException"
+// Returned Error Types:
+//   * AuthorizationErrorException
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
-//   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
+//   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   * HomeRegionNotSetException
 //   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/GetDiscoverySummary
@@ -1779,26 +1779,26 @@ func (c *ApplicationDiscoveryService) ListConfigurationsRequest(input *ListConfi
 // See the AWS API reference guide for AWS Application Discovery Service's
 // API operation ListConfigurations for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAuthorizationErrorException "AuthorizationErrorException"
+// Returned Error Types:
+//   * AuthorizationErrorException
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified configuration ID was not located. Verify the configuration
 //   ID and try again.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
-//   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
+//   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   * HomeRegionNotSetException
 //   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/ListConfigurations
@@ -1877,22 +1877,22 @@ func (c *ApplicationDiscoveryService) ListServerNeighborsRequest(input *ListServ
 // See the AWS API reference guide for AWS Application Discovery Service's
 // API operation ListServerNeighbors for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAuthorizationErrorException "AuthorizationErrorException"
+// Returned Error Types:
+//   * AuthorizationErrorException
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
-//   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
+//   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   * HomeRegionNotSetException
 //   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/ListServerNeighbors
@@ -1970,34 +1970,34 @@ func (c *ApplicationDiscoveryService) StartContinuousExportRequest(input *StartC
 // See the AWS API reference guide for AWS Application Discovery Service's
 // API operation StartContinuousExport for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeConflictErrorException "ConflictErrorException"
+// Returned Error Types:
+//   * ConflictErrorException
 //
-//   * ErrCodeAuthorizationErrorException "AuthorizationErrorException"
+//   * AuthorizationErrorException
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
-//   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
+//   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-//   * ErrCodeOperationNotPermittedException "OperationNotPermittedException"
+//   * OperationNotPermittedException
 //   This operation is not permitted.
 //
-//   * ErrCodeResourceInUseException "ResourceInUseException"
+//   * ResourceInUseException
 //   This issue occurs when the same clientRequestToken is used with the StartImportTask
 //   action, but with different parameters. For example, you use the same request
 //   token but have two different import URLs, you can encounter this issue. If
 //   the import tasks are meant to be different, use a different clientRequestToken,
 //   and try again.
 //
-//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   * HomeRegionNotSetException
 //   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StartContinuousExport
@@ -2075,22 +2075,22 @@ func (c *ApplicationDiscoveryService) StartDataCollectionByAgentIdsRequest(input
 // See the AWS API reference guide for AWS Application Discovery Service's
 // API operation StartDataCollectionByAgentIds for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAuthorizationErrorException "AuthorizationErrorException"
+// Returned Error Types:
+//   * AuthorizationErrorException
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
-//   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
+//   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   * HomeRegionNotSetException
 //   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StartDataCollectionByAgentIds
@@ -2178,25 +2178,25 @@ func (c *ApplicationDiscoveryService) StartExportTaskRequest(input *StartExportT
 // See the AWS API reference guide for AWS Application Discovery Service's
 // API operation StartExportTask for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAuthorizationErrorException "AuthorizationErrorException"
+// Returned Error Types:
+//   * AuthorizationErrorException
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
-//   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
+//   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-//   * ErrCodeOperationNotPermittedException "OperationNotPermittedException"
+//   * OperationNotPermittedException
 //   This operation is not permitted.
 //
-//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   * HomeRegionNotSetException
 //   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StartExportTask
@@ -2302,29 +2302,29 @@ func (c *ApplicationDiscoveryService) StartImportTaskRequest(input *StartImportT
 // See the AWS API reference guide for AWS Application Discovery Service's
 // API operation StartImportTask for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceInUseException "ResourceInUseException"
+// Returned Error Types:
+//   * ResourceInUseException
 //   This issue occurs when the same clientRequestToken is used with the StartImportTask
 //   action, but with different parameters. For example, you use the same request
 //   token but have two different import URLs, you can encounter this issue. If
 //   the import tasks are meant to be different, use a different clientRequestToken,
 //   and try again.
 //
-//   * ErrCodeAuthorizationErrorException "AuthorizationErrorException"
+//   * AuthorizationErrorException
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
-//   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
+//   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   * HomeRegionNotSetException
 //   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StartImportTask
@@ -2402,36 +2402,36 @@ func (c *ApplicationDiscoveryService) StopContinuousExportRequest(input *StopCon
 // See the AWS API reference guide for AWS Application Discovery Service's
 // API operation StopContinuousExport for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAuthorizationErrorException "AuthorizationErrorException"
+// Returned Error Types:
+//   * AuthorizationErrorException
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
-//   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
+//   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-//   * ErrCodeOperationNotPermittedException "OperationNotPermittedException"
+//   * OperationNotPermittedException
 //   This operation is not permitted.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified configuration ID was not located. Verify the configuration
 //   ID and try again.
 //
-//   * ErrCodeResourceInUseException "ResourceInUseException"
+//   * ResourceInUseException
 //   This issue occurs when the same clientRequestToken is used with the StartImportTask
 //   action, but with different parameters. For example, you use the same request
 //   token but have two different import URLs, you can encounter this issue. If
 //   the import tasks are meant to be different, use a different clientRequestToken,
 //   and try again.
 //
-//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   * HomeRegionNotSetException
 //   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StopContinuousExport
@@ -2509,22 +2509,22 @@ func (c *ApplicationDiscoveryService) StopDataCollectionByAgentIdsRequest(input 
 // See the AWS API reference guide for AWS Application Discovery Service's
 // API operation StopDataCollectionByAgentIds for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAuthorizationErrorException "AuthorizationErrorException"
+// Returned Error Types:
+//   * AuthorizationErrorException
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
-//   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
+//   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   * HomeRegionNotSetException
 //   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/StopDataCollectionByAgentIds
@@ -2603,22 +2603,22 @@ func (c *ApplicationDiscoveryService) UpdateApplicationRequest(input *UpdateAppl
 // See the AWS API reference guide for AWS Application Discovery Service's
 // API operation UpdateApplication for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAuthorizationErrorException "AuthorizationErrorException"
+// Returned Error Types:
+//   * AuthorizationErrorException
 //   The AWS user account does not have permission to perform the action. Check
 //   the IAM policy associated with this account.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more parameters are not valid. Verify the parameters and try again.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   The value of one or more parameters are either invalid or out of range. Verify
 //   the parameter values and try again.
 //
-//   * ErrCodeServerInternalErrorException "ServerInternalErrorException"
+//   * ServerInternalErrorException
 //   The server experienced an internal error. Try again.
 //
-//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   * HomeRegionNotSetException
 //   The home region is not set. Set the home region to continue.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/discovery-2015-11-01/UpdateApplication
@@ -2897,6 +2897,63 @@ func (s AssociateConfigurationItemsToApplicationOutput) GoString() string {
 	return s.String()
 }
 
+// The AWS user account does not have permission to perform the action. Check
+// the IAM policy associated with this account.
+type AuthorizationErrorException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s AuthorizationErrorException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AuthorizationErrorException) GoString() string {
+	return s.String()
+}
+
+func newErrorAuthorizationErrorException(v protocol.ResponseMetadata) error {
+	return &AuthorizationErrorException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s AuthorizationErrorException) Code() string {
+	return "AuthorizationErrorException"
+}
+
+// Message returns the exception's message.
+func (s AuthorizationErrorException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s AuthorizationErrorException) OrigErr() error {
+	return nil
+}
+
+func (s AuthorizationErrorException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s AuthorizationErrorException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s AuthorizationErrorException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // Error messages returned for each import task that you deleted as a response
 // for this command.
 type BatchDeleteImportDataError struct {
@@ -3067,6 +3124,61 @@ func (s *ConfigurationTag) SetTimeOfCreation(v time.Time) *ConfigurationTag {
 func (s *ConfigurationTag) SetValue(v string) *ConfigurationTag {
 	s.Value = &v
 	return s
+}
+
+type ConflictErrorException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ConflictErrorException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConflictErrorException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictErrorException(v protocol.ResponseMetadata) error {
+	return &ConflictErrorException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ConflictErrorException) Code() string {
+	return "ConflictErrorException"
+}
+
+// Message returns the exception's message.
+func (s ConflictErrorException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ConflictErrorException) OrigErr() error {
+	return nil
+}
+
+func (s ConflictErrorException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ConflictErrorException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ConflictErrorException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // A list of continuous export descriptions.
@@ -4758,6 +4870,62 @@ func (s *GetDiscoverySummaryOutput) SetServersMappedtoTags(v int64) *GetDiscover
 	return s
 }
 
+// The home region is not set. Set the home region to continue.
+type HomeRegionNotSetException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s HomeRegionNotSetException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HomeRegionNotSetException) GoString() string {
+	return s.String()
+}
+
+func newErrorHomeRegionNotSetException(v protocol.ResponseMetadata) error {
+	return &HomeRegionNotSetException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s HomeRegionNotSetException) Code() string {
+	return "HomeRegionNotSetException"
+}
+
+// Message returns the exception's message.
+func (s HomeRegionNotSetException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s HomeRegionNotSetException) OrigErr() error {
+	return nil
+}
+
+func (s HomeRegionNotSetException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s HomeRegionNotSetException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s HomeRegionNotSetException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // An array of information related to the import task request that includes
 // status information, times, IDs, the Amazon S3 Object URL for the import file,
 // and more.
@@ -4967,6 +5135,119 @@ func (s *ImportTaskFilter) SetName(v string) *ImportTaskFilter {
 func (s *ImportTaskFilter) SetValues(v []*string) *ImportTaskFilter {
 	s.Values = v
 	return s
+}
+
+// One or more parameters are not valid. Verify the parameters and try again.
+type InvalidParameterException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidParameterException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidParameterException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidParameterException(v protocol.ResponseMetadata) error {
+	return &InvalidParameterException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidParameterException) Code() string {
+	return "InvalidParameterException"
+}
+
+// Message returns the exception's message.
+func (s InvalidParameterException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidParameterException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidParameterException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidParameterException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidParameterException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The value of one or more parameters are either invalid or out of range. Verify
+// the parameter values and try again.
+type InvalidParameterValueException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidParameterValueException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidParameterValueException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidParameterValueException(v protocol.ResponseMetadata) error {
+	return &InvalidParameterValueException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidParameterValueException) Code() string {
+	return "InvalidParameterValueException"
+}
+
+// Message returns the exception's message.
+func (s InvalidParameterValueException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidParameterValueException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidParameterValueException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidParameterValueException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidParameterValueException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type ListConfigurationsInput struct {
@@ -5301,6 +5582,62 @@ func (s *NeighborConnectionDetail) SetTransportProtocol(v string) *NeighborConne
 	return s
 }
 
+// This operation is not permitted.
+type OperationNotPermittedException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s OperationNotPermittedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OperationNotPermittedException) GoString() string {
+	return s.String()
+}
+
+func newErrorOperationNotPermittedException(v protocol.ResponseMetadata) error {
+	return &OperationNotPermittedException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s OperationNotPermittedException) Code() string {
+	return "OperationNotPermittedException"
+}
+
+// Message returns the exception's message.
+func (s OperationNotPermittedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s OperationNotPermittedException) OrigErr() error {
+	return nil
+}
+
+func (s OperationNotPermittedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s OperationNotPermittedException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s OperationNotPermittedException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // A field and direction for ordered output.
 type OrderByElement struct {
 	_ struct{} `type:"structure"`
@@ -5347,6 +5684,179 @@ func (s *OrderByElement) SetFieldName(v string) *OrderByElement {
 func (s *OrderByElement) SetSortOrder(v string) *OrderByElement {
 	s.SortOrder = &v
 	return s
+}
+
+// This issue occurs when the same clientRequestToken is used with the StartImportTask
+// action, but with different parameters. For example, you use the same request
+// token but have two different import URLs, you can encounter this issue. If
+// the import tasks are meant to be different, use a different clientRequestToken,
+// and try again.
+type ResourceInUseException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceInUseException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceInUseException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceInUseException(v protocol.ResponseMetadata) error {
+	return &ResourceInUseException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceInUseException) Code() string {
+	return "ResourceInUseException"
+}
+
+// Message returns the exception's message.
+func (s ResourceInUseException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceInUseException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceInUseException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceInUseException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceInUseException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The specified configuration ID was not located. Verify the configuration
+// ID and try again.
+type ResourceNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The server experienced an internal error. Try again.
+type ServerInternalErrorException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ServerInternalErrorException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServerInternalErrorException) GoString() string {
+	return s.String()
+}
+
+func newErrorServerInternalErrorException(v protocol.ResponseMetadata) error {
+	return &ServerInternalErrorException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ServerInternalErrorException) Code() string {
+	return "ServerInternalErrorException"
+}
+
+// Message returns the exception's message.
+func (s ServerInternalErrorException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ServerInternalErrorException) OrigErr() error {
+	return nil
+}
+
+func (s ServerInternalErrorException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ServerInternalErrorException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ServerInternalErrorException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type StartContinuousExportInput struct {

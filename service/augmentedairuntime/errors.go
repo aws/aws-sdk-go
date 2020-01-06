@@ -2,6 +2,10 @@
 
 package augmentedairuntime
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeInternalServerException for service response error code
@@ -35,3 +39,11 @@ const (
 	// Your request was not valid. Check the syntax and try again.
 	ErrCodeValidationException = "ValidationException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"InternalServerException":       newErrorInternalServerException,
+	"ResourceNotFoundException":     newErrorResourceNotFoundException,
+	"ServiceQuotaExceededException": newErrorServiceQuotaExceededException,
+	"ThrottlingException":           newErrorThrottlingException,
+	"ValidationException":           newErrorValidationException,
+}

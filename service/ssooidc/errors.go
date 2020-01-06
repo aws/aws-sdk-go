@@ -2,6 +2,10 @@
 
 package ssooidc
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeAccessDeniedException for service response error code
@@ -86,3 +90,18 @@ const (
 	// Indicates that the grant type in the request is not supported by the service.
 	ErrCodeUnsupportedGrantTypeException = "UnsupportedGrantTypeException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"AccessDeniedException":          newErrorAccessDeniedException,
+	"AuthorizationPendingException":  newErrorAuthorizationPendingException,
+	"ExpiredTokenException":          newErrorExpiredTokenException,
+	"InternalServerException":        newErrorInternalServerException,
+	"InvalidClientException":         newErrorInvalidClientException,
+	"InvalidClientMetadataException": newErrorInvalidClientMetadataException,
+	"InvalidGrantException":          newErrorInvalidGrantException,
+	"InvalidRequestException":        newErrorInvalidRequestException,
+	"InvalidScopeException":          newErrorInvalidScopeException,
+	"SlowDownException":              newErrorSlowDownException,
+	"UnauthorizedClientException":    newErrorUnauthorizedClientException,
+	"UnsupportedGrantTypeException":  newErrorUnsupportedGrantTypeException,
+}

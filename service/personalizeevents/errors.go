@@ -2,6 +2,10 @@
 
 package personalizeevents
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeInvalidInputException for service response error code
@@ -10,3 +14,7 @@ const (
 	// Provide a valid value for the field or parameter.
 	ErrCodeInvalidInputException = "InvalidInputException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"InvalidInputException": newErrorInvalidInputException,
+}

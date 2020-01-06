@@ -3,9 +3,12 @@
 package kinesisvideosignalingchannels
 
 import (
+	"fmt"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
 const opGetIceServerConfig = "GetIceServerConfig"
@@ -76,26 +79,26 @@ func (c *KinesisVideoSignalingChannels) GetIceServerConfigRequest(input *GetIceS
 // See the AWS API reference guide for Amazon Kinesis Video Signaling Channels's
 // API operation GetIceServerConfig for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidClientException "InvalidClientException"
+// Returned Error Types:
+//   * InvalidClientException
 //   The specified client is invalid.
 //
-//   * ErrCodeSessionExpiredException "SessionExpiredException"
+//   * SessionExpiredException
 //   If the client session is expired. Once the client is connected, the session
 //   is valid for 45 minutes. Client should reconnect to the channel to continue
 //   sending/receiving messages.
 //
-//   * ErrCodeClientLimitExceededException "ClientLimitExceededException"
+//   * ClientLimitExceededException
 //   Your request was throttled because you have exceeded the limit of allowed
 //   client calls. Try making the call later.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource is not found.
 //
-//   * ErrCodeInvalidArgumentException "InvalidArgumentException"
+//   * InvalidArgumentException
 //   The value for this input parameter is invalid.
 //
-//   * ErrCodeNotAuthorizedException "NotAuthorizedException"
+//   * NotAuthorizedException
 //   The caller is not authorized to perform this operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-signaling-2019-12-04/GetIceServerConfig
@@ -178,18 +181,18 @@ func (c *KinesisVideoSignalingChannels) SendAlexaOfferToMasterRequest(input *Sen
 // See the AWS API reference guide for Amazon Kinesis Video Signaling Channels's
 // API operation SendAlexaOfferToMaster for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeClientLimitExceededException "ClientLimitExceededException"
+// Returned Error Types:
+//   * ClientLimitExceededException
 //   Your request was throttled because you have exceeded the limit of allowed
 //   client calls. Try making the call later.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource is not found.
 //
-//   * ErrCodeInvalidArgumentException "InvalidArgumentException"
+//   * InvalidArgumentException
 //   The value for this input parameter is invalid.
 //
-//   * ErrCodeNotAuthorizedException "NotAuthorizedException"
+//   * NotAuthorizedException
 //   The caller is not authorized to perform this operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-signaling-2019-12-04/SendAlexaOfferToMaster
@@ -212,6 +215,63 @@ func (c *KinesisVideoSignalingChannels) SendAlexaOfferToMasterWithContext(ctx aw
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// Your request was throttled because you have exceeded the limit of allowed
+// client calls. Try making the call later.
+type ClientLimitExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ClientLimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ClientLimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorClientLimitExceededException(v protocol.ResponseMetadata) error {
+	return &ClientLimitExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ClientLimitExceededException) Code() string {
+	return "ClientLimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s ClientLimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ClientLimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s ClientLimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ClientLimitExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ClientLimitExceededException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type GetIceServerConfigInput struct {
@@ -367,6 +427,230 @@ func (s *IceServer) SetUsername(v string) *IceServer {
 	return s
 }
 
+// The value for this input parameter is invalid.
+type InvalidArgumentException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidArgumentException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidArgumentException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidArgumentException(v protocol.ResponseMetadata) error {
+	return &InvalidArgumentException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidArgumentException) Code() string {
+	return "InvalidArgumentException"
+}
+
+// Message returns the exception's message.
+func (s InvalidArgumentException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidArgumentException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidArgumentException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidArgumentException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidArgumentException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The specified client is invalid.
+type InvalidClientException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidClientException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidClientException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidClientException(v protocol.ResponseMetadata) error {
+	return &InvalidClientException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidClientException) Code() string {
+	return "InvalidClientException"
+}
+
+// Message returns the exception's message.
+func (s InvalidClientException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidClientException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidClientException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidClientException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidClientException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The caller is not authorized to perform this operation.
+type NotAuthorizedException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s NotAuthorizedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NotAuthorizedException) GoString() string {
+	return s.String()
+}
+
+func newErrorNotAuthorizedException(v protocol.ResponseMetadata) error {
+	return &NotAuthorizedException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s NotAuthorizedException) Code() string {
+	return "NotAuthorizedException"
+}
+
+// Message returns the exception's message.
+func (s NotAuthorizedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s NotAuthorizedException) OrigErr() error {
+	return nil
+}
+
+func (s NotAuthorizedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s NotAuthorizedException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s NotAuthorizedException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The specified resource is not found.
+type ResourceNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type SendAlexaOfferToMasterInput struct {
 	_ struct{} `type:"structure"`
 
@@ -463,6 +747,64 @@ func (s SendAlexaOfferToMasterOutput) GoString() string {
 func (s *SendAlexaOfferToMasterOutput) SetAnswer(v string) *SendAlexaOfferToMasterOutput {
 	s.Answer = &v
 	return s
+}
+
+// If the client session is expired. Once the client is connected, the session
+// is valid for 45 minutes. Client should reconnect to the channel to continue
+// sending/receiving messages.
+type SessionExpiredException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s SessionExpiredException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SessionExpiredException) GoString() string {
+	return s.String()
+}
+
+func newErrorSessionExpiredException(v protocol.ResponseMetadata) error {
+	return &SessionExpiredException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s SessionExpiredException) Code() string {
+	return "SessionExpiredException"
+}
+
+// Message returns the exception's message.
+func (s SessionExpiredException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s SessionExpiredException) OrigErr() error {
+	return nil
+}
+
+func (s SessionExpiredException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s SessionExpiredException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s SessionExpiredException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 const (

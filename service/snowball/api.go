@@ -69,16 +69,16 @@ func (c *Snowball) CancelClusterRequest(input *CancelClusterInput) (req *request
 // See the AWS API reference guide for Amazon Import/Export Snowball's
 // API operation CancelCluster for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeKMSRequestFailedException "KMSRequestFailedException"
+// Returned Error Types:
+//   * KMSRequestFailedException
 //   The provided AWS Key Management Service key lacks the permissions to perform
 //   the specified CreateJob or UpdateJob action.
 //
-//   * ErrCodeInvalidJobStateException "InvalidJobStateException"
+//   * InvalidJobStateException
 //   The action can't be performed because the job's current state doesn't allow
 //   that action to be performed.
 //
-//   * ErrCodeInvalidResourceException "InvalidResourceException"
+//   * InvalidResourceException
 //   The specified resource can't be found. Check the information you provided
 //   in your last request, and try again.
 //
@@ -160,16 +160,16 @@ func (c *Snowball) CancelJobRequest(input *CancelJobInput) (req *request.Request
 // See the AWS API reference guide for Amazon Import/Export Snowball's
 // API operation CancelJob for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidResourceException "InvalidResourceException"
+// Returned Error Types:
+//   * InvalidResourceException
 //   The specified resource can't be found. Check the information you provided
 //   in your last request, and try again.
 //
-//   * ErrCodeInvalidJobStateException "InvalidJobStateException"
+//   * InvalidJobStateException
 //   The action can't be performed because the job's current state doesn't allow
 //   that action to be performed.
 //
-//   * ErrCodeKMSRequestFailedException "KMSRequestFailedException"
+//   * KMSRequestFailedException
 //   The provided AWS Key Management Service key lacks the permissions to perform
 //   the specified CreateJob or UpdateJob action.
 //
@@ -251,12 +251,12 @@ func (c *Snowball) CreateAddressRequest(input *CreateAddressInput) (req *request
 // See the AWS API reference guide for Amazon Import/Export Snowball's
 // API operation CreateAddress for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidAddressException "InvalidAddressException"
+// Returned Error Types:
+//   * InvalidAddressException
 //   The address provided was invalid. Check the address with your region's carrier,
 //   and try again.
 //
-//   * ErrCodeUnsupportedAddressException "UnsupportedAddressException"
+//   * UnsupportedAddressException
 //   The address is either outside the serviceable area for your region, or an
 //   error occurred. Check the address with your region's carrier and try again.
 //   If the issue persists, contact AWS Support.
@@ -338,21 +338,21 @@ func (c *Snowball) CreateClusterRequest(input *CreateClusterInput) (req *request
 // See the AWS API reference guide for Amazon Import/Export Snowball's
 // API operation CreateCluster for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidResourceException "InvalidResourceException"
+// Returned Error Types:
+//   * InvalidResourceException
 //   The specified resource can't be found. Check the information you provided
 //   in your last request, and try again.
 //
-//   * ErrCodeKMSRequestFailedException "KMSRequestFailedException"
+//   * KMSRequestFailedException
 //   The provided AWS Key Management Service key lacks the permissions to perform
 //   the specified CreateJob or UpdateJob action.
 //
-//   * ErrCodeInvalidInputCombinationException "InvalidInputCombinationException"
+//   * InvalidInputCombinationException
 //   Job or cluster creation failed. One ore more inputs were invalid. Confirm
 //   that the CreateClusterRequest$SnowballType value supports your CreateJobRequest$JobType,
 //   and try again.
 //
-//   * ErrCodeEc2RequestFailedException "Ec2RequestFailedException"
+//   * Ec2RequestFailedException
 //   Your IAM user lacks the necessary Amazon EC2 permissions to perform the attempted
 //   action.
 //
@@ -435,27 +435,27 @@ func (c *Snowball) CreateJobRequest(input *CreateJobInput) (req *request.Request
 // See the AWS API reference guide for Amazon Import/Export Snowball's
 // API operation CreateJob for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidResourceException "InvalidResourceException"
+// Returned Error Types:
+//   * InvalidResourceException
 //   The specified resource can't be found. Check the information you provided
 //   in your last request, and try again.
 //
-//   * ErrCodeKMSRequestFailedException "KMSRequestFailedException"
+//   * KMSRequestFailedException
 //   The provided AWS Key Management Service key lacks the permissions to perform
 //   the specified CreateJob or UpdateJob action.
 //
-//   * ErrCodeInvalidInputCombinationException "InvalidInputCombinationException"
+//   * InvalidInputCombinationException
 //   Job or cluster creation failed. One ore more inputs were invalid. Confirm
 //   that the CreateClusterRequest$SnowballType value supports your CreateJobRequest$JobType,
 //   and try again.
 //
-//   * ErrCodeClusterLimitExceededException "ClusterLimitExceededException"
+//   * ClusterLimitExceededException
 //   Job creation failed. Currently, clusters support five nodes. If you have
 //   less than five nodes for your cluster and you have more nodes to create for
 //   this cluster, try again and create jobs until your cluster has exactly five
 //   notes.
 //
-//   * ErrCodeEc2RequestFailedException "Ec2RequestFailedException"
+//   * Ec2RequestFailedException
 //   Your IAM user lacks the necessary Amazon EC2 permissions to perform the attempted
 //   action.
 //
@@ -535,8 +535,8 @@ func (c *Snowball) DescribeAddressRequest(input *DescribeAddressInput) (req *req
 // See the AWS API reference guide for Amazon Import/Export Snowball's
 // API operation DescribeAddress for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidResourceException "InvalidResourceException"
+// Returned Error Types:
+//   * InvalidResourceException
 //   The specified resource can't be found. Check the information you provided
 //   in your last request, and try again.
 //
@@ -623,12 +623,12 @@ func (c *Snowball) DescribeAddressesRequest(input *DescribeAddressesInput) (req 
 // See the AWS API reference guide for Amazon Import/Export Snowball's
 // API operation DescribeAddresses for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidResourceException "InvalidResourceException"
+// Returned Error Types:
+//   * InvalidResourceException
 //   The specified resource can't be found. Check the information you provided
 //   in your last request, and try again.
 //
-//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   * InvalidNextTokenException
 //   The NextToken string was altered unexpectedly, and the operation has stopped.
 //   Run the operation without changing the NextToken string, and try again.
 //
@@ -760,8 +760,8 @@ func (c *Snowball) DescribeClusterRequest(input *DescribeClusterInput) (req *req
 // See the AWS API reference guide for Amazon Import/Export Snowball's
 // API operation DescribeCluster for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidResourceException "InvalidResourceException"
+// Returned Error Types:
+//   * InvalidResourceException
 //   The specified resource can't be found. Check the information you provided
 //   in your last request, and try again.
 //
@@ -841,8 +841,8 @@ func (c *Snowball) DescribeJobRequest(input *DescribeJobInput) (req *request.Req
 // See the AWS API reference guide for Amazon Import/Export Snowball's
 // API operation DescribeJob for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidResourceException "InvalidResourceException"
+// Returned Error Types:
+//   * InvalidResourceException
 //   The specified resource can't be found. Check the information you provided
 //   in your last request, and try again.
 //
@@ -938,12 +938,12 @@ func (c *Snowball) GetJobManifestRequest(input *GetJobManifestInput) (req *reque
 // See the AWS API reference guide for Amazon Import/Export Snowball's
 // API operation GetJobManifest for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidResourceException "InvalidResourceException"
+// Returned Error Types:
+//   * InvalidResourceException
 //   The specified resource can't be found. Check the information you provided
 //   in your last request, and try again.
 //
-//   * ErrCodeInvalidJobStateException "InvalidJobStateException"
+//   * InvalidJobStateException
 //   The action can't be performed because the job's current state doesn't allow
 //   that action to be performed.
 //
@@ -1034,12 +1034,12 @@ func (c *Snowball) GetJobUnlockCodeRequest(input *GetJobUnlockCodeInput) (req *r
 // See the AWS API reference guide for Amazon Import/Export Snowball's
 // API operation GetJobUnlockCode for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidResourceException "InvalidResourceException"
+// Returned Error Types:
+//   * InvalidResourceException
 //   The specified resource can't be found. Check the information you provided
 //   in your last request, and try again.
 //
-//   * ErrCodeInvalidJobStateException "InvalidJobStateException"
+//   * InvalidJobStateException
 //   The action can't be performed because the job's current state doesn't allow
 //   that action to be performed.
 //
@@ -1197,12 +1197,12 @@ func (c *Snowball) GetSoftwareUpdatesRequest(input *GetSoftwareUpdatesInput) (re
 // See the AWS API reference guide for Amazon Import/Export Snowball's
 // API operation GetSoftwareUpdates for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidResourceException "InvalidResourceException"
+// Returned Error Types:
+//   * InvalidResourceException
 //   The specified resource can't be found. Check the information you provided
 //   in your last request, and try again.
 //
-//   * ErrCodeInvalidJobStateException "InvalidJobStateException"
+//   * InvalidJobStateException
 //   The action can't be performed because the job's current state doesn't allow
 //   that action to be performed.
 //
@@ -1283,12 +1283,12 @@ func (c *Snowball) ListClusterJobsRequest(input *ListClusterJobsInput) (req *req
 // See the AWS API reference guide for Amazon Import/Export Snowball's
 // API operation ListClusterJobs for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidResourceException "InvalidResourceException"
+// Returned Error Types:
+//   * InvalidResourceException
 //   The specified resource can't be found. Check the information you provided
 //   in your last request, and try again.
 //
-//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   * InvalidNextTokenException
 //   The NextToken string was altered unexpectedly, and the operation has stopped.
 //   Run the operation without changing the NextToken string, and try again.
 //
@@ -1369,8 +1369,8 @@ func (c *Snowball) ListClustersRequest(input *ListClustersInput) (req *request.R
 // See the AWS API reference guide for Amazon Import/Export Snowball's
 // API operation ListClusters for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+// Returned Error Types:
+//   * InvalidNextTokenException
 //   The NextToken string was altered unexpectedly, and the operation has stopped.
 //   Run the operation without changing the NextToken string, and try again.
 //
@@ -1453,12 +1453,12 @@ func (c *Snowball) ListCompatibleImagesRequest(input *ListCompatibleImagesInput)
 // See the AWS API reference guide for Amazon Import/Export Snowball's
 // API operation ListCompatibleImages for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+// Returned Error Types:
+//   * InvalidNextTokenException
 //   The NextToken string was altered unexpectedly, and the operation has stopped.
 //   Run the operation without changing the NextToken string, and try again.
 //
-//   * ErrCodeEc2RequestFailedException "Ec2RequestFailedException"
+//   * Ec2RequestFailedException
 //   Your IAM user lacks the necessary Amazon EC2 permissions to perform the attempted
 //   action.
 //
@@ -1547,8 +1547,8 @@ func (c *Snowball) ListJobsRequest(input *ListJobsInput) (req *request.Request, 
 // See the AWS API reference guide for Amazon Import/Export Snowball's
 // API operation ListJobs for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+// Returned Error Types:
+//   * InvalidNextTokenException
 //   The NextToken string was altered unexpectedly, and the operation has stopped.
 //   Run the operation without changing the NextToken string, and try again.
 //
@@ -1683,25 +1683,25 @@ func (c *Snowball) UpdateClusterRequest(input *UpdateClusterInput) (req *request
 // See the AWS API reference guide for Amazon Import/Export Snowball's
 // API operation UpdateCluster for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidResourceException "InvalidResourceException"
+// Returned Error Types:
+//   * InvalidResourceException
 //   The specified resource can't be found. Check the information you provided
 //   in your last request, and try again.
 //
-//   * ErrCodeInvalidJobStateException "InvalidJobStateException"
+//   * InvalidJobStateException
 //   The action can't be performed because the job's current state doesn't allow
 //   that action to be performed.
 //
-//   * ErrCodeKMSRequestFailedException "KMSRequestFailedException"
+//   * KMSRequestFailedException
 //   The provided AWS Key Management Service key lacks the permissions to perform
 //   the specified CreateJob or UpdateJob action.
 //
-//   * ErrCodeInvalidInputCombinationException "InvalidInputCombinationException"
+//   * InvalidInputCombinationException
 //   Job or cluster creation failed. One ore more inputs were invalid. Confirm
 //   that the CreateClusterRequest$SnowballType value supports your CreateJobRequest$JobType,
 //   and try again.
 //
-//   * ErrCodeEc2RequestFailedException "Ec2RequestFailedException"
+//   * Ec2RequestFailedException
 //   Your IAM user lacks the necessary Amazon EC2 permissions to perform the attempted
 //   action.
 //
@@ -1783,31 +1783,31 @@ func (c *Snowball) UpdateJobRequest(input *UpdateJobInput) (req *request.Request
 // See the AWS API reference guide for Amazon Import/Export Snowball's
 // API operation UpdateJob for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidResourceException "InvalidResourceException"
+// Returned Error Types:
+//   * InvalidResourceException
 //   The specified resource can't be found. Check the information you provided
 //   in your last request, and try again.
 //
-//   * ErrCodeInvalidJobStateException "InvalidJobStateException"
+//   * InvalidJobStateException
 //   The action can't be performed because the job's current state doesn't allow
 //   that action to be performed.
 //
-//   * ErrCodeKMSRequestFailedException "KMSRequestFailedException"
+//   * KMSRequestFailedException
 //   The provided AWS Key Management Service key lacks the permissions to perform
 //   the specified CreateJob or UpdateJob action.
 //
-//   * ErrCodeInvalidInputCombinationException "InvalidInputCombinationException"
+//   * InvalidInputCombinationException
 //   Job or cluster creation failed. One ore more inputs were invalid. Confirm
 //   that the CreateClusterRequest$SnowballType value supports your CreateJobRequest$JobType,
 //   and try again.
 //
-//   * ErrCodeClusterLimitExceededException "ClusterLimitExceededException"
+//   * ClusterLimitExceededException
 //   Job creation failed. Currently, clusters support five nodes. If you have
 //   less than five nodes for your cluster and you have more nodes to create for
 //   this cluster, try again and create jobs until your cluster has exactly five
 //   notes.
 //
-//   * ErrCodeEc2RequestFailedException "Ec2RequestFailedException"
+//   * Ec2RequestFailedException
 //   Your IAM user lacks the necessary Amazon EC2 permissions to perform the attempted
 //   action.
 //
@@ -2139,6 +2139,65 @@ func (s CancelJobOutput) String() string {
 // GoString returns the string representation
 func (s CancelJobOutput) GoString() string {
 	return s.String()
+}
+
+// Job creation failed. Currently, clusters support five nodes. If you have
+// less than five nodes for your cluster and you have more nodes to create for
+// this cluster, try again and create jobs until your cluster has exactly five
+// notes.
+type ClusterLimitExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ClusterLimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ClusterLimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorClusterLimitExceededException(v protocol.ResponseMetadata) error {
+	return &ClusterLimitExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ClusterLimitExceededException) Code() string {
+	return "ClusterLimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s ClusterLimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ClusterLimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s ClusterLimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ClusterLimitExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ClusterLimitExceededException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Contains a cluster's state, a cluster's ID, and other important information.
@@ -3262,6 +3321,63 @@ func (s *Ec2AmiResource) SetSnowballAmiId(v string) *Ec2AmiResource {
 	return s
 }
 
+// Your IAM user lacks the necessary Amazon EC2 permissions to perform the attempted
+// action.
+type Ec2RequestFailedException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s Ec2RequestFailedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Ec2RequestFailedException) GoString() string {
+	return s.String()
+}
+
+func newErrorEc2RequestFailedException(v protocol.ResponseMetadata) error {
+	return &Ec2RequestFailedException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s Ec2RequestFailedException) Code() string {
+	return "Ec2RequestFailedException"
+}
+
+// Message returns the exception's message.
+func (s Ec2RequestFailedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s Ec2RequestFailedException) OrigErr() error {
+	return nil
+}
+
+func (s Ec2RequestFailedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s Ec2RequestFailedException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s Ec2RequestFailedException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // The container for the EventTriggerDefinition$EventResourceARN.
 type EventTriggerDefinition struct {
 	_ struct{} `type:"structure"`
@@ -3532,6 +3648,295 @@ func (s GetSoftwareUpdatesOutput) GoString() string {
 func (s *GetSoftwareUpdatesOutput) SetUpdatesURI(v string) *GetSoftwareUpdatesOutput {
 	s.UpdatesURI = &v
 	return s
+}
+
+// The address provided was invalid. Check the address with your region's carrier,
+// and try again.
+type InvalidAddressException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidAddressException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidAddressException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidAddressException(v protocol.ResponseMetadata) error {
+	return &InvalidAddressException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidAddressException) Code() string {
+	return "InvalidAddressException"
+}
+
+// Message returns the exception's message.
+func (s InvalidAddressException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidAddressException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidAddressException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidAddressException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidAddressException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Job or cluster creation failed. One ore more inputs were invalid. Confirm
+// that the CreateClusterRequest$SnowballType value supports your CreateJobRequest$JobType,
+// and try again.
+type InvalidInputCombinationException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidInputCombinationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidInputCombinationException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidInputCombinationException(v protocol.ResponseMetadata) error {
+	return &InvalidInputCombinationException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidInputCombinationException) Code() string {
+	return "InvalidInputCombinationException"
+}
+
+// Message returns the exception's message.
+func (s InvalidInputCombinationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidInputCombinationException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidInputCombinationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidInputCombinationException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidInputCombinationException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The action can't be performed because the job's current state doesn't allow
+// that action to be performed.
+type InvalidJobStateException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidJobStateException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidJobStateException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidJobStateException(v protocol.ResponseMetadata) error {
+	return &InvalidJobStateException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidJobStateException) Code() string {
+	return "InvalidJobStateException"
+}
+
+// Message returns the exception's message.
+func (s InvalidJobStateException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidJobStateException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidJobStateException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidJobStateException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidJobStateException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The NextToken string was altered unexpectedly, and the operation has stopped.
+// Run the operation without changing the NextToken string, and try again.
+type InvalidNextTokenException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidNextTokenException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidNextTokenException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidNextTokenException(v protocol.ResponseMetadata) error {
+	return &InvalidNextTokenException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidNextTokenException) Code() string {
+	return "InvalidNextTokenException"
+}
+
+// Message returns the exception's message.
+func (s InvalidNextTokenException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidNextTokenException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidNextTokenException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidNextTokenException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidNextTokenException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The specified resource can't be found. Check the information you provided
+// in your last request, and try again.
+type InvalidResourceException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+
+	// The provided resource value is invalid.
+	ResourceType *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidResourceException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidResourceException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidResourceException(v protocol.ResponseMetadata) error {
+	return &InvalidResourceException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidResourceException) Code() string {
+	return "InvalidResourceException"
+}
+
+// Message returns the exception's message.
+func (s InvalidResourceException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidResourceException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidResourceException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidResourceException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidResourceException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Each JobListEntry object contains a job's state, a job's ID, and a value
@@ -3939,6 +4344,63 @@ func (s *JobResource) SetLambdaResources(v []*LambdaResource) *JobResource {
 func (s *JobResource) SetS3Resources(v []*S3Resource) *JobResource {
 	s.S3Resources = v
 	return s
+}
+
+// The provided AWS Key Management Service key lacks the permissions to perform
+// the specified CreateJob or UpdateJob action.
+type KMSRequestFailedException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s KMSRequestFailedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KMSRequestFailedException) GoString() string {
+	return s.String()
+}
+
+func newErrorKMSRequestFailedException(v protocol.ResponseMetadata) error {
+	return &KMSRequestFailedException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s KMSRequestFailedException) Code() string {
+	return "KMSRequestFailedException"
+}
+
+// Message returns the exception's message.
+func (s KMSRequestFailedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s KMSRequestFailedException) OrigErr() error {
+	return nil
+}
+
+func (s KMSRequestFailedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s KMSRequestFailedException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s KMSRequestFailedException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Contains a key range. For export jobs, a S3Resource object can have an optional
@@ -4582,6 +5044,64 @@ func (s *ShippingDetails) SetOutboundShipment(v *Shipment) *ShippingDetails {
 func (s *ShippingDetails) SetShippingOption(v string) *ShippingDetails {
 	s.ShippingOption = &v
 	return s
+}
+
+// The address is either outside the serviceable area for your region, or an
+// error occurred. Check the address with your region's carrier and try again.
+// If the issue persists, contact AWS Support.
+type UnsupportedAddressException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s UnsupportedAddressException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UnsupportedAddressException) GoString() string {
+	return s.String()
+}
+
+func newErrorUnsupportedAddressException(v protocol.ResponseMetadata) error {
+	return &UnsupportedAddressException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s UnsupportedAddressException) Code() string {
+	return "UnsupportedAddressException"
+}
+
+// Message returns the exception's message.
+func (s UnsupportedAddressException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s UnsupportedAddressException) OrigErr() error {
+	return nil
+}
+
+func (s UnsupportedAddressException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s UnsupportedAddressException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s UnsupportedAddressException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type UpdateClusterInput struct {

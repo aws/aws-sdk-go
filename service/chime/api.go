@@ -67,30 +67,30 @@ func (c *Chime) AssociatePhoneNumberWithUserRequest(input *AssociatePhoneNumberW
 // See the AWS API reference guide for Amazon Chime's
 // API operation AssociatePhoneNumberWithUser for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You don't have permissions to perform the requested operation.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/AssociatePhoneNumberWithUser
@@ -168,30 +168,30 @@ func (c *Chime) AssociatePhoneNumbersWithVoiceConnectorRequest(input *AssociateP
 // See the AWS API reference guide for Amazon Chime's
 // API operation AssociatePhoneNumbersWithVoiceConnector for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You don't have permissions to perform the requested operation.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/AssociatePhoneNumbersWithVoiceConnector
@@ -270,30 +270,30 @@ func (c *Chime) AssociatePhoneNumbersWithVoiceConnectorGroupRequest(input *Assoc
 // See the AWS API reference guide for Amazon Chime's
 // API operation AssociatePhoneNumbersWithVoiceConnectorGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You don't have permissions to perform the requested operation.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/AssociatePhoneNumbersWithVoiceConnectorGroup
@@ -374,30 +374,30 @@ func (c *Chime) BatchCreateAttendeeRequest(input *BatchCreateAttendeeInput) (req
 // See the AWS API reference guide for Amazon Chime's
 // API operation BatchCreateAttendee for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeResourceLimitExceededException "ResourceLimitExceededException"
+//   * ResourceLimitExceededException
 //   The request exceeds the resource limit.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/BatchCreateAttendee
@@ -477,24 +477,24 @@ func (c *Chime) BatchCreateRoomMembershipRequest(input *BatchCreateRoomMembershi
 // See the AWS API reference guide for Amazon Chime's
 // API operation BatchCreateRoomMembership for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/BatchCreateRoomMembership
@@ -576,27 +576,27 @@ func (c *Chime) BatchDeletePhoneNumberRequest(input *BatchDeletePhoneNumberInput
 // See the AWS API reference guide for Amazon Chime's
 // API operation BatchDeletePhoneNumber for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/BatchDeletePhoneNumber
@@ -688,27 +688,27 @@ func (c *Chime) BatchSuspendUserRequest(input *BatchSuspendUserInput) (req *requ
 // See the AWS API reference guide for Amazon Chime's
 // API operation BatchSuspendUser for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/BatchSuspendUser
@@ -793,27 +793,27 @@ func (c *Chime) BatchUnsuspendUserRequest(input *BatchUnsuspendUserInput) (req *
 // See the AWS API reference guide for Amazon Chime's
 // API operation BatchUnsuspendUser for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/BatchUnsuspendUser
@@ -901,27 +901,27 @@ func (c *Chime) BatchUpdatePhoneNumberRequest(input *BatchUpdatePhoneNumberInput
 // See the AWS API reference guide for Amazon Chime's
 // API operation BatchUpdatePhoneNumber for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/BatchUpdatePhoneNumber
@@ -1001,27 +1001,27 @@ func (c *Chime) BatchUpdateUserRequest(input *BatchUpdateUserInput) (req *reques
 // See the AWS API reference guide for Amazon Chime's
 // API operation BatchUpdateUser for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/BatchUpdateUser
@@ -1102,27 +1102,27 @@ func (c *Chime) CreateAccountRequest(input *CreateAccountInput) (req *request.Re
 // See the AWS API reference guide for Amazon Chime's
 // API operation CreateAccount for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateAccount
@@ -1202,30 +1202,30 @@ func (c *Chime) CreateAttendeeRequest(input *CreateAttendeeInput) (req *request.
 // See the AWS API reference guide for Amazon Chime's
 // API operation CreateAttendee for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeResourceLimitExceededException "ResourceLimitExceededException"
+//   * ResourceLimitExceededException
 //   The request exceeds the resource limit.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateAttendee
@@ -1303,27 +1303,27 @@ func (c *Chime) CreateBotRequest(input *CreateBotInput) (req *request.Request, o
 // See the AWS API reference guide for Amazon Chime's
 // API operation CreateBot for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+// Returned Error Types:
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeResourceLimitExceededException "ResourceLimitExceededException"
+//   * ResourceLimitExceededException
 //   The request exceeds the resource limit.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateBot
@@ -1404,27 +1404,27 @@ func (c *Chime) CreateMeetingRequest(input *CreateMeetingInput) (req *request.Re
 // See the AWS API reference guide for Amazon Chime's
 // API operation CreateMeeting for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeResourceLimitExceededException "ResourceLimitExceededException"
+//   * ResourceLimitExceededException
 //   The request exceeds the resource limit.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateMeeting
@@ -1505,30 +1505,30 @@ func (c *Chime) CreatePhoneNumberOrderRequest(input *CreatePhoneNumberOrderInput
 // See the AWS API reference guide for Amazon Chime's
 // API operation CreatePhoneNumberOrder for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You don't have permissions to perform the requested operation.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeResourceLimitExceededException "ResourceLimitExceededException"
+//   * ResourceLimitExceededException
 //   The request exceeds the resource limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreatePhoneNumberOrder
@@ -1606,27 +1606,27 @@ func (c *Chime) CreateRoomRequest(input *CreateRoomInput) (req *request.Request,
 // See the AWS API reference guide for Amazon Chime's
 // API operation CreateRoom for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeResourceLimitExceededException "ResourceLimitExceededException"
+//   * ResourceLimitExceededException
 //   The request exceeds the resource limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateRoom
@@ -1706,31 +1706,31 @@ func (c *Chime) CreateRoomMembershipRequest(input *CreateRoomMembershipInput) (r
 // See the AWS API reference guide for Amazon Chime's
 // API operation CreateRoomMembership for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeConflictException "ConflictException"
+// Returned Error Types:
+//   * ConflictException
 //   The request could not be processed because of conflict in the current state
 //   of the resource.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeResourceLimitExceededException "ResourceLimitExceededException"
+//   * ResourceLimitExceededException
 //   The request exceeds the resource limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateRoomMembership
@@ -1815,30 +1815,30 @@ func (c *Chime) CreateVoiceConnectorRequest(input *CreateVoiceConnectorInput) (r
 // See the AWS API reference guide for Amazon Chime's
 // API operation CreateVoiceConnector for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You don't have permissions to perform the requested operation.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeResourceLimitExceededException "ResourceLimitExceededException"
+//   * ResourceLimitExceededException
 //   The request exceeds the resource limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateVoiceConnector
@@ -1923,30 +1923,30 @@ func (c *Chime) CreateVoiceConnectorGroupRequest(input *CreateVoiceConnectorGrou
 // See the AWS API reference guide for Amazon Chime's
 // API operation CreateVoiceConnectorGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You don't have permissions to perform the requested operation.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeResourceLimitExceededException "ResourceLimitExceededException"
+//   * ResourceLimitExceededException
 //   The request exceeds the resource limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateVoiceConnectorGroup
@@ -2037,31 +2037,31 @@ func (c *Chime) DeleteAccountRequest(input *DeleteAccountInput) (req *request.Re
 // See the AWS API reference guide for Amazon Chime's
 // API operation DeleteAccount for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeUnprocessableEntityException "UnprocessableEntityException"
+//   * UnprocessableEntityException
 //   The request was well-formed but was unable to be followed due to semantic
 //   errors.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteAccount
@@ -2144,27 +2144,27 @@ func (c *Chime) DeleteAttendeeRequest(input *DeleteAttendeeInput) (req *request.
 // See the AWS API reference guide for Amazon Chime's
 // API operation DeleteAttendee for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteAttendee
@@ -2243,24 +2243,24 @@ func (c *Chime) DeleteEventsConfigurationRequest(input *DeleteEventsConfiguratio
 // See the AWS API reference guide for Amazon Chime's
 // API operation DeleteEventsConfiguration for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+// Returned Error Types:
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeResourceLimitExceededException "ResourceLimitExceededException"
+//   * ResourceLimitExceededException
 //   The request exceeds the resource limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteEventsConfiguration
@@ -2342,27 +2342,27 @@ func (c *Chime) DeleteMeetingRequest(input *DeleteMeetingInput) (req *request.Re
 // See the AWS API reference guide for Amazon Chime's
 // API operation DeleteMeeting for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteMeeting
@@ -2446,27 +2446,27 @@ func (c *Chime) DeletePhoneNumberRequest(input *DeletePhoneNumberInput) (req *re
 // See the AWS API reference guide for Amazon Chime's
 // API operation DeletePhoneNumber for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeletePhoneNumber
@@ -2545,24 +2545,24 @@ func (c *Chime) DeleteRoomRequest(input *DeleteRoomInput) (req *request.Request,
 // See the AWS API reference guide for Amazon Chime's
 // API operation DeleteRoom for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteRoom
@@ -2641,24 +2641,24 @@ func (c *Chime) DeleteRoomMembershipRequest(input *DeleteRoomMembershipInput) (r
 // See the AWS API reference guide for Amazon Chime's
 // API operation DeleteRoomMembership for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteRoomMembership
@@ -2739,31 +2739,31 @@ func (c *Chime) DeleteVoiceConnectorRequest(input *DeleteVoiceConnectorInput) (r
 // See the AWS API reference guide for Amazon Chime's
 // API operation DeleteVoiceConnector for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   The request could not be processed because of conflict in the current state
 //   of the resource.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteVoiceConnector
@@ -2844,31 +2844,31 @@ func (c *Chime) DeleteVoiceConnectorGroupRequest(input *DeleteVoiceConnectorGrou
 // See the AWS API reference guide for Amazon Chime's
 // API operation DeleteVoiceConnectorGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   The request could not be processed because of conflict in the current state
 //   of the resource.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteVoiceConnectorGroup
@@ -2947,27 +2947,27 @@ func (c *Chime) DeleteVoiceConnectorOriginationRequest(input *DeleteVoiceConnect
 // See the AWS API reference guide for Amazon Chime's
 // API operation DeleteVoiceConnectorOrigination for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteVoiceConnectorOrigination
@@ -3047,27 +3047,27 @@ func (c *Chime) DeleteVoiceConnectorStreamingConfigurationRequest(input *DeleteV
 // See the AWS API reference guide for Amazon Chime's
 // API operation DeleteVoiceConnectorStreamingConfiguration for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteVoiceConnectorStreamingConfiguration
@@ -3146,27 +3146,27 @@ func (c *Chime) DeleteVoiceConnectorTerminationRequest(input *DeleteVoiceConnect
 // See the AWS API reference guide for Amazon Chime's
 // API operation DeleteVoiceConnectorTermination for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteVoiceConnectorTermination
@@ -3246,27 +3246,27 @@ func (c *Chime) DeleteVoiceConnectorTerminationCredentialsRequest(input *DeleteV
 // See the AWS API reference guide for Amazon Chime's
 // API operation DeleteVoiceConnectorTerminationCredentials for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteVoiceConnectorTerminationCredentials
@@ -3346,27 +3346,27 @@ func (c *Chime) DisassociatePhoneNumberFromUserRequest(input *DisassociatePhoneN
 // See the AWS API reference guide for Amazon Chime's
 // API operation DisassociatePhoneNumberFromUser for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DisassociatePhoneNumberFromUser
@@ -3445,27 +3445,27 @@ func (c *Chime) DisassociatePhoneNumbersFromVoiceConnectorRequest(input *Disasso
 // See the AWS API reference guide for Amazon Chime's
 // API operation DisassociatePhoneNumbersFromVoiceConnector for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DisassociatePhoneNumbersFromVoiceConnector
@@ -3544,27 +3544,27 @@ func (c *Chime) DisassociatePhoneNumbersFromVoiceConnectorGroupRequest(input *Di
 // See the AWS API reference guide for Amazon Chime's
 // API operation DisassociatePhoneNumbersFromVoiceConnectorGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DisassociatePhoneNumbersFromVoiceConnectorGroup
@@ -3643,27 +3643,27 @@ func (c *Chime) GetAccountRequest(input *GetAccountInput) (req *request.Request,
 // See the AWS API reference guide for Amazon Chime's
 // API operation GetAccount for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetAccount
@@ -3744,27 +3744,27 @@ func (c *Chime) GetAccountSettingsRequest(input *GetAccountSettingsInput) (req *
 // See the AWS API reference guide for Amazon Chime's
 // API operation GetAccountSettings for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetAccountSettings
@@ -3845,27 +3845,27 @@ func (c *Chime) GetAttendeeRequest(input *GetAttendeeInput) (req *request.Reques
 // See the AWS API reference guide for Amazon Chime's
 // API operation GetAttendee for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetAttendee
@@ -3944,24 +3944,24 @@ func (c *Chime) GetBotRequest(input *GetBotInput) (req *request.Request, output 
 // See the AWS API reference guide for Amazon Chime's
 // API operation GetBot for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+// Returned Error Types:
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetBot
@@ -4040,27 +4040,27 @@ func (c *Chime) GetEventsConfigurationRequest(input *GetEventsConfigurationInput
 // See the AWS API reference guide for Amazon Chime's
 // API operation GetEventsConfiguration for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+// Returned Error Types:
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeResourceLimitExceededException "ResourceLimitExceededException"
+//   * ResourceLimitExceededException
 //   The request exceeds the resource limit.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetEventsConfiguration
@@ -4139,24 +4139,24 @@ func (c *Chime) GetGlobalSettingsRequest(input *GetGlobalSettingsInput) (req *re
 // See the AWS API reference guide for Amazon Chime's
 // API operation GetGlobalSettings for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetGlobalSettings
@@ -4237,27 +4237,27 @@ func (c *Chime) GetMeetingRequest(input *GetMeetingInput) (req *request.Request,
 // See the AWS API reference guide for Amazon Chime's
 // API operation GetMeeting for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetMeeting
@@ -4336,27 +4336,27 @@ func (c *Chime) GetPhoneNumberRequest(input *GetPhoneNumberInput) (req *request.
 // See the AWS API reference guide for Amazon Chime's
 // API operation GetPhoneNumber for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetPhoneNumber
@@ -4435,27 +4435,27 @@ func (c *Chime) GetPhoneNumberOrderRequest(input *GetPhoneNumberOrderInput) (req
 // See the AWS API reference guide for Amazon Chime's
 // API operation GetPhoneNumberOrder for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetPhoneNumberOrder
@@ -4534,24 +4534,24 @@ func (c *Chime) GetPhoneNumberSettingsRequest(input *GetPhoneNumberSettingsInput
 // See the AWS API reference guide for Amazon Chime's
 // API operation GetPhoneNumberSettings for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetPhoneNumberSettings
@@ -4629,24 +4629,24 @@ func (c *Chime) GetRoomRequest(input *GetRoomInput) (req *request.Request, outpu
 // See the AWS API reference guide for Amazon Chime's
 // API operation GetRoom for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetRoom
@@ -4728,27 +4728,27 @@ func (c *Chime) GetUserRequest(input *GetUserInput) (req *request.Request, outpu
 // See the AWS API reference guide for Amazon Chime's
 // API operation GetUser for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetUser
@@ -4827,27 +4827,27 @@ func (c *Chime) GetUserSettingsRequest(input *GetUserSettingsInput) (req *reques
 // See the AWS API reference guide for Amazon Chime's
 // API operation GetUserSettings for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetUserSettings
@@ -4926,27 +4926,27 @@ func (c *Chime) GetVoiceConnectorRequest(input *GetVoiceConnectorInput) (req *re
 // See the AWS API reference guide for Amazon Chime's
 // API operation GetVoiceConnector for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetVoiceConnector
@@ -5025,27 +5025,27 @@ func (c *Chime) GetVoiceConnectorGroupRequest(input *GetVoiceConnectorGroupInput
 // See the AWS API reference guide for Amazon Chime's
 // API operation GetVoiceConnectorGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetVoiceConnectorGroup
@@ -5125,27 +5125,27 @@ func (c *Chime) GetVoiceConnectorLoggingConfigurationRequest(input *GetVoiceConn
 // See the AWS API reference guide for Amazon Chime's
 // API operation GetVoiceConnectorLoggingConfiguration for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetVoiceConnectorLoggingConfiguration
@@ -5224,27 +5224,27 @@ func (c *Chime) GetVoiceConnectorOriginationRequest(input *GetVoiceConnectorOrig
 // See the AWS API reference guide for Amazon Chime's
 // API operation GetVoiceConnectorOrigination for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetVoiceConnectorOrigination
@@ -5325,27 +5325,27 @@ func (c *Chime) GetVoiceConnectorStreamingConfigurationRequest(input *GetVoiceCo
 // See the AWS API reference guide for Amazon Chime's
 // API operation GetVoiceConnectorStreamingConfiguration for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetVoiceConnectorStreamingConfiguration
@@ -5424,27 +5424,27 @@ func (c *Chime) GetVoiceConnectorTerminationRequest(input *GetVoiceConnectorTerm
 // See the AWS API reference guide for Amazon Chime's
 // API operation GetVoiceConnectorTermination for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetVoiceConnectorTermination
@@ -5523,27 +5523,27 @@ func (c *Chime) GetVoiceConnectorTerminationHealthRequest(input *GetVoiceConnect
 // See the AWS API reference guide for Amazon Chime's
 // API operation GetVoiceConnectorTerminationHealth for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetVoiceConnectorTerminationHealth
@@ -5623,27 +5623,27 @@ func (c *Chime) InviteUsersRequest(input *InviteUsersInput) (req *request.Reques
 // See the AWS API reference guide for Amazon Chime's
 // API operation InviteUsers for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/InviteUsers
@@ -5730,27 +5730,27 @@ func (c *Chime) ListAccountsRequest(input *ListAccountsInput) (req *request.Requ
 // See the AWS API reference guide for Amazon Chime's
 // API operation ListAccounts for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListAccounts
@@ -5888,27 +5888,27 @@ func (c *Chime) ListAttendeesRequest(input *ListAttendeesInput) (req *request.Re
 // See the AWS API reference guide for Amazon Chime's
 // API operation ListAttendees for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListAttendees
@@ -6045,24 +6045,24 @@ func (c *Chime) ListBotsRequest(input *ListBotsInput) (req *request.Request, out
 // See the AWS API reference guide for Amazon Chime's
 // API operation ListBots for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+// Returned Error Types:
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListBots
@@ -6200,24 +6200,24 @@ func (c *Chime) ListMeetingsRequest(input *ListMeetingsInput) (req *request.Requ
 // See the AWS API reference guide for Amazon Chime's
 // API operation ListMeetings for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListMeetings
@@ -6353,24 +6353,24 @@ func (c *Chime) ListPhoneNumberOrdersRequest(input *ListPhoneNumberOrdersInput) 
 // See the AWS API reference guide for Amazon Chime's
 // API operation ListPhoneNumberOrders for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListPhoneNumberOrders
@@ -6507,24 +6507,24 @@ func (c *Chime) ListPhoneNumbersRequest(input *ListPhoneNumbersInput) (req *requ
 // See the AWS API reference guide for Amazon Chime's
 // API operation ListPhoneNumbers for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListPhoneNumbers
@@ -6661,24 +6661,24 @@ func (c *Chime) ListRoomMembershipsRequest(input *ListRoomMembershipsInput) (req
 // See the AWS API reference guide for Amazon Chime's
 // API operation ListRoomMemberships for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListRoomMemberships
@@ -6816,24 +6816,24 @@ func (c *Chime) ListRoomsRequest(input *ListRoomsInput) (req *request.Request, o
 // See the AWS API reference guide for Amazon Chime's
 // API operation ListRooms for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListRooms
@@ -6971,27 +6971,27 @@ func (c *Chime) ListUsersRequest(input *ListUsersInput) (req *request.Request, o
 // See the AWS API reference guide for Amazon Chime's
 // API operation ListUsers for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListUsers
@@ -7128,24 +7128,24 @@ func (c *Chime) ListVoiceConnectorGroupsRequest(input *ListVoiceConnectorGroupsI
 // See the AWS API reference guide for Amazon Chime's
 // API operation ListVoiceConnectorGroups for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListVoiceConnectorGroups
@@ -7275,27 +7275,27 @@ func (c *Chime) ListVoiceConnectorTerminationCredentialsRequest(input *ListVoice
 // See the AWS API reference guide for Amazon Chime's
 // API operation ListVoiceConnectorTerminationCredentials for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListVoiceConnectorTerminationCredentials
@@ -7379,24 +7379,24 @@ func (c *Chime) ListVoiceConnectorsRequest(input *ListVoiceConnectorsInput) (req
 // See the AWS API reference guide for Amazon Chime's
 // API operation ListVoiceConnectors for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListVoiceConnectors
@@ -7528,27 +7528,27 @@ func (c *Chime) LogoutUserRequest(input *LogoutUserInput) (req *request.Request,
 // See the AWS API reference guide for Amazon Chime's
 // API operation LogoutUser for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/LogoutUser
@@ -7628,27 +7628,27 @@ func (c *Chime) PutEventsConfigurationRequest(input *PutEventsConfigurationInput
 // See the AWS API reference guide for Amazon Chime's
 // API operation PutEventsConfiguration for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+// Returned Error Types:
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeResourceLimitExceededException "ResourceLimitExceededException"
+//   * ResourceLimitExceededException
 //   The request exceeds the resource limit.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/PutEventsConfiguration
@@ -7728,27 +7728,27 @@ func (c *Chime) PutVoiceConnectorLoggingConfigurationRequest(input *PutVoiceConn
 // See the AWS API reference guide for Amazon Chime's
 // API operation PutVoiceConnectorLoggingConfiguration for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/PutVoiceConnectorLoggingConfiguration
@@ -7826,27 +7826,27 @@ func (c *Chime) PutVoiceConnectorOriginationRequest(input *PutVoiceConnectorOrig
 // See the AWS API reference guide for Amazon Chime's
 // API operation PutVoiceConnectorOrigination for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/PutVoiceConnectorOrigination
@@ -7927,27 +7927,27 @@ func (c *Chime) PutVoiceConnectorStreamingConfigurationRequest(input *PutVoiceCo
 // See the AWS API reference guide for Amazon Chime's
 // API operation PutVoiceConnectorStreamingConfiguration for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/PutVoiceConnectorStreamingConfiguration
@@ -8025,30 +8025,30 @@ func (c *Chime) PutVoiceConnectorTerminationRequest(input *PutVoiceConnectorTerm
 // See the AWS API reference guide for Amazon Chime's
 // API operation PutVoiceConnectorTermination for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You don't have permissions to perform the requested operation.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/PutVoiceConnectorTermination
@@ -8127,27 +8127,27 @@ func (c *Chime) PutVoiceConnectorTerminationCredentialsRequest(input *PutVoiceCo
 // See the AWS API reference guide for Amazon Chime's
 // API operation PutVoiceConnectorTerminationCredentials for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/PutVoiceConnectorTerminationCredentials
@@ -8225,24 +8225,24 @@ func (c *Chime) RegenerateSecurityTokenRequest(input *RegenerateSecurityTokenInp
 // See the AWS API reference guide for Amazon Chime's
 // API operation RegenerateSecurityToken for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+// Returned Error Types:
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/RegenerateSecurityToken
@@ -8321,27 +8321,27 @@ func (c *Chime) ResetPersonalPINRequest(input *ResetPersonalPINInput) (req *requ
 // See the AWS API reference guide for Amazon Chime's
 // API operation ResetPersonalPIN for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ResetPersonalPIN
@@ -8419,30 +8419,30 @@ func (c *Chime) RestorePhoneNumberRequest(input *RestorePhoneNumberInput) (req *
 // See the AWS API reference guide for Amazon Chime's
 // API operation RestorePhoneNumber for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeResourceLimitExceededException "ResourceLimitExceededException"
+//   * ResourceLimitExceededException
 //   The request exceeds the resource limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/RestorePhoneNumber
@@ -8520,27 +8520,27 @@ func (c *Chime) SearchAvailablePhoneNumbersRequest(input *SearchAvailablePhoneNu
 // See the AWS API reference guide for Amazon Chime's
 // API operation SearchAvailablePhoneNumbers for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You don't have permissions to perform the requested operation.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/SearchAvailablePhoneNumbers
@@ -8619,27 +8619,27 @@ func (c *Chime) UpdateAccountRequest(input *UpdateAccountInput) (req *request.Re
 // See the AWS API reference guide for Amazon Chime's
 // API operation UpdateAccount for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateAccount
@@ -8721,31 +8721,31 @@ func (c *Chime) UpdateAccountSettingsRequest(input *UpdateAccountSettingsInput) 
 // See the AWS API reference guide for Amazon Chime's
 // API operation UpdateAccountSettings for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   The request could not be processed because of conflict in the current state
 //   of the resource.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateAccountSettings
@@ -8824,24 +8824,24 @@ func (c *Chime) UpdateBotRequest(input *UpdateBotInput) (req *request.Request, o
 // See the AWS API reference guide for Amazon Chime's
 // API operation UpdateBot for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+// Returned Error Types:
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateBot
@@ -8921,24 +8921,24 @@ func (c *Chime) UpdateGlobalSettingsRequest(input *UpdateGlobalSettingsInput) (r
 // See the AWS API reference guide for Amazon Chime's
 // API operation UpdateGlobalSettings for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateGlobalSettings
@@ -9026,27 +9026,27 @@ func (c *Chime) UpdatePhoneNumberRequest(input *UpdatePhoneNumberInput) (req *re
 // See the AWS API reference guide for Amazon Chime's
 // API operation UpdatePhoneNumber for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdatePhoneNumber
@@ -9128,24 +9128,24 @@ func (c *Chime) UpdatePhoneNumberSettingsRequest(input *UpdatePhoneNumberSetting
 // See the AWS API reference guide for Amazon Chime's
 // API operation UpdatePhoneNumberSettings for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdatePhoneNumberSettings
@@ -9223,24 +9223,24 @@ func (c *Chime) UpdateRoomRequest(input *UpdateRoomInput) (req *request.Request,
 // See the AWS API reference guide for Amazon Chime's
 // API operation UpdateRoom for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateRoom
@@ -9320,24 +9320,24 @@ func (c *Chime) UpdateRoomMembershipRequest(input *UpdateRoomMembershipInput) (r
 // See the AWS API reference guide for Amazon Chime's
 // API operation UpdateRoomMembership for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateRoomMembership
@@ -9416,27 +9416,27 @@ func (c *Chime) UpdateUserRequest(input *UpdateUserInput) (req *request.Request,
 // See the AWS API reference guide for Amazon Chime's
 // API operation UpdateUser for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateUser
@@ -9515,27 +9515,27 @@ func (c *Chime) UpdateUserSettingsRequest(input *UpdateUserSettingsInput) (req *
 // See the AWS API reference guide for Amazon Chime's
 // API operation UpdateUserSettings for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateUserSettings
@@ -9613,27 +9613,27 @@ func (c *Chime) UpdateVoiceConnectorRequest(input *UpdateVoiceConnectorInput) (r
 // See the AWS API reference guide for Amazon Chime's
 // API operation UpdateVoiceConnector for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateVoiceConnector
@@ -9712,31 +9712,31 @@ func (c *Chime) UpdateVoiceConnectorGroupRequest(input *UpdateVoiceConnectorGrou
 // See the AWS API reference guide for Amazon Chime's
 // API operation UpdateVoiceConnectorGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+// Returned Error Types:
+//   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input parameters don't match the service's restrictions.
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //   The request could not be processed because of conflict in the current state
 //   of the resource.
 //
-//   * ErrCodeThrottledClientException "ThrottledClientException"
+//   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
-//   * ErrCodeServiceFailureException "ServiceFailureException"
+//   * ServiceFailureException
 //   The service encountered an unexpected error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateVoiceConnectorGroup
@@ -9759,6 +9759,64 @@ func (c *Chime) UpdateVoiceConnectorGroupWithContext(ctx aws.Context, input *Upd
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// You don't have permissions to perform the requested operation.
+type AccessDeniedException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s AccessDeniedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccessDeniedException) GoString() string {
+	return s.String()
+}
+
+func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
+	return &AccessDeniedException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s AccessDeniedException) Code() string {
+	return "AccessDeniedException"
+}
+
+// Message returns the exception's message.
+func (s AccessDeniedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s AccessDeniedException) OrigErr() error {
+	return nil
+}
+
+func (s AccessDeniedException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s AccessDeniedException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s AccessDeniedException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // The Amazon Chime account details. An AWS account can have multiple Amazon
@@ -10194,6 +10252,64 @@ func (s *Attendee) SetExternalUserId(v string) *Attendee {
 func (s *Attendee) SetJoinToken(v string) *Attendee {
 	s.JoinToken = &v
 	return s
+}
+
+// The input parameters don't match the service's restrictions.
+type BadRequestException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s BadRequestException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BadRequestException) GoString() string {
+	return s.String()
+}
+
+func newErrorBadRequestException(v protocol.ResponseMetadata) error {
+	return &BadRequestException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s BadRequestException) Code() string {
+	return "BadRequestException"
+}
+
+// Message returns the exception's message.
+func (s BadRequestException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s BadRequestException) OrigErr() error {
+	return nil
+}
+
+func (s BadRequestException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s BadRequestException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s BadRequestException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type BatchCreateAttendeeInput struct {
@@ -10901,6 +11017,65 @@ func (s BusinessCallingSettings) GoString() string {
 func (s *BusinessCallingSettings) SetCdrBucket(v string) *BusinessCallingSettings {
 	s.CdrBucket = &v
 	return s
+}
+
+// The request could not be processed because of conflict in the current state
+// of the resource.
+type ConflictException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ConflictException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ConflictException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type CreateAccountInput struct {
@@ -12870,6 +13045,65 @@ func (s *EventsConfiguration) SetLambdaFunctionArn(v string) *EventsConfiguratio
 func (s *EventsConfiguration) SetOutboundEventsHTTPSEndpoint(v string) *EventsConfiguration {
 	s.OutboundEventsHTTPSEndpoint = &v
 	return s
+}
+
+// The client is permanently forbidden from making the request. For example,
+// when a user tries to create an account from an unsupported Region.
+type ForbiddenException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ForbiddenException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ForbiddenException) GoString() string {
+	return s.String()
+}
+
+func newErrorForbiddenException(v protocol.ResponseMetadata) error {
+	return &ForbiddenException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ForbiddenException) Code() string {
+	return "ForbiddenException"
+}
+
+// Message returns the exception's message.
+func (s ForbiddenException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ForbiddenException) OrigErr() error {
+	return nil
+}
+
+func (s ForbiddenException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ForbiddenException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ForbiddenException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type GetAccountInput struct {
@@ -15832,6 +16066,64 @@ func (s *MembershipItem) SetRole(v string) *MembershipItem {
 	return s
 }
 
+// One or more of the resources in the request does not exist in the system.
+type NotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s NotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorNotFoundException(v protocol.ResponseMetadata) error {
+	return &NotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s NotFoundException) Code() string {
+	return "NotFoundException"
+}
+
+// Message returns the exception's message.
+func (s NotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s NotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s NotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s NotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s NotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // A phone number for which an order has been placed.
 type OrderedPhoneNumber struct {
 	_ struct{} `type:"structure"`
@@ -17009,6 +17301,64 @@ func (s *ResetPersonalPINOutput) SetUser(v *User) *ResetPersonalPINOutput {
 	return s
 }
 
+// The request exceeds the resource limit.
+type ResourceLimitExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceLimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceLimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceLimitExceededException(v protocol.ResponseMetadata) error {
+	return &ResourceLimitExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceLimitExceededException) Code() string {
+	return "ResourceLimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s ResourceLimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceLimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceLimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceLimitExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceLimitExceededException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type RestorePhoneNumberInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17318,6 +17668,122 @@ func (s *SearchAvailablePhoneNumbersOutput) SetE164PhoneNumbers(v []*string) *Se
 	return s
 }
 
+// The service encountered an unexpected error.
+type ServiceFailureException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ServiceFailureException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceFailureException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceFailureException(v protocol.ResponseMetadata) error {
+	return &ServiceFailureException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ServiceFailureException) Code() string {
+	return "ServiceFailureException"
+}
+
+// Message returns the exception's message.
+func (s ServiceFailureException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ServiceFailureException) OrigErr() error {
+	return nil
+}
+
+func (s ServiceFailureException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ServiceFailureException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ServiceFailureException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The service is currently unavailable.
+type ServiceUnavailableException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ServiceUnavailableException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceUnavailableException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceUnavailableException(v protocol.ResponseMetadata) error {
+	return &ServiceUnavailableException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ServiceUnavailableException) Code() string {
+	return "ServiceUnavailableException"
+}
+
+// Message returns the exception's message.
+func (s ServiceUnavailableException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ServiceUnavailableException) OrigErr() error {
+	return nil
+}
+
+func (s ServiceUnavailableException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ServiceUnavailableException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ServiceUnavailableException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // The streaming configuration associated with an Amazon Chime Voice Connector.
 // Specifies whether media streaming is enabled for sending to Amazon Kinesis,
 // and shows the retention period for the Amazon Kinesis data, in hours.
@@ -17543,6 +18009,181 @@ func (s *TerminationHealth) SetSource(v string) *TerminationHealth {
 func (s *TerminationHealth) SetTimestamp(v time.Time) *TerminationHealth {
 	s.Timestamp = &v
 	return s
+}
+
+// The client exceeded its request rate limit.
+type ThrottledClientException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ThrottledClientException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ThrottledClientException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottledClientException(v protocol.ResponseMetadata) error {
+	return &ThrottledClientException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ThrottledClientException) Code() string {
+	return "ThrottledClientException"
+}
+
+// Message returns the exception's message.
+func (s ThrottledClientException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ThrottledClientException) OrigErr() error {
+	return nil
+}
+
+func (s ThrottledClientException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ThrottledClientException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ThrottledClientException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The client is not currently authorized to make the request.
+type UnauthorizedClientException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s UnauthorizedClientException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UnauthorizedClientException) GoString() string {
+	return s.String()
+}
+
+func newErrorUnauthorizedClientException(v protocol.ResponseMetadata) error {
+	return &UnauthorizedClientException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s UnauthorizedClientException) Code() string {
+	return "UnauthorizedClientException"
+}
+
+// Message returns the exception's message.
+func (s UnauthorizedClientException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s UnauthorizedClientException) OrigErr() error {
+	return nil
+}
+
+func (s UnauthorizedClientException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s UnauthorizedClientException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s UnauthorizedClientException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The request was well-formed but was unable to be followed due to semantic
+// errors.
+type UnprocessableEntityException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s UnprocessableEntityException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UnprocessableEntityException) GoString() string {
+	return s.String()
+}
+
+func newErrorUnprocessableEntityException(v protocol.ResponseMetadata) error {
+	return &UnprocessableEntityException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s UnprocessableEntityException) Code() string {
+	return "UnprocessableEntityException"
+}
+
+// Message returns the exception's message.
+func (s UnprocessableEntityException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s UnprocessableEntityException) OrigErr() error {
+	return nil
+}
+
+func (s UnprocessableEntityException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s UnprocessableEntityException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s UnprocessableEntityException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type UpdateAccountInput struct {

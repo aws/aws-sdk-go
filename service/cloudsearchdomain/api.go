@@ -3,11 +3,13 @@
 package cloudsearchdomain
 
 import (
+	"fmt"
 	"io"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
 const opSearch = "Search"
@@ -85,8 +87,8 @@ func (c *CloudSearchDomain) SearchRequest(input *SearchInput) (req *request.Requ
 // See the AWS API reference guide for Amazon CloudSearch Domain's
 // API operation Search for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeSearchException "SearchException"
+// Returned Error Types:
+//   * SearchException
 //   Information about any problems encountered while processing a search request.
 //
 func (c *CloudSearchDomain) Search(input *SearchInput) (*SearchOutput, error) {
@@ -177,8 +179,8 @@ func (c *CloudSearchDomain) SuggestRequest(input *SuggestInput) (req *request.Re
 // See the AWS API reference guide for Amazon CloudSearch Domain's
 // API operation Suggest for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeSearchException "SearchException"
+// Returned Error Types:
+//   * SearchException
 //   Information about any problems encountered while processing a search request.
 //
 func (c *CloudSearchDomain) Suggest(input *SuggestInput) (*SuggestOutput, error) {
@@ -274,8 +276,8 @@ func (c *CloudSearchDomain) UploadDocumentsRequest(input *UploadDocumentsInput) 
 // See the AWS API reference guide for Amazon CloudSearch Domain's
 // API operation UploadDocuments for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDocumentServiceException "DocumentServiceException"
+// Returned Error Types:
+//   * DocumentServiceException
 //   Information about any problems encountered while processing an upload request.
 //
 func (c *CloudSearchDomain) UploadDocuments(input *UploadDocumentsInput) (*UploadDocumentsOutput, error) {
@@ -354,6 +356,66 @@ func (s BucketInfo) GoString() string {
 func (s *BucketInfo) SetBuckets(v []*Bucket) *BucketInfo {
 	s.Buckets = v
 	return s
+}
+
+// Information about any problems encountered while processing an upload request.
+type DocumentServiceException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// The description of the errors returned by the document service.
+	Message_ *string `locationName:"message" type:"string"`
+
+	// The return status of a document upload request, error or success.
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation
+func (s DocumentServiceException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DocumentServiceException) GoString() string {
+	return s.String()
+}
+
+func newErrorDocumentServiceException(v protocol.ResponseMetadata) error {
+	return &DocumentServiceException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s DocumentServiceException) Code() string {
+	return "DocumentServiceException"
+}
+
+// Message returns the exception's message.
+func (s DocumentServiceException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s DocumentServiceException) OrigErr() error {
+	return nil
+}
+
+func (s DocumentServiceException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s DocumentServiceException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s DocumentServiceException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // A warning returned by the document service when an issue is discovered while
@@ -591,6 +653,63 @@ func (s *Hits) SetHit(v []*Hit) *Hits {
 func (s *Hits) SetStart(v int64) *Hits {
 	s.Start = &v
 	return s
+}
+
+// Information about any problems encountered while processing a search request.
+type SearchException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// A description of the error returned by the search service.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s SearchException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SearchException) GoString() string {
+	return s.String()
+}
+
+func newErrorSearchException(v protocol.ResponseMetadata) error {
+	return &SearchException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s SearchException) Code() string {
+	return "SearchException"
+}
+
+// Message returns the exception's message.
+func (s SearchException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s SearchException) OrigErr() error {
+	return nil
+}
+
+func (s SearchException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s SearchException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s SearchException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Container for the parameters to the Search request.

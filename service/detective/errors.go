@@ -2,6 +2,10 @@
 
 package detective
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeConflictException for service response error code
@@ -36,3 +40,11 @@ const (
 	// The request parameters are invalid.
 	ErrCodeValidationException = "ValidationException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"ConflictException":             newErrorConflictException,
+	"InternalServerException":       newErrorInternalServerException,
+	"ResourceNotFoundException":     newErrorResourceNotFoundException,
+	"ServiceQuotaExceededException": newErrorServiceQuotaExceededException,
+	"ValidationException":           newErrorValidationException,
+}

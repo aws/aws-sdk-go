@@ -2,6 +2,10 @@
 
 package comprehendmedical
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeInternalServerException for service response error code
@@ -60,3 +64,14 @@ const (
 	// values that you entered and try your request again.
 	ErrCodeValidationException = "ValidationException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"InternalServerException":        newErrorInternalServerException,
+	"InvalidEncodingException":       newErrorInvalidEncodingException,
+	"InvalidRequestException":        newErrorInvalidRequestException,
+	"ResourceNotFoundException":      newErrorResourceNotFoundException,
+	"ServiceUnavailableException":    newErrorServiceUnavailableException,
+	"TextSizeLimitExceededException": newErrorTextSizeLimitExceededException,
+	"TooManyRequestsException":       newErrorTooManyRequestsException,
+	"ValidationException":            newErrorValidationException,
+}

@@ -2,6 +2,10 @@
 
 package workmail
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeDirectoryServiceAuthenticationFailedException for service response error code
@@ -110,3 +114,22 @@ const (
 	// You can't perform a write operation against a read-only directory.
 	ErrCodeUnsupportedOperationException = "UnsupportedOperationException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"DirectoryServiceAuthenticationFailedException": newErrorDirectoryServiceAuthenticationFailedException,
+	"DirectoryUnavailableException":                 newErrorDirectoryUnavailableException,
+	"EmailAddressInUseException":                    newErrorEmailAddressInUseException,
+	"EntityAlreadyRegisteredException":              newErrorEntityAlreadyRegisteredException,
+	"EntityNotFoundException":                       newErrorEntityNotFoundException,
+	"EntityStateException":                          newErrorEntityStateException,
+	"InvalidConfigurationException":                 newErrorInvalidConfigurationException,
+	"InvalidParameterException":                     newErrorInvalidParameterException,
+	"InvalidPasswordException":                      newErrorInvalidPasswordException,
+	"MailDomainNotFoundException":                   newErrorMailDomainNotFoundException,
+	"MailDomainStateException":                      newErrorMailDomainStateException,
+	"NameAvailabilityException":                     newErrorNameAvailabilityException,
+	"OrganizationNotFoundException":                 newErrorOrganizationNotFoundException,
+	"OrganizationStateException":                    newErrorOrganizationStateException,
+	"ReservedNameException":                         newErrorReservedNameException,
+	"UnsupportedOperationException":                 newErrorUnsupportedOperationException,
+}

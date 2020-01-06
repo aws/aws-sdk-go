@@ -2,6 +2,10 @@
 
 package codestarnotifications
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeAccessDeniedException for service response error code
@@ -59,3 +63,14 @@ const (
 	// One or more parameter values are not valid.
 	ErrCodeValidationException = "ValidationException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"AccessDeniedException":           newErrorAccessDeniedException,
+	"ConcurrentModificationException": newErrorConcurrentModificationException,
+	"ConfigurationException":          newErrorConfigurationException,
+	"InvalidNextTokenException":       newErrorInvalidNextTokenException,
+	"LimitExceededException":          newErrorLimitExceededException,
+	"ResourceAlreadyExistsException":  newErrorResourceAlreadyExistsException,
+	"ResourceNotFoundException":       newErrorResourceNotFoundException,
+	"ValidationException":             newErrorValidationException,
+}

@@ -112,30 +112,30 @@ func (c *EFS) CreateFileSystemRequest(input *CreateFileSystemInput) (req *reques
 // See the AWS API reference guide for Amazon Elastic File System's
 // API operation CreateFileSystem for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequest "BadRequest"
+// Returned Error Types:
+//   * BadRequest
 //   Returned if the request is malformed or contains an error such as an invalid
 //   parameter value or a missing required parameter.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Returned if an error occurred on the server side.
 //
-//   * ErrCodeFileSystemAlreadyExists "FileSystemAlreadyExists"
+//   * FileSystemAlreadyExists
 //   Returned if the file system you are trying to create already exists, with
 //   the creation token you provided.
 //
-//   * ErrCodeFileSystemLimitExceeded "FileSystemLimitExceeded"
+//   * FileSystemLimitExceeded
 //   Returned if the AWS account has already created the maximum number of file
 //   systems allowed per account.
 //
-//   * ErrCodeInsufficientThroughputCapacity "InsufficientThroughputCapacity"
+//   * InsufficientThroughputCapacity
 //   Returned if there's not enough capacity to provision additional throughput.
 //   This value might be returned when you try to create a file system in provisioned
 //   throughput mode, when you attempt to increase the provisioned throughput
 //   of an existing file system, or when you attempt to change an existing file
 //   system from bursting to provisioned throughput mode.
 //
-//   * ErrCodeThroughputLimitExceeded "ThroughputLimitExceeded"
+//   * ThroughputLimitExceeded
 //   Returned if the throughput mode or amount of provisioned throughput can't
 //   be changed because the throughput limit of 1024 MiB/s has been reached.
 //
@@ -302,37 +302,37 @@ func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *requ
 // See the AWS API reference guide for Amazon Elastic File System's
 // API operation CreateMountTarget for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequest "BadRequest"
+// Returned Error Types:
+//   * BadRequest
 //   Returned if the request is malformed or contains an error such as an invalid
 //   parameter value or a missing required parameter.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Returned if an error occurred on the server side.
 //
-//   * ErrCodeFileSystemNotFound "FileSystemNotFound"
+//   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
 //   AWS account.
 //
-//   * ErrCodeIncorrectFileSystemLifeCycleState "IncorrectFileSystemLifeCycleState"
+//   * IncorrectFileSystemLifeCycleState
 //   Returned if the file system's lifecycle state is not "available".
 //
-//   * ErrCodeMountTargetConflict "MountTargetConflict"
+//   * MountTargetConflict
 //   Returned if the mount target would violate one of the specified restrictions
 //   based on the file system's existing mount targets.
 //
-//   * ErrCodeSubnetNotFound "SubnetNotFound"
+//   * SubnetNotFound
 //   Returned if there is no subnet with ID SubnetId provided in the request.
 //
-//   * ErrCodeNoFreeAddressesInSubnet "NoFreeAddressesInSubnet"
+//   * NoFreeAddressesInSubnet
 //   Returned if IpAddress was not specified in the request and there are no free
 //   IP addresses in the subnet.
 //
-//   * ErrCodeIpAddressInUse "IpAddressInUse"
+//   * IpAddressInUse
 //   Returned if the request specified an IpAddress that is already in use in
 //   the subnet.
 //
-//   * ErrCodeNetworkInterfaceLimitExceeded "NetworkInterfaceLimitExceeded"
+//   * NetworkInterfaceLimitExceeded
 //   The calling account has reached the limit for elastic network interfaces
 //   for the specific AWS Region. The client should try to delete some elastic
 //   network interfaces or get the account limit raised. For more information,
@@ -340,15 +340,15 @@ func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *requ
 //   in the Amazon VPC User Guide (see the Network interfaces per VPC entry in
 //   the table).
 //
-//   * ErrCodeSecurityGroupLimitExceeded "SecurityGroupLimitExceeded"
+//   * SecurityGroupLimitExceeded
 //   Returned if the size of SecurityGroups specified in the request is greater
 //   than five.
 //
-//   * ErrCodeSecurityGroupNotFound "SecurityGroupNotFound"
+//   * SecurityGroupNotFound
 //   Returned if one of the specified security groups doesn't exist in the subnet's
 //   VPC.
 //
-//   * ErrCodeUnsupportedAvailabilityZone "UnsupportedAvailabilityZone"
+//   * UnsupportedAvailabilityZone
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/CreateMountTarget
 func (c *EFS) CreateMountTarget(input *CreateMountTargetInput) (*MountTargetDescription, error) {
@@ -432,15 +432,15 @@ func (c *EFS) CreateTagsRequest(input *CreateTagsInput) (req *request.Request, o
 // See the AWS API reference guide for Amazon Elastic File System's
 // API operation CreateTags for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequest "BadRequest"
+// Returned Error Types:
+//   * BadRequest
 //   Returned if the request is malformed or contains an error such as an invalid
 //   parameter value or a missing required parameter.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Returned if an error occurred on the server side.
 //
-//   * ErrCodeFileSystemNotFound "FileSystemNotFound"
+//   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
 //   AWS account.
 //
@@ -535,19 +535,19 @@ func (c *EFS) DeleteFileSystemRequest(input *DeleteFileSystemInput) (req *reques
 // See the AWS API reference guide for Amazon Elastic File System's
 // API operation DeleteFileSystem for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequest "BadRequest"
+// Returned Error Types:
+//   * BadRequest
 //   Returned if the request is malformed or contains an error such as an invalid
 //   parameter value or a missing required parameter.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Returned if an error occurred on the server side.
 //
-//   * ErrCodeFileSystemNotFound "FileSystemNotFound"
+//   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
 //   AWS account.
 //
-//   * ErrCodeFileSystemInUse "FileSystemInUse"
+//   * FileSystemInUse
 //   Returned if a file system has mount targets.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DeleteFileSystem
@@ -650,19 +650,19 @@ func (c *EFS) DeleteMountTargetRequest(input *DeleteMountTargetInput) (req *requ
 // See the AWS API reference guide for Amazon Elastic File System's
 // API operation DeleteMountTarget for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequest "BadRequest"
+// Returned Error Types:
+//   * BadRequest
 //   Returned if the request is malformed or contains an error such as an invalid
 //   parameter value or a missing required parameter.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Returned if an error occurred on the server side.
 //
-//   * ErrCodeDependencyTimeout "DependencyTimeout"
+//   * DependencyTimeout
 //   The service timed out trying to fulfill the request, and the client should
 //   try the call again.
 //
-//   * ErrCodeMountTargetNotFound "MountTargetNotFound"
+//   * MountTargetNotFound
 //   Returned if there is no mount target with the specified ID found in the caller's
 //   account.
 //
@@ -749,15 +749,15 @@ func (c *EFS) DeleteTagsRequest(input *DeleteTagsInput) (req *request.Request, o
 // See the AWS API reference guide for Amazon Elastic File System's
 // API operation DeleteTags for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequest "BadRequest"
+// Returned Error Types:
+//   * BadRequest
 //   Returned if the request is malformed or contains an error such as an invalid
 //   parameter value or a missing required parameter.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Returned if an error occurred on the server side.
 //
-//   * ErrCodeFileSystemNotFound "FileSystemNotFound"
+//   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
 //   AWS account.
 //
@@ -859,15 +859,15 @@ func (c *EFS) DescribeFileSystemsRequest(input *DescribeFileSystemsInput) (req *
 // See the AWS API reference guide for Amazon Elastic File System's
 // API operation DescribeFileSystems for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequest "BadRequest"
+// Returned Error Types:
+//   * BadRequest
 //   Returned if the request is malformed or contains an error such as an invalid
 //   parameter value or a missing required parameter.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Returned if an error occurred on the server side.
 //
-//   * ErrCodeFileSystemNotFound "FileSystemNotFound"
+//   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
 //   AWS account.
 //
@@ -953,15 +953,15 @@ func (c *EFS) DescribeLifecycleConfigurationRequest(input *DescribeLifecycleConf
 // See the AWS API reference guide for Amazon Elastic File System's
 // API operation DescribeLifecycleConfiguration for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerError "InternalServerError"
+// Returned Error Types:
+//   * InternalServerError
 //   Returned if an error occurred on the server side.
 //
-//   * ErrCodeBadRequest "BadRequest"
+//   * BadRequest
 //   Returned if the request is malformed or contains an error such as an invalid
 //   parameter value or a missing required parameter.
 //
-//   * ErrCodeFileSystemNotFound "FileSystemNotFound"
+//   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
 //   AWS account.
 //
@@ -1050,19 +1050,19 @@ func (c *EFS) DescribeMountTargetSecurityGroupsRequest(input *DescribeMountTarge
 // See the AWS API reference guide for Amazon Elastic File System's
 // API operation DescribeMountTargetSecurityGroups for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequest "BadRequest"
+// Returned Error Types:
+//   * BadRequest
 //   Returned if the request is malformed or contains an error such as an invalid
 //   parameter value or a missing required parameter.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Returned if an error occurred on the server side.
 //
-//   * ErrCodeMountTargetNotFound "MountTargetNotFound"
+//   * MountTargetNotFound
 //   Returned if there is no mount target with the specified ID found in the caller's
 //   account.
 //
-//   * ErrCodeIncorrectMountTargetState "IncorrectMountTargetState"
+//   * IncorrectMountTargetState
 //   Returned if the mount target is not in the correct state for the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeMountTargetSecurityGroups
@@ -1146,19 +1146,19 @@ func (c *EFS) DescribeMountTargetsRequest(input *DescribeMountTargetsInput) (req
 // See the AWS API reference guide for Amazon Elastic File System's
 // API operation DescribeMountTargets for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequest "BadRequest"
+// Returned Error Types:
+//   * BadRequest
 //   Returned if the request is malformed or contains an error such as an invalid
 //   parameter value or a missing required parameter.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Returned if an error occurred on the server side.
 //
-//   * ErrCodeFileSystemNotFound "FileSystemNotFound"
+//   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
 //   AWS account.
 //
-//   * ErrCodeMountTargetNotFound "MountTargetNotFound"
+//   * MountTargetNotFound
 //   Returned if there is no mount target with the specified ID found in the caller's
 //   account.
 //
@@ -1242,15 +1242,15 @@ func (c *EFS) DescribeTagsRequest(input *DescribeTagsInput) (req *request.Reques
 // See the AWS API reference guide for Amazon Elastic File System's
 // API operation DescribeTags for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequest "BadRequest"
+// Returned Error Types:
+//   * BadRequest
 //   Returned if the request is malformed or contains an error such as an invalid
 //   parameter value or a missing required parameter.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Returned if an error occurred on the server side.
 //
-//   * ErrCodeFileSystemNotFound "FileSystemNotFound"
+//   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
 //   AWS account.
 //
@@ -1345,26 +1345,26 @@ func (c *EFS) ModifyMountTargetSecurityGroupsRequest(input *ModifyMountTargetSec
 // See the AWS API reference guide for Amazon Elastic File System's
 // API operation ModifyMountTargetSecurityGroups for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequest "BadRequest"
+// Returned Error Types:
+//   * BadRequest
 //   Returned if the request is malformed or contains an error such as an invalid
 //   parameter value or a missing required parameter.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Returned if an error occurred on the server side.
 //
-//   * ErrCodeMountTargetNotFound "MountTargetNotFound"
+//   * MountTargetNotFound
 //   Returned if there is no mount target with the specified ID found in the caller's
 //   account.
 //
-//   * ErrCodeIncorrectMountTargetState "IncorrectMountTargetState"
+//   * IncorrectMountTargetState
 //   Returned if the mount target is not in the correct state for the operation.
 //
-//   * ErrCodeSecurityGroupLimitExceeded "SecurityGroupLimitExceeded"
+//   * SecurityGroupLimitExceeded
 //   Returned if the size of SecurityGroups specified in the request is greater
 //   than five.
 //
-//   * ErrCodeSecurityGroupNotFound "SecurityGroupNotFound"
+//   * SecurityGroupNotFound
 //   Returned if one of the specified security groups doesn't exist in the subnet's
 //   VPC.
 //
@@ -1470,19 +1470,19 @@ func (c *EFS) PutLifecycleConfigurationRequest(input *PutLifecycleConfigurationI
 // See the AWS API reference guide for Amazon Elastic File System's
 // API operation PutLifecycleConfiguration for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequest "BadRequest"
+// Returned Error Types:
+//   * BadRequest
 //   Returned if the request is malformed or contains an error such as an invalid
 //   parameter value or a missing required parameter.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Returned if an error occurred on the server side.
 //
-//   * ErrCodeFileSystemNotFound "FileSystemNotFound"
+//   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
 //   AWS account.
 //
-//   * ErrCodeIncorrectFileSystemLifeCycleState "IncorrectFileSystemLifeCycleState"
+//   * IncorrectFileSystemLifeCycleState
 //   Returned if the file system's lifecycle state is not "available".
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/PutLifecycleConfiguration
@@ -1561,33 +1561,33 @@ func (c *EFS) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 // See the AWS API reference guide for Amazon Elastic File System's
 // API operation UpdateFileSystem for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequest "BadRequest"
+// Returned Error Types:
+//   * BadRequest
 //   Returned if the request is malformed or contains an error such as an invalid
 //   parameter value or a missing required parameter.
 //
-//   * ErrCodeFileSystemNotFound "FileSystemNotFound"
+//   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
 //   AWS account.
 //
-//   * ErrCodeIncorrectFileSystemLifeCycleState "IncorrectFileSystemLifeCycleState"
+//   * IncorrectFileSystemLifeCycleState
 //   Returned if the file system's lifecycle state is not "available".
 //
-//   * ErrCodeInsufficientThroughputCapacity "InsufficientThroughputCapacity"
+//   * InsufficientThroughputCapacity
 //   Returned if there's not enough capacity to provision additional throughput.
 //   This value might be returned when you try to create a file system in provisioned
 //   throughput mode, when you attempt to increase the provisioned throughput
 //   of an existing file system, or when you attempt to change an existing file
 //   system from bursting to provisioned throughput mode.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Returned if an error occurred on the server side.
 //
-//   * ErrCodeThroughputLimitExceeded "ThroughputLimitExceeded"
+//   * ThroughputLimitExceeded
 //   Returned if the throughput mode or amount of provisioned throughput can't
 //   be changed because the throughput limit of 1024 MiB/s has been reached.
 //
-//   * ErrCodeTooManyRequests "TooManyRequests"
+//   * TooManyRequests
 //   Returned if you don’t wait at least 24 hours before changing the throughput
 //   mode, or decreasing the Provisioned Throughput value.
 //
@@ -1611,6 +1611,66 @@ func (c *EFS) UpdateFileSystemWithContext(ctx aws.Context, input *UpdateFileSyst
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// Returned if the request is malformed or contains an error such as an invalid
+// parameter value or a missing required parameter.
+type BadRequest struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// ErrorCode is a required field
+	ErrorCode *string `min:"1" type:"string" required:"true"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s BadRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BadRequest) GoString() string {
+	return s.String()
+}
+
+func newErrorBadRequest(v protocol.ResponseMetadata) error {
+	return &BadRequest{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s BadRequest) Code() string {
+	return "BadRequest"
+}
+
+// Message returns the exception's message.
+func (s BadRequest) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s BadRequest) OrigErr() error {
+	return nil
+}
+
+func (s BadRequest) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s BadRequest) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s BadRequest) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type CreateFileSystemInput struct {
@@ -2092,6 +2152,66 @@ func (s DeleteTagsOutput) GoString() string {
 	return s.String()
 }
 
+// The service timed out trying to fulfill the request, and the client should
+// try the call again.
+type DependencyTimeout struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// ErrorCode is a required field
+	ErrorCode *string `min:"1" type:"string" required:"true"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s DependencyTimeout) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DependencyTimeout) GoString() string {
+	return s.String()
+}
+
+func newErrorDependencyTimeout(v protocol.ResponseMetadata) error {
+	return &DependencyTimeout{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s DependencyTimeout) Code() string {
+	return "DependencyTimeout"
+}
+
+// Message returns the exception's message.
+func (s DependencyTimeout) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s DependencyTimeout) OrigErr() error {
+	return nil
+}
+
+func (s DependencyTimeout) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s DependencyTimeout) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s DependencyTimeout) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type DescribeFileSystemsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2565,6 +2685,69 @@ func (s *DescribeTagsOutput) SetTags(v []*Tag) *DescribeTagsOutput {
 	return s
 }
 
+// Returned if the file system you are trying to create already exists, with
+// the creation token you provided.
+type FileSystemAlreadyExists struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// ErrorCode is a required field
+	ErrorCode *string `min:"1" type:"string" required:"true"`
+
+	// FileSystemId is a required field
+	FileSystemId *string `type:"string" required:"true"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s FileSystemAlreadyExists) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FileSystemAlreadyExists) GoString() string {
+	return s.String()
+}
+
+func newErrorFileSystemAlreadyExists(v protocol.ResponseMetadata) error {
+	return &FileSystemAlreadyExists{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s FileSystemAlreadyExists) Code() string {
+	return "FileSystemAlreadyExists"
+}
+
+// Message returns the exception's message.
+func (s FileSystemAlreadyExists) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s FileSystemAlreadyExists) OrigErr() error {
+	return nil
+}
+
+func (s FileSystemAlreadyExists) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s FileSystemAlreadyExists) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s FileSystemAlreadyExists) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // A description of the file system.
 type FileSystemDescription struct {
 	_ struct{} `type:"structure"`
@@ -2747,6 +2930,185 @@ func (s *FileSystemDescription) SetThroughputMode(v string) *FileSystemDescripti
 	return s
 }
 
+// Returned if a file system has mount targets.
+type FileSystemInUse struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// ErrorCode is a required field
+	ErrorCode *string `min:"1" type:"string" required:"true"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s FileSystemInUse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FileSystemInUse) GoString() string {
+	return s.String()
+}
+
+func newErrorFileSystemInUse(v protocol.ResponseMetadata) error {
+	return &FileSystemInUse{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s FileSystemInUse) Code() string {
+	return "FileSystemInUse"
+}
+
+// Message returns the exception's message.
+func (s FileSystemInUse) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s FileSystemInUse) OrigErr() error {
+	return nil
+}
+
+func (s FileSystemInUse) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s FileSystemInUse) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s FileSystemInUse) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Returned if the AWS account has already created the maximum number of file
+// systems allowed per account.
+type FileSystemLimitExceeded struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// ErrorCode is a required field
+	ErrorCode *string `min:"1" type:"string" required:"true"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s FileSystemLimitExceeded) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FileSystemLimitExceeded) GoString() string {
+	return s.String()
+}
+
+func newErrorFileSystemLimitExceeded(v protocol.ResponseMetadata) error {
+	return &FileSystemLimitExceeded{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s FileSystemLimitExceeded) Code() string {
+	return "FileSystemLimitExceeded"
+}
+
+// Message returns the exception's message.
+func (s FileSystemLimitExceeded) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s FileSystemLimitExceeded) OrigErr() error {
+	return nil
+}
+
+func (s FileSystemLimitExceeded) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s FileSystemLimitExceeded) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s FileSystemLimitExceeded) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Returned if the specified FileSystemId value doesn't exist in the requester's
+// AWS account.
+type FileSystemNotFound struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// ErrorCode is a required field
+	ErrorCode *string `min:"1" type:"string" required:"true"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s FileSystemNotFound) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FileSystemNotFound) GoString() string {
+	return s.String()
+}
+
+func newErrorFileSystemNotFound(v protocol.ResponseMetadata) error {
+	return &FileSystemNotFound{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s FileSystemNotFound) Code() string {
+	return "FileSystemNotFound"
+}
+
+// Message returns the exception's message.
+func (s FileSystemNotFound) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s FileSystemNotFound) OrigErr() error {
+	return nil
+}
+
+func (s FileSystemNotFound) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s FileSystemNotFound) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s FileSystemNotFound) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // The latest known metered size (in bytes) of data stored in the file system,
 // in its Value field, and the time at which that size was determined in its
 // Timestamp field. The value doesn't represent the size of a consistent snapshot
@@ -2808,6 +3170,306 @@ func (s *FileSystemSize) SetValueInIA(v int64) *FileSystemSize {
 func (s *FileSystemSize) SetValueInStandard(v int64) *FileSystemSize {
 	s.ValueInStandard = &v
 	return s
+}
+
+// Returned if the file system's lifecycle state is not "available".
+type IncorrectFileSystemLifeCycleState struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// ErrorCode is a required field
+	ErrorCode *string `min:"1" type:"string" required:"true"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s IncorrectFileSystemLifeCycleState) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s IncorrectFileSystemLifeCycleState) GoString() string {
+	return s.String()
+}
+
+func newErrorIncorrectFileSystemLifeCycleState(v protocol.ResponseMetadata) error {
+	return &IncorrectFileSystemLifeCycleState{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s IncorrectFileSystemLifeCycleState) Code() string {
+	return "IncorrectFileSystemLifeCycleState"
+}
+
+// Message returns the exception's message.
+func (s IncorrectFileSystemLifeCycleState) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s IncorrectFileSystemLifeCycleState) OrigErr() error {
+	return nil
+}
+
+func (s IncorrectFileSystemLifeCycleState) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s IncorrectFileSystemLifeCycleState) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s IncorrectFileSystemLifeCycleState) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Returned if the mount target is not in the correct state for the operation.
+type IncorrectMountTargetState struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// ErrorCode is a required field
+	ErrorCode *string `min:"1" type:"string" required:"true"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s IncorrectMountTargetState) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s IncorrectMountTargetState) GoString() string {
+	return s.String()
+}
+
+func newErrorIncorrectMountTargetState(v protocol.ResponseMetadata) error {
+	return &IncorrectMountTargetState{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s IncorrectMountTargetState) Code() string {
+	return "IncorrectMountTargetState"
+}
+
+// Message returns the exception's message.
+func (s IncorrectMountTargetState) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s IncorrectMountTargetState) OrigErr() error {
+	return nil
+}
+
+func (s IncorrectMountTargetState) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s IncorrectMountTargetState) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s IncorrectMountTargetState) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Returned if there's not enough capacity to provision additional throughput.
+// This value might be returned when you try to create a file system in provisioned
+// throughput mode, when you attempt to increase the provisioned throughput
+// of an existing file system, or when you attempt to change an existing file
+// system from bursting to provisioned throughput mode.
+type InsufficientThroughputCapacity struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// ErrorCode is a required field
+	ErrorCode *string `min:"1" type:"string" required:"true"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InsufficientThroughputCapacity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InsufficientThroughputCapacity) GoString() string {
+	return s.String()
+}
+
+func newErrorInsufficientThroughputCapacity(v protocol.ResponseMetadata) error {
+	return &InsufficientThroughputCapacity{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InsufficientThroughputCapacity) Code() string {
+	return "InsufficientThroughputCapacity"
+}
+
+// Message returns the exception's message.
+func (s InsufficientThroughputCapacity) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InsufficientThroughputCapacity) OrigErr() error {
+	return nil
+}
+
+func (s InsufficientThroughputCapacity) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InsufficientThroughputCapacity) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InsufficientThroughputCapacity) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Returned if an error occurred on the server side.
+type InternalServerError struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// ErrorCode is a required field
+	ErrorCode *string `min:"1" type:"string" required:"true"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InternalServerError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternalServerError) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalServerError(v protocol.ResponseMetadata) error {
+	return &InternalServerError{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InternalServerError) Code() string {
+	return "InternalServerError"
+}
+
+// Message returns the exception's message.
+func (s InternalServerError) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InternalServerError) OrigErr() error {
+	return nil
+}
+
+func (s InternalServerError) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InternalServerError) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InternalServerError) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Returned if the request specified an IpAddress that is already in use in
+// the subnet.
+type IpAddressInUse struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// ErrorCode is a required field
+	ErrorCode *string `min:"1" type:"string" required:"true"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s IpAddressInUse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s IpAddressInUse) GoString() string {
+	return s.String()
+}
+
+func newErrorIpAddressInUse(v protocol.ResponseMetadata) error {
+	return &IpAddressInUse{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s IpAddressInUse) Code() string {
+	return "IpAddressInUse"
+}
+
+// Message returns the exception's message.
+func (s IpAddressInUse) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s IpAddressInUse) OrigErr() error {
+	return nil
+}
+
+func (s IpAddressInUse) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s IpAddressInUse) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s IpAddressInUse) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Describes a policy used by EFS lifecycle management to transition files to
@@ -2901,6 +3563,66 @@ func (s ModifyMountTargetSecurityGroupsOutput) GoString() string {
 	return s.String()
 }
 
+// Returned if the mount target would violate one of the specified restrictions
+// based on the file system's existing mount targets.
+type MountTargetConflict struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// ErrorCode is a required field
+	ErrorCode *string `min:"1" type:"string" required:"true"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s MountTargetConflict) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MountTargetConflict) GoString() string {
+	return s.String()
+}
+
+func newErrorMountTargetConflict(v protocol.ResponseMetadata) error {
+	return &MountTargetConflict{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s MountTargetConflict) Code() string {
+	return "MountTargetConflict"
+}
+
+// Message returns the exception's message.
+func (s MountTargetConflict) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s MountTargetConflict) OrigErr() error {
+	return nil
+}
+
+func (s MountTargetConflict) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s MountTargetConflict) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s MountTargetConflict) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // Provides a description of a mount target.
 type MountTargetDescription struct {
 	_ struct{} `type:"structure"`
@@ -2988,6 +3710,190 @@ func (s *MountTargetDescription) SetSubnetId(v string) *MountTargetDescription {
 	return s
 }
 
+// Returned if there is no mount target with the specified ID found in the caller's
+// account.
+type MountTargetNotFound struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// ErrorCode is a required field
+	ErrorCode *string `min:"1" type:"string" required:"true"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s MountTargetNotFound) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MountTargetNotFound) GoString() string {
+	return s.String()
+}
+
+func newErrorMountTargetNotFound(v protocol.ResponseMetadata) error {
+	return &MountTargetNotFound{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s MountTargetNotFound) Code() string {
+	return "MountTargetNotFound"
+}
+
+// Message returns the exception's message.
+func (s MountTargetNotFound) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s MountTargetNotFound) OrigErr() error {
+	return nil
+}
+
+func (s MountTargetNotFound) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s MountTargetNotFound) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s MountTargetNotFound) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The calling account has reached the limit for elastic network interfaces
+// for the specific AWS Region. The client should try to delete some elastic
+// network interfaces or get the account limit raised. For more information,
+// see Amazon VPC Limits (https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Appendix_Limits.html)
+// in the Amazon VPC User Guide (see the Network interfaces per VPC entry in
+// the table).
+type NetworkInterfaceLimitExceeded struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// ErrorCode is a required field
+	ErrorCode *string `min:"1" type:"string" required:"true"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s NetworkInterfaceLimitExceeded) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NetworkInterfaceLimitExceeded) GoString() string {
+	return s.String()
+}
+
+func newErrorNetworkInterfaceLimitExceeded(v protocol.ResponseMetadata) error {
+	return &NetworkInterfaceLimitExceeded{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s NetworkInterfaceLimitExceeded) Code() string {
+	return "NetworkInterfaceLimitExceeded"
+}
+
+// Message returns the exception's message.
+func (s NetworkInterfaceLimitExceeded) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s NetworkInterfaceLimitExceeded) OrigErr() error {
+	return nil
+}
+
+func (s NetworkInterfaceLimitExceeded) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s NetworkInterfaceLimitExceeded) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s NetworkInterfaceLimitExceeded) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Returned if IpAddress was not specified in the request and there are no free
+// IP addresses in the subnet.
+type NoFreeAddressesInSubnet struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// ErrorCode is a required field
+	ErrorCode *string `min:"1" type:"string" required:"true"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s NoFreeAddressesInSubnet) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NoFreeAddressesInSubnet) GoString() string {
+	return s.String()
+}
+
+func newErrorNoFreeAddressesInSubnet(v protocol.ResponseMetadata) error {
+	return &NoFreeAddressesInSubnet{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s NoFreeAddressesInSubnet) Code() string {
+	return "NoFreeAddressesInSubnet"
+}
+
+// Message returns the exception's message.
+func (s NoFreeAddressesInSubnet) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s NoFreeAddressesInSubnet) OrigErr() error {
+	return nil
+}
+
+func (s NoFreeAddressesInSubnet) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s NoFreeAddressesInSubnet) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s NoFreeAddressesInSubnet) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type PutLifecycleConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3071,6 +3977,185 @@ func (s *PutLifecycleConfigurationOutput) SetLifecyclePolicies(v []*LifecyclePol
 	return s
 }
 
+// Returned if the size of SecurityGroups specified in the request is greater
+// than five.
+type SecurityGroupLimitExceeded struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// ErrorCode is a required field
+	ErrorCode *string `min:"1" type:"string" required:"true"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s SecurityGroupLimitExceeded) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SecurityGroupLimitExceeded) GoString() string {
+	return s.String()
+}
+
+func newErrorSecurityGroupLimitExceeded(v protocol.ResponseMetadata) error {
+	return &SecurityGroupLimitExceeded{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s SecurityGroupLimitExceeded) Code() string {
+	return "SecurityGroupLimitExceeded"
+}
+
+// Message returns the exception's message.
+func (s SecurityGroupLimitExceeded) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s SecurityGroupLimitExceeded) OrigErr() error {
+	return nil
+}
+
+func (s SecurityGroupLimitExceeded) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s SecurityGroupLimitExceeded) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s SecurityGroupLimitExceeded) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Returned if one of the specified security groups doesn't exist in the subnet's
+// VPC.
+type SecurityGroupNotFound struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// ErrorCode is a required field
+	ErrorCode *string `min:"1" type:"string" required:"true"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s SecurityGroupNotFound) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SecurityGroupNotFound) GoString() string {
+	return s.String()
+}
+
+func newErrorSecurityGroupNotFound(v protocol.ResponseMetadata) error {
+	return &SecurityGroupNotFound{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s SecurityGroupNotFound) Code() string {
+	return "SecurityGroupNotFound"
+}
+
+// Message returns the exception's message.
+func (s SecurityGroupNotFound) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s SecurityGroupNotFound) OrigErr() error {
+	return nil
+}
+
+func (s SecurityGroupNotFound) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s SecurityGroupNotFound) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s SecurityGroupNotFound) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Returned if there is no subnet with ID SubnetId provided in the request.
+type SubnetNotFound struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// ErrorCode is a required field
+	ErrorCode *string `min:"1" type:"string" required:"true"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s SubnetNotFound) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SubnetNotFound) GoString() string {
+	return s.String()
+}
+
+func newErrorSubnetNotFound(v protocol.ResponseMetadata) error {
+	return &SubnetNotFound{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s SubnetNotFound) Code() string {
+	return "SubnetNotFound"
+}
+
+// Message returns the exception's message.
+func (s SubnetNotFound) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s SubnetNotFound) OrigErr() error {
+	return nil
+}
+
+func (s SubnetNotFound) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s SubnetNotFound) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s SubnetNotFound) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // A tag is a key-value pair. Allowed characters are letters, white space, and
 // numbers that can be represented in UTF-8, and the following characters:+
 // - = . _ : /
@@ -3127,6 +4212,184 @@ func (s *Tag) SetKey(v string) *Tag {
 func (s *Tag) SetValue(v string) *Tag {
 	s.Value = &v
 	return s
+}
+
+// Returned if the throughput mode or amount of provisioned throughput can't
+// be changed because the throughput limit of 1024 MiB/s has been reached.
+type ThroughputLimitExceeded struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// ErrorCode is a required field
+	ErrorCode *string `min:"1" type:"string" required:"true"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ThroughputLimitExceeded) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ThroughputLimitExceeded) GoString() string {
+	return s.String()
+}
+
+func newErrorThroughputLimitExceeded(v protocol.ResponseMetadata) error {
+	return &ThroughputLimitExceeded{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ThroughputLimitExceeded) Code() string {
+	return "ThroughputLimitExceeded"
+}
+
+// Message returns the exception's message.
+func (s ThroughputLimitExceeded) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ThroughputLimitExceeded) OrigErr() error {
+	return nil
+}
+
+func (s ThroughputLimitExceeded) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ThroughputLimitExceeded) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ThroughputLimitExceeded) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Returned if you don’t wait at least 24 hours before changing the throughput
+// mode, or decreasing the Provisioned Throughput value.
+type TooManyRequests struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// ErrorCode is a required field
+	ErrorCode *string `min:"1" type:"string" required:"true"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s TooManyRequests) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TooManyRequests) GoString() string {
+	return s.String()
+}
+
+func newErrorTooManyRequests(v protocol.ResponseMetadata) error {
+	return &TooManyRequests{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s TooManyRequests) Code() string {
+	return "TooManyRequests"
+}
+
+// Message returns the exception's message.
+func (s TooManyRequests) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s TooManyRequests) OrigErr() error {
+	return nil
+}
+
+func (s TooManyRequests) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s TooManyRequests) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s TooManyRequests) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+type UnsupportedAvailabilityZone struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// ErrorCode is a required field
+	ErrorCode *string `min:"1" type:"string" required:"true"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s UnsupportedAvailabilityZone) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UnsupportedAvailabilityZone) GoString() string {
+	return s.String()
+}
+
+func newErrorUnsupportedAvailabilityZone(v protocol.ResponseMetadata) error {
+	return &UnsupportedAvailabilityZone{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s UnsupportedAvailabilityZone) Code() string {
+	return "UnsupportedAvailabilityZone"
+}
+
+// Message returns the exception's message.
+func (s UnsupportedAvailabilityZone) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s UnsupportedAvailabilityZone) OrigErr() error {
+	return nil
+}
+
+func (s UnsupportedAvailabilityZone) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s UnsupportedAvailabilityZone) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s UnsupportedAvailabilityZone) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type UpdateFileSystemInput struct {

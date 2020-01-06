@@ -2,6 +2,10 @@
 
 package ebs
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeResourceNotFoundException for service response error code
@@ -16,3 +20,8 @@ const (
 	// The input fails to satisfy the constraints of the EBS direct APIs.
 	ErrCodeValidationException = "ValidationException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"ResourceNotFoundException": newErrorResourceNotFoundException,
+	"ValidationException":       newErrorValidationException,
+}

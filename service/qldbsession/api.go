@@ -8,6 +8,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
 const opSendCommand = "SendCommand"
@@ -63,22 +64,22 @@ func (c *QLDBSession) SendCommandRequest(input *SendCommandInput) (req *request.
 // See the AWS API reference guide for Amazon QLDB Session's
 // API operation SendCommand for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   Returned if the request is malformed or contains an error such as an invalid
 //   parameter value or a missing required parameter.
 //
-//   * ErrCodeInvalidSessionException "InvalidSessionException"
+//   * InvalidSessionException
 //   Returned if the session doesn't exist anymore because it timed-out or expired.
 //
-//   * ErrCodeOccConflictException "OccConflictException"
+//   * OccConflictException
 //   Returned when a transaction cannot be written to the journal due to a failure
 //   in the verification phase of Optimistic Concurrency Control.
 //
-//   * ErrCodeRateExceededException "RateExceededException"
+//   * RateExceededException
 //   Returned when the rate of requests exceeds the allowed throughput.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   Returned if a resource limit such as number of active sessions is exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/qldb-session-2019-07-11/SendCommand
@@ -131,6 +132,65 @@ func (s AbortTransactionResult) String() string {
 // GoString returns the string representation
 func (s AbortTransactionResult) GoString() string {
 	return s.String()
+}
+
+// Returned if the request is malformed or contains an error such as an invalid
+// parameter value or a missing required parameter.
+type BadRequestException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s BadRequestException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BadRequestException) GoString() string {
+	return s.String()
+}
+
+func newErrorBadRequestException(v protocol.ResponseMetadata) error {
+	return &BadRequestException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s BadRequestException) Code() string {
+	return "BadRequestException"
+}
+
+// Message returns the exception's message.
+func (s BadRequestException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s BadRequestException) OrigErr() error {
+	return nil
+}
+
+func (s BadRequestException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s BadRequestException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s BadRequestException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Contains the details of the transaction to commit.
@@ -444,6 +504,177 @@ func (s *FetchPageResult) SetPage(v *Page) *FetchPageResult {
 	return s
 }
 
+// Returned if the session doesn't exist anymore because it timed-out or expired.
+type InvalidSessionException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidSessionException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidSessionException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidSessionException(v protocol.ResponseMetadata) error {
+	return &InvalidSessionException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidSessionException) Code() string {
+	return "InvalidSessionException"
+}
+
+// Message returns the exception's message.
+func (s InvalidSessionException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidSessionException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidSessionException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidSessionException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidSessionException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Returned if a resource limit such as number of active sessions is exceeded.
+type LimitExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s LimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
+	return &LimitExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s LimitExceededException) Code() string {
+	return "LimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s LimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s LimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s LimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s LimitExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s LimitExceededException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Returned when a transaction cannot be written to the journal due to a failure
+// in the verification phase of Optimistic Concurrency Control.
+type OccConflictException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s OccConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OccConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorOccConflictException(v protocol.ResponseMetadata) error {
+	return &OccConflictException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s OccConflictException) Code() string {
+	return "OccConflictException"
+}
+
+// Message returns the exception's message.
+func (s OccConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s OccConflictException) OrigErr() error {
+	return nil
+}
+
+func (s OccConflictException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s OccConflictException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s OccConflictException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // Contains details of the fetched page.
 type Page struct {
 	_ struct{} `type:"structure"`
@@ -475,6 +706,62 @@ func (s *Page) SetNextPageToken(v string) *Page {
 func (s *Page) SetValues(v []*ValueHolder) *Page {
 	s.Values = v
 	return s
+}
+
+// Returned when the rate of requests exceeds the allowed throughput.
+type RateExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s RateExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RateExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorRateExceededException(v protocol.ResponseMetadata) error {
+	return &RateExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s RateExceededException) Code() string {
+	return "RateExceededException"
+}
+
+// Message returns the exception's message.
+func (s RateExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s RateExceededException) OrigErr() error {
+	return nil
+}
+
+func (s RateExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s RateExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s RateExceededException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type SendCommandInput struct {

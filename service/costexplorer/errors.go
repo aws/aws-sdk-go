@@ -2,6 +2,10 @@
 
 package costexplorer
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeBillExpirationException for service response error code
@@ -55,3 +59,14 @@ const (
 	// filter selections that contain matching units, for example: hours.
 	ErrCodeUnresolvableUsageUnitException = "UnresolvableUsageUnitException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"BillExpirationException":        newErrorBillExpirationException,
+	"DataUnavailableException":       newErrorDataUnavailableException,
+	"InvalidNextTokenException":      newErrorInvalidNextTokenException,
+	"LimitExceededException":         newErrorLimitExceededException,
+	"RequestChangedException":        newErrorRequestChangedException,
+	"ResourceNotFoundException":      newErrorResourceNotFoundException,
+	"ServiceQuotaExceededException":  newErrorServiceQuotaExceededException,
+	"UnresolvableUsageUnitException": newErrorUnresolvableUsageUnitException,
+}
