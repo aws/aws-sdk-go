@@ -5398,9 +5398,6 @@ type InputService24TestShapeInputService24TestCaseOperation1Input struct {
 
 	Header1 *string `location:"header" type:"string"`
 
-	// By default keys received from the service api response will be formatted
-	// using net/http.CanonicalHeaderKey.
-	// Set aws.Config.LowerCaseHeaderMaps to `true` to lower case keys.
 	HeaderMap map[string]*string `location:"headers" locationName:"header-map-" type:"map"`
 }
 
