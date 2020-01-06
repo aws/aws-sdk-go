@@ -165,9 +165,11 @@ type Config struct {
 	// in the ARN, when an ARN is provided as an argument to a bucket parameter.
 	S3UseARNRegion *bool
 
-	// Set this to `true` to have header names normalized in API responses.
-	// This settings affects S3 x-amz-meta headers, and normalizes the key names
-	// to lower case.
+	// Set this to `true` to enable the SDK to unmarshal API response header maps to
+	// normalized lower case map keys.
+	//
+	// For example S3's X-Amz-Meta prefixed header will be unmarshaled to lower case
+	// Metadata member's map keys. The value of the header in the map is unaffected.
 	LowerCaseHeaderMaps *bool
 
 	// Set this to `true` to disable the EC2Metadata client from overriding the
