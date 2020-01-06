@@ -588,6 +588,23 @@
       ],
       "type": "string"
     },
+    "Authorization": {
+      "members": {
+        "CdnIdentifierSecret": {
+          "locationName": "cdnIdentifierSecret",
+          "shape": "__string"
+        },
+        "SecretsRoleArn": {
+          "locationName": "secretsRoleArn",
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "SecretsRoleArn",
+        "CdnIdentifierSecret"
+      ],
+      "type": "structure"
+    },
     "Channel": {
       "members": {
         "Arn": {
@@ -841,6 +858,10 @@
     },
     "CreateOriginEndpointRequest": {
       "members": {
+        "Authorization": {
+          "locationName": "authorization",
+          "shape": "Authorization"
+        },
         "ChannelId": {
           "locationName": "channelId",
           "shape": "__string"
@@ -905,6 +926,10 @@
         "Arn": {
           "locationName": "arn",
           "shape": "__string"
+        },
+        "Authorization": {
+          "locationName": "authorization",
+          "shape": "Authorization"
         },
         "ChannelId": {
           "locationName": "channelId",
@@ -1182,6 +1207,10 @@
         "Arn": {
           "locationName": "arn",
           "shape": "__string"
+        },
+        "Authorization": {
+          "locationName": "authorization",
+          "shape": "Authorization"
         },
         "ChannelId": {
           "locationName": "channelId",
@@ -1737,6 +1766,10 @@
           "locationName": "arn",
           "shape": "__string"
         },
+        "Authorization": {
+          "locationName": "authorization",
+          "shape": "Authorization"
+        },
         "ChannelId": {
           "locationName": "channelId",
           "shape": "__string"
@@ -1798,6 +1831,10 @@
     },
     "OriginEndpointCreateParameters": {
       "members": {
+        "Authorization": {
+          "locationName": "authorization",
+          "shape": "Authorization"
+        },
         "ChannelId": {
           "locationName": "channelId",
           "shape": "__string"
@@ -1852,8 +1889,8 @@
         }
       },
       "required": [
-        "Id",
-        "ChannelId"
+        "ChannelId",
+        "Id"
       ],
       "type": "structure"
     },
@@ -1872,6 +1909,10 @@
     },
     "OriginEndpointUpdateParameters": {
       "members": {
+        "Authorization": {
+          "locationName": "authorization",
+          "shape": "Authorization"
+        },
         "CmafPackage": {
           "locationName": "cmafPackage",
           "shape": "CmafPackageCreateOrUpdateParameters"
@@ -2256,6 +2297,10 @@
     },
     "UpdateOriginEndpointRequest": {
       "members": {
+        "Authorization": {
+          "locationName": "authorization",
+          "shape": "Authorization"
+        },
         "CmafPackage": {
           "locationName": "cmafPackage",
           "shape": "CmafPackageCreateOrUpdateParameters"
@@ -2312,6 +2357,10 @@
         "Arn": {
           "locationName": "arn",
           "shape": "__string"
+        },
+        "Authorization": {
+          "locationName": "authorization",
+          "shape": "Authorization"
         },
         "ChannelId": {
           "locationName": "channelId",

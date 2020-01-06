@@ -46,6 +46,14 @@
         "HlsPackage$AdsOnDeliveryRestrictions" : null
       }
     },
+    "Authorization" : {
+      "base" : "CDN Authorization credentials",
+      "refs" : {
+        "OriginEndpoint$Authorization" : null,
+        "OriginEndpointCreateParameters$Authorization" : null,
+        "OriginEndpointUpdateParameters$Authorization" : null
+      }
+    },
     "Channel" : {
       "base" : "A Channel resource configuration.",
       "refs" : {
@@ -387,6 +395,8 @@
     "__string" : {
       "base" : null,
       "refs" : {
+        "Authorization$CdnIdentifierSecret" : "The Amazon Resource Name (ARN) for the secret in Secrets Manager that your Content Distribution Network (CDN) uses for authorization to access your endpoint.\n",
+        "Authorization$SecretsRoleArn" : "The Amazon Resource Name (ARN) for the IAM role that allows MediaPackage to communicate with AWS Secrets Manager.\n",
         "Channel$Arn" : "The Amazon Resource Name (ARN) assigned to the Channel.",
         "Channel$Description" : "A short text description of the Channel.",
         "Channel$Id" : "The ID of the Channel.",

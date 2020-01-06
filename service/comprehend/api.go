@@ -5973,6 +5973,32 @@ type ClassifierEvaluationMetrics struct {
 	// 0.
 	F1Score *float64 `type:"double"`
 
+	// Indicates the fraction of labels that are incorrectly predicted. Also seen
+	// as the fraction of wrong labels compared to the total number of labels. Scores
+	// closer to zero are better.
+	HammingLoss *float64 `type:"double"`
+
+	// A measure of how accurate the classifier results are for the test data. It
+	// is a combination of the Micro Precision and Micro Recall values. The Micro
+	// F1Score is the harmonic mean of the two scores. The highest score is 1, and
+	// the worst score is 0.
+	MicroF1Score *float64 `type:"double"`
+
+	// A measure of the usefulness of the recognizer results in the test data. High
+	// precision means that the recognizer returned substantially more relevant
+	// results than irrelevant ones. Unlike the Precision metric which comes from
+	// averaging the precision of all available labels, this is based on the overall
+	// score of all precision scores added together.
+	MicroPrecision *float64 `type:"double"`
+
+	// A measure of how complete the classifier results are for the test data. High
+	// recall means that the classifier returned most of the relevant results. Specifically,
+	// this indicates how many of the correct categories in the text that the model
+	// can predict. It is a percentage of correct categories in the text that can
+	// found. Instead of averaging the recall scores of all labels (as with Recall),
+	// micro Recall is based on the overall score of all recall scores added together.
+	MicroRecall *float64 `type:"double"`
+
 	// A measure of the usefulness of the classifier results in the test data. High
 	// precision means that the classifier returned substantially more relevant
 	// results than irrelevant ones.
@@ -6002,6 +6028,30 @@ func (s *ClassifierEvaluationMetrics) SetAccuracy(v float64) *ClassifierEvaluati
 // SetF1Score sets the F1Score field's value.
 func (s *ClassifierEvaluationMetrics) SetF1Score(v float64) *ClassifierEvaluationMetrics {
 	s.F1Score = &v
+	return s
+}
+
+// SetHammingLoss sets the HammingLoss field's value.
+func (s *ClassifierEvaluationMetrics) SetHammingLoss(v float64) *ClassifierEvaluationMetrics {
+	s.HammingLoss = &v
+	return s
+}
+
+// SetMicroF1Score sets the MicroF1Score field's value.
+func (s *ClassifierEvaluationMetrics) SetMicroF1Score(v float64) *ClassifierEvaluationMetrics {
+	s.MicroF1Score = &v
+	return s
+}
+
+// SetMicroPrecision sets the MicroPrecision field's value.
+func (s *ClassifierEvaluationMetrics) SetMicroPrecision(v float64) *ClassifierEvaluationMetrics {
+	s.MicroPrecision = &v
+	return s
+}
+
+// SetMicroRecall sets the MicroRecall field's value.
+func (s *ClassifierEvaluationMetrics) SetMicroRecall(v float64) *ClassifierEvaluationMetrics {
+	s.MicroRecall = &v
 	return s
 }
 
@@ -6134,6 +6184,13 @@ type ClassifyDocumentOutput struct {
 	// is expected to have only a single class assigned to it. For example, an animal
 	// can be a dog or a cat, but not both at the same time.
 	Classes []*DocumentClass `type:"list"`
+
+	// The labels used the document being analyzed. These are used for multi-label
+	// trained models. Individual labels represent different categories that are
+	// related in some manner and are not multually exclusive. For example, a movie
+	// can be just an action movie, or it can be an action movie, a science fiction
+	// movie, and a comedy, all at the same time.
+	Labels []*DocumentLabel `type:"list"`
 }
 
 // String returns the string representation
@@ -6149,6 +6206,12 @@ func (s ClassifyDocumentOutput) GoString() string {
 // SetClasses sets the Classes field's value.
 func (s *ClassifyDocumentOutput) SetClasses(v []*DocumentClass) *ClassifyDocumentOutput {
 	s.Classes = v
+	return s
+}
+
+// SetLabels sets the Labels field's value.
+func (s *ClassifyDocumentOutput) SetLabels(v []*DocumentLabel) *ClassifyDocumentOutput {
+	s.Labels = v
 	return s
 }
 
@@ -6182,6 +6245,14 @@ type CreateDocumentClassifierInput struct {
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
+
+	// Indicates the mode in which the classifier will be trained. The classifier
+	// can be trained in multi-class mode, which identifies one and only one class
+	// for each document, or multi-label mode, which identifies one or more labels
+	// for each document. In multi-label mode, multiple labels for an individual
+	// document are separated by a delimiter. The default delimiter between labels
+	// is a pipe (|).
+	Mode *string `type:"string" enum:"DocumentClassifierMode"`
 
 	// Enables the addition of output results configuration parameters for custom
 	// classifier jobs.
@@ -6294,6 +6365,12 @@ func (s *CreateDocumentClassifierInput) SetInputDataConfig(v *DocumentClassifier
 // SetLanguageCode sets the LanguageCode field's value.
 func (s *CreateDocumentClassifierInput) SetLanguageCode(v string) *CreateDocumentClassifierInput {
 	s.LanguageCode = &v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *CreateDocumentClassifierInput) SetMode(v string) *CreateDocumentClassifierInput {
+	s.Mode = &v
 	return s
 }
 
@@ -8095,6 +8172,14 @@ func (s *DocumentClassifierFilter) SetSubmitTimeBefore(v time.Time) *DocumentCla
 type DocumentClassifierInputDataConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates the delimiter used to separate each label for training a multi-label
+	// classifier. The default delimiter between labels is a pipe (|). You can use
+	// a different character as a delimiter (if it's an allowed character) by specifying
+	// it under Delimiter for labels. If the training documents use a delimiter
+	// other than the default or the delimiter you specify, the labels on that line
+	// will be combined to make a single unique label, such as LABELLABELLABEL.
+	LabelDelimiter *string `min:"1" type:"string"`
+
 	// The Amazon S3 URI for the input data. The S3 bucket must be in the same region
 	// as the API endpoint that you are calling. The URI can point to a single input
 	// file or it can provide the prefix for a collection of input files.
@@ -8120,6 +8205,9 @@ func (s DocumentClassifierInputDataConfig) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DocumentClassifierInputDataConfig) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DocumentClassifierInputDataConfig"}
+	if s.LabelDelimiter != nil && len(*s.LabelDelimiter) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LabelDelimiter", 1))
+	}
 	if s.S3Uri == nil {
 		invalidParams.Add(request.NewErrParamRequired("S3Uri"))
 	}
@@ -8128,6 +8216,12 @@ func (s *DocumentClassifierInputDataConfig) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetLabelDelimiter sets the LabelDelimiter field's value.
+func (s *DocumentClassifierInputDataConfig) SetLabelDelimiter(v string) *DocumentClassifierInputDataConfig {
+	s.LabelDelimiter = &v
+	return s
 }
 
 // SetS3Uri sets the S3Uri field's value.
@@ -8218,6 +8312,12 @@ type DocumentClassifierProperties struct {
 	// Additional information about the status of the classifier.
 	Message *string `type:"string"`
 
+	// Indicates the mode in which the specific classifier was trained. This also
+	// indicates the format of input documents and the format of the confusion matrix.
+	// Each classifier can only be trained in one mode and this cannot be changed
+	// once the classifier is trained.
+	Mode *string `type:"string" enum:"DocumentClassifierMode"`
+
 	// Provides output results configuration parameters for custom classifier jobs.
 	OutputDataConfig *DocumentClassifierOutputDataConfig `type:"structure"`
 
@@ -8306,6 +8406,12 @@ func (s *DocumentClassifierProperties) SetMessage(v string) *DocumentClassifierP
 	return s
 }
 
+// SetMode sets the Mode field's value.
+func (s *DocumentClassifierProperties) SetMode(v string) *DocumentClassifierProperties {
+	s.Mode = &v
+	return s
+}
+
 // SetOutputDataConfig sets the OutputDataConfig field's value.
 func (s *DocumentClassifierProperties) SetOutputDataConfig(v *DocumentClassifierOutputDataConfig) *DocumentClassifierProperties {
 	s.OutputDataConfig = v
@@ -8345,6 +8451,39 @@ func (s *DocumentClassifierProperties) SetVolumeKmsKeyId(v string) *DocumentClas
 // SetVpcConfig sets the VpcConfig field's value.
 func (s *DocumentClassifierProperties) SetVpcConfig(v *VpcConfig) *DocumentClassifierProperties {
 	s.VpcConfig = v
+	return s
+}
+
+// Specifies one of the label or labels that categorize the document being analyzed.
+type DocumentLabel struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the label.
+	Name *string `min:"1" type:"string"`
+
+	// The confidence score that Amazon Comprehend has this label correctly attributed.
+	Score *float64 `type:"float"`
+}
+
+// String returns the string representation
+func (s DocumentLabel) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DocumentLabel) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *DocumentLabel) SetName(v string) *DocumentLabel {
+	s.Name = &v
+	return s
+}
+
+// SetScore sets the Score field's value.
+func (s *DocumentLabel) SetScore(v float64) *DocumentLabel {
+	s.Score = &v
 	return s
 }
 
@@ -13470,6 +13609,14 @@ func (s *VpcConfig) SetSubnets(v []*string) *VpcConfig {
 	s.Subnets = v
 	return s
 }
+
+const (
+	// DocumentClassifierModeMultiClass is a DocumentClassifierMode enum value
+	DocumentClassifierModeMultiClass = "MULTI_CLASS"
+
+	// DocumentClassifierModeMultiLabel is a DocumentClassifierMode enum value
+	DocumentClassifierModeMultiLabel = "MULTI_LABEL"
+)
 
 const (
 	// EndpointStatusCreating is a EndpointStatus enum value
