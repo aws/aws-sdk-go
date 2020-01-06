@@ -120,7 +120,7 @@ var eventStreamWriterTestTmpl = template.Must(
 		}
 
 		defer resp.GetStream().Close()
-		{{ $eventShape = index $.InputStream.Events 0 }}
+		{{ $eventShape := index $.InputStream.Events 0 }}
 		for {
 			err = resp.GetStream().Send(context.Background(), &{{ $eventShape.Shape.ShapeName }}{})
 			if err != nil {
