@@ -310,7 +310,7 @@ func (e *Encoder) encodeStruct(av *dynamodb.AttributeValue, v reflect.Value, fie
 
 	av.M = map[string]*dynamodb.AttributeValue{}
 	fields := unionStructFields(v.Type(), e.MarshalOptions)
-	for _, f := range fields {
+	for _, f := range fields.All() {
 		if f.Name == "" {
 			return &InvalidMarshalError{msg: "map key cannot be empty"}
 		}

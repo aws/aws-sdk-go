@@ -3,6 +3,7 @@ package dynamodbattribute
 import (
 	"math"
 	"reflect"
+	"sync"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -555,6 +556,8 @@ func compareObjects(t *testing.T, expected interface{}, actual interface{}) {
 }
 
 func BenchmarkMarshal(b *testing.B) {
+	clearCache := func() { fieldCache = sync.Map{} }
+
 	simple := simpleMarshalStruct{
 		String:  "abc",
 		Int:     123,
@@ -565,6 +568,8 @@ func BenchmarkMarshal(b *testing.B) {
 		Null:    nil,
 	}
 	b.Run("one composite member", func(b *testing.B) {
+		clearCache()
+
 		type MyCompositeStruct struct {
 			A simpleMarshalStruct `dynamodbav:"a"`
 		}
@@ -580,6 +585,8 @@ func BenchmarkMarshal(b *testing.B) {
 	})
 
 	b.Run("two composite members", func(b *testing.B) {
+		clearCache()
+
 		type MyCompositeStruct struct {
 			A simpleMarshalStruct `dynamodbav:"a"`
 			B simpleMarshalStruct `dynamodbav:"b"`
@@ -598,6 +605,8 @@ func BenchmarkMarshal(b *testing.B) {
 }
 
 func BenchmarkUnmarshal(b *testing.B) {
+	clearCache := func() { fieldCache = sync.Map{} }
+
 	myStructAVMap, _ := Marshal(simpleMarshalStruct{
 		String:  "abc",
 		Int:     123,
@@ -609,6 +618,8 @@ func BenchmarkUnmarshal(b *testing.B) {
 	})
 
 	b.Run("one composite member", func(b *testing.B) {
+		clearCache()
+
 		type MyCompositeStructOne struct {
 			A simpleMarshalStruct `dynamodbav:"a"`
 		}
@@ -626,6 +637,8 @@ func BenchmarkUnmarshal(b *testing.B) {
 	})
 
 	b.Run("two composite members", func(b *testing.B) {
+		clearCache()
+
 		type MyCompositeStructTwo struct {
 			A simpleMarshalStruct `dynamodbav:"a"`
 			B simpleMarshalStruct `dynamodbav:"b"`

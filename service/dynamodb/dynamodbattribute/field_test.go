@@ -73,7 +73,7 @@ func TestUnionStructFields(t *testing.T) {
 		v := reflect.ValueOf(c.in)
 
 		fields := unionStructFields(v.Type(), MarshalOptions{SupportJSONTags: true})
-		for j, f := range fields {
+		for j, f := range fields.All() {
 			expected := c.expect[j]
 			if e, a := expected.Name, f.Name; e != a {
 				t.Errorf("%d:%d expect %v, got %v", i, j, e, f)
@@ -86,31 +86,47 @@ func TestUnionStructFields(t *testing.T) {
 	}
 }
 
-func TestFieldByName(t *testing.T) {
-	fields := []field{
-		{Name: "Abc"}, {Name: "mixCase"}, {Name: "UPPERCASE"},
+func TestCachedFields(t *testing.T) {
+	type myStruct struct {
+		Dog  int
+		CAT  string
+		bird bool
 	}
 
-	cases := []struct {
-		Name, FieldName string
-		Found           bool
-	}{
-		{"abc", "Abc", true}, {"ABC", "Abc", true}, {"Abc", "Abc", true},
-		{"123", "", false},
-		{"ab", "", false},
-		{"MixCase", "mixCase", true},
-		{"uppercase", "UPPERCASE", true}, {"UPPERCASE", "UPPERCASE", true},
-	}
+	fields := unionStructFields(reflect.TypeOf(myStruct{}), MarshalOptions{})
 
-	for _, c := range cases {
-		f, ok := fieldByName(fields, c.Name)
-		if e, a := c.Found, ok; e != a {
-			t.Errorf("expect %v, got %v", e, a)
+	t.Run("all fields", func(t *testing.T) {
+		const expectedNumFields = 2
+		if numFields := len(fields.All()); numFields != expectedNumFields {
+			t.Errorf("expected number of fields to be %d but got %d", expectedNumFields, numFields)
 		}
-		if ok {
-			if e, a := c.FieldName, f.Name; e != a {
-				t.Errorf("expect %v, got %v", e, a)
+	})
+
+	t.Run("fields by name", func(t *testing.T) {
+		cases := []struct {
+			Name      string
+			FieldName string
+			Found     bool
+		}{
+			{"Dog", "Dog", true},
+			{"dog", "Dog", true},
+			{"DOG", "Dog", true},
+			{"Yorkie", "", false},
+			{"Cat", "CAT", true},
+			{"cat", "CAT", true},
+			{"CAT", "CAT", true},
+			{"tiger", "", false},
+			{"bird", "", false},
+		}
+
+		for _, c := range cases {
+			f, found := fields.FieldByName(c.Name)
+			if found != c.Found {
+				t.Errorf("expected found to be %v but got %v", c.Found, found)
+			}
+			if found && f.Name != c.FieldName {
+				t.Errorf("expected field name to be %s but got %s", c.FieldName, f.Name)
 			}
 		}
-	}
+	})
 }

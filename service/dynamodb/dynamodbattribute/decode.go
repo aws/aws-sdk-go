@@ -500,7 +500,7 @@ func (d *Decoder) decodeMap(avMap map[string]*dynamodb.AttributeValue, v reflect
 	} else if v.Kind() == reflect.Struct {
 		fields := unionStructFields(v.Type(), d.MarshalOptions)
 		for k, av := range avMap {
-			if f, ok := fieldByName(fields, k); ok {
+			if f, ok := fields.FieldByName(k); ok {
 				fv := fieldByIndex(v, f.Index, func(v *reflect.Value) bool {
 					v.Set(reflect.New(v.Type().Elem()))
 					return true // to continue the loop.
