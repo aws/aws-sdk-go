@@ -95,38 +95,34 @@ func TestCachedFields(t *testing.T) {
 
 	fields := unionStructFields(reflect.TypeOf(myStruct{}), MarshalOptions{})
 
-	t.Run("all fields", func(t *testing.T) {
-		const expectedNumFields = 2
-		if numFields := len(fields.All()); numFields != expectedNumFields {
-			t.Errorf("expected number of fields to be %d but got %d", expectedNumFields, numFields)
-		}
-	})
+	const expectedNumFields = 2
+	if numFields := len(fields.All()); numFields != expectedNumFields {
+		t.Errorf("expected number of fields to be %d but got %d", expectedNumFields, numFields)
+	}
 
-	t.Run("fields by name", func(t *testing.T) {
-		cases := []struct {
-			Name      string
-			FieldName string
-			Found     bool
-		}{
-			{"Dog", "Dog", true},
-			{"dog", "Dog", true},
-			{"DOG", "Dog", true},
-			{"Yorkie", "", false},
-			{"Cat", "CAT", true},
-			{"cat", "CAT", true},
-			{"CAT", "CAT", true},
-			{"tiger", "", false},
-			{"bird", "", false},
-		}
+	cases := []struct {
+		Name      string
+		FieldName string
+		Found     bool
+	}{
+		{"Dog", "Dog", true},
+		{"dog", "Dog", true},
+		{"DOG", "Dog", true},
+		{"Yorkie", "", false},
+		{"Cat", "CAT", true},
+		{"cat", "CAT", true},
+		{"CAT", "CAT", true},
+		{"tiger", "", false},
+		{"bird", "", false},
+	}
 
-		for _, c := range cases {
-			f, found := fields.FieldByName(c.Name)
-			if found != c.Found {
-				t.Errorf("expected found to be %v but got %v", c.Found, found)
-			}
-			if found && f.Name != c.FieldName {
-				t.Errorf("expected field name to be %s but got %s", c.FieldName, f.Name)
-			}
+	for _, c := range cases {
+		f, found := fields.FieldByName(c.Name)
+		if found != c.Found {
+			t.Errorf("expected found to be %v but got %v", c.Found, found)
 		}
-	})
+		if found && f.Name != c.FieldName {
+			t.Errorf("expected field name to be %s but got %s", c.FieldName, f.Name)
+		}
+	}
 }
