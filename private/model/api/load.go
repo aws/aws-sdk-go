@@ -225,6 +225,8 @@ func (a *API) Setup() error {
 		return err
 	}
 
+	a.addHeaderMapDocumentation()
+
 	if !a.NoRemoveUnusedShapes {
 		a.removeUnusedShapes()
 	}

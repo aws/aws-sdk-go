@@ -951,6 +951,29 @@ func (a *API) writeInputOutputLocationName() {
 	}
 }
 
+func (a *API) addHeaderMapDocumentation() {
+	for _, shape := range a.Shapes {
+		if !shape.UsedAsOutput {
+			continue
+		}
+		for _, shapeRef := range shape.MemberRefs {
+			if shapeRef.Location == "headers" {
+				if dLen := len(shapeRef.Documentation); dLen > 0 {
+					if shapeRef.Documentation[dLen-1] != '\n' {
+						shapeRef.Documentation += "\n"
+					}
+					shapeRef.Documentation += "//"
+				}
+				shapeRef.Documentation += `
+// By default unmarshaled keys are written as a map keys in following canonicalized format:
+// the first letter and any letter following a hyphen will be capitalized, and the rest as lowercase.
+// Set ` + "`aws.Config.LowerCaseHeaderMaps`" + ` to ` + "`true`" + ` to write unmarshaled keys to the map as lowercase.
+`
+			}
+		}
+	}
+}
+
 func getDeprecatedMessage(msg string, name string) string {
 	if len(msg) == 0 {
 		return name + " has been deprecated"
