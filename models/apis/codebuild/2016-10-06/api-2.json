@@ -1676,6 +1676,7 @@
         "privilegedModeOverride":{"shape":"WrapperBoolean"},
         "timeoutInMinutesOverride":{"shape":"TimeOut"},
         "queuedTimeoutInMinutesOverride":{"shape":"TimeOut"},
+        "encryptionKeyOverride":{"shape":"NonEmptyString"},
         "idempotencyToken":{"shape":"String"},
         "logsConfigOverride":{"shape":"LogsConfig"},
         "registryCredentialOverride":{"shape":"RegistryCredential"},

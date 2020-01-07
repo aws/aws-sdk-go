@@ -1037,6 +1037,160 @@ func (c *MigrationHub) ImportMigrationTaskWithContext(ctx aws.Context, input *Im
 	return out, req.Send()
 }
 
+const opListApplicationStates = "ListApplicationStates"
+
+// ListApplicationStatesRequest generates a "aws/request.Request" representing the
+// client's request for the ListApplicationStates operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListApplicationStates for more information on using the ListApplicationStates
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListApplicationStatesRequest method.
+//    req, resp := client.ListApplicationStatesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/ListApplicationStates
+func (c *MigrationHub) ListApplicationStatesRequest(input *ListApplicationStatesInput) (req *request.Request, output *ListApplicationStatesOutput) {
+	op := &request.Operation{
+		Name:       opListApplicationStates,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListApplicationStatesInput{}
+	}
+
+	output = &ListApplicationStatesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListApplicationStates API operation for AWS Migration Hub.
+//
+// Lists all the migration statuses for your applications. If you use the optional
+// ApplicationIds parameter, only the migration statuses for those applications
+// will be returned.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Migration Hub's
+// API operation ListApplicationStates for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   You do not have sufficient access to perform this action.
+//
+//   * ErrCodeInternalServerError "InternalServerError"
+//   Exception raised when an internal, configuration, or dependency error is
+//   encountered.
+//
+//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   Exception raised when there is an internal, configuration, or dependency
+//   error encountered.
+//
+//   * ErrCodeInvalidInputException "InvalidInputException"
+//   Exception raised when the provided input violates a policy constraint or
+//   is entered in the wrong format or data type.
+//
+//   * ErrCodeHomeRegionNotSetException "HomeRegionNotSetException"
+//   The home region is not set. Set the home region to continue.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWSMigrationHub-2017-05-31/ListApplicationStates
+func (c *MigrationHub) ListApplicationStates(input *ListApplicationStatesInput) (*ListApplicationStatesOutput, error) {
+	req, out := c.ListApplicationStatesRequest(input)
+	return out, req.Send()
+}
+
+// ListApplicationStatesWithContext is the same as ListApplicationStates with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListApplicationStates for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MigrationHub) ListApplicationStatesWithContext(ctx aws.Context, input *ListApplicationStatesInput, opts ...request.Option) (*ListApplicationStatesOutput, error) {
+	req, out := c.ListApplicationStatesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListApplicationStatesPages iterates over the pages of a ListApplicationStates operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListApplicationStates method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListApplicationStates operation.
+//    pageNum := 0
+//    err := client.ListApplicationStatesPages(params,
+//        func(page *migrationhub.ListApplicationStatesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *MigrationHub) ListApplicationStatesPages(input *ListApplicationStatesInput, fn func(*ListApplicationStatesOutput, bool) bool) error {
+	return c.ListApplicationStatesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListApplicationStatesPagesWithContext same as ListApplicationStatesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MigrationHub) ListApplicationStatesPagesWithContext(ctx aws.Context, input *ListApplicationStatesInput, fn func(*ListApplicationStatesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListApplicationStatesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListApplicationStatesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListApplicationStatesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListCreatedArtifacts = "ListCreatedArtifacts"
 
 // ListCreatedArtifactsRequest generates a "aws/request.Request" representing the
@@ -2044,6 +2198,50 @@ func (c *MigrationHub) PutResourceAttributesWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+// The state of an application discovered through Migration Hub import, the
+// AWS Agentless Discovery Connector, or the AWS Application Discovery Agent.
+type ApplicationState struct {
+	_ struct{} `type:"structure"`
+
+	// The configurationId from the Application Discovery Service that uniquely
+	// identifies an application.
+	ApplicationId *string `min:"1" type:"string"`
+
+	// The current status of an application.
+	ApplicationStatus *string `type:"string" enum:"ApplicationStatus"`
+
+	// The timestamp when the application status was last updated.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s ApplicationState) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ApplicationState) GoString() string {
+	return s.String()
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *ApplicationState) SetApplicationId(v string) *ApplicationState {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetApplicationStatus sets the ApplicationStatus field's value.
+func (s *ApplicationState) SetApplicationStatus(v string) *ApplicationState {
+	s.ApplicationStatus = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *ApplicationState) SetLastUpdatedTime(v time.Time) *ApplicationState {
+	s.LastUpdatedTime = &v
+	return s
+}
+
 type AssociateCreatedArtifactInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2925,6 +3123,100 @@ func (s ImportMigrationTaskOutput) String() string {
 // GoString returns the string representation
 func (s ImportMigrationTaskOutput) GoString() string {
 	return s.String()
+}
+
+type ListApplicationStatesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The configurationIds from the Application Discovery Service that uniquely
+	// identifies your applications.
+	ApplicationIds []*string `min:"1" type:"list"`
+
+	// Maximum number of results to be returned per page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// If a NextToken was returned by a previous call, there are more results available.
+	// To retrieve the next page of results, make the call again using the returned
+	// token in NextToken.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListApplicationStatesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListApplicationStatesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListApplicationStatesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListApplicationStatesInput"}
+	if s.ApplicationIds != nil && len(s.ApplicationIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationIds", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationIds sets the ApplicationIds field's value.
+func (s *ListApplicationStatesInput) SetApplicationIds(v []*string) *ListApplicationStatesInput {
+	s.ApplicationIds = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListApplicationStatesInput) SetMaxResults(v int64) *ListApplicationStatesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListApplicationStatesInput) SetNextToken(v string) *ListApplicationStatesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListApplicationStatesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of Applications that exist in Application Discovery Service.
+	ApplicationStateList []*ApplicationState `type:"list"`
+
+	// If a NextToken was returned by a previous call, there are more results available.
+	// To retrieve the next page of results, make the call again using the returned
+	// token in NextToken.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListApplicationStatesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListApplicationStatesOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplicationStateList sets the ApplicationStateList field's value.
+func (s *ListApplicationStatesOutput) SetApplicationStateList(v []*ApplicationState) *ListApplicationStatesOutput {
+	s.ApplicationStateList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListApplicationStatesOutput) SetNextToken(v string) *ListApplicationStatesOutput {
+	s.NextToken = &v
+	return s
 }
 
 type ListCreatedArtifactsInput struct {

@@ -180,6 +180,22 @@
         {"shape":"HomeRegionNotSetException"}
       ]
     },
+    "ListApplicationStates":{
+      "name":"ListApplicationStates",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListApplicationStatesRequest"},
+      "output":{"shape":"ListApplicationStatesResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerError"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"HomeRegionNotSetException"}
+      ]
+    },
     "ListCreatedArtifacts":{
       "name":"ListCreatedArtifacts",
       "http":{
@@ -319,6 +335,26 @@
       "type":"string",
       "max":1600,
       "min":1
+    },
+    "ApplicationIds":{
+      "type":"list",
+      "member":{"shape":"ApplicationId"},
+      "max":100,
+      "min":1
+    },
+    "ApplicationState":{
+      "type":"structure",
+      "members":{
+        "ApplicationId":{"shape":"ApplicationId"},
+        "ApplicationStatus":{"shape":"ApplicationStatus"},
+        "LastUpdatedTime":{"shape":"UpdateDateTime"}
+      }
+    },
+    "ApplicationStateList":{
+      "type":"list",
+      "member":{"shape":"ApplicationState"},
+      "max":1000,
+      "min":0
     },
     "ApplicationStatus":{
       "type":"string",
@@ -558,6 +594,21 @@
       "member":{"shape":"ResourceAttribute"},
       "max":100,
       "min":0
+    },
+    "ListApplicationStatesRequest":{
+      "type":"structure",
+      "members":{
+        "ApplicationIds":{"shape":"ApplicationIds"},
+        "NextToken":{"shape":"Token"},
+        "MaxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListApplicationStatesResult":{
+      "type":"structure",
+      "members":{
+        "ApplicationStateList":{"shape":"ApplicationStateList"},
+        "NextToken":{"shape":"Token"}
+      }
     },
     "ListCreatedArtifactsRequest":{
       "type":"structure",

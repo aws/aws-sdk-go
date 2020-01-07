@@ -1,5 +1,11 @@
 {
   "pagination": {
+    "ListApplicationStates": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "ApplicationStateList"
+    },
     "ListCreatedArtifacts": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

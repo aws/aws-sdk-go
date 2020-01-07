@@ -96,6 +96,13 @@ type MigrationHubAPI interface {
 	ImportMigrationTaskWithContext(aws.Context, *migrationhub.ImportMigrationTaskInput, ...request.Option) (*migrationhub.ImportMigrationTaskOutput, error)
 	ImportMigrationTaskRequest(*migrationhub.ImportMigrationTaskInput) (*request.Request, *migrationhub.ImportMigrationTaskOutput)
 
+	ListApplicationStates(*migrationhub.ListApplicationStatesInput) (*migrationhub.ListApplicationStatesOutput, error)
+	ListApplicationStatesWithContext(aws.Context, *migrationhub.ListApplicationStatesInput, ...request.Option) (*migrationhub.ListApplicationStatesOutput, error)
+	ListApplicationStatesRequest(*migrationhub.ListApplicationStatesInput) (*request.Request, *migrationhub.ListApplicationStatesOutput)
+
+	ListApplicationStatesPages(*migrationhub.ListApplicationStatesInput, func(*migrationhub.ListApplicationStatesOutput, bool) bool) error
+	ListApplicationStatesPagesWithContext(aws.Context, *migrationhub.ListApplicationStatesInput, func(*migrationhub.ListApplicationStatesOutput, bool) bool, ...request.Option) error
+
 	ListCreatedArtifacts(*migrationhub.ListCreatedArtifactsInput) (*migrationhub.ListCreatedArtifactsOutput, error)
 	ListCreatedArtifactsWithContext(aws.Context, *migrationhub.ListCreatedArtifactsInput, ...request.Option) (*migrationhub.ListCreatedArtifactsOutput, error)
 	ListCreatedArtifactsRequest(*migrationhub.ListCreatedArtifactsInput) (*request.Request, *migrationhub.ListCreatedArtifactsOutput)

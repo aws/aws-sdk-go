@@ -1212,8 +1212,9 @@ func (c *XRay) GetServiceGraphRequest(input *GetServiceGraphInput) (req *request
 // Retrieves a document that describes services that process incoming requests,
 // and downstream services that they call as a result. Root services process
 // incoming requests and make calls to downstream services. Root services are
-// applications that use the AWS X-Ray SDK. Downstream services can be other
-// applications, AWS resources, HTTP web APIs, or SQL databases.
+// applications that use the AWS X-Ray SDK (https://docs.aws.amazon.com/xray/index.html).
+// Downstream services can be other applications, AWS resources, HTTP web APIs,
+// or SQL databases.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1633,7 +1634,7 @@ func (c *XRay) GetTraceSummariesRequest(input *GetTraceSummariesInput) (req *req
 
 // GetTraceSummaries API operation for AWS X-Ray.
 //
-// Retrieves IDs and metadata for traces available for a specified time frame
+// Retrieves IDs and annotations for traces available for a specified time frame
 // using an optional filter. To get the full traces, pass the trace IDs to BatchGetTraces.
 //
 // A filter expression can target traced requests that hit specific service
@@ -1948,10 +1949,10 @@ func (c *XRay) PutTraceSegmentsRequest(input *PutTraceSegmentsInput) (req *reque
 
 // PutTraceSegments API operation for AWS X-Ray.
 //
-// Uploads segment documents to AWS X-Ray. The X-Ray SDK generates segment documents
-// and sends them to the X-Ray daemon, which uploads them in batches. A segment
-// document can be a completed segment, an in-progress segment, or an array
-// of subsegments.
+// Uploads segment documents to AWS X-Ray. The X-Ray SDK (https://docs.aws.amazon.com/xray/index.html)
+// generates segment documents and sends them to the X-Ray daemon, which uploads
+// them in batches. A segment document can be a completed segment, an in-progress
+// segment, or an array of subsegments.
 //
 // Segments must include the following fields. For the full segment document
 // schema, see AWS X-Ray Segment Documents (https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html)
@@ -2369,7 +2370,7 @@ func (s *BackendConnectionErrors) SetUnknownHostCount(v int64) *BackendConnectio
 type BatchGetTracesInput struct {
 	_ struct{} `type:"structure"`
 
-	// Pagination token. Not used.
+	// Pagination token.
 	NextToken *string `type:"string"`
 
 	// Specify the trace IDs of requests for which to retrieve segments.
@@ -2416,7 +2417,7 @@ func (s *BatchGetTracesInput) SetTraceIds(v []*string) *BatchGetTracesInput {
 type BatchGetTracesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Pagination token. Not used.
+	// Pagination token.
 	NextToken *string `type:"string"`
 
 	// Full traces for the specified requests.
@@ -3351,7 +3352,7 @@ func (s *GetGroupOutput) SetGroup(v *Group) *GetGroupOutput {
 type GetGroupsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Pagination token. Not used.
+	// Pagination token.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -3390,7 +3391,7 @@ type GetGroupsOutput struct {
 	// The collection of all active groups.
 	Groups []*GroupSummary `type:"list"`
 
-	// Pagination token. Not used.
+	// Pagination token.
 	NextToken *string `type:"string"`
 }
 
@@ -3419,7 +3420,7 @@ func (s *GetGroupsOutput) SetNextToken(v string) *GetGroupsOutput {
 type GetSamplingRulesInput struct {
 	_ struct{} `type:"structure"`
 
-	// Pagination token. Not used.
+	// Pagination token.
 	NextToken *string `type:"string"`
 }
 
@@ -3442,7 +3443,7 @@ func (s *GetSamplingRulesInput) SetNextToken(v string) *GetSamplingRulesInput {
 type GetSamplingRulesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Pagination token. Not used.
+	// Pagination token.
 	NextToken *string `type:"string"`
 
 	// Rule definitions and metadata.
@@ -3474,7 +3475,7 @@ func (s *GetSamplingRulesOutput) SetSamplingRuleRecords(v []*SamplingRuleRecord)
 type GetSamplingStatisticSummariesInput struct {
 	_ struct{} `type:"structure"`
 
-	// Pagination token. Not used.
+	// Pagination token.
 	NextToken *string `type:"string"`
 }
 
@@ -3497,7 +3498,7 @@ func (s *GetSamplingStatisticSummariesInput) SetNextToken(v string) *GetSampling
 type GetSamplingStatisticSummariesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Pagination token. Not used.
+	// Pagination token.
 	NextToken *string `type:"string"`
 
 	// Information about the number of requests instrumented for each sampling rule.
@@ -3631,7 +3632,7 @@ type GetServiceGraphInput struct {
 	// The name of a group to generate a graph based on.
 	GroupName *string `min:"1" type:"string"`
 
-	// Pagination token. Not used.
+	// Pagination token.
 	NextToken *string `type:"string"`
 
 	// The start of the time frame for which to generate a graph.
@@ -3713,7 +3714,7 @@ type GetServiceGraphOutput struct {
 	// The end of the time frame for which the graph was generated.
 	EndTime *time.Time `type:"timestamp"`
 
-	// Pagination token. Not used.
+	// Pagination token.
 	NextToken *string `type:"string"`
 
 	// The services that have processed a traced request during the specified time
@@ -3783,7 +3784,7 @@ type GetTimeSeriesServiceStatisticsInput struct {
 	// The case-sensitive name of the group for which to pull statistics from.
 	GroupName *string `min:"1" type:"string"`
 
-	// Pagination token. Not used.
+	// Pagination token.
 	NextToken *string `type:"string"`
 
 	// Aggregation period in seconds.
@@ -3880,7 +3881,7 @@ type GetTimeSeriesServiceStatisticsOutput struct {
 	// the group's filter expression.
 	ContainsOldGroupVersions *bool `type:"boolean"`
 
-	// Pagination token. Not used.
+	// Pagination token.
 	NextToken *string `type:"string"`
 
 	// The collection of statistics.
@@ -3918,7 +3919,7 @@ func (s *GetTimeSeriesServiceStatisticsOutput) SetTimeSeriesServiceStatistics(v 
 type GetTraceGraphInput struct {
 	_ struct{} `type:"structure"`
 
-	// Pagination token. Not used.
+	// Pagination token.
 	NextToken *string `type:"string"`
 
 	// Trace IDs of requests for which to generate a service graph.
@@ -3965,7 +3966,7 @@ func (s *GetTraceGraphInput) SetTraceIds(v []*string) *GetTraceGraphInput {
 type GetTraceGraphOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Pagination token. Not used.
+	// Pagination token.
 	NextToken *string `type:"string"`
 
 	// The services that have processed one of the specified requests.
@@ -4106,7 +4107,8 @@ type GetTraceSummariesOutput struct {
 	// most most recent results, closest to the end of the time frame.
 	NextToken *string `type:"string"`
 
-	// Trace IDs and metadata for traces that were found in the specified time frame.
+	// Trace IDs and annotations for traces that were found in the specified time
+	// frame.
 	TraceSummaries []*TraceSummary `type:"list"`
 
 	// The total number of traces processed, including traces that did not match
@@ -4358,6 +4360,7 @@ type PutEncryptionConfigInput struct {
 	//    * Alias - The name of the key. For example, alias/MyKey.
 	//
 	//    * Key ID - The KMS key ID of the key. For example, ae4aa6d49-a4d8-9df9-a475-4ff6d7898456.
+	//    AWS X-Ray does not support asymmetric CMKs.
 	//
 	//    * ARN - The full Amazon Resource Name of the key ID or alias. For example,
 	//    arn:aws:kms:us-east-2:123456789012:key/ae4aa6d49-a4d8-9df9-a475-4ff6d7898456.
@@ -5920,10 +5923,10 @@ type TraceSummary struct {
 	// segments.
 	FaultRootCauses []*FaultRootCause `type:"list"`
 
-	// One or more of the segment documents has a 400 series error.
+	// The root segment document has a 400 series error.
 	HasError *bool `type:"boolean"`
 
-	// One or more of the segment documents has a 500 series error.
+	// The root segment document has a 500 series error.
 	HasFault *bool `type:"boolean"`
 
 	// One or more of the segment documents has a 429 throttling error.
