@@ -4,7 +4,6 @@ import (
 	"reflect"
 	"sort"
 	"strings"
-	"sync"
 )
 
 type field struct {
@@ -38,8 +37,6 @@ func (f *cachedFields) FieldByName(name string) (field, bool) {
 	return field{}, false
 }
 
-var fieldCache sync.Map
-
 func buildField(pIdx []int, i int, sf reflect.StructField, fieldTag tag) field {
 	f := field{
 		Name: sf.Name,
@@ -60,24 +57,25 @@ func buildField(pIdx []int, i int, sf reflect.StructField, fieldTag tag) field {
 
 // unionStructFields returns a list of fields for the given type. Type info is cached
 // to avoid repeated calls into the reflect package
-func unionStructFields(t reflect.Type, opts MarshalOptions) cachedFields {
+func unionStructFields(t reflect.Type, opts MarshalOptions) *cachedFields {
 	if cached, ok := fieldCache.Load(t); ok {
-		return cached.(cachedFields)
+		return cached
 	}
 
 	f := enumFields(t, opts)
 	sort.Sort(fieldsByName(f))
 	f = visibleFields(f)
 
-	fs := cachedFields{
+	fs := &cachedFields{
 		fields:       f,
 		fieldsByName: make(map[string]int, len(f)),
 	}
 	for i, f := range fs.fields {
 		fs.fieldsByName[f.Name] = i
 	}
+
 	cached, _ := fieldCache.LoadOrStore(t, fs)
-	return cached.(cachedFields)
+	return cached
 }
 
 // enumFields will recursively iterate through a structure and its nested

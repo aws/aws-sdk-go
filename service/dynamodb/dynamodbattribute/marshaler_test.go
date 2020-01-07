@@ -3,7 +3,6 @@ package dynamodbattribute
 import (
 	"math"
 	"reflect"
-	"sync"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -556,7 +555,7 @@ func compareObjects(t *testing.T, expected interface{}, actual interface{}) {
 }
 
 func BenchmarkMarshal(b *testing.B) {
-	clearCache := func() { fieldCache = sync.Map{} }
+	clearCache := func() { fieldCache = fieldCacher{} }
 
 	simple := simpleMarshalStruct{
 		String:  "abc",
@@ -605,7 +604,7 @@ func BenchmarkMarshal(b *testing.B) {
 }
 
 func BenchmarkUnmarshal(b *testing.B) {
-	clearCache := func() { fieldCache = sync.Map{} }
+	clearCache := func() { fieldCache = fieldCacher{} }
 
 	myStructAVMap, _ := Marshal(simpleMarshalStruct{
 		String:  "abc",
