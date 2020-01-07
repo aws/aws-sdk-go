@@ -24,7 +24,7 @@ func TestClientOverrideDefaultHTTPClientTimeout(t *testing.T) {
 		t.Errorf("expect %v, not to equal %v", e, a)
 	}
 
-	if e, a := 5*time.Second, svc.Config.HTTPClient.Timeout; e != a {
+	if e, a := 1*time.Second, svc.Config.HTTPClient.Timeout; e != a {
 		t.Errorf("expect %v to be %v", e, a)
 	}
 }
