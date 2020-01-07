@@ -4927,7 +4927,8 @@ type EnvironmentVariable struct {
 	//    * PARAMETER_STORE: An environment variable stored in Amazon EC2 Systems
 	//    Manager Parameter Store.
 	//
-	//    * PLAINTEXT: An environment variable in plain text format.
+	//    * PLAINTEXT: An environment variable in plain text format. This is the
+	//    default value.
 	//
 	//    * SECRETS_MANAGER: An environment variable stored in AWS Secrets Manager.
 	Type *string `locationName:"type" type:"string" enum:"EnvironmentVariableType"`
@@ -8247,6 +8248,17 @@ type StartBuildInput struct {
 	// in the build project.
 	ComputeTypeOverride *string `locationName:"computeTypeOverride" type:"string" enum:"ComputeType"`
 
+	// The AWS Key Management Service (AWS KMS) customer master key (CMK) that overrides
+	// the one specified in the build project. The CMK key encrypts the build output
+	// artifacts.
+	//
+	// You can use a cross-account KMS key to encrypt the build output artifacts
+	// if your service role has permission to that key.
+	//
+	// You can specify either the Amazon Resource Name (ARN) of the CMK or, if available,
+	// the CMK's alias (using the format alias/alias-name ).
+	EncryptionKeyOverride *string `locationName:"encryptionKeyOverride" min:"1" type:"string"`
+
 	// A container type for this build that overrides the one specified in the build
 	// project.
 	EnvironmentTypeOverride *string `locationName:"environmentTypeOverride" type:"string" enum:"EnvironmentType"`
@@ -8393,6 +8405,9 @@ func (s StartBuildInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StartBuildInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StartBuildInput"}
+	if s.EncryptionKeyOverride != nil && len(*s.EncryptionKeyOverride) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EncryptionKeyOverride", 1))
+	}
 	if s.ImageOverride != nil && len(*s.ImageOverride) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ImageOverride", 1))
 	}
@@ -8515,6 +8530,12 @@ func (s *StartBuildInput) SetCertificateOverride(v string) *StartBuildInput {
 // SetComputeTypeOverride sets the ComputeTypeOverride field's value.
 func (s *StartBuildInput) SetComputeTypeOverride(v string) *StartBuildInput {
 	s.ComputeTypeOverride = &v
+	return s
+}
+
+// SetEncryptionKeyOverride sets the EncryptionKeyOverride field's value.
+func (s *StartBuildInput) SetEncryptionKeyOverride(v string) *StartBuildInput {
+	s.EncryptionKeyOverride = &v
 	return s
 }
 

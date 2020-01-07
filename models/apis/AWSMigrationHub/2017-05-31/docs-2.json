@@ -11,6 +11,7 @@
     "DisassociateCreatedArtifact": "<p>Disassociates a created artifact of an AWS resource with a migration task performed by a migration tool that was previously associated. This API has the following traits:</p> <ul> <li> <p>A migration user can call the <code>DisassociateCreatedArtifacts</code> operation to disassociate a created AWS Artifact from a migration task.</p> </li> <li> <p>The created artifact name must be provided in ARN (Amazon Resource Name) format which will contain information about type and region; for example: <code>arn:aws:ec2:us-east-1:488216288981:image/ami-6d0ba87b</code>.</p> </li> <li> <p>Examples of the AWS resource behind the created artifact are, AMI's, EC2 instance, or RDS instance, etc.</p> </li> </ul>",
     "DisassociateDiscoveredResource": "<p>Disassociate an Application Discovery Service discovered resource from a migration task.</p>",
     "ImportMigrationTask": "<p>Registers a new migration task which represents a server, database, etc., being migrated to AWS by a migration tool.</p> <p>This API is a prerequisite to calling the <code>NotifyMigrationTaskState</code> API as the migration tool must first register the migration task with Migration Hub.</p>",
+    "ListApplicationStates": "<p>Lists all the migration statuses for your applications. If you use the optional <code>ApplicationIds</code> parameter, only the migration statuses for those applications will be returned.</p>",
     "ListCreatedArtifacts": "<p>Lists the created artifacts attached to a given migration task in an update stream. This API has the following traits:</p> <ul> <li> <p>Gets the list of the created artifacts while migration is taking place.</p> </li> <li> <p>Shows the artifacts created by the migration tool that was associated by the <code>AssociateCreatedArtifact</code> API. </p> </li> <li> <p>Lists created artifacts in a paginated interface. </p> </li> </ul>",
     "ListDiscoveredResources": "<p>Lists discovered resources associated with the given <code>MigrationTask</code>.</p>",
     "ListMigrationTasks": "<p>Lists all, or filtered by resource name, migration tasks associated with the user account making this call. This API has the following traits:</p> <ul> <li> <p>Can show a summary list of the most recent migration tasks.</p> </li> <li> <p>Can show a summary list of migration tasks associated with a given discovered resource.</p> </li> <li> <p>Lists migration tasks in a paginated interface.</p> </li> </ul>",
@@ -28,13 +29,34 @@
     "ApplicationId": {
       "base": null,
       "refs": {
+        "ApplicationIds$member": null,
+        "ApplicationState$ApplicationId": "<p>The configurationId from the Application Discovery Service that uniquely identifies an application.</p>",
         "DescribeApplicationStateRequest$ApplicationId": "<p>The configurationId in Application Discovery Service that uniquely identifies the grouped application.</p>",
         "NotifyApplicationStateRequest$ApplicationId": "<p>The configurationId in Application Discovery Service that uniquely identifies the grouped application.</p>"
+      }
+    },
+    "ApplicationIds": {
+      "base": null,
+      "refs": {
+        "ListApplicationStatesRequest$ApplicationIds": "<p>The configurationIds from the Application Discovery Service that uniquely identifies your applications.</p>"
+      }
+    },
+    "ApplicationState": {
+      "base": "<p>The state of an application discovered through Migration Hub import, the AWS Agentless Discovery Connector, or the AWS Application Discovery Agent.</p>",
+      "refs": {
+        "ApplicationStateList$member": null
+      }
+    },
+    "ApplicationStateList": {
+      "base": null,
+      "refs": {
+        "ListApplicationStatesResult$ApplicationStateList": "<p>A list of Applications that exist in Application Discovery Service.</p>"
       }
     },
     "ApplicationStatus": {
       "base": null,
       "refs": {
+        "ApplicationState$ApplicationStatus": "<p>The current status of an application.</p>",
         "DescribeApplicationStateResult$ApplicationStatus": "<p>Status of the application - Not Started, In-Progress, Complete.</p>",
         "NotifyApplicationStateRequest$Status": "<p>Status of the application - Not Started, In-Progress, Complete.</p>"
       }
@@ -236,6 +258,16 @@
         "MigrationTask$ResourceAttributeList": "<p>Information about the resource that is being migrated. This data will be used to map the task to a resource in the Application Discovery Service repository.</p>"
       }
     },
+    "ListApplicationStatesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListApplicationStatesResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListCreatedArtifactsRequest": {
       "base": null,
       "refs": {
@@ -279,6 +311,7 @@
     "MaxResults": {
       "base": null,
       "refs": {
+        "ListApplicationStatesRequest$MaxResults": "<p>Maximum number of results to be returned per page.</p>",
         "ListMigrationTasksRequest$MaxResults": "<p>Value to specify how many results are returned per page.</p>",
         "ListProgressUpdateStreamsRequest$MaxResults": "<p>Filter to limit the maximum number of results to list per page.</p>"
       }
@@ -475,6 +508,8 @@
     "Token": {
       "base": null,
       "refs": {
+        "ListApplicationStatesRequest$NextToken": "<p>If a <code>NextToken</code> was returned by a previous call, there are more results available. To retrieve the next page of results, make the call again using the returned token in <code>NextToken</code>.</p>",
+        "ListApplicationStatesResult$NextToken": "<p>If a <code>NextToken</code> was returned by a previous call, there are more results available. To retrieve the next page of results, make the call again using the returned token in <code>NextToken</code>.</p>",
         "ListCreatedArtifactsRequest$NextToken": "<p>If a <code>NextToken</code> was returned by a previous call, there are more results available. To retrieve the next page of results, make the call again using the returned token in <code>NextToken</code>.</p>",
         "ListCreatedArtifactsResult$NextToken": "<p>If there are more created artifacts than the max result, return the next token to be passed to the next call as a bookmark of where to start from.</p>",
         "ListDiscoveredResourcesRequest$NextToken": "<p>If a <code>NextToken</code> was returned by a previous call, there are more results available. To retrieve the next page of results, make the call again using the returned token in <code>NextToken</code>.</p>",
@@ -493,6 +528,7 @@
     "UpdateDateTime": {
       "base": null,
       "refs": {
+        "ApplicationState$LastUpdatedTime": "<p>The timestamp when the application status was last updated.</p>",
         "DescribeApplicationStateResult$LastUpdatedTime": "<p>The timestamp when the application status was last updated.</p>",
         "MigrationTask$UpdateDateTime": "<p>The timestamp when the task was gathered.</p>",
         "MigrationTaskSummary$UpdateDateTime": "<p>The timestamp when the task was gathered.</p>",
