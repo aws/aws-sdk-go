@@ -554,8 +554,8 @@ func compareObjects(t *testing.T, expected interface{}, actual interface{}) {
 	}
 }
 
-func BenchmarkMarshal(b *testing.B) {
-	clearCache := func() { fieldCache = fieldCacher{} }
+func BenchmarkMarshalOneMember(b *testing.B) {
+	fieldCache = fieldCacher{}
 
 	simple := simpleMarshalStruct{
 		String:  "abc",
@@ -566,45 +566,52 @@ func BenchmarkMarshal(b *testing.B) {
 		Bool:    true,
 		Null:    nil,
 	}
-	b.Run("one composite member", func(b *testing.B) {
-		clearCache()
 
-		type MyCompositeStruct struct {
-			A simpleMarshalStruct `dynamodbav:"a"`
-		}
-		b.RunParallel(func(pb *testing.PB) {
-			for pb.Next() {
-				if _, err := Marshal(MyCompositeStruct{
-					A: simple,
-				}); err != nil {
-					b.Error("unexpected error:", err)
-				}
+	type MyCompositeStruct struct {
+		A simpleMarshalStruct `dynamodbav:"a"`
+	}
+	b.RunParallel(func(pb *testing.PB) {
+		for pb.Next() {
+			if _, err := Marshal(MyCompositeStruct{
+				A: simple,
+			}); err != nil {
+				b.Error("unexpected error:", err)
 			}
-		})
-	})
-
-	b.Run("two composite members", func(b *testing.B) {
-		clearCache()
-
-		type MyCompositeStruct struct {
-			A simpleMarshalStruct `dynamodbav:"a"`
-			B simpleMarshalStruct `dynamodbav:"b"`
 		}
-		b.RunParallel(func(pb *testing.PB) {
-			for pb.Next() {
-				if _, err := Marshal(MyCompositeStruct{
-					A: simple,
-					B: simple,
-				}); err != nil {
-					b.Error("unexpected error:", err)
-				}
-			}
-		})
 	})
 }
 
-func BenchmarkUnmarshal(b *testing.B) {
-	clearCache := func() { fieldCache = fieldCacher{} }
+func BenchmarkMarshalTwoMembers(b *testing.B) {
+	fieldCache = fieldCacher{}
+
+	simple := simpleMarshalStruct{
+		String:  "abc",
+		Int:     123,
+		Uint:    123,
+		Float32: 123.321,
+		Float64: 123.321,
+		Bool:    true,
+		Null:    nil,
+	}
+
+	type MyCompositeStruct struct {
+		A simpleMarshalStruct `dynamodbav:"a"`
+		B simpleMarshalStruct `dynamodbav:"b"`
+	}
+	b.RunParallel(func(pb *testing.PB) {
+		for pb.Next() {
+			if _, err := Marshal(MyCompositeStruct{
+				A: simple,
+				B: simple,
+			}); err != nil {
+				b.Error("unexpected error:", err)
+			}
+		}
+	})
+}
+
+func BenchmarkUnmarshalOneMember(b *testing.B) {
+	fieldCache = fieldCacher{}
 
 	myStructAVMap, _ := Marshal(simpleMarshalStruct{
 		String:  "abc",
@@ -616,44 +623,50 @@ func BenchmarkUnmarshal(b *testing.B) {
 		Null:    nil,
 	})
 
-	b.Run("one composite member", func(b *testing.B) {
-		clearCache()
-
-		type MyCompositeStructOne struct {
-			A simpleMarshalStruct `dynamodbav:"a"`
-		}
-		var out MyCompositeStructOne
-		avMap := map[string]*dynamodb.AttributeValue{
-			"a": myStructAVMap,
-		}
-		b.RunParallel(func(pb *testing.PB) {
-			for pb.Next() {
-				if err := Unmarshal(&dynamodb.AttributeValue{M: avMap}, &out); err != nil {
-					b.Error("unexpected error:", err)
-				}
+	type MyCompositeStructOne struct {
+		A simpleMarshalStruct `dynamodbav:"a"`
+	}
+	var out MyCompositeStructOne
+	avMap := map[string]*dynamodb.AttributeValue{
+		"a": myStructAVMap,
+	}
+	b.RunParallel(func(pb *testing.PB) {
+		for pb.Next() {
+			if err := Unmarshal(&dynamodb.AttributeValue{M: avMap}, &out); err != nil {
+				b.Error("unexpected error:", err)
 			}
-		})
+		}
+	})
+}
+
+func BenchmarkUnmarshalTwoMembers(b *testing.B) {
+	fieldCache = fieldCacher{}
+
+	myStructAVMap, _ := Marshal(simpleMarshalStruct{
+		String:  "abc",
+		Int:     123,
+		Uint:    123,
+		Float32: 123.321,
+		Float64: 123.321,
+		Bool:    true,
+		Null:    nil,
 	})
 
-	b.Run("two composite members", func(b *testing.B) {
-		clearCache()
-
-		type MyCompositeStructTwo struct {
-			A simpleMarshalStruct `dynamodbav:"a"`
-			B simpleMarshalStruct `dynamodbav:"b"`
-		}
-		var out MyCompositeStructTwo
-		avMap := map[string]*dynamodb.AttributeValue{
-			"a": myStructAVMap,
-			"b": myStructAVMap,
-		}
-		b.RunParallel(func(pb *testing.PB) {
-			for pb.Next() {
-				if err := Unmarshal(&dynamodb.AttributeValue{M: avMap}, &out); err != nil {
-					b.Error("unexpected error:", err)
-				}
+	type MyCompositeStructTwo struct {
+		A simpleMarshalStruct `dynamodbav:"a"`
+		B simpleMarshalStruct `dynamodbav:"b"`
+	}
+	var out MyCompositeStructTwo
+	avMap := map[string]*dynamodb.AttributeValue{
+		"a": myStructAVMap,
+		"b": myStructAVMap,
+	}
+	b.RunParallel(func(pb *testing.PB) {
+		for pb.Next() {
+			if err := Unmarshal(&dynamodb.AttributeValue{M: avMap}, &out); err != nil {
+				b.Error("unexpected error:", err)
 			}
-		})
+		}
 	})
 }
 
