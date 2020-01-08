@@ -93023,7 +93023,7 @@ type ReservedInstances struct {
 	ReservedInstancesId *string `locationName:"reservedInstancesId" type:"string"`
 
 	// The scope of the Reserved Instance.
-	Scope *string `locationName:"scope" type:"string" enum:"scope"`
+	Scope *string `locationName:"scope" type:"string" enum:"Scope"`
 
 	// The date and time the Reserved Instance started.
 	Start *time.Time `locationName:"start" type:"timestamp"`
@@ -93177,7 +93177,7 @@ type ReservedInstancesConfiguration struct {
 
 	// Whether the Reserved Instance is applied to instances in a Region or instances
 	// in a specific Availability Zone.
-	Scope *string `locationName:"scope" type:"string" enum:"scope"`
+	Scope *string `locationName:"scope" type:"string" enum:"Scope"`
 }
 
 // String returns the string representation
@@ -93536,7 +93536,7 @@ type ReservedInstancesOffering struct {
 
 	// Whether the Reserved Instance is applied to instances in a Region or an Availability
 	// Zone.
-	Scope *string `locationName:"scope" type:"string" enum:"scope"`
+	Scope *string `locationName:"scope" type:"string" enum:"Scope"`
 
 	// The usage price of the Reserved Instance, per hour.
 	UsagePrice *float64 `locationName:"usagePrice" type:"float"`
@@ -108869,6 +108869,14 @@ const (
 )
 
 const (
+	// ScopeAvailabilityZone is a Scope enum value
+	ScopeAvailabilityZone = "Availability Zone"
+
+	// ScopeRegion is a Scope enum value
+	ScopeRegion = "Region"
+)
+
+const (
 	// ServiceStatePending is a ServiceState enum value
 	ServiceStatePending = "Pending"
 
@@ -109568,12 +109576,4 @@ const (
 const (
 	// VpnStaticRouteSourceStatic is a VpnStaticRouteSource enum value
 	VpnStaticRouteSourceStatic = "Static"
-)
-
-const (
-	// ScopeAvailabilityZone is a scope enum value
-	ScopeAvailabilityZone = "Availability Zone"
-
-	// ScopeRegion is a scope enum value
-	ScopeRegion = "Region"
 )

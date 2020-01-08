@@ -1561,7 +1561,7 @@ type AffectedEntity struct {
 
 	// The most recent status of the entity affected by the event. The possible
 	// values are IMPAIRED, UNIMPAIRED, and UNKNOWN.
-	StatusCode *string `locationName:"statusCode" type:"string" enum:"entityStatusCode"`
+	StatusCode *string `locationName:"statusCode" type:"string" enum:"EntityStatusCode"`
 
 	// A map of entity tags attached to the affected entity.
 	Tags map[string]*string `locationName:"tags" type:"map"`
@@ -2091,7 +2091,7 @@ type DescribeEventAggregatesInput struct {
 	// The only currently supported value is eventTypeCategory.
 	//
 	// AggregateField is a required field
-	AggregateField *string `locationName:"aggregateField" type:"string" required:"true" enum:"eventAggregateField"`
+	AggregateField *string `locationName:"aggregateField" type:"string" required:"true" enum:"EventAggregateField"`
 
 	// Values to narrow the results returned.
 	Filter *EventFilter `locationName:"filter" type:"structure"`
@@ -2979,7 +2979,7 @@ type Event struct {
 
 	// The category of the event. Possible values are issue, scheduledChange, and
 	// accountNotification.
-	EventTypeCategory *string `locationName:"eventTypeCategory" min:"3" type:"string" enum:"eventTypeCategory"`
+	EventTypeCategory *string `locationName:"eventTypeCategory" min:"3" type:"string" enum:"EventTypeCategory"`
 
 	// The unique identifier for the event type. The format is AWS_SERVICE_DESCRIPTION
 	// ; for example, AWS_EC2_SYSTEM_MAINTENANCE_EVENT.
@@ -2999,7 +2999,7 @@ type Event struct {
 
 	// The most recent status of the event. Possible values are open, closed, and
 	// upcoming.
-	StatusCode *string `locationName:"statusCode" type:"string" enum:"eventStatusCode"`
+	StatusCode *string `locationName:"statusCode" type:"string" enum:"EventStatusCode"`
 }
 
 // String returns the string representation
@@ -3459,7 +3459,7 @@ type EventType struct {
 	_ struct{} `type:"structure"`
 
 	// A list of event type category codes (issue, scheduledChange, or accountNotification).
-	Category *string `locationName:"category" min:"3" type:"string" enum:"eventTypeCategory"`
+	Category *string `locationName:"category" min:"3" type:"string" enum:"EventTypeCategory"`
 
 	// The unique identifier for the event type. The format is AWS_SERVICE_DESCRIPTION
 	// ; for example, AWS_EC2_SYSTEM_MAINTENANCE_EVENT.
@@ -3625,7 +3625,7 @@ type OrganizationEvent struct {
 	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
 
 	// The category of the event type.
-	EventTypeCategory *string `locationName:"eventTypeCategory" min:"3" type:"string" enum:"eventTypeCategory"`
+	EventTypeCategory *string `locationName:"eventTypeCategory" min:"3" type:"string" enum:"EventTypeCategory"`
 
 	// The unique identifier for the event type. The format is AWS_SERVICE_DESCRIPTION.
 	// For example, AWS_EC2_SYSTEM_MAINTENANCE_EVENT.
@@ -3645,7 +3645,7 @@ type OrganizationEvent struct {
 
 	// The most recent status of the event. Possible values are open, closed, and
 	// upcoming.
-	StatusCode *string `locationName:"statusCode" type:"string" enum:"eventStatusCode"`
+	StatusCode *string `locationName:"statusCode" type:"string" enum:"EventStatusCode"`
 }
 
 // String returns the string representation
@@ -3985,42 +3985,42 @@ func (s *OrganizationEventFilter) SetStartTime(v *DateTimeRange) *OrganizationEv
 }
 
 const (
-	// EntityStatusCodeImpaired is a entityStatusCode enum value
+	// EntityStatusCodeImpaired is a EntityStatusCode enum value
 	EntityStatusCodeImpaired = "IMPAIRED"
 
-	// EntityStatusCodeUnimpaired is a entityStatusCode enum value
+	// EntityStatusCodeUnimpaired is a EntityStatusCode enum value
 	EntityStatusCodeUnimpaired = "UNIMPAIRED"
 
-	// EntityStatusCodeUnknown is a entityStatusCode enum value
+	// EntityStatusCodeUnknown is a EntityStatusCode enum value
 	EntityStatusCodeUnknown = "UNKNOWN"
 )
 
 const (
-	// EventAggregateFieldEventTypeCategory is a eventAggregateField enum value
+	// EventAggregateFieldEventTypeCategory is a EventAggregateField enum value
 	EventAggregateFieldEventTypeCategory = "eventTypeCategory"
 )
 
 const (
-	// EventStatusCodeOpen is a eventStatusCode enum value
+	// EventStatusCodeOpen is a EventStatusCode enum value
 	EventStatusCodeOpen = "open"
 
-	// EventStatusCodeClosed is a eventStatusCode enum value
+	// EventStatusCodeClosed is a EventStatusCode enum value
 	EventStatusCodeClosed = "closed"
 
-	// EventStatusCodeUpcoming is a eventStatusCode enum value
+	// EventStatusCodeUpcoming is a EventStatusCode enum value
 	EventStatusCodeUpcoming = "upcoming"
 )
 
 const (
-	// EventTypeCategoryIssue is a eventTypeCategory enum value
+	// EventTypeCategoryIssue is a EventTypeCategory enum value
 	EventTypeCategoryIssue = "issue"
 
-	// EventTypeCategoryAccountNotification is a eventTypeCategory enum value
+	// EventTypeCategoryAccountNotification is a EventTypeCategory enum value
 	EventTypeCategoryAccountNotification = "accountNotification"
 
-	// EventTypeCategoryScheduledChange is a eventTypeCategory enum value
+	// EventTypeCategoryScheduledChange is a EventTypeCategory enum value
 	EventTypeCategoryScheduledChange = "scheduledChange"
 
-	// EventTypeCategoryInvestigation is a eventTypeCategory enum value
+	// EventTypeCategoryInvestigation is a EventTypeCategory enum value
 	EventTypeCategoryInvestigation = "investigation"
 )
