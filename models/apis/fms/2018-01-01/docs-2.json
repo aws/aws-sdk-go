@@ -14,8 +14,11 @@
     "ListComplianceStatus": "<p>Returns an array of <code>PolicyComplianceStatus</code> objects in the response. Use <code>PolicyComplianceStatus</code> to get a summary of which member accounts are protected by the specified policy. </p>",
     "ListMemberAccounts": "<p>Returns a <code>MemberAccounts</code> object that lists the member accounts in the administrator's AWS organization.</p> <p>The <code>ListMemberAccounts</code> must be submitted by the account that is set as the AWS Firewall Manager administrator.</p>",
     "ListPolicies": "<p>Returns an array of <code>PolicySummary</code> objects in the response.</p>",
+    "ListTagsForResource": "<p>Retrieves the list of tags for the specified AWS resource. </p>",
     "PutNotificationChannel": "<p>Designates the IAM role and Amazon Simple Notification Service (SNS) topic that AWS Firewall Manager uses to record SNS logs.</p>",
-    "PutPolicy": "<p>Creates an AWS Firewall Manager policy.</p> <p>Firewall Manager provides the following types of policies: </p> <ul> <li> <p>A Shield Advanced policy, which applies Shield Advanced protection to specified accounts and resources</p> </li> <li> <p>An AWS WAF policy, which contains a rule group and defines which resources are to be protected by that rule group</p> </li> <li> <p>A security group policy, which manages VPC security groups across your AWS organization. </p> </li> </ul> <p>Each policy is specific to one of the three types. If you want to enforce more than one policy type across accounts, you can create multiple policies. You can create multiple policies for each type.</p> <p>You must be subscribed to Shield Advanced to create a Shield Advanced policy. For more information about subscribing to Shield Advanced, see <a href=\"https://docs.aws.amazon.com/waf/latest/DDOSAPIReference/API_CreateSubscription.html\">CreateSubscription</a>.</p>"
+    "PutPolicy": "<p>Creates an AWS Firewall Manager policy.</p> <p>Firewall Manager provides the following types of policies: </p> <ul> <li> <p>A Shield Advanced policy, which applies Shield Advanced protection to specified accounts and resources</p> </li> <li> <p>An AWS WAF policy, which contains a rule group and defines which resources are to be protected by that rule group</p> </li> <li> <p>A security group policy, which manages VPC security groups across your AWS organization. </p> </li> </ul> <p>Each policy is specific to one of the three types. If you want to enforce more than one policy type across accounts, you can create multiple policies. You can create multiple policies for each type.</p> <p>You must be subscribed to Shield Advanced to create a Shield Advanced policy. For more information about subscribing to Shield Advanced, see <a href=\"https://docs.aws.amazon.com/waf/latest/DDOSAPIReference/API_CreateSubscription.html\">CreateSubscription</a>.</p>",
+    "TagResource": "<p>Adds one or more tags to an AWS resource.</p>",
+    "UntagResource": "<p>Removes one or more tags from an AWS resource.</p>"
   },
   "shapes": {
     "AWSAccountId": {
@@ -254,6 +257,16 @@
       "refs": {
       }
     },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ManagedServiceData": {
       "base": null,
       "refs": {
@@ -379,10 +392,13 @@
         "GetNotificationChannelResponse$SnsTopicArn": "<p>The SNS topic that records AWS Firewall Manager activity. </p>",
         "GetNotificationChannelResponse$SnsRoleName": "<p>The IAM role that is used by AWS Firewall Manager to record activity to SNS.</p>",
         "GetPolicyResponse$PolicyArn": "<p>The Amazon Resource Name (ARN) of the specified policy.</p>",
+        "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource to return tags for. The Firewall Manager policy is the only AWS resource that supports tagging, so this ARN is a policy ARN..</p>",
         "PolicySummary$PolicyArn": "<p>The Amazon Resource Name (ARN) of the specified policy.</p>",
         "PutNotificationChannelRequest$SnsTopicArn": "<p>The Amazon Resource Name (ARN) of the SNS topic that collects notifications from AWS Firewall Manager.</p>",
         "PutNotificationChannelRequest$SnsRoleName": "<p>The Amazon Resource Name (ARN) of the IAM role that allows Amazon SNS to record AWS Firewall Manager activity. </p>",
-        "PutPolicyResponse$PolicyArn": "<p>The Amazon Resource Name (ARN) of the policy that was created.</p>"
+        "PutPolicyResponse$PolicyArn": "<p>The Amazon Resource Name (ARN) of the policy that was created.</p>",
+        "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource. The Firewall Manager policy is the only AWS resource that supports tagging, so this ARN is a policy ARN.</p>",
+        "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource. The Firewall Manager policy is the only AWS resource that supports tagging, so this ARN is a policy ARN.</p>"
       }
     },
     "ResourceCount": {
@@ -414,6 +430,18 @@
       "base": "<p>The resource tags that AWS Firewall Manager uses to determine if a particular resource should be included or excluded from the AWS Firewall Manager policy. Tags enable you to categorize your AWS resources in different ways, for example, by purpose, owner, or environment. Each tag consists of a key and an optional value. Firewall Manager combines the tags with \"AND\" so that, if you add more than one tag to a policy scope, a resource must have all the specified tags to be included or excluded. For more information, see <a href=\"https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/tag-editor.html\">Working with Tag Editor</a>.</p>",
       "refs": {
         "ResourceTags$member": null
+      }
+    },
+    "ResourceTagKey": {
+      "base": null,
+      "refs": {
+        "ResourceTag$Key": "<p>The resource tag key.</p>"
+      }
+    },
+    "ResourceTagValue": {
+      "base": null,
+      "refs": {
+        "ResourceTag$Value": "<p>The resource tag value.</p>"
       }
     },
     "ResourceTags": {
@@ -451,16 +479,47 @@
         "SecurityServicePolicyData$Type": "<p>The service that the policy is using to protect the resources. This specifies the type of policy that is created, either an AWS WAF policy, a Shield Advanced policy, or a security group policy. For security group policies, Firewall Manager supports one security group for each common policy and for each content audit policy. This is an adjustable limit that you can increase by contacting AWS Support.</p>"
       }
     },
+    "Tag": {
+      "base": "<p>A collection of key:value pairs associated with an AWS resource. The key:value pair can be anything you define. Typically, the tag key represents a category (such as \"environment\") and the tag value represents a specific value within that category (such as \"test,\" \"development,\" or \"production\"). You can add up to 50 tags to each AWS resource. </p>",
+      "refs": {
+        "TagList$member": null
+      }
+    },
     "TagKey": {
       "base": null,
       "refs": {
-        "ResourceTag$Key": "<p>The resource tag key.</p>"
+        "Tag$Key": "<p>Part of the key:value pair that defines a tag. You can use a tag key to describe a category of information, such as \"customer.\" Tag keys are case-sensitive.</p>",
+        "TagKeyList$member": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$TagKeys": "<p>The keys of the tags to remove from the resource. </p>"
+      }
+    },
+    "TagList": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceResponse$TagList": "<p>The tags associated with the resource.</p>",
+        "PutPolicyRequest$TagList": "<p>The tags to add to the AWS resource.</p>",
+        "TagResourceRequest$TagList": "<p>The tags to add to the resource.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "TagValue": {
       "base": null,
       "refs": {
-        "ResourceTag$Value": "<p>The resource tag value.</p>"
+        "Tag$Value": "<p>Part of the key:value pair that defines a tag. You can use a tag value to describe a specific value within a category, such as \"companyA\" or \"companyB.\" Tag values are case-sensitive. </p>"
       }
     },
     "TimeStamp": {
@@ -470,6 +529,16 @@
         "GetProtectionStatusRequest$EndTime": "<p>The end of the time period to query for the attacks. This is a <code>timestamp</code> type. The request syntax listing indicates a <code>number</code> type because the default used by AWS Firewall Manager is Unix time in seconds. However, any valid <code>timestamp</code> format is allowed.</p>",
         "PolicyComplianceDetail$ExpiredAt": "<p>A timestamp that indicates when the returned information should be considered out of date.</p>",
         "PolicyComplianceStatus$LastUpdated": "<p>Timestamp of the last update to the <code>EvaluationResult</code> objects.</p>"
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "ViolationReason": {

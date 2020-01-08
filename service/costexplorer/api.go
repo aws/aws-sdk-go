@@ -55,9 +55,9 @@ func (c *CostExplorer) CreateCostCategoryDefinitionRequest(input *CreateCostCate
 // CreateCostCategoryDefinition API operation for AWS Cost Explorer Service.
 //
 //
-//  Cost Category is in preview release for AWS Billing and Cost Management
-//  and is subject to change. Your use of Cost Categories is subject to the
-//  Beta Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+//  Cost Category is in public beta for AWS Billing and Cost Management and
+//  is subject to change. Your use of Cost Categories is subject to the Beta
+//  Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
 //  (Section 1.10).
 //
 // Creates a new Cost Category with the requested name and rules.
@@ -144,9 +144,9 @@ func (c *CostExplorer) DeleteCostCategoryDefinitionRequest(input *DeleteCostCate
 // DeleteCostCategoryDefinition API operation for AWS Cost Explorer Service.
 //
 //
-//  Cost Category is in preview release for AWS Billing and Cost Management
-//  and is subject to change. Your use of Cost Categories is subject to the
-//  Beta Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+//  Cost Category is in public beta for AWS Billing and Cost Management and
+//  is subject to change. Your use of Cost Categories is subject to the Beta
+//  Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
 //  (Section 1.10).
 //
 // Deletes a Cost Category. Expenses from this month going forward will no longer
@@ -233,9 +233,9 @@ func (c *CostExplorer) DescribeCostCategoryDefinitionRequest(input *DescribeCost
 // DescribeCostCategoryDefinition API operation for AWS Cost Explorer Service.
 //
 //
-//  Cost Category is in preview release for AWS Billing and Cost Management
-//  and is subject to change. Your use of Cost Categories is subject to the
-//  Beta Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+//  Cost Category is in public beta for AWS Billing and Cost Management and
+//  is subject to change. Your use of Cost Categories is subject to the Beta
+//  Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
 //  (Section 1.10).
 //
 // Returns the name, ARN, rules, definition, and effective dates of a Cost Category
@@ -1756,9 +1756,9 @@ func (c *CostExplorer) ListCostCategoryDefinitionsRequest(input *ListCostCategor
 // ListCostCategoryDefinitions API operation for AWS Cost Explorer Service.
 //
 //
-//  Cost Category is in preview release for AWS Billing and Cost Management
-//  and is subject to change. Your use of Cost Categories is subject to the
-//  Beta Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+//  Cost Category is in public beta for AWS Billing and Cost Management and
+//  is subject to change. Your use of Cost Categories is subject to the Beta
+//  Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
 //  (Section 1.10).
 //
 // Returns the name, ARN and effective dates of all Cost Categories defined
@@ -1846,9 +1846,9 @@ func (c *CostExplorer) UpdateCostCategoryDefinitionRequest(input *UpdateCostCate
 // UpdateCostCategoryDefinition API operation for AWS Cost Explorer Service.
 //
 //
-//  Cost Category is in preview release for AWS Billing and Cost Management
-//  and is subject to change. Your use of Cost Categories is subject to the
-//  Beta Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+//  Cost Category is in public beta for AWS Billing and Cost Management and
+//  is subject to change. Your use of Cost Categories is subject to the Beta
+//  Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
 //  (Section 1.10).
 //
 // Updates an existing Cost Category. Changes made to the Cost Category rules
@@ -1896,9 +1896,9 @@ func (c *CostExplorer) UpdateCostCategoryDefinitionWithContext(ctx aws.Context, 
 }
 
 //
-//  Cost Category is in preview release for AWS Billing and Cost Management
-//  and is subject to change. Your use of Cost Categories is subject to the
-//  Beta Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+//  Cost Category is in public beta for AWS Billing and Cost Management and
+//  is subject to change. Your use of Cost Categories is subject to the Beta
+//  Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
 //  (Section 1.10).
 //
 // The structure of Cost Categories. This includes detailed metadata and the
@@ -1984,9 +1984,9 @@ func (s *CostCategory) SetRules(v []*CostCategoryRule) *CostCategory {
 }
 
 //
-//  Cost Category is in preview release for AWS Billing and Cost Management
-//  and is subject to change. Your use of Cost Categories is subject to the
-//  Beta Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+//  Cost Category is in public beta for AWS Billing and Cost Management and
+//  is subject to change. Your use of Cost Categories is subject to the Beta
+//  Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
 //  (Section 1.10).
 //
 // A reference to a Cost Category containing only enough information to identify
@@ -2045,9 +2045,9 @@ func (s *CostCategoryReference) SetName(v string) *CostCategoryReference {
 }
 
 //
-//  Cost Category is in preview release for AWS Billing and Cost Management
-//  and is subject to change. Your use of Cost Categories is subject to the
-//  Beta Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+//  Cost Category is in public beta for AWS Billing and Cost Management and
+//  is subject to change. Your use of Cost Categories is subject to the Beta
+//  Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
 //  (Section 1.10).
 //
 // Rules are processed in order. If there are multiple rules that match the
@@ -2118,9 +2118,9 @@ func (s *CostCategoryRule) SetValue(v string) *CostCategoryRule {
 }
 
 //
-//  Cost Category is in preview release for AWS Billing and Cost Management
-//  and is subject to change. Your use of Cost Categories is subject to the
-//  Beta Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+//  Cost Category is in public beta for AWS Billing and Cost Management and
+//  is subject to change. Your use of Cost Categories is subject to the Beta
+//  Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
 //  (Section 1.10).
 //
 // The values that are available for Cost Categories.
@@ -2405,6 +2405,11 @@ type CreateCostCategoryDefinitionInput struct {
 	// RuleVersion is a required field
 	RuleVersion *string `type:"string" required:"true" enum:"CostCategoryRuleVersion"`
 
+	// CreateCostCategoryDefinition supports dimensions, Tags, and nested expressions.
+	// Currently the only dimensions supported is LINKED_ACCOUNT.
+	//
+	// Root level OR is not supported. We recommend you create a separate rule instead.
+	//
 	// Rules are processed in order. If there are multiple rules that match the
 	// line item, then the first rule to match is used to determine that Cost Category
 	// value.
@@ -2802,9 +2807,9 @@ type DescribeCostCategoryDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 
 	//
-	//  Cost Category is in preview release for AWS Billing and Cost Management
-	//  and is subject to change. Your use of Cost Categories is subject to the
-	//  Beta Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+	//  Cost Category is in public beta for AWS Billing and Cost Management and
+	//  is subject to change. Your use of Cost Categories is subject to the Beta
+	//  Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
 	//  (Section 1.10).
 	//
 	// The structure of Cost Categories. This includes detailed metadata and the
@@ -3319,9 +3324,9 @@ type Expression struct {
 	// Return results that match both Dimension objects.
 	And []*Expression `type:"list"`
 
-	//  Cost Category is in preview release for AWS Billing and Cost Management
-	//  and is subject to change. Your use of Cost Categories is subject to the
-	//  Beta Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+	//  Cost Category is in public beta for AWS Billing and Cost Management and
+	//  is subject to change. Your use of Cost Categories is subject to the Beta
+	//  Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
 	//  (Section 1.10).
 	//
 	// The specific CostCategory used for Expression.
@@ -8147,6 +8152,11 @@ type UpdateCostCategoryDefinitionInput struct {
 	// RuleVersion is a required field
 	RuleVersion *string `type:"string" required:"true" enum:"CostCategoryRuleVersion"`
 
+	// UpdateCostCategoryDefinition supports dimensions, Tags, and nested expressions.
+	// Currently the only dimensions supported is LINKED_ACCOUNT.
+	//
+	// Root level OR is not supported. We recommend you create a separate rule instead.
+	//
 	// Rules are processed in order. If there are multiple rules that match the
 	// line item, then the first rule to match is used to determine that Cost Category
 	// value.

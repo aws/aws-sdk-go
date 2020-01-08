@@ -1,3 +1,11 @@
+Release v1.27.3 (2020-01-08)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service documentation
+* `service/fms`: Updates service API and documentation
+* `service/translate`: Updates service API, documentation, and paginators
+
 Release v1.27.2 (2020-01-07)
 ===
 
