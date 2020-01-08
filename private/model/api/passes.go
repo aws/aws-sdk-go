@@ -4,7 +4,9 @@ package api
 
 import (
 	"fmt"
+	"regexp"
 	"strings"
+	"unicode"
 )
 
 // updateTopLevelShapeReferences moves resultWrapper, locationName, and
@@ -173,6 +175,71 @@ func (a *API) fixStutterNames() {
 		a.Operations[newName] = op
 		op.ExportedName = newName
 	}
+}
+
+// regexpForValidatingShapeName is used by validateShapeName to filter acceptable shape names
+// that may be renamed to a new valid shape name, if not already.
+// The regex allows underscores(_) at the beginning of the shape name
+// There may be 0 or more underscores(_). The next character would be the leading character
+// in the renamed shape name and thus, must be an alphabetic character.
+// The regex allows alphanumeric characters along with underscores(_) in rest of the string.
+var regexForValidatingShapeName = regexp.MustCompile("^[_]*[a-zA-Z][a-zA-Z0-9_]*$")
+
+// legacyShapeNames is a map of shape names that are supported and bypass the validateShapeNames util
+var legacyShapeNames = map[string][]string{
+	"mediapackage": {
+		"__AdTriggersElement",
+		"__PeriodTriggersElement",
+	},
+}
+
+// validateShapeNames is valid only for shapes of type structure or enums
+// We validate a shape name to check if its a valid shape name
+// A valid shape name would only contain alphanumeric characters and have an alphabet as leading character.
+//
+// If we encounter a shape name with underscores(_), we remove the underscores, and
+// follow a canonical upper camel case naming scheme to create a new shape name.
+// If the shape name collides with an existing shape name we return an error.
+// The resulting shape name must be a valid shape name or throw an error.
+func (a *API) validateShapeNames() error {
+loop:
+	for _, s := range a.Shapes {
+		if s.Type == "structure" || s.IsEnum() {
+			for _, legacyname := range legacyShapeNames[a.PackageName()] {
+				if s.ShapeName == legacyname {
+					continue loop
+				}
+			}
+			name := s.ShapeName
+			if b := regexForValidatingShapeName.MatchString(name); !b {
+				return fmt.Errorf("invalid shape name found: %v", s.ShapeName)
+			}
+
+			// Slice of strings returned after we split a string
+			// with a non alphanumeric character as delimiter.
+			slice := strings.FieldsFunc(name, func(r rune) bool {
+				return !unicode.IsLetter(r) && !unicode.IsNumber(r)
+			})
+
+			// Build a string that follows canonical upper camel casing
+			var b strings.Builder
+			for _, word := range slice {
+				b.WriteString(strings.Title(word))
+			}
+
+			name = b.String()
+			if s.ShapeName != name {
+				if a.Shapes[name] != nil {
+					// throw an error if shape with a new shape name already exists
+					return fmt.Errorf("attempt to rename shape %v to %v for package %v failed, as this rename would result in shape name collision",
+						s.ShapeName, name, a.PackageName())
+				}
+				debugLogger.Logf("Renaming shape %v to %v for package %v \n", s.ShapeName, name, a.PackageName())
+				s.Rename(name)
+			}
+		}
+	}
+	return nil
 }
 
 // renameExportable renames all operation names to be exportable names.

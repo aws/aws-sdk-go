@@ -5,6 +5,7 @@ package api
 import (
 	"reflect"
 	"strconv"
+	"strings"
 	"testing"
 )
 
@@ -600,6 +601,153 @@ func TestCreateInputOutputShapes(t *testing.T) {
 
 			if e, a := c.ExpectShapes, a.ShapeNames(); !reflect.DeepEqual(e, a) {
 				t.Errorf("expect %v shapes, got %v", e, a)
+			}
+		})
+	}
+}
+
+func TestValidateShapeNameMethod(t *testing.T) {
+	cases := map[string]struct {
+		inputShapeName    string
+		shapeType         string
+		expectedShapeName string
+		expectedError     string
+	}{
+		"empty case": {
+			inputShapeName:    "",
+			shapeType:         "structure",
+			expectedShapeName: "",
+			expectedError:     "invalid shape name found",
+		},
+		"No rename": {
+			inputShapeName:    "Sample123Shape",
+			shapeType:         "structure",
+			expectedShapeName: "Sample123Shape",
+		},
+		"starts with underscores": {
+			inputShapeName:    "__Sample123Shape",
+			shapeType:         "structure",
+			expectedShapeName: "Sample123Shape",
+		},
+		"Contains underscores": {
+			inputShapeName:    "__sample_123_shape__",
+			shapeType:         "structure",
+			expectedShapeName: "Sample123Shape",
+		},
+		"Starts with numeric character": {
+			inputShapeName:    "123__sampleShape",
+			shapeType:         "structure",
+			expectedShapeName: "",
+			expectedError:     "invalid shape name found",
+		},
+		"Starts with non alphabetic or non underscore character": {
+			inputShapeName:    "&&SampleShape",
+			shapeType:         "structure",
+			expectedShapeName: "",
+			expectedError:     "invalid shape name found",
+		},
+		"Contains non Alphanumeric or non underscore character": {
+			inputShapeName:    "Sample&__Shape",
+			shapeType:         "structure",
+			expectedShapeName: "",
+			expectedError:     "invalid shape name found",
+		},
+		"Renamed Shape already exists": {
+			inputShapeName:    "__sample_shape",
+			shapeType:         "structure",
+			expectedShapeName: "",
+			expectedError:     "rename would result in shape name collision",
+		},
+		"empty case for enums shape type": {
+			inputShapeName:    "",
+			shapeType:         "string",
+			expectedShapeName: "",
+			expectedError:     "invalid shape name found",
+		},
+		"No rename for enums shape type": {
+			inputShapeName:    "Sample123Shape",
+			shapeType:         "string",
+			expectedShapeName: "Sample123Shape",
+		},
+		"starts with underscores for enums shape type": {
+			inputShapeName:    "__Sample123Shape",
+			shapeType:         "string",
+			expectedShapeName: "Sample123Shape",
+		},
+		"Contains underscores for enums shape type": {
+			inputShapeName:    "__sample_123_shape__",
+			shapeType:         "string",
+			expectedShapeName: "Sample123Shape",
+		},
+		"Starts with numeric character for enums shape type": {
+			inputShapeName:    "123__sampleShape",
+			shapeType:         "string",
+			expectedShapeName: "",
+			expectedError:     "invalid shape name found",
+		},
+		"Starts with non alphabetic or non underscore character for enums shape type": {
+			inputShapeName:    "&&SampleShape",
+			shapeType:         "string",
+			expectedShapeName: "",
+			expectedError:     "invalid shape name found",
+		},
+		"Contains non Alphanumeric or non underscore character for enums shape type": {
+			inputShapeName:    "Sample&__Shape",
+			shapeType:         "string",
+			expectedShapeName: "",
+			expectedError:     "invalid shape name found",
+		},
+		"Renamed Shape already exists for enums shape type": {
+			inputShapeName:    "__sample_shape",
+			shapeType:         "string",
+			expectedShapeName: "",
+			expectedError:     "rename would result in shape name collision",
+		},
+	}
+
+	for name, c := range cases {
+		operation := "FooOperation"
+		t.Run(name, func(t *testing.T) {
+			a := &API{
+				Operations: map[string]*Operation{},
+				Shapes:     map[string]*Shape{},
+			}
+			// add another shape with name SampleShape to check for collision
+			a.Shapes["SampleShape"] = &Shape{ShapeName: "SampleShape"}
+			o := &Operation{
+				Name:         operation,
+				ExportedName: operation,
+				InputRef: ShapeRef{
+					API:       a,
+					ShapeName: c.inputShapeName,
+					Shape: &Shape{
+						API:       a,
+						ShapeName: c.inputShapeName,
+						Type:      c.shapeType,
+						Enum:      []string{"x"},
+					},
+				},
+			}
+			o.InputRef.Shape.refs = append(o.InputRef.Shape.refs, &o.InputRef)
+			a.Operations[o.Name] = o
+			a.Shapes[c.inputShapeName] = o.InputRef.Shape
+
+			err := a.validateShapeNames()
+			if err != nil || c.expectedError != "" {
+				if err == nil {
+					t.Fatalf("Received no error, expected error with log: \n \t %v ", c.expectedError)
+				}
+				if c.expectedError == "" {
+					t.Fatalf("Expected no error, got %v", err.Error())
+				}
+				if e, a := err.Error(), c.expectedError; !strings.Contains(e, a) {
+					t.Fatalf("Expected to receive error containing %v, got %v", e, a)
+				}
+				return
+			}
+
+			if e, a := c.expectedShapeName, o.InputRef.Shape.ShapeName; e != a {
+				t.Fatalf("Expected shape name to be %v, got %v", e, a)
 			}
 		})
 	}
