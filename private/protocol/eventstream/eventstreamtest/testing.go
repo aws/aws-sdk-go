@@ -139,6 +139,11 @@ func (s ServeEventStream) readEvents(ctx context.Context, r *http.Request) error
 			return err
 		}
 
+		// empty payload is expected for the last signing message
+		if len(signedMessage.Payload) == 0 {
+			break
+		}
+
 		// get service event message from payload
 		msg, err := eventstream.Decode(bytes.NewReader(signedMessage.Payload), messageBuffer)
 		if err != nil {
@@ -146,11 +151,6 @@ func (s ServeEventStream) readEvents(ctx context.Context, r *http.Request) error
 				break
 			}
 			return err
-		}
-
-		// empty payload is expected for the last signing message
-		if len(msg.Payload) == 0 {
-			break
 		}
 
 		if len(s.ClientEvents) > 0 {
