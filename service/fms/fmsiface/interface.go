@@ -117,6 +117,10 @@ type FMSAPI interface {
 	ListPoliciesPages(*fms.ListPoliciesInput, func(*fms.ListPoliciesOutput, bool) bool) error
 	ListPoliciesPagesWithContext(aws.Context, *fms.ListPoliciesInput, func(*fms.ListPoliciesOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*fms.ListTagsForResourceInput) (*fms.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *fms.ListTagsForResourceInput, ...request.Option) (*fms.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*fms.ListTagsForResourceInput) (*request.Request, *fms.ListTagsForResourceOutput)
+
 	PutNotificationChannel(*fms.PutNotificationChannelInput) (*fms.PutNotificationChannelOutput, error)
 	PutNotificationChannelWithContext(aws.Context, *fms.PutNotificationChannelInput, ...request.Option) (*fms.PutNotificationChannelOutput, error)
 	PutNotificationChannelRequest(*fms.PutNotificationChannelInput) (*request.Request, *fms.PutNotificationChannelOutput)
@@ -124,6 +128,14 @@ type FMSAPI interface {
 	PutPolicy(*fms.PutPolicyInput) (*fms.PutPolicyOutput, error)
 	PutPolicyWithContext(aws.Context, *fms.PutPolicyInput, ...request.Option) (*fms.PutPolicyOutput, error)
 	PutPolicyRequest(*fms.PutPolicyInput) (*request.Request, *fms.PutPolicyOutput)
+
+	TagResource(*fms.TagResourceInput) (*fms.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *fms.TagResourceInput, ...request.Option) (*fms.TagResourceOutput, error)
+	TagResourceRequest(*fms.TagResourceInput) (*request.Request, *fms.TagResourceOutput)
+
+	UntagResource(*fms.UntagResourceInput) (*fms.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *fms.UntagResourceInput, ...request.Option) (*fms.UntagResourceOutput, error)
+	UntagResourceRequest(*fms.UntagResourceInput) (*request.Request, *fms.UntagResourceOutput)
 }
 
 var _ FMSAPI = (*fms.FMS)(nil)
