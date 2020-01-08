@@ -292,7 +292,7 @@ func TestEncoderFieldByIndex(t *testing.T) {
 	innerField, _ = outerFields.FieldByName("Inner")
 
 	f, found := encoderFieldByIndex(reflect.ValueOf(&outer).Elem(), innerField.Index)
-	if found != true {
+	if !found {
 		t.Error("expected found to be true")
 	}
 	if f.Kind() != reflect.Int || f.Int() != int64(outer.Inner) {
