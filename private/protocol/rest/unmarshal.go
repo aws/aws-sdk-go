@@ -29,7 +29,9 @@ var UnmarshalMetaHandler = request.NamedHandler{Name: "awssdk.rest.UnmarshalMeta
 func Unmarshal(r *request.Request) {
 	if r.DataFilled() {
 		v := reflect.Indirect(reflect.ValueOf(r.Data))
-		unmarshalBody(r, v)
+		if err := unmarshalBody(r, v); err != nil {
+			r.Error = err
+		}
 	}
 }
 
