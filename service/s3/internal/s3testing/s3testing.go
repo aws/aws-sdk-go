@@ -18,6 +18,7 @@ var randBytes = func() []byte {
 	return b
 }()
 
+// GetTestBytes returns a pseudo-random []byte of length size
 func GetTestBytes(size int) []byte {
 	if len(randBytes) >= size {
 		return randBytes[:size]
