@@ -51,6 +51,43 @@
         "title": "To assume a role"
       }
     ],
+    "AssumeRoleWithSAML": [
+      {
+        "input": {
+          "DurationSeconds": 3600,
+          "PrincipalArn": "arn:aws:iam::123456789012:saml-provider/SAML-test",
+          "RoleArn": "arn:aws:iam::123456789012:role/TestSaml",
+          "SAMLAssertion": "VERYLONGENCODEDASSERTIONEXAMPLExzYW1sOkF1ZGllbmNlPmJsYW5rPC9zYW1sOkF1ZGllbmNlPjwvc2FtbDpBdWRpZW5jZVJlc3RyaWN0aW9uPjwvc2FtbDpDb25kaXRpb25zPjxzYW1sOlN1YmplY3Q+PHNhbWw6TmFtZUlEIEZvcm1hdD0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOm5hbWVpZC1mb3JtYXQ6dHJhbnNpZW50Ij5TYW1sRXhhbXBsZTwvc2FtbDpOYW1lSUQ+PHNhbWw6U3ViamVjdENvbmZpcm1hdGlvbiBNZXRob2Q9InVybjpvYXNpczpuYW1lczp0YzpTQU1MOjIuMDpjbTpiZWFyZXIiPjxzYW1sOlN1YmplY3RDb25maXJtYXRpb25EYXRhIE5vdE9uT3JBZnRlcj0iMjAxOS0xMS0wMVQyMDoyNTowNS4xNDVaIiBSZWNpcGllbnQ9Imh0dHBzOi8vc2lnbmluLmF3cy5hbWF6b24uY29tL3NhbWwiLz48L3NhbWw6U3ViamVjdENvbmZpcm1hdGlvbj48L3NhbWw6U3ViamVjdD48c2FtbDpBdXRoblN0YXRlbWVudCBBdXRoPD94bWwgdmpSZXNwb25zZT4="
+        },
+        "output": {
+          "AssumedRoleUser": {
+            "Arn": "arn:aws:sts::123456789012:assumed-role/TestSaml",
+            "AssumedRoleId": "ARO456EXAMPLE789:TestSaml"
+          },
+          "Audience": "https://signin.aws.amazon.com/saml",
+          "Credentials": {
+            "AccessKeyId": "ASIAV3ZUEFP6EXAMPLE",
+            "Expiration": "2019-11-01T20:26:47Z",
+            "SecretAccessKey": "8P+SQvWIuLnKhh8d++jpw0nNmQRBZvNEXAMPLEKEY",
+            "SessionToken": "IQoJb3JpZ2luX2VjEOz////////////////////wEXAMPLEtMSJHMEUCIDoKK3JH9uGQE1z0sINr5M4jk+Na8KHDcCYRVjJCZEvOAiEA3OvJGtw1EcViOleS2vhs8VdCKFJQWPQrmGdeehM4IC1NtBmUpp2wUE8phUZampKsburEDy0KPkyQDYwT7WZ0wq5VSXDvp75YU9HFvlRd8Tx6q6fE8YQcHNVXAkiY9q6d+xo0rKwT38xVqr7ZD0u0iPPkUL64lIZbqBAz+scqKmlzm8FDrypNC9Yjc8fPOLn9FX9KSYvKTr4rvx3iSIlTJabIQwj2ICCR/oLxBA=="
+          },
+          "Issuer": "https://integ.example.com/idp/shibboleth",
+          "NameQualifier": "SbdGOnUkh1i4+EXAMPLExL/jEvs=",
+          "PackedPolicySize": 6,
+          "Subject": "SamlExample",
+          "SubjectType": "transient"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "",
+        "id": "to-assume-role-with-saml-14882749597814",
+        "title": "To assume a role using a SAML assertion"
+      }
+    ],
     "AssumeRoleWithWebIdentity": [
       {
         "input": {

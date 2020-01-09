@@ -67,6 +67,10 @@ func (c *CloudWatchLogs) AssociateKmsKeyRequest(input *AssociateKmsKeyInput) (re
 // within Amazon CloudWatch Logs. This enables Amazon CloudWatch Logs to decrypt
 // this data whenever it is requested.
 //
+// Important: CloudWatch Logs supports only symmetric CMKs. Do not use an associate
+// an asymmetric CMK with your log group. For more information, see Using Symmetric
+// and Asymmetric Keys (https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html).
+//
 // Note that it can take up to 5 minutes for this operation to take effect.
 //
 // If you attempt to associate a CMK with a log group but the CMK does not exist
@@ -382,6 +386,10 @@ func (c *CloudWatchLogs) CreateLogGroupRequest(input *CreateLogGroupInput) (req 
 // exist or the CMK is disabled, you will receive an InvalidParameterException
 // error.
 //
+// Important: CloudWatch Logs supports only symmetric CMKs. Do not associate
+// an asymmetric CMK with your log group. For more information, see Using Symmetric
+// and Asymmetric Keys (https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -475,7 +483,8 @@ func (c *CloudWatchLogs) CreateLogStreamRequest(input *CreateLogStreamInput) (re
 // Creates a log stream for the specified log group.
 //
 // There is no limit on the number of log streams that you can create for a
-// log group.
+// log group. There is a limit of 50 TPS on CreateLogStream operations, after
+// which transactions are throttled.
 //
 // You must use the following guidelines when naming a log stream:
 //
@@ -3130,9 +3139,10 @@ func (c *CloudWatchLogs) PutLogEventsRequest(input *PutLogEventsInput) (req *req
 //
 // You must include the sequence token obtained from the response of the previous
 // call. An upload in a newly created log stream does not require a sequence
-// token. You can also get the sequence token using DescribeLogStreams. If you
-// call PutLogEvents twice within a narrow time period using the same value
-// for sequenceToken, both calls may be successful, or one may be rejected.
+// token. You can also get the sequence token in the expectedSequenceToken field
+// from InvalidSequenceTokenException. If you call PutLogEvents twice within
+// a narrow time period using the same value for sequenceToken, both calls may
+// be successful, or one may be rejected.
 //
 // The batch of events must satisfy the following constraints:
 //
@@ -3152,10 +3162,13 @@ func (c *CloudWatchLogs) PutLogEventsRequest(input *PutLogEventsInput) (req *req
 //    for PowerShell and the AWS SDK for .NET, the timestamp is specified in
 //    .NET format: yyyy-mm-ddThh:mm:ss. For example, 2017-09-15T13:45:30.)
 //
-//    * The maximum number of log events in a batch is 10,000.
-//
 //    * A batch of log events in a single request cannot span more than 24 hours.
 //    Otherwise, the operation fails.
+//
+//    * The maximum number of log events in a batch is 10,000.
+//
+//    * There is a quota of 5 requests per second per log stream. Additional
+//    requests are throttled. This quota can't be changed.
 //
 // If a call to PutLogEvents returns "UnrecognizedClientException" the most
 // likely cause is an invalid AWS access key ID or secret key.
@@ -3172,7 +3185,8 @@ func (c *CloudWatchLogs) PutLogEventsRequest(input *PutLogEventsInput) (req *req
 //   A parameter is specified incorrectly.
 //
 //   * ErrCodeInvalidSequenceTokenException "InvalidSequenceTokenException"
-//   The sequence token is not valid.
+//   The sequence token is not valid. You can get the correct sequence token in
+//   the expectedSequenceToken field in the InvalidSequenceTokenException message.
 //
 //   * ErrCodeDataAlreadyAcceptedException "DataAlreadyAcceptedException"
 //   The event was already logged.
@@ -4045,8 +4059,9 @@ type AssociateKmsKeyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the CMK to use when encrypting log data.
-	// For more information, see Amazon Resource Names - AWS Key Management Service
-	// (AWS KMS) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms).
+	// This must be a symmetric CMK. For more information, see Amazon Resource Names
+	// - AWS Key Management Service (AWS KMS) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms)
+	// and Using Symmetric and Asymmetric Keys (https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html).
 	//
 	// KmsKeyId is a required field
 	KmsKeyId *string `locationName:"kmsKeyId" type:"string" required:"true"`
