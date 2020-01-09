@@ -1,3 +1,12 @@
+Release v1.27.4 (2020-01-09)
+===
+
+### Service Client Updates
+* `service/logs`: Updates service documentation
+  * Documentation updates for logs
+* `service/sts`: Updates service examples
+  * Documentation updates for sts
+
 Release v1.27.3 (2020-01-08)
 ===
 
