@@ -424,6 +424,9 @@ func mockStartStreamTranscriptionReadEvents() (
 func TestStartStreamTranscription_ReadException(t *testing.T) {
 	expectEvents := []TranscriptResultStreamEvent{
 		&BadRequestException{
+			respMetadata: protocol.ResponseMetadata{
+				StatusCode: 200,
+			},
 			Message_: aws.String("string value goes here"),
 		},
 	}
@@ -475,6 +478,9 @@ func TestStartStreamTranscription_ReadException(t *testing.T) {
 	}
 
 	expectErr := &BadRequestException{
+		respMetadata: protocol.ResponseMetadata{
+			StatusCode: 200,
+		},
 		Message_: aws.String("string value goes here"),
 	}
 	aerr, ok := err.(awserr.Error)
@@ -489,7 +495,7 @@ func TestStartStreamTranscription_ReadException(t *testing.T) {
 	}
 
 	if e, a := expectErr, aerr; !reflect.DeepEqual(e, a) {
-		t.Errorf("expect %#v, got %#v", e, a)
+		t.Errorf("expect error %+#v, got %+#v", e, a)
 	}
 }
 

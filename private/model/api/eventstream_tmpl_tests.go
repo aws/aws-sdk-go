@@ -102,6 +102,12 @@ func valueForType(s *Shape, visited []string) string {
 	case "structure":
 		w := bytes.NewBuffer(nil)
 		fmt.Fprintf(w, "&%s{\n", s.ShapeName)
+		if s.Exception {
+			fmt.Fprintf(w, `respMetadata: protocol.ResponseMetadata{
+	StatusCode: 200,
+},
+`)
+		}
 		for _, refName := range s.MemberNames() {
 			fmt.Fprintf(w, "%s: %s,\n", refName, valueForType(s.MemberRefs[refName].Shape, visited))
 		}

@@ -228,6 +228,9 @@ func TestSubscribeToShard_ReadException(t *testing.T) {
 	expectEvents := []SubscribeToShardEventStreamEvent{
 		&SubscribeToShardOutput{},
 		&InternalFailureException{
+			respMetadata: protocol.ResponseMetadata{
+				StatusCode: 200,
+			},
 			Message_: aws.String("string value goes here"),
 		},
 	}
@@ -289,6 +292,9 @@ func TestSubscribeToShard_ReadException(t *testing.T) {
 	}
 
 	expectErr := &InternalFailureException{
+		respMetadata: protocol.ResponseMetadata{
+			StatusCode: 200,
+		},
 		Message_: aws.String("string value goes here"),
 	}
 	aerr, ok := err.(awserr.Error)
@@ -303,7 +309,7 @@ func TestSubscribeToShard_ReadException(t *testing.T) {
 	}
 
 	if e, a := expectErr, aerr; !reflect.DeepEqual(e, a) {
-		t.Errorf("expect %#v, got %#v", e, a)
+		t.Errorf("expect error %+#v, got %+#v", e, a)
 	}
 }
 
