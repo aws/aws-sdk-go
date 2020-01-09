@@ -27,11 +27,14 @@ func NewUnmarshalErrorHandler(unmarshaler ErrorUnmarshaler) *UnmarshalErrorHandl
 	}
 }
 
+// UnmarshalErrorHandlerName is the name of the named handler.
+const UnmarshalErrorHandlerName = "awssdk.protocol.UnmarshalError"
+
 // NamedHandler returns a NamedHandler for the unmarshaler using the set of
 // errors the unmarshaler was initialized for.
 func (u *UnmarshalErrorHandler) NamedHandler() request.NamedHandler {
 	return request.NamedHandler{
-		Name: "awssdk.protocol.UnmarshalError",
+		Name: UnmarshalErrorHandlerName,
 		Fn:   u.UnmarshalError,
 	}
 }

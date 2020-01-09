@@ -14,6 +14,11 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/rest"
 )
 
+const (
+	errorTypeHeader    = "X-Amzn-Errortype"
+	errorMessageHeader = "X-Amzn-Errormessage"
+)
+
 // UnmarshalTypedError provides unmarshaling errors API response errors
 // for both typed and untyped errors.
 type UnmarshalTypedError struct {
@@ -36,8 +41,8 @@ func (u *UnmarshalTypedError) UnmarshalError(
 	respMeta protocol.ResponseMetadata,
 ) (error, error) {
 
-	code := resp.Header.Get("X-Amzn-Errortype")
-	msg := resp.Header.Get("X-Amzn-Errormessage")
+	code := resp.Header.Get(errorTypeHeader)
+	msg := resp.Header.Get(errorMessageHeader)
 
 	body := resp.Body
 	if len(code) == 0 {
@@ -106,11 +111,11 @@ func UnmarshalError(r *request.Request) {
 		return
 	}
 
-	code := r.HTTPResponse.Header.Get("X-Amzn-Errortype")
+	code := r.HTTPResponse.Header.Get(errorTypeHeader)
 	if code == "" {
 		code = jsonErr.Code
 	}
-	msg := r.HTTPResponse.Header.Get("X-Amzn-Errormessage")
+	msg := r.HTTPResponse.Header.Get(errorMessageHeader)
 	if msg == "" {
 		msg = jsonErr.Message
 	}

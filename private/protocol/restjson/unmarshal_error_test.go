@@ -19,6 +19,7 @@ import (
 
 const unknownErrJSON = `{"code":"UnknownError", "message":"error message", "something":123}`
 const simpleErrJSON = `{"code":"SimpleError", "message":"some message", "foo":123}`
+const simpleNoCodeJSON = `{"message":"some message", "foo":123}`
 
 type SimpleError struct {
 	_ struct{} `type:"structure"`
@@ -144,6 +145,45 @@ func TestUnmarshalTypedError(t *testing.T) {
 				Body:       ioutil.NopCloser(strings.NewReader(`{`)),
 			},
 			Err: "failed decoding",
+		},
+		"unknown from header": {
+			Response: &http.Response{
+				Header: http.Header{
+					errorTypeHeader:    []string{"UnknownError"},
+					errorMessageHeader: []string{"error message"},
+				},
+				Body: ioutil.NopCloser(nil),
+			},
+			Expect: awserr.NewRequestFailure(
+				awserr.New("UnknownError", "error message", nil),
+				respMeta.StatusCode,
+				respMeta.RequestID,
+			),
+		},
+		"code from header": {
+			Response: &http.Response{
+				Header: http.Header{
+					errorTypeHeader: []string{"SimpleError"},
+				},
+				Body: ioutil.NopCloser(strings.NewReader(simpleNoCodeJSON)),
+			},
+			Expect: &SimpleError{
+				Message2: aws.String("some message"),
+				Foo:      aws.Int64(123),
+			},
+		},
+		"ignore message header": {
+			Response: &http.Response{
+				Header: http.Header{
+					errorTypeHeader:    []string{"SimpleError"},
+					errorMessageHeader: []string{"error message"},
+				},
+				Body: ioutil.NopCloser(strings.NewReader(simpleNoCodeJSON)),
+			},
+			Expect: &SimpleError{
+				Message2: aws.String("some message"),
+				Foo:      aws.Int64(123),
+			},
 		},
 	}
 

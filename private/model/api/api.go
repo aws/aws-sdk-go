@@ -607,6 +607,7 @@ func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint,
 	svc.Handlers.Build.PushBackNamed({{ .ProtocolPackage }}.BuildHandler)
 	svc.Handlers.Unmarshal.PushBackNamed({{ .ProtocolPackage }}.UnmarshalHandler)
 	svc.Handlers.UnmarshalMeta.PushBackNamed({{ .ProtocolPackage }}.UnmarshalMetaHandler)
+
 	{{- if and $.WithGeneratedTypedErrors (gt (len $.ShapeListErrors) 0) }}
 		{{- $_ := $.AddSDKImport "private/protocol" }}
 		svc.Handlers.UnmarshalError.PushBackNamed(
@@ -615,16 +616,20 @@ func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint,
 	{{- else }}
 		svc.Handlers.UnmarshalError.PushBackNamed({{ .ProtocolPackage }}.UnmarshalErrorHandler)
 	{{- end }}
-	{{ if .HasEventStream }}
-	svc.Handlers.BuildStream.PushBackNamed({{ .ProtocolPackage }}.BuildHandler)
-	svc.Handlers.UnmarshalStream.PushBackNamed({{ .ProtocolPackage }}.UnmarshalHandler)
-	{{ end }}
 
-	{{ if .UseInitMethods }}// Run custom client initialization if present
-	if initClient != nil {
-		initClient(svc.Client)
-	}
-	{{ end  }}
+	{{- if .HasEventStream }}
+
+		svc.Handlers.BuildStream.PushBackNamed({{ .ProtocolPackage }}.BuildHandler)
+		svc.Handlers.UnmarshalStream.PushBackNamed({{ .ProtocolPackage }}.UnmarshalHandler)
+	{{- end }}
+
+	{{- if .UseInitMethods }}
+
+		// Run custom client initialization if present
+		if initClient != nil {
+			initClient(svc.Client)
+		}
+	{{- end  }}
 
 	return svc
 }
@@ -634,11 +639,13 @@ func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint,
 func (c *{{ .StructName }}) newRequest(op *request.Operation, params, data interface{}) *request.Request {
 	req := c.NewRequest(op, params, data)
 
-	{{ if .UseInitMethods }}// Run custom request initialization if present
-	if initRequest != nil {
-		initRequest(req)
-	}
-	{{ end }}
+	{{- if .UseInitMethods }}
+
+		// Run custom request initialization if present
+		if initRequest != nil {
+			initRequest(req)
+		}
+	{{- end }}
 
 	return req
 }

@@ -221,7 +221,11 @@ func (a *API) Setup() error {
 
 	a.findEndpointDiscoveryOp()
 	a.injectUnboundedOutputStreaming()
+
+	// Enables generated types for APIs using REST-JSON and JSONRPC protocols.
+	// Other protocols will be added as supported.
 	a.enableGeneratedTypedErrors()
+
 	if err := a.customizationPasses(); err != nil {
 		return err
 	}
