@@ -27,6 +27,7 @@ import (
 	"github.com/aws/aws-sdk-go/awstesting"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/service/s3"
+	"github.com/aws/aws-sdk-go/service/s3/internal/s3testing"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
 )
 
@@ -1211,7 +1212,7 @@ func TestUploadBufferStrategy(t *testing.T) {
 				u.Concurrency = 1
 			})
 
-			expected := getTestBytes(int(tCase.Size))
+			expected := s3testing.GetTestBytes(int(tCase.Size))
 			_, err := uploader.Upload(&s3manager.UploadInput{
 				Bucket: aws.String("bucket"),
 				Key:    aws.String("key"),
