@@ -55214,6 +55214,19 @@ type DescribeEgressOnlyInternetGatewaysInput struct {
 	// One or more egress-only internet gateway IDs.
 	EgressOnlyInternetGatewayIds []*string `locationName:"EgressOnlyInternetGatewayId" locationNameList:"item" type:"list"`
 
+	// One or more filters.
+	//
+	//    * tag:<key> - The key/value combination of a tag assigned to the resource.
+	//    Use the tag key in the filter name and the tag value as the filter value.
+	//    For example, to find all resources that have a tag with the key Owner
+	//    and the value TeamA, specify tag:Owner for the filter name and TeamA for
+	//    the filter value.
+	//
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
 	// The maximum number of results to return with a single call. To retrieve the
 	// remaining results, make another call with the returned nextToken value.
 	MaxResults *int64 `min:"5" type:"integer"`
@@ -55254,6 +55267,12 @@ func (s *DescribeEgressOnlyInternetGatewaysInput) SetDryRun(v bool) *DescribeEgr
 // SetEgressOnlyInternetGatewayIds sets the EgressOnlyInternetGatewayIds field's value.
 func (s *DescribeEgressOnlyInternetGatewaysInput) SetEgressOnlyInternetGatewayIds(v []*string) *DescribeEgressOnlyInternetGatewaysInput {
 	s.EgressOnlyInternetGatewayIds = v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeEgressOnlyInternetGatewaysInput) SetFilters(v []*Filter) *DescribeEgressOnlyInternetGatewaysInput {
+	s.Filters = v
 	return s
 }
 
@@ -69531,6 +69550,9 @@ type EgressOnlyInternetGateway struct {
 
 	// The ID of the egress-only internet gateway.
 	EgressOnlyInternetGatewayId *string `locationName:"egressOnlyInternetGatewayId" type:"string"`
+
+	// The tags assigned to the egress-only internet gateway.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
 }
 
 // String returns the string representation
@@ -69552,6 +69574,12 @@ func (s *EgressOnlyInternetGateway) SetAttachments(v []*InternetGatewayAttachmen
 // SetEgressOnlyInternetGatewayId sets the EgressOnlyInternetGatewayId field's value.
 func (s *EgressOnlyInternetGateway) SetEgressOnlyInternetGatewayId(v string) *EgressOnlyInternetGateway {
 	s.EgressOnlyInternetGatewayId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *EgressOnlyInternetGateway) SetTags(v []*Tag) *EgressOnlyInternetGateway {
+	s.Tags = v
 	return s
 }
 
@@ -81965,6 +81993,9 @@ type LocalGateway struct {
 
 	// The state of the local gateway.
 	State *string `locationName:"state" type:"string"`
+
+	// The tags assigned to the local gateway.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
 }
 
 // String returns the string representation
@@ -81998,6 +82029,12 @@ func (s *LocalGateway) SetOwnerId(v string) *LocalGateway {
 // SetState sets the State field's value.
 func (s *LocalGateway) SetState(v string) *LocalGateway {
 	s.State = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *LocalGateway) SetTags(v []*Tag) *LocalGateway {
+	s.Tags = v
 	return s
 }
 
@@ -82076,6 +82113,9 @@ type LocalGatewayRouteTable struct {
 
 	// The state of the local gateway route table.
 	State *string `locationName:"state" type:"string"`
+
+	// The tags assigned to the local gateway route table.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
 }
 
 // String returns the string representation
@@ -82112,6 +82152,12 @@ func (s *LocalGatewayRouteTable) SetState(v string) *LocalGatewayRouteTable {
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *LocalGatewayRouteTable) SetTags(v []*Tag) *LocalGatewayRouteTable {
+	s.Tags = v
+	return s
+}
+
 // Describes an association between a local gateway route table and a virtual
 // interface group.
 type LocalGatewayRouteTableVirtualInterfaceGroupAssociation struct {
@@ -82131,6 +82177,9 @@ type LocalGatewayRouteTableVirtualInterfaceGroupAssociation struct {
 
 	// The state of the association.
 	State *string `locationName:"state" type:"string"`
+
+	// The tags assigned to the association.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
 }
 
 // String returns the string representation
@@ -82173,6 +82222,12 @@ func (s *LocalGatewayRouteTableVirtualInterfaceGroupAssociation) SetState(v stri
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *LocalGatewayRouteTableVirtualInterfaceGroupAssociation) SetTags(v []*Tag) *LocalGatewayRouteTableVirtualInterfaceGroupAssociation {
+	s.Tags = v
+	return s
+}
+
 // Describes an association between a local gateway route table and a VPC.
 type LocalGatewayRouteTableVpcAssociation struct {
 	_ struct{} `type:"structure"`
@@ -82188,6 +82243,9 @@ type LocalGatewayRouteTableVpcAssociation struct {
 
 	// The state of the association.
 	State *string `locationName:"state" type:"string"`
+
+	// The tags assigned to the association.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
 
 	// The ID of the VPC.
 	VpcId *string `locationName:"vpcId" type:"string"`
@@ -82227,6 +82285,12 @@ func (s *LocalGatewayRouteTableVpcAssociation) SetState(v string) *LocalGatewayR
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *LocalGatewayRouteTableVpcAssociation) SetTags(v []*Tag) *LocalGatewayRouteTableVpcAssociation {
+	s.Tags = v
+	return s
+}
+
 // SetVpcId sets the VpcId field's value.
 func (s *LocalGatewayRouteTableVpcAssociation) SetVpcId(v string) *LocalGatewayRouteTableVpcAssociation {
 	s.VpcId = &v
@@ -82255,6 +82319,9 @@ type LocalGatewayVirtualInterface struct {
 
 	// The peer BGP ASN.
 	PeerBgpAsn *int64 `locationName:"peerBgpAsn" type:"integer"`
+
+	// The tags assigned to the virtual interface.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
 
 	// The ID of the VLAN.
 	Vlan *int64 `locationName:"vlan" type:"integer"`
@@ -82306,6 +82373,12 @@ func (s *LocalGatewayVirtualInterface) SetPeerBgpAsn(v int64) *LocalGatewayVirtu
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *LocalGatewayVirtualInterface) SetTags(v []*Tag) *LocalGatewayVirtualInterface {
+	s.Tags = v
+	return s
+}
+
 // SetVlan sets the Vlan field's value.
 func (s *LocalGatewayVirtualInterface) SetVlan(v int64) *LocalGatewayVirtualInterface {
 	s.Vlan = &v
@@ -82324,6 +82397,9 @@ type LocalGatewayVirtualInterfaceGroup struct {
 
 	// The IDs of the virtual interfaces.
 	LocalGatewayVirtualInterfaceIds []*string `locationName:"localGatewayVirtualInterfaceIdSet" locationNameList:"item" type:"list"`
+
+	// The tags assigned to the virtual interface group.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
 }
 
 // String returns the string representation
@@ -82351,6 +82427,12 @@ func (s *LocalGatewayVirtualInterfaceGroup) SetLocalGatewayVirtualInterfaceGroup
 // SetLocalGatewayVirtualInterfaceIds sets the LocalGatewayVirtualInterfaceIds field's value.
 func (s *LocalGatewayVirtualInterfaceGroup) SetLocalGatewayVirtualInterfaceIds(v []*string) *LocalGatewayVirtualInterfaceGroup {
 	s.LocalGatewayVirtualInterfaceIds = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *LocalGatewayVirtualInterfaceGroup) SetTags(v []*Tag) *LocalGatewayVirtualInterfaceGroup {
+	s.Tags = v
 	return s
 }
 

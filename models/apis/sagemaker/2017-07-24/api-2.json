@@ -259,7 +259,10 @@
         "requestUri":"/"
       },
       "input":{"shape":"CreatePresignedDomainUrlRequest"},
-      "output":{"shape":"CreatePresignedDomainUrlResponse"}
+      "output":{"shape":"CreatePresignedDomainUrlResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
     },
     "CreatePresignedNotebookInstanceUrl":{
       "name":"CreatePresignedNotebookInstanceUrl",
@@ -1105,7 +1108,10 @@
         "requestUri":"/"
       },
       "input":{"shape":"ListTrialComponentsRequest"},
-      "output":{"shape":"ListTrialComponentsResponse"}
+      "output":{"shape":"ListTrialComponentsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
     },
     "ListTrials":{
       "name":"ListTrials",
@@ -1114,7 +1120,10 @@
         "requestUri":"/"
       },
       "input":{"shape":"ListTrialsRequest"},
-      "output":{"shape":"ListTrialsResponse"}
+      "output":{"shape":"ListTrialsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
     },
     "ListUserProfiles":{
       "name":"ListUserProfiles",
@@ -4672,6 +4681,7 @@
       "type":"string",
       "enum":[
         "TENSORFLOW",
+        "KERAS",
         "MXNET",
         "ONNX",
         "PYTORCH",
@@ -6034,6 +6044,8 @@
     "ListTrialComponentsRequest":{
       "type":"structure",
       "members":{
+        "ExperimentName":{"shape":"ExperimentEntityName"},
+        "TrialName":{"shape":"ExperimentEntityName"},
         "SourceArn":{"shape":"String256"},
         "CreatedAfter":{"shape":"Timestamp"},
         "CreatedBefore":{"shape":"Timestamp"},
@@ -8058,7 +8070,7 @@
     "TaskAvailabilityLifetimeInSeconds":{
       "type":"integer",
       "max":864000,
-      "min":1
+      "min":60
     },
     "TaskCount":{
       "type":"integer",

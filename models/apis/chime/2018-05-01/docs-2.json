@@ -5,10 +5,11 @@
     "AssociatePhoneNumberWithUser": "<p>Associates a phone number with the specified Amazon Chime user.</p>",
     "AssociatePhoneNumbersWithVoiceConnector": "<p>Associates phone numbers with the specified Amazon Chime Voice Connector.</p>",
     "AssociatePhoneNumbersWithVoiceConnectorGroup": "<p>Associates phone numbers with the specified Amazon Chime Voice Connector group.</p>",
+    "AssociateSigninDelegateGroupsWithAccount": "<p>Associates the specified sign-in delegate groups with the specified Amazon Chime account.</p>",
     "BatchCreateAttendee": "<p>Creates up to 100 new attendees for an active Amazon Chime SDK meeting. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>. </p>",
     "BatchCreateRoomMembership": "<p>Adds up to 50 members to a chat room. Members can be either users or bots. The member role designates whether the member is a chat room administrator or a general chat room member.</p>",
     "BatchDeletePhoneNumber": "<p>Moves phone numbers into the <b>Deletion queue</b>. Phone numbers must be disassociated from any users or Amazon Chime Voice Connectors before they can be deleted.</p> <p>Phone numbers remain in the <b>Deletion queue</b> for 7 days before they are deleted permanently.</p>",
-    "BatchSuspendUser": "<p>Suspends up to 50 users from a <code>Team</code> or <code>EnterpriseLWA</code> Amazon Chime account. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p> <p>Users suspended from a <code>Team</code> account are dissasociated from the account, but they can continue to use Amazon Chime as free users. To remove the suspension from suspended <code>Team</code> account users, invite them to the <code>Team</code> account again. You can use the <a>InviteUsers</a> action to do so.</p> <p>Users suspended from an <code>EnterpriseLWA</code> account are immediately signed out of Amazon Chime and can no longer sign in. To remove the suspension from suspended <code>EnterpriseLWA</code> account users, use the <a>BatchUnsuspendUser</a> action. </p> <p>To sign out users without suspending them, use the <a>LogoutUser</a> action.</p>",
+    "BatchSuspendUser": "<p>Suspends up to 50 users from a <code>Team</code> or <code>EnterpriseLWA</code> Amazon Chime account. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p> <p>Users suspended from a <code>Team</code> account are disassociated from the account, but they can continue to use Amazon Chime as free users. To remove the suspension from suspended <code>Team</code> account users, invite them to the <code>Team</code> account again. You can use the <a>InviteUsers</a> action to do so.</p> <p>Users suspended from an <code>EnterpriseLWA</code> account are immediately signed out of Amazon Chime and can no longer sign in. To remove the suspension from suspended <code>EnterpriseLWA</code> account users, use the <a>BatchUnsuspendUser</a> action. </p> <p>To sign out users without suspending them, use the <a>LogoutUser</a> action.</p>",
     "BatchUnsuspendUser": "<p>Removes the suspension from up to 50 previously suspended users for the specified Amazon Chime <code>EnterpriseLWA</code> account. Only users on <code>EnterpriseLWA</code> accounts can be unsuspended using this action. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p> <p>Previously suspended users who are unsuspended using this action are returned to <code>Registered</code> status. Users who are not previously suspended are ignored.</p>",
     "BatchUpdatePhoneNumber": "<p>Updates phone number product types or calling names. You can update one attribute at a time for each <code>UpdatePhoneNumberRequestItem</code>. For example, you can update either the product type or the calling name.</p> <p>For product types, choose from Amazon Chime Business Calling and Amazon Chime Voice Connector. For toll-free numbers, you must use the Amazon Chime Voice Connector product type.</p> <p>Updates to outbound calling names can take up to 72 hours to complete. Pending updates to outbound calling names must be complete before you can request another update.</p>",
     "BatchUpdateUser": "<p>Updates user details within the <a>UpdateUserRequestItem</a> object for up to 20 users for the specified Amazon Chime account. Currently, only <code>LicenseType</code> updates are supported for this action.</p>",
@@ -19,6 +20,7 @@
     "CreatePhoneNumberOrder": "<p>Creates an order for phone numbers to be provisioned. Choose from Amazon Chime Business Calling and Amazon Chime Voice Connector product types. For toll-free numbers, you must use the Amazon Chime Voice Connector product type.</p>",
     "CreateRoom": "<p>Creates a chat room for the specified Amazon Chime account.</p>",
     "CreateRoomMembership": "<p>Adds a member to a chat room. A member can be either a user or a bot. The member role designates whether the member is a chat room administrator or a general chat room member.</p>",
+    "CreateUser": "<p>Creates a user under the specified Amazon Chime account.</p>",
     "CreateVoiceConnector": "<p>Creates an Amazon Chime Voice Connector under the administrator's AWS account. You can choose to create an Amazon Chime Voice Connector in a specific AWS Region.</p> <p>Enabling <a>CreateVoiceConnectorRequest$RequireEncryption</a> configures your Amazon Chime Voice Connector to use TLS transport for SIP signaling and Secure RTP (SRTP) for media. Inbound calls use TLS transport, and unencrypted outbound calls are blocked.</p>",
     "CreateVoiceConnectorGroup": "<p>Creates an Amazon Chime Voice Connector group under the administrator's AWS account. You can associate up to three existing Amazon Chime Voice Connectors with the Amazon Chime Voice Connector group by including <code>VoiceConnectorItems</code> in the request.</p> <p>You can include Amazon Chime Voice Connectors from different AWS Regions in your group. This creates a fault tolerant mechanism for fallback in case of availability events.</p>",
     "DeleteAccount": "<p>Deletes the specified Amazon Chime account. You must suspend all users before deleting a <code>Team</code> account. You can use the <a>BatchSuspendUser</a> action to do so.</p> <p>For <code>EnterpriseLWA</code> and <code>EnterpriseAD</code> accounts, you must release the claimed domains for your Amazon Chime account before deletion. As soon as you release the domain, all users under that account are suspended.</p> <p>Deleted accounts appear in your <code>Disabled</code> accounts list for 90 days. To restore a deleted account from your <code>Disabled</code> accounts list, you must contact AWS Support.</p> <p>After 90 days, deleted accounts are permanently removed from your <code>Disabled</code> accounts list.</p>",
@@ -37,6 +39,7 @@
     "DisassociatePhoneNumberFromUser": "<p>Disassociates the primary provisioned phone number from the specified Amazon Chime user.</p>",
     "DisassociatePhoneNumbersFromVoiceConnector": "<p>Disassociates the specified phone numbers from the specified Amazon Chime Voice Connector.</p>",
     "DisassociatePhoneNumbersFromVoiceConnectorGroup": "<p>Disassociates the specified phone numbers from the specified Amazon Chime Voice Connector group.</p>",
+    "DisassociateSigninDelegateGroupsFromAccount": "<p>Disassociates the specified sign-in delegate groups from the specified Amazon Chime account.</p>",
     "GetAccount": "<p>Retrieves details for the specified Amazon Chime account, such as account type and supported licenses.</p>",
     "GetAccountSettings": "<p>Retrieves account settings for the specified Amazon Chime account ID, such as remote control and dial out settings. For more information about these settings, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/policies.html\">Use the Policies Page</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
     "GetAttendee": "<p>Gets the Amazon Chime SDK attendee details for a specified meeting ID and attendee ID. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
@@ -47,7 +50,7 @@
     "GetPhoneNumber": "<p>Retrieves details for the specified phone number ID, such as associations, capabilities, and product type.</p>",
     "GetPhoneNumberOrder": "<p>Retrieves details for the specified phone number order, such as order creation timestamp, phone numbers in E.164 format, product type, and order status.</p>",
     "GetPhoneNumberSettings": "<p>Retrieves the phone number settings for the administrator's AWS account, such as the default outbound calling name.</p>",
-    "GetRoom": "<p>Retrieves room details, such as name.</p>",
+    "GetRoom": "<p>Retrieves room details, such as the room name.</p>",
     "GetUser": "<p>Retrieves details for the specified user ID, such as primary email address, license type, and personal meeting PIN.</p> <p>To retrieve user details with an email address instead of a user ID, use the <a>ListUsers</a> action, and then filter by email address.</p>",
     "GetUserSettings": "<p>Retrieves settings for the specified user ID, such as any associated phone number settings.</p>",
     "GetVoiceConnector": "<p>Retrieves details for the specified Amazon Chime Voice Connector, such as timestamps, name, outbound host, and encryption requirements.</p>",
@@ -64,7 +67,7 @@
     "ListMeetings": "<p>Lists up to 100 active Amazon Chime SDK meetings. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
     "ListPhoneNumberOrders": "<p>Lists the phone number orders for the administrator's Amazon Chime account.</p>",
     "ListPhoneNumbers": "<p>Lists the phone numbers for the specified Amazon Chime account, Amazon Chime user, Amazon Chime Voice Connector, or Amazon Chime Voice Connector group.</p>",
-    "ListRoomMemberships": "<p>Lists the membership details for the specified room, such as member IDs, member email addresses, and member names.</p>",
+    "ListRoomMemberships": "<p>Lists the membership details for the specified room, such as the members' IDs, email addresses, and names.</p>",
     "ListRooms": "<p>Lists the room details for the specified Amazon Chime account. Optionally, filter the results by a member ID (user ID or bot ID) to see a list of rooms that the member belongs to.</p>",
     "ListUsers": "<p>Lists the users that belong to the specified Amazon Chime account. You can specify an email address to list only the user that the email address belongs to.</p>",
     "ListVoiceConnectorGroups": "<p>Lists the Amazon Chime Voice Connector groups for the administrator's AWS account.</p>",
@@ -88,7 +91,7 @@
     "UpdatePhoneNumber": "<p>Updates phone number details, such as product type or calling name, for the specified phone number ID. You can update one phone number detail at a time. For example, you can update either the product type or the calling name in one action.</p> <p>For toll-free numbers, you must use the Amazon Chime Voice Connector product type.</p> <p>Updates to outbound calling names can take up to 72 hours to complete. Pending updates to outbound calling names must be complete before you can request another update.</p>",
     "UpdatePhoneNumberSettings": "<p>Updates the phone number settings for the administrator's AWS account, such as the default outbound calling name. You can update the default outbound calling name once every seven days. Outbound calling names can take up to 72 hours to update.</p>",
     "UpdateRoom": "<p>Updates room details, such as the room name.</p>",
-    "UpdateRoomMembership": "<p>Updates room membership details, such as member role. The member role designates whether the member is a chat room administrator or a general chat room member. Member role can only be updated for user IDs.</p>",
+    "UpdateRoomMembership": "<p>Updates room membership details, such as the member role. The member role designates whether the member is a chat room administrator or a general chat room member. The member role can be updated only for user IDs.</p>",
     "UpdateUser": "<p>Updates user details for a specified user ID. Currently, only <code>LicenseType</code> updates are supported for this action.</p>",
     "UpdateUserSettings": "<p>Updates the settings for the specified user, such as phone number settings.</p>",
     "UpdateVoiceConnector": "<p>Updates details for the specified Amazon Chime Voice Connector.</p>",
@@ -136,6 +139,14 @@
         "Account$AccountType": "<p>The Amazon Chime account type. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p>"
       }
     },
+    "AlexaForBusinessMetadata": {
+      "base": "<p>The Alexa for Business metadata associated with an Amazon Chime user, used to integrate Alexa for Business with a device.</p>",
+      "refs": {
+        "UpdateUserRequest$AlexaForBusinessMetadata": "<p>The Alexa for Business metadata.</p>",
+        "UpdateUserRequestItem$AlexaForBusinessMetadata": "<p>The Alexa for Business metadata.</p>",
+        "User$AlexaForBusinessMetadata": "<p>The Alexa for Business metadata.</p>"
+      }
+    },
     "Arn": {
       "base": null,
       "refs": {
@@ -169,6 +180,16 @@
       }
     },
     "AssociatePhoneNumbersWithVoiceConnectorResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateSigninDelegateGroupsWithAccountRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateSigninDelegateGroupsWithAccountResponse": {
       "base": null,
       "refs": {
       }
@@ -274,6 +295,7 @@
       "refs": {
         "AccountSettings$DisableRemoteControl": "<p>Setting that stops or starts remote control of shared screens during meetings.</p>",
         "AccountSettings$EnableDialOut": "<p>Setting that allows meeting participants to choose the <b>Call me at a phone number</b> option. For more information, see <a href=\"https://docs.aws.amazon.com/chime/latest/ug/chime-join-meeting.html\">Join a Meeting without the Amazon Chime App</a>.</p>",
+        "AlexaForBusinessMetadata$IsAlexaForBusinessEnabled": "<p>Starts or stops Alexa for Business.</p>",
         "CreateVoiceConnectorRequest$RequireEncryption": "<p>When enabled, requires encryption for the Amazon Chime Voice Connector.</p>",
         "LoggingConfiguration$EnableSIPLogs": "<p>When true, enables SIP message logs for sending to Amazon CloudWatch Logs.</p>",
         "Origination$Disabled": "<p>When origination settings are disabled, inbound calls are not enabled for your Amazon Chime Voice Connector.</p>",
@@ -449,6 +471,16 @@
       "refs": {
       }
     },
+    "CreateUserRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateUserResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateVoiceConnectorGroupRequest": {
       "base": null,
       "refs": {
@@ -587,6 +619,16 @@
       "refs": {
       }
     },
+    "DisassociateSigninDelegateGroupsFromAccountRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateSigninDelegateGroupsFromAccountResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "E164PhoneNumber": {
       "base": null,
       "refs": {
@@ -611,6 +653,7 @@
     "EmailAddress": {
       "base": null,
       "refs": {
+        "CreateUserRequest$Email": "<p>The user's email address.</p>",
         "Invite$EmailAddress": "<p>The email address to which the invite is sent.</p>",
         "ListAccountsRequest$UserEmail": "<p>User email address with which to filter results.</p>",
         "ListUsersRequest$UserEmail": "<p>Optional. The user email address used to filter results. Maximum 1.</p>",
@@ -1154,6 +1197,7 @@
       "refs": {
         "AssociatePhoneNumbersWithVoiceConnectorGroupRequest$VoiceConnectorGroupId": "<p>The Amazon Chime Voice Connector group ID.</p>",
         "AssociatePhoneNumbersWithVoiceConnectorRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
+        "AssociateSigninDelegateGroupsWithAccountRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "BatchCreateRoomMembershipRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "BatchCreateRoomMembershipRequest$RoomId": "<p>The room ID.</p>",
         "BatchSuspendUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
@@ -1165,6 +1209,7 @@
         "CreateRoomMembershipRequest$RoomId": "<p>The room ID.</p>",
         "CreateRoomMembershipRequest$MemberId": "<p>The Amazon Chime member ID (user ID or bot ID).</p>",
         "CreateRoomRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "CreateUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "DeleteAccountRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "DeleteEventsConfigurationRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "DeleteEventsConfigurationRequest$BotId": "<p>The bot ID.</p>",
@@ -1181,6 +1226,7 @@
         "DeleteVoiceConnectorTerminationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "DisassociatePhoneNumbersFromVoiceConnectorGroupRequest$VoiceConnectorGroupId": "<p>The Amazon Chime Voice Connector group ID.</p>",
         "DisassociatePhoneNumbersFromVoiceConnectorRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
+        "DisassociateSigninDelegateGroupsFromAccountRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "GetAccountRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "GetAccountSettingsRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "GetBotRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
@@ -1229,6 +1275,7 @@
         "Room$CreatedBy": "<p>The identifier of the room creator.</p>",
         "RoomMembership$RoomId": "<p>The room ID.</p>",
         "RoomMembership$InvitedBy": "<p>The identifier of the user that invited the room member.</p>",
+        "SigninDelegateGroup$GroupName": "<p>The group name.</p>",
         "UpdateAccountRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "UpdateAccountSettingsRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "UpdateBotRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
@@ -1254,7 +1301,8 @@
     "NonEmptyStringList": {
       "base": null,
       "refs": {
-        "BatchDeletePhoneNumberRequest$PhoneNumberIds": "<p>List of phone number IDs.</p>"
+        "BatchDeletePhoneNumberRequest$PhoneNumberIds": "<p>List of phone number IDs.</p>",
+        "DisassociateSigninDelegateGroupsFromAccountRequest$GroupNames": "<p>The sign-in delegate group names.</p>"
       }
     },
     "NotFoundException": {
@@ -1614,6 +1662,7 @@
     "SensitiveString": {
       "base": null,
       "refs": {
+        "AlexaForBusinessMetadata$AlexaForBusinessRoomArn": "<p>The ARN of the room resource.</p>",
         "Bot$DisplayName": "<p>The bot display name.</p>",
         "Bot$BotEmail": "<p>The bot email address.</p>",
         "Bot$SecurityToken": "<p>The security token used to authenticate Amazon Chime with the outgoing event endpoint.</p>",
@@ -1651,6 +1700,19 @@
       "refs": {
       }
     },
+    "SigninDelegateGroup": {
+      "base": "<p>An Active Directory (AD) group whose members are granted permission to act as delegates.</p>",
+      "refs": {
+        "SigninDelegateGroupList$member": null
+      }
+    },
+    "SigninDelegateGroupList": {
+      "base": null,
+      "refs": {
+        "Account$SigninDelegateGroups": "<p>The sign-in delegate groups associated with the account.</p>",
+        "AssociateSigninDelegateGroupsWithAccountRequest$SigninDelegateGroups": "<p>The sign-in delegate groups.</p>"
+      }
+    },
     "StreamingConfiguration": {
       "base": "<p>The streaming configuration associated with an Amazon Chime Voice Connector. Specifies whether media streaming is enabled for sending to Amazon Kinesis, and shows the retention period for the Amazon Kinesis data, in hours.</p>",
       "refs": {
@@ -1675,7 +1737,8 @@
         "ConflictException$Message": null,
         "CreateAttendeeError$ErrorCode": "<p>The error code.</p>",
         "CreateAttendeeError$ErrorMessage": "<p>The error message.</p>",
-        "CreateMeetingRequest$MediaRegion": "<p>The Region in which to create the meeting. Available values: <code>us-east-1</code>, <code>us-west-2</code>.</p>",
+        "CreateMeetingRequest$MediaRegion": "<p>The Region in which to create the meeting. Available values: <code>ap-northeast-1</code>, <code>ap-southeast-1</code>, <code>ap-southeast-2</code>, <code>ca-central-1</code>, <code>eu-central-1</code>, <code>eu-north-1</code>, <code>eu-west-1</code>, <code>eu-west-2</code>, <code>eu-west-3</code>, <code>sa-east-1</code>, <code>us-east-1</code>, <code>us-east-2</code>, <code>us-west-1</code>, <code>us-west-2</code>.</p>",
+        "CreateUserRequest$Username": "<p>The user name.</p>",
         "DeletePhoneNumberRequest$PhoneNumberId": "<p>The phone number ID.</p>",
         "DisassociatePhoneNumberFromUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "DisassociatePhoneNumberFromUserRequest$UserId": "<p>The user ID.</p>",
@@ -1709,7 +1772,7 @@
         "ListVoiceConnectorGroupsResponse$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "ListVoiceConnectorsRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "ListVoiceConnectorsResponse$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
-        "Meeting$MediaRegion": "<p>The Region in which to create the meeting. Available values: <code>us-east-1</code>, <code>us-west-2</code>.</p>",
+        "Meeting$MediaRegion": "<p>The Region in which to create the meeting. Available values: <code>ap-northeast-1</code>, <code>ap-southeast-1</code>, <code>ap-southeast-2</code>, <code>ca-central-1</code>, <code>eu-central-1</code>, <code>eu-north-1</code>, <code>eu-west-1</code>, <code>eu-west-2</code>, <code>eu-west-3</code>, <code>sa-east-1</code>, <code>us-east-1</code>, <code>us-east-2</code>, <code>us-west-1</code>, <code>us-west-2</code>.</p>",
         "MemberError$ErrorMessage": "<p>The error message.</p>",
         "NonEmptyStringList$member": null,
         "NotFoundException$Message": null,
@@ -1931,6 +1994,7 @@
     "User": {
       "base": "<p>The user on the Amazon Chime account.</p>",
       "refs": {
+        "CreateUserResponse$User": null,
         "GetUserResponse$User": "<p>The user details.</p>",
         "ResetPersonalPINResponse$User": "<p>The user details and new personal meeting PIN.</p>",
         "UpdateUserResponse$User": "<p>The updated user details.</p>",
@@ -1975,6 +2039,17 @@
       "refs": {
         "GetUserSettingsResponse$UserSettings": "<p>The user settings.</p>",
         "UpdateUserSettingsRequest$UserSettings": "<p>The user settings to update.</p>"
+      }
+    },
+    "UserType": {
+      "base": null,
+      "refs": {
+        "CreateUserRequest$UserType": "<p>The user type.</p>",
+        "InviteUsersRequest$UserType": "<p>The user type.</p>",
+        "ListUsersRequest$UserType": "<p>The user type.</p>",
+        "UpdateUserRequest$UserType": "<p>The user type.</p>",
+        "UpdateUserRequestItem$UserType": "<p>The user type.</p>",
+        "User$UserType": "<p>The user type.</p>"
       }
     },
     "VoiceConnector": {

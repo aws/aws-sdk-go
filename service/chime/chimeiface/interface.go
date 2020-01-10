@@ -72,6 +72,10 @@ type ChimeAPI interface {
 	AssociatePhoneNumbersWithVoiceConnectorGroupWithContext(aws.Context, *chime.AssociatePhoneNumbersWithVoiceConnectorGroupInput, ...request.Option) (*chime.AssociatePhoneNumbersWithVoiceConnectorGroupOutput, error)
 	AssociatePhoneNumbersWithVoiceConnectorGroupRequest(*chime.AssociatePhoneNumbersWithVoiceConnectorGroupInput) (*request.Request, *chime.AssociatePhoneNumbersWithVoiceConnectorGroupOutput)
 
+	AssociateSigninDelegateGroupsWithAccount(*chime.AssociateSigninDelegateGroupsWithAccountInput) (*chime.AssociateSigninDelegateGroupsWithAccountOutput, error)
+	AssociateSigninDelegateGroupsWithAccountWithContext(aws.Context, *chime.AssociateSigninDelegateGroupsWithAccountInput, ...request.Option) (*chime.AssociateSigninDelegateGroupsWithAccountOutput, error)
+	AssociateSigninDelegateGroupsWithAccountRequest(*chime.AssociateSigninDelegateGroupsWithAccountInput) (*request.Request, *chime.AssociateSigninDelegateGroupsWithAccountOutput)
+
 	BatchCreateAttendee(*chime.BatchCreateAttendeeInput) (*chime.BatchCreateAttendeeOutput, error)
 	BatchCreateAttendeeWithContext(aws.Context, *chime.BatchCreateAttendeeInput, ...request.Option) (*chime.BatchCreateAttendeeOutput, error)
 	BatchCreateAttendeeRequest(*chime.BatchCreateAttendeeInput) (*request.Request, *chime.BatchCreateAttendeeOutput)
@@ -127,6 +131,10 @@ type ChimeAPI interface {
 	CreateRoomMembership(*chime.CreateRoomMembershipInput) (*chime.CreateRoomMembershipOutput, error)
 	CreateRoomMembershipWithContext(aws.Context, *chime.CreateRoomMembershipInput, ...request.Option) (*chime.CreateRoomMembershipOutput, error)
 	CreateRoomMembershipRequest(*chime.CreateRoomMembershipInput) (*request.Request, *chime.CreateRoomMembershipOutput)
+
+	CreateUser(*chime.CreateUserInput) (*chime.CreateUserOutput, error)
+	CreateUserWithContext(aws.Context, *chime.CreateUserInput, ...request.Option) (*chime.CreateUserOutput, error)
+	CreateUserRequest(*chime.CreateUserInput) (*request.Request, *chime.CreateUserOutput)
 
 	CreateVoiceConnector(*chime.CreateVoiceConnectorInput) (*chime.CreateVoiceConnectorOutput, error)
 	CreateVoiceConnectorWithContext(aws.Context, *chime.CreateVoiceConnectorInput, ...request.Option) (*chime.CreateVoiceConnectorOutput, error)
@@ -199,6 +207,10 @@ type ChimeAPI interface {
 	DisassociatePhoneNumbersFromVoiceConnectorGroup(*chime.DisassociatePhoneNumbersFromVoiceConnectorGroupInput) (*chime.DisassociatePhoneNumbersFromVoiceConnectorGroupOutput, error)
 	DisassociatePhoneNumbersFromVoiceConnectorGroupWithContext(aws.Context, *chime.DisassociatePhoneNumbersFromVoiceConnectorGroupInput, ...request.Option) (*chime.DisassociatePhoneNumbersFromVoiceConnectorGroupOutput, error)
 	DisassociatePhoneNumbersFromVoiceConnectorGroupRequest(*chime.DisassociatePhoneNumbersFromVoiceConnectorGroupInput) (*request.Request, *chime.DisassociatePhoneNumbersFromVoiceConnectorGroupOutput)
+
+	DisassociateSigninDelegateGroupsFromAccount(*chime.DisassociateSigninDelegateGroupsFromAccountInput) (*chime.DisassociateSigninDelegateGroupsFromAccountOutput, error)
+	DisassociateSigninDelegateGroupsFromAccountWithContext(aws.Context, *chime.DisassociateSigninDelegateGroupsFromAccountInput, ...request.Option) (*chime.DisassociateSigninDelegateGroupsFromAccountOutput, error)
+	DisassociateSigninDelegateGroupsFromAccountRequest(*chime.DisassociateSigninDelegateGroupsFromAccountInput) (*request.Request, *chime.DisassociateSigninDelegateGroupsFromAccountOutput)
 
 	GetAccount(*chime.GetAccountInput) (*chime.GetAccountOutput, error)
 	GetAccountWithContext(aws.Context, *chime.GetAccountInput, ...request.Option) (*chime.GetAccountOutput, error)

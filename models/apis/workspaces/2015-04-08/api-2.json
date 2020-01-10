@@ -347,6 +347,23 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "MigrateWorkspace":{
+      "name":"MigrateWorkspace",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"MigrateWorkspaceRequest"},
+      "output":{"shape":"MigrateWorkspaceResult"},
+      "errors":[
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"OperationNotSupportedException"},
+        {"shape":"OperationInProgressException"},
+        {"shape":"ResourceUnavailableException"}
+      ]
+    },
     "ModifyAccount":{
       "name":"ModifyAccount",
       "http":{
@@ -1179,6 +1196,24 @@
       "type":"integer",
       "max":5,
       "min":1
+    },
+    "MigrateWorkspaceRequest":{
+      "type":"structure",
+      "required":[
+        "SourceWorkspaceId",
+        "BundleId"
+      ],
+      "members":{
+        "SourceWorkspaceId":{"shape":"WorkspaceId"},
+        "BundleId":{"shape":"BundleId"}
+      }
+    },
+    "MigrateWorkspaceResult":{
+      "type":"structure",
+      "members":{
+        "SourceWorkspaceId":{"shape":"WorkspaceId"},
+        "TargetWorkspaceId":{"shape":"WorkspaceId"}
+      }
     },
     "ModificationResourceEnum":{
       "type":"string",
