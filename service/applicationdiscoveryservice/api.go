@@ -5648,7 +5648,7 @@ type OrderByElement struct {
 	FieldName *string `locationName:"fieldName" type:"string" required:"true"`
 
 	// Ordering direction.
-	SortOrder *string `locationName:"sortOrder" type:"string" enum:"orderString"`
+	SortOrder *string `locationName:"sortOrder" type:"string" enum:"OrderString"`
 }
 
 // String returns the string representation
@@ -6661,9 +6661,9 @@ const (
 )
 
 const (
-	// OrderStringAsc is a orderString enum value
+	// OrderStringAsc is a OrderString enum value
 	OrderStringAsc = "ASC"
 
-	// OrderStringDesc is a orderString enum value
+	// OrderStringDesc is a OrderString enum value
 	OrderStringDesc = "DESC"
 )
