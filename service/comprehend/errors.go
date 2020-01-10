@@ -2,6 +2,10 @@
 
 package comprehend
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeBatchSizeLimitExceededException for service response error code
@@ -114,3 +118,22 @@ const (
 	// languages, see supported-languages.
 	ErrCodeUnsupportedLanguageException = "UnsupportedLanguageException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"BatchSizeLimitExceededException": newErrorBatchSizeLimitExceededException,
+	"ConcurrentModificationException": newErrorConcurrentModificationException,
+	"InternalServerException":         newErrorInternalServerException,
+	"InvalidFilterException":          newErrorInvalidFilterException,
+	"InvalidRequestException":         newErrorInvalidRequestException,
+	"JobNotFoundException":            newErrorJobNotFoundException,
+	"KmsKeyValidationException":       newErrorKmsKeyValidationException,
+	"ResourceInUseException":          newErrorResourceInUseException,
+	"ResourceLimitExceededException":  newErrorResourceLimitExceededException,
+	"ResourceNotFoundException":       newErrorResourceNotFoundException,
+	"ResourceUnavailableException":    newErrorResourceUnavailableException,
+	"TextSizeLimitExceededException":  newErrorTextSizeLimitExceededException,
+	"TooManyRequestsException":        newErrorTooManyRequestsException,
+	"TooManyTagKeysException":         newErrorTooManyTagKeysException,
+	"TooManyTagsException":            newErrorTooManyTagsException,
+	"UnsupportedLanguageException":    newErrorUnsupportedLanguageException,
+}

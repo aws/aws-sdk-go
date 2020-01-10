@@ -2,6 +2,10 @@
 
 package marketplacemetering
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeCustomerNotEntitledException for service response error code
@@ -109,3 +113,21 @@ const (
 	// The timestamp value passed in the meterUsage() is out of allowed range.
 	ErrCodeTimestampOutOfBoundsException = "TimestampOutOfBoundsException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"CustomerNotEntitledException":       newErrorCustomerNotEntitledException,
+	"DisabledApiException":               newErrorDisabledApiException,
+	"DuplicateRequestException":          newErrorDuplicateRequestException,
+	"ExpiredTokenException":              newErrorExpiredTokenException,
+	"InternalServiceErrorException":      newErrorInternalServiceErrorException,
+	"InvalidCustomerIdentifierException": newErrorInvalidCustomerIdentifierException,
+	"InvalidEndpointRegionException":     newErrorInvalidEndpointRegionException,
+	"InvalidProductCodeException":        newErrorInvalidProductCodeException,
+	"InvalidPublicKeyVersionException":   newErrorInvalidPublicKeyVersionException,
+	"InvalidRegionException":             newErrorInvalidRegionException,
+	"InvalidTokenException":              newErrorInvalidTokenException,
+	"InvalidUsageDimensionException":     newErrorInvalidUsageDimensionException,
+	"PlatformNotSupportedException":      newErrorPlatformNotSupportedException,
+	"ThrottlingException":                newErrorThrottlingException,
+	"TimestampOutOfBoundsException":      newErrorTimestampOutOfBoundsException,
+}

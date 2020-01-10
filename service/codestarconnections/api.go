@@ -3,6 +3,8 @@
 package codestarconnections
 
 import (
+	"fmt"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
@@ -66,8 +68,8 @@ func (c *CodeStarConnections) CreateConnectionRequest(input *CreateConnectionInp
 // See the AWS API reference guide for AWS CodeStar connections's
 // API operation CreateConnection for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   Exceeded the maximum limit for connections.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codestar-connections-2019-12-01/CreateConnection
@@ -146,8 +148,8 @@ func (c *CodeStarConnections) DeleteConnectionRequest(input *DeleteConnectionInp
 // See the AWS API reference guide for AWS CodeStar connections's
 // API operation DeleteConnection for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   Resource not found. Verify the connection resource ARN and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codestar-connections-2019-12-01/DeleteConnection
@@ -226,8 +228,8 @@ func (c *CodeStarConnections) GetConnectionRequest(input *GetConnectionInput) (r
 // See the AWS API reference guide for AWS CodeStar connections's
 // API operation GetConnection for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   Resource not found. Verify the connection resource ARN and try again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codestar-connections-2019-12-01/GetConnection
@@ -653,6 +655,62 @@ func (s *GetConnectionOutput) SetConnection(v *Connection) *GetConnectionOutput 
 	return s
 }
 
+// Exceeded the maximum limit for connections.
+type LimitExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s LimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
+	return &LimitExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s LimitExceededException) Code() string {
+	return "LimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s LimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s LimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s LimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s LimitExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s LimitExceededException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type ListConnectionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -746,6 +804,62 @@ func (s *ListConnectionsOutput) SetConnections(v []*Connection) *ListConnections
 func (s *ListConnectionsOutput) SetNextToken(v string) *ListConnectionsOutput {
 	s.NextToken = &v
 	return s
+}
+
+// Resource not found. Verify the connection resource ARN and try again.
+type ResourceNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 const (

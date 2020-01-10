@@ -234,14 +234,17 @@ func (es *{{ $esapi.Name }}) waitStreamPartClose() {
 {{- end }}
 
 {{- if $outputStream }}
-
 	{{- if eq .API.Metadata.Protocol "json" }}
 
-		func (es *{{ $esapi.Name}}) {{ $esapi.StreamOutputUnmarshalerForEventName }}(eventType string) (eventstreamapi.Unmarshaler, error) {
+		type {{ $esapi.StreamOutputUnmarshalerForEventName }} struct {
+			unmarshalerForEvent func(string) (eventstreamapi.Unmarshaler, error)
+			output {{ $.OutputRef.GoType }}
+		}
+		func (e {{ $esapi.StreamOutputUnmarshalerForEventName }}) UnmarshalerForEventName(eventType string) (eventstreamapi.Unmarshaler, error) {
 			if eventType == "initial-response" {
-				return es.output, nil
+				return e.output, nil
 			}
-			return {{ $outputStream.StreamUnmarshalerForEventName }}(eventType)
+			return e.unmarshalerForEvent(eventType)
 		}
 	{{- end }}
 
@@ -261,16 +264,25 @@ func (es *{{ $esapi.Name }}) waitStreamPartClose() {
 			opts = append(opts, eventstream.DecodeWithLogger(r.Config.Logger))
 		}
 
+		unmarshalerForEvent := {{ $outputStream.StreamUnmarshalerForEventName }}{
+			metadata: protocol.ResponseMetadata{
+				StatusCode: r.HTTPResponse.StatusCode,
+				RequestID: r.RequestID,
+			},
+		}.UnmarshalerForEventName
+		{{- if eq .API.Metadata.Protocol "json" }}
+			unmarshalerForEvent = {{ $esapi.StreamOutputUnmarshalerForEventName }}{
+				unmarshalerForEvent: unmarshalerForEvent,
+				output: es.output,
+			}.UnmarshalerForEventName
+		{{- end }}
+
 		decoder := eventstream.NewDecoder(r.HTTPResponse.Body, opts...)
 		eventReader := eventstreamapi.NewEventReader(decoder,
 			protocol.HandlerPayloadUnmarshal{
 				Unmarshalers: r.Handlers.UnmarshalStream,
 			},
-			{{- if eq .API.Metadata.Protocol "json" }}
-				es.{{ $esapi.StreamOutputUnmarshalerForEventName }},
-			{{- else }}
-				{{ $outputStream.StreamUnmarshalerForEventName }},
-			{{- end }}
+			unmarshalerForEvent,
 		)
 
 		es.outputReader = r.HTTPResponse.Body
@@ -595,35 +607,5 @@ func (s *{{ $.ShapeName}}) MarshalEvent(pm protocol.PayloadMarshaler) (msg event
 		msg.Payload = buf.Bytes()
 	{{- end }}
 	return msg, err
-}
-`))
-
-var eventStreamExceptionEventShapeTmpl = template.Must(
-	template.New("eventStreamExceptionEventShapeTmpl").Parse(`
-// Code returns the exception type name.
-func (s {{ $.ShapeName }}) Code() string {
-	{{- if $.ErrorInfo.Code }}
-		return "{{ $.ErrorInfo.Code }}"
-	{{- else }}
-		return "{{ $.ShapeName }}"
-	{{ end -}}
-}
-
-// Message returns the exception's message.
-func (s {{ $.ShapeName }}) Message() string {
-	{{- if index $.MemberRefs "Message_" }}
-		return *s.Message_
-	{{- else }}
-		return ""
-	{{ end -}}
-}
-
-// OrigErr always returns nil, satisfies awserr.Error interface.
-func (s {{ $.ShapeName }}) OrigErr() error {
-	return nil
-}
-
-func (s {{ $.ShapeName }}) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 `))

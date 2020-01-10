@@ -8,6 +8,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
 const opCreateCostCategoryDefinition = "CreateCostCategoryDefinition"
@@ -69,12 +70,12 @@ func (c *CostExplorer) CreateCostCategoryDefinitionRequest(input *CreateCostCate
 // See the AWS API reference guide for AWS Cost Explorer Service's
 // API operation CreateCostCategoryDefinition for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeServiceQuotaExceededException "ServiceQuotaExceededException"
+// Returned Error Types:
+//   * ServiceQuotaExceededException
 //   You've reached the limit on the number of resources you can create, or exceeded
 //   the size of an individual resources.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   You made too many calls in a short period of time. Try again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/CreateCostCategoryDefinition
@@ -159,11 +160,11 @@ func (c *CostExplorer) DeleteCostCategoryDefinitionRequest(input *DeleteCostCate
 // See the AWS API reference guide for AWS Cost Explorer Service's
 // API operation DeleteCostCategoryDefinition for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The specified ARN in the request doesn't exist.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   You made too many calls in a short period of time. Try again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/DeleteCostCategoryDefinition
@@ -253,11 +254,11 @@ func (c *CostExplorer) DescribeCostCategoryDefinitionRequest(input *DescribeCost
 // See the AWS API reference guide for AWS Cost Explorer Service's
 // API operation DescribeCostCategoryDefinition for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The specified ARN in the request doesn't exist.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   You made too many calls in a short period of time. Try again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/DescribeCostCategoryDefinition
@@ -341,20 +342,20 @@ func (c *CostExplorer) GetCostAndUsageRequest(input *GetCostAndUsageInput) (req 
 // See the AWS API reference guide for AWS Cost Explorer Service's
 // API operation GetCostAndUsage for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   You made too many calls in a short period of time. Try again later.
 //
-//   * ErrCodeBillExpirationException "BillExpirationException"
+//   * BillExpirationException
 //   The requested report expired. Update the date interval and try again.
 //
-//   * ErrCodeDataUnavailableException "DataUnavailableException"
+//   * DataUnavailableException
 //   The requested data is unavailable.
 //
-//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   * InvalidNextTokenException
 //   The pagination token is invalid. Try again without a pagination token.
 //
-//   * ErrCodeRequestChangedException "RequestChangedException"
+//   * RequestChangedException
 //   Your request parameters changed between pages. Try again with the old parameters
 //   or without a pagination token.
 //
@@ -445,20 +446,20 @@ func (c *CostExplorer) GetCostAndUsageWithResourcesRequest(input *GetCostAndUsag
 // See the AWS API reference guide for AWS Cost Explorer Service's
 // API operation GetCostAndUsageWithResources for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDataUnavailableException "DataUnavailableException"
+// Returned Error Types:
+//   * DataUnavailableException
 //   The requested data is unavailable.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   You made too many calls in a short period of time. Try again later.
 //
-//   * ErrCodeBillExpirationException "BillExpirationException"
+//   * BillExpirationException
 //   The requested report expired. Update the date interval and try again.
 //
-//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   * InvalidNextTokenException
 //   The pagination token is invalid. Try again without a pagination token.
 //
-//   * ErrCodeRequestChangedException "RequestChangedException"
+//   * RequestChangedException
 //   Your request parameters changed between pages. Try again with the old parameters
 //   or without a pagination token.
 //
@@ -538,11 +539,11 @@ func (c *CostExplorer) GetCostForecastRequest(input *GetCostForecastInput) (req 
 // See the AWS API reference guide for AWS Cost Explorer Service's
 // API operation GetCostForecast for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   You made too many calls in a short period of time. Try again later.
 //
-//   * ErrCodeDataUnavailableException "DataUnavailableException"
+//   * DataUnavailableException
 //   The requested data is unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetCostForecast
@@ -621,20 +622,20 @@ func (c *CostExplorer) GetDimensionValuesRequest(input *GetDimensionValuesInput)
 // See the AWS API reference guide for AWS Cost Explorer Service's
 // API operation GetDimensionValues for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   You made too many calls in a short period of time. Try again later.
 //
-//   * ErrCodeBillExpirationException "BillExpirationException"
+//   * BillExpirationException
 //   The requested report expired. Update the date interval and try again.
 //
-//   * ErrCodeDataUnavailableException "DataUnavailableException"
+//   * DataUnavailableException
 //   The requested data is unavailable.
 //
-//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   * InvalidNextTokenException
 //   The pagination token is invalid. Try again without a pagination token.
 //
-//   * ErrCodeRequestChangedException "RequestChangedException"
+//   * RequestChangedException
 //   Your request parameters changed between pages. Try again with the old parameters
 //   or without a pagination token.
 //
@@ -744,14 +745,14 @@ func (c *CostExplorer) GetReservationCoverageRequest(input *GetReservationCovera
 // See the AWS API reference guide for AWS Cost Explorer Service's
 // API operation GetReservationCoverage for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   You made too many calls in a short period of time. Try again later.
 //
-//   * ErrCodeDataUnavailableException "DataUnavailableException"
+//   * DataUnavailableException
 //   The requested data is unavailable.
 //
-//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   * InvalidNextTokenException
 //   The pagination token is invalid. Try again without a pagination token.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetReservationCoverage
@@ -846,14 +847,14 @@ func (c *CostExplorer) GetReservationPurchaseRecommendationRequest(input *GetRes
 // See the AWS API reference guide for AWS Cost Explorer Service's
 // API operation GetReservationPurchaseRecommendation for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   You made too many calls in a short period of time. Try again later.
 //
-//   * ErrCodeDataUnavailableException "DataUnavailableException"
+//   * DataUnavailableException
 //   The requested data is unavailable.
 //
-//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   * InvalidNextTokenException
 //   The pagination token is invalid. Try again without a pagination token.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetReservationPurchaseRecommendation
@@ -934,14 +935,14 @@ func (c *CostExplorer) GetReservationUtilizationRequest(input *GetReservationUti
 // See the AWS API reference guide for AWS Cost Explorer Service's
 // API operation GetReservationUtilization for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   You made too many calls in a short period of time. Try again later.
 //
-//   * ErrCodeDataUnavailableException "DataUnavailableException"
+//   * DataUnavailableException
 //   The requested data is unavailable.
 //
-//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   * InvalidNextTokenException
 //   The pagination token is invalid. Try again without a pagination token.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetReservationUtilization
@@ -1024,11 +1025,11 @@ func (c *CostExplorer) GetRightsizingRecommendationRequest(input *GetRightsizing
 // See the AWS API reference guide for AWS Cost Explorer Service's
 // API operation GetRightsizingRecommendation for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   You made too many calls in a short period of time. Try again later.
 //
-//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   * InvalidNextTokenException
 //   The pagination token is invalid. Try again without a pagination token.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetRightsizingRecommendation
@@ -1126,14 +1127,14 @@ func (c *CostExplorer) GetSavingsPlansCoverageRequest(input *GetSavingsPlansCove
 // See the AWS API reference guide for AWS Cost Explorer Service's
 // API operation GetSavingsPlansCoverage for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   You made too many calls in a short period of time. Try again later.
 //
-//   * ErrCodeDataUnavailableException "DataUnavailableException"
+//   * DataUnavailableException
 //   The requested data is unavailable.
 //
-//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   * InvalidNextTokenException
 //   The pagination token is invalid. Try again without a pagination token.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetSavingsPlansCoverage
@@ -1264,11 +1265,11 @@ func (c *CostExplorer) GetSavingsPlansPurchaseRecommendationRequest(input *GetSa
 // See the AWS API reference guide for AWS Cost Explorer Service's
 // API operation GetSavingsPlansPurchaseRecommendation for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   You made too many calls in a short period of time. Try again later.
 //
-//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   * InvalidNextTokenException
 //   The pagination token is invalid. Try again without a pagination token.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetSavingsPlansPurchaseRecommendation
@@ -1351,11 +1352,11 @@ func (c *CostExplorer) GetSavingsPlansUtilizationRequest(input *GetSavingsPlansU
 // See the AWS API reference guide for AWS Cost Explorer Service's
 // API operation GetSavingsPlansUtilization for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   You made too many calls in a short period of time. Try again later.
 //
-//   * ErrCodeDataUnavailableException "DataUnavailableException"
+//   * DataUnavailableException
 //   The requested data is unavailable.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetSavingsPlansUtilization
@@ -1447,14 +1448,14 @@ func (c *CostExplorer) GetSavingsPlansUtilizationDetailsRequest(input *GetSaving
 // See the AWS API reference guide for AWS Cost Explorer Service's
 // API operation GetSavingsPlansUtilizationDetails for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   You made too many calls in a short period of time. Try again later.
 //
-//   * ErrCodeDataUnavailableException "DataUnavailableException"
+//   * DataUnavailableException
 //   The requested data is unavailable.
 //
-//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   * InvalidNextTokenException
 //   The pagination token is invalid. Try again without a pagination token.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetSavingsPlansUtilizationDetails
@@ -1585,20 +1586,20 @@ func (c *CostExplorer) GetTagsRequest(input *GetTagsInput) (req *request.Request
 // See the AWS API reference guide for AWS Cost Explorer Service's
 // API operation GetTags for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   You made too many calls in a short period of time. Try again later.
 //
-//   * ErrCodeBillExpirationException "BillExpirationException"
+//   * BillExpirationException
 //   The requested report expired. Update the date interval and try again.
 //
-//   * ErrCodeDataUnavailableException "DataUnavailableException"
+//   * DataUnavailableException
 //   The requested data is unavailable.
 //
-//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   * InvalidNextTokenException
 //   The pagination token is invalid. Try again without a pagination token.
 //
-//   * ErrCodeRequestChangedException "RequestChangedException"
+//   * RequestChangedException
 //   Your request parameters changed between pages. Try again with the old parameters
 //   or without a pagination token.
 //
@@ -1678,14 +1679,14 @@ func (c *CostExplorer) GetUsageForecastRequest(input *GetUsageForecastInput) (re
 // See the AWS API reference guide for AWS Cost Explorer Service's
 // API operation GetUsageForecast for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   You made too many calls in a short period of time. Try again later.
 //
-//   * ErrCodeDataUnavailableException "DataUnavailableException"
+//   * DataUnavailableException
 //   The requested data is unavailable.
 //
-//   * ErrCodeUnresolvableUsageUnitException "UnresolvableUsageUnitException"
+//   * UnresolvableUsageUnitException
 //   Cost Explorer was unable to identify the usage unit. Provide UsageType/UsageTypeGroup
 //   filter selections that contain matching units, for example: hours.
 //
@@ -1775,8 +1776,8 @@ func (c *CostExplorer) ListCostCategoryDefinitionsRequest(input *ListCostCategor
 // See the AWS API reference guide for AWS Cost Explorer Service's
 // API operation ListCostCategoryDefinitions for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   You made too many calls in a short period of time. Try again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/ListCostCategoryDefinitions
@@ -1862,15 +1863,15 @@ func (c *CostExplorer) UpdateCostCategoryDefinitionRequest(input *UpdateCostCate
 // See the AWS API reference guide for AWS Cost Explorer Service's
 // API operation UpdateCostCategoryDefinition for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The specified ARN in the request doesn't exist.
 //
-//   * ErrCodeServiceQuotaExceededException "ServiceQuotaExceededException"
+//   * ServiceQuotaExceededException
 //   You've reached the limit on the number of resources you can create, or exceeded
 //   the size of an individual resources.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   You made too many calls in a short period of time. Try again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/UpdateCostCategoryDefinition
@@ -1893,6 +1894,62 @@ func (c *CostExplorer) UpdateCostCategoryDefinitionWithContext(ctx aws.Context, 
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// The requested report expired. Update the date interval and try again.
+type BillExpirationException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s BillExpirationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BillExpirationException) GoString() string {
+	return s.String()
+}
+
+func newErrorBillExpirationException(v protocol.ResponseMetadata) error {
+	return &BillExpirationException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s BillExpirationException) Code() string {
+	return "BillExpirationException"
+}
+
+// Message returns the exception's message.
+func (s BillExpirationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s BillExpirationException) OrigErr() error {
+	return nil
+}
+
+func (s BillExpirationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s BillExpirationException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s BillExpirationException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 //
@@ -2617,6 +2674,62 @@ func (s *CurrentInstance) SetTags(v []*TagValues) *CurrentInstance {
 func (s *CurrentInstance) SetTotalRunningHoursInLookbackPeriod(v string) *CurrentInstance {
 	s.TotalRunningHoursInLookbackPeriod = &v
 	return s
+}
+
+// The requested data is unavailable.
+type DataUnavailableException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s DataUnavailableException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DataUnavailableException) GoString() string {
+	return s.String()
+}
+
+func newErrorDataUnavailableException(v protocol.ResponseMetadata) error {
+	return &DataUnavailableException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s DataUnavailableException) Code() string {
+	return "DataUnavailableException"
+}
+
+// Message returns the exception's message.
+func (s DataUnavailableException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s DataUnavailableException) OrigErr() error {
+	return nil
+}
+
+func (s DataUnavailableException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s DataUnavailableException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s DataUnavailableException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // The time period that you want the usage and costs for.
@@ -5973,6 +6086,118 @@ func (s *InstanceDetails) SetRedshiftInstanceDetails(v *RedshiftInstanceDetails)
 	return s
 }
 
+// The pagination token is invalid. Try again without a pagination token.
+type InvalidNextTokenException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidNextTokenException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidNextTokenException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidNextTokenException(v protocol.ResponseMetadata) error {
+	return &InvalidNextTokenException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidNextTokenException) Code() string {
+	return "InvalidNextTokenException"
+}
+
+// Message returns the exception's message.
+func (s InvalidNextTokenException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidNextTokenException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidNextTokenException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidNextTokenException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidNextTokenException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// You made too many calls in a short period of time. Try again later.
+type LimitExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s LimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
+	return &LimitExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s LimitExceededException) Code() string {
+	return "LimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s LimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s LimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s LimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s LimitExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s LimitExceededException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type ListCostCategoryDefinitionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6272,6 +6497,63 @@ func (s *RedshiftInstanceDetails) SetRegion(v string) *RedshiftInstanceDetails {
 func (s *RedshiftInstanceDetails) SetSizeFlexEligible(v bool) *RedshiftInstanceDetails {
 	s.SizeFlexEligible = &v
 	return s
+}
+
+// Your request parameters changed between pages. Try again with the old parameters
+// or without a pagination token.
+type RequestChangedException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s RequestChangedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RequestChangedException) GoString() string {
+	return s.String()
+}
+
+func newErrorRequestChangedException(v protocol.ResponseMetadata) error {
+	return &RequestChangedException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s RequestChangedException) Code() string {
+	return "RequestChangedException"
+}
+
+// Message returns the exception's message.
+func (s RequestChangedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s RequestChangedException) OrigErr() error {
+	return nil
+}
+
+func (s RequestChangedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s RequestChangedException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s RequestChangedException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // The aggregated numbers for your reservation usage.
@@ -6890,6 +7172,62 @@ func (s ResourceDetails) GoString() string {
 func (s *ResourceDetails) SetEC2ResourceDetails(v *EC2ResourceDetails) *ResourceDetails {
 	s.EC2ResourceDetails = v
 	return s
+}
+
+// The specified ARN in the request doesn't exist.
+type ResourceNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Resource utilization of current resource.
@@ -7976,6 +8314,63 @@ func (s *SavingsPlansUtilizationDetail) SetUtilization(v *SavingsPlansUtilizatio
 	return s
 }
 
+// You've reached the limit on the number of resources you can create, or exceeded
+// the size of an individual resources.
+type ServiceQuotaExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ServiceQuotaExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceQuotaExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceQuotaExceededException(v protocol.ResponseMetadata) error {
+	return &ServiceQuotaExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ServiceQuotaExceededException) Code() string {
+	return "ServiceQuotaExceededException"
+}
+
+// Message returns the exception's message.
+func (s ServiceQuotaExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ServiceQuotaExceededException) OrigErr() error {
+	return nil
+}
+
+func (s ServiceQuotaExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ServiceQuotaExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ServiceQuotaExceededException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // Hardware specifications for the service that you want recommendations for.
 type ServiceSpecification struct {
 	_ struct{} `type:"structure"`
@@ -8137,6 +8532,63 @@ func (s *TerminateRecommendationDetail) SetCurrencyCode(v string) *TerminateReco
 func (s *TerminateRecommendationDetail) SetEstimatedMonthlySavings(v string) *TerminateRecommendationDetail {
 	s.EstimatedMonthlySavings = &v
 	return s
+}
+
+// Cost Explorer was unable to identify the usage unit. Provide UsageType/UsageTypeGroup
+// filter selections that contain matching units, for example: hours.
+type UnresolvableUsageUnitException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s UnresolvableUsageUnitException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UnresolvableUsageUnitException) GoString() string {
+	return s.String()
+}
+
+func newErrorUnresolvableUsageUnitException(v protocol.ResponseMetadata) error {
+	return &UnresolvableUsageUnitException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s UnresolvableUsageUnitException) Code() string {
+	return "UnresolvableUsageUnitException"
+}
+
+// Message returns the exception's message.
+func (s UnresolvableUsageUnitException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s UnresolvableUsageUnitException) OrigErr() error {
+	return nil
+}
+
+func (s UnresolvableUsageUnitException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s UnresolvableUsageUnitException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s UnresolvableUsageUnitException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type UpdateCostCategoryDefinitionInput struct {

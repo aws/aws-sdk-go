@@ -3,11 +3,13 @@
 package computeoptimizer
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
 const opGetAutoScalingGroupRecommendations = "GetAutoScalingGroupRecommendations"
@@ -71,31 +73,31 @@ func (c *ComputeOptimizer) GetAutoScalingGroupRecommendationsRequest(input *GetA
 // See the AWS API reference guide for AWS Compute Optimizer's
 // API operation GetAutoScalingGroupRecommendations for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeOptInRequiredException "OptInRequiredException"
+// Returned Error Types:
+//   * OptInRequiredException
 //   You must opt in to the service to perform this action.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request processing has failed because of an unknown error, exception,
 //   or failure.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request has failed due to a temporary failure of the server.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   An invalid or out-of-range value was supplied for the input parameter.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeMissingAuthenticationToken "MissingAuthenticationToken"
+//   * MissingAuthenticationToken
 //   The request must contain either a valid (registered) AWS access key ID or
 //   X.509 certificate.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The limit on the number of requests per second was exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetAutoScalingGroupRecommendations
@@ -178,31 +180,31 @@ func (c *ComputeOptimizer) GetEC2InstanceRecommendationsRequest(input *GetEC2Ins
 // See the AWS API reference guide for AWS Compute Optimizer's
 // API operation GetEC2InstanceRecommendations for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeOptInRequiredException "OptInRequiredException"
+// Returned Error Types:
+//   * OptInRequiredException
 //   You must opt in to the service to perform this action.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request processing has failed because of an unknown error, exception,
 //   or failure.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request has failed due to a temporary failure of the server.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   An invalid or out-of-range value was supplied for the input parameter.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeMissingAuthenticationToken "MissingAuthenticationToken"
+//   * MissingAuthenticationToken
 //   The request must contain either a valid (registered) AWS access key ID or
 //   X.509 certificate.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The limit on the number of requests per second was exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetEC2InstanceRecommendations
@@ -280,31 +282,31 @@ func (c *ComputeOptimizer) GetEC2RecommendationProjectedMetricsRequest(input *Ge
 // See the AWS API reference guide for AWS Compute Optimizer's
 // API operation GetEC2RecommendationProjectedMetrics for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeOptInRequiredException "OptInRequiredException"
+// Returned Error Types:
+//   * OptInRequiredException
 //   You must opt in to the service to perform this action.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request processing has failed because of an unknown error, exception,
 //   or failure.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request has failed due to a temporary failure of the server.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   An invalid or out-of-range value was supplied for the input parameter.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeMissingAuthenticationToken "MissingAuthenticationToken"
+//   * MissingAuthenticationToken
 //   The request must contain either a valid (registered) AWS access key ID or
 //   X.509 certificate.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The limit on the number of requests per second was exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetEC2RecommendationProjectedMetrics
@@ -386,25 +388,25 @@ func (c *ComputeOptimizer) GetEnrollmentStatusRequest(input *GetEnrollmentStatus
 // See the AWS API reference guide for AWS Compute Optimizer's
 // API operation GetEnrollmentStatus for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerException "InternalServerException"
+// Returned Error Types:
+//   * InternalServerException
 //   The request processing has failed because of an unknown error, exception,
 //   or failure.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request has failed due to a temporary failure of the server.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   An invalid or out-of-range value was supplied for the input parameter.
 //
-//   * ErrCodeMissingAuthenticationToken "MissingAuthenticationToken"
+//   * MissingAuthenticationToken
 //   The request must contain either a valid (registered) AWS access key ID or
 //   X.509 certificate.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The limit on the number of requests per second was exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetEnrollmentStatus
@@ -487,28 +489,28 @@ func (c *ComputeOptimizer) GetRecommendationSummariesRequest(input *GetRecommend
 // See the AWS API reference guide for AWS Compute Optimizer's
 // API operation GetRecommendationSummaries for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeOptInRequiredException "OptInRequiredException"
+// Returned Error Types:
+//   * OptInRequiredException
 //   You must opt in to the service to perform this action.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   The request processing has failed because of an unknown error, exception,
 //   or failure.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request has failed due to a temporary failure of the server.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   An invalid or out-of-range value was supplied for the input parameter.
 //
-//   * ErrCodeMissingAuthenticationToken "MissingAuthenticationToken"
+//   * MissingAuthenticationToken
 //   The request must contain either a valid (registered) AWS access key ID or
 //   X.509 certificate.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The limit on the number of requests per second was exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetRecommendationSummaries
@@ -590,25 +592,25 @@ func (c *ComputeOptimizer) UpdateEnrollmentStatusRequest(input *UpdateEnrollment
 // See the AWS API reference guide for AWS Compute Optimizer's
 // API operation UpdateEnrollmentStatus for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerException "InternalServerException"
+// Returned Error Types:
+//   * InternalServerException
 //   The request processing has failed because of an unknown error, exception,
 //   or failure.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request has failed due to a temporary failure of the server.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   An invalid or out-of-range value was supplied for the input parameter.
 //
-//   * ErrCodeMissingAuthenticationToken "MissingAuthenticationToken"
+//   * MissingAuthenticationToken
 //   The request must contain either a valid (registered) AWS access key ID or
 //   X.509 certificate.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The limit on the number of requests per second was exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/UpdateEnrollmentStatus
@@ -631,6 +633,62 @@ func (c *ComputeOptimizer) UpdateEnrollmentStatusWithContext(ctx aws.Context, in
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// You do not have sufficient access to perform this action.
+type AccessDeniedException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s AccessDeniedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccessDeniedException) GoString() string {
+	return s.String()
+}
+
+func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
+	return &AccessDeniedException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s AccessDeniedException) Code() string {
+	return "AccessDeniedException"
+}
+
+// Message returns the exception's message.
+func (s AccessDeniedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s AccessDeniedException) OrigErr() error {
+	return nil
+}
+
+func (s AccessDeniedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s AccessDeniedException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s AccessDeniedException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Describes the configuration of an Auto Scaling group.
@@ -1621,6 +1679,232 @@ func (s *InstanceRecommendationOption) SetRank(v int64) *InstanceRecommendationO
 	return s
 }
 
+// The request processing has failed because of an unknown error, exception,
+// or failure.
+type InternalServerException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s InternalServerException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternalServerException) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalServerException(v protocol.ResponseMetadata) error {
+	return &InternalServerException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InternalServerException) Code() string {
+	return "InternalServerException"
+}
+
+// Message returns the exception's message.
+func (s InternalServerException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InternalServerException) OrigErr() error {
+	return nil
+}
+
+func (s InternalServerException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InternalServerException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InternalServerException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// An invalid or out-of-range value was supplied for the input parameter.
+type InvalidParameterValueException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidParameterValueException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidParameterValueException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidParameterValueException(v protocol.ResponseMetadata) error {
+	return &InvalidParameterValueException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidParameterValueException) Code() string {
+	return "InvalidParameterValueException"
+}
+
+// Message returns the exception's message.
+func (s InvalidParameterValueException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidParameterValueException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidParameterValueException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidParameterValueException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidParameterValueException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The request must contain either a valid (registered) AWS access key ID or
+// X.509 certificate.
+type MissingAuthenticationToken struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s MissingAuthenticationToken) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MissingAuthenticationToken) GoString() string {
+	return s.String()
+}
+
+func newErrorMissingAuthenticationToken(v protocol.ResponseMetadata) error {
+	return &MissingAuthenticationToken{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s MissingAuthenticationToken) Code() string {
+	return "MissingAuthenticationToken"
+}
+
+// Message returns the exception's message.
+func (s MissingAuthenticationToken) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s MissingAuthenticationToken) OrigErr() error {
+	return nil
+}
+
+func (s MissingAuthenticationToken) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s MissingAuthenticationToken) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s MissingAuthenticationToken) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// You must opt in to the service to perform this action.
+type OptInRequiredException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s OptInRequiredException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OptInRequiredException) GoString() string {
+	return s.String()
+}
+
+func newErrorOptInRequiredException(v protocol.ResponseMetadata) error {
+	return &OptInRequiredException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s OptInRequiredException) Code() string {
+	return "OptInRequiredException"
+}
+
+// Message returns the exception's message.
+func (s OptInRequiredException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s OptInRequiredException) OrigErr() error {
+	return nil
+}
+
+func (s OptInRequiredException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s OptInRequiredException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s OptInRequiredException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // Describes a projected utilization metric of a recommendation option, such
 // as an Amazon EC2 instance.
 type ProjectedMetric struct {
@@ -1792,6 +2076,118 @@ func (s *RecommendedOptionProjectedMetric) SetRecommendedInstanceType(v string) 
 	return s
 }
 
+// The specified resource was not found.
+type ResourceNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The request has failed due to a temporary failure of the server.
+type ServiceUnavailableException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ServiceUnavailableException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceUnavailableException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceUnavailableException(v protocol.ResponseMetadata) error {
+	return &ServiceUnavailableException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ServiceUnavailableException) Code() string {
+	return "ServiceUnavailableException"
+}
+
+// Message returns the exception's message.
+func (s ServiceUnavailableException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ServiceUnavailableException) OrigErr() error {
+	return nil
+}
+
+func (s ServiceUnavailableException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ServiceUnavailableException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ServiceUnavailableException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // The summary of a recommendation.
 type Summary struct {
 	_ struct{} `type:"structure"`
@@ -1823,6 +2219,62 @@ func (s *Summary) SetName(v string) *Summary {
 func (s *Summary) SetValue(v float64) *Summary {
 	s.Value = &v
 	return s
+}
+
+// The limit on the number of requests per second was exceeded.
+type ThrottlingException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ThrottlingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ThrottlingException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottlingException(v protocol.ResponseMetadata) error {
+	return &ThrottlingException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ThrottlingException) Code() string {
+	return "ThrottlingException"
+}
+
+// Message returns the exception's message.
+func (s ThrottlingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ThrottlingException) OrigErr() error {
+	return nil
+}
+
+func (s ThrottlingException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ThrottlingException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ThrottlingException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type UpdateEnrollmentStatusInput struct {

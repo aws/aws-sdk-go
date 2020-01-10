@@ -71,18 +71,18 @@ func (c *Kendra) BatchDeleteDocumentRequest(input *BatchDeleteDocumentInput) (re
 // See the AWS API reference guide for AWSKendraFrontendService's
 // API operation BatchDeleteDocument for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/BatchDeleteDocument
 func (c *Kendra) BatchDeleteDocument(input *BatchDeleteDocumentInput) (*BatchDeleteDocumentOutput, error) {
@@ -169,20 +169,20 @@ func (c *Kendra) BatchPutDocumentRequest(input *BatchPutDocumentInput) (req *req
 // See the AWS API reference guide for AWSKendraFrontendService's
 // API operation BatchPutDocument for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //
-//   * ErrCodeServiceQuotaExceededException "ServiceQuotaExceededException"
+//   * ServiceQuotaExceededException
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/BatchPutDocument
 func (c *Kendra) BatchPutDocument(input *BatchPutDocumentInput) (*BatchPutDocumentOutput, error) {
@@ -269,22 +269,22 @@ func (c *Kendra) CreateDataSourceRequest(input *CreateDataSourceInput) (req *req
 // See the AWS API reference guide for AWSKendraFrontendService's
 // API operation CreateDataSource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
-//   * ErrCodeResourceAlreadyExistException "ResourceAlreadyExistException"
+//   * ResourceAlreadyExistException
 //
-//   * ErrCodeServiceQuotaExceededException "ServiceQuotaExceededException"
+//   * ServiceQuotaExceededException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/CreateDataSource
 func (c *Kendra) CreateDataSource(input *CreateDataSourceInput) (*CreateDataSourceOutput, error) {
@@ -361,20 +361,20 @@ func (c *Kendra) CreateFaqRequest(input *CreateFaqInput) (req *request.Request, 
 // See the AWS API reference guide for AWSKendraFrontendService's
 // API operation CreateFaq for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeServiceQuotaExceededException "ServiceQuotaExceededException"
+//   * ServiceQuotaExceededException
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/CreateFaq
 func (c *Kendra) CreateFaq(input *CreateFaqInput) (*CreateFaqOutput, error) {
@@ -457,18 +457,18 @@ func (c *Kendra) CreateIndexRequest(input *CreateIndexInput) (req *request.Reque
 // See the AWS API reference guide for AWSKendraFrontendService's
 // API operation CreateIndex for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //
-//   * ErrCodeResourceAlreadyExistException "ResourceAlreadyExistException"
+//   * ResourceAlreadyExistException
 //
-//   * ErrCodeServiceQuotaExceededException "ServiceQuotaExceededException"
+//   * ServiceQuotaExceededException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/CreateIndex
 func (c *Kendra) CreateIndex(input *CreateIndexInput) (*CreateIndexOutput, error) {
@@ -546,18 +546,18 @@ func (c *Kendra) DeleteFaqRequest(input *DeleteFaqInput) (req *request.Request, 
 // See the AWS API reference guide for AWSKendraFrontendService's
 // API operation DeleteFaq for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeleteFaq
 func (c *Kendra) DeleteFaq(input *DeleteFaqInput) (*DeleteFaqOutput, error) {
@@ -637,18 +637,18 @@ func (c *Kendra) DeleteIndexRequest(input *DeleteIndexInput) (req *request.Reque
 // See the AWS API reference guide for AWSKendraFrontendService's
 // API operation DeleteIndex for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeleteIndex
 func (c *Kendra) DeleteIndex(input *DeleteIndexInput) (*DeleteIndexOutput, error) {
@@ -725,16 +725,16 @@ func (c *Kendra) DescribeDataSourceRequest(input *DescribeDataSourceInput) (req 
 // See the AWS API reference guide for AWSKendraFrontendService's
 // API operation DescribeDataSource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribeDataSource
 func (c *Kendra) DescribeDataSource(input *DescribeDataSourceInput) (*DescribeDataSourceOutput, error) {
@@ -811,16 +811,16 @@ func (c *Kendra) DescribeFaqRequest(input *DescribeFaqInput) (req *request.Reque
 // See the AWS API reference guide for AWSKendraFrontendService's
 // API operation DescribeFaq for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribeFaq
 func (c *Kendra) DescribeFaq(input *DescribeFaqInput) (*DescribeFaqOutput, error) {
@@ -897,16 +897,16 @@ func (c *Kendra) DescribeIndexRequest(input *DescribeIndexInput) (req *request.R
 // See the AWS API reference guide for AWSKendraFrontendService's
 // API operation DescribeIndex for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribeIndex
 func (c *Kendra) DescribeIndex(input *DescribeIndexInput) (*DescribeIndexOutput, error) {
@@ -989,18 +989,18 @@ func (c *Kendra) ListDataSourceSyncJobsRequest(input *ListDataSourceSyncJobsInpu
 // See the AWS API reference guide for AWSKendraFrontendService's
 // API operation ListDataSourceSyncJobs for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListDataSourceSyncJobs
 func (c *Kendra) ListDataSourceSyncJobs(input *ListDataSourceSyncJobsInput) (*ListDataSourceSyncJobsOutput, error) {
@@ -1135,16 +1135,16 @@ func (c *Kendra) ListDataSourcesRequest(input *ListDataSourcesInput) (req *reque
 // See the AWS API reference guide for AWSKendraFrontendService's
 // API operation ListDataSources for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListDataSources
 func (c *Kendra) ListDataSources(input *ListDataSourcesInput) (*ListDataSourcesOutput, error) {
@@ -1273,16 +1273,16 @@ func (c *Kendra) ListFaqsRequest(input *ListFaqsInput) (req *request.Request, ou
 // See the AWS API reference guide for AWSKendraFrontendService's
 // API operation ListFaqs for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListFaqs
 func (c *Kendra) ListFaqs(input *ListFaqsInput) (*ListFaqsOutput, error) {
@@ -1365,14 +1365,14 @@ func (c *Kendra) ListIndicesRequest(input *ListIndicesInput) (req *request.Reque
 // See the AWS API reference guide for AWSKendraFrontendService's
 // API operation ListIndices for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListIndices
 func (c *Kendra) ListIndices(input *ListIndicesInput) (*ListIndicesOutput, error) {
@@ -1518,18 +1518,18 @@ func (c *Kendra) QueryRequest(input *QueryInput) (req *request.Request, output *
 // See the AWS API reference guide for AWSKendraFrontendService's
 // API operation Query for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/Query
 func (c *Kendra) Query(input *QueryInput) (*QueryOutput, error) {
@@ -1607,20 +1607,20 @@ func (c *Kendra) StartDataSourceSyncJobRequest(input *StartDataSourceSyncJobInpu
 // See the AWS API reference guide for AWSKendraFrontendService's
 // API operation StartDataSourceSyncJob for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
-//   * ErrCodeResourceInUseException "ResourceInUseException"
+//   * ResourceInUseException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/StartDataSourceSyncJob
 func (c *Kendra) StartDataSourceSyncJob(input *StartDataSourceSyncJobInput) (*StartDataSourceSyncJobOutput, error) {
@@ -1699,16 +1699,16 @@ func (c *Kendra) StopDataSourceSyncJobRequest(input *StopDataSourceSyncJobInput)
 // See the AWS API reference guide for AWSKendraFrontendService's
 // API operation StopDataSourceSyncJob for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/StopDataSourceSyncJob
 func (c *Kendra) StopDataSourceSyncJob(input *StopDataSourceSyncJobInput) (*StopDataSourceSyncJobOutput, error) {
@@ -1787,18 +1787,18 @@ func (c *Kendra) SubmitFeedbackRequest(input *SubmitFeedbackInput) (req *request
 // See the AWS API reference guide for AWSKendraFrontendService's
 // API operation SubmitFeedback for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //
-//   * ErrCodeResourceUnavailableException "ResourceUnavailableException"
+//   * ResourceUnavailableException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/SubmitFeedback
 func (c *Kendra) SubmitFeedback(input *SubmitFeedbackInput) (*SubmitFeedbackOutput, error) {
@@ -1876,18 +1876,18 @@ func (c *Kendra) UpdateDataSourceRequest(input *UpdateDataSourceInput) (req *req
 // See the AWS API reference guide for AWSKendraFrontendService's
 // API operation UpdateDataSource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UpdateDataSource
 func (c *Kendra) UpdateDataSource(input *UpdateDataSourceInput) (*UpdateDataSourceOutput, error) {
@@ -1965,18 +1965,18 @@ func (c *Kendra) UpdateIndexRequest(input *UpdateIndexInput) (req *request.Reque
 // See the AWS API reference guide for AWSKendraFrontendService's
 // API operation UpdateIndex for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UpdateIndex
 func (c *Kendra) UpdateIndex(input *UpdateIndexInput) (*UpdateIndexOutput, error) {
@@ -2035,6 +2035,61 @@ func (s *AccessControlListConfiguration) Validate() error {
 func (s *AccessControlListConfiguration) SetKeyPath(v string) *AccessControlListConfiguration {
 	s.KeyPath = &v
 	return s
+}
+
+type AccessDeniedException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s AccessDeniedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccessDeniedException) GoString() string {
+	return s.String()
+}
+
+func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
+	return &AccessDeniedException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s AccessDeniedException) Code() string {
+	return "AccessDeniedException"
+}
+
+// Message returns the exception's message.
+func (s AccessDeniedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s AccessDeniedException) OrigErr() error {
+	return nil
+}
+
+func (s AccessDeniedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s AccessDeniedException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s AccessDeniedException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Provides information about the column that should be used for filtering the
@@ -2784,6 +2839,61 @@ func (s *ColumnConfiguration) SetDocumentTitleColumnName(v string) *ColumnConfig
 func (s *ColumnConfiguration) SetFieldMappings(v []*DataSourceToIndexFieldMapping) *ColumnConfiguration {
 	s.FieldMappings = v
 	return s
+}
+
+type ConflictException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ConflictException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ConflictException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Provides the information necessary to connect to a database.
@@ -5141,6 +5251,61 @@ func (s *IndexStatistics) SetTextDocumentStatistics(v *TextDocumentStatistics) *
 	return s
 }
 
+type InternalServerException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s InternalServerException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternalServerException) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalServerException(v protocol.ResponseMetadata) error {
+	return &InternalServerException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InternalServerException) Code() string {
+	return "InternalServerException"
+}
+
+// Message returns the exception's message.
+func (s InternalServerException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InternalServerException) OrigErr() error {
+	return nil
+}
+
+func (s InternalServerException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InternalServerException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InternalServerException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type ListDataSourceSyncJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6097,6 +6262,226 @@ func (s *RelevanceFeedback) SetResultId(v string) *RelevanceFeedback {
 	return s
 }
 
+type ResourceAlreadyExistException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceAlreadyExistException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceAlreadyExistException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceAlreadyExistException(v protocol.ResponseMetadata) error {
+	return &ResourceAlreadyExistException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceAlreadyExistException) Code() string {
+	return "ResourceAlreadyExistException"
+}
+
+// Message returns the exception's message.
+func (s ResourceAlreadyExistException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceAlreadyExistException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceAlreadyExistException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceAlreadyExistException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceAlreadyExistException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+type ResourceInUseException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceInUseException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceInUseException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceInUseException(v protocol.ResponseMetadata) error {
+	return &ResourceInUseException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceInUseException) Code() string {
+	return "ResourceInUseException"
+}
+
+// Message returns the exception's message.
+func (s ResourceInUseException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceInUseException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceInUseException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceInUseException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceInUseException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+type ResourceNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+type ResourceUnavailableException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceUnavailableException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceUnavailableException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceUnavailableException(v protocol.ResponseMetadata) error {
+	return &ResourceUnavailableException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceUnavailableException) Code() string {
+	return "ResourceUnavailableException"
+}
+
+// Message returns the exception's message.
+func (s ResourceUnavailableException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceUnavailableException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceUnavailableException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceUnavailableException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceUnavailableException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // Provides configuration information for a data source to index documents in
 // an Amazon S3 bucket.
 type S3DataSourceConfiguration struct {
@@ -6338,6 +6723,61 @@ func (s *ServerSideEncryptionConfiguration) Validate() error {
 func (s *ServerSideEncryptionConfiguration) SetKmsKeyId(v string) *ServerSideEncryptionConfiguration {
 	s.KmsKeyId = &v
 	return s
+}
+
+type ServiceQuotaExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ServiceQuotaExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceQuotaExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceQuotaExceededException(v protocol.ResponseMetadata) error {
+	return &ServiceQuotaExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ServiceQuotaExceededException) Code() string {
+	return "ServiceQuotaExceededException"
+}
+
+// Message returns the exception's message.
+func (s ServiceQuotaExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ServiceQuotaExceededException) OrigErr() error {
+	return nil
+}
+
+func (s ServiceQuotaExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ServiceQuotaExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ServiceQuotaExceededException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Provides configuration information for connecting to a Microsoft SharePoint
@@ -6806,6 +7246,61 @@ func (s *TextWithHighlights) SetText(v string) *TextWithHighlights {
 	return s
 }
 
+type ThrottlingException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ThrottlingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ThrottlingException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottlingException(v protocol.ResponseMetadata) error {
+	return &ThrottlingException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ThrottlingException) Code() string {
+	return "ThrottlingException"
+}
+
+// Message returns the exception's message.
+func (s ThrottlingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ThrottlingException) OrigErr() error {
+	return nil
+}
+
+func (s ThrottlingException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ThrottlingException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ThrottlingException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // Provides a range of time.
 type TimeRange struct {
 	_ struct{} `type:"structure"`
@@ -7082,6 +7577,61 @@ func (s UpdateIndexOutput) String() string {
 // GoString returns the string representation
 func (s UpdateIndexOutput) GoString() string {
 	return s.String()
+}
+
+type ValidationException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ValidationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ValidationException) GoString() string {
+	return s.String()
+}
+
+func newErrorValidationException(v protocol.ResponseMetadata) error {
+	return &ValidationException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ValidationException) Code() string {
+	return "ValidationException"
+}
+
+// Message returns the exception's message.
+func (s ValidationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ValidationException) OrigErr() error {
+	return nil
+}
+
+func (s ValidationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ValidationException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ValidationException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 const (

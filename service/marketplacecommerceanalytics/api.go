@@ -3,11 +3,13 @@
 package marketplacecommerceanalytics
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
 const opGenerateDataSet = "GenerateDataSet"
@@ -72,8 +74,8 @@ func (c *MarketplaceCommerceAnalytics) GenerateDataSetRequest(input *GenerateDat
 // See the AWS API reference guide for AWS Marketplace Commerce Analytics's
 // API operation GenerateDataSet for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeException "MarketplaceCommerceAnalyticsException"
+// Returned Error Types:
+//   * Exception
 //   This exception is thrown when an internal service error occurs.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/marketplacecommerceanalytics-2015-07-01/GenerateDataSet
@@ -161,8 +163,8 @@ func (c *MarketplaceCommerceAnalytics) StartSupportDataExportRequest(input *Star
 // See the AWS API reference guide for AWS Marketplace Commerce Analytics's
 // API operation StartSupportDataExport for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeException "MarketplaceCommerceAnalyticsException"
+// Returned Error Types:
+//   * Exception
 //   This exception is thrown when an internal service error occurs.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/marketplacecommerceanalytics-2015-07-01/StartSupportDataExport
@@ -185,6 +187,63 @@ func (c *MarketplaceCommerceAnalytics) StartSupportDataExportWithContext(ctx aws
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// This exception is thrown when an internal service error occurs.
+type Exception struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// This message describes details of the error.
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s Exception) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Exception) GoString() string {
+	return s.String()
+}
+
+func newErrorException(v protocol.ResponseMetadata) error {
+	return &Exception{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s Exception) Code() string {
+	return "MarketplaceCommerceAnalyticsException"
+}
+
+// Message returns the exception's message.
+func (s Exception) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s Exception) OrigErr() error {
+	return nil
+}
+
+func (s Exception) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s Exception) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s Exception) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Container for the parameters to the GenerateDataSet operation.

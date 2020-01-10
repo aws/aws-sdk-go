@@ -2,6 +2,10 @@
 
 package iotsecuretunneling
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeLimitExceededException for service response error code
@@ -16,3 +20,8 @@ const (
 	// Thrown when an operation is attempted on a resource that does not exist.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"LimitExceededException":    newErrorLimitExceededException,
+	"ResourceNotFoundException": newErrorResourceNotFoundException,
+}

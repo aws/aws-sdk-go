@@ -3,9 +3,12 @@
 package textract
 
 import (
+	"fmt"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
 const opAnalyzeDocument = "AnalyzeDocument"
@@ -91,45 +94,45 @@ func (c *Textract) AnalyzeDocumentRequest(input *AnalyzeDocumentInput) (req *req
 // See the AWS API reference guide for Amazon Textract's
 // API operation AnalyzeDocument for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   An input parameter violated a constraint. For example, in synchronous operations,
 //   an InvalidParameterException exception occurs when neither of the S3Object
 //   or Bytes values are supplied in the Document request parameter. Validate
 //   your parameter before calling the API operation again.
 //
-//   * ErrCodeInvalidS3ObjectException "InvalidS3ObjectException"
+//   * InvalidS3ObjectException
 //   Amazon Textract is unable to access the S3 object that's specified in the
 //   request.
 //
-//   * ErrCodeUnsupportedDocumentException "UnsupportedDocumentException"
+//   * UnsupportedDocumentException
 //   The format of the input document isn't supported. Documents for synchronous
 //   operations can be in PNG or JPEG format. Documents for asynchronous operations
 //   can also be in PDF format.
 //
-//   * ErrCodeDocumentTooLargeException "DocumentTooLargeException"
+//   * DocumentTooLargeException
 //   The document can't be processed because it's too large. The maximum document
 //   size for synchronous operations 5 MB. The maximum document size for asynchronous
 //   operations is 500 MB for PDF files.
 //
-//   * ErrCodeBadDocumentException "BadDocumentException"
+//   * BadDocumentException
 //   Amazon Textract isn't able to read the document.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You aren't authorized to perform the action.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Textract.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Textract experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Textract is temporarily unable to process the request. Try your call
 //   again.
 //
-//   * ErrCodeHumanLoopQuotaExceededException "HumanLoopQuotaExceededException"
+//   * HumanLoopQuotaExceededException
 //   Indicates you have exceeded the maximum number of active human in the loop
 //   workflows available
 //
@@ -221,41 +224,41 @@ func (c *Textract) DetectDocumentTextRequest(input *DetectDocumentTextInput) (re
 // See the AWS API reference guide for Amazon Textract's
 // API operation DetectDocumentText for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   An input parameter violated a constraint. For example, in synchronous operations,
 //   an InvalidParameterException exception occurs when neither of the S3Object
 //   or Bytes values are supplied in the Document request parameter. Validate
 //   your parameter before calling the API operation again.
 //
-//   * ErrCodeInvalidS3ObjectException "InvalidS3ObjectException"
+//   * InvalidS3ObjectException
 //   Amazon Textract is unable to access the S3 object that's specified in the
 //   request.
 //
-//   * ErrCodeUnsupportedDocumentException "UnsupportedDocumentException"
+//   * UnsupportedDocumentException
 //   The format of the input document isn't supported. Documents for synchronous
 //   operations can be in PNG or JPEG format. Documents for asynchronous operations
 //   can also be in PDF format.
 //
-//   * ErrCodeDocumentTooLargeException "DocumentTooLargeException"
+//   * DocumentTooLargeException
 //   The document can't be processed because it's too large. The maximum document
 //   size for synchronous operations 5 MB. The maximum document size for asynchronous
 //   operations is 500 MB for PDF files.
 //
-//   * ErrCodeBadDocumentException "BadDocumentException"
+//   * BadDocumentException
 //   Amazon Textract isn't able to read the document.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You aren't authorized to perform the action.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Textract.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Textract experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Textract is temporarily unable to process the request. Try your call
 //   again.
 //
@@ -374,27 +377,27 @@ func (c *Textract) GetDocumentAnalysisRequest(input *GetDocumentAnalysisInput) (
 // See the AWS API reference guide for Amazon Textract's
 // API operation GetDocumentAnalysis for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   An input parameter violated a constraint. For example, in synchronous operations,
 //   an InvalidParameterException exception occurs when neither of the S3Object
 //   or Bytes values are supplied in the Document request parameter. Validate
 //   your parameter before calling the API operation again.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You aren't authorized to perform the action.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Textract.
 //
-//   * ErrCodeInvalidJobIdException "InvalidJobIdException"
+//   * InvalidJobIdException
 //   An invalid job identifier was passed to GetDocumentAnalysis or to GetDocumentAnalysis.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Textract experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Textract is temporarily unable to process the request. Try your call
 //   again.
 //
@@ -500,27 +503,27 @@ func (c *Textract) GetDocumentTextDetectionRequest(input *GetDocumentTextDetecti
 // See the AWS API reference guide for Amazon Textract's
 // API operation GetDocumentTextDetection for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   An input parameter violated a constraint. For example, in synchronous operations,
 //   an InvalidParameterException exception occurs when neither of the S3Object
 //   or Bytes values are supplied in the Document request parameter. Validate
 //   your parameter before calling the API operation again.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You aren't authorized to perform the action.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Textract.
 //
-//   * ErrCodeInvalidJobIdException "InvalidJobIdException"
+//   * InvalidJobIdException
 //   An invalid job identifier was passed to GetDocumentAnalysis or to GetDocumentAnalysis.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Textract experienced a service issue. Try your call again.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Textract is temporarily unable to process the request. Try your call
 //   again.
 //
@@ -614,50 +617,50 @@ func (c *Textract) StartDocumentAnalysisRequest(input *StartDocumentAnalysisInpu
 // See the AWS API reference guide for Amazon Textract's
 // API operation StartDocumentAnalysis for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   An input parameter violated a constraint. For example, in synchronous operations,
 //   an InvalidParameterException exception occurs when neither of the S3Object
 //   or Bytes values are supplied in the Document request parameter. Validate
 //   your parameter before calling the API operation again.
 //
-//   * ErrCodeInvalidS3ObjectException "InvalidS3ObjectException"
+//   * InvalidS3ObjectException
 //   Amazon Textract is unable to access the S3 object that's specified in the
 //   request.
 //
-//   * ErrCodeUnsupportedDocumentException "UnsupportedDocumentException"
+//   * UnsupportedDocumentException
 //   The format of the input document isn't supported. Documents for synchronous
 //   operations can be in PNG or JPEG format. Documents for asynchronous operations
 //   can also be in PDF format.
 //
-//   * ErrCodeDocumentTooLargeException "DocumentTooLargeException"
+//   * DocumentTooLargeException
 //   The document can't be processed because it's too large. The maximum document
 //   size for synchronous operations 5 MB. The maximum document size for asynchronous
 //   operations is 500 MB for PDF files.
 //
-//   * ErrCodeBadDocumentException "BadDocumentException"
+//   * BadDocumentException
 //   Amazon Textract isn't able to read the document.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You aren't authorized to perform the action.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Textract.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Textract experienced a service issue. Try your call again.
 //
-//   * ErrCodeIdempotentParameterMismatchException "IdempotentParameterMismatchException"
+//   * IdempotentParameterMismatchException
 //   A ClientRequestToken input parameter was reused with an operation, but at
 //   least one of the other input parameters is different from the previous call
 //   to the operation.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Textract is temporarily unable to process the request. Try your call
 //   again.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   An Amazon Textract service limit was exceeded. For example, if you start
 //   too many asynchronous jobs concurrently, calls to start operations (StartDocumentTextDetection,
 //   for example) raise a LimitExceededException exception (HTTP status code:
@@ -754,50 +757,50 @@ func (c *Textract) StartDocumentTextDetectionRequest(input *StartDocumentTextDet
 // See the AWS API reference guide for Amazon Textract's
 // API operation StartDocumentTextDetection for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+// Returned Error Types:
+//   * InvalidParameterException
 //   An input parameter violated a constraint. For example, in synchronous operations,
 //   an InvalidParameterException exception occurs when neither of the S3Object
 //   or Bytes values are supplied in the Document request parameter. Validate
 //   your parameter before calling the API operation again.
 //
-//   * ErrCodeInvalidS3ObjectException "InvalidS3ObjectException"
+//   * InvalidS3ObjectException
 //   Amazon Textract is unable to access the S3 object that's specified in the
 //   request.
 //
-//   * ErrCodeUnsupportedDocumentException "UnsupportedDocumentException"
+//   * UnsupportedDocumentException
 //   The format of the input document isn't supported. Documents for synchronous
 //   operations can be in PNG or JPEG format. Documents for asynchronous operations
 //   can also be in PDF format.
 //
-//   * ErrCodeDocumentTooLargeException "DocumentTooLargeException"
+//   * DocumentTooLargeException
 //   The document can't be processed because it's too large. The maximum document
 //   size for synchronous operations 5 MB. The maximum document size for asynchronous
 //   operations is 500 MB for PDF files.
 //
-//   * ErrCodeBadDocumentException "BadDocumentException"
+//   * BadDocumentException
 //   Amazon Textract isn't able to read the document.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You aren't authorized to perform the action.
 //
-//   * ErrCodeProvisionedThroughputExceededException "ProvisionedThroughputExceededException"
+//   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Textract.
 //
-//   * ErrCodeInternalServerError "InternalServerError"
+//   * InternalServerError
 //   Amazon Textract experienced a service issue. Try your call again.
 //
-//   * ErrCodeIdempotentParameterMismatchException "IdempotentParameterMismatchException"
+//   * IdempotentParameterMismatchException
 //   A ClientRequestToken input parameter was reused with an operation, but at
 //   least one of the other input parameters is different from the previous call
 //   to the operation.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   Amazon Textract is temporarily unable to process the request. Try your call
 //   again.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   An Amazon Textract service limit was exceeded. For example, if you start
 //   too many asynchronous jobs concurrently, calls to start operations (StartDocumentTextDetection,
 //   for example) raise a LimitExceededException exception (HTTP status code:
@@ -824,6 +827,57 @@ func (c *Textract) StartDocumentTextDetectionWithContext(ctx aws.Context, input 
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// You aren't authorized to perform the action.
+type AccessDeniedException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s AccessDeniedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccessDeniedException) GoString() string {
+	return s.String()
+}
+
+func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
+	return &AccessDeniedException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s AccessDeniedException) Code() string {
+	return "AccessDeniedException"
+}
+
+// Message returns the exception's message.
+func (s AccessDeniedException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s AccessDeniedException) OrigErr() error {
+	return nil
+}
+
+func (s AccessDeniedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s AccessDeniedException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s AccessDeniedException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type AnalyzeDocumentInput struct {
@@ -955,6 +1009,57 @@ func (s *AnalyzeDocumentOutput) SetDocumentMetadata(v *DocumentMetadata) *Analyz
 func (s *AnalyzeDocumentOutput) SetHumanLoopActivationOutput(v *HumanLoopActivationOutput) *AnalyzeDocumentOutput {
 	s.HumanLoopActivationOutput = v
 	return s
+}
+
+// Amazon Textract isn't able to read the document.
+type BadDocumentException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s BadDocumentException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BadDocumentException) GoString() string {
+	return s.String()
+}
+
+func newErrorBadDocumentException(v protocol.ResponseMetadata) error {
+	return &BadDocumentException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s BadDocumentException) Code() string {
+	return "BadDocumentException"
+}
+
+// Message returns the exception's message.
+func (s BadDocumentException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s BadDocumentException) OrigErr() error {
+	return nil
+}
+
+func (s BadDocumentException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s BadDocumentException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s BadDocumentException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // A Block represents items that are recognized in a document within a group
@@ -1470,6 +1575,59 @@ func (s *DocumentMetadata) SetPages(v int64) *DocumentMetadata {
 	return s
 }
 
+// The document can't be processed because it's too large. The maximum document
+// size for synchronous operations 5 MB. The maximum document size for asynchronous
+// operations is 500 MB for PDF files.
+type DocumentTooLargeException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s DocumentTooLargeException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DocumentTooLargeException) GoString() string {
+	return s.String()
+}
+
+func newErrorDocumentTooLargeException(v protocol.ResponseMetadata) error {
+	return &DocumentTooLargeException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s DocumentTooLargeException) Code() string {
+	return "DocumentTooLargeException"
+}
+
+// Message returns the exception's message.
+func (s DocumentTooLargeException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s DocumentTooLargeException) OrigErr() error {
+	return nil
+}
+
+func (s DocumentTooLargeException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s DocumentTooLargeException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s DocumentTooLargeException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // Information about where the following items are located on a document page:
 // detected page, text, key-value pairs, tables, table cells, and selection
 // elements.
@@ -1945,6 +2103,380 @@ func (s *HumanLoopDataAttributes) SetContentClassifiers(v []*string) *HumanLoopD
 	return s
 }
 
+// Indicates you have exceeded the maximum number of active human in the loop
+// workflows available
+type HumanLoopQuotaExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	QuotaCode *string `type:"string"`
+
+	ResourceType *string `type:"string"`
+
+	ServiceCode *string `type:"string"`
+}
+
+// String returns the string representation
+func (s HumanLoopQuotaExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HumanLoopQuotaExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorHumanLoopQuotaExceededException(v protocol.ResponseMetadata) error {
+	return &HumanLoopQuotaExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s HumanLoopQuotaExceededException) Code() string {
+	return "HumanLoopQuotaExceededException"
+}
+
+// Message returns the exception's message.
+func (s HumanLoopQuotaExceededException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s HumanLoopQuotaExceededException) OrigErr() error {
+	return nil
+}
+
+func (s HumanLoopQuotaExceededException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s HumanLoopQuotaExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s HumanLoopQuotaExceededException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// A ClientRequestToken input parameter was reused with an operation, but at
+// least one of the other input parameters is different from the previous call
+// to the operation.
+type IdempotentParameterMismatchException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s IdempotentParameterMismatchException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s IdempotentParameterMismatchException) GoString() string {
+	return s.String()
+}
+
+func newErrorIdempotentParameterMismatchException(v protocol.ResponseMetadata) error {
+	return &IdempotentParameterMismatchException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s IdempotentParameterMismatchException) Code() string {
+	return "IdempotentParameterMismatchException"
+}
+
+// Message returns the exception's message.
+func (s IdempotentParameterMismatchException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s IdempotentParameterMismatchException) OrigErr() error {
+	return nil
+}
+
+func (s IdempotentParameterMismatchException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s IdempotentParameterMismatchException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s IdempotentParameterMismatchException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Amazon Textract experienced a service issue. Try your call again.
+type InternalServerError struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s InternalServerError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternalServerError) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalServerError(v protocol.ResponseMetadata) error {
+	return &InternalServerError{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InternalServerError) Code() string {
+	return "InternalServerError"
+}
+
+// Message returns the exception's message.
+func (s InternalServerError) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InternalServerError) OrigErr() error {
+	return nil
+}
+
+func (s InternalServerError) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InternalServerError) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InternalServerError) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// An invalid job identifier was passed to GetDocumentAnalysis or to GetDocumentAnalysis.
+type InvalidJobIdException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s InvalidJobIdException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidJobIdException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidJobIdException(v protocol.ResponseMetadata) error {
+	return &InvalidJobIdException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidJobIdException) Code() string {
+	return "InvalidJobIdException"
+}
+
+// Message returns the exception's message.
+func (s InvalidJobIdException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidJobIdException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidJobIdException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidJobIdException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidJobIdException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// An input parameter violated a constraint. For example, in synchronous operations,
+// an InvalidParameterException exception occurs when neither of the S3Object
+// or Bytes values are supplied in the Document request parameter. Validate
+// your parameter before calling the API operation again.
+type InvalidParameterException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s InvalidParameterException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidParameterException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidParameterException(v protocol.ResponseMetadata) error {
+	return &InvalidParameterException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidParameterException) Code() string {
+	return "InvalidParameterException"
+}
+
+// Message returns the exception's message.
+func (s InvalidParameterException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidParameterException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidParameterException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidParameterException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidParameterException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Amazon Textract is unable to access the S3 object that's specified in the
+// request.
+type InvalidS3ObjectException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s InvalidS3ObjectException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidS3ObjectException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidS3ObjectException(v protocol.ResponseMetadata) error {
+	return &InvalidS3ObjectException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidS3ObjectException) Code() string {
+	return "InvalidS3ObjectException"
+}
+
+// Message returns the exception's message.
+func (s InvalidS3ObjectException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidS3ObjectException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidS3ObjectException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidS3ObjectException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidS3ObjectException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// An Amazon Textract service limit was exceeded. For example, if you start
+// too many asynchronous jobs concurrently, calls to start operations (StartDocumentTextDetection,
+// for example) raise a LimitExceededException exception (HTTP status code:
+// 400) until the number of concurrently running jobs is below the Amazon Textract
+// service limit.
+type LimitExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s LimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
+	return &LimitExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s LimitExceededException) Code() string {
+	return "LimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s LimitExceededException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s LimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s LimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s LimitExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s LimitExceededException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // The Amazon Simple Notification Service (Amazon SNS) topic to which Amazon
 // Textract publishes the completion status of an asynchronous document operation,
 // such as StartDocumentTextDetection.
@@ -2045,6 +2577,58 @@ func (s *Point) SetX(v float64) *Point {
 func (s *Point) SetY(v float64) *Point {
 	s.Y = &v
 	return s
+}
+
+// The number of requests exceeded your throughput limit. If you want to increase
+// this limit, contact Amazon Textract.
+type ProvisionedThroughputExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s ProvisionedThroughputExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ProvisionedThroughputExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorProvisionedThroughputExceededException(v protocol.ResponseMetadata) error {
+	return &ProvisionedThroughputExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ProvisionedThroughputExceededException) Code() string {
+	return "ProvisionedThroughputExceededException"
+}
+
+// Message returns the exception's message.
+func (s ProvisionedThroughputExceededException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ProvisionedThroughputExceededException) OrigErr() error {
+	return nil
+}
+
+func (s ProvisionedThroughputExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ProvisionedThroughputExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ProvisionedThroughputExceededException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Information about how blocks are related to each other. A Block object contains
@@ -2404,6 +2988,111 @@ func (s StartDocumentTextDetectionOutput) GoString() string {
 func (s *StartDocumentTextDetectionOutput) SetJobId(v string) *StartDocumentTextDetectionOutput {
 	s.JobId = &v
 	return s
+}
+
+// Amazon Textract is temporarily unable to process the request. Try your call
+// again.
+type ThrottlingException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s ThrottlingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ThrottlingException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottlingException(v protocol.ResponseMetadata) error {
+	return &ThrottlingException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ThrottlingException) Code() string {
+	return "ThrottlingException"
+}
+
+// Message returns the exception's message.
+func (s ThrottlingException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ThrottlingException) OrigErr() error {
+	return nil
+}
+
+func (s ThrottlingException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ThrottlingException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ThrottlingException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The format of the input document isn't supported. Documents for synchronous
+// operations can be in PNG or JPEG format. Documents for asynchronous operations
+// can also be in PDF format.
+type UnsupportedDocumentException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s UnsupportedDocumentException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UnsupportedDocumentException) GoString() string {
+	return s.String()
+}
+
+func newErrorUnsupportedDocumentException(v protocol.ResponseMetadata) error {
+	return &UnsupportedDocumentException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s UnsupportedDocumentException) Code() string {
+	return "UnsupportedDocumentException"
+}
+
+// Message returns the exception's message.
+func (s UnsupportedDocumentException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s UnsupportedDocumentException) OrigErr() error {
+	return nil
+}
+
+func (s UnsupportedDocumentException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s UnsupportedDocumentException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s UnsupportedDocumentException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // A warning about an issue that occurred during asynchronous text analysis

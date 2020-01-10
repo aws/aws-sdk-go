@@ -2,6 +2,10 @@
 
 package transcribeservice
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeBadRequestException for service response error code
@@ -45,3 +49,11 @@ const (
 	// again.
 	ErrCodeNotFoundException = "NotFoundException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"BadRequestException":      newErrorBadRequestException,
+	"ConflictException":        newErrorConflictException,
+	"InternalFailureException": newErrorInternalFailureException,
+	"LimitExceededException":   newErrorLimitExceededException,
+	"NotFoundException":        newErrorNotFoundException,
+}

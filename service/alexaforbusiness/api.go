@@ -69,14 +69,14 @@ func (c *AlexaForBusiness) ApproveSkillRequest(input *ApproveSkillInput) (req *r
 // See the AWS API reference guide for Alexa For Business's
 // API operation ApproveSkill for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   You are performing an action that would put you beyond your account's limits.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   The resource is not found.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ApproveSkill
@@ -155,8 +155,8 @@ func (c *AlexaForBusiness) AssociateContactWithAddressBookRequest(input *Associa
 // See the AWS API reference guide for Alexa For Business's
 // API operation AssociateContactWithAddressBook for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   You are performing an action that would put you beyond your account's limits.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateContactWithAddressBook
@@ -235,14 +235,14 @@ func (c *AlexaForBusiness) AssociateDeviceWithNetworkProfileRequest(input *Assoc
 // See the AWS API reference guide for Alexa For Business's
 // API operation AssociateDeviceWithNetworkProfile for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
-//   * ErrCodeDeviceNotRegisteredException "DeviceNotRegisteredException"
+//   * DeviceNotRegisteredException
 //   The request failed because this device is no longer registered and therefore
 //   no longer managed by this account.
 //
@@ -325,14 +325,14 @@ func (c *AlexaForBusiness) AssociateDeviceWithRoomRequest(input *AssociateDevice
 // See the AWS API reference guide for Alexa For Business's
 // API operation AssociateDeviceWithRoom for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   You are performing an action that would put you beyond your account's limits.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
-//   * ErrCodeDeviceNotRegisteredException "DeviceNotRegisteredException"
+//   * DeviceNotRegisteredException
 //   The request failed because this device is no longer registered and therefore
 //   no longer managed by this account.
 //
@@ -413,8 +413,8 @@ func (c *AlexaForBusiness) AssociateSkillGroupWithRoomRequest(input *AssociateSk
 // See the AWS API reference guide for Alexa For Business's
 // API operation AssociateSkillGroupWithRoom for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+// Returned Error Types:
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateSkillGroupWithRoom
@@ -493,14 +493,14 @@ func (c *AlexaForBusiness) AssociateSkillWithSkillGroupRequest(input *AssociateS
 // See the AWS API reference guide for Alexa For Business's
 // API operation AssociateSkillWithSkillGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+// Returned Error Types:
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   The resource is not found.
 //
-//   * ErrCodeSkillNotLinkedException "SkillNotLinkedException"
+//   * SkillNotLinkedException
 //   The skill must be linked to a third-party account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateSkillWithSkillGroup
@@ -579,11 +579,11 @@ func (c *AlexaForBusiness) AssociateSkillWithUsersRequest(input *AssociateSkillW
 // See the AWS API reference guide for Alexa For Business's
 // API operation AssociateSkillWithUsers for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+// Returned Error Types:
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/AssociateSkillWithUsers
@@ -661,11 +661,11 @@ func (c *AlexaForBusiness) CreateAddressBookRequest(input *CreateAddressBookInpu
 // See the AWS API reference guide for Alexa For Business's
 // API operation CreateAddressBook for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAlreadyExistsException "AlreadyExistsException"
+// Returned Error Types:
+//   * AlreadyExistsException
 //   The resource being created already exists.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   You are performing an action that would put you beyond your account's limits.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateAddressBook
@@ -744,8 +744,8 @@ func (c *AlexaForBusiness) CreateBusinessReportScheduleRequest(input *CreateBusi
 // See the AWS API reference guide for Alexa For Business's
 // API operation CreateBusinessReportSchedule for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAlreadyExistsException "AlreadyExistsException"
+// Returned Error Types:
+//   * AlreadyExistsException
 //   The resource being created already exists.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateBusinessReportSchedule
@@ -823,8 +823,8 @@ func (c *AlexaForBusiness) CreateConferenceProviderRequest(input *CreateConferen
 // See the AWS API reference guide for Alexa For Business's
 // API operation CreateConferenceProvider for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAlreadyExistsException "AlreadyExistsException"
+// Returned Error Types:
+//   * AlreadyExistsException
 //   The resource being created already exists.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateConferenceProvider
@@ -902,11 +902,11 @@ func (c *AlexaForBusiness) CreateContactRequest(input *CreateContactInput) (req 
 // See the AWS API reference guide for Alexa For Business's
 // API operation CreateContact for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAlreadyExistsException "AlreadyExistsException"
+// Returned Error Types:
+//   * AlreadyExistsException
 //   The resource being created already exists.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   You are performing an action that would put you beyond your account's limits.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateContact
@@ -984,11 +984,11 @@ func (c *AlexaForBusiness) CreateGatewayGroupRequest(input *CreateGatewayGroupIn
 // See the AWS API reference guide for Alexa For Business's
 // API operation CreateGatewayGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAlreadyExistsException "AlreadyExistsException"
+// Returned Error Types:
+//   * AlreadyExistsException
 //   The resource being created already exists.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   You are performing an action that would put you beyond your account's limits.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateGatewayGroup
@@ -1066,20 +1066,20 @@ func (c *AlexaForBusiness) CreateNetworkProfileRequest(input *CreateNetworkProfi
 // See the AWS API reference guide for Alexa For Business's
 // API operation CreateNetworkProfile for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAlreadyExistsException "AlreadyExistsException"
+// Returned Error Types:
+//   * AlreadyExistsException
 //   The resource being created already exists.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   You are performing an action that would put you beyond your account's limits.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
-//   * ErrCodeInvalidCertificateAuthorityException "InvalidCertificateAuthorityException"
+//   * InvalidCertificateAuthorityException
 //   The Certificate Authority can't issue or revoke a certificate.
 //
-//   * ErrCodeInvalidServiceLinkedRoleStateException "InvalidServiceLinkedRoleStateException"
+//   * InvalidServiceLinkedRoleStateException
 //   The service linked role is locked for deletion.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateNetworkProfile
@@ -1157,14 +1157,14 @@ func (c *AlexaForBusiness) CreateProfileRequest(input *CreateProfileInput) (req 
 // See the AWS API reference guide for Alexa For Business's
 // API operation CreateProfile for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   You are performing an action that would put you beyond your account's limits.
 //
-//   * ErrCodeAlreadyExistsException "AlreadyExistsException"
+//   * AlreadyExistsException
 //   The resource being created already exists.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateProfile
@@ -1242,11 +1242,11 @@ func (c *AlexaForBusiness) CreateRoomRequest(input *CreateRoomInput) (req *reque
 // See the AWS API reference guide for Alexa For Business's
 // API operation CreateRoom for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAlreadyExistsException "AlreadyExistsException"
+// Returned Error Types:
+//   * AlreadyExistsException
 //   The resource being created already exists.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   You are performing an action that would put you beyond your account's limits.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateRoom
@@ -1324,14 +1324,14 @@ func (c *AlexaForBusiness) CreateSkillGroupRequest(input *CreateSkillGroupInput)
 // See the AWS API reference guide for Alexa For Business's
 // API operation CreateSkillGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAlreadyExistsException "AlreadyExistsException"
+// Returned Error Types:
+//   * AlreadyExistsException
 //   The resource being created already exists.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   You are performing an action that would put you beyond your account's limits.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateSkillGroup
@@ -1409,14 +1409,14 @@ func (c *AlexaForBusiness) CreateUserRequest(input *CreateUserInput) (req *reque
 // See the AWS API reference guide for Alexa For Business's
 // API operation CreateUser for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceInUseException "ResourceInUseException"
+// Returned Error Types:
+//   * ResourceInUseException
 //   The resource in the request is already in use.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   You are performing an action that would put you beyond your account's limits.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/CreateUser
@@ -1495,11 +1495,11 @@ func (c *AlexaForBusiness) DeleteAddressBookRequest(input *DeleteAddressBookInpu
 // See the AWS API reference guide for Alexa For Business's
 // API operation DeleteAddressBook for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteAddressBook
@@ -1579,11 +1579,11 @@ func (c *AlexaForBusiness) DeleteBusinessReportScheduleRequest(input *DeleteBusi
 // See the AWS API reference guide for Alexa For Business's
 // API operation DeleteBusinessReportSchedule for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteBusinessReportSchedule
@@ -1662,8 +1662,8 @@ func (c *AlexaForBusiness) DeleteConferenceProviderRequest(input *DeleteConferen
 // See the AWS API reference guide for Alexa For Business's
 // API operation DeleteConferenceProvider for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteConferenceProvider
@@ -1742,11 +1742,11 @@ func (c *AlexaForBusiness) DeleteContactRequest(input *DeleteContactInput) (req 
 // See the AWS API reference guide for Alexa For Business's
 // API operation DeleteContact for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteContact
@@ -1825,14 +1825,14 @@ func (c *AlexaForBusiness) DeleteDeviceRequest(input *DeleteDeviceInput) (req *r
 // See the AWS API reference guide for Alexa For Business's
 // API operation DeleteDevice for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
-//   * ErrCodeInvalidCertificateAuthorityException "InvalidCertificateAuthorityException"
+//   * InvalidCertificateAuthorityException
 //   The Certificate Authority can't issue or revoke a certificate.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteDevice
@@ -1914,15 +1914,15 @@ func (c *AlexaForBusiness) DeleteDeviceUsageDataRequest(input *DeleteDeviceUsage
 // See the AWS API reference guide for Alexa For Business's
 // API operation DeleteDeviceUsageData for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
-//   * ErrCodeDeviceNotRegisteredException "DeviceNotRegisteredException"
+//   * DeviceNotRegisteredException
 //   The request failed because this device is no longer registered and therefore
 //   no longer managed by this account.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   You are performing an action that would put you beyond your account's limits.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteDeviceUsageData
@@ -2001,8 +2001,8 @@ func (c *AlexaForBusiness) DeleteGatewayGroupRequest(input *DeleteGatewayGroupIn
 // See the AWS API reference guide for Alexa For Business's
 // API operation DeleteGatewayGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceAssociatedException "ResourceAssociatedException"
+// Returned Error Types:
+//   * ResourceAssociatedException
 //   Another resource is associated with the resource in the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteGatewayGroup
@@ -2081,14 +2081,14 @@ func (c *AlexaForBusiness) DeleteNetworkProfileRequest(input *DeleteNetworkProfi
 // See the AWS API reference guide for Alexa For Business's
 // API operation DeleteNetworkProfile for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceInUseException "ResourceInUseException"
+// Returned Error Types:
+//   * ResourceInUseException
 //   The resource in the request is already in use.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteNetworkProfile
@@ -2167,11 +2167,11 @@ func (c *AlexaForBusiness) DeleteProfileRequest(input *DeleteProfileInput) (req 
 // See the AWS API reference guide for Alexa For Business's
 // API operation DeleteProfile for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteProfile
@@ -2250,11 +2250,11 @@ func (c *AlexaForBusiness) DeleteRoomRequest(input *DeleteRoomInput) (req *reque
 // See the AWS API reference guide for Alexa For Business's
 // API operation DeleteRoom for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteRoom
@@ -2333,8 +2333,8 @@ func (c *AlexaForBusiness) DeleteRoomSkillParameterRequest(input *DeleteRoomSkil
 // See the AWS API reference guide for Alexa For Business's
 // API operation DeleteRoomSkillParameter for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+// Returned Error Types:
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteRoomSkillParameter
@@ -2413,11 +2413,11 @@ func (c *AlexaForBusiness) DeleteSkillAuthorizationRequest(input *DeleteSkillAut
 // See the AWS API reference guide for Alexa For Business's
 // API operation DeleteSkillAuthorization for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteSkillAuthorization
@@ -2496,11 +2496,11 @@ func (c *AlexaForBusiness) DeleteSkillGroupRequest(input *DeleteSkillGroupInput)
 // See the AWS API reference guide for Alexa For Business's
 // API operation DeleteSkillGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteSkillGroup
@@ -2579,11 +2579,11 @@ func (c *AlexaForBusiness) DeleteUserRequest(input *DeleteUserInput) (req *reque
 // See the AWS API reference guide for Alexa For Business's
 // API operation DeleteUser for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DeleteUser
@@ -2739,11 +2739,11 @@ func (c *AlexaForBusiness) DisassociateDeviceFromRoomRequest(input *Disassociate
 // See the AWS API reference guide for Alexa For Business's
 // API operation DisassociateDeviceFromRoom for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+// Returned Error Types:
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
-//   * ErrCodeDeviceNotRegisteredException "DeviceNotRegisteredException"
+//   * DeviceNotRegisteredException
 //   The request failed because this device is no longer registered and therefore
 //   no longer managed by this account.
 //
@@ -2823,11 +2823,11 @@ func (c *AlexaForBusiness) DisassociateSkillFromSkillGroupRequest(input *Disasso
 // See the AWS API reference guide for Alexa For Business's
 // API operation DisassociateSkillFromSkillGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+// Returned Error Types:
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateSkillFromSkillGroup
@@ -2907,11 +2907,11 @@ func (c *AlexaForBusiness) DisassociateSkillFromUsersRequest(input *Disassociate
 // See the AWS API reference guide for Alexa For Business's
 // API operation DisassociateSkillFromUsers for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+// Returned Error Types:
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateSkillFromUsers
@@ -2991,8 +2991,8 @@ func (c *AlexaForBusiness) DisassociateSkillGroupFromRoomRequest(input *Disassoc
 // See the AWS API reference guide for Alexa For Business's
 // API operation DisassociateSkillGroupFromRoom for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+// Returned Error Types:
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/DisassociateSkillGroupFromRoom
@@ -3071,8 +3071,8 @@ func (c *AlexaForBusiness) ForgetSmartHomeAppliancesRequest(input *ForgetSmartHo
 // See the AWS API reference guide for Alexa For Business's
 // API operation ForgetSmartHomeAppliances for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ForgetSmartHomeAppliances
@@ -3150,8 +3150,8 @@ func (c *AlexaForBusiness) GetAddressBookRequest(input *GetAddressBookInput) (re
 // See the AWS API reference guide for Alexa For Business's
 // API operation GetAddressBook for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetAddressBook
@@ -3229,8 +3229,8 @@ func (c *AlexaForBusiness) GetConferencePreferenceRequest(input *GetConferencePr
 // See the AWS API reference guide for Alexa For Business's
 // API operation GetConferencePreference for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetConferencePreference
@@ -3308,8 +3308,8 @@ func (c *AlexaForBusiness) GetConferenceProviderRequest(input *GetConferenceProv
 // See the AWS API reference guide for Alexa For Business's
 // API operation GetConferenceProvider for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetConferenceProvider
@@ -3387,8 +3387,8 @@ func (c *AlexaForBusiness) GetContactRequest(input *GetContactInput) (req *reque
 // See the AWS API reference guide for Alexa For Business's
 // API operation GetContact for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetContact
@@ -3466,8 +3466,8 @@ func (c *AlexaForBusiness) GetDeviceRequest(input *GetDeviceInput) (req *request
 // See the AWS API reference guide for Alexa For Business's
 // API operation GetDevice for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetDevice
@@ -3545,8 +3545,8 @@ func (c *AlexaForBusiness) GetGatewayRequest(input *GetGatewayInput) (req *reque
 // See the AWS API reference guide for Alexa For Business's
 // API operation GetGateway for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetGateway
@@ -3624,8 +3624,8 @@ func (c *AlexaForBusiness) GetGatewayGroupRequest(input *GetGatewayGroupInput) (
 // See the AWS API reference guide for Alexa For Business's
 // API operation GetGatewayGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetGatewayGroup
@@ -3704,8 +3704,8 @@ func (c *AlexaForBusiness) GetInvitationConfigurationRequest(input *GetInvitatio
 // See the AWS API reference guide for Alexa For Business's
 // API operation GetInvitationConfiguration for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetInvitationConfiguration
@@ -3783,11 +3783,11 @@ func (c *AlexaForBusiness) GetNetworkProfileRequest(input *GetNetworkProfileInpu
 // See the AWS API reference guide for Alexa For Business's
 // API operation GetNetworkProfile for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
-//   * ErrCodeInvalidSecretsManagerResourceException "InvalidSecretsManagerResourceException"
+//   * InvalidSecretsManagerResourceException
 //   A password in SecretsManager is in an invalid state.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetNetworkProfile
@@ -3865,8 +3865,8 @@ func (c *AlexaForBusiness) GetProfileRequest(input *GetProfileInput) (req *reque
 // See the AWS API reference guide for Alexa For Business's
 // API operation GetProfile for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetProfile
@@ -3944,8 +3944,8 @@ func (c *AlexaForBusiness) GetRoomRequest(input *GetRoomInput) (req *request.Req
 // See the AWS API reference guide for Alexa For Business's
 // API operation GetRoom for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetRoom
@@ -4023,8 +4023,8 @@ func (c *AlexaForBusiness) GetRoomSkillParameterRequest(input *GetRoomSkillParam
 // See the AWS API reference guide for Alexa For Business's
 // API operation GetRoomSkillParameter for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetRoomSkillParameter
@@ -4102,8 +4102,8 @@ func (c *AlexaForBusiness) GetSkillGroupRequest(input *GetSkillGroupInput) (req 
 // See the AWS API reference guide for Alexa For Business's
 // API operation GetSkillGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/GetSkillGroup
@@ -4455,8 +4455,8 @@ func (c *AlexaForBusiness) ListDeviceEventsRequest(input *ListDeviceEventsInput)
 // See the AWS API reference guide for Alexa For Business's
 // API operation ListDeviceEvents for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ListDeviceEvents
@@ -5256,8 +5256,8 @@ func (c *AlexaForBusiness) ListSmartHomeAppliancesRequest(input *ListSmartHomeAp
 // See the AWS API reference guide for Alexa For Business's
 // API operation ListSmartHomeAppliances for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ListSmartHomeAppliances
@@ -5393,8 +5393,8 @@ func (c *AlexaForBusiness) ListTagsRequest(input *ListTagsInput) (req *request.R
 // See the AWS API reference guide for Alexa For Business's
 // API operation ListTags for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ListTags
@@ -5526,8 +5526,8 @@ func (c *AlexaForBusiness) PutConferencePreferenceRequest(input *PutConferencePr
 // See the AWS API reference guide for Alexa For Business's
 // API operation PutConferencePreference for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/PutConferencePreference
@@ -5607,11 +5607,11 @@ func (c *AlexaForBusiness) PutInvitationConfigurationRequest(input *PutInvitatio
 // See the AWS API reference guide for Alexa For Business's
 // API operation PutInvitationConfiguration for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/PutInvitationConfiguration
@@ -5691,8 +5691,8 @@ func (c *AlexaForBusiness) PutRoomSkillParameterRequest(input *PutRoomSkillParam
 // See the AWS API reference guide for Alexa For Business's
 // API operation PutRoomSkillParameter for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+// Returned Error Types:
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/PutRoomSkillParameter
@@ -5774,12 +5774,12 @@ func (c *AlexaForBusiness) PutSkillAuthorizationRequest(input *PutSkillAuthoriza
 // See the AWS API reference guide for Alexa For Business's
 // API operation PutSkillAuthorization for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnauthorizedException "UnauthorizedException"
+// Returned Error Types:
+//   * UnauthorizedException
 //   The caller has no permissions to operate on the resource involved in the
 //   API call.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/PutSkillAuthorization
@@ -5858,14 +5858,14 @@ func (c *AlexaForBusiness) RegisterAVSDeviceRequest(input *RegisterAVSDeviceInpu
 // See the AWS API reference guide for Alexa For Business's
 // API operation RegisterAVSDevice for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   You are performing an action that would put you beyond your account's limits.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
-//   * ErrCodeInvalidDeviceException "InvalidDeviceException"
+//   * InvalidDeviceException
 //   The device is in an invalid state.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/RegisterAVSDevice
@@ -5947,11 +5947,11 @@ func (c *AlexaForBusiness) RejectSkillRequest(input *RejectSkillInput) (req *req
 // See the AWS API reference guide for Alexa For Business's
 // API operation RejectSkill for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+// Returned Error Types:
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/RejectSkill
@@ -6030,8 +6030,8 @@ func (c *AlexaForBusiness) ResolveRoomRequest(input *ResolveRoomInput) (req *req
 // See the AWS API reference guide for Alexa For Business's
 // API operation ResolveRoom for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/ResolveRoom
@@ -6110,11 +6110,11 @@ func (c *AlexaForBusiness) RevokeInvitationRequest(input *RevokeInvitationInput)
 // See the AWS API reference guide for Alexa For Business's
 // API operation RevokeInvitation for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/RevokeInvitation
@@ -7252,11 +7252,11 @@ func (c *AlexaForBusiness) SendAnnouncementRequest(input *SendAnnouncementInput)
 // See the AWS API reference guide for Alexa For Business's
 // API operation SendAnnouncement for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   You are performing an action that would put you beyond your account's limits.
 //
-//   * ErrCodeAlreadyExistsException "AlreadyExistsException"
+//   * AlreadyExistsException
 //   The resource being created already exists.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SendAnnouncement
@@ -7336,14 +7336,14 @@ func (c *AlexaForBusiness) SendInvitationRequest(input *SendInvitationInput) (re
 // See the AWS API reference guide for Alexa For Business's
 // API operation SendInvitation for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
-//   * ErrCodeInvalidUserStatusException "InvalidUserStatusException"
+//   * InvalidUserStatusException
 //   The attempt to update a user is invalid due to the user's current status.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/SendInvitation
@@ -7436,8 +7436,8 @@ func (c *AlexaForBusiness) StartDeviceSyncRequest(input *StartDeviceSyncInput) (
 // See the AWS API reference guide for Alexa For Business's
 // API operation StartDeviceSync for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeDeviceNotRegisteredException "DeviceNotRegisteredException"
+// Returned Error Types:
+//   * DeviceNotRegisteredException
 //   The request failed because this device is no longer registered and therefore
 //   no longer managed by this account.
 //
@@ -7518,8 +7518,8 @@ func (c *AlexaForBusiness) StartSmartHomeApplianceDiscoveryRequest(input *StartS
 // See the AWS API reference guide for Alexa For Business's
 // API operation StartSmartHomeApplianceDiscovery for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/StartSmartHomeApplianceDiscovery
@@ -7598,8 +7598,8 @@ func (c *AlexaForBusiness) TagResourceRequest(input *TagResourceInput) (req *req
 // See the AWS API reference guide for Alexa For Business's
 // API operation TagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/TagResource
@@ -7678,8 +7678,8 @@ func (c *AlexaForBusiness) UntagResourceRequest(input *UntagResourceInput) (req 
 // See the AWS API reference guide for Alexa For Business's
 // API operation UntagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UntagResource
@@ -7758,14 +7758,14 @@ func (c *AlexaForBusiness) UpdateAddressBookRequest(input *UpdateAddressBookInpu
 // See the AWS API reference guide for Alexa For Business's
 // API operation UpdateAddressBook for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
-//   * ErrCodeNameInUseException "NameInUseException"
+//   * NameInUseException
 //   The name sent in the request is already in use.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateAddressBook
@@ -7845,11 +7845,11 @@ func (c *AlexaForBusiness) UpdateBusinessReportScheduleRequest(input *UpdateBusi
 // See the AWS API reference guide for Alexa For Business's
 // API operation UpdateBusinessReportSchedule for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateBusinessReportSchedule
@@ -7928,8 +7928,8 @@ func (c *AlexaForBusiness) UpdateConferenceProviderRequest(input *UpdateConferen
 // See the AWS API reference guide for Alexa For Business's
 // API operation UpdateConferenceProvider for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateConferenceProvider
@@ -8008,11 +8008,11 @@ func (c *AlexaForBusiness) UpdateContactRequest(input *UpdateContactInput) (req 
 // See the AWS API reference guide for Alexa For Business's
 // API operation UpdateContact for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateContact
@@ -8091,14 +8091,14 @@ func (c *AlexaForBusiness) UpdateDeviceRequest(input *UpdateDeviceInput) (req *r
 // See the AWS API reference guide for Alexa For Business's
 // API operation UpdateDevice for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
-//   * ErrCodeDeviceNotRegisteredException "DeviceNotRegisteredException"
+//   * DeviceNotRegisteredException
 //   The request failed because this device is no longer registered and therefore
 //   no longer managed by this account.
 //
@@ -8179,11 +8179,11 @@ func (c *AlexaForBusiness) UpdateGatewayRequest(input *UpdateGatewayInput) (req 
 // See the AWS API reference guide for Alexa For Business's
 // API operation UpdateGateway for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
-//   * ErrCodeNameInUseException "NameInUseException"
+//   * NameInUseException
 //   The name sent in the request is already in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateGateway
@@ -8263,11 +8263,11 @@ func (c *AlexaForBusiness) UpdateGatewayGroupRequest(input *UpdateGatewayGroupIn
 // See the AWS API reference guide for Alexa For Business's
 // API operation UpdateGatewayGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
-//   * ErrCodeNameInUseException "NameInUseException"
+//   * NameInUseException
 //   The name sent in the request is already in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateGatewayGroup
@@ -8346,20 +8346,20 @@ func (c *AlexaForBusiness) UpdateNetworkProfileRequest(input *UpdateNetworkProfi
 // See the AWS API reference guide for Alexa For Business's
 // API operation UpdateNetworkProfile for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
-//   * ErrCodeNameInUseException "NameInUseException"
+//   * NameInUseException
 //   The name sent in the request is already in use.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
-//   * ErrCodeInvalidCertificateAuthorityException "InvalidCertificateAuthorityException"
+//   * InvalidCertificateAuthorityException
 //   The Certificate Authority can't issue or revoke a certificate.
 //
-//   * ErrCodeInvalidSecretsManagerResourceException "InvalidSecretsManagerResourceException"
+//   * InvalidSecretsManagerResourceException
 //   A password in SecretsManager is in an invalid state.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateNetworkProfile
@@ -8438,14 +8438,14 @@ func (c *AlexaForBusiness) UpdateProfileRequest(input *UpdateProfileInput) (req 
 // See the AWS API reference guide for Alexa For Business's
 // API operation UpdateProfile for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
-//   * ErrCodeNameInUseException "NameInUseException"
+//   * NameInUseException
 //   The name sent in the request is already in use.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateProfile
@@ -8524,11 +8524,11 @@ func (c *AlexaForBusiness) UpdateRoomRequest(input *UpdateRoomInput) (req *reque
 // See the AWS API reference guide for Alexa For Business's
 // API operation UpdateRoom for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
-//   * ErrCodeNameInUseException "NameInUseException"
+//   * NameInUseException
 //   The name sent in the request is already in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateRoom
@@ -8607,14 +8607,14 @@ func (c *AlexaForBusiness) UpdateSkillGroupRequest(input *UpdateSkillGroupInput)
 // See the AWS API reference guide for Alexa For Business's
 // API operation UpdateSkillGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource is not found.
 //
-//   * ErrCodeNameInUseException "NameInUseException"
+//   * NameInUseException
 //   The name sent in the request is already in use.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   There is a concurrent modification of resources.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/alexaforbusiness-2017-11-09/UpdateSkillGroup
@@ -8721,6 +8721,62 @@ func (s *AddressBookData) SetDescription(v string) *AddressBookData {
 func (s *AddressBookData) SetName(v string) *AddressBookData {
 	s.Name = &v
 	return s
+}
+
+// The resource being created already exists.
+type AlreadyExistsException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s AlreadyExistsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AlreadyExistsException) GoString() string {
+	return s.String()
+}
+
+func newErrorAlreadyExistsException(v protocol.ResponseMetadata) error {
+	return &AlreadyExistsException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s AlreadyExistsException) Code() string {
+	return "AlreadyExistsException"
+}
+
+// Message returns the exception's message.
+func (s AlreadyExistsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s AlreadyExistsException) OrigErr() error {
+	return nil
+}
+
+func (s AlreadyExistsException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s AlreadyExistsException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s AlreadyExistsException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type ApproveSkillInput struct {
@@ -9437,6 +9493,62 @@ func (s *Category) SetCategoryId(v int64) *Category {
 func (s *Category) SetCategoryName(v string) *Category {
 	s.CategoryName = &v
 	return s
+}
+
+// There is a concurrent modification of resources.
+type ConcurrentModificationException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ConcurrentModificationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConcurrentModificationException) GoString() string {
+	return s.String()
+}
+
+func newErrorConcurrentModificationException(v protocol.ResponseMetadata) error {
+	return &ConcurrentModificationException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ConcurrentModificationException) Code() string {
+	return "ConcurrentModificationException"
+}
+
+// Message returns the exception's message.
+func (s ConcurrentModificationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ConcurrentModificationException) OrigErr() error {
+	return nil
+}
+
+func (s ConcurrentModificationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ConcurrentModificationException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ConcurrentModificationException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // The default conference provider that is used if no other scheduled meetings
@@ -12454,6 +12566,63 @@ func (s *DeviceNetworkProfileInfo) SetNetworkProfileArn(v string) *DeviceNetwork
 	return s
 }
 
+// The request failed because this device is no longer registered and therefore
+// no longer managed by this account.
+type DeviceNotRegisteredException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s DeviceNotRegisteredException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeviceNotRegisteredException) GoString() string {
+	return s.String()
+}
+
+func newErrorDeviceNotRegisteredException(v protocol.ResponseMetadata) error {
+	return &DeviceNotRegisteredException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s DeviceNotRegisteredException) Code() string {
+	return "DeviceNotRegisteredException"
+}
+
+// Message returns the exception's message.
+func (s DeviceNotRegisteredException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s DeviceNotRegisteredException) OrigErr() error {
+	return nil
+}
+
+func (s DeviceNotRegisteredException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s DeviceNotRegisteredException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s DeviceNotRegisteredException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // Details of a device’s status.
 type DeviceStatusDetail struct {
 	_ struct{} `type:"structure"`
@@ -13965,6 +14134,342 @@ func (s *InstantBooking) SetEnabled(v bool) *InstantBooking {
 	return s
 }
 
+// The Certificate Authority can't issue or revoke a certificate.
+type InvalidCertificateAuthorityException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidCertificateAuthorityException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidCertificateAuthorityException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidCertificateAuthorityException(v protocol.ResponseMetadata) error {
+	return &InvalidCertificateAuthorityException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidCertificateAuthorityException) Code() string {
+	return "InvalidCertificateAuthorityException"
+}
+
+// Message returns the exception's message.
+func (s InvalidCertificateAuthorityException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidCertificateAuthorityException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidCertificateAuthorityException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidCertificateAuthorityException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidCertificateAuthorityException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The device is in an invalid state.
+type InvalidDeviceException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidDeviceException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidDeviceException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidDeviceException(v protocol.ResponseMetadata) error {
+	return &InvalidDeviceException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidDeviceException) Code() string {
+	return "InvalidDeviceException"
+}
+
+// Message returns the exception's message.
+func (s InvalidDeviceException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidDeviceException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidDeviceException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidDeviceException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidDeviceException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// A password in SecretsManager is in an invalid state.
+type InvalidSecretsManagerResourceException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidSecretsManagerResourceException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidSecretsManagerResourceException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidSecretsManagerResourceException(v protocol.ResponseMetadata) error {
+	return &InvalidSecretsManagerResourceException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidSecretsManagerResourceException) Code() string {
+	return "InvalidSecretsManagerResourceException"
+}
+
+// Message returns the exception's message.
+func (s InvalidSecretsManagerResourceException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidSecretsManagerResourceException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidSecretsManagerResourceException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidSecretsManagerResourceException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidSecretsManagerResourceException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The service linked role is locked for deletion.
+type InvalidServiceLinkedRoleStateException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidServiceLinkedRoleStateException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidServiceLinkedRoleStateException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidServiceLinkedRoleStateException(v protocol.ResponseMetadata) error {
+	return &InvalidServiceLinkedRoleStateException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidServiceLinkedRoleStateException) Code() string {
+	return "InvalidServiceLinkedRoleStateException"
+}
+
+// Message returns the exception's message.
+func (s InvalidServiceLinkedRoleStateException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidServiceLinkedRoleStateException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidServiceLinkedRoleStateException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidServiceLinkedRoleStateException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidServiceLinkedRoleStateException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The attempt to update a user is invalid due to the user's current status.
+type InvalidUserStatusException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidUserStatusException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidUserStatusException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidUserStatusException(v protocol.ResponseMetadata) error {
+	return &InvalidUserStatusException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidUserStatusException) Code() string {
+	return "InvalidUserStatusException"
+}
+
+// Message returns the exception's message.
+func (s InvalidUserStatusException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidUserStatusException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidUserStatusException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidUserStatusException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidUserStatusException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// You are performing an action that would put you beyond your account's limits.
+type LimitExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s LimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
+	return &LimitExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s LimitExceededException) Code() string {
+	return "LimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s LimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s LimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s LimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s LimitExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s LimitExceededException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type ListBusinessReportSchedulesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14990,6 +15495,62 @@ func (s *MeetingSetting) SetRequirePin(v string) *MeetingSetting {
 	return s
 }
 
+// The name sent in the request is already in use.
+type NameInUseException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s NameInUseException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NameInUseException) GoString() string {
+	return s.String()
+}
+
+func newErrorNameInUseException(v protocol.ResponseMetadata) error {
+	return &NameInUseException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s NameInUseException) Code() string {
+	return "NameInUseException"
+}
+
+// Message returns the exception's message.
+func (s NameInUseException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s NameInUseException) OrigErr() error {
+	return nil
+}
+
+func (s NameInUseException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s NameInUseException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s NameInUseException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // The network profile associated with a device.
 type NetworkProfile struct {
 	_ struct{} `type:"structure"`
@@ -15180,6 +15741,62 @@ func (s *NetworkProfileData) SetSecurityType(v string) *NetworkProfileData {
 func (s *NetworkProfileData) SetSsid(v string) *NetworkProfileData {
 	s.Ssid = &v
 	return s
+}
+
+// The resource is not found.
+type NotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s NotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorNotFoundException(v protocol.ResponseMetadata) error {
+	return &NotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s NotFoundException) Code() string {
+	return "NotFoundException"
+}
+
+// Message returns the exception's message.
+func (s NotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s NotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s NotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s NotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s NotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // The information for public switched telephone network (PSTN) conferencing.
@@ -16156,6 +16773,121 @@ func (s *ResolveRoomOutput) SetRoomName(v string) *ResolveRoomOutput {
 func (s *ResolveRoomOutput) SetRoomSkillParameters(v []*RoomSkillParameter) *ResolveRoomOutput {
 	s.RoomSkillParameters = v
 	return s
+}
+
+// Another resource is associated with the resource in the request.
+type ResourceAssociatedException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceAssociatedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceAssociatedException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceAssociatedException(v protocol.ResponseMetadata) error {
+	return &ResourceAssociatedException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceAssociatedException) Code() string {
+	return "ResourceAssociatedException"
+}
+
+// Message returns the exception's message.
+func (s ResourceAssociatedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceAssociatedException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceAssociatedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceAssociatedException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceAssociatedException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The resource in the request is already in use.
+type ResourceInUseException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// A unique, user-specified identifier for the request that ensures idempotency.
+	ClientRequestToken *string `min:"10" type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceInUseException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceInUseException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceInUseException(v protocol.ResponseMetadata) error {
+	return &ResourceInUseException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceInUseException) Code() string {
+	return "ResourceInUseException"
+}
+
+// Message returns the exception's message.
+func (s ResourceInUseException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceInUseException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceInUseException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceInUseException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceInUseException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type RevokeInvitationInput struct {
@@ -17867,6 +18599,62 @@ func (s *SkillGroupData) SetSkillGroupName(v string) *SkillGroupData {
 	return s
 }
 
+// The skill must be linked to a third-party account.
+type SkillNotLinkedException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s SkillNotLinkedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SkillNotLinkedException) GoString() string {
+	return s.String()
+}
+
+func newErrorSkillNotLinkedException(v protocol.ResponseMetadata) error {
+	return &SkillNotLinkedException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s SkillNotLinkedException) Code() string {
+	return "SkillNotLinkedException"
+}
+
+// Message returns the exception's message.
+func (s SkillNotLinkedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s SkillNotLinkedException) OrigErr() error {
+	return nil
+}
+
+func (s SkillNotLinkedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s SkillNotLinkedException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s SkillNotLinkedException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // The summary of skills.
 type SkillSummary struct {
 	_ struct{} `type:"structure"`
@@ -18465,6 +19253,63 @@ func (s *Text) SetLocale(v string) *Text {
 func (s *Text) SetValue(v string) *Text {
 	s.Value = &v
 	return s
+}
+
+// The caller has no permissions to operate on the resource involved in the
+// API call.
+type UnauthorizedException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s UnauthorizedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UnauthorizedException) GoString() string {
+	return s.String()
+}
+
+func newErrorUnauthorizedException(v protocol.ResponseMetadata) error {
+	return &UnauthorizedException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s UnauthorizedException) Code() string {
+	return "UnauthorizedException"
+}
+
+// Message returns the exception's message.
+func (s UnauthorizedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s UnauthorizedException) OrigErr() error {
+	return nil
+}
+
+func (s UnauthorizedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s UnauthorizedException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s UnauthorizedException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type UntagResourceInput struct {

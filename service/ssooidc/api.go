@@ -3,10 +3,13 @@
 package ssooidc
 
 import (
+	"fmt"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
 const opCreateToken = "CreateToken"
@@ -65,46 +68,46 @@ func (c *SSOOIDC) CreateTokenRequest(input *CreateTokenInput) (req *request.Requ
 // See the AWS API reference guide for AWS SSO OIDC's
 // API operation CreateToken for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   Indicates that something is wrong with the input to the request. For example,
 //   a required parameter might be missing or out of range.
 //
-//   * ErrCodeInvalidClientException "InvalidClientException"
+//   * InvalidClientException
 //   Indicates that the clientId or clientSecret in the request is invalid. For
 //   example, this can occur when a client sends an incorrect clientId or an expired
 //   clientSecret.
 //
-//   * ErrCodeInvalidGrantException "InvalidGrantException"
+//   * InvalidGrantException
 //   Indicates that a request contains an invalid grant. This can occur if a client
 //   makes a CreateToken request with an invalid grant type.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   Indicates that the client is not currently authorized to make the request.
 //   This can happen when a clientId is not issued for a public client.
 //
-//   * ErrCodeUnsupportedGrantTypeException "UnsupportedGrantTypeException"
+//   * UnsupportedGrantTypeException
 //   Indicates that the grant type in the request is not supported by the service.
 //
-//   * ErrCodeInvalidScopeException "InvalidScopeException"
+//   * InvalidScopeException
 //   Indicates that the scope provided in the request is invalid.
 //
-//   * ErrCodeAuthorizationPendingException "AuthorizationPendingException"
+//   * AuthorizationPendingException
 //   Indicates that a request to authorize a client with an access user session
 //   token is pending.
 //
-//   * ErrCodeSlowDownException "SlowDownException"
+//   * SlowDownException
 //   Indicates that the client is making the request too frequently and is more
 //   than the service can handle.
 //
-//   * ErrCodeAccessDeniedException "AccessDeniedException"
+//   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ErrCodeExpiredTokenException "ExpiredTokenException"
+//   * ExpiredTokenException
 //   Indicates that the token issued by the service is expired and is no longer
 //   valid.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   Indicates that an error from the service occurred while trying to process
 //   a request.
 //
@@ -185,19 +188,19 @@ func (c *SSOOIDC) RegisterClientRequest(input *RegisterClientInput) (req *reques
 // See the AWS API reference guide for AWS SSO OIDC's
 // API operation RegisterClient for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   Indicates that something is wrong with the input to the request. For example,
 //   a required parameter might be missing or out of range.
 //
-//   * ErrCodeInvalidScopeException "InvalidScopeException"
+//   * InvalidScopeException
 //   Indicates that the scope provided in the request is invalid.
 //
-//   * ErrCodeInvalidClientMetadataException "InvalidClientMetadataException"
+//   * InvalidClientMetadataException
 //   Indicates that the client information sent in the request during registration
 //   is invalid.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   Indicates that an error from the service occurred while trying to process
 //   a request.
 //
@@ -278,25 +281,25 @@ func (c *SSOOIDC) StartDeviceAuthorizationRequest(input *StartDeviceAuthorizatio
 // See the AWS API reference guide for AWS SSO OIDC's
 // API operation StartDeviceAuthorization for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   Indicates that something is wrong with the input to the request. For example,
 //   a required parameter might be missing or out of range.
 //
-//   * ErrCodeInvalidClientException "InvalidClientException"
+//   * InvalidClientException
 //   Indicates that the clientId or clientSecret in the request is invalid. For
 //   example, this can occur when a client sends an incorrect clientId or an expired
 //   clientSecret.
 //
-//   * ErrCodeUnauthorizedClientException "UnauthorizedClientException"
+//   * UnauthorizedClientException
 //   Indicates that the client is not currently authorized to make the request.
 //   This can happen when a clientId is not issued for a public client.
 //
-//   * ErrCodeSlowDownException "SlowDownException"
+//   * SlowDownException
 //   Indicates that the client is making the request too frequently and is more
 //   than the service can handle.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   Indicates that an error from the service occurred while trying to process
 //   a request.
 //
@@ -320,6 +323,117 @@ func (c *SSOOIDC) StartDeviceAuthorizationWithContext(ctx aws.Context, input *St
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// You do not have sufficient access to perform this action.
+type AccessDeniedException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Error_ *string `locationName:"error" type:"string"`
+
+	Error_description *string `locationName:"error_description" type:"string"`
+}
+
+// String returns the string representation
+func (s AccessDeniedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccessDeniedException) GoString() string {
+	return s.String()
+}
+
+func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
+	return &AccessDeniedException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s AccessDeniedException) Code() string {
+	return "AccessDeniedException"
+}
+
+// Message returns the exception's message.
+func (s AccessDeniedException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s AccessDeniedException) OrigErr() error {
+	return nil
+}
+
+func (s AccessDeniedException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s AccessDeniedException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s AccessDeniedException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Indicates that a request to authorize a client with an access user session
+// token is pending.
+type AuthorizationPendingException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Error_ *string `locationName:"error" type:"string"`
+
+	Error_description *string `locationName:"error_description" type:"string"`
+}
+
+// String returns the string representation
+func (s AuthorizationPendingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AuthorizationPendingException) GoString() string {
+	return s.String()
+}
+
+func newErrorAuthorizationPendingException(v protocol.ResponseMetadata) error {
+	return &AuthorizationPendingException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s AuthorizationPendingException) Code() string {
+	return "AuthorizationPendingException"
+}
+
+// Message returns the exception's message.
+func (s AuthorizationPendingException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s AuthorizationPendingException) OrigErr() error {
+	return nil
+}
+
+func (s AuthorizationPendingException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s AuthorizationPendingException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s AuthorizationPendingException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type CreateTokenInput struct {
@@ -509,6 +623,398 @@ func (s *CreateTokenOutput) SetTokenType(v string) *CreateTokenOutput {
 	return s
 }
 
+// Indicates that the token issued by the service is expired and is no longer
+// valid.
+type ExpiredTokenException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Error_ *string `locationName:"error" type:"string"`
+
+	Error_description *string `locationName:"error_description" type:"string"`
+}
+
+// String returns the string representation
+func (s ExpiredTokenException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExpiredTokenException) GoString() string {
+	return s.String()
+}
+
+func newErrorExpiredTokenException(v protocol.ResponseMetadata) error {
+	return &ExpiredTokenException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ExpiredTokenException) Code() string {
+	return "ExpiredTokenException"
+}
+
+// Message returns the exception's message.
+func (s ExpiredTokenException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ExpiredTokenException) OrigErr() error {
+	return nil
+}
+
+func (s ExpiredTokenException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ExpiredTokenException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ExpiredTokenException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Indicates that an error from the service occurred while trying to process
+// a request.
+type InternalServerException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Error_ *string `locationName:"error" type:"string"`
+
+	Error_description *string `locationName:"error_description" type:"string"`
+}
+
+// String returns the string representation
+func (s InternalServerException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternalServerException) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalServerException(v protocol.ResponseMetadata) error {
+	return &InternalServerException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InternalServerException) Code() string {
+	return "InternalServerException"
+}
+
+// Message returns the exception's message.
+func (s InternalServerException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InternalServerException) OrigErr() error {
+	return nil
+}
+
+func (s InternalServerException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InternalServerException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InternalServerException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Indicates that the clientId or clientSecret in the request is invalid. For
+// example, this can occur when a client sends an incorrect clientId or an expired
+// clientSecret.
+type InvalidClientException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Error_ *string `locationName:"error" type:"string"`
+
+	Error_description *string `locationName:"error_description" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidClientException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidClientException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidClientException(v protocol.ResponseMetadata) error {
+	return &InvalidClientException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidClientException) Code() string {
+	return "InvalidClientException"
+}
+
+// Message returns the exception's message.
+func (s InvalidClientException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidClientException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidClientException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidClientException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidClientException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Indicates that the client information sent in the request during registration
+// is invalid.
+type InvalidClientMetadataException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Error_ *string `locationName:"error" type:"string"`
+
+	Error_description *string `locationName:"error_description" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidClientMetadataException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidClientMetadataException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidClientMetadataException(v protocol.ResponseMetadata) error {
+	return &InvalidClientMetadataException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidClientMetadataException) Code() string {
+	return "InvalidClientMetadataException"
+}
+
+// Message returns the exception's message.
+func (s InvalidClientMetadataException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidClientMetadataException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidClientMetadataException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidClientMetadataException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidClientMetadataException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Indicates that a request contains an invalid grant. This can occur if a client
+// makes a CreateToken request with an invalid grant type.
+type InvalidGrantException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Error_ *string `locationName:"error" type:"string"`
+
+	Error_description *string `locationName:"error_description" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidGrantException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidGrantException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidGrantException(v protocol.ResponseMetadata) error {
+	return &InvalidGrantException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidGrantException) Code() string {
+	return "InvalidGrantException"
+}
+
+// Message returns the exception's message.
+func (s InvalidGrantException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidGrantException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidGrantException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidGrantException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidGrantException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Indicates that something is wrong with the input to the request. For example,
+// a required parameter might be missing or out of range.
+type InvalidRequestException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Error_ *string `locationName:"error" type:"string"`
+
+	Error_description *string `locationName:"error_description" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidRequestException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidRequestException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidRequestException(v protocol.ResponseMetadata) error {
+	return &InvalidRequestException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidRequestException) Code() string {
+	return "InvalidRequestException"
+}
+
+// Message returns the exception's message.
+func (s InvalidRequestException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidRequestException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidRequestException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidRequestException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidRequestException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Indicates that the scope provided in the request is invalid.
+type InvalidScopeException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Error_ *string `locationName:"error" type:"string"`
+
+	Error_description *string `locationName:"error_description" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidScopeException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidScopeException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidScopeException(v protocol.ResponseMetadata) error {
+	return &InvalidScopeException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidScopeException) Code() string {
+	return "InvalidScopeException"
+}
+
+// Message returns the exception's message.
+func (s InvalidScopeException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidScopeException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidScopeException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidScopeException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidScopeException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type RegisterClientInput struct {
 	_ struct{} `type:"structure"`
 
@@ -640,6 +1146,62 @@ func (s *RegisterClientOutput) SetClientSecretExpiresAt(v int64) *RegisterClient
 func (s *RegisterClientOutput) SetTokenEndpoint(v string) *RegisterClientOutput {
 	s.TokenEndpoint = &v
 	return s
+}
+
+// Indicates that the client is making the request too frequently and is more
+// than the service can handle.
+type SlowDownException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Error_ *string `locationName:"error" type:"string"`
+
+	Error_description *string `locationName:"error_description" type:"string"`
+}
+
+// String returns the string representation
+func (s SlowDownException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SlowDownException) GoString() string {
+	return s.String()
+}
+
+func newErrorSlowDownException(v protocol.ResponseMetadata) error {
+	return &SlowDownException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s SlowDownException) Code() string {
+	return "SlowDownException"
+}
+
+// Message returns the exception's message.
+func (s SlowDownException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s SlowDownException) OrigErr() error {
+	return nil
+}
+
+func (s SlowDownException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s SlowDownException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s SlowDownException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type StartDeviceAuthorizationInput struct {
@@ -786,4 +1348,115 @@ func (s *StartDeviceAuthorizationOutput) SetVerificationUri(v string) *StartDevi
 func (s *StartDeviceAuthorizationOutput) SetVerificationUriComplete(v string) *StartDeviceAuthorizationOutput {
 	s.VerificationUriComplete = &v
 	return s
+}
+
+// Indicates that the client is not currently authorized to make the request.
+// This can happen when a clientId is not issued for a public client.
+type UnauthorizedClientException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Error_ *string `locationName:"error" type:"string"`
+
+	Error_description *string `locationName:"error_description" type:"string"`
+}
+
+// String returns the string representation
+func (s UnauthorizedClientException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UnauthorizedClientException) GoString() string {
+	return s.String()
+}
+
+func newErrorUnauthorizedClientException(v protocol.ResponseMetadata) error {
+	return &UnauthorizedClientException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s UnauthorizedClientException) Code() string {
+	return "UnauthorizedClientException"
+}
+
+// Message returns the exception's message.
+func (s UnauthorizedClientException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s UnauthorizedClientException) OrigErr() error {
+	return nil
+}
+
+func (s UnauthorizedClientException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s UnauthorizedClientException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s UnauthorizedClientException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Indicates that the grant type in the request is not supported by the service.
+type UnsupportedGrantTypeException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Error_ *string `locationName:"error" type:"string"`
+
+	Error_description *string `locationName:"error_description" type:"string"`
+}
+
+// String returns the string representation
+func (s UnsupportedGrantTypeException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UnsupportedGrantTypeException) GoString() string {
+	return s.String()
+}
+
+func newErrorUnsupportedGrantTypeException(v protocol.ResponseMetadata) error {
+	return &UnsupportedGrantTypeException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s UnsupportedGrantTypeException) Code() string {
+	return "UnsupportedGrantTypeException"
+}
+
+// Message returns the exception's message.
+func (s UnsupportedGrantTypeException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s UnsupportedGrantTypeException) OrigErr() error {
+	return nil
+}
+
+func (s UnsupportedGrantTypeException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s UnsupportedGrantTypeException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s UnsupportedGrantTypeException) RequestID() string {
+	return s.respMetadata.RequestID
 }

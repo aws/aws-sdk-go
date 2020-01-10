@@ -2,6 +2,10 @@
 
 package robomaker
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeConcurrentDeploymentException for service response error code
@@ -63,3 +67,15 @@ const (
 	// again.
 	ErrCodeThrottlingException = "ThrottlingException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"ConcurrentDeploymentException":        newErrorConcurrentDeploymentException,
+	"IdempotentParameterMismatchException": newErrorIdempotentParameterMismatchException,
+	"InternalServerException":              newErrorInternalServerException,
+	"InvalidParameterException":            newErrorInvalidParameterException,
+	"LimitExceededException":               newErrorLimitExceededException,
+	"ResourceAlreadyExistsException":       newErrorResourceAlreadyExistsException,
+	"ResourceNotFoundException":            newErrorResourceNotFoundException,
+	"ServiceUnavailableException":          newErrorServiceUnavailableException,
+	"ThrottlingException":                  newErrorThrottlingException,
+}

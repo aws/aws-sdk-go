@@ -2,6 +2,10 @@
 
 package cloudwatchlogs
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeDataAlreadyAcceptedException for service response error code
@@ -75,3 +79,17 @@ const (
 	// The most likely cause is an invalid AWS access key ID or secret key.
 	ErrCodeUnrecognizedClientException = "UnrecognizedClientException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"DataAlreadyAcceptedException":   newErrorDataAlreadyAcceptedException,
+	"InvalidOperationException":      newErrorInvalidOperationException,
+	"InvalidParameterException":      newErrorInvalidParameterException,
+	"InvalidSequenceTokenException":  newErrorInvalidSequenceTokenException,
+	"LimitExceededException":         newErrorLimitExceededException,
+	"MalformedQueryException":        newErrorMalformedQueryException,
+	"OperationAbortedException":      newErrorOperationAbortedException,
+	"ResourceAlreadyExistsException": newErrorResourceAlreadyExistsException,
+	"ResourceNotFoundException":      newErrorResourceNotFoundException,
+	"ServiceUnavailableException":    newErrorServiceUnavailableException,
+	"UnrecognizedClientException":    newErrorUnrecognizedClientException,
+}

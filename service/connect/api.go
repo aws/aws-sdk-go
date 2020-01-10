@@ -3,6 +3,7 @@
 package connect
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -65,26 +66,26 @@ func (c *Connect) CreateUserRequest(input *CreateUserInput) (req *request.Reques
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation CreateUser for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The allowed limit for the resource has been exceeded.
 //
-//   * ErrCodeDuplicateResourceException "DuplicateResourceException"
+//   * DuplicateResourceException
 //   A resource with the specified name already exists.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The throttling limit has been exceeded.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateUser
@@ -163,20 +164,20 @@ func (c *Connect) DeleteUserRequest(input *DeleteUserInput) (req *request.Reques
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation DeleteUser for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The throttling limit has been exceeded.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteUser
@@ -256,20 +257,20 @@ func (c *Connect) DescribeUserRequest(input *DescribeUserInput) (req *request.Re
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation DescribeUser for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The throttling limit has been exceeded.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeUser
@@ -347,20 +348,20 @@ func (c *Connect) DescribeUserHierarchyGroupRequest(input *DescribeUserHierarchy
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation DescribeUserHierarchyGroup for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The throttling limit has been exceeded.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeUserHierarchyGroup
@@ -438,20 +439,20 @@ func (c *Connect) DescribeUserHierarchyStructureRequest(input *DescribeUserHiera
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation DescribeUserHierarchyStructure for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The throttling limit has been exceeded.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeUserHierarchyStructure
@@ -529,14 +530,14 @@ func (c *Connect) GetContactAttributesRequest(input *GetContactAttributesInput) 
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation GetContactAttributes for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetContactAttributes
@@ -623,20 +624,20 @@ func (c *Connect) GetCurrentMetricDataRequest(input *GetCurrentMetricDataInput) 
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation GetCurrentMetricData for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The throttling limit has been exceeded.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetCurrentMetricData
@@ -766,23 +767,23 @@ func (c *Connect) GetFederationTokenRequest(input *GetFederationTokenInput) (req
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation GetFederationToken for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeUserNotFoundException "UserNotFoundException"
+//   * UserNotFoundException
 //   No user with the specified credentials was found in the Amazon Connect instance.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
-//   * ErrCodeDuplicateResourceException "DuplicateResourceException"
+//   * DuplicateResourceException
 //   A resource with the specified name already exists.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetFederationToken
@@ -869,20 +870,20 @@ func (c *Connect) GetMetricDataRequest(input *GetMetricDataInput) (req *request.
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation GetMetricData for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The throttling limit has been exceeded.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetMetricData
@@ -1019,20 +1020,20 @@ func (c *Connect) ListContactFlowsRequest(input *ListContactFlowsInput) (req *re
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation ListContactFlows for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The throttling limit has been exceeded.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListContactFlows
@@ -1169,20 +1170,20 @@ func (c *Connect) ListHoursOfOperationsRequest(input *ListHoursOfOperationsInput
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation ListHoursOfOperations for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The throttling limit has been exceeded.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListHoursOfOperations
@@ -1319,20 +1320,20 @@ func (c *Connect) ListPhoneNumbersRequest(input *ListPhoneNumbersInput) (req *re
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation ListPhoneNumbers for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The throttling limit has been exceeded.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListPhoneNumbers
@@ -1468,20 +1469,20 @@ func (c *Connect) ListQueuesRequest(input *ListQueuesInput) (req *request.Reques
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation ListQueues for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The throttling limit has been exceeded.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListQueues
@@ -1618,20 +1619,20 @@ func (c *Connect) ListRoutingProfilesRequest(input *ListRoutingProfilesInput) (r
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation ListRoutingProfiles for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The throttling limit has been exceeded.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListRoutingProfiles
@@ -1768,20 +1769,20 @@ func (c *Connect) ListSecurityProfilesRequest(input *ListSecurityProfilesInput) 
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation ListSecurityProfiles for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The throttling limit has been exceeded.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListSecurityProfiles
@@ -1911,20 +1912,20 @@ func (c *Connect) ListTagsForResourceRequest(input *ListTagsForResourceInput) (r
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation ListTagsForResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListTagsForResource
@@ -2009,20 +2010,20 @@ func (c *Connect) ListUserHierarchyGroupsRequest(input *ListUserHierarchyGroupsI
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation ListUserHierarchyGroups for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The throttling limit has been exceeded.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListUserHierarchyGroups
@@ -2159,20 +2160,20 @@ func (c *Connect) ListUsersRequest(input *ListUsersInput) (req *request.Request,
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation ListUsers for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The throttling limit has been exceeded.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListUsers
@@ -2310,20 +2311,20 @@ func (c *Connect) StartChatContactRequest(input *StartChatContactInput) (req *re
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation StartChatContact for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The allowed limit for the resource has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartChatContact
@@ -2404,26 +2405,26 @@ func (c *Connect) StartOutboundVoiceContactRequest(input *StartOutboundVoiceCont
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation StartOutboundVoiceContact for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The allowed limit for the resource has been exceeded.
 //
-//   * ErrCodeDestinationNotAllowedException "DestinationNotAllowedException"
+//   * DestinationNotAllowedException
 //   Outbound calls to the destination number are not allowed.
 //
-//   * ErrCodeOutboundContactNotPermittedException "OutboundContactNotPermittedException"
+//   * OutboundContactNotPermittedException
 //   The contact is not permitted.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartOutboundVoiceContact
@@ -2502,20 +2503,20 @@ func (c *Connect) StopContactRequest(input *StopContactInput) (req *request.Requ
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation StopContact for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeContactNotFoundException "ContactNotFoundException"
+//   * ContactNotFoundException
 //   The contact with the specified ID is not active or does not exist.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StopContact
@@ -2596,20 +2597,20 @@ func (c *Connect) TagResourceRequest(input *TagResourceInput) (req *request.Requ
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation TagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/TagResource
@@ -2688,20 +2689,20 @@ func (c *Connect) UntagResourceRequest(input *UntagResourceInput) (req *request.
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation UntagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The throttling limit has been exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UntagResource
@@ -2800,17 +2801,17 @@ func (c *Connect) UpdateContactAttributesRequest(input *UpdateContactAttributesI
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation UpdateContactAttributes for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactAttributes
@@ -2889,20 +2890,20 @@ func (c *Connect) UpdateUserHierarchyRequest(input *UpdateUserHierarchyInput) (r
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation UpdateUserHierarchy for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The throttling limit has been exceeded.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserHierarchy
@@ -2981,20 +2982,20 @@ func (c *Connect) UpdateUserIdentityInfoRequest(input *UpdateUserIdentityInfoInp
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation UpdateUserIdentityInfo for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The throttling limit has been exceeded.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserIdentityInfo
@@ -3073,20 +3074,20 @@ func (c *Connect) UpdateUserPhoneConfigRequest(input *UpdateUserPhoneConfigInput
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation UpdateUserPhoneConfig for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The throttling limit has been exceeded.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserPhoneConfig
@@ -3165,20 +3166,20 @@ func (c *Connect) UpdateUserRoutingProfileRequest(input *UpdateUserRoutingProfil
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation UpdateUserRoutingProfile for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The throttling limit has been exceeded.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserRoutingProfile
@@ -3257,20 +3258,20 @@ func (c *Connect) UpdateUserSecurityProfilesRequest(input *UpdateUserSecurityPro
 // See the AWS API reference guide for Amazon Connect Service's
 // API operation UpdateUserSecurityProfiles for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request is not valid.
 //
-//   * ErrCodeInvalidParameterException "InvalidParameterException"
+//   * InvalidParameterException
 //   One or more of the specified parameters are not valid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   The throttling limit has been exceeded.
 //
-//   * ErrCodeInternalServiceException "InternalServiceException"
+//   * InternalServiceException
 //   Request processing failed due to an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserSecurityProfiles
@@ -3403,6 +3404,63 @@ func (s *ContactFlowSummary) SetId(v string) *ContactFlowSummary {
 func (s *ContactFlowSummary) SetName(v string) *ContactFlowSummary {
 	s.Name = &v
 	return s
+}
+
+// The contact with the specified ID is not active or does not exist.
+type ContactNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// The message.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ContactNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ContactNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorContactNotFoundException(v protocol.ResponseMetadata) error {
+	return &ContactNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ContactNotFoundException) Code() string {
+	return "ContactNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s ContactNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ContactNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s ContactNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ContactNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ContactNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type CreateUserInput struct {
@@ -4061,6 +4119,63 @@ func (s *DescribeUserOutput) SetUser(v *User) *DescribeUserOutput {
 	return s
 }
 
+// Outbound calls to the destination number are not allowed.
+type DestinationNotAllowedException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// The message.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s DestinationNotAllowedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DestinationNotAllowedException) GoString() string {
+	return s.String()
+}
+
+func newErrorDestinationNotAllowedException(v protocol.ResponseMetadata) error {
+	return &DestinationNotAllowedException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s DestinationNotAllowedException) Code() string {
+	return "DestinationNotAllowedException"
+}
+
+// Message returns the exception's message.
+func (s DestinationNotAllowedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s DestinationNotAllowedException) OrigErr() error {
+	return nil
+}
+
+func (s DestinationNotAllowedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s DestinationNotAllowedException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s DestinationNotAllowedException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // Contains information about the dimensions for a set of metrics.
 type Dimensions struct {
 	_ struct{} `type:"structure"`
@@ -4092,6 +4207,62 @@ func (s *Dimensions) SetChannel(v string) *Dimensions {
 func (s *Dimensions) SetQueue(v *QueueReference) *Dimensions {
 	s.Queue = v
 	return s
+}
+
+// A resource with the specified name already exists.
+type DuplicateResourceException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s DuplicateResourceException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DuplicateResourceException) GoString() string {
+	return s.String()
+}
+
+func newErrorDuplicateResourceException(v protocol.ResponseMetadata) error {
+	return &DuplicateResourceException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s DuplicateResourceException) Code() string {
+	return "DuplicateResourceException"
+}
+
+// Message returns the exception's message.
+func (s DuplicateResourceException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s DuplicateResourceException) OrigErr() error {
+	return nil
+}
+
+func (s DuplicateResourceException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s DuplicateResourceException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s DuplicateResourceException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Contains the filter to apply when retrieving metrics.
@@ -5269,6 +5440,234 @@ func (s *HoursOfOperationSummary) SetName(v string) *HoursOfOperationSummary {
 	return s
 }
 
+// Request processing failed due to an error or failure with the service.
+type InternalServiceException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// The message.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InternalServiceException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternalServiceException) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalServiceException(v protocol.ResponseMetadata) error {
+	return &InternalServiceException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InternalServiceException) Code() string {
+	return "InternalServiceException"
+}
+
+// Message returns the exception's message.
+func (s InternalServiceException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InternalServiceException) OrigErr() error {
+	return nil
+}
+
+func (s InternalServiceException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InternalServiceException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InternalServiceException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// One or more of the specified parameters are not valid.
+type InvalidParameterException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// The message.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidParameterException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidParameterException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidParameterException(v protocol.ResponseMetadata) error {
+	return &InvalidParameterException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidParameterException) Code() string {
+	return "InvalidParameterException"
+}
+
+// Message returns the exception's message.
+func (s InvalidParameterException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidParameterException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidParameterException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidParameterException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidParameterException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The request is not valid.
+type InvalidRequestException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// The message.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidRequestException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidRequestException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidRequestException(v protocol.ResponseMetadata) error {
+	return &InvalidRequestException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidRequestException) Code() string {
+	return "InvalidRequestException"
+}
+
+// Message returns the exception's message.
+func (s InvalidRequestException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidRequestException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidRequestException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidRequestException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidRequestException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The allowed limit for the resource has been exceeded.
+type LimitExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// The message.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s LimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
+	return &LimitExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s LimitExceededException) Code() string {
+	return "LimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s LimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s LimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s LimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s LimitExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s LimitExceededException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type ListContactFlowsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6129,6 +6528,63 @@ func (s *ListUsersOutput) SetUserSummaryList(v []*UserSummary) *ListUsersOutput 
 	return s
 }
 
+// The contact is not permitted.
+type OutboundContactNotPermittedException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// The message.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s OutboundContactNotPermittedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OutboundContactNotPermittedException) GoString() string {
+	return s.String()
+}
+
+func newErrorOutboundContactNotPermittedException(v protocol.ResponseMetadata) error {
+	return &OutboundContactNotPermittedException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s OutboundContactNotPermittedException) Code() string {
+	return "OutboundContactNotPermittedException"
+}
+
+// Message returns the exception's message.
+func (s OutboundContactNotPermittedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s OutboundContactNotPermittedException) OrigErr() error {
+	return nil
+}
+
+func (s OutboundContactNotPermittedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s OutboundContactNotPermittedException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s OutboundContactNotPermittedException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // The customer's details.
 type ParticipantDetails struct {
 	_ struct{} `type:"structure"`
@@ -6313,6 +6769,63 @@ func (s *QueueSummary) SetName(v string) *QueueSummary {
 func (s *QueueSummary) SetQueueType(v string) *QueueSummary {
 	s.QueueType = &v
 	return s
+}
+
+// The specified resource was not found.
+type ResourceNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// The message.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Contains summary information about a routing profile.
@@ -6871,6 +7384,62 @@ func (s *Threshold) SetComparison(v string) *Threshold {
 func (s *Threshold) SetThresholdValue(v float64) *Threshold {
 	s.ThresholdValue = &v
 	return s
+}
+
+// The throttling limit has been exceeded.
+type ThrottlingException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ThrottlingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ThrottlingException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottlingException(v protocol.ResponseMetadata) error {
+	return &ThrottlingException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ThrottlingException) Code() string {
+	return "ThrottlingException"
+}
+
+// Message returns the exception's message.
+func (s ThrottlingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ThrottlingException) OrigErr() error {
+	return nil
+}
+
+func (s ThrottlingException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ThrottlingException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ThrottlingException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type UntagResourceInput struct {
@@ -7638,6 +8207,62 @@ func (s *UserIdentityInfo) SetFirstName(v string) *UserIdentityInfo {
 func (s *UserIdentityInfo) SetLastName(v string) *UserIdentityInfo {
 	s.LastName = &v
 	return s
+}
+
+// No user with the specified credentials was found in the Amazon Connect instance.
+type UserNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s UserNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UserNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorUserNotFoundException(v protocol.ResponseMetadata) error {
+	return &UserNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s UserNotFoundException) Code() string {
+	return "UserNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s UserNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s UserNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s UserNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s UserNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s UserNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Contains information about the phone configuration settings for a user.

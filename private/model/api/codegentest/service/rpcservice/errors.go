@@ -2,6 +2,10 @@
 
 package rpcservice
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeExceptionEvent for service response error code
@@ -12,3 +16,8 @@ const (
 	// "ExceptionEvent2".
 	ErrCodeExceptionEvent2 = "ExceptionEvent2"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"ExceptionEvent":  newErrorExceptionEvent,
+	"ExceptionEvent2": newErrorExceptionEvent2,
+}

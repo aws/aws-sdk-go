@@ -171,12 +171,19 @@ func (es *EmptyStreamEventStream) runOutputStream(r *request.Request) {
 		opts = append(opts, eventstream.DecodeWithLogger(r.Config.Logger))
 	}
 
+	unmarshalerForEvent := unmarshalerForEmptyEventStreamEvent{
+		metadata: protocol.ResponseMetadata{
+			StatusCode: r.HTTPResponse.StatusCode,
+			RequestID:  r.RequestID,
+		},
+	}.UnmarshalerForEventName
+
 	decoder := eventstream.NewDecoder(r.HTTPResponse.Body, opts...)
 	eventReader := eventstreamapi.NewEventReader(decoder,
 		protocol.HandlerPayloadUnmarshal{
 			Unmarshalers: r.Handlers.UnmarshalStream,
 		},
-		unmarshalerForEmptyEventStreamEvent,
+		unmarshalerForEvent,
 	)
 
 	es.outputReader = r.HTTPResponse.Body
@@ -376,12 +383,19 @@ func (es *GetEventStreamEventStream) runOutputStream(r *request.Request) {
 		opts = append(opts, eventstream.DecodeWithLogger(r.Config.Logger))
 	}
 
+	unmarshalerForEvent := unmarshalerForEventStreamEvent{
+		metadata: protocol.ResponseMetadata{
+			StatusCode: r.HTTPResponse.StatusCode,
+			RequestID:  r.RequestID,
+		},
+	}.UnmarshalerForEventName
+
 	decoder := eventstream.NewDecoder(r.HTTPResponse.Body, opts...)
 	eventReader := eventstreamapi.NewEventReader(decoder,
 		protocol.HandlerPayloadUnmarshal{
 			Unmarshalers: r.Handlers.UnmarshalStream,
 		},
-		unmarshalerForEventStreamEvent,
+		unmarshalerForEvent,
 	)
 
 	es.outputReader = r.HTTPResponse.Body
@@ -636,7 +650,11 @@ func (r *readEmptyEventStream) readEventStream() {
 	}
 }
 
-func unmarshalerForEmptyEventStreamEvent(eventType string) (eventstreamapi.Unmarshaler, error) {
+type unmarshalerForEmptyEventStreamEvent struct {
+	metadata protocol.ResponseMetadata
+}
+
+func (u unmarshalerForEmptyEventStreamEvent) UnmarshalerForEventName(eventType string) (eventstreamapi.Unmarshaler, error) {
 	switch eventType {
 	default:
 		return nil, awserr.New(
@@ -800,7 +818,11 @@ func (r *readEventStream) readEventStream() {
 	}
 }
 
-func unmarshalerForEventStreamEvent(eventType string) (eventstreamapi.Unmarshaler, error) {
+type unmarshalerForEventStreamEvent struct {
+	metadata protocol.ResponseMetadata
+}
+
+func (u unmarshalerForEventStreamEvent) UnmarshalerForEventName(eventType string) (eventstreamapi.Unmarshaler, error) {
 	switch eventType {
 	case "Empty":
 		return &EmptyEvent{}, nil
@@ -817,9 +839,9 @@ func unmarshalerForEventStreamEvent(eventType string) (eventstreamapi.Unmarshale
 	case "PayloadOnlyString":
 		return &PayloadOnlyStringEvent{}, nil
 	case "Exception":
-		return &ExceptionEvent{}, nil
+		return newErrorExceptionEvent(u.metadata).(eventstreamapi.Unmarshaler), nil
 	case "Exception2":
-		return &ExceptionEvent2{}, nil
+		return newErrorExceptionEvent2(u.metadata).(eventstreamapi.Unmarshaler), nil
 	default:
 		return nil, awserr.New(
 			request.ErrCodeSerialization,
@@ -830,7 +852,8 @@ func unmarshalerForEventStreamEvent(eventType string) (eventstreamapi.Unmarshale
 }
 
 type ExceptionEvent struct {
-	_ struct{} `locationName:"ExceptionEvent" type:"structure"`
+	_            struct{} `locationName:"ExceptionEvent" type:"structure"`
+	respMetadata protocol.ResponseMetadata
 
 	IntVal *int64 `type:"integer"`
 
@@ -874,6 +897,12 @@ func (s *ExceptionEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventst
 	return msg, err
 }
 
+func newErrorExceptionEvent(v protocol.ResponseMetadata) error {
+	return &ExceptionEvent{
+		respMetadata: v,
+	}
+}
+
 // Code returns the exception type name.
 func (s ExceptionEvent) Code() string {
 	return "ExceptionEvent"
@@ -881,7 +910,10 @@ func (s ExceptionEvent) Code() string {
 
 // Message returns the exception's message.
 func (s ExceptionEvent) Message() string {
-	return *s.Message_
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
@@ -890,11 +922,22 @@ func (s ExceptionEvent) OrigErr() error {
 }
 
 func (s ExceptionEvent) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ExceptionEvent) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ExceptionEvent) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type ExceptionEvent2 struct {
-	_ struct{} `locationName:"ExceptionEvent2" type:"structure"`
+	_            struct{} `locationName:"ExceptionEvent2" type:"structure"`
+	respMetadata protocol.ResponseMetadata
 }
 
 // String returns the string representation
@@ -924,6 +967,12 @@ func (s *ExceptionEvent2) MarshalEvent(pm protocol.PayloadMarshaler) (msg events
 	return msg, err
 }
 
+func newErrorExceptionEvent2(v protocol.ResponseMetadata) error {
+	return &ExceptionEvent2{
+		respMetadata: v,
+	}
+}
+
 // Code returns the exception type name.
 func (s ExceptionEvent2) Code() string {
 	return "ExceptionEvent2"
@@ -941,6 +990,16 @@ func (s ExceptionEvent2) OrigErr() error {
 
 func (s ExceptionEvent2) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ExceptionEvent2) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ExceptionEvent2) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type ExplicitPayloadEvent struct {

@@ -74,19 +74,19 @@ func (c *FMS) AssociateAdminAccountRequest(input *AssociateAdminAccountInput) (r
 // See the AWS API reference guide for Firewall Management Service's
 // API operation AssociateAdminAccount for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidOperationException "InvalidOperationException"
+// Returned Error Types:
+//   * InvalidOperationException
 //   The operation failed because there was nothing to do. For example, you might
 //   have submitted an AssociateAdminAccount request, but the account ID that
 //   you submitted was already set as the AWS Firewall Manager administrator.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The parameters of the request were invalid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeInternalErrorException "InternalErrorException"
+//   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
 //   was valid. Retry your request.
 //
@@ -168,16 +168,16 @@ func (c *FMS) DeleteNotificationChannelRequest(input *DeleteNotificationChannelI
 // See the AWS API reference guide for Firewall Management Service's
 // API operation DeleteNotificationChannel for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeInvalidOperationException "InvalidOperationException"
+//   * InvalidOperationException
 //   The operation failed because there was nothing to do. For example, you might
 //   have submitted an AssociateAdminAccount request, but the account ID that
 //   you submitted was already set as the AWS Firewall Manager administrator.
 //
-//   * ErrCodeInternalErrorException "InternalErrorException"
+//   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
 //   was valid. Retry your request.
 //
@@ -257,16 +257,16 @@ func (c *FMS) DeletePolicyRequest(input *DeletePolicyInput) (req *request.Reques
 // See the AWS API reference guide for Firewall Management Service's
 // API operation DeletePolicy for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeInvalidOperationException "InvalidOperationException"
+//   * InvalidOperationException
 //   The operation failed because there was nothing to do. For example, you might
 //   have submitted an AssociateAdminAccount request, but the account ID that
 //   you submitted was already set as the AWS Firewall Manager administrator.
 //
-//   * ErrCodeInternalErrorException "InternalErrorException"
+//   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
 //   was valid. Retry your request.
 //
@@ -348,16 +348,16 @@ func (c *FMS) DisassociateAdminAccountRequest(input *DisassociateAdminAccountInp
 // See the AWS API reference guide for Firewall Management Service's
 // API operation DisassociateAdminAccount for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidOperationException "InvalidOperationException"
+// Returned Error Types:
+//   * InvalidOperationException
 //   The operation failed because there was nothing to do. For example, you might
 //   have submitted an AssociateAdminAccount request, but the account ID that
 //   you submitted was already set as the AWS Firewall Manager administrator.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeInternalErrorException "InternalErrorException"
+//   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
 //   was valid. Retry your request.
 //
@@ -437,16 +437,16 @@ func (c *FMS) GetAdminAccountRequest(input *GetAdminAccountInput) (req *request.
 // See the AWS API reference guide for Firewall Management Service's
 // API operation GetAdminAccount for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidOperationException "InvalidOperationException"
+// Returned Error Types:
+//   * InvalidOperationException
 //   The operation failed because there was nothing to do. For example, you might
 //   have submitted an AssociateAdminAccount request, but the account ID that
 //   you submitted was already set as the AWS Firewall Manager administrator.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeInternalErrorException "InternalErrorException"
+//   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
 //   was valid. Retry your request.
 //
@@ -531,11 +531,11 @@ func (c *FMS) GetComplianceDetailRequest(input *GetComplianceDetailInput) (req *
 // See the AWS API reference guide for Firewall Management Service's
 // API operation GetComplianceDetail for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeInternalErrorException "InternalErrorException"
+//   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
 //   was valid. Retry your request.
 //
@@ -615,16 +615,16 @@ func (c *FMS) GetNotificationChannelRequest(input *GetNotificationChannelInput) 
 // See the AWS API reference guide for Firewall Management Service's
 // API operation GetNotificationChannel for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeInvalidOperationException "InvalidOperationException"
+//   * InvalidOperationException
 //   The operation failed because there was nothing to do. For example, you might
 //   have submitted an AssociateAdminAccount request, but the account ID that
 //   you submitted was already set as the AWS Firewall Manager administrator.
 //
-//   * ErrCodeInternalErrorException "InternalErrorException"
+//   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
 //   was valid. Retry your request.
 //
@@ -703,20 +703,20 @@ func (c *FMS) GetPolicyRequest(input *GetPolicyInput) (req *request.Request, out
 // See the AWS API reference guide for Firewall Management Service's
 // API operation GetPolicy for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeInvalidOperationException "InvalidOperationException"
+//   * InvalidOperationException
 //   The operation failed because there was nothing to do. For example, you might
 //   have submitted an AssociateAdminAccount request, but the account ID that
 //   you submitted was already set as the AWS Firewall Manager administrator.
 //
-//   * ErrCodeInternalErrorException "InternalErrorException"
+//   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
 //   was valid. Retry your request.
 //
-//   * ErrCodeInvalidTypeException "InvalidTypeException"
+//   * InvalidTypeException
 //   The value of the Type parameter is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/GetPolicy
@@ -796,14 +796,14 @@ func (c *FMS) GetProtectionStatusRequest(input *GetProtectionStatusInput) (req *
 // See the AWS API reference guide for Firewall Management Service's
 // API operation GetProtectionStatus for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidInputException "InvalidInputException"
+// Returned Error Types:
+//   * InvalidInputException
 //   The parameters of the request were invalid.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeInternalErrorException "InternalErrorException"
+//   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
 //   was valid. Retry your request.
 //
@@ -890,11 +890,11 @@ func (c *FMS) ListComplianceStatusRequest(input *ListComplianceStatusInput) (req
 // See the AWS API reference guide for Firewall Management Service's
 // API operation ListComplianceStatus for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeInternalErrorException "InternalErrorException"
+//   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
 //   was valid. Retry your request.
 //
@@ -1035,11 +1035,11 @@ func (c *FMS) ListMemberAccountsRequest(input *ListMemberAccountsInput) (req *re
 // See the AWS API reference guide for Firewall Management Service's
 // API operation ListMemberAccounts for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeInternalErrorException "InternalErrorException"
+//   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
 //   was valid. Retry your request.
 //
@@ -1176,22 +1176,22 @@ func (c *FMS) ListPoliciesRequest(input *ListPoliciesInput) (req *request.Reques
 // See the AWS API reference guide for Firewall Management Service's
 // API operation ListPolicies for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeInvalidOperationException "InvalidOperationException"
+//   * InvalidOperationException
 //   The operation failed because there was nothing to do. For example, you might
 //   have submitted an AssociateAdminAccount request, but the account ID that
 //   you submitted was already set as the AWS Firewall Manager administrator.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The operation exceeds a resource limit, for example, the maximum number of
 //   policy objects that you can create for an AWS account. For more information,
 //   see Firewall Manager Limits (https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html)
 //   in the AWS WAF Developer Guide.
 //
-//   * ErrCodeInternalErrorException "InternalErrorException"
+//   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
 //   was valid. Retry your request.
 //
@@ -1322,20 +1322,20 @@ func (c *FMS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 // See the AWS API reference guide for Firewall Management Service's
 // API operation ListTagsForResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeInvalidOperationException "InvalidOperationException"
+//   * InvalidOperationException
 //   The operation failed because there was nothing to do. For example, you might
 //   have submitted an AssociateAdminAccount request, but the account ID that
 //   you submitted was already set as the AWS Firewall Manager administrator.
 //
-//   * ErrCodeInternalErrorException "InternalErrorException"
+//   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
 //   was valid. Retry your request.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The parameters of the request were invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/ListTagsForResource
@@ -1415,16 +1415,16 @@ func (c *FMS) PutNotificationChannelRequest(input *PutNotificationChannelInput) 
 // See the AWS API reference guide for Firewall Management Service's
 // API operation PutNotificationChannel for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeInvalidOperationException "InvalidOperationException"
+//   * InvalidOperationException
 //   The operation failed because there was nothing to do. For example, you might
 //   have submitted an AssociateAdminAccount request, but the account ID that
 //   you submitted was already set as the AWS Firewall Manager administrator.
 //
-//   * ErrCodeInternalErrorException "InternalErrorException"
+//   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
 //   was valid. Retry your request.
 //
@@ -1522,29 +1522,29 @@ func (c *FMS) PutPolicyRequest(input *PutPolicyInput) (req *request.Request, out
 // See the AWS API reference guide for Firewall Management Service's
 // API operation PutPolicy for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeInvalidOperationException "InvalidOperationException"
+//   * InvalidOperationException
 //   The operation failed because there was nothing to do. For example, you might
 //   have submitted an AssociateAdminAccount request, but the account ID that
 //   you submitted was already set as the AWS Firewall Manager administrator.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The parameters of the request were invalid.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The operation exceeds a resource limit, for example, the maximum number of
 //   policy objects that you can create for an AWS account. For more information,
 //   see Firewall Manager Limits (https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html)
 //   in the AWS WAF Developer Guide.
 //
-//   * ErrCodeInternalErrorException "InternalErrorException"
+//   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
 //   was valid. Retry your request.
 //
-//   * ErrCodeInvalidTypeException "InvalidTypeException"
+//   * InvalidTypeException
 //   The value of the Type parameter is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/PutPolicy
@@ -1623,23 +1623,23 @@ func (c *FMS) TagResourceRequest(input *TagResourceInput) (req *request.Request,
 // See the AWS API reference guide for Firewall Management Service's
 // API operation TagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeInvalidOperationException "InvalidOperationException"
+//   * InvalidOperationException
 //   The operation failed because there was nothing to do. For example, you might
 //   have submitted an AssociateAdminAccount request, but the account ID that
 //   you submitted was already set as the AWS Firewall Manager administrator.
 //
-//   * ErrCodeInternalErrorException "InternalErrorException"
+//   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
 //   was valid. Retry your request.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The parameters of the request were invalid.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   The operation exceeds a resource limit, for example, the maximum number of
 //   policy objects that you can create for an AWS account. For more information,
 //   see Firewall Manager Limits (https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html)
@@ -1721,20 +1721,20 @@ func (c *FMS) UntagResourceRequest(input *UntagResourceInput) (req *request.Requ
 // See the AWS API reference guide for Firewall Management Service's
 // API operation UntagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   The specified resource was not found.
 //
-//   * ErrCodeInvalidOperationException "InvalidOperationException"
+//   * InvalidOperationException
 //   The operation failed because there was nothing to do. For example, you might
 //   have submitted an AssociateAdminAccount request, but the account ID that
 //   you submitted was already set as the AWS Firewall Manager administrator.
 //
-//   * ErrCodeInternalErrorException "InternalErrorException"
+//   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
 //   was valid. Retry your request.
 //
-//   * ErrCodeInvalidInputException "InvalidInputException"
+//   * InvalidInputException
 //   The parameters of the request were invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/UntagResource
@@ -2483,6 +2483,292 @@ func (s *GetProtectionStatusOutput) SetNextToken(v string) *GetProtectionStatusO
 func (s *GetProtectionStatusOutput) SetServiceType(v string) *GetProtectionStatusOutput {
 	s.ServiceType = &v
 	return s
+}
+
+// The operation failed because of a system problem, even though the request
+// was valid. Retry your request.
+type InternalErrorException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InternalErrorException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternalErrorException) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalErrorException(v protocol.ResponseMetadata) error {
+	return &InternalErrorException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InternalErrorException) Code() string {
+	return "InternalErrorException"
+}
+
+// Message returns the exception's message.
+func (s InternalErrorException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InternalErrorException) OrigErr() error {
+	return nil
+}
+
+func (s InternalErrorException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InternalErrorException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InternalErrorException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The parameters of the request were invalid.
+type InvalidInputException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidInputException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidInputException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidInputException(v protocol.ResponseMetadata) error {
+	return &InvalidInputException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidInputException) Code() string {
+	return "InvalidInputException"
+}
+
+// Message returns the exception's message.
+func (s InvalidInputException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidInputException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidInputException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidInputException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidInputException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The operation failed because there was nothing to do. For example, you might
+// have submitted an AssociateAdminAccount request, but the account ID that
+// you submitted was already set as the AWS Firewall Manager administrator.
+type InvalidOperationException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidOperationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidOperationException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidOperationException(v protocol.ResponseMetadata) error {
+	return &InvalidOperationException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidOperationException) Code() string {
+	return "InvalidOperationException"
+}
+
+// Message returns the exception's message.
+func (s InvalidOperationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidOperationException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidOperationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidOperationException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidOperationException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The value of the Type parameter is invalid.
+type InvalidTypeException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidTypeException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidTypeException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidTypeException(v protocol.ResponseMetadata) error {
+	return &InvalidTypeException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidTypeException) Code() string {
+	return "InvalidTypeException"
+}
+
+// Message returns the exception's message.
+func (s InvalidTypeException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidTypeException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidTypeException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidTypeException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidTypeException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The operation exceeds a resource limit, for example, the maximum number of
+// policy objects that you can create for an AWS account. For more information,
+// see Firewall Manager Limits (https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html)
+// in the AWS WAF Developer Guide.
+type LimitExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s LimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
+	return &LimitExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s LimitExceededException) Code() string {
+	return "LimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s LimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s LimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s LimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s LimitExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s LimitExceededException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type ListComplianceStatusInput struct {
@@ -3459,6 +3745,62 @@ func (s *PutPolicyOutput) SetPolicy(v *Policy) *PutPolicyOutput {
 func (s *PutPolicyOutput) SetPolicyArn(v string) *PutPolicyOutput {
 	s.PolicyArn = &v
 	return s
+}
+
+// The specified resource was not found.
+type ResourceNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // The resource tags that AWS Firewall Manager uses to determine if a particular

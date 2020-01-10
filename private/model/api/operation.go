@@ -310,10 +310,10 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 }
 
 // {{ .ExportedName }} API operation for {{ .API.Metadata.ServiceFullName }}.
-{{ if .Documentation -}}
+{{- if .Documentation }}
 //
 {{ .Documentation }}
-{{ end -}}
+{{- end }}
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -321,17 +321,21 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 //
 // See the AWS API reference guide for {{ .API.Metadata.ServiceFullName }}'s
 // API operation {{ .ExportedName }} for usage and error information.
-{{ if .ErrorRefs -}}
+{{- if .ErrorRefs }}
 //
-// Returned Error Codes:
-{{ range $_, $err := .ErrorRefs -}}
+// Returned Error {{ if $.API.WithGeneratedTypedErrors }}Types{{ else }}Codes{{ end }}:
+{{- range $_, $err := .ErrorRefs -}}
+{{- if $.API.WithGeneratedTypedErrors }}
+//   * {{ $err.ShapeName }}
+{{- else }}
 //   * {{ $err.Shape.ErrorCodeName }} "{{ $err.Shape.ErrorName}}"
-{{ if $err.Docstring -}}
+{{- end }}
+{{- if $err.Docstring }}
 {{ $err.IndentedDocstring }}
-{{ end -}}
+{{- end }}
 //
-{{ end -}}
-{{ end -}}
+{{- end }}
+{{- end }}
 {{ $crosslinkURL := $.API.GetCrosslinkURL $.ExportedName -}}
 {{ if ne $crosslinkURL "" -}}
 // See also, {{ $crosslinkURL }}

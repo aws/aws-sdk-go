@@ -2,6 +2,10 @@
 
 package outposts
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeAccessDeniedException for service response error code
@@ -34,3 +38,11 @@ const (
 	// A parameter is not valid.
 	ErrCodeValidationException = "ValidationException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"AccessDeniedException":         newErrorAccessDeniedException,
+	"InternalServerException":       newErrorInternalServerException,
+	"NotFoundException":             newErrorNotFoundException,
+	"ServiceQuotaExceededException": newErrorServiceQuotaExceededException,
+	"ValidationException":           newErrorValidationException,
+}

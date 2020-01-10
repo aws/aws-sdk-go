@@ -65,14 +65,14 @@ func (c *FraudDetector) BatchCreateVariableRequest(input *BatchCreateVariableInp
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation BatchCreateVariable for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/BatchCreateVariable
@@ -150,14 +150,14 @@ func (c *FraudDetector) BatchGetVariableRequest(input *BatchGetVariableInput) (r
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation BatchGetVariable for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/BatchGetVariable
@@ -235,17 +235,17 @@ func (c *FraudDetector) CreateDetectorVersionRequest(input *CreateDetectorVersio
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation CreateDetectorVersion for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   An exception indicating the specified resource was not found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateDetectorVersion
@@ -323,14 +323,14 @@ func (c *FraudDetector) CreateModelVersionRequest(input *CreateModelVersionInput
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation CreateModelVersion for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateModelVersion
@@ -408,14 +408,14 @@ func (c *FraudDetector) CreateRuleRequest(input *CreateRuleInput) (req *request.
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation CreateRule for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateRule
@@ -494,14 +494,14 @@ func (c *FraudDetector) CreateVariableRequest(input *CreateVariableInput) (req *
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation CreateVariable for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateVariable
@@ -580,17 +580,17 @@ func (c *FraudDetector) DeleteDetectorVersionRequest(input *DeleteDetectorVersio
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation DeleteDetectorVersion for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   An exception indicating the specified resource was not found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteDetectorVersion
@@ -669,11 +669,11 @@ func (c *FraudDetector) DeleteEventRequest(input *DeleteEventInput) (req *reques
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation DeleteEvent for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerException "InternalServerException"
+// Returned Error Types:
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteEvent
@@ -751,17 +751,17 @@ func (c *FraudDetector) DescribeDetectorRequest(input *DescribeDetectorInput) (r
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation DescribeDetector for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   An exception indicating the specified resource was not found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DescribeDetector
@@ -847,17 +847,17 @@ func (c *FraudDetector) DescribeModelVersionsRequest(input *DescribeModelVersion
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation DescribeModelVersions for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   An exception indicating the specified resource was not found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DescribeModelVersions
@@ -987,17 +987,17 @@ func (c *FraudDetector) GetDetectorVersionRequest(input *GetDetectorVersionInput
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation GetDetectorVersion for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   An exception indicating the specified resource was not found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetDetectorVersion
@@ -1085,17 +1085,17 @@ func (c *FraudDetector) GetDetectorsRequest(input *GetDetectorsInput) (req *requ
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation GetDetectors for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   An exception indicating the specified resource was not found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetDetectors
@@ -1237,17 +1237,17 @@ func (c *FraudDetector) GetExternalModelsRequest(input *GetExternalModelsInput) 
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation GetExternalModels for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   An exception indicating the specified resource was not found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetExternalModels
@@ -1377,17 +1377,17 @@ func (c *FraudDetector) GetModelVersionRequest(input *GetModelVersionInput) (req
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation GetModelVersion for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   An exception indicating the specified resource was not found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetModelVersion
@@ -1472,17 +1472,17 @@ func (c *FraudDetector) GetModelsRequest(input *GetModelsInput) (req *request.Re
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation GetModels for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   An exception indicating the specified resource was not found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetModels
@@ -1623,17 +1623,17 @@ func (c *FraudDetector) GetOutcomesRequest(input *GetOutcomesInput) (req *reques
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation GetOutcomes for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   An exception indicating the specified resource was not found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetOutcomes
@@ -1764,17 +1764,17 @@ func (c *FraudDetector) GetPredictionRequest(input *GetPredictionInput) (req *re
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation GetPrediction for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   An exception indicating the specified resource was not found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetPrediction
@@ -1858,17 +1858,17 @@ func (c *FraudDetector) GetRulesRequest(input *GetRulesInput) (req *request.Requ
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation GetRules for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   An exception indicating the specified resource was not found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetRules
@@ -2009,17 +2009,17 @@ func (c *FraudDetector) GetVariablesRequest(input *GetVariablesInput) (req *requ
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation GetVariables for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   An exception indicating the specified resource was not found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetVariables
@@ -2150,14 +2150,14 @@ func (c *FraudDetector) PutDetectorRequest(input *PutDetectorInput) (req *reques
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation PutDetector for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutDetector
@@ -2238,14 +2238,14 @@ func (c *FraudDetector) PutExternalModelRequest(input *PutExternalModelInput) (r
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation PutExternalModel for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutExternalModel
@@ -2324,14 +2324,14 @@ func (c *FraudDetector) PutModelRequest(input *PutModelInput) (req *request.Requ
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation PutModel for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutModel
@@ -2410,14 +2410,14 @@ func (c *FraudDetector) PutOutcomeRequest(input *PutOutcomeInput) (req *request.
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation PutOutcome for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutOutcome
@@ -2498,17 +2498,17 @@ func (c *FraudDetector) UpdateDetectorVersionRequest(input *UpdateDetectorVersio
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation UpdateDetectorVersion for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   An exception indicating the specified resource was not found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateDetectorVersion
@@ -2588,14 +2588,14 @@ func (c *FraudDetector) UpdateDetectorVersionMetadataRequest(input *UpdateDetect
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation UpdateDetectorVersionMetadata for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateDetectorVersionMetadata
@@ -2676,17 +2676,17 @@ func (c *FraudDetector) UpdateDetectorVersionStatusRequest(input *UpdateDetector
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation UpdateDetectorVersionStatus for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   An exception indicating the specified resource was not found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateDetectorVersionStatus
@@ -2770,17 +2770,17 @@ func (c *FraudDetector) UpdateModelVersionRequest(input *UpdateModelVersionInput
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation UpdateModelVersion for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   An exception indicating the specified resource was not found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateModelVersion
@@ -2859,17 +2859,17 @@ func (c *FraudDetector) UpdateRuleMetadataRequest(input *UpdateRuleMetadataInput
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation UpdateRuleMetadata for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   An exception indicating the specified resource was not found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateRuleMetadata
@@ -2947,17 +2947,17 @@ func (c *FraudDetector) UpdateRuleVersionRequest(input *UpdateRuleVersionInput) 
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation UpdateRuleVersion for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   An exception indicating the specified resource was not found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateRuleVersion
@@ -3036,17 +3036,17 @@ func (c *FraudDetector) UpdateVariableRequest(input *UpdateVariableInput) (req *
 // See the AWS API reference guide for Amazon Fraud Detector's
 // API operation UpdateVariable for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeValidationException "ValidationException"
+// Returned Error Types:
+//   * ValidationException
 //   An exception indicating a specified value is not allowed.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   An exception indicating the specified resource was not found.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An exception indicating an internal server error.
 //
-//   * ErrCodeThrottlingException "ThrottlingException"
+//   * ThrottlingException
 //   An exception indicating a throttling error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateVariable
@@ -5307,6 +5307,62 @@ func (s *GetVariablesOutput) SetVariables(v []*Variable) *GetVariablesOutput {
 	return s
 }
 
+// An exception indicating an internal server error.
+type InternalServerException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s InternalServerException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternalServerException) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalServerException(v protocol.ResponseMetadata) error {
+	return &InternalServerException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InternalServerException) Code() string {
+	return "InternalServerException"
+}
+
+// Message returns the exception's message.
+func (s InternalServerException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InternalServerException) OrigErr() error {
+	return nil
+}
+
+func (s InternalServerException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InternalServerException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InternalServerException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // The label schema.
 type LabelSchema struct {
 	_ struct{} `type:"structure"`
@@ -6377,6 +6433,62 @@ func (s PutOutcomeOutput) GoString() string {
 	return s.String()
 }
 
+// An exception indicating the specified resource was not found.
+type ResourceNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // The role used to invoke external model endpoints.
 type Role struct {
 	_ struct{} `type:"structure"`
@@ -6600,6 +6712,62 @@ func (s *RuleDetail) SetRuleId(v string) *RuleDetail {
 func (s *RuleDetail) SetRuleVersion(v string) *RuleDetail {
 	s.RuleVersion = &v
 	return s
+}
+
+// An exception indicating a throttling error.
+type ThrottlingException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ThrottlingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ThrottlingException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottlingException(v protocol.ResponseMetadata) error {
+	return &ThrottlingException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ThrottlingException) Code() string {
+	return "ThrottlingException"
+}
+
+// Message returns the exception's message.
+func (s ThrottlingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ThrottlingException) OrigErr() error {
+	return nil
+}
+
+func (s ThrottlingException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ThrottlingException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ThrottlingException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // The training data source.
@@ -7371,6 +7539,62 @@ func (s UpdateVariableOutput) String() string {
 // GoString returns the string representation
 func (s UpdateVariableOutput) GoString() string {
 	return s.String()
+}
+
+// An exception indicating a specified value is not allowed.
+type ValidationException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ValidationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ValidationException) GoString() string {
+	return s.String()
+}
+
+func newErrorValidationException(v protocol.ResponseMetadata) error {
+	return &ValidationException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ValidationException) Code() string {
+	return "ValidationException"
+}
+
+// Message returns the exception's message.
+func (s ValidationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ValidationException) OrigErr() error {
+	return nil
+}
+
+func (s ValidationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ValidationException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ValidationException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // The variable.

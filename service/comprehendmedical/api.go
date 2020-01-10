@@ -3,11 +3,13 @@
 package comprehendmedical
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
 const opDescribeEntitiesDetectionV2Job = "DescribeEntitiesDetectionV2Job"
@@ -64,21 +66,21 @@ func (c *ComprehendMedical) DescribeEntitiesDetectionV2JobRequest(input *Describ
 // See the AWS API reference guide for AWS Comprehend Medical's
 // API operation DescribeEntitiesDetectionV2Job for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request that you made is invalid. Check your request to determine why
 //   it's invalid and then retry the request.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   You have made too many requests within a short period of time. Wait for a
 //   short time and then try your request again. Contact customer support for
 //   more information about a service limit increase.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The resource identified by the specified Amazon Resource Name (ARN) was not
 //   found. Check the ARN and try your request again.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/DescribeEntitiesDetectionV2Job
@@ -157,21 +159,21 @@ func (c *ComprehendMedical) DescribePHIDetectionJobRequest(input *DescribePHIDet
 // See the AWS API reference guide for AWS Comprehend Medical's
 // API operation DescribePHIDetectionJob for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request that you made is invalid. Check your request to determine why
 //   it's invalid and then retry the request.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   You have made too many requests within a short period of time. Wait for a
 //   short time and then try your request again. Contact customer support for
 //   more information about a service limit increase.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The resource identified by the specified Amazon Resource Name (ARN) was not
 //   found. Check the ARN and try your request again.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/DescribePHIDetectionJob
@@ -259,28 +261,28 @@ func (c *ComprehendMedical) DetectEntitiesRequest(input *DetectEntitiesInput) (r
 // See the AWS API reference guide for AWS Comprehend Medical's
 // API operation DetectEntities for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerException "InternalServerException"
+// Returned Error Types:
+//   * InternalServerException
 //   An internal server error occurred. Retry your request.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The Amazon Comprehend Medical service is temporarily unavailable. Please
 //   wait and then retry your request.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   You have made too many requests within a short period of time. Wait for a
 //   short time and then try your request again. Contact customer support for
 //   more information about a service limit increase.
 //
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   * InvalidRequestException
 //   The request that you made is invalid. Check your request to determine why
 //   it's invalid and then retry the request.
 //
-//   * ErrCodeInvalidEncodingException "InvalidEncodingException"
+//   * InvalidEncodingException
 //   The input text was not in valid UTF-8 character encoding. Check your text
 //   then retry your request.
 //
-//   * ErrCodeTextSizeLimitExceededException "TextSizeLimitExceededException"
+//   * TextSizeLimitExceededException
 //   The size of the text you submitted exceeds the size limit. Reduce the size
 //   of the text or use a smaller document and then retry your request.
 //
@@ -373,28 +375,28 @@ func (c *ComprehendMedical) DetectEntitiesV2Request(input *DetectEntitiesV2Input
 // See the AWS API reference guide for AWS Comprehend Medical's
 // API operation DetectEntitiesV2 for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerException "InternalServerException"
+// Returned Error Types:
+//   * InternalServerException
 //   An internal server error occurred. Retry your request.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The Amazon Comprehend Medical service is temporarily unavailable. Please
 //   wait and then retry your request.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   You have made too many requests within a short period of time. Wait for a
 //   short time and then try your request again. Contact customer support for
 //   more information about a service limit increase.
 //
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   * InvalidRequestException
 //   The request that you made is invalid. Check your request to determine why
 //   it's invalid and then retry the request.
 //
-//   * ErrCodeInvalidEncodingException "InvalidEncodingException"
+//   * InvalidEncodingException
 //   The input text was not in valid UTF-8 character encoding. Check your text
 //   then retry your request.
 //
-//   * ErrCodeTextSizeLimitExceededException "TextSizeLimitExceededException"
+//   * TextSizeLimitExceededException
 //   The size of the text you submitted exceeds the size limit. Reduce the size
 //   of the text or use a smaller document and then retry your request.
 //
@@ -474,28 +476,28 @@ func (c *ComprehendMedical) DetectPHIRequest(input *DetectPHIInput) (req *reques
 // See the AWS API reference guide for AWS Comprehend Medical's
 // API operation DetectPHI for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerException "InternalServerException"
+// Returned Error Types:
+//   * InternalServerException
 //   An internal server error occurred. Retry your request.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The Amazon Comprehend Medical service is temporarily unavailable. Please
 //   wait and then retry your request.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   You have made too many requests within a short period of time. Wait for a
 //   short time and then try your request again. Contact customer support for
 //   more information about a service limit increase.
 //
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   * InvalidRequestException
 //   The request that you made is invalid. Check your request to determine why
 //   it's invalid and then retry the request.
 //
-//   * ErrCodeInvalidEncodingException "InvalidEncodingException"
+//   * InvalidEncodingException
 //   The input text was not in valid UTF-8 character encoding. Check your text
 //   then retry your request.
 //
-//   * ErrCodeTextSizeLimitExceededException "TextSizeLimitExceededException"
+//   * TextSizeLimitExceededException
 //   The size of the text you submitted exceeds the size limit. Reduce the size
 //   of the text or use a smaller document and then retry your request.
 //
@@ -576,28 +578,28 @@ func (c *ComprehendMedical) InferICD10CMRequest(input *InferICD10CMInput) (req *
 // See the AWS API reference guide for AWS Comprehend Medical's
 // API operation InferICD10CM for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerException "InternalServerException"
+// Returned Error Types:
+//   * InternalServerException
 //   An internal server error occurred. Retry your request.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The Amazon Comprehend Medical service is temporarily unavailable. Please
 //   wait and then retry your request.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   You have made too many requests within a short period of time. Wait for a
 //   short time and then try your request again. Contact customer support for
 //   more information about a service limit increase.
 //
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   * InvalidRequestException
 //   The request that you made is invalid. Check your request to determine why
 //   it's invalid and then retry the request.
 //
-//   * ErrCodeInvalidEncodingException "InvalidEncodingException"
+//   * InvalidEncodingException
 //   The input text was not in valid UTF-8 character encoding. Check your text
 //   then retry your request.
 //
-//   * ErrCodeTextSizeLimitExceededException "TextSizeLimitExceededException"
+//   * TextSizeLimitExceededException
 //   The size of the text you submitted exceeds the size limit. Reduce the size
 //   of the text or use a smaller document and then retry your request.
 //
@@ -678,28 +680,28 @@ func (c *ComprehendMedical) InferRxNormRequest(input *InferRxNormInput) (req *re
 // See the AWS API reference guide for AWS Comprehend Medical's
 // API operation InferRxNorm for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalServerException "InternalServerException"
+// Returned Error Types:
+//   * InternalServerException
 //   An internal server error occurred. Retry your request.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The Amazon Comprehend Medical service is temporarily unavailable. Please
 //   wait and then retry your request.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   You have made too many requests within a short period of time. Wait for a
 //   short time and then try your request again. Contact customer support for
 //   more information about a service limit increase.
 //
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   * InvalidRequestException
 //   The request that you made is invalid. Check your request to determine why
 //   it's invalid and then retry the request.
 //
-//   * ErrCodeInvalidEncodingException "InvalidEncodingException"
+//   * InvalidEncodingException
 //   The input text was not in valid UTF-8 character encoding. Check your text
 //   then retry your request.
 //
-//   * ErrCodeTextSizeLimitExceededException "TextSizeLimitExceededException"
+//   * TextSizeLimitExceededException
 //   The size of the text you submitted exceeds the size limit. Reduce the size
 //   of the text or use a smaller document and then retry your request.
 //
@@ -778,21 +780,21 @@ func (c *ComprehendMedical) ListEntitiesDetectionV2JobsRequest(input *ListEntiti
 // See the AWS API reference guide for AWS Comprehend Medical's
 // API operation ListEntitiesDetectionV2Jobs for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request that you made is invalid. Check your request to determine why
 //   it's invalid and then retry the request.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   The filter that you specified for the operation is invalid. Check the filter
 //   values that you entered and try your request again.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   You have made too many requests within a short period of time. Wait for a
 //   short time and then try your request again. Contact customer support for
 //   more information about a service limit increase.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/ListEntitiesDetectionV2Jobs
@@ -871,21 +873,21 @@ func (c *ComprehendMedical) ListPHIDetectionJobsRequest(input *ListPHIDetectionJ
 // See the AWS API reference guide for AWS Comprehend Medical's
 // API operation ListPHIDetectionJobs for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request that you made is invalid. Check your request to determine why
 //   it's invalid and then retry the request.
 //
-//   * ErrCodeValidationException "ValidationException"
+//   * ValidationException
 //   The filter that you specified for the operation is invalid. Check the filter
 //   values that you entered and try your request again.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   You have made too many requests within a short period of time. Wait for a
 //   short time and then try your request again. Contact customer support for
 //   more information about a service limit increase.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/ListPHIDetectionJobs
@@ -965,21 +967,21 @@ func (c *ComprehendMedical) StartEntitiesDetectionV2JobRequest(input *StartEntit
 // See the AWS API reference guide for AWS Comprehend Medical's
 // API operation StartEntitiesDetectionV2Job for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request that you made is invalid. Check your request to determine why
 //   it's invalid and then retry the request.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   You have made too many requests within a short period of time. Wait for a
 //   short time and then try your request again. Contact customer support for
 //   more information about a service limit increase.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The resource identified by the specified Amazon Resource Name (ARN) was not
 //   found. Check the ARN and try your request again.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/StartEntitiesDetectionV2Job
@@ -1058,21 +1060,21 @@ func (c *ComprehendMedical) StartPHIDetectionJobRequest(input *StartPHIDetection
 // See the AWS API reference guide for AWS Comprehend Medical's
 // API operation StartPHIDetectionJob for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request that you made is invalid. Check your request to determine why
 //   it's invalid and then retry the request.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   You have made too many requests within a short period of time. Wait for a
 //   short time and then try your request again. Contact customer support for
 //   more information about a service limit increase.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The resource identified by the specified Amazon Resource Name (ARN) was not
 //   found. Check the ARN and try your request again.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/StartPHIDetectionJob
@@ -1150,16 +1152,16 @@ func (c *ComprehendMedical) StopEntitiesDetectionV2JobRequest(input *StopEntitie
 // See the AWS API reference guide for AWS Comprehend Medical's
 // API operation StopEntitiesDetectionV2Job for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request that you made is invalid. Check your request to determine why
 //   it's invalid and then retry the request.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The resource identified by the specified Amazon Resource Name (ARN) was not
 //   found. Check the ARN and try your request again.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/StopEntitiesDetectionV2Job
@@ -1237,16 +1239,16 @@ func (c *ComprehendMedical) StopPHIDetectionJobRequest(input *StopPHIDetectionJo
 // See the AWS API reference guide for AWS Comprehend Medical's
 // API operation StopPHIDetectionJob for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+// Returned Error Types:
+//   * InvalidRequestException
 //   The request that you made is invalid. Check your request to determine why
 //   it's invalid and then retry the request.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   The resource identified by the specified Amazon Resource Name (ARN) was not
 //   found. Check the ARN and try your request again.
 //
-//   * ErrCodeInternalServerException "InternalServerException"
+//   * InternalServerException
 //   An internal server error occurred. Retry your request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/comprehendmedical-2018-10-30/StopPHIDetectionJob
@@ -2645,6 +2647,176 @@ func (s *InputDataConfig) SetS3Key(v string) *InputDataConfig {
 	return s
 }
 
+// An internal server error occurred. Retry your request.
+type InternalServerException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s InternalServerException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternalServerException) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalServerException(v protocol.ResponseMetadata) error {
+	return &InternalServerException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InternalServerException) Code() string {
+	return "InternalServerException"
+}
+
+// Message returns the exception's message.
+func (s InternalServerException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InternalServerException) OrigErr() error {
+	return nil
+}
+
+func (s InternalServerException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InternalServerException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InternalServerException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The input text was not in valid UTF-8 character encoding. Check your text
+// then retry your request.
+type InvalidEncodingException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidEncodingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidEncodingException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidEncodingException(v protocol.ResponseMetadata) error {
+	return &InvalidEncodingException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidEncodingException) Code() string {
+	return "InvalidEncodingException"
+}
+
+// Message returns the exception's message.
+func (s InvalidEncodingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidEncodingException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidEncodingException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidEncodingException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidEncodingException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The request that you made is invalid. Check your request to determine why
+// it's invalid and then retry the request.
+type InvalidRequestException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidRequestException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidRequestException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidRequestException(v protocol.ResponseMetadata) error {
+	return &InvalidRequestException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidRequestException) Code() string {
+	return "InvalidRequestException"
+}
+
+// Message returns the exception's message.
+func (s InvalidRequestException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidRequestException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidRequestException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidRequestException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidRequestException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type ListEntitiesDetectionV2JobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2891,6 +3063,63 @@ func (s *OutputDataConfig) SetS3Bucket(v string) *OutputDataConfig {
 func (s *OutputDataConfig) SetS3Key(v string) *OutputDataConfig {
 	s.S3Key = &v
 	return s
+}
+
+// The resource identified by the specified Amazon Resource Name (ARN) was not
+// found. Check the ARN and try your request again.
+type ResourceNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // The extracted attributes that relate to this entity. The attributes recognized
@@ -3183,6 +3412,63 @@ func (s *RxNormTrait) SetName(v string) *RxNormTrait {
 func (s *RxNormTrait) SetScore(v float64) *RxNormTrait {
 	s.Score = &v
 	return s
+}
+
+// The Amazon Comprehend Medical service is temporarily unavailable. Please
+// wait and then retry your request.
+type ServiceUnavailableException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ServiceUnavailableException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceUnavailableException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceUnavailableException(v protocol.ResponseMetadata) error {
+	return &ServiceUnavailableException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ServiceUnavailableException) Code() string {
+	return "ServiceUnavailableException"
+}
+
+// Message returns the exception's message.
+func (s ServiceUnavailableException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ServiceUnavailableException) OrigErr() error {
+	return nil
+}
+
+func (s ServiceUnavailableException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ServiceUnavailableException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ServiceUnavailableException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type StartEntitiesDetectionV2JobInput struct {
@@ -3629,6 +3915,121 @@ func (s *StopPHIDetectionJobOutput) SetJobId(v string) *StopPHIDetectionJobOutpu
 	return s
 }
 
+// The size of the text you submitted exceeds the size limit. Reduce the size
+// of the text or use a smaller document and then retry your request.
+type TextSizeLimitExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s TextSizeLimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TextSizeLimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorTextSizeLimitExceededException(v protocol.ResponseMetadata) error {
+	return &TextSizeLimitExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s TextSizeLimitExceededException) Code() string {
+	return "TextSizeLimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s TextSizeLimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s TextSizeLimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s TextSizeLimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s TextSizeLimitExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s TextSizeLimitExceededException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// You have made too many requests within a short period of time. Wait for a
+// short time and then try your request again. Contact customer support for
+// more information about a service limit increase.
+type TooManyRequestsException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s TooManyRequestsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TooManyRequestsException) GoString() string {
+	return s.String()
+}
+
+func newErrorTooManyRequestsException(v protocol.ResponseMetadata) error {
+	return &TooManyRequestsException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s TooManyRequestsException) Code() string {
+	return "TooManyRequestsException"
+}
+
+// Message returns the exception's message.
+func (s TooManyRequestsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s TooManyRequestsException) OrigErr() error {
+	return nil
+}
+
+func (s TooManyRequestsException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s TooManyRequestsException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s TooManyRequestsException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // Provides contextual information about the extracted entity.
 type Trait struct {
 	_ struct{} `type:"structure"`
@@ -3695,6 +4096,63 @@ func (s *UnmappedAttribute) SetAttribute(v *Attribute) *UnmappedAttribute {
 func (s *UnmappedAttribute) SetType(v string) *UnmappedAttribute {
 	s.Type = &v
 	return s
+}
+
+// The filter that you specified for the operation is invalid. Check the filter
+// values that you entered and try your request again.
+type ValidationException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ValidationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ValidationException) GoString() string {
+	return s.String()
+}
+
+func newErrorValidationException(v protocol.ResponseMetadata) error {
+	return &ValidationException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ValidationException) Code() string {
+	return "ValidationException"
+}
+
+// Message returns the exception's message.
+func (s ValidationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ValidationException) OrigErr() error {
+	return nil
+}
+
+func (s ValidationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ValidationException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ValidationException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 const (

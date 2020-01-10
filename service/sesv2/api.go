@@ -71,23 +71,23 @@ func (c *SESV2) CreateConfigurationSetRequest(input *CreateConfigurationSetInput
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation CreateConfigurationSet for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAlreadyExistsException "AlreadyExistsException"
+// Returned Error Types:
+//   * AlreadyExistsException
 //   The resource specified in your request already exists.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   There are too many instances of the specified resource type.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   The resource is being modified by another operation or thread.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/CreateConfigurationSet
@@ -173,20 +173,20 @@ func (c *SESV2) CreateConfigurationSetEventDestinationRequest(input *CreateConfi
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation CreateConfigurationSetEventDestination for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeAlreadyExistsException "AlreadyExistsException"
+//   * AlreadyExistsException
 //   The resource specified in your request already exists.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   There are too many instances of the specified resource type.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/CreateConfigurationSetEventDestination
@@ -269,20 +269,20 @@ func (c *SESV2) CreateDedicatedIpPoolRequest(input *CreateDedicatedIpPoolInput) 
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation CreateDedicatedIpPool for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAlreadyExistsException "AlreadyExistsException"
+// Returned Error Types:
+//   * AlreadyExistsException
 //   The resource specified in your request already exists.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   There are too many instances of the specified resource type.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   The resource is being modified by another operation or thread.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/CreateDedicatedIpPool
@@ -367,34 +367,34 @@ func (c *SESV2) CreateDeliverabilityTestReportRequest(input *CreateDeliverabilit
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation CreateDeliverabilityTestReport for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAccountSuspendedException "AccountSuspendedException"
+// Returned Error Types:
+//   * AccountSuspendedException
 //   The message can't be sent because the account's ability to send email has
 //   been permanently restricted.
 //
-//   * ErrCodeSendingPausedException "SendingPausedException"
+//   * SendingPausedException
 //   The message can't be sent because the account's ability to send email is
 //   currently paused.
 //
-//   * ErrCodeMessageRejected "MessageRejected"
+//   * MessageRejected
 //   The message can't be sent because it contains invalid content.
 //
-//   * ErrCodeMailFromDomainNotVerifiedException "MailFromDomainNotVerifiedException"
+//   * MailFromDomainNotVerifiedException
 //   The message can't be sent because the sending domain isn't verified.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   There are too many instances of the specified resource type.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   The resource is being modified by another operation or thread.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/CreateDeliverabilityTestReport
@@ -495,20 +495,20 @@ func (c *SESV2) CreateEmailIdentityRequest(input *CreateEmailIdentityInput) (req
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation CreateEmailIdentity for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAlreadyExistsException "AlreadyExistsException"
+// Returned Error Types:
+//   * AlreadyExistsException
 //   The resource specified in your request already exists.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   There are too many instances of the specified resource type.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   The resource is being modified by another operation or thread.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/CreateEmailIdentity
@@ -593,17 +593,17 @@ func (c *SESV2) DeleteConfigurationSetRequest(input *DeleteConfigurationSetInput
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation DeleteConfigurationSet for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   The resource is being modified by another operation or thread.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/DeleteConfigurationSet
@@ -688,14 +688,14 @@ func (c *SESV2) DeleteConfigurationSetEventDestinationRequest(input *DeleteConfi
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation DeleteConfigurationSetEventDestination for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/DeleteConfigurationSetEventDestination
@@ -774,17 +774,17 @@ func (c *SESV2) DeleteDedicatedIpPoolRequest(input *DeleteDedicatedIpPoolInput) 
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation DeleteDedicatedIpPool for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   The resource is being modified by another operation or thread.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/DeleteDedicatedIpPool
@@ -864,17 +864,17 @@ func (c *SESV2) DeleteEmailIdentityRequest(input *DeleteEmailIdentityInput) (req
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation DeleteEmailIdentity for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   The resource is being modified by another operation or thread.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/DeleteEmailIdentity
@@ -953,14 +953,14 @@ func (c *SESV2) DeleteSuppressedDestinationRequest(input *DeleteSuppressedDestin
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation DeleteSuppressedDestination for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/DeleteSuppressedDestination
@@ -1039,11 +1039,11 @@ func (c *SESV2) GetAccountRequest(input *GetAccountInput) (req *request.Request,
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation GetAccount for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+// Returned Error Types:
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetAccount
@@ -1122,14 +1122,14 @@ func (c *SESV2) GetBlacklistReportsRequest(input *GetBlacklistReportsInput) (req
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation GetBlacklistReports for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+// Returned Error Types:
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetBlacklistReports
@@ -1215,14 +1215,14 @@ func (c *SESV2) GetConfigurationSetRequest(input *GetConfigurationSetInput) (req
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation GetConfigurationSet for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetConfigurationSet
@@ -1307,14 +1307,14 @@ func (c *SESV2) GetConfigurationSetEventDestinationsRequest(input *GetConfigurat
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation GetConfigurationSetEventDestinations for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetConfigurationSetEventDestinations
@@ -1394,14 +1394,14 @@ func (c *SESV2) GetDedicatedIpRequest(input *GetDedicatedIpInput) (req *request.
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation GetDedicatedIp for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+// Returned Error Types:
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetDedicatedIp
@@ -1485,14 +1485,14 @@ func (c *SESV2) GetDedicatedIpsRequest(input *GetDedicatedIpsInput) (req *reques
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation GetDedicatedIps for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+// Returned Error Types:
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetDedicatedIps
@@ -1631,14 +1631,14 @@ func (c *SESV2) GetDeliverabilityDashboardOptionsRequest(input *GetDeliverabilit
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation GetDeliverabilityDashboardOptions for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+// Returned Error Types:
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   There are too many instances of the specified resource type.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetDeliverabilityDashboardOptions
@@ -1716,14 +1716,14 @@ func (c *SESV2) GetDeliverabilityTestReportRequest(input *GetDeliverabilityTestR
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation GetDeliverabilityTestReport for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+// Returned Error Types:
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetDeliverabilityTestReport
@@ -1803,14 +1803,14 @@ func (c *SESV2) GetDomainDeliverabilityCampaignRequest(input *GetDomainDeliverab
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation GetDomainDeliverabilityCampaign for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+// Returned Error Types:
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetDomainDeliverabilityCampaign
@@ -1889,14 +1889,14 @@ func (c *SESV2) GetDomainStatisticsReportRequest(input *GetDomainStatisticsRepor
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation GetDomainStatisticsReport for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+// Returned Error Types:
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetDomainStatisticsReport
@@ -1976,14 +1976,14 @@ func (c *SESV2) GetEmailIdentityRequest(input *GetEmailIdentityInput) (req *requ
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation GetEmailIdentity for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetEmailIdentity
@@ -2062,14 +2062,14 @@ func (c *SESV2) GetSuppressedDestinationRequest(input *GetSuppressedDestinationI
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation GetSuppressedDestination for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input you provided is invalid.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetSuppressedDestination
@@ -2160,11 +2160,11 @@ func (c *SESV2) ListConfigurationSetsRequest(input *ListConfigurationSetsInput) 
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation ListConfigurationSets for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+// Returned Error Types:
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/ListConfigurationSets
@@ -2301,11 +2301,11 @@ func (c *SESV2) ListDedicatedIpPoolsRequest(input *ListDedicatedIpPoolsInput) (r
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation ListDedicatedIpPools for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+// Returned Error Types:
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/ListDedicatedIpPools
@@ -2444,14 +2444,14 @@ func (c *SESV2) ListDeliverabilityTestReportsRequest(input *ListDeliverabilityTe
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation ListDeliverabilityTestReports for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+// Returned Error Types:
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/ListDeliverabilityTestReports
@@ -2589,14 +2589,14 @@ func (c *SESV2) ListDomainDeliverabilityCampaignsRequest(input *ListDomainDelive
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation ListDomainDeliverabilityCampaigns for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+// Returned Error Types:
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/ListDomainDeliverabilityCampaigns
@@ -2736,11 +2736,11 @@ func (c *SESV2) ListEmailIdentitiesRequest(input *ListEmailIdentitiesInput) (req
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation ListEmailIdentities for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+// Returned Error Types:
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/ListEmailIdentities
@@ -2877,14 +2877,14 @@ func (c *SESV2) ListSuppressedDestinationsRequest(input *ListSuppressedDestinati
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation ListSuppressedDestinations for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input you provided is invalid.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeInvalidNextTokenException "InvalidNextTokenException"
+//   * InvalidNextTokenException
 //   The specified request includes an invalid or expired token.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/ListSuppressedDestinations
@@ -3019,14 +3019,14 @@ func (c *SESV2) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation ListTagsForResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input you provided is invalid.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/ListTagsForResource
@@ -3105,11 +3105,11 @@ func (c *SESV2) PutAccountDedicatedIpWarmupAttributesRequest(input *PutAccountDe
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation PutAccountDedicatedIpWarmupAttributes for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+// Returned Error Types:
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutAccountDedicatedIpWarmupAttributes
@@ -3188,11 +3188,11 @@ func (c *SESV2) PutAccountSendingAttributesRequest(input *PutAccountSendingAttri
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation PutAccountSendingAttributes for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+// Returned Error Types:
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutAccountSendingAttributes
@@ -3271,11 +3271,11 @@ func (c *SESV2) PutAccountSuppressionAttributesRequest(input *PutAccountSuppress
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation PutAccountSuppressionAttributes for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+// Returned Error Types:
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutAccountSuppressionAttributes
@@ -3356,14 +3356,14 @@ func (c *SESV2) PutConfigurationSetDeliveryOptionsRequest(input *PutConfiguratio
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation PutConfigurationSetDeliveryOptions for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutConfigurationSetDeliveryOptions
@@ -3443,14 +3443,14 @@ func (c *SESV2) PutConfigurationSetReputationOptionsRequest(input *PutConfigurat
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation PutConfigurationSetReputationOptions for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutConfigurationSetReputationOptions
@@ -3530,14 +3530,14 @@ func (c *SESV2) PutConfigurationSetSendingOptionsRequest(input *PutConfiguration
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation PutConfigurationSetSendingOptions for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutConfigurationSetSendingOptions
@@ -3616,14 +3616,14 @@ func (c *SESV2) PutConfigurationSetSuppressionOptionsRequest(input *PutConfigura
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation PutConfigurationSetSuppressionOptions for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutConfigurationSetSuppressionOptions
@@ -3703,14 +3703,14 @@ func (c *SESV2) PutConfigurationSetTrackingOptionsRequest(input *PutConfiguratio
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation PutConfigurationSetTrackingOptions for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutConfigurationSetTrackingOptions
@@ -3795,14 +3795,14 @@ func (c *SESV2) PutDedicatedIpInPoolRequest(input *PutDedicatedIpInPoolInput) (r
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation PutDedicatedIpInPool for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutDedicatedIpInPool
@@ -3879,14 +3879,14 @@ func (c *SESV2) PutDedicatedIpWarmupAttributesRequest(input *PutDedicatedIpWarmu
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation PutDedicatedIpWarmupAttributes for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutDedicatedIpWarmupAttributes
@@ -3973,20 +3973,20 @@ func (c *SESV2) PutDeliverabilityDashboardOptionRequest(input *PutDeliverability
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation PutDeliverabilityDashboardOption for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeAlreadyExistsException "AlreadyExistsException"
+// Returned Error Types:
+//   * AlreadyExistsException
 //   The resource specified in your request already exists.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   There are too many instances of the specified resource type.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutDeliverabilityDashboardOption
@@ -4065,14 +4065,14 @@ func (c *SESV2) PutEmailIdentityDkimAttributesRequest(input *PutEmailIdentityDki
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation PutEmailIdentityDkimAttributes for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutEmailIdentityDkimAttributes
@@ -4162,14 +4162,14 @@ func (c *SESV2) PutEmailIdentityDkimSigningAttributesRequest(input *PutEmailIden
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation PutEmailIdentityDkimSigningAttributes for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutEmailIdentityDkimSigningAttributes
@@ -4259,14 +4259,14 @@ func (c *SESV2) PutEmailIdentityFeedbackAttributesRequest(input *PutEmailIdentit
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation PutEmailIdentityFeedbackAttributes for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutEmailIdentityFeedbackAttributes
@@ -4346,14 +4346,14 @@ func (c *SESV2) PutEmailIdentityMailFromAttributesRequest(input *PutEmailIdentit
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation PutEmailIdentityMailFromAttributes for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutEmailIdentityMailFromAttributes
@@ -4432,11 +4432,11 @@ func (c *SESV2) PutSuppressedDestinationRequest(input *PutSuppressedDestinationI
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation PutSuppressedDestination for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input you provided is invalid.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutSuppressedDestination
@@ -4524,31 +4524,31 @@ func (c *SESV2) SendEmailRequest(input *SendEmailInput) (req *request.Request, o
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation SendEmail for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+// Returned Error Types:
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   There are too many instances of the specified resource type.
 //
-//   * ErrCodeAccountSuspendedException "AccountSuspendedException"
+//   * AccountSuspendedException
 //   The message can't be sent because the account's ability to send email has
 //   been permanently restricted.
 //
-//   * ErrCodeSendingPausedException "SendingPausedException"
+//   * SendingPausedException
 //   The message can't be sent because the account's ability to send email is
 //   currently paused.
 //
-//   * ErrCodeMessageRejected "MessageRejected"
+//   * MessageRejected
 //   The message can't be sent because it contains invalid content.
 //
-//   * ErrCodeMailFromDomainNotVerifiedException "MailFromDomainNotVerifiedException"
+//   * MailFromDomainNotVerifiedException
 //   The message can't be sent because the sending domain isn't verified.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/SendEmail
@@ -4636,17 +4636,17 @@ func (c *SESV2) TagResourceRequest(input *TagResourceInput) (req *request.Reques
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation TagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input you provided is invalid.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   The resource is being modified by another operation or thread.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/TagResource
@@ -4725,17 +4725,17 @@ func (c *SESV2) UntagResourceRequest(input *UntagResourceInput) (req *request.Re
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation UntagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //   The input you provided is invalid.
 //
-//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   * ConcurrentModificationException
 //   The resource is being modified by another operation or thread.
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/UntagResource
@@ -4820,14 +4820,14 @@ func (c *SESV2) UpdateConfigurationSetEventDestinationRequest(input *UpdateConfi
 // See the AWS API reference guide for Amazon Simple Email Service's
 // API operation UpdateConfigurationSetEventDestination for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //   The resource you attempted to access doesn't exist.
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //   Too many requests have been made to the operation.
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //   The input you provided is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/UpdateConfigurationSetEventDestination
@@ -4850,6 +4850,160 @@ func (c *SESV2) UpdateConfigurationSetEventDestinationWithContext(ctx aws.Contex
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// The message can't be sent because the account's ability to send email has
+// been permanently restricted.
+type AccountSuspendedException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s AccountSuspendedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccountSuspendedException) GoString() string {
+	return s.String()
+}
+
+func newErrorAccountSuspendedException(v protocol.ResponseMetadata) error {
+	return &AccountSuspendedException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s AccountSuspendedException) Code() string {
+	return "AccountSuspendedException"
+}
+
+// Message returns the exception's message.
+func (s AccountSuspendedException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s AccountSuspendedException) OrigErr() error {
+	return nil
+}
+
+func (s AccountSuspendedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s AccountSuspendedException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s AccountSuspendedException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The resource specified in your request already exists.
+type AlreadyExistsException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s AlreadyExistsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AlreadyExistsException) GoString() string {
+	return s.String()
+}
+
+func newErrorAlreadyExistsException(v protocol.ResponseMetadata) error {
+	return &AlreadyExistsException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s AlreadyExistsException) Code() string {
+	return "AlreadyExistsException"
+}
+
+// Message returns the exception's message.
+func (s AlreadyExistsException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s AlreadyExistsException) OrigErr() error {
+	return nil
+}
+
+func (s AlreadyExistsException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s AlreadyExistsException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s AlreadyExistsException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The input you provided is invalid.
+type BadRequestException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s BadRequestException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BadRequestException) GoString() string {
+	return s.String()
+}
+
+func newErrorBadRequestException(v protocol.ResponseMetadata) error {
+	return &BadRequestException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s BadRequestException) Code() string {
+	return "BadRequestException"
+}
+
+// Message returns the exception's message.
+func (s BadRequestException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s BadRequestException) OrigErr() error {
+	return nil
+}
+
+func (s BadRequestException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s BadRequestException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s BadRequestException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // An object that contains information about a blacklisting event that impacts
@@ -5088,6 +5242,57 @@ func (s *CloudWatchDimensionConfiguration) SetDimensionName(v string) *CloudWatc
 func (s *CloudWatchDimensionConfiguration) SetDimensionValueSource(v string) *CloudWatchDimensionConfiguration {
 	s.DimensionValueSource = &v
 	return s
+}
+
+// The resource is being modified by another operation or thread.
+type ConcurrentModificationException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s ConcurrentModificationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConcurrentModificationException) GoString() string {
+	return s.String()
+}
+
+func newErrorConcurrentModificationException(v protocol.ResponseMetadata) error {
+	return &ConcurrentModificationException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ConcurrentModificationException) Code() string {
+	return "ConcurrentModificationException"
+}
+
+// Message returns the exception's message.
+func (s ConcurrentModificationException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ConcurrentModificationException) OrigErr() error {
+	return nil
+}
+
+func (s ConcurrentModificationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ConcurrentModificationException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ConcurrentModificationException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // An object that represents the content of the email, and optionally a character
@@ -8229,6 +8434,57 @@ func (s *InboxPlacementTrackingOption) SetTrackedIsps(v []*string) *InboxPlaceme
 	return s
 }
 
+// The specified request includes an invalid or expired token.
+type InvalidNextTokenException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s InvalidNextTokenException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidNextTokenException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidNextTokenException(v protocol.ResponseMetadata) error {
+	return &InvalidNextTokenException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidNextTokenException) Code() string {
+	return "InvalidNextTokenException"
+}
+
+// Message returns the exception's message.
+func (s InvalidNextTokenException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidNextTokenException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidNextTokenException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidNextTokenException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidNextTokenException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // An object that describes how email sent during the predictive inbox placement
 // test was handled by a certain email provider.
 type IspPlacement struct {
@@ -8318,6 +8574,57 @@ func (s *KinesisFirehoseDestination) SetDeliveryStreamArn(v string) *KinesisFire
 func (s *KinesisFirehoseDestination) SetIamRoleArn(v string) *KinesisFirehoseDestination {
 	s.IamRoleArn = &v
 	return s
+}
+
+// There are too many instances of the specified resource type.
+type LimitExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s LimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
+	return &LimitExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s LimitExceededException) Code() string {
+	return "LimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s LimitExceededException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s LimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s LimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s LimitExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s LimitExceededException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // A request to obtain a list of configuration sets for your Amazon SES account
@@ -9002,6 +9309,57 @@ func (s *MailFromAttributes) SetMailFromDomainStatus(v string) *MailFromAttribut
 	return s
 }
 
+// The message can't be sent because the sending domain isn't verified.
+type MailFromDomainNotVerifiedException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s MailFromDomainNotVerifiedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MailFromDomainNotVerifiedException) GoString() string {
+	return s.String()
+}
+
+func newErrorMailFromDomainNotVerifiedException(v protocol.ResponseMetadata) error {
+	return &MailFromDomainNotVerifiedException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s MailFromDomainNotVerifiedException) Code() string {
+	return "MailFromDomainNotVerifiedException"
+}
+
+// Message returns the exception's message.
+func (s MailFromDomainNotVerifiedException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s MailFromDomainNotVerifiedException) OrigErr() error {
+	return nil
+}
+
+func (s MailFromDomainNotVerifiedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s MailFromDomainNotVerifiedException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s MailFromDomainNotVerifiedException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // Represents the email message that you're sending. The Message object consists
 // of a subject line and a message body.
 type Message struct {
@@ -9069,6 +9427,57 @@ func (s *Message) SetSubject(v *Content) *Message {
 	return s
 }
 
+// The message can't be sent because it contains invalid content.
+type MessageRejected struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s MessageRejected) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MessageRejected) GoString() string {
+	return s.String()
+}
+
+func newErrorMessageRejected(v protocol.ResponseMetadata) error {
+	return &MessageRejected{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s MessageRejected) Code() string {
+	return "MessageRejected"
+}
+
+// Message returns the exception's message.
+func (s MessageRejected) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s MessageRejected) OrigErr() error {
+	return nil
+}
+
+func (s MessageRejected) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s MessageRejected) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s MessageRejected) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // Contains the name and value of a tag that you apply to an email. You can
 // use message tags when you publish email sending events.
 type MessageTag struct {
@@ -9133,6 +9542,57 @@ func (s *MessageTag) SetName(v string) *MessageTag {
 func (s *MessageTag) SetValue(v string) *MessageTag {
 	s.Value = &v
 	return s
+}
+
+// The resource you attempted to access doesn't exist.
+type NotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s NotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorNotFoundException(v protocol.ResponseMetadata) error {
+	return &NotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s NotFoundException) Code() string {
+	return "NotFoundException"
+}
+
+// Message returns the exception's message.
+func (s NotFoundException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s NotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s NotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s NotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s NotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // An object that contains information about email that was sent from the selected
@@ -10784,6 +11244,58 @@ func (s *SendingOptions) SetSendingEnabled(v bool) *SendingOptions {
 	return s
 }
 
+// The message can't be sent because the account's ability to send email is
+// currently paused.
+type SendingPausedException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s SendingPausedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SendingPausedException) GoString() string {
+	return s.String()
+}
+
+func newErrorSendingPausedException(v protocol.ResponseMetadata) error {
+	return &SendingPausedException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s SendingPausedException) Code() string {
+	return "SendingPausedException"
+}
+
+// Message returns the exception's message.
+func (s SendingPausedException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s SendingPausedException) OrigErr() error {
+	return nil
+}
+
+func (s SendingPausedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s SendingPausedException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s SendingPausedException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // An object that defines an Amazon SNS destination for email events. You can
 // use Amazon SNS to send notification when certain email events occur.
 type SnsDestination struct {
@@ -11241,6 +11753,57 @@ func (s *Template) SetTemplateArn(v string) *Template {
 func (s *Template) SetTemplateData(v string) *Template {
 	s.TemplateData = &v
 	return s
+}
+
+// Too many requests have been made to the operation.
+type TooManyRequestsException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+}
+
+// String returns the string representation
+func (s TooManyRequestsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TooManyRequestsException) GoString() string {
+	return s.String()
+}
+
+func newErrorTooManyRequestsException(v protocol.ResponseMetadata) error {
+	return &TooManyRequestsException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s TooManyRequestsException) Code() string {
+	return "TooManyRequestsException"
+}
+
+// Message returns the exception's message.
+func (s TooManyRequestsException) Message() string {
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s TooManyRequestsException) OrigErr() error {
+	return nil
+}
+
+func (s TooManyRequestsException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s TooManyRequestsException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s TooManyRequestsException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // An object that defines the tracking options for a configuration set. When

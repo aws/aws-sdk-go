@@ -3,12 +3,14 @@
 package kinesisvideomedia
 
 import (
+	"fmt"
 	"io"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
 const opGetMedia = "GetMedia"
@@ -103,29 +105,29 @@ func (c *KinesisVideoMedia) GetMediaRequest(input *GetMediaInput) (req *request.
 // See the AWS API reference guide for Amazon Kinesis Video Streams Media's
 // API operation GetMedia for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   Status Code: 404, The stream with the given name does not exist.
 //
-//   * ErrCodeNotAuthorizedException "NotAuthorizedException"
+//   * NotAuthorizedException
 //   Status Code: 403, The caller is not authorized to perform an operation on
 //   the given stream, or the token has expired.
 //
-//   * ErrCodeInvalidEndpointException "InvalidEndpointException"
+//   * InvalidEndpointException
 //   Status Code: 400, Caller used wrong endpoint to write data to a stream. On
 //   receiving such an exception, the user must call GetDataEndpoint with AccessMode
 //   set to "READ" and use the endpoint Kinesis Video returns in the next GetMedia
 //   call.
 //
-//   * ErrCodeClientLimitExceededException "ClientLimitExceededException"
+//   * ClientLimitExceededException
 //   Kinesis Video Streams has throttled the request because you have exceeded
 //   the limit of allowed client calls. Try making the call later.
 //
-//   * ErrCodeConnectionLimitExceededException "ConnectionLimitExceededException"
+//   * ConnectionLimitExceededException
 //   Kinesis Video Streams has throttled the request because you have exceeded
 //   the limit of allowed client connections.
 //
-//   * ErrCodeInvalidArgumentException "InvalidArgumentException"
+//   * InvalidArgumentException
 //   The value for this input parameter is invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesis-video-media-2017-09-30/GetMedia
@@ -148,6 +150,120 @@ func (c *KinesisVideoMedia) GetMediaWithContext(ctx aws.Context, input *GetMedia
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// Kinesis Video Streams has throttled the request because you have exceeded
+// the limit of allowed client calls. Try making the call later.
+type ClientLimitExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ClientLimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ClientLimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorClientLimitExceededException(v protocol.ResponseMetadata) error {
+	return &ClientLimitExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ClientLimitExceededException) Code() string {
+	return "ClientLimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s ClientLimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ClientLimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s ClientLimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ClientLimitExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ClientLimitExceededException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Kinesis Video Streams has throttled the request because you have exceeded
+// the limit of allowed client connections.
+type ConnectionLimitExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ConnectionLimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConnectionLimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorConnectionLimitExceededException(v protocol.ResponseMetadata) error {
+	return &ConnectionLimitExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ConnectionLimitExceededException) Code() string {
+	return "ConnectionLimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s ConnectionLimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ConnectionLimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s ConnectionLimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ConnectionLimitExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ConnectionLimitExceededException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type GetMediaInput struct {
@@ -295,6 +411,234 @@ func (s *GetMediaOutput) SetContentType(v string) *GetMediaOutput {
 func (s *GetMediaOutput) SetPayload(v io.ReadCloser) *GetMediaOutput {
 	s.Payload = v
 	return s
+}
+
+// The value for this input parameter is invalid.
+type InvalidArgumentException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidArgumentException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidArgumentException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidArgumentException(v protocol.ResponseMetadata) error {
+	return &InvalidArgumentException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidArgumentException) Code() string {
+	return "InvalidArgumentException"
+}
+
+// Message returns the exception's message.
+func (s InvalidArgumentException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidArgumentException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidArgumentException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidArgumentException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidArgumentException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Status Code: 400, Caller used wrong endpoint to write data to a stream. On
+// receiving such an exception, the user must call GetDataEndpoint with AccessMode
+// set to "READ" and use the endpoint Kinesis Video returns in the next GetMedia
+// call.
+type InvalidEndpointException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidEndpointException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidEndpointException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidEndpointException(v protocol.ResponseMetadata) error {
+	return &InvalidEndpointException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidEndpointException) Code() string {
+	return "InvalidEndpointException"
+}
+
+// Message returns the exception's message.
+func (s InvalidEndpointException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidEndpointException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidEndpointException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidEndpointException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidEndpointException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Status Code: 403, The caller is not authorized to perform an operation on
+// the given stream, or the token has expired.
+type NotAuthorizedException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s NotAuthorizedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NotAuthorizedException) GoString() string {
+	return s.String()
+}
+
+func newErrorNotAuthorizedException(v protocol.ResponseMetadata) error {
+	return &NotAuthorizedException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s NotAuthorizedException) Code() string {
+	return "NotAuthorizedException"
+}
+
+// Message returns the exception's message.
+func (s NotAuthorizedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s NotAuthorizedException) OrigErr() error {
+	return nil
+}
+
+func (s NotAuthorizedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s NotAuthorizedException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s NotAuthorizedException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Status Code: 404, The stream with the given name does not exist.
+type ResourceNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Identifies the chunk on the Kinesis video stream where you want the GetMedia

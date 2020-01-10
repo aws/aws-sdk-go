@@ -2,6 +2,10 @@
 
 package schemas
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeBadRequestException for service response error code
@@ -40,3 +44,15 @@ const (
 	// "UnauthorizedException".
 	ErrCodeUnauthorizedException = "UnauthorizedException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"BadRequestException":          newErrorBadRequestException,
+	"ConflictException":            newErrorConflictException,
+	"ForbiddenException":           newErrorForbiddenException,
+	"GoneException":                newErrorGoneException,
+	"InternalServerErrorException": newErrorInternalServerErrorException,
+	"NotFoundException":            newErrorNotFoundException,
+	"ServiceUnavailableException":  newErrorServiceUnavailableException,
+	"TooManyRequestsException":     newErrorTooManyRequestsException,
+	"UnauthorizedException":        newErrorUnauthorizedException,
+}

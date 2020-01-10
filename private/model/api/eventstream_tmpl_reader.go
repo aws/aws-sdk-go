@@ -104,7 +104,11 @@ func (r *{{ $es.StreamReaderImplName }}) readEventStream() {
 	}
 }
 
-func {{ $es.StreamUnmarshalerForEventName }}(eventType string) (eventstreamapi.Unmarshaler, error) {
+type {{ $es.StreamUnmarshalerForEventName }} struct {
+	metadata protocol.ResponseMetadata
+}
+
+func (u {{ $es.StreamUnmarshalerForEventName }}) UnmarshalerForEventName(eventType string) (eventstreamapi.Unmarshaler, error) {
 	switch eventType {
 		{{- range $_, $event := $es.Events }}
 			case {{ printf "%q" $event.Name }}:
@@ -112,7 +116,7 @@ func {{ $es.StreamUnmarshalerForEventName }}(eventType string) (eventstreamapi.U
 		{{- end }}
 		{{- range $_, $event := $es.Exceptions }}
 			case {{ printf "%q" $event.Name }}:
-				return &{{ $event.Shape.ShapeName }}{}, nil
+				return newError{{ $event.Shape.ShapeName }}(u.metadata).(eventstreamapi.Unmarshaler), nil
 		{{- end }}
 	default:
 		return nil, awserr.New(

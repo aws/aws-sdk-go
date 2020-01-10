@@ -2,6 +2,10 @@
 
 package connect
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeContactNotFoundException for service response error code
@@ -70,3 +74,17 @@ const (
 	// No user with the specified credentials was found in the Amazon Connect instance.
 	ErrCodeUserNotFoundException = "UserNotFoundException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"ContactNotFoundException":             newErrorContactNotFoundException,
+	"DestinationNotAllowedException":       newErrorDestinationNotAllowedException,
+	"DuplicateResourceException":           newErrorDuplicateResourceException,
+	"InternalServiceException":             newErrorInternalServiceException,
+	"InvalidParameterException":            newErrorInvalidParameterException,
+	"InvalidRequestException":              newErrorInvalidRequestException,
+	"LimitExceededException":               newErrorLimitExceededException,
+	"OutboundContactNotPermittedException": newErrorOutboundContactNotPermittedException,
+	"ResourceNotFoundException":            newErrorResourceNotFoundException,
+	"ThrottlingException":                  newErrorThrottlingException,
+	"UserNotFoundException":                newErrorUserNotFoundException,
+}

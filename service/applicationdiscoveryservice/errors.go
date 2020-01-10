@@ -2,6 +2,10 @@
 
 package applicationdiscoveryservice
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeAuthorizationErrorException for service response error code
@@ -63,3 +67,15 @@ const (
 	// The server experienced an internal error. Try again.
 	ErrCodeServerInternalErrorException = "ServerInternalErrorException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"AuthorizationErrorException":    newErrorAuthorizationErrorException,
+	"ConflictErrorException":         newErrorConflictErrorException,
+	"HomeRegionNotSetException":      newErrorHomeRegionNotSetException,
+	"InvalidParameterException":      newErrorInvalidParameterException,
+	"InvalidParameterValueException": newErrorInvalidParameterValueException,
+	"OperationNotPermittedException": newErrorOperationNotPermittedException,
+	"ResourceInUseException":         newErrorResourceInUseException,
+	"ResourceNotFoundException":      newErrorResourceNotFoundException,
+	"ServerInternalErrorException":   newErrorServerInternalErrorException,
+}

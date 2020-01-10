@@ -2,6 +2,10 @@
 
 package codestarconnections
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeLimitExceededException for service response error code
@@ -16,3 +20,8 @@ const (
 	// Resource not found. Verify the connection resource ARN and try again.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"LimitExceededException":    newErrorLimitExceededException,
+	"ResourceNotFoundException": newErrorResourceNotFoundException,
+}

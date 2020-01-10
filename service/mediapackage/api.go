@@ -65,18 +65,18 @@ func (c *MediaPackage) CreateChannelRequest(input *CreateChannelInput) (req *req
 // See the AWS API reference guide for AWS Elemental MediaPackage's
 // API operation CreateChannel for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnprocessableEntityException "UnprocessableEntityException"
+// Returned Error Types:
+//   * UnprocessableEntityException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-2017-10-12/CreateChannel
 func (c *MediaPackage) CreateChannel(input *CreateChannelInput) (*CreateChannelOutput, error) {
@@ -153,18 +153,18 @@ func (c *MediaPackage) CreateHarvestJobRequest(input *CreateHarvestJobInput) (re
 // See the AWS API reference guide for AWS Elemental MediaPackage's
 // API operation CreateHarvestJob for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnprocessableEntityException "UnprocessableEntityException"
+// Returned Error Types:
+//   * UnprocessableEntityException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-2017-10-12/CreateHarvestJob
 func (c *MediaPackage) CreateHarvestJob(input *CreateHarvestJobInput) (*CreateHarvestJobOutput, error) {
@@ -241,18 +241,18 @@ func (c *MediaPackage) CreateOriginEndpointRequest(input *CreateOriginEndpointIn
 // See the AWS API reference guide for AWS Elemental MediaPackage's
 // API operation CreateOriginEndpoint for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnprocessableEntityException "UnprocessableEntityException"
+// Returned Error Types:
+//   * UnprocessableEntityException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-2017-10-12/CreateOriginEndpoint
 func (c *MediaPackage) CreateOriginEndpoint(input *CreateOriginEndpointInput) (*CreateOriginEndpointOutput, error) {
@@ -330,18 +330,18 @@ func (c *MediaPackage) DeleteChannelRequest(input *DeleteChannelInput) (req *req
 // See the AWS API reference guide for AWS Elemental MediaPackage's
 // API operation DeleteChannel for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnprocessableEntityException "UnprocessableEntityException"
+// Returned Error Types:
+//   * UnprocessableEntityException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-2017-10-12/DeleteChannel
 func (c *MediaPackage) DeleteChannel(input *DeleteChannelInput) (*DeleteChannelOutput, error) {
@@ -419,18 +419,18 @@ func (c *MediaPackage) DeleteOriginEndpointRequest(input *DeleteOriginEndpointIn
 // See the AWS API reference guide for AWS Elemental MediaPackage's
 // API operation DeleteOriginEndpoint for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnprocessableEntityException "UnprocessableEntityException"
+// Returned Error Types:
+//   * UnprocessableEntityException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-2017-10-12/DeleteOriginEndpoint
 func (c *MediaPackage) DeleteOriginEndpoint(input *DeleteOriginEndpointInput) (*DeleteOriginEndpointOutput, error) {
@@ -507,18 +507,18 @@ func (c *MediaPackage) DescribeChannelRequest(input *DescribeChannelInput) (req 
 // See the AWS API reference guide for AWS Elemental MediaPackage's
 // API operation DescribeChannel for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnprocessableEntityException "UnprocessableEntityException"
+// Returned Error Types:
+//   * UnprocessableEntityException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-2017-10-12/DescribeChannel
 func (c *MediaPackage) DescribeChannel(input *DescribeChannelInput) (*DescribeChannelOutput, error) {
@@ -595,18 +595,18 @@ func (c *MediaPackage) DescribeHarvestJobRequest(input *DescribeHarvestJobInput)
 // See the AWS API reference guide for AWS Elemental MediaPackage's
 // API operation DescribeHarvestJob for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnprocessableEntityException "UnprocessableEntityException"
+// Returned Error Types:
+//   * UnprocessableEntityException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-2017-10-12/DescribeHarvestJob
 func (c *MediaPackage) DescribeHarvestJob(input *DescribeHarvestJobInput) (*DescribeHarvestJobOutput, error) {
@@ -683,18 +683,18 @@ func (c *MediaPackage) DescribeOriginEndpointRequest(input *DescribeOriginEndpoi
 // See the AWS API reference guide for AWS Elemental MediaPackage's
 // API operation DescribeOriginEndpoint for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnprocessableEntityException "UnprocessableEntityException"
+// Returned Error Types:
+//   * UnprocessableEntityException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-2017-10-12/DescribeOriginEndpoint
 func (c *MediaPackage) DescribeOriginEndpoint(input *DescribeOriginEndpointInput) (*DescribeOriginEndpointOutput, error) {
@@ -777,18 +777,18 @@ func (c *MediaPackage) ListChannelsRequest(input *ListChannelsInput) (req *reque
 // See the AWS API reference guide for AWS Elemental MediaPackage's
 // API operation ListChannels for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnprocessableEntityException "UnprocessableEntityException"
+// Returned Error Types:
+//   * UnprocessableEntityException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-2017-10-12/ListChannels
 func (c *MediaPackage) ListChannels(input *ListChannelsInput) (*ListChannelsOutput, error) {
@@ -923,18 +923,18 @@ func (c *MediaPackage) ListHarvestJobsRequest(input *ListHarvestJobsInput) (req 
 // See the AWS API reference guide for AWS Elemental MediaPackage's
 // API operation ListHarvestJobs for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnprocessableEntityException "UnprocessableEntityException"
+// Returned Error Types:
+//   * UnprocessableEntityException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-2017-10-12/ListHarvestJobs
 func (c *MediaPackage) ListHarvestJobs(input *ListHarvestJobsInput) (*ListHarvestJobsOutput, error) {
@@ -1069,18 +1069,18 @@ func (c *MediaPackage) ListOriginEndpointsRequest(input *ListOriginEndpointsInpu
 // See the AWS API reference guide for AWS Elemental MediaPackage's
 // API operation ListOriginEndpoints for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnprocessableEntityException "UnprocessableEntityException"
+// Returned Error Types:
+//   * UnprocessableEntityException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-2017-10-12/ListOriginEndpoints
 func (c *MediaPackage) ListOriginEndpoints(input *ListOriginEndpointsInput) (*ListOriginEndpointsOutput, error) {
@@ -1287,18 +1287,18 @@ func (c *MediaPackage) RotateChannelCredentialsRequest(input *RotateChannelCrede
 // See the AWS API reference guide for AWS Elemental MediaPackage's
 // API operation RotateChannelCredentials for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnprocessableEntityException "UnprocessableEntityException"
+// Returned Error Types:
+//   * UnprocessableEntityException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-2017-10-12/RotateChannelCredentials
 //
@@ -1380,18 +1380,18 @@ func (c *MediaPackage) RotateIngestEndpointCredentialsRequest(input *RotateInges
 // See the AWS API reference guide for AWS Elemental MediaPackage's
 // API operation RotateIngestEndpointCredentials for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnprocessableEntityException "UnprocessableEntityException"
+// Returned Error Types:
+//   * UnprocessableEntityException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-2017-10-12/RotateIngestEndpointCredentials
 func (c *MediaPackage) RotateIngestEndpointCredentials(input *RotateIngestEndpointCredentialsInput) (*RotateIngestEndpointCredentialsOutput, error) {
@@ -1614,18 +1614,18 @@ func (c *MediaPackage) UpdateChannelRequest(input *UpdateChannelInput) (req *req
 // See the AWS API reference guide for AWS Elemental MediaPackage's
 // API operation UpdateChannel for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnprocessableEntityException "UnprocessableEntityException"
+// Returned Error Types:
+//   * UnprocessableEntityException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-2017-10-12/UpdateChannel
 func (c *MediaPackage) UpdateChannel(input *UpdateChannelInput) (*UpdateChannelOutput, error) {
@@ -1702,18 +1702,18 @@ func (c *MediaPackage) UpdateOriginEndpointRequest(input *UpdateOriginEndpointIn
 // See the AWS API reference guide for AWS Elemental MediaPackage's
 // API operation UpdateOriginEndpoint for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeUnprocessableEntityException "UnprocessableEntityException"
+// Returned Error Types:
+//   * UnprocessableEntityException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-2017-10-12/UpdateOriginEndpoint
 func (c *MediaPackage) UpdateOriginEndpoint(input *UpdateOriginEndpointInput) (*UpdateOriginEndpointOutput, error) {
@@ -3411,6 +3411,61 @@ func (s *DescribeOriginEndpointOutput) SetWhitelist(v []*string) *DescribeOrigin
 	return s
 }
 
+type ForbiddenException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ForbiddenException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ForbiddenException) GoString() string {
+	return s.String()
+}
+
+func newErrorForbiddenException(v protocol.ResponseMetadata) error {
+	return &ForbiddenException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ForbiddenException) Code() string {
+	return "ForbiddenException"
+}
+
+// Message returns the exception's message.
+func (s ForbiddenException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ForbiddenException) OrigErr() error {
+	return nil
+}
+
+func (s ForbiddenException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ForbiddenException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ForbiddenException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // A HarvestJob resource configuration
 type HarvestJob struct {
 	_ struct{} `type:"structure"`
@@ -4064,6 +4119,61 @@ func (s *IngestEndpoint) SetUsername(v string) *IngestEndpoint {
 	return s
 }
 
+type InternalServerErrorException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s InternalServerErrorException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternalServerErrorException) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalServerErrorException(v protocol.ResponseMetadata) error {
+	return &InternalServerErrorException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InternalServerErrorException) Code() string {
+	return "InternalServerErrorException"
+}
+
+// Message returns the exception's message.
+func (s InternalServerErrorException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InternalServerErrorException) OrigErr() error {
+	return nil
+}
+
+func (s InternalServerErrorException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InternalServerErrorException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InternalServerErrorException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type ListChannelsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4477,6 +4587,61 @@ func (s *MssPackage) SetSegmentDurationSeconds(v int64) *MssPackage {
 func (s *MssPackage) SetStreamSelection(v *StreamSelection) *MssPackage {
 	s.StreamSelection = v
 	return s
+}
+
+type NotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s NotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorNotFoundException(v protocol.ResponseMetadata) error {
+	return &NotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s NotFoundException) Code() string {
+	return "NotFoundException"
+}
+
+// Message returns the exception's message.
+func (s NotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s NotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s NotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s NotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s NotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // An OriginEndpoint resource configuration.
@@ -4920,6 +5085,61 @@ func (s *S3Destination) SetRoleArn(v string) *S3Destination {
 	return s
 }
 
+type ServiceUnavailableException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ServiceUnavailableException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceUnavailableException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceUnavailableException(v protocol.ResponseMetadata) error {
+	return &ServiceUnavailableException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ServiceUnavailableException) Code() string {
+	return "ServiceUnavailableException"
+}
+
+// Message returns the exception's message.
+func (s ServiceUnavailableException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ServiceUnavailableException) OrigErr() error {
+	return nil
+}
+
+func (s ServiceUnavailableException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ServiceUnavailableException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ServiceUnavailableException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // A configuration for accessing an external Secure Packager and Encoder Key
 // Exchange (SPEKE) service that will provide encryption keys.
 type SpekeKeyProvider struct {
@@ -5119,6 +5339,116 @@ func (s TagResourceOutput) String() string {
 // GoString returns the string representation
 func (s TagResourceOutput) GoString() string {
 	return s.String()
+}
+
+type TooManyRequestsException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s TooManyRequestsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TooManyRequestsException) GoString() string {
+	return s.String()
+}
+
+func newErrorTooManyRequestsException(v protocol.ResponseMetadata) error {
+	return &TooManyRequestsException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s TooManyRequestsException) Code() string {
+	return "TooManyRequestsException"
+}
+
+// Message returns the exception's message.
+func (s TooManyRequestsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s TooManyRequestsException) OrigErr() error {
+	return nil
+}
+
+func (s TooManyRequestsException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s TooManyRequestsException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s TooManyRequestsException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+type UnprocessableEntityException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s UnprocessableEntityException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UnprocessableEntityException) GoString() string {
+	return s.String()
+}
+
+func newErrorUnprocessableEntityException(v protocol.ResponseMetadata) error {
+	return &UnprocessableEntityException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s UnprocessableEntityException) Code() string {
+	return "UnprocessableEntityException"
+}
+
+// Message returns the exception's message.
+func (s UnprocessableEntityException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s UnprocessableEntityException) OrigErr() error {
+	return nil
+}
+
+func (s UnprocessableEntityException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s UnprocessableEntityException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s UnprocessableEntityException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type UntagResourceInput struct {

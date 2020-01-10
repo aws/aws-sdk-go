@@ -2,6 +2,10 @@
 
 package frauddetector
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeInternalServerException for service response error code
@@ -28,3 +32,10 @@ const (
 	// An exception indicating a specified value is not allowed.
 	ErrCodeValidationException = "ValidationException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"InternalServerException":   newErrorInternalServerException,
+	"ResourceNotFoundException": newErrorResourceNotFoundException,
+	"ThrottlingException":       newErrorThrottlingException,
+	"ValidationException":       newErrorValidationException,
+}

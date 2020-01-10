@@ -287,7 +287,7 @@ func (c *loopReader) Read(p []byte) (int, error) {
 			}
 
 			if e, a := expectErr, aerr; !reflect.DeepEqual(e, a) {
-				t.Errorf("expect %#v, got %#v", e, a)
+				t.Errorf("expect error %+#v, got %+#v", e, a)
 			}
 		}
 
@@ -301,6 +301,11 @@ func (c *loopReader) Read(p []byte) (int, error) {
 {{/* Params: *Shape */}}
 {{ define "set event type" }}
 	&{{ $.ShapeName }}{
+		{{- if $.Exception }}
+			respMetadata: protocol.ResponseMetadata{
+				StatusCode: 200,
+			},
+		{{- end }}
 		{{- range $memName, $memRef := $.MemberRefs }}
 			{{- if not $memRef.Shape.IsEventStream }}
 				{{ $memName }}: {{ ValueForType $memRef.Shape nil }},

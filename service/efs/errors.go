@@ -2,6 +2,10 @@
 
 package efs
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeBadRequest for service response error code
@@ -150,3 +154,27 @@ const (
 	// "UnsupportedAvailabilityZone".
 	ErrCodeUnsupportedAvailabilityZone = "UnsupportedAvailabilityZone"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"BadRequest":                        newErrorBadRequest,
+	"DependencyTimeout":                 newErrorDependencyTimeout,
+	"FileSystemAlreadyExists":           newErrorFileSystemAlreadyExists,
+	"FileSystemInUse":                   newErrorFileSystemInUse,
+	"FileSystemLimitExceeded":           newErrorFileSystemLimitExceeded,
+	"FileSystemNotFound":                newErrorFileSystemNotFound,
+	"IncorrectFileSystemLifeCycleState": newErrorIncorrectFileSystemLifeCycleState,
+	"IncorrectMountTargetState":         newErrorIncorrectMountTargetState,
+	"InsufficientThroughputCapacity":    newErrorInsufficientThroughputCapacity,
+	"InternalServerError":               newErrorInternalServerError,
+	"IpAddressInUse":                    newErrorIpAddressInUse,
+	"MountTargetConflict":               newErrorMountTargetConflict,
+	"MountTargetNotFound":               newErrorMountTargetNotFound,
+	"NetworkInterfaceLimitExceeded":     newErrorNetworkInterfaceLimitExceeded,
+	"NoFreeAddressesInSubnet":           newErrorNoFreeAddressesInSubnet,
+	"SecurityGroupLimitExceeded":        newErrorSecurityGroupLimitExceeded,
+	"SecurityGroupNotFound":             newErrorSecurityGroupNotFound,
+	"SubnetNotFound":                    newErrorSubnetNotFound,
+	"ThroughputLimitExceeded":           newErrorThroughputLimitExceeded,
+	"TooManyRequests":                   newErrorTooManyRequests,
+	"UnsupportedAvailabilityZone":       newErrorUnsupportedAvailabilityZone,
+}

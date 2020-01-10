@@ -3,9 +3,12 @@
 package sagemakerruntime
 
 import (
+	"fmt"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
 const opInvokeEndpoint = "InvokeEndpoint"
@@ -83,17 +86,17 @@ func (c *SageMakerRuntime) InvokeEndpointRequest(input *InvokeEndpointInput) (re
 // See the AWS API reference guide for Amazon SageMaker Runtime's
 // API operation InvokeEndpoint for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInternalFailure "InternalFailure"
+// Returned Error Types:
+//   * InternalFailure
 //   An internal failure occurred.
 //
-//   * ErrCodeServiceUnavailable "ServiceUnavailable"
+//   * ServiceUnavailable
 //   The service is unavailable. Try your call again.
 //
-//   * ErrCodeValidationError "ValidationError"
+//   * ValidationError
 //   Inspect your request and try again.
 //
-//   * ErrCodeModelError "ModelError"
+//   * ModelError
 //   Model (owned by the customer in the container) returned 4xx or 5xx error
 //   code.
 //
@@ -117,6 +120,62 @@ func (c *SageMakerRuntime) InvokeEndpointWithContext(ctx aws.Context, input *Inv
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// An internal failure occurred.
+type InternalFailure struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InternalFailure) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternalFailure) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalFailure(v protocol.ResponseMetadata) error {
+	return &InternalFailure{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InternalFailure) Code() string {
+	return "InternalFailure"
+}
+
+// Message returns the exception's message.
+func (s InternalFailure) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InternalFailure) OrigErr() error {
+	return nil
+}
+
+func (s InternalFailure) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InternalFailure) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InternalFailure) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type InvokeEndpointInput struct {
@@ -293,4 +352,182 @@ func (s *InvokeEndpointOutput) SetCustomAttributes(v string) *InvokeEndpointOutp
 func (s *InvokeEndpointOutput) SetInvokedProductionVariant(v string) *InvokeEndpointOutput {
 	s.InvokedProductionVariant = &v
 	return s
+}
+
+// Model (owned by the customer in the container) returned 4xx or 5xx error
+// code.
+type ModelError struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	// The Amazon Resource Name (ARN) of the log stream.
+	LogStreamArn *string `type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// Original message.
+	OriginalMessage *string `type:"string"`
+
+	// Original status code.
+	OriginalStatusCode *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s ModelError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModelError) GoString() string {
+	return s.String()
+}
+
+func newErrorModelError(v protocol.ResponseMetadata) error {
+	return &ModelError{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ModelError) Code() string {
+	return "ModelError"
+}
+
+// Message returns the exception's message.
+func (s ModelError) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ModelError) OrigErr() error {
+	return nil
+}
+
+func (s ModelError) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ModelError) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ModelError) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// The service is unavailable. Try your call again.
+type ServiceUnavailable struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ServiceUnavailable) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceUnavailable) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceUnavailable(v protocol.ResponseMetadata) error {
+	return &ServiceUnavailable{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ServiceUnavailable) Code() string {
+	return "ServiceUnavailable"
+}
+
+// Message returns the exception's message.
+func (s ServiceUnavailable) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ServiceUnavailable) OrigErr() error {
+	return nil
+}
+
+func (s ServiceUnavailable) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ServiceUnavailable) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ServiceUnavailable) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Inspect your request and try again.
+type ValidationError struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ValidationError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ValidationError) GoString() string {
+	return s.String()
+}
+
+func newErrorValidationError(v protocol.ResponseMetadata) error {
+	return &ValidationError{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ValidationError) Code() string {
+	return "ValidationError"
+}
+
+// Message returns the exception's message.
+func (s ValidationError) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ValidationError) OrigErr() error {
+	return nil
+}
+
+func (s ValidationError) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ValidationError) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ValidationError) RequestID() string {
+	return s.respMetadata.RequestID
 }

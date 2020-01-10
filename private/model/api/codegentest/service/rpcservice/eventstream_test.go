@@ -497,6 +497,9 @@ func TestGetEventStream_ReadException(t *testing.T) {
 			StrVal: aws.String("string value goes here"),
 		},
 		&ExceptionEvent{
+			respMetadata: protocol.ResponseMetadata{
+				StatusCode: 200,
+			},
 			IntVal:   aws.Int64(123),
 			Message_: aws.String("string value goes here"),
 		},
@@ -559,6 +562,9 @@ func TestGetEventStream_ReadException(t *testing.T) {
 	}
 
 	expectErr := &ExceptionEvent{
+		respMetadata: protocol.ResponseMetadata{
+			StatusCode: 200,
+		},
 		IntVal:   aws.Int64(123),
 		Message_: aws.String("string value goes here"),
 	}
@@ -574,7 +580,7 @@ func TestGetEventStream_ReadException(t *testing.T) {
 	}
 
 	if e, a := expectErr, aerr; !reflect.DeepEqual(e, a) {
-		t.Errorf("expect %#v, got %#v", e, a)
+		t.Errorf("expect error %+#v, got %+#v", e, a)
 	}
 }
 

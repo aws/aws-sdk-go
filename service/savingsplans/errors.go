@@ -2,6 +2,10 @@
 
 package savingsplans
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeInternalServerException for service response error code
@@ -28,3 +32,10 @@ const (
 	// One of the input parameters is not valid.
 	ErrCodeValidationException = "ValidationException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"InternalServerException":       newErrorInternalServerException,
+	"ResourceNotFoundException":     newErrorResourceNotFoundException,
+	"ServiceQuotaExceededException": newErrorServiceQuotaExceededException,
+	"ValidationException":           newErrorValidationException,
+}

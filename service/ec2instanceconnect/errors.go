@@ -2,6 +2,10 @@
 
 package ec2instanceconnect
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeAuthException for service response error code
@@ -40,3 +44,11 @@ const (
 	// AWS Support.
 	ErrCodeThrottlingException = "ThrottlingException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"AuthException":                newErrorAuthException,
+	"EC2InstanceNotFoundException": newErrorEC2InstanceNotFoundException,
+	"InvalidArgsException":         newErrorInvalidArgsException,
+	"ServiceException":             newErrorServiceException,
+	"ThrottlingException":          newErrorThrottlingException,
+}

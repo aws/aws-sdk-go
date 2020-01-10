@@ -70,22 +70,22 @@ func (c *Backup) CreateBackupPlanRequest(input *CreateBackupPlanInput) (req *req
 // See the AWS API reference guide for AWS Backup's
 // API operation CreateBackupPlan for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   A limit in the request has been exceeded; for example, a maximum number of
 //   items allowed in a request.
 //
-//   * ErrCodeAlreadyExistsException "AlreadyExistsException"
+//   * AlreadyExistsException
 //   The required resource already exists.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/CreateBackupPlan
@@ -183,22 +183,22 @@ func (c *Backup) CreateBackupSelectionRequest(input *CreateBackupSelectionInput)
 // See the AWS API reference guide for AWS Backup's
 // API operation CreateBackupSelection for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   A limit in the request has been exceeded; for example, a maximum number of
 //   items allowed in a request.
 //
-//   * ErrCodeAlreadyExistsException "AlreadyExistsException"
+//   * AlreadyExistsException
 //   The required resource already exists.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/CreateBackupSelection
@@ -281,22 +281,22 @@ func (c *Backup) CreateBackupVaultRequest(input *CreateBackupVaultInput) (req *r
 // See the AWS API reference guide for AWS Backup's
 // API operation CreateBackupVault for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+// Returned Error Types:
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   A limit in the request has been exceeded; for example, a maximum number of
 //   items allowed in a request.
 //
-//   * ErrCodeAlreadyExistsException "AlreadyExistsException"
+//   * AlreadyExistsException
 //   The required resource already exists.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/CreateBackupVault
@@ -377,21 +377,21 @@ func (c *Backup) DeleteBackupPlanRequest(input *DeleteBackupPlanInput) (req *req
 // See the AWS API reference guide for AWS Backup's
 // API operation DeleteBackupPlan for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   * InvalidRequestException
 //   Indicates that something is wrong with the input to the request. For example,
 //   a parameter is of the wrong type.
 //
@@ -472,18 +472,18 @@ func (c *Backup) DeleteBackupSelectionRequest(input *DeleteBackupSelectionInput)
 // See the AWS API reference guide for AWS Backup's
 // API operation DeleteBackupSelection for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/DeleteBackupSelection
@@ -563,21 +563,21 @@ func (c *Backup) DeleteBackupVaultRequest(input *DeleteBackupVaultInput) (req *r
 // See the AWS API reference guide for AWS Backup's
 // API operation DeleteBackupVault for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   * InvalidRequestException
 //   Indicates that something is wrong with the input to the request. For example,
 //   a parameter is of the wrong type.
 //
@@ -657,18 +657,18 @@ func (c *Backup) DeleteBackupVaultAccessPolicyRequest(input *DeleteBackupVaultAc
 // See the AWS API reference guide for AWS Backup's
 // API operation DeleteBackupVaultAccessPolicy for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/DeleteBackupVaultAccessPolicy
@@ -747,18 +747,18 @@ func (c *Backup) DeleteBackupVaultNotificationsRequest(input *DeleteBackupVaultN
 // See the AWS API reference guide for AWS Backup's
 // API operation DeleteBackupVaultNotifications for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/DeleteBackupVaultNotifications
@@ -837,21 +837,21 @@ func (c *Backup) DeleteRecoveryPointRequest(input *DeleteRecoveryPointInput) (re
 // See the AWS API reference guide for AWS Backup's
 // API operation DeleteRecoveryPoint for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   * InvalidRequestException
 //   Indicates that something is wrong with the input to the request. For example,
 //   a parameter is of the wrong type.
 //
@@ -930,21 +930,21 @@ func (c *Backup) DescribeBackupJobRequest(input *DescribeBackupJobInput) (req *r
 // See the AWS API reference guide for AWS Backup's
 // API operation DescribeBackupJob for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
-//   * ErrCodeDependencyFailureException "DependencyFailureException"
+//   * DependencyFailureException
 //   A dependent AWS service or resource returned an error to the AWS Backup service,
 //   and the action cannot be completed.
 //
@@ -1023,18 +1023,18 @@ func (c *Backup) DescribeBackupVaultRequest(input *DescribeBackupVaultInput) (re
 // See the AWS API reference guide for AWS Backup's
 // API operation DescribeBackupVault for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/DescribeBackupVault
@@ -1114,18 +1114,18 @@ func (c *Backup) DescribeProtectedResourceRequest(input *DescribeProtectedResour
 // See the AWS API reference guide for AWS Backup's
 // API operation DescribeProtectedResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+// Returned Error Types:
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/DescribeProtectedResource
@@ -1204,18 +1204,18 @@ func (c *Backup) DescribeRecoveryPointRequest(input *DescribeRecoveryPointInput)
 // See the AWS API reference guide for AWS Backup's
 // API operation DescribeRecoveryPoint for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/DescribeRecoveryPoint
@@ -1294,21 +1294,21 @@ func (c *Backup) DescribeRestoreJobRequest(input *DescribeRestoreJobInput) (req 
 // See the AWS API reference guide for AWS Backup's
 // API operation DescribeRestoreJob for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
-//   * ErrCodeDependencyFailureException "DependencyFailureException"
+//   * DependencyFailureException
 //   A dependent AWS service or resource returned an error to the AWS Backup service,
 //   and the action cannot be completed.
 //
@@ -1387,18 +1387,18 @@ func (c *Backup) ExportBackupPlanTemplateRequest(input *ExportBackupPlanTemplate
 // See the AWS API reference guide for AWS Backup's
 // API operation ExportBackupPlanTemplate for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+// Returned Error Types:
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/ExportBackupPlanTemplate
@@ -1476,18 +1476,18 @@ func (c *Backup) GetBackupPlanRequest(input *GetBackupPlanInput) (req *request.R
 // See the AWS API reference guide for AWS Backup's
 // API operation GetBackupPlan for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/GetBackupPlan
@@ -1565,22 +1565,22 @@ func (c *Backup) GetBackupPlanFromJSONRequest(input *GetBackupPlanFromJSONInput)
 // See the AWS API reference guide for AWS Backup's
 // API operation GetBackupPlanFromJSON for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   A limit in the request has been exceeded; for example, a maximum number of
 //   items allowed in a request.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   * InvalidRequestException
 //   Indicates that something is wrong with the input to the request. For example,
 //   a parameter is of the wrong type.
 //
@@ -1659,18 +1659,18 @@ func (c *Backup) GetBackupPlanFromTemplateRequest(input *GetBackupPlanFromTempla
 // See the AWS API reference guide for AWS Backup's
 // API operation GetBackupPlanFromTemplate for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+// Returned Error Types:
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/GetBackupPlanFromTemplate
@@ -1749,18 +1749,18 @@ func (c *Backup) GetBackupSelectionRequest(input *GetBackupSelectionInput) (req 
 // See the AWS API reference guide for AWS Backup's
 // API operation GetBackupSelection for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/GetBackupSelection
@@ -1839,18 +1839,18 @@ func (c *Backup) GetBackupVaultAccessPolicyRequest(input *GetBackupVaultAccessPo
 // See the AWS API reference guide for AWS Backup's
 // API operation GetBackupVaultAccessPolicy for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/GetBackupVaultAccessPolicy
@@ -1928,18 +1928,18 @@ func (c *Backup) GetBackupVaultNotificationsRequest(input *GetBackupVaultNotific
 // See the AWS API reference guide for AWS Backup's
 // API operation GetBackupVaultNotifications for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/GetBackupVaultNotifications
@@ -2024,18 +2024,18 @@ func (c *Backup) GetRecoveryPointRestoreMetadataRequest(input *GetRecoveryPointR
 // See the AWS API reference guide for AWS Backup's
 // API operation GetRecoveryPointRestoreMetadata for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/GetRecoveryPointRestoreMetadata
@@ -2113,8 +2113,8 @@ func (c *Backup) GetSupportedResourceTypesRequest(input *GetSupportedResourceTyp
 // See the AWS API reference guide for AWS Backup's
 // API operation GetSupportedResourceTypes for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+// Returned Error Types:
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/GetSupportedResourceTypes
@@ -2198,12 +2198,12 @@ func (c *Backup) ListBackupJobsRequest(input *ListBackupJobsInput) (req *request
 // See the AWS API reference guide for AWS Backup's
 // API operation ListBackupJobs for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+// Returned Error Types:
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/ListBackupJobs
@@ -2340,18 +2340,18 @@ func (c *Backup) ListBackupPlanTemplatesRequest(input *ListBackupPlanTemplatesIn
 // See the AWS API reference guide for AWS Backup's
 // API operation ListBackupPlanTemplates for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+// Returned Error Types:
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/ListBackupPlanTemplates
@@ -2489,18 +2489,18 @@ func (c *Backup) ListBackupPlanVersionsRequest(input *ListBackupPlanVersionsInpu
 // See the AWS API reference guide for AWS Backup's
 // API operation ListBackupPlanVersions for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/ListBackupPlanVersions
@@ -2638,18 +2638,18 @@ func (c *Backup) ListBackupPlansRequest(input *ListBackupPlansInput) (req *reque
 // See the AWS API reference guide for AWS Backup's
 // API operation ListBackupPlans for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/ListBackupPlans
@@ -2786,18 +2786,18 @@ func (c *Backup) ListBackupSelectionsRequest(input *ListBackupSelectionsInput) (
 // See the AWS API reference guide for AWS Backup's
 // API operation ListBackupSelections for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/ListBackupSelections
@@ -2934,18 +2934,18 @@ func (c *Backup) ListBackupVaultsRequest(input *ListBackupVaultsInput) (req *req
 // See the AWS API reference guide for AWS Backup's
 // API operation ListBackupVaults for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/ListBackupVaults
@@ -3083,12 +3083,12 @@ func (c *Backup) ListProtectedResourcesRequest(input *ListProtectedResourcesInpu
 // See the AWS API reference guide for AWS Backup's
 // API operation ListProtectedResources for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+// Returned Error Types:
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/ListProtectedResources
@@ -3225,18 +3225,18 @@ func (c *Backup) ListRecoveryPointsByBackupVaultRequest(input *ListRecoveryPoint
 // See the AWS API reference guide for AWS Backup's
 // API operation ListRecoveryPointsByBackupVault for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/ListRecoveryPointsByBackupVault
@@ -3373,18 +3373,18 @@ func (c *Backup) ListRecoveryPointsByResourceRequest(input *ListRecoveryPointsBy
 // See the AWS API reference guide for AWS Backup's
 // API operation ListRecoveryPointsByResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/ListRecoveryPointsByResource
@@ -3521,18 +3521,18 @@ func (c *Backup) ListRestoreJobsRequest(input *ListRestoreJobsInput) (req *reque
 // See the AWS API reference guide for AWS Backup's
 // API operation ListRestoreJobs for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/ListRestoreJobs
@@ -3669,18 +3669,18 @@ func (c *Backup) ListTagsRequest(input *ListTagsInput) (req *request.Request, ou
 // See the AWS API reference guide for AWS Backup's
 // API operation ListTags for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/ListTags
@@ -3813,18 +3813,18 @@ func (c *Backup) PutBackupVaultAccessPolicyRequest(input *PutBackupVaultAccessPo
 // See the AWS API reference guide for AWS Backup's
 // API operation PutBackupVaultAccessPolicy for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/PutBackupVaultAccessPolicy
@@ -3903,18 +3903,18 @@ func (c *Backup) PutBackupVaultNotificationsRequest(input *PutBackupVaultNotific
 // See the AWS API reference guide for AWS Backup's
 // API operation PutBackupVaultNotifications for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/PutBackupVaultNotifications
@@ -3992,21 +3992,21 @@ func (c *Backup) StartBackupJobRequest(input *StartBackupJobInput) (req *request
 // See the AWS API reference guide for AWS Backup's
 // API operation StartBackupJob for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   A limit in the request has been exceeded; for example, a maximum number of
 //   items allowed in a request.
 //
@@ -4089,18 +4089,18 @@ func (c *Backup) StartRestoreJobRequest(input *StartRestoreJobInput) (req *reque
 // See the AWS API reference guide for AWS Backup's
 // API operation StartRestoreJob for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/StartRestoreJob
@@ -4179,22 +4179,22 @@ func (c *Backup) StopBackupJobRequest(input *StopBackupJobInput) (req *request.R
 // See the AWS API reference guide for AWS Backup's
 // API operation StopBackupJob for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+// Returned Error Types:
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeInvalidRequestException "InvalidRequestException"
+//   * InvalidRequestException
 //   Indicates that something is wrong with the input to the request. For example,
 //   a parameter is of the wrong type.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/StopBackupJob
@@ -4274,21 +4274,21 @@ func (c *Backup) TagResourceRequest(input *TagResourceInput) (req *request.Reque
 // See the AWS API reference guide for AWS Backup's
 // API operation TagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
-//   * ErrCodeLimitExceededException "LimitExceededException"
+//   * LimitExceededException
 //   A limit in the request has been exceeded; for example, a maximum number of
 //   items allowed in a request.
 //
@@ -4369,18 +4369,18 @@ func (c *Backup) UntagResourceRequest(input *UntagResourceInput) (req *request.R
 // See the AWS API reference guide for AWS Backup's
 // API operation UntagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/UntagResource
@@ -4460,18 +4460,18 @@ func (c *Backup) UpdateBackupPlanRequest(input *UpdateBackupPlanInput) (req *req
 // See the AWS API reference guide for AWS Backup's
 // API operation UpdateBackupPlan for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/UpdateBackupPlan
@@ -4559,18 +4559,18 @@ func (c *Backup) UpdateRecoveryPointLifecycleRequest(input *UpdateRecoveryPointL
 // See the AWS API reference guide for AWS Backup's
 // API operation UpdateRecoveryPointLifecycle for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
-//   * ErrCodeInvalidParameterValueException "InvalidParameterValueException"
+//   * InvalidParameterValueException
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
-//   * ErrCodeMissingParameterValueException "MissingParameterValueException"
+//   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/UpdateRecoveryPointLifecycle
@@ -4593,6 +4593,72 @@ func (c *Backup) UpdateRecoveryPointLifecycleWithContext(ctx aws.Context, input 
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// The required resource already exists.
+type AlreadyExistsException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Arn *string `type:"string"`
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Context *string `type:"string"`
+
+	CreatorRequestId *string `type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AlreadyExistsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AlreadyExistsException) GoString() string {
+	return s.String()
+}
+
+func newErrorAlreadyExistsException(v protocol.ResponseMetadata) error {
+	return &AlreadyExistsException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s AlreadyExistsException) Code() string {
+	return "AlreadyExistsException"
+}
+
+// Message returns the exception's message.
+func (s AlreadyExistsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s AlreadyExistsException) OrigErr() error {
+	return nil
+}
+
+func (s AlreadyExistsException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s AlreadyExistsException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s AlreadyExistsException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Contains DeleteAt and MoveToColdStorageAt timestamps, which are used to specify
@@ -5493,6 +5559,69 @@ func (s DeleteRecoveryPointOutput) String() string {
 // GoString returns the string representation
 func (s DeleteRecoveryPointOutput) GoString() string {
 	return s.String()
+}
+
+// A dependent AWS service or resource returned an error to the AWS Backup service,
+// and the action cannot be completed.
+type DependencyFailureException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Context *string `type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DependencyFailureException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DependencyFailureException) GoString() string {
+	return s.String()
+}
+
+func newErrorDependencyFailureException(v protocol.ResponseMetadata) error {
+	return &DependencyFailureException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s DependencyFailureException) Code() string {
+	return "DependencyFailureException"
+}
+
+// Message returns the exception's message.
+func (s DependencyFailureException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s DependencyFailureException) OrigErr() error {
+	return nil
+}
+
+func (s DependencyFailureException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s DependencyFailureException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s DependencyFailureException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type DescribeBackupJobInput struct {
@@ -7180,6 +7309,132 @@ func (s *GetSupportedResourceTypesOutput) SetResourceTypes(v []*string) *GetSupp
 	return s
 }
 
+// Indicates that something is wrong with a parameter's value. For example,
+// the value is out of range.
+type InvalidParameterValueException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Context *string `type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidParameterValueException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidParameterValueException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidParameterValueException(v protocol.ResponseMetadata) error {
+	return &InvalidParameterValueException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidParameterValueException) Code() string {
+	return "InvalidParameterValueException"
+}
+
+// Message returns the exception's message.
+func (s InvalidParameterValueException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidParameterValueException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidParameterValueException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidParameterValueException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidParameterValueException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+// Indicates that something is wrong with the input to the request. For example,
+// a parameter is of the wrong type.
+type InvalidRequestException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Context *string `type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidRequestException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidRequestException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidRequestException(v protocol.ResponseMetadata) error {
+	return &InvalidRequestException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InvalidRequestException) Code() string {
+	return "InvalidRequestException"
+}
+
+// Message returns the exception's message.
+func (s InvalidRequestException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InvalidRequestException) OrigErr() error {
+	return nil
+}
+
+func (s InvalidRequestException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InvalidRequestException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InvalidRequestException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // Contains detailed information about a backup job.
 type Job struct {
 	_ struct{} `type:"structure"`
@@ -7409,6 +7664,69 @@ func (s *Lifecycle) SetDeleteAfterDays(v int64) *Lifecycle {
 func (s *Lifecycle) SetMoveToColdStorageAfterDays(v int64) *Lifecycle {
 	s.MoveToColdStorageAfterDays = &v
 	return s
+}
+
+// A limit in the request has been exceeded; for example, a maximum number of
+// items allowed in a request.
+type LimitExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Context *string `type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s LimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
+	return &LimitExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s LimitExceededException) Code() string {
+	return "LimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s LimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s LimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s LimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s LimitExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s LimitExceededException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type ListBackupJobsInput struct {
@@ -8551,6 +8869,68 @@ func (s *ListTagsOutput) SetTags(v map[string]*string) *ListTagsOutput {
 	return s
 }
 
+// Indicates that a required parameter is missing.
+type MissingParameterValueException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Context *string `type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s MissingParameterValueException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MissingParameterValueException) GoString() string {
+	return s.String()
+}
+
+func newErrorMissingParameterValueException(v protocol.ResponseMetadata) error {
+	return &MissingParameterValueException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s MissingParameterValueException) Code() string {
+	return "MissingParameterValueException"
+}
+
+// Message returns the exception's message.
+func (s MissingParameterValueException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s MissingParameterValueException) OrigErr() error {
+	return nil
+}
+
+func (s MissingParameterValueException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s MissingParameterValueException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s MissingParameterValueException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // Contains an optional backup plan display name and an array of BackupRule
 // objects, each of which specifies a backup rule. Each rule in a backup plan
 // is a separate scheduled task and can back up a different selection of AWS
@@ -9315,6 +9695,68 @@ func (s *RecoveryPointCreator) SetBackupRuleId(v string) *RecoveryPointCreator {
 	return s
 }
 
+// A resource that is required for the action doesn't exist.
+type ResourceNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Context *string `type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 // Contains metadata about a restore job.
 type RestoreJobsListMember struct {
 	_ struct{} `type:"structure"`
@@ -9816,6 +10258,68 @@ func (s *SelectionsListMember) SetSelectionId(v string) *SelectionsListMember {
 func (s *SelectionsListMember) SetSelectionName(v string) *SelectionsListMember {
 	s.SelectionName = &v
 	return s
+}
+
+// The request failed due to a temporary failure of the server.
+type ServiceUnavailableException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Context *string `type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ServiceUnavailableException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceUnavailableException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceUnavailableException(v protocol.ResponseMetadata) error {
+	return &ServiceUnavailableException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ServiceUnavailableException) Code() string {
+	return "ServiceUnavailableException"
+}
+
+// Message returns the exception's message.
+func (s ServiceUnavailableException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ServiceUnavailableException) OrigErr() error {
+	return nil
+}
+
+func (s ServiceUnavailableException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ServiceUnavailableException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ServiceUnavailableException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type StartBackupJobInput struct {

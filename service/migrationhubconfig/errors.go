@@ -2,6 +2,10 @@
 
 package migrationhubconfig
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeAccessDeniedException for service response error code
@@ -38,3 +42,11 @@ const (
 	// the service.
 	ErrCodeServiceUnavailableException = "ServiceUnavailableException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"AccessDeniedException":       newErrorAccessDeniedException,
+	"DryRunOperation":             newErrorDryRunOperation,
+	"InternalServerError":         newErrorInternalServerError,
+	"InvalidInputException":       newErrorInvalidInputException,
+	"ServiceUnavailableException": newErrorServiceUnavailableException,
+}

@@ -2,6 +2,10 @@
 
 package qldbsession
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeBadRequestException for service response error code
@@ -36,3 +40,11 @@ const (
 	// Returned when the rate of requests exceeds the allowed throughput.
 	ErrCodeRateExceededException = "RateExceededException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"BadRequestException":     newErrorBadRequestException,
+	"InvalidSessionException": newErrorInvalidSessionException,
+	"LimitExceededException":  newErrorLimitExceededException,
+	"OccConflictException":    newErrorOccConflictException,
+	"RateExceededException":   newErrorRateExceededException,
+}

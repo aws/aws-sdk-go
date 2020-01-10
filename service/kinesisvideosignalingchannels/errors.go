@@ -2,6 +2,10 @@
 
 package kinesisvideosignalingchannels
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeClientLimitExceededException for service response error code
@@ -43,3 +47,12 @@ const (
 	// sending/receiving messages.
 	ErrCodeSessionExpiredException = "SessionExpiredException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"ClientLimitExceededException": newErrorClientLimitExceededException,
+	"InvalidArgumentException":     newErrorInvalidArgumentException,
+	"InvalidClientException":       newErrorInvalidClientException,
+	"NotAuthorizedException":       newErrorNotAuthorizedException,
+	"ResourceNotFoundException":    newErrorResourceNotFoundException,
+	"SessionExpiredException":      newErrorSessionExpiredException,
+}

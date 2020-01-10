@@ -2,6 +2,10 @@
 
 package personalizeruntime
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeInvalidInputException for service response error code
@@ -16,3 +20,8 @@ const (
 	// The specified resource does not exist.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"InvalidInputException":     newErrorInvalidInputException,
+	"ResourceNotFoundException": newErrorResourceNotFoundException,
+}

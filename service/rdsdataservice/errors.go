@@ -2,6 +2,10 @@
 
 package rdsdataservice
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeBadRequestException for service response error code
@@ -40,3 +44,12 @@ const (
 	// The execution of the SQL statement timed out.
 	ErrCodeStatementTimeoutException = "StatementTimeoutException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"BadRequestException":          newErrorBadRequestException,
+	"ForbiddenException":           newErrorForbiddenException,
+	"InternalServerErrorException": newErrorInternalServerErrorException,
+	"NotFoundException":            newErrorNotFoundException,
+	"ServiceUnavailableError":      newErrorServiceUnavailableError,
+	"StatementTimeoutException":    newErrorStatementTimeoutException,
+}

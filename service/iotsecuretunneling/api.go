@@ -69,8 +69,8 @@ func (c *IoTSecureTunneling) CloseTunnelRequest(input *CloseTunnelInput) (req *r
 // See the AWS API reference guide for AWS IoT Secure Tunneling's
 // API operation CloseTunnel for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   Thrown when an operation is attempted on a resource that does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsecuretunneling-2018-10-05/CloseTunnel
@@ -148,8 +148,8 @@ func (c *IoTSecureTunneling) DescribeTunnelRequest(input *DescribeTunnelInput) (
 // See the AWS API reference guide for AWS IoT Secure Tunneling's
 // API operation DescribeTunnel for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   Thrown when an operation is attempted on a resource that does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsecuretunneling-2018-10-05/DescribeTunnel
@@ -227,8 +227,8 @@ func (c *IoTSecureTunneling) ListTagsForResourceRequest(input *ListTagsForResour
 // See the AWS API reference guide for AWS IoT Secure Tunneling's
 // API operation ListTagsForResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   Thrown when an operation is attempted on a resource that does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsecuretunneling-2018-10-05/ListTagsForResource
@@ -440,8 +440,8 @@ func (c *IoTSecureTunneling) OpenTunnelRequest(input *OpenTunnelInput) (req *req
 // See the AWS API reference guide for AWS IoT Secure Tunneling's
 // API operation OpenTunnel for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeLimitExceededException "LimitExceededException"
+// Returned Error Types:
+//   * LimitExceededException
 //   Thrown when a tunnel limit is exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsecuretunneling-2018-10-05/OpenTunnel
@@ -520,8 +520,8 @@ func (c *IoTSecureTunneling) TagResourceRequest(input *TagResourceInput) (req *r
 // See the AWS API reference guide for AWS IoT Secure Tunneling's
 // API operation TagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   Thrown when an operation is attempted on a resource that does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsecuretunneling-2018-10-05/TagResource
@@ -600,8 +600,8 @@ func (c *IoTSecureTunneling) UntagResourceRequest(input *UntagResourceInput) (re
 // See the AWS API reference guide for AWS IoT Secure Tunneling's
 // API operation UntagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+// Returned Error Types:
+//   * ResourceNotFoundException
 //   Thrown when an operation is attempted on a resource that does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsecuretunneling-2018-10-05/UntagResource
@@ -842,6 +842,62 @@ func (s *DestinationConfig) SetServices(v []*string) *DestinationConfig {
 func (s *DestinationConfig) SetThingName(v string) *DestinationConfig {
 	s.ThingName = &v
 	return s
+}
+
+// Thrown when a tunnel limit is exceeded.
+type LimitExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s LimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
+	return &LimitExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s LimitExceededException) Code() string {
+	return "LimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s LimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s LimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s LimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s LimitExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s LimitExceededException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type ListTagsForResourceInput struct {
@@ -1130,6 +1186,62 @@ func (s *OpenTunnelOutput) SetTunnelArn(v string) *OpenTunnelOutput {
 func (s *OpenTunnelOutput) SetTunnelId(v string) *OpenTunnelOutput {
 	s.TunnelId = &v
 	return s
+}
+
+// Thrown when an operation is attempted on a resource that does not exist.
+type ResourceNotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceNotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceNotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // An arbitary key/value pair used to add searchable metadata to secure tunnel

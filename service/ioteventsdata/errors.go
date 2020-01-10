@@ -2,6 +2,10 @@
 
 package ioteventsdata
 
+import (
+	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
 const (
 
 	// ErrCodeInternalFailureException for service response error code
@@ -34,3 +38,11 @@ const (
 	// The request could not be completed due to throttling.
 	ErrCodeThrottlingException = "ThrottlingException"
 )
+
+var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"InternalFailureException":    newErrorInternalFailureException,
+	"InvalidRequestException":     newErrorInvalidRequestException,
+	"ResourceNotFoundException":   newErrorResourceNotFoundException,
+	"ServiceUnavailableException": newErrorServiceUnavailableException,
+	"ThrottlingException":         newErrorThrottlingException,
+}

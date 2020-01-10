@@ -3,6 +3,7 @@
 package schemas
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -65,18 +66,18 @@ func (c *Schemas) CreateDiscovererRequest(input *CreateDiscovererInput) (req *re
 // See the AWS API reference guide for Schemas's
 // API operation CreateDiscoverer for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeUnauthorizedException "UnauthorizedException"
+//   * UnauthorizedException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/CreateDiscoverer
 func (c *Schemas) CreateDiscoverer(input *CreateDiscovererInput) (*CreateDiscovererOutput, error) {
@@ -153,18 +154,18 @@ func (c *Schemas) CreateRegistryRequest(input *CreateRegistryInput) (req *reques
 // See the AWS API reference guide for Schemas's
 // API operation CreateRegistry for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeUnauthorizedException "UnauthorizedException"
+//   * UnauthorizedException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
-//   * ErrCodeConflictException "ConflictException"
+//   * ConflictException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/CreateRegistry
 func (c *Schemas) CreateRegistry(input *CreateRegistryInput) (*CreateRegistryOutput, error) {
@@ -241,14 +242,14 @@ func (c *Schemas) CreateSchemaRequest(input *CreateSchemaInput) (req *request.Re
 // See the AWS API reference guide for Schemas's
 // API operation CreateSchema for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+// Returned Error Types:
+//   * ServiceUnavailableException
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/CreateSchema
 func (c *Schemas) CreateSchema(input *CreateSchemaInput) (*CreateSchemaOutput, error) {
@@ -326,18 +327,18 @@ func (c *Schemas) DeleteDiscovererRequest(input *DeleteDiscovererInput) (req *re
 // See the AWS API reference guide for Schemas's
 // API operation DeleteDiscoverer for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //
-//   * ErrCodeUnauthorizedException "UnauthorizedException"
+//   * UnauthorizedException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/DeleteDiscoverer
 func (c *Schemas) DeleteDiscoverer(input *DeleteDiscovererInput) (*DeleteDiscovererOutput, error) {
@@ -415,18 +416,18 @@ func (c *Schemas) DeleteRegistryRequest(input *DeleteRegistryInput) (req *reques
 // See the AWS API reference guide for Schemas's
 // API operation DeleteRegistry for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //
-//   * ErrCodeUnauthorizedException "UnauthorizedException"
+//   * UnauthorizedException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/DeleteRegistry
 func (c *Schemas) DeleteRegistry(input *DeleteRegistryInput) (*DeleteRegistryOutput, error) {
@@ -504,18 +505,18 @@ func (c *Schemas) DeleteSchemaRequest(input *DeleteSchemaInput) (req *request.Re
 // See the AWS API reference guide for Schemas's
 // API operation DeleteSchema for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //
-//   * ErrCodeUnauthorizedException "UnauthorizedException"
+//   * UnauthorizedException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/DeleteSchema
 func (c *Schemas) DeleteSchema(input *DeleteSchemaInput) (*DeleteSchemaOutput, error) {
@@ -593,18 +594,18 @@ func (c *Schemas) DeleteSchemaVersionRequest(input *DeleteSchemaVersionInput) (r
 // See the AWS API reference guide for Schemas's
 // API operation DeleteSchemaVersion for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //
-//   * ErrCodeUnauthorizedException "UnauthorizedException"
+//   * UnauthorizedException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/DeleteSchemaVersion
 func (c *Schemas) DeleteSchemaVersion(input *DeleteSchemaVersionInput) (*DeleteSchemaVersionOutput, error) {
@@ -681,18 +682,18 @@ func (c *Schemas) DescribeCodeBindingRequest(input *DescribeCodeBindingInput) (r
 // See the AWS API reference guide for Schemas's
 // API operation DescribeCodeBinding for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //
-//   * ErrCodeUnauthorizedException "UnauthorizedException"
+//   * UnauthorizedException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/DescribeCodeBinding
 func (c *Schemas) DescribeCodeBinding(input *DescribeCodeBindingInput) (*DescribeCodeBindingOutput, error) {
@@ -769,18 +770,18 @@ func (c *Schemas) DescribeDiscovererRequest(input *DescribeDiscovererInput) (req
 // See the AWS API reference guide for Schemas's
 // API operation DescribeDiscoverer for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //
-//   * ErrCodeUnauthorizedException "UnauthorizedException"
+//   * UnauthorizedException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/DescribeDiscoverer
 func (c *Schemas) DescribeDiscoverer(input *DescribeDiscovererInput) (*DescribeDiscovererOutput, error) {
@@ -857,18 +858,18 @@ func (c *Schemas) DescribeRegistryRequest(input *DescribeRegistryInput) (req *re
 // See the AWS API reference guide for Schemas's
 // API operation DescribeRegistry for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //
-//   * ErrCodeUnauthorizedException "UnauthorizedException"
+//   * UnauthorizedException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/DescribeRegistry
 func (c *Schemas) DescribeRegistry(input *DescribeRegistryInput) (*DescribeRegistryOutput, error) {
@@ -945,18 +946,18 @@ func (c *Schemas) DescribeSchemaRequest(input *DescribeSchemaInput) (req *reques
 // See the AWS API reference guide for Schemas's
 // API operation DescribeSchema for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //
-//   * ErrCodeUnauthorizedException "UnauthorizedException"
+//   * UnauthorizedException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/DescribeSchema
 func (c *Schemas) DescribeSchema(input *DescribeSchemaInput) (*DescribeSchemaOutput, error) {
@@ -1033,18 +1034,18 @@ func (c *Schemas) GetCodeBindingSourceRequest(input *GetCodeBindingSourceInput) 
 // See the AWS API reference guide for Schemas's
 // API operation GetCodeBindingSource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //
-//   * ErrCodeUnauthorizedException "UnauthorizedException"
+//   * UnauthorizedException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/GetCodeBindingSource
 func (c *Schemas) GetCodeBindingSource(input *GetCodeBindingSourceInput) (*GetCodeBindingSourceOutput, error) {
@@ -1121,16 +1122,16 @@ func (c *Schemas) GetDiscoveredSchemaRequest(input *GetDiscoveredSchemaInput) (r
 // See the AWS API reference guide for Schemas's
 // API operation GetDiscoveredSchema for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+// Returned Error Types:
+//   * ServiceUnavailableException
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //
-//   * ErrCodeUnauthorizedException "UnauthorizedException"
+//   * UnauthorizedException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/GetDiscoveredSchema
 func (c *Schemas) GetDiscoveredSchema(input *GetDiscoveredSchemaInput) (*GetDiscoveredSchemaOutput, error) {
@@ -1213,16 +1214,16 @@ func (c *Schemas) ListDiscoverersRequest(input *ListDiscoverersInput) (req *requ
 // See the AWS API reference guide for Schemas's
 // API operation ListDiscoverers for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+// Returned Error Types:
+//   * ServiceUnavailableException
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //
-//   * ErrCodeUnauthorizedException "UnauthorizedException"
+//   * UnauthorizedException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/ListDiscoverers
 func (c *Schemas) ListDiscoverers(input *ListDiscoverersInput) (*ListDiscoverersOutput, error) {
@@ -1357,16 +1358,16 @@ func (c *Schemas) ListRegistriesRequest(input *ListRegistriesInput) (req *reques
 // See the AWS API reference guide for Schemas's
 // API operation ListRegistries for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+// Returned Error Types:
+//   * ServiceUnavailableException
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //
-//   * ErrCodeUnauthorizedException "UnauthorizedException"
+//   * UnauthorizedException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/ListRegistries
 func (c *Schemas) ListRegistries(input *ListRegistriesInput) (*ListRegistriesOutput, error) {
@@ -1501,18 +1502,18 @@ func (c *Schemas) ListSchemaVersionsRequest(input *ListSchemaVersionsInput) (req
 // See the AWS API reference guide for Schemas's
 // API operation ListSchemaVersions for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //
-//   * ErrCodeUnauthorizedException "UnauthorizedException"
+//   * UnauthorizedException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/ListSchemaVersions
 func (c *Schemas) ListSchemaVersions(input *ListSchemaVersionsInput) (*ListSchemaVersionsOutput, error) {
@@ -1647,16 +1648,16 @@ func (c *Schemas) ListSchemasRequest(input *ListSchemasInput) (req *request.Requ
 // See the AWS API reference guide for Schemas's
 // API operation ListSchemas for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+// Returned Error Types:
+//   * ServiceUnavailableException
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //
-//   * ErrCodeUnauthorizedException "UnauthorizedException"
+//   * UnauthorizedException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/ListSchemas
 func (c *Schemas) ListSchemas(input *ListSchemasInput) (*ListSchemasOutput, error) {
@@ -1785,14 +1786,14 @@ func (c *Schemas) ListTagsForResourceRequest(input *ListTagsForResourceInput) (r
 // See the AWS API reference guide for Schemas's
 // API operation ListTagsForResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/ListTagsForResource
 func (c *Schemas) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -1867,16 +1868,16 @@ func (c *Schemas) LockServiceLinkedRoleRequest(input *LockServiceLinkedRoleInput
 // See the AWS API reference guide for Schemas's
 // API operation LockServiceLinkedRole for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+// Returned Error Types:
+//   * ServiceUnavailableException
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //
-//   * ErrCodeUnauthorizedException "UnauthorizedException"
+//   * UnauthorizedException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/LockServiceLinkedRole
 func (c *Schemas) LockServiceLinkedRole(input *LockServiceLinkedRoleInput) (*LockServiceLinkedRoleOutput, error) {
@@ -1953,20 +1954,20 @@ func (c *Schemas) PutCodeBindingRequest(input *PutCodeBindingInput) (req *reques
 // See the AWS API reference guide for Schemas's
 // API operation PutCodeBinding for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeGoneException "GoneException"
+// Returned Error Types:
+//   * GoneException
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //
-//   * ErrCodeUnauthorizedException "UnauthorizedException"
+//   * UnauthorizedException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeTooManyRequestsException "TooManyRequestsException"
+//   * TooManyRequestsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/PutCodeBinding
 func (c *Schemas) PutCodeBinding(input *PutCodeBindingInput) (*PutCodeBindingOutput, error) {
@@ -2049,16 +2050,16 @@ func (c *Schemas) SearchSchemasRequest(input *SearchSchemasInput) (req *request.
 // See the AWS API reference guide for Schemas's
 // API operation SearchSchemas for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+// Returned Error Types:
+//   * ServiceUnavailableException
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //
-//   * ErrCodeUnauthorizedException "UnauthorizedException"
+//   * UnauthorizedException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/SearchSchemas
 func (c *Schemas) SearchSchemas(input *SearchSchemasInput) (*SearchSchemasOutput, error) {
@@ -2187,18 +2188,18 @@ func (c *Schemas) StartDiscovererRequest(input *StartDiscovererInput) (req *requ
 // See the AWS API reference guide for Schemas's
 // API operation StartDiscoverer for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //
-//   * ErrCodeUnauthorizedException "UnauthorizedException"
+//   * UnauthorizedException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/StartDiscoverer
 func (c *Schemas) StartDiscoverer(input *StartDiscovererInput) (*StartDiscovererOutput, error) {
@@ -2275,18 +2276,18 @@ func (c *Schemas) StopDiscovererRequest(input *StopDiscovererInput) (req *reques
 // See the AWS API reference guide for Schemas's
 // API operation StopDiscoverer for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //
-//   * ErrCodeUnauthorizedException "UnauthorizedException"
+//   * UnauthorizedException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/StopDiscoverer
 func (c *Schemas) StopDiscoverer(input *StopDiscovererInput) (*StopDiscovererOutput, error) {
@@ -2364,14 +2365,14 @@ func (c *Schemas) TagResourceRequest(input *TagResourceInput) (req *request.Requ
 // See the AWS API reference guide for Schemas's
 // API operation TagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/TagResource
 func (c *Schemas) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -2447,16 +2448,16 @@ func (c *Schemas) UnlockServiceLinkedRoleRequest(input *UnlockServiceLinkedRoleI
 // See the AWS API reference guide for Schemas's
 // API operation UnlockServiceLinkedRole for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+// Returned Error Types:
+//   * ServiceUnavailableException
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //
-//   * ErrCodeUnauthorizedException "UnauthorizedException"
+//   * UnauthorizedException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/UnlockServiceLinkedRole
 func (c *Schemas) UnlockServiceLinkedRole(input *UnlockServiceLinkedRoleInput) (*UnlockServiceLinkedRoleOutput, error) {
@@ -2534,14 +2535,14 @@ func (c *Schemas) UntagResourceRequest(input *UntagResourceInput) (req *request.
 // See the AWS API reference guide for Schemas's
 // API operation UntagResource for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeNotFoundException "NotFoundException"
+// Returned Error Types:
+//   * NotFoundException
 //
-//   * ErrCodeBadRequestException "BadRequestException"
+//   * BadRequestException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/UntagResource
 func (c *Schemas) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -2618,18 +2619,18 @@ func (c *Schemas) UpdateDiscovererRequest(input *UpdateDiscovererInput) (req *re
 // See the AWS API reference guide for Schemas's
 // API operation UpdateDiscoverer for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //
-//   * ErrCodeUnauthorizedException "UnauthorizedException"
+//   * UnauthorizedException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/UpdateDiscoverer
 func (c *Schemas) UpdateDiscoverer(input *UpdateDiscovererInput) (*UpdateDiscovererOutput, error) {
@@ -2706,18 +2707,18 @@ func (c *Schemas) UpdateRegistryRequest(input *UpdateRegistryInput) (req *reques
 // See the AWS API reference guide for Schemas's
 // API operation UpdateRegistry for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //
-//   * ErrCodeUnauthorizedException "UnauthorizedException"
+//   * UnauthorizedException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/UpdateRegistry
 func (c *Schemas) UpdateRegistry(input *UpdateRegistryInput) (*UpdateRegistryOutput, error) {
@@ -2794,16 +2795,16 @@ func (c *Schemas) UpdateSchemaRequest(input *UpdateSchemaInput) (req *request.Re
 // See the AWS API reference guide for Schemas's
 // API operation UpdateSchema for usage and error information.
 //
-// Returned Error Codes:
-//   * ErrCodeBadRequestException "BadRequestException"
+// Returned Error Types:
+//   * BadRequestException
 //
-//   * ErrCodeInternalServerErrorException "InternalServerErrorException"
+//   * InternalServerErrorException
 //
-//   * ErrCodeForbiddenException "ForbiddenException"
+//   * ForbiddenException
 //
-//   * ErrCodeNotFoundException "NotFoundException"
+//   * NotFoundException
 //
-//   * ErrCodeServiceUnavailableException "ServiceUnavailableException"
+//   * ServiceUnavailableException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/UpdateSchema
 func (c *Schemas) UpdateSchema(input *UpdateSchemaInput) (*UpdateSchemaOutput, error) {
@@ -2825,6 +2826,120 @@ func (c *Schemas) UpdateSchemaWithContext(ctx aws.Context, input *UpdateSchemaIn
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+type BadRequestException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s BadRequestException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BadRequestException) GoString() string {
+	return s.String()
+}
+
+func newErrorBadRequestException(v protocol.ResponseMetadata) error {
+	return &BadRequestException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s BadRequestException) Code() string {
+	return "BadRequestException"
+}
+
+// Message returns the exception's message.
+func (s BadRequestException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s BadRequestException) OrigErr() error {
+	return nil
+}
+
+func (s BadRequestException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s BadRequestException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s BadRequestException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+type ConflictException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ConflictException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ConflictException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type CreateDiscovererInput struct {
@@ -4001,6 +4116,63 @@ func (s *DiscovererSummary) SetTags(v map[string]*string) *DiscovererSummary {
 	return s
 }
 
+type ForbiddenException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ForbiddenException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ForbiddenException) GoString() string {
+	return s.String()
+}
+
+func newErrorForbiddenException(v protocol.ResponseMetadata) error {
+	return &ForbiddenException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ForbiddenException) Code() string {
+	return "ForbiddenException"
+}
+
+// Message returns the exception's message.
+func (s ForbiddenException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ForbiddenException) OrigErr() error {
+	return nil
+}
+
+func (s ForbiddenException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ForbiddenException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ForbiddenException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type GetCodeBindingSourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4171,6 +4343,120 @@ func (s GetDiscoveredSchemaOutput) GoString() string {
 func (s *GetDiscoveredSchemaOutput) SetContent(v string) *GetDiscoveredSchemaOutput {
 	s.Content = &v
 	return s
+}
+
+type GoneException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s GoneException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GoneException) GoString() string {
+	return s.String()
+}
+
+func newErrorGoneException(v protocol.ResponseMetadata) error {
+	return &GoneException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s GoneException) Code() string {
+	return "GoneException"
+}
+
+// Message returns the exception's message.
+func (s GoneException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s GoneException) OrigErr() error {
+	return nil
+}
+
+func (s GoneException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s GoneException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s GoneException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+type InternalServerErrorException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s InternalServerErrorException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternalServerErrorException) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalServerErrorException(v protocol.ResponseMetadata) error {
+	return &InternalServerErrorException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s InternalServerErrorException) Code() string {
+	return "InternalServerErrorException"
+}
+
+// Message returns the exception's message.
+func (s InternalServerErrorException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s InternalServerErrorException) OrigErr() error {
+	return nil
+}
+
+func (s InternalServerErrorException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s InternalServerErrorException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s InternalServerErrorException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type ListDiscoverersInput struct {
@@ -4674,6 +4960,63 @@ func (s *LockServiceLinkedRoleOutput) SetRelatedResources(v []*DiscovererSummary
 	return s
 }
 
+type NotFoundException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s NotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorNotFoundException(v protocol.ResponseMetadata) error {
+	return &NotFoundException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s NotFoundException) Code() string {
+	return "NotFoundException"
+}
+
+// Message returns the exception's message.
+func (s NotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s NotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s NotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s NotFoundException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s NotFoundException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type PutCodeBindingInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5117,6 +5460,63 @@ func (s *SearchSchemasOutput) SetSchemas(v []*SearchSchemaSummary) *SearchSchema
 	return s
 }
 
+type ServiceUnavailableException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ServiceUnavailableException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceUnavailableException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceUnavailableException(v protocol.ResponseMetadata) error {
+	return &ServiceUnavailableException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ServiceUnavailableException) Code() string {
+	return "ServiceUnavailableException"
+}
+
+// Message returns the exception's message.
+func (s ServiceUnavailableException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ServiceUnavailableException) OrigErr() error {
+	return nil
+}
+
+func (s ServiceUnavailableException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ServiceUnavailableException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ServiceUnavailableException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type StartDiscovererInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5320,6 +5720,120 @@ func (s TagResourceOutput) String() string {
 // GoString returns the string representation
 func (s TagResourceOutput) GoString() string {
 	return s.String()
+}
+
+type TooManyRequestsException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s TooManyRequestsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TooManyRequestsException) GoString() string {
+	return s.String()
+}
+
+func newErrorTooManyRequestsException(v protocol.ResponseMetadata) error {
+	return &TooManyRequestsException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s TooManyRequestsException) Code() string {
+	return "TooManyRequestsException"
+}
+
+// Message returns the exception's message.
+func (s TooManyRequestsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s TooManyRequestsException) OrigErr() error {
+	return nil
+}
+
+func (s TooManyRequestsException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s TooManyRequestsException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s TooManyRequestsException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
+type UnauthorizedException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s UnauthorizedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UnauthorizedException) GoString() string {
+	return s.String()
+}
+
+func newErrorUnauthorizedException(v protocol.ResponseMetadata) error {
+	return &UnauthorizedException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s UnauthorizedException) Code() string {
+	return "UnauthorizedException"
+}
+
+// Message returns the exception's message.
+func (s UnauthorizedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s UnauthorizedException) OrigErr() error {
+	return nil
+}
+
+func (s UnauthorizedException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s UnauthorizedException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s UnauthorizedException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 type UnlockServiceLinkedRoleInput struct {
