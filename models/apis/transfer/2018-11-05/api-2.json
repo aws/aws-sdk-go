@@ -264,6 +264,7 @@
       "output":{"shape":"UpdateServerResponse"},
       "errors":[
         {"shape":"ServiceUnavailableException"},
+        {"shape":"ConflictException"},
         {"shape":"InternalServiceError"},
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceExistsException"},
@@ -289,11 +290,24 @@
     }
   },
   "shapes":{
+    "AddressAllocationId":{"type":"string"},
+    "AddressAllocationIds":{
+      "type":"list",
+      "member":{"shape":"AddressAllocationId"}
+    },
     "Arn":{
       "type":"string",
       "max":1600,
       "min":20,
       "pattern":"arn:.*"
+    },
+    "ConflictException":{
+      "type":"structure",
+      "required":["Message"],
+      "members":{
+        "Message":{"shape":"Message"}
+      },
+      "exception":true
     },
     "CreateServerRequest":{
       "type":"structure",
@@ -447,13 +461,17 @@
     "EndpointDetails":{
       "type":"structure",
       "members":{
-        "VpcEndpointId":{"shape":"VpcEndpointId"}
+        "AddressAllocationIds":{"shape":"AddressAllocationIds"},
+        "SubnetIds":{"shape":"SubnetIds"},
+        "VpcEndpointId":{"shape":"VpcEndpointId"},
+        "VpcId":{"shape":"VpcId"}
       }
     },
     "EndpointType":{
       "type":"string",
       "enum":[
         "PUBLIC",
+        "VPC",
         "VPC_ENDPOINT"
       ]
     },
@@ -783,6 +801,11 @@
         "ServerId":{"shape":"ServerId"}
       }
     },
+    "SubnetId":{"type":"string"},
+    "SubnetIds":{
+      "type":"list",
+      "member":{"shape":"SubnetId"}
+    },
     "Tag":{
       "type":"structure",
       "required":[
@@ -935,6 +958,7 @@
       "max":22,
       "min":22,
       "pattern":"^vpce-[0-9a-f]{17}$"
-    }
+    },
+    "VpcId":{"type":"string"}
   }
 }

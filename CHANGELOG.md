@@ -1,3 +1,30 @@
+Release v1.28.0 (2020-01-10)
+===
+
+### Service Client Updates
+* `service/chime`: Updates service API and documentation
+  * Add shared profile support to new and existing users
+* `service/ec2`: Updates service API and documentation
+  * This release introduces the ability to tag egress only internet gateways, local gateways, local gateway route tables, local gateway virtual interfaces, local gateway virtual interface groups, local gateway route table VPC association and local gateway route table virtual interface group association. You can use tags to organize and identify your resources for cost allocation.
+* `service/rds`: Updates service API and documentation
+  * This release adds an operation that enables users to override the system-default SSL/TLS certificate for new Amazon RDS DB instances temporarily, or remove the customer override.
+* `service/sagemaker`: Updates service API and documentation
+  * SageMaker ListTrialComponents API filter by TrialName and ExperimentName.
+* `service/transfer`: Updates service API and documentation
+  * This release introduces a new endpoint type that allows you to attach Elastic IP addresses from your AWS account with your server's endpoint directly and whitelist access to your server by client's internet IP address(es) using VPC Security Groups.
+* `service/workspaces`: Updates service API and documentation
+  * Added the migrate feature to Amazon WorkSpaces.
+
+### SDK Features
+* Add generated error types for JSONRPC and RESTJSON APIs
+  * Adds generated error types for APIs using JSONRPC and RESTJSON protocols. This allows you to retrieve additional error metadata within an error message that was previously unavailable. For example, Amazon DynamoDB's TransactWriteItems operation can return a `TransactionCanceledException` continuing detailed `CancellationReasons` member. This data is now available by type asserting the error returned from the operation call to `TransactionCanceledException` type.
+* `service/dynamodb/dynamodbattribute`: Go 1.9+, Add caching of struct serialization ([#3070](https://github.com/aws/aws-sdk-go/pull/3070))
+  * For Go 1.9 and above, adds struct field caching to the SDK's DynamoDB AttributeValue marshalers and unmarshalers. This significantly reduces time, and overall allocations of the (un)marshalers by caching the reflected structure's fields. This should improve the performance of applications using DynamoDB AttributeValue (un)marshalers.
+
+### SDK Bugs
+* `service/s3/s3manager`: Fix resource leak on failed CreateMultipartUpload calls ([#3069](https://github.com/aws/aws-sdk-go/pull/3069))
+  * Fixes [#3000](https://github.com/aws/aws-sdk-go/issues/3000), [#3035](https://github.com/aws/aws-sdk-go/issues/3035)
+
 Release v1.27.4 (2020-01-09)
 ===
 

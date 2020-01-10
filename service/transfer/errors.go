@@ -8,6 +8,14 @@ import (
 
 const (
 
+	// ErrCodeConflictException for service response error code
+	// "ConflictException".
+	//
+	// This exception is thrown when the UpdatServer is called for a server that
+	// has VPC as the endpoint type and the server's VpcEndpointID is not in the
+	// available state.
+	ErrCodeConflictException = "ConflictException"
+
 	// ErrCodeInternalServiceError for service response error code
 	// "InternalServiceError".
 	//
@@ -56,6 +64,7 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"ConflictException":           newErrorConflictException,
 	"InternalServiceError":        newErrorInternalServiceError,
 	"InvalidNextTokenException":   newErrorInvalidNextTokenException,
 	"InvalidRequestException":     newErrorInvalidRequestException,

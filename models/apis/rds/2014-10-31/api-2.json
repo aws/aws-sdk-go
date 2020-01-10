@@ -1396,6 +1396,21 @@
         {"shape":"DBClusterNotFoundFault"}
       ]
     },
+    "ModifyCertificates":{
+      "name":"ModifyCertificates",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyCertificatesMessage"},
+      "output":{
+        "shape":"ModifyCertificatesResult",
+        "resultWrapper":"ModifyCertificatesResult"
+      },
+      "errors":[
+        {"shape":"CertificateNotFoundFault"}
+      ]
+    },
     "ModifyCurrentDBClusterCapacity":{
       "name":"ModifyCurrentDBClusterCapacity",
       "http":{
@@ -2444,7 +2459,9 @@
         "Thumbprint":{"shape":"String"},
         "ValidFrom":{"shape":"TStamp"},
         "ValidTill":{"shape":"TStamp"},
-        "CertificateArn":{"shape":"String"}
+        "CertificateArn":{"shape":"String"},
+        "CustomerOverride":{"shape":"BooleanOptional"},
+        "CustomerOverrideValidTill":{"shape":"TStamp"}
       },
       "wrapper":true
     },
@@ -5623,6 +5640,19 @@
       "member":{
         "shape":"MinimumEngineVersionPerAllowedValue",
         "locationName":"MinimumEngineVersionPerAllowedValue"
+      }
+    },
+    "ModifyCertificatesMessage":{
+      "type":"structure",
+      "members":{
+        "CertificateIdentifier":{"shape":"String"},
+        "RemoveCustomerOverride":{"shape":"BooleanOptional"}
+      }
+    },
+    "ModifyCertificatesResult":{
+      "type":"structure",
+      "members":{
+        "Certificate":{"shape":"Certificate"}
       }
     },
     "ModifyCurrentDBClusterCapacityMessage":{

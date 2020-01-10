@@ -70,6 +70,25 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "AssociateSigninDelegateGroupsWithAccount":{
+      "name":"AssociateSigninDelegateGroupsWithAccount",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{accountId}?operation=associate-signin-delegate-groups",
+        "responseCode":200
+      },
+      "input":{"shape":"AssociateSigninDelegateGroupsWithAccountRequest"},
+      "output":{"shape":"AssociateSigninDelegateGroupsWithAccountResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "BatchCreateAttendee":{
       "name":"BatchCreateAttendee",
       "http":{
@@ -104,6 +123,7 @@
         {"shape":"NotFoundException"},
         {"shape":"BadRequestException"},
         {"shape":"ForbiddenException"},
+        {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
@@ -258,7 +278,8 @@
         {"shape":"BadRequestException"},
         {"shape":"UnauthorizedClientException"},
         {"shape":"ResourceLimitExceededException"},
-        {"shape":"NotFoundException"}
+        {"shape":"NotFoundException"},
+        {"shape":"ThrottledClientException"}
       ]
     },
     "CreateMeeting":{
@@ -315,6 +336,7 @@
         {"shape":"ForbiddenException"},
         {"shape":"UnauthorizedClientException"},
         {"shape":"ResourceLimitExceededException"},
+        {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
@@ -335,6 +357,27 @@
         {"shape":"BadRequestException"},
         {"shape":"ForbiddenException"},
         {"shape":"ResourceLimitExceededException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "CreateUser":{
+      "name":"CreateUser",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{accountId}/users?operation=create",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateUserRequest"},
+      "output":{"shape":"CreateUserResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
@@ -483,6 +526,7 @@
         {"shape":"ForbiddenException"},
         {"shape":"NotFoundException"},
         {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
@@ -500,6 +544,7 @@
         {"shape":"NotFoundException"},
         {"shape":"BadRequestException"},
         {"shape":"ForbiddenException"},
+        {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
@@ -671,6 +716,25 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "DisassociateSigninDelegateGroupsFromAccount":{
+      "name":"DisassociateSigninDelegateGroupsFromAccount",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{accountId}?operation=disassociate-signin-delegate-groups",
+        "responseCode":200
+      },
+      "input":{"shape":"DisassociateSigninDelegateGroupsFromAccountRequest"},
+      "output":{"shape":"DisassociateSigninDelegateGroupsFromAccountResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "GetAccount":{
       "name":"GetAccount",
       "http":{
@@ -741,7 +805,8 @@
         {"shape":"ForbiddenException"},
         {"shape":"UnauthorizedClientException"},
         {"shape":"NotFoundException"},
-        {"shape":"BadRequestException"}
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"}
       ]
     },
     "GetEventsConfiguration":{
@@ -867,6 +932,7 @@
         {"shape":"ForbiddenException"},
         {"shape":"NotFoundException"},
         {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
@@ -1113,7 +1179,8 @@
         {"shape":"ForbiddenException"},
         {"shape":"UnauthorizedClientException"},
         {"shape":"BadRequestException"},
-        {"shape":"NotFoundException"}
+        {"shape":"NotFoundException"},
+        {"shape":"ThrottledClientException"}
       ]
     },
     "ListMeetings":{
@@ -1183,6 +1250,7 @@
         {"shape":"BadRequestException"},
         {"shape":"ForbiddenException"},
         {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
@@ -1201,6 +1269,7 @@
         {"shape":"BadRequestException"},
         {"shape":"ForbiddenException"},
         {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
@@ -1427,7 +1496,8 @@
         {"shape":"ForbiddenException"},
         {"shape":"BadRequestException"},
         {"shape":"UnauthorizedClientException"},
-        {"shape":"NotFoundException"}
+        {"shape":"NotFoundException"},
+        {"shape":"ThrottledClientException"}
       ]
     },
     "ResetPersonalPIN":{
@@ -1541,7 +1611,8 @@
         {"shape":"ForbiddenException"},
         {"shape":"BadRequestException"},
         {"shape":"UnauthorizedClientException"},
-        {"shape":"NotFoundException"}
+        {"shape":"NotFoundException"},
+        {"shape":"ThrottledClientException"}
       ]
     },
     "UpdateGlobalSettings":{
@@ -1611,6 +1682,7 @@
         {"shape":"ForbiddenException"},
         {"shape":"NotFoundException"},
         {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
@@ -1629,6 +1701,7 @@
         {"shape":"NotFoundException"},
         {"shape":"BadRequestException"},
         {"shape":"ForbiddenException"},
+        {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
@@ -1734,7 +1807,8 @@
         "AccountType":{"shape":"AccountType"},
         "CreatedTimestamp":{"shape":"Iso8601Timestamp"},
         "DefaultLicense":{"shape":"License"},
-        "SupportedLicenses":{"shape":"LicenseList"}
+        "SupportedLicenses":{"shape":"LicenseList"},
+        "SigninDelegateGroups":{"shape":"SigninDelegateGroupList"}
       }
     },
     "AccountList":{
@@ -1762,6 +1836,13 @@
         "EnterpriseLWA",
         "EnterpriseOIDC"
       ]
+    },
+    "AlexaForBusinessMetadata":{
+      "type":"structure",
+      "members":{
+        "IsAlexaForBusinessEnabled":{"shape":"Boolean"},
+        "AlexaForBusinessRoomArn":{"shape":"SensitiveString"}
+      }
     },
     "Arn":{
       "type":"string",
@@ -1832,6 +1913,26 @@
       "type":"structure",
       "members":{
         "PhoneNumberErrors":{"shape":"PhoneNumberErrorList"}
+      }
+    },
+    "AssociateSigninDelegateGroupsWithAccountRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "SigninDelegateGroups"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "SigninDelegateGroups":{"shape":"SigninDelegateGroupList"}
+      }
+    },
+    "AssociateSigninDelegateGroupsWithAccountResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "Attendee":{
@@ -2232,6 +2333,26 @@
         "Room":{"shape":"Room"}
       }
     },
+    "CreateUserRequest":{
+      "type":"structure",
+      "required":["AccountId"],
+      "members":{
+        "AccountId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "Username":{"shape":"String"},
+        "Email":{"shape":"EmailAddress"},
+        "UserType":{"shape":"UserType"}
+      }
+    },
+    "CreateUserResponse":{
+      "type":"structure",
+      "members":{
+        "User":{"shape":"User"}
+      }
+    },
     "CreateVoiceConnectorGroupRequest":{
       "type":"structure",
       "required":["Name"],
@@ -2524,6 +2645,26 @@
       "type":"structure",
       "members":{
         "PhoneNumberErrors":{"shape":"PhoneNumberErrorList"}
+      }
+    },
+    "DisassociateSigninDelegateGroupsFromAccountRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "GroupNames"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "GroupNames":{"shape":"NonEmptyStringList"}
+      }
+    },
+    "DisassociateSigninDelegateGroupsFromAccountResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "E164PhoneNumber":{
@@ -2995,7 +3136,8 @@
           "location":"uri",
           "locationName":"accountId"
         },
-        "UserEmailList":{"shape":"UserEmailList"}
+        "UserEmailList":{"shape":"UserEmailList"},
+        "UserType":{"shape":"UserType"}
       }
     },
     "InviteUsersResponse":{
@@ -3283,6 +3425,11 @@
           "shape":"EmailAddress",
           "location":"querystring",
           "locationName":"user-email"
+        },
+        "UserType":{
+          "shape":"UserType",
+          "location":"querystring",
+          "locationName":"user-type"
         },
         "MaxResults":{
           "shape":"ProfileServiceMaxResults",
@@ -3995,6 +4142,16 @@
       "exception":true,
       "fault":true
     },
+    "SigninDelegateGroup":{
+      "type":"structure",
+      "members":{
+        "GroupName":{"shape":"NonEmptyString"}
+      }
+    },
+    "SigninDelegateGroupList":{
+      "type":"list",
+      "member":{"shape":"SigninDelegateGroup"}
+    },
     "StreamingConfiguration":{
       "type":"structure",
       "required":["DataRetentionInHours"],
@@ -4260,7 +4417,9 @@
           "location":"uri",
           "locationName":"userId"
         },
-        "LicenseType":{"shape":"License"}
+        "LicenseType":{"shape":"License"},
+        "UserType":{"shape":"UserType"},
+        "AlexaForBusinessMetadata":{"shape":"AlexaForBusinessMetadata"}
       }
     },
     "UpdateUserRequestItem":{
@@ -4268,7 +4427,9 @@
       "required":["UserId"],
       "members":{
         "UserId":{"shape":"NonEmptyString"},
-        "LicenseType":{"shape":"License"}
+        "LicenseType":{"shape":"License"},
+        "UserType":{"shape":"UserType"},
+        "AlexaForBusinessMetadata":{"shape":"AlexaForBusinessMetadata"}
       }
     },
     "UpdateUserRequestItemList":{
@@ -4363,10 +4524,12 @@
         "PrimaryProvisionedNumber":{"shape":"SensitiveString"},
         "DisplayName":{"shape":"SensitiveString"},
         "LicenseType":{"shape":"License"},
+        "UserType":{"shape":"UserType"},
         "UserRegistrationStatus":{"shape":"RegistrationStatus"},
         "UserInvitationStatus":{"shape":"InviteStatus"},
         "RegisteredOn":{"shape":"Iso8601Timestamp"},
         "InvitedOn":{"shape":"Iso8601Timestamp"},
+        "AlexaForBusinessMetadata":{"shape":"AlexaForBusinessMetadata"},
         "PersonalPIN":{"shape":"String"}
       }
     },
@@ -4402,6 +4565,13 @@
       "members":{
         "Telephony":{"shape":"TelephonySettings"}
       }
+    },
+    "UserType":{
+      "type":"string",
+      "enum":[
+        "PrivateUser",
+        "SharedDevice"
+      ]
     },
     "VoiceConnector":{
       "type":"structure",

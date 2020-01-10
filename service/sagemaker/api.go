@@ -1938,6 +1938,11 @@ func (c *SageMaker) CreatePresignedDomainUrlRequest(input *CreatePresignedDomain
 //
 // See the AWS API reference guide for Amazon SageMaker Service's
 // API operation CreatePresignedDomainUrl for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreatePresignedDomainUrl
 func (c *SageMaker) CreatePresignedDomainUrl(input *CreatePresignedDomainUrlInput) (*CreatePresignedDomainUrlOutput, error) {
 	req, out := c.CreatePresignedDomainUrlRequest(input)
@@ -2530,12 +2535,10 @@ func (c *SageMaker) CreateTrialComponentRequest(input *CreateTrialComponentInput
 // You can add tags to a trial component and then use the Search API to search
 // for the tags.
 //
-// You can create a trial component through a direct call to the CreateTrialComponent
-// API. However, you can't specify the Source property of the component in the
-// request, therefore, the component isn't associated with an Amazon SageMaker
-// job. You must use Amazon SageMaker Studio, the Amazon SageMaker Python SDK,
-// or the AWS SDK for Python (Boto) to create the component with a valid Source
-// property.
+// CreateTrialComponent can only be invoked from within an Amazon SageMaker
+// managed environment. This includes Amazon SageMaker training jobs, processing
+// jobs, transform jobs, and Amazon SageMaker notebooks. A call to CreateTrialComponent
+// from outside one of these environments results in an error.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10013,6 +10016,11 @@ func (c *SageMaker) ListTrialComponentsRequest(input *ListTrialComponentsInput) 
 //
 // See the AWS API reference guide for Amazon SageMaker Service's
 // API operation ListTrialComponents for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListTrialComponents
 func (c *SageMaker) ListTrialComponents(input *ListTrialComponentsInput) (*ListTrialComponentsOutput, error) {
 	req, out := c.ListTrialComponentsRequest(input)
@@ -10148,6 +10156,11 @@ func (c *SageMaker) ListTrialsRequest(input *ListTrialsInput) (req *request.Requ
 //
 // See the AWS API reference guide for Amazon SageMaker Service's
 // API operation ListTrials for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListTrials
 func (c *SageMaker) ListTrials(input *ListTrialsInput) (*ListTrialsOutput, error) {
 	req, out := c.ListTrialsRequest(input)
@@ -10617,8 +10630,8 @@ func (c *SageMaker) SearchRequest(input *SearchInput) (req *request.Request, out
 // can sort the search results by any resource property in a ascending or descending
 // order.
 //
-// You can query against the following value types: numerical, text, Booleans,
-// and timestamps.
+// You can query against the following value types: numeric, text, Boolean,
+// and timestamp.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12728,8 +12741,10 @@ type AlgorithmSpecification struct {
 	//
 	//    * You use one of the Amazon SageMaker built-in algorithms
 	//
-	//    * You use one of the following prebuilt Amazon SageMaker Docker images:
-	//    Tensorflow MXNet PyTorch
+	//    * You use one of the following Prebuilt Amazon SageMaker Docker Images
+	//    (https://docs.aws.amazon.com/sagemaker/latest/dg/pre-built-containers-frameworks-deep-learning.html):
+	//    Tensorflow (version >= 1.15) MXNet (version >= 1.6) PyTorch (version >=
+	//    1.3)
 	//
 	//    * You specify at least one MetricDefinition
 	EnableSageMakerMetricsTimeSeries *bool `type:"boolean"`
@@ -14936,7 +14951,8 @@ func (s *CognitoMemberDefinition) SetUserPool(v string) *CognitoMemberDefinition
 type CollectionConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the tensor collection.
+	// The name of the tensor collection. The name must be unique relative to other
+	// rule configuration names.
 	CollectionName *string `min:"1" type:"string"`
 
 	// Parameter values for the tensor collection. The allowed parameters are "name",
@@ -16332,6 +16348,20 @@ type CreateEndpointConfigInput struct {
 	// SageMaker uses to encrypt data on the storage volume attached to the ML compute
 	// instance that hosts the endpoint.
 	//
+	// The KmsKeyId can be any of the following formats:
+	//
+	//    * // KMS Key ID "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * // Amazon Resource Name (ARN) (ARN) of a KMS Key "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * // KMS Key Alias "alias/ExampleAlias"
+	//
+	//    * // Amazon Resource Name (ARN) of a KMS Key Alias "arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias"
+	//
+	// The KMS key policy must grant permission to the IAM role that you specify
+	// in your CreateEndpoint, UpdateEndpoint requests. For more information, refer
+	// to the AWS Key Management Service section Using Key Policies in AWS KMS (https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html)
+	//
 	// Certain Nitro-based instances include local storage, dependent on the instance
 	// type. Local storage volumes are encrypted using a hardware module on the
 	// instance. You can't request a KmsKeyId when using an instance type with local
@@ -17396,8 +17426,6 @@ type CreateModelInput struct {
 
 	// Isolates the model container. No inbound or outbound network calls can be
 	// made to or from the model container.
-	//
-	// The Semantic Segmentation built-in algorithm does not support network isolation.
 	EnableNetworkIsolation *bool `type:"boolean"`
 
 	// The Amazon Resource Name (ARN) of the IAM role that Amazon SageMaker can
@@ -18606,8 +18634,6 @@ type CreateTrainingJobInput struct {
 	// to use a VPC, Amazon SageMaker downloads and uploads customer data and model
 	// artifacts through the specified VPC, but the training container does not
 	// have network access.
-	//
-	// The Semantic Segmentation built-in algorithm does not support network isolation.
 	EnableNetworkIsolation *bool `type:"boolean"`
 
 	// Configuration for the experiment.
@@ -20165,7 +20191,7 @@ type DebugRuleConfiguration struct {
 	// The instance type to deploy for a training job.
 	InstanceType *string `type:"string" enum:"ProcessingInstanceType"`
 
-	// Path to local storage location for rules. Defaults to /opt/ml/processing/output/rule/.
+	// Path to local storage location for output of rules. Defaults to /opt/ml/processing/output/rule/.
 	LocalPath *string `type:"string"`
 
 	// The name of the rule configuration. It must be unique relative to other rule
@@ -20185,7 +20211,7 @@ type DebugRuleConfiguration struct {
 	// Path to Amazon S3 storage location for rules.
 	S3OutputPath *string `type:"string"`
 
-	// The size, in GB, of the ML storage volume attached to the notebook instance.
+	// The size, in GB, of the ML storage volume attached to the processing instance.
 	VolumeSizeInGB *int64 `type:"integer"`
 }
 
@@ -23792,8 +23818,6 @@ type DescribeModelOutput struct {
 
 	// If True, no inbound or outbound network calls can be made to or from the
 	// model container.
-	//
-	// The Semantic Segmentation built-in algorithm does not support network isolation.
 	EnableNetworkIsolation *bool `type:"boolean"`
 
 	// The Amazon Resource Name (ARN) of the IAM role that you specified for the
@@ -24981,8 +25005,6 @@ type DescribeTrainingJobOutput struct {
 	// to use a VPC, Amazon SageMaker downloads and uploads customer data and model
 	// artifacts through the specified VPC, but the training container does not
 	// have network access.
-	//
-	// The Semantic Segmentation built-in algorithm does not support network isolation.
 	EnableNetworkIsolation *bool `type:"boolean"`
 
 	// Configuration for the experiment.
@@ -27386,8 +27408,7 @@ func (s *FlowDefinitionSummary) SetFlowDefinitionStatus(v string) *FlowDefinitio
 type GetSearchSuggestionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Amazon SageMaker resource to Search for. The only valid Resource
-	// value is TrainingJob.
+	// The name of the Amazon SageMaker resource to Search for.
 	//
 	// Resource is a required field
 	Resource *string `type:"string" required:"true" enum:"ResourceType"`
@@ -28080,7 +28101,7 @@ type HumanTaskConfig struct {
 
 	// Defines the maximum number of data objects that can be labeled by human workers
 	// at the same time. Also referred to as batch size. Each object may have more
-	// than one worker at one time.
+	// than one worker at one time. The default value is 1000 objects.
 	MaxConcurrentTaskCount *int64 `min:"1" type:"integer"`
 
 	// The number of human workers that will label an object.
@@ -28345,8 +28366,9 @@ type HumanTaskConfig struct {
 
 	// The length of time that a task remains available for labeling by human workers.
 	// If you choose the Amazon Mechanical Turk workforce, the maximum is 12 hours
-	// (43200). For private and vendor workforces, the maximum is as listed.
-	TaskAvailabilityLifetimeInSeconds *int64 `min:"1" type:"integer"`
+	// (43200). The default value is 864000 seconds (1 day). For private and vendor
+	// workforces, the maximum is as listed.
+	TaskAvailabilityLifetimeInSeconds *int64 `min:"60" type:"integer"`
 
 	// A description of the task for your human workers.
 	//
@@ -28408,8 +28430,8 @@ func (s *HumanTaskConfig) Validate() error {
 	if s.PreHumanTaskLambdaArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("PreHumanTaskLambdaArn"))
 	}
-	if s.TaskAvailabilityLifetimeInSeconds != nil && *s.TaskAvailabilityLifetimeInSeconds < 1 {
-		invalidParams.Add(request.NewErrParamMinValue("TaskAvailabilityLifetimeInSeconds", 1))
+	if s.TaskAvailabilityLifetimeInSeconds != nil && *s.TaskAvailabilityLifetimeInSeconds < 60 {
+		invalidParams.Add(request.NewErrParamMinValue("TaskAvailabilityLifetimeInSeconds", 60))
 	}
 	if s.TaskDescription == nil {
 		invalidParams.Add(request.NewErrParamRequired("TaskDescription"))
@@ -28813,8 +28835,6 @@ type HyperParameterTrainingJobDefinition struct {
 	// to use a VPC, Amazon SageMaker downloads and uploads customer data and model
 	// artifacts through the specified VPC, but the training container does not
 	// have network access.
-	//
-	// The Semantic Segmentation built-in algorithm does not support network isolation.
 	EnableNetworkIsolation *bool `type:"boolean"`
 
 	// Specifies ranges of integer, continuous, and categorical hyperparameters
@@ -32030,7 +32050,8 @@ type ListExperimentsInput struct {
 	// A filter that returns only experiments created before the specified time.
 	CreatedBefore *time.Time `type:"timestamp"`
 
-	// The maximum number of experiments to return in the response.
+	// The maximum number of experiments to return in the response. The default
+	// value is 10.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// If the previous call to ListExperiments didn't return the full set of experiments,
@@ -34585,7 +34606,12 @@ type ListTrialComponentsInput struct {
 	// A filter that returns only components created before the specified time.
 	CreatedBefore *time.Time `type:"timestamp"`
 
-	// The maximum number of components to return in the response.
+	// A filter that returns only components that are part of the specified experiment.
+	// If you specify ExperimentName, you can't specify TrialName.
+	ExperimentName *string `min:"1" type:"string"`
+
+	// The maximum number of components to return in the response. The default value
+	// is 10.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// If the previous call to ListTrialComponents didn't return the full set of
@@ -34601,6 +34627,10 @@ type ListTrialComponentsInput struct {
 	// A filter that returns only components that have the specified source Amazon
 	// Resource Name (ARN).
 	SourceArn *string `type:"string"`
+
+	// A filter that returns only components that are part of the specified trial.
+	// If you specify TrialName, you can't specify ExperimentName.
+	TrialName *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -34616,8 +34646,14 @@ func (s ListTrialComponentsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListTrialComponentsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListTrialComponentsInput"}
+	if s.ExperimentName != nil && len(*s.ExperimentName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExperimentName", 1))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.TrialName != nil && len(*s.TrialName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TrialName", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -34635,6 +34671,12 @@ func (s *ListTrialComponentsInput) SetCreatedAfter(v time.Time) *ListTrialCompon
 // SetCreatedBefore sets the CreatedBefore field's value.
 func (s *ListTrialComponentsInput) SetCreatedBefore(v time.Time) *ListTrialComponentsInput {
 	s.CreatedBefore = &v
+	return s
+}
+
+// SetExperimentName sets the ExperimentName field's value.
+func (s *ListTrialComponentsInput) SetExperimentName(v string) *ListTrialComponentsInput {
+	s.ExperimentName = &v
 	return s
 }
 
@@ -34665,6 +34707,12 @@ func (s *ListTrialComponentsInput) SetSortOrder(v string) *ListTrialComponentsIn
 // SetSourceArn sets the SourceArn field's value.
 func (s *ListTrialComponentsInput) SetSourceArn(v string) *ListTrialComponentsInput {
 	s.SourceArn = &v
+	return s
+}
+
+// SetTrialName sets the TrialName field's value.
+func (s *ListTrialComponentsInput) SetTrialName(v string) *ListTrialComponentsInput {
+	s.TrialName = &v
 	return s
 }
 
@@ -34712,7 +34760,8 @@ type ListTrialsInput struct {
 	// A filter that returns only trials that are part of the specified experiment.
 	ExperimentName *string `min:"1" type:"string"`
 
-	// The maximum number of trials to return in the response.
+	// The maximum number of trials to return in the response. The default value
+	// is 10.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// If the previous call to ListTrials didn't return the full set of trials,
@@ -36648,7 +36697,7 @@ type NestedFilters struct {
 	Filters []*Filter `min:"1" type:"list" required:"true"`
 
 	// The name of the property to use in the nested filters. The value must match
-	// a listed property name, such as InputDataConfig .
+	// a listed property name, such as InputDataConfig.
 	//
 	// NestedPropertyName is a required field
 	NestedPropertyName *string `min:"1" type:"string" required:"true"`
@@ -38261,13 +38310,12 @@ func (s *ProductionVariantSummary) SetVariantName(v string) *ProductionVariantSu
 	return s
 }
 
-// A type of SuggestionQuery. A suggestion query for retrieving property names
-// that match the specified hint.
+// Part of the SuggestionQuery type. Specifies a hint for retrieving property
+// names that begin with the specified text.
 type PropertyNameQuery struct {
 	_ struct{} `type:"structure"`
 
-	// Text that is part of a property's name. The property names of hyperparameter,
-	// metric, and tag key names that begin with the specified text in the PropertyNameHint.
+	// Text that begins a property's name.
 	//
 	// PropertyNameHint is a required field
 	PropertyNameHint *string `type:"string" required:"true"`
@@ -39527,8 +39575,7 @@ type SearchInput struct {
 	// and Sort parameters.
 	NextToken *string `type:"string"`
 
-	// The name of the Amazon SageMaker resource to search for. Currently, the only
-	// valid Resource value is TrainingJob.
+	// The name of the Amazon SageMaker resource to search for.
 	//
 	// Resource is a required field
 	Resource *string `type:"string" required:"true" enum:"ResourceType"`
@@ -40782,12 +40829,13 @@ func (s *SubscribedWorkteam) SetWorkteamArn(v string) *SubscribedWorkteam {
 	return s
 }
 
-// Limits the property names that are included in the response.
+// Specified in the GetSearchSuggestions request. Limits the property names
+// that are included in the response.
 type SuggestionQuery struct {
 	_ struct{} `type:"structure"`
 
-	// A type of SuggestionQuery. Defines a property name hint. Only property names
-	// that match the specified hint are included in the response.
+	// Defines a property name hint. Only property names that begin with the specified
+	// hint are included in the response.
 	PropertyNameQuery *PropertyNameQuery `type:"structure"`
 }
 
@@ -42325,6 +42373,10 @@ type TransformResources struct {
 	//    * // KMS Key ID "1234abcd-12ab-34cd-56ef-1234567890ab"
 	//
 	//    * // Amazon Resource Name (ARN) of a KMS Key "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * // KMS Key Alias "alias/ExampleAlias"
+	//
+	//    * // Amazon Resource Name (ARN) (ARN) of a KMS Key Alias "arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias"
 	VolumeKmsKeyId *string `type:"string"`
 }
 
@@ -45718,6 +45770,9 @@ const (
 const (
 	// FrameworkTensorflow is a Framework enum value
 	FrameworkTensorflow = "TENSORFLOW"
+
+	// FrameworkKeras is a Framework enum value
+	FrameworkKeras = "KERAS"
 
 	// FrameworkMxnet is a Framework enum value
 	FrameworkMxnet = "MXNET"

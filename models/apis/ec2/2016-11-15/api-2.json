@@ -9466,7 +9466,11 @@
           "locationName":"EgressOnlyInternetGatewayId"
         },
         "MaxResults":{"shape":"DescribeEgressOnlyInternetGatewaysMaxResults"},
-        "NextToken":{"shape":"String"}
+        "NextToken":{"shape":"String"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        }
       }
     },
     "DescribeEgressOnlyInternetGatewaysResult":{
@@ -13336,6 +13340,10 @@
         "EgressOnlyInternetGatewayId":{
           "shape":"EgressOnlyInternetGatewayId",
           "locationName":"egressOnlyInternetGatewayId"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },
@@ -19007,6 +19015,10 @@
         "State":{
           "shape":"String",
           "locationName":"state"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },
@@ -19082,6 +19094,10 @@
         "State":{
           "shape":"String",
           "locationName":"state"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },
@@ -19121,6 +19137,10 @@
         "State":{
           "shape":"String",
           "locationName":"state"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },
@@ -19160,6 +19180,10 @@
         "State":{
           "shape":"String",
           "locationName":"state"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },
@@ -19221,6 +19245,10 @@
         "PeerBgpAsn":{
           "shape":"Integer",
           "locationName":"peerBgpAsn"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },
@@ -19238,6 +19266,10 @@
         "LocalGatewayId":{
           "shape":"String",
           "locationName":"localGatewayId"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },

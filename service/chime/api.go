@@ -318,6 +318,106 @@ func (c *Chime) AssociatePhoneNumbersWithVoiceConnectorGroupWithContext(ctx aws.
 	return out, req.Send()
 }
 
+const opAssociateSigninDelegateGroupsWithAccount = "AssociateSigninDelegateGroupsWithAccount"
+
+// AssociateSigninDelegateGroupsWithAccountRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateSigninDelegateGroupsWithAccount operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateSigninDelegateGroupsWithAccount for more information on using the AssociateSigninDelegateGroupsWithAccount
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateSigninDelegateGroupsWithAccountRequest method.
+//    req, resp := client.AssociateSigninDelegateGroupsWithAccountRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/AssociateSigninDelegateGroupsWithAccount
+func (c *Chime) AssociateSigninDelegateGroupsWithAccountRequest(input *AssociateSigninDelegateGroupsWithAccountInput) (req *request.Request, output *AssociateSigninDelegateGroupsWithAccountOutput) {
+	op := &request.Operation{
+		Name:       opAssociateSigninDelegateGroupsWithAccount,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{accountId}?operation=associate-signin-delegate-groups",
+	}
+
+	if input == nil {
+		input = &AssociateSigninDelegateGroupsWithAccountInput{}
+	}
+
+	output = &AssociateSigninDelegateGroupsWithAccountOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// AssociateSigninDelegateGroupsWithAccount API operation for Amazon Chime.
+//
+// Associates the specified sign-in delegate groups with the specified Amazon
+// Chime account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation AssociateSigninDelegateGroupsWithAccount for usage and error information.
+//
+// Returned Error Types:
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/AssociateSigninDelegateGroupsWithAccount
+func (c *Chime) AssociateSigninDelegateGroupsWithAccount(input *AssociateSigninDelegateGroupsWithAccountInput) (*AssociateSigninDelegateGroupsWithAccountOutput, error) {
+	req, out := c.AssociateSigninDelegateGroupsWithAccountRequest(input)
+	return out, req.Send()
+}
+
+// AssociateSigninDelegateGroupsWithAccountWithContext is the same as AssociateSigninDelegateGroupsWithAccount with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateSigninDelegateGroupsWithAccount for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) AssociateSigninDelegateGroupsWithAccountWithContext(ctx aws.Context, input *AssociateSigninDelegateGroupsWithAccountInput, opts ...request.Option) (*AssociateSigninDelegateGroupsWithAccountOutput, error) {
+	req, out := c.AssociateSigninDelegateGroupsWithAccountRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBatchCreateAttendee = "BatchCreateAttendee"
 
 // BatchCreateAttendeeRequest generates a "aws/request.Request" representing the
@@ -490,6 +590,9 @@ func (c *Chime) BatchCreateRoomMembershipRequest(input *BatchCreateRoomMembershi
 //   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
 //
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
@@ -670,7 +773,7 @@ func (c *Chime) BatchSuspendUserRequest(input *BatchSuspendUserInput) (req *requ
 // Chime Accounts (https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html)
 // in the Amazon Chime Administration Guide.
 //
-// Users suspended from a Team account are dissasociated from the account, but
+// Users suspended from a Team account are disassociated from the account, but
 // they can continue to use Amazon Chime as free users. To remove the suspension
 // from suspended Team account users, invite them to the Team account again.
 // You can use the InviteUsers action to do so.
@@ -1326,6 +1429,9 @@ func (c *Chime) CreateBotRequest(input *CreateBotInput) (req *request.Request, o
 //   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateBot
 func (c *Chime) CreateBot(input *CreateBotInput) (*CreateBotOutput, error) {
 	req, out := c.CreateBotRequest(input)
@@ -1623,6 +1729,9 @@ func (c *Chime) CreateRoomRequest(input *CreateRoomInput) (req *request.Request,
 //   * ResourceLimitExceededException
 //   The request exceeds the resource limit.
 //
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
@@ -1727,6 +1836,9 @@ func (c *Chime) CreateRoomMembershipRequest(input *CreateRoomMembershipInput) (r
 //   * ResourceLimitExceededException
 //   The request exceeds the resource limit.
 //
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
@@ -1750,6 +1862,108 @@ func (c *Chime) CreateRoomMembership(input *CreateRoomMembershipInput) (*CreateR
 // for more information on using Contexts.
 func (c *Chime) CreateRoomMembershipWithContext(ctx aws.Context, input *CreateRoomMembershipInput, opts ...request.Option) (*CreateRoomMembershipOutput, error) {
 	req, out := c.CreateRoomMembershipRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateUser = "CreateUser"
+
+// CreateUserRequest generates a "aws/request.Request" representing the
+// client's request for the CreateUser operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateUser for more information on using the CreateUser
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateUserRequest method.
+//    req, resp := client.CreateUserRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateUser
+func (c *Chime) CreateUserRequest(input *CreateUserInput) (req *request.Request, output *CreateUserOutput) {
+	op := &request.Operation{
+		Name:       opCreateUser,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{accountId}/users?operation=create",
+	}
+
+	if input == nil {
+		input = &CreateUserInput{}
+	}
+
+	output = &CreateUserOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateUser API operation for Amazon Chime.
+//
+// Creates a user under the specified Amazon Chime account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation CreateUser for usage and error information.
+//
+// Returned Error Types:
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateUser
+func (c *Chime) CreateUser(input *CreateUserInput) (*CreateUserOutput, error) {
+	req, out := c.CreateUserRequest(input)
+	return out, req.Send()
+}
+
+// CreateUserWithContext is the same as CreateUser with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateUser for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) CreateUserWithContext(ctx aws.Context, input *CreateUserInput, opts ...request.Option) (*CreateUserOutput, error) {
+	req, out := c.CreateUserRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2559,6 +2773,9 @@ func (c *Chime) DeleteRoomRequest(input *DeleteRoomInput) (req *request.Request,
 //   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
@@ -2654,6 +2871,9 @@ func (c *Chime) DeleteRoomMembershipRequest(input *DeleteRoomMembershipInput) (r
 //   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
 //
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
@@ -3589,6 +3809,106 @@ func (c *Chime) DisassociatePhoneNumbersFromVoiceConnectorGroupWithContext(ctx a
 	return out, req.Send()
 }
 
+const opDisassociateSigninDelegateGroupsFromAccount = "DisassociateSigninDelegateGroupsFromAccount"
+
+// DisassociateSigninDelegateGroupsFromAccountRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateSigninDelegateGroupsFromAccount operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateSigninDelegateGroupsFromAccount for more information on using the DisassociateSigninDelegateGroupsFromAccount
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateSigninDelegateGroupsFromAccountRequest method.
+//    req, resp := client.DisassociateSigninDelegateGroupsFromAccountRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DisassociateSigninDelegateGroupsFromAccount
+func (c *Chime) DisassociateSigninDelegateGroupsFromAccountRequest(input *DisassociateSigninDelegateGroupsFromAccountInput) (req *request.Request, output *DisassociateSigninDelegateGroupsFromAccountOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateSigninDelegateGroupsFromAccount,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{accountId}?operation=disassociate-signin-delegate-groups",
+	}
+
+	if input == nil {
+		input = &DisassociateSigninDelegateGroupsFromAccountInput{}
+	}
+
+	output = &DisassociateSigninDelegateGroupsFromAccountOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociateSigninDelegateGroupsFromAccount API operation for Amazon Chime.
+//
+// Disassociates the specified sign-in delegate groups from the specified Amazon
+// Chime account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation DisassociateSigninDelegateGroupsFromAccount for usage and error information.
+//
+// Returned Error Types:
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DisassociateSigninDelegateGroupsFromAccount
+func (c *Chime) DisassociateSigninDelegateGroupsFromAccount(input *DisassociateSigninDelegateGroupsFromAccountInput) (*DisassociateSigninDelegateGroupsFromAccountOutput, error) {
+	req, out := c.DisassociateSigninDelegateGroupsFromAccountRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateSigninDelegateGroupsFromAccountWithContext is the same as DisassociateSigninDelegateGroupsFromAccount with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateSigninDelegateGroupsFromAccount for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) DisassociateSigninDelegateGroupsFromAccountWithContext(ctx aws.Context, input *DisassociateSigninDelegateGroupsFromAccountInput, opts ...request.Option) (*DisassociateSigninDelegateGroupsFromAccountOutput, error) {
+	req, out := c.DisassociateSigninDelegateGroupsFromAccountRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetAccount = "GetAccount"
 
 // GetAccountRequest generates a "aws/request.Request" representing the
@@ -3963,6 +4283,9 @@ func (c *Chime) GetBotRequest(input *GetBotInput) (req *request.Request, output 
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetBot
 func (c *Chime) GetBot(input *GetBotInput) (*GetBotOutput, error) {
@@ -4620,7 +4943,7 @@ func (c *Chime) GetRoomRequest(input *GetRoomInput) (req *request.Request, outpu
 
 // GetRoom API operation for Amazon Chime.
 //
-// Retrieves room details, such as name.
+// Retrieves room details, such as the room name.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4642,6 +4965,9 @@ func (c *Chime) GetRoomRequest(input *GetRoomInput) (req *request.Request, outpu
 //
 //   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
 //
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
@@ -6065,6 +6391,9 @@ func (c *Chime) ListBotsRequest(input *ListBotsInput) (req *request.Request, out
 //   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListBots
 func (c *Chime) ListBots(input *ListBotsInput) (*ListBotsOutput, error) {
 	req, out := c.ListBotsRequest(input)
@@ -6651,8 +6980,8 @@ func (c *Chime) ListRoomMembershipsRequest(input *ListRoomMembershipsInput) (req
 
 // ListRoomMemberships API operation for Amazon Chime.
 //
-// Lists the membership details for the specified room, such as member IDs,
-// member email addresses, and member names.
+// Lists the membership details for the specified room, such as the members'
+// IDs, email addresses, and names.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6674,6 +7003,9 @@ func (c *Chime) ListRoomMembershipsRequest(input *ListRoomMembershipsInput) (req
 //
 //   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
 //
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
@@ -6829,6 +7161,9 @@ func (c *Chime) ListRoomsRequest(input *ListRoomsInput) (req *request.Request, o
 //
 //   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
 //
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
@@ -8245,6 +8580,9 @@ func (c *Chime) RegenerateSecurityTokenRequest(input *RegenerateSecurityTokenInp
 //   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/RegenerateSecurityToken
 func (c *Chime) RegenerateSecurityToken(input *RegenerateSecurityTokenInput) (*RegenerateSecurityTokenOutput, error) {
 	req, out := c.RegenerateSecurityTokenRequest(input)
@@ -8844,6 +9182,9 @@ func (c *Chime) UpdateBotRequest(input *UpdateBotInput) (req *request.Request, o
 //   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
 //
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateBot
 func (c *Chime) UpdateBot(input *UpdateBotInput) (*UpdateBotOutput, error) {
 	req, out := c.UpdateBotRequest(input)
@@ -9237,6 +9578,9 @@ func (c *Chime) UpdateRoomRequest(input *UpdateRoomInput) (req *request.Request,
 //   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
@@ -9309,9 +9653,9 @@ func (c *Chime) UpdateRoomMembershipRequest(input *UpdateRoomMembershipInput) (r
 
 // UpdateRoomMembership API operation for Amazon Chime.
 //
-// Updates room membership details, such as member role. The member role designates
-// whether the member is a chat room administrator or a general chat room member.
-// Member role can only be updated for user IDs.
+// Updates room membership details, such as the member role. The member role
+// designates whether the member is a chat room administrator or a general chat
+// room member. The member role can be updated only for user IDs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9333,6 +9677,9 @@ func (c *Chime) UpdateRoomMembershipRequest(input *UpdateRoomMembershipInput) (r
 //   * ForbiddenException
 //   The client is permanently forbidden from making the request. For example,
 //   when a user tries to create an account from an unsupported Region.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
 //
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
@@ -9850,6 +10197,9 @@ type Account struct {
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
+	// The sign-in delegate groups associated with the account.
+	SigninDelegateGroups []*SigninDelegateGroup `type:"list"`
+
 	// Supported licenses for the Amazon Chime account.
 	SupportedLicenses []*string `type:"list"`
 }
@@ -9900,6 +10250,12 @@ func (s *Account) SetName(v string) *Account {
 	return s
 }
 
+// SetSigninDelegateGroups sets the SigninDelegateGroups field's value.
+func (s *Account) SetSigninDelegateGroups(v []*SigninDelegateGroup) *Account {
+	s.SigninDelegateGroups = v
+	return s
+}
+
 // SetSupportedLicenses sets the SupportedLicenses field's value.
 func (s *Account) SetSupportedLicenses(v []*string) *Account {
 	s.SupportedLicenses = v
@@ -9942,6 +10298,40 @@ func (s *AccountSettings) SetDisableRemoteControl(v bool) *AccountSettings {
 // SetEnableDialOut sets the EnableDialOut field's value.
 func (s *AccountSettings) SetEnableDialOut(v bool) *AccountSettings {
 	s.EnableDialOut = &v
+	return s
+}
+
+// The Alexa for Business metadata associated with an Amazon Chime user, used
+// to integrate Alexa for Business with a device.
+type AlexaForBusinessMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the room resource.
+	AlexaForBusinessRoomArn *string `type:"string" sensitive:"true"`
+
+	// Starts or stops Alexa for Business.
+	IsAlexaForBusinessEnabled *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s AlexaForBusinessMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AlexaForBusinessMetadata) GoString() string {
+	return s.String()
+}
+
+// SetAlexaForBusinessRoomArn sets the AlexaForBusinessRoomArn field's value.
+func (s *AlexaForBusinessMetadata) SetAlexaForBusinessRoomArn(v string) *AlexaForBusinessMetadata {
+	s.AlexaForBusinessRoomArn = &v
+	return s
+}
+
+// SetIsAlexaForBusinessEnabled sets the IsAlexaForBusinessEnabled field's value.
+func (s *AlexaForBusinessMetadata) SetIsAlexaForBusinessEnabled(v bool) *AlexaForBusinessMetadata {
+	s.IsAlexaForBusinessEnabled = &v
 	return s
 }
 
@@ -10202,6 +10592,75 @@ func (s AssociatePhoneNumbersWithVoiceConnectorOutput) GoString() string {
 func (s *AssociatePhoneNumbersWithVoiceConnectorOutput) SetPhoneNumberErrors(v []*PhoneNumberError) *AssociatePhoneNumbersWithVoiceConnectorOutput {
 	s.PhoneNumberErrors = v
 	return s
+}
+
+type AssociateSigninDelegateGroupsWithAccountInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime account ID.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+
+	// The sign-in delegate groups.
+	//
+	// SigninDelegateGroups is a required field
+	SigninDelegateGroups []*SigninDelegateGroup `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s AssociateSigninDelegateGroupsWithAccountInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateSigninDelegateGroupsWithAccountInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateSigninDelegateGroupsWithAccountInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateSigninDelegateGroupsWithAccountInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.SigninDelegateGroups == nil {
+		invalidParams.Add(request.NewErrParamRequired("SigninDelegateGroups"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *AssociateSigninDelegateGroupsWithAccountInput) SetAccountId(v string) *AssociateSigninDelegateGroupsWithAccountInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetSigninDelegateGroups sets the SigninDelegateGroups field's value.
+func (s *AssociateSigninDelegateGroupsWithAccountInput) SetSigninDelegateGroups(v []*SigninDelegateGroup) *AssociateSigninDelegateGroupsWithAccountInput {
+	s.SigninDelegateGroups = v
+	return s
+}
+
+type AssociateSigninDelegateGroupsWithAccountOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s AssociateSigninDelegateGroupsWithAccountOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateSigninDelegateGroupsWithAccountOutput) GoString() string {
+	return s.String()
 }
 
 // An Amazon Chime SDK meeting attendee. Includes a unique AttendeeId and JoinToken.
@@ -11407,7 +11866,9 @@ type CreateMeetingInput struct {
 	// meetings.
 	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
 
-	// The Region in which to create the meeting. Available values: us-east-1, us-west-2.
+	// The Region in which to create the meeting. Available values: ap-northeast-1,
+	// ap-southeast-1, ap-southeast-2, ca-central-1, eu-central-1, eu-north-1, eu-west-1,
+	// eu-west-2, eu-west-3, sa-east-1, us-east-1, us-east-2, us-west-1, us-west-2.
 	MediaRegion *string `type:"string"`
 
 	// Reserved.
@@ -11762,6 +12223,97 @@ func (s CreateRoomOutput) GoString() string {
 // SetRoom sets the Room field's value.
 func (s *CreateRoomOutput) SetRoom(v *Room) *CreateRoomOutput {
 	s.Room = v
+	return s
+}
+
+type CreateUserInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime account ID.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+
+	// The user's email address.
+	Email *string `type:"string" sensitive:"true"`
+
+	// The user type.
+	UserType *string `type:"string" enum:"UserType"`
+
+	// The user name.
+	Username *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateUserInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateUserInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateUserInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *CreateUserInput) SetAccountId(v string) *CreateUserInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetEmail sets the Email field's value.
+func (s *CreateUserInput) SetEmail(v string) *CreateUserInput {
+	s.Email = &v
+	return s
+}
+
+// SetUserType sets the UserType field's value.
+func (s *CreateUserInput) SetUserType(v string) *CreateUserInput {
+	s.UserType = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *CreateUserInput) SetUsername(v string) *CreateUserInput {
+	s.Username = &v
+	return s
+}
+
+type CreateUserOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The user on the Amazon Chime account.
+	User *User `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateUserOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateUserOutput) GoString() string {
+	return s.String()
+}
+
+// SetUser sets the User field's value.
+func (s *CreateUserOutput) SetUser(v *User) *CreateUserOutput {
+	s.User = v
 	return s
 }
 
@@ -13002,6 +13554,78 @@ func (s DisassociatePhoneNumbersFromVoiceConnectorOutput) GoString() string {
 func (s *DisassociatePhoneNumbersFromVoiceConnectorOutput) SetPhoneNumberErrors(v []*PhoneNumberError) *DisassociatePhoneNumbersFromVoiceConnectorOutput {
 	s.PhoneNumberErrors = v
 	return s
+}
+
+type DisassociateSigninDelegateGroupsFromAccountInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime account ID.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+
+	// The sign-in delegate group names.
+	//
+	// GroupNames is a required field
+	GroupNames []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s DisassociateSigninDelegateGroupsFromAccountInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateSigninDelegateGroupsFromAccountInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateSigninDelegateGroupsFromAccountInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateSigninDelegateGroupsFromAccountInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.GroupNames == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupNames"))
+	}
+	if s.GroupNames != nil && len(s.GroupNames) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupNames", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DisassociateSigninDelegateGroupsFromAccountInput) SetAccountId(v string) *DisassociateSigninDelegateGroupsFromAccountInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetGroupNames sets the GroupNames field's value.
+func (s *DisassociateSigninDelegateGroupsFromAccountInput) SetGroupNames(v []*string) *DisassociateSigninDelegateGroupsFromAccountInput {
+	s.GroupNames = v
+	return s
+}
+
+type DisassociateSigninDelegateGroupsFromAccountOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisassociateSigninDelegateGroupsFromAccountOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateSigninDelegateGroupsFromAccountOutput) GoString() string {
+	return s.String()
 }
 
 // The configuration that allows a bot to receive outgoing events. Can be either
@@ -14516,6 +15140,9 @@ type InviteUsersInput struct {
 	//
 	// UserEmailList is a required field
 	UserEmailList []*string `type:"list" required:"true"`
+
+	// The user type.
+	UserType *string `type:"string" enum:"UserType"`
 }
 
 // String returns the string representation
@@ -14556,6 +15183,12 @@ func (s *InviteUsersInput) SetAccountId(v string) *InviteUsersInput {
 // SetUserEmailList sets the UserEmailList field's value.
 func (s *InviteUsersInput) SetUserEmailList(v []*string) *InviteUsersInput {
 	s.UserEmailList = v
+	return s
+}
+
+// SetUserType sets the UserType field's value.
+func (s *InviteUsersInput) SetUserType(v string) *InviteUsersInput {
+	s.UserType = &v
 	return s
 }
 
@@ -15366,6 +15999,9 @@ type ListUsersInput struct {
 
 	// Optional. The user email address used to filter results. Maximum 1.
 	UserEmail *string `location:"querystring" locationName:"user-email" type:"string" sensitive:"true"`
+
+	// The user type.
+	UserType *string `location:"querystring" locationName:"user-type" type:"string" enum:"UserType"`
 }
 
 // String returns the string representation
@@ -15418,6 +16054,12 @@ func (s *ListUsersInput) SetNextToken(v string) *ListUsersInput {
 // SetUserEmail sets the UserEmail field's value.
 func (s *ListUsersInput) SetUserEmail(v string) *ListUsersInput {
 	s.UserEmail = &v
+	return s
+}
+
+// SetUserType sets the UserType field's value.
+func (s *ListUsersInput) SetUserType(v string) *ListUsersInput {
+	s.UserType = &v
 	return s
 }
 
@@ -15846,7 +16488,9 @@ type Meeting struct {
 	// The media placement for the meeting.
 	MediaPlacement *MediaPlacement `type:"structure"`
 
-	// The Region in which to create the meeting. Available values: us-east-1, us-west-2.
+	// The Region in which to create the meeting. Available values: ap-northeast-1,
+	// ap-southeast-1, ap-southeast-2, ca-central-1, eu-central-1, eu-north-1, eu-west-1,
+	// eu-west-2, eu-west-3, sa-east-1, us-east-1, us-east-2, us-west-1, us-west-2.
 	MediaRegion *string `type:"string"`
 
 	// The Amazon Chime SDK meeting ID.
@@ -17784,6 +18428,31 @@ func (s ServiceUnavailableException) RequestID() string {
 	return s.respMetadata.RequestID
 }
 
+// An Active Directory (AD) group whose members are granted permission to act
+// as delegates.
+type SigninDelegateGroup struct {
+	_ struct{} `type:"structure"`
+
+	// The group name.
+	GroupName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SigninDelegateGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SigninDelegateGroup) GoString() string {
+	return s.String()
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *SigninDelegateGroup) SetGroupName(v string) *SigninDelegateGroup {
+	s.GroupName = &v
+	return s
+}
+
 // The streaming configuration associated with an Amazon Chime Voice Connector.
 // Specifies whether media streaming is enabled for sending to Amazon Kinesis,
 // and shows the retention period for the Amazon Kinesis data, in hours.
@@ -18884,6 +19553,9 @@ type UpdateUserInput struct {
 	// AccountId is a required field
 	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
+	// The Alexa for Business metadata.
+	AlexaForBusinessMetadata *AlexaForBusinessMetadata `type:"structure"`
+
 	// The user license type to update. This must be a supported license type for
 	// the Amazon Chime account that the user belongs to.
 	LicenseType *string `type:"string" enum:"License"`
@@ -18892,6 +19564,9 @@ type UpdateUserInput struct {
 	//
 	// UserId is a required field
 	UserId *string `location:"uri" locationName:"userId" type:"string" required:"true"`
+
+	// The user type.
+	UserType *string `type:"string" enum:"UserType"`
 }
 
 // String returns the string representation
@@ -18932,6 +19607,12 @@ func (s *UpdateUserInput) SetAccountId(v string) *UpdateUserInput {
 	return s
 }
 
+// SetAlexaForBusinessMetadata sets the AlexaForBusinessMetadata field's value.
+func (s *UpdateUserInput) SetAlexaForBusinessMetadata(v *AlexaForBusinessMetadata) *UpdateUserInput {
+	s.AlexaForBusinessMetadata = v
+	return s
+}
+
 // SetLicenseType sets the LicenseType field's value.
 func (s *UpdateUserInput) SetLicenseType(v string) *UpdateUserInput {
 	s.LicenseType = &v
@@ -18941,6 +19622,12 @@ func (s *UpdateUserInput) SetLicenseType(v string) *UpdateUserInput {
 // SetUserId sets the UserId field's value.
 func (s *UpdateUserInput) SetUserId(v string) *UpdateUserInput {
 	s.UserId = &v
+	return s
+}
+
+// SetUserType sets the UserType field's value.
+func (s *UpdateUserInput) SetUserType(v string) *UpdateUserInput {
+	s.UserType = &v
 	return s
 }
 
@@ -18971,6 +19658,9 @@ func (s *UpdateUserOutput) SetUser(v *User) *UpdateUserOutput {
 type UpdateUserRequestItem struct {
 	_ struct{} `type:"structure"`
 
+	// The Alexa for Business metadata.
+	AlexaForBusinessMetadata *AlexaForBusinessMetadata `type:"structure"`
+
 	// The user license type.
 	LicenseType *string `type:"string" enum:"License"`
 
@@ -18978,6 +19668,9 @@ type UpdateUserRequestItem struct {
 	//
 	// UserId is a required field
 	UserId *string `type:"string" required:"true"`
+
+	// The user type.
+	UserType *string `type:"string" enum:"UserType"`
 }
 
 // String returns the string representation
@@ -19003,6 +19696,12 @@ func (s *UpdateUserRequestItem) Validate() error {
 	return nil
 }
 
+// SetAlexaForBusinessMetadata sets the AlexaForBusinessMetadata field's value.
+func (s *UpdateUserRequestItem) SetAlexaForBusinessMetadata(v *AlexaForBusinessMetadata) *UpdateUserRequestItem {
+	s.AlexaForBusinessMetadata = v
+	return s
+}
+
 // SetLicenseType sets the LicenseType field's value.
 func (s *UpdateUserRequestItem) SetLicenseType(v string) *UpdateUserRequestItem {
 	s.LicenseType = &v
@@ -19012,6 +19711,12 @@ func (s *UpdateUserRequestItem) SetLicenseType(v string) *UpdateUserRequestItem 
 // SetUserId sets the UserId field's value.
 func (s *UpdateUserRequestItem) SetUserId(v string) *UpdateUserRequestItem {
 	s.UserId = &v
+	return s
+}
+
+// SetUserType sets the UserType field's value.
+func (s *UpdateUserRequestItem) SetUserType(v string) *UpdateUserRequestItem {
+	s.UserType = &v
 	return s
 }
 
@@ -19313,6 +20018,9 @@ type User struct {
 	// The Amazon Chime account ID.
 	AccountId *string `type:"string"`
 
+	// The Alexa for Business metadata.
+	AlexaForBusinessMetadata *AlexaForBusinessMetadata `type:"structure"`
+
 	// The display name of the user.
 	DisplayName *string `type:"string" sensitive:"true"`
 
@@ -19345,6 +20053,9 @@ type User struct {
 
 	// The user registration status.
 	UserRegistrationStatus *string `type:"string" enum:"RegistrationStatus"`
+
+	// The user type.
+	UserType *string `type:"string" enum:"UserType"`
 }
 
 // String returns the string representation
@@ -19360,6 +20071,12 @@ func (s User) GoString() string {
 // SetAccountId sets the AccountId field's value.
 func (s *User) SetAccountId(v string) *User {
 	s.AccountId = &v
+	return s
+}
+
+// SetAlexaForBusinessMetadata sets the AlexaForBusinessMetadata field's value.
+func (s *User) SetAlexaForBusinessMetadata(v *AlexaForBusinessMetadata) *User {
+	s.AlexaForBusinessMetadata = v
 	return s
 }
 
@@ -19420,6 +20137,12 @@ func (s *User) SetUserInvitationStatus(v string) *User {
 // SetUserRegistrationStatus sets the UserRegistrationStatus field's value.
 func (s *User) SetUserRegistrationStatus(v string) *User {
 	s.UserRegistrationStatus = &v
+	return s
+}
+
+// SetUserType sets the UserType field's value.
+func (s *User) SetUserType(v string) *User {
+	s.UserType = &v
 	return s
 }
 
@@ -19970,6 +20693,14 @@ const (
 
 	// RoomMembershipRoleMember is a RoomMembershipRole enum value
 	RoomMembershipRoleMember = "Member"
+)
+
+const (
+	// UserTypePrivateUser is a UserType enum value
+	UserTypePrivateUser = "PrivateUser"
+
+	// UserTypeSharedDevice is a UserType enum value
+	UserTypeSharedDevice = "SharedDevice"
 )
 
 const (

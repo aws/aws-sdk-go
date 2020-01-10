@@ -165,6 +165,10 @@ type WorkSpacesAPI interface {
 	ListAvailableManagementCidrRangesWithContext(aws.Context, *workspaces.ListAvailableManagementCidrRangesInput, ...request.Option) (*workspaces.ListAvailableManagementCidrRangesOutput, error)
 	ListAvailableManagementCidrRangesRequest(*workspaces.ListAvailableManagementCidrRangesInput) (*request.Request, *workspaces.ListAvailableManagementCidrRangesOutput)
 
+	MigrateWorkspace(*workspaces.MigrateWorkspaceInput) (*workspaces.MigrateWorkspaceOutput, error)
+	MigrateWorkspaceWithContext(aws.Context, *workspaces.MigrateWorkspaceInput, ...request.Option) (*workspaces.MigrateWorkspaceOutput, error)
+	MigrateWorkspaceRequest(*workspaces.MigrateWorkspaceInput) (*request.Request, *workspaces.MigrateWorkspaceOutput)
+
 	ModifyAccount(*workspaces.ModifyAccountInput) (*workspaces.ModifyAccountOutput, error)
 	ModifyAccountWithContext(aws.Context, *workspaces.ModifyAccountInput, ...request.Option) (*workspaces.ModifyAccountOutput, error)
 	ModifyAccountRequest(*workspaces.ModifyAccountInput) (*request.Request, *workspaces.ModifyAccountOutput)

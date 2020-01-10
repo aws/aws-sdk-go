@@ -7,7 +7,7 @@
     "DeleteServer": "<p>Deletes the Secure File Transfer Protocol (SFTP) server that you specify.</p> <p>No response returns from this operation.</p>",
     "DeleteSshPublicKey": "<p>Deletes a user's Secure Shell (SSH) public key.</p> <p>No response is returned from this operation.</p>",
     "DeleteUser": "<p>Deletes the user belonging to the server you specify.</p> <p>No response returns from this operation.</p> <note> <p>When you delete a user from a server, the user's information is lost.</p> </note>",
-    "DescribeServer": "<p>Describes the server that you specify by passing the <code>ServerId</code> parameter.</p> <p>The response contains a description of the server's properties.</p>",
+    "DescribeServer": "<p>Describes the server that you specify by passing the <code>ServerId</code> parameter.</p> <p>The response contains a description of the server's properties. When you set <code>EndpointType</code> to VPC, the response will contain the <code>EndpointDetails</code>.</p>",
     "DescribeUser": "<p>Describes the user assigned to a specific server, as identified by its <code>ServerId</code> property.</p> <p>The response from this call returns the properties of the user associated with the <code>ServerId</code> value that was specified.</p>",
     "ImportSshPublicKey": "<p>Adds a Secure Shell (SSH) public key to a user account identified by a <code>UserName</code> value assigned to a specific server, identified by <code>ServerId</code>.</p> <p>The response returns the <code>UserName</code> value, the <code>ServerId</code> value, and the name of the <code>SshPublicKeyId</code>.</p>",
     "ListServers": "<p>Lists the Secure File Transfer Protocol (SFTP) servers that are associated with your AWS account.</p>",
@@ -22,6 +22,18 @@
     "UpdateUser": "<p>Assigns new properties to a user. Parameters you pass modify any or all of the following: the home directory, role, and policy for the <code>UserName</code> and <code>ServerId</code> you specify.</p> <p>The response returns the <code>ServerId</code> and the <code>UserName</code> for the updated user.</p>"
   },
   "shapes": {
+    "AddressAllocationId": {
+      "base": null,
+      "refs": {
+        "AddressAllocationIds$member": null
+      }
+    },
+    "AddressAllocationIds": {
+      "base": null,
+      "refs": {
+        "EndpointDetails$AddressAllocationIds": "<p>A list of address allocation IDs that are required to attach an Elastic IP address to your SFTP server's endpoint. This is only valid in the <code>UpdateServer</code> API.</p> <note> <p>This property can only be use when <code>EndpointType</code> is set to <code>VPC</code>.</p> </note>"
+      }
+    },
     "Arn": {
       "base": null,
       "refs": {
@@ -33,6 +45,11 @@
         "ListedUser$Arn": "<p>This property is the unique Amazon Resource Name (ARN) for the user that you want to learn about.</p>",
         "TagResourceRequest$Arn": "<p>An Amazon Resource Name (ARN) for a specific AWS resource, such as a server, user, or role.</p>",
         "UntagResourceRequest$Arn": "<p>This is the value of the resource that will have the tag removed. An Amazon Resource Name (ARN) is an identifier for a specific AWS resource, such as a server, user, or role.</p>"
+      }
+    },
+    "ConflictException": {
+      "base": "<p>This exception is thrown when the <code>UpdatServer</code> is called for a server that has VPC as the endpoint type and the server's <code>VpcEndpointID</code> is not in the available state.</p>",
+      "refs": {
       }
     },
     "CreateServerRequest": {
@@ -109,17 +126,17 @@
       }
     },
     "EndpointDetails": {
-      "base": "<p>The configuration settings for the virtual private cloud (VPC) endpoint for your SFTP server.</p>",
+      "base": "<p>The virtual private cloud (VPC) endpoint settings that are configured for your SFTP server. With a VPC endpoint, you can restrict access to your SFTP server and resources only within your VPC. To control incoming internet traffic, invoke the <code>UpdateServer</code> API and attach an Elastic IP to your server's endpoint. </p>",
       "refs": {
-        "CreateServerRequest$EndpointDetails": "<p>The virtual private cloud (VPC) endpoint settings that you want to configure for your SFTP server. This parameter is required when you specify a value for the <code>EndpointType</code> parameter.</p>",
+        "CreateServerRequest$EndpointDetails": "<p>The virtual private cloud (VPC) endpoint settings that are configured for your SFTP server. With a VPC endpoint, you can restrict access to your SFTP server to resources only within your VPC. To control incoming internet traffic, you will need to invoke the <code>UpdateServer</code> API and attach an Elastic IP to your server's endpoint. </p>",
         "DescribedServer$EndpointDetails": "<p>The virtual private cloud (VPC) endpoint settings that you configured for your SFTP server.</p>",
-        "UpdateServerRequest$EndpointDetails": "<p>The virtual private cloud (VPC) endpoint settings that are configured for your SFTP server. With a VPC endpoint, your SFTP server isn't accessible over the public internet.</p>"
+        "UpdateServerRequest$EndpointDetails": "<p>The virtual private cloud (VPC) endpoint settings that are configured for your SFTP server. With a VPC endpoint, you can restrict access to your SFTP server to resources only within your VPC. To control incoming internet traffic, you will need to associate one or more Elastic IP addresses with your server's endpoint. </p>"
       }
     },
     "EndpointType": {
       "base": null,
       "refs": {
-        "CreateServerRequest$EndpointType": "<p>The type of VPC endpoint that you want your SFTP server to connect to. If you connect to a VPC endpoint, your SFTP server isn't accessible over the public internet.</p>",
+        "CreateServerRequest$EndpointType": "<p>The type of VPC endpoint that you want your SFTP server to connect to. You can choose to connect to the public internet or a virtual private cloud (VPC) endpoint. With a VPC endpoint, you can restrict access to your SFTP server and resources only within your VPC.</p>",
         "DescribedServer$EndpointType": "<p>The type of endpoint that your SFTP server is connected to. If your SFTP server is connected to a VPC endpoint, your server isn't accessible over the public internet.</p>",
         "ListedServer$EndpointType": "<p>The type of VPC endpoint that your SFTP server is connected to. If your SFTP server is connected to a VPC endpoint, your server isn't accessible over the public internet.</p>",
         "UpdateServerRequest$EndpointType": "<p>The type of endpoint that you want your SFTP server to connect to. You can choose to connect to the public internet or a virtual private cloud (VPC) endpoint. With a VPC endpoint, your SFTP server isn't accessible over the public internet. </p>"
@@ -143,9 +160,9 @@
     "HomeDirectoryMappings": {
       "base": null,
       "refs": {
-        "CreateUserRequest$HomeDirectoryMappings": "<p>Logical directory mappings that specify what S3 paths and keys should be visible to your user and how you want to make them visible. You will need to specify the \"<code>Entry</code>\" and \"<code>Target</code>\" pair, where <code>Entry</code> shows how the path is made visible and <code>Target</code> is the actual S3 path. If you only specify a target, it will be displayed as is. You will need to also make sure that your AWS IAM Role provides access to paths in <code>Target</code>. The following is an example.</p> <p> <code>'[ \"/bucket2/documentation\", { \"Entry\": \"your-personal-report.pdf\", \"Target\": \"/bucket3/customized-reports/${transfer:UserName}.pdf\" } ]'</code> </p> <p>In most cases, you can use this value instead of the scope down policy to lock your user down to the designated home directory (\"chroot\"). To do this, you can set <code>Entry</code> to '/' and set <code>Target</code> to the HomeDirectory parameter value. </p>",
+        "CreateUserRequest$HomeDirectoryMappings": "<p>Logical directory mappings that specify what S3 paths and keys should be visible to your user and how you want to make them visible. You will need to specify the \"<code>Entry</code>\" and \"<code>Target</code>\" pair, where <code>Entry</code> shows how the path is made visible and <code>Target</code> is the actual S3 path. If you only specify a target, it will be displayed as is. You will need to also make sure that your AWS IAM Role provides access to paths in <code>Target</code>. The following is an example.</p> <p> <code>'[ \"/bucket2/documentation\", { \"Entry\": \"your-personal-report.pdf\", \"Target\": \"/bucket3/customized-reports/${transfer:UserName}.pdf\" } ]'</code> </p> <p>In most cases, you can use this value instead of the scope down policy to lock your user down to the designated home directory (\"chroot\"). To do this, you can set <code>Entry</code> to '/' and set <code>Target</code> to the HomeDirectory parameter value. </p> <note> <p>If the target of a logical directory entry does not exist in S3, the entry will be ignored. As a workaround, you can use the S3 api to create 0 byte objects as place holders for your directory. If using the CLI, use the s3api call instead of s3 so you can use the put-object operation. For example, you use the following: <code>aws s3api put-object --bucket bucketname --key path/to/folder/</code>. Make sure that the end of the key name ends in a / for it to be considered a folder. </p> </note>",
         "DescribedUser$HomeDirectoryMappings": "<p>Logical directory mappings that you specified for what S3 paths and keys should be visible to your user and how you want to make them visible. You will need to specify the \"<code>Entry</code>\" and \"<code>Target</code>\" pair, where <code>Entry</code> shows how the path is made visible and <code>Target</code> is the actual S3 path. If you only specify a target, it will be displayed as is. You will need to also make sure that your AWS IAM Role provides access to paths in <code>Target</code>.</p> <p>In most cases, you can use this value instead of the scope down policy to lock your user down to the designated home directory (\"chroot\"). To do this, you can set <code>Entry</code> to '/' and set <code>Target</code> to the HomeDirectory parameter value. </p> <p>In most cases, you can use this value instead of the scope down policy to lock your user down to the designated home directory (\"chroot\"). To do this, you can set <code>Entry</code> to '/' and set <code>Target</code> to the HomeDirectory parameter value.</p>",
-        "UpdateUserRequest$HomeDirectoryMappings": "<p>Logical directory mappings that specify what S3 paths and keys should be visible to your user and how you want to make them visible. You will need to specify the \"<code>Entry</code>\" and \"<code>Target</code>\" pair, where <code>Entry</code> shows how the path is made visible and <code>Target</code> is the actual S3 path. If you only specify a target, it will be displayed as is. You will need to also make sure that your AWS IAM Role provides access to paths in <code>Target</code>. The following is an example.</p> <p> <code>'[ \"/bucket2/documentation\", { \"Entry\": \"your-personal-report.pdf\", \"Target\": \"/bucket3/customized-reports/${transfer:UserName}.pdf\" } ]'</code> </p> <p>In most cases, you can use this value instead of the scope down policy to lock your user down to the designated home directory (\"chroot\"). To do this, you can set <code>Entry</code> to '/' and set <code>Target</code> to the HomeDirectory parameter value. </p> <p> </p>"
+        "UpdateUserRequest$HomeDirectoryMappings": "<p>Logical directory mappings that specify what S3 paths and keys should be visible to your user and how you want to make them visible. You will need to specify the \"<code>Entry</code>\" and \"<code>Target</code>\" pair, where <code>Entry</code> shows how the path is made visible and <code>Target</code> is the actual S3 path. If you only specify a target, it will be displayed as is. You will need to also make sure that your AWS IAM Role provides access to paths in <code>Target</code>. The following is an example.</p> <p> <code>'[ \"/bucket2/documentation\", { \"Entry\": \"your-personal-report.pdf\", \"Target\": \"/bucket3/customized-reports/${transfer:UserName}.pdf\" } ]'</code> </p> <p>In most cases, you can use this value instead of the scope down policy to lock your user down to the designated home directory (\"chroot\"). To do this, you can set <code>Entry</code> to '/' and set <code>Target</code> to the HomeDirectory parameter value. </p> <note> <p>If the target of a logical directory entry does not exist in S3, the entry will be ignored. As a workaround, you can use the S3 api to create 0 byte objects as place holders for your directory. If using the CLI, use the s3api call instead of s3 so you can use the put-object operation. For example, you use the following: <code>aws s3api put-object --bucket bucketname --key path/to/folder/</code>. Make sure that the end of the key name ends in a / for it to be considered a folder. </p> </note>"
       }
     },
     "HomeDirectoryType": {
@@ -288,6 +305,7 @@
     "Message": {
       "base": null,
       "refs": {
+        "ConflictException$Message": null,
         "InternalServiceError$Message": null,
         "InvalidNextTokenException$Message": null,
         "InvalidRequestException$Message": null,
@@ -465,6 +483,18 @@
       "refs": {
       }
     },
+    "SubnetId": {
+      "base": null,
+      "refs": {
+        "SubnetIds$member": null
+      }
+    },
+    "SubnetIds": {
+      "base": null,
+      "refs": {
+        "EndpointDetails$SubnetIds": "<p>A list of subnet IDs that are required to host your SFTP server endpoint in your VPC.</p>"
+      }
+    },
     "Tag": {
       "base": "<p>Creates a key-value pair for a specific resource. Tags are metadata that you can use to search for and group a resource for various purposes. You can apply tags to servers, users, and roles. A tag key can take more than one value. For example, to group servers for accounting purposes, you might create a tag called <code>Group</code> and assign the values <code>Research</code> and <code>Accounting</code> to that group.</p>",
       "refs": {
@@ -587,6 +617,12 @@
       "base": null,
       "refs": {
         "EndpointDetails$VpcEndpointId": "<p>The ID of the VPC endpoint.</p>"
+      }
+    },
+    "VpcId": {
+      "base": null,
+      "refs": {
+        "EndpointDetails$VpcId": "<p>The VPC ID of the virtual private cloud in which the SFTP server's endpoint will be hosted.</p>"
       }
     }
   }
