@@ -1,3 +1,13 @@
+Release v1.28.1 (2020-01-13)
+===
+
+### Service Client Updates
+* `service/backup`: Updates service API, documentation, and paginators
+* `service/ec2`: Updates service documentation
+  * Documentation updates for the StopInstances API. You can now stop and start an Amazon EBS-backed Spot Instance at will, instead of relying on the Stop interruption behavior to stop your Spot Instances when interrupted.
+* `service/elasticfilesystem`: Updates service API, documentation, and paginators
+  * This release adds support for managing EFS file system policies and EFS Access Points.
+
 Release v1.28.0 (2020-01-10)
 ===
 
