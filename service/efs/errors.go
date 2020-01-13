@@ -8,6 +8,27 @@ import (
 
 const (
 
+	// ErrCodeAccessPointAlreadyExists for service response error code
+	// "AccessPointAlreadyExists".
+	//
+	// Returned if the access point you are trying to create already exists, with
+	// the creation token you provided in the request.
+	ErrCodeAccessPointAlreadyExists = "AccessPointAlreadyExists"
+
+	// ErrCodeAccessPointLimitExceeded for service response error code
+	// "AccessPointLimitExceeded".
+	//
+	// Returned if the AWS account has already created the maximum number of access
+	// points allowed per file system.
+	ErrCodeAccessPointLimitExceeded = "AccessPointLimitExceeded"
+
+	// ErrCodeAccessPointNotFound for service response error code
+	// "AccessPointNotFound".
+	//
+	// Returned if the specified AccessPointId value doesn't exist in the requester's
+	// AWS account.
+	ErrCodeAccessPointNotFound = "AccessPointNotFound"
+
 	// ErrCodeBadRequest for service response error code
 	// "BadRequest".
 	//
@@ -77,6 +98,14 @@ const (
 	// Returned if an error occurred on the server side.
 	ErrCodeInternalServerError = "InternalServerError"
 
+	// ErrCodeInvalidPolicyException for service response error code
+	// "InvalidPolicyException".
+	//
+	// Returned if the FileSystemPolicy is is malformed or contains an error such
+	// as an invalid parameter value or a missing required parameter. Returned in
+	// the case of a policy lockout safety check error.
+	ErrCodeInvalidPolicyException = "InvalidPolicyException"
+
 	// ErrCodeIpAddressInUse for service response error code
 	// "IpAddressInUse".
 	//
@@ -115,6 +144,13 @@ const (
 	// Returned if IpAddress was not specified in the request and there are no free
 	// IP addresses in the subnet.
 	ErrCodeNoFreeAddressesInSubnet = "NoFreeAddressesInSubnet"
+
+	// ErrCodePolicyNotFound for service response error code
+	// "PolicyNotFound".
+	//
+	// Returned if the default file system policy is in effect for the EFS file
+	// system specified.
+	ErrCodePolicyNotFound = "PolicyNotFound"
 
 	// ErrCodeSecurityGroupLimitExceeded for service response error code
 	// "SecurityGroupLimitExceeded".
@@ -156,6 +192,9 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"AccessPointAlreadyExists":          newErrorAccessPointAlreadyExists,
+	"AccessPointLimitExceeded":          newErrorAccessPointLimitExceeded,
+	"AccessPointNotFound":               newErrorAccessPointNotFound,
 	"BadRequest":                        newErrorBadRequest,
 	"DependencyTimeout":                 newErrorDependencyTimeout,
 	"FileSystemAlreadyExists":           newErrorFileSystemAlreadyExists,
@@ -166,11 +205,13 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"IncorrectMountTargetState":         newErrorIncorrectMountTargetState,
 	"InsufficientThroughputCapacity":    newErrorInsufficientThroughputCapacity,
 	"InternalServerError":               newErrorInternalServerError,
+	"InvalidPolicyException":            newErrorInvalidPolicyException,
 	"IpAddressInUse":                    newErrorIpAddressInUse,
 	"MountTargetConflict":               newErrorMountTargetConflict,
 	"MountTargetNotFound":               newErrorMountTargetNotFound,
 	"NetworkInterfaceLimitExceeded":     newErrorNetworkInterfaceLimitExceeded,
 	"NoFreeAddressesInSubnet":           newErrorNoFreeAddressesInSubnet,
+	"PolicyNotFound":                    newErrorPolicyNotFound,
 	"SecurityGroupLimitExceeded":        newErrorSecurityGroupLimitExceeded,
 	"SecurityGroupNotFound":             newErrorSecurityGroupNotFound,
 	"SubnetNotFound":                    newErrorSubnetNotFound,
