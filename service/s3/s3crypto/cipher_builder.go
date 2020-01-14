@@ -1,11 +1,21 @@
 package s3crypto
 
-import "io"
+import (
+	"io"
+
+	"github.com/aws/aws-sdk-go/aws"
+)
 
 // ContentCipherBuilder is a builder interface that builds
 // ciphers for each request.
 type ContentCipherBuilder interface {
 	ContentCipher() (ContentCipher, error)
+}
+
+// ContentCipherBuilderWithContext is a builder interface that builds
+// ciphers for each request.
+type ContentCipherBuilderWithContext interface {
+	ContentCipherWithContext(aws.Context) (ContentCipher, error)
 }
 
 // ContentCipher deals with encrypting and decrypting content

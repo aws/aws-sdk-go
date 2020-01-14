@@ -84,11 +84,19 @@ func (c *EncryptionClient) PutObjectRequest(input *s3.PutObjectInput) (*request.
 		return req, out
 	}
 
-	encryptor, err := c.ContentCipherBuilder.ContentCipher()
 	req.Handlers.Build.PushFront(func(r *request.Request) {
 		if err != nil {
 			r.Error = err
 			return
+		}
+		var encryptor ContentCipher
+		if v, ok := c.ContentCipherBuilder.(ContentCipherBuilderWithContext); ok {
+			encryptor, err = v.ContentCipherWithContext(r.Context())
+		} else {
+			encryptor, err = c.ContentCipherBuilder.ContentCipher()
+		}
+		if err != nil {
+			r.Error = err
 		}
 
 		md5 := newMD5Reader(input.Body)

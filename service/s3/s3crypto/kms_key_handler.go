@@ -98,11 +98,17 @@ func (kp kmsKeyHandler) decryptHandler(env Envelope) (CipherDataDecrypter, error
 
 // DecryptKey makes a call to KMS to decrypt the key.
 func (kp *kmsKeyHandler) DecryptKey(key []byte) ([]byte, error) {
-	out, err := kp.kms.Decrypt(&kms.DecryptInput{
-		EncryptionContext: map[string]*string(kp.CipherData.MaterialDescription),
-		CiphertextBlob:    key,
-		GrantTokens:       []*string{},
-	})
+	return kp.DecryptKeyWithContext(aws.BackgroundContext(), key)
+}
+
+// DecryptKeyWithContext makes a call to KMS to decrypt the key with request context.
+func (kp *kmsKeyHandler) DecryptKeyWithContext(ctx aws.Context, key []byte) ([]byte, error) {
+	out, err := kp.kms.DecryptWithContext(ctx,
+		&kms.DecryptInput{
+			EncryptionContext: kp.CipherData.MaterialDescription,
+			CiphertextBlob:    key,
+			GrantTokens:       []*string{},
+		})
 	if err != nil {
 		return nil, err
 	}
@@ -112,11 +118,18 @@ func (kp *kmsKeyHandler) DecryptKey(key []byte) ([]byte, error) {
 // GenerateCipherData makes a call to KMS to generate a data key, Upon making
 // the call, it also sets the encrypted key.
 func (kp *kmsKeyHandler) GenerateCipherData(keySize, ivSize int) (CipherData, error) {
-	out, err := kp.kms.GenerateDataKey(&kms.GenerateDataKeyInput{
-		EncryptionContext: kp.CipherData.MaterialDescription,
-		KeyId:             kp.cmkID,
-		KeySpec:           aws.String("AES_256"),
-	})
+	return kp.GenerateCipherDataWithContext(aws.BackgroundContext(), keySize, ivSize)
+}
+
+// GenerateCipherDataWithContext makes a call to KMS to generate a data key,
+// Upon making the call, it also sets the encrypted key.
+func (kp *kmsKeyHandler) GenerateCipherDataWithContext(ctx aws.Context, keySize, ivSize int) (CipherData, error) {
+	out, err := kp.kms.GenerateDataKeyWithContext(ctx,
+		&kms.GenerateDataKeyInput{
+			EncryptionContext: kp.CipherData.MaterialDescription,
+			KeyId:             kp.cmkID,
+			KeySpec:           aws.String("AES_256"),
+		})
 	if err != nil {
 		return CipherData{}, err
 	}
