@@ -18494,6 +18494,13 @@
         "Configured":{"shape":"Boolean"}
       }
     },
+    "LaunchTemplateHttpTokensState":{
+      "type":"string",
+      "enum":[
+        "optional",
+        "required"
+      ]
+    },
     "LaunchTemplateIamInstanceProfileSpecification":{
       "type":"structure",
       "members":{
@@ -18534,6 +18541,49 @@
         "MarketType":{"shape":"MarketType"},
         "SpotOptions":{"shape":"LaunchTemplateSpotMarketOptionsRequest"}
       }
+    },
+    "LaunchTemplateInstanceMetadataEndpointState":{
+      "type":"string",
+      "enum":[
+        "disabled",
+        "enabled"
+      ]
+    },
+    "LaunchTemplateInstanceMetadataOptions":{
+      "type":"structure",
+      "members":{
+        "State":{
+          "shape":"LaunchTemplateInstanceMetadataOptionsState",
+          "locationName":"state"
+        },
+        "HttpTokens":{
+          "shape":"LaunchTemplateHttpTokensState",
+          "locationName":"httpTokens"
+        },
+        "HttpPutResponseHopLimit":{
+          "shape":"Integer",
+          "locationName":"httpPutResponseHopLimit"
+        },
+        "HttpEndpoint":{
+          "shape":"LaunchTemplateInstanceMetadataEndpointState",
+          "locationName":"httpEndpoint"
+        }
+      }
+    },
+    "LaunchTemplateInstanceMetadataOptionsRequest":{
+      "type":"structure",
+      "members":{
+        "HttpTokens":{"shape":"LaunchTemplateHttpTokensState"},
+        "HttpPutResponseHopLimit":{"shape":"Integer"},
+        "HttpEndpoint":{"shape":"LaunchTemplateInstanceMetadataEndpointState"}
+      }
+    },
+    "LaunchTemplateInstanceMetadataOptionsState":{
+      "type":"string",
+      "enum":[
+        "pending",
+        "applied"
+      ]
     },
     "LaunchTemplateInstanceNetworkInterfaceSpecification":{
       "type":"structure",
@@ -18735,6 +18785,10 @@
         "HostResourceGroupArn":{
           "shape":"String",
           "locationName":"hostResourceGroupArn"
+        },
+        "PartitionNumber":{
+          "shape":"Integer",
+          "locationName":"partitionNumber"
         }
       }
     },
@@ -18747,7 +18801,8 @@
         "HostId":{"shape":"String"},
         "Tenancy":{"shape":"Tenancy"},
         "SpreadDomain":{"shape":"String"},
-        "HostResourceGroupArn":{"shape":"String"}
+        "HostResourceGroupArn":{"shape":"String"},
+        "PartitionNumber":{"shape":"Integer"}
       }
     },
     "LaunchTemplateSet":{
@@ -22681,7 +22736,8 @@
           "shape":"LaunchTemplateLicenseSpecificationListRequest",
           "locationName":"LicenseSpecification"
         },
-        "HibernationOptions":{"shape":"LaunchTemplateHibernationOptionsRequest"}
+        "HibernationOptions":{"shape":"LaunchTemplateHibernationOptionsRequest"},
+        "MetadataOptions":{"shape":"LaunchTemplateInstanceMetadataOptionsRequest"}
       }
     },
     "RequestSpotFleetRequest":{
@@ -23575,6 +23631,10 @@
         "HibernationOptions":{
           "shape":"LaunchTemplateHibernationOptions",
           "locationName":"hibernationOptions"
+        },
+        "MetadataOptions":{
+          "shape":"LaunchTemplateInstanceMetadataOptions",
+          "locationName":"metadataOptions"
         }
       }
     },

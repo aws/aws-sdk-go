@@ -1,3 +1,10 @@
+Release v1.28.2 (2020-01-14)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for partition placement groups and instance metadata option in Launch Templates
+
 Release v1.28.1 (2020-01-13)
 ===
 

@@ -35236,9 +35236,9 @@ func (c *EC2) StopInstancesRequest(input *StopInstancesInput) (req *request.Requ
 // your Linux instance, Amazon EC2 charges a one-minute minimum for instance
 // usage, and thereafter charges per second for instance usage.
 //
-// You can't hibernate Spot Instances, and you can't stop or hibernate instance
-// store-backed instances. For information about using hibernation for Spot
-// Instances, see Hibernating Interrupted Spot Instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-interruptions.html#hibernate-spot-instances)
+// You can't start, stop, or hibernate Spot Instances, and you can't stop or
+// hibernate instance store-backed instances. For information about using hibernation
+// for Spot Instances, see Hibernating Interrupted Spot Instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-interruptions.html#hibernate-spot-instances)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // When you stop or hibernate an instance, we shut it down. You can restart
@@ -58468,7 +58468,7 @@ type DescribeInstanceTypesInput struct {
 	//    type.
 	//
 	//    * vcpu-info.default-threads-per-core - The default number of threads per
-	//    core for the instance type.
+	//    cores for the instance type.
 	//
 	//    * vcpu-info.default-vcpus - The default number of vCPUs for the instance
 	//    type.
@@ -80840,6 +80840,150 @@ func (s *LaunchTemplateInstanceMarketOptionsRequest) SetSpotOptions(v *LaunchTem
 	return s
 }
 
+// The metadata options for the instance. For more information, see Instance
+// Metadata and User Data (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html)
+// in the Amazon Elastic Compute Cloud User Guide.
+type LaunchTemplateInstanceMetadataOptions struct {
+	_ struct{} `type:"structure"`
+
+	// This parameter enables or disables the HTTP metadata endpoint on your instances.
+	// If the parameter is not specified, the default state is enabled.
+	//
+	// If you specify a value of disabled, you will not be able to access your instance
+	// metadata.
+	HttpEndpoint *string `locationName:"httpEndpoint" type:"string" enum:"LaunchTemplateInstanceMetadataEndpointState"`
+
+	// The desired HTTP PUT response hop limit for instance metadata requests. The
+	// larger the number, the further instance metadata requests can travel.
+	//
+	// Default: 1
+	//
+	// Possible values: Integers from 1 to 64
+	HttpPutResponseHopLimit *int64 `locationName:"httpPutResponseHopLimit" type:"integer"`
+
+	// The state of token usage for your instance metadata requests. If the parameter
+	// is not specified in the request, the default state is optional.
+	//
+	// If the state is optional, you can choose to retrieve instance metadata with
+	// or without a signed token header on your request. If you retrieve the IAM
+	// role credentials without a token, the version 1.0 role credentials are returned.
+	// If you retrieve the IAM role credentials using a valid signed token, the
+	// version 2.0 role credentials are returned.
+	//
+	// If the state is required, you must send a signed token header with any instance
+	// metadata retrieval requests. In this state, retrieving the IAM role credentials
+	// always returns the version 2.0 credentials; the version 1.0 credentials are
+	// not available.
+	HttpTokens *string `locationName:"httpTokens" type:"string" enum:"LaunchTemplateHttpTokensState"`
+
+	// The state of the metadata option changes.
+	//
+	// pending - The metadata options are being updated and the instance is not
+	// ready to process metadata traffic with the new selection.
+	//
+	// applied - The metadata options have been successfully applied on the instance.
+	State *string `locationName:"state" type:"string" enum:"LaunchTemplateInstanceMetadataOptionsState"`
+}
+
+// String returns the string representation
+func (s LaunchTemplateInstanceMetadataOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LaunchTemplateInstanceMetadataOptions) GoString() string {
+	return s.String()
+}
+
+// SetHttpEndpoint sets the HttpEndpoint field's value.
+func (s *LaunchTemplateInstanceMetadataOptions) SetHttpEndpoint(v string) *LaunchTemplateInstanceMetadataOptions {
+	s.HttpEndpoint = &v
+	return s
+}
+
+// SetHttpPutResponseHopLimit sets the HttpPutResponseHopLimit field's value.
+func (s *LaunchTemplateInstanceMetadataOptions) SetHttpPutResponseHopLimit(v int64) *LaunchTemplateInstanceMetadataOptions {
+	s.HttpPutResponseHopLimit = &v
+	return s
+}
+
+// SetHttpTokens sets the HttpTokens field's value.
+func (s *LaunchTemplateInstanceMetadataOptions) SetHttpTokens(v string) *LaunchTemplateInstanceMetadataOptions {
+	s.HttpTokens = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *LaunchTemplateInstanceMetadataOptions) SetState(v string) *LaunchTemplateInstanceMetadataOptions {
+	s.State = &v
+	return s
+}
+
+// The metadata options for the instance. For more information, see Instance
+// Metadata and User Data (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html)
+// in the Amazon Elastic Compute Cloud User Guide.
+type LaunchTemplateInstanceMetadataOptionsRequest struct {
+	_ struct{} `type:"structure"`
+
+	// This parameter enables or disables the HTTP metadata endpoint on your instances.
+	// If the parameter is not specified, the default state is enabled.
+	//
+	// If you specify a value of disabled, you will not be able to access your instance
+	// metadata.
+	HttpEndpoint *string `type:"string" enum:"LaunchTemplateInstanceMetadataEndpointState"`
+
+	// The desired HTTP PUT response hop limit for instance metadata requests. The
+	// larger the number, the further instance metadata requests can travel.
+	//
+	// Default: 1
+	//
+	// Possible values: Integers from 1 to 64
+	HttpPutResponseHopLimit *int64 `type:"integer"`
+
+	// The state of token usage for your instance metadata requests. If the parameter
+	// is not specified in the request, the default state is optional.
+	//
+	// If the state is optional, you can choose to retrieve instance metadata with
+	// or without a signed token header on your request. If you retrieve the IAM
+	// role credentials without a token, the version 1.0 role credentials are returned.
+	// If you retrieve the IAM role credentials using a valid signed token, the
+	// version 2.0 role credentials are returned.
+	//
+	// If the state is required, you must send a signed token header with any instance
+	// metadata retrieval requests. In this state, retrieving the IAM role credentials
+	// always returns the version 2.0 credentials; the version 1.0 credentials are
+	// not available.
+	HttpTokens *string `type:"string" enum:"LaunchTemplateHttpTokensState"`
+}
+
+// String returns the string representation
+func (s LaunchTemplateInstanceMetadataOptionsRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LaunchTemplateInstanceMetadataOptionsRequest) GoString() string {
+	return s.String()
+}
+
+// SetHttpEndpoint sets the HttpEndpoint field's value.
+func (s *LaunchTemplateInstanceMetadataOptionsRequest) SetHttpEndpoint(v string) *LaunchTemplateInstanceMetadataOptionsRequest {
+	s.HttpEndpoint = &v
+	return s
+}
+
+// SetHttpPutResponseHopLimit sets the HttpPutResponseHopLimit field's value.
+func (s *LaunchTemplateInstanceMetadataOptionsRequest) SetHttpPutResponseHopLimit(v int64) *LaunchTemplateInstanceMetadataOptionsRequest {
+	s.HttpPutResponseHopLimit = &v
+	return s
+}
+
+// SetHttpTokens sets the HttpTokens field's value.
+func (s *LaunchTemplateInstanceMetadataOptionsRequest) SetHttpTokens(v string) *LaunchTemplateInstanceMetadataOptionsRequest {
+	s.HttpTokens = &v
+	return s
+}
+
 // Describes a network interface.
 type LaunchTemplateInstanceNetworkInterfaceSpecification struct {
 	_ struct{} `type:"structure"`
@@ -81255,6 +81399,10 @@ type LaunchTemplatePlacement struct {
 	// The ARN of the host resource group in which to launch the instances.
 	HostResourceGroupArn *string `locationName:"hostResourceGroupArn" type:"string"`
 
+	// The number of the partition the instance should launch in. Valid only if
+	// the placement group strategy is set to partition.
+	PartitionNumber *int64 `locationName:"partitionNumber" type:"integer"`
+
 	// Reserved for future use.
 	SpreadDomain *string `locationName:"spreadDomain" type:"string"`
 
@@ -81303,6 +81451,12 @@ func (s *LaunchTemplatePlacement) SetHostResourceGroupArn(v string) *LaunchTempl
 	return s
 }
 
+// SetPartitionNumber sets the PartitionNumber field's value.
+func (s *LaunchTemplatePlacement) SetPartitionNumber(v int64) *LaunchTemplatePlacement {
+	s.PartitionNumber = &v
+	return s
+}
+
 // SetSpreadDomain sets the SpreadDomain field's value.
 func (s *LaunchTemplatePlacement) SetSpreadDomain(v string) *LaunchTemplatePlacement {
 	s.SpreadDomain = &v
@@ -81335,6 +81489,10 @@ type LaunchTemplatePlacementRequest struct {
 	// specify a host resource group ARN, omit the Tenancy parameter or set it to
 	// host.
 	HostResourceGroupArn *string `type:"string"`
+
+	// The number of the partition the instance should launch in. Valid only if
+	// the placement group strategy is set to partition.
+	PartitionNumber *int64 `type:"integer"`
 
 	// Reserved for future use.
 	SpreadDomain *string `type:"string"`
@@ -81381,6 +81539,12 @@ func (s *LaunchTemplatePlacementRequest) SetHostId(v string) *LaunchTemplatePlac
 // SetHostResourceGroupArn sets the HostResourceGroupArn field's value.
 func (s *LaunchTemplatePlacementRequest) SetHostResourceGroupArn(v string) *LaunchTemplatePlacementRequest {
 	s.HostResourceGroupArn = &v
+	return s
+}
+
+// SetPartitionNumber sets the PartitionNumber field's value.
+func (s *LaunchTemplatePlacementRequest) SetPartitionNumber(v int64) *LaunchTemplatePlacementRequest {
+	s.PartitionNumber = &v
 	return s
 }
 
@@ -92166,6 +92330,11 @@ type RequestLaunchTemplateData struct {
 	// The license configurations.
 	LicenseSpecifications []*LaunchTemplateLicenseConfigurationRequest `locationName:"LicenseSpecification" locationNameList:"item" type:"list"`
 
+	// The metadata options for the instance. For more information, see Instance
+	// Metadata and User Data (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	MetadataOptions *LaunchTemplateInstanceMetadataOptionsRequest `type:"structure"`
+
 	// The monitoring for the instance.
 	Monitoring *LaunchTemplatesMonitoringRequest `type:"structure"`
 
@@ -92351,6 +92520,12 @@ func (s *RequestLaunchTemplateData) SetKeyName(v string) *RequestLaunchTemplateD
 // SetLicenseSpecifications sets the LicenseSpecifications field's value.
 func (s *RequestLaunchTemplateData) SetLicenseSpecifications(v []*LaunchTemplateLicenseConfigurationRequest) *RequestLaunchTemplateData {
 	s.LicenseSpecifications = v
+	return s
+}
+
+// SetMetadataOptions sets the MetadataOptions field's value.
+func (s *RequestLaunchTemplateData) SetMetadataOptions(v *LaunchTemplateInstanceMetadataOptionsRequest) *RequestLaunchTemplateData {
+	s.MetadataOptions = v
 	return s
 }
 
@@ -94264,6 +94439,11 @@ type ResponseLaunchTemplateData struct {
 	// The license configurations.
 	LicenseSpecifications []*LaunchTemplateLicenseConfiguration `locationName:"licenseSet" locationNameList:"item" type:"list"`
 
+	// The metadata options for the instance. For more information, see Instance
+	// Metadata and User Data (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	MetadataOptions *LaunchTemplateInstanceMetadataOptions `locationName:"metadataOptions" type:"structure"`
+
 	// The monitoring for the instance.
 	Monitoring *LaunchTemplatesMonitoring `locationName:"monitoring" type:"structure"`
 
@@ -94398,6 +94578,12 @@ func (s *ResponseLaunchTemplateData) SetKeyName(v string) *ResponseLaunchTemplat
 // SetLicenseSpecifications sets the LicenseSpecifications field's value.
 func (s *ResponseLaunchTemplateData) SetLicenseSpecifications(v []*LaunchTemplateLicenseConfiguration) *ResponseLaunchTemplateData {
 	s.LicenseSpecifications = v
+	return s
+}
+
+// SetMetadataOptions sets the MetadataOptions field's value.
+func (s *ResponseLaunchTemplateData) SetMetadataOptions(v *LaunchTemplateInstanceMetadataOptions) *ResponseLaunchTemplateData {
+	s.MetadataOptions = v
 	return s
 }
 
@@ -108364,6 +108550,30 @@ const (
 
 	// LaunchTemplateErrorCodeUnexpectedError is a LaunchTemplateErrorCode enum value
 	LaunchTemplateErrorCodeUnexpectedError = "unexpectedError"
+)
+
+const (
+	// LaunchTemplateHttpTokensStateOptional is a LaunchTemplateHttpTokensState enum value
+	LaunchTemplateHttpTokensStateOptional = "optional"
+
+	// LaunchTemplateHttpTokensStateRequired is a LaunchTemplateHttpTokensState enum value
+	LaunchTemplateHttpTokensStateRequired = "required"
+)
+
+const (
+	// LaunchTemplateInstanceMetadataEndpointStateDisabled is a LaunchTemplateInstanceMetadataEndpointState enum value
+	LaunchTemplateInstanceMetadataEndpointStateDisabled = "disabled"
+
+	// LaunchTemplateInstanceMetadataEndpointStateEnabled is a LaunchTemplateInstanceMetadataEndpointState enum value
+	LaunchTemplateInstanceMetadataEndpointStateEnabled = "enabled"
+)
+
+const (
+	// LaunchTemplateInstanceMetadataOptionsStatePending is a LaunchTemplateInstanceMetadataOptionsState enum value
+	LaunchTemplateInstanceMetadataOptionsStatePending = "pending"
+
+	// LaunchTemplateInstanceMetadataOptionsStateApplied is a LaunchTemplateInstanceMetadataOptionsState enum value
+	LaunchTemplateInstanceMetadataOptionsStateApplied = "applied"
 )
 
 const (
