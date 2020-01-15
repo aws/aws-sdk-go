@@ -1,3 +1,19 @@
+Release v1.28.3 (2020-01-15)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * General Update to EC2 Docs and SDKs
+* `service/organizations`: Updates service documentation
+  * Updated description for PolicyID parameter and ConstraintViolationException.
+* `service/securityhub`: Updates service API and documentation
+* `service/ssm`: Updates service documentation
+  * Document updates for Patch Manager 'NoReboot' feature.
+
+### SDK Enhancements
+* `service/s3/s3crypto`: Added X-Ray support to encrypt/decrypt clients ([#2912](https://github.com/aws/aws-sdk-go/pull/2912))
+  * Adds support for passing Context down to the crypto client's KMS client enabling tracing for tools like X-Ray, and metrics.
+
 Release v1.28.2 (2020-01-14)
 ===
 

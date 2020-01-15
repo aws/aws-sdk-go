@@ -17,6 +17,7 @@
     "DescribeActionTargets": "<p>Returns a list of the custom action targets in Security Hub in your account.</p>",
     "DescribeHub": "<p>Returns details about the Hub resource in your account, including the <code>HubArn</code> and the time when you enabled Security Hub.</p>",
     "DescribeProducts": "<p>Returns information about the products available that you can subscribe to and integrate with Security Hub to consolidate findings.</p>",
+    "DescribeStandardsControls": "<p>Returns a list of compliance standards controls.</p> <p>For each control, the results include information about whether it is currently enabled, the severity, and a link to remediation information.</p>",
     "DisableImportFindingsForProduct": "<p>Disables the integration of the specified product with Security Hub. Findings from that product are no longer sent to Security Hub after the integration is disabled.</p>",
     "DisableSecurityHub": "<p>Disables Security Hub in your account only in the current Region. To disable Security Hub in all Regions, you must submit one request per Region where you have enabled Security Hub. When you disable Security Hub for a master account, it doesn't disable Security Hub for any associated member accounts.</p> <p>When you disable Security Hub, your existing findings and insights and any Security Hub configuration settings are deleted after 90 days and can't be recovered. Any standards that were enabled are disabled, and your master and member account associations are removed. If you want to save your existing findings, you must export them before you disable Security Hub.</p>",
     "DisassociateFromMasterAccount": "<p>Disassociates the current Security Hub member account from the associated master account.</p>",
@@ -39,7 +40,8 @@
     "UntagResource": "<p>Removes one or more tags from a resource.</p>",
     "UpdateActionTarget": "<p>Updates the name and description of a custom action target in Security Hub.</p>",
     "UpdateFindings": "<p>Updates the <code>Note</code> and <code>RecordState</code> of the Security Hub-aggregated findings that the filter attributes specify. Any member account that can view the finding also sees the update to the finding.</p>",
-    "UpdateInsight": "<p>Updates the Security Hub insight that the insight ARN specifies.</p>"
+    "UpdateInsight": "<p>Updates the Security Hub insight that the insight ARN specifies.</p>",
+    "UpdateStandardsControl": "<p>Used to control whether an individual compliance standard control is enabled or disabled.</p>"
   },
   "shapes": {
     "AcceptInvitationRequest": {
@@ -361,6 +363,13 @@
         "ResourceDetails$Container": "<p>Details about a container resource related to a finding.</p>"
       }
     },
+    "ControlStatus": {
+      "base": null,
+      "refs": {
+        "StandardsControl$ControlStatus": "<p>The current status of the compliance standard control. Indicates whether the control is enabled or disabled. Security Hub does not check against disabled controls.</p>",
+        "UpdateStandardsControlRequest$ControlStatus": "<p>The updated status of the compliance standard control.</p>"
+      }
+    },
     "CreateActionTargetRequest": {
       "base": null,
       "refs": {
@@ -501,6 +510,16 @@
       }
     },
     "DescribeProductsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeStandardsControlsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeStandardsControlsResponse": {
       "base": null,
       "refs": {
       }
@@ -887,6 +906,7 @@
       "refs": {
         "DescribeActionTargetsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "DescribeProductsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
+        "DescribeStandardsControlsRequest$MaxResults": "<p>The maximum number of compliance standard controls to return.</p>",
         "GetEnabledStandardsRequest$MaxResults": "<p>The maximum number of results to return in the response.</p>",
         "GetFindingsRequest$MaxResults": "<p>The maximum number of findings to return.</p>",
         "GetInsightsRequest$MaxResults": "<p>The maximum number of items that you want in the response.</p>",
@@ -927,6 +947,8 @@
         "DescribeActionTargetsResponse$NextToken": "<p>The token that is required for pagination.</p>",
         "DescribeProductsRequest$NextToken": "<p>The token that is required for pagination.</p>",
         "DescribeProductsResponse$NextToken": "<p>The token that is required for pagination.</p>",
+        "DescribeStandardsControlsRequest$NextToken": "<p>For requests to get the next page of results, the pagination token that was returned with the previous set of results. The initial request does not include a pagination token.</p>",
+        "DescribeStandardsControlsResponse$NextToken": "<p>If there are more compliance standards control remaining in the results, then this is the pagination token to use to request the next page of compliance standard controls.</p>",
         "GetEnabledStandardsRequest$NextToken": "<p>Paginates results. On your first call to the <code>GetEnabledStandards</code> operation, set the value of this parameter to <code>NULL</code>. For subsequent calls to the operation, fill <code>nextToken</code> in the request with the value of <code>nextToken</code> from the previous response to continue listing data.</p>",
         "GetEnabledStandardsResponse$NextToken": "<p>The token that is required for pagination.</p>",
         "GetFindingsRequest$NextToken": "<p>Paginates results. On your first call to the <code>GetFindings</code> operation, set the value of this parameter to <code>NULL</code>. For subsequent calls to the operation, fill <code>nextToken</code> in the request with the value of <code>nextToken</code> from the previous response to continue listing data.</p>",
@@ -1055,6 +1077,7 @@
         "DescribeHubRequest$HubArn": "<p>The ARN of the Hub resource to retrieve.</p>",
         "DescribeHubResponse$HubArn": "<p>The ARN of the Hub resource retrieved.</p>",
         "DescribeHubResponse$SubscribedAt": "<p>The date and time when Security Hub was enabled in the account.</p>",
+        "DescribeStandardsControlsRequest$StandardsSubscriptionArn": "<p>The ARN of a resource that represents your subscription to a supported standard.</p>",
         "DisableImportFindingsForProductRequest$ProductSubscriptionArn": "<p>The ARN of the integrated product to disable the integration for.</p>",
         "EnableImportFindingsForProductRequest$ProductArn": "<p>The ARN of the product to enable the integration for.</p>",
         "EnableImportFindingsForProductResponse$ProductSubscriptionArn": "<p>The ARN of your subscription to the product to enable integrations for.</p>",
@@ -1133,6 +1156,12 @@
         "Result$ProcessingResult": "<p>The reason that the account wasn't be processed.</p>",
         "SecurityGroups$member": null,
         "SortCriterion$Field": "<p>The finding attribute used to sort findings.</p>",
+        "StandardsControl$StandardsControlArn": "<p>The ARN of the compliance standard control.</p>",
+        "StandardsControl$DisabledReason": "<p>The reason provided for the most recent change in status for the control.</p>",
+        "StandardsControl$ControlId": "<p>The identifier of the compliance standard control.</p>",
+        "StandardsControl$Title": "<p>The title of the compliance standard control.</p>",
+        "StandardsControl$Description": "<p>The longer description of the compliance standard control. Provides information about what the control is checking for.</p>",
+        "StandardsControl$RemediationUrl": "<p>A link to remediation information for the control in the Security Hub user documentation</p>",
         "StandardsInputParameterMap$key": null,
         "StandardsInputParameterMap$value": null,
         "StandardsSubscription$StandardsSubscriptionArn": "<p>The ARN of a resource that represents your subscription to a supported standard.</p>",
@@ -1151,7 +1180,9 @@
         "UpdateActionTargetRequest$Description": "<p>The updated description for the custom action target.</p>",
         "UpdateInsightRequest$InsightArn": "<p>The ARN of the insight that you want to update.</p>",
         "UpdateInsightRequest$Name": "<p>The updated name for the insight.</p>",
-        "UpdateInsightRequest$GroupByAttribute": "<p>The updated <code>GroupBy</code> attribute that defines this insight.</p>"
+        "UpdateInsightRequest$GroupByAttribute": "<p>The updated <code>GroupBy</code> attribute that defines this insight.</p>",
+        "UpdateStandardsControlRequest$StandardsControlArn": "<p>The ARN of the compliance standard control to enable or disable.</p>",
+        "UpdateStandardsControlRequest$DisabledReason": "<p>A description of the reason why you are disabling a compliance standard control.</p>"
       }
     },
     "NonEmptyStringList": {
@@ -1318,6 +1349,12 @@
         "AwsSecurityFinding$Severity": "<p>A finding's severity.</p>"
       }
     },
+    "SeverityRating": {
+      "base": null,
+      "refs": {
+        "StandardsControl$SeverityRating": "<p>The severity of findings generated from this compliance standard control.</p> <p>The finding severity is based on an assessment of how easy it would be to compromise AWS resources if the compliance issue is detected.</p>"
+      }
+    },
     "SortCriteria": {
       "base": null,
       "refs": {
@@ -1334,6 +1371,18 @@
       "base": null,
       "refs": {
         "SortCriterion$SortOrder": "<p>The order used to sort findings.</p>"
+      }
+    },
+    "StandardsControl": {
+      "base": "<p>Details for an individual compliance standard control.</p>",
+      "refs": {
+        "StandardsControls$member": null
+      }
+    },
+    "StandardsControls": {
+      "base": null,
+      "refs": {
+        "DescribeStandardsControlsResponse$Controls": "<p>A list of compliance standards controls.</p>"
       }
     },
     "StandardsInputParameterMap": {
@@ -1525,7 +1574,8 @@
       "refs": {
         "Invitation$InvitedAt": "<p>The timestamp of when the invitation was sent.</p>",
         "Member$InvitedAt": "<p>A timestamp for the date and time when the invitation was sent to the member account.</p>",
-        "Member$UpdatedAt": "<p>The timestamp for the date and time when the member account was updated.</p>"
+        "Member$UpdatedAt": "<p>The timestamp for the date and time when the member account was updated.</p>",
+        "StandardsControl$ControlStatusUpdatedAt": "<p>The date and time that the status of the compliance standard control was most recently updated.</p>"
       }
     },
     "TypeList": {
@@ -1570,6 +1620,16 @@
       }
     },
     "UpdateInsightResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateStandardsControlRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateStandardsControlResponse": {
       "base": null,
       "refs": {
       }

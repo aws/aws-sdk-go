@@ -439,8 +439,13 @@ func (c *Organizations) AttachPolicyRequest(input *AttachPolicyInput) (req *requ
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: Tags associated with the resource must be compliant
+//      with the tag policy that’s in effect for the account. For more information,
+//      see Tag Policies (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
+//      in the AWS Organizations User Guide.
 //
 //   * DuplicatePolicyAttachmentException
 //   The selected policy is already attached to the specified target.
@@ -976,8 +981,13 @@ func (c *Organizations) CreateAccountRequest(input *CreateAccountInput) (req *re
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: Tags associated with the resource must be compliant
+//      with the tag policy that’s in effect for the account. For more information,
+//      see Tag Policies (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
+//      in the AWS Organizations User Guide.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -1349,8 +1359,13 @@ func (c *Organizations) CreateGovCloudAccountRequest(input *CreateGovCloudAccoun
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: Tags associated with the resource must be compliant
+//      with the tag policy that’s in effect for the account. For more information,
+//      see Tag Policies (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
+//      in the AWS Organizations User Guide.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -1636,8 +1651,13 @@ func (c *Organizations) CreateOrganizationRequest(input *CreateOrganizationInput
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: Tags associated with the resource must be compliant
+//      with the tag policy that’s in effect for the account. For more information,
+//      see Tag Policies (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
+//      in the AWS Organizations User Guide.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -1916,8 +1936,13 @@ func (c *Organizations) CreateOrganizationalUnitRequest(input *CreateOrganizatio
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: Tags associated with the resource must be compliant
+//      with the tag policy that’s in effect for the account. For more information,
+//      see Tag Policies (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
+//      in the AWS Organizations User Guide.
 //
 //   * DuplicateOrganizationalUnitException
 //   An OU with the same name already exists.
@@ -2194,8 +2219,13 @@ func (c *Organizations) CreatePolicyRequest(input *CreatePolicyInput) (req *requ
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: Tags associated with the resource must be compliant
+//      with the tag policy that’s in effect for the account. For more information,
+//      see Tag Policies (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
+//      in the AWS Organizations User Guide.
 //
 //   * DuplicatePolicyException
 //   A policy with the same name already exists.
@@ -3556,8 +3586,13 @@ func (c *Organizations) DescribeEffectivePolicyRequest(input *DescribeEffectiveP
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: Tags associated with the resource must be compliant
+//      with the tag policy that’s in effect for the account. For more information,
+//      see Tag Policies (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
+//      in the AWS Organizations User Guide.
 //
 //   * ServiceException
 //   AWS Organizations can't complete your request because of an internal service
@@ -4479,8 +4514,13 @@ func (c *Organizations) DetachPolicyRequest(input *DetachPolicyInput) (req *requ
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: Tags associated with the resource must be compliant
+//      with the tag policy that’s in effect for the account. For more information,
+//      see Tag Policies (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
+//      in the AWS Organizations User Guide.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -4788,8 +4828,13 @@ func (c *Organizations) DisableAWSServiceAccessRequest(input *DisableAWSServiceA
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: Tags associated with the resource must be compliant
+//      with the tag policy that’s in effect for the account. For more information,
+//      see Tag Policies (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
+//      in the AWS Organizations User Guide.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -5071,8 +5116,13 @@ func (c *Organizations) DisablePolicyTypeRequest(input *DisablePolicyTypeInput) 
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: Tags associated with the resource must be compliant
+//      with the tag policy that’s in effect for the account. For more information,
+//      see Tag Policies (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
+//      in the AWS Organizations User Guide.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -5374,8 +5424,13 @@ func (c *Organizations) EnableAWSServiceAccessRequest(input *EnableAWSServiceAcc
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: Tags associated with the resource must be compliant
+//      with the tag policy that’s in effect for the account. For more information,
+//      see Tag Policies (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
+//      in the AWS Organizations User Guide.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -5891,8 +5946,13 @@ func (c *Organizations) EnablePolicyTypeRequest(input *EnablePolicyTypeInput) (r
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: Tags associated with the resource must be compliant
+//      with the tag policy that’s in effect for the account. For more information,
+//      see Tag Policies (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
+//      in the AWS Organizations User Guide.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -6457,8 +6517,13 @@ func (c *Organizations) LeaveOrganizationRequest(input *LeaveOrganizationInput) 
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: Tags associated with the resource must be compliant
+//      with the tag policy that’s in effect for the account. For more information,
+//      see Tag Policies (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
+//      in the AWS Organizations User Guide.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -6740,8 +6805,13 @@ func (c *Organizations) ListAWSServiceAccessForOrganizationRequest(input *ListAW
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: Tags associated with the resource must be compliant
+//      with the tag policy that’s in effect for the account. For more information,
+//      see Tag Policies (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
+//      in the AWS Organizations User Guide.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -10335,8 +10405,13 @@ func (c *Organizations) RemoveAccountFromOrganizationRequest(input *RemoveAccoun
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: Tags associated with the resource must be compliant
+//      with the tag policy that’s in effect for the account. For more information,
+//      see Tag Policies (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
+//      in the AWS Organizations User Guide.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -10614,8 +10689,13 @@ func (c *Organizations) TagResourceRequest(input *TagResourceInput) (req *reques
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: Tags associated with the resource must be compliant
+//      with the tag policy that’s in effect for the account. For more information,
+//      see Tag Policies (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
+//      in the AWS Organizations User Guide.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -10888,8 +10968,13 @@ func (c *Organizations) UntagResourceRequest(input *UntagResourceInput) (req *re
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: Tags associated with the resource must be compliant
+//      with the tag policy that’s in effect for the account. For more information,
+//      see Tag Policies (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
+//      in the AWS Organizations User Guide.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -11337,8 +11422,13 @@ func (c *Organizations) UpdatePolicyRequest(input *UpdatePolicyInput) (req *requ
 //      * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //      that you can have in an organization.
 //
-//      * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//      * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //      policies that you can have in an organization.
+//
+//      * TAG_POLICY_VIOLATION: Tags associated with the resource must be compliant
+//      with the tag policy that’s in effect for the account. For more information,
+//      see Tag Policies (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
+//      in the AWS Organizations User Guide.
 //
 //   * DuplicatePolicyException
 //   A policy with the same name already exists.
@@ -11973,7 +12063,8 @@ type AttachPolicyInput struct {
 	// You can get the ID for the policy by calling the ListPolicies operation.
 	//
 	// The regex pattern (http://wikipedia.org/wiki/regex) for a policy ID string
-	// requires "p-" followed by from 8 to 128 lowercase letters or digits.
+	// requires "p-" followed by from 8 to 128 lowercase or uppercase letters, digits,
+	// or the underscore character (_).
 	//
 	// PolicyId is a required field
 	PolicyId *string `type:"string" required:"true"`
@@ -12366,8 +12457,13 @@ func (s ConcurrentModificationException) RequestID() string {
 //    * OU_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of OUs
 //    that you can have in an organization.
 //
-//    * POLICY_NUMBER_LIMIT_EXCEEDED. You attempted to exceed the number of
+//    * POLICY_NUMBER_LIMIT_EXCEEDED: You attempted to exceed the number of
 //    policies that you can have in an organization.
+//
+//    * TAG_POLICY_VIOLATION: Tags associated with the resource must be compliant
+//    with the tag policy that’s in effect for the account. For more information,
+//    see Tag Policies (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
+//    in the AWS Organizations User Guide.
 type ConstraintViolationException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
@@ -13299,7 +13395,8 @@ type DeletePolicyInput struct {
 	// get the ID from the ListPolicies or ListPoliciesForTarget operations.
 	//
 	// The regex pattern (http://wikipedia.org/wiki/regex) for a policy ID string
-	// requires "p-" followed by from 8 to 128 lowercase letters or digits.
+	// requires "p-" followed by from 8 to 128 lowercase or uppercase letters, digits,
+	// or the underscore character (_).
 	//
 	// PolicyId is a required field
 	PolicyId *string `type:"string" required:"true"`
@@ -13729,7 +13826,8 @@ type DescribePolicyInput struct {
 	// can get the ID from the ListPolicies or ListPoliciesForTarget operations.
 	//
 	// The regex pattern (http://wikipedia.org/wiki/regex) for a policy ID string
-	// requires "p-" followed by from 8 to 128 lowercase letters or digits.
+	// requires "p-" followed by from 8 to 128 lowercase or uppercase letters, digits,
+	// or the underscore character (_).
 	//
 	// PolicyId is a required field
 	PolicyId *string `type:"string" required:"true"`
@@ -13851,7 +13949,8 @@ type DetachPolicyInput struct {
 	// the ID from the ListPolicies or ListPoliciesForTarget operations.
 	//
 	// The regex pattern (http://wikipedia.org/wiki/regex) for a policy ID string
-	// requires "p-" followed by from 8 to 128 lowercase letters or digits.
+	// requires "p-" followed by from 8 to 128 lowercase or uppercase letters, digits,
+	// or the underscore character (_).
 	//
 	// PolicyId is a required field
 	PolicyId *string `type:"string" required:"true"`
@@ -16959,7 +17058,8 @@ type ListTargetsForPolicyInput struct {
 	// The unique identifier (ID) of the policy whose attachments you want to know.
 	//
 	// The regex pattern (http://wikipedia.org/wiki/regex) for a policy ID string
-	// requires "p-" followed by from 8 to 128 lowercase letters or digits.
+	// requires "p-" followed by from 8 to 128 lowercase or uppercase letters, digits,
+	// or the underscore character (_).
 	//
 	// PolicyId is a required field
 	PolicyId *string `type:"string" required:"true"`
@@ -19118,7 +19218,8 @@ type UpdatePolicyInput struct {
 	// The unique identifier (ID) of the policy that you want to update.
 	//
 	// The regex pattern (http://wikipedia.org/wiki/regex) for a policy ID string
-	// requires "p-" followed by from 8 to 128 lowercase letters or digits.
+	// requires "p-" followed by from 8 to 128 lowercase or uppercase letters, digits,
+	// or the underscore character (_).
 	//
 	// PolicyId is a required field
 	PolicyId *string `type:"string" required:"true"`

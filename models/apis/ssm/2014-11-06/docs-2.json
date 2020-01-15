@@ -5,7 +5,7 @@
     "AddTagsToResource": "<p>Adds or overwrites one or more tags for the specified resource. Tags are metadata that you can assign to your documents, managed instances, maintenance windows, Parameter Store parameters, and patch baselines. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment. Each tag consists of a key and an optional value, both of which you define. For example, you could define a set of tags for your account's managed instances that helps you track each instance's owner and stack level. For example: Key=Owner and Value=DbAdmin, SysAdmin, or Dev. Or Key=Stack and Value=Production, Pre-Production, or Test.</p> <p>Each resource can have a maximum of 50 tags. </p> <p>We recommend that you devise a set of tag keys that meets your needs for each resource type. Using a consistent set of tag keys makes it easier for you to manage your resources. You can search and filter the resources based on the tags you add. Tags don't have any semantic meaning to Amazon EC2 and are interpreted strictly as a string of characters. </p> <p>For more information about tags, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html\">Tagging Your Amazon EC2 Resources</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "CancelCommand": "<p>Attempts to cancel the command specified by the Command ID. There is no guarantee that the command will be terminated and the underlying process stopped.</p>",
     "CancelMaintenanceWindowExecution": "<p>Stops a maintenance window execution that is already in progress and cancels any tasks in the window that have not already starting running. (Tasks already in progress will continue to completion.)</p>",
-    "CreateActivation": "<p>Registers your on-premises server or virtual machine with Amazon EC2 so that you can manage these resources using Run Command. An on-premises server or virtual machine that has been registered with EC2 is called a managed instance. For more information about activations, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-managedinstances.html\">Setting Up AWS Systems Manager for Hybrid Environments</a>.</p>",
+    "CreateActivation": "<p>Generates an activation code and activation ID you can use to register your on-premises server or virtual machine (VM) with Systems Manager. Registering these machines with Systems Manager makes it possible to manage them using Systems Manager capabilities. You use the activation code and ID when installing SSM Agent on machines in your hybrid environment. For more information about requirements for managing on-premises instances and VMs using Systems Manager, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-managedinstances.html\">Setting Up AWS Systems Manager for Hybrid Environments</a> in the <i>AWS Systems Manager User Guide</i>. </p> <note> <p>On-premises servers or VMs that are registered with Systems Manager and Amazon EC2 instances that you manage with Systems Manager are all called <i>managed instances</i>.</p> </note>",
     "CreateAssociation": "<p>Associates the specified Systems Manager document with the specified instances or targets.</p> <p>When you associate a document with one or more instances using instance IDs or tags, SSM Agent running on the instance processes the document and configures the instance as specified.</p> <p>If you associate a document with an instance that already has an associated document, the system returns the AssociationAlreadyExists exception.</p>",
     "CreateAssociationBatch": "<p>Associates the specified Systems Manager document with the specified instances or targets.</p> <p>When you associate a document with one or more instances using instance IDs or tags, SSM Agent running on the instance processes the document and configures the instance as specified.</p> <p>If you associate a document with an instance that already has an associated document, the system returns the AssociationAlreadyExists exception.</p>",
     "CreateDocument": "<p>Creates a Systems Manager document.</p> <p>After you create a document, you can use CreateAssociation to associate it with one or more running instances.</p>",
@@ -83,13 +83,13 @@
     "GetServiceSetting": "<p> <code>ServiceSetting</code> is an account-level setting for an AWS service. This setting defines how a user interacts with or uses a service or a feature of a service. For example, if an AWS service charges money to the account based on feature or service usage, then the AWS service team might create a default setting of \"false\". This means the user can't use this feature unless they change the setting to \"true\" and intentionally opt in for a paid feature.</p> <p>Services map a <code>SettingId</code> object to a setting value. AWS services teams define the default value for a <code>SettingId</code>. You can't create a new <code>SettingId</code>, but you can overwrite the default value if you have the <code>ssm:UpdateServiceSetting</code> permission for the setting. Use the <a>UpdateServiceSetting</a> API action to change the default setting. Or use the <a>ResetServiceSetting</a> to change the value back to the original value defined by the AWS service team.</p> <p>Query the current service setting for the account. </p>",
     "LabelParameterVersion": "<p>A parameter label is a user-defined alias to help you manage different versions of a parameter. When you modify a parameter, Systems Manager automatically saves a new version and increments the version number by one. A label can help you remember the purpose of a parameter when there are multiple versions. </p> <p>Parameter labels have the following requirements and restrictions.</p> <ul> <li> <p>A version of a parameter can have a maximum of 10 labels.</p> </li> <li> <p>You can't attach the same label to different versions of the same parameter. For example, if version 1 has the label Production, then you can't attach Production to version 2.</p> </li> <li> <p>You can move a label from one version of a parameter to another.</p> </li> <li> <p>You can't create a label when you create a new parameter. You must attach a label to a specific version of a parameter.</p> </li> <li> <p>You can't delete a parameter label. If you no longer want to use a parameter label, then you must move it to a different version of a parameter.</p> </li> <li> <p>A label can have a maximum of 100 characters.</p> </li> <li> <p>Labels can contain letters (case sensitive), numbers, periods (.), hyphens (-), or underscores (_).</p> </li> <li> <p>Labels can't begin with a number, \"aws,\" or \"ssm\" (not case sensitive). If a label fails to meet these requirements, then the label is not associated with a parameter and the system displays it in the list of InvalidLabels.</p> </li> </ul>",
     "ListAssociationVersions": "<p>Retrieves all versions of an association for a specific association ID.</p>",
-    "ListAssociations": "<p>Lists the associations for the specified Systems Manager document or instance.</p>",
+    "ListAssociations": "<p>Returns all State Manager associations in the current AWS account and Region. You can limit the results to a specific State Manager association document or instance by specifying a filter.</p>",
     "ListCommandInvocations": "<p>An invocation is copy of a command sent to a specific instance. A command can apply to one or more instances. A command invocation applies to one instance. For example, if a user runs SendCommand against three instances, then a command invocation is created for each requested instance ID. ListCommandInvocations provide status about command execution.</p>",
     "ListCommands": "<p>Lists the commands requested by users of the AWS account.</p>",
     "ListComplianceItems": "<p>For a specified resource ID, this API action returns a list of compliance statuses for different resource types. Currently, you can only specify one resource ID per call. List results depend on the criteria specified in the filter. </p>",
     "ListComplianceSummaries": "<p>Returns a summary count of compliant and non-compliant resources for a compliance type. For example, this call can return State Manager associations, patches, or custom compliance types according to the filter criteria that you specify. </p>",
     "ListDocumentVersions": "<p>List all versions for a document.</p>",
-    "ListDocuments": "<p>Describes one or more of your Systems Manager documents.</p>",
+    "ListDocuments": "<p>Returns all Systems Manager (SSM) documents in the current AWS account and Region. You can limit the results of this request by using a filter.</p>",
     "ListInventoryEntries": "<p>A list of inventory items returned by the request.</p>",
     "ListResourceComplianceSummaries": "<p>Returns a resource-level summary count. The summary includes information about compliant and non-compliant statuses and detailed compliance-item severity counts, according to the filter criteria you specify.</p>",
     "ListResourceDataSync": "<p>Lists your resource data sync configurations. Includes information about the last time a sync attempted to start, the last sync status, and the last time a sync successfully completed.</p> <p>The number of sync configurations might be too large to return using a single call to <code>ListResourceDataSync</code>. You can limit the number of sync configurations returned by using the <code>MaxResults</code> parameter. To determine whether there are more sync configurations to list, check the value of <code>NextToken</code> in the output. If there are more sync configurations to list, you can request them by specifying the <code>NextToken</code> returned in the call to the parameter of a subsequent call. </p>",
@@ -181,7 +181,7 @@
       "base": null,
       "refs": {
         "Activation$Description": "<p>A user defined description of the activation.</p>",
-        "CreateActivationRequest$Description": "<p>A user-defined description of the resource that you want to register with Amazon EC2. </p> <important> <p>Do not enter personally identifiable information in this field.</p> </important>"
+        "CreateActivationRequest$Description": "<p>A user-defined description of the resource that you want to register with Systems Manager. </p> <important> <p>Do not enter personally identifiable information in this field.</p> </important>"
       }
     },
     "ActivationId": {
@@ -717,8 +717,8 @@
       "base": null,
       "refs": {
         "AutomationExecution$AutomationExecutionStatus": "<p>The execution status of the Automation.</p>",
-        "AutomationExecutionMetadata$AutomationExecutionStatus": "<p>The status of the execution. Valid values include: Running, Succeeded, Failed, Timed out, or Cancelled.</p>",
-        "StepExecution$StepStatus": "<p>The execution status for this step. Valid values include: Pending, InProgress, Success, Cancelled, Failed, and TimedOut.</p>"
+        "AutomationExecutionMetadata$AutomationExecutionStatus": "<p>The status of the execution.</p>",
+        "StepExecution$StepStatus": "<p>The execution status for this step.</p>"
       }
     },
     "AutomationParameterKey": {
@@ -1394,7 +1394,7 @@
         "AssociationVersionInfo$CreatedDate": "<p>The date the association version was created.</p>",
         "AutomationExecution$ExecutionStartTime": "<p>The time the execution started.</p>",
         "AutomationExecution$ExecutionEndTime": "<p>The time the execution finished.</p>",
-        "AutomationExecutionMetadata$ExecutionStartTime": "<p>The time the execution started.&gt;</p>",
+        "AutomationExecutionMetadata$ExecutionStartTime": "<p>The time the execution started.</p>",
         "AutomationExecutionMetadata$ExecutionEndTime": "<p>The time the execution finished. This is not populated if the execution is still in progress.</p>",
         "Command$ExpiresAfter": "<p>If this time is reached and the command has not already started running, it will not run. Calculated based on the ExpiresAfter user input provided as part of the SendCommand API.</p>",
         "Command$RequestedDateTime": "<p>The date and time the command was requested.</p>",
@@ -1421,7 +1421,7 @@
         "InstanceInformation$LastSuccessfulAssociationExecutionDate": "<p>The last date the association was successfully run.</p>",
         "InstancePatchState$OperationStartTime": "<p>The time the most recent patching operation was started on the instance.</p>",
         "InstancePatchState$OperationEndTime": "<p>The time the most recent patching operation completed on the instance.</p>",
-        "InstancePatchState$LastNoRebootInstallOperationTime": "<p>Reserved for future use. </p>",
+        "InstancePatchState$LastNoRebootInstallOperationTime": "<p>The time of the last attempt to patch the instance with <code>NoReboot</code> specified as the reboot option.</p>",
         "MaintenanceWindowExecution$StartTime": "<p>The time the execution started.</p>",
         "MaintenanceWindowExecution$EndTime": "<p>The time the execution finished.</p>",
         "MaintenanceWindowExecutionTaskIdentity$StartTime": "<p>The time the task execution started.</p>",
@@ -1457,7 +1457,7 @@
       "base": null,
       "refs": {
         "Activation$DefaultInstanceName": "<p>A name for the managed instance when it is created.</p>",
-        "CreateActivationRequest$DefaultInstanceName": "<p>The name of the registered, managed instance as it will appear in the Amazon EC2 console or when you use the AWS command line tools to list EC2 resources.</p> <important> <p>Do not enter personally identifiable information in this field.</p> </important>"
+        "CreateActivationRequest$DefaultInstanceName": "<p>The name of the registered, managed instance as it will appear in the Systems Manager console or when you use the AWS command line tools to list Systems Manager resources.</p> <important> <p>Do not enter personally identifiable information in this field.</p> </important>"
       }
     },
     "DeleteActivationRequest": {
@@ -2213,7 +2213,7 @@
     "DocumentType": {
       "base": null,
       "refs": {
-        "CreateDocumentRequest$DocumentType": "<p>The type of document to create. Valid document types include: <code>Command</code>, <code>Policy</code>, <code>Automation</code>, <code>Session</code>, and <code>Package</code>.</p>",
+        "CreateDocumentRequest$DocumentType": "<p>The type of document to create.</p>",
         "DocumentDescription$DocumentType": "<p>The type of document.</p>",
         "DocumentIdentifier$DocumentType": "<p>The document type.</p>",
         "GetDocumentResult$DocumentType": "<p>The document type.</p>"
@@ -2660,7 +2660,7 @@
       "base": null,
       "refs": {
         "Activation$IamRole": "<p>The Amazon Identity and Access Management (IAM) role to assign to the managed instance.</p>",
-        "CreateActivationRequest$IamRole": "<p>The Amazon Identity and Access Management (IAM) role that you want to assign to the managed instance. </p>",
+        "CreateActivationRequest$IamRole": "<p>The Amazon Identity and Access Management (IAM) role that you want to assign to the managed instance. This IAM role must provide AssumeRole permissions for the Systems Manager service principal <code>ssm.amazonaws.com</code>. For more information, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-service-role.html\">Create an IAM Service Role for a Hybrid Environment</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
         "InstanceInformation$IamRole": "<p>The Amazon Identity and Access Management (IAM) role assigned to the on-premises Systems Manager managed instances. This call does not return the IAM role for Amazon EC2 instances. </p>",
         "UpdateManagedInstanceRoleRequest$IamRole": "<p>The IAM role you want to assign or change.</p>"
       }
@@ -2916,7 +2916,7 @@
     "InstancesCount": {
       "base": null,
       "refs": {
-        "DescribePatchGroupStateResult$InstancesWithInstalledPendingRebootPatches": "<p>Reserved for future use. </p>",
+        "DescribePatchGroupStateResult$InstancesWithInstalledPendingRebootPatches": "<p>The number of instances with patches installed by Patch Manager that have not been rebooted after the patch installation. The status of these instances is NON_COMPLIANT.</p>",
         "DescribePatchGroupStateResult$InstancesWithInstalledRejectedPatches": "<p>The number of instances with patches installed that are specified in a RejectedPatches list. Patches with a status of <i>INSTALLED_REJECTED</i> were typically installed before they were added to a RejectedPatches list.</p> <note> <p>If ALLOW_AS_DEPENDENCY is the specified option for RejectedPatchesAction, the value of InstancesWithInstalledRejectedPatches will always be 0 (zero).</p> </note>"
       }
     },
@@ -3431,7 +3431,7 @@
     "InventoryQueryOperatorType": {
       "base": null,
       "refs": {
-        "InventoryFilter$Type": "<p>The type of filter. Valid values include the following: \"Equal\"|\"NotEqual\"|\"BeginWith\"|\"LessThan\"|\"GreaterThan\"</p>"
+        "InventoryFilter$Type": "<p>The type of filter.</p>"
       }
     },
     "InventoryResultEntity": {
@@ -5377,7 +5377,7 @@
     "PatchInstalledPendingRebootCount": {
       "base": null,
       "refs": {
-        "InstancePatchState$InstalledPendingRebootCount": "<p>Reserved for future use.</p>"
+        "InstancePatchState$InstalledPendingRebootCount": "<p>The number of patches installed by Patch Manager since the last time the instance was rebooted.</p>"
       }
     },
     "PatchInstalledRejectedCount": {
@@ -5672,7 +5672,7 @@
     "RebootOption": {
       "base": null,
       "refs": {
-        "InstancePatchState$RebootOption": "<p>Reserved for future use. </p>"
+        "InstancePatchState$RebootOption": "<p>Indicates the reboot option specified in the patch baseline.</p> <note> <p>Reboot options apply to <code>Install</code> operations only. Reboots are not attempted for Patch Manager <code>Scan</code> operations.</p> </note> <ul> <li> <p> <b>RebootIfNeeded</b>: Patch Manager tries to reboot the instance if it installed any patches, or if any patches are detected with a status of <code>InstalledPendingReboot</code>.</p> </li> <li> <p> <b>NoReboot</b>: Patch Manager attempts to install missing packages without trying to reboot the system. Patches installed with this option are assigned a status of <code>InstalledPendingReboot</code>. These patches might not be in effect until a reboot is performed.</p> </li> </ul>"
       }
     },
     "Region": {

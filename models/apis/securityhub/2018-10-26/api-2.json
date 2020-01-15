@@ -245,6 +245,21 @@
         {"shape":"InvalidInputException"}
       ]
     },
+    "DescribeStandardsControls":{
+      "name":"DescribeStandardsControls",
+      "http":{
+        "method":"GET",
+        "requestUri":"/standards/controls/{StandardsSubscriptionArn+}"
+      },
+      "input":{"shape":"DescribeStandardsControlsRequest"},
+      "output":{"shape":"DescribeStandardsControlsResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "DisableImportFindingsForProduct":{
       "name":"DisableImportFindingsForProduct",
       "http":{
@@ -596,6 +611,21 @@
         {"shape":"InvalidInputException"},
         {"shape":"InvalidAccessException"},
         {"shape":"LimitExceededException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "UpdateStandardsControl":{
+      "name":"UpdateStandardsControl",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/standards/control/{StandardsControlArn+}"
+      },
+      "input":{"shape":"UpdateStandardsControlRequest"},
+      "output":{"shape":"UpdateStandardsControlResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InvalidAccessException"},
         {"shape":"ResourceNotFoundException"}
       ]
     }
@@ -1120,6 +1150,13 @@
         "LaunchedAt":{"shape":"NonEmptyString"}
       }
     },
+    "ControlStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "CreateActionTargetRequest":{
       "type":"structure",
       "required":[
@@ -1322,6 +1359,34 @@
       "required":["Products"],
       "members":{
         "Products":{"shape":"ProductsList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeStandardsControlsRequest":{
+      "type":"structure",
+      "required":["StandardsSubscriptionArn"],
+      "members":{
+        "StandardsSubscriptionArn":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"StandardsSubscriptionArn"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"NextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        }
+      }
+    },
+    "DescribeStandardsControlsResponse":{
+      "type":"structure",
+      "members":{
+        "Controls":{"shape":"StandardsControls"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -2048,6 +2113,15 @@
         "Normalized":{"shape":"Integer"}
       }
     },
+    "SeverityRating":{
+      "type":"string",
+      "enum":[
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "CRITICAL"
+      ]
+    },
     "SortCriteria":{
       "type":"list",
       "member":{"shape":"SortCriterion"}
@@ -2065,6 +2139,24 @@
         "asc",
         "desc"
       ]
+    },
+    "StandardsControl":{
+      "type":"structure",
+      "members":{
+        "StandardsControlArn":{"shape":"NonEmptyString"},
+        "ControlStatus":{"shape":"ControlStatus"},
+        "DisabledReason":{"shape":"NonEmptyString"},
+        "ControlStatusUpdatedAt":{"shape":"Timestamp"},
+        "ControlId":{"shape":"NonEmptyString"},
+        "Title":{"shape":"NonEmptyString"},
+        "Description":{"shape":"NonEmptyString"},
+        "RemediationUrl":{"shape":"NonEmptyString"},
+        "SeverityRating":{"shape":"SeverityRating"}
+      }
+    },
+    "StandardsControls":{
+      "type":"list",
+      "member":{"shape":"StandardsControl"}
     },
     "StandardsInputParameterMap":{
       "type":"map",
@@ -2306,6 +2398,24 @@
       }
     },
     "UpdateInsightResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateStandardsControlRequest":{
+      "type":"structure",
+      "required":["StandardsControlArn"],
+      "members":{
+        "StandardsControlArn":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"StandardsControlArn"
+        },
+        "ControlStatus":{"shape":"ControlStatus"},
+        "DisabledReason":{"shape":"NonEmptyString"}
+      }
+    },
+    "UpdateStandardsControlResponse":{
       "type":"structure",
       "members":{
       }

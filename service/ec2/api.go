@@ -54243,6 +54243,14 @@ type DescribeClientVpnAuthorizationRulesInput struct {
 	DryRun *bool `type:"boolean"`
 
 	// One or more filters. Filter names and values are case-sensitive.
+	//
+	//    * description - The description of the authorization rule.
+	//
+	//    * destination-cidr - The CIDR of the network to which the authorization
+	//    rule applies.
+	//
+	//    * group-id - The ID of the Active Directory group to which the authorization
+	//    rule grants access.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// The maximum number of results to return for the request in a single page.
@@ -54358,6 +54366,11 @@ type DescribeClientVpnConnectionsInput struct {
 	DryRun *bool `type:"boolean"`
 
 	// One or more filters. Filter names and values are case-sensitive.
+	//
+	//    * connection-id - The ID of the connection.
+	//
+	//    * username - For Active Directory client authentication, the user name
+	//    of the client who established the client connection.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// The maximum number of results to return for the request in a single page.
@@ -54471,6 +54484,10 @@ type DescribeClientVpnEndpointsInput struct {
 	DryRun *bool `type:"boolean"`
 
 	// One or more filters. Filter names and values are case-sensitive.
+	//
+	//    * endpoint-id - The ID of the Client VPN endpoint.
+	//
+	//    * transport-protocol - The transport protocol (tcp | udp).
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// The maximum number of results to return for the request in a single page.
@@ -54583,6 +54600,13 @@ type DescribeClientVpnRoutesInput struct {
 	DryRun *bool `type:"boolean"`
 
 	// One or more filters. Filter names and values are case-sensitive.
+	//
+	//    * destination-cidr - The CIDR of the route destination.
+	//
+	//    * origin - How the route was associated with the Client VPN endpoint (associate
+	//    | add-route).
+	//
+	//    * target-subnet - The ID of the subnet through which traffic is routed.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// The maximum number of results to return for the request in a single page.
@@ -54701,6 +54725,12 @@ type DescribeClientVpnTargetNetworksInput struct {
 	DryRun *bool `type:"boolean"`
 
 	// One or more filters. Filter names and values are case-sensitive.
+	//
+	//    * association-id - The ID of the association.
+	//
+	//    * target-network-id - The ID of the subnet specified as the target network.
+	//
+	//    * vpc-id - The ID of the VPC in which the target network is located.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// The maximum number of results to return for the request in a single page.
@@ -55571,6 +55601,7 @@ type DescribeExportTasksInput struct {
 	// The export task IDs.
 	ExportTaskIds []*string `locationName:"exportTaskId" locationNameList:"ExportTaskId" type:"list"`
 
+	// the filters for the export tasks.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 }
 
@@ -58468,7 +58499,7 @@ type DescribeInstanceTypesInput struct {
 	//    type.
 	//
 	//    * vcpu-info.default-threads-per-core - The default number of threads per
-	//    cores for the instance type.
+	//    core for the instance type.
 	//
 	//    * vcpu-info.default-vcpus - The default number of vCPUs for the instance
 	//    type.
@@ -71189,6 +71220,7 @@ type ExportTask struct {
 	// The status message related to the export task.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
 
+	// The tags for the export task.
 	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
 }
 
@@ -76174,7 +76206,7 @@ type ImportImageTask struct {
 	// A descriptive status message for the import image task.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
 
-	// Any tags applied to the import image task.
+	// The tags for the import image task.
 	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
 }
 
@@ -76909,7 +76941,7 @@ type ImportSnapshotTask struct {
 	// Describes an import snapshot task.
 	SnapshotTaskDetail *SnapshotTaskDetail `locationName:"snapshotTaskDetail" type:"structure"`
 
-	// Any tags applied to the import snapshot task.
+	// The tags for the import snapshot task.
 	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
 }
 
@@ -92245,12 +92277,6 @@ type RequestLaunchTemplateData struct {
 	_ struct{} `type:"structure"`
 
 	// The block device mapping.
-	//
-	// Supplying both a snapshot ID and an encryption value as arguments for block-device
-	// mapping results in an error. This is because only blank volumes can be encrypted
-	// on start, and these are not created from a snapshot. If a snapshot is the
-	// basis for the volume, it contains data by definition and its encryption status
-	// cannot be changed using this action.
 	BlockDeviceMappings []*LaunchTemplateBlockDeviceMappingRequest `locationName:"BlockDeviceMapping" locationNameList:"BlockDeviceMapping" type:"list"`
 
 	// The Capacity Reservation targeting option. If you do not specify this parameter,

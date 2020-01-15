@@ -126,6 +126,10 @@ type SecurityHubAPI interface {
 	DescribeProductsPages(*securityhub.DescribeProductsInput, func(*securityhub.DescribeProductsOutput, bool) bool) error
 	DescribeProductsPagesWithContext(aws.Context, *securityhub.DescribeProductsInput, func(*securityhub.DescribeProductsOutput, bool) bool, ...request.Option) error
 
+	DescribeStandardsControls(*securityhub.DescribeStandardsControlsInput) (*securityhub.DescribeStandardsControlsOutput, error)
+	DescribeStandardsControlsWithContext(aws.Context, *securityhub.DescribeStandardsControlsInput, ...request.Option) (*securityhub.DescribeStandardsControlsOutput, error)
+	DescribeStandardsControlsRequest(*securityhub.DescribeStandardsControlsInput) (*request.Request, *securityhub.DescribeStandardsControlsOutput)
+
 	DisableImportFindingsForProduct(*securityhub.DisableImportFindingsForProductInput) (*securityhub.DisableImportFindingsForProductOutput, error)
 	DisableImportFindingsForProductWithContext(aws.Context, *securityhub.DisableImportFindingsForProductInput, ...request.Option) (*securityhub.DisableImportFindingsForProductOutput, error)
 	DisableImportFindingsForProductRequest(*securityhub.DisableImportFindingsForProductInput) (*request.Request, *securityhub.DisableImportFindingsForProductOutput)
@@ -226,6 +230,10 @@ type SecurityHubAPI interface {
 	UpdateInsight(*securityhub.UpdateInsightInput) (*securityhub.UpdateInsightOutput, error)
 	UpdateInsightWithContext(aws.Context, *securityhub.UpdateInsightInput, ...request.Option) (*securityhub.UpdateInsightOutput, error)
 	UpdateInsightRequest(*securityhub.UpdateInsightInput) (*request.Request, *securityhub.UpdateInsightOutput)
+
+	UpdateStandardsControl(*securityhub.UpdateStandardsControlInput) (*securityhub.UpdateStandardsControlOutput, error)
+	UpdateStandardsControlWithContext(aws.Context, *securityhub.UpdateStandardsControlInput, ...request.Option) (*securityhub.UpdateStandardsControlOutput, error)
+	UpdateStandardsControlRequest(*securityhub.UpdateStandardsControlInput) (*request.Request, *securityhub.UpdateStandardsControlOutput)
 }
 
 var _ SecurityHubAPI = (*securityhub.SecurityHub)(nil)
