@@ -1534,6 +1534,98 @@ func (c *SecurityHub) DescribeProductsPagesWithContext(ctx aws.Context, input *D
 	return p.Err()
 }
 
+const opDescribeStandardsControls = "DescribeStandardsControls"
+
+// DescribeStandardsControlsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeStandardsControls operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeStandardsControls for more information on using the DescribeStandardsControls
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeStandardsControlsRequest method.
+//    req, resp := client.DescribeStandardsControlsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DescribeStandardsControls
+func (c *SecurityHub) DescribeStandardsControlsRequest(input *DescribeStandardsControlsInput) (req *request.Request, output *DescribeStandardsControlsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeStandardsControls,
+		HTTPMethod: "GET",
+		HTTPPath:   "/standards/controls/{StandardsSubscriptionArn+}",
+	}
+
+	if input == nil {
+		input = &DescribeStandardsControlsInput{}
+	}
+
+	output = &DescribeStandardsControlsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeStandardsControls API operation for AWS SecurityHub.
+//
+// Returns a list of compliance standards controls.
+//
+// For each control, the results include information about whether it is currently
+// enabled, the severity, and a link to remediation information.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation DescribeStandardsControls for usage and error information.
+//
+// Returned Error Types:
+//   * InternalException
+//   Internal server error.
+//
+//   * InvalidInputException
+//   The request was rejected because you supplied an invalid or out-of-range
+//   value for an input parameter.
+//
+//   * InvalidAccessException
+//   AWS Security Hub isn't enabled for the account used to make this request.
+//
+//   * ResourceNotFoundException
+//   The request was rejected because we can't find the specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DescribeStandardsControls
+func (c *SecurityHub) DescribeStandardsControls(input *DescribeStandardsControlsInput) (*DescribeStandardsControlsOutput, error) {
+	req, out := c.DescribeStandardsControlsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeStandardsControlsWithContext is the same as DescribeStandardsControls with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeStandardsControls for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) DescribeStandardsControlsWithContext(ctx aws.Context, input *DescribeStandardsControlsInput, opts ...request.Option) (*DescribeStandardsControlsOutput, error) {
+	req, out := c.DescribeStandardsControlsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDisableImportFindingsForProduct = "DisableImportFindingsForProduct"
 
 // DisableImportFindingsForProductRequest generates a "aws/request.Request" representing the
@@ -3836,6 +3928,97 @@ func (c *SecurityHub) UpdateInsight(input *UpdateInsightInput) (*UpdateInsightOu
 // for more information on using Contexts.
 func (c *SecurityHub) UpdateInsightWithContext(ctx aws.Context, input *UpdateInsightInput, opts ...request.Option) (*UpdateInsightOutput, error) {
 	req, out := c.UpdateInsightRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateStandardsControl = "UpdateStandardsControl"
+
+// UpdateStandardsControlRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateStandardsControl operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateStandardsControl for more information on using the UpdateStandardsControl
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateStandardsControlRequest method.
+//    req, resp := client.UpdateStandardsControlRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/UpdateStandardsControl
+func (c *SecurityHub) UpdateStandardsControlRequest(input *UpdateStandardsControlInput) (req *request.Request, output *UpdateStandardsControlOutput) {
+	op := &request.Operation{
+		Name:       opUpdateStandardsControl,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/standards/control/{StandardsControlArn+}",
+	}
+
+	if input == nil {
+		input = &UpdateStandardsControlInput{}
+	}
+
+	output = &UpdateStandardsControlOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateStandardsControl API operation for AWS SecurityHub.
+//
+// Used to control whether an individual compliance standard control is enabled
+// or disabled.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation UpdateStandardsControl for usage and error information.
+//
+// Returned Error Types:
+//   * InternalException
+//   Internal server error.
+//
+//   * InvalidInputException
+//   The request was rejected because you supplied an invalid or out-of-range
+//   value for an input parameter.
+//
+//   * InvalidAccessException
+//   AWS Security Hub isn't enabled for the account used to make this request.
+//
+//   * ResourceNotFoundException
+//   The request was rejected because we can't find the specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/UpdateStandardsControl
+func (c *SecurityHub) UpdateStandardsControl(input *UpdateStandardsControlInput) (*UpdateStandardsControlOutput, error) {
+	req, out := c.UpdateStandardsControlRequest(input)
+	return out, req.Send()
+}
+
+// UpdateStandardsControlWithContext is the same as UpdateStandardsControl with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateStandardsControl for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) UpdateStandardsControlWithContext(ctx aws.Context, input *UpdateStandardsControlInput, opts ...request.Option) (*UpdateStandardsControlOutput, error) {
+	req, out := c.UpdateStandardsControlRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7685,6 +7868,104 @@ func (s *DescribeProductsOutput) SetProducts(v []*Product) *DescribeProductsOutp
 	return s
 }
 
+type DescribeStandardsControlsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of compliance standard controls to return.
+	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
+
+	// For requests to get the next page of results, the pagination token that was
+	// returned with the previous set of results. The initial request does not include
+	// a pagination token.
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+
+	// The ARN of a resource that represents your subscription to a supported standard.
+	//
+	// StandardsSubscriptionArn is a required field
+	StandardsSubscriptionArn *string `location:"uri" locationName:"StandardsSubscriptionArn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeStandardsControlsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeStandardsControlsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeStandardsControlsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeStandardsControlsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.StandardsSubscriptionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StandardsSubscriptionArn"))
+	}
+	if s.StandardsSubscriptionArn != nil && len(*s.StandardsSubscriptionArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StandardsSubscriptionArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeStandardsControlsInput) SetMaxResults(v int64) *DescribeStandardsControlsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeStandardsControlsInput) SetNextToken(v string) *DescribeStandardsControlsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStandardsSubscriptionArn sets the StandardsSubscriptionArn field's value.
+func (s *DescribeStandardsControlsInput) SetStandardsSubscriptionArn(v string) *DescribeStandardsControlsInput {
+	s.StandardsSubscriptionArn = &v
+	return s
+}
+
+type DescribeStandardsControlsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of compliance standards controls.
+	Controls []*StandardsControl `type:"list"`
+
+	// If there are more compliance standards control remaining in the results,
+	// then this is the pagination token to use to request the next page of compliance
+	// standard controls.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeStandardsControlsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeStandardsControlsOutput) GoString() string {
+	return s.String()
+}
+
+// SetControls sets the Controls field's value.
+func (s *DescribeStandardsControlsOutput) SetControls(v []*StandardsControl) *DescribeStandardsControlsOutput {
+	s.Controls = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeStandardsControlsOutput) SetNextToken(v string) *DescribeStandardsControlsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type DisableImportFindingsForProductInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10572,6 +10853,110 @@ func (s *SortCriterion) SetSortOrder(v string) *SortCriterion {
 	return s
 }
 
+// Details for an individual compliance standard control.
+type StandardsControl struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the compliance standard control.
+	ControlId *string `type:"string"`
+
+	// The current status of the compliance standard control. Indicates whether
+	// the control is enabled or disabled. Security Hub does not check against disabled
+	// controls.
+	ControlStatus *string `type:"string" enum:"ControlStatus"`
+
+	// The date and time that the status of the compliance standard control was
+	// most recently updated.
+	ControlStatusUpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The longer description of the compliance standard control. Provides information
+	// about what the control is checking for.
+	Description *string `type:"string"`
+
+	// The reason provided for the most recent change in status for the control.
+	DisabledReason *string `type:"string"`
+
+	// A link to remediation information for the control in the Security Hub user
+	// documentation
+	RemediationUrl *string `type:"string"`
+
+	// The severity of findings generated from this compliance standard control.
+	//
+	// The finding severity is based on an assessment of how easy it would be to
+	// compromise AWS resources if the compliance issue is detected.
+	SeverityRating *string `type:"string" enum:"SeverityRating"`
+
+	// The ARN of the compliance standard control.
+	StandardsControlArn *string `type:"string"`
+
+	// The title of the compliance standard control.
+	Title *string `type:"string"`
+}
+
+// String returns the string representation
+func (s StandardsControl) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StandardsControl) GoString() string {
+	return s.String()
+}
+
+// SetControlId sets the ControlId field's value.
+func (s *StandardsControl) SetControlId(v string) *StandardsControl {
+	s.ControlId = &v
+	return s
+}
+
+// SetControlStatus sets the ControlStatus field's value.
+func (s *StandardsControl) SetControlStatus(v string) *StandardsControl {
+	s.ControlStatus = &v
+	return s
+}
+
+// SetControlStatusUpdatedAt sets the ControlStatusUpdatedAt field's value.
+func (s *StandardsControl) SetControlStatusUpdatedAt(v time.Time) *StandardsControl {
+	s.ControlStatusUpdatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *StandardsControl) SetDescription(v string) *StandardsControl {
+	s.Description = &v
+	return s
+}
+
+// SetDisabledReason sets the DisabledReason field's value.
+func (s *StandardsControl) SetDisabledReason(v string) *StandardsControl {
+	s.DisabledReason = &v
+	return s
+}
+
+// SetRemediationUrl sets the RemediationUrl field's value.
+func (s *StandardsControl) SetRemediationUrl(v string) *StandardsControl {
+	s.RemediationUrl = &v
+	return s
+}
+
+// SetSeverityRating sets the SeverityRating field's value.
+func (s *StandardsControl) SetSeverityRating(v string) *StandardsControl {
+	s.SeverityRating = &v
+	return s
+}
+
+// SetStandardsControlArn sets the StandardsControlArn field's value.
+func (s *StandardsControl) SetStandardsControlArn(v string) *StandardsControl {
+	s.StandardsControlArn = &v
+	return s
+}
+
+// SetTitle sets the Title field's value.
+func (s *StandardsControl) SetTitle(v string) *StandardsControl {
+	s.Title = &v
+	return s
+}
+
 // A resource that represents your subscription to a supported standard.
 type StandardsSubscription struct {
 	_ struct{} `type:"structure"`
@@ -11164,6 +11549,79 @@ func (s UpdateInsightOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateStandardsControlInput struct {
+	_ struct{} `type:"structure"`
+
+	// The updated status of the compliance standard control.
+	ControlStatus *string `type:"string" enum:"ControlStatus"`
+
+	// A description of the reason why you are disabling a compliance standard control.
+	DisabledReason *string `type:"string"`
+
+	// The ARN of the compliance standard control to enable or disable.
+	//
+	// StandardsControlArn is a required field
+	StandardsControlArn *string `location:"uri" locationName:"StandardsControlArn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateStandardsControlInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateStandardsControlInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateStandardsControlInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateStandardsControlInput"}
+	if s.StandardsControlArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StandardsControlArn"))
+	}
+	if s.StandardsControlArn != nil && len(*s.StandardsControlArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StandardsControlArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetControlStatus sets the ControlStatus field's value.
+func (s *UpdateStandardsControlInput) SetControlStatus(v string) *UpdateStandardsControlInput {
+	s.ControlStatus = &v
+	return s
+}
+
+// SetDisabledReason sets the DisabledReason field's value.
+func (s *UpdateStandardsControlInput) SetDisabledReason(v string) *UpdateStandardsControlInput {
+	s.DisabledReason = &v
+	return s
+}
+
+// SetStandardsControlArn sets the StandardsControlArn field's value.
+func (s *UpdateStandardsControlInput) SetStandardsControlArn(v string) *UpdateStandardsControlInput {
+	s.StandardsControlArn = &v
+	return s
+}
+
+type UpdateStandardsControlOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateStandardsControlOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateStandardsControlOutput) GoString() string {
+	return s.String()
+}
+
 const (
 	// AwsIamAccessKeyStatusActive is a AwsIamAccessKeyStatus enum value
 	AwsIamAccessKeyStatusActive = "Active"
@@ -11184,6 +11642,14 @@ const (
 
 	// ComplianceStatusNotAvailable is a ComplianceStatus enum value
 	ComplianceStatusNotAvailable = "NOT_AVAILABLE"
+)
+
+const (
+	// ControlStatusEnabled is a ControlStatus enum value
+	ControlStatusEnabled = "ENABLED"
+
+	// ControlStatusDisabled is a ControlStatus enum value
+	ControlStatusDisabled = "DISABLED"
 )
 
 const (
@@ -11279,6 +11745,20 @@ const (
 
 	// RecordStateArchived is a RecordState enum value
 	RecordStateArchived = "ARCHIVED"
+)
+
+const (
+	// SeverityRatingLow is a SeverityRating enum value
+	SeverityRatingLow = "LOW"
+
+	// SeverityRatingMedium is a SeverityRating enum value
+	SeverityRatingMedium = "MEDIUM"
+
+	// SeverityRatingHigh is a SeverityRating enum value
+	SeverityRatingHigh = "HIGH"
+
+	// SeverityRatingCritical is a SeverityRating enum value
+	SeverityRatingCritical = "CRITICAL"
 )
 
 const (

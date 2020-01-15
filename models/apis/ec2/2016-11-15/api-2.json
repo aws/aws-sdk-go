@@ -4150,7 +4150,7 @@
         "VpcId"
       ],
       "members":{
-        "DhcpOptionsId":{"shape":"DhcpOptionsId"},
+        "DhcpOptionsId":{"shape":"DefaultingDhcpOptionsId"},
         "VpcId":{"shape":"VpcId"},
         "DryRun":{
           "shape":"Boolean",
@@ -4222,7 +4222,7 @@
           "locationName":"ipv6CidrBlock"
         },
         "SubnetId":{
-          "shape":"String",
+          "shape":"SubnetId",
           "locationName":"subnetId"
         }
       }
@@ -4498,7 +4498,6 @@
         }
       }
     },
-    "AttachmentId":{"type":"string"},
     "AttachmentStatus":{
       "type":"string",
       "enum":[
@@ -4835,6 +4834,7 @@
       }
     },
     "Boolean":{"type":"boolean"},
+    "BundleId":{"type":"string"},
     "BundleIdStringList":{
       "type":"list",
       "member":{
@@ -4989,7 +4989,7 @@
       "type":"structure",
       "required":["BundleId"],
       "members":{
-        "BundleId":{"shape":"String"},
+        "BundleId":{"shape":"BundleId"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -6137,7 +6137,7 @@
           "locationName":"encrypted"
         },
         "KmsKeyId":{
-          "shape":"String",
+          "shape":"KmsKeyId",
           "locationName":"kmsKeyId"
         },
         "Name":{"shape":"String"},
@@ -6646,7 +6646,7 @@
           "locationName":"dryRun"
         },
         "InstanceId":{
-          "shape":"String",
+          "shape":"InstanceId",
           "locationName":"instanceId"
         },
         "Name":{
@@ -7236,7 +7236,7 @@
         "CidrBlock":{"shape":"String"},
         "Ipv6CidrBlock":{"shape":"String"},
         "OutpostArn":{"shape":"String"},
-        "VpcId":{"shape":"String"},
+        "VpcId":{"shape":"VpcId"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -7941,6 +7941,7 @@
         "on-demand"
       ]
     },
+    "DefaultingDhcpOptionsId":{"type":"string"},
     "DeleteClientVpnEndpointRequest":{
       "type":"structure",
       "required":["ClientVpnEndpointId"],
@@ -8535,7 +8536,7 @@
       "type":"structure",
       "required":["SubnetId"],
       "members":{
-        "SubnetId":{"shape":"String"},
+        "SubnetId":{"shape":"SubnetId"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -8893,7 +8894,7 @@
       "type":"structure",
       "required":["ImageId"],
       "members":{
-        "ImageId":{"shape":"String"},
+        "ImageId":{"shape":"ImageId"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -12572,7 +12573,7 @@
       "required":["AttachmentId"],
       "members":{
         "AttachmentId":{
-          "shape":"AttachmentId",
+          "shape":"NetworkInterfaceAttachmentId",
           "locationName":"attachmentId"
         },
         "DryRun":{
@@ -12927,7 +12928,7 @@
     "DisassociateAddressRequest":{
       "type":"structure",
       "members":{
-        "AssociationId":{"shape":"String"},
+        "AssociationId":{"shape":"ElasticIpAssociationId"},
         "PublicIp":{"shape":"String"},
         "DryRun":{
           "shape":"Boolean",
@@ -12995,7 +12996,7 @@
       "required":["AssociationId"],
       "members":{
         "AssociationId":{
-          "shape":"String",
+          "shape":"SubnetCidrAssociationId",
           "locationName":"associationId"
         }
       }
@@ -13261,11 +13262,11 @@
           "shape":"VolumeType",
           "locationName":"volumeType"
         },
+        "KmsKeyId":{"shape":"String"},
         "Encrypted":{
           "shape":"Boolean",
           "locationName":"encrypted"
-        },
-        "KmsKeyId":{"shape":"String"}
+        }
       }
     },
     "EbsEncryptionSupport":{
@@ -13317,7 +13318,7 @@
           "locationName":"deleteOnTermination"
         },
         "VolumeId":{
-          "shape":"String",
+          "shape":"VolumeId",
           "locationName":"volumeId"
         }
       }
@@ -13541,6 +13542,7 @@
         "locationName":"item"
       }
     },
+    "ElasticIpAssociationId":{"type":"string"},
     "EnaSupport":{
       "type":"string",
       "enum":[
@@ -15989,7 +15991,7 @@
         "DryRun":{"shape":"Boolean"},
         "Encrypted":{"shape":"Boolean"},
         "Hypervisor":{"shape":"String"},
-        "KmsKeyId":{"shape":"String"},
+        "KmsKeyId":{"shape":"KmsKeyId"},
         "LicenseType":{"shape":"String"},
         "Platform":{"shape":"String"},
         "RoleName":{"shape":"String"},
@@ -18057,6 +18059,7 @@
         "disable"
       ]
     },
+    "KernelId":{"type":"string"},
     "KeyNameStringList":{
       "type":"list",
       "member":{
@@ -19604,7 +19607,7 @@
       "members":{
         "Attribute":{"shape":"String"},
         "Description":{"shape":"AttributeValue"},
-        "ImageId":{"shape":"String"},
+        "ImageId":{"shape":"ImageId"},
         "LaunchPermission":{"shape":"LaunchPermissionModifications"},
         "OperationType":{"shape":"OperationType"},
         "ProductCodes":{
@@ -19959,7 +19962,7 @@
         "AssignIpv6AddressOnCreation":{"shape":"AttributeBooleanValue"},
         "MapPublicIpOnLaunch":{"shape":"AttributeBooleanValue"},
         "SubnetId":{
-          "shape":"String",
+          "shape":"SubnetId",
           "locationName":"subnetId"
         }
       }
@@ -20872,6 +20875,7 @@
         }
       }
     },
+    "NetworkInterfaceAttachmentId":{"type":"string"},
     "NetworkInterfaceAttribute":{
       "type":"string",
       "enum":[
@@ -22106,6 +22110,7 @@
         "Windows (Amazon VPC)"
       ]
     },
+    "RamdiskId":{"type":"string"},
     "ReasonCodesList":{
       "type":"list",
       "member":{
@@ -22208,7 +22213,7 @@
           "locationName":"enaSupport"
         },
         "KernelId":{
-          "shape":"String",
+          "shape":"KernelId",
           "locationName":"kernelId"
         },
         "Name":{
@@ -22220,7 +22225,7 @@
           "locationName":"BillingProduct"
         },
         "RamdiskId":{
-          "shape":"String",
+          "shape":"RamdiskId",
           "locationName":"ramdiskId"
         },
         "RootDeviceName":{
@@ -22366,7 +22371,7 @@
     "ReleaseAddressRequest":{
       "type":"structure",
       "members":{
-        "AllocationId":{"shape":"String"},
+        "AllocationId":{"shape":"AllocationId"},
         "PublicIp":{"shape":"String"},
         "NetworkBorderGroup":{"shape":"String"},
         "DryRun":{
@@ -23389,7 +23394,7 @@
       ],
       "members":{
         "Attribute":{"shape":"ResetImageAttributeName"},
-        "ImageId":{"shape":"String"},
+        "ImageId":{"shape":"ImageId"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -25864,6 +25869,7 @@
         "locationName":"item"
       }
     },
+    "SubnetCidrAssociationId":{"type":"string"},
     "SubnetCidrBlockState":{
       "type":"structure",
       "members":{

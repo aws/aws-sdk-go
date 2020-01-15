@@ -359,11 +359,18 @@ func (c *SSM) CreateActivationRequest(input *CreateActivationInput) (req *reques
 
 // CreateActivation API operation for Amazon Simple Systems Manager (SSM).
 //
-// Registers your on-premises server or virtual machine with Amazon EC2 so that
-// you can manage these resources using Run Command. An on-premises server or
-// virtual machine that has been registered with EC2 is called a managed instance.
-// For more information about activations, see Setting Up AWS Systems Manager
-// for Hybrid Environments (http://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-managedinstances.html).
+// Generates an activation code and activation ID you can use to register your
+// on-premises server or virtual machine (VM) with Systems Manager. Registering
+// these machines with Systems Manager makes it possible to manage them using
+// Systems Manager capabilities. You use the activation code and ID when installing
+// SSM Agent on machines in your hybrid environment. For more information about
+// requirements for managing on-premises instances and VMs using Systems Manager,
+// see Setting Up AWS Systems Manager for Hybrid Environments (http://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-managedinstances.html)
+// in the AWS Systems Manager User Guide.
+//
+// On-premises servers or VMs that are registered with Systems Manager and Amazon
+// EC2 instances that you manage with Systems Manager are all called managed
+// instances.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7782,7 +7789,9 @@ func (c *SSM) ListAssociationsRequest(input *ListAssociationsInput) (req *reques
 
 // ListAssociations API operation for Amazon Simple Systems Manager (SSM).
 //
-// Lists the associations for the specified Systems Manager document or instance.
+// Returns all State Manager associations in the current AWS account and Region.
+// You can limit the results to a specific State Manager association document
+// or instance by specifying a filter.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8510,7 +8519,8 @@ func (c *SSM) ListDocumentsRequest(input *ListDocumentsInput) (req *request.Requ
 
 // ListDocuments API operation for Amazon Simple Systems Manager (SSM).
 //
-// Describes one or more of your Systems Manager documents.
+// Returns all Systems Manager (SSM) documents in the current AWS account and
+// Region. You can limit the results of this request by using a filter.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14302,8 +14312,7 @@ type AutomationExecutionMetadata struct {
 	// The execution ID.
 	AutomationExecutionId *string `min:"36" type:"string"`
 
-	// The status of the execution. Valid values include: Running, Succeeded, Failed,
-	// Timed out, or Cancelled.
+	// The status of the execution.
 	AutomationExecutionStatus *string `type:"string" enum:"AutomationExecutionStatus"`
 
 	// Use this filter with DescribeAutomationExecutions. Specify either Local or
@@ -14332,7 +14341,7 @@ type AutomationExecutionMetadata struct {
 	// still in progress.
 	ExecutionEndTime *time.Time `type:"timestamp"`
 
-	// The time the execution started.>
+	// The time the execution started.
 	ExecutionStartTime *time.Time `type:"timestamp"`
 
 	// The list of execution outputs as defined in the Automation document.
@@ -16023,14 +16032,15 @@ func (s *CompliantSummary) SetSeveritySummary(v *SeveritySummary) *CompliantSumm
 type CreateActivationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the registered, managed instance as it will appear in the Amazon
-	// EC2 console or when you use the AWS command line tools to list EC2 resources.
+	// The name of the registered, managed instance as it will appear in the Systems
+	// Manager console or when you use the AWS command line tools to list Systems
+	// Manager resources.
 	//
 	// Do not enter personally identifiable information in this field.
 	DefaultInstanceName *string `type:"string"`
 
 	// A user-defined description of the resource that you want to register with
-	// Amazon EC2.
+	// Systems Manager.
 	//
 	// Do not enter personally identifiable information in this field.
 	Description *string `type:"string"`
@@ -16040,7 +16050,10 @@ type CreateActivationInput struct {
 	ExpirationDate *time.Time `type:"timestamp"`
 
 	// The Amazon Identity and Access Management (IAM) role that you want to assign
-	// to the managed instance.
+	// to the managed instance. This IAM role must provide AssumeRole permissions
+	// for the Systems Manager service principal ssm.amazonaws.com. For more information,
+	// see Create an IAM Service Role for a Hybrid Environment (http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-service-role.html)
+	// in the AWS Systems Manager User Guide.
 	//
 	// IamRole is a required field
 	IamRole *string `type:"string" required:"true"`
@@ -16716,8 +16729,7 @@ type CreateDocumentInput struct {
 	// YAML, or TEXT. JSON is the default format.
 	DocumentFormat *string `type:"string" enum:"DocumentFormat"`
 
-	// The type of document to create. Valid document types include: Command, Policy,
-	// Automation, Session, and Package.
+	// The type of document to create.
 	DocumentType *string `type:"string" enum:"DocumentType"`
 
 	// A name for the Systems Manager document.
@@ -21929,7 +21941,9 @@ type DescribePatchGroupStateOutput struct {
 	// The number of instances with installed patches.
 	InstancesWithInstalledPatches *int64 `type:"integer"`
 
-	// Reserved for future use.
+	// The number of instances with patches installed by Patch Manager that have
+	// not been rebooted after the patch installation. The status of these instances
+	// is NON_COMPLIANT.
 	InstancesWithInstalledPendingRebootPatches *int64 `type:"integer"`
 
 	// The number of instances with patches installed that are specified in a RejectedPatches
@@ -27601,7 +27615,8 @@ type InstancePatchState struct {
 	// on the instance.
 	InstalledOtherCount *int64 `type:"integer"`
 
-	// Reserved for future use.
+	// The number of patches installed by Patch Manager since the last time the
+	// instance was rebooted.
 	InstalledPendingRebootCount *int64 `type:"integer"`
 
 	// The number of instances with patches installed that are specified in a RejectedPatches
@@ -27618,7 +27633,8 @@ type InstancePatchState struct {
 	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
 
-	// Reserved for future use.
+	// The time of the last attempt to patch the instance with NoReboot specified
+	// as the reboot option.
 	LastNoRebootInstallOperationTime *time.Time `type:"timestamp"`
 
 	// The number of patches from the patch baseline that are applicable for the
@@ -27656,7 +27672,18 @@ type InstancePatchState struct {
 	// PatchGroup is a required field
 	PatchGroup *string `min:"1" type:"string" required:"true"`
 
-	// Reserved for future use.
+	// Indicates the reboot option specified in the patch baseline.
+	//
+	// Reboot options apply to Install operations only. Reboots are not attempted
+	// for Patch Manager Scan operations.
+	//
+	//    * RebootIfNeeded: Patch Manager tries to reboot the instance if it installed
+	//    any patches, or if any patches are detected with a status of InstalledPendingReboot.
+	//
+	//    * NoReboot: Patch Manager attempts to install missing packages without
+	//    trying to reboot the system. Patches installed with this option are assigned
+	//    a status of InstalledPendingReboot. These patches might not be in effect
+	//    until a reboot is performed.
 	RebootOption *string `type:"string" enum:"RebootOption"`
 
 	// The ID of the patch baseline snapshot used during the patching operation
@@ -30824,7 +30851,7 @@ type InventoryFilter struct {
 	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
-	// The type of filter. Valid values include the following: "Equal"|"NotEqual"|"BeginWith"|"LessThan"|"GreaterThan"
+	// The type of filter.
 	Type *string `type:"string" enum:"InventoryQueryOperatorType"`
 
 	// Inventory filter values. Example: inventory filter where instance IDs are
@@ -41172,8 +41199,7 @@ type StepExecution struct {
 	// The name of this execution step.
 	StepName *string `type:"string"`
 
-	// The execution status for this step. Valid values include: Pending, InProgress,
-	// Success, Cancelled, Failed, and TimedOut.
+	// The execution status for this step.
 	StepStatus *string `type:"string" enum:"AutomationExecutionStatus"`
 
 	// The combination of AWS Regions and accounts targeted by the current Automation
