@@ -348,6 +348,10 @@ type SageMakerAPI interface {
 	DescribeUserProfileWithContext(aws.Context, *sagemaker.DescribeUserProfileInput, ...request.Option) (*sagemaker.DescribeUserProfileOutput, error)
 	DescribeUserProfileRequest(*sagemaker.DescribeUserProfileInput) (*request.Request, *sagemaker.DescribeUserProfileOutput)
 
+	DescribeWorkforce(*sagemaker.DescribeWorkforceInput) (*sagemaker.DescribeWorkforceOutput, error)
+	DescribeWorkforceWithContext(aws.Context, *sagemaker.DescribeWorkforceInput, ...request.Option) (*sagemaker.DescribeWorkforceOutput, error)
+	DescribeWorkforceRequest(*sagemaker.DescribeWorkforceInput) (*request.Request, *sagemaker.DescribeWorkforceOutput)
+
 	DescribeWorkteam(*sagemaker.DescribeWorkteamInput) (*sagemaker.DescribeWorkteamOutput, error)
 	DescribeWorkteamWithContext(aws.Context, *sagemaker.DescribeWorkteamInput, ...request.Option) (*sagemaker.DescribeWorkteamOutput, error)
 	DescribeWorkteamRequest(*sagemaker.DescribeWorkteamInput) (*request.Request, *sagemaker.DescribeWorkteamOutput)
@@ -675,6 +679,10 @@ type SageMakerAPI interface {
 	UpdateUserProfile(*sagemaker.UpdateUserProfileInput) (*sagemaker.UpdateUserProfileOutput, error)
 	UpdateUserProfileWithContext(aws.Context, *sagemaker.UpdateUserProfileInput, ...request.Option) (*sagemaker.UpdateUserProfileOutput, error)
 	UpdateUserProfileRequest(*sagemaker.UpdateUserProfileInput) (*request.Request, *sagemaker.UpdateUserProfileOutput)
+
+	UpdateWorkforce(*sagemaker.UpdateWorkforceInput) (*sagemaker.UpdateWorkforceOutput, error)
+	UpdateWorkforceWithContext(aws.Context, *sagemaker.UpdateWorkforceInput, ...request.Option) (*sagemaker.UpdateWorkforceOutput, error)
+	UpdateWorkforceRequest(*sagemaker.UpdateWorkforceInput) (*request.Request, *sagemaker.UpdateWorkforceOutput)
 
 	UpdateWorkteam(*sagemaker.UpdateWorkteamInput) (*sagemaker.UpdateWorkteamOutput, error)
 	UpdateWorkteamWithContext(aws.Context, *sagemaker.UpdateWorkteamInput, ...request.Option) (*sagemaker.UpdateWorkteamOutput, error)
