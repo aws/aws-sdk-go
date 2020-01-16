@@ -5764,6 +5764,10 @@
           "shape":"TransportProtocol",
           "locationName":"transportProtocol"
         },
+        "VpnPort":{
+          "shape":"Integer",
+          "locationName":"vpnPort"
+        },
         "AssociatedTargetNetworks":{
           "shape":"AssociatedTargetNetworkSet",
           "deprecated":true,
@@ -6290,6 +6294,7 @@
         "ConnectionLogOptions":{"shape":"ConnectionLogOptions"},
         "DnsServers":{"shape":"ValueStringList"},
         "TransportProtocol":{"shape":"TransportProtocol"},
+        "VpnPort":{"shape":"Integer"},
         "Description":{"shape":"String"},
         "SplitTunnel":{"shape":"Boolean"},
         "DryRun":{"shape":"Boolean"},
@@ -6330,7 +6335,7 @@
       "members":{
         "ClientVpnEndpointId":{"shape":"ClientVpnEndpointId"},
         "DestinationCidrBlock":{"shape":"String"},
-        "TargetVpcSubnetId":{"shape":"String"},
+        "TargetVpcSubnetId":{"shape":"SubnetId"},
         "Description":{"shape":"String"},
         "ClientToken":{
           "shape":"String",
@@ -7967,7 +7972,7 @@
       ],
       "members":{
         "ClientVpnEndpointId":{"shape":"ClientVpnEndpointId"},
-        "TargetVpcSubnetId":{"shape":"String"},
+        "TargetVpcSubnetId":{"shape":"SubnetId"},
         "DestinationCidrBlock":{"shape":"String"},
         "DryRun":{"shape":"Boolean"}
       }
@@ -19430,6 +19435,7 @@
         "ServerCertificateArn":{"shape":"String"},
         "ConnectionLogOptions":{"shape":"ConnectionLogOptions"},
         "DnsServers":{"shape":"DnsServersOptionsModifyStructure"},
+        "VpnPort":{"shape":"Integer"},
         "Description":{"shape":"String"},
         "SplitTunnel":{"shape":"Boolean"},
         "DryRun":{"shape":"Boolean"}

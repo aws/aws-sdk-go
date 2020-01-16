@@ -1826,7 +1826,10 @@
     },
     "DisableLDAPSRequest":{
       "type":"structure",
-      "required":["DirectoryId"],
+      "required":[
+        "DirectoryId",
+        "Type"
+      ],
       "members":{
         "DirectoryId":{"shape":"DirectoryId"},
         "Type":{"shape":"LDAPSType"}
@@ -1917,7 +1920,10 @@
     },
     "EnableLDAPSRequest":{
       "type":"structure",
-      "required":["DirectoryId"],
+      "required":[
+        "DirectoryId",
+        "Type"
+      ],
       "members":{
         "DirectoryId":{"shape":"DirectoryId"},
         "Type":{"shape":"LDAPSType"}

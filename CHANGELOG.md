@@ -1,3 +1,14 @@
+Release v1.28.4 (2020-01-16)
+===
+
+### Service Client Updates
+* `service/ds`: Updates service API
+  * To reduce the number of errors our customers are facing, we have modified the requirements of input parameters for two of Directory Service APIs.
+* `service/ec2`: Updates service API and documentation
+  * Client VPN now supports Port Configuration for VPN Endpoints, allowing usage of either port 443 or port 1194.
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds two new APIs (UpdateWorkforce and DescribeWorkforce) to SageMaker Ground Truth service for workforce IP whitelisting.
+
 Release v1.28.3 (2020-01-15)
 ===
 
