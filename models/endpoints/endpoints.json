@@ -2091,6 +2091,7 @@
       },
       "kinesisanalytics" : {
         "endpoints" : {
+          "ap-east-1" : { },
           "ap-northeast-1" : { },
           "ap-northeast-2" : { },
           "ap-south-1" : { },
@@ -2102,6 +2103,7 @@
           "eu-west-1" : { },
           "eu-west-2" : { },
           "eu-west-3" : { },
+          "me-south-1" : { },
           "sa-east-1" : { },
           "us-east-1" : { },
           "us-east-2" : { },
@@ -4468,6 +4470,19 @@
           "cn-northwest-1" : { }
         }
       },
+      "serverlessrepo" : {
+        "defaults" : {
+          "protocols" : [ "https" ]
+        },
+        "endpoints" : {
+          "cn-north-1" : {
+            "protocols" : [ "https" ]
+          },
+          "cn-northwest-1" : {
+            "protocols" : [ "https" ]
+          }
+        }
+      },
       "sms" : {
         "endpoints" : {
           "cn-north-1" : { },
@@ -4755,6 +4770,11 @@
         "defaults" : {
           "protocols" : [ "https" ]
         },
+        "endpoints" : {
+          "us-gov-west-1" : { }
+        }
+      },
+      "comprehendmedical" : {
         "endpoints" : {
           "us-gov-west-1" : { }
         }

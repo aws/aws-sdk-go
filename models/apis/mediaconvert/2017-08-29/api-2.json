@@ -1161,6 +1161,7 @@
       "enum": [
         "AAC",
         "MP2",
+        "MP3",
         "WAV",
         "AIFF",
         "AC3",
@@ -1199,6 +1200,10 @@
         "Mp2Settings": {
           "shape": "Mp2Settings",
           "locationName": "mp2Settings"
+        },
+        "Mp3Settings": {
+          "shape": "Mp3Settings",
+          "locationName": "mp3Settings"
         },
         "WavSettings": {
           "shape": "WavSettings",
@@ -1880,6 +1885,10 @@
         "WriteHlsManifest": {
           "shape": "CmafWriteHLSManifest",
           "locationName": "writeHlsManifest"
+        },
+        "WriteSegmentTimelineInRepresentation": {
+          "shape": "CmafWriteSegmentTimelineInRepresentation",
+          "locationName": "writeSegmentTimelineInRepresentation"
         }
       }
     },
@@ -1945,6 +1954,40 @@
         "DISABLED",
         "ENABLED"
       ]
+    },
+    "CmafWriteSegmentTimelineInRepresentation": {
+      "type": "string",
+      "enum": [
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
+    "CmfcScte35Esam": {
+      "type": "string",
+      "enum": [
+        "INSERT",
+        "NONE"
+      ]
+    },
+    "CmfcScte35Source": {
+      "type": "string",
+      "enum": [
+        "PASSTHROUGH",
+        "NONE"
+      ]
+    },
+    "CmfcSettings": {
+      "type": "structure",
+      "members": {
+        "Scte35Esam": {
+          "shape": "CmfcScte35Esam",
+          "locationName": "scte35Esam"
+        },
+        "Scte35Source": {
+          "shape": "CmfcScte35Source",
+          "locationName": "scte35Source"
+        }
+      }
     },
     "ColorCorrector": {
       "type": "structure",
@@ -2031,6 +2074,10 @@
     "ContainerSettings": {
       "type": "structure",
       "members": {
+        "CmfcSettings": {
+          "shape": "CmfcSettings",
+          "locationName": "cmfcSettings"
+        },
         "Container": {
           "shape": "ContainerType",
           "locationName": "container"
@@ -6025,6 +6072,38 @@
         }
       }
     },
+    "Mp3RateControlMode": {
+      "type": "string",
+      "enum": [
+        "CBR",
+        "VBR"
+      ]
+    },
+    "Mp3Settings": {
+      "type": "structure",
+      "members": {
+        "Bitrate": {
+          "shape": "__integerMin16000Max320000",
+          "locationName": "bitrate"
+        },
+        "Channels": {
+          "shape": "__integerMin1Max2",
+          "locationName": "channels"
+        },
+        "RateControlMode": {
+          "shape": "Mp3RateControlMode",
+          "locationName": "rateControlMode"
+        },
+        "SampleRate": {
+          "shape": "__integerMin22050Max48000",
+          "locationName": "sampleRate"
+        },
+        "VbrQuality": {
+          "shape": "__integerMin0Max9",
+          "locationName": "vbrQuality"
+        }
+      }
+    },
     "Mp4CslgAtom": {
       "type": "string",
       "enum": [
@@ -6052,6 +6131,10 @@
         "CslgAtom": {
           "shape": "Mp4CslgAtom",
           "locationName": "cslgAtom"
+        },
+        "CttsVersion": {
+          "shape": "__integerMin0Max1",
+          "locationName": "cttsVersion"
         },
         "FreeSpaceBox": {
           "shape": "Mp4FreeSpaceBox",
@@ -7816,6 +7899,11 @@
       "min": 0,
       "max": 0
     },
+    "__integerMin0Max1": {
+      "type": "integer",
+      "min": 0,
+      "max": 1
+    },
     "__integerMin0Max10": {
       "type": "integer",
       "min": 0,
@@ -7926,6 +8014,11 @@
       "min": 0,
       "max": 8
     },
+    "__integerMin0Max9": {
+      "type": "integer",
+      "min": 0,
+      "max": 9
+    },
     "__integerMin0Max96": {
       "type": "integer",
       "min": 0,
@@ -7965,6 +8058,11 @@
       "type": "integer",
       "min": 10,
       "max": 48
+    },
+    "__integerMin16000Max320000": {
+      "type": "integer",
+      "min": 16000,
+      "max": 320000
     },
     "__integerMin16Max24": {
       "type": "integer",
@@ -8045,6 +8143,11 @@
       "type": "integer",
       "min": 1,
       "max": 64
+    },
+    "__integerMin22050Max48000": {
+      "type": "integer",
+      "min": 22050,
+      "max": 48000
     },
     "__integerMin24Max60000": {
       "type": "integer",

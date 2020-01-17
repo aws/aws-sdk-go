@@ -1,3 +1,20 @@
+Release v1.28.5 (2020-01-17)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service documentation
+  * This release ensures INACTIVE job definitions are permanently deleted after 180 days.
+* `service/cloudhsmv2`: Updates service API and documentation
+  * This release introduces resource-level and tag-based access control for AWS CloudHSM resources. You can now tag CloudHSM backups, tag CloudHSM clusters on creation, and tag a backup as you copy it to another region.
+* `service/ecs`: Updates service API, documentation, and paginators
+  * This release provides a public preview for specifying Amazon EFS file systems as volumes in your Amazon ECS task definitions.
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added support for MP3 audio only outputs.
+* `service/neptune`: Updates service API and documentation
+  * This release includes Deletion Protection for Amazon Neptune databases.
+* `service/redshift`: Updates service documentation
+  * Documentation updates for redshift
+
 Release v1.28.4 (2020-01-16)
 ===
 

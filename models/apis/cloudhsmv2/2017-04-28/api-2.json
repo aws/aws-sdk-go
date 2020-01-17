@@ -23,11 +23,12 @@
       "input":{"shape":"CopyBackupToRegionRequest"},
       "output":{"shape":"CopyBackupToRegionResponse"},
       "errors":[
+        {"shape":"CloudHsmAccessDeniedException"},
         {"shape":"CloudHsmInternalFailureException"},
-        {"shape":"CloudHsmServiceException"},
-        {"shape":"CloudHsmResourceNotFoundException"},
         {"shape":"CloudHsmInvalidRequestException"},
-        {"shape":"CloudHsmAccessDeniedException"}
+        {"shape":"CloudHsmResourceNotFoundException"},
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmTagException"}
       ]
     },
     "CreateCluster":{
@@ -39,11 +40,12 @@
       "input":{"shape":"CreateClusterRequest"},
       "output":{"shape":"CreateClusterResponse"},
       "errors":[
+        {"shape":"CloudHsmAccessDeniedException"},
         {"shape":"CloudHsmInternalFailureException"},
-        {"shape":"CloudHsmServiceException"},
-        {"shape":"CloudHsmResourceNotFoundException"},
         {"shape":"CloudHsmInvalidRequestException"},
-        {"shape":"CloudHsmAccessDeniedException"}
+        {"shape":"CloudHsmResourceNotFoundException"},
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmTagException"}
       ]
     },
     "CreateHsm":{
@@ -71,11 +73,11 @@
       "input":{"shape":"DeleteBackupRequest"},
       "output":{"shape":"DeleteBackupResponse"},
       "errors":[
+        {"shape":"CloudHsmAccessDeniedException"},
         {"shape":"CloudHsmInternalFailureException"},
-        {"shape":"CloudHsmServiceException"},
-        {"shape":"CloudHsmResourceNotFoundException"},
         {"shape":"CloudHsmInvalidRequestException"},
-        {"shape":"CloudHsmAccessDeniedException"}
+        {"shape":"CloudHsmResourceNotFoundException"},
+        {"shape":"CloudHsmServiceException"}
       ]
     },
     "DeleteCluster":{
@@ -87,11 +89,12 @@
       "input":{"shape":"DeleteClusterRequest"},
       "output":{"shape":"DeleteClusterResponse"},
       "errors":[
+        {"shape":"CloudHsmAccessDeniedException"},
         {"shape":"CloudHsmInternalFailureException"},
-        {"shape":"CloudHsmServiceException"},
-        {"shape":"CloudHsmResourceNotFoundException"},
         {"shape":"CloudHsmInvalidRequestException"},
-        {"shape":"CloudHsmAccessDeniedException"}
+        {"shape":"CloudHsmResourceNotFoundException"},
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmTagException"}
       ]
     },
     "DeleteHsm":{
@@ -119,11 +122,12 @@
       "input":{"shape":"DescribeBackupsRequest"},
       "output":{"shape":"DescribeBackupsResponse"},
       "errors":[
+        {"shape":"CloudHsmAccessDeniedException"},
         {"shape":"CloudHsmInternalFailureException"},
-        {"shape":"CloudHsmServiceException"},
-        {"shape":"CloudHsmResourceNotFoundException"},
         {"shape":"CloudHsmInvalidRequestException"},
-        {"shape":"CloudHsmAccessDeniedException"}
+        {"shape":"CloudHsmResourceNotFoundException"},
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmTagException"}
       ]
     },
     "DescribeClusters":{
@@ -135,10 +139,11 @@
       "input":{"shape":"DescribeClustersRequest"},
       "output":{"shape":"DescribeClustersResponse"},
       "errors":[
+        {"shape":"CloudHsmAccessDeniedException"},
         {"shape":"CloudHsmInternalFailureException"},
-        {"shape":"CloudHsmServiceException"},
         {"shape":"CloudHsmInvalidRequestException"},
-        {"shape":"CloudHsmAccessDeniedException"}
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmTagException"}
       ]
     },
     "InitializeCluster":{
@@ -150,11 +155,11 @@
       "input":{"shape":"InitializeClusterRequest"},
       "output":{"shape":"InitializeClusterResponse"},
       "errors":[
+        {"shape":"CloudHsmAccessDeniedException"},
         {"shape":"CloudHsmInternalFailureException"},
-        {"shape":"CloudHsmServiceException"},
-        {"shape":"CloudHsmResourceNotFoundException"},
         {"shape":"CloudHsmInvalidRequestException"},
-        {"shape":"CloudHsmAccessDeniedException"}
+        {"shape":"CloudHsmResourceNotFoundException"},
+        {"shape":"CloudHsmServiceException"}
       ]
     },
     "ListTags":{
@@ -166,11 +171,12 @@
       "input":{"shape":"ListTagsRequest"},
       "output":{"shape":"ListTagsResponse"},
       "errors":[
+        {"shape":"CloudHsmAccessDeniedException"},
         {"shape":"CloudHsmInternalFailureException"},
-        {"shape":"CloudHsmServiceException"},
-        {"shape":"CloudHsmResourceNotFoundException"},
         {"shape":"CloudHsmInvalidRequestException"},
-        {"shape":"CloudHsmAccessDeniedException"}
+        {"shape":"CloudHsmResourceNotFoundException"},
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmTagException"}
       ]
     },
     "RestoreBackup":{
@@ -182,11 +188,11 @@
       "input":{"shape":"RestoreBackupRequest"},
       "output":{"shape":"RestoreBackupResponse"},
       "errors":[
+        {"shape":"CloudHsmAccessDeniedException"},
         {"shape":"CloudHsmInternalFailureException"},
-        {"shape":"CloudHsmServiceException"},
-        {"shape":"CloudHsmResourceNotFoundException"},
         {"shape":"CloudHsmInvalidRequestException"},
-        {"shape":"CloudHsmAccessDeniedException"}
+        {"shape":"CloudHsmResourceNotFoundException"},
+        {"shape":"CloudHsmServiceException"}
       ]
     },
     "TagResource":{
@@ -198,11 +204,12 @@
       "input":{"shape":"TagResourceRequest"},
       "output":{"shape":"TagResourceResponse"},
       "errors":[
+        {"shape":"CloudHsmAccessDeniedException"},
         {"shape":"CloudHsmInternalFailureException"},
-        {"shape":"CloudHsmServiceException"},
-        {"shape":"CloudHsmResourceNotFoundException"},
         {"shape":"CloudHsmInvalidRequestException"},
-        {"shape":"CloudHsmAccessDeniedException"}
+        {"shape":"CloudHsmResourceNotFoundException"},
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmTagException"}
       ]
     },
     "UntagResource":{
@@ -214,11 +221,12 @@
       "input":{"shape":"UntagResourceRequest"},
       "output":{"shape":"UntagResourceResponse"},
       "errors":[
+        {"shape":"CloudHsmAccessDeniedException"},
         {"shape":"CloudHsmInternalFailureException"},
-        {"shape":"CloudHsmServiceException"},
-        {"shape":"CloudHsmResourceNotFoundException"},
         {"shape":"CloudHsmInvalidRequestException"},
-        {"shape":"CloudHsmAccessDeniedException"}
+        {"shape":"CloudHsmResourceNotFoundException"},
+        {"shape":"CloudHsmServiceException"},
+        {"shape":"CloudHsmTagException"}
       ]
     }
   },
@@ -235,7 +243,8 @@
         "SourceRegion":{"shape":"Region"},
         "SourceBackup":{"shape":"BackupId"},
         "SourceCluster":{"shape":"ClusterId"},
-        "DeleteTimestamp":{"shape":"Timestamp"}
+        "DeleteTimestamp":{"shape":"Timestamp"},
+        "TagList":{"shape":"TagList"}
       }
     },
     "BackupId":{
@@ -311,6 +320,13 @@
       },
       "exception":true
     },
+    "CloudHsmTagException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"errorMessage"}
+      },
+      "exception":true
+    },
     "Cluster":{
       "type":"structure",
       "members":{
@@ -326,7 +342,8 @@
         "StateMessage":{"shape":"StateMessage"},
         "SubnetMapping":{"shape":"ExternalSubnetMapping"},
         "VpcId":{"shape":"VpcId"},
-        "Certificates":{"shape":"Certificates"}
+        "Certificates":{"shape":"Certificates"},
+        "TagList":{"shape":"TagList"}
       }
     },
     "ClusterId":{
@@ -359,7 +376,8 @@
       ],
       "members":{
         "DestinationRegion":{"shape":"Region"},
-        "BackupId":{"shape":"BackupId"}
+        "BackupId":{"shape":"BackupId"},
+        "TagList":{"shape":"TagList"}
       }
     },
     "CopyBackupToRegionResponse":{
@@ -377,7 +395,8 @@
       "members":{
         "SubnetIds":{"shape":"SubnetIds"},
         "HsmType":{"shape":"HsmType"},
-        "SourceBackupId":{"shape":"BackupId"}
+        "SourceBackupId":{"shape":"BackupId"},
+        "TagList":{"shape":"TagList"}
       }
     },
     "CreateClusterResponse":{
@@ -572,7 +591,7 @@
       "type":"structure",
       "required":["ResourceId"],
       "members":{
-        "ResourceId":{"shape":"ClusterId"},
+        "ResourceId":{"shape":"ResourceId"},
         "NextToken":{"shape":"NextToken"},
         "MaxResults":{"shape":"MaxSize"}
       }
@@ -604,6 +623,10 @@
       "type":"string",
       "pattern":"[a-z]{2}(-(gov))?-(east|west|north|south|central){1,2}-\\d"
     },
+    "ResourceId":{
+      "type":"string",
+      "pattern":"(?:cluster|backup)-[2-7a-zA-Z]{11,16}"
+    },
     "RestoreBackupRequest":{
       "type":"structure",
       "required":["BackupId"],
@@ -619,7 +642,7 @@
     },
     "SecurityGroup":{
       "type":"string",
-      "pattern":"sg-[0-9a-fA-F]"
+      "pattern":"sg-[0-9a-fA-F]{8,17}"
     },
     "StateMessage":{
       "type":"string",
@@ -677,7 +700,7 @@
         "TagList"
       ],
       "members":{
-        "ResourceId":{"shape":"ClusterId"},
+        "ResourceId":{"shape":"ResourceId"},
         "TagList":{"shape":"TagList"}
       }
     },
@@ -700,7 +723,7 @@
         "TagKeyList"
       ],
       "members":{
-        "ResourceId":{"shape":"ClusterId"},
+        "ResourceId":{"shape":"ResourceId"},
         "TagKeyList":{"shape":"TagKeyList"}
       }
     },

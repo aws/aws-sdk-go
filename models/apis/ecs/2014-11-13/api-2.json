@@ -1615,6 +1615,14 @@
       }
     },
     "Double":{"type":"double"},
+    "EFSVolumeConfiguration":{
+      "type":"structure",
+      "required":["fileSystemId"],
+      "members":{
+        "fileSystemId":{"shape":"String"},
+        "rootDirectory":{"shape":"String"}
+      }
+    },
     "EnvironmentVariables":{
       "type":"list",
       "member":{"shape":"KeyValuePair"}
@@ -3108,7 +3116,8 @@
       "members":{
         "name":{"shape":"String"},
         "host":{"shape":"HostVolumeProperties"},
-        "dockerVolumeConfiguration":{"shape":"DockerVolumeConfiguration"}
+        "dockerVolumeConfiguration":{"shape":"DockerVolumeConfiguration"},
+        "efsVolumeConfiguration":{"shape":"EFSVolumeConfiguration"}
       }
     },
     "VolumeFrom":{
