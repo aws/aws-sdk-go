@@ -140,6 +140,9 @@ type ECSAPI interface {
 	ListAccountSettingsWithContext(aws.Context, *ecs.ListAccountSettingsInput, ...request.Option) (*ecs.ListAccountSettingsOutput, error)
 	ListAccountSettingsRequest(*ecs.ListAccountSettingsInput) (*request.Request, *ecs.ListAccountSettingsOutput)
 
+	ListAccountSettingsPages(*ecs.ListAccountSettingsInput, func(*ecs.ListAccountSettingsOutput, bool) bool) error
+	ListAccountSettingsPagesWithContext(aws.Context, *ecs.ListAccountSettingsInput, func(*ecs.ListAccountSettingsOutput, bool) bool, ...request.Option) error
+
 	ListAttributes(*ecs.ListAttributesInput) (*ecs.ListAttributesOutput, error)
 	ListAttributesWithContext(aws.Context, *ecs.ListAttributesInput, ...request.Option) (*ecs.ListAttributesOutput, error)
 	ListAttributesRequest(*ecs.ListAttributesInput) (*request.Request, *ecs.ListAttributesOutput)
