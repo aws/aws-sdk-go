@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"reflect"
+	"strings"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -127,6 +128,14 @@ func unmarshalStruct(value reflect.Value, data interface{}, tag reflect.StructTa
 		name := field.Name
 		if locName := field.Tag.Get("locationName"); locName != "" {
 			name = locName
+		}
+		if _, ok := mapData[name]; !ok {
+			// Fallback to uncased name search if the exact name didn't match.
+			for kn, v := range mapData {
+				if strings.EqualFold(kn, name) {
+					mapData[name] = v
+				}
+			}
 		}
 
 		member := value.FieldByIndex(field.Index)
