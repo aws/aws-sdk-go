@@ -42,6 +42,9 @@ func TestRequestThrottling(t *testing.T) {
 		{
 			ecode: "TransactionInProgressException",
 		},
+		{
+			ecode: "EC2ThrottledException",
+		},
 	}
 
 	for _, c := range cases {
