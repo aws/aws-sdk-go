@@ -203,6 +203,7 @@ func (a *API) Setup() error {
 	a.setMetadataEndpointsKey()
 	a.writeShapeNames()
 	a.resolveReferences()
+	a.backfillErrorMembers()
 
 	if !a.NoRemoveUnusedShapes {
 		a.removeUnusedShapes()
