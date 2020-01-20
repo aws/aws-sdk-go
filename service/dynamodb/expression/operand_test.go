@@ -61,6 +61,30 @@ func TestBuildOperand(t *testing.T) {
 			},
 		},
 		{
+			name:  "dynamodb.AttributeValue as value",
+			input: Value(dynamodb.AttributeValue{N: aws.String("5")}),
+			expected: exprNode{
+				values: []dynamodb.AttributeValue{
+					{
+						N: aws.String("5"),
+					},
+				},
+				fmtExpr: "$v",
+			},
+		},
+		{
+			name:  "*dynamodb.AttributeValue as value",
+			input: Value(&dynamodb.AttributeValue{N: aws.String("5")}),
+			expected: exprNode{
+				values: []dynamodb.AttributeValue{
+					{
+						N: aws.String("5"),
+					},
+				},
+				fmtExpr: "$v",
+			},
+		},
+		{
 			name:  "nested name",
 			input: Name("foo.bar"),
 			expected: exprNode{
