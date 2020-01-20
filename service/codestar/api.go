@@ -1950,6 +1950,8 @@ func (s *CodeSource) SetS3(v *S3Location) *CodeSource {
 type ConcurrentModificationException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -1975,6 +1977,9 @@ func (s ConcurrentModificationException) Code() string {
 
 // Message returns the exception's message.
 func (s ConcurrentModificationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -2981,6 +2986,8 @@ func (s *GitHubCodeDestination) SetType(v string) *GitHubCodeDestination {
 type InvalidNextTokenException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -3006,6 +3013,9 @@ func (s InvalidNextTokenException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidNextTokenException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -3032,6 +3042,8 @@ func (s InvalidNextTokenException) RequestID() string {
 type InvalidServiceRoleException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -3057,6 +3069,9 @@ func (s InvalidServiceRoleException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidServiceRoleException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -3083,6 +3098,8 @@ func (s InvalidServiceRoleException) RequestID() string {
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -3108,6 +3125,9 @@ func (s LimitExceededException) Code() string {
 
 // Message returns the exception's message.
 func (s LimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -3601,6 +3621,8 @@ func (s *ListUserProfilesOutput) SetUserProfiles(v []*UserProfileSummary) *ListU
 type ProjectAlreadyExistsException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -3626,6 +3648,9 @@ func (s ProjectAlreadyExistsException) Code() string {
 
 // Message returns the exception's message.
 func (s ProjectAlreadyExistsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -3652,6 +3677,8 @@ func (s ProjectAlreadyExistsException) RequestID() string {
 type ProjectConfigurationException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -3677,6 +3704,9 @@ func (s ProjectConfigurationException) Code() string {
 
 // Message returns the exception's message.
 func (s ProjectConfigurationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -3705,6 +3735,8 @@ func (s ProjectConfigurationException) RequestID() string {
 type ProjectCreationFailedException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -3730,6 +3762,9 @@ func (s ProjectCreationFailedException) Code() string {
 
 // Message returns the exception's message.
 func (s ProjectCreationFailedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -3756,6 +3791,8 @@ func (s ProjectCreationFailedException) RequestID() string {
 type ProjectNotFoundException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -3781,6 +3818,9 @@ func (s ProjectNotFoundException) Code() string {
 
 // Message returns the exception's message.
 func (s ProjectNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -4077,6 +4117,8 @@ func (s *TeamMember) SetUserArn(v string) *TeamMember {
 type TeamMemberAlreadyAssociatedException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -4102,6 +4144,9 @@ func (s TeamMemberAlreadyAssociatedException) Code() string {
 
 // Message returns the exception's message.
 func (s TeamMemberAlreadyAssociatedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -4128,6 +4173,8 @@ func (s TeamMemberAlreadyAssociatedException) RequestID() string {
 type TeamMemberNotFoundException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -4153,6 +4200,9 @@ func (s TeamMemberNotFoundException) Code() string {
 
 // Message returns the exception's message.
 func (s TeamMemberNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -4719,6 +4769,8 @@ func (s *UpdateUserProfileOutput) SetUserArn(v string) *UpdateUserProfileOutput 
 type UserProfileAlreadyExistsException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -4744,6 +4796,9 @@ func (s UserProfileAlreadyExistsException) Code() string {
 
 // Message returns the exception's message.
 func (s UserProfileAlreadyExistsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -4770,6 +4825,8 @@ func (s UserProfileAlreadyExistsException) RequestID() string {
 type UserProfileNotFoundException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -4795,6 +4852,9 @@ func (s UserProfileNotFoundException) Code() string {
 
 // Message returns the exception's message.
 func (s UserProfileNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -4882,6 +4942,8 @@ func (s *UserProfileSummary) SetUserArn(v string) *UserProfileSummary {
 type ValidationException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -4907,6 +4969,9 @@ func (s ValidationException) Code() string {
 
 // Message returns the exception's message.
 func (s ValidationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 

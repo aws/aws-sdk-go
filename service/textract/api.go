@@ -833,6 +833,8 @@ func (c *Textract) StartDocumentTextDetectionWithContext(ctx aws.Context, input 
 type AccessDeniedException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -858,6 +860,9 @@ func (s AccessDeniedException) Code() string {
 
 // Message returns the exception's message.
 func (s AccessDeniedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -1015,6 +1020,8 @@ func (s *AnalyzeDocumentOutput) SetHumanLoopActivationOutput(v *HumanLoopActivat
 type BadDocumentException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -1040,6 +1047,9 @@ func (s BadDocumentException) Code() string {
 
 // Message returns the exception's message.
 func (s BadDocumentException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -1581,6 +1591,8 @@ func (s *DocumentMetadata) SetPages(v int64) *DocumentMetadata {
 type DocumentTooLargeException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -1606,6 +1618,9 @@ func (s DocumentTooLargeException) Code() string {
 
 // Message returns the exception's message.
 func (s DocumentTooLargeException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -2109,6 +2124,8 @@ type HumanLoopQuotaExceededException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
 
+	Message_ *string `locationName:"message" type:"string"`
+
 	QuotaCode *string `type:"string"`
 
 	ResourceType *string `type:"string"`
@@ -2139,6 +2156,9 @@ func (s HumanLoopQuotaExceededException) Code() string {
 
 // Message returns the exception's message.
 func (s HumanLoopQuotaExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -2167,6 +2187,8 @@ func (s HumanLoopQuotaExceededException) RequestID() string {
 type IdempotentParameterMismatchException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -2192,6 +2214,9 @@ func (s IdempotentParameterMismatchException) Code() string {
 
 // Message returns the exception's message.
 func (s IdempotentParameterMismatchException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -2218,6 +2243,8 @@ func (s IdempotentParameterMismatchException) RequestID() string {
 type InternalServerError struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -2243,6 +2270,9 @@ func (s InternalServerError) Code() string {
 
 // Message returns the exception's message.
 func (s InternalServerError) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -2269,6 +2299,8 @@ func (s InternalServerError) RequestID() string {
 type InvalidJobIdException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -2294,6 +2326,9 @@ func (s InvalidJobIdException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidJobIdException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -2323,6 +2358,8 @@ func (s InvalidJobIdException) RequestID() string {
 type InvalidParameterException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -2348,6 +2385,9 @@ func (s InvalidParameterException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidParameterException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -2375,6 +2415,8 @@ func (s InvalidParameterException) RequestID() string {
 type InvalidS3ObjectException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -2400,6 +2442,9 @@ func (s InvalidS3ObjectException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidS3ObjectException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -2430,6 +2475,8 @@ func (s InvalidS3ObjectException) RequestID() string {
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -2455,6 +2502,9 @@ func (s LimitExceededException) Code() string {
 
 // Message returns the exception's message.
 func (s LimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -2584,6 +2634,8 @@ func (s *Point) SetY(v float64) *Point {
 type ProvisionedThroughputExceededException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -2609,6 +2661,9 @@ func (s ProvisionedThroughputExceededException) Code() string {
 
 // Message returns the exception's message.
 func (s ProvisionedThroughputExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -2995,6 +3050,8 @@ func (s *StartDocumentTextDetectionOutput) SetJobId(v string) *StartDocumentText
 type ThrottlingException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -3020,6 +3077,9 @@ func (s ThrottlingException) Code() string {
 
 // Message returns the exception's message.
 func (s ThrottlingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -3048,6 +3108,8 @@ func (s ThrottlingException) RequestID() string {
 type UnsupportedDocumentException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -3073,6 +3135,9 @@ func (s UnsupportedDocumentException) Code() string {
 
 // Message returns the exception's message.
 func (s UnsupportedDocumentException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 

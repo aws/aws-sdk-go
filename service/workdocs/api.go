@@ -5708,6 +5708,8 @@ func (s DeactivateUserOutput) GoString() string {
 type DeactivatingLastSystemUserException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -5733,6 +5735,9 @@ func (s DeactivatingLastSystemUserException) Code() string {
 
 // Message returns the exception's message.
 func (s DeactivatingLastSystemUserException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -10597,6 +10602,8 @@ func (s TooManySubscriptionsException) RequestID() string {
 type UnauthorizedOperationException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -10622,6 +10629,9 @@ func (s UnauthorizedOperationException) Code() string {
 
 // Message returns the exception's message.
 func (s UnauthorizedOperationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 

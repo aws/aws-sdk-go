@@ -53,6 +53,9 @@ func TestInteg_00_GenerateDataSet(t *testing.T) {
 	if len(aerr.Code()) == 0 {
 		t.Errorf("expect non-empty error code")
 	}
+	if len(aerr.Message()) == 0 {
+		t.Errorf("expect non-empty error message")
+	}
 	if v := aerr.Code(); v == request.ErrCodeSerialization {
 		t.Errorf("expect API error code got serialization failure")
 	}

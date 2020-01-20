@@ -4857,6 +4857,8 @@ func (c *SESV2) UpdateConfigurationSetEventDestinationWithContext(ctx aws.Contex
 type AccountSuspendedException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -4882,6 +4884,9 @@ func (s AccountSuspendedException) Code() string {
 
 // Message returns the exception's message.
 func (s AccountSuspendedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -4908,6 +4913,8 @@ func (s AccountSuspendedException) RequestID() string {
 type AlreadyExistsException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -4933,6 +4940,9 @@ func (s AlreadyExistsException) Code() string {
 
 // Message returns the exception's message.
 func (s AlreadyExistsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -4959,6 +4969,8 @@ func (s AlreadyExistsException) RequestID() string {
 type BadRequestException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -4984,6 +4996,9 @@ func (s BadRequestException) Code() string {
 
 // Message returns the exception's message.
 func (s BadRequestException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -5248,6 +5263,8 @@ func (s *CloudWatchDimensionConfiguration) SetDimensionValueSource(v string) *Cl
 type ConcurrentModificationException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -5273,6 +5290,9 @@ func (s ConcurrentModificationException) Code() string {
 
 // Message returns the exception's message.
 func (s ConcurrentModificationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -8438,6 +8458,8 @@ func (s *InboxPlacementTrackingOption) SetTrackedIsps(v []*string) *InboxPlaceme
 type InvalidNextTokenException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -8463,6 +8485,9 @@ func (s InvalidNextTokenException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidNextTokenException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -8580,6 +8605,8 @@ func (s *KinesisFirehoseDestination) SetIamRoleArn(v string) *KinesisFirehoseDes
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -8605,6 +8632,9 @@ func (s LimitExceededException) Code() string {
 
 // Message returns the exception's message.
 func (s LimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -9313,6 +9343,8 @@ func (s *MailFromAttributes) SetMailFromDomainStatus(v string) *MailFromAttribut
 type MailFromDomainNotVerifiedException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -9338,6 +9370,9 @@ func (s MailFromDomainNotVerifiedException) Code() string {
 
 // Message returns the exception's message.
 func (s MailFromDomainNotVerifiedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -9431,6 +9466,8 @@ func (s *Message) SetSubject(v *Content) *Message {
 type MessageRejected struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -9456,6 +9493,9 @@ func (s MessageRejected) Code() string {
 
 // Message returns the exception's message.
 func (s MessageRejected) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -9548,6 +9588,8 @@ func (s *MessageTag) SetValue(v string) *MessageTag {
 type NotFoundException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -9573,6 +9615,9 @@ func (s NotFoundException) Code() string {
 
 // Message returns the exception's message.
 func (s NotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -11249,6 +11294,8 @@ func (s *SendingOptions) SetSendingEnabled(v bool) *SendingOptions {
 type SendingPausedException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -11274,6 +11321,9 @@ func (s SendingPausedException) Code() string {
 
 // Message returns the exception's message.
 func (s SendingPausedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -11759,6 +11809,8 @@ func (s *Template) SetTemplateData(v string) *Template {
 type TooManyRequestsException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -11784,6 +11836,9 @@ func (s TooManyRequestsException) Code() string {
 
 // Message returns the exception's message.
 func (s TooManyRequestsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 

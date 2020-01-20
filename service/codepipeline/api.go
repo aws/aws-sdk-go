@@ -4588,6 +4588,8 @@ func (s *ActionExecutionResult) SetExternalExecutionUrl(v string) *ActionExecuti
 type ActionNotFoundException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -4613,6 +4615,9 @@ func (s ActionNotFoundException) Code() string {
 
 // Message returns the exception's message.
 func (s ActionNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -4936,6 +4941,8 @@ func (s *ActionTypeId) SetVersion(v string) *ActionTypeId {
 type ActionTypeNotFoundException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -4961,6 +4968,9 @@ func (s ActionTypeNotFoundException) Code() string {
 
 // Message returns the exception's message.
 func (s ActionTypeNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -5070,6 +5080,8 @@ func (s *ActionTypeSettings) SetThirdPartyConfigurationUrl(v string) *ActionType
 type ApprovalAlreadyCompletedException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -5095,6 +5107,9 @@ func (s ApprovalAlreadyCompletedException) Code() string {
 
 // Message returns the exception's message.
 func (s ApprovalAlreadyCompletedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -7176,6 +7191,8 @@ func (s *InputArtifact) SetName(v string) *InputArtifact {
 type InvalidActionDeclarationException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -7201,6 +7218,9 @@ func (s InvalidActionDeclarationException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidActionDeclarationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -7227,6 +7247,8 @@ func (s InvalidActionDeclarationException) RequestID() string {
 type InvalidApprovalTokenException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -7252,6 +7274,9 @@ func (s InvalidApprovalTokenException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidApprovalTokenException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -7334,6 +7359,8 @@ func (s InvalidArnException) RequestID() string {
 type InvalidBlockerDeclarationException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -7359,6 +7386,9 @@ func (s InvalidBlockerDeclarationException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidBlockerDeclarationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -7385,6 +7415,8 @@ func (s InvalidBlockerDeclarationException) RequestID() string {
 type InvalidClientTokenException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -7410,6 +7442,9 @@ func (s InvalidClientTokenException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidClientTokenException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -7436,6 +7471,8 @@ func (s InvalidClientTokenException) RequestID() string {
 type InvalidJobException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -7461,6 +7498,9 @@ func (s InvalidJobException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidJobException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -7487,6 +7527,8 @@ func (s InvalidJobException) RequestID() string {
 type InvalidJobStateException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -7512,6 +7554,9 @@ func (s InvalidJobStateException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidJobStateException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -7539,6 +7584,8 @@ func (s InvalidJobStateException) RequestID() string {
 type InvalidNextTokenException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -7564,6 +7611,9 @@ func (s InvalidNextTokenException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidNextTokenException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -7590,6 +7640,8 @@ func (s InvalidNextTokenException) RequestID() string {
 type InvalidNonceException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -7615,6 +7667,9 @@ func (s InvalidNonceException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidNonceException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -7641,6 +7696,8 @@ func (s InvalidNonceException) RequestID() string {
 type InvalidStageDeclarationException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -7666,6 +7723,9 @@ func (s InvalidStageDeclarationException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidStageDeclarationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -7692,6 +7752,8 @@ func (s InvalidStageDeclarationException) RequestID() string {
 type InvalidStructureException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -7717,6 +7779,9 @@ func (s InvalidStructureException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidStructureException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -7799,6 +7864,8 @@ func (s InvalidTagsException) RequestID() string {
 type InvalidWebhookAuthenticationParametersException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -7824,6 +7891,9 @@ func (s InvalidWebhookAuthenticationParametersException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidWebhookAuthenticationParametersException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -7850,6 +7920,8 @@ func (s InvalidWebhookAuthenticationParametersException) RequestID() string {
 type InvalidWebhookFilterPatternException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -7875,6 +7947,9 @@ func (s InvalidWebhookFilterPatternException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidWebhookFilterPatternException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -8092,6 +8167,8 @@ func (s *JobDetails) SetId(v string) *JobDetails {
 type JobNotFoundException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -8117,6 +8194,9 @@ func (s JobNotFoundException) Code() string {
 
 // Message returns the exception's message.
 func (s JobNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -8144,6 +8224,8 @@ func (s JobNotFoundException) RequestID() string {
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -8169,6 +8251,9 @@ func (s LimitExceededException) Code() string {
 
 // Message returns the exception's message.
 func (s LimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -8845,6 +8930,8 @@ func (s *ListWebhooksOutput) SetWebhooks(v []*ListWebhookItem) *ListWebhooksOutp
 type NotLatestPipelineExecutionException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -8870,6 +8957,9 @@ func (s NotLatestPipelineExecutionException) Code() string {
 
 // Message returns the exception's message.
 func (s NotLatestPipelineExecutionException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -9277,6 +9367,8 @@ func (s *PipelineExecution) SetStatus(v string) *PipelineExecution {
 type PipelineExecutionNotFoundException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -9302,6 +9394,9 @@ func (s PipelineExecutionNotFoundException) Code() string {
 
 // Message returns the exception's message.
 func (s PipelineExecutionNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -9451,6 +9546,8 @@ func (s *PipelineMetadata) SetUpdated(v time.Time) *PipelineMetadata {
 type PipelineNameInUseException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -9476,6 +9573,9 @@ func (s PipelineNameInUseException) Code() string {
 
 // Message returns the exception's message.
 func (s PipelineNameInUseException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -9502,6 +9602,8 @@ func (s PipelineNameInUseException) RequestID() string {
 type PipelineNotFoundException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -9527,6 +9629,9 @@ func (s PipelineNotFoundException) Code() string {
 
 // Message returns the exception's message.
 func (s PipelineNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -9604,6 +9709,8 @@ func (s *PipelineSummary) SetVersion(v int64) *PipelineSummary {
 type PipelineVersionNotFoundException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -9629,6 +9736,9 @@ func (s PipelineVersionNotFoundException) Code() string {
 
 // Message returns the exception's message.
 func (s PipelineVersionNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -10630,6 +10740,8 @@ func (s RegisterWebhookWithThirdPartyOutput) GoString() string {
 type ResourceNotFoundException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -10655,6 +10767,9 @@ func (s ResourceNotFoundException) Code() string {
 
 // Message returns the exception's message.
 func (s ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -11072,6 +11187,8 @@ func (s *StageExecution) SetStatus(v string) *StageExecution {
 type StageNotFoundException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -11097,6 +11214,9 @@ func (s StageNotFoundException) Code() string {
 
 // Message returns the exception's message.
 func (s StageNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -11124,6 +11244,8 @@ func (s StageNotFoundException) RequestID() string {
 type StageNotRetryableException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -11149,6 +11271,9 @@ func (s StageNotRetryableException) Code() string {
 
 // Message returns the exception's message.
 func (s StageNotRetryableException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -11860,6 +11985,8 @@ func (s *UpdatePipelineOutput) SetPipeline(v *PipelineDeclaration) *UpdatePipeli
 type ValidationException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -11885,6 +12012,9 @@ func (s ValidationException) Code() string {
 
 // Message returns the exception's message.
 func (s ValidationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -12179,6 +12309,8 @@ func (s *WebhookFilterRule) SetMatchEquals(v string) *WebhookFilterRule {
 type WebhookNotFoundException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -12204,6 +12336,9 @@ func (s WebhookNotFoundException) Code() string {
 
 // Message returns the exception's message.
 func (s WebhookNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 

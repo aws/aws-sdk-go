@@ -333,6 +333,8 @@ func (s DeleteConnectionOutput) GoString() string {
 type ForbiddenException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -358,6 +360,9 @@ func (s ForbiddenException) Code() string {
 
 // Message returns the exception's message.
 func (s ForbiddenException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -461,6 +466,8 @@ func (s *GetConnectionOutput) SetLastActiveAt(v time.Time) *GetConnectionOutput 
 type GoneException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -486,6 +493,9 @@ func (s GoneException) Code() string {
 
 // Message returns the exception's message.
 func (s GoneException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -549,6 +559,8 @@ func (s *Identity) SetUserAgent(v string) *Identity {
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -574,6 +586,9 @@ func (s LimitExceededException) Code() string {
 
 // Message returns the exception's message.
 func (s LimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 

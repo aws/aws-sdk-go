@@ -2020,6 +2020,8 @@ func (s *AddTagsToResourceOutput) SetStatus(v string) *AddTagsToResourceOutput {
 type CloudHsmInternalException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -2045,6 +2047,9 @@ func (s CloudHsmInternalException) Code() string {
 
 // Message returns the exception's message.
 func (s CloudHsmInternalException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -3192,6 +3197,8 @@ func (s *GetConfigOutput) SetConfigType(v string) *GetConfigOutput {
 type InvalidRequestException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -3217,6 +3224,9 @@ func (s InvalidRequestException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidRequestException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 

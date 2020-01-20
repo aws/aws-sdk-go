@@ -6011,6 +6011,8 @@ func (s *Tag) SetValue(v string) *Tag {
 type TemporarilyUnavailableException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -6036,6 +6038,9 @@ func (s TemporarilyUnavailableException) Code() string {
 
 // Message returns the exception's message.
 func (s TemporarilyUnavailableException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
