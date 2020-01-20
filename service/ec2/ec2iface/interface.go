@@ -895,6 +895,13 @@ type EC2API interface {
 	DescribeInternetGatewaysPages(*ec2.DescribeInternetGatewaysInput, func(*ec2.DescribeInternetGatewaysOutput, bool) bool) error
 	DescribeInternetGatewaysPagesWithContext(aws.Context, *ec2.DescribeInternetGatewaysInput, func(*ec2.DescribeInternetGatewaysOutput, bool) bool, ...request.Option) error
 
+	DescribeIpv6Pools(*ec2.DescribeIpv6PoolsInput) (*ec2.DescribeIpv6PoolsOutput, error)
+	DescribeIpv6PoolsWithContext(aws.Context, *ec2.DescribeIpv6PoolsInput, ...request.Option) (*ec2.DescribeIpv6PoolsOutput, error)
+	DescribeIpv6PoolsRequest(*ec2.DescribeIpv6PoolsInput) (*request.Request, *ec2.DescribeIpv6PoolsOutput)
+
+	DescribeIpv6PoolsPages(*ec2.DescribeIpv6PoolsInput, func(*ec2.DescribeIpv6PoolsOutput, bool) bool) error
+	DescribeIpv6PoolsPagesWithContext(aws.Context, *ec2.DescribeIpv6PoolsInput, func(*ec2.DescribeIpv6PoolsOutput, bool) bool, ...request.Option) error
+
 	DescribeKeyPairs(*ec2.DescribeKeyPairsInput) (*ec2.DescribeKeyPairsOutput, error)
 	DescribeKeyPairsWithContext(aws.Context, *ec2.DescribeKeyPairsInput, ...request.Option) (*ec2.DescribeKeyPairsOutput, error)
 	DescribeKeyPairsRequest(*ec2.DescribeKeyPairsInput) (*request.Request, *ec2.DescribeKeyPairsOutput)
@@ -1401,6 +1408,13 @@ type EC2API interface {
 	ExportTransitGatewayRoutes(*ec2.ExportTransitGatewayRoutesInput) (*ec2.ExportTransitGatewayRoutesOutput, error)
 	ExportTransitGatewayRoutesWithContext(aws.Context, *ec2.ExportTransitGatewayRoutesInput, ...request.Option) (*ec2.ExportTransitGatewayRoutesOutput, error)
 	ExportTransitGatewayRoutesRequest(*ec2.ExportTransitGatewayRoutesInput) (*request.Request, *ec2.ExportTransitGatewayRoutesOutput)
+
+	GetAssociatedIpv6PoolCidrs(*ec2.GetAssociatedIpv6PoolCidrsInput) (*ec2.GetAssociatedIpv6PoolCidrsOutput, error)
+	GetAssociatedIpv6PoolCidrsWithContext(aws.Context, *ec2.GetAssociatedIpv6PoolCidrsInput, ...request.Option) (*ec2.GetAssociatedIpv6PoolCidrsOutput, error)
+	GetAssociatedIpv6PoolCidrsRequest(*ec2.GetAssociatedIpv6PoolCidrsInput) (*request.Request, *ec2.GetAssociatedIpv6PoolCidrsOutput)
+
+	GetAssociatedIpv6PoolCidrsPages(*ec2.GetAssociatedIpv6PoolCidrsInput, func(*ec2.GetAssociatedIpv6PoolCidrsOutput, bool) bool) error
+	GetAssociatedIpv6PoolCidrsPagesWithContext(aws.Context, *ec2.GetAssociatedIpv6PoolCidrsInput, func(*ec2.GetAssociatedIpv6PoolCidrsOutput, bool) bool, ...request.Option) error
 
 	GetCapacityReservationUsage(*ec2.GetCapacityReservationUsageInput) (*ec2.GetCapacityReservationUsageOutput, error)
 	GetCapacityReservationUsageWithContext(aws.Context, *ec2.GetCapacityReservationUsageInput, ...request.Option) (*ec2.GetCapacityReservationUsageOutput, error)

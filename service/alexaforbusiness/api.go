@@ -12363,6 +12363,9 @@ func (s *Device) SetSoftwareVersion(v string) *Device {
 type DeviceData struct {
 	_ struct{} `type:"structure"`
 
+	// The time (in epoch) when the device data was created.
+	CreatedTime *time.Time `type:"timestamp"`
+
 	// The ARN of a device.
 	DeviceArn *string `type:"string"`
 
@@ -12408,6 +12411,12 @@ func (s DeviceData) String() string {
 // GoString returns the string representation
 func (s DeviceData) GoString() string {
 	return s.String()
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *DeviceData) SetCreatedTime(v time.Time) *DeviceData {
+	s.CreatedTime = &v
+	return s
 }
 
 // SetDeviceArn sets the DeviceArn field's value.
@@ -12663,6 +12672,9 @@ type DeviceStatusInfo struct {
 	// The latest available information about the connection status of a device.
 	ConnectionStatus *string `type:"string" enum:"ConnectionStatus"`
 
+	// The time (in epoch) when the device connection status changed.
+	ConnectionStatusUpdatedTime *time.Time `type:"timestamp"`
+
 	// One or more device status detail descriptions.
 	DeviceStatusDetails []*DeviceStatusDetail `type:"list"`
 }
@@ -12680,6 +12692,12 @@ func (s DeviceStatusInfo) GoString() string {
 // SetConnectionStatus sets the ConnectionStatus field's value.
 func (s *DeviceStatusInfo) SetConnectionStatus(v string) *DeviceStatusInfo {
 	s.ConnectionStatus = &v
+	return s
+}
+
+// SetConnectionStatusUpdatedTime sets the ConnectionStatusUpdatedTime field's value.
+func (s *DeviceStatusInfo) SetConnectionStatusUpdatedTime(v time.Time) *DeviceStatusInfo {
+	s.ConnectionStatusUpdatedTime = &v
 	return s
 }
 

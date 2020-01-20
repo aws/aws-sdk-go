@@ -130,6 +130,12 @@
         "AnomalyDetectorConfiguration$MetricTimezone": "<p>The time zone to use for the metric. This is useful to enable the model to automatically account for daylight savings time changes if the metric is sensitive to such time changes.</p> <p>To specify a time zone, use the name of the time zone as specified in the standard tz database. For more information, see <a href=\"https://en.wikipedia.org/wiki/Tz_database\">tz database</a>.</p>"
       }
     },
+    "AnomalyDetectorStateValue": {
+      "base": null,
+      "refs": {
+        "AnomalyDetector$StateValue": "<p>The current status of the anomaly detector's training. The possible values are <code>TRAINED | PENDING_TRAINING | TRAINED_INSUFFICIENT_DATA</code> </p>"
+      }
+    },
     "AnomalyDetectors": {
       "base": null,
       "refs": {

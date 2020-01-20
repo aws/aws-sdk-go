@@ -18,6 +18,7 @@
     "DescribeProblemObservations": "<p>Describes the anomalies or errors associated with the problem.</p>",
     "ListApplications": "<p>Lists the IDs of the applications that you are monitoring. </p>",
     "ListComponents": "<p>Lists the auto-grouped, standalone, and custom components of the application.</p>",
+    "ListConfigurationHistory": "<p> Lists the INFO, WARN, and ERROR events for periodic configuration updates performed by Application Insights. Examples of events represented are: </p> <ul> <li> <p>INFO: creating a new alarm or updating an alarm threshold.</p> </li> <li> <p>WARN: alarm not created due to insufficient data points used to predict thresholds.</p> </li> <li> <p>ERROR: alarm not created due to permission errors or exceeding quotas. </p> </li> </ul>",
     "ListLogPatternSets": "<p>Lists the log pattern sets in the specific application.</p>",
     "ListLogPatterns": "<p>Lists the log patterns in the specific log <code>LogPatternSet</code>.</p>",
     "ListProblems": "<p>Lists the problems with your application.</p>",
@@ -97,6 +98,55 @@
         "DescribeComponentRequest$ComponentName": "<p>The name of the component.</p>",
         "UpdateComponentConfigurationRequest$ComponentName": "<p>The name of the component.</p>",
         "UpdateComponentRequest$ComponentName": "<p>The name of the component.</p>"
+      }
+    },
+    "ConfigurationEvent": {
+      "base": "<p> The event information. </p>",
+      "refs": {
+        "ConfigurationEventList$member": null
+      }
+    },
+    "ConfigurationEventDetail": {
+      "base": null,
+      "refs": {
+        "ConfigurationEvent$EventDetail": "<p> The details of the event in plain text. </p>"
+      }
+    },
+    "ConfigurationEventList": {
+      "base": null,
+      "refs": {
+        "ListConfigurationHistoryResponse$EventList": "<p> The list of configuration events and their corresponding details. </p>"
+      }
+    },
+    "ConfigurationEventMonitoredResourceARN": {
+      "base": null,
+      "refs": {
+        "ConfigurationEvent$MonitoredResourceARN": "<p> The resource monitored by Application Insights. </p>"
+      }
+    },
+    "ConfigurationEventResourceName": {
+      "base": null,
+      "refs": {
+        "ConfigurationEvent$EventResourceName": "<p> The name of the resource Application Insights attempted to configure. </p>"
+      }
+    },
+    "ConfigurationEventResourceType": {
+      "base": null,
+      "refs": {
+        "ConfigurationEvent$EventResourceType": "<p> The resource type that Application Insights attempted to configure, for example, CLOUDWATCH_ALARM. </p>"
+      }
+    },
+    "ConfigurationEventStatus": {
+      "base": null,
+      "refs": {
+        "ConfigurationEvent$EventStatus": "<p> The status of the configuration update event. Possible values include INFO, WARN, and ERROR. </p>",
+        "ListConfigurationHistoryRequest$EventStatus": "<p>The status of the configuration update event. Possible values include INFO, WARN, and ERROR.</p>"
+      }
+    },
+    "ConfigurationEventTime": {
+      "base": null,
+      "refs": {
+        "ConfigurationEvent$EventTime": "<p> The timestamp of the event. </p>"
       }
     },
     "CreateApplicationRequest": {
@@ -242,6 +292,7 @@
     "EndTime": {
       "base": null,
       "refs": {
+        "ListConfigurationHistoryRequest$EndTime": "<p>The end time of the event.</p>",
         "ListProblemsRequest$EndTime": "<p>The time when the problem ended, in epoch seconds. If not specified, problems within the past seven days are returned.</p>",
         "Observation$EndTime": "<p>The time when the observation ended, in epoch seconds.</p>",
         "Problem$EndTime": "<p>The time when the problem ended, in epoch seconds.</p>"
@@ -321,6 +372,16 @@
       }
     },
     "ListComponentsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListConfigurationHistoryRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListConfigurationHistoryResponse": {
       "base": null,
       "refs": {
       }
@@ -447,6 +508,7 @@
       "refs": {
         "ListApplicationsRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>",
         "ListComponentsRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>",
+        "ListConfigurationHistoryRequest$MaxResults": "<p> The maximum number of results returned by <code>ListConfigurationHistory</code> in paginated output. When this parameter is used, <code>ListConfigurationHistory</code> returns only <code>MaxResults</code> in a single page along with a <code>NextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListConfigurationHistory</code> request with the returned <code>NextToken</code> value. If this parameter is not used, then <code>ListConfigurationHistory</code> returns all results. </p>",
         "ListLogPatternSetsRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>",
         "ListLogPatternsRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>",
         "ListProblemsRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>"
@@ -521,6 +583,8 @@
         "ListApplicationsResponse$NextToken": "<p>The token used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>",
         "ListComponentsRequest$NextToken": "<p>The token to request the next page of results.</p>",
         "ListComponentsResponse$NextToken": "<p>The token to request the next page of results.</p>",
+        "ListConfigurationHistoryRequest$NextToken": "<p>The <code>NextToken</code> value returned from a previous paginated <code>ListConfigurationHistory</code> request where <code>MaxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>NextToken</code> value. This value is <code>null</code> when there are no more results to return.</p>",
+        "ListConfigurationHistoryResponse$NextToken": "<p>The <code>NextToken</code> value to include in a future <code>ListConfigurationHistory</code> request. When the results of a <code>ListConfigurationHistory</code> request exceed <code>MaxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "ListLogPatternSetsRequest$NextToken": "<p>The token to request the next page of results.</p>",
         "ListLogPatternSetsResponse$NextToken": "<p>The token used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>",
         "ListLogPatternsRequest$NextToken": "<p>The token to request the next page of results.</p>",
@@ -559,7 +623,7 @@
     "Remarks": {
       "base": null,
       "refs": {
-        "ApplicationInfo$Remarks": "<p>The issues on the user side that block Application Insights from successfully monitoring an application.</p>"
+        "ApplicationInfo$Remarks": "<p>The issues on the user side that block Application Insights from successfully monitoring an application. Example remarks include:</p> <ul> <li> <p>“Configuring application, detected 1 Errors, 3 Warnings”</p> </li> <li> <p>“Configuring application, detected 1 Unconfigured Components”</p> </li> </ul>"
       }
     },
     "RemoveSNSTopic": {
@@ -592,6 +656,7 @@
         "DescribeLogPatternRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "DescribeLogPatternResponse$ResourceGroupName": "<p>The name of the resource group.</p>",
         "ListComponentsRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
+        "ListConfigurationHistoryRequest$ResourceGroupName": "<p>Resource group to which the application belongs. </p>",
         "ListLogPatternSetsRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "ListLogPatternSetsResponse$ResourceGroupName": "<p>The name of the resource group.</p>",
         "ListLogPatternsRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
@@ -650,6 +715,7 @@
     "StartTime": {
       "base": null,
       "refs": {
+        "ListConfigurationHistoryRequest$StartTime": "<p>The start time of the event. </p>",
         "ListProblemsRequest$StartTime": "<p>The time when the problem was detected, in epoch seconds. If you don't specify a time frame for the request, problems within the past seven days are returned.</p>",
         "Observation$StartTime": "<p>The time when the observation was first detected, in epoch seconds.</p>",
         "Problem$StartTime": "<p>The time when the problem started, in epoch seconds.</p>"

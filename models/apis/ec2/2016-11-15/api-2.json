@@ -1691,6 +1691,15 @@
       "input":{"shape":"DescribeInternetGatewaysRequest"},
       "output":{"shape":"DescribeInternetGatewaysResult"}
     },
+    "DescribeIpv6Pools":{
+      "name":"DescribeIpv6Pools",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeIpv6PoolsRequest"},
+      "output":{"shape":"DescribeIpv6PoolsResult"}
+    },
     "DescribeKeyPairs":{
       "name":"DescribeKeyPairs",
       "http":{
@@ -2546,6 +2555,15 @@
       },
       "input":{"shape":"ExportTransitGatewayRoutesRequest"},
       "output":{"shape":"ExportTransitGatewayRoutesResult"}
+    },
+    "GetAssociatedIpv6PoolCidrs":{
+      "name":"GetAssociatedIpv6PoolCidrs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetAssociatedIpv6PoolCidrsRequest"},
+      "output":{"shape":"GetAssociatedIpv6PoolCidrsResult"}
     },
     "GetCapacityReservationUsage":{
       "name":"GetCapacityReservationUsage",
@@ -4292,6 +4310,8 @@
           "shape":"VpcId",
           "locationName":"vpcId"
         },
+        "Ipv6Pool":{"shape":"String"},
+        "Ipv6CidrBlock":{"shape":"String"},
         "Ipv6CidrBlockNetworkBorderGroup":{"shape":"String"}
       }
     },
@@ -7749,6 +7769,8 @@
           "shape":"Boolean",
           "locationName":"amazonProvidedIpv6CidrBlock"
         },
+        "Ipv6Pool":{"shape":"String"},
+        "Ipv6CidrBlock":{"shape":"String"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -10391,6 +10413,35 @@
         },
         "NextToken":{
           "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "DescribeIpv6PoolsRequest":{
+      "type":"structure",
+      "members":{
+        "PoolIds":{
+          "shape":"ValueStringList",
+          "locationName":"PoolId"
+        },
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"Ipv6PoolMaxResults"},
+        "DryRun":{"shape":"Boolean"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        }
+      }
+    },
+    "DescribeIpv6PoolsResult":{
+      "type":"structure",
+      "members":{
+        "Ipv6Pools":{
+          "shape":"Ipv6PoolSet",
+          "locationName":"ipv6PoolSet"
+        },
+        "NextToken":{
+          "shape":"NextToken",
           "locationName":"nextToken"
         }
       }
@@ -14741,6 +14792,29 @@
       "type":"string",
       "enum":["ipsec.1"]
     },
+    "GetAssociatedIpv6PoolCidrsRequest":{
+      "type":"structure",
+      "required":["PoolId"],
+      "members":{
+        "PoolId":{"shape":"String"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"Ipv6PoolMaxResults"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "GetAssociatedIpv6PoolCidrsResult":{
+      "type":"structure",
+      "members":{
+        "Ipv6CidrAssociations":{
+          "shape":"Ipv6CidrAssociationSet",
+          "locationName":"ipv6CidrAssociationSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
     "GetCapacityReservationUsageRequest":{
       "type":"structure",
       "required":["CapacityReservationId"],
@@ -18020,6 +18094,26 @@
         "locationName":"item"
       }
     },
+    "Ipv6CidrAssociation":{
+      "type":"structure",
+      "members":{
+        "Ipv6Cidr":{
+          "shape":"String",
+          "locationName":"ipv6Cidr"
+        },
+        "AssociatedResource":{
+          "shape":"String",
+          "locationName":"associatedResource"
+        }
+      }
+    },
+    "Ipv6CidrAssociationSet":{
+      "type":"list",
+      "member":{
+        "shape":"Ipv6CidrAssociation",
+        "locationName":"item"
+      }
+    },
     "Ipv6CidrBlock":{
       "type":"structure",
       "members":{
@@ -18037,6 +18131,39 @@
       }
     },
     "Ipv6Flag":{"type":"boolean"},
+    "Ipv6Pool":{
+      "type":"structure",
+      "members":{
+        "PoolId":{
+          "shape":"String",
+          "locationName":"poolId"
+        },
+        "Description":{
+          "shape":"String",
+          "locationName":"description"
+        },
+        "PoolCidrBlocks":{
+          "shape":"PoolCidrBlocksSet",
+          "locationName":"poolCidrBlockSet"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
+        }
+      }
+    },
+    "Ipv6PoolMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
+    "Ipv6PoolSet":{
+      "type":"list",
+      "member":{
+        "shape":"Ipv6Pool",
+        "locationName":"item"
+      }
+    },
     "Ipv6Range":{
       "type":"structure",
       "members":{
@@ -21539,6 +21666,22 @@
       "type":"string",
       "enum":["Windows"]
     },
+    "PoolCidrBlock":{
+      "type":"structure",
+      "members":{
+        "Cidr":{
+          "shape":"String",
+          "locationName":"poolCidrBlock"
+        }
+      }
+    },
+    "PoolCidrBlocksSet":{
+      "type":"list",
+      "member":{
+        "shape":"PoolCidrBlock",
+        "locationName":"item"
+      }
+    },
     "PoolMaxResults":{
       "type":"integer",
       "max":10,
@@ -21840,6 +21983,7 @@
       "members":{
         "Cidr":{"shape":"String"},
         "CidrAuthorizationContext":{"shape":"CidrAuthorizationContext"},
+        "PubliclyAdvertisable":{"shape":"Boolean"},
         "Description":{"shape":"String"},
         "DryRun":{"shape":"Boolean"}
       }
@@ -28536,6 +28680,10 @@
         "Ipv6CidrBlockState":{
           "shape":"VpcCidrBlockState",
           "locationName":"ipv6CidrBlockState"
+        },
+        "Ipv6Pool":{
+          "shape":"String",
+          "locationName":"ipv6Pool"
         },
         "NetworkBorderGroup":{
           "shape":"String",
