@@ -1508,6 +1508,7 @@
         "OFFLINE"
       ]
     },
+    "ConnectionStatusUpdatedTime":{"type":"timestamp"},
     "Contact":{
       "type":"structure",
       "members":{
@@ -2063,9 +2064,11 @@
         "NetworkProfileName":{"shape":"NetworkProfileName"},
         "RoomArn":{"shape":"Arn"},
         "RoomName":{"shape":"RoomName"},
-        "DeviceStatusInfo":{"shape":"DeviceStatusInfo"}
+        "DeviceStatusInfo":{"shape":"DeviceStatusInfo"},
+        "CreatedTime":{"shape":"DeviceDataCreatedTime"}
       }
     },
+    "DeviceDataCreatedTime":{"type":"timestamp"},
     "DeviceDataList":{
       "type":"list",
       "member":{"shape":"DeviceData"}
@@ -2170,7 +2173,8 @@
       "type":"structure",
       "members":{
         "DeviceStatusDetails":{"shape":"DeviceStatusDetails"},
-        "ConnectionStatus":{"shape":"ConnectionStatus"}
+        "ConnectionStatus":{"shape":"ConnectionStatus"},
+        "ConnectionStatusUpdatedTime":{"shape":"ConnectionStatusUpdatedTime"}
       }
     },
     "DeviceType":{

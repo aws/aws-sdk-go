@@ -243,6 +243,20 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListConfigurationHistory":{
+      "name":"ListConfigurationHistory",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListConfigurationHistoryRequest"},
+      "output":{"shape":"ListConfigurationHistoryResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListLogPatternSets":{
       "name":"ListLogPatternSets",
       "http":{
@@ -431,6 +445,41 @@
       "min":1
     },
     "ComponentName":{"type":"string"},
+    "ConfigurationEvent":{
+      "type":"structure",
+      "members":{
+        "MonitoredResourceARN":{"shape":"ConfigurationEventMonitoredResourceARN"},
+        "EventStatus":{"shape":"ConfigurationEventStatus"},
+        "EventResourceType":{"shape":"ConfigurationEventResourceType"},
+        "EventTime":{"shape":"ConfigurationEventTime"},
+        "EventDetail":{"shape":"ConfigurationEventDetail"},
+        "EventResourceName":{"shape":"ConfigurationEventResourceName"}
+      }
+    },
+    "ConfigurationEventDetail":{"type":"string"},
+    "ConfigurationEventList":{
+      "type":"list",
+      "member":{"shape":"ConfigurationEvent"}
+    },
+    "ConfigurationEventMonitoredResourceARN":{"type":"string"},
+    "ConfigurationEventResourceName":{"type":"string"},
+    "ConfigurationEventResourceType":{
+      "type":"string",
+      "enum":[
+        "CLOUDWATCH_ALARM",
+        "CLOUDFORMATION",
+        "SSM_ASSOCIATION"
+      ]
+    },
+    "ConfigurationEventStatus":{
+      "type":"string",
+      "enum":[
+        "INFO",
+        "WARN",
+        "ERROR"
+      ]
+    },
+    "ConfigurationEventTime":{"type":"timestamp"},
     "CreateApplicationRequest":{
       "type":"structure",
       "required":["ResourceGroupName"],
@@ -721,6 +770,24 @@
       "type":"structure",
       "members":{
         "ApplicationComponentList":{"shape":"ApplicationComponentList"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListConfigurationHistoryRequest":{
+      "type":"structure",
+      "members":{
+        "ResourceGroupName":{"shape":"ResourceGroupName"},
+        "StartTime":{"shape":"StartTime"},
+        "EndTime":{"shape":"EndTime"},
+        "EventStatus":{"shape":"ConfigurationEventStatus"},
+        "MaxResults":{"shape":"MaxEntities"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListConfigurationHistoryResponse":{
+      "type":"structure",
+      "members":{
+        "EventList":{"shape":"ConfigurationEventList"},
         "NextToken":{"shape":"PaginationToken"}
       }
     },

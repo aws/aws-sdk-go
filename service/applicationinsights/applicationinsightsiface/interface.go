@@ -130,6 +130,13 @@ type ApplicationInsightsAPI interface {
 	ListComponentsPages(*applicationinsights.ListComponentsInput, func(*applicationinsights.ListComponentsOutput, bool) bool) error
 	ListComponentsPagesWithContext(aws.Context, *applicationinsights.ListComponentsInput, func(*applicationinsights.ListComponentsOutput, bool) bool, ...request.Option) error
 
+	ListConfigurationHistory(*applicationinsights.ListConfigurationHistoryInput) (*applicationinsights.ListConfigurationHistoryOutput, error)
+	ListConfigurationHistoryWithContext(aws.Context, *applicationinsights.ListConfigurationHistoryInput, ...request.Option) (*applicationinsights.ListConfigurationHistoryOutput, error)
+	ListConfigurationHistoryRequest(*applicationinsights.ListConfigurationHistoryInput) (*request.Request, *applicationinsights.ListConfigurationHistoryOutput)
+
+	ListConfigurationHistoryPages(*applicationinsights.ListConfigurationHistoryInput, func(*applicationinsights.ListConfigurationHistoryOutput, bool) bool) error
+	ListConfigurationHistoryPagesWithContext(aws.Context, *applicationinsights.ListConfigurationHistoryInput, func(*applicationinsights.ListConfigurationHistoryOutput, bool) bool, ...request.Option) error
+
 	ListLogPatternSets(*applicationinsights.ListLogPatternSetsInput) (*applicationinsights.ListLogPatternSetsOutput, error)
 	ListLogPatternSetsWithContext(aws.Context, *applicationinsights.ListLogPatternSetsInput, ...request.Option) (*applicationinsights.ListLogPatternSetsOutput, error)
 	ListLogPatternSetsRequest(*applicationinsights.ListLogPatternSetsInput) (*request.Request, *applicationinsights.ListLogPatternSetsOutput)

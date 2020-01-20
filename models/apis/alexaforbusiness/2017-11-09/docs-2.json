@@ -623,6 +623,12 @@
         "DeviceStatusInfo$ConnectionStatus": "<p>The latest available information about the connection status of a device. </p>"
       }
     },
+    "ConnectionStatusUpdatedTime": {
+      "base": null,
+      "refs": {
+        "DeviceStatusInfo$ConnectionStatusUpdatedTime": "<p>The time (in epoch) when the device connection status changed.</p>"
+      }
+    },
     "Contact": {
       "base": "<p>A contact with attributes.</p>",
       "refs": {
@@ -979,6 +985,12 @@
       "base": "<p>Device attributes.</p>",
       "refs": {
         "DeviceDataList$member": null
+      }
+    },
+    "DeviceDataCreatedTime": {
+      "base": null,
+      "refs": {
+        "DeviceData$CreatedTime": "<p>The time (in epoch) when the device data was created.</p>"
       }
     },
     "DeviceDataList": {

@@ -508,7 +508,8 @@
         "MetricName":{"shape":"MetricName"},
         "Dimensions":{"shape":"Dimensions"},
         "Stat":{"shape":"Stat"},
-        "Configuration":{"shape":"AnomalyDetectorConfiguration"}
+        "Configuration":{"shape":"AnomalyDetectorConfiguration"},
+        "StateValue":{"shape":"AnomalyDetectorStateValue"}
       }
     },
     "AnomalyDetectorConfiguration":{
@@ -523,6 +524,14 @@
       "member":{"shape":"Range"}
     },
     "AnomalyDetectorMetricTimezone":{"type":"string"},
+    "AnomalyDetectorStateValue":{
+      "type":"string",
+      "enum":[
+        "PENDING_TRAINING",
+        "TRAINED_INSUFFICIENT_DATA",
+        "TRAINED"
+      ]
+    },
     "AnomalyDetectors":{
       "type":"list",
       "member":{"shape":"AnomalyDetector"}
