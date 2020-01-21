@@ -938,6 +938,8 @@ func (s ExceptionEvent) RequestID() string {
 type ExceptionEvent2 struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -959,11 +961,21 @@ func (s *ExceptionEvent2) UnmarshalEvent(
 	payloadUnmarshaler protocol.PayloadUnmarshaler,
 	msg eventstream.Message,
 ) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
 	return nil
 }
 
 func (s *ExceptionEvent2) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
 	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.ExceptionMessageType))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
 	return msg, err
 }
 
@@ -980,6 +992,9 @@ func (s ExceptionEvent2) Code() string {
 
 // Message returns the exception's message.
 func (s ExceptionEvent2) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
