@@ -19,6 +19,7 @@ import (
 
 const unknownErrJSON = `{"__type":"UnknownError", "message":"error message", "something":123}`
 const simpleErrJSON = `{"__type":"SimpleError", "message":"some message", "foo":123}`
+const simpleCasedErrJSON = `{"__type":"SimpleError", "Message":"some message", "foo":123}`
 
 type SimpleError struct {
 	_ struct{} `type:"structure"`
@@ -137,6 +138,16 @@ func TestUnmarshalTypedError(t *testing.T) {
 				Body:       ioutil.NopCloser(strings.NewReader(`{`)),
 			},
 			Err: "failed decoding",
+		},
+		"mixed case fields": {
+			Response: &http.Response{
+				Header: http.Header{},
+				Body:   ioutil.NopCloser(strings.NewReader(simpleCasedErrJSON)),
+			},
+			Expect: &SimpleError{
+				Message2: aws.String("some message"),
+				Foo:      aws.Int64(123),
+			},
 		},
 	}
 

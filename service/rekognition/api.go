@@ -5540,6 +5540,8 @@ func (c *Rekognition) StopStreamProcessorWithContext(ctx aws.Context, input *Sto
 type AccessDeniedException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -5565,6 +5567,9 @@ func (s AccessDeniedException) Code() string {
 
 // Message returns the exception's message.
 func (s AccessDeniedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -9718,6 +9723,8 @@ type HumanLoopQuotaExceededException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
 
+	Message_ *string `locationName:"message" type:"string"`
+
 	QuotaCode *string `type:"string"`
 
 	ResourceType *string `type:"string"`
@@ -9748,6 +9755,9 @@ func (s HumanLoopQuotaExceededException) Code() string {
 
 // Message returns the exception's message.
 func (s HumanLoopQuotaExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -9776,6 +9786,8 @@ func (s HumanLoopQuotaExceededException) RequestID() string {
 type IdempotentParameterMismatchException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -9801,6 +9813,9 @@ func (s IdempotentParameterMismatchException) Code() string {
 
 // Message returns the exception's message.
 func (s IdempotentParameterMismatchException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -9941,6 +9956,8 @@ func (s *ImageQuality) SetSharpness(v float64) *ImageQuality {
 type ImageTooLargeException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -9966,6 +9983,9 @@ func (s ImageTooLargeException) Code() string {
 
 // Message returns the exception's message.
 func (s ImageTooLargeException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -10246,6 +10266,8 @@ func (s *Instance) SetConfidence(v float64) *Instance {
 type InternalServerError struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -10271,6 +10293,9 @@ func (s InternalServerError) Code() string {
 
 // Message returns the exception's message.
 func (s InternalServerError) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -10297,6 +10322,8 @@ func (s InternalServerError) RequestID() string {
 type InvalidImageFormatException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -10322,6 +10349,9 @@ func (s InvalidImageFormatException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidImageFormatException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -10348,6 +10378,8 @@ func (s InvalidImageFormatException) RequestID() string {
 type InvalidPaginationTokenException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -10373,6 +10405,9 @@ func (s InvalidPaginationTokenException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidPaginationTokenException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -10400,6 +10435,8 @@ func (s InvalidPaginationTokenException) RequestID() string {
 type InvalidParameterException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -10425,6 +10462,9 @@ func (s InvalidParameterException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidParameterException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -10451,6 +10491,8 @@ func (s InvalidParameterException) RequestID() string {
 type InvalidS3ObjectException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -10476,6 +10518,9 @@ func (s InvalidS3ObjectException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidS3ObjectException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -10692,6 +10737,8 @@ func (s *Landmark) SetY(v float64) *Landmark {
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -10717,6 +10764,9 @@ func (s LimitExceededException) Code() string {
 
 // Message returns the exception's message.
 func (s LimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -11626,6 +11676,8 @@ func (s *ProjectVersionDescription) SetTrainingEndTimestamp(v time.Time) *Projec
 type ProvisionedThroughputExceededException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -11651,6 +11703,9 @@ func (s ProvisionedThroughputExceededException) Code() string {
 
 // Message returns the exception's message.
 func (s ProvisionedThroughputExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -11778,6 +11833,8 @@ func (s *RecognizeCelebritiesOutput) SetUnrecognizedFaces(v []*ComparedFace) *Re
 type ResourceAlreadyExistsException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -11803,6 +11860,9 @@ func (s ResourceAlreadyExistsException) Code() string {
 
 // Message returns the exception's message.
 func (s ResourceAlreadyExistsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -11828,6 +11888,8 @@ func (s ResourceAlreadyExistsException) RequestID() string {
 type ResourceInUseException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -11853,6 +11915,9 @@ func (s ResourceInUseException) Code() string {
 
 // Message returns the exception's message.
 func (s ResourceInUseException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -11879,6 +11944,8 @@ func (s ResourceInUseException) RequestID() string {
 type ResourceNotFoundException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -11904,6 +11971,9 @@ func (s ResourceNotFoundException) Code() string {
 
 // Message returns the exception's message.
 func (s ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -11931,6 +12001,8 @@ func (s ResourceNotFoundException) RequestID() string {
 type ResourceNotReadyException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -11956,6 +12028,9 @@ func (s ResourceNotReadyException) Code() string {
 
 // Message returns the exception's message.
 func (s ResourceNotReadyException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -13755,6 +13830,8 @@ func (s *TextDetection) SetType(v string) *TextDetection {
 type ThrottlingException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -13780,6 +13857,9 @@ func (s ThrottlingException) Code() string {
 
 // Message returns the exception's message.
 func (s ThrottlingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -14047,6 +14127,8 @@ func (s *VideoMetadata) SetFrameWidth(v int64) *VideoMetadata {
 type VideoTooLargeException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -14072,6 +14154,9 @@ func (s VideoTooLargeException) Code() string {
 
 // Message returns the exception's message.
 func (s VideoTooLargeException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 

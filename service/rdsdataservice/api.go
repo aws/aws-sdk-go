@@ -1659,6 +1659,8 @@ func (s ForbiddenException) RequestID() string {
 type InternalServerErrorException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -1684,6 +1686,9 @@ func (s InternalServerErrorException) Code() string {
 
 // Message returns the exception's message.
 func (s InternalServerErrorException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -1987,6 +1992,8 @@ func (s *RollbackTransactionOutput) SetTransactionStatus(v string) *RollbackTran
 type ServiceUnavailableError struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -2012,6 +2019,9 @@ func (s ServiceUnavailableError) Code() string {
 
 // Message returns the exception's message.
 func (s ServiceUnavailableError) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 

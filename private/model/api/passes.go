@@ -89,6 +89,47 @@ func (a *API) resolveReferences() {
 	}
 }
 
+func (a *API) backfillErrorMembers() {
+	stubShape := &Shape{
+		ShapeName: "string",
+		Type:      "string",
+	}
+	var locName string
+	switch a.Metadata.Protocol {
+	case "ec2", "query", "rest-xml":
+		locName = "Message"
+	case "json", "rest-json":
+		locName = "message"
+	}
+
+	for _, s := range a.Shapes {
+		if !s.Exception {
+			continue
+		}
+
+		var haveMessage bool
+		for name := range s.MemberRefs {
+			if strings.EqualFold(name, "Message") {
+				haveMessage = true
+				break
+			}
+		}
+		if !haveMessage {
+			ref := &ShapeRef{
+				ShapeName:    stubShape.ShapeName,
+				Shape:        stubShape,
+				LocationName: locName,
+			}
+			s.MemberRefs["Message"] = ref
+			stubShape.refs = append(stubShape.refs, ref)
+		}
+	}
+
+	if len(stubShape.refs) != 0 {
+		a.Shapes["SDKStubErrorMessageShape"] = stubShape
+	}
+}
+
 // A referenceResolver provides a way to resolve shape references to
 // shape definitions.
 type referenceResolver struct {

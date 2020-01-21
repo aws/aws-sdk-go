@@ -333,6 +333,8 @@ type AccessDeniedException struct {
 	Error_ *string `locationName:"error" type:"string"`
 
 	Error_description *string `locationName:"error_description" type:"string"`
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -358,6 +360,9 @@ func (s AccessDeniedException) Code() string {
 
 // Message returns the exception's message.
 func (s AccessDeniedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -389,6 +394,8 @@ type AuthorizationPendingException struct {
 	Error_ *string `locationName:"error" type:"string"`
 
 	Error_description *string `locationName:"error_description" type:"string"`
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -414,6 +421,9 @@ func (s AuthorizationPendingException) Code() string {
 
 // Message returns the exception's message.
 func (s AuthorizationPendingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -632,6 +642,8 @@ type ExpiredTokenException struct {
 	Error_ *string `locationName:"error" type:"string"`
 
 	Error_description *string `locationName:"error_description" type:"string"`
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -657,6 +669,9 @@ func (s ExpiredTokenException) Code() string {
 
 // Message returns the exception's message.
 func (s ExpiredTokenException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -688,6 +703,8 @@ type InternalServerException struct {
 	Error_ *string `locationName:"error" type:"string"`
 
 	Error_description *string `locationName:"error_description" type:"string"`
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -713,6 +730,9 @@ func (s InternalServerException) Code() string {
 
 // Message returns the exception's message.
 func (s InternalServerException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -745,6 +765,8 @@ type InvalidClientException struct {
 	Error_ *string `locationName:"error" type:"string"`
 
 	Error_description *string `locationName:"error_description" type:"string"`
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -770,6 +792,9 @@ func (s InvalidClientException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidClientException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -801,6 +826,8 @@ type InvalidClientMetadataException struct {
 	Error_ *string `locationName:"error" type:"string"`
 
 	Error_description *string `locationName:"error_description" type:"string"`
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -826,6 +853,9 @@ func (s InvalidClientMetadataException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidClientMetadataException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -857,6 +887,8 @@ type InvalidGrantException struct {
 	Error_ *string `locationName:"error" type:"string"`
 
 	Error_description *string `locationName:"error_description" type:"string"`
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -882,6 +914,9 @@ func (s InvalidGrantException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidGrantException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -913,6 +948,8 @@ type InvalidRequestException struct {
 	Error_ *string `locationName:"error" type:"string"`
 
 	Error_description *string `locationName:"error_description" type:"string"`
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -938,6 +975,9 @@ func (s InvalidRequestException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidRequestException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -968,6 +1008,8 @@ type InvalidScopeException struct {
 	Error_ *string `locationName:"error" type:"string"`
 
 	Error_description *string `locationName:"error_description" type:"string"`
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -993,6 +1035,9 @@ func (s InvalidScopeException) Code() string {
 
 // Message returns the exception's message.
 func (s InvalidScopeException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -1157,6 +1202,8 @@ type SlowDownException struct {
 	Error_ *string `locationName:"error" type:"string"`
 
 	Error_description *string `locationName:"error_description" type:"string"`
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -1182,6 +1229,9 @@ func (s SlowDownException) Code() string {
 
 // Message returns the exception's message.
 func (s SlowDownException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -1359,6 +1409,8 @@ type UnauthorizedClientException struct {
 	Error_ *string `locationName:"error" type:"string"`
 
 	Error_description *string `locationName:"error_description" type:"string"`
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -1384,6 +1436,9 @@ func (s UnauthorizedClientException) Code() string {
 
 // Message returns the exception's message.
 func (s UnauthorizedClientException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
@@ -1414,6 +1469,8 @@ type UnsupportedGrantTypeException struct {
 	Error_ *string `locationName:"error" type:"string"`
 
 	Error_description *string `locationName:"error_description" type:"string"`
+
+	Message_ *string `locationName:"message" type:"string"`
 }
 
 // String returns the string representation
@@ -1439,6 +1496,9 @@ func (s UnsupportedGrantTypeException) Code() string {
 
 // Message returns the exception's message.
 func (s UnsupportedGrantTypeException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
 	return ""
 }
 
