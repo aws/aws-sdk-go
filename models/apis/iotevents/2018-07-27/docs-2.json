@@ -39,7 +39,7 @@
         "CreateDetectorModelRequest$roleArn": "<p>The ARN of the role that grants permission to AWS IoT Events to perform its operations.</p>",
         "DetectorModelConfiguration$roleArn": "<p>The ARN of the role that grants permission to AWS IoT Events to perform its operations.</p>",
         "DetectorModelVersionSummary$roleArn": "<p>The ARN of the role that grants the detector model permission to perform its tasks.</p>",
-        "LambdaAction$functionArn": "<p>The ARN of the AWS Lambda function which is executed.</p>",
+        "LambdaAction$functionArn": "<p>The ARN of the Lambda function that is executed.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The ARN of the resource.</p>",
         "LoggingOptions$roleArn": "<p>The ARN of the role that grants permission to AWS IoT Events to perform logging.</p>",
         "SNSTopicPublishAction$targetArn": "<p>The ARN of the Amazon SNS target where the message is sent.</p>",
@@ -58,8 +58,8 @@
       "base": null,
       "refs": {
         "Attribute$jsonPath": "<p>An expression that specifies an attribute-value pair in a JSON structure. Use this to specify an attribute from the JSON payload that is made available by the input. Inputs are derived from messages sent to the AWS IoT Events system (<code>BatchPutMessage</code>). Each such message contains a JSON payload, and the attribute (and its paired value) specified here are available for use in the <code>\"condition\"</code> expressions used by detectors. </p> <p>Syntax: <code>&lt;field-name&gt;.&lt;field-name&gt;...</code> </p>",
-        "CreateDetectorModelRequest$key": "<p>The input attribute key used to identify a device or system to create a detector (an instance of the detector model) and then to route each input received to the appropriate detector (instance). This parameter uses a JSON-path expression to specify the attribute-value pair in the message payload of each input that is used to identify the device associated with the input.</p>",
-        "DetectorModelConfiguration$key": "<p>The input attribute key used to identify a device or system to create a detector (an instance of the detector model) and then to route each input received to the appropriate detector (instance). This parameter uses a JSON-path expression to specify the attribute-value pair in the message payload of each input that is used to identify the device associated with the input.</p>"
+        "CreateDetectorModelRequest$key": "<p>The input attribute key used to identify a device or system in order to create a detector (an instance of the detector model) and then to route each input received to the appropriate detector (instance). This parameter uses a JSON-path expression to specify the attribute-value pair in the message payload of each input that is used to identify the device associated with the input.</p>",
+        "DetectorModelConfiguration$key": "<p>The input attribute key used to identify a device or system in order to create a detector (an instance of the detector model) and then to route each input received to the appropriate detector (instance). This parameter uses a JSON-path expression to specify the attribute-value pair in the message payload of each input that is used to identify the device associated with the input.</p>"
       }
     },
     "Attributes": {
@@ -263,10 +263,10 @@
     "EvaluationMethod": {
       "base": null,
       "refs": {
-        "CreateDetectorModelRequest$evaluationMethod": "<p>When set to <code>SERIAL</code>, variables are updated and event conditions evaluated in the order that the events are defined. When set to <code>BATCH</code>, variables are updated and events performed only after all event conditions are evaluated.</p>",
-        "DetectorModelConfiguration$evaluationMethod": "<p>When set to <code>SERIAL</code>, variables are updated and event conditions evaluated in the order that the events are defined. When set to <code>BATCH</code>, variables are updated and events performed only after all event conditions are evaluated.</p>",
-        "DetectorModelVersionSummary$evaluationMethod": "<p>When set to <code>SERIAL</code>, variables are updated and event conditions evaluated in the order that the events are defined. When set to <code>BATCH</code>, variables are updated and events performed only after all event conditions are evaluated.</p>",
-        "UpdateDetectorModelRequest$evaluationMethod": "<p>When set to <code>SERIAL</code>, variables are updated and event conditions evaluated in the order that the events are defined. When set to <code>BATCH</code>, variables are updated and events performed only after all event conditions are evaluated.</p>"
+        "CreateDetectorModelRequest$evaluationMethod": "<p>Information about the order in which events are evaluated and how actions are executed. </p>",
+        "DetectorModelConfiguration$evaluationMethod": "<p>Information about the order in which events are evaluated and how actions are executed. </p>",
+        "DetectorModelVersionSummary$evaluationMethod": "<p>Information about the order in which events are evaluated and how actions are executed. </p>",
+        "UpdateDetectorModelRequest$evaluationMethod": "<p>Information about the order in which events are evaluated and how actions are executed. </p>"
       }
     },
     "Event": {
@@ -291,9 +291,9 @@
       }
     },
     "FirehoseAction": {
-      "base": "<p>Sends information about the detector model instance and the event which triggered the action to a Kinesis Data Firehose delivery stream.</p>",
+      "base": "<p>Sends information about the detector model instance and the event that triggered the action to a Kinesis Data Firehose delivery stream.</p>",
       "refs": {
-        "Action$firehose": "<p>Sends information about the detector model instance and the event which triggered the action to a Kinesis Data Firehose delivery stream.</p>"
+        "Action$firehose": "<p>Sends information about the detector model instance and the event that triggered the action to a Kinesis Data Firehose delivery stream.</p>"
       }
     },
     "FirehoseSeparator": {
@@ -382,9 +382,9 @@
       }
     },
     "IotEventsAction": {
-      "base": "<p>Sends an IoT Events input, passing in information about the detector model instance and the event which triggered the action.</p>",
+      "base": "<p>Sends an AWS IoT Events input, passing in information about the detector model instance and the event that triggered the action.</p>",
       "refs": {
-        "Action$iotEvents": "<p>Sends an IoT Events input, passing in information about the detector model instance and the event which triggered the action.</p>"
+        "Action$iotEvents": "<p>Sends an IoT Events input, passing in information about the detector model instance and the event that triggered the action.</p>"
       }
     },
     "IotTopicPublishAction": {
@@ -400,9 +400,9 @@
       }
     },
     "LambdaAction": {
-      "base": "<p>Calls an AWS Lambda function, passing in information about the detector model instance and the event which triggered the action.</p>",
+      "base": "<p>Calls a Lambda function, passing in information about the detector model instance and the event that triggered the action.</p>",
       "refs": {
-        "Action$lambda": "<p>Calls an AWS Lambda function, passing in information about the detector model instance and the event which triggered the action.</p>"
+        "Action$lambda": "<p>Calls a Lambda function, passing in information about the detector model instance and the event that triggered the action.</p>"
       }
     },
     "LimitExceededException": {
@@ -520,7 +520,7 @@
     "QueueUrl": {
       "base": null,
       "refs": {
-        "SqsAction$queueUrl": "<p>The URL of the Amazon SQS queue where the data is written.</p>"
+        "SqsAction$queueUrl": "<p>The URL of the SQS queue where the data is written.</p>"
       }
     },
     "ResetTimerAction": {
@@ -574,9 +574,9 @@
       }
     },
     "SqsAction": {
-      "base": "<p>Sends information about the detector model instance and the event which triggered the action to an Amazon SQS queue.</p>",
+      "base": "<p>Sends information about the detector model instance and the event that triggered the action to an Amazon SQS queue.</p>",
       "refs": {
-        "Action$sqs": "<p>Sends information about the detector model instance and the event which triggered the action to an Amazon SQS queue.</p>"
+        "Action$sqs": "<p>Sends information about the detector model instance and the event that triggered the action to an Amazon SQS queue.</p>"
       }
     },
     "State": {

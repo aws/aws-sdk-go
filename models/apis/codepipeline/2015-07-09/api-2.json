@@ -481,6 +481,21 @@
         {"shape":"PipelineNotFoundException"}
       ]
     },
+    "StopPipelineExecution":{
+      "name":"StopPipelineExecution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopPipelineExecutionInput"},
+      "output":{"shape":"StopPipelineExecutionOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"PipelineNotFoundException"},
+        {"shape":"PipelineExecutionNotStoppableException"},
+        {"shape":"DuplicatedStopRequestException"}
+      ]
+    },
     "TagResource":{
       "name":"TagResource",
       "http":{
@@ -759,6 +774,7 @@
       "type":"string",
       "enum":[
         "InProgress",
+        "Abandoned",
         "Succeeded",
         "Failed"
       ]
@@ -1176,6 +1192,13 @@
       "max":300,
       "min":1,
       "pattern":"[a-zA-Z0-9!@ \\(\\)\\.\\*\\?\\-]+"
+    },
+    "DuplicatedStopRequestException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"Message"}
+      },
+      "exception":true
     },
     "EnableStageTransitionInput":{
       "type":"structure",
@@ -1749,10 +1772,19 @@
       },
       "exception":true
     },
+    "PipelineExecutionNotStoppableException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"Message"}
+      },
+      "exception":true
+    },
     "PipelineExecutionStatus":{
       "type":"string",
       "enum":[
         "InProgress",
+        "Stopped",
+        "Stopping",
         "Succeeded",
         "Superseded",
         "Failed"
@@ -1766,7 +1798,8 @@
         "startTime":{"shape":"Timestamp"},
         "lastUpdateTime":{"shape":"Timestamp"},
         "sourceRevisions":{"shape":"SourceRevisionList"},
-        "trigger":{"shape":"ExecutionTrigger"}
+        "trigger":{"shape":"ExecutionTrigger"},
+        "stopTrigger":{"shape":"StopExecutionTrigger"}
       }
     },
     "PipelineExecutionSummaryList":{
@@ -2125,6 +2158,8 @@
       "enum":[
         "InProgress",
         "Failed",
+        "Stopped",
+        "Stopping",
         "Succeeded"
       ]
     },
@@ -2186,6 +2221,35 @@
       "members":{
         "pipelineExecutionId":{"shape":"PipelineExecutionId"}
       }
+    },
+    "StopExecutionTrigger":{
+      "type":"structure",
+      "members":{
+        "reason":{"shape":"StopPipelineExecutionReason"}
+      }
+    },
+    "StopPipelineExecutionInput":{
+      "type":"structure",
+      "required":[
+        "pipelineName",
+        "pipelineExecutionId"
+      ],
+      "members":{
+        "pipelineName":{"shape":"PipelineName"},
+        "pipelineExecutionId":{"shape":"PipelineExecutionId"},
+        "abandon":{"shape":"Boolean"},
+        "reason":{"shape":"StopPipelineExecutionReason"}
+      }
+    },
+    "StopPipelineExecutionOutput":{
+      "type":"structure",
+      "members":{
+        "pipelineExecutionId":{"shape":"PipelineExecutionId"}
+      }
+    },
+    "StopPipelineExecutionReason":{
+      "type":"string",
+      "max":200
     },
     "String":{"type":"string"},
     "Tag":{

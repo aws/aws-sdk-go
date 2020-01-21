@@ -4993,7 +4993,8 @@
         "failed-provision",
         "pending-deprovision",
         "pending-provision",
-        "provisioned"
+        "provisioned",
+        "provisioned-not-publicly-advertisable"
       ]
     },
     "CancelBatchErrorCode":{

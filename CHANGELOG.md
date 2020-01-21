@@ -1,3 +1,17 @@
+Release v1.28.7 (2020-01-21)
+===
+
+### Service Client Updates
+* `service/codepipeline`: Updates service API and documentation
+  * AWS CodePipeline enables an ability to stop pipeline executions.
+* `service/discovery`: Updates service documentation
+  * Documentation updates for the AWS Application Discovery Service.
+* `service/ec2`: Updates service API
+  * Add an enum value to the result of DescribeByoipCidrs to support CIDRs that are not publicly advertisable.
+* `service/iotevents`: Updates service documentation
+* `service/marketplacecommerceanalytics`: Updates service documentation
+  * Remove 4 deprecated data sets, change some data sets available dates to 2017-09-15
+
 Release v1.28.6 (2020-01-20)
 ===
 
