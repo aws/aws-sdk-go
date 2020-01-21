@@ -752,7 +752,8 @@ func (c *ApplicationDiscoveryService) DescribeConfigurationsRequest(input *Descr
 // etc.
 //
 // For a complete list of outputs for each asset type, see Using the DescribeConfigurations
-// Action (http://docs.aws.amazon.com/application-discovery/latest/APIReference/discovery-api-queries.html#DescribeConfigurations).
+// Action (https://docs.aws.amazon.com/application-discovery/latest/userguide/discovery-api-queries.html#DescribeConfigurations)
+// in the AWS Application Discovery Service User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1769,7 +1770,7 @@ func (c *ApplicationDiscoveryService) ListConfigurationsRequest(input *ListConfi
 // ListConfigurations API operation for AWS Application Discovery Service.
 //
 // Retrieves a list of configuration items as specified by the value passed
-// to the required paramater configurationType. Optional filtering may be applied
+// to the required parameter configurationType. Optional filtering may be applied
 // to refine search results.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2266,11 +2267,11 @@ func (c *ApplicationDiscoveryService) StartImportTaskRequest(input *StartImportT
 // StartImportTask API operation for AWS Application Discovery Service.
 //
 // Starts an import task, which allows you to import details of your on-premises
-// environment directly into AWS without having to use the Application Discovery
-// Service (ADS) tools such as the Discovery Connector or Discovery Agent. This
-// gives you the option to perform migration assessment and planning directly
-// from your imported data, including the ability to group your devices as applications
-// and track their migration status.
+// environment directly into AWS Migration Hub without having to use the Application
+// Discovery Service (ADS) tools such as the Discovery Connector or Discovery
+// Agent. This gives you the option to perform migration assessment and planning
+// directly from your imported data, including the ability to group your devices
+// as applications and track their migration status.
 //
 // To start an import request, do this:
 //
@@ -4715,7 +4716,8 @@ func (s *ExportInfo) SetStatusMessage(v string) *ExportInfo {
 // A filter that can use conditional operators.
 //
 // For more information about filters, see Querying Discovered Configuration
-// Items (http://docs.aws.amazon.com/application-discovery/latest/APIReference/discovery-api-queries.html).
+// Items (https://docs.aws.amazon.com/application-discovery/latest/userguide/discovery-api-queries.html)
+// in the AWS Application Discovery Service User Guide.
 type Filter struct {
 	_ struct{} `type:"structure"`
 
@@ -5264,7 +5266,8 @@ type ListConfigurationsInput struct {
 	// {"key": "serverType", "value": "webServer"}
 	//
 	// For a complete list of filter options and guidance about using them with
-	// this action, see Querying Discovered Configuration Items (http://docs.aws.amazon.com/application-discovery/latest/APIReference/discovery-api-queries.html#ListConfigurations).
+	// this action, see Using the ListConfigurations Action (https://docs.aws.amazon.com/application-discovery/latest/userguide/discovery-api-queries.html#ListConfigurations)
+	// in the AWS Application Discovery Service User Guide.
 	Filters []*Filter `locationName:"filters" type:"list"`
 
 	// The total number of items to return. The maximum value is 100.
@@ -5278,7 +5281,8 @@ type ListConfigurationsInput struct {
 
 	// Certain filter criteria return output that can be sorted in ascending or
 	// descending order. For a list of output characteristics for each filter, see
-	// Using the ListConfigurations Action (http://docs.aws.amazon.com/application-discovery/latest/APIReference/discovery-api-queries.html#ListConfigurations).
+	// Using the ListConfigurations Action (https://docs.aws.amazon.com/application-discovery/latest/userguide/discovery-api-queries.html#ListConfigurations)
+	// in the AWS Application Discovery Service User Guide.
 	OrderBy []*OrderByElement `locationName:"orderBy" type:"list"`
 }
 

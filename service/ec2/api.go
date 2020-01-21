@@ -107613,6 +107613,9 @@ const (
 
 	// ByoipCidrStateProvisioned is a ByoipCidrState enum value
 	ByoipCidrStateProvisioned = "provisioned"
+
+	// ByoipCidrStateProvisionedNotPubliclyAdvertisable is a ByoipCidrState enum value
+	ByoipCidrStateProvisionedNotPubliclyAdvertisable = "provisioned-not-publicly-advertisable"
 )
 
 const (
