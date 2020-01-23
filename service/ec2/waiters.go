@@ -544,6 +544,11 @@ func (c *EC2) WaitUntilInstanceRunningWithContext(ctx aws.Context, input *Descri
 			{
 				State:   request.FailureWaiterState,
 				Matcher: request.PathAnyWaiterMatch, Argument: "Reservations[].Instances[].State.Name",
+				Expected: "stopped",
+			},
+			{
+				State:   request.FailureWaiterState,
+				Matcher: request.PathAnyWaiterMatch, Argument: "Reservations[].Instances[].State.Name",
 				Expected: "terminated",
 			},
 			{
