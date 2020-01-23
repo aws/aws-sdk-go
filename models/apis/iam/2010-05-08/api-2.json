@@ -3028,6 +3028,7 @@
         "MatchedStatements":{"shape":"StatementListType"},
         "MissingContextValues":{"shape":"ContextKeyNamesResultListType"},
         "OrganizationsDecisionDetail":{"shape":"OrganizationsDecisionDetail"},
+        "PermissionsBoundaryDecisionDetail":{"shape":"PermissionsBoundaryDecisionDetail"},
         "EvalDecisionDetails":{"shape":"EvalDecisionDetailsType"},
         "ResourceSpecificResults":{"shape":"ResourceSpecificResultListType"}
       }
@@ -4242,6 +4243,12 @@
       "type":"string",
       "enum":["PermissionsBoundaryPolicy"]
     },
+    "PermissionsBoundaryDecisionDetail":{
+      "type":"structure",
+      "members":{
+        "AllowedByPermissionsBoundary":{"shape":"booleanType"}
+      }
+    },
     "Policy":{
       "type":"structure",
       "members":{
@@ -4547,7 +4554,8 @@
         "EvalResourceDecision":{"shape":"PolicyEvaluationDecisionType"},
         "MatchedStatements":{"shape":"StatementListType"},
         "MissingContextValues":{"shape":"ContextKeyNamesResultListType"},
-        "EvalDecisionDetails":{"shape":"EvalDecisionDetailsType"}
+        "EvalDecisionDetails":{"shape":"EvalDecisionDetailsType"},
+        "PermissionsBoundaryDecisionDetail":{"shape":"PermissionsBoundaryDecisionDetail"}
       }
     },
     "ResourceSpecificResultListType":{
@@ -4843,6 +4851,7 @@
       ],
       "members":{
         "PolicyInputList":{"shape":"SimulationPolicyListType"},
+        "PermissionsBoundaryPolicyInputList":{"shape":"SimulationPolicyListType"},
         "ActionNames":{"shape":"ActionNameListType"},
         "ResourceArns":{"shape":"ResourceNameListType"},
         "ResourcePolicy":{"shape":"policyDocumentType"},
@@ -4871,6 +4880,7 @@
       "members":{
         "PolicySourceArn":{"shape":"arnType"},
         "PolicyInputList":{"shape":"SimulationPolicyListType"},
+        "PermissionsBoundaryPolicyInputList":{"shape":"SimulationPolicyListType"},
         "ActionNames":{"shape":"ActionNameListType"},
         "ResourceArns":{"shape":"ResourceNameListType"},
         "ResourcePolicy":{"shape":"policyDocumentType"},

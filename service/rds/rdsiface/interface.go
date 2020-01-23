@@ -88,6 +88,10 @@ type RDSAPI interface {
 	BacktrackDBClusterWithContext(aws.Context, *rds.BacktrackDBClusterInput, ...request.Option) (*rds.BacktrackDBClusterOutput, error)
 	BacktrackDBClusterRequest(*rds.BacktrackDBClusterInput) (*request.Request, *rds.BacktrackDBClusterOutput)
 
+	CancelExportTask(*rds.CancelExportTaskInput) (*rds.CancelExportTaskOutput, error)
+	CancelExportTaskWithContext(aws.Context, *rds.CancelExportTaskInput, ...request.Option) (*rds.CancelExportTaskOutput, error)
+	CancelExportTaskRequest(*rds.CancelExportTaskInput) (*request.Request, *rds.CancelExportTaskOutput)
+
 	CopyDBClusterParameterGroup(*rds.CopyDBClusterParameterGroupInput) (*rds.CopyDBClusterParameterGroupOutput, error)
 	CopyDBClusterParameterGroupWithContext(aws.Context, *rds.CopyDBClusterParameterGroupInput, ...request.Option) (*rds.CopyDBClusterParameterGroupOutput, error)
 	CopyDBClusterParameterGroupRequest(*rds.CopyDBClusterParameterGroupInput) (*request.Request, *rds.CopyDBClusterParameterGroupOutput)
@@ -399,6 +403,13 @@ type RDSAPI interface {
 	DescribeEventsPages(*rds.DescribeEventsInput, func(*rds.DescribeEventsOutput, bool) bool) error
 	DescribeEventsPagesWithContext(aws.Context, *rds.DescribeEventsInput, func(*rds.DescribeEventsOutput, bool) bool, ...request.Option) error
 
+	DescribeExportTasks(*rds.DescribeExportTasksInput) (*rds.DescribeExportTasksOutput, error)
+	DescribeExportTasksWithContext(aws.Context, *rds.DescribeExportTasksInput, ...request.Option) (*rds.DescribeExportTasksOutput, error)
+	DescribeExportTasksRequest(*rds.DescribeExportTasksInput) (*request.Request, *rds.DescribeExportTasksOutput)
+
+	DescribeExportTasksPages(*rds.DescribeExportTasksInput, func(*rds.DescribeExportTasksOutput, bool) bool) error
+	DescribeExportTasksPagesWithContext(aws.Context, *rds.DescribeExportTasksInput, func(*rds.DescribeExportTasksOutput, bool) bool, ...request.Option) error
+
 	DescribeGlobalClusters(*rds.DescribeGlobalClustersInput) (*rds.DescribeGlobalClustersOutput, error)
 	DescribeGlobalClustersWithContext(aws.Context, *rds.DescribeGlobalClustersInput, ...request.Option) (*rds.DescribeGlobalClustersOutput, error)
 	DescribeGlobalClustersRequest(*rds.DescribeGlobalClustersInput) (*request.Request, *rds.DescribeGlobalClustersOutput)
@@ -630,6 +641,10 @@ type RDSAPI interface {
 	StartDBInstance(*rds.StartDBInstanceInput) (*rds.StartDBInstanceOutput, error)
 	StartDBInstanceWithContext(aws.Context, *rds.StartDBInstanceInput, ...request.Option) (*rds.StartDBInstanceOutput, error)
 	StartDBInstanceRequest(*rds.StartDBInstanceInput) (*request.Request, *rds.StartDBInstanceOutput)
+
+	StartExportTask(*rds.StartExportTaskInput) (*rds.StartExportTaskOutput, error)
+	StartExportTaskWithContext(aws.Context, *rds.StartExportTaskInput, ...request.Option) (*rds.StartExportTaskOutput, error)
+	StartExportTaskRequest(*rds.StartExportTaskInput) (*request.Request, *rds.StartExportTaskOutput)
 
 	StopActivityStream(*rds.StopActivityStreamInput) (*rds.StopActivityStreamOutput, error)
 	StopActivityStreamWithContext(aws.Context, *rds.StopActivityStreamInput, ...request.Option) (*rds.StopActivityStreamOutput, error)

@@ -1,3 +1,16 @@
+Release v1.28.8 (2020-01-23)
+===
+
+### Service Client Updates
+* `service/iam`: Updates service API and documentation
+  * This release enables the Identity and Access Management policy simulator to simulate permissions boundary policies.
+* `service/rds`: Updates service API, documentation, and paginators
+  * This SDK release introduces APIs that automate the export of Amazon RDS snapshot data to Amazon S3. The new APIs include: StartExportTask, CancelExportTask, DescribeExportTasks. These APIs automate the extraction of data from an RDS snapshot and export it to an Amazon S3 bucket. The data is stored in a compressed, consistent, and query-able format. After the data is exported, you can query it directly using tools such as Amazon Athena or Redshift Spectrum. You can also consume the data as part of a data lake solution. If you archive the data in S3 Infrequent Access or Glacier, you can reduce long term data storage costs by applying data lifecycle policies.
+
+### SDK Bugs
+* Fix generated errors for some JSON APIs not including a message ([#3089](https://github.com/aws/aws-sdk-go/issues/3089))
+  * Fixes the SDK's generated errors to all include the `Message` member regardless if it was modeled on the error shape. This fixes the bug identified in #3088 where some JSON errors were not modeled with the Message member.
+
 Release v1.28.7 (2020-01-21)
 ===
 
