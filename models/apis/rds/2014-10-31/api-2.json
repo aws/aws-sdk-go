@@ -120,6 +120,22 @@
         {"shape":"InvalidDBClusterStateFault"}
       ]
     },
+    "CancelExportTask":{
+      "name":"CancelExportTask",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CancelExportTaskMessage"},
+      "output":{
+        "shape":"ExportTask",
+        "resultWrapper":"CancelExportTaskResult"
+      },
+      "errors":[
+        {"shape":"ExportTaskNotFoundFault"},
+        {"shape":"InvalidExportTaskStateFault"}
+      ]
+    },
     "CopyDBClusterParameterGroup":{
       "name":"CopyDBClusterParameterGroup",
       "http":{
@@ -1188,6 +1204,21 @@
         "resultWrapper":"DescribeEventsResult"
       }
     },
+    "DescribeExportTasks":{
+      "name":"DescribeExportTasks",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeExportTasksMessage"},
+      "output":{
+        "shape":"ExportTasksMessage",
+        "resultWrapper":"DescribeExportTasksResult"
+      },
+      "errors":[
+        {"shape":"ExportTaskNotFoundFault"}
+      ]
+    },
     "DescribeGlobalClusters":{
       "name":"DescribeGlobalClusters",
       "http":{
@@ -2152,6 +2183,29 @@
         {"shape":"KMSKeyNotAccessibleFault"}
       ]
     },
+    "StartExportTask":{
+      "name":"StartExportTask",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartExportTaskMessage"},
+      "output":{
+        "shape":"ExportTask",
+        "resultWrapper":"StartExportTaskResult"
+      },
+      "errors":[
+        {"shape":"DBSnapshotNotFoundFault"},
+        {"shape":"DBClusterSnapshotNotFoundFault"},
+        {"shape":"ExportTaskAlreadyExistsFault"},
+        {"shape":"InvalidS3BucketFault"},
+        {"shape":"IamRoleNotFoundFault"},
+        {"shape":"IamRoleMissingPermissionsFault"},
+        {"shape":"InvalidExportOnlyFault"},
+        {"shape":"KMSKeyNotAccessibleFault"},
+        {"shape":"InvalidExportSourceStateFault"}
+      ]
+    },
     "StopActivityStream":{
       "name":"StopActivityStream",
       "http":{
@@ -2451,6 +2505,13 @@
     },
     "Boolean":{"type":"boolean"},
     "BooleanOptional":{"type":"boolean"},
+    "CancelExportTaskMessage":{
+      "type":"structure",
+      "required":["ExportTaskIdentifier"],
+      "members":{
+        "ExportTaskIdentifier":{"shape":"String"}
+      }
+    },
     "Certificate":{
       "type":"structure",
       "members":{
@@ -4799,6 +4860,16 @@
         "Marker":{"shape":"String"}
       }
     },
+    "DescribeExportTasksMessage":{
+      "type":"structure",
+      "members":{
+        "ExportTaskIdentifier":{"shape":"String"},
+        "SourceArn":{"shape":"String"},
+        "Filters":{"shape":"FilterList"},
+        "Marker":{"shape":"String"},
+        "MaxRecords":{"shape":"String"}
+      }
+    },
     "DescribeGlobalClustersMessage":{
       "type":"structure",
       "members":{
@@ -5113,6 +5184,62 @@
         "Events":{"shape":"EventList"}
       }
     },
+    "ExportTask":{
+      "type":"structure",
+      "members":{
+        "ExportTaskIdentifier":{"shape":"String"},
+        "SourceArn":{"shape":"String"},
+        "ExportOnly":{"shape":"StringList"},
+        "SnapshotTime":{"shape":"TStamp"},
+        "TaskStartTime":{"shape":"TStamp"},
+        "TaskEndTime":{"shape":"TStamp"},
+        "S3Bucket":{"shape":"String"},
+        "S3Prefix":{"shape":"String"},
+        "IamRoleArn":{"shape":"String"},
+        "KmsKeyId":{"shape":"String"},
+        "Status":{"shape":"String"},
+        "PercentProgress":{"shape":"Integer"},
+        "TotalExtractedDataInGB":{"shape":"Integer"},
+        "FailureCause":{"shape":"String"},
+        "WarningMessage":{"shape":"String"}
+      }
+    },
+    "ExportTaskAlreadyExistsFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ExportTaskAlreadyExists",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ExportTaskNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ExportTaskNotFound",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ExportTasksList":{
+      "type":"list",
+      "member":{
+        "shape":"ExportTask",
+        "locationName":"ExportTask"
+      }
+    },
+    "ExportTasksMessage":{
+      "type":"structure",
+      "members":{
+        "Marker":{"shape":"String"},
+        "ExportTasks":{"shape":"ExportTasksList"}
+      }
+    },
     "FailoverDBClusterMessage":{
       "type":"structure",
       "required":["DBClusterIdentifier"],
@@ -5255,6 +5382,28 @@
         "shape":"IPRange",
         "locationName":"IPRange"
       }
+    },
+    "IamRoleMissingPermissionsFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"IamRoleMissingPermissions",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "IamRoleNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"IamRoleNotFound",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
     },
     "ImportInstallationMediaMessage":{
       "type":"structure",
@@ -5523,6 +5672,39 @@
       },
       "error":{
         "code":"InvalidEventSubscriptionState",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "InvalidExportOnlyFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidExportOnly",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "InvalidExportSourceStateFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidExportSourceState",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "InvalidExportTaskStateFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidExportTaskStateFault",
         "httpStatusCode":400,
         "senderFault":true
       },
@@ -7140,6 +7322,25 @@
       "type":"structure",
       "members":{
         "DBInstance":{"shape":"DBInstance"}
+      }
+    },
+    "StartExportTaskMessage":{
+      "type":"structure",
+      "required":[
+        "ExportTaskIdentifier",
+        "SourceArn",
+        "S3BucketName",
+        "IamRoleArn",
+        "KmsKeyId"
+      ],
+      "members":{
+        "ExportTaskIdentifier":{"shape":"String"},
+        "SourceArn":{"shape":"String"},
+        "S3BucketName":{"shape":"String"},
+        "IamRoleArn":{"shape":"String"},
+        "KmsKeyId":{"shape":"String"},
+        "S3Prefix":{"shape":"String"},
+        "ExportOnly":{"shape":"StringList"}
       }
     },
     "StopActivityStreamRequest":{
