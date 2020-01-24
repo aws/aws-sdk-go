@@ -3221,6 +3221,12 @@ type DescribeServersOutput struct {
 
 	// Contains the response to a DescribeServers request.
 	//
+	// For Chef Automate servers: If DescribeServersResponse$Servers$EngineAttributes
+	// includes CHEF_MAJOR_UPGRADE_AVAILABLE, you can upgrade the Chef Automate
+	// server to Chef Automate 2. To be eligible for upgrade, a server running Chef
+	// Automate 1 must have had at least one successful maintenance run after November
+	// 1, 2019.
+	//
 	// For Puppet Server: DescribeServersResponse$Servers$EngineAttributes contains
 	// PUPPET_API_CA_CERT. This is the PEM-encoded CA certificate that is used by
 	// the Puppet API over TCP port number 8140. The CA certificate is also used
@@ -3897,10 +3903,10 @@ type RestoreServerInput struct {
 	// BackupId is a required field
 	BackupId *string `type:"string" required:"true"`
 
-	// The type of the instance to create. Valid values must be specified in the
-	// following format: ^([cm][34]|t2).* For example, m5.large. Valid values are
-	// m5.large, r5.xlarge, and r5.2xlarge. If you do not specify this parameter,
-	// RestoreServer uses the instance type from the specified backup.
+	// The type of instance to restore. Valid values must be specified in the following
+	// format: ^([cm][34]|t2).* For example, m5.large. Valid values are m5.large,
+	// r5.xlarge, and r5.2xlarge. If you do not specify this parameter, RestoreServer
+	// uses the instance type from the specified backup.
 	InstanceType *string `type:"string"`
 
 	// The name of the key pair to set on the new EC2 instance. This can be helpful
@@ -4307,6 +4313,14 @@ type StartMaintenanceInput struct {
 
 	// Engine attributes that are specific to the server on which you want to run
 	// maintenance.
+	//
+	// Attributes accepted in a StartMaintenance request for Chef
+	//
+	//    * CHEF_MAJOR_UPGRADE: If a Chef Automate server is eligible for upgrade
+	//    to Chef Automate 2, add this engine attribute to a StartMaintenance request
+	//    and set the value to true to upgrade the server to Chef Automate 2. For
+	//    more information, see Upgrade an AWS OpsWorks for Chef Automate Server
+	//    to Chef Automate 2 (https://docs.aws.amazon.com/opsworks/latest/userguide/opscm-a2upgrade.html).
 	EngineAttributes []*EngineAttribute `type:"list"`
 
 	// The name of the server on which to run maintenance.

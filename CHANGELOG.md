@@ -1,3 +1,16 @@
+Release v1.28.9 (2020-01-24)
+===
+
+### Service Client Updates
+* `service/datasync`: Updates service API and documentation
+* `service/ecs`: Updates service API and documentation
+  * This release provides support for tagging Amazon ECS task sets for services using external deployment controllers.
+* `service/eks`: Updates service API
+* `service/opsworkscm`: Updates service documentation
+  * AWS OpsWorks for Chef Automate now supports in-place upgrade to Chef Automate 2. Eligible servers can be updated through the management console, CLI and APIs.
+* `service/workspaces`: Updates service documentation
+  * Documentation updates for WorkSpaces
+
 Release v1.28.8 (2020-01-23)
 ===
 

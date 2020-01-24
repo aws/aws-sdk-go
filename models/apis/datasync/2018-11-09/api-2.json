@@ -53,6 +53,19 @@
         {"shape":"InternalException"}
       ]
     },
+    "CreateLocationFsxWindows":{
+      "name":"CreateLocationFsxWindows",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateLocationFsxWindowsRequest"},
+      "output":{"shape":"CreateLocationFsxWindowsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
     "CreateLocationNfs":{
       "name":"CreateLocationNfs",
       "http":{
@@ -165,6 +178,19 @@
       },
       "input":{"shape":"DescribeLocationEfsRequest"},
       "output":{"shape":"DescribeLocationEfsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "DescribeLocationFsxWindows":{
+      "name":"DescribeLocationFsxWindows",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeLocationFsxWindowsRequest"},
+      "output":{"shape":"DescribeLocationFsxWindowsResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"InternalException"}
@@ -450,13 +476,37 @@
         "Ec2Config"
       ],
       "members":{
-        "Subdirectory":{"shape":"Subdirectory"},
+        "Subdirectory":{"shape":"EfsSubdirectory"},
         "EfsFilesystemArn":{"shape":"EfsFilesystemArn"},
         "Ec2Config":{"shape":"Ec2Config"},
         "Tags":{"shape":"TagList"}
       }
     },
     "CreateLocationEfsResponse":{
+      "type":"structure",
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
+      }
+    },
+    "CreateLocationFsxWindowsRequest":{
+      "type":"structure",
+      "required":[
+        "FsxFilesystemArn",
+        "SecurityGroupArns",
+        "User",
+        "Password"
+      ],
+      "members":{
+        "Subdirectory":{"shape":"FsxWindowsSubdirectory"},
+        "FsxFilesystemArn":{"shape":"FsxFilesystemArn"},
+        "SecurityGroupArns":{"shape":"Ec2SecurityGroupArnList"},
+        "Tags":{"shape":"TagList"},
+        "User":{"shape":"SmbUser"},
+        "Domain":{"shape":"SmbDomain"},
+        "Password":{"shape":"SmbPassword"}
+      }
+    },
+    "CreateLocationFsxWindowsResponse":{
       "type":"structure",
       "members":{
         "LocationArn":{"shape":"LocationArn"}
@@ -470,7 +520,7 @@
         "OnPremConfig"
       ],
       "members":{
-        "Subdirectory":{"shape":"NonEmptySubdirectory"},
+        "Subdirectory":{"shape":"NfsSubdirectory"},
         "ServerHostname":{"shape":"ServerHostname"},
         "OnPremConfig":{"shape":"OnPremConfig"},
         "MountOptions":{"shape":"NfsMountOptions"},
@@ -490,7 +540,7 @@
         "S3Config"
       ],
       "members":{
-        "Subdirectory":{"shape":"Subdirectory"},
+        "Subdirectory":{"shape":"S3Subdirectory"},
         "S3BucketArn":{"shape":"S3BucketArn"},
         "S3StorageClass":{"shape":"S3StorageClass"},
         "S3Config":{"shape":"S3Config"},
@@ -513,7 +563,7 @@
         "AgentArns"
       ],
       "members":{
-        "Subdirectory":{"shape":"NonEmptySubdirectory"},
+        "Subdirectory":{"shape":"SmbSubdirectory"},
         "ServerHostname":{"shape":"ServerHostname"},
         "User":{"shape":"SmbUser"},
         "Domain":{"shape":"SmbDomain"},
@@ -621,6 +671,24 @@
         "LocationUri":{"shape":"LocationUri"},
         "Ec2Config":{"shape":"Ec2Config"},
         "CreationTime":{"shape":"Time"}
+      }
+    },
+    "DescribeLocationFsxWindowsRequest":{
+      "type":"structure",
+      "required":["LocationArn"],
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
+      }
+    },
+    "DescribeLocationFsxWindowsResponse":{
+      "type":"structure",
+      "members":{
+        "LocationArn":{"shape":"LocationArn"},
+        "LocationUri":{"shape":"LocationUri"},
+        "SecurityGroupArns":{"shape":"Ec2SecurityGroupArnList"},
+        "CreationTime":{"shape":"Time"},
+        "User":{"shape":"SmbUser"},
+        "Domain":{"shape":"SmbDomain"}
       }
     },
     "DescribeLocationNfsRequest":{
@@ -767,6 +835,11 @@
       "max":128,
       "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):elasticfilesystem:[a-z\\-0-9]*:[0-9]{12}:file-system/fs-.*$"
     },
+    "EfsSubdirectory":{
+      "type":"string",
+      "max":4096,
+      "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\p{Zs}]*$"
+    },
     "Endpoint":{
       "type":"string",
       "max":15,
@@ -804,6 +877,16 @@
       "type":"string",
       "max":409600,
       "pattern":"^[^\\x00]+$"
+    },
+    "FsxFilesystemArn":{
+      "type":"string",
+      "max":128,
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):fsx:[a-z\\-0-9]*:[0-9]{12}:file-system/fs-.*$"
+    },
+    "FsxWindowsSubdirectory":{
+      "type":"string",
+      "max":4096,
+      "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\$\\p{Zs}]+$"
     },
     "Gid":{
       "type":"string",
@@ -927,13 +1010,21 @@
     },
     "LocationUri":{
       "type":"string",
-      "max":4355,
-      "pattern":"^(efs|nfs|s3|smb)://[a-zA-Z0-9.\\-]+$"
+      "max":4356,
+      "pattern":"^(efs|nfs|s3|smb|fsxw)://[a-zA-Z0-9.\\-]+$"
     },
     "LogGroupArn":{
       "type":"string",
       "max":562,
       "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):logs:[a-z\\-0-9]*:[0-9]{12}:log-group:([^:\\*]*)$"
+    },
+    "LogLevel":{
+      "type":"string",
+      "enum":[
+        "OFF",
+        "BASIC",
+        "TRANSFER"
+      ]
     },
     "MaxResults":{
       "type":"integer",
@@ -963,6 +1054,11 @@
         "Version":{"shape":"NfsVersion"}
       }
     },
+    "NfsSubdirectory":{
+      "type":"string",
+      "max":4096,
+      "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\p{Zs}]+$"
+    },
     "NfsVersion":{
       "type":"string",
       "enum":[
@@ -971,11 +1067,6 @@
         "NFS4_0",
         "NFS4_1"
       ]
-    },
-    "NonEmptySubdirectory":{
-      "type":"string",
-      "max":4096,
-      "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\p{Zs}]+$"
     },
     "OnPremConfig":{
       "type":"structure",
@@ -997,7 +1088,8 @@
         "PreserveDevices":{"shape":"PreserveDevices"},
         "PosixPermissions":{"shape":"PosixPermissions"},
         "BytesPerSecond":{"shape":"BytesPerSecond"},
-        "TaskQueueing":{"shape":"TaskQueueing"}
+        "TaskQueueing":{"shape":"TaskQueueing"},
+        "LogLevel":{"shape":"LogLevel"}
       }
     },
     "OverwriteMode":{
@@ -1080,6 +1172,11 @@
         "DEEP_ARCHIVE"
       ]
     },
+    "S3Subdirectory":{
+      "type":"string",
+      "max":4096,
+      "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\p{Zs}]*$"
+    },
     "ScheduleExpressionCron":{
       "type":"string",
       "max":256,
@@ -1106,6 +1203,11 @@
       "max":104,
       "pattern":"^.{0,104}$",
       "sensitive":true
+    },
+    "SmbSubdirectory":{
+      "type":"string",
+      "max":4096,
+      "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\$\\p{Zs}]+$"
     },
     "SmbUser":{
       "type":"string",
@@ -1138,11 +1240,6 @@
       "members":{
         "TaskExecutionArn":{"shape":"TaskExecutionArn"}
       }
-    },
-    "Subdirectory":{
-      "type":"string",
-      "max":4096,
-      "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\p{Zs}]*$"
     },
     "TagKey":{
       "type":"string",
@@ -1190,7 +1287,7 @@
       "type":"string",
       "max":256,
       "min":1,
-      "pattern":"^[a-zA-Z0-9\\s+=._:/-]+$"
+      "pattern":"^[a-zA-Z0-9\\s+=._:@/-]+$"
     },
     "TaggableResourceArn":{
       "type":"string",
