@@ -72,6 +72,10 @@ type DataSyncAPI interface {
 	CreateLocationEfsWithContext(aws.Context, *datasync.CreateLocationEfsInput, ...request.Option) (*datasync.CreateLocationEfsOutput, error)
 	CreateLocationEfsRequest(*datasync.CreateLocationEfsInput) (*request.Request, *datasync.CreateLocationEfsOutput)
 
+	CreateLocationFsxWindows(*datasync.CreateLocationFsxWindowsInput) (*datasync.CreateLocationFsxWindowsOutput, error)
+	CreateLocationFsxWindowsWithContext(aws.Context, *datasync.CreateLocationFsxWindowsInput, ...request.Option) (*datasync.CreateLocationFsxWindowsOutput, error)
+	CreateLocationFsxWindowsRequest(*datasync.CreateLocationFsxWindowsInput) (*request.Request, *datasync.CreateLocationFsxWindowsOutput)
+
 	CreateLocationNfs(*datasync.CreateLocationNfsInput) (*datasync.CreateLocationNfsOutput, error)
 	CreateLocationNfsWithContext(aws.Context, *datasync.CreateLocationNfsInput, ...request.Option) (*datasync.CreateLocationNfsOutput, error)
 	CreateLocationNfsRequest(*datasync.CreateLocationNfsInput) (*request.Request, *datasync.CreateLocationNfsOutput)
@@ -107,6 +111,10 @@ type DataSyncAPI interface {
 	DescribeLocationEfs(*datasync.DescribeLocationEfsInput) (*datasync.DescribeLocationEfsOutput, error)
 	DescribeLocationEfsWithContext(aws.Context, *datasync.DescribeLocationEfsInput, ...request.Option) (*datasync.DescribeLocationEfsOutput, error)
 	DescribeLocationEfsRequest(*datasync.DescribeLocationEfsInput) (*request.Request, *datasync.DescribeLocationEfsOutput)
+
+	DescribeLocationFsxWindows(*datasync.DescribeLocationFsxWindowsInput) (*datasync.DescribeLocationFsxWindowsOutput, error)
+	DescribeLocationFsxWindowsWithContext(aws.Context, *datasync.DescribeLocationFsxWindowsInput, ...request.Option) (*datasync.DescribeLocationFsxWindowsOutput, error)
+	DescribeLocationFsxWindowsRequest(*datasync.DescribeLocationFsxWindowsInput) (*request.Request, *datasync.DescribeLocationFsxWindowsOutput)
 
 	DescribeLocationNfs(*datasync.DescribeLocationNfsInput) (*datasync.DescribeLocationNfsOutput, error)
 	DescribeLocationNfsWithContext(aws.Context, *datasync.DescribeLocationNfsInput, ...request.Option) (*datasync.DescribeLocationNfsOutput, error)

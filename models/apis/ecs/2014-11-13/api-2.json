@@ -1283,7 +1283,8 @@
         "capacityProviderStrategy":{"shape":"CapacityProviderStrategy"},
         "platformVersion":{"shape":"String"},
         "scale":{"shape":"Scale"},
-        "clientToken":{"shape":"String"}
+        "clientToken":{"shape":"String"},
+        "tags":{"shape":"Tags"}
       }
     },
     "CreateTaskSetResponse":{
@@ -1526,7 +1527,8 @@
       "members":{
         "cluster":{"shape":"String"},
         "service":{"shape":"String"},
-        "taskSets":{"shape":"StringList"}
+        "taskSets":{"shape":"StringList"},
+        "include":{"shape":"TaskSetFieldList"}
       }
     },
     "DescribeTaskSetsResponse":{
@@ -2877,8 +2879,17 @@
         "serviceRegistries":{"shape":"ServiceRegistries"},
         "scale":{"shape":"Scale"},
         "stabilityStatus":{"shape":"StabilityStatus"},
-        "stabilityStatusAt":{"shape":"Timestamp"}
+        "stabilityStatusAt":{"shape":"Timestamp"},
+        "tags":{"shape":"Tags"}
       }
+    },
+    "TaskSetField":{
+      "type":"string",
+      "enum":["TAGS"]
+    },
+    "TaskSetFieldList":{
+      "type":"list",
+      "member":{"shape":"TaskSetField"}
     },
     "TaskSetNotFoundException":{
       "type":"structure",
