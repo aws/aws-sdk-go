@@ -16,7 +16,7 @@ import (
 	"github.com/aws/aws-sdk-go/awstesting/unit"
 )
 
-func TestEndpointARN(t *testing.T) {
+func TestEndpoint(t *testing.T) {
 	cases := map[string]struct {
 		bucket                string
 		config                *aws.Config
@@ -193,6 +193,65 @@ func TestEndpointARN(t *testing.T) {
 			},
 			expectedErr: "client partition does not match provided ARN partition",
 		},
+		"bucket host-style": {
+			bucket:                "mock-bucket",
+			config:                &aws.Config{Region: aws.String("us-west-2")},
+			expectedEndpoint:      "https://mock-bucket.s3.us-west-2.amazonaws.com",
+			expectedSigningName:   "s3",
+			expectedSigningRegion: "us-west-2",
+		},
+		"bucket path-style": {
+			bucket: "mock-bucket",
+			config: &aws.Config{
+				Region:           aws.String("us-west-2"),
+				S3ForcePathStyle: aws.Bool(true),
+			},
+			expectedEndpoint:      "https://s3.us-west-2.amazonaws.com",
+			expectedSigningName:   "s3",
+			expectedSigningRegion: "us-west-2",
+		},
+		"bucket host-style endpoint with default port": {
+			bucket: "mock-bucket",
+			config: &aws.Config{
+				Region:   aws.String("us-west-2"),
+				Endpoint: aws.String("https://s3.us-west-2.amazonaws.com:443"),
+			},
+			expectedEndpoint:      "https://mock-bucket.s3.us-west-2.amazonaws.com:443",
+			expectedSigningName:   "s3",
+			expectedSigningRegion: "us-west-2",
+		},
+		"bucket host-style endpoint with non-default port": {
+			bucket: "mock-bucket",
+			config: &aws.Config{
+				Region:   aws.String("us-west-2"),
+				Endpoint: aws.String("https://s3.us-west-2.amazonaws.com:8443"),
+			},
+			expectedEndpoint:      "https://mock-bucket.s3.us-west-2.amazonaws.com:8443",
+			expectedSigningName:   "s3",
+			expectedSigningRegion: "us-west-2",
+		},
+		"bucket path-style endpoint with default port": {
+			bucket: "mock-bucket",
+			config: &aws.Config{
+				Region:           aws.String("us-west-2"),
+				Endpoint:         aws.String("https://s3.us-west-2.amazonaws.com:443"),
+				S3ForcePathStyle: aws.Bool(true),
+			},
+			expectedEndpoint:      "https://s3.us-west-2.amazonaws.com:443",
+			expectedSigningName:   "s3",
+			expectedSigningRegion: "us-west-2",
+		},
+		"bucket path-style endpoint with non-default port": {
+			bucket: "mock-bucket",
+			config: &aws.Config{
+				Region:           aws.String("us-west-2"),
+				Endpoint:         aws.String("https://s3.us-west-2.amazonaws.com:8443"),
+				S3ForcePathStyle: aws.Bool(true),
+			},
+			expectedEndpoint:      "https://s3.us-west-2.amazonaws.com:8443",
+			expectedSigningName:   "s3",
+			expectedSigningRegion: "us-west-2",
+		},
 	}
 
 	for name, c := range cases {
@@ -221,7 +280,8 @@ func TestEndpointARN(t *testing.T) {
 				if e, a := c.expectedEndpoint, endpoint; e != a {
 					t.Errorf("expected %v, got %v", e, a)
 				}
-				if e, a := c.expectedSigningName, r.ClientInfo.SigningName; e != a {
+
+				if e, a := c.expectedSigningName, r.ClientInfo.SigningName; c.config.Endpoint == nil && e != a {
 					t.Errorf("expected %v, got %v", e, a)
 				}
 				if e, a := c.expectedSigningRegion, r.ClientInfo.SigningRegion; e != a {
