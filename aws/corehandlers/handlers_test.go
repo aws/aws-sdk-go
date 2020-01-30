@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
+	"net/url"
 	"strings"
 	"testing"
 	"time"
@@ -290,6 +291,8 @@ func TestValidateReqSigHandler(t *testing.T) {
 	}
 
 	for i, c := range cases {
+		c.Req.HTTPRequest = &http.Request{URL: &url.URL{}}
+
 		resigned := false
 		c.Req.Handlers.Sign.PushBack(func(r *request.Request) {
 			resigned = true

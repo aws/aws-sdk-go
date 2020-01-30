@@ -20,11 +20,8 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/aws/aws-sdk-go/aws/client"
-	"github.com/aws/aws-sdk-go/aws/client/metadata"
 	"github.com/aws/aws-sdk-go/aws/corehandlers"
 	"github.com/aws/aws-sdk-go/aws/credentials"
-	"github.com/aws/aws-sdk-go/aws/defaults"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/awstesting"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
@@ -938,25 +935,6 @@ func TestRequest_Presign(t *testing.T) {
 	}
 }
 
-func TestNew_EndpointWithDefaultPort(t *testing.T) {
-	endpoint := "https://estest.us-east-1.es.amazonaws.com:443"
-	expectedRequestHost := "estest.us-east-1.es.amazonaws.com"
-
-	r := request.New(
-		aws.Config{},
-		metadata.ClientInfo{Endpoint: endpoint},
-		defaults.Handlers(),
-		client.DefaultRetryer{},
-		&request.Operation{},
-		nil,
-		nil,
-	)
-
-	if h := r.HTTPRequest.Host; h != expectedRequestHost {
-		t.Errorf("expect %v host, got %q", expectedRequestHost, h)
-	}
-}
-
 func TestSanitizeHostForHeader(t *testing.T) {
 	cases := []struct {
 		url                 string
@@ -1148,6 +1126,132 @@ func TestRequestBodySeekFails(t *testing.T) {
 		t.Errorf("expect %v error code, got %v", e, a)
 	}
 
+}
+
+func TestRequestEndpointWithDefaultPort(t *testing.T) {
+	s := awstesting.NewClient(&aws.Config{
+		Endpoint: aws.String("https://example.test:443"),
+	})
+	r := s.NewRequest(&request.Operation{
+		Name:       "FooBar",
+		HTTPMethod: "GET",
+		HTTPPath:   "/",
+	}, nil, nil)
+	r.Handlers.Validate.Clear()
+	r.Handlers.ValidateResponse.Clear()
+	r.Handlers.Send.Clear()
+	r.Handlers.Send.PushFront(func(r *request.Request) {
+		req := r.HTTPRequest
+
+		if e, a := "example.test", req.Host; e != a {
+			t.Errorf("expected %v, got %v", e, a)
+		}
+
+		if e, a := "https://example.test:443/", req.URL.String(); e != a {
+			t.Errorf("expected %v, got %v", e, a)
+		}
+	})
+	err := r.Send()
+	if err != nil {
+		t.Fatalf("expected no error, got %v", err)
+	}
+}
+
+func TestRequestEndpointWithNonDefaultPort(t *testing.T) {
+	s := awstesting.NewClient(&aws.Config{
+		Endpoint: aws.String("https://example.test:8443"),
+	})
+	r := s.NewRequest(&request.Operation{
+		Name:       "FooBar",
+		HTTPMethod: "GET",
+		HTTPPath:   "/",
+	}, nil, nil)
+	r.Handlers.Validate.Clear()
+	r.Handlers.ValidateResponse.Clear()
+	r.Handlers.Send.Clear()
+	r.Handlers.Send.PushFront(func(r *request.Request) {
+		req := r.HTTPRequest
+
+		// http.Request.Host should not be set for non-default ports
+		if e, a := "", req.Host; e != a {
+			t.Errorf("expected %v, got %v", e, a)
+		}
+
+		if e, a := "https://example.test:8443/", req.URL.String(); e != a {
+			t.Errorf("expected %v, got %v", e, a)
+		}
+	})
+	err := r.Send()
+	if err != nil {
+		t.Fatalf("expected no error, got %v", err)
+	}
+}
+
+func TestRequestMarshaledEndpointWithDefaultPort(t *testing.T) {
+	s := awstesting.NewClient(&aws.Config{
+		Endpoint: aws.String("https://example.test:443"),
+	})
+	r := s.NewRequest(&request.Operation{
+		Name:       "FooBar",
+		HTTPMethod: "GET",
+		HTTPPath:   "/",
+	}, nil, nil)
+	r.Handlers.Validate.Clear()
+	r.Handlers.ValidateResponse.Clear()
+	r.Handlers.Build.PushBack(func(r *request.Request) {
+		req := r.HTTPRequest
+		req.URL.Host = "foo." + req.URL.Host
+	})
+	r.Handlers.Send.Clear()
+	r.Handlers.Send.PushFront(func(r *request.Request) {
+		req := r.HTTPRequest
+
+		if e, a := "foo.example.test", req.Host; e != a {
+			t.Errorf("expected %v, got %v", e, a)
+		}
+
+		if e, a := "https://foo.example.test:443/", req.URL.String(); e != a {
+			t.Errorf("expected %v, got %v", e, a)
+		}
+	})
+	err := r.Send()
+	if err != nil {
+		t.Fatalf("expected no error, got %v", err)
+	}
+}
+
+func TestRequestMarshaledEndpointWithNonDefaultPort(t *testing.T) {
+	s := awstesting.NewClient(&aws.Config{
+		Endpoint: aws.String("https://example.test:8443"),
+	})
+	r := s.NewRequest(&request.Operation{
+		Name:       "FooBar",
+		HTTPMethod: "GET",
+		HTTPPath:   "/",
+	}, nil, nil)
+	r.Handlers.Validate.Clear()
+	r.Handlers.ValidateResponse.Clear()
+	r.Handlers.Build.PushBack(func(r *request.Request) {
+		req := r.HTTPRequest
+		req.URL.Host = "foo." + req.URL.Host
+	})
+	r.Handlers.Send.Clear()
+	r.Handlers.Send.PushFront(func(r *request.Request) {
+		req := r.HTTPRequest
+
+		// http.Request.Host should not be set for non-default ports
+		if e, a := "", req.Host; e != a {
+			t.Errorf("expected %v, got %v", e, a)
+		}
+
+		if e, a := "https://foo.example.test:8443/", req.URL.String(); e != a {
+			t.Errorf("expected %v, got %v", e, a)
+		}
+	})
+	err := r.Send()
+	if err != nil {
+		t.Fatalf("expected no error, got %v", err)
+	}
 }
 
 type stubSeekFail struct {
