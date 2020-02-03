@@ -106,6 +106,7 @@ func getRetryDelay(r *request.Request) (time.Duration, bool) {
 // the status code.
 func canUseRetryAfterHeader(r *request.Request) bool {
 	switch r.HTTPResponse.StatusCode {
+	case 400:
 	case 429:
 	case 503:
 	default:

@@ -92,6 +92,12 @@ func TestCanUseRetryAfter(t *testing.T) {
 		},
 		{
 			request.Request{
+				HTTPResponse: &http.Response{StatusCode: 400},
+			},
+			true,
+		},
+		{
+			request.Request{
 				HTTPResponse: &http.Response{StatusCode: 429},
 			},
 			true,
