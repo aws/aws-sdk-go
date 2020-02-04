@@ -185,6 +185,10 @@ type WorkMailAPI interface {
 	ListResourcesPages(*workmail.ListResourcesInput, func(*workmail.ListResourcesOutput, bool) bool) error
 	ListResourcesPagesWithContext(aws.Context, *workmail.ListResourcesInput, func(*workmail.ListResourcesOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*workmail.ListTagsForResourceInput) (*workmail.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *workmail.ListTagsForResourceInput, ...request.Option) (*workmail.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*workmail.ListTagsForResourceInput) (*request.Request, *workmail.ListTagsForResourceOutput)
+
 	ListUsers(*workmail.ListUsersInput) (*workmail.ListUsersOutput, error)
 	ListUsersWithContext(aws.Context, *workmail.ListUsersInput, ...request.Option) (*workmail.ListUsersOutput, error)
 	ListUsersRequest(*workmail.ListUsersInput) (*request.Request, *workmail.ListUsersOutput)
@@ -203,6 +207,14 @@ type WorkMailAPI interface {
 	ResetPassword(*workmail.ResetPasswordInput) (*workmail.ResetPasswordOutput, error)
 	ResetPasswordWithContext(aws.Context, *workmail.ResetPasswordInput, ...request.Option) (*workmail.ResetPasswordOutput, error)
 	ResetPasswordRequest(*workmail.ResetPasswordInput) (*request.Request, *workmail.ResetPasswordOutput)
+
+	TagResource(*workmail.TagResourceInput) (*workmail.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *workmail.TagResourceInput, ...request.Option) (*workmail.TagResourceOutput, error)
+	TagResourceRequest(*workmail.TagResourceInput) (*request.Request, *workmail.TagResourceOutput)
+
+	UntagResource(*workmail.UntagResourceInput) (*workmail.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *workmail.UntagResourceInput, ...request.Option) (*workmail.UntagResourceOutput, error)
+	UntagResourceRequest(*workmail.UntagResourceInput) (*request.Request, *workmail.UntagResourceOutput)
 
 	UpdateMailboxQuota(*workmail.UpdateMailboxQuotaInput) (*workmail.UpdateMailboxQuotaOutput, error)
 	UpdateMailboxQuotaWithContext(aws.Context, *workmail.UpdateMailboxQuotaInput, ...request.Option) (*workmail.UpdateMailboxQuotaOutput, error)

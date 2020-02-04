@@ -1,3 +1,29 @@
+Release v1.28.10 (2020-02-04)
+===
+
+### Service Client Updates
+* `service/cloudfront`: Updates service documentation
+  * Documentation updates for CloudFront
+* `service/ec2`: Updates service API and documentation
+  * Amazon VPC Flow Logs adds support for 1-minute aggregation intervals.
+* `service/iot`: Updates service API
+  * Updated ThrottlingException documentation to report that the error code is 400, and not 429, to reflect actual system behaviour.
+* `service/kafka`: Updates service API, documentation, and paginators
+* `service/ssm`: Updates service API and documentation
+  * This feature ensures that an instance is patched up to the available patches on a particular date. It can be enabled by selecting the 'ApproveUntilDate' option as the auto-approval rule while creating the patch baseline. ApproveUntilDate - The cutoff date for auto approval of released patches. Any patches released on or before this date will be installed automatically.
+* `service/storagegateway`: Updates service API
+  * Adding KVM as a support hypervisor
+* `service/workmail`: Updates service API and documentation
+  * This release adds support for tagging Amazon WorkMail organizations.
+
+### SDK Enhancements
+* `aws/request`: Add support for EC2 specific throttle exception code
+  * Adds support for the EC2ThrottledException throttling exception code. The SDK will now treat this error code as throttling.
+
+### SDK Bugs
+* `aws/request`: Fixes an issue where the HTTP host header did not reflect changes to the endpoint URL ([#3102](https://github.com/aws/aws-sdk-go/pull/3102))
+  * Fixes [#3093](https://github.com/aws/aws-sdk-go/issues/3093)
+
 Release v1.28.9 (2020-01-24)
 ===
 

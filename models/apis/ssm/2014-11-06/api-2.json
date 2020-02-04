@@ -7507,15 +7507,16 @@
     },
     "PatchRule":{
       "type":"structure",
-      "required":[
-        "PatchFilterGroup",
-        "ApproveAfterDays"
-      ],
+      "required":["PatchFilterGroup"],
       "members":{
         "PatchFilterGroup":{"shape":"PatchFilterGroup"},
         "ComplianceLevel":{"shape":"PatchComplianceLevel"},
         "ApproveAfterDays":{
           "shape":"ApproveAfterDays",
+          "box":true
+        },
+        "ApproveUntilDate":{
+          "shape":"PatchStringDate",
           "box":true
         },
         "EnableNonSecurity":{
@@ -7592,6 +7593,12 @@
         "ComplianceLevel":{"shape":"PatchComplianceLevel"},
         "ApprovalDate":{"shape":"DateTime"}
       }
+    },
+    "PatchStringDate":{
+      "type":"string",
+      "max":10,
+      "min":1,
+      "pattern":"^(\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))$"
     },
     "PatchTitle":{"type":"string"},
     "PatchUnreportedNotApplicableCount":{"type":"integer"},

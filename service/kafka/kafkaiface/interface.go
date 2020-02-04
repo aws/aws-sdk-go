@@ -120,6 +120,13 @@ type KafkaAPI interface {
 	ListConfigurationsPages(*kafka.ListConfigurationsInput, func(*kafka.ListConfigurationsOutput, bool) bool) error
 	ListConfigurationsPagesWithContext(aws.Context, *kafka.ListConfigurationsInput, func(*kafka.ListConfigurationsOutput, bool) bool, ...request.Option) error
 
+	ListKafkaVersions(*kafka.ListKafkaVersionsInput) (*kafka.ListKafkaVersionsOutput, error)
+	ListKafkaVersionsWithContext(aws.Context, *kafka.ListKafkaVersionsInput, ...request.Option) (*kafka.ListKafkaVersionsOutput, error)
+	ListKafkaVersionsRequest(*kafka.ListKafkaVersionsInput) (*request.Request, *kafka.ListKafkaVersionsOutput)
+
+	ListKafkaVersionsPages(*kafka.ListKafkaVersionsInput, func(*kafka.ListKafkaVersionsOutput, bool) bool) error
+	ListKafkaVersionsPagesWithContext(aws.Context, *kafka.ListKafkaVersionsInput, func(*kafka.ListKafkaVersionsOutput, bool) bool, ...request.Option) error
+
 	ListNodes(*kafka.ListNodesInput) (*kafka.ListNodesOutput, error)
 	ListNodesWithContext(aws.Context, *kafka.ListNodesInput, ...request.Option) (*kafka.ListNodesOutput, error)
 	ListNodesRequest(*kafka.ListNodesInput) (*request.Request, *kafka.ListNodesOutput)
