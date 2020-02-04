@@ -14,6 +14,7 @@
     "ListClusters" : "<p>Returns a list of all the MSK clusters in the current Region.</p>",
     "ListConfigurationRevisions" : "<p>Returns a list of all the revisions of an MSK configuration.</p>",
     "ListConfigurations" : "<p>Returns a list of all the MSK configurations in this Region.</p>",
+    "ListKafkaVersions" : "<p>Returns a list of Kafka versions.</p>",
     "ListNodes" : "<p>Returns a list of the broker nodes in the cluster.</p>",
     "ListTagsForResource" : "<p>Returns a list of the tags associated with the specified resource.</p>",
     "TagResource" : "<p>Adds tags to the specified MSK resource.</p>",
@@ -226,6 +227,18 @@
         "PrometheusInfo$JmxExporter" : "<p>JMX Exporter settings.</p>"
       }
     },
+    "KafkaVersion" : {
+      "base" : "<p>Information about a Kafka version.</p>",
+      "refs" : {
+        "__listOfKafkaVersion$member" : null
+      }
+    },
+    "KafkaVersionStatus" : {
+      "base" : "<p>The status of a Kafka version.</p>",
+      "refs" : {
+        "KafkaVersion$Status" : null
+      }
+    },
     "ListClusterOperationsResponse" : {
       "base" : "<p>The response contains an array containing cluster operation information and a next token if the response is truncated.</p>",
       "refs" : { }
@@ -240,6 +253,10 @@
     },
     "ListConfigurationsResponse" : {
       "base" : "<p>The response contains an array of Configuration and a next token if the response is truncated.</p>",
+      "refs" : { }
+    },
+    "ListKafkaVersionsResponse" : {
+      "base" : "<p>Response for ListKafkaVersions.</p>",
       "refs" : { }
     },
     "ListNodesResponse" : {
@@ -314,6 +331,12 @@
     "ServiceUnavailableException" : {
       "base" : "<p>Returns information about an error.</p>",
       "refs" : { }
+    },
+    "StateInfo" : {
+      "base" : "<p>Contains information about the state of the Amazon MSK cluster.</p>",
+      "refs" : {
+        "ClusterInfo$StateInfo" : "<p>Contains information about the state of the Amazon MSK cluster.</p>"
+      }
     },
     "StorageInfo" : {
       "base" : "<p>Contains information about storage volumes attached to MSK broker nodes.</p>",
@@ -447,6 +470,12 @@
         "ListConfigurationRevisionsResponse$Revisions" : "<p>List of ConfigurationRevision objects.</p>"
       }
     },
+    "__listOfKafkaVersion" : {
+      "base" : null,
+      "refs" : {
+        "ListKafkaVersionsResponse$KafkaVersions" : "<p>An array of Kafka version objects.</p>"
+      }
+    },
     "__listOfNodeInfo" : {
       "base" : null,
       "refs" : {
@@ -527,14 +556,18 @@
         "ErrorInfo$ErrorString" : "<p>An optional field to provide more details about the error.</p>",
         "GetBootstrapBrokersResponse$BootstrapBrokerString" : "<p>A string containing one or more hostname:port pairs.</p>",
         "GetBootstrapBrokersResponse$BootstrapBrokerStringTls" : "<p>A string containing one or more DNS names (or IP) and TLS port pairs. The following is an example.</p> <programlisting>{\n    \"BootstrapBrokerStringTls\": \"b-3.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9094,b-1.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9094,b-2.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9094\"\n}</programlisting>",
+        "KafkaVersion$Version" : "<p>The Kafka version.</p>",
         "ListClusterOperationsResponse$NextToken" : "<p>If the response of ListClusterOperations is truncated, it returns a NextToken in the response. This Nexttoken should be sent in the subsequent request to ListClusterOperations.</p>",
         "ListClustersResponse$NextToken" : "<p>The paginated results marker. When the result of a ListClusters operation is truncated, the call returns NextToken in the response. To get another batch of clusters, provide this token in your next request.</p>",
         "ListConfigurationRevisionsResponse$NextToken" : "<p>Paginated results marker.</p>",
         "ListConfigurationsResponse$NextToken" : "<p>The paginated results marker. When the result of a ListConfigurations operation is truncated, the call returns NextToken in the response. To get another batch of configurations, provide this token in your next request.</p>",
+        "ListKafkaVersionsResponse$NextToken" : "<p>Paginated results marker.</p>",
         "ListNodesResponse$NextToken" : "<p>The paginated results marker. When the result of a ListNodes operation is truncated, the call returns NextToken in the response. To get another batch of nodes, provide this token in your next request.</p>",
         "NodeInfo$AddedToClusterTime" : "<p>The start time.</p>",
         "NodeInfo$InstanceType" : "<p>The instance type.</p>",
         "NodeInfo$NodeARN" : "<p>The Amazon Resource Name (ARN) of the node.</p>",
+        "StateInfo$Code" : "<p>If the cluster is in an unusable state, this field contains the code that describes the issue.</p>",
+        "StateInfo$Message" : "<p>If the cluster is in an unusable state, this field contains a message that describes the issue.</p>",
         "UpdateBrokerCountRequest$CurrentVersion" : "<p>The current version of the cluster.</p>",
         "UpdateBrokerCountResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "UpdateBrokerCountResponse$ClusterOperationArn" : "<p>The Amazon Resource Name (ARN) of the cluster operation.</p>",

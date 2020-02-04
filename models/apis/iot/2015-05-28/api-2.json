@@ -10353,7 +10353,7 @@
       "members":{
         "message":{"shape":"errorMessage"}
       },
-      "error":{"httpStatusCode":429},
+      "error":{"httpStatusCode":400},
       "exception":true
     },
     "TimedOutThings":{"type":"integer"},

@@ -28,10 +28,13 @@
     "ListOrganizations": "<p>Returns summaries of the customer's non-deleted organizations.</p>",
     "ListResourceDelegates": "<p>Lists the delegates associated with a resource. Users and groups can be resource delegates and answer requests on behalf of the resource.</p>",
     "ListResources": "<p>Returns summaries of the organization's resources.</p>",
+    "ListTagsForResource": "<p>Lists the tags applied to an Amazon WorkMail organization resource.</p>",
     "ListUsers": "<p>Returns summaries of the organization's users.</p>",
     "PutMailboxPermissions": "<p>Sets permissions for a user, group, or resource. This replaces any pre-existing permissions.</p>",
     "RegisterToWorkMail": "<p>Registers an existing and disabled user, group, or resource for Amazon WorkMail use by associating a mailbox and calendaring capabilities. It performs no change if the user, group, or resource is enabled and fails if the user, group, or resource is deleted. This operation results in the accumulation of costs. For more information, see <a href=\"https://aws.amazon.com//workmail/pricing\">Pricing</a>. The equivalent console functionality for this operation is <i>Enable</i>. </p> <p>Users can either be created by calling the <a>CreateUser</a> API operation or they can be synchronized from your directory. For more information, see <a>DeregisterFromWorkMail</a>.</p>",
     "ResetPassword": "<p>Allows the administrator to reset the password for a user.</p>",
+    "TagResource": "<p>Applies the specified tags to the specified Amazon WorkMail organization resource.</p>",
+    "UntagResource": "<p>Untags the specified tags from the specified Amazon WorkMail organization resource.</p>",
     "UpdateMailboxQuota": "<p>Updates a user's current mailbox quota for a specified organization and user.</p>",
     "UpdatePrimaryEmailAddress": "<p>Updates the primary email for a user, group, or resource. The current email is moved into the list of aliases (or swapped between an existing alias and the current primary email), and the email provided in the input is promoted as the primary.</p>",
     "UpdateResource": "<p>Updates data for the resource. To have the latest information, it must be preceded by a <a>DescribeResource</a> call. The dataset in the request should be the one expected when performing another <code>DescribeResource</code> call.</p>"
@@ -41,6 +44,15 @@
       "base": null,
       "refs": {
         "ListAliasesResponse$Aliases": "<p>The entity's paginated aliases.</p>"
+      }
+    },
+    "AmazonResourceName": {
+      "base": null,
+      "refs": {
+        "DescribeOrganizationResponse$ARN": "<p>The Amazon Resource Name (ARN) of the organization.</p>",
+        "ListTagsForResourceRequest$ResourceARN": "<p>The resource ARN.</p>",
+        "TagResourceRequest$ResourceARN": "<p>The resource ARN.</p>",
+        "UntagResourceRequest$ResourceARN": "<p>The resource ARN.</p>"
       }
     },
     "AssociateDelegateToResourceRequest": {
@@ -289,7 +301,7 @@
       "base": null,
       "refs": {
         "DescribeGroupResponse$State": "<p>The state of the user: enabled (registered to Amazon WorkMail) or disabled (deregistered or never registered to WorkMail).</p>",
-        "DescribeResourceResponse$State": "<p>The state of the resource: enabled (registered to Amazon WorkMail) or disabled (deregistered or never registered to WorkMail).</p>",
+        "DescribeResourceResponse$State": "<p>The state of the resource: enabled (registered to Amazon WorkMail), disabled (deregistered or never registered to WorkMail), or deleted.</p>",
         "DescribeUserResponse$State": "<p>The state of a user: enabled (registered to Amazon WorkMail) or disabled (deregistered or never registered to WorkMail).</p>",
         "Group$State": "<p>The state of the group, which can be ENABLED, DISABLED, or DELETED.</p>",
         "Member$State": "<p>The state of the member, which can be ENABLED, DISABLED, or DELETED.</p>",
@@ -344,6 +356,11 @@
     },
     "InvalidPasswordException": {
       "base": "<p>The supplied password doesn't match the minimum security constraints, such as length or use of special characters.</p>",
+      "refs": {
+      }
+    },
+    "LimitExceededException": {
+      "base": "<p>The request exceeds the limit of the resource.</p>",
       "refs": {
       }
     },
@@ -413,6 +430,16 @@
       }
     },
     "ListResourcesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
       "base": null,
       "refs": {
       }
@@ -677,6 +704,11 @@
         "UpdateResourceRequest$Name": "<p>The name of the resource to be updated.</p>"
       }
     },
+    "ResourceNotFoundException": {
+      "base": "<p>The resource cannot be found.</p>",
+      "refs": {
+      }
+    },
     "ResourceType": {
       "base": null,
       "refs": {
@@ -711,6 +743,7 @@
         "InvalidConfigurationException$Message": null,
         "InvalidParameterException$Message": null,
         "InvalidPasswordException$Message": null,
+        "LimitExceededException$Message": null,
         "MailDomainNotFoundException$Message": null,
         "MailDomainStateException$Message": null,
         "Member$Id": "<p>The identifier of the member.</p>",
@@ -721,8 +754,52 @@
         "OrganizationSummary$ErrorMessage": "<p>The error message associated with the organization. It is only present if unexpected behavior has occurred with regards to the organization. It provides insight or solutions regarding unexpected behavior.</p>",
         "OrganizationSummary$State": "<p>The state associated with the organization.</p>",
         "ReservedNameException$Message": null,
+        "ResourceNotFoundException$Message": null,
+        "TooManyTagsException$Message": null,
         "UnsupportedOperationException$Message": null,
         "User$DisplayName": "<p>The display name of the user.</p>"
+      }
+    },
+    "Tag": {
+      "base": "<p>Describes a tag applied to a resource.</p>",
+      "refs": {
+        "TagList$member": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "Tag$Key": "<p>The key of the tag.</p>",
+        "TagKeyList$member": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$TagKeys": "<p>The tag keys.</p>"
+      }
+    },
+    "TagList": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceResponse$Tags": "<p>A list of tag key-value pairs.</p>",
+        "TagResourceRequest$Tags": "<p>The tag key-value pairs.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "Tag$Value": "<p>The value of the tag.</p>"
       }
     },
     "Timestamp": {
@@ -745,8 +822,23 @@
         "User$DisabledDate": "<p>The date indicating when the user was disabled from Amazon WorkMail use.</p>"
       }
     },
+    "TooManyTagsException": {
+      "base": "<p>The resource can have up to 50 user-applied tags.</p>",
+      "refs": {
+      }
+    },
     "UnsupportedOperationException": {
       "base": "<p>You can't perform a write operation against a read-only directory.</p>",
+      "refs": {
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
       "refs": {
       }
     },

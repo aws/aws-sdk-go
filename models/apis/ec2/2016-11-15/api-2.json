@@ -6603,7 +6603,8 @@
         "TrafficType":{"shape":"TrafficType"},
         "LogDestinationType":{"shape":"LogDestinationType"},
         "LogDestination":{"shape":"String"},
-        "LogFormat":{"shape":"String"}
+        "LogFormat":{"shape":"String"},
+        "MaxAggregationInterval":{"shape":"Integer"}
       }
     },
     "CreateFlowLogsResult":{
@@ -14580,6 +14581,10 @@
         "LogFormat":{
           "shape":"String",
           "locationName":"logFormat"
+        },
+        "MaxAggregationInterval":{
+          "shape":"Integer",
+          "locationName":"maxAggregationInterval"
         }
       }
     },
