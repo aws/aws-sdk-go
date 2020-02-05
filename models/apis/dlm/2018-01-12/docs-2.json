@@ -120,7 +120,7 @@
     "ExcludeBootVolume": {
       "base": null,
       "refs": {
-        "Parameters$ExcludeBootVolume": "<p>When executing an EBS Snapshot Management – Instance policy, execute all CreateSnapshots calls with the <code>excludeBootVolume</code> set to the supplied field. Defaults to false. Only valid for EBS Snapshot Management – Instance policies.</p>"
+        "Parameters$ExcludeBootVolume": "<p>[EBS Snapshot Management – Instance policies only] Indicates whether to exclude the root volume from snapshots created using <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateSnapshots.html\">CreateSnapshots</a>. The default is false.</p>"
       }
     },
     "ExecutionRoleArn": {
@@ -237,9 +237,9 @@
       }
     },
     "Parameters": {
-      "base": "<p>Optional parameters that can be added to the policy. The set of valid parameters depends on the combination of <code>policyType</code> and <code>resourceType</code> values.</p>",
+      "base": "<p>Specifies optional parameters to add to a policy. The set of valid parameters depends on the combination of policy type and resource type.</p>",
       "refs": {
-        "PolicyDetails$Parameters": "<p>A set of optional parameters that can be provided by the policy. </p>"
+        "PolicyDetails$Parameters": "<p>A set of optional parameters for the policy. </p>"
       }
     },
     "PolicyArn": {
@@ -290,7 +290,7 @@
     "PolicyTypeValues": {
       "base": null,
       "refs": {
-        "PolicyDetails$PolicyType": "<p>This field determines the valid target resource types and actions a policy can manage. This field defaults to EBS_SNAPSHOT_MANAGEMENT if not present.</p>"
+        "PolicyDetails$PolicyType": "<p>The valid target resource types and actions a policy can manage. The default is EBS_SNAPSHOT_MANAGEMENT.</p>"
       }
     },
     "ResourceNotFoundException": {
@@ -326,7 +326,7 @@
       }
     },
     "Schedule": {
-      "base": "<p>Specifies a schedule.</p>",
+      "base": "<p>Specifies a backup schedule.</p>",
       "refs": {
         "ScheduleList$member": null
       }

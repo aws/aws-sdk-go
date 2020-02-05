@@ -52,11 +52,7 @@
         "Value":{"shape":"Double"}
       }
     },
-    "DateTime":{
-      "type":"string",
-      "max":20,
-      "pattern":"^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
-    },
+    "DateTime":{"type":"string"},
     "Double":{"type":"double"},
     "ErrorMessage":{"type":"string"},
     "Filters":{
@@ -145,10 +141,6 @@
       "type":"list",
       "member":{"shape":"DataPoint"}
     },
-    "Timestamp":{
-      "type":"string",
-      "max":20,
-      "pattern":"^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
-    }
+    "Timestamp":{"type":"string"}
   }
 }

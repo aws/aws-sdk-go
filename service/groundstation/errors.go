@@ -20,6 +20,12 @@ const (
 	// One or more parameters are not valid.
 	ErrCodeInvalidParameterException = "InvalidParameterException"
 
+	// ErrCodeResourceLimitExceededException for service response error code
+	// "ResourceLimitExceededException".
+	//
+	// Account limits for this resource have been exceeded.
+	ErrCodeResourceLimitExceededException = "ResourceLimitExceededException"
+
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
@@ -28,7 +34,8 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"DependencyException":       newErrorDependencyException,
-	"InvalidParameterException": newErrorInvalidParameterException,
-	"ResourceNotFoundException": newErrorResourceNotFoundException,
+	"DependencyException":            newErrorDependencyException,
+	"InvalidParameterException":      newErrorInvalidParameterException,
+	"ResourceLimitExceededException": newErrorResourceLimitExceededException,
+	"ResourceNotFoundException":      newErrorResourceNotFoundException,
 }

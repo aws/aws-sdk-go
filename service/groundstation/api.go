@@ -67,11 +67,11 @@ func (c *GroundStation) CancelContactRequest(input *CancelContactInput) (req *re
 // API operation CancelContact for usage and error information.
 //
 // Returned Error Types:
-//   * DependencyException
-//   Dependency encountered an error.
-//
 //   * InvalidParameterException
 //   One or more parameters are not valid.
+//
+//   * DependencyException
+//   Dependency encountered an error.
 //
 //   * ResourceNotFoundException
 //   Resource was not found.
@@ -154,11 +154,14 @@ func (c *GroundStation) CreateConfigRequest(input *CreateConfigInput) (req *requ
 // API operation CreateConfig for usage and error information.
 //
 // Returned Error Types:
+//   * InvalidParameterException
+//   One or more parameters are not valid.
+//
 //   * DependencyException
 //   Dependency encountered an error.
 //
-//   * InvalidParameterException
-//   One or more parameters are not valid.
+//   * ResourceLimitExceededException
+//   Account limits for this resource have been exceeded.
 //
 //   * ResourceNotFoundException
 //   Resource was not found.
@@ -246,11 +249,11 @@ func (c *GroundStation) CreateDataflowEndpointGroupRequest(input *CreateDataflow
 // API operation CreateDataflowEndpointGroup for usage and error information.
 //
 // Returned Error Types:
-//   * DependencyException
-//   Dependency encountered an error.
-//
 //   * InvalidParameterException
 //   One or more parameters are not valid.
+//
+//   * DependencyException
+//   Dependency encountered an error.
 //
 //   * ResourceNotFoundException
 //   Resource was not found.
@@ -334,11 +337,11 @@ func (c *GroundStation) CreateMissionProfileRequest(input *CreateMissionProfileI
 // API operation CreateMissionProfile for usage and error information.
 //
 // Returned Error Types:
-//   * DependencyException
-//   Dependency encountered an error.
-//
 //   * InvalidParameterException
 //   One or more parameters are not valid.
+//
+//   * DependencyException
+//   Dependency encountered an error.
 //
 //   * ResourceNotFoundException
 //   Resource was not found.
@@ -419,11 +422,11 @@ func (c *GroundStation) DeleteConfigRequest(input *DeleteConfigInput) (req *requ
 // API operation DeleteConfig for usage and error information.
 //
 // Returned Error Types:
-//   * DependencyException
-//   Dependency encountered an error.
-//
 //   * InvalidParameterException
 //   One or more parameters are not valid.
+//
+//   * DependencyException
+//   Dependency encountered an error.
 //
 //   * ResourceNotFoundException
 //   Resource was not found.
@@ -504,11 +507,11 @@ func (c *GroundStation) DeleteDataflowEndpointGroupRequest(input *DeleteDataflow
 // API operation DeleteDataflowEndpointGroup for usage and error information.
 //
 // Returned Error Types:
-//   * DependencyException
-//   Dependency encountered an error.
-//
 //   * InvalidParameterException
 //   One or more parameters are not valid.
+//
+//   * DependencyException
+//   Dependency encountered an error.
 //
 //   * ResourceNotFoundException
 //   Resource was not found.
@@ -589,11 +592,11 @@ func (c *GroundStation) DeleteMissionProfileRequest(input *DeleteMissionProfileI
 // API operation DeleteMissionProfile for usage and error information.
 //
 // Returned Error Types:
-//   * DependencyException
-//   Dependency encountered an error.
-//
 //   * InvalidParameterException
 //   One or more parameters are not valid.
+//
+//   * DependencyException
+//   Dependency encountered an error.
 //
 //   * ResourceNotFoundException
 //   Resource was not found.
@@ -674,11 +677,11 @@ func (c *GroundStation) DescribeContactRequest(input *DescribeContactInput) (req
 // API operation DescribeContact for usage and error information.
 //
 // Returned Error Types:
-//   * DependencyException
-//   Dependency encountered an error.
-//
 //   * InvalidParameterException
 //   One or more parameters are not valid.
+//
+//   * DependencyException
+//   Dependency encountered an error.
 //
 //   * ResourceNotFoundException
 //   Resource was not found.
@@ -761,11 +764,11 @@ func (c *GroundStation) GetConfigRequest(input *GetConfigInput) (req *request.Re
 // API operation GetConfig for usage and error information.
 //
 // Returned Error Types:
-//   * DependencyException
-//   Dependency encountered an error.
-//
 //   * InvalidParameterException
 //   One or more parameters are not valid.
+//
+//   * DependencyException
+//   Dependency encountered an error.
 //
 //   * ResourceNotFoundException
 //   Resource was not found.
@@ -846,11 +849,11 @@ func (c *GroundStation) GetDataflowEndpointGroupRequest(input *GetDataflowEndpoi
 // API operation GetDataflowEndpointGroup for usage and error information.
 //
 // Returned Error Types:
-//   * DependencyException
-//   Dependency encountered an error.
-//
 //   * InvalidParameterException
 //   One or more parameters are not valid.
+//
+//   * DependencyException
+//   Dependency encountered an error.
 //
 //   * ResourceNotFoundException
 //   Resource was not found.
@@ -931,11 +934,11 @@ func (c *GroundStation) GetMinuteUsageRequest(input *GetMinuteUsageInput) (req *
 // API operation GetMinuteUsage for usage and error information.
 //
 // Returned Error Types:
-//   * DependencyException
-//   Dependency encountered an error.
-//
 //   * InvalidParameterException
 //   One or more parameters are not valid.
+//
+//   * DependencyException
+//   Dependency encountered an error.
 //
 //   * ResourceNotFoundException
 //   Resource was not found.
@@ -1016,11 +1019,11 @@ func (c *GroundStation) GetMissionProfileRequest(input *GetMissionProfileInput) 
 // API operation GetMissionProfile for usage and error information.
 //
 // Returned Error Types:
-//   * DependencyException
-//   Dependency encountered an error.
-//
 //   * InvalidParameterException
 //   One or more parameters are not valid.
+//
+//   * DependencyException
+//   Dependency encountered an error.
 //
 //   * ResourceNotFoundException
 //   Resource was not found.
@@ -1101,11 +1104,11 @@ func (c *GroundStation) GetSatelliteRequest(input *GetSatelliteInput) (req *requ
 // API operation GetSatellite for usage and error information.
 //
 // Returned Error Types:
-//   * DependencyException
-//   Dependency encountered an error.
-//
 //   * InvalidParameterException
 //   One or more parameters are not valid.
+//
+//   * DependencyException
+//   Dependency encountered an error.
 //
 //   * ResourceNotFoundException
 //   Resource was not found.
@@ -1192,11 +1195,11 @@ func (c *GroundStation) ListConfigsRequest(input *ListConfigsInput) (req *reques
 // API operation ListConfigs for usage and error information.
 //
 // Returned Error Types:
-//   * DependencyException
-//   Dependency encountered an error.
-//
 //   * InvalidParameterException
 //   One or more parameters are not valid.
+//
+//   * DependencyException
+//   Dependency encountered an error.
 //
 //   * ResourceNotFoundException
 //   Resource was not found.
@@ -1327,7 +1330,7 @@ func (c *GroundStation) ListContactsRequest(input *ListContactsInput) (req *requ
 //
 // Returns a list of contacts.
 //
-// If statusList contains AVAILABLE, the request must include groundstation,
+// If statusList contains AVAILABLE, the request must include groundStation,
 // missionprofileArn, and satelliteArn.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1338,11 +1341,11 @@ func (c *GroundStation) ListContactsRequest(input *ListContactsInput) (req *requ
 // API operation ListContacts for usage and error information.
 //
 // Returned Error Types:
-//   * DependencyException
-//   Dependency encountered an error.
-//
 //   * InvalidParameterException
 //   One or more parameters are not valid.
+//
+//   * DependencyException
+//   Dependency encountered an error.
 //
 //   * ResourceNotFoundException
 //   Resource was not found.
@@ -1481,11 +1484,11 @@ func (c *GroundStation) ListDataflowEndpointGroupsRequest(input *ListDataflowEnd
 // API operation ListDataflowEndpointGroups for usage and error information.
 //
 // Returned Error Types:
-//   * DependencyException
-//   Dependency encountered an error.
-//
 //   * InvalidParameterException
 //   One or more parameters are not valid.
+//
+//   * DependencyException
+//   Dependency encountered an error.
 //
 //   * ResourceNotFoundException
 //   Resource was not found.
@@ -1624,11 +1627,11 @@ func (c *GroundStation) ListGroundStationsRequest(input *ListGroundStationsInput
 // API operation ListGroundStations for usage and error information.
 //
 // Returned Error Types:
-//   * DependencyException
-//   Dependency encountered an error.
-//
 //   * InvalidParameterException
 //   One or more parameters are not valid.
+//
+//   * DependencyException
+//   Dependency encountered an error.
 //
 //   * ResourceNotFoundException
 //   Resource was not found.
@@ -1767,11 +1770,11 @@ func (c *GroundStation) ListMissionProfilesRequest(input *ListMissionProfilesInp
 // API operation ListMissionProfiles for usage and error information.
 //
 // Returned Error Types:
-//   * DependencyException
-//   Dependency encountered an error.
-//
 //   * InvalidParameterException
 //   One or more parameters are not valid.
+//
+//   * DependencyException
+//   Dependency encountered an error.
 //
 //   * ResourceNotFoundException
 //   Resource was not found.
@@ -1910,11 +1913,11 @@ func (c *GroundStation) ListSatellitesRequest(input *ListSatellitesInput) (req *
 // API operation ListSatellites for usage and error information.
 //
 // Returned Error Types:
-//   * DependencyException
-//   Dependency encountered an error.
-//
 //   * InvalidParameterException
 //   One or more parameters are not valid.
+//
+//   * DependencyException
+//   Dependency encountered an error.
 //
 //   * ResourceNotFoundException
 //   Resource was not found.
@@ -2037,7 +2040,7 @@ func (c *GroundStation) ListTagsForResourceRequest(input *ListTagsForResourceInp
 
 // ListTagsForResource API operation for AWS Ground Station.
 //
-// Returns a list of tags or a specified resource.
+// Returns a list of tags for a specified resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2047,11 +2050,11 @@ func (c *GroundStation) ListTagsForResourceRequest(input *ListTagsForResourceInp
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * DependencyException
-//   Dependency encountered an error.
-//
 //   * InvalidParameterException
 //   One or more parameters are not valid.
+//
+//   * DependencyException
+//   Dependency encountered an error.
 //
 //   * ResourceNotFoundException
 //   Resource was not found.
@@ -2132,11 +2135,11 @@ func (c *GroundStation) ReserveContactRequest(input *ReserveContactInput) (req *
 // API operation ReserveContact for usage and error information.
 //
 // Returned Error Types:
-//   * DependencyException
-//   Dependency encountered an error.
-//
 //   * InvalidParameterException
 //   One or more parameters are not valid.
+//
+//   * DependencyException
+//   Dependency encountered an error.
 //
 //   * ResourceNotFoundException
 //   Resource was not found.
@@ -2218,11 +2221,11 @@ func (c *GroundStation) TagResourceRequest(input *TagResourceInput) (req *reques
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * DependencyException
-//   Dependency encountered an error.
-//
 //   * InvalidParameterException
 //   One or more parameters are not valid.
+//
+//   * DependencyException
+//   Dependency encountered an error.
 //
 //   * ResourceNotFoundException
 //   Resource was not found.
@@ -2304,11 +2307,11 @@ func (c *GroundStation) UntagResourceRequest(input *UntagResourceInput) (req *re
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * DependencyException
-//   Dependency encountered an error.
-//
 //   * InvalidParameterException
 //   One or more parameters are not valid.
+//
+//   * DependencyException
+//   Dependency encountered an error.
 //
 //   * ResourceNotFoundException
 //   Resource was not found.
@@ -2392,11 +2395,11 @@ func (c *GroundStation) UpdateConfigRequest(input *UpdateConfigInput) (req *requ
 // API operation UpdateConfig for usage and error information.
 //
 // Returned Error Types:
-//   * DependencyException
-//   Dependency encountered an error.
-//
 //   * InvalidParameterException
 //   One or more parameters are not valid.
+//
+//   * DependencyException
+//   Dependency encountered an error.
 //
 //   * ResourceNotFoundException
 //   Resource was not found.
@@ -2480,11 +2483,11 @@ func (c *GroundStation) UpdateMissionProfileRequest(input *UpdateMissionProfileI
 // API operation UpdateMissionProfile for usage and error information.
 //
 // Returned Error Types:
-//   * DependencyException
-//   Dependency encountered an error.
-//
 //   * InvalidParameterException
 //   One or more parameters are not valid.
+//
+//   * DependencyException
+//   Dependency encountered an error.
 //
 //   * ResourceNotFoundException
 //   Resource was not found.
@@ -2571,7 +2574,7 @@ type AntennaDownlinkDemodDecodeConfig struct {
 	// DemodulationConfig is a required field
 	DemodulationConfig *DemodulationConfig `locationName:"demodulationConfig" type:"structure" required:"true"`
 
-	// Object that describes a spectral Config.
+	// Information about the spectral Config.
 	//
 	// SpectrumConfig is a required field
 	SpectrumConfig *SpectrumConfig `locationName:"spectrumConfig" type:"structure" required:"true"`
@@ -2648,7 +2651,7 @@ type AntennaUplinkConfig struct {
 	// SpectrumConfig is a required field
 	SpectrumConfig *UplinkSpectrumConfig `locationName:"spectrumConfig" type:"structure" required:"true"`
 
-	// Object that represents EIRP.
+	// EIRP of the target.
 	//
 	// TargetEirp is a required field
 	TargetEirp *Eirp `locationName:"targetEirp" type:"structure" required:"true"`
@@ -2705,6 +2708,8 @@ func (s *AntennaUplinkConfig) SetTargetEirp(v *Eirp) *AntennaUplinkConfig {
 type CancelContactInput struct {
 	_ struct{} `type:"structure"`
 
+	// UUID of a contact.
+	//
 	// ContactId is a required field
 	ContactId *string `location:"uri" locationName:"contactId" type:"string" required:"true"`
 }
@@ -2744,6 +2749,7 @@ func (s *CancelContactInput) SetContactId(v string) *CancelContactInput {
 type CancelContactOutput struct {
 	_ struct{} `type:"structure"`
 
+	// UUID of a contact.
 	ContactId *string `locationName:"contactId" type:"string"`
 }
 
@@ -2767,12 +2773,16 @@ func (s *CancelContactOutput) SetContactId(v string) *CancelContactOutput {
 type ConfigListItem struct {
 	_ struct{} `type:"structure"`
 
+	// ARN of a Config.
 	ConfigArn *string `locationName:"configArn" type:"string"`
 
+	// UUID of a Config.
 	ConfigId *string `locationName:"configId" type:"string"`
 
+	// Type of a Config.
 	ConfigType *string `locationName:"configType" type:"string" enum:"ConfigCapabilityType"`
 
+	// Name of a Config.
 	Name *string `locationName:"name" type:"string"`
 }
 
@@ -2810,7 +2820,7 @@ func (s *ConfigListItem) SetName(v string) *ConfigListItem {
 	return s
 }
 
-// Object containing the parameters for a Config.
+// Object containing the parameters of a Config.
 //
 // See the subtype definitions for what each type of Config contains.
 type ConfigTypeData struct {
@@ -2824,7 +2834,8 @@ type ConfigTypeData struct {
 	// downlink demod decode during a contact.
 	AntennaDownlinkDemodDecodeConfig *AntennaDownlinkDemodDecodeConfig `locationName:"antennaDownlinkDemodDecodeConfig" type:"structure"`
 
-	// Information about the uplink Config of an antenna.
+	// Information about how AWS Ground Station should conﬁgure an antenna for
+	// uplink during a contact.
 	AntennaUplinkConfig *AntennaUplinkConfig `locationName:"antennaUplinkConfig" type:"structure"`
 
 	// Information about the dataflow endpoint Config.
@@ -2931,29 +2942,45 @@ func (s *ConfigTypeData) SetUplinkEchoConfig(v *UplinkEchoConfig) *ConfigTypeDat
 type ContactData struct {
 	_ struct{} `type:"structure"`
 
+	// UUID of a contact.
 	ContactId *string `locationName:"contactId" type:"string"`
 
+	// Status of a contact.
 	ContactStatus *string `locationName:"contactStatus" type:"string" enum:"ContactStatus"`
 
+	// End time of a contact.
 	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
 
+	// Error message of a contact.
 	ErrorMessage *string `locationName:"errorMessage" type:"string"`
 
+	// Name of a ground station.
 	GroundStation *string `locationName:"groundStation" type:"string"`
 
-	// Elevation angle of the satellite in the sky during a contact.
+	// Maximum elevation angle of a contact.
 	MaximumElevation *Elevation `locationName:"maximumElevation" type:"structure"`
 
+	// ARN of a mission profile.
 	MissionProfileArn *string `locationName:"missionProfileArn" type:"string"`
 
+	// Amount of time after a contact ends that you’d like to receive a CloudWatch
+	// event indicating the pass has finished.
 	PostPassEndTime *time.Time `locationName:"postPassEndTime" type:"timestamp"`
 
+	// Amount of time prior to contact start you’d like to receive a CloudWatch
+	// event indicating an upcoming pass.
 	PrePassStartTime *time.Time `locationName:"prePassStartTime" type:"timestamp"`
 
+	// Region of a contact.
+	Region *string `locationName:"region" type:"string"`
+
+	// ARN of a satellite.
 	SatelliteArn *string `locationName:"satelliteArn" type:"string"`
 
+	// Start time of a contact.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 
+	// Tags assigned to a contact.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -3021,6 +3048,12 @@ func (s *ContactData) SetPrePassStartTime(v time.Time) *ContactData {
 	return s
 }
 
+// SetRegion sets the Region field's value.
+func (s *ContactData) SetRegion(v string) *ContactData {
+	s.Region = &v
+	return s
+}
+
 // SetSatelliteArn sets the SatelliteArn field's value.
 func (s *ContactData) SetSatelliteArn(v string) *ContactData {
 	s.SatelliteArn = &v
@@ -3042,16 +3075,17 @@ func (s *ContactData) SetTags(v map[string]*string) *ContactData {
 type CreateConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// Object containing the parameters for a Config.
-	//
-	// See the subtype definitions for what each type of Config contains.
+	// Parameters of a Config.
 	//
 	// ConfigData is a required field
 	ConfigData *ConfigTypeData `locationName:"configData" type:"structure" required:"true"`
 
+	// Name of a Config.
+	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
+	// Tags assigned to a Config.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -3110,10 +3144,13 @@ func (s *CreateConfigInput) SetTags(v map[string]*string) *CreateConfigInput {
 type CreateConfigOutput struct {
 	_ struct{} `type:"structure"`
 
+	// ARN of a Config.
 	ConfigArn *string `locationName:"configArn" type:"string"`
 
+	// UUID of a Config.
 	ConfigId *string `locationName:"configId" type:"string"`
 
+	// Type of a Config.
 	ConfigType *string `locationName:"configType" type:"string" enum:"ConfigCapabilityType"`
 }
 
@@ -3148,9 +3185,12 @@ func (s *CreateConfigOutput) SetConfigType(v string) *CreateConfigOutput {
 type CreateDataflowEndpointGroupInput struct {
 	_ struct{} `type:"structure"`
 
+	// Endpoint details of each endpoint in the dataflow endpoint group.
+	//
 	// EndpointDetails is a required field
 	EndpointDetails []*EndpointDetails `locationName:"endpointDetails" type:"list" required:"true"`
 
+	// Tags of a dataflow endpoint group.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -3202,6 +3242,7 @@ func (s *CreateDataflowEndpointGroupInput) SetTags(v map[string]*string) *Create
 type CreateDataflowEndpointGroupOutput struct {
 	_ struct{} `type:"structure"`
 
+	// UUID of a dataflow endpoint group.
 	DataflowEndpointGroupId *string `locationName:"dataflowEndpointGroupId" type:"string"`
 }
 
@@ -3224,21 +3265,37 @@ func (s *CreateDataflowEndpointGroupOutput) SetDataflowEndpointGroupId(v string)
 type CreateMissionProfileInput struct {
 	_ struct{} `type:"structure"`
 
+	// Amount of time after a contact ends that you’d like to receive a CloudWatch
+	// event indicating the pass has finished.
 	ContactPostPassDurationSeconds *int64 `locationName:"contactPostPassDurationSeconds" min:"1" type:"integer"`
 
+	// Amount of time prior to contact start you’d like to receive a CloudWatch
+	// event indicating an upcoming pass.
 	ContactPrePassDurationSeconds *int64 `locationName:"contactPrePassDurationSeconds" min:"1" type:"integer"`
 
+	// A list of lists of ARNs. Each list of ARNs is an edge, with a from Config
+	// and a to Config.
+	//
 	// DataflowEdges is a required field
 	DataflowEdges [][]*string `locationName:"dataflowEdges" type:"list" required:"true"`
 
+	// Smallest amount of time in seconds that you’d like to see for an available
+	// contact. AWS Ground Station will not present you with contacts shorter than
+	// this duration.
+	//
 	// MinimumViableContactDurationSeconds is a required field
 	MinimumViableContactDurationSeconds *int64 `locationName:"minimumViableContactDurationSeconds" min:"1" type:"integer" required:"true"`
 
+	// Name of a mission profile.
+	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
+	// Tags assigned to a mission profile.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
+	// ARN of a tracking Config.
+	//
 	// TrackingConfigArn is a required field
 	TrackingConfigArn *string `locationName:"trackingConfigArn" type:"string" required:"true"`
 }
@@ -3332,6 +3389,7 @@ func (s *CreateMissionProfileInput) SetTrackingConfigArn(v string) *CreateMissio
 type CreateMissionProfileOutput struct {
 	_ struct{} `type:"structure"`
 
+	// UUID of a mission profile.
 	MissionProfileId *string `locationName:"missionProfileId" type:"string"`
 }
 
@@ -3355,10 +3413,13 @@ func (s *CreateMissionProfileOutput) SetMissionProfileId(v string) *CreateMissio
 type Data struct {
 	_ struct{} `type:"structure"`
 
+	// UUID of a ground station.
 	GroundStationId *string `locationName:"groundStationId" type:"string"`
 
+	// Name of a ground station.
 	GroundStationName *string `locationName:"groundStationName" type:"string"`
 
+	// Ground station Region.
 	Region *string `locationName:"region" type:"string"`
 }
 
@@ -3394,11 +3455,13 @@ func (s *Data) SetRegion(v string) *Data {
 type DataflowEndpoint struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the socket address.
+	// Socket address of a dataflow endpoint.
 	Address *SocketAddress `locationName:"address" type:"structure"`
 
+	// Name of a dataflow endpoint.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
+	// Status of a dataflow endpoint.
 	Status *string `locationName:"status" type:"string" enum:"EndpointStatus"`
 }
 
@@ -3452,8 +3515,13 @@ func (s *DataflowEndpoint) SetStatus(v string) *DataflowEndpoint {
 type DataflowEndpointConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Name of a dataflow endpoint.
+	//
 	// DataflowEndpointName is a required field
 	DataflowEndpointName *string `locationName:"dataflowEndpointName" type:"string" required:"true"`
+
+	// Region of a dataflow endpoint.
+	DataflowEndpointRegion *string `locationName:"dataflowEndpointRegion" type:"string"`
 }
 
 // String returns the string representation
@@ -3485,12 +3553,20 @@ func (s *DataflowEndpointConfig) SetDataflowEndpointName(v string) *DataflowEndp
 	return s
 }
 
+// SetDataflowEndpointRegion sets the DataflowEndpointRegion field's value.
+func (s *DataflowEndpointConfig) SetDataflowEndpointRegion(v string) *DataflowEndpointConfig {
+	s.DataflowEndpointRegion = &v
+	return s
+}
+
 // Item in a list of DataflowEndpoint groups.
 type DataflowEndpointListItem struct {
 	_ struct{} `type:"structure"`
 
+	// ARN of a dataflow endpoint group.
 	DataflowEndpointGroupArn *string `locationName:"dataflowEndpointGroupArn" type:"string"`
 
+	// UUID of a dataflow endpoint group.
 	DataflowEndpointGroupId *string `locationName:"dataflowEndpointGroupId" type:"string"`
 }
 
@@ -3520,6 +3596,8 @@ func (s *DataflowEndpointListItem) SetDataflowEndpointGroupId(v string) *Dataflo
 type DecodeConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Unvalidated JSON of a decode Config.
+	//
 	// UnvalidatedJSON is a required field
 	UnvalidatedJSON *string `locationName:"unvalidatedJSON" min:"2" type:"string" required:"true"`
 }
@@ -3559,9 +3637,13 @@ func (s *DecodeConfig) SetUnvalidatedJSON(v string) *DecodeConfig {
 type DeleteConfigInput struct {
 	_ struct{} `type:"structure"`
 
+	// UUID of a Config.
+	//
 	// ConfigId is a required field
 	ConfigId *string `location:"uri" locationName:"configId" type:"string" required:"true"`
 
+	// Type of a Config.
+	//
 	// ConfigType is a required field
 	ConfigType *string `location:"uri" locationName:"configType" type:"string" required:"true" enum:"ConfigCapabilityType"`
 }
@@ -3613,10 +3695,13 @@ func (s *DeleteConfigInput) SetConfigType(v string) *DeleteConfigInput {
 type DeleteConfigOutput struct {
 	_ struct{} `type:"structure"`
 
+	// ARN of a Config.
 	ConfigArn *string `locationName:"configArn" type:"string"`
 
+	// UUID of a Config.
 	ConfigId *string `locationName:"configId" type:"string"`
 
+	// Type of a Config.
 	ConfigType *string `locationName:"configType" type:"string" enum:"ConfigCapabilityType"`
 }
 
@@ -3651,6 +3736,8 @@ func (s *DeleteConfigOutput) SetConfigType(v string) *DeleteConfigOutput {
 type DeleteDataflowEndpointGroupInput struct {
 	_ struct{} `type:"structure"`
 
+	// UUID of a dataflow endpoint group.
+	//
 	// DataflowEndpointGroupId is a required field
 	DataflowEndpointGroupId *string `location:"uri" locationName:"dataflowEndpointGroupId" type:"string" required:"true"`
 }
@@ -3690,6 +3777,7 @@ func (s *DeleteDataflowEndpointGroupInput) SetDataflowEndpointGroupId(v string) 
 type DeleteDataflowEndpointGroupOutput struct {
 	_ struct{} `type:"structure"`
 
+	// UUID of a dataflow endpoint group.
 	DataflowEndpointGroupId *string `locationName:"dataflowEndpointGroupId" type:"string"`
 }
 
@@ -3712,6 +3800,8 @@ func (s *DeleteDataflowEndpointGroupOutput) SetDataflowEndpointGroupId(v string)
 type DeleteMissionProfileInput struct {
 	_ struct{} `type:"structure"`
 
+	// UUID of a mission profile.
+	//
 	// MissionProfileId is a required field
 	MissionProfileId *string `location:"uri" locationName:"missionProfileId" type:"string" required:"true"`
 }
@@ -3751,6 +3841,7 @@ func (s *DeleteMissionProfileInput) SetMissionProfileId(v string) *DeleteMission
 type DeleteMissionProfileOutput struct {
 	_ struct{} `type:"structure"`
 
+	// UUID of a mission profile.
 	MissionProfileId *string `locationName:"missionProfileId" type:"string"`
 }
 
@@ -3774,6 +3865,8 @@ func (s *DeleteMissionProfileOutput) SetMissionProfileId(v string) *DeleteMissio
 type DemodulationConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Unvalidated JSON of a demodulation Config.
+	//
 	// UnvalidatedJSON is a required field
 	UnvalidatedJSON *string `locationName:"unvalidatedJSON" min:"2" type:"string" required:"true"`
 }
@@ -3871,6 +3964,8 @@ func (s DependencyException) RequestID() string {
 type DescribeContactInput struct {
 	_ struct{} `type:"structure"`
 
+	// UUID of a contact.
+	//
 	// ContactId is a required field
 	ContactId *string `location:"uri" locationName:"contactId" type:"string" required:"true"`
 }
@@ -3910,29 +4005,45 @@ func (s *DescribeContactInput) SetContactId(v string) *DescribeContactInput {
 type DescribeContactOutput struct {
 	_ struct{} `type:"structure"`
 
+	// UUID of a contact.
 	ContactId *string `locationName:"contactId" type:"string"`
 
+	// Status of a contact.
 	ContactStatus *string `locationName:"contactStatus" type:"string" enum:"ContactStatus"`
 
+	// End time of a contact.
 	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
 
+	// Error message for a contact.
 	ErrorMessage *string `locationName:"errorMessage" type:"string"`
 
+	// Ground station for a contact.
 	GroundStation *string `locationName:"groundStation" type:"string"`
 
-	// Elevation angle of the satellite in the sky during a contact.
+	// Maximum elevation angle of a contact.
 	MaximumElevation *Elevation `locationName:"maximumElevation" type:"structure"`
 
+	// ARN of a mission profile.
 	MissionProfileArn *string `locationName:"missionProfileArn" type:"string"`
 
+	// Amount of time after a contact ends that you’d like to receive a CloudWatch
+	// event indicating the pass has finished.
 	PostPassEndTime *time.Time `locationName:"postPassEndTime" type:"timestamp"`
 
+	// Amount of time prior to contact start you’d like to receive a CloudWatch
+	// event indicating an upcoming pass.
 	PrePassStartTime *time.Time `locationName:"prePassStartTime" type:"timestamp"`
 
+	// Region of a contact.
+	Region *string `locationName:"region" type:"string"`
+
+	// ARN of a satellite.
 	SatelliteArn *string `locationName:"satelliteArn" type:"string"`
 
+	// Start time of a contact.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 
+	// Tags assigned to a contact.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -4000,6 +4111,12 @@ func (s *DescribeContactOutput) SetPrePassStartTime(v time.Time) *DescribeContac
 	return s
 }
 
+// SetRegion sets the Region field's value.
+func (s *DescribeContactOutput) SetRegion(v string) *DescribeContactOutput {
+	s.Region = &v
+	return s
+}
+
 // SetSatelliteArn sets the SatelliteArn field's value.
 func (s *DescribeContactOutput) SetSatelliteArn(v string) *DescribeContactOutput {
 	s.SatelliteArn = &v
@@ -4022,9 +4139,13 @@ func (s *DescribeContactOutput) SetTags(v map[string]*string) *DescribeContactOu
 type Eirp struct {
 	_ struct{} `type:"structure"`
 
+	// Units of an EIRP.
+	//
 	// Units is a required field
 	Units *string `locationName:"units" type:"string" required:"true" enum:"EirpUnits"`
 
+	// Value of an EIRP.
+	//
 	// Value is a required field
 	Value *float64 `locationName:"value" type:"double" required:"true"`
 }
@@ -4071,9 +4192,13 @@ func (s *Eirp) SetValue(v float64) *Eirp {
 type Elevation struct {
 	_ struct{} `type:"structure"`
 
+	// Elevation angle units.
+	//
 	// Unit is a required field
 	Unit *string `locationName:"unit" type:"string" required:"true" enum:"AngleUnits"`
 
+	// Elevation angle value.
+	//
 	// Value is a required field
 	Value *float64 `locationName:"value" type:"double" required:"true"`
 }
@@ -4104,10 +4229,10 @@ func (s *Elevation) SetValue(v float64) *Elevation {
 type EndpointDetails struct {
 	_ struct{} `type:"structure"`
 
-	// Information about a dataflow endpoint.
+	// A dataflow endpoint.
 	Endpoint *DataflowEndpoint `locationName:"endpoint" type:"structure"`
 
-	// Information about endpoints.
+	// Endpoint security details.
 	SecurityDetails *SecurityDetails `locationName:"securityDetails" type:"structure"`
 }
 
@@ -4157,9 +4282,13 @@ func (s *EndpointDetails) SetSecurityDetails(v *SecurityDetails) *EndpointDetail
 type Frequency struct {
 	_ struct{} `type:"structure"`
 
+	// Frequency units.
+	//
 	// Units is a required field
 	Units *string `locationName:"units" type:"string" required:"true" enum:"FrequencyUnits"`
 
+	// Frequency value.
+	//
 	// Value is a required field
 	Value *float64 `locationName:"value" type:"double" required:"true"`
 }
@@ -4206,9 +4335,13 @@ func (s *Frequency) SetValue(v float64) *Frequency {
 type FrequencyBandwidth struct {
 	_ struct{} `type:"structure"`
 
+	// Frequency bandwidth units.
+	//
 	// Units is a required field
 	Units *string `locationName:"units" type:"string" required:"true" enum:"BandwidthUnits"`
 
+	// Frequency bandwidth value.
+	//
 	// Value is a required field
 	Value *float64 `locationName:"value" type:"double" required:"true"`
 }
@@ -4254,9 +4387,13 @@ func (s *FrequencyBandwidth) SetValue(v float64) *FrequencyBandwidth {
 type GetConfigInput struct {
 	_ struct{} `type:"structure"`
 
+	// UUID of a Config.
+	//
 	// ConfigId is a required field
 	ConfigId *string `location:"uri" locationName:"configId" type:"string" required:"true"`
 
+	// Type of a Config.
+	//
 	// ConfigType is a required field
 	ConfigType *string `location:"uri" locationName:"configType" type:"string" required:"true" enum:"ConfigCapabilityType"`
 }
@@ -4308,24 +4445,30 @@ func (s *GetConfigInput) SetConfigType(v string) *GetConfigInput {
 type GetConfigOutput struct {
 	_ struct{} `type:"structure"`
 
+	// ARN of a Config
+	//
 	// ConfigArn is a required field
 	ConfigArn *string `locationName:"configArn" type:"string" required:"true"`
 
-	// Object containing the parameters for a Config.
-	//
-	// See the subtype definitions for what each type of Config contains.
+	// Data elements in a Config.
 	//
 	// ConfigData is a required field
 	ConfigData *ConfigTypeData `locationName:"configData" type:"structure" required:"true"`
 
+	// UUID of a Config.
+	//
 	// ConfigId is a required field
 	ConfigId *string `locationName:"configId" type:"string" required:"true"`
 
+	// Type of a Config.
 	ConfigType *string `locationName:"configType" type:"string" enum:"ConfigCapabilityType"`
 
+	// Name of a Config.
+	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
+	// Tags assigned to a Config.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -4378,6 +4521,8 @@ func (s *GetConfigOutput) SetTags(v map[string]*string) *GetConfigOutput {
 type GetDataflowEndpointGroupInput struct {
 	_ struct{} `type:"structure"`
 
+	// UUID of a dataflow endpoint group.
+	//
 	// DataflowEndpointGroupId is a required field
 	DataflowEndpointGroupId *string `location:"uri" locationName:"dataflowEndpointGroupId" type:"string" required:"true"`
 }
@@ -4417,12 +4562,16 @@ func (s *GetDataflowEndpointGroupInput) SetDataflowEndpointGroupId(v string) *Ge
 type GetDataflowEndpointGroupOutput struct {
 	_ struct{} `type:"structure"`
 
+	// ARN of a dataflow endpoint group.
 	DataflowEndpointGroupArn *string `locationName:"dataflowEndpointGroupArn" type:"string"`
 
+	// UUID of a dataflow endpoint group.
 	DataflowEndpointGroupId *string `locationName:"dataflowEndpointGroupId" type:"string"`
 
+	// Details of a dataflow endpoint.
 	EndpointsDetails []*EndpointDetails `locationName:"endpointsDetails" type:"list"`
 
+	// Tags assigned to a dataflow endpoint group.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -4463,9 +4612,13 @@ func (s *GetDataflowEndpointGroupOutput) SetTags(v map[string]*string) *GetDataf
 type GetMinuteUsageInput struct {
 	_ struct{} `type:"structure"`
 
+	// The month being requested, with a value of 1-12.
+	//
 	// Month is a required field
 	Month *int64 `locationName:"month" type:"integer" required:"true"`
 
+	// The year being requested, in the format of YYYY.
+	//
 	// Year is a required field
 	Year *int64 `locationName:"year" type:"integer" required:"true"`
 }
@@ -4511,14 +4664,21 @@ func (s *GetMinuteUsageInput) SetYear(v int64) *GetMinuteUsageInput {
 type GetMinuteUsageOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Estimated number of minutes remaining for an account, specific to the month
+	// being requested.
 	EstimatedMinutesRemaining *int64 `locationName:"estimatedMinutesRemaining" type:"integer"`
 
+	// Returns whether or not an account has signed up for the reserved minutes
+	// pricing plan, specific to the month being requested.
 	IsReservedMinutesCustomer *bool `locationName:"isReservedMinutesCustomer" type:"boolean"`
 
+	// Total number of reserved minutes allocated, specific to the month being requested.
 	TotalReservedMinuteAllocation *int64 `locationName:"totalReservedMinuteAllocation" type:"integer"`
 
+	// Total scheduled minutes for an account, specific to the month being requested.
 	TotalScheduledMinutes *int64 `locationName:"totalScheduledMinutes" type:"integer"`
 
+	// Upcoming minutes scheduled for an account, specific to the month being requested.
 	UpcomingMinutesScheduled *int64 `locationName:"upcomingMinutesScheduled" type:"integer"`
 }
 
@@ -4565,6 +4725,8 @@ func (s *GetMinuteUsageOutput) SetUpcomingMinutesScheduled(v int64) *GetMinuteUs
 type GetMissionProfileInput struct {
 	_ struct{} `type:"structure"`
 
+	// UUID of a mission profile.
+	//
 	// MissionProfileId is a required field
 	MissionProfileId *string `location:"uri" locationName:"missionProfileId" type:"string" required:"true"`
 }
@@ -4604,24 +4766,39 @@ func (s *GetMissionProfileInput) SetMissionProfileId(v string) *GetMissionProfil
 type GetMissionProfileOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Amount of time after a contact ends that you’d like to receive a CloudWatch
+	// event indicating the pass has finished.
 	ContactPostPassDurationSeconds *int64 `locationName:"contactPostPassDurationSeconds" min:"1" type:"integer"`
 
+	// Amount of time prior to contact start you’d like to receive a CloudWatch
+	// event indicating an upcoming pass.
 	ContactPrePassDurationSeconds *int64 `locationName:"contactPrePassDurationSeconds" min:"1" type:"integer"`
 
+	// A list of lists of ARNs. Each list of ARNs is an edge, with a from Config
+	// and a to Config.
 	DataflowEdges [][]*string `locationName:"dataflowEdges" type:"list"`
 
+	// Smallest amount of time in seconds that you’d like to see for an available
+	// contact. AWS Ground Station will not present you with contacts shorter than
+	// this duration.
 	MinimumViableContactDurationSeconds *int64 `locationName:"minimumViableContactDurationSeconds" min:"1" type:"integer"`
 
+	// ARN of a mission profile.
 	MissionProfileArn *string `locationName:"missionProfileArn" type:"string"`
 
+	// UUID of a mission profile.
 	MissionProfileId *string `locationName:"missionProfileId" type:"string"`
 
+	// Name of a mission profile.
 	Name *string `locationName:"name" type:"string"`
 
+	// Region of a mission profile.
 	Region *string `locationName:"region" type:"string"`
 
+	// Tags assigned to a mission profile.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
+	// ARN of a tracking Config.
 	TrackingConfigArn *string `locationName:"trackingConfigArn" type:"string"`
 }
 
@@ -4698,6 +4875,8 @@ func (s *GetMissionProfileOutput) SetTrackingConfigArn(v string) *GetMissionProf
 type GetSatelliteInput struct {
 	_ struct{} `type:"structure"`
 
+	// UUID of a satellite.
+	//
 	// SatelliteId is a required field
 	SatelliteId *string `location:"uri" locationName:"satelliteId" type:"string" required:"true"`
 }
@@ -4737,17 +4916,17 @@ func (s *GetSatelliteInput) SetSatelliteId(v string) *GetSatelliteInput {
 type GetSatelliteOutput struct {
 	_ struct{} `type:"structure"`
 
-	DateCreated *time.Time `locationName:"dateCreated" type:"timestamp"`
+	// A list of ground stations to which the satellite is on-boarded.
+	GroundStations []*string `locationName:"groundStations" type:"list"`
 
-	LastUpdated *time.Time `locationName:"lastUpdated" type:"timestamp"`
-
+	// NORAD satellite ID number.
 	NoradSatelliteID *int64 `locationName:"noradSatelliteID" min:"1" type:"integer"`
 
+	// ARN of a satellite.
 	SatelliteArn *string `locationName:"satelliteArn" type:"string"`
 
+	// UUID of a satellite.
 	SatelliteId *string `locationName:"satelliteId" min:"1" type:"string"`
-
-	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
 // String returns the string representation
@@ -4760,15 +4939,9 @@ func (s GetSatelliteOutput) GoString() string {
 	return s.String()
 }
 
-// SetDateCreated sets the DateCreated field's value.
-func (s *GetSatelliteOutput) SetDateCreated(v time.Time) *GetSatelliteOutput {
-	s.DateCreated = &v
-	return s
-}
-
-// SetLastUpdated sets the LastUpdated field's value.
-func (s *GetSatelliteOutput) SetLastUpdated(v time.Time) *GetSatelliteOutput {
-	s.LastUpdated = &v
+// SetGroundStations sets the GroundStations field's value.
+func (s *GetSatelliteOutput) SetGroundStations(v []*string) *GetSatelliteOutput {
+	s.GroundStations = v
 	return s
 }
 
@@ -4787,12 +4960,6 @@ func (s *GetSatelliteOutput) SetSatelliteArn(v string) *GetSatelliteOutput {
 // SetSatelliteId sets the SatelliteId field's value.
 func (s *GetSatelliteOutput) SetSatelliteId(v string) *GetSatelliteOutput {
 	s.SatelliteId = &v
-	return s
-}
-
-// SetTags sets the Tags field's value.
-func (s *GetSatelliteOutput) SetTags(v map[string]*string) *GetSatelliteOutput {
-	s.Tags = v
 	return s
 }
 
@@ -4857,8 +5024,11 @@ func (s InvalidParameterException) RequestID() string {
 type ListConfigsInput struct {
 	_ struct{} `type:"structure"`
 
+	// Maximum number of Configs returned.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
 
+	// Next token returned in the request of a previous ListConfigs call. Used to
+	// get the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -4887,8 +5057,11 @@ func (s *ListConfigsInput) SetNextToken(v string) *ListConfigsInput {
 type ListConfigsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// List of Config items.
 	ConfigList []*ConfigListItem `locationName:"configList" type:"list"`
 
+	// Next token returned in the response of a previous ListConfigs call. Used
+	// to get the next page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -4917,22 +5090,34 @@ func (s *ListConfigsOutput) SetNextToken(v string) *ListConfigsOutput {
 type ListContactsInput struct {
 	_ struct{} `type:"structure"`
 
+	// End time of a contact.
+	//
 	// EndTime is a required field
 	EndTime *time.Time `locationName:"endTime" type:"timestamp" required:"true"`
 
+	// Name of a ground station.
 	GroundStation *string `locationName:"groundStation" type:"string"`
 
+	// Maximum number of contacts returned.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
+	// ARN of a mission profile.
 	MissionProfileArn *string `locationName:"missionProfileArn" type:"string"`
 
+	// Next token returned in the request of a previous ListContacts call. Used
+	// to get the next page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
+	// ARN of a satellite.
 	SatelliteArn *string `locationName:"satelliteArn" type:"string"`
 
+	// Start time of a contact.
+	//
 	// StartTime is a required field
 	StartTime *time.Time `locationName:"startTime" type:"timestamp" required:"true"`
 
+	// Status of a contact reservation.
+	//
 	// StatusList is a required field
 	StatusList []*string `locationName:"statusList" type:"list" required:"true"`
 }
@@ -5017,8 +5202,11 @@ func (s *ListContactsInput) SetStatusList(v []*string) *ListContactsInput {
 type ListContactsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// List of contacts.
 	ContactList []*ContactData `locationName:"contactList" type:"list"`
 
+	// Next token returned in the response of a previous ListContacts call. Used
+	// to get the next page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -5047,8 +5235,11 @@ func (s *ListContactsOutput) SetNextToken(v string) *ListContactsOutput {
 type ListDataflowEndpointGroupsInput struct {
 	_ struct{} `type:"structure"`
 
+	// Maximum number of dataflow endpoint groups returned.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
 
+	// Next token returned in the request of a previous ListDataflowEndpointGroups
+	// call. Used to get the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -5077,8 +5268,11 @@ func (s *ListDataflowEndpointGroupsInput) SetNextToken(v string) *ListDataflowEn
 type ListDataflowEndpointGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of dataflow endpoint groups.
 	DataflowEndpointGroupList []*DataflowEndpointListItem `locationName:"dataflowEndpointGroupList" type:"list"`
 
+	// Next token returned in the response of a previous ListDataflowEndpointGroups
+	// call. Used to get the next page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -5107,9 +5301,15 @@ func (s *ListDataflowEndpointGroupsOutput) SetNextToken(v string) *ListDataflowE
 type ListGroundStationsInput struct {
 	_ struct{} `type:"structure"`
 
+	// Maximum number of ground stations returned.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
 
+	// Next token that can be supplied in the next call to get the next page of
+	// ground stations.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// Satellite ID to retrieve on-boarded ground stations.
+	SatelliteId *string `location:"querystring" locationName:"satelliteId" type:"string"`
 }
 
 // String returns the string representation
@@ -5134,11 +5334,20 @@ func (s *ListGroundStationsInput) SetNextToken(v string) *ListGroundStationsInpu
 	return s
 }
 
+// SetSatelliteId sets the SatelliteId field's value.
+func (s *ListGroundStationsInput) SetSatelliteId(v string) *ListGroundStationsInput {
+	s.SatelliteId = &v
+	return s
+}
+
 type ListGroundStationsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// List of ground stations.
 	GroundStationList []*Data `locationName:"groundStationList" type:"list"`
 
+	// Next token that can be supplied in the next call to get the next page of
+	// ground stations.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -5167,8 +5376,11 @@ func (s *ListGroundStationsOutput) SetNextToken(v string) *ListGroundStationsOut
 type ListMissionProfilesInput struct {
 	_ struct{} `type:"structure"`
 
+	// Maximum number of mission profiles returned.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
 
+	// Next token returned in the request of a previous ListMissionProfiles call.
+	// Used to get the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -5197,8 +5409,11 @@ func (s *ListMissionProfilesInput) SetNextToken(v string) *ListMissionProfilesIn
 type ListMissionProfilesOutput struct {
 	_ struct{} `type:"structure"`
 
+	// List of mission profiles.
 	MissionProfileList []*MissionProfileListItem `locationName:"missionProfileList" type:"list"`
 
+	// Next token returned in the response of a previous ListMissionProfiles call.
+	// Used to get the next page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -5227,8 +5442,11 @@ func (s *ListMissionProfilesOutput) SetNextToken(v string) *ListMissionProfilesO
 type ListSatellitesInput struct {
 	_ struct{} `type:"structure"`
 
+	// Maximum number of satellites returned.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
 
+	// Next token that can be supplied in the next call to get the next page of
+	// satellites.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -5257,8 +5475,11 @@ func (s *ListSatellitesInput) SetNextToken(v string) *ListSatellitesInput {
 type ListSatellitesOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Next token that can be supplied in the next call to get the next page of
+	// satellites.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
+	// List of satellites.
 	Satellites []*SatelliteListItem `locationName:"satellites" type:"list"`
 }
 
@@ -5287,6 +5508,8 @@ func (s *ListSatellitesOutput) SetSatellites(v []*SatelliteListItem) *ListSatell
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
+	// ARN of a resource.
+	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 }
@@ -5326,6 +5549,7 @@ func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Tags assigned to a resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -5349,12 +5573,16 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 type MissionProfileListItem struct {
 	_ struct{} `type:"structure"`
 
+	// ARN of a mission profile.
 	MissionProfileArn *string `locationName:"missionProfileArn" type:"string"`
 
+	// UUID of a mission profile.
 	MissionProfileId *string `locationName:"missionProfileId" type:"string"`
 
+	// Name of a mission profile.
 	Name *string `locationName:"name" type:"string"`
 
+	// Region of a mission profile.
 	Region *string `locationName:"region" type:"string"`
 }
 
@@ -5395,21 +5623,32 @@ func (s *MissionProfileListItem) SetRegion(v string) *MissionProfileListItem {
 type ReserveContactInput struct {
 	_ struct{} `type:"structure"`
 
+	// End time of a contact.
+	//
 	// EndTime is a required field
 	EndTime *time.Time `locationName:"endTime" type:"timestamp" required:"true"`
 
+	// Name of a ground station.
+	//
 	// GroundStation is a required field
 	GroundStation *string `locationName:"groundStation" type:"string" required:"true"`
 
+	// ARN of a mission profile.
+	//
 	// MissionProfileArn is a required field
 	MissionProfileArn *string `locationName:"missionProfileArn" type:"string" required:"true"`
 
+	// ARN of a satellite
+	//
 	// SatelliteArn is a required field
 	SatelliteArn *string `locationName:"satelliteArn" type:"string" required:"true"`
 
+	// Start time of a contact.
+	//
 	// StartTime is a required field
 	StartTime *time.Time `locationName:"startTime" type:"timestamp" required:"true"`
 
+	// Tags assigned to a contact.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -5487,6 +5726,7 @@ func (s *ReserveContactInput) SetTags(v map[string]*string) *ReserveContactInput
 type ReserveContactOutput struct {
 	_ struct{} `type:"structure"`
 
+	// UUID of a contact.
 	ContactId *string `locationName:"contactId" type:"string"`
 }
 
@@ -5504,6 +5744,64 @@ func (s ReserveContactOutput) GoString() string {
 func (s *ReserveContactOutput) SetContactId(v string) *ReserveContactOutput {
 	s.ContactId = &v
 	return s
+}
+
+// Account limits for this resource have been exceeded.
+type ResourceLimitExceededException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"message" type:"string"`
+
+	ParameterName *string `locationName:"parameterName" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceLimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceLimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceLimitExceededException(v protocol.ResponseMetadata) error {
+	return &ResourceLimitExceededException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ResourceLimitExceededException) Code() string {
+	return "ResourceLimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s ResourceLimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ResourceLimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s ResourceLimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ResourceLimitExceededException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ResourceLimitExceededException) RequestID() string {
+	return s.respMetadata.RequestID
 }
 
 // Resource was not found.
@@ -5566,10 +5864,16 @@ func (s ResourceNotFoundException) RequestID() string {
 type SatelliteListItem struct {
 	_ struct{} `type:"structure"`
 
+	// A list of ground stations to which the satellite is on-boarded.
+	GroundStations []*string `locationName:"groundStations" type:"list"`
+
+	// NORAD satellite ID number.
 	NoradSatelliteID *int64 `locationName:"noradSatelliteID" min:"1" type:"integer"`
 
+	// ARN of a satellite.
 	SatelliteArn *string `locationName:"satelliteArn" type:"string"`
 
+	// UUID of a satellite.
 	SatelliteId *string `locationName:"satelliteId" min:"1" type:"string"`
 }
 
@@ -5581,6 +5885,12 @@ func (s SatelliteListItem) String() string {
 // GoString returns the string representation
 func (s SatelliteListItem) GoString() string {
 	return s.String()
+}
+
+// SetGroundStations sets the GroundStations field's value.
+func (s *SatelliteListItem) SetGroundStations(v []*string) *SatelliteListItem {
+	s.GroundStations = v
+	return s
 }
 
 // SetNoradSatelliteID sets the NoradSatelliteID field's value.
@@ -5605,12 +5915,19 @@ func (s *SatelliteListItem) SetSatelliteId(v string) *SatelliteListItem {
 type SecurityDetails struct {
 	_ struct{} `type:"structure"`
 
+	// ARN to a role needed for connecting streams to your instances.
+	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 
+	// The security groups to attach to the elastic network interfaces.
+	//
 	// SecurityGroupIds is a required field
 	SecurityGroupIds []*string `locationName:"securityGroupIds" type:"list" required:"true"`
 
+	// A list of subnets where AWS Ground Station places elastic network interfaces
+	// to send streams to your instances.
+	//
 	// SubnetIds is a required field
 	SubnetIds []*string `locationName:"subnetIds" type:"list" required:"true"`
 }
@@ -5666,9 +5983,13 @@ func (s *SecurityDetails) SetSubnetIds(v []*string) *SecurityDetails {
 type SocketAddress struct {
 	_ struct{} `type:"structure"`
 
+	// Name of a socket address.
+	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
+	// Port of a socket address.
+	//
 	// Port is a required field
 	Port *int64 `locationName:"port" type:"integer" required:"true"`
 }
@@ -5715,16 +6036,17 @@ func (s *SocketAddress) SetPort(v int64) *SocketAddress {
 type SpectrumConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Object that describes the frequency bandwidth.
+	// Bandwidth of a spectral Config.
 	//
 	// Bandwidth is a required field
 	Bandwidth *FrequencyBandwidth `locationName:"bandwidth" type:"structure" required:"true"`
 
-	// Object that describes the frequency.
+	// Center frequency of a spectral Config.
 	//
 	// CenterFrequency is a required field
 	CenterFrequency *Frequency `locationName:"centerFrequency" type:"structure" required:"true"`
 
+	// Polarization of a spectral Config.
 	Polarization *string `locationName:"polarization" type:"string" enum:"Polarization"`
 }
 
@@ -5785,10 +6107,15 @@ func (s *SpectrumConfig) SetPolarization(v string) *SpectrumConfig {
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
+	// ARN of a resource tag.
+	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 
-	Tags map[string]*string `locationName:"tags" type:"map"`
+	// Tags assigned to a resource.
+	//
+	// Tags is a required field
+	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
 }
 
 // String returns the string representation
@@ -5809,6 +6136,9 @@ func (s *TagResourceInput) Validate() error {
 	}
 	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -5848,6 +6178,8 @@ func (s TagResourceOutput) GoString() string {
 type TrackingConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Current setting for autotrack.
+	//
 	// Autotrack is a required field
 	Autotrack *string `locationName:"autotrack" type:"string" required:"true" enum:"Criticality"`
 }
@@ -5884,9 +6216,13 @@ func (s *TrackingConfig) SetAutotrack(v string) *TrackingConfig {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
+	// ARN of a resource.
+	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 
+	// Keys of a resource tag.
+	//
 	// TagKeys is a required field
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
 }
@@ -5949,19 +6285,23 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// Object containing the parameters for a Config.
-	//
-	// See the subtype definitions for what each type of Config contains.
+	// Parameters of a Config.
 	//
 	// ConfigData is a required field
 	ConfigData *ConfigTypeData `locationName:"configData" type:"structure" required:"true"`
 
+	// UUID of a Config.
+	//
 	// ConfigId is a required field
 	ConfigId *string `location:"uri" locationName:"configId" type:"string" required:"true"`
 
+	// Type of a Config.
+	//
 	// ConfigType is a required field
 	ConfigType *string `location:"uri" locationName:"configType" type:"string" required:"true" enum:"ConfigCapabilityType"`
 
+	// Name of a Config.
+	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 }
@@ -6039,10 +6379,13 @@ func (s *UpdateConfigInput) SetName(v string) *UpdateConfigInput {
 type UpdateConfigOutput struct {
 	_ struct{} `type:"structure"`
 
+	// ARN of a Config.
 	ConfigArn *string `locationName:"configArn" type:"string"`
 
+	// UUID of a Config.
 	ConfigId *string `locationName:"configId" type:"string"`
 
+	// Type of a Config.
 	ConfigType *string `locationName:"configType" type:"string" enum:"ConfigCapabilityType"`
 }
 
@@ -6077,19 +6420,32 @@ func (s *UpdateConfigOutput) SetConfigType(v string) *UpdateConfigOutput {
 type UpdateMissionProfileInput struct {
 	_ struct{} `type:"structure"`
 
+	// Amount of time after a contact ends that you’d like to receive a CloudWatch
+	// event indicating the pass has finished.
 	ContactPostPassDurationSeconds *int64 `locationName:"contactPostPassDurationSeconds" min:"1" type:"integer"`
 
+	// Amount of time after a contact ends that you’d like to receive a CloudWatch
+	// event indicating the pass has finished.
 	ContactPrePassDurationSeconds *int64 `locationName:"contactPrePassDurationSeconds" min:"1" type:"integer"`
 
+	// A list of lists of ARNs. Each list of ARNs is an edge, with a from Config
+	// and a to Config.
 	DataflowEdges [][]*string `locationName:"dataflowEdges" type:"list"`
 
+	// Smallest amount of time in seconds that you’d like to see for an available
+	// contact. AWS Ground Station will not present you with contacts shorter than
+	// this duration.
 	MinimumViableContactDurationSeconds *int64 `locationName:"minimumViableContactDurationSeconds" min:"1" type:"integer"`
 
+	// UUID of a mission profile.
+	//
 	// MissionProfileId is a required field
 	MissionProfileId *string `location:"uri" locationName:"missionProfileId" type:"string" required:"true"`
 
+	// Name of a mission profile.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
+	// ARN of a tracking Config.
 	TrackingConfigArn *string `locationName:"trackingConfigArn" type:"string"`
 }
 
@@ -6176,6 +6532,7 @@ func (s *UpdateMissionProfileInput) SetTrackingConfigArn(v string) *UpdateMissio
 type UpdateMissionProfileOutput struct {
 	_ struct{} `type:"structure"`
 
+	// UUID of a mission profile.
 	MissionProfileId *string `locationName:"missionProfileId" type:"string"`
 }
 
@@ -6202,9 +6559,13 @@ func (s *UpdateMissionProfileOutput) SetMissionProfileId(v string) *UpdateMissio
 type UplinkEchoConfig struct {
 	_ struct{} `type:"structure"`
 
+	// ARN of an uplink Config.
+	//
 	// AntennaUplinkConfigArn is a required field
 	AntennaUplinkConfigArn *string `locationName:"antennaUplinkConfigArn" type:"string" required:"true"`
 
+	// Whether or not an uplink Config is enabled.
+	//
 	// Enabled is a required field
 	Enabled *bool `locationName:"enabled" type:"boolean" required:"true"`
 }
@@ -6251,11 +6612,12 @@ func (s *UplinkEchoConfig) SetEnabled(v bool) *UplinkEchoConfig {
 type UplinkSpectrumConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Object that describes the frequency.
+	// Center frequency of an uplink spectral Config.
 	//
 	// CenterFrequency is a required field
 	CenterFrequency *Frequency `locationName:"centerFrequency" type:"structure" required:"true"`
 
+	// Polarization of an uplink spectral Config.
 	Polarization *string `locationName:"polarization" type:"string" enum:"Polarization"`
 }
 
@@ -6347,6 +6709,9 @@ const (
 
 	// ContactStatusCancelled is a ContactStatus enum value
 	ContactStatusCancelled = "CANCELLED"
+
+	// ContactStatusCancelling is a ContactStatus enum value
+	ContactStatusCancelling = "CANCELLING"
 
 	// ContactStatusCompleted is a ContactStatus enum value
 	ContactStatusCompleted = "COMPLETED"
