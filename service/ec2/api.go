@@ -48953,6 +48953,9 @@ type CreateVpcEndpointInput struct {
 	// endpoint network interface.
 	SubnetIds []*string `locationName:"SubnetId" locationNameList:"item" type:"list"`
 
+	// The tags to associate with the endpoint.
+	TagSpecifications []*TagSpecification `locationName:"TagSpecification" locationNameList:"item" type:"list"`
+
 	// The type of endpoint.
 	//
 	// Default: Gateway
@@ -49038,6 +49041,12 @@ func (s *CreateVpcEndpointInput) SetSubnetIds(v []*string) *CreateVpcEndpointInp
 	return s
 }
 
+// SetTagSpecifications sets the TagSpecifications field's value.
+func (s *CreateVpcEndpointInput) SetTagSpecifications(v []*TagSpecification) *CreateVpcEndpointInput {
+	s.TagSpecifications = v
+	return s
+}
+
 // SetVpcEndpointType sets the VpcEndpointType field's value.
 func (s *CreateVpcEndpointInput) SetVpcEndpointType(v string) *CreateVpcEndpointInput {
 	s.VpcEndpointType = &v
@@ -49109,6 +49118,9 @@ type CreateVpcEndpointServiceConfigurationInput struct {
 
 	// The private DNS name to assign to the VPC endpoint service.
 	PrivateDnsName *string `type:"string"`
+
+	// The tags to associate with the service.
+	TagSpecifications []*TagSpecification `locationName:"TagSpecification" locationNameList:"item" type:"list"`
 }
 
 // String returns the string representation
@@ -49161,6 +49173,12 @@ func (s *CreateVpcEndpointServiceConfigurationInput) SetNetworkLoadBalancerArns(
 // SetPrivateDnsName sets the PrivateDnsName field's value.
 func (s *CreateVpcEndpointServiceConfigurationInput) SetPrivateDnsName(v string) *CreateVpcEndpointServiceConfigurationInput {
 	s.PrivateDnsName = &v
+	return s
+}
+
+// SetTagSpecifications sets the TagSpecifications field's value.
+func (s *CreateVpcEndpointServiceConfigurationInput) SetTagSpecifications(v []*TagSpecification) *CreateVpcEndpointServiceConfigurationInput {
+	s.TagSpecifications = v
 	return s
 }
 

@@ -7688,7 +7688,11 @@
           "locationName":"SecurityGroupId"
         },
         "ClientToken":{"shape":"String"},
-        "PrivateDnsEnabled":{"shape":"Boolean"}
+        "PrivateDnsEnabled":{"shape":"Boolean"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        }
       }
     },
     "CreateVpcEndpointResult":{
@@ -7715,7 +7719,11 @@
           "shape":"ValueStringList",
           "locationName":"NetworkLoadBalancerArn"
         },
-        "ClientToken":{"shape":"String"}
+        "ClientToken":{"shape":"String"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        }
       }
     },
     "CreateVpcEndpointServiceConfigurationResult":{

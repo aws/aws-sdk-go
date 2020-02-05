@@ -1,3 +1,18 @@
+Release v1.28.11 (2020-02-05)
+===
+
+### Service Client Updates
+* `service/dlm`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * This release provides support for tagging when you create a VPC endpoint, or VPC endpoint service.
+* `service/forecastquery`: Updates service API and documentation
+* `service/groundstation`: Updates service API, documentation, paginators, and examples
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added support for fine-tuned QVBR quality level.
+* `service/resourcegroupstaggingapi`: Updates service documentation
+  * Documentation-only update that adds services to the list of supported services.
+* `service/securityhub`: Updates service API and documentation
+
 Release v1.28.10 (2020-02-04)
 ===
 

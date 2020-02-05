@@ -239,7 +239,7 @@
       "type":"string",
       "max":2048,
       "min":0,
-      "pattern":"arn:aws:iam::\\d+:role/.*"
+      "pattern":"arn:aws(-[a-z]{1,3}){0,2}:iam::\\d+:role/.*"
     },
     "FastRestoreRule":{
       "type":"structure",
@@ -410,7 +410,7 @@
       "type":"string",
       "max":2048,
       "min":0,
-      "pattern":"^arn:aws:dlm:[A-Za-z0-9_/.-]{0,63}:\\d+:policy/[0-9A-Za-z_-]{1,128}$"
+      "pattern":"^arn:aws(-[a-z]{1,3}){0,2}:dlm:[A-Za-z0-9_/.-]{0,63}:\\d+:policy/[0-9A-Za-z_-]{1,128}$"
     },
     "PolicyDescription":{
       "type":"string",
@@ -597,7 +597,7 @@
     "TagsToAddList":{
       "type":"list",
       "member":{"shape":"Tag"},
-      "max":50,
+      "max":45,
       "min":0
     },
     "TargetRegion":{
@@ -680,7 +680,7 @@
     "VariableTagsList":{
       "type":"list",
       "member":{"shape":"Tag"},
-      "max":50,
+      "max":45,
       "min":0
     }
   }
