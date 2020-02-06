@@ -40,20 +40,20 @@ before_install:
   - if [ "$TRAVIS_OS_NAME" = "windows" ]; then choco install make; fi
 
 script:
-    if [ -z $(go env GOMOD) ]; then
-      if [ $TRAVIS_GO_VERSION == "1.12.x" ] ||
-          [ $TRAVIS_GO_VERSION == "1.11.x" ] ||
-          [ $TRAVIS_GO_VERSION == "1.10.x" ]; then
+  - if [ -z $(go env GOMOD) ]; then
+      if [ "$TRAVIS_GO_VERSION" == "1.12.x" ] ||
+          [ "$TRAVIS_GO_VERSION" == "1.11.x" ] ||
+          [ "$TRAVIS_GO_VERSION" == "1.10.x" ]; then
         make get-deps-x-tests;
       fi;
       make get-deps;
     fi;
-    if [ $TRAVIS_GO_VERSION == "tip" ] ||
-        [ $TRAVIS_GO_VERSION == "1.13.x" ] ||
-        [ $TRAVIS_GO_VERSION == "1.12.x" ]; then
+    if [ "$TRAVIS_GO_VERSION" == "tip" ] ||
+        [ "$TRAVIS_GO_VERSION" == "1.13.x" ] ||
+        [ "$TRAVIS_GO_VERSION" == "1.12.x" ]; then
 
       if [ "$TRAVIS_OS_NAME" = "windows" ]; then
-        make unit-no-verify
+        make unit-no-verify;
       else
         make get-deps-verify;
         make ci-test;
