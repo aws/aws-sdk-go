@@ -51,6 +51,8 @@ script:
   - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
       make unit-no-verify;
     else
+      make get-deps-verify;
+
       if [ ! -z $(go env GOMOD) ]; then
         make ci-test;
       else

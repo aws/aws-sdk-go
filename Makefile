@@ -209,6 +209,10 @@ get-deps-x-tests:
 	@echo "go get SDK testing golang.org/x dependencies"
 	go get golang.org/x/net/http2
 
+get-deps-verify:
+	@echo "go get SDK verification utilities"
+	go get golang.org/x/lint/golint
+
 ##############
 # Benchmarks #
 ##############
