@@ -65,10 +65,10 @@
       }
     },
     "ApiCache": {
-      "base": null,
+      "base": "<p>The <code>ApiCache</code> object.</p>",
       "refs": {
         "CreateApiCacheResponse$apiCache": "<p>The <code>ApiCache</code> object.</p>",
-        "GetApiCacheResponse$apiCache": null,
+        "GetApiCacheResponse$apiCache": "<p>The <code>ApiCache</code> object.</p>",
         "UpdateApiCacheResponse$apiCache": "<p>The <code>ApiCache</code> object.</p>"
       }
     },
@@ -169,9 +169,12 @@
         "ApiCache$atRestEncryptionEnabled": "<p>At rest encryption flag for cache. This setting cannot be updated after creation.</p>",
         "CreateApiCacheRequest$transitEncryptionEnabled": "<p>Transit encryption flag when connecting to cache. This setting cannot be updated after creation.</p>",
         "CreateApiCacheRequest$atRestEncryptionEnabled": "<p>At rest encryption flag for cache. This setting cannot be updated after creation.</p>",
+        "CreateGraphqlApiRequest$xrayEnabled": "<p>A flag indicating whether to enable X-Ray tracing for the <code>GraphqlApi</code>.</p>",
         "DynamodbDataSourceConfig$useCallerCredentials": "<p>Set to TRUE to use Amazon Cognito credentials with this data source.</p>",
         "DynamodbDataSourceConfig$versioned": "<p>Set to TRUE to use Conflict Detection and Resolution with this data source.</p>",
-        "LogConfig$excludeVerboseContent": "<p>Set to TRUE to exclude sections that contain information such as headers, context, and evaluated mapping templates, regardless of logging level.</p>"
+        "GraphqlApi$xrayEnabled": "<p>A flag representing whether X-Ray tracing is enabled for this <code>GraphqlApi</code>.</p>",
+        "LogConfig$excludeVerboseContent": "<p>Set to TRUE to exclude sections that contain information such as headers, context, and evaluated mapping templates, regardless of logging level.</p>",
+        "UpdateGraphqlApiRequest$xrayEnabled": "<p>A flag indicating whether to enable X-Ray tracing for the <code>GraphqlApi</code>.</p>"
       }
     },
     "BooleanValue": {
@@ -567,7 +570,7 @@
       }
     },
     "LambdaConflictHandlerConfig": {
-      "base": null,
+      "base": "<p>The <code>LambdaConflictHandlerConfig</code> object when configuring LAMBDA as the Conflict Handler.</p>",
       "refs": {
         "SyncConfig$lambdaConflictHandlerConfig": "<p>The <code>LambdaConflictHandlerConfig</code> when configuring LAMBDA as the Conflict Handler.</p>"
       }

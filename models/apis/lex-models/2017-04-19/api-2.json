@@ -887,7 +887,9 @@
         "createdDate":{"shape":"Timestamp"},
         "version":{"shape":"Version"},
         "checksum":{"shape":"String"},
-        "valueSelectionStrategy":{"shape":"SlotValueSelectionStrategy"}
+        "valueSelectionStrategy":{"shape":"SlotValueSelectionStrategy"},
+        "parentSlotTypeSignature":{"shape":"CustomOrBuiltinSlotTypeName"},
+        "slotTypeConfigurations":{"shape":"SlotTypeConfigurations"}
       }
     },
     "CustomOrBuiltinSlotTypeName":{
@@ -1073,7 +1075,7 @@
       "type":"list",
       "member":{"shape":"EnumerationValue"},
       "max":10000,
-      "min":1
+      "min":0
     },
     "ExportStatus":{
       "type":"string",
@@ -1628,7 +1630,9 @@
         "createdDate":{"shape":"Timestamp"},
         "version":{"shape":"Version"},
         "checksum":{"shape":"String"},
-        "valueSelectionStrategy":{"shape":"SlotValueSelectionStrategy"}
+        "valueSelectionStrategy":{"shape":"SlotValueSelectionStrategy"},
+        "parentSlotTypeSignature":{"shape":"CustomOrBuiltinSlotTypeName"},
+        "slotTypeConfigurations":{"shape":"SlotTypeConfigurations"}
       }
     },
     "GetSlotTypeVersionsRequest":{
@@ -2116,7 +2120,9 @@
         "enumerationValues":{"shape":"EnumerationValues"},
         "checksum":{"shape":"String"},
         "valueSelectionStrategy":{"shape":"SlotValueSelectionStrategy"},
-        "createVersion":{"shape":"Boolean"}
+        "createVersion":{"shape":"Boolean"},
+        "parentSlotTypeSignature":{"shape":"CustomOrBuiltinSlotTypeName"},
+        "slotTypeConfigurations":{"shape":"SlotTypeConfigurations"}
       }
     },
     "PutSlotTypeResponse":{
@@ -2130,7 +2136,9 @@
         "version":{"shape":"Version"},
         "checksum":{"shape":"String"},
         "valueSelectionStrategy":{"shape":"SlotValueSelectionStrategy"},
-        "createVersion":{"shape":"Boolean"}
+        "createVersion":{"shape":"Boolean"},
+        "parentSlotTypeSignature":{"shape":"CustomOrBuiltinSlotTypeName"},
+        "slotTypeConfigurations":{"shape":"SlotTypeConfigurations"}
       }
     },
     "ReferenceType":{
@@ -2141,6 +2149,11 @@
         "BotAlias",
         "BotChannel"
       ]
+    },
+    "RegexPattern":{
+      "type":"string",
+      "max":100,
+      "min":1
     },
     "ResourceArn":{
       "type":"string",
@@ -2224,6 +2237,18 @@
       "min":1,
       "pattern":"^([A-Za-z](-|_|.)?)+$"
     },
+    "SlotTypeConfiguration":{
+      "type":"structure",
+      "members":{
+        "regexConfiguration":{"shape":"SlotTypeRegexConfiguration"}
+      }
+    },
+    "SlotTypeConfigurations":{
+      "type":"list",
+      "member":{"shape":"SlotTypeConfiguration"},
+      "max":10,
+      "min":0
+    },
     "SlotTypeMetadata":{
       "type":"structure",
       "members":{
@@ -2243,6 +2268,13 @@
       "max":100,
       "min":1,
       "pattern":"^([A-Za-z]_?)+$"
+    },
+    "SlotTypeRegexConfiguration":{
+      "type":"structure",
+      "required":["pattern"],
+      "members":{
+        "pattern":{"shape":"RegexPattern"}
+      }
     },
     "SlotUtteranceList":{
       "type":"list",

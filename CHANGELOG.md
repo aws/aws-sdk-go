@@ -1,3 +1,17 @@
+Release v1.28.12 (2020-02-06)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and documentation
+* `service/codebuild`: Updates service API and documentation
+  * AWS CodeBuild adds support for Amazon Elastic File Systems
+* `service/ebs`: Updates service documentation
+* `service/ec2`: Updates service API and documentation
+  * This release adds platform details and billing info to the DescribeImages API.
+* `service/ecr`: Updates service documentation
+  * This release contains updated text for the GetAuthorizationToken API.
+* `service/lex-models`: Updates service API, documentation, and examples
+
 Release v1.28.11 (2020-02-05)
 ===
 

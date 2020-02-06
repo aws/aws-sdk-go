@@ -961,7 +961,8 @@
         "userPoolConfig":{"shape":"UserPoolConfig"},
         "openIDConnectConfig":{"shape":"OpenIDConnectConfig"},
         "tags":{"shape":"TagMap"},
-        "additionalAuthenticationProviders":{"shape":"AdditionalAuthenticationProviders"}
+        "additionalAuthenticationProviders":{"shape":"AdditionalAuthenticationProviders"},
+        "xrayEnabled":{"shape":"Boolean"}
       }
     },
     "CreateGraphqlApiResponse":{
@@ -1517,7 +1518,8 @@
         "arn":{"shape":"String"},
         "uris":{"shape":"MapOfStringToString"},
         "tags":{"shape":"TagMap"},
-        "additionalAuthenticationProviders":{"shape":"AdditionalAuthenticationProviders"}
+        "additionalAuthenticationProviders":{"shape":"AdditionalAuthenticationProviders"},
+        "xrayEnabled":{"shape":"Boolean"}
       }
     },
     "GraphqlApis":{
@@ -2191,7 +2193,8 @@
         "authenticationType":{"shape":"AuthenticationType"},
         "userPoolConfig":{"shape":"UserPoolConfig"},
         "openIDConnectConfig":{"shape":"OpenIDConnectConfig"},
-        "additionalAuthenticationProviders":{"shape":"AdditionalAuthenticationProviders"}
+        "additionalAuthenticationProviders":{"shape":"AdditionalAuthenticationProviders"},
+        "xrayEnabled":{"shape":"Boolean"}
       }
     },
     "UpdateGraphqlApiResponse":{
