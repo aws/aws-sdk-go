@@ -332,6 +332,10 @@
     "CustomOrBuiltinSlotTypeName": {
       "base": null,
       "refs": {
+        "CreateSlotTypeVersionResponse$parentSlotTypeSignature": "<p>The built-in slot type used a the parent of the slot type.</p>",
+        "GetSlotTypeResponse$parentSlotTypeSignature": "<p>The built-in slot type used as a parent for the slot type.</p>",
+        "PutSlotTypeRequest$parentSlotTypeSignature": "<p>The built-in slot type used as the parent of the slot type. When you define a parent slot type, the new slot type has all of the same configuration as the parent.</p> <p>Only <code>AMAZON.AlphaNumeric</code> is supported.</p>",
+        "PutSlotTypeResponse$parentSlotTypeSignature": "<p>The built-in slot type used as the parent of the slot type.</p>",
         "Slot$slotType": "<p>The type of the slot, either a custom slot type that you defined or one of the built-in slot types.</p>"
       }
     },
@@ -998,6 +1002,12 @@
         "ResourceInUseException$referenceType": null
       }
     },
+    "RegexPattern": {
+      "base": null,
+      "refs": {
+        "SlotTypeRegexConfiguration$pattern": "<p>A regular expression used to validate the value of a slot. </p> <p>Use a standard regular expression. Amazon Lex supports the following characters in the regular expression:</p> <ul> <li> <p>A-Z, a-z</p> </li> <li> <p>0-9</p> </li> <li> <p>Unicode characters (\"\\ u&lt;Unicode&gt;\")</p> </li> </ul> <p>Represent Unicode characters with four digits, for example \"\\u0041\" or \"\\u005A\".</p> <p>The following regular expression operators are not supported:</p> <ul> <li> <p>Infinite repeaters: *, +, or {x,} with no upper bound.</p> </li> <li> <p>Wild card (.)</p> </li> </ul>"
+      }
+    },
     "ResourceArn": {
       "base": null,
       "refs": {
@@ -1076,6 +1086,21 @@
         "Slot$name": "<p>The name of the slot.</p>"
       }
     },
+    "SlotTypeConfiguration": {
+      "base": "<p>Provides configuration information for a slot type.</p>",
+      "refs": {
+        "SlotTypeConfigurations$member": null
+      }
+    },
+    "SlotTypeConfigurations": {
+      "base": null,
+      "refs": {
+        "CreateSlotTypeVersionResponse$slotTypeConfigurations": "<p>Configuration information that extends the parent built-in slot type.</p>",
+        "GetSlotTypeResponse$slotTypeConfigurations": "<p>Configuration information that extends the parent built-in slot type.</p>",
+        "PutSlotTypeRequest$slotTypeConfigurations": "<p>Configuration information that extends the parent built-in slot type. The configuration is added to the settings for the parent slot type.</p>",
+        "PutSlotTypeResponse$slotTypeConfigurations": "<p>Configuration information that extends the parent built-in slot type.</p>"
+      }
+    },
     "SlotTypeMetadata": {
       "base": "<p>Provides information about a slot type..</p>",
       "refs": {
@@ -1103,6 +1128,12 @@
         "PutSlotTypeRequest$name": "<p>The name of the slot type. The name is <i>not</i> case sensitive. </p> <p>The name can't match a built-in slot type name, or a built-in slot type name with \"AMAZON.\" removed. For example, because there is a built-in slot type called <code>AMAZON.DATE</code>, you can't create a custom slot type called <code>DATE</code>.</p> <p>For a list of built-in slot types, see <a href=\"https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/built-in-intent-ref/slot-type-reference\">Slot Type Reference</a> in the <i>Alexa Skills Kit</i>.</p>",
         "PutSlotTypeResponse$name": "<p>The name of the slot type.</p>",
         "SlotTypeMetadata$name": "<p>The name of the slot type.</p>"
+      }
+    },
+    "SlotTypeRegexConfiguration": {
+      "base": "<p>Provides a regular expression used to validate the value of a slot.</p>",
+      "refs": {
+        "SlotTypeConfiguration$regexConfiguration": "<p>A regular expression used to validate the value of a slot.</p>"
       }
     },
     "SlotUtteranceList": {

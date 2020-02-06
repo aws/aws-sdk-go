@@ -579,7 +579,8 @@
         "networkInterface":{"shape":"NetworkInterface"},
         "encryptionKey":{"shape":"NonEmptyString"},
         "exportedEnvironmentVariables":{"shape":"ExportedEnvironmentVariables"},
-        "reportArns":{"shape":"BuildReportArns"}
+        "reportArns":{"shape":"BuildReportArns"},
+        "fileSystemLocations":{"shape":"ProjectFileSystemLocations"}
       }
     },
     "BuildArtifacts":{
@@ -716,7 +717,8 @@
         "tags":{"shape":"TagList"},
         "vpcConfig":{"shape":"VpcConfig"},
         "badgeEnabled":{"shape":"WrapperBoolean"},
-        "logsConfig":{"shape":"LogsConfig"}
+        "logsConfig":{"shape":"LogsConfig"},
+        "fileSystemLocations":{"shape":"ProjectFileSystemLocations"}
       }
     },
     "CreateProjectOutput":{
@@ -930,6 +932,10 @@
     "ExportedEnvironmentVariables":{
       "type":"list",
       "member":{"shape":"ExportedEnvironmentVariable"}
+    },
+    "FileSystemType":{
+      "type":"string",
+      "enum":["EFS"]
     },
     "FilterGroup":{
       "type":"list",
@@ -1276,7 +1282,8 @@
         "webhook":{"shape":"Webhook"},
         "vpcConfig":{"shape":"VpcConfig"},
         "badge":{"shape":"ProjectBadge"},
-        "logsConfig":{"shape":"LogsConfig"}
+        "logsConfig":{"shape":"LogsConfig"},
+        "fileSystemLocations":{"shape":"ProjectFileSystemLocations"}
       }
     },
     "ProjectArns":{
@@ -1348,6 +1355,20 @@
         "registryCredential":{"shape":"RegistryCredential"},
         "imagePullCredentialsType":{"shape":"ImagePullCredentialsType"}
       }
+    },
+    "ProjectFileSystemLocation":{
+      "type":"structure",
+      "members":{
+        "type":{"shape":"FileSystemType"},
+        "location":{"shape":"String"},
+        "mountPoint":{"shape":"String"},
+        "identifier":{"shape":"String"},
+        "mountOptions":{"shape":"String"}
+      }
+    },
+    "ProjectFileSystemLocations":{
+      "type":"list",
+      "member":{"shape":"ProjectFileSystemLocation"}
     },
     "ProjectName":{
       "type":"string",
@@ -1795,7 +1816,8 @@
         "tags":{"shape":"TagList"},
         "vpcConfig":{"shape":"VpcConfig"},
         "badgeEnabled":{"shape":"WrapperBoolean"},
-        "logsConfig":{"shape":"LogsConfig"}
+        "logsConfig":{"shape":"LogsConfig"},
+        "fileSystemLocations":{"shape":"ProjectFileSystemLocations"}
       }
     },
     "UpdateProjectOutput":{

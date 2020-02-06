@@ -419,13 +419,13 @@ type ChangedBlock struct {
 	// The block index.
 	BlockIndex *int64 `type:"integer"`
 
-	// The block token for the block index of the first snapshot ID specified in
-	// the list changed blocks operation. This value is absent if the first snapshot
-	// does not have the changed block that is on the second snapshot.
+	// The block token for the block index of the FirstSnapshotId specified in the
+	// ListChangedBlocks operation. This value is absent if the first snapshot does
+	// not have the changed block that is on the second snapshot.
 	FirstBlockToken *string `type:"string"`
 
-	// The block token for the block index of the second snapshot ID specified in
-	// the list changed blocks operation.
+	// The block token for the block index of the SecondSnapshotId specified in
+	// the ListChangedBlocks operation.
 	SecondBlockToken *string `type:"string"`
 }
 
@@ -462,16 +462,16 @@ type GetSnapshotBlockInput struct {
 
 	// The block index of the block from which to get data.
 	//
-	// Obtain the block index by running the list changed blocks or list snapshot
-	// blocks operations.
+	// Obtain the BlockIndex by running the ListChangedBlocks or ListSnapshotBlocks
+	// operations.
 	//
 	// BlockIndex is a required field
 	BlockIndex *int64 `location:"uri" locationName:"blockIndex" type:"integer" required:"true"`
 
 	// The block token of the block from which to get data.
 	//
-	// Obtain the block token by running the list changed blocks or list snapshot
-	// blocks operations.
+	// Obtain the BlockToken by running the ListChangedBlocks or ListSnapshotBlocks
+	// operations.
 	//
 	// BlockToken is a required field
 	BlockToken *string `location:"querystring" locationName:"blockToken" type:"string" required:"true"`
@@ -538,7 +538,7 @@ type GetSnapshotBlockOutput struct {
 	// The data content of the block.
 	BlockData io.ReadCloser `type:"blob" sensitive:"true"`
 
-	// The checksum generated for the block.
+	// The checksum generated for the block, which is Base64 encoded.
 	Checksum *string `location:"header" locationName:"x-amz-Checksum" type:"string"`
 
 	// The algorithm used to generate the checksum for the block, such as SHA256.
@@ -586,6 +586,9 @@ type ListChangedBlocksInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the first snapshot to use for the comparison.
+	//
+	// The FirstSnapshotID parameter must be specified with a SecondSnapshotId parameter;
+	// otherwise, an error occurs.
 	FirstSnapshotId *string `location:"querystring" locationName:"firstSnapshotId" min:"1" type:"string"`
 
 	// The number of results to return.
@@ -595,6 +598,9 @@ type ListChangedBlocksInput struct {
 	NextToken *string `location:"querystring" locationName:"pageToken" type:"string"`
 
 	// The ID of the second snapshot to use for the comparison.
+	//
+	// The SecondSnapshotId parameter must be specified with a FirstSnapshotID parameter;
+	// otherwise, an error occurs.
 	//
 	// SecondSnapshotId is a required field
 	SecondSnapshotId *string `location:"uri" locationName:"secondSnapshotId" min:"1" type:"string" required:"true"`
@@ -677,7 +683,7 @@ type ListChangedBlocksOutput struct {
 	// An array of objects containing information about the changed blocks.
 	ChangedBlocks []*ChangedBlock `type:"list"`
 
-	// The time when the block token expires.
+	// The time when the BlockToken expires.
 	ExpiryTime *time.Time `type:"timestamp"`
 
 	// The token to use to retrieve the next page of results. This value is null
@@ -809,7 +815,7 @@ type ListSnapshotBlocksOutput struct {
 	// An array of objects containing information about the blocks.
 	Blocks []*Block `type:"list" sensitive:"true"`
 
-	// The time when the block token expires.
+	// The time when the BlockToken expires.
 	ExpiryTime *time.Time `type:"timestamp"`
 
 	// The token to use to retrieve the next page of results. This value is null

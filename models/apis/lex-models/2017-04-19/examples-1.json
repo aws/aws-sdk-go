@@ -364,7 +364,7 @@
             "maxAttempts": 1,
             "messages": [
               {
-                "content": "I'm sorry, I didn't hear that. Can you repeate what you just said?",
+                "content": "I'm sorry, I didn't hear that. Can you repeat what you just said?",
                 "contentType": "PlainText"
               },
               {
