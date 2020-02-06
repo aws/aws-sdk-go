@@ -45,19 +45,16 @@ script:
         [ $TRAVIS_GO_VERSION == "1.10.x" ]; then
       make get-deps-x-tests;
     fi
-  - if [ -z $(go env GOMOD) ]; then
+    if [ -z $(go env GOMOD) ]; then
       make get-deps;
     fi
-  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
+    if [ "$TRAVIS_OS_NAME" = "windows" ]; then
       make unit-no-verify;
+    elif [ ! -z $(go env GOMOD) ]; then
+      make get-deps-verify
+      make ci-test;
     else
-      make get-deps-verify;
-
-      if [ ! -z $(go env GOMOD) ]; then
-        make ci-test;
-      else
-        make unit-old-go-race-cover;
-      fi
+      make unit-old-go-race-cover;
     fi
 
 branches:
