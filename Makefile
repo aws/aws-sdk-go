@@ -116,13 +116,6 @@ sandbox-go1.5: sandbox-build-go1.5
 sandbox-test-go1.5: sandbox-build-go1.5
 	docker run -t aws-sdk-go-1.5
 
-sandbox-build-go1.5-novendorexp:
-	docker build -f ./awstesting/sandbox/Dockerfile.test.go1.5-novendorexp -t "aws-sdk-go-1.5-novendorexp" .
-sandbox-go1.5-novendorexp: sandbox-build-go1.5-novendorexp
-	docker run -i -t aws-sdk-go-1.5-novendorexp bash
-sandbox-test-go1.5-novendorexp: sandbox-build-go1.5-novendorexp
-	docker run -t aws-sdk-go-1.5-novendorexp
-
 sandbox-build-go1.6:
 	docker build -f ./awstesting/sandbox/Dockerfile.test.go1.6 -t "aws-sdk-go-1.6" .
 sandbox-go1.6: sandbox-build-go1.6
@@ -208,22 +201,9 @@ vet:
 ################
 # Dependencies #
 ################
-get-deps: get-deps-tests get-deps-x-tests get-deps-codegen get-deps-verify
-
-get-deps-tests:
-	@echo "go get SDK testing dependencies"
-
-get-deps-x-tests:
-	@echo "go get SDK testing golang.org/x dependencies"
-	go get golang.org/x/net/http2
-
-get-deps-codegen: get-deps-x-tests
-	@echo "go get SDK codegen dependencies"
-	go get golang.org/x/net/html
-
-get-deps-verify:
-	@echo "go get SDK verification utilities"
-	go get golang.org/x/lint/golint
+get-deps: 
+	@echo "getting pre go module dependnecies"
+	go get github.com/jmespath/go-jmespath
 
 ##############
 # Benchmarks #
