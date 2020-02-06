@@ -1,4 +1,6 @@
 ### SDK Features
+* Separate example and SDK codegen into Go submodules
+  * Moves the example and private/model packages into their own sub model to clarify the dependencies of the SDK separate from its build tools.
 * Remove SDK's `vendor` directory of vendored dependencies
   * Updates the SDK's Go module definition to enumerate all dependencies of the SDK and its components. 
   * SDK's repository root package has been updated to refer to runtime dependencies like `go-jmespath` for `go get` the SDK with Go without modules.
