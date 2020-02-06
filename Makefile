@@ -205,6 +205,10 @@ get-deps:
 	@echo "getting pre go module dependnecies"
 	go get github.com/jmespath/go-jmespath
 
+get-deps-x-tests:
+	@echo "go get SDK testing golang.org/x dependencies"
+	go get golang.org/x/net/http2
+
 ##############
 # Benchmarks #
 ##############
