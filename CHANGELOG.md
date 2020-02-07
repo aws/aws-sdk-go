@@ -1,3 +1,12 @@
+Release v1.28.13 (2020-02-07)
+===
+
+### Service Client Updates
+* `service/imagebuilder`: Updates service API and documentation
+* `service/rds`: Updates service documentation
+  * Documentation updates for RDS: when restoring a DB cluster from a snapshot, must create DB instances
+* `service/robomaker`: Updates service API, documentation, and paginators
+
 Release v1.28.12 (2020-02-06)
 ===
 

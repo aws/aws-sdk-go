@@ -58,6 +58,21 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "CancelSimulationJobBatch":{
+      "name":"CancelSimulationJobBatch",
+      "http":{
+        "method":"POST",
+        "requestUri":"/cancelSimulationJobBatch"
+      },
+      "input":{"shape":"CancelSimulationJobBatchRequest"},
+      "output":{"shape":"CancelSimulationJobBatchResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "CreateDeploymentJob":{
       "name":"CreateDeploymentJob",
       "http":{
@@ -352,6 +367,20 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "DescribeSimulationJobBatch":{
+      "name":"DescribeSimulationJobBatch",
+      "http":{
+        "method":"POST",
+        "requestUri":"/describeSimulationJobBatch"
+      },
+      "input":{"shape":"DescribeSimulationJobBatchRequest"},
+      "output":{"shape":"DescribeSimulationJobBatchResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListDeploymentJobs":{
       "name":"ListDeploymentJobs",
       "http":{
@@ -425,6 +454,19 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListSimulationJobBatches":{
+      "name":"ListSimulationJobBatches",
+      "http":{
+        "method":"POST",
+        "requestUri":"/listSimulationJobBatches"
+      },
+      "input":{"shape":"ListSimulationJobBatchesRequest"},
+      "output":{"shape":"ListSimulationJobBatchesResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListSimulationJobs":{
       "name":"ListSimulationJobs",
       "http":{
@@ -483,6 +525,22 @@
         {"shape":"ThrottlingException"},
         {"shape":"LimitExceededException"},
         {"shape":"InvalidParameterException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "StartSimulationJobBatch":{
+      "name":"StartSimulationJobBatch",
+      "http":{
+        "method":"POST",
+        "requestUri":"/startSimulationJobBatch"
+      },
+      "input":{"shape":"StartSimulationJobBatchRequest"},
+      "output":{"shape":"StartSimulationJobBatchResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"IdempotentParameterMismatchException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -602,6 +660,14 @@
         "unprocessedJobs":{"shape":"Arns"}
       }
     },
+    "BatchPolicy":{
+      "type":"structure",
+      "members":{
+        "timeoutInSeconds":{"shape":"BatchTimeoutInSeconds"},
+        "maxConcurrency":{"shape":"MaxConcurrency"}
+      }
+    },
+    "BatchTimeoutInSeconds":{"type":"long"},
     "Boolean":{"type":"boolean"},
     "BoxedBoolean":{"type":"boolean"},
     "CancelDeploymentJobRequest":{
@@ -612,6 +678,18 @@
       }
     },
     "CancelDeploymentJobResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "CancelSimulationJobBatchRequest":{
+      "type":"structure",
+      "required":["batch"],
+      "members":{
+        "batch":{"shape":"Arn"}
+      }
+    },
+    "CancelSimulationJobBatchResponse":{
       "type":"structure",
       "members":{
       }
@@ -845,6 +923,11 @@
         "tags":{"shape":"TagMap"},
         "vpcConfig":{"shape":"VPCConfig"}
       }
+    },
+    "CreateSimulationJobRequests":{
+      "type":"list",
+      "member":{"shape":"SimulationJobRequest"},
+      "min":1
     },
     "CreateSimulationJobResponse":{
       "type":"structure",
@@ -1182,6 +1265,30 @@
         "tags":{"shape":"TagMap"}
       }
     },
+    "DescribeSimulationJobBatchRequest":{
+      "type":"structure",
+      "required":["batch"],
+      "members":{
+        "batch":{"shape":"Arn"}
+      }
+    },
+    "DescribeSimulationJobBatchResponse":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"Arn"},
+        "status":{"shape":"SimulationJobBatchStatus"},
+        "lastUpdatedAt":{"shape":"LastUpdatedAt"},
+        "createdAt":{"shape":"CreatedAt"},
+        "clientRequestToken":{"shape":"ClientRequestToken"},
+        "batchPolicy":{"shape":"BatchPolicy"},
+        "failureCode":{"shape":"SimulationJobBatchErrorCode"},
+        "failureReason":{"shape":"GenericString"},
+        "failedRequests":{"shape":"FailedCreateSimulationJobRequests"},
+        "pendingRequests":{"shape":"CreateSimulationJobRequests"},
+        "createdRequests":{"shape":"SimulationJobSummaries"},
+        "tags":{"shape":"TagMap"}
+      }
+    },
     "DescribeSimulationJobRequest":{
       "type":"structure",
       "required":["job"],
@@ -1232,6 +1339,20 @@
       "max":1024,
       "min":1,
       "pattern":".*"
+    },
+    "FailedAt":{"type":"timestamp"},
+    "FailedCreateSimulationJobRequest":{
+      "type":"structure",
+      "members":{
+        "request":{"shape":"SimulationJobRequest"},
+        "failureReason":{"shape":"GenericString"},
+        "failureCode":{"shape":"SimulationJobErrorCode"},
+        "failedAt":{"shape":"FailedAt"}
+      }
+    },
+    "FailedCreateSimulationJobRequests":{
+      "type":"list",
+      "member":{"shape":"FailedCreateSimulationJobRequest"}
     },
     "FailureBehavior":{
       "type":"string",
@@ -1298,6 +1419,7 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "Integer":{"type":"integer"},
     "InternalServerException":{
       "type":"structure",
       "members":{
@@ -1415,6 +1537,21 @@
         "nextToken":{"shape":"PaginationToken"}
       }
     },
+    "ListSimulationJobBatchesRequest":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"PaginationToken"},
+        "maxResults":{"shape":"MaxResults"},
+        "filters":{"shape":"Filters"}
+      }
+    },
+    "ListSimulationJobBatchesResponse":{
+      "type":"structure",
+      "members":{
+        "simulationJobBatchSummaries":{"shape":"SimulationJobBatchSummaries"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
     "ListSimulationJobsRequest":{
       "type":"structure",
       "members":{
@@ -1455,6 +1592,7 @@
         "recordAllRosTopics":{"shape":"BoxedBoolean"}
       }
     },
+    "MaxConcurrency":{"type":"integer"},
     "MaxResults":{"type":"integer"},
     "Name":{
       "type":"string",
@@ -1472,6 +1610,7 @@
     },
     "NonEmptyString":{
       "type":"string",
+      "max":255,
       "min":1
     },
     "NonSystemPort":{
@@ -1853,6 +1992,40 @@
         "networkInterface":{"shape":"NetworkInterface"}
       }
     },
+    "SimulationJobBatchErrorCode":{
+      "type":"string",
+      "enum":["InternalServiceError"]
+    },
+    "SimulationJobBatchStatus":{
+      "type":"string",
+      "enum":[
+        "Pending",
+        "InProgress",
+        "Failed",
+        "Completed",
+        "Canceled",
+        "Canceling",
+        "Completing",
+        "TimingOut",
+        "TimedOut"
+      ]
+    },
+    "SimulationJobBatchSummaries":{
+      "type":"list",
+      "member":{"shape":"SimulationJobBatchSummary"}
+    },
+    "SimulationJobBatchSummary":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"Arn"},
+        "lastUpdatedAt":{"shape":"LastUpdatedAt"},
+        "createdAt":{"shape":"CreatedAt"},
+        "status":{"shape":"SimulationJobBatchStatus"},
+        "failedRequestCount":{"shape":"Integer"},
+        "pendingRequestCount":{"shape":"Integer"},
+        "createdRequestCount":{"shape":"Integer"}
+      }
+    },
     "SimulationJobErrorCode":{
       "type":"string",
       "enum":[
@@ -1870,16 +2043,37 @@
         "InvalidBundleRobotApplication",
         "InvalidBundleSimulationApplication",
         "InvalidS3Resource",
+        "LimitExceeded",
         "MismatchedEtag",
         "RobotApplicationVersionMismatchedEtag",
         "SimulationApplicationVersionMismatchedEtag",
         "ResourceNotFound",
+        "RequestThrottled",
+        "BatchTimedOut",
+        "BatchCanceled",
         "InvalidInput",
         "WrongRegionS3Bucket",
         "WrongRegionS3Output",
         "WrongRegionRobotApplication",
         "WrongRegionSimulationApplication"
       ]
+    },
+    "SimulationJobRequest":{
+      "type":"structure",
+      "required":["maxJobDurationInSeconds"],
+      "members":{
+        "outputLocation":{"shape":"OutputLocation"},
+        "loggingConfig":{"shape":"LoggingConfig"},
+        "maxJobDurationInSeconds":{"shape":"JobDuration"},
+        "iamRole":{"shape":"IamRole"},
+        "failureBehavior":{"shape":"FailureBehavior"},
+        "useDefaultApplications":{"shape":"BoxedBoolean"},
+        "robotApplications":{"shape":"RobotApplicationConfigs"},
+        "simulationApplications":{"shape":"SimulationApplicationConfigs"},
+        "dataSources":{"shape":"DataSourceConfigs"},
+        "vpcConfig":{"shape":"VPCConfig"},
+        "tags":{"shape":"TagMap"}
+      }
     },
     "SimulationJobStatus":{
       "type":"string",
@@ -1961,6 +2155,32 @@
     "Sources":{
       "type":"list",
       "member":{"shape":"Source"}
+    },
+    "StartSimulationJobBatchRequest":{
+      "type":"structure",
+      "required":["createSimulationJobRequests"],
+      "members":{
+        "clientRequestToken":{"shape":"ClientRequestToken"},
+        "batchPolicy":{"shape":"BatchPolicy"},
+        "createSimulationJobRequests":{"shape":"CreateSimulationJobRequests"},
+        "tags":{"shape":"TagMap"}
+      }
+    },
+    "StartSimulationJobBatchResponse":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"Arn"},
+        "status":{"shape":"SimulationJobBatchStatus"},
+        "createdAt":{"shape":"CreatedAt"},
+        "clientRequestToken":{"shape":"ClientRequestToken"},
+        "batchPolicy":{"shape":"BatchPolicy"},
+        "failureCode":{"shape":"SimulationJobBatchErrorCode"},
+        "failureReason":{"shape":"GenericString"},
+        "failedRequests":{"shape":"FailedCreateSimulationJobRequests"},
+        "pendingRequests":{"shape":"CreateSimulationJobRequests"},
+        "createdRequests":{"shape":"SimulationJobSummaries"},
+        "tags":{"shape":"TagMap"}
+      }
     },
     "Subnets":{
       "type":"list",

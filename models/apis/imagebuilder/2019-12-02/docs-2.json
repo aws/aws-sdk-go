@@ -1,13 +1,13 @@
 {
   "version": "2.0",
-  "service": "<p> Amazon Elastic Compute Cloud Image Builder provides a one-stop-shop to automate the image management processes. You configure an automated pipeline that creates images for use on AWS. As software updates become available, Image Builder automatically produces a new image based on a customizable schedule and distributes it to stipulated AWS Regions after running tests on it. With the Image Builder, organizations can capture their internal or industry-specific compliance policies as a vetted template that can be consistently applied to every new image. Built-in integration with AWS Organizations provides customers with a centralized way to enforce image distribution and access policies across their AWS accounts and Regions. Image Builder supports multiple image format AMIs on AWS.</p>",
+  "service": "<p>EC2 Image Builder is a fully managed AWS service that makes it easier to automate the creation, management, and deployment of customized, secure, and up-to-date “golden” server images that are pre-installed and pre-configured with software and settings to meet specific IT standards.</p>",
   "operations": {
-    "CancelImageCreation": "<p>CancelImageCreation cancels the creation of Image. This operation may only be used on images in a non-terminal state.</p>",
-    "CreateComponent": "<p>Creates a new component that can be used to build, validate, test and assess your image.</p>",
-    "CreateDistributionConfiguration": "<p> Creates a new distribution configuration. Distribution configurations define and configure the outputs of your pipeline. </p>",
+    "CancelImageCreation": "<p>CancelImageCreation cancels the creation of Image. This operation can only be used on images in a non-terminal state.</p>",
+    "CreateComponent": "<p>Creates a new component that can be used to build, validate, test, and assess your image.</p>",
+    "CreateDistributionConfiguration": "<p>Creates a new distribution configuration. Distribution configurations define and configure the outputs of your pipeline. </p>",
     "CreateImage": "<p> Creates a new image. This request will create a new image along with all of the configured output resources defined in the distribution configuration. </p>",
     "CreateImagePipeline": "<p> Creates a new image pipeline. Image pipelines enable you to automate the creation and distribution of images. </p>",
-    "CreateImageRecipe": "<p> Creates a new image recipe. Image Recipes defines how images are configured, tested and assessed. </p>",
+    "CreateImageRecipe": "<p> Creates a new image recipe. Image recipes define how images are configured, tested, and assessed. </p>",
     "CreateInfrastructureConfiguration": "<p> Creates a new infrastructure configuration. An infrastructure configuration defines the environment in which your image will be built and tested. </p>",
     "DeleteComponent": "<p> Deletes a component build version. </p>",
     "DeleteDistributionConfiguration": "<p> Deletes a distribution configuration. </p>",
@@ -23,10 +23,10 @@
     "GetImagePolicy": "<p> Gets an image policy. </p>",
     "GetImageRecipe": "<p> Gets an image recipe. </p>",
     "GetImageRecipePolicy": "<p> Gets an image recipe policy. </p>",
-    "GetInfrastructureConfiguration": "<p> Gets a infrastructure configuration. </p>",
-    "ImportComponent": "<p> Imports a component and transforms its data into a component document. </p>",
+    "GetInfrastructureConfiguration": "<p> Gets an infrastructure configuration. </p>",
+    "ImportComponent": "<p>Imports a component and transforms its data into a component document. </p>",
     "ListComponentBuildVersions": "<p> Returns the list of component build versions for the specified semantic version. </p>",
-    "ListComponents": "<p> Returns the list of component build versions for the specified semantic version. </p>",
+    "ListComponents": "<p>Returns the list of component build versions for the specified semantic version. </p>",
     "ListDistributionConfigurations": "<p> Returns a list of distribution configurations. </p>",
     "ListImageBuildVersions": "<p> Returns a list of distribution configurations. </p>",
     "ListImagePipelineImages": "<p> Returns a list of images created by the specified pipeline. </p>",
@@ -49,7 +49,7 @@
     "AccountList": {
       "base": null,
       "refs": {
-        "LaunchPermissionConfiguration$userIds": "<p> </p>"
+        "LaunchPermissionConfiguration$userIds": "<p> The AWS account ID. </p>"
       }
     },
     "Ami": {
@@ -59,15 +59,21 @@
       }
     },
     "AmiDistributionConfiguration": {
-      "base": "<p> Define and configure the outputs AMIs of the pipeline. </p>",
+      "base": "<p> Define and configure the output AMIs of the pipeline. </p>",
       "refs": {
-        "Distribution$amiDistributionConfiguration": "<p> </p>"
+        "Distribution$amiDistributionConfiguration": "<p> The specific AMI settings (for example, launch permissions, AMI tags). </p>"
       }
     },
     "AmiList": {
       "base": null,
       "refs": {
-        "OutputResources$amis": "<p> The EC2 AMIs created by this image. </p>"
+        "OutputResources$amis": "<p>The EC2 AMIs created by this image. </p>"
+      }
+    },
+    "AmiNameString": {
+      "base": null,
+      "refs": {
+        "AmiDistributionConfiguration$name": "<p> The name of the distribution configuration. </p>"
       }
     },
     "Arn": {
@@ -76,14 +82,14 @@
         "ArnList$member": null,
         "Image$sourcePipelineArn": "<p>The Amazon Resource Name (ARN) of the image pipeline that created this image.</p>",
         "ImagePipeline$imageRecipeArn": "<p>The Amazon Resource Name (ARN) of the image recipe associated with this image pipeline.</p>",
-        "ImagePipeline$infrastructureConfigurationArn": "<p>The Amazon Resource Name (ARN) of the infrastruction configuration associated with this image pipeline.</p>",
+        "ImagePipeline$infrastructureConfigurationArn": "<p>The Amazon Resource Name (ARN) of the infrastructure configuration associated with this image pipeline.</p>",
         "ImagePipeline$distributionConfigurationArn": "<p>The Amazon Resource Name (ARN) of the distribution configuration associated with this image pipeline.</p>"
       }
     },
     "ArnList": {
       "base": null,
       "refs": {
-        "Distribution$licenseConfigurationArns": "<p> </p>"
+        "Distribution$licenseConfigurationArns": "<p> The License Manager Configuration to associate with the AMI in the specified Region.</p>"
       }
     },
     "CallRateLimitExceededException": {
@@ -111,8 +117,8 @@
       "refs": {
         "CancelImageCreationRequest$clientToken": "<p>The idempotency token used to make this request idempotent.</p>",
         "CancelImageCreationResponse$clientToken": "<p>The idempotency token used to make this request idempotent.</p>",
-        "CreateComponentRequest$clientToken": "<p>CThe idempotency token of the component.</p>",
-        "CreateComponentResponse$clientToken": "<p>CThe idempotency token used to make this request idempotent.</p>",
+        "CreateComponentRequest$clientToken": "<p>The idempotency token of the component.</p>",
+        "CreateComponentResponse$clientToken": "<p>The idempotency token used to make this request idempotent.</p>",
         "CreateDistributionConfigurationRequest$clientToken": "<p> The idempotency token of the distribution configuration. </p>",
         "CreateDistributionConfigurationResponse$clientToken": "<p> The idempotency token used to make this request idempotent. </p>",
         "CreateImagePipelineRequest$clientToken": "<p> The idempotency token used to make this request idempotent. </p>",
@@ -144,12 +150,11 @@
     "ComponentBuildVersionArn": {
       "base": null,
       "refs": {
-        "ComponentConfiguration$componentArn": "<p> The Amazon Resource Name (ARN) of the component. </p>",
-        "CreateComponentResponse$componentBuildVersionArn": "<p>CThe Amazon Resource Name (ARN) of the component that was created by this request.</p>",
+        "CreateComponentResponse$componentBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the component that was created by this request.</p>",
         "DeleteComponentRequest$componentBuildVersionArn": "<p> The Amazon Resource Name (ARN) of the component build version to delete. </p>",
         "DeleteComponentResponse$componentBuildVersionArn": "<p> The Amazon Resource Name (ARN) of the component build version that was deleted. </p>",
-        "GetComponentPolicyRequest$componentArn": "<p> The Amazon Resource Name (ARN) of the component whose policy you wish to retrieve. </p>",
-        "GetComponentRequest$componentBuildVersionArn": "<p> The Amazon Resource Name (ARN) of the component that you wish to retrieve. </p>",
+        "GetComponentPolicyRequest$componentArn": "<p> The Amazon Resource Name (ARN) of the component whose policy you want to retrieve. </p>",
+        "GetComponentRequest$componentBuildVersionArn": "<p> The Amazon Resource Name (ARN) of the component that you want to retrieve. Regex requires \"/\\d+$\" suffix.</p>",
         "ImportComponentResponse$componentBuildVersionArn": "<p> The Amazon Resource Name (ARN) of the imported component. </p>",
         "PutComponentPolicyRequest$componentArn": "<p> The Amazon Resource Name (ARN) of the component that this policy should be applied to. </p>",
         "PutComponentPolicyResponse$componentArn": "<p> The Amazon Resource Name (ARN) of the component that this policy was applied to. </p>"
@@ -177,11 +182,11 @@
     "ComponentFormat": {
       "base": null,
       "refs": {
-        "ImportComponentRequest$format": "<p> The format of the resource that you wish to import as a component. </p>"
+        "ImportComponentRequest$format": "<p> The format of the resource that you want to import as a component. </p>"
       }
     },
     "ComponentSummary": {
-      "base": "<p>A high level summary of a component.</p>",
+      "base": "<p>A high-level summary of a component.</p>",
       "refs": {
         "ComponentSummaryList$member": null
       }
@@ -198,11 +203,11 @@
         "Component$type": "<p>The type of the component denotes whether the component is used to build the image or only to test it.</p>",
         "ComponentSummary$type": "<p>The type of the component denotes whether the component is used to build the image or only to test it.</p>",
         "ComponentVersion$type": "<p>The type of the component denotes whether the component is used to build the image or only to test it.</p>",
-        "ImportComponentRequest$type": "<p> The type of the component denotes whether the component is used to build the image or only to test it. </p>"
+        "ImportComponentRequest$type": "<p>The type of the component denotes whether the component is used to build the image or only to test it. </p>"
       }
     },
     "ComponentVersion": {
-      "base": "<p>A high level overview of a component semantic version.</p>",
+      "base": "<p>A high-level overview of a component semantic version.</p>",
       "refs": {
         "ComponentVersionList$member": null
       }
@@ -210,7 +215,13 @@
     "ComponentVersionArn": {
       "base": null,
       "refs": {
-        "ListComponentBuildVersionsRequest$componentVersionArn": "<p> The component version arn whose versions you wish to list. </p>"
+        "ListComponentBuildVersionsRequest$componentVersionArn": "<p> The component version Amazon Resource Name (ARN) whose versions you want to list. </p>"
+      }
+    },
+    "ComponentVersionArnOrBuildVersionArn": {
+      "base": null,
+      "refs": {
+        "ComponentConfiguration$componentArn": "<p> The Amazon Resource Name (ARN) of the component. </p>"
       }
     },
     "ComponentVersionList": {
@@ -365,7 +376,7 @@
       }
     },
     "Distribution": {
-      "base": "<p> </p>",
+      "base": "<p> Defines the settings for a specific Region. </p>",
       "refs": {
         "DistributionList$member": null
       }
@@ -385,14 +396,14 @@
         "CreateImageRequest$distributionConfigurationArn": "<p> The Amazon Resource Name (ARN) of the distribution configuration that defines and configures the outputs of your pipeline. </p>",
         "DeleteDistributionConfigurationRequest$distributionConfigurationArn": "<p> The Amazon Resource Name (ARN) of the distribution configuration to delete. </p>",
         "DeleteDistributionConfigurationResponse$distributionConfigurationArn": "<p> The Amazon Resource Name (ARN) of the distribution configuration that was deleted. </p>",
-        "GetDistributionConfigurationRequest$distributionConfigurationArn": "<p> The Amazon Resource Name (ARN) of the distribution configuration that you wish to retrieve. </p>",
-        "UpdateDistributionConfigurationRequest$distributionConfigurationArn": "<p> The Amazon Resource Name (ARN) of the distribution configuration that you wish to update. </p>",
+        "GetDistributionConfigurationRequest$distributionConfigurationArn": "<p> The Amazon Resource Name (ARN) of the distribution configuration that you want to retrieve. </p>",
+        "UpdateDistributionConfigurationRequest$distributionConfigurationArn": "<p> The Amazon Resource Name (ARN) of the distribution configuration that you want to update. </p>",
         "UpdateDistributionConfigurationResponse$distributionConfigurationArn": "<p> The Amazon Resource Name (ARN) of the distribution configuration that was updated by this request. </p>",
         "UpdateImagePipelineRequest$distributionConfigurationArn": "<p> The Amazon Resource Name (ARN) of the distribution configuration that will be used to configure and distribute images updated by this image pipeline. </p>"
       }
     },
     "DistributionConfigurationSummary": {
-      "base": "<p>A high level overview a distribution configuration.</p>",
+      "base": "<p>A high-level overview of a distribution configuration.</p>",
       "refs": {
         "DistributionConfigurationSummaryList$member": null
       }
@@ -418,9 +429,9 @@
       }
     },
     "EbsInstanceBlockDeviceSpecification": {
-      "base": "<p>EBS specific block device mapping specifications.</p>",
+      "base": "<p>Amazon EBS-specific block device mapping specifications.</p>",
       "refs": {
-        "InstanceBlockDeviceMapping$ebs": "<p>Use to manage EBS specific configuration for this mapping.</p>"
+        "InstanceBlockDeviceMapping$ebs": "<p>Use to manage Amazon EBS-specific configuration for this mapping.</p>"
       }
     },
     "EbsIopsInteger": {
@@ -439,6 +450,12 @@
       "base": null,
       "refs": {
         "EbsInstanceBlockDeviceSpecification$volumeType": "<p>Use to override the device's volume type.</p>"
+      }
+    },
+    "EmptyString": {
+      "base": null,
+      "refs": {
+        "InstanceBlockDeviceMapping$noDevice": "<p>Use to remove a mapping from the parent image.</p>"
       }
     },
     "ErrorMessage": {
@@ -463,7 +480,7 @@
       }
     },
     "Filter": {
-      "base": "<p> </p>",
+      "base": "<p> A filter name and value pair that is used to return a more specific list of results from a list operation. Filters can be used to match a set of resources by specific criteria, such as tags, attributes, or IDs. </p>",
       "refs": {
         "FilterList$member": null
       }
@@ -471,20 +488,20 @@
     "FilterList": {
       "base": null,
       "refs": {
-        "ListComponentsRequest$filters": "<p> </p>",
-        "ListDistributionConfigurationsRequest$filters": "<p> </p>",
-        "ListImageBuildVersionsRequest$filters": "<p> </p>",
-        "ListImagePipelineImagesRequest$filters": "<p> </p>",
-        "ListImagePipelinesRequest$filters": "<p> </p>",
-        "ListImageRecipesRequest$filters": "<p> </p>",
-        "ListImagesRequest$filters": "<p> </p>",
-        "ListInfrastructureConfigurationsRequest$filters": "<p> </p>"
+        "ListComponentsRequest$filters": "<p> The filters. </p>",
+        "ListDistributionConfigurationsRequest$filters": "<p> The filters. </p>",
+        "ListImageBuildVersionsRequest$filters": "<p> The filters. </p>",
+        "ListImagePipelineImagesRequest$filters": "<p> The filters. </p>",
+        "ListImagePipelinesRequest$filters": "<p> The filters. </p>",
+        "ListImageRecipesRequest$filters": "<p> The filters. </p>",
+        "ListImagesRequest$filters": "<p> The filters. </p>",
+        "ListInfrastructureConfigurationsRequest$filters": "<p> The filters. </p>"
       }
     },
     "FilterName": {
       "base": null,
       "refs": {
-        "Filter$name": "<p> </p>"
+        "Filter$name": "<p> The name of the filter. Filter names are case-sensitive. </p>"
       }
     },
     "FilterValue": {
@@ -496,7 +513,7 @@
     "FilterValues": {
       "base": null,
       "refs": {
-        "Filter$values": "<p> </p>"
+        "Filter$values": "<p> The filter values. Filter values are case-sensitive. </p>"
       }
     },
     "ForbiddenException": {
@@ -590,12 +607,12 @@
       }
     },
     "GetInfrastructureConfigurationResponse": {
-      "base": "<p> GetInfrastructureConfiguration response object. </p>",
+      "base": "<p>GetInfrastructureConfiguration response object. </p>",
       "refs": {
       }
     },
     "IdempotentParameterMismatchException": {
-      "base": "<p>You have specified an client token for an operation using parameter values that differ from a previous request that used the same client token.</p>",
+      "base": "<p>You have specified a client token for an operation using parameter values that differ from a previous request that used the same client token.</p>",
       "refs": {
       }
     },
@@ -608,13 +625,13 @@
     "ImageBuildVersionArn": {
       "base": null,
       "refs": {
-        "CancelImageCreationRequest$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the image whose creation you wish to cancel.</p>",
+        "CancelImageCreationRequest$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the image whose creation you want to cancel.</p>",
         "CancelImageCreationResponse$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the image whose creation has been cancelled.</p>",
         "CreateImageResponse$imageBuildVersionArn": "<p> The Amazon Resource Name (ARN) of the image that was created by this request. </p>",
         "DeleteImageRequest$imageBuildVersionArn": "<p> The Amazon Resource Name (ARN) of the image to delete. </p>",
         "DeleteImageResponse$imageBuildVersionArn": "<p> The Amazon Resource Name (ARN) of the image that was deleted. </p>",
-        "GetImagePolicyRequest$imageArn": "<p> The Amazon Resource Name (ARN) of the image whose policy you wish to retrieve. </p>",
-        "GetImageRequest$imageBuildVersionArn": "<p> The Amazon Resource Name (ARN) of the image that you wish to retrieve. </p>",
+        "GetImagePolicyRequest$imageArn": "<p> The Amazon Resource Name (ARN) of the image whose policy you want to retrieve. </p>",
+        "GetImageRequest$imageBuildVersionArn": "<p> The Amazon Resource Name (ARN) of the image that you want to retrieve. </p>",
         "PutImagePolicyRequest$imageArn": "<p> The Amazon Resource Name (ARN) of the image that this policy should be applied to. </p>",
         "PutImagePolicyResponse$imageArn": "<p> The Amazon Resource Name (ARN) of the image that this policy was applied to. </p>",
         "StartImagePipelineExecutionResponse$imageBuildVersionArn": "<p> The Amazon Resource Name (ARN) of the image that was created by this request.</p>"
@@ -633,12 +650,12 @@
         "ImageRecipe$arn": "<p>The Amazon Resource Name (ARN) of the image recipe.</p>",
         "ImageRecipeSummary$arn": "<p>The Amazon Resource Name (ARN) of the image recipe.</p>",
         "ImageSummary$arn": "<p>The Amazon Resource Name (ARN) of the image.</p>",
-        "ImageVersion$arn": "<p>The Amazon Resource Name (ARN) of the image semantic verion.</p>",
-        "InfrastructureConfiguration$arn": "<p>The Amazon Resource Name (ARN) of the infrastruction configuration.</p>",
+        "ImageVersion$arn": "<p>The Amazon Resource Name (ARN) of the image semantic version.</p>",
+        "InfrastructureConfiguration$arn": "<p>The Amazon Resource Name (ARN) of the infrastructure configuration.</p>",
         "InfrastructureConfigurationSummary$arn": "<p>The Amazon Resource Name (ARN) of the infrastructure configuration.</p>",
-        "ListTagsForResourceRequest$resourceArn": "<p> The Amazon Resource Name (ARN) of the resource whose tags you wish to retrieve. </p>",
-        "TagResourceRequest$resourceArn": "<p> The Amazon Resource Name (ARN) of the resource that you wish to tag. </p>",
-        "UntagResourceRequest$resourceArn": "<p> The Amazon Resource Name (ARN) of the resource that you wish to untag. </p>"
+        "ListTagsForResourceRequest$resourceArn": "<p> The Amazon Resource Name (ARN) of the resource whose tags you want to retrieve. </p>",
+        "TagResourceRequest$resourceArn": "<p> The Amazon Resource Name (ARN) of the resource that you want to tag. </p>",
+        "UntagResourceRequest$resourceArn": "<p> The Amazon Resource Name (ARN) of the resource that you want to untag. </p>"
       }
     },
     "ImagePipeline": {
@@ -654,10 +671,10 @@
         "CreateImagePipelineResponse$imagePipelineArn": "<p> The Amazon Resource Name (ARN) of the image pipeline that was created by this request. </p>",
         "DeleteImagePipelineRequest$imagePipelineArn": "<p> The Amazon Resource Name (ARN) of the image pipeline to delete. </p>",
         "DeleteImagePipelineResponse$imagePipelineArn": "<p> The Amazon Resource Name (ARN) of the image pipeline that was deleted. </p>",
-        "GetImagePipelineRequest$imagePipelineArn": "<p> The Amazon Resource Name (ARN) of the image pipeline that you wish to retrieve. </p>",
-        "ListImagePipelineImagesRequest$imagePipelineArn": "<p> The Amazon Resource Name (ARN) of the image pipeline whose images you wish to view. </p>",
-        "StartImagePipelineExecutionRequest$imagePipelineArn": "<p> The Amazon Resource Name (ARN) of the image pipeline that you wish to manually invoke. </p>",
-        "UpdateImagePipelineRequest$imagePipelineArn": "<p> The Amazon Resource Name (ARN) of the image pipeline that you wish to update. </p>",
+        "GetImagePipelineRequest$imagePipelineArn": "<p> The Amazon Resource Name (ARN) of the image pipeline that you want to retrieve. </p>",
+        "ListImagePipelineImagesRequest$imagePipelineArn": "<p> The Amazon Resource Name (ARN) of the image pipeline whose images you want to view. </p>",
+        "StartImagePipelineExecutionRequest$imagePipelineArn": "<p> The Amazon Resource Name (ARN) of the image pipeline that you want to manually invoke. </p>",
+        "UpdateImagePipelineRequest$imagePipelineArn": "<p> The Amazon Resource Name (ARN) of the image pipeline that you want to update. </p>",
         "UpdateImagePipelineResponse$imagePipelineArn": "<p> The Amazon Resource Name (ARN) of the image pipeline that was updated by this request. </p>"
       }
     },
@@ -679,11 +696,11 @@
       "refs": {
         "CreateImagePipelineRequest$imageRecipeArn": "<p> The Amazon Resource Name (ARN) of the image recipe that will be used to configure images created by this image pipeline. </p>",
         "CreateImageRecipeResponse$imageRecipeArn": "<p> The Amazon Resource Name (ARN) of the image recipe that was created by this request. </p>",
-        "CreateImageRequest$imageRecipeArn": "<p> The Amazon Resource Name (ARN) of the image recipe that defines how images are configured, tested and assessed. </p>",
+        "CreateImageRequest$imageRecipeArn": "<p> The Amazon Resource Name (ARN) of the image recipe that defines how images are configured, tested, and assessed. </p>",
         "DeleteImageRecipeRequest$imageRecipeArn": "<p> The Amazon Resource Name (ARN) of the image recipe to delete. </p>",
         "DeleteImageRecipeResponse$imageRecipeArn": "<p> The Amazon Resource Name (ARN) of the image recipe that was deleted. </p>",
-        "GetImageRecipePolicyRequest$imageRecipeArn": "<p> The Amazon Resource Name (ARN) of the image recipe whose policy you wish to retrieve. </p>",
-        "GetImageRecipeRequest$imageRecipeArn": "<p> The Amazon Resource Name (ARN) of the image recipe that you wish to retrieve. </p>",
+        "GetImageRecipePolicyRequest$imageRecipeArn": "<p> The Amazon Resource Name (ARN) of the image recipe whose policy you want to retrieve. </p>",
+        "GetImageRecipeRequest$imageRecipeArn": "<p> The Amazon Resource Name (ARN) of the image recipe that you want to retrieve. </p>",
         "PutImageRecipePolicyRequest$imageRecipeArn": "<p> The Amazon Resource Name (ARN) of the image recipe that this policy should be applied to. </p>",
         "PutImageRecipePolicyResponse$imageRecipeArn": "<p> The Amazon Resource Name (ARN) of the image recipe that this policy was applied to. </p>",
         "UpdateImagePipelineRequest$imageRecipeArn": "<p> The Amazon Resource Name (ARN) of the image recipe that will be used to configure images updated by this image pipeline. </p>"
@@ -702,7 +719,7 @@
       }
     },
     "ImageState": {
-      "base": "<p> Image state shows the images status and the reason for that status. </p>",
+      "base": "<p> Image state shows the image status and the reason for that status. </p>",
       "refs": {
         "Ami$state": null,
         "Image$state": "<p>The state of the image.</p>",
@@ -741,7 +758,7 @@
     "ImageTestsTimeoutMinutes": {
       "base": null,
       "refs": {
-        "ImageTestsConfiguration$timeoutMinutes": "<p>The maximum time in minutes that tests are permitted to run for.</p>"
+        "ImageTestsConfiguration$timeoutMinutes": "<p>The maximum time in minutes that tests are permitted to run.</p>"
       }
     },
     "ImageVersion": {
@@ -753,7 +770,7 @@
     "ImageVersionArn": {
       "base": null,
       "refs": {
-        "ListImageBuildVersionsRequest$imageVersionArn": "<p> The Amazon Resource Name (ARN) of the image whose build versions you wish to retrieve. </p>"
+        "ListImageBuildVersionsRequest$imageVersionArn": "<p> The Amazon Resource Name (ARN) of the image whose build versions you want to retrieve. </p>"
       }
     },
     "ImageVersionList": {
@@ -787,9 +804,9 @@
         "CreateInfrastructureConfigurationResponse$infrastructureConfigurationArn": "<p> The Amazon Resource Name (ARN) of the infrastructure configuration that was created by this request. </p>",
         "DeleteInfrastructureConfigurationRequest$infrastructureConfigurationArn": "<p> The Amazon Resource Name (ARN) of the infrastructure configuration to delete. </p>",
         "DeleteInfrastructureConfigurationResponse$infrastructureConfigurationArn": "<p> The Amazon Resource Name (ARN) of the infrastructure configuration that was deleted. </p>",
-        "GetInfrastructureConfigurationRequest$infrastructureConfigurationArn": "<p> The Amazon Resource Name (ARN) of the infrastructure configuration that you wish to retrieve. </p>",
+        "GetInfrastructureConfigurationRequest$infrastructureConfigurationArn": "<p>The Amazon Resource Name (ARN) of the infrastructure configuration that you want to retrieve. </p>",
         "UpdateImagePipelineRequest$infrastructureConfigurationArn": "<p> The Amazon Resource Name (ARN) of the infrastructure configuration that will be used to build images updated by this image pipeline. </p>",
-        "UpdateInfrastructureConfigurationRequest$infrastructureConfigurationArn": "<p> The Amazon Resource Name (ARN) of the infrastructure configuration that you wish to update. </p>",
+        "UpdateInfrastructureConfigurationRequest$infrastructureConfigurationArn": "<p> The Amazon Resource Name (ARN) of the infrastructure configuration that you want to update. </p>",
         "UpdateInfrastructureConfigurationResponse$infrastructureConfigurationArn": "<p> The Amazon Resource Name (ARN) of the infrastructure configuration that was updated by this request. </p>"
       }
     },
@@ -808,7 +825,7 @@
     "InlineComponentData": {
       "base": null,
       "refs": {
-        "CreateComponentRequest$data": "<p>CThe data of the component.</p>"
+        "CreateComponentRequest$data": "<p>The data of the component. Used to specify the data inline. Either <code>data</code> or <code>uri</code> can be used to specify the data within the component.</p>"
       }
     },
     "InstanceBlockDeviceMapping": {
@@ -833,9 +850,9 @@
     "InstanceTypeList": {
       "base": null,
       "refs": {
-        "CreateInfrastructureConfigurationRequest$instanceTypes": "<p> The instance types of the infrastructure configuration. You may specify one or more instance types to use for this build, the service will pick one of these instance types based on availability. </p>",
-        "InfrastructureConfiguration$instanceTypes": "<p>The instance types of the infrastruction configuration.</p>",
-        "UpdateInfrastructureConfigurationRequest$instanceTypes": "<p> The instance types of the infrastructure configuration. You may specify one or more instance types to use for this build, the service will pick one of these instance types based on availability. </p>"
+        "CreateInfrastructureConfigurationRequest$instanceTypes": "<p> The instance types of the infrastructure configuration. You can specify one or more instance types to use for this build. The service will pick one of these instance types based on availability. </p>",
+        "InfrastructureConfiguration$instanceTypes": "<p>The instance types of the infrastructure configuration.</p>",
+        "UpdateInfrastructureConfigurationRequest$instanceTypes": "<p> The instance types of the infrastructure configuration. You can specify one or more instance types to use for this build. The service will pick one of these instance types based on availability. </p>"
       }
     },
     "InvalidPaginationTokenException": {
@@ -869,7 +886,7 @@
       }
     },
     "LaunchPermissionConfiguration": {
-      "base": "<p> </p>",
+      "base": "<p>Describes the configuration for a launch permission. The launch permission modification request is sent to the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyImageAttribute.html\">EC2 ModifyImageAttribute</a> API on behalf of the user for each Region they have selected to distribute the AMI.</p>",
       "refs": {
         "AmiDistributionConfiguration$launchPermission": "<p> Launch permissions can be used to configure which AWS accounts can use the AMI to launch instances. </p>"
       }
@@ -975,10 +992,10 @@
       }
     },
     "Logging": {
-      "base": "<p> Logging configuration defines where Image Builder uploads your logs to.</p>",
+      "base": "<p>Logging configuration defines where Image Builder uploads your logs.</p>",
       "refs": {
         "CreateInfrastructureConfigurationRequest$logging": "<p> The logging configuration of the infrastructure configuration. </p>",
-        "InfrastructureConfiguration$logging": "<p>The logging configuration of the infrastruction configuration.</p>",
+        "InfrastructureConfiguration$logging": "<p>The logging configuration of the infrastructure configuration.</p>",
         "UpdateInfrastructureConfigurationRequest$logging": "<p> The logging configuration of the infrastructure configuration. </p>"
       }
     },
@@ -986,11 +1003,10 @@
       "base": null,
       "refs": {
         "AccountList$member": null,
-        "Ami$region": "<p> The region of the EC2 AMI. </p>",
+        "Ami$region": "<p> The AWS Region of the EC2 AMI. </p>",
         "Ami$image": "<p> The AMI ID of the EC2 AMI. </p>",
         "Ami$name": "<p> The name of the EC2 AMI. </p>",
         "Ami$description": "<p> The description of the EC2 AMI. </p>",
-        "AmiDistributionConfiguration$name": "<p> The name of the distribution configuration. </p>",
         "AmiDistributionConfiguration$description": "<p> The description of the distribution configuration. </p>",
         "CancelImageCreationResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "Component$description": "<p>The description of the component.</p>",
@@ -1002,10 +1018,10 @@
         "ComponentSummary$changeDescription": "<p>The change description of the component.</p>",
         "ComponentVersion$description": "<p>The description of the component.</p>",
         "ComponentVersion$owner": "<p>The owner of the component.</p>",
-        "CreateComponentRequest$description": "<p>CThe description of the component. Describes the contents of the component.</p>",
-        "CreateComponentRequest$changeDescription": "<p>CThe change description of the component. Describes what change has been made in this version. In other words what makes this version different from other versions of this component.</p>",
+        "CreateComponentRequest$description": "<p>The description of the component. Describes the contents of the component.</p>",
+        "CreateComponentRequest$changeDescription": "<p>The change description of the component. Describes what change has been made in this version, or what makes this version different from other versions of this component.</p>",
         "CreateComponentRequest$kmsKeyId": "<p>The ID of the KMS key that should be used to encrypt this component.</p>",
-        "CreateComponentResponse$requestId": "<p>CThe request ID that uniquely identifies this request.</p>",
+        "CreateComponentResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "CreateDistributionConfigurationRequest$description": "<p> The description of the distribution configuration. </p>",
         "CreateDistributionConfigurationResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
         "CreateImagePipelineRequest$description": "<p> The description of the image pipeline. </p>",
@@ -1016,9 +1032,8 @@
         "CreateImageResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
         "CreateInfrastructureConfigurationRequest$description": "<p> The description of the infrastructure configuration. </p>",
         "CreateInfrastructureConfigurationRequest$instanceProfileName": "<p> The instance profile to associate with the instance used to customize your EC2 AMI. </p>",
-        "CreateInfrastructureConfigurationRequest$subnetId": "<p> The subnet ID to place the instance used to customize your EC2 AMI in. </p>",
-        "CreateInfrastructureConfigurationRequest$keyPair": "<p> The key pair of the infrastructure configuration. This can be used to log onto and debug the instance used to create your image. </p>",
-        "CreateInfrastructureConfigurationRequest$snsTopicArn": "<p> The SNS topic on which to send image build events. </p>",
+        "CreateInfrastructureConfigurationRequest$subnetId": "<p> The subnet ID in which to place the instance used to customize your EC2 AMI. </p>",
+        "CreateInfrastructureConfigurationRequest$keyPair": "<p> The key pair of the infrastructure configuration. This can be used to log on to and debug the instance used to create your image. </p>",
         "CreateInfrastructureConfigurationResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
         "DeleteComponentResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
         "DeleteDistributionConfigurationResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
@@ -1026,7 +1041,7 @@
         "DeleteImageRecipeResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
         "DeleteImageResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
         "DeleteInfrastructureConfigurationResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
-        "Distribution$region": "<p> </p>",
+        "Distribution$region": "<p> The target Region. </p>",
         "DistributionConfiguration$description": "<p>The description of the distribution configuration.</p>",
         "DistributionConfigurationSummary$description": "<p>The description of the distribution configuration.</p>",
         "EbsInstanceBlockDeviceSpecification$kmsKeyId": "<p>Use to configure the KMS key to use when encrypting the device.</p>",
@@ -1052,56 +1067,55 @@
         "ImageState$reason": "<p> The reason for the image's status. </p>",
         "ImageSummary$owner": "<p>The owner of the image.</p>",
         "ImageVersion$owner": "<p>The owner of the image semantic version.</p>",
-        "ImportComponentRequest$description": "<p> The description of the component. Describes the contents of the component. </p>",
-        "ImportComponentRequest$changeDescription": "<p> The change description of the component. Describes what change has been made in this version. In other words what makes this version different from other versions of this component. </p>",
-        "ImportComponentRequest$data": "<p> The data of the component. </p>",
+        "ImportComponentRequest$description": "<p>The description of the component. Describes the contents of the component. </p>",
+        "ImportComponentRequest$changeDescription": "<p> The change description of the component. Describes what change has been made in this version, or what makes this version different from other versions of this component. </p>",
+        "ImportComponentRequest$data": "<p>The data of the component. Used to specify the data inline. Either <code>data</code> or <code>uri</code> can be used to specify the data within the component.</p>",
         "ImportComponentRequest$kmsKeyId": "<p> The ID of the KMS key that should be used to encrypt this component. </p>",
         "ImportComponentResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
-        "InfrastructureConfiguration$description": "<p>The description of the infrastruction configuration.</p>",
-        "InfrastructureConfiguration$instanceProfileName": "<p>The instance profile of the infrastruction configuration.</p>",
-        "InfrastructureConfiguration$subnetId": "<p>The subnet ID of the infrastruction configuration.</p>",
-        "InfrastructureConfiguration$keyPair": "<p>The EC2 key pair of the infrastruction configuration.</p>",
-        "InfrastructureConfiguration$snsTopicArn": "<p>The SNS Topic Amazon Resource Name (ARN) of the infrastruction configuration.</p>",
+        "InfrastructureConfiguration$description": "<p>The description of the infrastructure configuration.</p>",
+        "InfrastructureConfiguration$instanceProfileName": "<p>The instance profile of the infrastructure configuration.</p>",
+        "InfrastructureConfiguration$subnetId": "<p>The subnet ID of the infrastructure configuration.</p>",
+        "InfrastructureConfiguration$keyPair": "<p>The EC2 key pair of the infrastructure configuration.</p>",
+        "InfrastructureConfiguration$snsTopicArn": "<p>The SNS topic Amazon Resource Name (ARN) of the infrastructure configuration.</p>",
         "InfrastructureConfigurationSummary$description": "<p>The description of the infrastructure configuration.</p>",
         "InstanceBlockDeviceMapping$deviceName": "<p>The device to which these mappings apply.</p>",
         "InstanceBlockDeviceMapping$virtualName": "<p>Use to manage instance ephemeral devices.</p>",
-        "InstanceBlockDeviceMapping$noDevice": "<p>Use to remove a mapping from the parent image.</p>",
         "ListComponentBuildVersionsRequest$nextToken": "<p> A token to specify where to start paginating. This is the NextToken from a previously truncated response. </p>",
         "ListComponentBuildVersionsResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
-        "ListComponentBuildVersionsResponse$nextToken": "<p> The next token used for paginated responses. When this is not empty then there are additional elements that the service that not include in this request. Use this token with the next request to retrieve additional object. </p>",
+        "ListComponentBuildVersionsResponse$nextToken": "<p> The next token used for paginated responses. When this is not empty, there are additional elements that the service has not included in this request. Use this token with the next request to retrieve additional objects. </p>",
         "ListComponentsRequest$nextToken": "<p> A token to specify where to start paginating. This is the NextToken from a previously truncated response. </p>",
         "ListComponentsResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
-        "ListComponentsResponse$nextToken": "<p> The next token used for paginated responses. When this is not empty then there are additional elements that the service that not include in this request. Use this token with the next request to retrieve additional object. </p>",
+        "ListComponentsResponse$nextToken": "<p> The next token used for paginated responses. When this is not empty, there are additional elements that the service has not included in this request. Use this token with the next request to retrieve additional objects. </p>",
         "ListDistributionConfigurationsRequest$nextToken": "<p> A token to specify where to start paginating. This is the NextToken from a previously truncated response. </p>",
         "ListDistributionConfigurationsResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
-        "ListDistributionConfigurationsResponse$nextToken": "<p> The next token used for paginated responses. When this is not empty then there are additional elements that the service that not include in this request. Use this token with the next request to retrieve additional object. </p>",
+        "ListDistributionConfigurationsResponse$nextToken": "<p> The next token used for paginated responses. When this is not empty, there are additional elements that the service has not included in this request. Use this token with the next request to retrieve additional objects. </p>",
         "ListImageBuildVersionsRequest$nextToken": "<p> A token to specify where to start paginating. This is the NextToken from a previously truncated response. </p>",
         "ListImageBuildVersionsResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
-        "ListImageBuildVersionsResponse$nextToken": "<p> The next token used for paginated responses. When this is not empty then there are additional elements that the service that not include in this request. Use this token with the next request to retrieve additional object. </p>",
+        "ListImageBuildVersionsResponse$nextToken": "<p> The next token used for paginated responses. When this is not empty, there are additional elements that the service has not included in this request. Use this token with the next request to retrieve additional objects. </p>",
         "ListImagePipelineImagesRequest$nextToken": "<p> A token to specify where to start paginating. This is the NextToken from a previously truncated response. </p>",
         "ListImagePipelineImagesResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
-        "ListImagePipelineImagesResponse$nextToken": "<p> The next token used for paginated responses. When this is not empty then there are additional elements that the service that not include in this request. Use this token with the next request to retrieve additional object. </p>",
+        "ListImagePipelineImagesResponse$nextToken": "<p> The next token used for paginated responses. When this is not empty, there are additional elements that the service has not included in this request. Use this token with the next request to retrieve additional objects. </p>",
         "ListImagePipelinesRequest$nextToken": "<p> A token to specify where to start paginating. This is the NextToken from a previously truncated response. </p>",
         "ListImagePipelinesResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
-        "ListImagePipelinesResponse$nextToken": "<p> The next token used for paginated responses. When this is not empty then there are additional elements that the service that not include in this request. Use this token with the next request to retrieve additional object. </p>",
+        "ListImagePipelinesResponse$nextToken": "<p> The next token used for paginated responses. When this is not empty, there are additional elements that the service has not included in this request. Use this token with the next request to retrieve additional objects. </p>",
         "ListImageRecipesRequest$nextToken": "<p> A token to specify where to start paginating. This is the NextToken from a previously truncated response. </p>",
         "ListImageRecipesResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
-        "ListImageRecipesResponse$nextToken": "<p> The next token used for paginated responses. When this is not empty then there are additional elements that the service that not include in this request. Use this token with the next request to retrieve additional object. </p>",
+        "ListImageRecipesResponse$nextToken": "<p> The next token used for paginated responses. When this is not empty, there are additional elements that the service has not included in this request. Use this token with the next request to retrieve additional objects. </p>",
         "ListImagesRequest$nextToken": "<p> A token to specify where to start paginating. This is the NextToken from a previously truncated response. </p>",
         "ListImagesResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
-        "ListImagesResponse$nextToken": "<p> The next token used for paginated responses. When this is not empty then there are additional elements that the service that not include in this request. Use this token with the next request to retrieve additional object. </p>",
+        "ListImagesResponse$nextToken": "<p> The next token used for paginated responses. When this is not empty, there are additional elements that the service has not included in this request. Use this token with the next request to retrieve additional objects. </p>",
         "ListInfrastructureConfigurationsRequest$nextToken": "<p> A token to specify where to start paginating. This is the NextToken from a previously truncated response. </p>",
         "ListInfrastructureConfigurationsResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
-        "ListInfrastructureConfigurationsResponse$nextToken": "<p> The next token used for paginated responses. When this is not empty then there are additional elements that the service that not include in this request. Use this token with the next request to retrieve additional object.</p>",
+        "ListInfrastructureConfigurationsResponse$nextToken": "<p> The next token used for paginated responses. When this is not empty, there are additional elements that the service has not included in this request. Use this token with the next request to retrieve additional objects.</p>",
         "PutComponentPolicyRequest$policy": "<p> The policy to apply. </p>",
         "PutComponentPolicyResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
         "PutImagePolicyRequest$policy": "<p> The policy to apply. </p>",
         "PutImagePolicyResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
         "PutImageRecipePolicyRequest$policy": "<p> The policy to apply. </p>",
         "PutImageRecipePolicyResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
-        "S3Logs$s3BucketName": "<p>The S3 bucket in which to store the logs.</p>",
-        "S3Logs$s3KeyPrefix": "<p>The S3 path in which to store the logs.</p>",
-        "Schedule$scheduleExpression": "<p> The expression determines how often a pipeline starts the creation of new images. </p>",
+        "S3Logs$s3BucketName": "<p>The Amazon S3 bucket in which to store the logs.</p>",
+        "S3Logs$s3KeyPrefix": "<p>The Amazon S3 path in which to store the logs.</p>",
+        "Schedule$scheduleExpression": "<p> The expression determines how often EC2 Image Builder evaluates your <code>pipelineExecutionStartCondition</code>.</p>",
         "SecurityGroupIds$member": null,
         "StartImagePipelineExecutionResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
         "StringList$member": null,
@@ -1112,8 +1126,7 @@
         "UpdateInfrastructureConfigurationRequest$description": "<p> The description of the infrastructure configuration. </p>",
         "UpdateInfrastructureConfigurationRequest$instanceProfileName": "<p> The instance profile to associate with the instance used to customize your EC2 AMI. </p>",
         "UpdateInfrastructureConfigurationRequest$subnetId": "<p> The subnet ID to place the instance used to customize your EC2 AMI in. </p>",
-        "UpdateInfrastructureConfigurationRequest$keyPair": "<p> The key pair of the infrastructure configuration. This can be used to log onto and debug the instance used to create your image. </p>",
-        "UpdateInfrastructureConfigurationRequest$snsTopicArn": "<p> The SNS topic on which to send image build events. </p>",
+        "UpdateInfrastructureConfigurationRequest$keyPair": "<p> The key pair of the infrastructure configuration. This can be used to log on to and debug the instance used to create your image. </p>",
         "UpdateInfrastructureConfigurationResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>"
       }
     },
@@ -1121,16 +1134,16 @@
       "base": null,
       "refs": {
         "Component$encrypted": "<p>The encryption status of the component.</p>",
-        "CreateInfrastructureConfigurationRequest$terminateInstanceOnFailure": "<p> The terminate instance on failure setting of the infrastructure configuration. Set to false if you wish for Image Builder to retain the instance used to configure your AMI in the event that the build or test phase of your workflow failed. </p>",
+        "CreateInfrastructureConfigurationRequest$terminateInstanceOnFailure": "<p> The terminate instance on failure setting of the infrastructure configuration. Set to false if you want Image Builder to retain the instance used to configure your AMI if the build or test phase of your workflow fails. </p>",
         "EbsInstanceBlockDeviceSpecification$encrypted": "<p>Use to configure device encryption.</p>",
         "EbsInstanceBlockDeviceSpecification$deleteOnTermination": "<p>Use to configure delete on termination of the associated device.</p>",
         "ImageTestsConfiguration$imageTestsEnabled": "<p>Defines if tests should be executed when building this image.</p>",
-        "InfrastructureConfiguration$terminateInstanceOnFailure": "<p>The terminate instance on failure configuration of the infrastruction configuration.</p>",
-        "UpdateInfrastructureConfigurationRequest$terminateInstanceOnFailure": "<p> The terminate instance on failure setting of the infrastructure configuration. Set to false if you wish for Image Builder to retain the instance used to configure your AMI in the event that the build or test phase of your workflow failed. </p>"
+        "InfrastructureConfiguration$terminateInstanceOnFailure": "<p>The terminate instance on failure configuration of the infrastructure configuration.</p>",
+        "UpdateInfrastructureConfigurationRequest$terminateInstanceOnFailure": "<p> The terminate instance on failure setting of the infrastructure configuration. Set to false if you want Image Builder to retain the instance used to configure your AMI if the build or test phase of your workflow fails. </p>"
       }
     },
     "OutputResources": {
-      "base": "<p> The resources produced by this image. </p>",
+      "base": "<p>The resources produced by this image. </p>",
       "refs": {
         "Image$outputResources": "<p>The output resources produced when creating this image.</p>",
         "ImageSummary$outputResources": "<p>The output resources produced when creating this image.</p>"
@@ -1139,15 +1152,15 @@
     "Ownership": {
       "base": null,
       "refs": {
-        "ListComponentsRequest$owner": "<p> The owner defines whose components you wish to list. By default this request will only show components owned by your account. You may use this field to specify if you wish to view components owned by yourself, Amazon, or those components that have been shared with you by other customers. </p>",
-        "ListImageRecipesRequest$owner": "<p> The owner defines whose image recipes you wish to list. By default this request will only show image recipes owned by your account. You may use this field to specify if you wish to view image recipes owned by yourself, Amazon, or those image recipes that have been shared with you by other customers. </p>",
-        "ListImagesRequest$owner": "<p> The owner defines whose images you wish to list. By default this request will only show images owned by your account. You may use this field to specify if you wish to view images owned by yourself, Amazon, or those images that have been shared with you by other customers. </p>"
+        "ListComponentsRequest$owner": "<p> The owner defines which components you want to list. By default, this request will only show components owned by your account. You can use this field to specify if you want to view components owned by yourself, by Amazon, or those components that have been shared with you by other customers. </p>",
+        "ListImageRecipesRequest$owner": "<p> The owner defines which image recipes you want to list. By default, this request will only show image recipes owned by your account. You can use this field to specify if you want to view image recipes owned by yourself, by Amazon, or those image recipes that have been shared with you by other customers. </p>",
+        "ListImagesRequest$owner": "<p> The owner defines which images you want to list. By default, this request will only show images owned by your account. You can use this field to specify if you want to view images owned by yourself, by Amazon, or those images that have been shared with you by other customers. </p>"
       }
     },
     "PipelineExecutionStartCondition": {
       "base": null,
       "refs": {
-        "Schedule$pipelineExecutionStartCondition": "<p> The condition configures when the pipeline should trigger a new image build. </p>"
+        "Schedule$pipelineExecutionStartCondition": "<p> The condition configures when the pipeline should trigger a new image build. When the <code>pipelineExecutionStartCondition</code> is set to <code>EXPRESSION_MATCH_AND_DEPENDENCY_UPDATES_AVAILABLE</code>, EC2 Image Builder will build a new image only when there are known changes pending. When it is set to <code>EXPRESSION_MATCH_ONLY</code>, it will build a new image every time the CRON expression matches the current time.</p>"
       }
     },
     "PipelineStatus": {
@@ -1164,7 +1177,7 @@
         "Component$platform": "<p>The platform of the component.</p>",
         "ComponentSummary$platform": "<p>The platform of the component.</p>",
         "ComponentVersion$platform": "<p>The platform of the component.</p>",
-        "CreateComponentRequest$platform": "<p>CThe platform of the component.</p>",
+        "CreateComponentRequest$platform": "<p>The platform of the component.</p>",
         "Image$platform": "<p>The platform of the image.</p>",
         "ImagePipeline$platform": "<p>The platform of the image pipeline.</p>",
         "ImageRecipe$platform": "<p>The platform of the image recipe.</p>",
@@ -1210,12 +1223,12 @@
       }
     },
     "ResourceDependencyException": {
-      "base": "<p>You have attempted to mutate or delete a resource with a dependency that is prohibitting this action. See the error message for more details.</p>",
+      "base": "<p>You have attempted to mutate or delete a resource with a dependency that prohibits this action. See the error message for more details.</p>",
       "refs": {
       }
     },
     "ResourceInUseException": {
-      "base": "<p>The resource that you are trying to operate on is currently in use. Review the message details, and retry later.</p>",
+      "base": "<p>The resource that you are trying to operate on is currently in use. Review the message details and retry later.</p>",
       "refs": {
       }
     },
@@ -1240,7 +1253,7 @@
         "ImageSummary$name": "<p>The name of the image.</p>",
         "ImageVersion$name": "<p>The name of the image semantic version.</p>",
         "ImportComponentRequest$name": "<p> The name of the component. </p>",
-        "InfrastructureConfiguration$name": "<p>The name of the infrastruction configuration.</p>",
+        "InfrastructureConfiguration$name": "<p>The name of the infrastructure configuration.</p>",
         "InfrastructureConfigurationSummary$name": "<p>The name of the infrastructure configuration.</p>"
       }
     },
@@ -1264,9 +1277,9 @@
       }
     },
     "S3Logs": {
-      "base": "<p>S3 Logging configuration.</p>",
+      "base": "<p>Amazon S3 logging configuration.</p>",
       "refs": {
-        "Logging$s3Logs": "<p>The S3 logging configuration.</p>"
+        "Logging$s3Logs": "<p>The Amazon S3 logging configuration.</p>"
       }
     },
     "Schedule": {
@@ -1281,7 +1294,7 @@
       "base": null,
       "refs": {
         "CreateInfrastructureConfigurationRequest$securityGroupIds": "<p> The security group IDs to associate with the instance used to customize your EC2 AMI. </p>",
-        "InfrastructureConfiguration$securityGroupIds": "<p>The security group IDs of the infrastruction configuration.</p>",
+        "InfrastructureConfiguration$securityGroupIds": "<p>The security group IDs of the infrastructure configuration.</p>",
         "UpdateInfrastructureConfigurationRequest$securityGroupIds": "<p> The security group IDs to associate with the instance used to customize your EC2 AMI. </p>"
       }
     },
@@ -1293,6 +1306,13 @@
     "ServiceUnavailableException": {
       "base": "<p>The service is unable to process your request at this time.</p>",
       "refs": {
+      }
+    },
+    "SnsTopicArn": {
+      "base": null,
+      "refs": {
+        "CreateInfrastructureConfigurationRequest$snsTopicArn": "<p> The SNS topic on which to send image build events. </p>",
+        "UpdateInfrastructureConfigurationRequest$snsTopicArn": "<p> The SNS topic on which to send image build events. </p>"
       }
     },
     "StartImagePipelineExecutionRequest": {
@@ -1308,7 +1328,7 @@
     "StringList": {
       "base": null,
       "refs": {
-        "LaunchPermissionConfiguration$userGroups": "<p> </p>"
+        "LaunchPermissionConfiguration$userGroups": "<p>The name of the group. </p>"
       }
     },
     "TagKey": {
@@ -1327,10 +1347,10 @@
     "TagMap": {
       "base": null,
       "refs": {
-        "AmiDistributionConfiguration$amiTags": "<p> The tags to apply to AMIs distributed to this region. </p>",
+        "AmiDistributionConfiguration$amiTags": "<p> The tags to apply to AMIs distributed to this Region. </p>",
         "Component$tags": "<p>The tags associated with the component.</p>",
         "ComponentSummary$tags": "<p>The tags associated with the component.</p>",
-        "CreateComponentRequest$tags": "<p>CThe tags of the component.</p>",
+        "CreateComponentRequest$tags": "<p>The tags of the component.</p>",
         "CreateDistributionConfigurationRequest$tags": "<p> The tags of the distribution configuration. </p>",
         "CreateImagePipelineRequest$tags": "<p> The tags of the image pipeline. </p>",
         "CreateImageRecipeRequest$tags": "<p> The tags of the image recipe. </p>",
@@ -1344,7 +1364,7 @@
         "ImageRecipeSummary$tags": "<p>The tags of the image recipe.</p>",
         "ImageSummary$tags": "<p>The tags of the image.</p>",
         "ImportComponentRequest$tags": "<p> The tags of the component. </p>",
-        "InfrastructureConfiguration$tags": "<p>The tags of the infrastruction configuration.</p>",
+        "InfrastructureConfiguration$tags": "<p>The tags of the infrastructure configuration.</p>",
         "InfrastructureConfigurationSummary$tags": "<p>The tags of the infrastructure configuration.</p>",
         "ListTagsForResourceResponse$tags": "<p> The tags for the specified resource. </p>",
         "TagResourceRequest$tags": "<p> The tags to apply to the resource. </p>"
@@ -1409,8 +1429,8 @@
     "Uri": {
       "base": null,
       "refs": {
-        "CreateComponentRequest$uri": "<p>CThe uri of the component.</p>",
-        "ImportComponentRequest$uri": "<p> The uri of the component. </p>"
+        "CreateComponentRequest$uri": "<p>The uri of the component. Must be an S3 URL and the requester must have permission to access the S3 bucket. If you use S3, you can specify component content up to your service quota. Either <code>data</code> or <code>uri</code> can be used to specify the data within the component.</p>",
+        "ImportComponentRequest$uri": "<p>The uri of the component. Must be an S3 URL and the requester must have permission to access the S3 bucket. If you use S3, you can specify component content up to your service quota. Either <code>data</code> or <code>uri</code> can be used to specify the data within the component. </p>"
       }
     },
     "VersionNumber": {
@@ -1419,13 +1439,13 @@
         "Component$version": "<p>The version of the component.</p>",
         "ComponentSummary$version": "<p>The version of the component.</p>",
         "ComponentVersion$version": "<p>The semantic version of the component.</p>",
-        "CreateComponentRequest$semanticVersion": "<p>The semantic version of the component. This version to follow the semantic version syntax. i.e. major.minor.patch. This could be versioned like software 2.0.1 or date like 2019.12.01.</p>",
+        "CreateComponentRequest$semanticVersion": "<p>The semantic version of the component. This version follows the semantic version syntax. For example, major.minor.patch. This could be versioned like software (2.0.1) or like a date (2019.12.01).</p>",
         "CreateImageRecipeRequest$semanticVersion": "<p> The semantic version of the image recipe. </p>",
         "Image$version": "<p>The semantic version of the image.</p>",
         "ImageRecipe$version": "<p>The version of the image recipe.</p>",
         "ImageSummary$version": "<p>The version of the image.</p>",
         "ImageVersion$version": "<p>The semantic version of the image semantic version.</p>",
-        "ImportComponentRequest$semanticVersion": "<p> The semantic version of the component. This version to follow the semantic version syntax. i.e. major.minor.patch. This could be versioned like software 2.0.1 or date like 2019.12.01. </p>"
+        "ImportComponentRequest$semanticVersion": "<p>The semantic version of the component. This version follows the semantic version syntax. For example, major.minor.patch. This could be versioned like software (2.0.1) or like a date (2019.12.01).</p>"
       }
     }
   }
