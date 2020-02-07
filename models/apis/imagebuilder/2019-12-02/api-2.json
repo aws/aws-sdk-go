@@ -795,7 +795,7 @@
     "AmiDistributionConfiguration":{
       "type":"structure",
       "members":{
-        "name":{"shape":"NonEmptyString"},
+        "name":{"shape":"AmiNameString"},
         "description":{"shape":"NonEmptyString"},
         "amiTags":{"shape":"TagMap"},
         "launchPermission":{"shape":"LaunchPermissionConfiguration"}
@@ -804,6 +804,12 @@
     "AmiList":{
       "type":"list",
       "member":{"shape":"Ami"}
+    },
+    "AmiNameString":{
+      "type":"string",
+      "max":127,
+      "min":1,
+      "pattern":"^[-_A-Za-z0-9{][-_A-Za-z0-9\\s:{}]+[-_A-Za-z0-9}]$"
     },
     "Arn":{"type":"string"},
     "ArnList":{
@@ -826,7 +832,10 @@
       ],
       "members":{
         "imageBuildVersionArn":{"shape":"ImageBuildVersionArn"},
-        "clientToken":{"shape":"ClientToken"}
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
       }
     },
     "CancelImageCreationResponse":{
@@ -876,7 +885,7 @@
       "type":"structure",
       "required":["componentArn"],
       "members":{
-        "componentArn":{"shape":"ComponentBuildVersionArn"}
+        "componentArn":{"shape":"ComponentVersionArnOrBuildVersionArn"}
       }
     },
     "ComponentConfigurationList":{
@@ -931,6 +940,10 @@
     "ComponentVersionArn":{
       "type":"string",
       "pattern":"^arn:aws[^:]*:imagebuilder:[^:]+:(?:\\d{12}|aws):component/[a-z0-9-_]+/\\d+\\.\\d+\\.\\d+$"
+    },
+    "ComponentVersionArnOrBuildVersionArn":{
+      "type":"string",
+      "pattern":"^arn:aws[^:]*:imagebuilder:[^:]+:(?:\\d{12}|aws):component/[a-z0-9-_]+/(?:(?:(\\d+|x)\\.(\\d+|x)\\.(\\d+|x))|(?:\\d+\\.\\d+\\.\\d+/\\d+))$"
     },
     "ComponentVersionList":{
       "type":"list",
@@ -1101,7 +1114,7 @@
         "logging":{"shape":"Logging"},
         "keyPair":{"shape":"NonEmptyString"},
         "terminateInstanceOnFailure":{"shape":"NullableBoolean"},
-        "snsTopicArn":{"shape":"NonEmptyString"},
+        "snsTopicArn":{"shape":"SnsTopicArn"},
         "tags":{"shape":"TagMap"},
         "clientToken":{
           "shape":"ClientToken",
@@ -1308,6 +1321,11 @@
         "sc1",
         "st1"
       ]
+    },
+    "EmptyString":{
+      "type":"string",
+      "max":0,
+      "min":0
     },
     "ErrorMessage":{"type":"string"},
     "Filter":{
@@ -1763,7 +1781,7 @@
         "deviceName":{"shape":"NonEmptyString"},
         "ebs":{"shape":"EbsInstanceBlockDeviceSpecification"},
         "virtualName":{"shape":"NonEmptyString"},
-        "noDevice":{"shape":"NonEmptyString"}
+        "noDevice":{"shape":"EmptyString"}
       }
     },
     "InstanceBlockDeviceMappings":{
@@ -1912,6 +1930,7 @@
     },
     "ListImagePipelineImagesRequest":{
       "type":"structure",
+      "required":["imagePipelineArn"],
       "members":{
         "imagePipelineArn":{"shape":"ImagePipelineArn"},
         "filters":{"shape":"FilterList"},
@@ -2201,6 +2220,10 @@
       "error":{"httpStatusCode":503},
       "exception":true
     },
+    "SnsTopicArn":{
+      "type":"string",
+      "pattern":"^arn:aws[^:]*:sns:[^:]+:\\d{12}:[a-zA-Z0-9-_]{1,256}$"
+    },
     "StartImagePipelineExecutionRequest":{
       "type":"structure",
       "required":[
@@ -2298,6 +2321,7 @@
       "type":"structure",
       "required":[
         "distributionConfigurationArn",
+        "distributions",
         "clientToken"
       ],
       "members":{
@@ -2322,6 +2346,8 @@
       "type":"structure",
       "required":[
         "imagePipelineArn",
+        "imageRecipeArn",
+        "infrastructureConfigurationArn",
         "clientToken"
       ],
       "members":{
@@ -2351,6 +2377,7 @@
       "type":"structure",
       "required":[
         "infrastructureConfigurationArn",
+        "instanceProfileName",
         "clientToken"
       ],
       "members":{
@@ -2363,7 +2390,7 @@
         "logging":{"shape":"Logging"},
         "keyPair":{"shape":"NonEmptyString"},
         "terminateInstanceOnFailure":{"shape":"NullableBoolean"},
-        "snsTopicArn":{"shape":"NonEmptyString"},
+        "snsTopicArn":{"shape":"SnsTopicArn"},
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true

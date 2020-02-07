@@ -2036,6 +2036,7 @@
       },
       "iotsecuredtunneling" : {
         "endpoints" : {
+          "ap-east-1" : { },
           "ap-northeast-1" : { },
           "ap-northeast-2" : { },
           "ap-south-1" : { },
@@ -2047,6 +2048,7 @@
           "eu-west-1" : { },
           "eu-west-2" : { },
           "eu-west-3" : { },
+          "me-south-1" : { },
           "sa-east-1" : { },
           "us-east-1" : { },
           "us-east-2" : { },
@@ -2450,6 +2452,7 @@
       },
       "mq" : {
         "endpoints" : {
+          "ap-east-1" : { },
           "ap-northeast-1" : { },
           "ap-northeast-2" : { },
           "ap-south-1" : { },
@@ -2485,6 +2488,7 @@
             },
             "hostname" : "mq-fips.us-west-2.amazonaws.com"
           },
+          "me-south-1" : { },
           "sa-east-1" : { },
           "us-east-1" : { },
           "us-east-2" : { },
@@ -4568,7 +4572,8 @@
       },
       "storagegateway" : {
         "endpoints" : {
-          "cn-north-1" : { }
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "streams.dynamodb" : {
@@ -4938,6 +4943,7 @@
       },
       "elasticfilesystem" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },

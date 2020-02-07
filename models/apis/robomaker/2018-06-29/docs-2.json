@@ -5,6 +5,7 @@
     "BatchDescribeSimulationJob": "<p>Describes one or more simulation jobs.</p>",
     "CancelDeploymentJob": "<p>Cancels the specified deployment job.</p>",
     "CancelSimulationJob": "<p>Cancels the specified simulation job.</p>",
+    "CancelSimulationJobBatch": "<p>Cancels a simulation job batch. When you cancel a simulation job batch, you are also cancelling all of the active simulation jobs created as part of the batch. </p>",
     "CreateDeploymentJob": "<p>Deploys a specific version of a robot application to robots in a fleet.</p> <p>The robot application must have a numbered <code>applicationVersion</code> for consistency reasons. To create a new version, use <code>CreateRobotApplicationVersion</code> or see <a href=\"https://docs.aws.amazon.com/robomaker/latest/dg/create-robot-application-version.html\">Creating a Robot Application Version</a>. </p> <note> <p>After 90 days, deployment jobs expire and will be deleted. They will no longer be accessible. </p> </note>",
     "CreateFleet": "<p>Creates a fleet, a logical group of robots running the same robot application.</p>",
     "CreateRobot": "<p>Creates a robot.</p>",
@@ -24,15 +25,18 @@
     "DescribeRobotApplication": "<p>Describes a robot application.</p>",
     "DescribeSimulationApplication": "<p>Describes a simulation application.</p>",
     "DescribeSimulationJob": "<p>Describes a simulation job.</p>",
-    "ListDeploymentJobs": "<p>Returns a list of deployment jobs for a fleet. You can optionally provide filters to retrieve specific deployment jobs. </p> <note> <p> </p> </note>",
+    "DescribeSimulationJobBatch": "<p>Describes a simulation job batch.</p>",
+    "ListDeploymentJobs": "<p>Returns a list of deployment jobs for a fleet. You can optionally provide filters to retrieve specific deployment jobs. </p>",
     "ListFleets": "<p>Returns a list of fleets. You can optionally provide filters to retrieve specific fleets. </p>",
     "ListRobotApplications": "<p>Returns a list of robot application. You can optionally provide filters to retrieve specific robot applications.</p>",
     "ListRobots": "<p>Returns a list of robots. You can optionally provide filters to retrieve specific robots.</p>",
     "ListSimulationApplications": "<p>Returns a list of simulation applications. You can optionally provide filters to retrieve specific simulation applications. </p>",
+    "ListSimulationJobBatches": "<p>Returns a list simulation job batches. You can optionally provide filters to retrieve specific simulation batch jobs. </p>",
     "ListSimulationJobs": "<p>Returns a list of simulation jobs. You can optionally provide filters to retrieve specific simulation jobs. </p>",
     "ListTagsForResource": "<p>Lists all tags on a AWS RoboMaker resource.</p>",
     "RegisterRobot": "<p>Registers a robot with a fleet.</p>",
     "RestartSimulationJob": "<p>Restarts a running simulation job.</p>",
+    "StartSimulationJobBatch": "<p>Starts a new simulation job batch. The batch is defined using one or more <code>SimulationJobRequest</code> objects. </p>",
     "SyncDeploymentJob": "<p>Syncrhonizes robots in a fleet to the latest deployment. This is helpful if robots were added after a deployment.</p>",
     "TagResource": "<p>Adds or edits tags for a AWS RoboMaker resource.</p> <p>Each tag consists of a tag key and a tag value. Tag keys and tag values are both required, but tag values can be empty strings. </p> <p>For information about the rules that apply to tag keys and tag values, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/allocation-tag-restrictions.html\">User-Defined Tag Restrictions</a> in the <i>AWS Billing and Cost Management User Guide</i>. </p>",
     "UntagResource": "<p>Removes the specified tags from the specified AWS RoboMaker resource.</p> <p>To remove a tag, specify the tag key. To change the tag value of an existing tag key, use <a href=\"https://docs.aws.amazon.com/robomaker/latest/dg/API_TagResource.html\"> <code>TagResource</code> </a>. </p>",
@@ -56,6 +60,7 @@
       "refs": {
         "Arns$member": null,
         "CancelDeploymentJobRequest$job": "<p>The deployment job ARN to cancel.</p>",
+        "CancelSimulationJobBatchRequest$batch": "<p>The id of the batch to cancel.</p>",
         "CancelSimulationJobRequest$job": "<p>The simulation job ARN to cancel.</p>",
         "CreateDeploymentJobRequest$fleet": "<p>The Amazon Resource Name (ARN) of the fleet to deploy.</p>",
         "CreateDeploymentJobResponse$arn": "<p>The Amazon Resource Name (ARN) of the deployment job.</p>",
@@ -94,6 +99,8 @@
         "DescribeRobotResponse$lastDeploymentJob": "<p>The Amazon Resource Name (ARN) of the last deployment job.</p>",
         "DescribeSimulationApplicationRequest$application": "<p>The application information for the simulation application.</p>",
         "DescribeSimulationApplicationResponse$arn": "<p>The Amazon Resource Name (ARN) of the robot simulation application.</p>",
+        "DescribeSimulationJobBatchRequest$batch": "<p>The id of the batch to describe.</p>",
+        "DescribeSimulationJobBatchResponse$arn": "<p>The Amazon Resource Name (ARN) of the batch.</p>",
         "DescribeSimulationJobRequest$job": "<p>The Amazon Resource Name (ARN) of the simulation job to be described.</p>",
         "DescribeSimulationJobResponse$arn": "<p>The Amazon Resource Name (ARN) of the simulation job.</p>",
         "Fleet$arn": "<p>The Amazon Resource Name (ARN) of the fleet.</p>",
@@ -113,7 +120,9 @@
         "SimulationApplicationConfig$application": "<p>The application information for the simulation application.</p>",
         "SimulationApplicationSummary$arn": "<p>The Amazon Resource Name (ARN) of the simulation application.</p>",
         "SimulationJob$arn": "<p>The Amazon Resource Name (ARN) of the simulation job.</p>",
+        "SimulationJobBatchSummary$arn": "<p>The Amazon Resource Name (ARN) of the batch.</p>",
         "SimulationJobSummary$arn": "<p>The Amazon Resource Name (ARN) of the simulation job.</p>",
+        "StartSimulationJobBatchResponse$arn": "<p>The Amazon Resource Name (arn) of the batch.</p>",
         "SyncDeploymentJobRequest$fleet": "<p>The target fleet for the synchronization.</p>",
         "SyncDeploymentJobResponse$arn": "<p>The Amazon Resource Name (ARN) of the synchronization request.</p>",
         "SyncDeploymentJobResponse$fleet": "<p>The Amazon Resource Name (ARN) of the fleet.</p>",
@@ -142,6 +151,20 @@
       "refs": {
       }
     },
+    "BatchPolicy": {
+      "base": "<p>Information about the batch policy.</p>",
+      "refs": {
+        "DescribeSimulationJobBatchResponse$batchPolicy": "<p>The batch policy.</p>",
+        "StartSimulationJobBatchRequest$batchPolicy": "<p>The batch policy.</p>",
+        "StartSimulationJobBatchResponse$batchPolicy": "<p>The batch policy.</p>"
+      }
+    },
+    "BatchTimeoutInSeconds": {
+      "base": null,
+      "refs": {
+        "BatchPolicy$timeoutInSeconds": "<p>The amount of time, in seconds, to wait for the batch to complete. </p> <p>If a batch times out, and there are pending requests that were failing due to an internal failure (like <code>InternalServiceError</code>), they will be moved to the failed list and the batch status will be <code>Failed</code>. If the pending requests were failing for any other reason, the failed pending requests will be moved to the failed list and the batch status will be <code>TimedOut</code>. </p>"
+      }
+    },
     "Boolean": {
       "base": null,
       "refs": {
@@ -153,7 +176,8 @@
     "BoxedBoolean": {
       "base": null,
       "refs": {
-        "LoggingConfig$recordAllRosTopics": "<p>A boolean indicating whether to record all ROS topics.</p>"
+        "LoggingConfig$recordAllRosTopics": "<p>A boolean indicating whether to record all ROS topics.</p>",
+        "SimulationJobRequest$useDefaultApplications": "<p>Boolean indicating whether to use default simulation tool applications.</p>"
       }
     },
     "CancelDeploymentJobRequest": {
@@ -162,6 +186,16 @@
       }
     },
     "CancelDeploymentJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CancelSimulationJobBatchRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CancelSimulationJobBatchResponse": {
       "base": null,
       "refs": {
       }
@@ -182,8 +216,11 @@
         "CreateDeploymentJobRequest$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "CreateSimulationJobRequest$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "CreateSimulationJobResponse$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
+        "DescribeSimulationJobBatchResponse$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "DescribeSimulationJobResponse$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "SimulationJob$clientRequestToken": "<p>A unique identifier for this <code>SimulationJob</code> request.</p>",
+        "StartSimulationJobBatchRequest$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
+        "StartSimulationJobBatchResponse$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "SyncDeploymentJobRequest$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>"
       }
     },
@@ -276,6 +313,14 @@
       "refs": {
       }
     },
+    "CreateSimulationJobRequests": {
+      "base": null,
+      "refs": {
+        "DescribeSimulationJobBatchResponse$pendingRequests": "<p>A list of pending simulation job requests. These requests have not yet been created into simulation jobs.</p>",
+        "StartSimulationJobBatchRequest$createSimulationJobRequests": "<p>A list of simulation job requests to create in the batch.</p>",
+        "StartSimulationJobBatchResponse$pendingRequests": "<p>A list of pending simulation job requests. These requests have not yet been created into simulation jobs.</p>"
+      }
+    },
     "CreateSimulationJobResponse": {
       "base": null,
       "refs": {
@@ -293,12 +338,15 @@
         "DescribeFleetResponse$lastDeploymentTime": "<p>The time of the last deployment.</p>",
         "DescribeRobotResponse$createdAt": "<p>The time, in milliseconds since the epoch, when the robot was created.</p>",
         "DescribeRobotResponse$lastDeploymentTime": "<p>The time of the last deployment job.</p>",
+        "DescribeSimulationJobBatchResponse$createdAt": "<p>The time, in milliseconds since the epoch, when the simulation job batch was created.</p>",
         "Fleet$createdAt": "<p>The time, in milliseconds since the epoch, when the fleet was created.</p>",
         "Fleet$lastDeploymentTime": "<p>The time of the last deployment.</p>",
         "Robot$createdAt": "<p>The time, in milliseconds since the epoch, when the robot was created.</p>",
         "Robot$lastDeploymentTime": "<p>The time of the last deployment.</p>",
         "RobotDeployment$deploymentStartTime": "<p>The time, in milliseconds since the epoch, when the deployment was started.</p>",
         "RobotDeployment$deploymentFinishTime": "<p>The time, in milliseconds since the epoch, when the deployment finished.</p>",
+        "SimulationJobBatchSummary$createdAt": "<p>The time, in milliseconds since the epoch, when the simulation job batch was created.</p>",
+        "StartSimulationJobBatchResponse$createdAt": "<p>The time, in milliseconds since the epoch, when the simulation job batch was created.</p>",
         "SyncDeploymentJobResponse$createdAt": "<p>The time, in milliseconds since the epoch, when the fleet was created.</p>"
       }
     },
@@ -317,7 +365,8 @@
     "DataSourceConfigs": {
       "base": null,
       "refs": {
-        "CreateSimulationJobRequest$dataSources": "<p>The data sources for the simulation job.</p> <note> <p>There is a limit of 100 files and a combined size of 25GB for all <code>DataSourceConfig</code> objects. </p> </note>"
+        "CreateSimulationJobRequest$dataSources": "<p>Specify data sources to mount read-only files from S3 into your simulation. These files are available under <code>/opt/robomaker/datasources/data_source_name</code>. </p> <note> <p>There is a limit of 100 files and a combined size of 25GB for all <code>DataSourceConfig</code> objects. </p> </note>",
+        "SimulationJobRequest$dataSources": "<p>Specify data sources to mount read-only files from S3 into your simulation. These files are available under <code>/opt/robomaker/datasources/data_source_name</code>. </p> <note> <p>There is a limit of 100 files and a combined size of 25GB for all <code>DataSourceConfig</code> objects. </p> </note>"
       }
     },
     "DataSourceNames": {
@@ -511,6 +560,16 @@
       "refs": {
       }
     },
+    "DescribeSimulationJobBatchRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeSimulationJobBatchResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeSimulationJobRequest": {
       "base": null,
       "refs": {
@@ -540,13 +599,33 @@
         "EnvironmentVariableMap$value": null
       }
     },
+    "FailedAt": {
+      "base": null,
+      "refs": {
+        "FailedCreateSimulationJobRequest$failedAt": "<p>The time, in milliseconds since the epoch, when the simulation job batch failed.</p>"
+      }
+    },
+    "FailedCreateSimulationJobRequest": {
+      "base": "<p>Information about a failed create simulation job request.</p>",
+      "refs": {
+        "FailedCreateSimulationJobRequests$member": null
+      }
+    },
+    "FailedCreateSimulationJobRequests": {
+      "base": null,
+      "refs": {
+        "DescribeSimulationJobBatchResponse$failedRequests": "<p>A list of failed create simulation job requests. The request failed to be created into a simulation job. Failed requests do not have a simulation job ID. </p>",
+        "StartSimulationJobBatchResponse$failedRequests": "<p>A list of failed simulation job requests. The request failed to be created into a simulation job. Failed requests do not have a simulation job ID. </p>"
+      }
+    },
     "FailureBehavior": {
       "base": null,
       "refs": {
         "CreateSimulationJobRequest$failureBehavior": "<p>The failure behavior the simulation job.</p> <dl> <dt>Continue</dt> <dd> <p>Restart the simulation job in the same host instance.</p> </dd> <dt>Fail</dt> <dd> <p>Stop the simulation job and terminate the instance.</p> </dd> </dl>",
         "CreateSimulationJobResponse$failureBehavior": "<p>the failure behavior for the simulation job.</p>",
         "DescribeSimulationJobResponse$failureBehavior": "<p>The failure behavior for the simulation job.</p>",
-        "SimulationJob$failureBehavior": "<p>The failure behavior the simulation job.</p> <dl> <dt>Continue</dt> <dd> <p>Restart the simulation job in the same host instance.</p> </dd> <dt>Fail</dt> <dd> <p>Stop the simulation job and terminate the instance.</p> </dd> </dl>"
+        "SimulationJob$failureBehavior": "<p>The failure behavior the simulation job.</p> <dl> <dt>Continue</dt> <dd> <p>Restart the simulation job in the same host instance.</p> </dd> <dt>Fail</dt> <dd> <p>Stop the simulation job and terminate the instance.</p> </dd> </dl>",
+        "SimulationJobRequest$failureBehavior": "<p>The failure behavior the simulation job.</p> <dl> <dt>Continue</dt> <dd> <p>Restart the simulation job in the same host instance.</p> </dd> <dt>Fail</dt> <dd> <p>Stop the simulation job and terminate the instance.</p> </dd> </dl>"
       }
     },
     "Filter": {
@@ -569,6 +648,7 @@
         "ListRobotApplicationsRequest$filters": "<p>Optional filters to limit results.</p> <p>The filter name <code>name</code> is supported. When filtering, you must use the complete value of the filtered item. You can use up to three filters.</p>",
         "ListRobotsRequest$filters": "<p>Optional filters to limit results.</p> <p>The filter names <code>status</code> and <code>fleetName</code> are supported. When filtering, you must use the complete value of the filtered item. You can use up to three filters, but they must be for the same named item. For example, if you are looking for items with the status <code>Registered</code> or the status <code>Available</code>.</p>",
         "ListSimulationApplicationsRequest$filters": "<p>Optional list of filters to limit results.</p> <p>The filter name <code>name</code> is supported. When filtering, you must use the complete value of the filtered item. You can use up to three filters.</p>",
+        "ListSimulationJobBatchesRequest$filters": "<p>Optional filters to limit results.</p>",
         "ListSimulationJobsRequest$filters": "<p>Optional filters to limit results.</p> <p>The filter names <code>status</code> and <code>simulationApplicationName</code> and <code>robotApplicationName</code> are supported. When filtering, you must use the complete value of the filtered item. You can use up to three filters, but they must be for the same named item. For example, if you are looking for items with the status <code>Preparing</code> or the status <code>Running</code>.</p>"
       }
     },
@@ -596,13 +676,16 @@
         "CreateDeploymentJobResponse$failureReason": "<p>The failure reason of the deployment job if it failed.</p>",
         "DeploymentJob$failureReason": "<p>A short description of the reason why the deployment job failed.</p>",
         "DescribeDeploymentJobResponse$failureReason": "<p>A short description of the reason why the deployment job failed.</p>",
+        "DescribeSimulationJobBatchResponse$failureReason": "<p>The reason the simulation job batch failed.</p>",
         "DescribeSimulationJobResponse$failureReason": "<p>Details about why the simulation job failed. For more information about troubleshooting, see <a href=\"https://docs.aws.amazon.com/robomaker/latest/dg/troubleshooting.html\">Troubleshooting</a>.</p>",
+        "FailedCreateSimulationJobRequest$failureReason": "<p>The failure reason of the simulation job request.</p>",
         "NetworkInterface$networkInterfaceId": "<p>The ID of the network interface.</p>",
         "NetworkInterface$privateIpAddress": "<p>The IPv4 address of the network interface within the subnet.</p>",
         "NetworkInterface$publicIpAddress": "<p>The IPv4 public address of the network interface.</p>",
         "ProgressDetail$targetResource": "<p>The Amazon Resource Name (ARN) of the deployment job.</p>",
         "RobotDeployment$failureReason": "<p>A short description of the reason why the robot deployment failed.</p>",
         "SimulationJob$failureReason": "<p>The reason why the simulation job failed.</p>",
+        "StartSimulationJobBatchResponse$failureReason": "<p>The reason the simulation job batch failed.</p>",
         "SyncDeploymentJobResponse$failureReason": "<p>The failure reason if the job fails.</p>",
         "VPCConfigResponse$vpcId": "<p>The VPC ID associated with your simulation job.</p>"
       }
@@ -613,7 +696,8 @@
         "CreateSimulationJobRequest$iamRole": "<p>The IAM role name that allows the simulation instance to call the AWS APIs that are specified in its associated policies on your behalf. This is how credentials are passed in to your simulation job. </p>",
         "CreateSimulationJobResponse$iamRole": "<p>The IAM role that allows the simulation job to call the AWS APIs that are specified in its associated policies on your behalf.</p>",
         "DescribeSimulationJobResponse$iamRole": "<p>The IAM role that allows the simulation instance to call the AWS APIs that are specified in its associated policies on your behalf.</p>",
-        "SimulationJob$iamRole": "<p>The IAM role that allows the simulation instance to call the AWS APIs that are specified in its associated policies on your behalf. This is how credentials are passed in to your simulation job. </p>"
+        "SimulationJob$iamRole": "<p>The IAM role that allows the simulation instance to call the AWS APIs that are specified in its associated policies on your behalf. This is how credentials are passed in to your simulation job. </p>",
+        "SimulationJobRequest$iamRole": "<p>The IAM role name that allows the simulation instance to call the AWS APIs that are specified in its associated policies on your behalf. This is how credentials are passed in to your simulation job. </p>"
       }
     },
     "Id": {
@@ -628,6 +712,14 @@
     "IdempotentParameterMismatchException": {
       "base": "<p>The request uses the same client token as a previous, but non-identical request. Do not reuse a client token with different requests, unless the requests are identical. </p>",
       "refs": {
+      }
+    },
+    "Integer": {
+      "base": null,
+      "refs": {
+        "SimulationJobBatchSummary$failedRequestCount": "<p>The number of failed simulation job requests.</p>",
+        "SimulationJobBatchSummary$pendingRequestCount": "<p>The number of pending simulation job requests.</p>",
+        "SimulationJobBatchSummary$createdRequestCount": "<p>The number of created simulation job requests.</p>"
       }
     },
     "InternalServerException": {
@@ -646,7 +738,8 @@
         "CreateSimulationJobRequest$maxJobDurationInSeconds": "<p>The maximum simulation job duration in seconds (up to 14 days or 1,209,600 seconds. When <code>maxJobDurationInSeconds</code> is reached, the simulation job will status will transition to <code>Completed</code>.</p>",
         "CreateSimulationJobResponse$maxJobDurationInSeconds": "<p>The maximum simulation job duration in seconds. </p>",
         "DescribeSimulationJobResponse$maxJobDurationInSeconds": "<p>The maximum job duration in seconds. The value must be 8 days (691,200 seconds) or less.</p>",
-        "SimulationJob$maxJobDurationInSeconds": "<p>The maximum simulation job duration in seconds. The value must be 8 days (691,200 seconds) or less.</p>"
+        "SimulationJob$maxJobDurationInSeconds": "<p>The maximum simulation job duration in seconds. The value must be 8 days (691,200 seconds) or less.</p>",
+        "SimulationJobRequest$maxJobDurationInSeconds": "<p>The maximum simulation job duration in seconds. The value must be 8 days (691,200 seconds) or less.</p>"
       }
     },
     "LastStartedAt": {
@@ -667,10 +760,12 @@
         "CreateSimulationJobResponse$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the simulation job was last updated.</p>",
         "DescribeRobotApplicationResponse$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the robot application was last updated.</p>",
         "DescribeSimulationApplicationResponse$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the simulation application was last updated.</p>",
+        "DescribeSimulationJobBatchResponse$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the simulation job batch was last updated.</p>",
         "DescribeSimulationJobResponse$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the simulation job was last updated.</p>",
         "RobotApplicationSummary$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the robot application was last updated.</p>",
         "SimulationApplicationSummary$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the simulation application was last updated.</p>",
         "SimulationJob$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the simulation job was last updated.</p>",
+        "SimulationJobBatchSummary$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the simulation job batch was last updated.</p>",
         "SimulationJobSummary$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the simulation job was last updated.</p>",
         "UpdateRobotApplicationResponse$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the robot application was last updated.</p>",
         "UpdateSimulationApplicationResponse$lastUpdatedAt": "<p>The time, in milliseconds since the epoch, when the simulation application was last updated.</p>"
@@ -738,6 +833,16 @@
       "refs": {
       }
     },
+    "ListSimulationJobBatchesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSimulationJobBatchesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListSimulationJobsRequest": {
       "base": null,
       "refs": {
@@ -764,18 +869,26 @@
         "CreateSimulationJobRequest$loggingConfig": "<p>The logging configuration.</p>",
         "CreateSimulationJobResponse$loggingConfig": "<p>The logging configuration.</p>",
         "DescribeSimulationJobResponse$loggingConfig": "<p>The logging configuration.</p>",
-        "SimulationJob$loggingConfig": "<p>The logging configuration.</p>"
+        "SimulationJob$loggingConfig": "<p>The logging configuration.</p>",
+        "SimulationJobRequest$loggingConfig": null
+      }
+    },
+    "MaxConcurrency": {
+      "base": null,
+      "refs": {
+        "BatchPolicy$maxConcurrency": "<p>The number of active simulation jobs create as part of the batch that can be in an active state at the same time. </p> <p>Active states include: <code>Pending</code>,<code>Preparing</code>, <code>Running</code>, <code>Restarting</code>, <code>RunningFailed</code> and <code>Terminating</code>. All other states are terminal states. </p>"
       }
     },
     "MaxResults": {
       "base": null,
       "refs": {
-        "ListDeploymentJobsRequest$maxResults": "<p>The maximum number of deployment job results returned by <code>ListDeploymentJobs</code> in paginated output. When this parameter is used, <code>ListDeploymentJobs</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListDeploymentJobs</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListDeploymentJobs</code> returns up to 100 results and a <code>nextToken</code> value if applicable. </p>",
-        "ListFleetsRequest$maxResults": "<p>The maximum number of deployment job results returned by <code>ListFleets</code> in paginated output. When this parameter is used, <code>ListFleets</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListFleets</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListFleets</code> returns up to 100 results and a <code>nextToken</code> value if applicable. </p>",
-        "ListRobotApplicationsRequest$maxResults": "<p>The maximum number of deployment job results returned by <code>ListRobotApplications</code> in paginated output. When this parameter is used, <code>ListRobotApplications</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListRobotApplications</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListRobotApplications</code> returns up to 100 results and a <code>nextToken</code> value if applicable. </p>",
-        "ListRobotsRequest$maxResults": "<p>The maximum number of deployment job results returned by <code>ListRobots</code> in paginated output. When this parameter is used, <code>ListRobots</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListRobots</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListRobots</code> returns up to 100 results and a <code>nextToken</code> value if applicable. </p>",
-        "ListSimulationApplicationsRequest$maxResults": "<p>The maximum number of deployment job results returned by <code>ListSimulationApplications</code> in paginated output. When this parameter is used, <code>ListSimulationApplications</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListSimulationApplications</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListSimulationApplications</code> returns up to 100 results and a <code>nextToken</code> value if applicable. </p>",
-        "ListSimulationJobsRequest$maxResults": "<p>The maximum number of deployment job results returned by <code>ListSimulationJobs</code> in paginated output. When this parameter is used, <code>ListSimulationJobs</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListSimulationJobs</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListSimulationJobs</code> returns up to 100 results and a <code>nextToken</code> value if applicable. </p>"
+        "ListDeploymentJobsRequest$maxResults": "<p>When this parameter is used, <code>ListDeploymentJobs</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListDeploymentJobs</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 200. If this parameter is not used, then <code>ListDeploymentJobs</code> returns up to 200 results and a <code>nextToken</code> value if applicable. </p>",
+        "ListFleetsRequest$maxResults": "<p>When this parameter is used, <code>ListFleets</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListFleets</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 200. If this parameter is not used, then <code>ListFleets</code> returns up to 200 results and a <code>nextToken</code> value if applicable. </p>",
+        "ListRobotApplicationsRequest$maxResults": "<p>When this parameter is used, <code>ListRobotApplications</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListRobotApplications</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListRobotApplications</code> returns up to 100 results and a <code>nextToken</code> value if applicable. </p>",
+        "ListRobotsRequest$maxResults": "<p>When this parameter is used, <code>ListRobots</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListRobots</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 200. If this parameter is not used, then <code>ListRobots</code> returns up to 200 results and a <code>nextToken</code> value if applicable. </p>",
+        "ListSimulationApplicationsRequest$maxResults": "<p>When this parameter is used, <code>ListSimulationApplications</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListSimulationApplications</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListSimulationApplications</code> returns up to 100 results and a <code>nextToken</code> value if applicable. </p>",
+        "ListSimulationJobBatchesRequest$maxResults": "<p>When this parameter is used, <code>ListSimulationJobBatches</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListSimulationJobBatches</code> request with the returned <code>nextToken</code> value. </p>",
+        "ListSimulationJobsRequest$maxResults": "<p>When this parameter is used, <code>ListSimulationJobs</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListSimulationJobs</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 1000. If this parameter is not used, then <code>ListSimulationJobs</code> returns up to 1000 results and a <code>nextToken</code> value if applicable. </p>"
       }
     },
     "Name": {
@@ -839,22 +952,25 @@
         "CreateSimulationJobRequest$outputLocation": "<p>Location for output files generated by the simulation job.</p>",
         "CreateSimulationJobResponse$outputLocation": "<p>Simulation job output files location.</p>",
         "DescribeSimulationJobResponse$outputLocation": "<p>Location for output files generated by the simulation job.</p>",
-        "SimulationJob$outputLocation": "<p>Location for output files generated by the simulation job.</p>"
+        "SimulationJob$outputLocation": "<p>Location for output files generated by the simulation job.</p>",
+        "SimulationJobRequest$outputLocation": null
       }
     },
     "PaginationToken": {
       "base": null,
       "refs": {
-        "ListDeploymentJobsRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListDeploymentJobs</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. </p> <note> <p>This token should be treated as an opaque identifier that is only used to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
+        "ListDeploymentJobsRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListDeploymentJobs</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. </p>",
         "ListDeploymentJobsResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>ListDeploymentJobs</code> request. When the results of a <code>ListDeploymentJobs</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>",
         "ListFleetsRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListFleets</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. </p> <note> <p>This token should be treated as an opaque identifier that is only used to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
         "ListFleetsResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>ListDeploymentJobs</code> request. When the results of a <code>ListFleets</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>",
-        "ListRobotApplicationsRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListRobotApplications</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. </p> <note> <p>This token should be treated as an opaque identifier that is only used to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
+        "ListRobotApplicationsRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListRobotApplications</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. </p>",
         "ListRobotApplicationsResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>ListRobotApplications</code> request. When the results of a <code>ListRobotApplications</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>",
-        "ListRobotsRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListRobots</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. </p> <note> <p>This token should be treated as an opaque identifier that is only used to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
+        "ListRobotsRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListRobots</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. </p>",
         "ListRobotsResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>ListRobots</code> request. When the results of a <code>ListRobot</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>",
-        "ListSimulationApplicationsRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListSimulationApplications</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. </p> <note> <p>This token should be treated as an opaque identifier that is only used to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
+        "ListSimulationApplicationsRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListSimulationApplications</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. </p>",
         "ListSimulationApplicationsResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>ListSimulationApplications</code> request. When the results of a <code>ListRobot</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>",
+        "ListSimulationJobBatchesRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListSimulationJobBatches</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. </p>",
+        "ListSimulationJobBatchesResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>ListSimulationJobBatches</code> request. When the results of a <code>ListSimulationJobBatches</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>",
         "ListSimulationJobsRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListSimulationJobs</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. </p> <note> <p>This token should be treated as an opaque identifier that is only used to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
         "ListSimulationJobsResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>ListSimulationJobs</code> request. When the results of a <code>ListRobot</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>"
       }
@@ -997,7 +1113,8 @@
         "CreateSimulationJobRequest$robotApplications": "<p>The robot application to use in the simulation job.</p>",
         "CreateSimulationJobResponse$robotApplications": "<p>The robot application used by the simulation job.</p>",
         "DescribeSimulationJobResponse$robotApplications": "<p>A list of robot applications.</p>",
-        "SimulationJob$robotApplications": "<p>A list of robot applications.</p>"
+        "SimulationJob$robotApplications": "<p>A list of robot applications.</p>",
+        "SimulationJobRequest$robotApplications": "<p>The robot applications to use in the simulation job.</p>"
       }
     },
     "RobotApplicationNames": {
@@ -1037,34 +1154,34 @@
       }
     },
     "RobotSoftwareSuite": {
-      "base": "<p>Information about a robot software suite.</p>",
+      "base": "<p>Information about a robot software suite (ROS distribution).</p>",
       "refs": {
-        "CreateRobotApplicationRequest$robotSoftwareSuite": "<p>The robot software suite used by the robot application.</p>",
-        "CreateRobotApplicationResponse$robotSoftwareSuite": "<p>The robot software suite used by the robot application.</p>",
-        "CreateRobotApplicationVersionResponse$robotSoftwareSuite": "<p>The robot software suite used by the robot application.</p>",
-        "CreateSimulationApplicationRequest$robotSoftwareSuite": "<p>The robot software suite of the simulation application.</p>",
-        "CreateSimulationApplicationResponse$robotSoftwareSuite": "<p>Information about the robot software suite.</p>",
-        "CreateSimulationApplicationVersionResponse$robotSoftwareSuite": "<p>Information about the robot software suite.</p>",
-        "DescribeRobotApplicationResponse$robotSoftwareSuite": "<p>The robot software suite used by the robot application.</p>",
-        "DescribeSimulationApplicationResponse$robotSoftwareSuite": "<p>Information about the robot software suite.</p>",
-        "RobotApplicationSummary$robotSoftwareSuite": "<p>Information about a robot software suite.</p>",
-        "SimulationApplicationSummary$robotSoftwareSuite": "<p>Information about a robot software suite.</p>",
-        "UpdateRobotApplicationRequest$robotSoftwareSuite": "<p>The robot software suite used by the robot application.</p>",
-        "UpdateRobotApplicationResponse$robotSoftwareSuite": "<p>The robot software suite used by the robot application.</p>",
-        "UpdateSimulationApplicationRequest$robotSoftwareSuite": "<p>Information about the robot software suite.</p>",
-        "UpdateSimulationApplicationResponse$robotSoftwareSuite": "<p>Information about the robot software suite.</p>"
+        "CreateRobotApplicationRequest$robotSoftwareSuite": "<p>The robot software suite (ROS distribuition) used by the robot application.</p>",
+        "CreateRobotApplicationResponse$robotSoftwareSuite": "<p>The robot software suite (ROS distribution) used by the robot application.</p>",
+        "CreateRobotApplicationVersionResponse$robotSoftwareSuite": "<p>The robot software suite (ROS distribution) used by the robot application.</p>",
+        "CreateSimulationApplicationRequest$robotSoftwareSuite": "<p>The robot software suite (ROS distribution) used by the simulation application.</p>",
+        "CreateSimulationApplicationResponse$robotSoftwareSuite": "<p>Information about the robot software suite (ROS distribution).</p>",
+        "CreateSimulationApplicationVersionResponse$robotSoftwareSuite": "<p>Information about the robot software suite (ROS distribution).</p>",
+        "DescribeRobotApplicationResponse$robotSoftwareSuite": "<p>The robot software suite (ROS distribution) used by the robot application.</p>",
+        "DescribeSimulationApplicationResponse$robotSoftwareSuite": "<p>Information about the robot software suite (ROS distribution).</p>",
+        "RobotApplicationSummary$robotSoftwareSuite": "<p>Information about a robot software suite (ROS distribution).</p>",
+        "SimulationApplicationSummary$robotSoftwareSuite": "<p>Information about a robot software suite (ROS distribution).</p>",
+        "UpdateRobotApplicationRequest$robotSoftwareSuite": "<p>The robot software suite (ROS distribution) used by the robot application.</p>",
+        "UpdateRobotApplicationResponse$robotSoftwareSuite": "<p>The robot software suite (ROS distribution) used by the robot application.</p>",
+        "UpdateSimulationApplicationRequest$robotSoftwareSuite": "<p>Information about the robot software suite (ROS distribution).</p>",
+        "UpdateSimulationApplicationResponse$robotSoftwareSuite": "<p>Information about the robot software suite (ROS distribution).</p>"
       }
     },
     "RobotSoftwareSuiteType": {
       "base": null,
       "refs": {
-        "RobotSoftwareSuite$name": "<p>The name of the robot software suite.</p>"
+        "RobotSoftwareSuite$name": "<p>The name of the robot software suite (ROS distribution).</p>"
       }
     },
     "RobotSoftwareSuiteVersionType": {
       "base": null,
       "refs": {
-        "RobotSoftwareSuite$version": "<p>The version of the robot software suite.</p>"
+        "RobotSoftwareSuite$version": "<p>The version of the robot software suite (ROS distribution).</p>"
       }
     },
     "RobotStatus": {
@@ -1160,7 +1277,8 @@
         "CreateSimulationJobRequest$simulationApplications": "<p>The simulation application to use in the simulation job.</p>",
         "CreateSimulationJobResponse$simulationApplications": "<p>The simulation application used by the simulation job.</p>",
         "DescribeSimulationJobResponse$simulationApplications": "<p>A list of simulation applications.</p>",
-        "SimulationJob$simulationApplications": "<p>A list of simulation applications.</p>"
+        "SimulationJob$simulationApplications": "<p>A list of simulation applications.</p>",
+        "SimulationJobRequest$simulationApplications": "<p>The simulation applications to use in the simulation job.</p>"
       }
     },
     "SimulationApplicationNames": {
@@ -1187,12 +1305,47 @@
         "SimulationJobs$member": null
       }
     },
+    "SimulationJobBatchErrorCode": {
+      "base": null,
+      "refs": {
+        "DescribeSimulationJobBatchResponse$failureCode": "<p>The failure code of the simulation job batch.</p>",
+        "StartSimulationJobBatchResponse$failureCode": "<p>The failure code if the simulation job batch failed.</p>"
+      }
+    },
+    "SimulationJobBatchStatus": {
+      "base": null,
+      "refs": {
+        "DescribeSimulationJobBatchResponse$status": "<p>The status of the batch.</p> <dl> <dt>Pending</dt> <dd> <p>The simulation job batch request is pending.</p> </dd> <dt>InProgress</dt> <dd> <p>The simulation job batch is in progress. </p> </dd> <dt>Failed</dt> <dd> <p>The simulation job batch failed. One or more simulation job requests could not be completed due to an internal failure (like <code>InternalServiceError</code>). See <code>failureCode</code> and <code>failureReason</code> for more information.</p> </dd> <dt>Completed</dt> <dd> <p>The simulation batch job completed. A batch is complete when (1) there are no pending simulation job requests in the batch and none of the failed simulation job requests are due to <code>InternalServiceError</code> and (2) when all created simulation jobs have reached a terminal state (for example, <code>Completed</code> or <code>Failed</code>). </p> </dd> <dt>Canceled</dt> <dd> <p>The simulation batch job was cancelled.</p> </dd> <dt>Canceling</dt> <dd> <p>The simulation batch job is being cancelled.</p> </dd> <dt>Completing</dt> <dd> <p>The simulation batch job is completing.</p> </dd> <dt>TimingOut</dt> <dd> <p>The simulation job batch is timing out.</p> <p>If a batch timing out, and there are pending requests that were failing due to an internal failure (like <code>InternalServiceError</code>), the batch status will be <code>Failed</code>. If there are no such failing request, the batch status will be <code>TimedOut</code>. </p> </dd> <dt>TimedOut</dt> <dd> <p>The simulation batch job timed out.</p> </dd> </dl>",
+        "SimulationJobBatchSummary$status": "<p>The status of the simulation job batch.</p> <dl> <dt>Pending</dt> <dd> <p>The simulation job batch request is pending.</p> </dd> <dt>InProgress</dt> <dd> <p>The simulation job batch is in progress. </p> </dd> <dt>Failed</dt> <dd> <p>The simulation job batch failed. One or more simulation job requests could not be completed due to an internal failure (like <code>InternalServiceError</code>). See <code>failureCode</code> and <code>failureReason</code> for more information.</p> </dd> <dt>Completed</dt> <dd> <p>The simulation batch job completed. A batch is complete when (1) there are no pending simulation job requests in the batch and none of the failed simulation job requests are due to <code>InternalServiceError</code> and (2) when all created simulation jobs have reached a terminal state (for example, <code>Completed</code> or <code>Failed</code>). </p> </dd> <dt>Canceled</dt> <dd> <p>The simulation batch job was cancelled.</p> </dd> <dt>Canceling</dt> <dd> <p>The simulation batch job is being cancelled.</p> </dd> <dt>Completing</dt> <dd> <p>The simulation batch job is completing.</p> </dd> <dt>TimingOut</dt> <dd> <p>The simulation job batch is timing out.</p> <p>If a batch timing out, and there are pending requests that were failing due to an internal failure (like <code>InternalServiceError</code>), the batch status will be <code>Failed</code>. If there are no such failing request, the batch status will be <code>TimedOut</code>. </p> </dd> <dt>TimedOut</dt> <dd> <p>The simulation batch job timed out.</p> </dd> </dl>",
+        "StartSimulationJobBatchResponse$status": "<p>The status of the simulation job batch.</p> <dl> <dt>Pending</dt> <dd> <p>The simulation job batch request is pending.</p> </dd> <dt>InProgress</dt> <dd> <p>The simulation job batch is in progress. </p> </dd> <dt>Failed</dt> <dd> <p>The simulation job batch failed. One or more simulation job requests could not be completed due to an internal failure (like <code>InternalServiceError</code>). See <code>failureCode</code> and <code>failureReason</code> for more information.</p> </dd> <dt>Completed</dt> <dd> <p>The simulation batch job completed. A batch is complete when (1) there are no pending simulation job requests in the batch and none of the failed simulation job requests are due to <code>InternalServiceError</code> and (2) when all created simulation jobs have reached a terminal state (for example, <code>Completed</code> or <code>Failed</code>). </p> </dd> <dt>Canceled</dt> <dd> <p>The simulation batch job was cancelled.</p> </dd> <dt>Canceling</dt> <dd> <p>The simulation batch job is being cancelled.</p> </dd> <dt>Completing</dt> <dd> <p>The simulation batch job is completing.</p> </dd> <dt>TimingOut</dt> <dd> <p>The simulation job batch is timing out.</p> <p>If a batch timing out, and there are pending requests that were failing due to an internal failure (like <code>InternalServiceError</code>), the batch status will be <code>Failed</code>. If there are no such failing request, the batch status will be <code>TimedOut</code>. </p> </dd> <dt>TimedOut</dt> <dd> <p>The simulation batch job timed out.</p> </dd> </dl>"
+      }
+    },
+    "SimulationJobBatchSummaries": {
+      "base": null,
+      "refs": {
+        "ListSimulationJobBatchesResponse$simulationJobBatchSummaries": "<p>A list of simulation job batch summaries.</p>"
+      }
+    },
+    "SimulationJobBatchSummary": {
+      "base": "<p>Information about a simulation job batch.</p>",
+      "refs": {
+        "SimulationJobBatchSummaries$member": null
+      }
+    },
     "SimulationJobErrorCode": {
       "base": null,
       "refs": {
         "CreateSimulationJobResponse$failureCode": "<p>The failure code of the simulation job if it failed:</p> <dl> <dt>InternalServiceError</dt> <dd> <p>Internal service error.</p> </dd> <dt>RobotApplicationCrash</dt> <dd> <p>Robot application exited abnormally.</p> </dd> <dt>SimulationApplicationCrash</dt> <dd> <p> Simulation application exited abnormally.</p> </dd> <dt>BadPermissionsRobotApplication</dt> <dd> <p>Robot application bundle could not be downloaded.</p> </dd> <dt>BadPermissionsSimulationApplication</dt> <dd> <p>Simulation application bundle could not be downloaded.</p> </dd> <dt>BadPermissionsS3Output</dt> <dd> <p>Unable to publish outputs to customer-provided S3 bucket.</p> </dd> <dt>BadPermissionsCloudwatchLogs</dt> <dd> <p>Unable to publish logs to customer-provided CloudWatch Logs resource.</p> </dd> <dt>SubnetIpLimitExceeded</dt> <dd> <p>Subnet IP limit exceeded.</p> </dd> <dt>ENILimitExceeded</dt> <dd> <p>ENI limit exceeded.</p> </dd> <dt>BadPermissionsUserCredentials</dt> <dd> <p>Unable to use the Role provided.</p> </dd> <dt>InvalidBundleRobotApplication</dt> <dd> <p>Robot bundle cannot be extracted (invalid format, bundling error, or other issue).</p> </dd> <dt>InvalidBundleSimulationApplication</dt> <dd> <p>Simulation bundle cannot be extracted (invalid format, bundling error, or other issue).</p> </dd> <dt>RobotApplicationVersionMismatchedEtag</dt> <dd> <p>Etag for RobotApplication does not match value during version creation.</p> </dd> <dt>SimulationApplicationVersionMismatchedEtag</dt> <dd> <p>Etag for SimulationApplication does not match value during version creation.</p> </dd> </dl>",
         "DescribeSimulationJobResponse$failureCode": "<p>The failure code of the simulation job if it failed:</p> <dl> <dt>InternalServiceError</dt> <dd> <p>Internal service error.</p> </dd> <dt>RobotApplicationCrash</dt> <dd> <p>Robot application exited abnormally.</p> </dd> <dt>SimulationApplicationCrash</dt> <dd> <p> Simulation application exited abnormally.</p> </dd> <dt>BadPermissionsRobotApplication</dt> <dd> <p>Robot application bundle could not be downloaded.</p> </dd> <dt>BadPermissionsSimulationApplication</dt> <dd> <p>Simulation application bundle could not be downloaded.</p> </dd> <dt>BadPermissionsS3Output</dt> <dd> <p>Unable to publish outputs to customer-provided S3 bucket.</p> </dd> <dt>BadPermissionsCloudwatchLogs</dt> <dd> <p>Unable to publish logs to customer-provided CloudWatch Logs resource.</p> </dd> <dt>SubnetIpLimitExceeded</dt> <dd> <p>Subnet IP limit exceeded.</p> </dd> <dt>ENILimitExceeded</dt> <dd> <p>ENI limit exceeded.</p> </dd> <dt>BadPermissionsUserCredentials</dt> <dd> <p>Unable to use the Role provided.</p> </dd> <dt>InvalidBundleRobotApplication</dt> <dd> <p>Robot bundle cannot be extracted (invalid format, bundling error, or other issue).</p> </dd> <dt>InvalidBundleSimulationApplication</dt> <dd> <p>Simulation bundle cannot be extracted (invalid format, bundling error, or other issue).</p> </dd> <dt>RobotApplicationVersionMismatchedEtag</dt> <dd> <p>Etag for RobotApplication does not match value during version creation.</p> </dd> <dt>SimulationApplicationVersionMismatchedEtag</dt> <dd> <p>Etag for SimulationApplication does not match value during version creation.</p> </dd> </dl>",
+        "FailedCreateSimulationJobRequest$failureCode": "<p>The failure code.</p>",
         "SimulationJob$failureCode": "<p>The failure code of the simulation job if it failed.</p>"
+      }
+    },
+    "SimulationJobRequest": {
+      "base": "<p>Information about a simulation job request.</p>",
+      "refs": {
+        "CreateSimulationJobRequests$member": null,
+        "FailedCreateSimulationJobRequest$request": "<p>The simulation job request.</p>"
       }
     },
     "SimulationJobStatus": {
@@ -1207,7 +1360,9 @@
     "SimulationJobSummaries": {
       "base": null,
       "refs": {
-        "ListSimulationJobsResponse$simulationJobSummaries": "<p>A list of simulation job summaries that meet the criteria of the request.</p>"
+        "DescribeSimulationJobBatchResponse$createdRequests": "<p>A list of created simulation job summaries.</p>",
+        "ListSimulationJobsResponse$simulationJobSummaries": "<p>A list of simulation job summaries that meet the criteria of the request.</p>",
+        "StartSimulationJobBatchResponse$createdRequests": "<p>A list of created simulation job request summaries.</p>"
       }
     },
     "SimulationJobSummary": {
@@ -1288,6 +1443,16 @@
         "UpdateSimulationApplicationResponse$sources": "<p>The sources of the simulation application.</p>"
       }
     },
+    "StartSimulationJobBatchRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartSimulationJobBatchResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Subnets": {
       "base": null,
       "refs": {
@@ -1338,9 +1503,13 @@
         "DescribeRobotApplicationResponse$tags": "<p>The list of all tags added to the specified robot application.</p>",
         "DescribeRobotResponse$tags": "<p>The list of all tags added to the specified robot.</p>",
         "DescribeSimulationApplicationResponse$tags": "<p>The list of all tags added to the specified simulation application.</p>",
+        "DescribeSimulationJobBatchResponse$tags": "<p>A map that contains tag keys and tag values that are attached to the simulation job batch.</p>",
         "DescribeSimulationJobResponse$tags": "<p>The list of all tags added to the specified simulation job.</p>",
         "ListTagsForResourceResponse$tags": "<p>The list of all tags added to the specified resource.</p>",
         "SimulationJob$tags": "<p>A map that contains tag keys and tag values that are attached to the simulation job.</p>",
+        "SimulationJobRequest$tags": "<p>A map that contains tag keys and tag values that are attached to the simulation job request.</p>",
+        "StartSimulationJobBatchRequest$tags": "<p>A map that contains tag keys and tag values that are attached to the deployment job batch.</p>",
+        "StartSimulationJobBatchResponse$tags": "<p>A map that contains tag keys and tag values that are attached to the deployment job batch.</p>",
         "TagResourceRequest$tags": "<p>A map that contains tag keys and tag values that are attached to the resource.</p>"
       }
     },
@@ -1398,7 +1567,8 @@
     "VPCConfig": {
       "base": "<p>If your simulation job accesses resources in a VPC, you provide this parameter identifying the list of security group IDs and subnet IDs. These must belong to the same VPC. You must provide at least one security group and two subnet IDs.</p>",
       "refs": {
-        "CreateSimulationJobRequest$vpcConfig": "<p>If your simulation job accesses resources in a VPC, you provide this parameter identifying the list of security group IDs and subnet IDs. These must belong to the same VPC. You must provide at least one security group and one subnet ID. </p>"
+        "CreateSimulationJobRequest$vpcConfig": "<p>If your simulation job accesses resources in a VPC, you provide this parameter identifying the list of security group IDs and subnet IDs. These must belong to the same VPC. You must provide at least one security group and one subnet ID. </p>",
+        "SimulationJobRequest$vpcConfig": null
       }
     },
     "VPCConfigResponse": {

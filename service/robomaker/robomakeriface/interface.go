@@ -72,6 +72,10 @@ type RoboMakerAPI interface {
 	CancelSimulationJobWithContext(aws.Context, *robomaker.CancelSimulationJobInput, ...request.Option) (*robomaker.CancelSimulationJobOutput, error)
 	CancelSimulationJobRequest(*robomaker.CancelSimulationJobInput) (*request.Request, *robomaker.CancelSimulationJobOutput)
 
+	CancelSimulationJobBatch(*robomaker.CancelSimulationJobBatchInput) (*robomaker.CancelSimulationJobBatchOutput, error)
+	CancelSimulationJobBatchWithContext(aws.Context, *robomaker.CancelSimulationJobBatchInput, ...request.Option) (*robomaker.CancelSimulationJobBatchOutput, error)
+	CancelSimulationJobBatchRequest(*robomaker.CancelSimulationJobBatchInput) (*request.Request, *robomaker.CancelSimulationJobBatchOutput)
+
 	CreateDeploymentJob(*robomaker.CreateDeploymentJobInput) (*robomaker.CreateDeploymentJobOutput, error)
 	CreateDeploymentJobWithContext(aws.Context, *robomaker.CreateDeploymentJobInput, ...request.Option) (*robomaker.CreateDeploymentJobOutput, error)
 	CreateDeploymentJobRequest(*robomaker.CreateDeploymentJobInput) (*request.Request, *robomaker.CreateDeploymentJobOutput)
@@ -148,6 +152,10 @@ type RoboMakerAPI interface {
 	DescribeSimulationJobWithContext(aws.Context, *robomaker.DescribeSimulationJobInput, ...request.Option) (*robomaker.DescribeSimulationJobOutput, error)
 	DescribeSimulationJobRequest(*robomaker.DescribeSimulationJobInput) (*request.Request, *robomaker.DescribeSimulationJobOutput)
 
+	DescribeSimulationJobBatch(*robomaker.DescribeSimulationJobBatchInput) (*robomaker.DescribeSimulationJobBatchOutput, error)
+	DescribeSimulationJobBatchWithContext(aws.Context, *robomaker.DescribeSimulationJobBatchInput, ...request.Option) (*robomaker.DescribeSimulationJobBatchOutput, error)
+	DescribeSimulationJobBatchRequest(*robomaker.DescribeSimulationJobBatchInput) (*request.Request, *robomaker.DescribeSimulationJobBatchOutput)
+
 	ListDeploymentJobs(*robomaker.ListDeploymentJobsInput) (*robomaker.ListDeploymentJobsOutput, error)
 	ListDeploymentJobsWithContext(aws.Context, *robomaker.ListDeploymentJobsInput, ...request.Option) (*robomaker.ListDeploymentJobsOutput, error)
 	ListDeploymentJobsRequest(*robomaker.ListDeploymentJobsInput) (*request.Request, *robomaker.ListDeploymentJobsOutput)
@@ -183,6 +191,13 @@ type RoboMakerAPI interface {
 	ListSimulationApplicationsPages(*robomaker.ListSimulationApplicationsInput, func(*robomaker.ListSimulationApplicationsOutput, bool) bool) error
 	ListSimulationApplicationsPagesWithContext(aws.Context, *robomaker.ListSimulationApplicationsInput, func(*robomaker.ListSimulationApplicationsOutput, bool) bool, ...request.Option) error
 
+	ListSimulationJobBatches(*robomaker.ListSimulationJobBatchesInput) (*robomaker.ListSimulationJobBatchesOutput, error)
+	ListSimulationJobBatchesWithContext(aws.Context, *robomaker.ListSimulationJobBatchesInput, ...request.Option) (*robomaker.ListSimulationJobBatchesOutput, error)
+	ListSimulationJobBatchesRequest(*robomaker.ListSimulationJobBatchesInput) (*request.Request, *robomaker.ListSimulationJobBatchesOutput)
+
+	ListSimulationJobBatchesPages(*robomaker.ListSimulationJobBatchesInput, func(*robomaker.ListSimulationJobBatchesOutput, bool) bool) error
+	ListSimulationJobBatchesPagesWithContext(aws.Context, *robomaker.ListSimulationJobBatchesInput, func(*robomaker.ListSimulationJobBatchesOutput, bool) bool, ...request.Option) error
+
 	ListSimulationJobs(*robomaker.ListSimulationJobsInput) (*robomaker.ListSimulationJobsOutput, error)
 	ListSimulationJobsWithContext(aws.Context, *robomaker.ListSimulationJobsInput, ...request.Option) (*robomaker.ListSimulationJobsOutput, error)
 	ListSimulationJobsRequest(*robomaker.ListSimulationJobsInput) (*request.Request, *robomaker.ListSimulationJobsOutput)
@@ -201,6 +216,10 @@ type RoboMakerAPI interface {
 	RestartSimulationJob(*robomaker.RestartSimulationJobInput) (*robomaker.RestartSimulationJobOutput, error)
 	RestartSimulationJobWithContext(aws.Context, *robomaker.RestartSimulationJobInput, ...request.Option) (*robomaker.RestartSimulationJobOutput, error)
 	RestartSimulationJobRequest(*robomaker.RestartSimulationJobInput) (*request.Request, *robomaker.RestartSimulationJobOutput)
+
+	StartSimulationJobBatch(*robomaker.StartSimulationJobBatchInput) (*robomaker.StartSimulationJobBatchOutput, error)
+	StartSimulationJobBatchWithContext(aws.Context, *robomaker.StartSimulationJobBatchInput, ...request.Option) (*robomaker.StartSimulationJobBatchOutput, error)
+	StartSimulationJobBatchRequest(*robomaker.StartSimulationJobBatchInput) (*request.Request, *robomaker.StartSimulationJobBatchOutput)
 
 	SyncDeploymentJob(*robomaker.SyncDeploymentJobInput) (*robomaker.SyncDeploymentJobOutput, error)
 	SyncDeploymentJobWithContext(aws.Context, *robomaker.SyncDeploymentJobInput, ...request.Option) (*robomaker.SyncDeploymentJobOutput, error)

@@ -285,6 +285,99 @@ func (c *RoboMaker) CancelSimulationJobWithContext(ctx aws.Context, input *Cance
 	return out, req.Send()
 }
 
+const opCancelSimulationJobBatch = "CancelSimulationJobBatch"
+
+// CancelSimulationJobBatchRequest generates a "aws/request.Request" representing the
+// client's request for the CancelSimulationJobBatch operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CancelSimulationJobBatch for more information on using the CancelSimulationJobBatch
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CancelSimulationJobBatchRequest method.
+//    req, resp := client.CancelSimulationJobBatchRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CancelSimulationJobBatch
+func (c *RoboMaker) CancelSimulationJobBatchRequest(input *CancelSimulationJobBatchInput) (req *request.Request, output *CancelSimulationJobBatchOutput) {
+	op := &request.Operation{
+		Name:       opCancelSimulationJobBatch,
+		HTTPMethod: "POST",
+		HTTPPath:   "/cancelSimulationJobBatch",
+	}
+
+	if input == nil {
+		input = &CancelSimulationJobBatchInput{}
+	}
+
+	output = &CancelSimulationJobBatchOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CancelSimulationJobBatch API operation for AWS RoboMaker.
+//
+// Cancels a simulation job batch. When you cancel a simulation job batch, you
+// are also cancelling all of the active simulation jobs created as part of
+// the batch.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS RoboMaker's
+// API operation CancelSimulationJobBatch for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * InvalidParameterException
+//   A parameter specified in a request is not valid, is unsupported, or cannot
+//   be used. The returned message provides an explanation of the error value.
+//
+//   * InternalServerException
+//   AWS RoboMaker experienced a service issue. Try your call again.
+//
+//   * ThrottlingException
+//   AWS RoboMaker is temporarily unable to process the request. Try your call
+//   again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/CancelSimulationJobBatch
+func (c *RoboMaker) CancelSimulationJobBatch(input *CancelSimulationJobBatchInput) (*CancelSimulationJobBatchOutput, error) {
+	req, out := c.CancelSimulationJobBatchRequest(input)
+	return out, req.Send()
+}
+
+// CancelSimulationJobBatchWithContext is the same as CancelSimulationJobBatch with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CancelSimulationJobBatch for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RoboMaker) CancelSimulationJobBatchWithContext(ctx aws.Context, input *CancelSimulationJobBatchInput, opts ...request.Option) (*CancelSimulationJobBatchOutput, error) {
+	req, out := c.CancelSimulationJobBatchRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateDeploymentJob = "CreateDeploymentJob"
 
 // CreateDeploymentJobRequest generates a "aws/request.Request" representing the
@@ -2056,6 +2149,92 @@ func (c *RoboMaker) DescribeSimulationJobWithContext(ctx aws.Context, input *Des
 	return out, req.Send()
 }
 
+const opDescribeSimulationJobBatch = "DescribeSimulationJobBatch"
+
+// DescribeSimulationJobBatchRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeSimulationJobBatch operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeSimulationJobBatch for more information on using the DescribeSimulationJobBatch
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeSimulationJobBatchRequest method.
+//    req, resp := client.DescribeSimulationJobBatchRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeSimulationJobBatch
+func (c *RoboMaker) DescribeSimulationJobBatchRequest(input *DescribeSimulationJobBatchInput) (req *request.Request, output *DescribeSimulationJobBatchOutput) {
+	op := &request.Operation{
+		Name:       opDescribeSimulationJobBatch,
+		HTTPMethod: "POST",
+		HTTPPath:   "/describeSimulationJobBatch",
+	}
+
+	if input == nil {
+		input = &DescribeSimulationJobBatchInput{}
+	}
+
+	output = &DescribeSimulationJobBatchOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeSimulationJobBatch API operation for AWS RoboMaker.
+//
+// Describes a simulation job batch.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS RoboMaker's
+// API operation DescribeSimulationJobBatch for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * InvalidParameterException
+//   A parameter specified in a request is not valid, is unsupported, or cannot
+//   be used. The returned message provides an explanation of the error value.
+//
+//   * InternalServerException
+//   AWS RoboMaker experienced a service issue. Try your call again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/DescribeSimulationJobBatch
+func (c *RoboMaker) DescribeSimulationJobBatch(input *DescribeSimulationJobBatchInput) (*DescribeSimulationJobBatchOutput, error) {
+	req, out := c.DescribeSimulationJobBatchRequest(input)
+	return out, req.Send()
+}
+
+// DescribeSimulationJobBatchWithContext is the same as DescribeSimulationJobBatch with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeSimulationJobBatch for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RoboMaker) DescribeSimulationJobBatchWithContext(ctx aws.Context, input *DescribeSimulationJobBatchInput, opts ...request.Option) (*DescribeSimulationJobBatchOutput, error) {
+	req, out := c.DescribeSimulationJobBatchRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListDeploymentJobs = "ListDeploymentJobs"
 
 // ListDeploymentJobsRequest generates a "aws/request.Request" representing the
@@ -2795,6 +2974,148 @@ func (c *RoboMaker) ListSimulationApplicationsPagesWithContext(ctx aws.Context, 
 	return p.Err()
 }
 
+const opListSimulationJobBatches = "ListSimulationJobBatches"
+
+// ListSimulationJobBatchesRequest generates a "aws/request.Request" representing the
+// client's request for the ListSimulationJobBatches operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSimulationJobBatches for more information on using the ListSimulationJobBatches
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListSimulationJobBatchesRequest method.
+//    req, resp := client.ListSimulationJobBatchesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListSimulationJobBatches
+func (c *RoboMaker) ListSimulationJobBatchesRequest(input *ListSimulationJobBatchesInput) (req *request.Request, output *ListSimulationJobBatchesOutput) {
+	op := &request.Operation{
+		Name:       opListSimulationJobBatches,
+		HTTPMethod: "POST",
+		HTTPPath:   "/listSimulationJobBatches",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListSimulationJobBatchesInput{}
+	}
+
+	output = &ListSimulationJobBatchesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListSimulationJobBatches API operation for AWS RoboMaker.
+//
+// Returns a list simulation job batches. You can optionally provide filters
+// to retrieve specific simulation batch jobs.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS RoboMaker's
+// API operation ListSimulationJobBatches for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   A parameter specified in a request is not valid, is unsupported, or cannot
+//   be used. The returned message provides an explanation of the error value.
+//
+//   * InternalServerException
+//   AWS RoboMaker experienced a service issue. Try your call again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/ListSimulationJobBatches
+func (c *RoboMaker) ListSimulationJobBatches(input *ListSimulationJobBatchesInput) (*ListSimulationJobBatchesOutput, error) {
+	req, out := c.ListSimulationJobBatchesRequest(input)
+	return out, req.Send()
+}
+
+// ListSimulationJobBatchesWithContext is the same as ListSimulationJobBatches with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSimulationJobBatches for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RoboMaker) ListSimulationJobBatchesWithContext(ctx aws.Context, input *ListSimulationJobBatchesInput, opts ...request.Option) (*ListSimulationJobBatchesOutput, error) {
+	req, out := c.ListSimulationJobBatchesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListSimulationJobBatchesPages iterates over the pages of a ListSimulationJobBatches operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSimulationJobBatches method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListSimulationJobBatches operation.
+//    pageNum := 0
+//    err := client.ListSimulationJobBatchesPages(params,
+//        func(page *robomaker.ListSimulationJobBatchesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *RoboMaker) ListSimulationJobBatchesPages(input *ListSimulationJobBatchesInput, fn func(*ListSimulationJobBatchesOutput, bool) bool) error {
+	return c.ListSimulationJobBatchesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSimulationJobBatchesPagesWithContext same as ListSimulationJobBatchesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RoboMaker) ListSimulationJobBatchesPagesWithContext(ctx aws.Context, input *ListSimulationJobBatchesInput, fn func(*ListSimulationJobBatchesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSimulationJobBatchesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSimulationJobBatchesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListSimulationJobBatchesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListSimulationJobs = "ListSimulationJobs"
 
 // ListSimulationJobsRequest generates a "aws/request.Request" representing the
@@ -3215,6 +3536,103 @@ func (c *RoboMaker) RestartSimulationJob(input *RestartSimulationJobInput) (*Res
 // for more information on using Contexts.
 func (c *RoboMaker) RestartSimulationJobWithContext(ctx aws.Context, input *RestartSimulationJobInput, opts ...request.Option) (*RestartSimulationJobOutput, error) {
 	req, out := c.RestartSimulationJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartSimulationJobBatch = "StartSimulationJobBatch"
+
+// StartSimulationJobBatchRequest generates a "aws/request.Request" representing the
+// client's request for the StartSimulationJobBatch operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartSimulationJobBatch for more information on using the StartSimulationJobBatch
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartSimulationJobBatchRequest method.
+//    req, resp := client.StartSimulationJobBatchRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/StartSimulationJobBatch
+func (c *RoboMaker) StartSimulationJobBatchRequest(input *StartSimulationJobBatchInput) (req *request.Request, output *StartSimulationJobBatchOutput) {
+	op := &request.Operation{
+		Name:       opStartSimulationJobBatch,
+		HTTPMethod: "POST",
+		HTTPPath:   "/startSimulationJobBatch",
+	}
+
+	if input == nil {
+		input = &StartSimulationJobBatchInput{}
+	}
+
+	output = &StartSimulationJobBatchOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartSimulationJobBatch API operation for AWS RoboMaker.
+//
+// Starts a new simulation job batch. The batch is defined using one or more
+// SimulationJobRequest objects.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS RoboMaker's
+// API operation StartSimulationJobBatch for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   A parameter specified in a request is not valid, is unsupported, or cannot
+//   be used. The returned message provides an explanation of the error value.
+//
+//   * LimitExceededException
+//   The requested resource exceeds the maximum number allowed, or the number
+//   of concurrent stream requests exceeds the maximum number allowed.
+//
+//   * ThrottlingException
+//   AWS RoboMaker is temporarily unable to process the request. Try your call
+//   again.
+//
+//   * IdempotentParameterMismatchException
+//   The request uses the same client token as a previous, but non-identical request.
+//   Do not reuse a client token with different requests, unless the requests
+//   are identical.
+//
+//   * InternalServerException
+//   AWS RoboMaker experienced a service issue. Try your call again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/robomaker-2018-06-29/StartSimulationJobBatch
+func (c *RoboMaker) StartSimulationJobBatch(input *StartSimulationJobBatchInput) (*StartSimulationJobBatchOutput, error) {
+	req, out := c.StartSimulationJobBatchRequest(input)
+	return out, req.Send()
+}
+
+// StartSimulationJobBatchWithContext is the same as StartSimulationJobBatch with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartSimulationJobBatch for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RoboMaker) StartSimulationJobBatchWithContext(ctx aws.Context, input *StartSimulationJobBatchInput, opts ...request.Option) (*StartSimulationJobBatchOutput, error) {
+	req, out := c.StartSimulationJobBatchRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3776,6 +4194,49 @@ func (s *BatchDescribeSimulationJobOutput) SetUnprocessedJobs(v []*string) *Batc
 	return s
 }
 
+// Information about the batch policy.
+type BatchPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// The number of active simulation jobs create as part of the batch that can
+	// be in an active state at the same time.
+	//
+	// Active states include: Pending,Preparing, Running, Restarting, RunningFailed
+	// and Terminating. All other states are terminal states.
+	MaxConcurrency *int64 `locationName:"maxConcurrency" type:"integer"`
+
+	// The amount of time, in seconds, to wait for the batch to complete.
+	//
+	// If a batch times out, and there are pending requests that were failing due
+	// to an internal failure (like InternalServiceError), they will be moved to
+	// the failed list and the batch status will be Failed. If the pending requests
+	// were failing for any other reason, the failed pending requests will be moved
+	// to the failed list and the batch status will be TimedOut.
+	TimeoutInSeconds *int64 `locationName:"timeoutInSeconds" type:"long"`
+}
+
+// String returns the string representation
+func (s BatchPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchPolicy) GoString() string {
+	return s.String()
+}
+
+// SetMaxConcurrency sets the MaxConcurrency field's value.
+func (s *BatchPolicy) SetMaxConcurrency(v int64) *BatchPolicy {
+	s.MaxConcurrency = &v
+	return s
+}
+
+// SetTimeoutInSeconds sets the TimeoutInSeconds field's value.
+func (s *BatchPolicy) SetTimeoutInSeconds(v int64) *BatchPolicy {
+	s.TimeoutInSeconds = &v
+	return s
+}
+
 type CancelDeploymentJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3828,6 +4289,61 @@ func (s CancelDeploymentJobOutput) String() string {
 
 // GoString returns the string representation
 func (s CancelDeploymentJobOutput) GoString() string {
+	return s.String()
+}
+
+type CancelSimulationJobBatchInput struct {
+	_ struct{} `type:"structure"`
+
+	// The id of the batch to cancel.
+	//
+	// Batch is a required field
+	Batch *string `locationName:"batch" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CancelSimulationJobBatchInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CancelSimulationJobBatchInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelSimulationJobBatchInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelSimulationJobBatchInput"}
+	if s.Batch == nil {
+		invalidParams.Add(request.NewErrParamRequired("Batch"))
+	}
+	if s.Batch != nil && len(*s.Batch) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Batch", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBatch sets the Batch field's value.
+func (s *CancelSimulationJobBatchInput) SetBatch(v string) *CancelSimulationJobBatchInput {
+	s.Batch = &v
+	return s
+}
+
+type CancelSimulationJobBatchOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s CancelSimulationJobBatchOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CancelSimulationJobBatchOutput) GoString() string {
 	return s.String()
 }
 
@@ -4307,7 +4823,7 @@ type CreateRobotApplicationInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The robot software suite used by the robot application.
+	// The robot software suite (ROS distribuition) used by the robot application.
 	//
 	// RobotSoftwareSuite is a required field
 	RobotSoftwareSuite *RobotSoftwareSuite `locationName:"robotSoftwareSuite" type:"structure" required:"true"`
@@ -4404,7 +4920,7 @@ type CreateRobotApplicationOutput struct {
 	// The revision id of the robot application.
 	RevisionId *string `locationName:"revisionId" min:"1" type:"string"`
 
-	// The robot software suite used by the robot application.
+	// The robot software suite (ROS distribution) used by the robot application.
 	RobotSoftwareSuite *RobotSoftwareSuite `locationName:"robotSoftwareSuite" type:"structure"`
 
 	// The sources of the robot application.
@@ -4545,7 +5061,7 @@ type CreateRobotApplicationVersionOutput struct {
 	// The revision id of the robot application.
 	RevisionId *string `locationName:"revisionId" min:"1" type:"string"`
 
-	// The robot software suite used by the robot application.
+	// The robot software suite (ROS distribution) used by the robot application.
 	RobotSoftwareSuite *RobotSoftwareSuite `locationName:"robotSoftwareSuite" type:"structure"`
 
 	// The sources of the robot application.
@@ -4768,7 +5284,7 @@ type CreateSimulationApplicationInput struct {
 	// The rendering engine for the simulation application.
 	RenderingEngine *RenderingEngine `locationName:"renderingEngine" type:"structure"`
 
-	// The robot software suite of the simulation application.
+	// The robot software suite (ROS distribution) used by the simulation application.
 	//
 	// RobotSoftwareSuite is a required field
 	RobotSoftwareSuite *RobotSoftwareSuite `locationName:"robotSoftwareSuite" type:"structure" required:"true"`
@@ -4888,7 +5404,7 @@ type CreateSimulationApplicationOutput struct {
 	// The revision id of the simulation application.
 	RevisionId *string `locationName:"revisionId" min:"1" type:"string"`
 
-	// Information about the robot software suite.
+	// Information about the robot software suite (ROS distribution).
 	RobotSoftwareSuite *RobotSoftwareSuite `locationName:"robotSoftwareSuite" type:"structure"`
 
 	// The simulation software suite used by the simulation application.
@@ -5047,7 +5563,7 @@ type CreateSimulationApplicationVersionOutput struct {
 	// The revision ID of the simulation application.
 	RevisionId *string `locationName:"revisionId" min:"1" type:"string"`
 
-	// Information about the robot software suite.
+	// Information about the robot software suite (ROS distribution).
 	RobotSoftwareSuite *RobotSoftwareSuite `locationName:"robotSoftwareSuite" type:"structure"`
 
 	// The simulation software suite used by the simulation application.
@@ -5131,7 +5647,8 @@ type CreateSimulationJobInput struct {
 	// of the request.
 	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string" idempotencyToken:"true"`
 
-	// The data sources for the simulation job.
+	// Specify data sources to mount read-only files from S3 into your simulation.
+	// These files are available under /opt/robomaker/datasources/data_source_name.
 	//
 	// There is a limit of 100 files and a combined size of 25GB for all DataSourceConfig
 	// objects.
@@ -6693,7 +7210,7 @@ type DescribeRobotApplicationOutput struct {
 	// The revision id of the robot application.
 	RevisionId *string `locationName:"revisionId" min:"1" type:"string"`
 
-	// The robot software suite used by the robot application.
+	// The robot software suite (ROS distribution) used by the robot application.
 	RobotSoftwareSuite *RobotSoftwareSuite `locationName:"robotSoftwareSuite" type:"structure"`
 
 	// The sources of the robot application.
@@ -6981,7 +7498,7 @@ type DescribeSimulationApplicationOutput struct {
 	// The revision id of the simulation application.
 	RevisionId *string `locationName:"revisionId" min:"1" type:"string"`
 
-	// Information about the robot software suite.
+	// Information about the robot software suite (ROS distribution).
 	RobotSoftwareSuite *RobotSoftwareSuite `locationName:"robotSoftwareSuite" type:"structure"`
 
 	// The simulation software suite used by the simulation application.
@@ -7064,6 +7581,222 @@ func (s *DescribeSimulationApplicationOutput) SetTags(v map[string]*string) *Des
 // SetVersion sets the Version field's value.
 func (s *DescribeSimulationApplicationOutput) SetVersion(v string) *DescribeSimulationApplicationOutput {
 	s.Version = &v
+	return s
+}
+
+type DescribeSimulationJobBatchInput struct {
+	_ struct{} `type:"structure"`
+
+	// The id of the batch to describe.
+	//
+	// Batch is a required field
+	Batch *string `locationName:"batch" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeSimulationJobBatchInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSimulationJobBatchInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeSimulationJobBatchInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeSimulationJobBatchInput"}
+	if s.Batch == nil {
+		invalidParams.Add(request.NewErrParamRequired("Batch"))
+	}
+	if s.Batch != nil && len(*s.Batch) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Batch", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBatch sets the Batch field's value.
+func (s *DescribeSimulationJobBatchInput) SetBatch(v string) *DescribeSimulationJobBatchInput {
+	s.Batch = &v
+	return s
+}
+
+type DescribeSimulationJobBatchOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the batch.
+	Arn *string `locationName:"arn" min:"1" type:"string"`
+
+	// The batch policy.
+	BatchPolicy *BatchPolicy `locationName:"batchPolicy" type:"structure"`
+
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string"`
+
+	// The time, in milliseconds since the epoch, when the simulation job batch
+	// was created.
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
+
+	// A list of created simulation job summaries.
+	CreatedRequests []*SimulationJobSummary `locationName:"createdRequests" type:"list"`
+
+	// A list of failed create simulation job requests. The request failed to be
+	// created into a simulation job. Failed requests do not have a simulation job
+	// ID.
+	FailedRequests []*FailedCreateSimulationJobRequest `locationName:"failedRequests" type:"list"`
+
+	// The failure code of the simulation job batch.
+	FailureCode *string `locationName:"failureCode" type:"string" enum:"SimulationJobBatchErrorCode"`
+
+	// The reason the simulation job batch failed.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// The time, in milliseconds since the epoch, when the simulation job batch
+	// was last updated.
+	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
+
+	// A list of pending simulation job requests. These requests have not yet been
+	// created into simulation jobs.
+	PendingRequests []*SimulationJobRequest `locationName:"pendingRequests" min:"1" type:"list"`
+
+	// The status of the batch.
+	//
+	// Pending
+	//
+	// The simulation job batch request is pending.
+	//
+	// InProgress
+	//
+	// The simulation job batch is in progress.
+	//
+	// Failed
+	//
+	// The simulation job batch failed. One or more simulation job requests could
+	// not be completed due to an internal failure (like InternalServiceError).
+	// See failureCode and failureReason for more information.
+	//
+	// Completed
+	//
+	// The simulation batch job completed. A batch is complete when (1) there are
+	// no pending simulation job requests in the batch and none of the failed simulation
+	// job requests are due to InternalServiceError and (2) when all created simulation
+	// jobs have reached a terminal state (for example, Completed or Failed).
+	//
+	// Canceled
+	//
+	// The simulation batch job was cancelled.
+	//
+	// Canceling
+	//
+	// The simulation batch job is being cancelled.
+	//
+	// Completing
+	//
+	// The simulation batch job is completing.
+	//
+	// TimingOut
+	//
+	// The simulation job batch is timing out.
+	//
+	// If a batch timing out, and there are pending requests that were failing due
+	// to an internal failure (like InternalServiceError), the batch status will
+	// be Failed. If there are no such failing request, the batch status will be
+	// TimedOut.
+	//
+	// TimedOut
+	//
+	// The simulation batch job timed out.
+	Status *string `locationName:"status" type:"string" enum:"SimulationJobBatchStatus"`
+
+	// A map that contains tag keys and tag values that are attached to the simulation
+	// job batch.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation
+func (s DescribeSimulationJobBatchOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSimulationJobBatchOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *DescribeSimulationJobBatchOutput) SetArn(v string) *DescribeSimulationJobBatchOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetBatchPolicy sets the BatchPolicy field's value.
+func (s *DescribeSimulationJobBatchOutput) SetBatchPolicy(v *BatchPolicy) *DescribeSimulationJobBatchOutput {
+	s.BatchPolicy = v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *DescribeSimulationJobBatchOutput) SetClientRequestToken(v string) *DescribeSimulationJobBatchOutput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *DescribeSimulationJobBatchOutput) SetCreatedAt(v time.Time) *DescribeSimulationJobBatchOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetCreatedRequests sets the CreatedRequests field's value.
+func (s *DescribeSimulationJobBatchOutput) SetCreatedRequests(v []*SimulationJobSummary) *DescribeSimulationJobBatchOutput {
+	s.CreatedRequests = v
+	return s
+}
+
+// SetFailedRequests sets the FailedRequests field's value.
+func (s *DescribeSimulationJobBatchOutput) SetFailedRequests(v []*FailedCreateSimulationJobRequest) *DescribeSimulationJobBatchOutput {
+	s.FailedRequests = v
+	return s
+}
+
+// SetFailureCode sets the FailureCode field's value.
+func (s *DescribeSimulationJobBatchOutput) SetFailureCode(v string) *DescribeSimulationJobBatchOutput {
+	s.FailureCode = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *DescribeSimulationJobBatchOutput) SetFailureReason(v string) *DescribeSimulationJobBatchOutput {
+	s.FailureReason = &v
+	return s
+}
+
+// SetLastUpdatedAt sets the LastUpdatedAt field's value.
+func (s *DescribeSimulationJobBatchOutput) SetLastUpdatedAt(v time.Time) *DescribeSimulationJobBatchOutput {
+	s.LastUpdatedAt = &v
+	return s
+}
+
+// SetPendingRequests sets the PendingRequests field's value.
+func (s *DescribeSimulationJobBatchOutput) SetPendingRequests(v []*SimulationJobRequest) *DescribeSimulationJobBatchOutput {
+	s.PendingRequests = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeSimulationJobBatchOutput) SetStatus(v string) *DescribeSimulationJobBatchOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DescribeSimulationJobBatchOutput) SetTags(v map[string]*string) *DescribeSimulationJobBatchOutput {
+	s.Tags = v
 	return s
 }
 
@@ -7363,6 +8096,58 @@ func (s *DescribeSimulationJobOutput) SetTags(v map[string]*string) *DescribeSim
 // SetVpcConfig sets the VpcConfig field's value.
 func (s *DescribeSimulationJobOutput) SetVpcConfig(v *VPCConfigResponse) *DescribeSimulationJobOutput {
 	s.VpcConfig = v
+	return s
+}
+
+// Information about a failed create simulation job request.
+type FailedCreateSimulationJobRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The time, in milliseconds since the epoch, when the simulation job batch
+	// failed.
+	FailedAt *time.Time `locationName:"failedAt" type:"timestamp"`
+
+	// The failure code.
+	FailureCode *string `locationName:"failureCode" type:"string" enum:"SimulationJobErrorCode"`
+
+	// The failure reason of the simulation job request.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// The simulation job request.
+	Request *SimulationJobRequest `locationName:"request" type:"structure"`
+}
+
+// String returns the string representation
+func (s FailedCreateSimulationJobRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FailedCreateSimulationJobRequest) GoString() string {
+	return s.String()
+}
+
+// SetFailedAt sets the FailedAt field's value.
+func (s *FailedCreateSimulationJobRequest) SetFailedAt(v time.Time) *FailedCreateSimulationJobRequest {
+	s.FailedAt = &v
+	return s
+}
+
+// SetFailureCode sets the FailureCode field's value.
+func (s *FailedCreateSimulationJobRequest) SetFailureCode(v string) *FailedCreateSimulationJobRequest {
+	s.FailureCode = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *FailedCreateSimulationJobRequest) SetFailureReason(v string) *FailedCreateSimulationJobRequest {
+	s.FailureReason = &v
+	return s
+}
+
+// SetRequest sets the Request field's value.
+func (s *FailedCreateSimulationJobRequest) SetRequest(v *SimulationJobRequest) *FailedCreateSimulationJobRequest {
+	s.Request = v
 	return s
 }
 
@@ -7805,22 +8590,18 @@ type ListDeploymentJobsInput struct {
 	// looking for items with the status InProgress or the status Pending.
 	Filters []*Filter `locationName:"filters" min:"1" type:"list"`
 
-	// The maximum number of deployment job results returned by ListDeploymentJobs
-	// in paginated output. When this parameter is used, ListDeploymentJobs only
-	// returns maxResults results in a single page along with a nextToken response
-	// element. The remaining results of the initial request can be seen by sending
-	// another ListDeploymentJobs request with the returned nextToken value. This
-	// value can be between 1 and 100. If this parameter is not used, then ListDeploymentJobs
-	// returns up to 100 results and a nextToken value if applicable.
+	// When this parameter is used, ListDeploymentJobs only returns maxResults results
+	// in a single page along with a nextToken response element. The remaining results
+	// of the initial request can be seen by sending another ListDeploymentJobs
+	// request with the returned nextToken value. This value can be between 1 and
+	// 200. If this parameter is not used, then ListDeploymentJobs returns up to
+	// 200 results and a nextToken value if applicable.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
 	// The nextToken value returned from a previous paginated ListDeploymentJobs
 	// request where maxResults was used and the results exceeded the value of that
 	// parameter. Pagination continues from the end of the previous results that
 	// returned the nextToken value.
-	//
-	// This token should be treated as an opaque identifier that is only used to
-	// retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -7922,12 +8703,11 @@ type ListFleetsInput struct {
 	// value of the filtered item. You can use up to three filters.
 	Filters []*Filter `locationName:"filters" min:"1" type:"list"`
 
-	// The maximum number of deployment job results returned by ListFleets in paginated
-	// output. When this parameter is used, ListFleets only returns maxResults results
-	// in a single page along with a nextToken response element. The remaining results
+	// When this parameter is used, ListFleets only returns maxResults results in
+	// a single page along with a nextToken response element. The remaining results
 	// of the initial request can be seen by sending another ListFleets request
-	// with the returned nextToken value. This value can be between 1 and 100. If
-	// this parameter is not used, then ListFleets returns up to 100 results and
+	// with the returned nextToken value. This value can be between 1 and 200. If
+	// this parameter is not used, then ListFleets returns up to 200 results and
 	// a nextToken value if applicable.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
@@ -8039,23 +8819,18 @@ type ListRobotApplicationsInput struct {
 	// value of the filtered item. You can use up to three filters.
 	Filters []*Filter `locationName:"filters" min:"1" type:"list"`
 
-	// The maximum number of deployment job results returned by ListRobotApplications
-	// in paginated output. When this parameter is used, ListRobotApplications only
-	// returns maxResults results in a single page along with a nextToken response
-	// element. The remaining results of the initial request can be seen by sending
-	// another ListRobotApplications request with the returned nextToken value.
-	// This value can be between 1 and 100. If this parameter is not used, then
-	// ListRobotApplications returns up to 100 results and a nextToken value if
-	// applicable.
+	// When this parameter is used, ListRobotApplications only returns maxResults
+	// results in a single page along with a nextToken response element. The remaining
+	// results of the initial request can be seen by sending another ListRobotApplications
+	// request with the returned nextToken value. This value can be between 1 and
+	// 100. If this parameter is not used, then ListRobotApplications returns up
+	// to 100 results and a nextToken value if applicable.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
 	// The nextToken value returned from a previous paginated ListRobotApplications
 	// request where maxResults was used and the results exceeded the value of that
 	// parameter. Pagination continues from the end of the previous results that
 	// returned the nextToken value.
-	//
-	// This token should be treated as an opaque identifier that is only used to
-	// retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	// The version qualifier of the robot application.
@@ -8168,12 +8943,11 @@ type ListRobotsInput struct {
 	// looking for items with the status Registered or the status Available.
 	Filters []*Filter `locationName:"filters" min:"1" type:"list"`
 
-	// The maximum number of deployment job results returned by ListRobots in paginated
-	// output. When this parameter is used, ListRobots only returns maxResults results
-	// in a single page along with a nextToken response element. The remaining results
+	// When this parameter is used, ListRobots only returns maxResults results in
+	// a single page along with a nextToken response element. The remaining results
 	// of the initial request can be seen by sending another ListRobots request
-	// with the returned nextToken value. This value can be between 1 and 100. If
-	// this parameter is not used, then ListRobots returns up to 100 results and
+	// with the returned nextToken value. This value can be between 1 and 200. If
+	// this parameter is not used, then ListRobots returns up to 200 results and
 	// a nextToken value if applicable.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
@@ -8181,9 +8955,6 @@ type ListRobotsInput struct {
 	// where maxResults was used and the results exceeded the value of that parameter.
 	// Pagination continues from the end of the previous results that returned the
 	// nextToken value.
-	//
-	// This token should be treated as an opaque identifier that is only used to
-	// retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -8285,23 +9056,18 @@ type ListSimulationApplicationsInput struct {
 	// value of the filtered item. You can use up to three filters.
 	Filters []*Filter `locationName:"filters" min:"1" type:"list"`
 
-	// The maximum number of deployment job results returned by ListSimulationApplications
-	// in paginated output. When this parameter is used, ListSimulationApplications
-	// only returns maxResults results in a single page along with a nextToken response
-	// element. The remaining results of the initial request can be seen by sending
-	// another ListSimulationApplications request with the returned nextToken value.
-	// This value can be between 1 and 100. If this parameter is not used, then
-	// ListSimulationApplications returns up to 100 results and a nextToken value
-	// if applicable.
+	// When this parameter is used, ListSimulationApplications only returns maxResults
+	// results in a single page along with a nextToken response element. The remaining
+	// results of the initial request can be seen by sending another ListSimulationApplications
+	// request with the returned nextToken value. This value can be between 1 and
+	// 100. If this parameter is not used, then ListSimulationApplications returns
+	// up to 100 results and a nextToken value if applicable.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
 	// The nextToken value returned from a previous paginated ListSimulationApplications
 	// request where maxResults was used and the results exceeded the value of that
 	// parameter. Pagination continues from the end of the previous results that
 	// returned the nextToken value.
-	//
-	// This token should be treated as an opaque identifier that is only used to
-	// retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	// The version qualifier of the simulation application.
@@ -8404,6 +9170,114 @@ func (s *ListSimulationApplicationsOutput) SetSimulationApplicationSummaries(v [
 	return s
 }
 
+type ListSimulationJobBatchesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Optional filters to limit results.
+	Filters []*Filter `locationName:"filters" min:"1" type:"list"`
+
+	// When this parameter is used, ListSimulationJobBatches only returns maxResults
+	// results in a single page along with a nextToken response element. The remaining
+	// results of the initial request can be seen by sending another ListSimulationJobBatches
+	// request with the returned nextToken value.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// The nextToken value returned from a previous paginated ListSimulationJobBatches
+	// request where maxResults was used and the results exceeded the value of that
+	// parameter. Pagination continues from the end of the previous results that
+	// returned the nextToken value.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListSimulationJobBatchesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListSimulationJobBatchesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSimulationJobBatchesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSimulationJobBatchesInput"}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListSimulationJobBatchesInput) SetFilters(v []*Filter) *ListSimulationJobBatchesInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListSimulationJobBatchesInput) SetMaxResults(v int64) *ListSimulationJobBatchesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSimulationJobBatchesInput) SetNextToken(v string) *ListSimulationJobBatchesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListSimulationJobBatchesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The nextToken value to include in a future ListSimulationJobBatches request.
+	// When the results of a ListSimulationJobBatches request exceed maxResults,
+	// this value can be used to retrieve the next page of results. This value is
+	// null when there are no more results to return.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// A list of simulation job batch summaries.
+	SimulationJobBatchSummaries []*SimulationJobBatchSummary `locationName:"simulationJobBatchSummaries" type:"list"`
+}
+
+// String returns the string representation
+func (s ListSimulationJobBatchesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListSimulationJobBatchesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSimulationJobBatchesOutput) SetNextToken(v string) *ListSimulationJobBatchesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSimulationJobBatchSummaries sets the SimulationJobBatchSummaries field's value.
+func (s *ListSimulationJobBatchesOutput) SetSimulationJobBatchSummaries(v []*SimulationJobBatchSummary) *ListSimulationJobBatchesOutput {
+	s.SimulationJobBatchSummaries = v
+	return s
+}
+
 type ListSimulationJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8416,13 +9290,12 @@ type ListSimulationJobsInput struct {
 	// or the status Running.
 	Filters []*Filter `locationName:"filters" min:"1" type:"list"`
 
-	// The maximum number of deployment job results returned by ListSimulationJobs
-	// in paginated output. When this parameter is used, ListSimulationJobs only
-	// returns maxResults results in a single page along with a nextToken response
-	// element. The remaining results of the initial request can be seen by sending
-	// another ListSimulationJobs request with the returned nextToken value. This
-	// value can be between 1 and 100. If this parameter is not used, then ListSimulationJobs
-	// returns up to 100 results and a nextToken value if applicable.
+	// When this parameter is used, ListSimulationJobs only returns maxResults results
+	// in a single page along with a nextToken response element. The remaining results
+	// of the initial request can be seen by sending another ListSimulationJobs
+	// request with the returned nextToken value. This value can be between 1 and
+	// 1000. If this parameter is not used, then ListSimulationJobs returns up to
+	// 1000 results and a nextToken value if applicable.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
 	// The nextToken value returned from a previous paginated ListSimulationJobs
@@ -9384,7 +10257,7 @@ type RobotApplicationSummary struct {
 	// The name of the robot application.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// Information about a robot software suite.
+	// Information about a robot software suite (ROS distribution).
 	RobotSoftwareSuite *RobotSoftwareSuite `locationName:"robotSoftwareSuite" type:"structure"`
 
 	// The version of the robot application.
@@ -9509,14 +10382,14 @@ func (s *RobotDeployment) SetStatus(v string) *RobotDeployment {
 	return s
 }
 
-// Information about a robot software suite.
+// Information about a robot software suite (ROS distribution).
 type RobotSoftwareSuite struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the robot software suite.
+	// The name of the robot software suite (ROS distribution).
 	Name *string `locationName:"name" type:"string" enum:"RobotSoftwareSuiteType"`
 
-	// The version of the robot software suite.
+	// The version of the robot software suite (ROS distribution).
 	Version *string `locationName:"version" type:"string" enum:"RobotSoftwareSuiteVersionType"`
 }
 
@@ -9786,7 +10659,7 @@ type SimulationApplicationSummary struct {
 	// The name of the simulation application.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// Information about a robot software suite.
+	// Information about a robot software suite (ROS distribution).
 	RobotSoftwareSuite *RobotSoftwareSuite `locationName:"robotSoftwareSuite" type:"structure"`
 
 	// Information about a simulation software suite.
@@ -10051,6 +10924,337 @@ func (s *SimulationJob) SetVpcConfig(v *VPCConfigResponse) *SimulationJob {
 	return s
 }
 
+// Information about a simulation job batch.
+type SimulationJobBatchSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the batch.
+	Arn *string `locationName:"arn" min:"1" type:"string"`
+
+	// The time, in milliseconds since the epoch, when the simulation job batch
+	// was created.
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
+
+	// The number of created simulation job requests.
+	CreatedRequestCount *int64 `locationName:"createdRequestCount" type:"integer"`
+
+	// The number of failed simulation job requests.
+	FailedRequestCount *int64 `locationName:"failedRequestCount" type:"integer"`
+
+	// The time, in milliseconds since the epoch, when the simulation job batch
+	// was last updated.
+	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
+
+	// The number of pending simulation job requests.
+	PendingRequestCount *int64 `locationName:"pendingRequestCount" type:"integer"`
+
+	// The status of the simulation job batch.
+	//
+	// Pending
+	//
+	// The simulation job batch request is pending.
+	//
+	// InProgress
+	//
+	// The simulation job batch is in progress.
+	//
+	// Failed
+	//
+	// The simulation job batch failed. One or more simulation job requests could
+	// not be completed due to an internal failure (like InternalServiceError).
+	// See failureCode and failureReason for more information.
+	//
+	// Completed
+	//
+	// The simulation batch job completed. A batch is complete when (1) there are
+	// no pending simulation job requests in the batch and none of the failed simulation
+	// job requests are due to InternalServiceError and (2) when all created simulation
+	// jobs have reached a terminal state (for example, Completed or Failed).
+	//
+	// Canceled
+	//
+	// The simulation batch job was cancelled.
+	//
+	// Canceling
+	//
+	// The simulation batch job is being cancelled.
+	//
+	// Completing
+	//
+	// The simulation batch job is completing.
+	//
+	// TimingOut
+	//
+	// The simulation job batch is timing out.
+	//
+	// If a batch timing out, and there are pending requests that were failing due
+	// to an internal failure (like InternalServiceError), the batch status will
+	// be Failed. If there are no such failing request, the batch status will be
+	// TimedOut.
+	//
+	// TimedOut
+	//
+	// The simulation batch job timed out.
+	Status *string `locationName:"status" type:"string" enum:"SimulationJobBatchStatus"`
+}
+
+// String returns the string representation
+func (s SimulationJobBatchSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SimulationJobBatchSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *SimulationJobBatchSummary) SetArn(v string) *SimulationJobBatchSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *SimulationJobBatchSummary) SetCreatedAt(v time.Time) *SimulationJobBatchSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetCreatedRequestCount sets the CreatedRequestCount field's value.
+func (s *SimulationJobBatchSummary) SetCreatedRequestCount(v int64) *SimulationJobBatchSummary {
+	s.CreatedRequestCount = &v
+	return s
+}
+
+// SetFailedRequestCount sets the FailedRequestCount field's value.
+func (s *SimulationJobBatchSummary) SetFailedRequestCount(v int64) *SimulationJobBatchSummary {
+	s.FailedRequestCount = &v
+	return s
+}
+
+// SetLastUpdatedAt sets the LastUpdatedAt field's value.
+func (s *SimulationJobBatchSummary) SetLastUpdatedAt(v time.Time) *SimulationJobBatchSummary {
+	s.LastUpdatedAt = &v
+	return s
+}
+
+// SetPendingRequestCount sets the PendingRequestCount field's value.
+func (s *SimulationJobBatchSummary) SetPendingRequestCount(v int64) *SimulationJobBatchSummary {
+	s.PendingRequestCount = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SimulationJobBatchSummary) SetStatus(v string) *SimulationJobBatchSummary {
+	s.Status = &v
+	return s
+}
+
+// Information about a simulation job request.
+type SimulationJobRequest struct {
+	_ struct{} `type:"structure"`
+
+	// Specify data sources to mount read-only files from S3 into your simulation.
+	// These files are available under /opt/robomaker/datasources/data_source_name.
+	//
+	// There is a limit of 100 files and a combined size of 25GB for all DataSourceConfig
+	// objects.
+	DataSources []*DataSourceConfig `locationName:"dataSources" min:"1" type:"list"`
+
+	// The failure behavior the simulation job.
+	//
+	// Continue
+	//
+	// Restart the simulation job in the same host instance.
+	//
+	// Fail
+	//
+	// Stop the simulation job and terminate the instance.
+	FailureBehavior *string `locationName:"failureBehavior" type:"string" enum:"FailureBehavior"`
+
+	// The IAM role name that allows the simulation instance to call the AWS APIs
+	// that are specified in its associated policies on your behalf. This is how
+	// credentials are passed in to your simulation job.
+	IamRole *string `locationName:"iamRole" min:"1" type:"string"`
+
+	// The logging configuration.
+	LoggingConfig *LoggingConfig `locationName:"loggingConfig" type:"structure"`
+
+	// The maximum simulation job duration in seconds. The value must be 8 days
+	// (691,200 seconds) or less.
+	//
+	// MaxJobDurationInSeconds is a required field
+	MaxJobDurationInSeconds *int64 `locationName:"maxJobDurationInSeconds" type:"long" required:"true"`
+
+	// The output location.
+	OutputLocation *OutputLocation `locationName:"outputLocation" type:"structure"`
+
+	// The robot applications to use in the simulation job.
+	RobotApplications []*RobotApplicationConfig `locationName:"robotApplications" min:"1" type:"list"`
+
+	// The simulation applications to use in the simulation job.
+	SimulationApplications []*SimulationApplicationConfig `locationName:"simulationApplications" min:"1" type:"list"`
+
+	// A map that contains tag keys and tag values that are attached to the simulation
+	// job request.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// Boolean indicating whether to use default simulation tool applications.
+	UseDefaultApplications *bool `locationName:"useDefaultApplications" type:"boolean"`
+
+	// If your simulation job accesses resources in a VPC, you provide this parameter
+	// identifying the list of security group IDs and subnet IDs. These must belong
+	// to the same VPC. You must provide at least one security group and two subnet
+	// IDs.
+	VpcConfig *VPCConfig `locationName:"vpcConfig" type:"structure"`
+}
+
+// String returns the string representation
+func (s SimulationJobRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SimulationJobRequest) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SimulationJobRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SimulationJobRequest"}
+	if s.DataSources != nil && len(s.DataSources) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSources", 1))
+	}
+	if s.IamRole != nil && len(*s.IamRole) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IamRole", 1))
+	}
+	if s.MaxJobDurationInSeconds == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaxJobDurationInSeconds"))
+	}
+	if s.RobotApplications != nil && len(s.RobotApplications) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RobotApplications", 1))
+	}
+	if s.SimulationApplications != nil && len(s.SimulationApplications) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SimulationApplications", 1))
+	}
+	if s.DataSources != nil {
+		for i, v := range s.DataSources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DataSources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.LoggingConfig != nil {
+		if err := s.LoggingConfig.Validate(); err != nil {
+			invalidParams.AddNested("LoggingConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OutputLocation != nil {
+		if err := s.OutputLocation.Validate(); err != nil {
+			invalidParams.AddNested("OutputLocation", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RobotApplications != nil {
+		for i, v := range s.RobotApplications {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RobotApplications", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.SimulationApplications != nil {
+		for i, v := range s.SimulationApplications {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SimulationApplications", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.VpcConfig != nil {
+		if err := s.VpcConfig.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSources sets the DataSources field's value.
+func (s *SimulationJobRequest) SetDataSources(v []*DataSourceConfig) *SimulationJobRequest {
+	s.DataSources = v
+	return s
+}
+
+// SetFailureBehavior sets the FailureBehavior field's value.
+func (s *SimulationJobRequest) SetFailureBehavior(v string) *SimulationJobRequest {
+	s.FailureBehavior = &v
+	return s
+}
+
+// SetIamRole sets the IamRole field's value.
+func (s *SimulationJobRequest) SetIamRole(v string) *SimulationJobRequest {
+	s.IamRole = &v
+	return s
+}
+
+// SetLoggingConfig sets the LoggingConfig field's value.
+func (s *SimulationJobRequest) SetLoggingConfig(v *LoggingConfig) *SimulationJobRequest {
+	s.LoggingConfig = v
+	return s
+}
+
+// SetMaxJobDurationInSeconds sets the MaxJobDurationInSeconds field's value.
+func (s *SimulationJobRequest) SetMaxJobDurationInSeconds(v int64) *SimulationJobRequest {
+	s.MaxJobDurationInSeconds = &v
+	return s
+}
+
+// SetOutputLocation sets the OutputLocation field's value.
+func (s *SimulationJobRequest) SetOutputLocation(v *OutputLocation) *SimulationJobRequest {
+	s.OutputLocation = v
+	return s
+}
+
+// SetRobotApplications sets the RobotApplications field's value.
+func (s *SimulationJobRequest) SetRobotApplications(v []*RobotApplicationConfig) *SimulationJobRequest {
+	s.RobotApplications = v
+	return s
+}
+
+// SetSimulationApplications sets the SimulationApplications field's value.
+func (s *SimulationJobRequest) SetSimulationApplications(v []*SimulationApplicationConfig) *SimulationJobRequest {
+	s.SimulationApplications = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *SimulationJobRequest) SetTags(v map[string]*string) *SimulationJobRequest {
+	s.Tags = v
+	return s
+}
+
+// SetUseDefaultApplications sets the UseDefaultApplications field's value.
+func (s *SimulationJobRequest) SetUseDefaultApplications(v bool) *SimulationJobRequest {
+	s.UseDefaultApplications = &v
+	return s
+}
+
+// SetVpcConfig sets the VpcConfig field's value.
+func (s *SimulationJobRequest) SetVpcConfig(v *VPCConfig) *SimulationJobRequest {
+	s.VpcConfig = v
+	return s
+}
+
 // Summary information for a simulation job.
 type SimulationJobSummary struct {
 	_ struct{} `type:"structure"`
@@ -10269,6 +11473,253 @@ func (s *SourceConfig) SetS3Bucket(v string) *SourceConfig {
 // SetS3Key sets the S3Key field's value.
 func (s *SourceConfig) SetS3Key(v string) *SourceConfig {
 	s.S3Key = &v
+	return s
+}
+
+type StartSimulationJobBatchInput struct {
+	_ struct{} `type:"structure"`
+
+	// The batch policy.
+	BatchPolicy *BatchPolicy `locationName:"batchPolicy" type:"structure"`
+
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string"`
+
+	// A list of simulation job requests to create in the batch.
+	//
+	// CreateSimulationJobRequests is a required field
+	CreateSimulationJobRequests []*SimulationJobRequest `locationName:"createSimulationJobRequests" min:"1" type:"list" required:"true"`
+
+	// A map that contains tag keys and tag values that are attached to the deployment
+	// job batch.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation
+func (s StartSimulationJobBatchInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartSimulationJobBatchInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartSimulationJobBatchInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartSimulationJobBatchInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.CreateSimulationJobRequests == nil {
+		invalidParams.Add(request.NewErrParamRequired("CreateSimulationJobRequests"))
+	}
+	if s.CreateSimulationJobRequests != nil && len(s.CreateSimulationJobRequests) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CreateSimulationJobRequests", 1))
+	}
+	if s.CreateSimulationJobRequests != nil {
+		for i, v := range s.CreateSimulationJobRequests {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CreateSimulationJobRequests", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBatchPolicy sets the BatchPolicy field's value.
+func (s *StartSimulationJobBatchInput) SetBatchPolicy(v *BatchPolicy) *StartSimulationJobBatchInput {
+	s.BatchPolicy = v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *StartSimulationJobBatchInput) SetClientRequestToken(v string) *StartSimulationJobBatchInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetCreateSimulationJobRequests sets the CreateSimulationJobRequests field's value.
+func (s *StartSimulationJobBatchInput) SetCreateSimulationJobRequests(v []*SimulationJobRequest) *StartSimulationJobBatchInput {
+	s.CreateSimulationJobRequests = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *StartSimulationJobBatchInput) SetTags(v map[string]*string) *StartSimulationJobBatchInput {
+	s.Tags = v
+	return s
+}
+
+type StartSimulationJobBatchOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (arn) of the batch.
+	Arn *string `locationName:"arn" min:"1" type:"string"`
+
+	// The batch policy.
+	BatchPolicy *BatchPolicy `locationName:"batchPolicy" type:"structure"`
+
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string"`
+
+	// The time, in milliseconds since the epoch, when the simulation job batch
+	// was created.
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
+
+	// A list of created simulation job request summaries.
+	CreatedRequests []*SimulationJobSummary `locationName:"createdRequests" type:"list"`
+
+	// A list of failed simulation job requests. The request failed to be created
+	// into a simulation job. Failed requests do not have a simulation job ID.
+	FailedRequests []*FailedCreateSimulationJobRequest `locationName:"failedRequests" type:"list"`
+
+	// The failure code if the simulation job batch failed.
+	FailureCode *string `locationName:"failureCode" type:"string" enum:"SimulationJobBatchErrorCode"`
+
+	// The reason the simulation job batch failed.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// A list of pending simulation job requests. These requests have not yet been
+	// created into simulation jobs.
+	PendingRequests []*SimulationJobRequest `locationName:"pendingRequests" min:"1" type:"list"`
+
+	// The status of the simulation job batch.
+	//
+	// Pending
+	//
+	// The simulation job batch request is pending.
+	//
+	// InProgress
+	//
+	// The simulation job batch is in progress.
+	//
+	// Failed
+	//
+	// The simulation job batch failed. One or more simulation job requests could
+	// not be completed due to an internal failure (like InternalServiceError).
+	// See failureCode and failureReason for more information.
+	//
+	// Completed
+	//
+	// The simulation batch job completed. A batch is complete when (1) there are
+	// no pending simulation job requests in the batch and none of the failed simulation
+	// job requests are due to InternalServiceError and (2) when all created simulation
+	// jobs have reached a terminal state (for example, Completed or Failed).
+	//
+	// Canceled
+	//
+	// The simulation batch job was cancelled.
+	//
+	// Canceling
+	//
+	// The simulation batch job is being cancelled.
+	//
+	// Completing
+	//
+	// The simulation batch job is completing.
+	//
+	// TimingOut
+	//
+	// The simulation job batch is timing out.
+	//
+	// If a batch timing out, and there are pending requests that were failing due
+	// to an internal failure (like InternalServiceError), the batch status will
+	// be Failed. If there are no such failing request, the batch status will be
+	// TimedOut.
+	//
+	// TimedOut
+	//
+	// The simulation batch job timed out.
+	Status *string `locationName:"status" type:"string" enum:"SimulationJobBatchStatus"`
+
+	// A map that contains tag keys and tag values that are attached to the deployment
+	// job batch.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation
+func (s StartSimulationJobBatchOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartSimulationJobBatchOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *StartSimulationJobBatchOutput) SetArn(v string) *StartSimulationJobBatchOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetBatchPolicy sets the BatchPolicy field's value.
+func (s *StartSimulationJobBatchOutput) SetBatchPolicy(v *BatchPolicy) *StartSimulationJobBatchOutput {
+	s.BatchPolicy = v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *StartSimulationJobBatchOutput) SetClientRequestToken(v string) *StartSimulationJobBatchOutput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *StartSimulationJobBatchOutput) SetCreatedAt(v time.Time) *StartSimulationJobBatchOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetCreatedRequests sets the CreatedRequests field's value.
+func (s *StartSimulationJobBatchOutput) SetCreatedRequests(v []*SimulationJobSummary) *StartSimulationJobBatchOutput {
+	s.CreatedRequests = v
+	return s
+}
+
+// SetFailedRequests sets the FailedRequests field's value.
+func (s *StartSimulationJobBatchOutput) SetFailedRequests(v []*FailedCreateSimulationJobRequest) *StartSimulationJobBatchOutput {
+	s.FailedRequests = v
+	return s
+}
+
+// SetFailureCode sets the FailureCode field's value.
+func (s *StartSimulationJobBatchOutput) SetFailureCode(v string) *StartSimulationJobBatchOutput {
+	s.FailureCode = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *StartSimulationJobBatchOutput) SetFailureReason(v string) *StartSimulationJobBatchOutput {
+	s.FailureReason = &v
+	return s
+}
+
+// SetPendingRequests sets the PendingRequests field's value.
+func (s *StartSimulationJobBatchOutput) SetPendingRequests(v []*SimulationJobRequest) *StartSimulationJobBatchOutput {
+	s.PendingRequests = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *StartSimulationJobBatchOutput) SetStatus(v string) *StartSimulationJobBatchOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *StartSimulationJobBatchOutput) SetTags(v map[string]*string) *StartSimulationJobBatchOutput {
+	s.Tags = v
 	return s
 }
 
@@ -10678,7 +12129,7 @@ type UpdateRobotApplicationInput struct {
 	// The revision id for the robot application.
 	CurrentRevisionId *string `locationName:"currentRevisionId" min:"1" type:"string"`
 
-	// The robot software suite used by the robot application.
+	// The robot software suite (ROS distribution) used by the robot application.
 	//
 	// RobotSoftwareSuite is a required field
 	RobotSoftwareSuite *RobotSoftwareSuite `locationName:"robotSoftwareSuite" type:"structure" required:"true"`
@@ -10774,7 +12225,7 @@ type UpdateRobotApplicationOutput struct {
 	// The revision id of the robot application.
 	RevisionId *string `locationName:"revisionId" min:"1" type:"string"`
 
-	// The robot software suite used by the robot application.
+	// The robot software suite (ROS distribution) used by the robot application.
 	RobotSoftwareSuite *RobotSoftwareSuite `locationName:"robotSoftwareSuite" type:"structure"`
 
 	// The sources of the robot application.
@@ -10850,7 +12301,7 @@ type UpdateSimulationApplicationInput struct {
 	// The rendering engine for the simulation application.
 	RenderingEngine *RenderingEngine `locationName:"renderingEngine" type:"structure"`
 
-	// Information about the robot software suite.
+	// Information about the robot software suite (ROS distribution).
 	//
 	// RobotSoftwareSuite is a required field
 	RobotSoftwareSuite *RobotSoftwareSuite `locationName:"robotSoftwareSuite" type:"structure" required:"true"`
@@ -10969,7 +12420,7 @@ type UpdateSimulationApplicationOutput struct {
 	// The revision id of the simulation application.
 	RevisionId *string `locationName:"revisionId" min:"1" type:"string"`
 
-	// Information about the robot software suite.
+	// Information about the robot software suite (ROS distribution).
 	RobotSoftwareSuite *RobotSoftwareSuite `locationName:"robotSoftwareSuite" type:"structure"`
 
 	// The simulation software suite used by the simulation application.
@@ -11329,6 +12780,40 @@ const (
 )
 
 const (
+	// SimulationJobBatchErrorCodeInternalServiceError is a SimulationJobBatchErrorCode enum value
+	SimulationJobBatchErrorCodeInternalServiceError = "InternalServiceError"
+)
+
+const (
+	// SimulationJobBatchStatusPending is a SimulationJobBatchStatus enum value
+	SimulationJobBatchStatusPending = "Pending"
+
+	// SimulationJobBatchStatusInProgress is a SimulationJobBatchStatus enum value
+	SimulationJobBatchStatusInProgress = "InProgress"
+
+	// SimulationJobBatchStatusFailed is a SimulationJobBatchStatus enum value
+	SimulationJobBatchStatusFailed = "Failed"
+
+	// SimulationJobBatchStatusCompleted is a SimulationJobBatchStatus enum value
+	SimulationJobBatchStatusCompleted = "Completed"
+
+	// SimulationJobBatchStatusCanceled is a SimulationJobBatchStatus enum value
+	SimulationJobBatchStatusCanceled = "Canceled"
+
+	// SimulationJobBatchStatusCanceling is a SimulationJobBatchStatus enum value
+	SimulationJobBatchStatusCanceling = "Canceling"
+
+	// SimulationJobBatchStatusCompleting is a SimulationJobBatchStatus enum value
+	SimulationJobBatchStatusCompleting = "Completing"
+
+	// SimulationJobBatchStatusTimingOut is a SimulationJobBatchStatus enum value
+	SimulationJobBatchStatusTimingOut = "TimingOut"
+
+	// SimulationJobBatchStatusTimedOut is a SimulationJobBatchStatus enum value
+	SimulationJobBatchStatusTimedOut = "TimedOut"
+)
+
+const (
 	// SimulationJobErrorCodeInternalServiceError is a SimulationJobErrorCode enum value
 	SimulationJobErrorCodeInternalServiceError = "InternalServiceError"
 
@@ -11371,6 +12856,9 @@ const (
 	// SimulationJobErrorCodeInvalidS3resource is a SimulationJobErrorCode enum value
 	SimulationJobErrorCodeInvalidS3resource = "InvalidS3Resource"
 
+	// SimulationJobErrorCodeLimitExceeded is a SimulationJobErrorCode enum value
+	SimulationJobErrorCodeLimitExceeded = "LimitExceeded"
+
 	// SimulationJobErrorCodeMismatchedEtag is a SimulationJobErrorCode enum value
 	SimulationJobErrorCodeMismatchedEtag = "MismatchedEtag"
 
@@ -11382,6 +12870,15 @@ const (
 
 	// SimulationJobErrorCodeResourceNotFound is a SimulationJobErrorCode enum value
 	SimulationJobErrorCodeResourceNotFound = "ResourceNotFound"
+
+	// SimulationJobErrorCodeRequestThrottled is a SimulationJobErrorCode enum value
+	SimulationJobErrorCodeRequestThrottled = "RequestThrottled"
+
+	// SimulationJobErrorCodeBatchTimedOut is a SimulationJobErrorCode enum value
+	SimulationJobErrorCodeBatchTimedOut = "BatchTimedOut"
+
+	// SimulationJobErrorCodeBatchCanceled is a SimulationJobErrorCode enum value
+	SimulationJobErrorCodeBatchCanceled = "BatchCanceled"
 
 	// SimulationJobErrorCodeInvalidInput is a SimulationJobErrorCode enum value
 	SimulationJobErrorCodeInvalidInput = "InvalidInput"
