@@ -3,44 +3,32 @@
     "ListDeploymentJobs": {
       "input_token": "nextToken",
       "output_token": "nextToken",
-      "limit_key": "maxResults",
-      "result_key": "deploymentJobs"
+      "limit_key": "maxResults"
     },
     "ListFleets": {
       "input_token": "nextToken",
       "output_token": "nextToken",
-      "limit_key": "maxResults",
-      "result_key": "fleetDetails"
+      "limit_key": "maxResults"
     },
     "ListRobotApplications": {
       "input_token": "nextToken",
       "output_token": "nextToken",
-      "limit_key": "maxResults",
-      "result_key": "robotApplicationSummaries"
+      "limit_key": "maxResults"
     },
     "ListRobots": {
       "input_token": "nextToken",
       "output_token": "nextToken",
-      "limit_key": "maxResults",
-      "result_key": "robots"
+      "limit_key": "maxResults"
     },
     "ListSimulationApplications": {
       "input_token": "nextToken",
       "output_token": "nextToken",
-      "limit_key": "maxResults",
-      "result_key": "simulationApplicationSummaries"
-    },
-    "ListSimulationJobBatches": {
-      "input_token": "nextToken",
-      "output_token": "nextToken",
-      "limit_key": "maxResults",
-      "result_key": "simulationJobBatchSummaries"
+      "limit_key": "maxResults"
     },
     "ListSimulationJobs": {
       "input_token": "nextToken",
       "output_token": "nextToken",
-      "limit_key": "maxResults",
-      "result_key": "simulationJobSummaries"
+      "limit_key": "maxResults"
     }
   }
 }
