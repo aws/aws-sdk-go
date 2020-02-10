@@ -436,9 +436,12 @@
           "ap-southeast-2" : { },
           "ca-central-1" : { },
           "eu-central-1" : { },
+          "eu-north-1" : { },
           "eu-west-1" : { },
           "eu-west-2" : { },
           "eu-west-3" : { },
+          "me-south-1" : { },
+          "sa-east-1" : { },
           "us-east-1" : { },
           "us-east-2" : { },
           "us-west-1" : { },
@@ -5380,6 +5383,17 @@
           "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
+      },
+      "support" : {
+        "endpoints" : {
+          "aws-us-gov-global" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "support.us-gov-west-1.amazonaws.com"
+          }
+        },
+        "partitionEndpoint" : "aws-us-gov-global"
       },
       "swf" : {
         "endpoints" : {
