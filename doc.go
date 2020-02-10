@@ -403,3 +403,9 @@
 //   	fmt.Printf("successfully uploaded file to %s/%s\n", bucket, key)
 //   }
 package sdk
+
+import (
+	"github.com/jmespath/go-jmespath"
+)
+
+const _ = jmespath.ASTEmpty
