@@ -1,3 +1,12 @@
+Release v1.28.14 (2020-02-10)
+===
+
+### Service Client Updates
+* `service/docdb`: Updates service documentation
+  * Added clarifying information that Amazon DocumentDB shares operational technology with Amazon RDS and Amazon Neptune.
+* `service/kms`: Updates service API and documentation
+  * The ConnectCustomKeyStore API now provides a new error code (SUBNET_NOT_FOUND) for customers to better troubleshoot if their "connect-custom-key-store" operation fails.
+
 Release v1.28.13 (2020-02-07)
 ===
 
