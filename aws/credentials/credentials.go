@@ -54,7 +54,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
-	"golang.org/x/sync/singleflight"
+	"github.com/aws/aws-sdk-go/internal/sync/singleflight"
 )
 
 // AnonymousCredentials is an empty Credential object that can be used as
