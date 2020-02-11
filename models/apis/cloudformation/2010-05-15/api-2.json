@@ -812,7 +812,7 @@
   "shapes":{
     "Account":{
       "type":"string",
-      "pattern":"[0-9]{12}"
+      "pattern":"^[0-9]{12}$"
     },
     "AccountGateResult":{
       "type":"structure",
@@ -862,6 +862,14 @@
       "exception":true
     },
     "Arn":{"type":"string"},
+    "AutoDeployment":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"AutoDeploymentNullable"},
+        "RetainStacksOnAccountRemoval":{"shape":"RetainStacksOnAccountRemovalNullable"}
+      }
+    },
+    "AutoDeploymentNullable":{"type":"boolean"},
     "BoxedInteger":{
       "type":"integer",
       "box":true
@@ -1090,12 +1098,12 @@
       "type":"structure",
       "required":[
         "StackSetName",
-        "Accounts",
         "Regions"
       ],
       "members":{
         "StackSetName":{"shape":"StackSetName"},
         "Accounts":{"shape":"AccountList"},
+        "DeploymentTargets":{"shape":"DeploymentTargets"},
         "Regions":{"shape":"RegionList"},
         "ParameterOverrides":{"shape":"Parameters"},
         "OperationPreferences":{"shape":"StackSetOperationPreferences"},
@@ -1130,6 +1138,8 @@
         "Tags":{"shape":"Tags"},
         "AdministrationRoleARN":{"shape":"RoleARN"},
         "ExecutionRoleName":{"shape":"ExecutionRoleName"},
+        "PermissionModel":{"shape":"PermissionModels"},
+        "AutoDeployment":{"shape":"AutoDeployment"},
         "ClientRequestToken":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
@@ -1181,13 +1191,13 @@
       "type":"structure",
       "required":[
         "StackSetName",
-        "Accounts",
         "Regions",
         "RetainStacks"
       ],
       "members":{
         "StackSetName":{"shape":"StackSetName"},
         "Accounts":{"shape":"AccountList"},
+        "DeploymentTargets":{"shape":"DeploymentTargets"},
         "Regions":{"shape":"RegionList"},
         "OperationPreferences":{"shape":"StackSetOperationPreferences"},
         "RetainStacks":{"shape":"RetainStacks"},
@@ -1216,6 +1226,13 @@
       }
     },
     "DeletionTime":{"type":"timestamp"},
+    "DeploymentTargets":{
+      "type":"structure",
+      "members":{
+        "Accounts":{"shape":"AccountList"},
+        "OrganizationalUnitIds":{"shape":"OrganizationalUnitIdList"}
+      }
+    },
     "DeprecatedStatus":{
       "type":"string",
       "enum":[
@@ -2098,6 +2115,14 @@
       "type":"string",
       "max":4096
     },
+    "OrganizationalUnitId":{
+      "type":"string",
+      "pattern":"^(ou-[a-z0-9]{4,32}-[a-z0-9]{8,32}|r-[a-z0-9]{4,32})$"
+    },
+    "OrganizationalUnitIdList":{
+      "type":"list",
+      "member":{"shape":"OrganizationalUnitId"}
+    },
     "Output":{
       "type":"structure",
       "members":{
@@ -2149,6 +2174,13 @@
     "Parameters":{
       "type":"list",
       "member":{"shape":"Parameter"}
+    },
+    "PermissionModels":{
+      "type":"string",
+      "enum":[
+        "SERVICE_MANAGED",
+        "SELF_MANAGED"
+      ]
     },
     "PhysicalResourceId":{"type":"string"},
     "PhysicalResourceIdContext":{
@@ -2225,7 +2257,10 @@
       "members":{
       }
     },
-    "Region":{"type":"string"},
+    "Region":{
+      "type":"string",
+      "pattern":"^[a-zA-Z0-9-]{1,128}$"
+    },
     "RegionList":{
       "type":"list",
       "member":{"shape":"Region"}
@@ -2453,6 +2488,7 @@
     },
     "RetainStacks":{"type":"boolean"},
     "RetainStacksNullable":{"type":"boolean"},
+    "RetainStacksOnAccountRemovalNullable":{"type":"boolean"},
     "RoleARN":{
       "type":"string",
       "max":2048,
@@ -2642,6 +2678,7 @@
         "ParameterOverrides":{"shape":"Parameters"},
         "Status":{"shape":"StackInstanceStatus"},
         "StatusReason":{"shape":"Reason"},
+        "OrganizationalUnitId":{"shape":"OrganizationalUnitId"},
         "DriftStatus":{"shape":"StackDriftStatus"},
         "LastDriftCheckTimestamp":{"shape":"Timestamp"}
       }
@@ -2678,6 +2715,7 @@
         "StackId":{"shape":"StackId"},
         "Status":{"shape":"StackInstanceStatus"},
         "StatusReason":{"shape":"Reason"},
+        "OrganizationalUnitId":{"shape":"OrganizationalUnitId"},
         "DriftStatus":{"shape":"StackDriftStatus"},
         "LastDriftCheckTimestamp":{"shape":"Timestamp"}
       }
@@ -2848,7 +2886,10 @@
         "StackSetARN":{"shape":"StackSetARN"},
         "AdministrationRoleARN":{"shape":"RoleARN"},
         "ExecutionRoleName":{"shape":"ExecutionRoleName"},
-        "StackSetDriftDetectionDetails":{"shape":"StackSetDriftDetectionDetails"}
+        "StackSetDriftDetectionDetails":{"shape":"StackSetDriftDetectionDetails"},
+        "AutoDeployment":{"shape":"AutoDeployment"},
+        "PermissionModel":{"shape":"PermissionModels"},
+        "OrganizationalUnitIds":{"shape":"OrganizationalUnitIdList"}
       }
     },
     "StackSetARN":{"type":"string"},
@@ -2924,6 +2965,7 @@
         "ExecutionRoleName":{"shape":"ExecutionRoleName"},
         "CreationTimestamp":{"shape":"Timestamp"},
         "EndTimestamp":{"shape":"Timestamp"},
+        "DeploymentTargets":{"shape":"DeploymentTargets"},
         "StackSetDriftDetectionDetails":{"shape":"StackSetDriftDetectionDetails"}
       }
     },
@@ -2967,7 +3009,8 @@
         "Region":{"shape":"Region"},
         "Status":{"shape":"StackSetOperationResultStatus"},
         "StatusReason":{"shape":"Reason"},
-        "AccountGateResult":{"shape":"AccountGateResult"}
+        "AccountGateResult":{"shape":"AccountGateResult"},
+        "OrganizationalUnitId":{"shape":"OrganizationalUnitId"}
       }
     },
     "StackSetOperationStatus":{
@@ -2977,7 +3020,8 @@
         "SUCCEEDED",
         "FAILED",
         "STOPPING",
-        "STOPPED"
+        "STOPPED",
+        "QUEUED"
       ]
     },
     "StackSetOperationSummaries":{
@@ -3012,6 +3056,8 @@
         "StackSetId":{"shape":"StackSetId"},
         "Description":{"shape":"Description"},
         "Status":{"shape":"StackSetStatus"},
+        "AutoDeployment":{"shape":"AutoDeployment"},
+        "PermissionModel":{"shape":"PermissionModels"},
         "DriftStatus":{"shape":"StackDriftStatus"},
         "LastDriftCheckTimestamp":{"shape":"Timestamp"}
       }
@@ -3283,12 +3329,12 @@
       "type":"structure",
       "required":[
         "StackSetName",
-        "Accounts",
         "Regions"
       ],
       "members":{
         "StackSetName":{"shape":"StackSetNameOrId"},
         "Accounts":{"shape":"AccountList"},
+        "DeploymentTargets":{"shape":"DeploymentTargets"},
         "Regions":{"shape":"RegionList"},
         "ParameterOverrides":{"shape":"Parameters"},
         "OperationPreferences":{"shape":"StackSetOperationPreferences"},
@@ -3325,6 +3371,9 @@
         "OperationPreferences":{"shape":"StackSetOperationPreferences"},
         "AdministrationRoleARN":{"shape":"RoleARN"},
         "ExecutionRoleName":{"shape":"ExecutionRoleName"},
+        "DeploymentTargets":{"shape":"DeploymentTargets"},
+        "PermissionModel":{"shape":"PermissionModels"},
+        "AutoDeployment":{"shape":"AutoDeployment"},
         "OperationId":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true

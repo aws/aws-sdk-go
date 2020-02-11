@@ -1,3 +1,20 @@
+Release v1.29.0 (2020-02-11)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service API and documentation
+  * This release of AWS CloudFormation StackSets allows you to centrally manage deployments to all the accounts in your organization or specific organizational units (OUs) in AWS Organizations. You will also be able to enable automatic deployments to any new accounts added to your organization or OUs. The permissions needed to deploy across accounts will automatically be taken care of by the StackSets service.
+* `service/cognito-idp`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Amazon EC2 Now Supports Tagging Spot Fleet.
+
+### SDK Features
+* Remove SDK's `vendor` directory of vendored dependencies
+  * Updates the SDK's Go module definition to enumerate all dependencies of the SDK and its components. 
+  * SDK's repository root package has been updated to refer to runtime dependencies like `go-jmespath` for `go get` the SDK with Go without modules.
+* Deletes the deprecated `awsmigrate` utility from the SDK's repository.
+  * This utility is no longer relevant. The utility allowed users the beta pre-release v0 SDK to update to the v1.0 released version of the SDK.
+
 Release v1.28.14 (2020-02-10)
 ===
 

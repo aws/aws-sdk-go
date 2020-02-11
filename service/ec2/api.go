@@ -20166,7 +20166,7 @@ func (c *EC2) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (req *requ
 //    * implicit: An AWS account has implicit create volume permissions for
 //    all snapshots it owns.
 //
-// The list of snapshots returned can be modified by specifying snapshot IDs,
+// The list of snapshots returned can be filtered by specifying snapshot IDs,
 // snapshot owners, or AWS accounts with create volume permissions. If no options
 // are specified, Amazon EC2 returns all snapshots for which you have create
 // volume permissions.
@@ -20192,6 +20192,8 @@ func (c *EC2) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (req *requ
 // your MaxResults value, then that number of results is returned along with
 // a NextToken value that can be passed to a subsequent DescribeSnapshots request
 // to retrieve the remaining results.
+//
+// To get the state of fast snapshot restores for a snapshot, use DescribeFastSnapshotRestores.
 //
 // For more information about EBS snapshots, see Amazon EBS Snapshots (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html)
 // in the Amazon Elastic Compute Cloud User Guide.
@@ -26011,6 +26013,9 @@ func (c *EC2) EnableFastSnapshotRestoresRequest(input *EnableFastSnapshotRestore
 // You get the full benefit of fast snapshot restores after they enter the enabled
 // state. To get the current state of fast snapshot restores, use DescribeFastSnapshotRestores.
 // To disable fast snapshot restores, use DisableFastSnapshotRestores.
+//
+// For more information, see Amazon EBS Fast Snapshot Restore (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-fast-snapshot-restore.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -32519,8 +32524,8 @@ func (c *EC2) RegisterImageRequest(input *RegisterImageInput) (req *request.Requ
 // and SUSE Linux Enterprise Server (SLES), use the EC2 billing product code
 // associated with an AMI to verify the subscription status for package updates.
 // To create a new AMI for operating systems that require a billing product
-// code, instead of instead of registering the AMI, do the following to preserve
-// the billing product code association:
+// code, instead of registering the AMI, do the following to preserve the billing
+// product code association:
 //
 // Launch an instance from an existing AMI with that billing product code.
 //
@@ -32532,7 +32537,10 @@ func (c *EC2) RegisterImageRequest(input *RegisterImageInput) (req *request.Requ
 // was launched from an AMI with a billing product code, make sure that the
 // Reserved Instance has the matching billing product code. If you purchase
 // a Reserved Instance without the matching billing product code, the Reserved
-// Instance will not be applied to the On-Demand Instance.
+// Instance will not be applied to the On-Demand Instance. For information about
+// how to obtain the platform details and billing information of an AMI, see
+// Obtaining Billing Information (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-billing-info.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 //
 // If needed, you can deregister an AMI at any time. Any modifications you make
 // to an AMI backed by an instance store volume invalidates its registration.
@@ -33828,9 +33836,9 @@ func (c *EC2) RequestSpotFleetRequest(input *RequestSpotFleetInput) (req *reques
 // ensuring that the Spot Instances in your Spot Fleet are in different Spot
 // pools, you can improve the availability of your fleet.
 //
-// You can specify tags for the Spot Instances. You cannot tag other resource
-// types in a Spot Fleet request because only the instance resource type is
-// supported.
+// You can specify tags for the Spot Fleet and Spot Instances. You cannot tag
+// other resource types in a Spot Fleet request because only the spot-fleet-request
+// and instance resource types are supported.
 //
 // For more information, see Spot Fleet Requests (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-requests.html)
 // in the Amazon EC2 User Guide for Linux Instances.
@@ -35505,9 +35513,9 @@ func (c *EC2) StopInstancesRequest(input *StopInstancesInput) (req *request.Requ
 // your Linux instance, Amazon EC2 charges a one-minute minimum for instance
 // usage, and thereafter charges per second for instance usage.
 //
-// You can't start, stop, or hibernate Spot Instances, and you can't stop or
-// hibernate instance store-backed instances. For information about using hibernation
-// for Spot Instances, see Hibernating Interrupted Spot Instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-interruptions.html#hibernate-spot-instances)
+// You can't hibernate Spot Instances, and you can't stop or hibernate instance
+// store-backed instances. For information about using hibernation for Spot
+// Instances, see Hibernating Interrupted Spot Instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-interruptions.html#hibernate-spot-instances)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // When you stop or hibernate an instance, we shut it down. You can restart
@@ -44616,9 +44624,9 @@ type CreateFlowLogsInput struct {
 	// aggregated into a flow log record. You can specify 60 seconds (1 minute)
 	// or 600 seconds (10 minutes).
 	//
-	// For network interfaces attached to Nitro-based instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances),
-	// the aggregation interval is always 60 seconds, regardless of the value that
-	// you specify.
+	// When a network interface is attached to a Nitro-based instance (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances),
+	// the aggregation interval is always 60 seconds or less, regardless of the
+	// value that you specify.
 	//
 	// Default: 600
 	MaxAggregationInterval *int64 `type:"integer"`
@@ -48598,7 +48606,8 @@ type CreateVolumeInput struct {
 	// The Amazon Resource Name (ARN) of the Outpost.
 	OutpostArn *string `type:"string"`
 
-	// The size of the volume, in GiBs.
+	// The size of the volume, in GiBs. You must specify either a snapshot ID or
+	// a volume size.
 	//
 	// Constraints: 1-16,384 for gp2, 4-16,384 for io1, 500-16,384 for st1, 500-16,384
 	// for sc1, and 1-1,024 for standard. If you specify a snapshot, the volume
@@ -48606,13 +48615,10 @@ type CreateVolumeInput struct {
 	//
 	// Default: If you're creating the volume from a snapshot and don't specify
 	// a volume size, the default is the snapshot size.
-	//
-	// At least one of Size or SnapshotId is required.
 	Size *int64 `type:"integer"`
 
-	// The snapshot from which to create the volume.
-	//
-	// At least one of Size or SnapshotId are required.
+	// The snapshot from which to create the volume. You must specify either a snapshot
+	// ID or a volume size.
 	SnapshotId *string `type:"string"`
 
 	// The tags to apply to the volume during creation.
@@ -66001,6 +66007,9 @@ type DescribeVolumesInput struct {
 	//
 	//    * encrypted - Indicates whether the volume is encrypted (true | false)
 	//
+	//    * fast-restored - Indicates whether the volume was created from a snapshot
+	//    that is enabled for fast snapshot restore (true | false).
+	//
 	//    * size - The size of the volume, in GiB.
 	//
 	//    * snapshot-id - The snapshot from which the volume was created.
@@ -69837,6 +69846,8 @@ type EbsBlockDevice struct {
 	//
 	// Encrypted volumes can only be attached to instances that support Amazon EBS
 	// encryption. For more information, see Supported Instance Types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances).
+	//
+	// This parameter is not returned by .
 	Encrypted *bool `locationName:"encrypted" type:"boolean"`
 
 	// The number of I/O operations per second (IOPS) that the volume supports.
@@ -72578,7 +72589,9 @@ type FleetLaunchTemplateOverridesRequest struct {
 	// override has the lowest priority.
 	Priority *float64 `type:"double"`
 
-	// The ID of the subnet in which to launch the instances.
+	// The IDs of the subnets in which to launch the instances. Separate multiple
+	// subnet IDs using commas (for example, subnet-1234abcdeexample1, subnet-0987cdef6example2).
+	// A request of type instant can have only one subnet ID.
 	SubnetId *string `type:"string"`
 
 	// The number of units provided by the specified instance type.
@@ -72799,9 +72812,11 @@ type FlowLog struct {
 	// The maximum interval of time, in seconds, during which a flow of packets
 	// is captured and aggregated into a flow log record.
 	//
-	// For network interfaces attached to Nitro-based instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances),
-	// the aggregation interval is always 60 seconds (1 minute), regardless of the
-	// specified value.
+	// When a network interface is attached to a Nitro-based instance (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances),
+	// the aggregation interval is always 60 seconds (1 minute) or less, regardless
+	// of the specified value.
+	//
+	// Valid Values: 60 | 600
 	MaxAggregationInterval *int64 `locationName:"maxAggregationInterval" type:"integer"`
 
 	// The ID of the resource on which the flow log was created.
@@ -76039,7 +76054,7 @@ type Image struct {
 	Platform *string `locationName:"platform" type:"string" enum:"PlatformValues"`
 
 	// The platform details associated with the billing code of the AMI. For more
-	// information, see AMI Billing Information (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/billing-info.html)
+	// information, see Obtaining Billing Information (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-billing-info.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
 	PlatformDetails *string `locationName:"platformDetails" type:"string"`
 
@@ -76076,10 +76091,11 @@ type Image struct {
 	// Any tags assigned to the image.
 	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
 
-	// The operation of the Amazon EC2 instance and the billing code associated
+	// The operation of the Amazon EC2 instance and the billing code that is associated
 	// with the AMI. usageOperation corresponds to the lineitem/Operation (https://docs.aws.amazon.com/cur/latest/userguide/Lineitem-columns.html#Lineitem-details-O-Operation)
-	// column on your AWS Cost and Usage Report. For more information, see AMI Billing
-	// Information (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/billing-info.html)
+	// column on your AWS Cost and Usage Report and in the AWS Price List API (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/price-changes.html).
+	// For the list of UsageOperation codes, see Platform Details and Usage Operation
+	// Billing Codes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-billing-info.html#billing-info)
 	// in the Amazon Elastic Compute Cloud User Guide.
 	UsageOperation *string `locationName:"usageOperation" type:"string"`
 
@@ -79189,6 +79205,9 @@ type InstanceNetworkInterfaceSpecification struct {
 	Ipv6Addresses []*InstanceIpv6Address `locationName:"ipv6AddressesSet" queryName:"Ipv6Addresses" locationNameList:"item" type:"list"`
 
 	// The ID of the network interface.
+	//
+	// If you are creating a Spot Fleet, omit this parameter because you can’t
+	// specify a network interface ID in a launch specification.
 	NetworkInterfaceId *string `locationName:"networkInterfaceId" type:"string"`
 
 	// The private IPv4 address of the network interface. Applies only if creating
@@ -89767,12 +89786,16 @@ type Placement struct {
 
 	// The affinity setting for the instance on the Dedicated Host. This parameter
 	// is not supported for the ImportInstance command.
+	//
+	// This parameter is not supported by .
 	Affinity *string `locationName:"affinity" type:"string"`
 
 	// The Availability Zone of the instance.
 	//
 	// If not specified, an Availability Zone will be automatically chosen for you
 	// based on the load balancing criteria for the Region.
+	//
+	// This parameter is not supported by .
 	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
 
 	// The name of the placement group the instance is in.
@@ -89780,23 +89803,33 @@ type Placement struct {
 
 	// The ID of the Dedicated Host on which the instance resides. This parameter
 	// is not supported for the ImportInstance command.
+	//
+	// This parameter is not supported by .
 	HostId *string `locationName:"hostId" type:"string"`
 
 	// The ARN of the host resource group in which to launch the instances. If you
 	// specify a host resource group ARN, omit the Tenancy parameter or set it to
 	// host.
+	//
+	// This parameter is not supported by .
 	HostResourceGroupArn *string `locationName:"hostResourceGroupArn" type:"string"`
 
 	// The number of the partition the instance is in. Valid only if the placement
 	// group strategy is set to partition.
+	//
+	// This parameter is not supported by .
 	PartitionNumber *int64 `locationName:"partitionNumber" type:"integer"`
 
 	// Reserved for future use.
+	//
+	// This parameter is not supported by .
 	SpreadDomain *string `locationName:"spreadDomain" type:"string"`
 
 	// The tenancy of the instance (if the instance is running in a VPC). An instance
 	// with a tenancy of dedicated runs on single-tenant hardware. The host tenancy
 	// is not supported for the ImportInstance command.
+	//
+	// This parameter is not supported by .
 	Tenancy *string `locationName:"tenancy" type:"string" enum:"Tenancy"`
 }
 
@@ -99782,6 +99815,9 @@ type SpotFleetRequestConfig struct {
 
 	// The state of the Spot Fleet request.
 	SpotFleetRequestState *string `locationName:"spotFleetRequestState" type:"string" enum:"BatchState"`
+
+	// The tags for a Spot Fleet resource.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
 }
 
 // String returns the string representation
@@ -99821,6 +99857,12 @@ func (s *SpotFleetRequestConfig) SetSpotFleetRequestId(v string) *SpotFleetReque
 // SetSpotFleetRequestState sets the SpotFleetRequestState field's value.
 func (s *SpotFleetRequestConfig) SetSpotFleetRequestState(v string) *SpotFleetRequestConfig {
 	s.SpotFleetRequestState = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *SpotFleetRequestConfig) SetTags(v []*Tag) *SpotFleetRequestConfig {
+	s.Tags = v
 	return s
 }
 
@@ -99942,6 +99984,13 @@ type SpotFleetRequestConfigData struct {
 	// The maximum price per unit hour that you are willing to pay for a Spot Instance.
 	// The default is the On-Demand price.
 	SpotPrice *string `locationName:"spotPrice" type:"string"`
+
+	// The key-value pair for tagging the Spot Fleet request on creation. The value
+	// for ResourceType must be spot-fleet-request, otherwise the Spot Fleet request
+	// fails. To tag instances at launch, specify the tags in the launch template
+	// (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html#create-launch-template).
+	// For information about tagging after launch, see Tagging Your Resources (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#tag-resources).
+	TagSpecifications []*TagSpecification `locationName:"TagSpecification" locationNameList:"item" type:"list"`
 
 	// The number of units to request for the Spot Fleet. You can choose to set
 	// the target capacity in terms of instances or a performance characteristic
@@ -100120,6 +100169,12 @@ func (s *SpotFleetRequestConfigData) SetSpotPrice(v string) *SpotFleetRequestCon
 	return s
 }
 
+// SetTagSpecifications sets the TagSpecifications field's value.
+func (s *SpotFleetRequestConfigData) SetTagSpecifications(v []*TagSpecification) *SpotFleetRequestConfigData {
+	s.TagSpecifications = v
+	return s
+}
+
 // SetTargetCapacity sets the TargetCapacity field's value.
 func (s *SpotFleetRequestConfigData) SetTargetCapacity(v int64) *SpotFleetRequestConfigData {
 	s.TargetCapacity = &v
@@ -100154,8 +100209,8 @@ func (s *SpotFleetRequestConfigData) SetValidUntil(v time.Time) *SpotFleetReques
 type SpotFleetTagSpecification struct {
 	_ struct{} `type:"structure"`
 
-	// The type of resource. Currently, the only resource type that is supported
-	// is instance.
+	// The type of resource. Currently, the only resource types that are supported
+	// are spot-fleet-request and instance.
 	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
 
 	// The tags.
@@ -104329,7 +104384,7 @@ type TransitGatewayVpcAttachmentOptions struct {
 	// Indicates whether DNS support is enabled.
 	DnsSupport *string `locationName:"dnsSupport" type:"string" enum:"DnsSupportValue"`
 
-	// Indicates whether IPv6 support is enabled.
+	// Indicates whether IPv6 support is disabled.
 	Ipv6Support *string `locationName:"ipv6Support" type:"string" enum:"Ipv6SupportValue"`
 }
 
@@ -107156,7 +107211,7 @@ func (s *VpnStaticRoute) SetState(v string) *VpnStaticRoute {
 	return s
 }
 
-// The tunnel options for a VPN connection.
+// The tunnel options for a single VPN tunnel.
 type VpnTunnelOptionsSpecification struct {
 	_ struct{} `type:"structure"`
 
