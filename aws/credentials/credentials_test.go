@@ -176,8 +176,9 @@ type stubProviderConcurrent struct {
 	stubProvider
 	done chan struct{}
 }
+
 func (s *stubProviderConcurrent) Retrieve() (Value, error) {
-	<- s.done
+	<-s.done
 	return s.stubProvider.Retrieve()
 }
 
