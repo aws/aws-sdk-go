@@ -25355,7 +25355,7 @@
           "locationName":"activityStatus"
         },
         "CreateTime":{
-          "shape":"DateTime",
+          "shape":"MillisecondDateTime",
           "locationName":"createTime"
         },
         "SpotFleetRequestConfig":{
@@ -25369,6 +25369,10 @@
         "SpotFleetRequestState":{
           "shape":"BatchState",
           "locationName":"spotFleetRequestState"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },
@@ -25466,6 +25470,10 @@
         "InstancePoolsToUseCount":{
           "shape":"Integer",
           "locationName":"instancePoolsToUseCount"
+        },
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
         }
       }
     },

@@ -2584,7 +2584,11 @@
     "AuthParametersType":{
       "type":"map",
       "key":{"shape":"StringType"},
-      "value":{"shape":"StringType"}
+      "value":{"shape":"AuthParametersValueType"}
+    },
+    "AuthParametersValueType":{
+      "type":"string",
+      "sensitive":true
     },
     "AuthenticationResultType":{
       "type":"structure",
@@ -3018,6 +3022,7 @@
         "AdminCreateUserConfig":{"shape":"AdminCreateUserConfigType"},
         "Schema":{"shape":"SchemaAttributesListType"},
         "UserPoolAddOns":{"shape":"UserPoolAddOnsType"},
+        "UsernameConfiguration":{"shape":"UsernameConfigurationType"},
         "AccountRecoverySetting":{"shape":"AccountRecoverySettingType"}
       }
     },
@@ -5310,6 +5315,7 @@
         "CustomDomain":{"shape":"DomainType"},
         "AdminCreateUserConfig":{"shape":"AdminCreateUserConfigType"},
         "UserPoolAddOns":{"shape":"UserPoolAddOnsType"},
+        "UsernameConfiguration":{"shape":"UsernameConfigurationType"},
         "Arn":{"shape":"ArnType"},
         "AccountRecoverySetting":{"shape":"AccountRecoverySettingType"}
       }
@@ -5348,6 +5354,13 @@
     "UsernameAttributesListType":{
       "type":"list",
       "member":{"shape":"UsernameAttributeType"}
+    },
+    "UsernameConfigurationType":{
+      "type":"structure",
+      "required":["CaseSensitive"],
+      "members":{
+        "CaseSensitive":{"shape":"WrappedBooleanType"}
+      }
     },
     "UsernameExistsException":{
       "type":"structure",
@@ -5430,6 +5443,7 @@
       "type":"structure",
       "members":{
       }
-    }
+    },
+    "WrappedBooleanType":{"type":"boolean"}
   }
 }
