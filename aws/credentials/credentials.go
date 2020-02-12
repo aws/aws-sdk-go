@@ -49,6 +49,7 @@
 package credentials
 
 import (
+	"context"
 	"fmt"
 	"sync/atomic"
 	"time"
@@ -213,6 +214,46 @@ func NewCredentials(provider Provider) *Credentials {
 	return c
 }
 
+// GetWithContext returns the credentials value, or error if the credentials
+// Value failed to be retrieved. Will return early if the passed in context is
+// canceled.
+//
+// Will return the cached credentials Value if it has not expired. If the
+// credentials Value has expired the Provider's Retrieve() will be called
+// to refresh the credentials.
+//
+// If Credentials.Expire() was called the credentials Value will be force
+// expired, and the next call to Get() will cause them to be refreshed.
+func (c *Credentials) GetWithContext(ctx context.Context) (Value, error) {
+	if curCreds := c.creds.Load(); !c.isExpired(curCreds) {
+		return curCreds.(Value), nil
+	}
+
+	// Cannot pass context down to the actual retrieve, because the first
+	// context would cancel the whole group when there is not direct
+	// association of items in the group.
+	resCh := c.sf.DoChan("", c.singleRetrieve)
+	select {
+	case res := <-resCh:
+		return res.Val.(Value), res.Err
+	case <-ctx.Done():
+		return Value{}, ctx.Err()
+	}
+}
+
+func (c *Credentials) singleRetrieve() (interface{}, error) {
+	if curCreds := c.creds.Load(); !c.isExpired(curCreds) {
+		return curCreds.(Value), nil
+	}
+
+	creds, err := c.provider.Retrieve()
+	if err == nil {
+		c.creds.Store(creds)
+	}
+
+	return creds, err
+}
+
 // Get returns the credentials value, or error if the credentials Value failed
 // to be retrieved.
 //
@@ -223,24 +264,7 @@ func NewCredentials(provider Provider) *Credentials {
 // If Credentials.Expire() was called the credentials Value will be force
 // expired, and the next call to Get() will cause them to be refreshed.
 func (c *Credentials) Get() (Value, error) {
-	if creds := c.creds.Load(); !c.isExpired(creds) {
-		return creds.(Value), nil
-	}
-
-	creds, err, _ := c.sf.Do("", func() (interface{}, error) {
-		if creds := c.creds.Load(); !c.isExpired(creds) {
-			return creds.(Value), nil
-		}
-
-		creds, err := c.provider.Retrieve()
-		if err == nil {
-			c.creds.Store(creds)
-		}
-
-		return creds, err
-	})
-
-	return creds.(Value), err
+	return c.GetWithContext(context.Background())
 }
 
 // Expire expires the credentials and forces them to be retrieved on the
