@@ -1106,7 +1106,8 @@
       "members":{
         "CertificateId":{"shape":"CertificateId"},
         "CommonName":{"shape":"CertificateCN"},
-        "State":{"shape":"CertificateState"}
+        "State":{"shape":"CertificateState"},
+        "ExpiryDateTime":{"shape":"CertificateExpiryDateTime"}
       }
     },
     "CertificateLimitExceededException":{

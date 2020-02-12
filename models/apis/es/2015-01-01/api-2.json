@@ -411,6 +411,32 @@
         "Status":{"shape":"OptionStatus"}
       }
     },
+    "AdvancedSecurityOptions":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"Boolean"},
+        "InternalUserDatabaseEnabled":{"shape":"Boolean"}
+      }
+    },
+    "AdvancedSecurityOptionsInput":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"Boolean"},
+        "InternalUserDatabaseEnabled":{"shape":"Boolean"},
+        "MasterUserOptions":{"shape":"MasterUserOptions"}
+      }
+    },
+    "AdvancedSecurityOptionsStatus":{
+      "type":"structure",
+      "required":[
+        "Options",
+        "Status"
+      ],
+      "members":{
+        "Options":{"shape":"AdvancedSecurityOptions"},
+        "Status":{"shape":"OptionStatus"}
+      }
+    },
     "BaseException":{
       "type":"structure",
       "members":{
@@ -480,7 +506,8 @@
         "NodeToNodeEncryptionOptions":{"shape":"NodeToNodeEncryptionOptions"},
         "AdvancedOptions":{"shape":"AdvancedOptions"},
         "LogPublishingOptions":{"shape":"LogPublishingOptions"},
-        "DomainEndpointOptions":{"shape":"DomainEndpointOptions"}
+        "DomainEndpointOptions":{"shape":"DomainEndpointOptions"},
+        "AdvancedSecurityOptions":{"shape":"AdvancedSecurityOptionsInput"}
       }
     },
     "CreateElasticsearchDomainResponse":{
@@ -832,7 +859,8 @@
         "NodeToNodeEncryptionOptions":{"shape":"NodeToNodeEncryptionOptionsStatus"},
         "AdvancedOptions":{"shape":"AdvancedOptionsStatus"},
         "LogPublishingOptions":{"shape":"LogPublishingOptionsStatus"},
-        "DomainEndpointOptions":{"shape":"DomainEndpointOptionsStatus"}
+        "DomainEndpointOptions":{"shape":"DomainEndpointOptionsStatus"},
+        "AdvancedSecurityOptions":{"shape":"AdvancedSecurityOptionsStatus"}
       }
     },
     "ElasticsearchDomainStatus":{
@@ -865,7 +893,8 @@
         "AdvancedOptions":{"shape":"AdvancedOptions"},
         "LogPublishingOptions":{"shape":"LogPublishingOptions"},
         "ServiceSoftwareOptions":{"shape":"ServiceSoftwareOptions"},
-        "DomainEndpointOptions":{"shape":"DomainEndpointOptions"}
+        "DomainEndpointOptions":{"shape":"DomainEndpointOptions"},
+        "AdvancedSecurityOptions":{"shape":"AdvancedSecurityOptions"}
       }
     },
     "ElasticsearchDomainStatusList":{
@@ -1164,6 +1193,14 @@
         "ES_APPLICATION_LOGS"
       ]
     },
+    "MasterUserOptions":{
+      "type":"structure",
+      "members":{
+        "MasterUserARN":{"shape":"ARN"},
+        "MasterUserName":{"shape":"Username"},
+        "MasterUserPassword":{"shape":"Password"}
+      }
+    },
     "MaxResults":{
       "type":"integer",
       "max":100
@@ -1210,6 +1247,11 @@
         "State":{"shape":"OptionState"},
         "PendingDeletion":{"shape":"Boolean"}
       }
+    },
+    "Password":{
+      "type":"string",
+      "min":8,
+      "sensitive":true
     },
     "PolicyDocument":{"type":"string"},
     "PurchaseReservedElasticsearchInstanceOfferingRequest":{
@@ -1451,7 +1493,8 @@
         "AdvancedOptions":{"shape":"AdvancedOptions"},
         "AccessPolicies":{"shape":"PolicyDocument"},
         "LogPublishingOptions":{"shape":"LogPublishingOptions"},
-        "DomainEndpointOptions":{"shape":"DomainEndpointOptions"}
+        "DomainEndpointOptions":{"shape":"DomainEndpointOptions"},
+        "AdvancedSecurityOptions":{"shape":"AdvancedSecurityOptionsInput"}
       }
     },
     "UpdateElasticsearchDomainConfigResponse":{
@@ -1531,6 +1574,11 @@
       "max":55,
       "min":1,
       "pattern":"[\\w-]+_[0-9a-zA-Z]+"
+    },
+    "Username":{
+      "type":"string",
+      "min":1,
+      "sensitive":true
     },
     "VPCDerivedInfo":{
       "type":"structure",

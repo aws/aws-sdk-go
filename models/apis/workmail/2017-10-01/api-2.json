@@ -130,6 +130,19 @@
       ],
       "idempotent":true
     },
+    "DeleteAccessControlRule":{
+      "name":"DeleteAccessControlRule",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteAccessControlRuleRequest"},
+      "output":{"shape":"DeleteAccessControlRuleResponse"},
+      "errors":[
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"}
+      ]
+    },
     "DeleteAlias":{
       "name":"DeleteAlias",
       "http":{
@@ -334,6 +347,21 @@
       ],
       "idempotent":true
     },
+    "GetAccessControlEffect":{
+      "name":"GetAccessControlEffect",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetAccessControlEffectRequest"},
+      "output":{"shape":"GetAccessControlEffectResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"}
+      ]
+    },
     "GetMailboxDetails":{
       "name":"GetMailboxDetails",
       "http":{
@@ -348,6 +376,19 @@
         {"shape":"EntityNotFoundException"}
       ],
       "idempotent":true
+    },
+    "ListAccessControlRules":{
+      "name":"ListAccessControlRules",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListAccessControlRulesRequest"},
+      "output":{"shape":"ListAccessControlRulesResponse"},
+      "errors":[
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"}
+      ]
     },
     "ListAliases":{
       "name":"ListAliases",
@@ -486,6 +527,22 @@
         {"shape":"OrganizationStateException"}
       ],
       "idempotent":true
+    },
+    "PutAccessControlRule":{
+      "name":"PutAccessControlRule",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutAccessControlRuleRequest"},
+      "output":{"shape":"PutAccessControlRuleResponse"},
+      "errors":[
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"}
+      ]
     },
     "PutMailboxPermissions":{
       "name":"PutMailboxPermissions",
@@ -639,6 +696,65 @@
     }
   },
   "shapes":{
+    "AccessControlRule":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"AccessControlRuleName"},
+        "Effect":{"shape":"AccessControlRuleEffect"},
+        "Description":{"shape":"AccessControlRuleDescription"},
+        "IpRanges":{"shape":"IpRangeList"},
+        "NotIpRanges":{"shape":"IpRangeList"},
+        "Actions":{"shape":"ActionsList"},
+        "NotActions":{"shape":"ActionsList"},
+        "UserIds":{"shape":"UserIdList"},
+        "NotUserIds":{"shape":"UserIdList"},
+        "DateCreated":{"shape":"Timestamp"},
+        "DateModified":{"shape":"Timestamp"}
+      }
+    },
+    "AccessControlRuleAction":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[a-zA-Z]+"
+    },
+    "AccessControlRuleDescription":{
+      "type":"string",
+      "max":255,
+      "min":0,
+      "pattern":"[\\u0020-\\u00FF]+"
+    },
+    "AccessControlRuleEffect":{
+      "type":"string",
+      "enum":[
+        "ALLOW",
+        "DENY"
+      ]
+    },
+    "AccessControlRuleName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[a-zA-Z0-9_-]+"
+    },
+    "AccessControlRuleNameList":{
+      "type":"list",
+      "member":{"shape":"AccessControlRuleName"},
+      "max":10,
+      "min":0
+    },
+    "AccessControlRulesList":{
+      "type":"list",
+      "member":{"shape":"AccessControlRule"},
+      "max":10,
+      "min":0
+    },
+    "ActionsList":{
+      "type":"list",
+      "member":{"shape":"AccessControlRuleAction"},
+      "max":10,
+      "min":0
+    },
     "Aliases":{
       "type":"list",
       "member":{"shape":"EmailAddress"}
@@ -777,6 +893,19 @@
       "members":{
         "Id":{"shape":"String"},
         "Type":{"shape":"MemberType"}
+      }
+    },
+    "DeleteAccessControlRuleRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "Name":{"shape":"AccessControlRuleName"}
+      }
+    },
+    "DeleteAccessControlRuleResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "DeleteAliasRequest":{
@@ -1062,6 +1191,28 @@
       },
       "exception":true
     },
+    "GetAccessControlEffectRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationId",
+        "IpAddress",
+        "Action",
+        "UserId"
+      ],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "IpAddress":{"shape":"IpAddress"},
+        "Action":{"shape":"AccessControlRuleAction"},
+        "UserId":{"shape":"WorkMailIdentifier"}
+      }
+    },
+    "GetAccessControlEffectResponse":{
+      "type":"structure",
+      "members":{
+        "Effect":{"shape":"AccessControlRuleEffect"},
+        "MatchedRules":{"shape":"AccessControlRuleNameList"}
+      }
+    },
     "GetMailboxDetailsRequest":{
       "type":"structure",
       "required":[
@@ -1122,12 +1273,43 @@
       },
       "exception":true
     },
+    "IpAddress":{
+      "type":"string",
+      "max":15,
+      "min":1,
+      "pattern":"^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$"
+    },
+    "IpRange":{
+      "type":"string",
+      "max":18,
+      "min":1,
+      "pattern":"^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])/([0-9]|[12][0-9]|3[0-2])$"
+    },
+    "IpRangeList":{
+      "type":"list",
+      "member":{"shape":"IpRange"},
+      "max":10,
+      "min":0
+    },
     "LimitExceededException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"String"}
       },
       "exception":true
+    },
+    "ListAccessControlRulesRequest":{
+      "type":"structure",
+      "required":["OrganizationId"],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"}
+      }
+    },
+    "ListAccessControlRulesResponse":{
+      "type":"structure",
+      "members":{
+        "Rules":{"shape":"AccessControlRulesList"}
+      }
     },
     "ListAliasesRequest":{
       "type":"structure",
@@ -1419,6 +1601,32 @@
       "type":"list",
       "member":{"shape":"Permission"}
     },
+    "PutAccessControlRuleRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Effect",
+        "Description",
+        "OrganizationId"
+      ],
+      "members":{
+        "Name":{"shape":"AccessControlRuleName"},
+        "Effect":{"shape":"AccessControlRuleEffect"},
+        "Description":{"shape":"AccessControlRuleDescription"},
+        "IpRanges":{"shape":"IpRangeList"},
+        "NotIpRanges":{"shape":"IpRangeList"},
+        "Actions":{"shape":"ActionsList"},
+        "NotActions":{"shape":"ActionsList"},
+        "UserIds":{"shape":"UserIdList"},
+        "NotUserIds":{"shape":"UserIdList"},
+        "OrganizationId":{"shape":"OrganizationId"}
+      }
+    },
+    "PutAccessControlRuleResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "PutMailboxPermissionsRequest":{
       "type":"structure",
       "required":[
@@ -1676,6 +1884,12 @@
         "EnabledDate":{"shape":"Timestamp"},
         "DisabledDate":{"shape":"Timestamp"}
       }
+    },
+    "UserIdList":{
+      "type":"list",
+      "member":{"shape":"WorkMailIdentifier"},
+      "max":10,
+      "min":0
     },
     "UserName":{
       "type":"string",

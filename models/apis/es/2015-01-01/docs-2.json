@@ -33,6 +33,7 @@
         "AddTagsRequest$ARN": "<p> Specify the <code>ARN</code> for which you want to add the tags.</p>",
         "ElasticsearchDomainStatus$ARN": "<p>The Amazon resource name (ARN) of an Elasticsearch domain. See <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/index.html?Using_Identifiers.html\" target=\"_blank\">Identifiers for IAM Entities</a> in <i>Using AWS Identity and Access Management</i> for more information.</p>",
         "ListTagsRequest$ARN": "<p> Specify the <code>ARN</code> for the Elasticsearch domain to which the tags are attached that you want to view.</p>",
+        "MasterUserOptions$MasterUserARN": "<p>ARN for the master user (if IAM is enabled).</p>",
         "RemoveTagsRequest$ARN": "<p>Specifies the <code>ARN</code> for the Elasticsearch domain from which you want to delete the specified tags.</p>"
       }
     },
@@ -74,6 +75,26 @@
         "ElasticsearchDomainConfig$AdvancedOptions": "<p>Specifies the <code>AdvancedOptions</code> for the domain. See <a href=\"http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-advanced-options\" target=\"_blank\">Configuring Advanced Options</a> for more information.</p>"
       }
     },
+    "AdvancedSecurityOptions": {
+      "base": "<p>Specifies the advanced security configuration: whether advanced security is enabled, whether the internal database option is enabled.</p>",
+      "refs": {
+        "AdvancedSecurityOptionsStatus$Options": "<p> Specifies advanced security options for the specified Elasticsearch domain.</p>",
+        "ElasticsearchDomainStatus$AdvancedSecurityOptions": "<p>The current status of the Elasticsearch domain's advanced security options.</p>"
+      }
+    },
+    "AdvancedSecurityOptionsInput": {
+      "base": "<p>Specifies the advanced security configuration: whether advanced security is enabled, whether the internal database option is enabled, master username and password (if internal database is enabled), and master user ARN (if IAM is enabled).</p>",
+      "refs": {
+        "CreateElasticsearchDomainRequest$AdvancedSecurityOptions": "<p>Specifies advanced security options.</p>",
+        "UpdateElasticsearchDomainConfigRequest$AdvancedSecurityOptions": "<p>Specifies advanced security options.</p>"
+      }
+    },
+    "AdvancedSecurityOptionsStatus": {
+      "base": "<p> Specifies the status of advanced security options for the specified Elasticsearch domain.</p>",
+      "refs": {
+        "ElasticsearchDomainConfig$AdvancedSecurityOptions": "<p>Specifies <code>AdvancedSecurityOptions</code> for the domain. </p>"
+      }
+    },
     "BaseException": {
       "base": "<p>An error occurred while processing the request.</p>",
       "refs": {
@@ -82,6 +103,10 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "AdvancedSecurityOptions$Enabled": "<p>True if advanced security is enabled.</p>",
+        "AdvancedSecurityOptions$InternalUserDatabaseEnabled": "<p>True if the internal user database is enabled.</p>",
+        "AdvancedSecurityOptionsInput$Enabled": "<p>True if advanced security is enabled.</p>",
+        "AdvancedSecurityOptionsInput$InternalUserDatabaseEnabled": "<p>True if the internal user database is enabled.</p>",
         "CognitoOptions$Enabled": "<p>Specifies the option to enable Cognito for Kibana authentication.</p>",
         "DomainEndpointOptions$EnforceHTTPS": "<p>Specify if only HTTPS endpoint should be enabled for the Elasticsearch domain.</p>",
         "EBSOptions$EBSEnabled": "<p>Specifies whether EBS-based storage is enabled.</p>",
@@ -660,6 +685,12 @@
         "LogPublishingOptions$key": null
       }
     },
+    "MasterUserOptions": {
+      "base": "<p>Credentials for the master user: username and password, ARN, or both.</p>",
+      "refs": {
+        "AdvancedSecurityOptionsInput$MasterUserOptions": "<p>Credentials for the master user: username and password, ARN, or both.</p>"
+      }
+    },
     "MaxResults": {
       "base": "<p> Set this value to limit the number of results returned. </p>",
       "refs": {
@@ -720,6 +751,7 @@
       "refs": {
         "AccessPoliciesStatus$Status": "<p>The status of the access policy for the Elasticsearch domain. See <code>OptionStatus</code> for the status information that's included. </p>",
         "AdvancedOptionsStatus$Status": "<p> Specifies the status of <code>OptionStatus</code> for advanced options for the specified Elasticsearch domain.</p>",
+        "AdvancedSecurityOptionsStatus$Status": "<p> Status of the advanced security options for the specified Elasticsearch domain.</p>",
         "CognitoOptionsStatus$Status": "<p>Specifies the status of the Cognito options for the specified Elasticsearch domain.</p>",
         "DomainEndpointOptionsStatus$Status": "<p>The status of the endpoint options for the Elasticsearch domain. See <code>OptionStatus</code> for the status information that's included. </p>",
         "EBSOptionsStatus$Status": "<p> Specifies the status of the EBS options for the specified Elasticsearch domain.</p>",
@@ -730,6 +762,12 @@
         "NodeToNodeEncryptionOptionsStatus$Status": "<p>Specifies the status of the node-to-node encryption options for the specified Elasticsearch domain.</p>",
         "SnapshotOptionsStatus$Status": "<p>Specifies the status of a daily automated snapshot.</p>",
         "VPCDerivedInfoStatus$Status": "<p> Specifies the status of the VPC options for the specified Elasticsearch domain.</p>"
+      }
+    },
+    "Password": {
+      "base": null,
+      "refs": {
+        "MasterUserOptions$MasterUserPassword": "<p>The master user's password, which is stored in the Amazon Elasticsearch Service domain's internal database.</p>"
       }
     },
     "PolicyDocument": {
@@ -1052,6 +1090,12 @@
       "base": null,
       "refs": {
         "CognitoOptions$UserPoolId": "<p>Specifies the Cognito user pool ID for Kibana authentication.</p>"
+      }
+    },
+    "Username": {
+      "base": null,
+      "refs": {
+        "MasterUserOptions$MasterUserName": "<p>The master user's username, which is stored in the Amazon Elasticsearch Service domain's internal database.</p>"
       }
     },
     "VPCDerivedInfo": {

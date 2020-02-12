@@ -8,6 +8,7 @@
     "CreateGroup": "<p>Creates a group that can be used in Amazon WorkMail by calling the <a>RegisterToWorkMail</a> operation.</p>",
     "CreateResource": "<p>Creates a new Amazon WorkMail resource. </p>",
     "CreateUser": "<p>Creates a user who can be used in Amazon WorkMail by calling the <a>RegisterToWorkMail</a> operation.</p>",
+    "DeleteAccessControlRule": "<p>Deletes an access control rule for the specified WorkMail organization.</p>",
     "DeleteAlias": "<p>Remove one or more specified aliases from a set of aliases for a given user.</p>",
     "DeleteGroup": "<p>Deletes a group from Amazon WorkMail.</p>",
     "DeleteMailboxPermissions": "<p>Deletes permissions granted to a member (user or group).</p>",
@@ -20,7 +21,9 @@
     "DescribeUser": "<p>Provides information regarding the user.</p>",
     "DisassociateDelegateFromResource": "<p>Removes a member from the resource's set of delegates.</p>",
     "DisassociateMemberFromGroup": "<p>Removes a member from a group.</p>",
+    "GetAccessControlEffect": "<p>Gets the effects of an organization's access control rules as they apply to a specified IPv4 address, access protocol action, or user ID. </p>",
     "GetMailboxDetails": "<p>Requests a user's mailbox details for a specified organization and user.</p>",
+    "ListAccessControlRules": "<p>Lists the access control rules for the specified organization.</p>",
     "ListAliases": "<p>Creates a paginated call to list the aliases associated with a given entity.</p>",
     "ListGroupMembers": "<p>Returns an overview of the members of a group. Users and groups can be members of a group.</p>",
     "ListGroups": "<p>Returns summaries of the organization's groups.</p>",
@@ -30,8 +33,9 @@
     "ListResources": "<p>Returns summaries of the organization's resources.</p>",
     "ListTagsForResource": "<p>Lists the tags applied to an Amazon WorkMail organization resource.</p>",
     "ListUsers": "<p>Returns summaries of the organization's users.</p>",
+    "PutAccessControlRule": "<p>Adds a new access control rule for the specified organization. The rule allows or denies access to the organization for the specified IPv4 addresses, access protocol actions, and user IDs. Adding a new rule with the same name as an existing rule replaces the older rule.</p>",
     "PutMailboxPermissions": "<p>Sets permissions for a user, group, or resource. This replaces any pre-existing permissions.</p>",
-    "RegisterToWorkMail": "<p>Registers an existing and disabled user, group, or resource for Amazon WorkMail use by associating a mailbox and calendaring capabilities. It performs no change if the user, group, or resource is enabled and fails if the user, group, or resource is deleted. This operation results in the accumulation of costs. For more information, see <a href=\"https://aws.amazon.com//workmail/pricing\">Pricing</a>. The equivalent console functionality for this operation is <i>Enable</i>. </p> <p>Users can either be created by calling the <a>CreateUser</a> API operation or they can be synchronized from your directory. For more information, see <a>DeregisterFromWorkMail</a>.</p>",
+    "RegisterToWorkMail": "<p>Registers an existing and disabled user, group, or resource for Amazon WorkMail use by associating a mailbox and calendaring capabilities. It performs no change if the user, group, or resource is enabled and fails if the user, group, or resource is deleted. This operation results in the accumulation of costs. For more information, see <a href=\"https://aws.amazon.com/workmail/pricing\">Pricing</a>. The equivalent console functionality for this operation is <i>Enable</i>. </p> <p>Users can either be created by calling the <a>CreateUser</a> API operation or they can be synchronized from your directory. For more information, see <a>DeregisterFromWorkMail</a>.</p>",
     "ResetPassword": "<p>Allows the administrator to reset the password for a user.</p>",
     "TagResource": "<p>Applies the specified tags to the specified Amazon WorkMail organization resource.</p>",
     "UntagResource": "<p>Untags the specified tags from the specified Amazon WorkMail organization resource.</p>",
@@ -40,6 +44,64 @@
     "UpdateResource": "<p>Updates data for the resource. To have the latest information, it must be preceded by a <a>DescribeResource</a> call. The dataset in the request should be the one expected when performing another <code>DescribeResource</code> call.</p>"
   },
   "shapes": {
+    "AccessControlRule": {
+      "base": "<p>A rule that controls access to an Amazon WorkMail organization.</p>",
+      "refs": {
+        "AccessControlRulesList$member": null
+      }
+    },
+    "AccessControlRuleAction": {
+      "base": null,
+      "refs": {
+        "ActionsList$member": null,
+        "GetAccessControlEffectRequest$Action": "<p>The access protocol action. Valid values include <code>ActiveSync</code>, <code>AutoDiscover</code>, <code>EWS</code>, <code>IMAP</code>, <code>SMTP</code>, <code>WindowsOutlook</code>, and <code>WebMail</code>.</p>"
+      }
+    },
+    "AccessControlRuleDescription": {
+      "base": null,
+      "refs": {
+        "AccessControlRule$Description": "<p>The rule description.</p>",
+        "PutAccessControlRuleRequest$Description": "<p>The rule description.</p>"
+      }
+    },
+    "AccessControlRuleEffect": {
+      "base": null,
+      "refs": {
+        "AccessControlRule$Effect": "<p>The rule effect.</p>",
+        "GetAccessControlEffectResponse$Effect": "<p>The rule effect.</p>",
+        "PutAccessControlRuleRequest$Effect": "<p>The rule effect.</p>"
+      }
+    },
+    "AccessControlRuleName": {
+      "base": null,
+      "refs": {
+        "AccessControlRule$Name": "<p>The rule name.</p>",
+        "AccessControlRuleNameList$member": null,
+        "DeleteAccessControlRuleRequest$Name": "<p>The name of the access control rule.</p>",
+        "PutAccessControlRuleRequest$Name": "<p>The rule name.</p>"
+      }
+    },
+    "AccessControlRuleNameList": {
+      "base": null,
+      "refs": {
+        "GetAccessControlEffectResponse$MatchedRules": "<p>The rules that match the given parameters, resulting in an effect.</p>"
+      }
+    },
+    "AccessControlRulesList": {
+      "base": null,
+      "refs": {
+        "ListAccessControlRulesResponse$Rules": "<p>The access control rules.</p>"
+      }
+    },
+    "ActionsList": {
+      "base": null,
+      "refs": {
+        "AccessControlRule$Actions": "<p>Access protocol actions to include in the rule. Valid values include <code>ActiveSync</code>, <code>AutoDiscover</code>, <code>EWS</code>, <code>IMAP</code>, <code>SMTP</code>, <code>WindowsOutlook</code>, and <code>WebMail</code>.</p>",
+        "AccessControlRule$NotActions": "<p>Access protocol actions to exclude from the rule. Valid values include <code>ActiveSync</code>, <code>AutoDiscover</code>, <code>EWS</code>, <code>IMAP</code>, <code>SMTP</code>, <code>WindowsOutlook</code>, and <code>WebMail</code>.</p>",
+        "PutAccessControlRuleRequest$Actions": "<p>Access protocol actions to include in the rule. Valid values include <code>ActiveSync</code>, <code>AutoDiscover</code>, <code>EWS</code>, <code>IMAP</code>, <code>SMTP</code>, <code>WindowsOutlook</code>, and <code>WebMail</code>.</p>",
+        "PutAccessControlRuleRequest$NotActions": "<p>Access protocol actions to exclude from the rule. Valid values include <code>ActiveSync</code>, <code>AutoDiscover</code>, <code>EWS</code>, <code>IMAP</code>, <code>SMTP</code>, <code>WindowsOutlook</code>, and <code>WebMail</code>.</p>"
+      }
+    },
     "Aliases": {
       "base": null,
       "refs": {
@@ -134,6 +196,16 @@
       "base": "<p>The name of the attribute, which is one of the values defined in the UserAttribute enumeration.</p>",
       "refs": {
         "ResourceDelegates$member": null
+      }
+    },
+    "DeleteAccessControlRuleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteAccessControlRuleResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "DeleteAliasRequest": {
@@ -314,6 +386,16 @@
       "refs": {
       }
     },
+    "GetAccessControlEffectRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAccessControlEffectResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetMailboxDetailsRequest": {
       "base": null,
       "refs": {
@@ -359,8 +441,39 @@
       "refs": {
       }
     },
+    "IpAddress": {
+      "base": null,
+      "refs": {
+        "GetAccessControlEffectRequest$IpAddress": "<p>The IPv4 address.</p>"
+      }
+    },
+    "IpRange": {
+      "base": null,
+      "refs": {
+        "IpRangeList$member": null
+      }
+    },
+    "IpRangeList": {
+      "base": null,
+      "refs": {
+        "AccessControlRule$IpRanges": "<p>IPv4 CIDR ranges to include in the rule.</p>",
+        "AccessControlRule$NotIpRanges": "<p>IPv4 CIDR ranges to exclude from the rule.</p>",
+        "PutAccessControlRuleRequest$IpRanges": "<p>IPv4 CIDR ranges to include in the rule.</p>",
+        "PutAccessControlRuleRequest$NotIpRanges": "<p>IPv4 CIDR ranges to exclude from the rule.</p>"
+      }
+    },
     "LimitExceededException": {
       "base": "<p>The request exceeds the limit of the resource.</p>",
+      "refs": {
+      }
+    },
+    "ListAccessControlRulesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAccessControlRulesResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -545,6 +658,7 @@
         "CreateGroupRequest$OrganizationId": "<p>The organization under which the group is to be created.</p>",
         "CreateResourceRequest$OrganizationId": "<p>The identifier associated with the organization for which the resource is created.</p>",
         "CreateUserRequest$OrganizationId": "<p>The identifier of the organization for which the user is created.</p>",
+        "DeleteAccessControlRuleRequest$OrganizationId": "<p>The identifier for the organization.</p>",
         "DeleteAliasRequest$OrganizationId": "<p>The identifier for the organization under which the user exists.</p>",
         "DeleteGroupRequest$OrganizationId": "<p>The organization that contains the group.</p>",
         "DeleteMailboxPermissionsRequest$OrganizationId": "<p>The identifier of the organization under which the member (user or group) exists.</p>",
@@ -558,7 +672,9 @@
         "DescribeUserRequest$OrganizationId": "<p>The identifier for the organization under which the user exists.</p>",
         "DisassociateDelegateFromResourceRequest$OrganizationId": "<p>The identifier for the organization under which the resource exists.</p>",
         "DisassociateMemberFromGroupRequest$OrganizationId": "<p>The identifier for the organization under which the group exists.</p>",
+        "GetAccessControlEffectRequest$OrganizationId": "<p>The identifier for the organization.</p>",
         "GetMailboxDetailsRequest$OrganizationId": "<p>The identifier for the organization that contains the user whose mailbox details are being requested.</p>",
+        "ListAccessControlRulesRequest$OrganizationId": "<p>The identifier for the organization.</p>",
         "ListAliasesRequest$OrganizationId": "<p>The identifier for the organization under which the entity exists.</p>",
         "ListGroupMembersRequest$OrganizationId": "<p>The identifier for the organization under which the group exists.</p>",
         "ListGroupsRequest$OrganizationId": "<p>The identifier for the organization under which the groups exist.</p>",
@@ -567,6 +683,7 @@
         "ListResourcesRequest$OrganizationId": "<p>The identifier for the organization under which the resources exist.</p>",
         "ListUsersRequest$OrganizationId": "<p>The identifier for the organization under which the users exist.</p>",
         "OrganizationSummary$OrganizationId": "<p>The identifier associated with the organization.</p>",
+        "PutAccessControlRuleRequest$OrganizationId": "<p>The identifier of the organization.</p>",
         "PutMailboxPermissionsRequest$OrganizationId": "<p>The identifier of the organization under which the user, group, or resource exists.</p>",
         "RegisterToWorkMailRequest$OrganizationId": "<p>The identifier for the organization under which the user, group, or resource exists.</p>",
         "ResetPasswordRequest$OrganizationId": "<p>The identifier of the organization that contains the user for which the password is reset.</p>",
@@ -634,6 +751,16 @@
       "base": null,
       "refs": {
         "ListMailboxPermissionsResponse$Permissions": "<p>One page of the user, group, or resource mailbox permissions.</p>"
+      }
+    },
+    "PutAccessControlRuleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutAccessControlRuleResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "PutMailboxPermissionsRequest": {
@@ -805,6 +932,8 @@
     "Timestamp": {
       "base": null,
       "refs": {
+        "AccessControlRule$DateCreated": "<p>The date that the rule was created.</p>",
+        "AccessControlRule$DateModified": "<p>The date that the rule was modified.</p>",
         "DescribeGroupResponse$EnabledDate": "<p>The date and time when a user was registered to WorkMail, in UNIX epoch time format.</p>",
         "DescribeGroupResponse$DisabledDate": "<p>The date and time when a user was deregistered from WorkMail, in UNIX epoch time format.</p>",
         "DescribeOrganizationResponse$CompletedDate": "<p>The date at which the organization became usable in the WorkMail context, in UNIX epoch time format.</p>",
@@ -878,6 +1007,15 @@
         "Users$member": null
       }
     },
+    "UserIdList": {
+      "base": null,
+      "refs": {
+        "AccessControlRule$UserIds": "<p>User IDs to include in the rule.</p>",
+        "AccessControlRule$NotUserIds": "<p>User IDs to exclude from the rule.</p>",
+        "PutAccessControlRuleRequest$UserIds": "<p>User IDs to include in the rule.</p>",
+        "PutAccessControlRuleRequest$NotUserIds": "<p>User IDs to exclude from the rule.</p>"
+      }
+    },
     "UserName": {
       "base": null,
       "refs": {
@@ -921,6 +1059,7 @@
         "DisassociateDelegateFromResourceRequest$EntityId": "<p>The identifier for the member (user, group) to be removed from the resource's delegates.</p>",
         "DisassociateMemberFromGroupRequest$GroupId": "<p>The identifier for the group from which members are removed.</p>",
         "DisassociateMemberFromGroupRequest$MemberId": "<p>The identifier for the member to be removed to the group.</p>",
+        "GetAccessControlEffectRequest$UserId": "<p>The user ID.</p>",
         "GetMailboxDetailsRequest$UserId": "<p>The identifier for the user whose mailbox details are being requested.</p>",
         "Group$Id": "<p>The identifier of the group.</p>",
         "ListAliasesRequest$EntityId": "<p>The identifier for the entity for which to list the aliases.</p>",
@@ -935,7 +1074,8 @@
         "Resource$Id": "<p>The identifier of the resource.</p>",
         "UpdateMailboxQuotaRequest$UserId": "<p>The identifer for the user for whom to update the mailbox quota.</p>",
         "UpdatePrimaryEmailAddressRequest$EntityId": "<p>The user, group, or resource to update.</p>",
-        "User$Id": "<p>The identifier of the user.</p>"
+        "User$Id": "<p>The identifier of the user.</p>",
+        "UserIdList$member": null
       }
     }
   }
