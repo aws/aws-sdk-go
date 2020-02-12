@@ -2801,6 +2801,7 @@
         "ExecutionProperty":{"shape":"ExecutionProperty"},
         "Command":{"shape":"JobCommand"},
         "DefaultArguments":{"shape":"GenericMap"},
+        "NonOverridableArguments":{"shape":"GenericMap"},
         "Connections":{"shape":"ConnectionsList"},
         "MaxRetries":{"shape":"MaxRetries"},
         "AllocatedCapacity":{
@@ -4385,6 +4386,7 @@
         "ExecutionProperty":{"shape":"ExecutionProperty"},
         "Command":{"shape":"JobCommand"},
         "DefaultArguments":{"shape":"GenericMap"},
+        "NonOverridableArguments":{"shape":"GenericMap"},
         "Connections":{"shape":"ConnectionsList"},
         "MaxRetries":{"shape":"MaxRetries"},
         "AllocatedCapacity":{
@@ -4506,6 +4508,7 @@
         "ExecutionProperty":{"shape":"ExecutionProperty"},
         "Command":{"shape":"JobCommand"},
         "DefaultArguments":{"shape":"GenericMap"},
+        "NonOverridableArguments":{"shape":"GenericMap"},
         "Connections":{"shape":"ConnectionsList"},
         "MaxRetries":{"shape":"MaxRetries"},
         "AllocatedCapacity":{

@@ -634,6 +634,91 @@ func (c *WorkMail) CreateUserWithContext(ctx aws.Context, input *CreateUserInput
 	return out, req.Send()
 }
 
+const opDeleteAccessControlRule = "DeleteAccessControlRule"
+
+// DeleteAccessControlRuleRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAccessControlRule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAccessControlRule for more information on using the DeleteAccessControlRule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteAccessControlRuleRequest method.
+//    req, resp := client.DeleteAccessControlRuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DeleteAccessControlRule
+func (c *WorkMail) DeleteAccessControlRuleRequest(input *DeleteAccessControlRuleInput) (req *request.Request, output *DeleteAccessControlRuleOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAccessControlRule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteAccessControlRuleInput{}
+	}
+
+	output = &DeleteAccessControlRuleOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteAccessControlRule API operation for Amazon WorkMail.
+//
+// Deletes an access control rule for the specified WorkMail organization.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation DeleteAccessControlRule for usage and error information.
+//
+// Returned Error Types:
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state (Active or Synchronizing) to perform
+//   certain operations on the organization or its members.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DeleteAccessControlRule
+func (c *WorkMail) DeleteAccessControlRule(input *DeleteAccessControlRuleInput) (*DeleteAccessControlRuleOutput, error) {
+	req, out := c.DeleteAccessControlRuleRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAccessControlRuleWithContext is the same as DeleteAccessControlRule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAccessControlRule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) DeleteAccessControlRuleWithContext(ctx aws.Context, input *DeleteAccessControlRuleInput, opts ...request.Option) (*DeleteAccessControlRuleOutput, error) {
+	req, out := c.DeleteAccessControlRuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteAlias = "DeleteAlias"
 
 // DeleteAliasRequest generates a "aws/request.Request" representing the
@@ -1781,6 +1866,98 @@ func (c *WorkMail) DisassociateMemberFromGroupWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opGetAccessControlEffect = "GetAccessControlEffect"
+
+// GetAccessControlEffectRequest generates a "aws/request.Request" representing the
+// client's request for the GetAccessControlEffect operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAccessControlEffect for more information on using the GetAccessControlEffect
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetAccessControlEffectRequest method.
+//    req, resp := client.GetAccessControlEffectRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/GetAccessControlEffect
+func (c *WorkMail) GetAccessControlEffectRequest(input *GetAccessControlEffectInput) (req *request.Request, output *GetAccessControlEffectOutput) {
+	op := &request.Operation{
+		Name:       opGetAccessControlEffect,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetAccessControlEffectInput{}
+	}
+
+	output = &GetAccessControlEffectOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetAccessControlEffect API operation for Amazon WorkMail.
+//
+// Gets the effects of an organization's access control rules as they apply
+// to a specified IPv4 address, access protocol action, or user ID.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation GetAccessControlEffect for usage and error information.
+//
+// Returned Error Types:
+//   * EntityNotFoundException
+//   The identifier supplied for the user, group, or resource does not exist in
+//   your organization.
+//
+//   * InvalidParameterException
+//   One or more of the input parameters don't match the service's restrictions.
+//
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state (Active or Synchronizing) to perform
+//   certain operations on the organization or its members.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/GetAccessControlEffect
+func (c *WorkMail) GetAccessControlEffect(input *GetAccessControlEffectInput) (*GetAccessControlEffectOutput, error) {
+	req, out := c.GetAccessControlEffectRequest(input)
+	return out, req.Send()
+}
+
+// GetAccessControlEffectWithContext is the same as GetAccessControlEffect with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAccessControlEffect for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) GetAccessControlEffectWithContext(ctx aws.Context, input *GetAccessControlEffectInput, opts ...request.Option) (*GetAccessControlEffectOutput, error) {
+	req, out := c.GetAccessControlEffectRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetMailboxDetails = "GetMailboxDetails"
 
 // GetMailboxDetailsRequest generates a "aws/request.Request" representing the
@@ -1864,6 +2041,90 @@ func (c *WorkMail) GetMailboxDetails(input *GetMailboxDetailsInput) (*GetMailbox
 // for more information on using Contexts.
 func (c *WorkMail) GetMailboxDetailsWithContext(ctx aws.Context, input *GetMailboxDetailsInput, opts ...request.Option) (*GetMailboxDetailsOutput, error) {
 	req, out := c.GetMailboxDetailsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListAccessControlRules = "ListAccessControlRules"
+
+// ListAccessControlRulesRequest generates a "aws/request.Request" representing the
+// client's request for the ListAccessControlRules operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAccessControlRules for more information on using the ListAccessControlRules
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAccessControlRulesRequest method.
+//    req, resp := client.ListAccessControlRulesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/ListAccessControlRules
+func (c *WorkMail) ListAccessControlRulesRequest(input *ListAccessControlRulesInput) (req *request.Request, output *ListAccessControlRulesOutput) {
+	op := &request.Operation{
+		Name:       opListAccessControlRules,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListAccessControlRulesInput{}
+	}
+
+	output = &ListAccessControlRulesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAccessControlRules API operation for Amazon WorkMail.
+//
+// Lists the access control rules for the specified organization.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation ListAccessControlRules for usage and error information.
+//
+// Returned Error Types:
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state (Active or Synchronizing) to perform
+//   certain operations on the organization or its members.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/ListAccessControlRules
+func (c *WorkMail) ListAccessControlRules(input *ListAccessControlRulesInput) (*ListAccessControlRulesOutput, error) {
+	req, out := c.ListAccessControlRulesRequest(input)
+	return out, req.Send()
+}
+
+// ListAccessControlRulesWithContext is the same as ListAccessControlRules with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAccessControlRules for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) ListAccessControlRulesWithContext(ctx aws.Context, input *ListAccessControlRulesInput, opts ...request.Option) (*ListAccessControlRulesOutput, error) {
+	req, out := c.ListAccessControlRulesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3135,6 +3396,104 @@ func (c *WorkMail) ListUsersPagesWithContext(ctx aws.Context, input *ListUsersIn
 	return p.Err()
 }
 
+const opPutAccessControlRule = "PutAccessControlRule"
+
+// PutAccessControlRuleRequest generates a "aws/request.Request" representing the
+// client's request for the PutAccessControlRule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutAccessControlRule for more information on using the PutAccessControlRule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutAccessControlRuleRequest method.
+//    req, resp := client.PutAccessControlRuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/PutAccessControlRule
+func (c *WorkMail) PutAccessControlRuleRequest(input *PutAccessControlRuleInput) (req *request.Request, output *PutAccessControlRuleOutput) {
+	op := &request.Operation{
+		Name:       opPutAccessControlRule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutAccessControlRuleInput{}
+	}
+
+	output = &PutAccessControlRuleOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutAccessControlRule API operation for Amazon WorkMail.
+//
+// Adds a new access control rule for the specified organization. The rule allows
+// or denies access to the organization for the specified IPv4 addresses, access
+// protocol actions, and user IDs. Adding a new rule with the same name as an
+// existing rule replaces the older rule.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation PutAccessControlRule for usage and error information.
+//
+// Returned Error Types:
+//   * LimitExceededException
+//   The request exceeds the limit of the resource.
+//
+//   * InvalidParameterException
+//   One or more of the input parameters don't match the service's restrictions.
+//
+//   * EntityNotFoundException
+//   The identifier supplied for the user, group, or resource does not exist in
+//   your organization.
+//
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state (Active or Synchronizing) to perform
+//   certain operations on the organization or its members.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/PutAccessControlRule
+func (c *WorkMail) PutAccessControlRule(input *PutAccessControlRuleInput) (*PutAccessControlRuleOutput, error) {
+	req, out := c.PutAccessControlRuleRequest(input)
+	return out, req.Send()
+}
+
+// PutAccessControlRuleWithContext is the same as PutAccessControlRule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutAccessControlRule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) PutAccessControlRuleWithContext(ctx aws.Context, input *PutAccessControlRuleInput, opts ...request.Option) (*PutAccessControlRuleOutput, error) {
+	req, out := c.PutAccessControlRuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutMailboxPermissions = "PutMailboxPermissions"
 
 // PutMailboxPermissionsRequest generates a "aws/request.Request" representing the
@@ -3281,7 +3640,7 @@ func (c *WorkMail) RegisterToWorkMailRequest(input *RegisterToWorkMailInput) (re
 // use by associating a mailbox and calendaring capabilities. It performs no
 // change if the user, group, or resource is enabled and fails if the user,
 // group, or resource is deleted. This operation results in the accumulation
-// of costs. For more information, see Pricing (https://aws.amazon.com//workmail/pricing).
+// of costs. For more information, see Pricing (https://aws.amazon.com/workmail/pricing).
 // The equivalent console functionality for this operation is Enable.
 //
 // Users can either be created by calling the CreateUser API operation or they
@@ -3972,6 +4331,122 @@ func (c *WorkMail) UpdateResourceWithContext(ctx aws.Context, input *UpdateResou
 	return out, req.Send()
 }
 
+// A rule that controls access to an Amazon WorkMail organization.
+type AccessControlRule struct {
+	_ struct{} `type:"structure"`
+
+	// Access protocol actions to include in the rule. Valid values include ActiveSync,
+	// AutoDiscover, EWS, IMAP, SMTP, WindowsOutlook, and WebMail.
+	Actions []*string `type:"list"`
+
+	// The date that the rule was created.
+	DateCreated *time.Time `type:"timestamp"`
+
+	// The date that the rule was modified.
+	DateModified *time.Time `type:"timestamp"`
+
+	// The rule description.
+	Description *string `type:"string"`
+
+	// The rule effect.
+	Effect *string `type:"string" enum:"AccessControlRuleEffect"`
+
+	// IPv4 CIDR ranges to include in the rule.
+	IpRanges []*string `type:"list"`
+
+	// The rule name.
+	Name *string `min:"1" type:"string"`
+
+	// Access protocol actions to exclude from the rule. Valid values include ActiveSync,
+	// AutoDiscover, EWS, IMAP, SMTP, WindowsOutlook, and WebMail.
+	NotActions []*string `type:"list"`
+
+	// IPv4 CIDR ranges to exclude from the rule.
+	NotIpRanges []*string `type:"list"`
+
+	// User IDs to exclude from the rule.
+	NotUserIds []*string `type:"list"`
+
+	// User IDs to include in the rule.
+	UserIds []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s AccessControlRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccessControlRule) GoString() string {
+	return s.String()
+}
+
+// SetActions sets the Actions field's value.
+func (s *AccessControlRule) SetActions(v []*string) *AccessControlRule {
+	s.Actions = v
+	return s
+}
+
+// SetDateCreated sets the DateCreated field's value.
+func (s *AccessControlRule) SetDateCreated(v time.Time) *AccessControlRule {
+	s.DateCreated = &v
+	return s
+}
+
+// SetDateModified sets the DateModified field's value.
+func (s *AccessControlRule) SetDateModified(v time.Time) *AccessControlRule {
+	s.DateModified = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AccessControlRule) SetDescription(v string) *AccessControlRule {
+	s.Description = &v
+	return s
+}
+
+// SetEffect sets the Effect field's value.
+func (s *AccessControlRule) SetEffect(v string) *AccessControlRule {
+	s.Effect = &v
+	return s
+}
+
+// SetIpRanges sets the IpRanges field's value.
+func (s *AccessControlRule) SetIpRanges(v []*string) *AccessControlRule {
+	s.IpRanges = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AccessControlRule) SetName(v string) *AccessControlRule {
+	s.Name = &v
+	return s
+}
+
+// SetNotActions sets the NotActions field's value.
+func (s *AccessControlRule) SetNotActions(v []*string) *AccessControlRule {
+	s.NotActions = v
+	return s
+}
+
+// SetNotIpRanges sets the NotIpRanges field's value.
+func (s *AccessControlRule) SetNotIpRanges(v []*string) *AccessControlRule {
+	s.NotIpRanges = v
+	return s
+}
+
+// SetNotUserIds sets the NotUserIds field's value.
+func (s *AccessControlRule) SetNotUserIds(v []*string) *AccessControlRule {
+	s.NotUserIds = v
+	return s
+}
+
+// SetUserIds sets the UserIds field's value.
+func (s *AccessControlRule) SetUserIds(v []*string) *AccessControlRule {
+	s.UserIds = v
+	return s
+}
+
 type AssociateDelegateToResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4585,6 +5060,70 @@ func (s *Delegate) SetId(v string) *Delegate {
 func (s *Delegate) SetType(v string) *Delegate {
 	s.Type = &v
 	return s
+}
+
+type DeleteAccessControlRuleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the access control rule.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The identifier for the organization.
+	OrganizationId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DeleteAccessControlRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAccessControlRuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAccessControlRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAccessControlRuleInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteAccessControlRuleInput) SetName(v string) *DeleteAccessControlRuleInput {
+	s.Name = &v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *DeleteAccessControlRuleInput) SetOrganizationId(v string) *DeleteAccessControlRuleInput {
+	s.OrganizationId = &v
+	return s
+}
+
+type DeleteAccessControlRuleOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteAccessControlRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAccessControlRuleOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteAliasInput struct {
@@ -6100,6 +6639,128 @@ func (s EntityStateException) RequestID() string {
 	return s.respMetadata.RequestID
 }
 
+type GetAccessControlEffectInput struct {
+	_ struct{} `type:"structure"`
+
+	// The access protocol action. Valid values include ActiveSync, AutoDiscover,
+	// EWS, IMAP, SMTP, WindowsOutlook, and WebMail.
+	//
+	// Action is a required field
+	Action *string `min:"1" type:"string" required:"true"`
+
+	// The IPv4 address.
+	//
+	// IpAddress is a required field
+	IpAddress *string `min:"1" type:"string" required:"true"`
+
+	// The identifier for the organization.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `type:"string" required:"true"`
+
+	// The user ID.
+	//
+	// UserId is a required field
+	UserId *string `min:"12" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetAccessControlEffectInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAccessControlEffectInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAccessControlEffectInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAccessControlEffectInput"}
+	if s.Action == nil {
+		invalidParams.Add(request.NewErrParamRequired("Action"))
+	}
+	if s.Action != nil && len(*s.Action) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Action", 1))
+	}
+	if s.IpAddress == nil {
+		invalidParams.Add(request.NewErrParamRequired("IpAddress"))
+	}
+	if s.IpAddress != nil && len(*s.IpAddress) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IpAddress", 1))
+	}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *GetAccessControlEffectInput) SetAction(v string) *GetAccessControlEffectInput {
+	s.Action = &v
+	return s
+}
+
+// SetIpAddress sets the IpAddress field's value.
+func (s *GetAccessControlEffectInput) SetIpAddress(v string) *GetAccessControlEffectInput {
+	s.IpAddress = &v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *GetAccessControlEffectInput) SetOrganizationId(v string) *GetAccessControlEffectInput {
+	s.OrganizationId = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *GetAccessControlEffectInput) SetUserId(v string) *GetAccessControlEffectInput {
+	s.UserId = &v
+	return s
+}
+
+type GetAccessControlEffectOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The rule effect.
+	Effect *string `type:"string" enum:"AccessControlRuleEffect"`
+
+	// The rules that match the given parameters, resulting in an effect.
+	MatchedRules []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s GetAccessControlEffectOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAccessControlEffectOutput) GoString() string {
+	return s.String()
+}
+
+// SetEffect sets the Effect field's value.
+func (s *GetAccessControlEffectOutput) SetEffect(v string) *GetAccessControlEffectOutput {
+	s.Effect = &v
+	return s
+}
+
+// SetMatchedRules sets the MatchedRules field's value.
+func (s *GetAccessControlEffectOutput) SetMatchedRules(v []*string) *GetAccessControlEffectOutput {
+	s.MatchedRules = v
+	return s
+}
+
 type GetMailboxDetailsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6482,6 +7143,67 @@ func (s LimitExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
 	return s.respMetadata.RequestID
+}
+
+type ListAccessControlRulesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the organization.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListAccessControlRulesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAccessControlRulesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAccessControlRulesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAccessControlRulesInput"}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *ListAccessControlRulesInput) SetOrganizationId(v string) *ListAccessControlRulesInput {
+	s.OrganizationId = &v
+	return s
+}
+
+type ListAccessControlRulesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The access control rules.
+	Rules []*AccessControlRule `type:"list"`
+}
+
+// String returns the string representation
+func (s ListAccessControlRulesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAccessControlRulesOutput) GoString() string {
+	return s.String()
+}
+
+// SetRules sets the Rules field's value.
+func (s *ListAccessControlRulesOutput) SetRules(v []*AccessControlRule) *ListAccessControlRulesOutput {
+	s.Rules = v
+	return s
 }
 
 type ListAliasesInput struct {
@@ -7835,6 +8557,159 @@ func (s *Permission) SetPermissionValues(v []*string) *Permission {
 	return s
 }
 
+type PutAccessControlRuleInput struct {
+	_ struct{} `type:"structure"`
+
+	// Access protocol actions to include in the rule. Valid values include ActiveSync,
+	// AutoDiscover, EWS, IMAP, SMTP, WindowsOutlook, and WebMail.
+	Actions []*string `type:"list"`
+
+	// The rule description.
+	//
+	// Description is a required field
+	Description *string `type:"string" required:"true"`
+
+	// The rule effect.
+	//
+	// Effect is a required field
+	Effect *string `type:"string" required:"true" enum:"AccessControlRuleEffect"`
+
+	// IPv4 CIDR ranges to include in the rule.
+	IpRanges []*string `type:"list"`
+
+	// The rule name.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Access protocol actions to exclude from the rule. Valid values include ActiveSync,
+	// AutoDiscover, EWS, IMAP, SMTP, WindowsOutlook, and WebMail.
+	NotActions []*string `type:"list"`
+
+	// IPv4 CIDR ranges to exclude from the rule.
+	NotIpRanges []*string `type:"list"`
+
+	// User IDs to exclude from the rule.
+	NotUserIds []*string `type:"list"`
+
+	// The identifier of the organization.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `type:"string" required:"true"`
+
+	// User IDs to include in the rule.
+	UserIds []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s PutAccessControlRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutAccessControlRuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutAccessControlRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutAccessControlRuleInput"}
+	if s.Description == nil {
+		invalidParams.Add(request.NewErrParamRequired("Description"))
+	}
+	if s.Effect == nil {
+		invalidParams.Add(request.NewErrParamRequired("Effect"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActions sets the Actions field's value.
+func (s *PutAccessControlRuleInput) SetActions(v []*string) *PutAccessControlRuleInput {
+	s.Actions = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *PutAccessControlRuleInput) SetDescription(v string) *PutAccessControlRuleInput {
+	s.Description = &v
+	return s
+}
+
+// SetEffect sets the Effect field's value.
+func (s *PutAccessControlRuleInput) SetEffect(v string) *PutAccessControlRuleInput {
+	s.Effect = &v
+	return s
+}
+
+// SetIpRanges sets the IpRanges field's value.
+func (s *PutAccessControlRuleInput) SetIpRanges(v []*string) *PutAccessControlRuleInput {
+	s.IpRanges = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PutAccessControlRuleInput) SetName(v string) *PutAccessControlRuleInput {
+	s.Name = &v
+	return s
+}
+
+// SetNotActions sets the NotActions field's value.
+func (s *PutAccessControlRuleInput) SetNotActions(v []*string) *PutAccessControlRuleInput {
+	s.NotActions = v
+	return s
+}
+
+// SetNotIpRanges sets the NotIpRanges field's value.
+func (s *PutAccessControlRuleInput) SetNotIpRanges(v []*string) *PutAccessControlRuleInput {
+	s.NotIpRanges = v
+	return s
+}
+
+// SetNotUserIds sets the NotUserIds field's value.
+func (s *PutAccessControlRuleInput) SetNotUserIds(v []*string) *PutAccessControlRuleInput {
+	s.NotUserIds = v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *PutAccessControlRuleInput) SetOrganizationId(v string) *PutAccessControlRuleInput {
+	s.OrganizationId = &v
+	return s
+}
+
+// SetUserIds sets the UserIds field's value.
+func (s *PutAccessControlRuleInput) SetUserIds(v []*string) *PutAccessControlRuleInput {
+	s.UserIds = v
+	return s
+}
+
+type PutAccessControlRuleOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutAccessControlRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutAccessControlRuleOutput) GoString() string {
+	return s.String()
+}
+
 type PutMailboxPermissionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8966,6 +9841,14 @@ func (s *User) SetUserRole(v string) *User {
 	s.UserRole = &v
 	return s
 }
+
+const (
+	// AccessControlRuleEffectAllow is a AccessControlRuleEffect enum value
+	AccessControlRuleEffectAllow = "ALLOW"
+
+	// AccessControlRuleEffectDeny is a AccessControlRuleEffect enum value
+	AccessControlRuleEffectDeny = "DENY"
+)
 
 const (
 	// EntityStateEnabled is a EntityState enum value

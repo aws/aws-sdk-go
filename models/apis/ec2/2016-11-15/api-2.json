@@ -11051,7 +11051,11 @@
           "locationName":"PoolId"
         },
         "NextToken":{"shape":"NextToken"},
-        "MaxResults":{"shape":"PoolMaxResults"}
+        "MaxResults":{"shape":"PoolMaxResults"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        }
       }
     },
     "DescribePublicIpv4PoolsResult":{
@@ -22073,6 +22077,10 @@
         "TotalAvailableAddressCount":{
           "shape":"Integer",
           "locationName":"totalAvailableAddressCount"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         }
       }
     },

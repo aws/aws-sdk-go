@@ -202,7 +202,8 @@
     "CertificateExpiryDateTime": {
       "base": null,
       "refs": {
-        "Certificate$ExpiryDateTime": "<p>The date and time when the certificate will expire.</p>"
+        "Certificate$ExpiryDateTime": "<p>The date and time when the certificate will expire.</p>",
+        "CertificateInfo$ExpiryDateTime": "<p>The date and time when the certificate will expire.</p>"
       }
     },
     "CertificateId": {
@@ -1136,9 +1137,9 @@
     "LDAPSType": {
       "base": null,
       "refs": {
-        "DescribeLDAPSSettingsRequest$Type": "<p>The type of LDAP security the customer wants to enable, either server or client. Currently supports only <code>Client</code>, (the default).</p>",
-        "DisableLDAPSRequest$Type": "<p>The type of LDAP security that the customer wants to enable. The security can be either server or client, but currently only the default <code>Client</code> is supported.</p>",
-        "EnableLDAPSRequest$Type": "<p>The type of LDAP security the customer wants to enable. The security can be either server or client, but currently only the default <code>Client</code> is supported.</p>"
+        "DescribeLDAPSSettingsRequest$Type": "<p>The type of LDAP security to enable. Currently only the value <code>Client</code> is supported.</p>",
+        "DisableLDAPSRequest$Type": "<p>The type of LDAP security to enable. Currently only the value <code>Client</code> is supported.</p>",
+        "EnableLDAPSRequest$Type": "<p>The type of LDAP security to enable. Currently only the value <code>Client</code> is supported.</p>"
       }
     },
     "LastUpdatedDateTime": {

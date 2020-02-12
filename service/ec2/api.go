@@ -787,6 +787,9 @@ func (c *EC2) AssignIpv6AddressesRequest(input *AssignIpv6AddressesInput) (req *
 // Type (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html#AvailableIpPerENI)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
+// You must specify either the IPv6 addresses or the IPv6 address count in the
+// request.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -877,6 +880,8 @@ func (c *EC2) AssignPrivateIpAddressesRequest(input *AssignPrivateIpAddressesInp
 // Remapping an IP address is an asynchronous operation. When you move an IP
 // address from one network interface to another, check network/interfaces/macs/mac/local-ipv4s
 // in the instance metadata to confirm that the remapping is complete.
+//
+// You must specify either the IP addresses or the IP address count in the request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -61742,6 +61747,19 @@ func (s *DescribePrincipalIdFormatOutput) SetPrincipals(v []*PrincipalIdFormat) 
 type DescribePublicIpv4PoolsInput struct {
 	_ struct{} `type:"structure"`
 
+	// One or more filters.
+	//
+	//    * tag:<key> - The key/value combination of a tag assigned to the resource.
+	//    Use the tag key in the filter name and the tag value as the filter value.
+	//    For example, to find all resources that have a tag with the key Owner
+	//    and the value TeamA, specify tag:Owner for the filter name and TeamA for
+	//    the filter value.
+	//
+	//    * tag-key - The key of a tag assigned to the resource. Use this filter
+	//    to find all resources assigned a tag with a specific key, regardless of
+	//    the tag value.
+	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
+
 	// The maximum number of results to return with a single call. To retrieve the
 	// remaining results, make another call with the returned nextToken value.
 	MaxResults *int64 `min:"1" type:"integer"`
@@ -61774,6 +61792,12 @@ func (s *DescribePublicIpv4PoolsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribePublicIpv4PoolsInput) SetFilters(v []*Filter) *DescribePublicIpv4PoolsInput {
+	s.Filters = v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -90696,6 +90720,9 @@ type PublicIpv4Pool struct {
 	// The ID of the address pool.
 	PoolId *string `locationName:"poolId" type:"string"`
 
+	// Any tags for the address pool.
+	Tags []*Tag `locationName:"tagSet" locationNameList:"item" type:"list"`
+
 	// The total number of addresses.
 	TotalAddressCount *int64 `locationName:"totalAddressCount" type:"integer"`
 
@@ -90728,6 +90755,12 @@ func (s *PublicIpv4Pool) SetPoolAddressRanges(v []*PublicIpv4PoolRange) *PublicI
 // SetPoolId sets the PoolId field's value.
 func (s *PublicIpv4Pool) SetPoolId(v string) *PublicIpv4Pool {
 	s.PoolId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *PublicIpv4Pool) SetTags(v []*Tag) *PublicIpv4Pool {
+	s.Tags = v
 	return s
 }
 

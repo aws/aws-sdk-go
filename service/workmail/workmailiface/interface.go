@@ -84,6 +84,10 @@ type WorkMailAPI interface {
 	CreateUserWithContext(aws.Context, *workmail.CreateUserInput, ...request.Option) (*workmail.CreateUserOutput, error)
 	CreateUserRequest(*workmail.CreateUserInput) (*request.Request, *workmail.CreateUserOutput)
 
+	DeleteAccessControlRule(*workmail.DeleteAccessControlRuleInput) (*workmail.DeleteAccessControlRuleOutput, error)
+	DeleteAccessControlRuleWithContext(aws.Context, *workmail.DeleteAccessControlRuleInput, ...request.Option) (*workmail.DeleteAccessControlRuleOutput, error)
+	DeleteAccessControlRuleRequest(*workmail.DeleteAccessControlRuleInput) (*request.Request, *workmail.DeleteAccessControlRuleOutput)
+
 	DeleteAlias(*workmail.DeleteAliasInput) (*workmail.DeleteAliasOutput, error)
 	DeleteAliasWithContext(aws.Context, *workmail.DeleteAliasInput, ...request.Option) (*workmail.DeleteAliasOutput, error)
 	DeleteAliasRequest(*workmail.DeleteAliasInput) (*request.Request, *workmail.DeleteAliasOutput)
@@ -132,9 +136,17 @@ type WorkMailAPI interface {
 	DisassociateMemberFromGroupWithContext(aws.Context, *workmail.DisassociateMemberFromGroupInput, ...request.Option) (*workmail.DisassociateMemberFromGroupOutput, error)
 	DisassociateMemberFromGroupRequest(*workmail.DisassociateMemberFromGroupInput) (*request.Request, *workmail.DisassociateMemberFromGroupOutput)
 
+	GetAccessControlEffect(*workmail.GetAccessControlEffectInput) (*workmail.GetAccessControlEffectOutput, error)
+	GetAccessControlEffectWithContext(aws.Context, *workmail.GetAccessControlEffectInput, ...request.Option) (*workmail.GetAccessControlEffectOutput, error)
+	GetAccessControlEffectRequest(*workmail.GetAccessControlEffectInput) (*request.Request, *workmail.GetAccessControlEffectOutput)
+
 	GetMailboxDetails(*workmail.GetMailboxDetailsInput) (*workmail.GetMailboxDetailsOutput, error)
 	GetMailboxDetailsWithContext(aws.Context, *workmail.GetMailboxDetailsInput, ...request.Option) (*workmail.GetMailboxDetailsOutput, error)
 	GetMailboxDetailsRequest(*workmail.GetMailboxDetailsInput) (*request.Request, *workmail.GetMailboxDetailsOutput)
+
+	ListAccessControlRules(*workmail.ListAccessControlRulesInput) (*workmail.ListAccessControlRulesOutput, error)
+	ListAccessControlRulesWithContext(aws.Context, *workmail.ListAccessControlRulesInput, ...request.Option) (*workmail.ListAccessControlRulesOutput, error)
+	ListAccessControlRulesRequest(*workmail.ListAccessControlRulesInput) (*request.Request, *workmail.ListAccessControlRulesOutput)
 
 	ListAliases(*workmail.ListAliasesInput) (*workmail.ListAliasesOutput, error)
 	ListAliasesWithContext(aws.Context, *workmail.ListAliasesInput, ...request.Option) (*workmail.ListAliasesOutput, error)
@@ -195,6 +207,10 @@ type WorkMailAPI interface {
 
 	ListUsersPages(*workmail.ListUsersInput, func(*workmail.ListUsersOutput, bool) bool) error
 	ListUsersPagesWithContext(aws.Context, *workmail.ListUsersInput, func(*workmail.ListUsersOutput, bool) bool, ...request.Option) error
+
+	PutAccessControlRule(*workmail.PutAccessControlRuleInput) (*workmail.PutAccessControlRuleOutput, error)
+	PutAccessControlRuleWithContext(aws.Context, *workmail.PutAccessControlRuleInput, ...request.Option) (*workmail.PutAccessControlRuleOutput, error)
+	PutAccessControlRuleRequest(*workmail.PutAccessControlRuleInput) (*request.Request, *workmail.PutAccessControlRuleOutput)
 
 	PutMailboxPermissions(*workmail.PutMailboxPermissionsInput) (*workmail.PutMailboxPermissionsOutput, error)
 	PutMailboxPermissionsWithContext(aws.Context, *workmail.PutMailboxPermissionsInput, ...request.Option) (*workmail.PutMailboxPermissionsOutput, error)

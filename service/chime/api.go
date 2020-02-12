@@ -566,9 +566,9 @@ func (c *Chime) BatchCreateRoomMembershipRequest(input *BatchCreateRoomMembershi
 
 // BatchCreateRoomMembership API operation for Amazon Chime.
 //
-// Adds up to 50 members to a chat room. Members can be either users or bots.
-// The member role designates whether the member is a chat room administrator
-// or a general chat room member.
+// Adds up to 50 members to a chat room in an Amazon Chime Enterprise account.
+// Members can be either users or bots. The member role designates whether the
+// member is a chat room administrator or a general chat room member.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1703,7 +1703,7 @@ func (c *Chime) CreateRoomRequest(input *CreateRoomInput) (req *request.Request,
 
 // CreateRoom API operation for Amazon Chime.
 //
-// Creates a chat room for the specified Amazon Chime account.
+// Creates a chat room for the specified Amazon Chime Enterprise account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1804,9 +1804,9 @@ func (c *Chime) CreateRoomMembershipRequest(input *CreateRoomMembershipInput) (r
 
 // CreateRoomMembership API operation for Amazon Chime.
 //
-// Adds a member to a chat room. A member can be either a user or a bot. The
-// member role designates whether the member is a chat room administrator or
-// a general chat room member.
+// Adds a member to a chat room in an Amazon Chime Enterprise account. A member
+// can be either a user or a bot. The member role designates whether the member
+// is a chat room administrator or a general chat room member.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2122,9 +2122,8 @@ func (c *Chime) CreateVoiceConnectorGroupRequest(input *CreateVoiceConnectorGrou
 // CreateVoiceConnectorGroup API operation for Amazon Chime.
 //
 // Creates an Amazon Chime Voice Connector group under the administrator's AWS
-// account. You can associate up to three existing Amazon Chime Voice Connectors
-// with the Amazon Chime Voice Connector group by including VoiceConnectorItems
-// in the request.
+// account. You can associate Amazon Chime Voice Connectors with the Amazon
+// Chime Voice Connector group by including VoiceConnectorItems in the request.
 //
 // You can include Amazon Chime Voice Connectors from different AWS Regions
 // in your group. This creates a fault tolerant mechanism for fallback in case
@@ -2750,7 +2749,7 @@ func (c *Chime) DeleteRoomRequest(input *DeleteRoomInput) (req *request.Request,
 
 // DeleteRoom API operation for Amazon Chime.
 //
-// Deletes a chat room.
+// Deletes a chat room in an Amazon Chime Enterprise account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2849,7 +2848,7 @@ func (c *Chime) DeleteRoomMembershipRequest(input *DeleteRoomMembershipInput) (r
 
 // DeleteRoomMembership API operation for Amazon Chime.
 //
-// Removes a member from a chat room.
+// Removes a member from a chat room in an Amazon Chime Enterprise account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4943,7 +4942,8 @@ func (c *Chime) GetRoomRequest(input *GetRoomInput) (req *request.Request, outpu
 
 // GetRoom API operation for Amazon Chime.
 //
-// Retrieves room details, such as the room name.
+// Retrieves room details, such as the room name, for a room in an Amazon Chime
+// Enterprise account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6980,8 +6980,8 @@ func (c *Chime) ListRoomMembershipsRequest(input *ListRoomMembershipsInput) (req
 
 // ListRoomMemberships API operation for Amazon Chime.
 //
-// Lists the membership details for the specified room, such as the members'
-// IDs, email addresses, and names.
+// Lists the membership details for the specified room in an Amazon Chime Enterprise
+// account, such as the members' IDs, email addresses, and names.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7137,9 +7137,9 @@ func (c *Chime) ListRoomsRequest(input *ListRoomsInput) (req *request.Request, o
 
 // ListRooms API operation for Amazon Chime.
 //
-// Lists the room details for the specified Amazon Chime account. Optionally,
-// filter the results by a member ID (user ID or bot ID) to see a list of rooms
-// that the member belongs to.
+// Lists the room details for the specified Amazon Chime Enterprise account.
+// Optionally, filter the results by a member ID (user ID or bot ID) to see
+// a list of rooms that the member belongs to.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9555,7 +9555,8 @@ func (c *Chime) UpdateRoomRequest(input *UpdateRoomInput) (req *request.Request,
 
 // UpdateRoom API operation for Amazon Chime.
 //
-// Updates room details, such as the room name.
+// Updates room details, such as the room name, for a room in an Amazon Chime
+// Enterprise account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9653,9 +9654,10 @@ func (c *Chime) UpdateRoomMembershipRequest(input *UpdateRoomMembershipInput) (r
 
 // UpdateRoomMembership API operation for Amazon Chime.
 //
-// Updates room membership details, such as the member role. The member role
-// designates whether the member is a chat room administrator or a general chat
-// room member. The member role can be updated only for user IDs.
+// Updates room membership details, such as the member role, for a room in an
+// Amazon Chime Enterprise account. The member role designates whether the member
+// is a chat room administrator or a general chat room member. The member role
+// can be updated only for user IDs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -18582,7 +18584,7 @@ type Termination struct {
 	// The IP addresses allowed to make calls, in CIDR format. Required.
 	CidrAllowedList []*string `type:"list"`
 
-	// The limit on calls per second. Max value based on account service limit.
+	// The limit on calls per second. Max value based on account service quota.
 	// Default value of 1.
 	CpsLimit *int64 `min:"1" type:"integer"`
 

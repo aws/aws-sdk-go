@@ -1,3 +1,26 @@
+Release v1.29.1 (2020-02-12)
+===
+
+### Service Client Updates
+* `service/chime`: Updates service documentation
+  * Documentation updates for Amazon Chime
+* `service/ds`: Updates service API and documentation
+  * Release to add the ExpirationDateTime as an output to ListCertificates so as to ease customers to look into their certificate lifetime and make timely decisions about renewing them.
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for tagging public IPv4 pools.
+* `service/es`: Updates service API and documentation
+  * Amazon Elasticsearch Service now offers fine-grained access control, which adds multiple capabilities to give tighter control over data. New features include the ability to use roles to define granular permissions for indices, documents, or fields and to extend Kibana with read-only views and secure multi-tenant support.
+* `service/glue`: Updates service API and documentation
+  * Adding ability to add arguments that cannot be overridden to AWS Glue jobs
+* `service/neptune`: Updates service API and documentation
+  * This launch enables Neptune start-db-cluster and stop-db-cluster. Stopping and starting Amazon Neptune clusters helps you manage costs for development and test environments. You can temporarily stop all the DB instances in your cluster, instead of setting up and tearing down all the DB instances each time that you use the cluster.
+* `service/workmail`: Updates service API and documentation
+  * This release adds support for access control rules management  in Amazon WorkMail.
+
+### SDK Enhancements
+* `aws/credentials`: Add grouping of concurrent refresh of credentials ([#3127](https://github.com/aws/aws-sdk-go/pull/3127/)
+  * Concurrent calls to `Credentials.Get` are now grouped in order to prevent numerous synchronous calls to refresh the credentials. Replacing the mutex with a singleflight reduces the overall amount of time request signatures need to wait while retrieving credentials. This is improvement becomes pronounced when many requests are being made concurrently.
+
 Release v1.29.0 (2020-02-11)
 ===
 
