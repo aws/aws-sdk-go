@@ -753,6 +753,10 @@
     },
     "DashManifest": {
       "members": {
+        "ManifestLayout": {
+          "locationName": "manifestLayout",
+          "shape": "ManifestLayout"
+        },
         "ManifestName": {
           "locationName": "manifestName",
           "shape": "__string"
@@ -782,9 +786,17 @@
           "locationName": "encryption",
           "shape": "DashEncryption"
         },
+        "PeriodTriggers": {
+          "locationName": "periodTriggers",
+          "shape": "__listOf__PeriodTriggersElement"
+        },
         "SegmentDurationSeconds": {
           "locationName": "segmentDurationSeconds",
           "shape": "__integer"
+        },
+        "SegmentTemplateFormat": {
+          "locationName": "segmentTemplateFormat",
+          "shape": "SegmentTemplateFormat"
         }
       },
       "required": [
@@ -1182,6 +1194,13 @@
       },
       "type": "structure"
     },
+    "ManifestLayout": {
+      "enum": [
+        "FULL",
+        "COMPACT"
+      ],
+      "type": "string"
+    },
     "MaxResults": {
       "max": 1000,
       "min": 1,
@@ -1373,6 +1392,14 @@
       ],
       "type": "string"
     },
+    "SegmentTemplateFormat": {
+      "enum": [
+        "NUMBER_WITH_TIMELINE",
+        "TIME_WITH_TIMELINE",
+        "NUMBER_WITH_DURATION"
+      ],
+      "type": "string"
+    },
     "ServiceUnavailableException": {
       "error": {
         "httpStatusCode": 503
@@ -1459,6 +1486,12 @@
       },
       "type": "structure"
     },
+    "__PeriodTriggersElement": {
+      "enum": [
+        "ADS"
+      ],
+      "type": "string"
+    },
     "__boolean": {
       "type": "boolean"
     },
@@ -1507,6 +1540,12 @@
     "__listOfPackagingGroup": {
       "member": {
         "shape": "PackagingGroup"
+      },
+      "type": "list"
+    },
+    "__listOf__PeriodTriggersElement": {
+      "member": {
+        "shape": "__PeriodTriggersElement"
       },
       "type": "list"
     },

@@ -103,6 +103,12 @@
         "PackagingConfigurationCreateParameters$HlsPackage" : null
       }
     },
+    "ManifestLayout" : {
+      "base" : null,
+      "refs" : {
+        "DashManifest$ManifestLayout" : "Determines the position of some tags in the Media Presentation Description (MPD).  When set to FULL, elements like SegmentTemplate and ContentProtection are included in each Representation.  When set to COMPACT, duplicate elements are combined and presented at the AdaptationSet level."
+      }
+    },
     "MssEncryption" : {
       "base" : "A Microsoft Smooth Streaming (MSS) encryption configuration.",
       "refs" : {
@@ -156,6 +162,12 @@
         "DashManifest$Profile" : "The Dynamic Adaptive Streaming over HTTP (DASH) profile type.  When set to \"HBBTV_1_5\", HbbTV 1.5 compliant output is enabled."
       }
     },
+    "SegmentTemplateFormat" : {
+      "base" : null,
+      "refs" : {
+        "DashPackage$SegmentTemplateFormat" : "Determines the type of SegmentTemplate included in the Media Presentation Description (MPD).  When set to NUMBER_WITH_TIMELINE, a full timeline is presented in each SegmentTemplate, with $Number$ media URLs.  When set to TIME_WITH_TIMELINE, a full timeline is presented in each SegmentTemplate, with $Time$ media URLs. When set to NUMBER_WITH_DURATION, only a duration is included in each SegmentTemplate, with $Number$ media URLs."
+      }
+    },
     "SpekeKeyProvider" : {
       "base" : "A configuration for accessing an external Secure Packager and Encoder Key Exchange (SPEKE) service that will provide encryption keys.",
       "refs" : {
@@ -177,6 +189,12 @@
         "DashManifest$StreamSelection" : null,
         "HlsManifest$StreamSelection" : null,
         "MssManifest$StreamSelection" : null
+      }
+    },
+    "__PeriodTriggersElement" : {
+      "base" : null,
+      "refs" : {
+        "__listOf__PeriodTriggersElement$member" : null
       }
     },
     "__boolean" : {
@@ -241,6 +259,12 @@
       "base" : null,
       "refs" : {
         "PackagingGroupList$PackagingGroups" : "A list of MediaPackage VOD PackagingGroup resources."
+      }
+    },
+    "__listOf__PeriodTriggersElement" : {
+      "base" : null,
+      "refs" : {
+        "DashPackage$PeriodTriggers" : "A list of triggers that controls when the outgoing Dynamic Adaptive Streaming over HTTP (DASH)\nMedia Presentation Description (MPD) will be partitioned into multiple periods. If empty, the content will not\nbe partitioned into more than one period. If the list contains \"ADS\", new periods will be created where\nthe Asset contains SCTE-35 ad markers.\n"
       }
     },
     "__listOf__string" : {

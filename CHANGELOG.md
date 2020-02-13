@@ -1,3 +1,9 @@
+Release v1.29.2 (2020-02-13)
+===
+
+### Service Client Updates
+* `service/mediapackage-vod`: Updates service API and documentation
+
 Release v1.29.1 (2020-02-12)
 ===
 
