@@ -18,15 +18,14 @@ import (
 // #1790 bug
 func TestBatchDeleteContext(t *testing.T) {
 	cases := []struct {
-		objects  []BatchDeleteObject
-		size     int
-		expected int
-		ctx      aws.Context
-		closeAt  int
-		errCheck func(error) (string, bool)
+		objects     []BatchDeleteObject
+		batchSize   int
+		expected    int
+		earlyCancel bool
+		checkError  func(error) error
 	}{
-		{
-			[]BatchDeleteObject{
+		0: {
+			objects: []BatchDeleteObject{
 				{
 					Object: &s3.DeleteObjectInput{
 						Key:    aws.String("1"),
@@ -52,32 +51,69 @@ func TestBatchDeleteContext(t *testing.T) {
 					},
 				},
 			},
-			1,
-			0,
-			aws.BackgroundContext(),
-			0,
-			func(err error) (string, bool) {
+			batchSize:   1,
+			expected:    0,
+			earlyCancel: true,
+			checkError: func(err error) error {
 				batchErr, ok := err.(*BatchError)
 				if !ok {
-					return "not BatchError type", false
+					return fmt.Errorf("expect BatchError, got %T, %v", err, err)
 				}
 
 				errs := batchErr.Errors
 				if len(errs) != 4 {
-					return fmt.Sprintf("expected 1, but received %d", len(errs)), false
+					return fmt.Errorf("expected 1 batch errors, but received %d",
+						len(errs))
 				}
 
 				for _, tempErr := range errs {
 					aerr, ok := tempErr.OrigErr.(awserr.Error)
 					if !ok {
-						return "not awserr.Error type", false
+						return fmt.Errorf("expect awserr.Error, got %T, %v",
+							tempErr.OrigErr, tempErr.OrigErr)
 					}
 
-					if code := aerr.Code(); code != request.CanceledErrorCode {
-						return fmt.Sprintf("expected %q, but received %q", request.CanceledErrorCode, code), false
+					if e, a := request.CanceledErrorCode, aerr.Code(); e != a {
+						return fmt.Errorf("expect %q, error code, got %q", e, a)
 					}
 				}
-				return "", true
+				return nil
+			},
+		},
+		1: {
+			objects: []BatchDeleteObject{
+				{
+					Object: &s3.DeleteObjectInput{
+						Key:    aws.String("1"),
+						Bucket: aws.String("bucket1"),
+					},
+				},
+				{
+					Object: &s3.DeleteObjectInput{
+						Key:    aws.String("2"),
+						Bucket: aws.String("bucket2"),
+					},
+				},
+				{
+					Object: &s3.DeleteObjectInput{
+						Key:    aws.String("3"),
+						Bucket: aws.String("bucket3"),
+					},
+				},
+				{
+					Object: &s3.DeleteObjectInput{
+						Key:    aws.String("4"),
+						Bucket: aws.String("bucket4"),
+					},
+				},
+			},
+			batchSize: 1,
+			expected:  4,
+			checkError: func(err error) error {
+				if err != nil {
+					return fmt.Errorf("Expect no error, got %v", err)
+				}
+				return nil
 			},
 		},
 	}
@@ -91,21 +127,20 @@ func TestBatchDeleteContext(t *testing.T) {
 
 	svc := &mockS3Client{S3: buildS3SvcClient(server.URL)}
 	for i, c := range cases {
-		ctx, done := context.WithCancel(c.ctx)
-		defer done()
-		if i == c.closeAt {
-			done()
+		ctx, cancel := context.WithCancel(context.Background())
+		defer cancel()
+		if c.earlyCancel {
+			cancel()
 		}
 
 		batcher := BatchDelete{
 			Client:    svc,
-			BatchSize: c.size,
+			BatchSize: c.batchSize,
 		}
 
 		err := batcher.Delete(ctx, &DeleteObjectsIterator{Objects: c.objects})
-
-		if msg, ok := c.errCheck(err); !ok {
-			t.Error(msg)
+		if terr := c.checkError(err); terr != nil {
+			t.Fatalf("%d, %s", i, terr)
 		}
 
 		if count != c.expected {
