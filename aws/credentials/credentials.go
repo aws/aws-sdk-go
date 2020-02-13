@@ -238,7 +238,8 @@ func (c *Credentials) GetWithContext(ctx Context) (Value, error) {
 	case res := <-resCh:
 		return res.Val.(Value), res.Err
 	case <-ctx.Done():
-		return Value{}, ctx.Err()
+		return Value{}, awserr.New("RequestCanceled",
+			"request context canceled", ctx.Err())
 	}
 }
 
