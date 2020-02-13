@@ -49,7 +49,6 @@
 package credentials
 
 import (
-	"context"
 	"fmt"
 	"sync/atomic"
 	"time"
@@ -224,7 +223,9 @@ func NewCredentials(provider Provider) *Credentials {
 //
 // If Credentials.Expire() was called the credentials Value will be force
 // expired, and the next call to Get() will cause them to be refreshed.
-func (c *Credentials) GetWithContext(ctx context.Context) (Value, error) {
+//
+// Passed in Context is equivalent to aws.Context, and context.Context.
+func (c *Credentials) GetWithContext(ctx Context) (Value, error) {
 	if curCreds := c.creds.Load(); !c.isExpired(curCreds) {
 		return curCreds.(Value), nil
 	}
@@ -264,7 +265,7 @@ func (c *Credentials) singleRetrieve() (interface{}, error) {
 // If Credentials.Expire() was called the credentials Value will be force
 // expired, and the next call to Get() will cause them to be refreshed.
 func (c *Credentials) Get() (Value, error) {
-	return c.GetWithContext(context.Background())
+	return c.GetWithContext(backgroundContext())
 }
 
 // Expire expires the credentials and forces them to be retrieved on the
