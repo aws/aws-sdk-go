@@ -1890,6 +1890,12 @@ func (s *DashEncryption) SetSpekeKeyProvider(v *SpekeKeyProvider) *DashEncryptio
 type DashManifest struct {
 	_ struct{} `type:"structure"`
 
+	// Determines the position of some tags in the Media Presentation Description
+	// (MPD). When set to FULL, elements like SegmentTemplate and ContentProtection
+	// are included in each Representation. When set to COMPACT, duplicate elements
+	// are combined and presented at the AdaptationSet level.
+	ManifestLayout *string `locationName:"manifestLayout" type:"string" enum:"ManifestLayout"`
+
 	// An optional string to include in the name of the manifest.
 	ManifestName *string `locationName:"manifestName" type:"string"`
 
@@ -1913,6 +1919,12 @@ func (s DashManifest) String() string {
 // GoString returns the string representation
 func (s DashManifest) GoString() string {
 	return s.String()
+}
+
+// SetManifestLayout sets the ManifestLayout field's value.
+func (s *DashManifest) SetManifestLayout(v string) *DashManifest {
+	s.ManifestLayout = &v
+	return s
 }
 
 // SetManifestName sets the ManifestName field's value.
@@ -1951,9 +1963,24 @@ type DashPackage struct {
 	// A Dynamic Adaptive Streaming over HTTP (DASH) encryption configuration.
 	Encryption *DashEncryption `locationName:"encryption" type:"structure"`
 
+	// A list of triggers that controls when the outgoing Dynamic Adaptive Streaming
+	// over HTTP (DASH)Media Presentation Description (MPD) will be partitioned
+	// into multiple periods. If empty, the content will notbe partitioned into
+	// more than one period. If the list contains "ADS", new periods will be created
+	// wherethe Asset contains SCTE-35 ad markers.
+	PeriodTriggers []*string `locationName:"periodTriggers" type:"list"`
+
 	// Duration (in seconds) of each segment. Actual segments will berounded to
 	// the nearest multiple of the source segment duration.
 	SegmentDurationSeconds *int64 `locationName:"segmentDurationSeconds" type:"integer"`
+
+	// Determines the type of SegmentTemplate included in the Media Presentation
+	// Description (MPD). When set to NUMBER_WITH_TIMELINE, a full timeline is presented
+	// in each SegmentTemplate, with $Number$ media URLs. When set to TIME_WITH_TIMELINE,
+	// a full timeline is presented in each SegmentTemplate, with $Time$ media URLs.
+	// When set to NUMBER_WITH_DURATION, only a duration is included in each SegmentTemplate,
+	// with $Number$ media URLs.
+	SegmentTemplateFormat *string `locationName:"segmentTemplateFormat" type:"string" enum:"SegmentTemplateFormat"`
 }
 
 // String returns the string representation
@@ -1996,9 +2023,21 @@ func (s *DashPackage) SetEncryption(v *DashEncryption) *DashPackage {
 	return s
 }
 
+// SetPeriodTriggers sets the PeriodTriggers field's value.
+func (s *DashPackage) SetPeriodTriggers(v []*string) *DashPackage {
+	s.PeriodTriggers = v
+	return s
+}
+
 // SetSegmentDurationSeconds sets the SegmentDurationSeconds field's value.
 func (s *DashPackage) SetSegmentDurationSeconds(v int64) *DashPackage {
 	s.SegmentDurationSeconds = &v
+	return s
+}
+
+// SetSegmentTemplateFormat sets the SegmentTemplateFormat field's value.
+func (s *DashPackage) SetSegmentTemplateFormat(v string) *DashPackage {
+	s.SegmentTemplateFormat = &v
 	return s
 }
 
@@ -3673,11 +3712,35 @@ const (
 )
 
 const (
+	// ManifestLayoutFull is a ManifestLayout enum value
+	ManifestLayoutFull = "FULL"
+
+	// ManifestLayoutCompact is a ManifestLayout enum value
+	ManifestLayoutCompact = "COMPACT"
+)
+
+const (
+	// PeriodTriggersElementAds is a PeriodTriggersElement enum value
+	PeriodTriggersElementAds = "ADS"
+)
+
+const (
 	// ProfileNone is a Profile enum value
 	ProfileNone = "NONE"
 
 	// ProfileHbbtv15 is a Profile enum value
 	ProfileHbbtv15 = "HBBTV_1_5"
+)
+
+const (
+	// SegmentTemplateFormatNumberWithTimeline is a SegmentTemplateFormat enum value
+	SegmentTemplateFormatNumberWithTimeline = "NUMBER_WITH_TIMELINE"
+
+	// SegmentTemplateFormatTimeWithTimeline is a SegmentTemplateFormat enum value
+	SegmentTemplateFormatTimeWithTimeline = "TIME_WITH_TIMELINE"
+
+	// SegmentTemplateFormatNumberWithDuration is a SegmentTemplateFormat enum value
+	SegmentTemplateFormatNumberWithDuration = "NUMBER_WITH_DURATION"
 )
 
 const (
