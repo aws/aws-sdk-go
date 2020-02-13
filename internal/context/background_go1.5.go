@@ -28,7 +28,7 @@ func (*emptyCtx) Value(key interface{}) interface{} {
 
 func (e *emptyCtx) String() string {
 	switch e {
-	case backgroundCtx:
+	case BackgroundCtx:
 		return "aws.BackgroundContext"
 	}
 	return "unknown empty Context"
