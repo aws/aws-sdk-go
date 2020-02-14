@@ -157,7 +157,8 @@ func (c *SecurityHub) BatchDisableStandardsRequest(input *BatchDisableStandardsI
 //
 // Disables the standards specified by the provided StandardsSubscriptionArns.
 //
-// For more information, see Standards Supported in AWS Security Hub (https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards.html).
+// For more information, see Compliance Standards (https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards.html)
+// section of the AWS Security Hub User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -247,11 +248,11 @@ func (c *SecurityHub) BatchEnableStandardsRequest(input *BatchEnableStandardsInp
 
 // BatchEnableStandards API operation for AWS SecurityHub.
 //
-// Enables the standards specified by the provided standardsArn.
+// Enables the standards specified by the provided StandardsArn. To obtain the
+// ARN for a standard, use the DescribeStandards operation.
 //
-// In this release, only CIS AWS Foundations standards are supported.
-//
-// For more information, see Standards Supported in AWS Security Hub (https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards.html).
+// For more information, see the Compliance Standards (https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards.html)
+// section of the AWS Security Hub User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1544,6 +1545,153 @@ func (c *SecurityHub) DescribeProductsPagesWithContext(ctx aws.Context, input *D
 	return p.Err()
 }
 
+const opDescribeStandards = "DescribeStandards"
+
+// DescribeStandardsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeStandards operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeStandards for more information on using the DescribeStandards
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeStandardsRequest method.
+//    req, resp := client.DescribeStandardsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DescribeStandards
+func (c *SecurityHub) DescribeStandardsRequest(input *DescribeStandardsInput) (req *request.Request, output *DescribeStandardsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeStandards,
+		HTTPMethod: "GET",
+		HTTPPath:   "/standards",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeStandardsInput{}
+	}
+
+	output = &DescribeStandardsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeStandards API operation for AWS SecurityHub.
+//
+// Returns a list of the available standards in Security Hub.
+//
+// For each standard, the results include the standard ARN, the name, and a
+// description.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation DescribeStandards for usage and error information.
+//
+// Returned Error Types:
+//   * InternalException
+//   Internal server error.
+//
+//   * InvalidInputException
+//   The request was rejected because you supplied an invalid or out-of-range
+//   value for an input parameter.
+//
+//   * InvalidAccessException
+//   AWS Security Hub isn't enabled for the account used to make this request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DescribeStandards
+func (c *SecurityHub) DescribeStandards(input *DescribeStandardsInput) (*DescribeStandardsOutput, error) {
+	req, out := c.DescribeStandardsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeStandardsWithContext is the same as DescribeStandards with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeStandards for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) DescribeStandardsWithContext(ctx aws.Context, input *DescribeStandardsInput, opts ...request.Option) (*DescribeStandardsOutput, error) {
+	req, out := c.DescribeStandardsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeStandardsPages iterates over the pages of a DescribeStandards operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeStandards method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeStandards operation.
+//    pageNum := 0
+//    err := client.DescribeStandardsPages(params,
+//        func(page *securityhub.DescribeStandardsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SecurityHub) DescribeStandardsPages(input *DescribeStandardsInput, fn func(*DescribeStandardsOutput, bool) bool) error {
+	return c.DescribeStandardsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeStandardsPagesWithContext same as DescribeStandardsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) DescribeStandardsPagesWithContext(ctx aws.Context, input *DescribeStandardsInput, fn func(*DescribeStandardsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeStandardsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeStandardsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeStandardsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeStandardsControls = "DescribeStandardsControls"
 
 // DescribeStandardsControlsRequest generates a "aws/request.Request" representing the
@@ -1575,6 +1723,12 @@ func (c *SecurityHub) DescribeStandardsControlsRequest(input *DescribeStandardsC
 		Name:       opDescribeStandardsControls,
 		HTTPMethod: "GET",
 		HTTPPath:   "/standards/controls/{StandardsSubscriptionArn+}",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1634,6 +1788,58 @@ func (c *SecurityHub) DescribeStandardsControlsWithContext(ctx aws.Context, inpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribeStandardsControlsPages iterates over the pages of a DescribeStandardsControls operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeStandardsControls method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeStandardsControls operation.
+//    pageNum := 0
+//    err := client.DescribeStandardsControlsPages(params,
+//        func(page *securityhub.DescribeStandardsControlsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SecurityHub) DescribeStandardsControlsPages(input *DescribeStandardsControlsInput, fn func(*DescribeStandardsControlsOutput, bool) bool) error {
+	return c.DescribeStandardsControlsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeStandardsControlsPagesWithContext same as DescribeStandardsControlsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) DescribeStandardsControlsPagesWithContext(ctx aws.Context, input *DescribeStandardsControlsInput, fn func(*DescribeStandardsControlsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeStandardsControlsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeStandardsControlsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeStandardsControlsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDisableImportFindingsForProduct = "DisableImportFindingsForProduct"
@@ -2169,13 +2375,18 @@ func (c *SecurityHub) EnableSecurityHubRequest(input *EnableSecurityHubInput) (r
 // Enables Security Hub for your account in the current Region or the Region
 // you specify in the request.
 //
-// Enabling Security Hub also enables the CIS AWS Foundations standard.
-//
 // When you enable Security Hub, you grant to Security Hub the permissions necessary
 // to gather findings from AWS Config, Amazon GuardDuty, Amazon Inspector, and
 // Amazon Macie.
 //
-// To learn more, see Setting Up AWS Security Hub (https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-settingup.html).
+// When you use the EnableSecurityHub operation to enable Security Hub, you
+// also automatically enable the CIS AWS Foundations standard. You do not enable
+// the Payment Card Industry Data Security Standard (PCI DSS) standard. To enable
+// a standard, use the BatchEnableStandards operation. To disable a standard,
+// use the BatchDisableStandards operation.
+//
+// To learn more, see Setting Up AWS Security Hub (https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-settingup.html)
+// in the AWS Security Hub User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2254,6 +2465,12 @@ func (c *SecurityHub) GetEnabledStandardsRequest(input *GetEnabledStandardsInput
 		Name:       opGetEnabledStandards,
 		HTTPMethod: "POST",
 		HTTPPath:   "/standards/get",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2311,6 +2528,58 @@ func (c *SecurityHub) GetEnabledStandardsWithContext(ctx aws.Context, input *Get
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// GetEnabledStandardsPages iterates over the pages of a GetEnabledStandards operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetEnabledStandards method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetEnabledStandards operation.
+//    pageNum := 0
+//    err := client.GetEnabledStandardsPages(params,
+//        func(page *securityhub.GetEnabledStandardsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SecurityHub) GetEnabledStandardsPages(input *GetEnabledStandardsInput, fn func(*GetEnabledStandardsOutput, bool) bool) error {
+	return c.GetEnabledStandardsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetEnabledStandardsPagesWithContext same as GetEnabledStandardsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) GetEnabledStandardsPagesWithContext(ctx aws.Context, input *GetEnabledStandardsInput, fn func(*GetEnabledStandardsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetEnabledStandardsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetEnabledStandardsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetEnabledStandardsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opGetFindings = "GetFindings"
@@ -3261,6 +3530,12 @@ func (c *SecurityHub) ListInvitationsRequest(input *ListInvitationsInput) (req *
 		Name:       opListInvitations,
 		HTTPMethod: "GET",
 		HTTPPath:   "/invitations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3321,6 +3596,58 @@ func (c *SecurityHub) ListInvitationsWithContext(ctx aws.Context, input *ListInv
 	return out, req.Send()
 }
 
+// ListInvitationsPages iterates over the pages of a ListInvitations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListInvitations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListInvitations operation.
+//    pageNum := 0
+//    err := client.ListInvitationsPages(params,
+//        func(page *securityhub.ListInvitationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SecurityHub) ListInvitationsPages(input *ListInvitationsInput, fn func(*ListInvitationsOutput, bool) bool) error {
+	return c.ListInvitationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListInvitationsPagesWithContext same as ListInvitationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) ListInvitationsPagesWithContext(ctx aws.Context, input *ListInvitationsInput, fn func(*ListInvitationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListInvitationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListInvitationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListInvitationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListMembers = "ListMembers"
 
 // ListMembersRequest generates a "aws/request.Request" representing the
@@ -3352,6 +3679,12 @@ func (c *SecurityHub) ListMembersRequest(input *ListMembersInput) (req *request.
 		Name:       opListMembers,
 		HTTPMethod: "GET",
 		HTTPPath:   "/members",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3410,6 +3743,58 @@ func (c *SecurityHub) ListMembersWithContext(ctx aws.Context, input *ListMembers
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListMembersPages iterates over the pages of a ListMembers operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListMembers method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListMembers operation.
+//    pageNum := 0
+//    err := client.ListMembersPages(params,
+//        func(page *securityhub.ListMembersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SecurityHub) ListMembersPages(input *ListMembersInput, fn func(*ListMembersOutput, bool) bool) error {
+	return c.ListMembersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListMembersPagesWithContext same as ListMembersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) ListMembersPagesWithContext(ctx aws.Context, input *ListMembersInput, fn func(*ListMembersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListMembersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListMembersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListMembersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListTagsForResource = "ListTagsForResource"
@@ -6871,8 +7256,8 @@ type AwsSecurityFinding struct {
 	AwsAccountId *string `type:"string" required:"true"`
 
 	// This data type is exclusive to findings that are generated as the result
-	// of a check run against a specific rule in a supported standard (for example,
-	// CIS AWS Foundations). Contains compliance-related finding details.
+	// of a check run against a specific rule in a supported standard, such as CIS
+	// AWS Foundations. Contains compliance-related finding details.
 	Compliance *Compliance `type:"structure"`
 
 	// A finding's confidence. Confidence is defined as the likelihood that a finding
@@ -7300,8 +7685,8 @@ type AwsSecurityFindingFilters struct {
 	CompanyName []*StringFilter `type:"list"`
 
 	// Exclusive to findings that are generated as the result of a check run against
-	// a specific rule in a supported standard (for example, CIS AWS Foundations).
-	// Contains compliance-related finding details.
+	// a specific rule in a supported standard, such as CIS AWS Foundations. Contains
+	// compliance-related finding details.
 	ComplianceStatus []*StringFilter `type:"list"`
 
 	// A finding's confidence. Confidence is defined as the likelihood that a finding
@@ -8429,10 +8814,6 @@ type BatchEnableStandardsInput struct {
 
 	// The list of standards compliance checks to enable.
 	//
-	// In this release, Security Hub supports only the CIS AWS Foundations standard.
-	//
-	// The ARN for the standard is arn:aws:securityhub:::ruleset/cis-aws-foundations-benchmark/v/1.2.0.
-	//
 	// StandardsSubscriptionRequests is a required field
 	StandardsSubscriptionRequests []*StandardsSubscriptionRequest `min:"1" type:"list" required:"true"`
 }
@@ -8598,8 +8979,8 @@ func (s *BatchImportFindingsOutput) SetSuccessCount(v int64) *BatchImportFinding
 }
 
 // Exclusive to findings that are generated as the result of a check run against
-// a specific rule in a supported standard (for example, CIS AWS Foundations).
-// Contains compliance-related finding details.
+// a specific rule in a supported standard, such as CIS AWS Foundations. Contains
+// compliance-related finding details.
 //
 // Values include the following:
 //
@@ -9314,7 +9695,11 @@ type DescribeActionTargetsInput struct {
 	// The maximum number of results to return.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// The token that is required for pagination.
+	// The token that is required for pagination. On your first call to the DescribeActionTargets
+	// operation, set the value of this parameter to NULL.
+	//
+	// For subsequent calls to the operation, to continue listing data, set the
+	// value of this parameter to the value returned from the previous response.
 	NextToken *string `type:"string"`
 }
 
@@ -9368,7 +9753,7 @@ type DescribeActionTargetsOutput struct {
 	// ActionTargets is a required field
 	ActionTargets []*ActionTarget `type:"list" required:"true"`
 
-	// The token that is required for pagination.
+	// The pagination token to use to request the next page of results.
 	NextToken *string `type:"string"`
 }
 
@@ -9455,7 +9840,11 @@ type DescribeProductsInput struct {
 	// The maximum number of results to return.
 	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
 
-	// The token that is required for pagination.
+	// The token that is required for pagination. On your first call to the DescribeProducts
+	// operation, set the value of this parameter to NULL.
+	//
+	// For subsequent calls to the operation, to continue listing data, set the
+	// value of this parameter to the value returned from the previous response.
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
@@ -9497,7 +9886,7 @@ func (s *DescribeProductsInput) SetNextToken(v string) *DescribeProductsInput {
 type DescribeProductsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token that is required for pagination.
+	// The pagination token to use to request the next page of results.
 	NextToken *string `type:"string"`
 
 	// A list of products, including details for each product.
@@ -9534,9 +9923,11 @@ type DescribeStandardsControlsInput struct {
 	// The maximum number of compliance standard controls to return.
 	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
 
-	// For requests to get the next page of results, the pagination token that was
-	// returned with the previous set of results. The initial request does not include
-	// a pagination token.
+	// The token that is required for pagination. On your first call to the DescribeStandardsControls
+	// operation, set the value of this parameter to NULL.
+	//
+	// For subsequent calls to the operation, to continue listing data, set the
+	// value of this parameter to the value returned from the previous response.
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 
 	// The ARN of a resource that represents your subscription to a supported standard.
@@ -9598,9 +9989,7 @@ type DescribeStandardsControlsOutput struct {
 	// A list of compliance standards controls.
 	Controls []*StandardsControl `type:"list"`
 
-	// If there are more compliance standards control remaining in the results,
-	// then this is the pagination token to use to request the next page of compliance
-	// standard controls.
+	// The pagination token to use to request the next page of results.
 	NextToken *string `type:"string"`
 }
 
@@ -9623,6 +10012,87 @@ func (s *DescribeStandardsControlsOutput) SetControls(v []*StandardsControl) *De
 // SetNextToken sets the NextToken field's value.
 func (s *DescribeStandardsControlsOutput) SetNextToken(v string) *DescribeStandardsControlsOutput {
 	s.NextToken = &v
+	return s
+}
+
+type DescribeStandardsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of standards to return.
+	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
+
+	// The token that is required for pagination. On your first call to the DescribeStandards
+	// operation, set the value of this parameter to NULL.
+	//
+	// For subsequent calls to the operation, to continue listing data, set the
+	// value of this parameter to the value returned from the previous response.
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeStandardsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeStandardsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeStandardsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeStandardsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeStandardsInput) SetMaxResults(v int64) *DescribeStandardsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeStandardsInput) SetNextToken(v string) *DescribeStandardsInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeStandardsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The pagination token to use to request the next page of results.
+	NextToken *string `type:"string"`
+
+	// A list of available standards.
+	Standards []*Standard `type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeStandardsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeStandardsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeStandardsOutput) SetNextToken(v string) *DescribeStandardsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStandards sets the Standards field's value.
+func (s *DescribeStandardsOutput) SetStandards(v []*Standard) *DescribeStandardsOutput {
+	s.Standards = v
 	return s
 }
 
@@ -9891,11 +10361,11 @@ type GetEnabledStandardsInput struct {
 	// The maximum number of results to return in the response.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// Paginates results. On your first call to the GetEnabledStandards operation,
-	// set the value of this parameter to NULL.
+	// The token that is required for pagination. On your first call to the GetEnabledStandards
+	// operation, set the value of this parameter to NULL.
 	//
-	// For subsequent calls to the operation, to continue listing data, set nextToken
-	// in the request to the value of nextToken from the previous response.
+	// For subsequent calls to the operation, to continue listing data, set the
+	// value of this parameter to the value returned from the previous response.
 	NextToken *string `type:"string"`
 
 	// The list of the standards subscription ARNs for the standards to retrieve.
@@ -9949,7 +10419,7 @@ func (s *GetEnabledStandardsInput) SetStandardsSubscriptionArns(v []*string) *Ge
 type GetEnabledStandardsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token that is required for pagination.
+	// The pagination token to use to request the next page of results.
 	NextToken *string `type:"string"`
 
 	// The list of StandardsSubscriptions objects that include information about
@@ -9989,11 +10459,11 @@ type GetFindingsInput struct {
 	// The maximum number of findings to return.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// Paginates results. On your first call to the GetFindings operation, set the
-	// value of this parameter to NULL.
+	// The token that is required for pagination. On your first call to the GetFindings
+	// operation, set the value of this parameter to NULL.
 	//
-	// For subsequent calls to the operation, to continue listing data, set nextToken
-	// in the request to the value of nextToken from the previous response.
+	// For subsequent calls to the operation, to continue listing data, set the
+	// value of this parameter to the value returned from the previous response.
 	NextToken *string `type:"string"`
 
 	// The finding attributes used to sort the list of returned findings.
@@ -10055,7 +10525,7 @@ type GetFindingsOutput struct {
 	// Findings is a required field
 	Findings []*AwsSecurityFinding `type:"list" required:"true"`
 
-	// The token that is required for pagination.
+	// The pagination token to use to request the next page of results.
 	NextToken *string `type:"string"`
 }
 
@@ -10156,10 +10626,11 @@ type GetInsightsInput struct {
 	// The maximum number of items to return in the response.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// Paginates results. On your first call to the GetInsights operation, set the
-	// value of this parameter to NULL. For subsequent calls to the operation, to
-	// continue listing data, set nextToken in the request to the value of nextToken
-	// from the previous response.
+	// The token that is required for pagination. On your first call to the GetInsights
+	// operation, set the value of this parameter to NULL.
+	//
+	// For subsequent calls to the operation, to continue listing data, set the
+	// value of this parameter to the value returned from the previous response.
 	NextToken *string `type:"string"`
 }
 
@@ -10212,7 +10683,7 @@ type GetInsightsOutput struct {
 	// Insights is a required field
 	Insights []*Insight `type:"list" required:"true"`
 
-	// The token that is required for pagination.
+	// The pagination token to use to request the next page of results.
 	NextToken *string `type:"string"`
 }
 
@@ -10973,10 +11444,11 @@ type ListEnabledProductsForImportInput struct {
 	// The maximum number of items to return in the response.
 	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
 
-	// Paginates results. On your first call to the ListEnabledProductsForImport
-	// operation, set the value of this parameter to NULL. For subsequent calls
-	// to the operation, to continue listing data, set nextToken in the request
-	// to the value of NextToken from the previous response.
+	// The token that is required for pagination. On your first call to the ListEnabledProductsForImport
+	// operation, set the value of this parameter to NULL.
+	//
+	// For subsequent calls to the operation, to continue listing data, set the
+	// value of this parameter to the value returned from the previous response.
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
@@ -11018,7 +11490,7 @@ func (s *ListEnabledProductsForImportInput) SetNextToken(v string) *ListEnabledP
 type ListEnabledProductsForImportOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token that is required for pagination.
+	// The pagination token to use to request the next page of results.
 	NextToken *string `type:"string"`
 
 	// The list of ARNs for the resources that represent your subscriptions to products.
@@ -11053,10 +11525,11 @@ type ListInvitationsInput struct {
 	// The maximum number of items to return in the response.
 	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
 
-	// Paginates results. On your first call to the ListInvitations operation, set
-	// the value of this parameter to NULL. For subsequent calls to the operation,
-	// to continue listing data, set nextToken in the request to the value of NextToken
-	// from the previous response.
+	// The token that is required for pagination. On your first call to the ListInvitations
+	// operation, set the value of this parameter to NULL.
+	//
+	// For subsequent calls to the operation, to continue listing data, set the
+	// value of this parameter to the value returned from the previous response.
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 }
 
@@ -11101,7 +11574,7 @@ type ListInvitationsOutput struct {
 	// The details of the invitations returned by the operation.
 	Invitations []*Invitation `type:"list"`
 
-	// The token that is required for pagination.
+	// The pagination token to use to request the next page of results.
 	NextToken *string `type:"string"`
 }
 
@@ -11133,19 +11606,20 @@ type ListMembersInput struct {
 	// The maximum number of items to return in the response.
 	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
 
-	// Paginates results. On your first call to the ListMembers operation, set the
-	// value of this parameter to NULL. For subsequent calls to the operation, to
-	// continue listing data, set nextToken in the request to the value of nextToken
-	// from the previous response.
+	// The token that is required for pagination. On your first call to the ListMembers
+	// operation, set the value of this parameter to NULL.
+	//
+	// For subsequent calls to the operation, to continue listing data, set the
+	// value of this parameter to the value returned from the previous response.
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 
 	// Specifies which member accounts to include in the response based on their
 	// relationship status with the master account. The default value is TRUE.
 	//
-	// If onlyAssociated is set to TRUE, the response includes member accounts whose
+	// If OnlyAssociated is set to TRUE, the response includes member accounts whose
 	// relationship status with the master is set to ENABLED or DISABLED.
 	//
-	// If onlyAssociated is set to FALSE, the response includes all existing member
+	// If OnlyAssociated is set to FALSE, the response includes all existing member
 	// accounts.
 	OnlyAssociated *bool `location:"querystring" locationName:"OnlyAssociated" type:"boolean"`
 }
@@ -11197,7 +11671,7 @@ type ListMembersOutput struct {
 	// Member details returned by the operation.
 	Members []*Member `type:"list"`
 
-	// The token that is required for pagination.
+	// The pagination token to use to request the next page of results.
 	NextToken *string `type:"string"`
 }
 
@@ -12608,6 +13082,48 @@ func (s *SortCriterion) SetSortOrder(v string) *SortCriterion {
 	return s
 }
 
+// Provides information about a specific standard.
+type Standard struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the standard.
+	Description *string `type:"string"`
+
+	// The name of the standard.
+	Name *string `type:"string"`
+
+	// The ARN of a standard.
+	StandardsArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s Standard) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Standard) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *Standard) SetDescription(v string) *Standard {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Standard) SetName(v string) *Standard {
+	s.Name = &v
+	return s
+}
+
+// SetStandardsArn sets the StandardsArn field's value.
+func (s *Standard) SetStandardsArn(v string) *Standard {
+	s.StandardsArn = &v
+	return s
+}
+
 // Details for an individual compliance standard control.
 type StandardsControl struct {
 	_ struct{} `type:"structure"`
@@ -12631,8 +13147,11 @@ type StandardsControl struct {
 	// The reason provided for the most recent change in status for the control.
 	DisabledReason *string `type:"string"`
 
+	// The list of requirements that are related to this control.
+	RelatedRequirements []*string `type:"list"`
+
 	// A link to remediation information for the control in the Security Hub user
-	// documentation
+	// documentation.
 	RemediationUrl *string `type:"string"`
 
 	// The severity of findings generated from this compliance standard control.
@@ -12688,6 +13207,12 @@ func (s *StandardsControl) SetDisabledReason(v string) *StandardsControl {
 	return s
 }
 
+// SetRelatedRequirements sets the RelatedRequirements field's value.
+func (s *StandardsControl) SetRelatedRequirements(v []*string) *StandardsControl {
+	s.RelatedRequirements = v
+	return s
+}
+
 // SetRemediationUrl sets the RemediationUrl field's value.
 func (s *StandardsControl) SetRemediationUrl(v string) *StandardsControl {
 	s.RemediationUrl = &v
@@ -12717,9 +13242,6 @@ type StandardsSubscription struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of a standard.
-	//
-	// In this release, Security Hub supports only the CIS AWS Foundations standard,
-	// which uses the following ARN: arn:aws:securityhub:::ruleset/cis-aws-foundations-benchmark/v/1.2.0.
 	//
 	// StandardsArn is a required field
 	StandardsArn *string `type:"string" required:"true"`
@@ -12778,11 +13300,8 @@ func (s *StandardsSubscription) SetStandardsSubscriptionArn(v string) *Standards
 type StandardsSubscriptionRequest struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the standard that you want to enable.
-	//
-	// In this release, Security Hub only supports the CIS AWS Foundations standard.
-	//
-	// Its ARN is arn:aws:securityhub:::ruleset/cis-aws-foundations-benchmark/v/1.2.0.
+	// The ARN of the standard that you want to enable. To view the list of available
+	// standards and their ARNs, use the DescribeStandards operation.
 	//
 	// StandardsArn is a required field
 	StandardsArn *string `type:"string" required:"true"`

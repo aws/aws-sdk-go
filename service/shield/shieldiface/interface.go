@@ -68,6 +68,10 @@ type ShieldAPI interface {
 	AssociateDRTRoleWithContext(aws.Context, *shield.AssociateDRTRoleInput, ...request.Option) (*shield.AssociateDRTRoleOutput, error)
 	AssociateDRTRoleRequest(*shield.AssociateDRTRoleInput) (*request.Request, *shield.AssociateDRTRoleOutput)
 
+	AssociateHealthCheck(*shield.AssociateHealthCheckInput) (*shield.AssociateHealthCheckOutput, error)
+	AssociateHealthCheckWithContext(aws.Context, *shield.AssociateHealthCheckInput, ...request.Option) (*shield.AssociateHealthCheckOutput, error)
+	AssociateHealthCheckRequest(*shield.AssociateHealthCheckInput) (*request.Request, *shield.AssociateHealthCheckOutput)
+
 	CreateProtection(*shield.CreateProtectionInput) (*shield.CreateProtectionOutput, error)
 	CreateProtectionWithContext(aws.Context, *shield.CreateProtectionInput, ...request.Option) (*shield.CreateProtectionOutput, error)
 	CreateProtectionRequest(*shield.CreateProtectionInput) (*request.Request, *shield.CreateProtectionOutput)
@@ -111,6 +115,10 @@ type ShieldAPI interface {
 	DisassociateDRTRole(*shield.DisassociateDRTRoleInput) (*shield.DisassociateDRTRoleOutput, error)
 	DisassociateDRTRoleWithContext(aws.Context, *shield.DisassociateDRTRoleInput, ...request.Option) (*shield.DisassociateDRTRoleOutput, error)
 	DisassociateDRTRoleRequest(*shield.DisassociateDRTRoleInput) (*request.Request, *shield.DisassociateDRTRoleOutput)
+
+	DisassociateHealthCheck(*shield.DisassociateHealthCheckInput) (*shield.DisassociateHealthCheckOutput, error)
+	DisassociateHealthCheckWithContext(aws.Context, *shield.DisassociateHealthCheckInput, ...request.Option) (*shield.DisassociateHealthCheckOutput, error)
+	DisassociateHealthCheckRequest(*shield.DisassociateHealthCheckInput) (*request.Request, *shield.DisassociateHealthCheckOutput)
 
 	GetSubscriptionState(*shield.GetSubscriptionStateInput) (*shield.GetSubscriptionStateOutput, error)
 	GetSubscriptionStateWithContext(aws.Context, *shield.GetSubscriptionStateInput, ...request.Option) (*shield.GetSubscriptionStateOutput, error)

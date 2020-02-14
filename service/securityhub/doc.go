@@ -5,11 +5,11 @@
 //
 // Security Hub provides you with a comprehensive view of the security state
 // of your AWS environment and resources. It also provides you with the compliance
-// status of your environment based on CIS AWS Foundations compliance checks.
-// Security Hub collects security data from AWS accounts, services, and integrated
-// third-party products and helps you analyze security trends in your environment
-// to identify the highest priority security issues. For more information about
-// Security Hub, see the AWS Security Hub User Guide (https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html) .
+// status of your environment based on controls from supported standards. Security
+// Hub collects security data from AWS accounts, services, and integrated third-party
+// products and helps you analyze security trends in your environment to identify
+// the highest priority security issues. For more information about Security
+// Hub, see the AWS Security Hub User Guide (https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html) .
 //
 // When you use operations in the Security Hub API, the requests are executed
 // only in the AWS Region that is currently active or in the specific AWS Region
@@ -32,7 +32,7 @@
 //    * UpdateFindings - RateLimit of 1 request per second. BurstLimit of 5
 //    requests per second.
 //
-//    * All other operations - RateLimit of 10 request per second. BurstLimit
+//    * All other operations - RateLimit of 10 requests per second. BurstLimit
 //    of 30 requests per second.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26 for more information on this service.

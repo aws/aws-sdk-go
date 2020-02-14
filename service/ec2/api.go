@@ -48608,6 +48608,13 @@ type CreateVolumeInput struct {
 	// fails.
 	KmsKeyId *string `type:"string"`
 
+	// Specifies whether to enable Amazon EBS Multi-Attach. If you enable Multi-Attach,
+	// you can attach the volume to up to 16 Nitro-based instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances)
+	// in the same Availability Zone. For more information, see Amazon EBS Multi-Attach
+	// (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volumes-multi.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	MultiAttachEnabled *bool `type:"boolean"`
+
 	// The Amazon Resource Name (ARN) of the Outpost.
 	OutpostArn *string `type:"string"`
 
@@ -48687,6 +48694,12 @@ func (s *CreateVolumeInput) SetIops(v int64) *CreateVolumeInput {
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *CreateVolumeInput) SetKmsKeyId(v string) *CreateVolumeInput {
 	s.KmsKeyId = &v
+	return s
+}
+
+// SetMultiAttachEnabled sets the MultiAttachEnabled field's value.
+func (s *CreateVolumeInput) SetMultiAttachEnabled(v bool) *CreateVolumeInput {
+	s.MultiAttachEnabled = &v
 	return s
 }
 
@@ -66031,6 +66044,9 @@ type DescribeVolumesInput struct {
 	//
 	//    * encrypted - Indicates whether the volume is encrypted (true | false)
 	//
+	//    * multi-attach-enabled - Indicates whether the volume is enabled for Multi-Attach
+	//    (true | false)
+	//
 	//    * fast-restored - Indicates whether the volume was created from a snapshot
 	//    that is enabled for fast snapshot restore (true | false).
 	//
@@ -66128,9 +66144,9 @@ type DescribeVolumesModificationsInput struct {
 	// it is UnauthorizedOperation.
 	DryRun *bool `type:"boolean"`
 
-	// The filters. Supported filters: volume-id, modification-state, target-size,
-	// target-iops, target-volume-type, original-size, original-iops, original-volume-type,
-	// start-time.
+	// The filters. Supported filters: volume-id | modification-state | target-size
+	// | target-iops | target-volume-type | original-size | original-iops | original-volume-type
+	// | start-time | originalMultiAttachEnabled | targetMultiAttachEnabled.
 	Filters []*Filter `locationName:"Filter" locationNameList:"Filter" type:"list"`
 
 	// The maximum number of results (up to a limit of 500) to be returned in a
@@ -68005,7 +68021,8 @@ type DetachVolumeInput struct {
 	// and repair procedures.
 	Force *bool `type:"boolean"`
 
-	// The ID of the instance.
+	// The ID of the instance. If you are detaching a Multi-Attach enabled volume,
+	// you must specify an instance ID.
 	InstanceId *string `type:"string"`
 
 	// The ID of the volume.
@@ -105515,6 +105532,9 @@ type Volume struct {
 	// key for the volume.
 	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
 
+	// Indicates whether Amazon EBS Multi-Attach is enabled.
+	MultiAttachEnabled *bool `locationName:"multiAttachEnabled" type:"boolean"`
+
 	// The Amazon Resource Name (ARN) of the Outpost.
 	OutpostArn *string `locationName:"outpostArn" type:"string"`
 
@@ -105588,6 +105608,12 @@ func (s *Volume) SetIops(v int64) *Volume {
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *Volume) SetKmsKeyId(v string) *Volume {
 	s.KmsKeyId = &v
+	return s
+}
+
+// SetMultiAttachEnabled sets the MultiAttachEnabled field's value.
+func (s *Volume) SetMultiAttachEnabled(v bool) *Volume {
+	s.MultiAttachEnabled = &v
 	return s
 }
 
@@ -105918,6 +105944,39 @@ func (s *VolumeStatusAction) SetEventType(v string) *VolumeStatusAction {
 	return s
 }
 
+// Information about the instances to which the volume is attached.
+type VolumeStatusAttachmentStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the attached instance.
+	InstanceId *string `locationName:"instanceId" type:"string"`
+
+	// The maximum IOPS supported by the attached instance.
+	IoPerformance *string `locationName:"ioPerformance" type:"string"`
+}
+
+// String returns the string representation
+func (s VolumeStatusAttachmentStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VolumeStatusAttachmentStatus) GoString() string {
+	return s.String()
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *VolumeStatusAttachmentStatus) SetInstanceId(v string) *VolumeStatusAttachmentStatus {
+	s.InstanceId = &v
+	return s
+}
+
+// SetIoPerformance sets the IoPerformance field's value.
+func (s *VolumeStatusAttachmentStatus) SetIoPerformance(v string) *VolumeStatusAttachmentStatus {
+	s.IoPerformance = &v
+	return s
+}
+
 // Describes a volume status.
 type VolumeStatusDetails struct {
 	_ struct{} `type:"structure"`
@@ -105964,6 +106023,9 @@ type VolumeStatusEvent struct {
 	// The type of this event.
 	EventType *string `locationName:"eventType" type:"string"`
 
+	// The ID of the instance associated with the event.
+	InstanceId *string `locationName:"instanceId" type:"string"`
+
 	// The latest end time of the event.
 	NotAfter *time.Time `locationName:"notAfter" type:"timestamp"`
 
@@ -105996,6 +106058,12 @@ func (s *VolumeStatusEvent) SetEventId(v string) *VolumeStatusEvent {
 // SetEventType sets the EventType field's value.
 func (s *VolumeStatusEvent) SetEventType(v string) *VolumeStatusEvent {
 	s.EventType = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *VolumeStatusEvent) SetInstanceId(v string) *VolumeStatusEvent {
+	s.InstanceId = &v
 	return s
 }
 
@@ -106051,6 +106119,9 @@ type VolumeStatusItem struct {
 	// The details of the operation.
 	Actions []*VolumeStatusAction `locationName:"actionsSet" locationNameList:"item" type:"list"`
 
+	// Information about the instances to which the volume is attached.
+	AttachmentStatuses []*VolumeStatusAttachmentStatus `locationName:"attachmentStatuses" locationNameList:"item" type:"list"`
+
 	// The Availability Zone of the volume.
 	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
 
@@ -106080,6 +106151,12 @@ func (s VolumeStatusItem) GoString() string {
 // SetActions sets the Actions field's value.
 func (s *VolumeStatusItem) SetActions(v []*VolumeStatusAction) *VolumeStatusItem {
 	s.Actions = v
+	return s
+}
+
+// SetAttachmentStatuses sets the AttachmentStatuses field's value.
+func (s *VolumeStatusItem) SetAttachmentStatuses(v []*VolumeStatusAttachmentStatus) *VolumeStatusItem {
+	s.AttachmentStatuses = v
 	return s
 }
 

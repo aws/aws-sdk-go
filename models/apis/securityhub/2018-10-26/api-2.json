@@ -245,6 +245,20 @@
         {"shape":"InvalidInputException"}
       ]
     },
+    "DescribeStandards":{
+      "name":"DescribeStandards",
+      "http":{
+        "method":"GET",
+        "requestUri":"/standards"
+      },
+      "input":{"shape":"DescribeStandardsRequest"},
+      "output":{"shape":"DescribeStandardsResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InvalidAccessException"}
+      ]
+    },
     "DescribeStandardsControls":{
       "name":"DescribeStandardsControls",
       "http":{
@@ -1671,6 +1685,28 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "DescribeStandardsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"NextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        }
+      }
+    },
+    "DescribeStandardsResponse":{
+      "type":"structure",
+      "members":{
+        "Standards":{"shape":"Standards"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "DisableImportFindingsForProductRequest":{
       "type":"structure",
       "required":["ProductSubscriptionArn"],
@@ -2432,6 +2468,18 @@
         "desc"
       ]
     },
+    "Standard":{
+      "type":"structure",
+      "members":{
+        "StandardsArn":{"shape":"NonEmptyString"},
+        "Name":{"shape":"NonEmptyString"},
+        "Description":{"shape":"NonEmptyString"}
+      }
+    },
+    "Standards":{
+      "type":"list",
+      "member":{"shape":"Standard"}
+    },
     "StandardsControl":{
       "type":"structure",
       "members":{
@@ -2443,7 +2491,8 @@
         "Title":{"shape":"NonEmptyString"},
         "Description":{"shape":"NonEmptyString"},
         "RemediationUrl":{"shape":"NonEmptyString"},
-        "SeverityRating":{"shape":"SeverityRating"}
+        "SeverityRating":{"shape":"SeverityRating"},
+        "RelatedRequirements":{"shape":"RelatedRequirementsList"}
       }
     },
     "StandardsControls":{
