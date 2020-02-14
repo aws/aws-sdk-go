@@ -1,6 +1,10 @@
+// +build go1.7
+
 package awsendpointdiscoverytest
 
 import (
+	"strconv"
+	"strings"
 	"sync"
 	"sync/atomic"
 	"testing"
@@ -16,7 +20,7 @@ func TestEndpointDiscovery(t *testing.T) {
 		EnableEndpointDiscovery: aws.Bool(true),
 	})
 	svc.Handlers.Clear()
-	svc.Handlers.Send.PushBack(mockSendDescEndpoint)
+	svc.Handlers.Send.PushBack(mockSendDescEndpoint("http://foo"))
 
 	var descCount int32
 	svc.Handlers.Complete.PushBack(func(r *request.Request) {
@@ -62,7 +66,7 @@ func TestAsyncEndpointDiscovery(t *testing.T) {
 			firstAsyncReq.Wait()
 		}
 	})
-	svc.Handlers.Send.PushBack(mockSendDescEndpoint)
+	svc.Handlers.Send.PushBack(mockSendDescEndpoint("http://foo"))
 
 	req, _ := svc.TestDiscoveryOptionalRequest(&TestDiscoveryOptionalInput{
 		Sdk: aws.String("sdk"),
@@ -106,6 +110,59 @@ func TestAsyncEndpointDiscovery(t *testing.T) {
 	}
 }
 
+func TestEndpointDiscovery_EndpointScheme(t *testing.T) {
+	cases := []struct {
+		address         string
+		expectedAddress string
+		err             string
+	}{
+		0: {
+			address:         "https://foo",
+			expectedAddress: "https://foo",
+		},
+		1: {
+			address:         "bar",
+			expectedAddress: "https://bar",
+		},
+	}
+
+	for i, c := range cases {
+		t.Run(strconv.Itoa(i), func(t *testing.T) {
+			svc := New(unit.Session, &aws.Config{
+				EnableEndpointDiscovery: aws.Bool(true),
+			})
+			svc.Handlers.Clear()
+			svc.Handlers.Send.PushBack(mockSendDescEndpoint(c.address))
+
+			for i := 0; i < 2; i++ {
+				req, _ := svc.TestDiscoveryIdentifiersRequiredRequest(
+					&TestDiscoveryIdentifiersRequiredInput{
+						Sdk: aws.String("sdk"),
+					},
+				)
+				req.Handlers.Send.PushBack(func(r *request.Request) {
+					if len(c.err) == 0 {
+						if e, a := c.expectedAddress, r.HTTPRequest.URL.String(); e != a {
+							t.Errorf("expected %q, but received %q", e, a)
+						}
+					}
+				})
+
+				err := req.Send()
+				if err != nil && len(c.err) == 0 {
+					t.Fatalf("expected no error, got %v", err)
+				} else if err == nil && len(c.err) > 0 {
+					t.Fatalf("expected error, got none")
+				} else if err != nil && len(c.err) > 0 {
+					if e, a := c.err, err.Error(); !strings.Contains(a, e) {
+						t.Fatalf("expected %v, got %v", c.err, err)
+					}
+				}
+			}
+		})
+	}
+}
+
 func removeHandlers(h request.Handlers, removeSendHandlers bool) request.Handlers {
 	if removeSendHandlers {
 		h.Send.Clear()
@@ -120,17 +177,19 @@ func removeHandlers(h request.Handlers, removeSendHandlers bool) request.Handler
 	return h
 }
 
-func mockSendDescEndpoint(r *request.Request) {
-	if r.Operation.Name != opDescribeEndpoints {
-		return
-	}
+func mockSendDescEndpoint(address string) func(r *request.Request) {
+	return func(r *request.Request) {
+		if r.Operation.Name != opDescribeEndpoints {
+			return
+		}
 
-	out, _ := r.Data.(*DescribeEndpointsOutput)
-	out.Endpoints = []*Endpoint{
-		{
-			Address:              aws.String("http://foo"),
-			CachePeriodInMinutes: aws.Int64(5),
-		},
+		out, _ := r.Data.(*DescribeEndpointsOutput)
+		out.Endpoints = []*Endpoint{
+			{
+				Address:              &address,
+				CachePeriodInMinutes: aws.Int64(5),
+			},
+		}
+		r.Data = out
 	}
-	r.Data = out
 }
