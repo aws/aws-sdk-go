@@ -3,6 +3,7 @@
 package awsendpointdiscoverytest
 
 import (
+	"fmt"
 	"net/url"
 	"time"
 
@@ -87,6 +88,7 @@ type discovererDescribeEndpoints struct {
 	EndpointCache *crr.EndpointCache
 	Params        map[string]*string
 	Key           string
+	req           *request.Request
 }
 
 func (d *discovererDescribeEndpoints) Discover() (crr.Endpoint, error) {
@@ -108,8 +110,15 @@ func (d *discovererDescribeEndpoints) Discover() (crr.Endpoint, error) {
 			continue
 		}
 
+		address := *e.Address
+		scheme := request.GetScheme(address)
+
+		if len(scheme) == 0 {
+			address = fmt.Sprintf("%s://%s", d.req.HTTPRequest.URL.Scheme, address)
+		}
+
 		cachedInMinutes := aws.Int64Value(e.CachePeriodInMinutes)
-		u, err := url.Parse(*e.Address)
+		u, err := url.Parse(address)
 		if err != nil {
 			continue
 		}
@@ -130,6 +139,7 @@ func (d *discovererDescribeEndpoints) Discover() (crr.Endpoint, error) {
 func (d *discovererDescribeEndpoints) Handler(r *request.Request) {
 	endpointKey := crr.BuildEndpointKey(d.Params)
 	d.Key = endpointKey
+	d.req = r
 
 	endpoint, err := d.EndpointCache.Get(d, endpointKey, d.Required)
 	if err != nil {
