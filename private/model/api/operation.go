@@ -472,7 +472,11 @@ func (d *discoverer{{ .ExportedName }}) Discover() (crr.Endpoint, error) {
 		}
 
 		address := *e.Address
-		scheme := request.GetScheme(address)
+
+		var scheme string
+		if idx := strings.Index(address, "://"); idx != -1 {
+			scheme = address[:idx]
+		}
 
 		if len(scheme) == 0 {
 			address = fmt.Sprintf("%s://%s", d.req.HTTPRequest.URL.Scheme, address)
@@ -524,6 +528,7 @@ func (o *Operation) GoCode() string {
 		o.API.AddImport("time")
 		o.API.AddImport("net/url")
 		o.API.AddImport("fmt")
+		o.API.AddImport("strings")
 	}
 
 	if o.Endpoint != nil && len(o.Endpoint.HostPrefix) != 0 {
