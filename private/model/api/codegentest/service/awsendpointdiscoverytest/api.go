@@ -5,6 +5,7 @@ package awsendpointdiscoverytest
 import (
 	"fmt"
 	"net/url"
+	"strings"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -111,7 +112,11 @@ func (d *discovererDescribeEndpoints) Discover() (crr.Endpoint, error) {
 		}
 
 		address := *e.Address
-		scheme := request.GetScheme(address)
+
+		var scheme string
+		if idx := strings.Index(address, "://"); idx != -1 {
+			scheme = address[:idx]
+		}
 
 		if len(scheme) == 0 {
 			address = fmt.Sprintf("%s://%s", d.req.HTTPRequest.URL.Scheme, address)
