@@ -210,7 +210,10 @@
                 }, 
                 "CdnConfiguration": {
                     "shape": "CdnConfiguration"
-                }, 
+                },
+                "PersonalizationThresholdSeconds" : {
+                    "shape" : "__integerMin1"
+                },
                 "DashConfiguration": {
                     "shape": "DashConfiguration"
                 }, 
@@ -318,7 +321,10 @@
                 }, 
                 "CdnConfiguration": {
                     "shape": "CdnConfiguration"
-                }, 
+                },
+                "PersonalizationThresholdSeconds" : {
+                    "shape" : "__integerMin1"
+                },
                 "DashConfiguration": {
                     "shape": "DashConfiguration"
                 }, 
@@ -371,7 +377,10 @@
                 }, 
                 "CdnConfiguration": {
                     "shape": "CdnConfiguration"
-                }, 
+                },
+                "PersonalizationThresholdSeconds" : {
+                    "shape" : "__integerMin1"
+                },
                 "DashConfiguration": {
                     "shape": "DashConfigurationForPut"
                 },
@@ -499,6 +508,10 @@
         }, 
         "__integer": {
             "type": "integer"
+        },
+        "__integerMin1": {
+            "type": "integer",
+            "min": 1
         }, 
         "__integerMin1Max100": {
             "max": 100, 

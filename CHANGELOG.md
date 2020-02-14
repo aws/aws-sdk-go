@@ -1,3 +1,19 @@
+Release v1.29.3 (2020-02-14)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * You can now enable Multi-Attach on Provisioned IOPS io1 volumes through the create-volume API.
+* `service/mediatailor`: Updates service API and documentation
+* `service/securityhub`: Updates service API, documentation, and paginators
+* `service/shield`: Updates service API and documentation
+  * This release adds support for associating Amazon Route 53 health checks to AWS Shield Advanced protected resources.
+
+### SDK Enhancements
+* `aws/credentials`: Add support for context when getting credentials.
+  * Adds `GetWithContext` to `Credentials` that allows canceling getting the credentials if the context is canceled, or times out. This fixes an issue where API operations would ignore their provide context when waiting for credentials to refresh.
+  * Related to [#3127](https://github.com/aws/aws-sdk-go/pull/3127).
+
 Release v1.29.2 (2020-02-13)
 ===
 

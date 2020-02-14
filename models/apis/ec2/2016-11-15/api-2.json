@@ -7632,7 +7632,8 @@
         "TagSpecifications":{
           "shape":"TagSpecificationList",
           "locationName":"TagSpecification"
-        }
+        },
+        "MultiAttachEnabled":{"shape":"Boolean"}
       }
     },
     "CreateVpcEndpointConnectionNotificationRequest":{
@@ -12074,7 +12075,7 @@
       ],
       "members":{
         "Attribute":{"shape":"VolumeAttributeName"},
-        "VolumeId":{"shape":"String"},
+        "VolumeId":{"shape":"VolumeId"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -28101,6 +28102,10 @@
         "FastRestored":{
           "shape":"Boolean",
           "locationName":"fastRestored"
+        },
+        "MultiAttachEnabled":{
+          "shape":"Boolean",
+          "locationName":"multiAttachEnabled"
         }
       }
     },
@@ -28171,7 +28176,7 @@
     "VolumeIdStringList":{
       "type":"list",
       "member":{
-        "shape":"String",
+        "shape":"VolumeId",
         "locationName":"VolumeId"
       }
     },
@@ -28290,6 +28295,26 @@
         "locationName":"item"
       }
     },
+    "VolumeStatusAttachmentStatus":{
+      "type":"structure",
+      "members":{
+        "IoPerformance":{
+          "shape":"String",
+          "locationName":"ioPerformance"
+        },
+        "InstanceId":{
+          "shape":"String",
+          "locationName":"instanceId"
+        }
+      }
+    },
+    "VolumeStatusAttachmentStatusList":{
+      "type":"list",
+      "member":{
+        "shape":"VolumeStatusAttachmentStatus",
+        "locationName":"item"
+      }
+    },
     "VolumeStatusDetails":{
       "type":"structure",
       "members":{
@@ -28332,6 +28357,10 @@
         "NotBefore":{
           "shape":"MillisecondDateTime",
           "locationName":"notBefore"
+        },
+        "InstanceId":{
+          "shape":"String",
+          "locationName":"instanceId"
         }
       }
     },
@@ -28389,6 +28418,10 @@
         "VolumeStatus":{
           "shape":"VolumeStatusInfo",
           "locationName":"volumeStatus"
+        },
+        "AttachmentStatuses":{
+          "shape":"VolumeStatusAttachmentStatusList",
+          "locationName":"attachmentStatuses"
         }
       }
     },
