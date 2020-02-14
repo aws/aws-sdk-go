@@ -444,6 +444,7 @@ type discoverer{{ .ExportedName }} struct {
 	EndpointCache *crr.EndpointCache
 	Params map[string]*string
 	Key string
+	req *request.Request
 }
 
 func (d *discoverer{{ .ExportedName }}) Discover() (crr.Endpoint, error) {
@@ -470,8 +471,19 @@ func (d *discoverer{{ .ExportedName }}) Discover() (crr.Endpoint, error) {
 			continue
 		}
 
+		address := *e.Address
+
+		var scheme string
+		if idx := strings.Index(address, "://"); idx != -1 {
+			scheme = address[:idx]
+		}
+
+		if len(scheme) == 0 {
+			address = fmt.Sprintf("%s://%s", d.req.HTTPRequest.URL.Scheme, address)
+		}
+
 		cachedInMinutes := aws.Int64Value(e.CachePeriodInMinutes)
-		u, err := url.Parse(*e.Address)
+		u, err := url.Parse(address)
 		if err != nil {
 			continue
 		}
@@ -492,6 +504,7 @@ func (d *discoverer{{ .ExportedName }}) Discover() (crr.Endpoint, error) {
 func (d *discoverer{{ .ExportedName }}) Handler(r *request.Request) {
 	endpointKey := crr.BuildEndpointKey(d.Params)
 	d.Key = endpointKey
+	d.req = r
 
 	endpoint, err := d.EndpointCache.Get(d, endpointKey, d.Required)
 	if err != nil {
@@ -514,6 +527,8 @@ func (o *Operation) GoCode() string {
 		o.API.AddSDKImport("aws/crr")
 		o.API.AddImport("time")
 		o.API.AddImport("net/url")
+		o.API.AddImport("fmt")
+		o.API.AddImport("strings")
 	}
 
 	if o.Endpoint != nil && len(o.Endpoint.HostPrefix) != 0 {
