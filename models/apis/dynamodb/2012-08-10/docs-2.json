@@ -1528,7 +1528,7 @@
     "PositiveIntegerObject": {
       "base": null,
       "refs": {
-        "ListGlobalTablesInput$Limit": "<p>The maximum number of table names to return.</p>",
+        "ListGlobalTablesInput$Limit": "<p>The maximum number of table names to return, if the parameter is not specified DynamoDB defaults to 100.</p> <p>If the number of global tables DynamoDB finds reaches this limit, it stops the operation and returns the table names collected up to that point, with a table name in the <code>LastEvaluatedGlobalTableName</code> to apply in a subsequent operation to the <code>ExclusiveStartGlobalTableName</code> parameter.</p>",
         "QueryInput$Limit": "<p>The maximum number of items to evaluate (not necessarily the number of matching items). If DynamoDB processes the number of items up to the limit while processing the results, it stops the operation and returns the matching values up to that point, and a key in <code>LastEvaluatedKey</code> to apply in a subsequent operation, so that you can pick up where you left off. Also, if the processed dataset size exceeds 1 MB before DynamoDB reaches this limit, it stops the operation and returns the matching values up to the limit, and a key in <code>LastEvaluatedKey</code> to apply in a subsequent operation to continue the operation. For more information, see <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html\">Query and Scan</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>",
         "ScanInput$Limit": "<p>The maximum number of items to evaluate (not necessarily the number of matching items). If DynamoDB processes the number of items up to the limit while processing the results, it stops the operation and returns the matching values up to that point, and a key in <code>LastEvaluatedKey</code> to apply in a subsequent operation, so that you can pick up where you left off. Also, if the processed dataset size exceeds 1 MB before DynamoDB reaches this limit, it stops the operation and returns the matching values up to the limit, and a key in <code>LastEvaluatedKey</code> to apply in a subsequent operation to continue the operation. For more information, see <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html\">Working with Queries</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>"
       }
@@ -1993,6 +1993,8 @@
       "base": "<p>Represents the settings used to enable server-side encryption.</p>",
       "refs": {
         "CreateTableInput$SSESpecification": "<p>Represents the settings used to enable server-side encryption.</p>",
+        "RestoreTableFromBackupInput$SSESpecificationOverride": "<p>The new server-side encryption settings for the restored table.</p>",
+        "RestoreTableToPointInTimeInput$SSESpecificationOverride": "<p>The new server-side encryption settings for the restored table.</p>",
         "UpdateTableInput$SSESpecification": "<p>The new server-side encryption settings for the specified table.</p>"
       }
     },
@@ -2125,6 +2127,7 @@
       "refs": {
         "BackupSummary$TableArn": "<p>ARN associated with the table.</p>",
         "RestoreSummary$SourceTableArn": "<p>The ARN of the source table of the backup that is being restored.</p>",
+        "RestoreTableToPointInTimeInput$SourceTableArn": "<p>The DynamoDB table that will be restored. This value is an Amazon Resource Name (ARN).</p>",
         "SourceTableDetails$TableArn": "<p>ARN of the table for which backup was created. </p>"
       }
     },
