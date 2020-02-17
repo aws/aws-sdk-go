@@ -2494,7 +2494,8 @@
         "BillingModeOverride":{"shape":"BillingMode"},
         "GlobalSecondaryIndexOverride":{"shape":"GlobalSecondaryIndexList"},
         "LocalSecondaryIndexOverride":{"shape":"LocalSecondaryIndexList"},
-        "ProvisionedThroughputOverride":{"shape":"ProvisionedThroughput"}
+        "ProvisionedThroughputOverride":{"shape":"ProvisionedThroughput"},
+        "SSESpecificationOverride":{"shape":"SSESpecification"}
       }
     },
     "RestoreTableFromBackupOutput":{
@@ -2505,11 +2506,9 @@
     },
     "RestoreTableToPointInTimeInput":{
       "type":"structure",
-      "required":[
-        "SourceTableName",
-        "TargetTableName"
-      ],
+      "required":["TargetTableName"],
       "members":{
+        "SourceTableArn":{"shape":"TableArn"},
         "SourceTableName":{"shape":"TableName"},
         "TargetTableName":{"shape":"TableName"},
         "UseLatestRestorableTime":{"shape":"BooleanObject"},
@@ -2517,7 +2516,8 @@
         "BillingModeOverride":{"shape":"BillingMode"},
         "GlobalSecondaryIndexOverride":{"shape":"GlobalSecondaryIndexList"},
         "LocalSecondaryIndexOverride":{"shape":"LocalSecondaryIndexList"},
-        "ProvisionedThroughputOverride":{"shape":"ProvisionedThroughput"}
+        "ProvisionedThroughputOverride":{"shape":"ProvisionedThroughput"},
+        "SSESpecificationOverride":{"shape":"SSESpecification"}
       }
     },
     "RestoreTableToPointInTimeOutput":{
