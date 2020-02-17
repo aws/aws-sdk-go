@@ -180,6 +180,13 @@ type RekognitionAPI interface {
 	GetPersonTrackingPages(*rekognition.GetPersonTrackingInput, func(*rekognition.GetPersonTrackingOutput, bool) bool) error
 	GetPersonTrackingPagesWithContext(aws.Context, *rekognition.GetPersonTrackingInput, func(*rekognition.GetPersonTrackingOutput, bool) bool, ...request.Option) error
 
+	GetTextDetection(*rekognition.GetTextDetectionInput) (*rekognition.GetTextDetectionOutput, error)
+	GetTextDetectionWithContext(aws.Context, *rekognition.GetTextDetectionInput, ...request.Option) (*rekognition.GetTextDetectionOutput, error)
+	GetTextDetectionRequest(*rekognition.GetTextDetectionInput) (*request.Request, *rekognition.GetTextDetectionOutput)
+
+	GetTextDetectionPages(*rekognition.GetTextDetectionInput, func(*rekognition.GetTextDetectionOutput, bool) bool) error
+	GetTextDetectionPagesWithContext(aws.Context, *rekognition.GetTextDetectionInput, func(*rekognition.GetTextDetectionOutput, bool) bool, ...request.Option) error
+
 	IndexFaces(*rekognition.IndexFacesInput) (*rekognition.IndexFacesOutput, error)
 	IndexFacesWithContext(aws.Context, *rekognition.IndexFacesInput, ...request.Option) (*rekognition.IndexFacesOutput, error)
 	IndexFacesRequest(*rekognition.IndexFacesInput) (*request.Request, *rekognition.IndexFacesOutput)
@@ -248,6 +255,10 @@ type RekognitionAPI interface {
 	StartStreamProcessor(*rekognition.StartStreamProcessorInput) (*rekognition.StartStreamProcessorOutput, error)
 	StartStreamProcessorWithContext(aws.Context, *rekognition.StartStreamProcessorInput, ...request.Option) (*rekognition.StartStreamProcessorOutput, error)
 	StartStreamProcessorRequest(*rekognition.StartStreamProcessorInput) (*request.Request, *rekognition.StartStreamProcessorOutput)
+
+	StartTextDetection(*rekognition.StartTextDetectionInput) (*rekognition.StartTextDetectionOutput, error)
+	StartTextDetectionWithContext(aws.Context, *rekognition.StartTextDetectionInput, ...request.Option) (*rekognition.StartTextDetectionOutput, error)
+	StartTextDetectionRequest(*rekognition.StartTextDetectionInput) (*request.Request, *rekognition.StartTextDetectionOutput)
 
 	StopProjectVersion(*rekognition.StopProjectVersionInput) (*rekognition.StopProjectVersionOutput, error)
 	StopProjectVersionWithContext(aws.Context, *rekognition.StopProjectVersionInput, ...request.Option) (*rekognition.StopProjectVersionOutput, error)

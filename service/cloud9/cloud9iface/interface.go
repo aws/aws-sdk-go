@@ -98,6 +98,18 @@ type Cloud9API interface {
 	ListEnvironmentsPages(*cloud9.ListEnvironmentsInput, func(*cloud9.ListEnvironmentsOutput, bool) bool) error
 	ListEnvironmentsPagesWithContext(aws.Context, *cloud9.ListEnvironmentsInput, func(*cloud9.ListEnvironmentsOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*cloud9.ListTagsForResourceInput) (*cloud9.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *cloud9.ListTagsForResourceInput, ...request.Option) (*cloud9.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*cloud9.ListTagsForResourceInput) (*request.Request, *cloud9.ListTagsForResourceOutput)
+
+	TagResource(*cloud9.TagResourceInput) (*cloud9.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *cloud9.TagResourceInput, ...request.Option) (*cloud9.TagResourceOutput, error)
+	TagResourceRequest(*cloud9.TagResourceInput) (*request.Request, *cloud9.TagResourceOutput)
+
+	UntagResource(*cloud9.UntagResourceInput) (*cloud9.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *cloud9.UntagResourceInput, ...request.Option) (*cloud9.UntagResourceOutput, error)
+	UntagResourceRequest(*cloud9.UntagResourceInput) (*request.Request, *cloud9.UntagResourceOutput)
+
 	UpdateEnvironment(*cloud9.UpdateEnvironmentInput) (*cloud9.UpdateEnvironmentOutput, error)
 	UpdateEnvironmentWithContext(aws.Context, *cloud9.UpdateEnvironmentInput, ...request.Option) (*cloud9.UpdateEnvironmentOutput, error)
 	UpdateEnvironmentRequest(*cloud9.UpdateEnvironmentInput) (*request.Request, *cloud9.UpdateEnvironmentOutput)

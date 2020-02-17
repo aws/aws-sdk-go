@@ -1613,6 +1613,9 @@ func (c *EC2) AssociateVpcCidrBlockRequest(input *AssociateVpcCidrBlockInput) (r
 // (BYOIP (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html)).
 // The IPv6 CIDR block size is fixed at /56.
 //
+// You must specify one of the following in the request: an IPv4 CIDR block,
+// an IPv6 pool, or an Amazon-provided IPv6 CIDR block.
+//
 // For more information about associating CIDR blocks with your VPC and applicable
 // restrictions, see VPC and Subnet Sizing (https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#VPC_Sizing)
 // in the Amazon Virtual Private Cloud User Guide.
@@ -68754,6 +68757,8 @@ func (s *DisableTransitGatewayRouteTablePropagationOutput) SetPropagation(v *Tra
 type DisableVgwRoutePropagationInput struct {
 	_ struct{} `type:"structure"`
 
+	DryRun *bool `type:"boolean"`
+
 	// The ID of the virtual private gateway.
 	//
 	// GatewayId is a required field
@@ -68789,6 +68794,12 @@ func (s *DisableVgwRoutePropagationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DisableVgwRoutePropagationInput) SetDryRun(v bool) *DisableVgwRoutePropagationInput {
+	s.DryRun = &v
+	return s
 }
 
 // SetGatewayId sets the GatewayId field's value.
@@ -70941,6 +70952,8 @@ func (s *EnableTransitGatewayRouteTablePropagationOutput) SetPropagation(v *Tran
 type EnableVgwRoutePropagationInput struct {
 	_ struct{} `type:"structure"`
 
+	DryRun *bool `type:"boolean"`
+
 	// The ID of the virtual private gateway that is attached to a VPC. The virtual
 	// private gateway must be attached to the same VPC that the routing tables
 	// are associated with.
@@ -70979,6 +70992,12 @@ func (s *EnableVgwRoutePropagationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *EnableVgwRoutePropagationInput) SetDryRun(v bool) *EnableVgwRoutePropagationInput {
+	s.DryRun = &v
+	return s
 }
 
 // SetGatewayId sets the GatewayId field's value.

@@ -1620,9 +1620,9 @@ func (c *Rekognition) DetectFacesRequest(input *DetectFacesInput) (req *request.
 // faces with lower confidence.
 //
 // You pass the input image either as base64-encoded image bytes or as a reference
-// to an image in an Amazon S3 bucket. If you use the to call Amazon Rekognition
-// operations, passing image bytes is not supported. The image must be either
-// a PNG or JPEG formatted file.
+// to an image in an Amazon S3 bucket. If you use the AWS CLI to call Amazon
+// Rekognition operations, passing image bytes is not supported. The image must
+// be either a PNG or JPEG formatted file.
 //
 // This is a stateless API operation. That is, the operation does not persist
 // any data.
@@ -3323,6 +3323,186 @@ func (c *Rekognition) GetPersonTrackingPagesWithContext(ctx aws.Context, input *
 	return p.Err()
 }
 
+const opGetTextDetection = "GetTextDetection"
+
+// GetTextDetectionRequest generates a "aws/request.Request" representing the
+// client's request for the GetTextDetection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetTextDetection for more information on using the GetTextDetection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetTextDetectionRequest method.
+//    req, resp := client.GetTextDetectionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Rekognition) GetTextDetectionRequest(input *GetTextDetectionInput) (req *request.Request, output *GetTextDetectionOutput) {
+	op := &request.Operation{
+		Name:       opGetTextDetection,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetTextDetectionInput{}
+	}
+
+	output = &GetTextDetectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetTextDetection API operation for Amazon Rekognition.
+//
+// Gets the text detection results of a Amazon Rekognition Video analysis started
+// by StartTextDetection.
+//
+// Text detection with Amazon Rekognition Video is an asynchronous operation.
+// You start text detection by calling StartTextDetection which returns a job
+// identifier (JobId) When the text detection operation finishes, Amazon Rekognition
+// publishes a completion status to the Amazon Simple Notification Service topic
+// registered in the initial call to StartTextDetection. To get the results
+// of the text detection operation, first check that the status value published
+// to the Amazon SNS topic is SUCCEEDED. if so, call GetTextDetection and pass
+// the job identifier (JobId) from the initial call of StartLabelDetection.
+//
+// GetTextDetection returns an array of detected text (TextDetections) sorted
+// by the time the text was detected, up to 50 words per frame of video.
+//
+// Each element of the array includes the detected text, the precentage confidence
+// in the acuracy of the detected text, the time the text was detected, bounding
+// box information for where the text was located, and unique identifiers for
+// words and their lines.
+//
+// Use MaxResults parameter to limit the number of text detections returned.
+// If there are more results than specified in MaxResults, the value of NextToken
+// in the operation response contains a pagination token for getting the next
+// set of results. To get the next page of results, call GetTextDetection and
+// populate the NextToken request parameter with the token value returned from
+// the previous call to GetTextDetection.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation GetTextDetection for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You are not authorized to perform the action.
+//
+//   * InternalServerError
+//   Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   * InvalidParameterException
+//   Input parameter violated a constraint. Validate your parameter before calling
+//   the API operation again.
+//
+//   * InvalidPaginationTokenException
+//   Pagination token in the request is not valid.
+//
+//   * ProvisionedThroughputExceededException
+//   The number of requests exceeded your throughput limit. If you want to increase
+//   this limit, contact Amazon Rekognition.
+//
+//   * ResourceNotFoundException
+//   The collection specified in the request cannot be found.
+//
+//   * ThrottlingException
+//   Amazon Rekognition is temporarily unable to process the request. Try your
+//   call again.
+//
+func (c *Rekognition) GetTextDetection(input *GetTextDetectionInput) (*GetTextDetectionOutput, error) {
+	req, out := c.GetTextDetectionRequest(input)
+	return out, req.Send()
+}
+
+// GetTextDetectionWithContext is the same as GetTextDetection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetTextDetection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) GetTextDetectionWithContext(ctx aws.Context, input *GetTextDetectionInput, opts ...request.Option) (*GetTextDetectionOutput, error) {
+	req, out := c.GetTextDetectionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetTextDetectionPages iterates over the pages of a GetTextDetection operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetTextDetection method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetTextDetection operation.
+//    pageNum := 0
+//    err := client.GetTextDetectionPages(params,
+//        func(page *rekognition.GetTextDetectionOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Rekognition) GetTextDetectionPages(input *GetTextDetectionInput, fn func(*GetTextDetectionOutput, bool) bool) error {
+	return c.GetTextDetectionPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetTextDetectionPagesWithContext same as GetTextDetectionPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) GetTextDetectionPagesWithContext(ctx aws.Context, input *GetTextDetectionInput, fn func(*GetTextDetectionOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetTextDetectionInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetTextDetectionRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetTextDetectionOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opIndexFaces = "IndexFaces"
 
 // IndexFacesRequest generates a "aws/request.Request" representing the
@@ -4471,7 +4651,7 @@ func (c *Rekognition) StartCelebrityRecognitionRequest(input *StartCelebrityReco
 //
 //   * VideoTooLargeException
 //   The file size or duration of the supplied media is too large. The maximum
-//   file size is 8GB. The maximum duration is 2 hours.
+//   file size is 10GB. The maximum duration is 6 hours.
 //
 //   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
@@ -4595,7 +4775,7 @@ func (c *Rekognition) StartContentModerationRequest(input *StartContentModeratio
 //
 //   * VideoTooLargeException
 //   The file size or duration of the supplied media is too large. The maximum
-//   file size is 8GB. The maximum duration is 2 hours.
+//   file size is 10GB. The maximum duration is 6 hours.
 //
 //   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
@@ -4718,7 +4898,7 @@ func (c *Rekognition) StartFaceDetectionRequest(input *StartFaceDetectionInput) 
 //
 //   * VideoTooLargeException
 //   The file size or duration of the supplied media is too large. The maximum
-//   file size is 8GB. The maximum duration is 2 hours.
+//   file size is 10GB. The maximum duration is 6 hours.
 //
 //   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
@@ -4839,7 +5019,7 @@ func (c *Rekognition) StartFaceSearchRequest(input *StartFaceSearchInput) (req *
 //
 //   * VideoTooLargeException
 //   The file size or duration of the supplied media is too large. The maximum
-//   file size is 8GB. The maximum duration is 2 hours.
+//   file size is 10GB. The maximum duration is 6 hours.
 //
 //   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
@@ -4970,7 +5150,7 @@ func (c *Rekognition) StartLabelDetectionRequest(input *StartLabelDetectionInput
 //
 //   * VideoTooLargeException
 //   The file size or duration of the supplied media is too large. The maximum
-//   file size is 8GB. The maximum duration is 2 hours.
+//   file size is 10GB. The maximum duration is 6 hours.
 //
 //   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
@@ -5092,7 +5272,7 @@ func (c *Rekognition) StartPersonTrackingRequest(input *StartPersonTrackingInput
 //
 //   * VideoTooLargeException
 //   The file size or duration of the supplied media is too large. The maximum
-//   file size is 8GB. The maximum duration is 2 hours.
+//   file size is 10GB. The maximum duration is 6 hours.
 //
 //   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
@@ -5337,6 +5517,128 @@ func (c *Rekognition) StartStreamProcessor(input *StartStreamProcessorInput) (*S
 // for more information on using Contexts.
 func (c *Rekognition) StartStreamProcessorWithContext(ctx aws.Context, input *StartStreamProcessorInput, opts ...request.Option) (*StartStreamProcessorOutput, error) {
 	req, out := c.StartStreamProcessorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartTextDetection = "StartTextDetection"
+
+// StartTextDetectionRequest generates a "aws/request.Request" representing the
+// client's request for the StartTextDetection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartTextDetection for more information on using the StartTextDetection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartTextDetectionRequest method.
+//    req, resp := client.StartTextDetectionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Rekognition) StartTextDetectionRequest(input *StartTextDetectionInput) (req *request.Request, output *StartTextDetectionOutput) {
+	op := &request.Operation{
+		Name:       opStartTextDetection,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartTextDetectionInput{}
+	}
+
+	output = &StartTextDetectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartTextDetection API operation for Amazon Rekognition.
+//
+// Starts asynchronous detection of text in a stored video.
+//
+// Amazon Rekognition Video can detect text in a video stored in an Amazon S3
+// bucket. Use Video to specify the bucket name and the filename of the video.
+// StartTextDetection returns a job identifier (JobId) which you use to get
+// the results of the operation. When text detection is finished, Amazon Rekognition
+// Video publishes a completion status to the Amazon Simple Notification Service
+// topic that you specify in NotificationChannel.
+//
+// To get the results of the text detection operation, first check that the
+// status value published to the Amazon SNS topic is SUCCEEDED. if so, call
+// GetTextDetection and pass the job identifier (JobId) from the initial call
+// to StartTextDetection.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation StartTextDetection for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You are not authorized to perform the action.
+//
+//   * IdempotentParameterMismatchException
+//   A ClientRequestToken input parameter was reused with an operation, but at
+//   least one of the other input parameters is different from the previous call
+//   to the operation.
+//
+//   * InvalidParameterException
+//   Input parameter violated a constraint. Validate your parameter before calling
+//   the API operation again.
+//
+//   * InvalidS3ObjectException
+//   Amazon Rekognition is unable to access the S3 object specified in the request.
+//
+//   * InternalServerError
+//   Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   * VideoTooLargeException
+//   The file size or duration of the supplied media is too large. The maximum
+//   file size is 10GB. The maximum duration is 6 hours.
+//
+//   * ProvisionedThroughputExceededException
+//   The number of requests exceeded your throughput limit. If you want to increase
+//   this limit, contact Amazon Rekognition.
+//
+//   * LimitExceededException
+//   An Amazon Rekognition service limit was exceeded. For example, if you start
+//   too many Amazon Rekognition Video jobs concurrently, calls to start operations
+//   (StartLabelDetection, for example) will raise a LimitExceededException exception
+//   (HTTP status code: 400) until the number of concurrently running jobs is
+//   below the Amazon Rekognition service limit.
+//
+//   * ThrottlingException
+//   Amazon Rekognition is temporarily unable to process the request. Try your
+//   call again.
+//
+func (c *Rekognition) StartTextDetection(input *StartTextDetectionInput) (*StartTextDetectionOutput, error) {
+	req, out := c.StartTextDetectionRequest(input)
+	return out, req.Send()
+}
+
+// StartTextDetectionWithContext is the same as StartTextDetection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartTextDetection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) StartTextDetectionWithContext(ctx aws.Context, input *StartTextDetectionInput, opts ...request.Option) (*StartTextDetectionOutput, error) {
+	req, out := c.StartTextDetectionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7904,8 +8206,50 @@ func (s *DetectModerationLabelsOutput) SetModerationModelVersion(v string) *Dete
 	return s
 }
 
+// A set of optional parameters that you can use to set the criteria that the
+// text must meet to be included in your response. WordFilter looks at a word’s
+// height, width, and minimum confidence. RegionOfInterest lets you set a specific
+// region of the image to look for text in.
+type DetectTextFilters struct {
+	_ struct{} `type:"structure"`
+
+	// A Filter focusing on a certain area of the image. Uses a BoundingBox object
+	// to set the region of the image.
+	RegionsOfInterest []*RegionOfInterest `type:"list"`
+
+	// A set of parameters that allow you to filter out certain results from your
+	// returned results.
+	WordFilter *DetectionFilter `type:"structure"`
+}
+
+// String returns the string representation
+func (s DetectTextFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DetectTextFilters) GoString() string {
+	return s.String()
+}
+
+// SetRegionsOfInterest sets the RegionsOfInterest field's value.
+func (s *DetectTextFilters) SetRegionsOfInterest(v []*RegionOfInterest) *DetectTextFilters {
+	s.RegionsOfInterest = v
+	return s
+}
+
+// SetWordFilter sets the WordFilter field's value.
+func (s *DetectTextFilters) SetWordFilter(v *DetectionFilter) *DetectTextFilters {
+	s.WordFilter = v
+	return s
+}
+
 type DetectTextInput struct {
 	_ struct{} `type:"structure"`
+
+	// Optional parameters that let you set the criteria that the text must meet
+	// to be included in your response.
+	Filters *DetectTextFilters `type:"structure"`
 
 	// The input image as base64-encoded bytes or an Amazon S3 object. If you use
 	// the AWS CLI to call Amazon Rekognition operations, you can't pass image bytes.
@@ -7946,6 +8290,12 @@ func (s *DetectTextInput) Validate() error {
 	return nil
 }
 
+// SetFilters sets the Filters field's value.
+func (s *DetectTextInput) SetFilters(v *DetectTextFilters) *DetectTextInput {
+	s.Filters = v
+	return s
+}
+
 // SetImage sets the Image field's value.
 func (s *DetectTextInput) SetImage(v *Image) *DetectTextInput {
 	s.Image = v
@@ -7957,6 +8307,9 @@ type DetectTextOutput struct {
 
 	// An array of text that was detected in the input image.
 	TextDetections []*TextDetection `type:"list"`
+
+	// The model version used to detect text.
+	TextModelVersion *string `type:"string"`
 }
 
 // String returns the string representation
@@ -7972,6 +8325,61 @@ func (s DetectTextOutput) GoString() string {
 // SetTextDetections sets the TextDetections field's value.
 func (s *DetectTextOutput) SetTextDetections(v []*TextDetection) *DetectTextOutput {
 	s.TextDetections = v
+	return s
+}
+
+// SetTextModelVersion sets the TextModelVersion field's value.
+func (s *DetectTextOutput) SetTextModelVersion(v string) *DetectTextOutput {
+	s.TextModelVersion = &v
+	return s
+}
+
+// A set of parameters that allow you to filter out certain results from your
+// returned results.
+type DetectionFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Sets the minimum height of the word bounding box. Words with bounding box
+	// heights lesser than this value will be excluded from the result. Value is
+	// relative to the video frame height.
+	MinBoundingBoxHeight *float64 `type:"float"`
+
+	// Sets the minimum width of the word bounding box. Words with bounding boxes
+	// widths lesser than this value will be excluded from the result. Value is
+	// relative to the video frame width.
+	MinBoundingBoxWidth *float64 `type:"float"`
+
+	// Sets confidence of word detection. Words with detection confidence below
+	// this will be excluded from the result. Values should be between 0.5 and 1
+	// as Text in Video will not return any result below 0.5.
+	MinConfidence *float64 `type:"float"`
+}
+
+// String returns the string representation
+func (s DetectionFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DetectionFilter) GoString() string {
+	return s.String()
+}
+
+// SetMinBoundingBoxHeight sets the MinBoundingBoxHeight field's value.
+func (s *DetectionFilter) SetMinBoundingBoxHeight(v float64) *DetectionFilter {
+	s.MinBoundingBoxHeight = &v
+	return s
+}
+
+// SetMinBoundingBoxWidth sets the MinBoundingBoxWidth field's value.
+func (s *DetectionFilter) SetMinBoundingBoxWidth(v float64) *DetectionFilter {
+	s.MinBoundingBoxWidth = &v
+	return s
+}
+
+// SetMinConfidence sets the MinConfidence field's value.
+func (s *DetectionFilter) SetMinConfidence(v float64) *DetectionFilter {
+	s.MinConfidence = &v
 	return s
 }
 
@@ -8477,7 +8885,7 @@ type FaceSearchSettings struct {
 	CollectionId *string `min:"1" type:"string"`
 
 	// Minimum face match confidence score that must be met to return a result for
-	// a recognized face. Default is 70. 0 is the lowest confidence. 100 is the
+	// a recognized face. Default is 80. 0 is the lowest confidence. 100 is the
 	// highest confidence.
 	FaceMatchThreshold *float64 `type:"float"`
 }
@@ -9531,6 +9939,145 @@ func (s *GetPersonTrackingOutput) SetStatusMessage(v string) *GetPersonTrackingO
 
 // SetVideoMetadata sets the VideoMetadata field's value.
 func (s *GetPersonTrackingOutput) SetVideoMetadata(v *VideoMetadata) *GetPersonTrackingOutput {
+	s.VideoMetadata = v
+	return s
+}
+
+type GetTextDetectionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Job identifier for the label detection operation for which you want results
+	// returned. You get the job identifer from an initial call to StartTextDetection.
+	//
+	// JobId is a required field
+	JobId *string `min:"1" type:"string" required:"true"`
+
+	// Maximum number of results to return per paginated call. The largest value
+	// you can specify is 1000.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// If the previous response was incomplete (because there are more labels to
+	// retrieve), Amazon Rekognition Video returns a pagination token in the response.
+	// You can use this pagination token to retrieve the next set of text.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s GetTextDetectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetTextDetectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetTextDetectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetTextDetectionInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *GetTextDetectionInput) SetJobId(v string) *GetTextDetectionInput {
+	s.JobId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetTextDetectionInput) SetMaxResults(v int64) *GetTextDetectionInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetTextDetectionInput) SetNextToken(v string) *GetTextDetectionInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetTextDetectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Current status of the text detection job.
+	JobStatus *string `type:"string" enum:"VideoJobStatus"`
+
+	// If the response is truncated, Amazon Rekognition Video returns this token
+	// that you can use in the subsequent request to retrieve the next set of text.
+	NextToken *string `type:"string"`
+
+	// If the job fails, StatusMessage provides a descriptive error message.
+	StatusMessage *string `type:"string"`
+
+	// An array of text detected in the video. Each element contains the detected
+	// text, the time in milliseconds from the start of the video that the text
+	// was detected, and where it was detected on the screen.
+	TextDetections []*TextDetectionResult `type:"list"`
+
+	// Version number of the text detection model that was used to detect text.
+	TextModelVersion *string `type:"string"`
+
+	// Information about a video that Amazon Rekognition analyzed. Videometadata
+	// is returned in every page of paginated responses from a Amazon Rekognition
+	// video operation.
+	VideoMetadata *VideoMetadata `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetTextDetectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetTextDetectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *GetTextDetectionOutput) SetJobStatus(v string) *GetTextDetectionOutput {
+	s.JobStatus = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetTextDetectionOutput) SetNextToken(v string) *GetTextDetectionOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *GetTextDetectionOutput) SetStatusMessage(v string) *GetTextDetectionOutput {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetTextDetections sets the TextDetections field's value.
+func (s *GetTextDetectionOutput) SetTextDetections(v []*TextDetectionResult) *GetTextDetectionOutput {
+	s.TextDetections = v
+	return s
+}
+
+// SetTextModelVersion sets the TextModelVersion field's value.
+func (s *GetTextDetectionOutput) SetTextModelVersion(v string) *GetTextDetectionOutput {
+	s.TextModelVersion = &v
+	return s
+}
+
+// SetVideoMetadata sets the VideoMetadata field's value.
+func (s *GetTextDetectionOutput) SetVideoMetadata(v *VideoMetadata) *GetTextDetectionOutput {
 	s.VideoMetadata = v
 	return s
 }
@@ -11829,6 +12376,35 @@ func (s *RecognizeCelebritiesOutput) SetUnrecognizedFaces(v []*ComparedFace) *Re
 	return s
 }
 
+// Specifies a location within the frame that Rekognition checks for text. Uses
+// a BoundingBox object to set a region of the screen.
+//
+// A word is included in the region if the word is more than half in that region.
+// If there is more than one region, the word will be compared with all regions
+// of the screen. Any word more than half in a region is kept in the results.
+type RegionOfInterest struct {
+	_ struct{} `type:"structure"`
+
+	// The box representing a region of interest on screen.
+	BoundingBox *BoundingBox `type:"structure"`
+}
+
+// String returns the string representation
+func (s RegionOfInterest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RegionOfInterest) GoString() string {
+	return s.String()
+}
+
+// SetBoundingBox sets the BoundingBox field's value.
+func (s *RegionOfInterest) SetBoundingBox(v *BoundingBox) *RegionOfInterest {
+	s.BoundingBox = v
+	return s
+}
+
 // A collection with the specified ID already exists.
 type ResourceAlreadyExistsException struct {
 	_            struct{} `type:"structure"`
@@ -13329,6 +13905,167 @@ func (s StartStreamProcessorOutput) GoString() string {
 	return s.String()
 }
 
+// Set of optional parameters that let you set the criteria text must meet to
+// be included in your response. WordFilter looks at a word's height, width
+// and minimum confidence. RegionOfInterest lets you set a specific region of
+// the screen to look for text in.
+type StartTextDetectionFilters struct {
+	_ struct{} `type:"structure"`
+
+	// Filter focusing on a certain area of the frame. Uses a BoundingBox object
+	// to set the region of the screen.
+	RegionsOfInterest []*RegionOfInterest `type:"list"`
+
+	// Filters focusing on qualities of the text, such as confidence or size.
+	WordFilter *DetectionFilter `type:"structure"`
+}
+
+// String returns the string representation
+func (s StartTextDetectionFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartTextDetectionFilters) GoString() string {
+	return s.String()
+}
+
+// SetRegionsOfInterest sets the RegionsOfInterest field's value.
+func (s *StartTextDetectionFilters) SetRegionsOfInterest(v []*RegionOfInterest) *StartTextDetectionFilters {
+	s.RegionsOfInterest = v
+	return s
+}
+
+// SetWordFilter sets the WordFilter field's value.
+func (s *StartTextDetectionFilters) SetWordFilter(v *DetectionFilter) *StartTextDetectionFilters {
+	s.WordFilter = v
+	return s
+}
+
+type StartTextDetectionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Idempotent token used to identify the start request. If you use the same
+	// token with multiple StartTextDetection requests, the same JobId is returned.
+	// Use ClientRequestToken to prevent the same job from being accidentaly started
+	// more than once.
+	ClientRequestToken *string `min:"1" type:"string"`
+
+	// Optional parameters that let you set criteria the text must meet to be included
+	// in your response.
+	Filters *StartTextDetectionFilters `type:"structure"`
+
+	// An identifier returned in the completion status published by your Amazon
+	// Simple Notification Service topic. For example, you can use JobTag to group
+	// related jobs and identify them in the completion notification.
+	JobTag *string `min:"1" type:"string"`
+
+	// The Amazon Simple Notification Service topic to which Amazon Rekognition
+	// publishes the completion status of a video analysis operation. For more information,
+	// see api-video.
+	NotificationChannel *NotificationChannel `type:"structure"`
+
+	// Video file stored in an Amazon S3 bucket. Amazon Rekognition video start
+	// operations such as StartLabelDetection use Video to specify a video for analysis.
+	// The supported file formats are .mp4, .mov and .avi.
+	//
+	// Video is a required field
+	Video *Video `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s StartTextDetectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartTextDetectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartTextDetectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartTextDetectionInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.JobTag != nil && len(*s.JobTag) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobTag", 1))
+	}
+	if s.Video == nil {
+		invalidParams.Add(request.NewErrParamRequired("Video"))
+	}
+	if s.NotificationChannel != nil {
+		if err := s.NotificationChannel.Validate(); err != nil {
+			invalidParams.AddNested("NotificationChannel", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Video != nil {
+		if err := s.Video.Validate(); err != nil {
+			invalidParams.AddNested("Video", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *StartTextDetectionInput) SetClientRequestToken(v string) *StartTextDetectionInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *StartTextDetectionInput) SetFilters(v *StartTextDetectionFilters) *StartTextDetectionInput {
+	s.Filters = v
+	return s
+}
+
+// SetJobTag sets the JobTag field's value.
+func (s *StartTextDetectionInput) SetJobTag(v string) *StartTextDetectionInput {
+	s.JobTag = &v
+	return s
+}
+
+// SetNotificationChannel sets the NotificationChannel field's value.
+func (s *StartTextDetectionInput) SetNotificationChannel(v *NotificationChannel) *StartTextDetectionInput {
+	s.NotificationChannel = v
+	return s
+}
+
+// SetVideo sets the Video field's value.
+func (s *StartTextDetectionInput) SetVideo(v *Video) *StartTextDetectionInput {
+	s.Video = v
+	return s
+}
+
+type StartTextDetectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Identifier for the text detection job. Use JobId to identify the job in a
+	// subsequent call to GetTextDetection.
+	JobId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s StartTextDetectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartTextDetectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobId sets the JobId field's value.
+func (s *StartTextDetectionOutput) SetJobId(v string) *StartTextDetectionOutput {
+	s.JobId = &v
+	return s
+}
+
 type StopProjectVersionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13825,6 +14562,42 @@ func (s *TextDetection) SetType(v string) *TextDetection {
 	return s
 }
 
+// Information about text detected in a video. Incudes the detected text, the
+// time in milliseconds from the start of the video that the text was detected,
+// and where it was detected on the screen.
+type TextDetectionResult struct {
+	_ struct{} `type:"structure"`
+
+	// Details about text detected in a video.
+	TextDetection *TextDetection `type:"structure"`
+
+	// The time, in milliseconds from the start of the video, that the text was
+	// detected.
+	Timestamp *int64 `type:"long"`
+}
+
+// String returns the string representation
+func (s TextDetectionResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TextDetectionResult) GoString() string {
+	return s.String()
+}
+
+// SetTextDetection sets the TextDetection field's value.
+func (s *TextDetectionResult) SetTextDetection(v *TextDetection) *TextDetectionResult {
+	s.TextDetection = v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *TextDetectionResult) SetTimestamp(v int64) *TextDetectionResult {
+	s.Timestamp = &v
+	return s
+}
+
 // Amazon Rekognition is temporarily unable to process the request. Try your
 // call again.
 type ThrottlingException struct {
@@ -14123,7 +14896,7 @@ func (s *VideoMetadata) SetFrameWidth(v int64) *VideoMetadata {
 }
 
 // The file size or duration of the supplied media is too large. The maximum
-// file size is 8GB. The maximum duration is 2 hours.
+// file size is 10GB. The maximum duration is 6 hours.
 type VideoTooLargeException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
