@@ -8,6 +8,8 @@ Release v1.29.4 (2020-02-17)
   * Documentation updates for EC2
 * `service/rekognition`: Updates service API, documentation, and paginators
   * This update adds the ability to detect text in videos and adds filters to image and video text detection.
+* ` service/dynamodb`: Add feature update for Amazon DynamoDB
+  * Amazon DynamoDB enables you to restore your DynamoDB backup or table data across AWS Regions such that the restored table is created in a different AWS Region from where the source table or backup resides. You can do cross-region restores between AWS commercial Regions, AWS China Regions, and AWS GovCloud (US) Regions.
 
 Release v1.29.3 (2020-02-14)
 ===
