@@ -477,14 +477,14 @@ func (u *uploader) nextReader() (io.ReadSeeker, int, func(), error) {
 
 	default:
 		part := u.cfg.partPool.Get()
-		n, err := readFillBuf(r, part)
+		n, err := readFillBuf(r, *part)
 		u.readerPos += int64(n)
 
 		cleanup := func() {
 			u.cfg.partPool.Put(part)
 		}
 
-		return bytes.NewReader(part[0:n]), n, cleanup, err
+		return bytes.NewReader((*part)[0:n]), n, cleanup, err
 	}
 }
 
@@ -673,6 +673,8 @@ func (u *multiuploader) readChunk(ch chan chunk) {
 				u.seterr(err)
 			}
 		}
+
+		data.cleanup()
 	}
 }
 
@@ -690,7 +692,6 @@ func (u *multiuploader) send(c chunk) error {
 	}
 
 	resp, err := u.cfg.S3.UploadPartWithContext(u.ctx, params, u.cfg.RequestOptions...)
-	c.cleanup()
 	if err != nil {
 		return err
 	}
@@ -764,8 +765,8 @@ func (u *multiuploader) complete() *s3.CompleteMultipartUploadOutput {
 }
 
 type byteSlicePool interface {
-	Get() []byte
-	Put([]byte)
+	Get() *[]byte
+	Put(*[]byte)
 	Size() int64
 }
 
@@ -774,11 +775,11 @@ type partPool struct {
 	sync.Pool
 }
 
-func (p *partPool) Get() []byte {
-	return p.Pool.Get().([]byte)
+func (p *partPool) Get() *[]byte {
+	return p.Pool.Get().(*[]byte)
 }
 
-func (p *partPool) Put(b []byte) {
+func (p *partPool) Put(b *[]byte) {
 	p.Pool.Put(b)
 }
 
@@ -790,7 +791,8 @@ func newPartPool(partSize int64) *partPool {
 	p := &partPool{partSize: partSize}
 
 	p.New = func() interface{} {
-		return make([]byte, p.partSize)
+		bs := make([]byte, p.partSize)
+		return &bs
 	}
 
 	return p
