@@ -1,3 +1,14 @@
+Release v1.29.4 (2020-02-17)
+===
+
+### Service Client Updates
+* `service/cloud9`: Updates service API and documentation
+  * AWS Cloud9 now supports the ability to tag Cloud9 development environments.
+* `service/ec2`: Updates service API and documentation
+  * Documentation updates for EC2
+* `service/rekognition`: Updates service API, documentation, and paginators
+  * This update adds the ability to detect text in videos and adds filters to image and video text detection.
+
 Release v1.29.3 (2020-02-14)
 ===
 

@@ -448,6 +448,24 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "GetTextDetection":{
+      "name":"GetTextDetection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetTextDetectionRequest"},
+      "output":{"shape":"GetTextDetectionResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerError"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidPaginationTokenException"},
+        {"shape":"ProvisionedThroughputExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "IndexFaces":{
       "name":"IndexFaces",
       "http":{
@@ -742,6 +760,27 @@
         {"shape":"ProvisionedThroughputExceededException"}
       ]
     },
+    "StartTextDetection":{
+      "name":"StartTextDetection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartTextDetectionRequest"},
+      "output":{"shape":"StartTextDetectionResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"IdempotentParameterMismatchException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidS3ObjectException"},
+        {"shape":"InternalServerError"},
+        {"shape":"VideoTooLargeException"},
+        {"shape":"ProvisionedThroughputExceededException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "idempotent":true
+    },
     "StopProjectVersion":{
       "name":"StopProjectVersion",
       "http":{
@@ -830,6 +869,16 @@
         "Left":{"shape":"Float"},
         "Top":{"shape":"Float"}
       }
+    },
+    "BoundingBoxHeight":{
+      "type":"float",
+      "max":1,
+      "min":0
+    },
+    "BoundingBoxWidth":{
+      "type":"float",
+      "max":1,
+      "min":0
     },
     "Celebrity":{
       "type":"structure",
@@ -1250,17 +1299,34 @@
         "HumanLoopActivationOutput":{"shape":"HumanLoopActivationOutput"}
       }
     },
+    "DetectTextFilters":{
+      "type":"structure",
+      "members":{
+        "WordFilter":{"shape":"DetectionFilter"},
+        "RegionsOfInterest":{"shape":"RegionsOfInterest"}
+      }
+    },
     "DetectTextRequest":{
       "type":"structure",
       "required":["Image"],
       "members":{
-        "Image":{"shape":"Image"}
+        "Image":{"shape":"Image"},
+        "Filters":{"shape":"DetectTextFilters"}
       }
     },
     "DetectTextResponse":{
       "type":"structure",
       "members":{
-        "TextDetections":{"shape":"TextDetectionList"}
+        "TextDetections":{"shape":"TextDetectionList"},
+        "TextModelVersion":{"shape":"String"}
+      }
+    },
+    "DetectionFilter":{
+      "type":"structure",
+      "members":{
+        "MinConfidence":{"shape":"Percent"},
+        "MinBoundingBoxHeight":{"shape":"BoundingBoxHeight"},
+        "MinBoundingBoxWidth":{"shape":"BoundingBoxWidth"}
       }
     },
     "Emotion":{
@@ -1584,6 +1650,26 @@
         "VideoMetadata":{"shape":"VideoMetadata"},
         "NextToken":{"shape":"PaginationToken"},
         "Persons":{"shape":"PersonDetections"}
+      }
+    },
+    "GetTextDetectionRequest":{
+      "type":"structure",
+      "required":["JobId"],
+      "members":{
+        "JobId":{"shape":"JobId"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "GetTextDetectionResponse":{
+      "type":"structure",
+      "members":{
+        "JobStatus":{"shape":"VideoJobStatus"},
+        "StatusMessage":{"shape":"StatusMessage"},
+        "VideoMetadata":{"shape":"VideoMetadata"},
+        "TextDetections":{"shape":"TextDetectionResults"},
+        "NextToken":{"shape":"PaginationToken"},
+        "TextModelVersion":{"shape":"String"}
       }
     },
     "GroundTruthManifest":{
@@ -2194,6 +2280,18 @@
         "OrientationCorrection":{"shape":"OrientationCorrection"}
       }
     },
+    "RegionOfInterest":{
+      "type":"structure",
+      "members":{
+        "BoundingBox":{"shape":"BoundingBox"}
+      }
+    },
+    "RegionsOfInterest":{
+      "type":"list",
+      "member":{"shape":"RegionOfInterest"},
+      "max":10,
+      "min":0
+    },
     "RekognitionUniqueId":{
       "type":"string",
       "pattern":"[0-9A-Za-z]*"
@@ -2442,6 +2540,30 @@
       "members":{
       }
     },
+    "StartTextDetectionFilters":{
+      "type":"structure",
+      "members":{
+        "WordFilter":{"shape":"DetectionFilter"},
+        "RegionsOfInterest":{"shape":"RegionsOfInterest"}
+      }
+    },
+    "StartTextDetectionRequest":{
+      "type":"structure",
+      "required":["Video"],
+      "members":{
+        "Video":{"shape":"Video"},
+        "ClientRequestToken":{"shape":"ClientRequestToken"},
+        "NotificationChannel":{"shape":"NotificationChannel"},
+        "JobTag":{"shape":"JobTag"},
+        "Filters":{"shape":"StartTextDetectionFilters"}
+      }
+    },
+    "StartTextDetectionResponse":{
+      "type":"structure",
+      "members":{
+        "JobId":{"shape":"JobId"}
+      }
+    },
     "StatusMessage":{"type":"string"},
     "StopProjectVersionRequest":{
       "type":"structure",
@@ -2559,6 +2681,17 @@
     "TextDetectionList":{
       "type":"list",
       "member":{"shape":"TextDetection"}
+    },
+    "TextDetectionResult":{
+      "type":"structure",
+      "members":{
+        "Timestamp":{"shape":"Timestamp"},
+        "TextDetection":{"shape":"TextDetection"}
+      }
+    },
+    "TextDetectionResults":{
+      "type":"list",
+      "member":{"shape":"TextDetectionResult"}
     },
     "TextTypes":{
       "type":"string",

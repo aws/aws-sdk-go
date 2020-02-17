@@ -160,6 +160,48 @@
         {"shape":"InternalServerErrorException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
     "UpdateEnvironment":{
       "name":"UpdateEnvironment",
       "http":{
@@ -240,7 +282,8 @@
         "instanceType":{"shape":"InstanceType"},
         "subnetId":{"shape":"SubnetId"},
         "automaticStopTimeMinutes":{"shape":"AutomaticStopTimeMinutes"},
-        "ownerArn":{"shape":"UserArn"}
+        "ownerArn":{"shape":"UserArn"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateEnvironmentEC2Result":{
@@ -351,6 +394,10 @@
         "ownerArn":{"shape":"String"},
         "lifecycle":{"shape":"EnvironmentLifecycle"}
       }
+    },
+    "EnvironmentArn":{
+      "type":"string",
+      "pattern":"arn:aws:cloud9:([a-z]{2}-[a-z]+-\\d{1}):[0-9]{12}:environment:[a-zA-Z0-9]{8,32}"
     },
     "EnvironmentDescription":{
       "type":"string",
@@ -464,6 +511,19 @@
         "environmentIds":{"shape":"EnvironmentIdList"}
       }
     },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["ResourceARN"],
+      "members":{
+        "ResourceARN":{"shape":"EnvironmentArn"}
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"TagList"}
+      }
+    },
     "MaxResults":{
       "type":"integer",
       "box":true,
@@ -501,12 +561,77 @@
       "max":30,
       "min":5
     },
+    "Tag":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Key":{"shape":"TagKey"},
+        "Value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":200,
+      "min":0
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"},
+      "max":200,
+      "min":0
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceARN",
+        "Tags"
+      ],
+      "members":{
+        "ResourceARN":{"shape":"EnvironmentArn"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
     "Timestamp":{"type":"timestamp"},
     "TooManyRequestsException":{
       "type":"structure",
       "members":{
       },
       "exception":true
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceARN",
+        "TagKeys"
+      ],
+      "members":{
+        "ResourceARN":{"shape":"EnvironmentArn"},
+        "TagKeys":{"shape":"TagKeyList"}
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UpdateEnvironmentMembershipRequest":{
       "type":"structure",
@@ -543,7 +668,7 @@
     },
     "UserArn":{
       "type":"string",
-      "pattern":"^arn:aws:(iam|sts)::\\d+:(root|(user\\/[\\w+=/:,.@-]{1,64}|federated-user\\/[\\w+=/:,.@-]{2,32}|assumed-role\\/[\\w+=/:,.@-]{1,64}\\/[\\w+=/:,.@-]{1,64}))$"
+      "pattern":"^arn:aws:(iam|sts)::\\d+:(root|(user\\/[\\w+=/:,.@-]{1,64}|federated-user\\/[\\w+=/:,.@-]{2,32}|assumed-role\\/[\\w+=:,.@-]{1,64}\\/[\\w+=,.@-]{1,64}))$"
     }
   }
 }
