@@ -4133,6 +4133,16 @@
       }
     },
     "services" : {
+      "route53" : {
+        "endpoints" : {
+          "cn-northwest-1" : {
+            "credentialScope" : {
+              "region" : "cn-northwest-1"
+            },
+            "hostname" : "api.route53.cn"
+          }
+        }
+      },
       "api.ecr" : {
         "endpoints" : {
           "cn-north-1" : {
