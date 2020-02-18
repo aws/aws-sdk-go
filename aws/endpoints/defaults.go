@@ -4361,17 +4361,6 @@ var awscnPartition = partition{
 		},
 	},
 	Services: services{
-		"route53": service{
-
-			Endpoints: endpoints{
-				"cn-northwest-1": endpoint{
-					Hostname: "api.route53.cn",
-					CredentialScope: credentialScope{
-						Region: "cn-northwest-1",
-					},
-				},
-			},
-		},
 		"api.ecr": service{
 
 			Endpoints: endpoints{
