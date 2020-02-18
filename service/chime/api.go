@@ -16418,6 +16418,9 @@ func (s LogoutUserOutput) GoString() string {
 type MediaPlacement struct {
 	_ struct{} `type:"structure"`
 
+	// The audio fallback URL.
+	AudioFallbackUrl *string `type:"string"`
+
 	// The audio host URL.
 	AudioHostUrl *string `type:"string"`
 
@@ -16445,6 +16448,12 @@ func (s MediaPlacement) String() string {
 // GoString returns the string representation
 func (s MediaPlacement) GoString() string {
 	return s.String()
+}
+
+// SetAudioFallbackUrl sets the AudioFallbackUrl field's value.
+func (s *MediaPlacement) SetAudioFallbackUrl(v string) *MediaPlacement {
+	s.AudioFallbackUrl = &v
+	return s
 }
 
 // SetAudioHostUrl sets the AudioHostUrl field's value.

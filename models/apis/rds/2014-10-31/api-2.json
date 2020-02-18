@@ -796,7 +796,8 @@
       "errors":[
         {"shape":"DBProxyTargetNotFoundFault"},
         {"shape":"DBProxyTargetGroupNotFoundFault"},
-        {"shape":"DBProxyNotFoundFault"}
+        {"shape":"DBProxyNotFoundFault"},
+        {"shape":"InvalidDBProxyStateFault"}
       ]
     },
     "DescribeAccountAttributes":{
@@ -1061,7 +1062,9 @@
         "resultWrapper":"DescribeDBProxyTargetGroupsResult"
       },
       "errors":[
-        {"shape":"DBProxyTargetGroupNotFoundFault"}
+        {"shape":"DBProxyNotFoundFault"},
+        {"shape":"DBProxyTargetGroupNotFoundFault"},
+        {"shape":"InvalidDBProxyStateFault"}
       ]
     },
     "DescribeDBProxyTargets":{
@@ -1078,7 +1081,8 @@
       "errors":[
         {"shape":"DBProxyNotFoundFault"},
         {"shape":"DBProxyTargetNotFoundFault"},
-        {"shape":"DBProxyTargetGroupNotFoundFault"}
+        {"shape":"DBProxyTargetGroupNotFoundFault"},
+        {"shape":"InvalidDBProxyStateFault"}
       ]
     },
     "DescribeDBSecurityGroups":{
@@ -1614,7 +1618,8 @@
       },
       "errors":[
         {"shape":"DBProxyNotFoundFault"},
-        {"shape":"DBProxyTargetGroupNotFoundFault"}
+        {"shape":"DBProxyTargetGroupNotFoundFault"},
+        {"shape":"InvalidDBProxyStateFault"}
       ]
     },
     "ModifyDBSnapshot":{
@@ -1803,7 +1808,8 @@
         {"shape":"DBInstanceNotFoundFault"},
         {"shape":"DBProxyTargetAlreadyRegisteredFault"},
         {"shape":"InvalidDBInstanceStateFault"},
-        {"shape":"InvalidDBClusterStateFault"}
+        {"shape":"InvalidDBClusterStateFault"},
+        {"shape":"InvalidDBProxyStateFault"}
       ]
     },
     "RemoveFromGlobalCluster":{
@@ -2756,7 +2762,9 @@
         "DeletionProtection":{"shape":"BooleanOptional"},
         "GlobalClusterIdentifier":{"shape":"String"},
         "EnableHttpEndpoint":{"shape":"BooleanOptional"},
-        "CopyTagsToSnapshot":{"shape":"BooleanOptional"}
+        "CopyTagsToSnapshot":{"shape":"BooleanOptional"},
+        "Domain":{"shape":"String"},
+        "DomainIAMRoleName":{"shape":"String"}
       }
     },
     "CreateDBClusterParameterGroupMessage":{
@@ -3186,7 +3194,8 @@
         "ActivityStreamKmsKeyId":{"shape":"String"},
         "ActivityStreamKinesisStreamName":{"shape":"String"},
         "CopyTagsToSnapshot":{"shape":"BooleanOptional"},
-        "CrossAccountClone":{"shape":"BooleanOptional"}
+        "CrossAccountClone":{"shape":"BooleanOptional"},
+        "DomainMemberships":{"shape":"DomainMembershipList"}
       },
       "wrapper":true
     },
@@ -3938,7 +3947,7 @@
       "members":{
       },
       "error":{
-        "code":"DBProxyAlreadyExistsFault",
+        "code":"DBProxyTargetExistsFault",
         "httpStatusCode":400,
         "senderFault":true
       },
@@ -5878,6 +5887,8 @@
         "EngineVersion":{"shape":"String"},
         "AllowMajorVersionUpgrade":{"shape":"Boolean"},
         "DBInstanceParameterGroupName":{"shape":"String"},
+        "Domain":{"shape":"String"},
+        "DomainIAMRoleName":{"shape":"String"},
         "ScalingConfiguration":{"shape":"ScalingConfiguration"},
         "DeletionProtection":{"shape":"BooleanOptional"},
         "EnableHttpEndpoint":{"shape":"BooleanOptional"},
@@ -6898,7 +6909,9 @@
         "BacktrackWindow":{"shape":"LongOptional"},
         "EnableCloudwatchLogsExports":{"shape":"LogTypeList"},
         "DeletionProtection":{"shape":"BooleanOptional"},
-        "CopyTagsToSnapshot":{"shape":"BooleanOptional"}
+        "CopyTagsToSnapshot":{"shape":"BooleanOptional"},
+        "Domain":{"shape":"String"},
+        "DomainIAMRoleName":{"shape":"String"}
       }
     },
     "RestoreDBClusterFromS3Result":{
@@ -6934,7 +6947,9 @@
         "ScalingConfiguration":{"shape":"ScalingConfiguration"},
         "DBClusterParameterGroupName":{"shape":"String"},
         "DeletionProtection":{"shape":"BooleanOptional"},
-        "CopyTagsToSnapshot":{"shape":"BooleanOptional"}
+        "CopyTagsToSnapshot":{"shape":"BooleanOptional"},
+        "Domain":{"shape":"String"},
+        "DomainIAMRoleName":{"shape":"String"}
       }
     },
     "RestoreDBClusterFromSnapshotResult":{
@@ -6966,7 +6981,9 @@
         "EnableCloudwatchLogsExports":{"shape":"LogTypeList"},
         "DBClusterParameterGroupName":{"shape":"String"},
         "DeletionProtection":{"shape":"BooleanOptional"},
-        "CopyTagsToSnapshot":{"shape":"BooleanOptional"}
+        "CopyTagsToSnapshot":{"shape":"BooleanOptional"},
+        "Domain":{"shape":"String"},
+        "DomainIAMRoleName":{"shape":"String"}
       }
     },
     "RestoreDBClusterToPointInTimeResult":{

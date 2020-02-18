@@ -2032,7 +2032,8 @@
         "MetricAggregationType":{"shape":"XmlStringMaxLen32"},
         "StepAdjustments":{"shape":"StepAdjustments"},
         "EstimatedInstanceWarmup":{"shape":"EstimatedInstanceWarmup"},
-        "TargetTrackingConfiguration":{"shape":"TargetTrackingConfiguration"}
+        "TargetTrackingConfiguration":{"shape":"TargetTrackingConfiguration"},
+        "Enabled":{"shape":"ScalingPolicyEnabled"}
       }
     },
     "PutScheduledUpdateGroupActionType":{
@@ -2150,9 +2151,11 @@
         "MetricAggregationType":{"shape":"XmlStringMaxLen32"},
         "EstimatedInstanceWarmup":{"shape":"EstimatedInstanceWarmup"},
         "Alarms":{"shape":"Alarms"},
-        "TargetTrackingConfiguration":{"shape":"TargetTrackingConfiguration"}
+        "TargetTrackingConfiguration":{"shape":"TargetTrackingConfiguration"},
+        "Enabled":{"shape":"ScalingPolicyEnabled"}
       }
     },
+    "ScalingPolicyEnabled":{"type":"boolean"},
     "ScalingProcessQuery":{
       "type":"structure",
       "required":["AutoScalingGroupName"],

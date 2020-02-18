@@ -6148,6 +6148,10 @@ type CreateAutoScalingGroupInput struct {
 
 	// The maximum amount of time, in seconds, that an instance can be in service.
 	//
+	// For more information, see Replacing Auto Scaling Instances Based on Maximum
+	// Instance Lifetime (https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-max-instance-lifetime.html)
+	// in the Amazon EC2 Auto Scaling User Guide.
+	//
 	// Valid Range: Minimum value of 604800.
 	MaxInstanceLifetime *int64 `type:"integer"`
 
@@ -10735,6 +10739,10 @@ type LaunchTemplateOverrides struct {
 	// you chose to set the desired capacity in terms of instances, or a performance
 	// attribute such as vCPUs, memory, or I/O.
 	//
+	// For more information, see Instance Weighting for Amazon EC2 Auto Scaling
+	// (https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-instance-weighting.html)
+	// in the Amazon EC2 Auto Scaling User Guide.
+	//
 	// Valid Range: Minimum value of 1. Maximum value of 999.
 	WeightedCapacity *string `min:"1" type:"string"`
 }
@@ -11865,6 +11873,8 @@ type PutScalingPolicyInput struct {
 	// in the Amazon EC2 Auto Scaling User Guide.
 	Cooldown *int64 `type:"integer"`
 
+	Enabled *bool `type:"boolean"`
+
 	// The estimated time, in seconds, until a newly launched instance can contribute
 	// to the CloudWatch metrics. The default is to use the value specified for
 	// the default cooldown period for the group.
@@ -12006,6 +12016,12 @@ func (s *PutScalingPolicyInput) SetAutoScalingGroupName(v string) *PutScalingPol
 // SetCooldown sets the Cooldown field's value.
 func (s *PutScalingPolicyInput) SetCooldown(v int64) *PutScalingPolicyInput {
 	s.Cooldown = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *PutScalingPolicyInput) SetEnabled(v bool) *PutScalingPolicyInput {
+	s.Enabled = &v
 	return s
 }
 
@@ -12380,6 +12396,8 @@ type ScalingPolicy struct {
 	// any further dynamic scaling activities can start.
 	Cooldown *int64 `type:"integer"`
 
+	Enabled *bool `type:"boolean"`
+
 	// The estimated time, in seconds, until a newly launched instance can contribute
 	// to the CloudWatch metrics.
 	EstimatedInstanceWarmup *int64 `type:"integer"`
@@ -12450,6 +12468,12 @@ func (s *ScalingPolicy) SetAutoScalingGroupName(v string) *ScalingPolicy {
 // SetCooldown sets the Cooldown field's value.
 func (s *ScalingPolicy) SetCooldown(v int64) *ScalingPolicy {
 	s.Cooldown = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *ScalingPolicy) SetEnabled(v bool) *ScalingPolicy {
+	s.Enabled = &v
 	return s
 }
 
@@ -13561,6 +13585,10 @@ type UpdateAutoScalingGroupInput struct {
 	LaunchTemplate *LaunchTemplateSpecification `type:"structure"`
 
 	// The maximum amount of time, in seconds, that an instance can be in service.
+	//
+	// For more information, see Replacing Auto Scaling Instances Based on Maximum
+	// Instance Lifetime (https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-max-instance-lifetime.html)
+	// in the Amazon EC2 Auto Scaling User Guide.
 	//
 	// Valid Range: Minimum value of 604800.
 	MaxInstanceLifetime *int64 `type:"integer"`

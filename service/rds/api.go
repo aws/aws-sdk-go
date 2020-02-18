@@ -2246,7 +2246,7 @@ func (c *RDS) CreateDBProxyRequest(input *CreateDBProxyInput) (req *request.Requ
 //   The requested subnet is invalid, or multiple subnets were requested that
 //   are not all in a common VPC.
 //
-//   * ErrCodeDBProxyAlreadyExistsFault "DBProxyAlreadyExistsFault"
+//   * ErrCodeDBProxyAlreadyExistsFault "DBProxyTargetExistsFault"
 //   The specified proxy name must be unique for all proxies owned by your AWS
 //   account in the specified AWS Region.
 //
@@ -4340,6 +4340,9 @@ func (c *RDS) DeregisterDBProxyTargetsRequest(input *DeregisterDBProxyTargetsInp
 //   The specified proxy name doesn't correspond to a proxy owned by your AWS
 //   accoutn in the specified AWS Region.
 //
+//   * ErrCodeInvalidDBProxyStateFault "InvalidDBProxyStateFault"
+//   The requested operation can't be performed while the proxy is in this state.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeregisterDBProxyTargets
 func (c *RDS) DeregisterDBProxyTargets(input *DeregisterDBProxyTargetsInput) (*DeregisterDBProxyTargetsOutput, error) {
 	req, out := c.DeregisterDBProxyTargetsRequest(input)
@@ -6359,9 +6362,16 @@ func (c *RDS) DescribeDBProxyTargetGroupsRequest(input *DescribeDBProxyTargetGro
 // API operation DescribeDBProxyTargetGroups for usage and error information.
 //
 // Returned Error Codes:
+//   * ErrCodeDBProxyNotFoundFault "DBProxyNotFoundFault"
+//   The specified proxy name doesn't correspond to a proxy owned by your AWS
+//   accoutn in the specified AWS Region.
+//
 //   * ErrCodeDBProxyTargetGroupNotFoundFault "DBProxyTargetGroupNotFoundFault"
 //   The specified target group isn't available for a proxy owned by your AWS
 //   account in the specified AWS Region.
+//
+//   * ErrCodeInvalidDBProxyStateFault "InvalidDBProxyStateFault"
+//   The requested operation can't be performed while the proxy is in this state.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBProxyTargetGroups
 func (c *RDS) DescribeDBProxyTargetGroups(input *DescribeDBProxyTargetGroupsInput) (*DescribeDBProxyTargetGroupsOutput, error) {
@@ -6512,6 +6522,9 @@ func (c *RDS) DescribeDBProxyTargetsRequest(input *DescribeDBProxyTargetsInput) 
 //   * ErrCodeDBProxyTargetGroupNotFoundFault "DBProxyTargetGroupNotFoundFault"
 //   The specified target group isn't available for a proxy owned by your AWS
 //   account in the specified AWS Region.
+//
+//   * ErrCodeInvalidDBProxyStateFault "InvalidDBProxyStateFault"
+//   The requested operation can't be performed while the proxy is in this state.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBProxyTargets
 func (c *RDS) DescribeDBProxyTargets(input *DescribeDBProxyTargetsInput) (*DescribeDBProxyTargetsOutput, error) {
@@ -10348,7 +10361,7 @@ func (c *RDS) ModifyDBProxyRequest(input *ModifyDBProxyInput) (req *request.Requ
 //   The specified proxy name doesn't correspond to a proxy owned by your AWS
 //   accoutn in the specified AWS Region.
 //
-//   * ErrCodeDBProxyAlreadyExistsFault "DBProxyAlreadyExistsFault"
+//   * ErrCodeDBProxyAlreadyExistsFault "DBProxyTargetExistsFault"
 //   The specified proxy name must be unique for all proxies owned by your AWS
 //   account in the specified AWS Region.
 //
@@ -10442,6 +10455,9 @@ func (c *RDS) ModifyDBProxyTargetGroupRequest(input *ModifyDBProxyTargetGroupInp
 //   * ErrCodeDBProxyTargetGroupNotFoundFault "DBProxyTargetGroupNotFoundFault"
 //   The specified target group isn't available for a proxy owned by your AWS
 //   account in the specified AWS Region.
+//
+//   * ErrCodeInvalidDBProxyStateFault "InvalidDBProxyStateFault"
+//   The requested operation can't be performed while the proxy is in this state.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyDBProxyTargetGroup
 func (c *RDS) ModifyDBProxyTargetGroup(input *ModifyDBProxyTargetGroupInput) (*ModifyDBProxyTargetGroupOutput, error) {
@@ -11450,6 +11466,9 @@ func (c *RDS) RegisterDBProxyTargetsRequest(input *RegisterDBProxyTargetsInput) 
 //   * ErrCodeInvalidDBClusterStateFault "InvalidDBClusterStateFault"
 //   The requested operation can't be performed while the cluster is in this state.
 //
+//   * ErrCodeInvalidDBProxyStateFault "InvalidDBProxyStateFault"
+//   The requested operation can't be performed while the proxy is in this state.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RegisterDBProxyTargets
 func (c *RDS) RegisterDBProxyTargets(input *RegisterDBProxyTargetsInput) (*RegisterDBProxyTargetsOutput, error) {
 	req, out := c.RegisterDBProxyTargetsRequest(input)
@@ -12277,21 +12296,20 @@ func (c *RDS) RestoreDBClusterFromSnapshotRequest(input *RestoreDBClusterFromSna
 
 // RestoreDBClusterFromSnapshot API operation for Amazon Relational Database Service.
 //
-// Creates a new DB cluster from a DB snapshot or DB cluster snapshot. This
-// action only applies to Aurora DB clusters.
+// Creates a new DB cluster from a DB snapshot or DB cluster snapshot.
 //
-// The target DB cluster is created from the source snapshot with a default
-// configuration. If you don't specify a security group, the new DB cluster
+// If a DB snapshot is specified, the target DB cluster is created from the
+// source DB snapshot with a default configuration and default security group.
+//
+// If a DB cluster snapshot is specified, the target DB cluster is created from
+// the source DB cluster restore point with the same configuration as the original
+// source DB cluster. If you don't specify a security group, the new DB cluster
 // is associated with the default security group.
-//
-// This action only restores the DB cluster, not the DB instances for that DB
-// cluster. You must invoke the CreateDBInstance action to create DB instances
-// for the restored DB cluster, specifying the identifier of the restored DB
-// cluster in DBClusterIdentifier. You can create DB instances only after the
-// RestoreDBClusterFromSnapshot action has completed and the DB cluster is available.
 //
 // For more information on Amazon Aurora, see What Is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
+//
+// This action only applies to Aurora DB clusters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -16503,6 +16521,18 @@ type CreateDBClusterInput struct {
 	// DestinationRegion is used for presigning the request to a given region.
 	DestinationRegion *string `type:"string"`
 
+	// The Active Directory directory ID to create the DB cluster in.
+	//
+	// For Amazon Aurora DB clusters, Amazon RDS can use Kerberos Authentication
+	// to authenticate users that connect to the DB cluster. For more information,
+	// see Using Kerberos Authentication for Aurora MySQL (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurmysql-kerberos.html)
+	// in the Amazon Aurora User Guide.
+	Domain *string `type:"string"`
+
+	// Specify the name of the IAM role to be used when making API calls to the
+	// Directory Service.
+	DomainIAMRoleName *string `type:"string"`
+
 	// The list of log types that need to be enabled for exporting to CloudWatch
 	// Logs. The values in the list depend on the DB engine being used. For more
 	// information, see Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
@@ -16816,6 +16846,18 @@ func (s *CreateDBClusterInput) SetDeletionProtection(v bool) *CreateDBClusterInp
 // SetDestinationRegion sets the DestinationRegion field's value.
 func (s *CreateDBClusterInput) SetDestinationRegion(v string) *CreateDBClusterInput {
 	s.DestinationRegion = &v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *CreateDBClusterInput) SetDomain(v string) *CreateDBClusterInput {
+	s.Domain = &v
+	return s
+}
+
+// SetDomainIAMRoleName sets the DomainIAMRoleName field's value.
+func (s *CreateDBClusterInput) SetDomainIAMRoleName(v string) *CreateDBClusterInput {
+	s.DomainIAMRoleName = &v
 	return s
 }
 
@@ -19995,6 +20037,9 @@ type DBCluster struct {
 	// can't be deleted when deletion protection is enabled.
 	DeletionProtection *bool `type:"boolean"`
 
+	// The Active Directory Domain membership records associated with the DB cluster.
+	DomainMemberships []*DomainMembership `locationNameList:"DomainMembership" type:"list"`
+
 	// The earliest time to which a DB cluster can be backtracked.
 	EarliestBacktrackTime *time.Time `type:"timestamp"`
 
@@ -20270,6 +20315,12 @@ func (s *DBCluster) SetDbClusterResourceId(v string) *DBCluster {
 // SetDeletionProtection sets the DeletionProtection field's value.
 func (s *DBCluster) SetDeletionProtection(v bool) *DBCluster {
 	s.DeletionProtection = &v
+	return s
+}
+
+// SetDomainMemberships sets the DomainMemberships field's value.
+func (s *DBCluster) SetDomainMemberships(v []*DomainMembership) *DBCluster {
+	s.DomainMemberships = v
 	return s
 }
 
@@ -29669,7 +29720,8 @@ func (s *DescribeValidDBInstanceModificationsOutput) SetValidDBInstanceModificat
 	return s
 }
 
-// An Active Directory Domain membership record associated with the DB instance.
+// An Active Directory Domain membership record associated with the DB instance
+// or cluster.
 type DomainMembership struct {
 	_ struct{} `type:"structure"`
 
@@ -29683,8 +29735,8 @@ type DomainMembership struct {
 	// Service.
 	IAMRoleName *string `type:"string"`
 
-	// The status of the DB instance's Active Directory Domain membership, such
-	// as joined, pending-join, failed etc).
+	// The status of the Active Directory Domain membership for the DB instance
+	// or cluster. Values include joined, pending-join, failed, and so on.
 	Status *string `type:"string"`
 }
 
@@ -31720,6 +31772,15 @@ type ModifyDBClusterInput struct {
 	// deletion protection is disabled.
 	DeletionProtection *bool `type:"boolean"`
 
+	// The Active Directory directory ID to move the DB cluster to. Specify none
+	// to remove the cluster from its current domain. The domain must be created
+	// prior to this operation.
+	Domain *string `type:"string"`
+
+	// Specify the name of the IAM role to be used when making API calls to the
+	// Directory Service.
+	DomainIAMRoleName *string `type:"string"`
+
 	// A value that indicates whether to enable the HTTP endpoint for an Aurora
 	// Serverless DB cluster. By default, the HTTP endpoint is disabled.
 	//
@@ -31920,6 +31981,18 @@ func (s *ModifyDBClusterInput) SetDBInstanceParameterGroupName(v string) *Modify
 // SetDeletionProtection sets the DeletionProtection field's value.
 func (s *ModifyDBClusterInput) SetDeletionProtection(v bool) *ModifyDBClusterInput {
 	s.DeletionProtection = &v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *ModifyDBClusterInput) SetDomain(v string) *ModifyDBClusterInput {
+	s.Domain = &v
+	return s
+}
+
+// SetDomainIAMRoleName sets the DomainIAMRoleName field's value.
+func (s *ModifyDBClusterInput) SetDomainIAMRoleName(v string) *ModifyDBClusterInput {
+	s.DomainIAMRoleName = &v
 	return s
 }
 
@@ -36742,6 +36815,19 @@ type RestoreDBClusterFromS3Input struct {
 	// deletion protection is disabled.
 	DeletionProtection *bool `type:"boolean"`
 
+	// Specify the Active Directory directory ID to restore the DB cluster in. The
+	// domain must be created prior to this operation.
+	//
+	// For Amazon Aurora DB clusters, Amazon RDS can use Kerberos Authentication
+	// to authenticate users that connect to the DB cluster. For more information,
+	// see Using Kerberos Authentication for Aurora MySQL (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurmysql-kerberos.html)
+	// in the Amazon Aurora User Guide.
+	Domain *string `type:"string"`
+
+	// Specify the name of the IAM role to be used when making API calls to the
+	// Directory Service.
+	DomainIAMRoleName *string `type:"string"`
+
 	// The list of logs that the restored DB cluster is to export to CloudWatch
 	// Logs. The values in the list depend on the DB engine being used. For more
 	// information, see Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
@@ -37021,6 +37107,18 @@ func (s *RestoreDBClusterFromS3Input) SetDeletionProtection(v bool) *RestoreDBCl
 	return s
 }
 
+// SetDomain sets the Domain field's value.
+func (s *RestoreDBClusterFromS3Input) SetDomain(v string) *RestoreDBClusterFromS3Input {
+	s.Domain = &v
+	return s
+}
+
+// SetDomainIAMRoleName sets the DomainIAMRoleName field's value.
+func (s *RestoreDBClusterFromS3Input) SetDomainIAMRoleName(v string) *RestoreDBClusterFromS3Input {
+	s.DomainIAMRoleName = &v
+	return s
+}
+
 // SetEnableCloudwatchLogsExports sets the EnableCloudwatchLogsExports field's value.
 func (s *RestoreDBClusterFromS3Input) SetEnableCloudwatchLogsExports(v []*string) *RestoreDBClusterFromS3Input {
 	s.EnableCloudwatchLogsExports = v
@@ -37230,6 +37328,14 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// deletion protection is disabled.
 	DeletionProtection *bool `type:"boolean"`
 
+	// Specify the Active Directory directory ID to restore the DB cluster in. The
+	// domain must be created prior to this operation.
+	Domain *string `type:"string"`
+
+	// Specify the name of the IAM role to be used when making API calls to the
+	// Directory Service.
+	DomainIAMRoleName *string `type:"string"`
+
 	// The list of logs that the restored DB cluster is to export to Amazon CloudWatch
 	// Logs. The values in the list depend on the DB engine being used. For more
 	// information, see Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
@@ -37415,6 +37521,18 @@ func (s *RestoreDBClusterFromSnapshotInput) SetDeletionProtection(v bool) *Resto
 	return s
 }
 
+// SetDomain sets the Domain field's value.
+func (s *RestoreDBClusterFromSnapshotInput) SetDomain(v string) *RestoreDBClusterFromSnapshotInput {
+	s.Domain = &v
+	return s
+}
+
+// SetDomainIAMRoleName sets the DomainIAMRoleName field's value.
+func (s *RestoreDBClusterFromSnapshotInput) SetDomainIAMRoleName(v string) *RestoreDBClusterFromSnapshotInput {
+	s.DomainIAMRoleName = &v
+	return s
+}
+
 // SetEnableCloudwatchLogsExports sets the EnableCloudwatchLogsExports field's value.
 func (s *RestoreDBClusterFromSnapshotInput) SetEnableCloudwatchLogsExports(v []*string) *RestoreDBClusterFromSnapshotInput {
 	s.EnableCloudwatchLogsExports = v
@@ -37571,6 +37689,19 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// The database can't be deleted when deletion protection is enabled. By default,
 	// deletion protection is disabled.
 	DeletionProtection *bool `type:"boolean"`
+
+	// Specify the Active Directory directory ID to restore the DB cluster in. The
+	// domain must be created prior to this operation.
+	//
+	// For Amazon Aurora DB clusters, Amazon RDS can use Kerberos Authentication
+	// to authenticate users that connect to the DB cluster. For more information,
+	// see Using Kerberos Authentication for Aurora MySQL (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurmysql-kerberos.html)
+	// in the Amazon Aurora User Guide.
+	Domain *string `type:"string"`
+
+	// Specify the name of the IAM role to be used when making API calls to the
+	// Directory Service.
+	DomainIAMRoleName *string `type:"string"`
 
 	// The list of logs that the restored DB cluster is to export to CloudWatch
 	// Logs. The values in the list depend on the DB engine being used. For more
@@ -37737,6 +37868,18 @@ func (s *RestoreDBClusterToPointInTimeInput) SetDBSubnetGroupName(v string) *Res
 // SetDeletionProtection sets the DeletionProtection field's value.
 func (s *RestoreDBClusterToPointInTimeInput) SetDeletionProtection(v bool) *RestoreDBClusterToPointInTimeInput {
 	s.DeletionProtection = &v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *RestoreDBClusterToPointInTimeInput) SetDomain(v string) *RestoreDBClusterToPointInTimeInput {
+	s.Domain = &v
+	return s
+}
+
+// SetDomainIAMRoleName sets the DomainIAMRoleName field's value.
+func (s *RestoreDBClusterToPointInTimeInput) SetDomainIAMRoleName(v string) *RestoreDBClusterToPointInTimeInput {
+	s.DomainIAMRoleName = &v
 	return s
 }
 
