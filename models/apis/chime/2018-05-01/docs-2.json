@@ -1984,6 +1984,7 @@
       "base": null,
       "refs": {
         "MediaPlacement$AudioHostUrl": "<p>The audio host URL.</p>",
+        "MediaPlacement$AudioFallbackUrl": "<p>The audio fallback URL.</p>",
         "MediaPlacement$ScreenDataUrl": "<p>The screen data URL.</p>",
         "MediaPlacement$ScreenSharingUrl": "<p>The screen sharing URL.</p>",
         "MediaPlacement$ScreenViewingUrl": "<p>The screen viewing URL.</p>",

@@ -3545,6 +3545,7 @@
       "type":"structure",
       "members":{
         "AudioHostUrl":{"shape":"UriType"},
+        "AudioFallbackUrl":{"shape":"UriType"},
         "ScreenDataUrl":{"shape":"UriType"},
         "ScreenSharingUrl":{"shape":"UriType"},
         "ScreenViewingUrl":{"shape":"UriType"},

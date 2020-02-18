@@ -1,3 +1,14 @@
+Release v1.29.5 (2020-02-18)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * Amazon EC2 Auto Scaling now supports the ability to enable/disable target tracking, step scaling, and simple scaling policies.
+* `service/chime`: Updates service API and documentation
+  * Added AudioFallbackUrl to support Chime SDK client.
+* `service/rds`: Updates service API and documentation
+  * This release supports Microsoft Active Directory authentication for Amazon Aurora.
+
 Release v1.29.4 (2020-02-17)
 ===
 
