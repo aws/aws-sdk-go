@@ -439,6 +439,12 @@ type ServiceCatalogAPI interface {
 	UpdateTagOption(*servicecatalog.UpdateTagOptionInput) (*servicecatalog.UpdateTagOptionOutput, error)
 	UpdateTagOptionWithContext(aws.Context, *servicecatalog.UpdateTagOptionInput, ...request.Option) (*servicecatalog.UpdateTagOptionOutput, error)
 	UpdateTagOptionRequest(*servicecatalog.UpdateTagOptionInput) (*request.Request, *servicecatalog.UpdateTagOptionOutput)
+	
+	WaitUntilProductUpdateComplete(input *servicecatalog.DescribeRecordInput) error
+	WaitUntilProductUpdateCompleteWithContext(ctx aws.Context, input *servicecatalog.DescribeRecordInput, opts ...request.WaiterOption) error
+
+	WaitUntilProductCreateComplete(input *servicecatalog.DescribeRecordInput) error
+	WaitUntilProductCreateCompleteWithContext(ctx aws.Context, input *servicecatalog.DescribeRecordInput, opts ...request.WaiterOption) error
 }
 
 var _ ServiceCatalogAPI = (*servicecatalog.ServiceCatalog)(nil)
