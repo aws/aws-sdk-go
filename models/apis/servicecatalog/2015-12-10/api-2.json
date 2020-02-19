@@ -759,7 +759,8 @@
       "input":{"shape":"ListPortfolioAccessInput"},
       "output":{"shape":"ListPortfolioAccessOutput"},
       "errors":[
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParametersException"}
       ]
     },
     "ListPortfolios":{
@@ -2360,7 +2361,10 @@
       "required":["PortfolioId"],
       "members":{
         "AcceptLanguage":{"shape":"AcceptLanguage"},
-        "PortfolioId":{"shape":"Id"}
+        "PortfolioId":{"shape":"Id"},
+        "OrganizationParentId":{"shape":"Id"},
+        "PageToken":{"shape":"PageToken"},
+        "PageSize":{"shape":"PageSize"}
       }
     },
     "ListPortfolioAccessOutput":{

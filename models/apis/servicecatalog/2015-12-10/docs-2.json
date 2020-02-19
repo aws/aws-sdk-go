@@ -40,7 +40,7 @@
     "DescribeProvisioningParameters": "<p>Gets information about the configuration required to provision the specified product using the specified provisioning artifact.</p> <p>If the output contains a TagOption key with an empty list of values, there is a TagOption conflict for that key. The end user cannot take action to fix the conflict, and launch is not blocked. In subsequent calls to <a>ProvisionProduct</a>, do not include conflicted TagOption keys as tags, or this causes the error \"Parameter validation failed: Missing required parameter in Tags[<i>N</i>]:<i>Value</i>\". Tag the provisioned product with the value <code>sc-tagoption-conflict-portfolioId-productId</code>.</p>",
     "DescribeRecord": "<p>Gets information about the specified request operation.</p> <p>Use this operation after calling a request operation (for example, <a>ProvisionProduct</a>, <a>TerminateProvisionedProduct</a>, or <a>UpdateProvisionedProduct</a>). </p> <note> <p>If a provisioned product was transferred to a new owner using <a>UpdateProvisionedProductProperties</a>, the new owner will be able to describe all past records for that product. The previous owner will no longer be able to describe the records, but will be able to use <a>ListRecordHistory</a> to see the product's history from when he was the owner.</p> </note>",
     "DescribeServiceAction": "<p>Describes a self-service action.</p>",
-    "DescribeServiceActionExecutionParameters": null,
+    "DescribeServiceActionExecutionParameters": "<p>Finds the default parameters for a specific self-service action on a specific provisioned product and returns a map of the results to the user.</p>",
     "DescribeTagOption": "<p>Gets information about the specified TagOption.</p>",
     "DisableAWSOrganizationsAccess": "<p>Disable portfolio sharing through AWS Organizations feature. This feature will not delete your current shares but it will prevent you from creating new shares throughout your organization. Current shares will not be in sync with your organization structure if it changes after calling this API. This API can only be called by the master account in the organization.</p>",
     "DisassociateBudgetFromResource": "<p>Disassociates the specified budget from the specified resource.</p>",
@@ -122,7 +122,7 @@
         "DescribeProvisioningArtifactInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "DescribeProvisioningParametersInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "DescribeRecordInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
-        "DescribeServiceActionExecutionParametersInput$AcceptLanguage": null,
+        "DescribeServiceActionExecutionParametersInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "DescribeServiceActionInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "DisassociatePrincipalFromPortfolioInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "DisassociateProductFromPortfolioInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
@@ -922,7 +922,7 @@
       }
     },
     "ExecutionParameter": {
-      "base": null,
+      "base": "<p>Details of an execution parameter value that is passed to a self-service action when executed on a provisioned product.</p>",
       "refs": {
         "ExecutionParameters$member": null
       }
@@ -930,20 +930,20 @@
     "ExecutionParameterKey": {
       "base": null,
       "refs": {
-        "ExecutionParameter$Name": null,
+        "ExecutionParameter$Name": "<p>The name of the execution parameter.</p>",
         "ExecutionParameterMap$key": null
       }
     },
     "ExecutionParameterMap": {
       "base": null,
       "refs": {
-        "ExecuteProvisionedProductServiceActionInput$Parameters": null
+        "ExecuteProvisionedProductServiceActionInput$Parameters": "<p>A map of all self-service action parameters and their values. If a provided parameter is of a special type, such as <code>TARGET</code>, the provided value will override the default value generated by AWS Service Catalog. If the parameters field is not provided, no additional parameters are passed and default values will be used for any special parameters such as <code>TARGET</code>.</p>"
       }
     },
     "ExecutionParameterType": {
       "base": null,
       "refs": {
-        "ExecutionParameter$Type": null
+        "ExecutionParameter$Type": "<p>The execution parameter type.</p>"
       }
     },
     "ExecutionParameterValue": {
@@ -955,14 +955,14 @@
     "ExecutionParameterValueList": {
       "base": null,
       "refs": {
-        "ExecutionParameter$DefaultValues": null,
+        "ExecutionParameter$DefaultValues": "<p>The default values for the execution parameter.</p>",
         "ExecutionParameterMap$value": null
       }
     },
     "ExecutionParameters": {
       "base": null,
       "refs": {
-        "DescribeServiceActionExecutionParametersOutput$ServiceActionParameters": null
+        "DescribeServiceActionExecutionParametersOutput$ServiceActionParameters": "<p>The parameters of the self-service action.</p>"
       }
     },
     "FailedServiceActionAssociation": {
@@ -1047,8 +1047,8 @@
         "DescribeProvisioningParametersInput$ProvisioningArtifactId": "<p>The identifier of the provisioning artifact.</p>",
         "DescribeProvisioningParametersInput$PathId": "<p>The path identifier of the product. This value is optional if the product has a default path, and required if the product has more than one path. To list the paths for a product, use <a>ListLaunchPaths</a>.</p>",
         "DescribeRecordInput$Id": "<p>The record identifier of the provisioned product. This identifier is returned by the request operation.</p>",
-        "DescribeServiceActionExecutionParametersInput$ProvisionedProductId": null,
-        "DescribeServiceActionExecutionParametersInput$ServiceActionId": null,
+        "DescribeServiceActionExecutionParametersInput$ProvisionedProductId": "<p>The identifier of the provisioned product.</p>",
+        "DescribeServiceActionExecutionParametersInput$ServiceActionId": "<p>The self-service action identifier.</p>",
         "DescribeServiceActionInput$Id": "<p>The self-service action identifier.</p>",
         "DisassociateBudgetFromResourceInput$ResourceId": "<p>The resource identifier you want to disassociate from. Either a portfolio-id or a product-id.</p>",
         "DisassociatePrincipalFromPortfolioInput$PortfolioId": "<p>The portfolio identifier.</p>",
@@ -1070,6 +1070,7 @@
         "ListLaunchPathsInput$ProductId": "<p>The product identifier.</p>",
         "ListOrganizationPortfolioAccessInput$PortfolioId": "<p>The portfolio identifier. For example, <code>port-2abcdext3y5fk</code>.</p>",
         "ListPortfolioAccessInput$PortfolioId": "<p>The portfolio identifier.</p>",
+        "ListPortfolioAccessInput$OrganizationParentId": "<p>The ID of an organization node the portfolio is shared with. All children of this node with an inherited portfolio share will be returned.</p>",
         "ListPortfoliosForProductInput$ProductId": "<p>The product identifier.</p>",
         "ListPrincipalsForPortfolioInput$PortfolioId": "<p>The portfolio identifier.</p>",
         "ListProvisionedProductPlansInput$ProvisionProductId": "<p>The product identifier.</p>",
@@ -1485,6 +1486,7 @@
         "ListConstraintsForPortfolioInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "ListLaunchPathsInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "ListOrganizationPortfolioAccessInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
+        "ListPortfolioAccessInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "ListPortfoliosForProductInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "ListPortfoliosInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "ListPrincipalsForPortfolioInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
@@ -1518,6 +1520,7 @@
         "ListLaunchPathsOutput$NextPageToken": "<p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>",
         "ListOrganizationPortfolioAccessInput$PageToken": "<p>The page token for the next set of results. To retrieve the first set of results, use null.</p>",
         "ListOrganizationPortfolioAccessOutput$NextPageToken": "<p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>",
+        "ListPortfolioAccessInput$PageToken": "<p>The page token for the next set of results. To retrieve the first set of results, use null.</p>",
         "ListPortfolioAccessOutput$NextPageToken": "<p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>",
         "ListPortfoliosForProductInput$PageToken": "<p>The page token for the next set of results. To retrieve the first set of results, use null.</p>",
         "ListPortfoliosForProductOutput$NextPageToken": "<p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>",
@@ -2004,7 +2007,7 @@
       "base": null,
       "refs": {
         "ProvisioningArtifactDetail$Active": "<p>Indicates whether the product version is active.</p>",
-        "UpdateProvisioningArtifactInput$Active": "<p>Indicates whether the product version is active.</p>"
+        "UpdateProvisioningArtifactInput$Active": "<p>Indicates whether the product version is active.</p> <p>Inactive provisioning artifacts are invisible to end users. End users cannot launch or update a provisioned product from an inactive provisioning artifact.</p>"
       }
     },
     "ProvisioningArtifactCreatedTime": {
@@ -2488,7 +2491,7 @@
     "ServiceActionDefinitionMap": {
       "base": null,
       "refs": {
-        "CreateServiceActionInput$Definition": "<p>The self-service action definition. Can be one of the following:</p> <dl> <dt>Name</dt> <dd> <p>The name of the AWS Systems Manager Document. For example, <code>AWS-RestartEC2Instance</code>.</p> </dd> <dt>Version</dt> <dd> <p>The AWS Systems Manager automation document version. For example, <code>\"Version\": \"1\"</code> </p> </dd> <dt>AssumeRole</dt> <dd> <p>The Amazon Resource Name (ARN) of the role that performs the self-service actions on your behalf. For example, <code>\"AssumeRole\": \"arn:aws:iam::12345678910:role/ActionRole\"</code>.</p> <p>To reuse the provisioned product launch role, set to <code>\"AssumeRole\": \"LAUNCH_ROLE\"</code>.</p> </dd> <dt>Parameters</dt> <dd> <p>The list of parameters in JSON format.</p> <p>For example: <code>[{\\\"Name\\\":\\\"InstanceId\\\",\\\"Type\\\":\\\"TARGET\\\"}]</code>.</p> </dd> </dl>",
+        "CreateServiceActionInput$Definition": "<p>The self-service action definition. Can be one of the following:</p> <dl> <dt>Name</dt> <dd> <p>The name of the AWS Systems Manager Document. For example, <code>AWS-RestartEC2Instance</code>.</p> </dd> <dt>Version</dt> <dd> <p>The AWS Systems Manager automation document version. For example, <code>\"Version\": \"1\"</code> </p> </dd> <dt>AssumeRole</dt> <dd> <p>The Amazon Resource Name (ARN) of the role that performs the self-service actions on your behalf. For example, <code>\"AssumeRole\": \"arn:aws:iam::12345678910:role/ActionRole\"</code>.</p> <p>To reuse the provisioned product launch role, set to <code>\"AssumeRole\": \"LAUNCH_ROLE\"</code>.</p> </dd> <dt>Parameters</dt> <dd> <p>The list of parameters in JSON format.</p> <p>For example: <code>[{\\\"Name\\\":\\\"InstanceId\\\",\\\"Type\\\":\\\"TARGET\\\"}]</code> or <code>[{\\\"Name\\\":\\\"InstanceId\\\",\\\"Type\\\":\\\"TEXT_VALUE\\\"}]</code>.</p> </dd> </dl>",
         "ServiceActionDetail$Definition": "<p>A map that defines the self-service action.</p>",
         "UpdateServiceActionInput$Definition": "<p>A map that defines the self-service action.</p>"
       }

@@ -299,6 +299,9 @@ type ServiceCatalogAPI interface {
 	ListPortfolioAccessWithContext(aws.Context, *servicecatalog.ListPortfolioAccessInput, ...request.Option) (*servicecatalog.ListPortfolioAccessOutput, error)
 	ListPortfolioAccessRequest(*servicecatalog.ListPortfolioAccessInput) (*request.Request, *servicecatalog.ListPortfolioAccessOutput)
 
+	ListPortfolioAccessPages(*servicecatalog.ListPortfolioAccessInput, func(*servicecatalog.ListPortfolioAccessOutput, bool) bool) error
+	ListPortfolioAccessPagesWithContext(aws.Context, *servicecatalog.ListPortfolioAccessInput, func(*servicecatalog.ListPortfolioAccessOutput, bool) bool, ...request.Option) error
+
 	ListPortfolios(*servicecatalog.ListPortfoliosInput) (*servicecatalog.ListPortfoliosOutput, error)
 	ListPortfoliosWithContext(aws.Context, *servicecatalog.ListPortfoliosInput, ...request.Option) (*servicecatalog.ListPortfoliosOutput, error)
 	ListPortfoliosRequest(*servicecatalog.ListPortfoliosInput) (*request.Request, *servicecatalog.ListPortfoliosOutput)

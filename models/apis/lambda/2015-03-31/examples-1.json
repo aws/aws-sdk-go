@@ -36,7 +36,7 @@
           "MemorySize": 128,
           "Publish": true,
           "Role": "arn:aws:iam::123456789012:role/service-role/role-name",
-          "Runtime": "nodejs8.10",
+          "Runtime": "nodejs12.x",
           "Timeout": 15,
           "VpcConfig": {
           }
@@ -51,7 +51,7 @@
           "LastModified": "2016-11-21T19:49:20.006+0000",
           "MemorySize": 128,
           "Role": "arn:aws:iam::123456789012:role/service-role/role-name",
-          "Runtime": "nodejs8.10",
+          "Runtime": "nodejs12.x",
           "Timeout": 123,
           "Version": "1",
           "VpcConfig": {
@@ -226,7 +226,7 @@
             "LastModified": "2016-11-21T19:49:20.006+0000",
             "MemorySize": 128,
             "Role": "arn:aws:iam::123456789012:role/lambda_basic_execution",
-            "Runtime": "nodejs8.10",
+            "Runtime": "nodejs12.x",
             "Timeout": 3,
             "Version": "$LATEST",
             "VpcConfig": {
@@ -384,7 +384,7 @@
       {
         "input": {
           "Marker": "",
-          "MaxItems": 123
+          "MaxItems": 25
         },
         "output": {
           "Functions": [
@@ -408,7 +408,7 @@
         "input": {
           "FunctionName": "myFunction",
           "Marker": "",
-          "MaxItems": 123
+          "MaxItems": 25
         },
         "output": {
           "NextMarker": "",

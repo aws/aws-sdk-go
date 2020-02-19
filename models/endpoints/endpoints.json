@@ -2289,6 +2289,11 @@
           "us-east-1" : { }
         }
       },
+      "managedblockchain" : {
+        "endpoints" : {
+          "us-east-1" : { }
+        }
+      },
       "marketplacecommerceanalytics" : {
         "endpoints" : {
           "us-east-1" : { }
