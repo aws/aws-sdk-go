@@ -1,3 +1,14 @@
+Release v1.29.6 (2020-02-19)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service documentation
+  * Doc update for EC2 Auto Scaling: Add Enabled parameter for PutScalingPolicy
+* `service/lambda`: Updates service API, documentation, and examples
+  * AWS Lambda now supports Ruby 2.7
+* `service/servicecatalog`: Updates service API, documentation, and paginators
+  * "ListPortfolioAccess" API now has a new optional parameter "OrganizationParentId". When it is provided and if the portfolio with the "PortfolioId" given was shared with an organization or organizational unit with "OrganizationParentId", all accounts in the organization sub-tree under parent which inherit an organizational portfolio share will be listed, rather than all accounts with external shares. To accommodate long lists returned from the new option, the API now supports pagination.
+
 Release v1.29.5 (2020-02-18)
 ===
 

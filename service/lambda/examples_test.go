@@ -84,7 +84,7 @@ func ExampleLambda_CreateFunction_shared00() {
 		MemorySize:   aws.Int64(128),
 		Publish:      aws.Bool(true),
 		Role:         aws.String("arn:aws:iam::123456789012:role/service-role/role-name"),
-		Runtime:      aws.String("nodejs8.10"),
+		Runtime:      aws.String("nodejs12.x"),
 		Timeout:      aws.Int64(15),
 		VpcConfig:    &lambda.VpcConfig{},
 	}
@@ -597,7 +597,7 @@ func ExampleLambda_ListFunctions_shared00() {
 	svc := lambda.New(session.New())
 	input := &lambda.ListFunctionsInput{
 		Marker:   aws.String(""),
-		MaxItems: aws.Int64(123),
+		MaxItems: aws.Int64(25),
 	}
 
 	result, err := svc.ListFunctions(input)
@@ -632,7 +632,7 @@ func ExampleLambda_ListVersionsByFunction_shared00() {
 	input := &lambda.ListVersionsByFunctionInput{
 		FunctionName: aws.String("myFunction"),
 		Marker:       aws.String(""),
-		MaxItems:     aws.Int64(123),
+		MaxItems:     aws.Int64(25),
 	}
 
 	result, err := svc.ListVersionsByFunction(input)
