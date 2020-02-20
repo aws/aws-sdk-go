@@ -2547,6 +2547,9 @@ const (
 
 	// SavingsPlanProductTypeFargate is a SavingsPlanProductType enum value
 	SavingsPlanProductTypeFargate = "Fargate"
+
+	// SavingsPlanProductTypeLambda is a SavingsPlanProductType enum value
+	SavingsPlanProductTypeLambda = "Lambda"
 )
 
 const (
@@ -2618,11 +2621,20 @@ const (
 
 	// SavingsPlanRateServiceCodeAmazonEcs is a SavingsPlanRateServiceCode enum value
 	SavingsPlanRateServiceCodeAmazonEcs = "AmazonECS"
+
+	// SavingsPlanRateServiceCodeAwslambda is a SavingsPlanRateServiceCode enum value
+	SavingsPlanRateServiceCodeAwslambda = "AWSLambda"
 )
 
 const (
 	// SavingsPlanRateUnitHrs is a SavingsPlanRateUnit enum value
 	SavingsPlanRateUnitHrs = "Hrs"
+
+	// SavingsPlanRateUnitLambdaGbSecond is a SavingsPlanRateUnit enum value
+	SavingsPlanRateUnitLambdaGbSecond = "Lambda-GB-Second"
+
+	// SavingsPlanRateUnitRequest is a SavingsPlanRateUnit enum value
+	SavingsPlanRateUnitRequest = "Request"
 )
 
 const (

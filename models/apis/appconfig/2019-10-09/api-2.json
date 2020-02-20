@@ -922,7 +922,10 @@
     },
     "GrowthType":{
       "type":"string",
-      "enum":["LINEAR"]
+      "enum":[
+        "LINEAR",
+        "EXPONENTIAL"
+      ]
     },
     "Id":{
       "type":"string",

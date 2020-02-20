@@ -1,3 +1,12 @@
+Release v1.29.7 (2020-02-20)
+===
+
+### Service Client Updates
+* `service/appconfig`: Updates service API and documentation
+* `service/pinpoint`: Updates service API
+  * As of this release of the Amazon Pinpoint API, the Title property is optional for the CampaignEmailMessage object.
+* `service/savingsplans`: Updates service API
+
 Release v1.29.6 (2020-02-19)
 ===
 
