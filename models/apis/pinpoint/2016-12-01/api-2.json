@@ -4519,10 +4519,7 @@
         "Title": {
           "shape": "__string"
         }
-      },
-      "required": [
-        "Title"
-      ]
+      }
     },
     "CampaignEventFilter": {
       "type": "structure",
