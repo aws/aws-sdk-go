@@ -1542,7 +1542,8 @@
       "type":"string",
       "enum":[
         "restore-cluster",
-        "recommend-node-config"
+        "recommend-node-config",
+        "resize-cluster"
       ]
     },
     "AssociatedClusterList":{
@@ -4236,10 +4237,7 @@
     },
     "ResizeClusterMessage":{
       "type":"structure",
-      "required":[
-        "ClusterIdentifier",
-        "NumberOfNodes"
-      ],
+      "required":["ClusterIdentifier"],
       "members":{
         "ClusterIdentifier":{"shape":"String"},
         "ClusterType":{"shape":"String"},
