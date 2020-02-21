@@ -1047,14 +1047,11 @@
         "EbsInstanceBlockDeviceSpecification$kmsKeyId": "<p>Use to configure the KMS key to use when encrypting the device.</p>",
         "EbsInstanceBlockDeviceSpecification$snapshotId": "<p>The snapshot that defines the device contents.</p>",
         "GetComponentPolicyResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
-        "GetComponentPolicyResponse$policy": "<p> The component policy. </p>",
         "GetComponentResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
         "GetDistributionConfigurationResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
         "GetImagePipelineResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
         "GetImagePolicyResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
-        "GetImagePolicyResponse$policy": "<p> The image policy object. </p>",
         "GetImageRecipePolicyResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
-        "GetImageRecipePolicyResponse$policy": "<p> The image recipe policy object. </p>",
         "GetImageRecipeResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
         "GetImageResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
         "GetInfrastructureConfigurationResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
@@ -1107,11 +1104,8 @@
         "ListInfrastructureConfigurationsRequest$nextToken": "<p> A token to specify where to start paginating. This is the NextToken from a previously truncated response. </p>",
         "ListInfrastructureConfigurationsResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
         "ListInfrastructureConfigurationsResponse$nextToken": "<p> The next token used for paginated responses. When this is not empty, there are additional elements that the service has not included in this request. Use this token with the next request to retrieve additional objects.</p>",
-        "PutComponentPolicyRequest$policy": "<p> The policy to apply. </p>",
         "PutComponentPolicyResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
-        "PutImagePolicyRequest$policy": "<p> The policy to apply. </p>",
         "PutImagePolicyResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
-        "PutImageRecipePolicyRequest$policy": "<p> The policy to apply. </p>",
         "PutImageRecipePolicyResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
         "S3Logs$s3BucketName": "<p>The Amazon S3 bucket in which to store the logs.</p>",
         "S3Logs$s3KeyPrefix": "<p>The Amazon S3 path in which to store the logs.</p>",
@@ -1260,6 +1254,17 @@
     "ResourceNotFoundException": {
       "base": "<p>At least one of the resources referenced by your request does not exist.</p>",
       "refs": {
+      }
+    },
+    "ResourcePolicyDocument": {
+      "base": null,
+      "refs": {
+        "GetComponentPolicyResponse$policy": "<p> The component policy. </p>",
+        "GetImagePolicyResponse$policy": "<p> The image policy object. </p>",
+        "GetImageRecipePolicyResponse$policy": "<p> The image recipe policy object. </p>",
+        "PutComponentPolicyRequest$policy": "<p> The policy to apply. </p>",
+        "PutImagePolicyRequest$policy": "<p> The policy to apply. </p>",
+        "PutImageRecipePolicyRequest$policy": "<p> The policy to apply. </p>"
       }
     },
     "RestrictedInteger": {

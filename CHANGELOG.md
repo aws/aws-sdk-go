@@ -1,3 +1,12 @@
+Release v1.29.8 (2020-02-21)
+===
+
+### Service Client Updates
+* `service/imagebuilder`: Updates service API and documentation
+* `service/redshift`: Updates service API and documentation
+  * Extend elastic resize to support resizing clusters to different instance types.
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.29.7 (2020-02-20)
 ===
 

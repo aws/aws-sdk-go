@@ -1378,7 +1378,7 @@
       "type":"structure",
       "members":{
         "requestId":{"shape":"NonEmptyString"},
-        "policy":{"shape":"NonEmptyString"}
+        "policy":{"shape":"ResourcePolicyDocument"}
       }
     },
     "GetComponentRequest":{
@@ -1450,7 +1450,7 @@
       "type":"structure",
       "members":{
         "requestId":{"shape":"NonEmptyString"},
-        "policy":{"shape":"NonEmptyString"}
+        "policy":{"shape":"ResourcePolicyDocument"}
       }
     },
     "GetImageRecipePolicyRequest":{
@@ -1468,7 +1468,7 @@
       "type":"structure",
       "members":{
         "requestId":{"shape":"NonEmptyString"},
-        "policy":{"shape":"NonEmptyString"}
+        "policy":{"shape":"ResourcePolicyDocument"}
       }
     },
     "GetImageRecipeRequest":{
@@ -2099,7 +2099,7 @@
       ],
       "members":{
         "componentArn":{"shape":"ComponentBuildVersionArn"},
-        "policy":{"shape":"NonEmptyString"}
+        "policy":{"shape":"ResourcePolicyDocument"}
       }
     },
     "PutComponentPolicyResponse":{
@@ -2117,7 +2117,7 @@
       ],
       "members":{
         "imageArn":{"shape":"ImageBuildVersionArn"},
-        "policy":{"shape":"NonEmptyString"}
+        "policy":{"shape":"ResourcePolicyDocument"}
       }
     },
     "PutImagePolicyResponse":{
@@ -2135,7 +2135,7 @@
       ],
       "members":{
         "imageRecipeArn":{"shape":"ImageRecipeArn"},
-        "policy":{"shape":"NonEmptyString"}
+        "policy":{"shape":"ResourcePolicyDocument"}
       }
     },
     "PutImageRecipePolicyResponse":{
@@ -2180,6 +2180,11 @@
       },
       "error":{"httpStatusCode":404},
       "exception":true
+    },
+    "ResourcePolicyDocument":{
+      "type":"string",
+      "max":30000,
+      "min":1
     },
     "RestrictedInteger":{
       "type":"integer",

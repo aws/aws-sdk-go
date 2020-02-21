@@ -42,7 +42,8 @@
         {"shape":"WAFNonexistentItemException"},
         {"shape":"WAFLimitsExceededException"},
         {"shape":"WAFInvalidResourceException"},
-        {"shape":"WAFUnavailableEntityException"}
+        {"shape":"WAFUnavailableEntityException"},
+        {"shape":"WAFSubscriptionNotFoundException"}
       ]
     },
     "CreateIPSet":{
@@ -97,7 +98,8 @@
         {"shape":"WAFLimitsExceededException"},
         {"shape":"WAFUnavailableEntityException"},
         {"shape":"WAFTagOperationException"},
-        {"shape":"WAFTagOperationInternalErrorException"}
+        {"shape":"WAFTagOperationInternalErrorException"},
+        {"shape":"WAFSubscriptionNotFoundException"}
       ]
     },
     "CreateWebACL":{
@@ -118,7 +120,8 @@
         {"shape":"WAFUnavailableEntityException"},
         {"shape":"WAFNonexistentItemException"},
         {"shape":"WAFTagOperationException"},
-        {"shape":"WAFTagOperationInternalErrorException"}
+        {"shape":"WAFTagOperationInternalErrorException"},
+        {"shape":"WAFSubscriptionNotFoundException"}
       ]
     },
     "DeleteIPSet":{
@@ -134,6 +137,7 @@
         {"shape":"WAFInvalidParameterException"},
         {"shape":"WAFNonexistentItemException"},
         {"shape":"WAFOptimisticLockException"},
+        {"shape":"WAFAssociatedItemException"},
         {"shape":"WAFTagOperationException"},
         {"shape":"WAFTagOperationInternalErrorException"}
       ]
@@ -165,6 +169,7 @@
         {"shape":"WAFInvalidParameterException"},
         {"shape":"WAFNonexistentItemException"},
         {"shape":"WAFOptimisticLockException"},
+        {"shape":"WAFAssociatedItemException"},
         {"shape":"WAFTagOperationException"},
         {"shape":"WAFTagOperationInternalErrorException"}
       ]
@@ -182,6 +187,7 @@
         {"shape":"WAFInvalidParameterException"},
         {"shape":"WAFNonexistentItemException"},
         {"shape":"WAFOptimisticLockException"},
+        {"shape":"WAFAssociatedItemException"},
         {"shape":"WAFTagOperationException"},
         {"shape":"WAFTagOperationInternalErrorException"}
       ]
@@ -551,7 +557,8 @@
         {"shape":"WAFDuplicateItemException"},
         {"shape":"WAFOptimisticLockException"},
         {"shape":"WAFLimitsExceededException"},
-        {"shape":"WAFUnavailableEntityException"}
+        {"shape":"WAFUnavailableEntityException"},
+        {"shape":"WAFSubscriptionNotFoundException"}
       ]
     },
     "UpdateWebACL":{
@@ -570,7 +577,8 @@
         {"shape":"WAFOptimisticLockException"},
         {"shape":"WAFLimitsExceededException"},
         {"shape":"WAFInvalidResourceException"},
-        {"shape":"WAFUnavailableEntityException"}
+        {"shape":"WAFUnavailableEntityException"},
+        {"shape":"WAFSubscriptionNotFoundException"}
       ]
     }
   },
@@ -1718,7 +1726,8 @@
         "RESOURCE_ARN",
         "RESOURCE_TYPE",
         "TAGS",
-        "TAG_KEYS"
+        "TAG_KEYS",
+        "METRIC_NAME"
       ]
     },
     "ParameterExceptionParameter":{
@@ -2344,6 +2353,13 @@
       "type":"structure",
       "members":{
         "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "WAFSubscriptionNotFoundException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
       },
       "exception":true
     },
