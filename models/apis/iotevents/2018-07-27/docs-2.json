@@ -1,19 +1,19 @@
 {
   "version": "2.0",
-  "service": "<p>AWS IoT Events monitors your equipment or device fleets for failures or changes in operation, and triggers actions when such events occur. AWS IoT Events API commands enable you to create, read, update and delete inputs and detector models, and to list their versions.</p>",
+  "service": "<p>AWS IoT Events monitors your equipment or device fleets for failures or changes in operation, and triggers actions when such events occur. You can use AWS IoT Events API commands to create, read, update, and delete inputs and detector models, and to list their versions.</p>",
   "operations": {
     "CreateDetectorModel": "<p>Creates a detector model.</p>",
     "CreateInput": "<p>Creates an input.</p>",
     "DeleteDetectorModel": "<p>Deletes a detector model. Any active instances of the detector model are also deleted.</p>",
     "DeleteInput": "<p>Deletes an input.</p>",
-    "DescribeDetectorModel": "<p>Describes a detector model. If the <code>\"version\"</code> parameter is not specified, information about the latest version is returned.</p>",
+    "DescribeDetectorModel": "<p>Describes a detector model. If the <code>version</code> parameter is not specified, information about the latest version is returned.</p>",
     "DescribeInput": "<p>Describes an input.</p>",
     "DescribeLoggingOptions": "<p>Retrieves the current settings of the AWS IoT Events logging options.</p>",
     "ListDetectorModelVersions": "<p>Lists all the versions of a detector model. Only the metadata associated with each detector model version is returned.</p>",
     "ListDetectorModels": "<p>Lists the detector models you have created. Only the metadata associated with each detector model is returned.</p>",
     "ListInputs": "<p>Lists the inputs you have created.</p>",
     "ListTagsForResource": "<p>Lists the tags (metadata) you have assigned to the resource.</p>",
-    "PutLoggingOptions": "<p>Sets or updates the AWS IoT Events logging options.</p> <p>If you update the value of any <code>\"loggingOptions\"</code> field, it takes up to one minute for the change to take effect. Also, if you change the policy attached to the role you specified in the <code>\"roleArn\"</code> field (for example, to correct an invalid policy) it takes up to five minutes for that change to take effect.</p>",
+    "PutLoggingOptions": "<p>Sets or updates the AWS IoT Events logging options.</p> <p>If you update the value of any <code>loggingOptions</code> field, it takes up to one minute for the change to take effect. If you change the policy attached to the role you specified in the <code>roleArn</code> field (for example, to correct an invalid policy), it takes up to five minutes for that change to take effect.</p>",
     "TagResource": "<p>Adds to or modifies the tags of the given resource. Tags are metadata that can be used to manage a resource.</p>",
     "UntagResource": "<p>Removes the given tags (metadata) from the resource.</p>",
     "UpdateDetectorModel": "<p>Updates a detector model. Detectors (instances) spawned by the previous version are deleted and then re-created as new inputs arrive.</p>",
@@ -21,7 +21,7 @@
   },
   "shapes": {
     "Action": {
-      "base": "<p>An action to be performed when the <code>\"condition\"</code> is TRUE.</p>",
+      "base": "<p>An action to be performed when the <code>condition</code> is TRUE.</p>",
       "refs": {
         "Actions$member": null
       }
@@ -49,7 +49,7 @@
       }
     },
     "Attribute": {
-      "base": "<p>The attributes from the JSON payload that are made available by the input. Inputs are derived from messages sent to the AWS IoT Events system using <code>BatchPutMessage</code>. Each such message contains a JSON payload, and those attributes (and their paired values) specified here are available for use in the <code>condition</code> expressions used by detectors. </p>",
+      "base": "<p>The attributes from the JSON payload that are made available by the input. Inputs are derived from messages sent to the AWS IoT Events system using <code>BatchPutMessage</code>. Each such message contains a JSON payload. Those attributes (and their paired values) specified here are available for use in the <code>condition</code> expressions used by detectors. </p>",
       "refs": {
         "Attributes$member": null
       }
@@ -57,15 +57,15 @@
     "AttributeJsonPath": {
       "base": null,
       "refs": {
-        "Attribute$jsonPath": "<p>An expression that specifies an attribute-value pair in a JSON structure. Use this to specify an attribute from the JSON payload that is made available by the input. Inputs are derived from messages sent to the AWS IoT Events system (<code>BatchPutMessage</code>). Each such message contains a JSON payload, and the attribute (and its paired value) specified here are available for use in the <code>\"condition\"</code> expressions used by detectors. </p> <p>Syntax: <code>&lt;field-name&gt;.&lt;field-name&gt;...</code> </p>",
-        "CreateDetectorModelRequest$key": "<p>The input attribute key used to identify a device or system in order to create a detector (an instance of the detector model) and then to route each input received to the appropriate detector (instance). This parameter uses a JSON-path expression to specify the attribute-value pair in the message payload of each input that is used to identify the device associated with the input.</p>",
-        "DetectorModelConfiguration$key": "<p>The input attribute key used to identify a device or system in order to create a detector (an instance of the detector model) and then to route each input received to the appropriate detector (instance). This parameter uses a JSON-path expression to specify the attribute-value pair in the message payload of each input that is used to identify the device associated with the input.</p>"
+        "Attribute$jsonPath": "<p>An expression that specifies an attribute-value pair in a JSON structure. Use this to specify an attribute from the JSON payload that is made available by the input. Inputs are derived from messages sent to AWS IoT Events (<code>BatchPutMessage</code>). Each such message contains a JSON payload. The attribute (and its paired value) specified here are available for use in the <code>condition</code> expressions used by detectors. </p> <p>Syntax: <code>&lt;field-name&gt;.&lt;field-name&gt;...</code> </p>",
+        "CreateDetectorModelRequest$key": "<p>The input attribute key used to identify a device or system to create a detector (an instance of the detector model) and then to route each input received to the appropriate detector (instance). This parameter uses a JSON-path expression in the message payload of each input to specify the attribute-value pair that is used to identify the device associated with the input.</p>",
+        "DetectorModelConfiguration$key": "<p>The input attribute key used to identify a device or system to create a detector (an instance of the detector model) and then to route each input received to the appropriate detector (instance). This parameter uses a JSON-path expression in the message payload of each input to specify the attribute-value pair that is used to identify the device associated with the input.</p>"
       }
     },
     "Attributes": {
       "base": null,
       "refs": {
-        "InputDefinition$attributes": "<p>The attributes from the JSON payload that are made available by the input. Inputs are derived from messages sent to the AWS IoT Events system using <code>BatchPutMessage</code>. Each such message contains a JSON payload, and those attributes (and their paired values) specified here are available for use in the <code>\"condition\"</code> expressions used by detectors that monitor this input. </p>"
+        "InputDefinition$attributes": "<p>The attributes from the JSON payload that are made available by the input. Inputs are derived from messages sent to the AWS IoT Events system using <code>BatchPutMessage</code>. Each such message contains a JSON payload, and those attributes (and their paired values) specified here are available for use in the <code>condition</code> expressions used by detectors that monitor this input. </p>"
       }
     },
     "ClearTimerAction": {
@@ -77,8 +77,8 @@
     "Condition": {
       "base": null,
       "refs": {
-        "Event$condition": "<p>[Optional] The Boolean expression that when TRUE causes the <code>\"actions\"</code> to be performed. If not present, the actions are performed (=TRUE); if the expression result is not a Boolean value, the actions are NOT performed (=FALSE).</p>",
-        "TransitionEvent$condition": "<p>[Required] A Boolean expression that when TRUE causes the actions to be performed and the <code>\"nextState\"</code> to be entered.</p>"
+        "Event$condition": "<p>Optional. The Boolean expression that, when TRUE, causes the <code>actions</code> to be performed. If not present, the actions are performed (=TRUE). If the expression result is not a Boolean value, the actions are not performed (=FALSE).</p>",
+        "TransitionEvent$condition": "<p>Required. A Boolean expression that when TRUE causes the actions to be performed and the <code>nextState</code> to be entered.</p>"
       }
     },
     "CreateDetectorModelRequest": {
@@ -270,7 +270,7 @@
       }
     },
     "Event": {
-      "base": "<p>Specifies the <code>\"actions\"</code> to be performed when the <code>\"condition\"</code> evaluates to TRUE.</p>",
+      "base": "<p>Specifies the <code>actions</code> to be performed when the <code>condition</code> evaluates to TRUE.</p>",
       "refs": {
         "Events$member": null
       }
@@ -285,15 +285,15 @@
     "Events": {
       "base": null,
       "refs": {
-        "OnEnterLifecycle$events": "<p>Specifies the actions that are performed when the state is entered and the <code>\"condition\"</code> is TRUE.</p>",
-        "OnExitLifecycle$events": "<p>Specifies the <code>\"actions\"</code> that are performed when the state is exited and the <code>\"condition\"</code> is TRUE.</p>",
-        "OnInputLifecycle$events": "<p>Specifies the actions performed when the <code>\"condition\"</code> evaluates to TRUE.</p>"
+        "OnEnterLifecycle$events": "<p>Specifies the actions that are performed when the state is entered and the <code>condition</code> is TRUE.</p>",
+        "OnExitLifecycle$events": "<p>Specifies the <code>actions</code> that are performed when the state is exited and the <code>condition</code> is TRUE.</p>",
+        "OnInputLifecycle$events": "<p>Specifies the actions performed when the <code>condition</code> evaluates to TRUE.</p>"
       }
     },
     "FirehoseAction": {
-      "base": "<p>Sends information about the detector model instance and the event that triggered the action to a Kinesis Data Firehose delivery stream.</p>",
+      "base": "<p>Sends information about the detector model instance and the event that triggered the action to an Amazon Kinesis Data Firehose delivery stream.</p>",
       "refs": {
-        "Action$firehose": "<p>Sends information about the detector model instance and the event that triggered the action to a Kinesis Data Firehose delivery stream.</p>"
+        "Action$firehose": "<p>Sends information about the detector model instance and the event that triggered the action to an Amazon Kinesis Data Firehose delivery stream.</p>"
       }
     },
     "FirehoseSeparator": {
@@ -384,11 +384,11 @@
     "IotEventsAction": {
       "base": "<p>Sends an AWS IoT Events input, passing in information about the detector model instance and the event that triggered the action.</p>",
       "refs": {
-        "Action$iotEvents": "<p>Sends an IoT Events input, passing in information about the detector model instance and the event that triggered the action.</p>"
+        "Action$iotEvents": "<p>Sends an AWS IoT Events input, passing in information about the detector model instance and the event that triggered the action.</p>"
       }
     },
     "IotTopicPublishAction": {
-      "base": "<p>Information required to publish the MQTT message via the AWS IoT message broker.</p>",
+      "base": "<p>Information required to publish the MQTT message through the AWS IoT message broker.</p>",
       "refs": {
         "Action$iotTopicPublish": "<p>Publishes an MQTT message with the given topic to the AWS IoT message broker.</p>"
       }
@@ -472,7 +472,7 @@
     "MQTTTopic": {
       "base": null,
       "refs": {
-        "IotTopicPublishAction$mqttTopic": "<p>The MQTT topic of the message.</p>"
+        "IotTopicPublishAction$mqttTopic": "<p>The MQTT topic of the message. You can use a string expression that includes variables (<code>$variable.&lt;variable-name&gt;</code>) and input values (<code>$input.&lt;input-name&gt;.&lt;path-to-datum&gt;</code>) as the topic string.</p>"
       }
     },
     "MaxResults": {
@@ -497,19 +497,19 @@
     "OnEnterLifecycle": {
       "base": "<p>When entering this state, perform these <code>actions</code> if the <code>condition</code> is TRUE.</p>",
       "refs": {
-        "State$onEnter": "<p>When entering this state, perform these <code>\"actions\"</code> if the <code>\"condition\"</code> is TRUE.</p>"
+        "State$onEnter": "<p>When entering this state, perform these <code>actions</code> if the <code>condition</code> is TRUE.</p>"
       }
     },
     "OnExitLifecycle": {
-      "base": "<p>When exiting this state, perform these <code>\"actions\"</code> if the specified <code>\"condition\"</code> is TRUE.</p>",
+      "base": "<p>When exiting this state, perform these <code>actions</code> if the specified <code>condition</code> is TRUE.</p>",
       "refs": {
-        "State$onExit": "<p>When exiting this state, perform these <code>\"actions\"</code> if the specified <code>\"condition\"</code> is TRUE.</p>"
+        "State$onExit": "<p>When exiting this state, perform these <code>actions</code> if the specified <code>condition</code> is TRUE.</p>"
       }
     },
     "OnInputLifecycle": {
-      "base": "<p>Specifies the actions performed when the <code>\"condition\"</code> evaluates to TRUE.</p>",
+      "base": "<p>Specifies the actions performed when the <code>condition</code> evaluates to TRUE.</p>",
       "refs": {
-        "State$onInput": "<p>When an input is received and the <code>\"condition\"</code> is TRUE, perform the specified <code>\"actions\"</code>.</p>"
+        "State$onInput": "<p>When an input is received and the <code>condition</code> is TRUE, perform the specified <code>actions</code>.</p>"
       }
     },
     "PutLoggingOptionsRequest": {
@@ -553,7 +553,7 @@
     "Seconds": {
       "base": null,
       "refs": {
-        "SetTimerAction$seconds": "<p>The number of seconds until the timer expires. The minimum value is 60 seconds to ensure accuracy.</p>"
+        "SetTimerAction$seconds": "<p>The number of seconds until the timer expires. The minimum value is 60 seconds to ensure accuracy. The maximum value is 31622400 seconds. </p>"
       }
     },
     "ServiceUnavailableException": {
@@ -671,7 +671,7 @@
       }
     },
     "TransitionEvent": {
-      "base": "<p>Specifies the actions performed and the next state entered when a <code>\"condition\"</code> evaluates to TRUE.</p>",
+      "base": "<p>Specifies the actions performed and the next state entered when a <code>condition</code> evaluates to TRUE.</p>",
       "refs": {
         "TransitionEvents$member": null
       }
@@ -679,7 +679,7 @@
     "TransitionEvents": {
       "base": null,
       "refs": {
-        "OnInputLifecycle$transitionEvents": "<p>Specifies the actions performed, and the next state entered, when a <code>\"condition\"</code> evaluates to TRUE.</p>"
+        "OnInputLifecycle$transitionEvents": "<p>Specifies the actions performed, and the next state entered, when a <code>condition</code> evaluates to TRUE.</p>"
       }
     },
     "UnsupportedOperationException": {
@@ -720,7 +720,7 @@
     "UseBase64": {
       "base": null,
       "refs": {
-        "SqsAction$useBase64": "<p>Set this to TRUE if you want the data to be Base-64 encoded before it is written to the queue. Otherwise, set this to FALSE.</p>"
+        "SqsAction$useBase64": "<p>Set this to TRUE if you want the data to be base-64 encoded before it is written to the queue. Otherwise, set this to FALSE.</p>"
       }
     },
     "VariableName": {

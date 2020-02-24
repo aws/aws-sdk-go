@@ -464,6 +464,7 @@
         "InvalidExportPath$Message": null,
         "InvalidImportPath$Message": null,
         "InvalidNetworkSettings$Message": null,
+        "InvalidPerUnitStorageThroughput$Message": null,
         "MissingFileSystemConfiguration$Message": null,
         "NotServiceResourceError$Message": null,
         "ResourceDoesNotSupportTagging$Message": null,
@@ -548,7 +549,7 @@
     "FileSystemType": {
       "base": "<p>The type of file system.</p>",
       "refs": {
-        "CreateFileSystemRequest$FileSystemType": "<p>The type of Amazon FSx file system to create.</p>",
+        "CreateFileSystemRequest$FileSystemType": "<p>The type of Amazon FSx file system to create, either <code>WINDOWS</code> or <code>LUSTRE</code>.</p>",
         "FileSystem$FileSystemType": "<p>The type of Amazon FSx file system, either <code>LUSTRE</code> or <code>WINDOWS</code>.</p>"
       }
     },
@@ -592,9 +593,9 @@
       "base": null,
       "refs": {
         "CompletionReport$Enabled": "<p>Set <code>Enabled</code> to <code>True</code> to generate a <code>CompletionReport</code> when the task completes. If set to <code>true</code>, then you need to provide a report <code>Scope</code>, <code>Path</code>, and <code>Format</code>. Set <code>Enabled</code> to <code>False</code> if you do not want a <code>CompletionReport</code> generated when the task completes.</p>",
-        "CreateFileSystemWindowsConfiguration$CopyTagsToBackups": "<p>A boolean flag indicating whether tags for the file system should be copied to backups. This value defaults to false. If it's set to true, all tags for the file system are copied to all automatic and user-initiated backups where the user doesn't specify tags. If this value is true, and you specify one or more tags, only the specified tags are copied to backups.</p>",
+        "CreateFileSystemWindowsConfiguration$CopyTagsToBackups": "<p>A boolean flag indicating whether tags for the file system should be copied to backups. This value defaults to false. If it's set to true, all tags for the file system are copied to all automatic and user-initiated backups where the user doesn't specify tags. If this value is true, and you specify one or more tags, only the specified tags are copied to backups. If you specify one or more tags when creating a user-initiated backup, no tags are copied from the file system, regardless of this value.</p>",
         "DeleteFileSystemWindowsConfiguration$SkipFinalBackup": "<p>By default, Amazon FSx for Windows takes a final backup on your behalf when the <code>DeleteFileSystem</code> operation is invoked. Doing this helps protect you from data loss, and we highly recommend taking the final backup. If you want to skip this backup, use this flag to do so.</p>",
-        "WindowsFileSystemConfiguration$CopyTagsToBackups": "<p>A boolean flag indicating whether tags on the file system should be copied to backups. This value defaults to false. If it's set to true, all tags on the file system are copied to all automatic backups and any user-initiated backups where the user doesn't specify any tags. If this value is true, and you specify one or more tags, only the specified tags are copied to backups.</p>"
+        "WindowsFileSystemConfiguration$CopyTagsToBackups": "<p>A boolean flag indicating whether tags on the file system should be copied to backups. This value defaults to false. If it's set to true, all tags on the file system are copied to all automatic backups and any user-initiated backups where the user doesn't specify any tags. If this value is true, and you specify one or more tags, only the specified tags are copied to backups. If you specify one or more tags when creating a user-initiated backup, no tags are copied from the file system, regardless of this value.</p>"
       }
     },
     "IncompatibleParameterError": {
@@ -622,6 +623,11 @@
       "refs": {
       }
     },
+    "InvalidPerUnitStorageThroughput": {
+      "base": "<p>An invalid value for <code>PerUnitStorageThroughput</code> was provided. Please create your file system again, using a valid value.</p>",
+      "refs": {
+      }
+    },
     "IpAddress": {
       "base": null,
       "refs": {
@@ -630,11 +636,11 @@
       }
     },
     "KmsKeyId": {
-      "base": "<p>The ID of the AWS Key Management Service (AWS KMS) key used to encrypt the file system's data for an Amazon FSx for Windows File Server file system at rest. Amazon FSx for Lustre does not support KMS encryption. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html\">Encrypt</a> in the <i>AWS Key Management Service API Reference</i>.</p>",
+      "base": "<p>The ID of the AWS Key Management Service (AWS KMS) key used to encrypt the file system's data for Amazon FSx for Windows File Server file systems and Amazon FSx for Lustre <code>PERSISTENT_1</code> file systems at rest. In either case, if not specified, the Amazon FSx managed key is used. The Amazon FSx for Lustre <code>SCRATCH_1</code> and <code>SCRATCH_2</code> file systems are always encrypted at rest using Amazon FSx managed keys. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html\">Encrypt</a> in the <i>AWS Key Management Service API Reference</i>.</p>",
       "refs": {
         "Backup$KmsKeyId": "<p>The ID of the AWS Key Management Service (AWS KMS) key used to encrypt this backup of the Amazon FSx for Windows file system's data at rest. Amazon FSx for Lustre does not support KMS encryption.</p>",
         "CreateFileSystemRequest$KmsKeyId": null,
-        "FileSystem$KmsKeyId": "<p>The ID of the AWS Key Management Service (AWS KMS) key used to encrypt the file system's data for an Amazon FSx for Windows File Server file system. Amazon FSx for Lustre does not support KMS encryption. </p>"
+        "FileSystem$KmsKeyId": "<p>The ID of the AWS Key Management Service (AWS KMS) key used to encrypt the file system's data for Amazon FSx for Windows File Server file systems and persistent Amazon FSx for Lustre file systems at rest. In either case, if not specified, the Amazon FSx managed key is used. The scratch Amazon FSx for Lustre file systems are always encrypted at rest using Amazon FSx managed keys. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html\">Encrypt</a> in the <i>AWS Key Management Service API Reference</i>.</p>"
       }
     },
     "LastUpdatedTime": {
@@ -653,10 +659,23 @@
       "refs": {
       }
     },
+    "LustreDeploymentType": {
+      "base": null,
+      "refs": {
+        "CreateFileSystemLustreConfiguration$DeploymentType": "<p>(Optional) Choose <code>SCRATCH_1</code> and <code>SCRATCH_2</code> deployment types when you need temporary storage and shorter-term processing of data. The <code>SCRATCH_2</code> deployment type provides in-transit encryption of data and higher burst throughput capacity than <code>SCRATCH_1</code>.</p> <p>Choose <code>PERSISTENT_1</code> deployment type for longer-term storage and workloads and encryption of data in transit. To learn more about deployment types, see <a href=\"https://docs.aws.amazon.com/fsx/latest/LustreGuide/lustre-deployment-types.html\"> FSx for Lustre Deployment Options</a>.</p> <p>Encryption of data in-transit is automatically enabled when you access a <code>SCRATCH_2</code> or <code>PERSISTENT_1</code> file system from Amazon EC2 instances that <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/data- protection.html\">support this feature</a>. (Default = <code>SCRATCH_1</code>) </p> <p>Encryption of data in-transit for <code>SCRATCH_2</code> and <code>PERSISTENT_1</code> deployment types is supported when accessed from supported instance types in supported AWS Regions. To learn more, <a href=\"https://docs.aws.amazon.com/fsx/latest/LustreGuide/encryption-in-transit-fsxl.html\">Encrypting Data in Transit</a>.</p>",
+        "LustreFileSystemConfiguration$DeploymentType": "<p>The deployment type of the FSX for Lustre file system.</p>"
+      }
+    },
     "LustreFileSystemConfiguration": {
       "base": "<p>The configuration for the Amazon FSx for Lustre file system.</p>",
       "refs": {
         "FileSystem$LustreConfiguration": null
+      }
+    },
+    "LustreFileSystemMountName": {
+      "base": null,
+      "refs": {
+        "LustreFileSystemConfiguration$MountName": "<p>You use the <code>MountName</code> value when mounting the file system.</p> <p>For the <code>SCRATCH_1</code> deployment type, this value is always \"<code>fsx</code>\". For <code>SCRATCH_2</code> and <code>PERSISTENT_1</code> deployment types, this value is a string that is unique within an AWS Region. </p>"
       }
     },
     "MaxResults": {
@@ -671,7 +690,7 @@
     "Megabytes": {
       "base": null,
       "refs": {
-        "CreateFileSystemLustreConfiguration$ImportedFileChunkSize": "<p>(Optional) For files imported from a data repository, this value determines the stripe count and maximum amount of data per file (in MiB) stored on a single physical disk. The maximum number of disks that a single file can be striped across is limited by the total number of disks that make up the file system.</p> <p>The chunk size default is 1,024 MiB (1 GiB) and can go as high as 512,000 MiB (500 GiB). Amazon S3 objects have a maximum size of 5 TB.</p>",
+        "CreateFileSystemLustreConfiguration$ImportedFileChunkSize": "<p>(Optional) For files imported from a data repository, this value determines the stripe count and maximum amount of data per file (in MiB) stored on a single physical disk. The maximum number of disks that a single file can be striped across is limited by the total number of disks that make up the file system.</p> <p>The default chunk size is 1,024 MiB (1 GiB) and can go as high as 512,000 MiB (500 GiB). Amazon S3 objects have a maximum size of 5 TB.</p>",
         "DataRepositoryConfiguration$ImportedFileChunkSize": "<p>For files imported from a data repository, this value determines the stripe count and maximum amount of data per file (in MiB) stored on a single physical disk. The maximum number of disks that a single file can be striped across is limited by the total number of disks that make up the file system.</p> <p>The default chunk size is 1,024 MiB (1 GiB) and can go as high as 512,000 MiB (500 GiB). Amazon S3 objects have a maximum size of 5 TB.</p>"
       }
     },
@@ -683,7 +702,7 @@
       }
     },
     "MissingFileSystemConfiguration": {
-      "base": "<p>File system configuration is required for this operation.</p>",
+      "base": "<p>A file system configuration is required for this operation.</p>",
       "refs": {
       }
     },
@@ -728,6 +747,13 @@
       "base": "<p>The name of a parameter for the request. Parameter names are returned in PascalCase.</p>",
       "refs": {
         "IncompatibleParameterError$Parameter": "<p>A parameter that is incompatible with the earlier request.</p>"
+      }
+    },
+    "PerUnitStorageThroughput": {
+      "base": null,
+      "refs": {
+        "CreateFileSystemLustreConfiguration$PerUnitStorageThroughput": "<p> (Optional) For the <code>PERSISTENT_1</code> deployment type, describes the amount of read and write throughput for each 1 tebibyte of storage, in MB/s/TiB. File system throughput capacity is calculated by multiplying ﬁle system storage capacity (TiB) by the PerUnitStorageThroughput (MB/s/TiB). For a 2.4 TiB ﬁle system, provisioning 50 MB/s/TiB of PerUnitStorageThroughput yields 120 MB/s of ﬁle system throughput. You pay for the amount of throughput that you provision. (Default = 200 MB/s/TiB) </p> <p>Valid values are 50, 100, 200.</p>",
+        "LustreFileSystemConfiguration$PerUnitStorageThroughput": "<p> Per unit storage throughput represents the megabytes per second of read or write throughput per 1 tebibyte of storage provisioned. File system throughput capacity is equal to Storage capacity (TiB) * PerUnitStorageThroughput (MB/s/TiB). This option is only valid for <code>PERSISTENT_1</code> deployment types. Valid values are 50, 100, 200. </p>"
       }
     },
     "ProgressPercent": {
@@ -824,7 +850,7 @@
     "StorageCapacity": {
       "base": "<p>The storage capacity for your Amazon FSx file system, in gibibytes.</p>",
       "refs": {
-        "CreateFileSystemRequest$StorageCapacity": "<p>The storage capacity of the file system being created.</p> <p>For Windows file systems, valid values are 32 GiB - 65,536 GiB.</p> <p>For Lustre file systems, valid values are 1,200, 2,400, 3,600, then continuing in increments of 3600 GiB.</p>",
+        "CreateFileSystemRequest$StorageCapacity": "<p>The storage capacity of the file system being created.</p> <p>For Windows file systems, valid values are 32 GiB - 65,536 GiB.</p> <p>For <code>SCRATCH_1</code> Lustre file systems, valid values are 1,200, 2,400, 3,600, then continuing in increments of 3600 GiB. For <code>SCRATCH_2</code> and <code>PERSISTENT_1</code> file systems, valid values are 1200, 2400, then continuing in increments of 2400 GiB.</p>",
         "FileSystem$StorageCapacity": "<p>The storage capacity of the file system in gigabytes (GB).</p>"
       }
     },
@@ -841,7 +867,7 @@
       "base": "<p>A list of subnet IDs. Currently, you can specify only one subnet ID in a call to the <code>CreateFileSystem</code> operation.</p>",
       "refs": {
         "CreateFileSystemFromBackupRequest$SubnetIds": "<p>A list of IDs for the subnets that the file system will be accessible from. Currently, you can specify only one subnet. The file server is also launched in that subnet's Availability Zone.</p>",
-        "CreateFileSystemRequest$SubnetIds": "<p>Specifies the IDs of the subnets that the file system will be accessible from. For Windows <code>MULTI_AZ_1</code> file system deployment types, provide exactly two subnet IDs, one for the preferred file server and one for the standy file server. You specify one of these subnets as the preferred subnet using the <code>WindowsConfiguration &gt; PreferredSubnetID</code> property.</p> <p>For Windows <code>SINGLE_AZ_1</code> file system deployment types and Lustre file systems, provide exactly one subnet ID. The file server is launched in that subnet's Availability Zone.</p>",
+        "CreateFileSystemRequest$SubnetIds": "<p>Specifies the IDs of the subnets that the file system will be accessible from. For Windows <code>MULTI_AZ_1</code> file system deployment types, provide exactly two subnet IDs, one for the preferred file server and one for the standby file server. You specify one of these subnets as the preferred subnet using the <code>WindowsConfiguration &gt; PreferredSubnetID</code> property.</p> <p>For Windows <code>SINGLE_AZ_1</code> file system deployment types and Lustre file systems, provide exactly one subnet ID. The file server is launched in that subnet's Availability Zone.</p>",
         "FileSystem$SubnetIds": "<p>The ID of the subnet to contain the endpoint for the file system. One and only one is supported. The file system is launched in the Availability Zone associated with this subnet.</p>"
       }
     },

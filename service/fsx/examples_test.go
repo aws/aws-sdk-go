@@ -119,6 +119,8 @@ func ExampleFSx_CreateFileSystem_shared00() {
 				fmt.Println(fsx.ErrCodeInvalidExportPath, aerr.Error())
 			case fsx.ErrCodeInvalidNetworkSettings:
 				fmt.Println(fsx.ErrCodeInvalidNetworkSettings, aerr.Error())
+			case fsx.ErrCodeInvalidPerUnitStorageThroughput:
+				fmt.Println(fsx.ErrCodeInvalidPerUnitStorageThroughput, aerr.Error())
 			case fsx.ErrCodeServiceLimitExceeded:
 				fmt.Println(fsx.ErrCodeServiceLimitExceeded, aerr.Error())
 			case fsx.ErrCodeInternalServerError:

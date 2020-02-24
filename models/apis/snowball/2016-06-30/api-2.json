@@ -368,7 +368,8 @@
         "AddressId":{"shape":"AddressId"},
         "ShippingOption":{"shape":"ShippingOption"},
         "Notification":{"shape":"Notification"},
-        "ForwardingAddressId":{"shape":"AddressId"}
+        "ForwardingAddressId":{"shape":"AddressId"},
+        "TaxDocuments":{"shape":"TaxDocuments"}
       }
     },
     "ClusterState":{
@@ -424,7 +425,8 @@
         "SnowballType":{"shape":"SnowballType"},
         "ShippingOption":{"shape":"ShippingOption"},
         "Notification":{"shape":"Notification"},
-        "ForwardingAddressId":{"shape":"AddressId"}
+        "ForwardingAddressId":{"shape":"AddressId"},
+        "TaxDocuments":{"shape":"TaxDocuments"}
       }
     },
     "CreateClusterResult":{
@@ -447,7 +449,8 @@
         "Notification":{"shape":"Notification"},
         "ClusterId":{"shape":"ClusterId"},
         "SnowballType":{"shape":"SnowballType"},
-        "ForwardingAddressId":{"shape":"AddressId"}
+        "ForwardingAddressId":{"shape":"AddressId"},
+        "TaxDocuments":{"shape":"TaxDocuments"}
       }
     },
     "CreateJobResult":{
@@ -548,6 +551,10 @@
       "type":"list",
       "member":{"shape":"EventTriggerDefinition"}
     },
+    "GSTIN":{
+      "type":"string",
+      "pattern":"\\d{2}[A-Z]{5}\\d{4}[A-Z]{1}[A-Z\\d]{1}[Z]{1}[A-Z\\d]{1}"
+    },
     "GetJobManifestRequest":{
       "type":"structure",
       "required":["JobId"],
@@ -597,6 +604,12 @@
       "type":"structure",
       "members":{
         "UpdatesURI":{"shape":"String"}
+      }
+    },
+    "INDTaxDocuments":{
+      "type":"structure",
+      "members":{
+        "GSTIN":{"shape":"GSTIN"}
       }
     },
     "Integer":{"type":"integer"},
@@ -685,7 +698,8 @@
         "DataTransferProgress":{"shape":"DataTransfer"},
         "JobLogInfo":{"shape":"JobLogs"},
         "ClusterId":{"shape":"String"},
-        "ForwardingAddressId":{"shape":"AddressId"}
+        "ForwardingAddressId":{"shape":"AddressId"},
+        "TaxDocuments":{"shape":"TaxDocuments"}
       }
     },
     "JobMetadataList":{
@@ -903,6 +917,12 @@
     "String":{
       "type":"string",
       "min":1
+    },
+    "TaxDocuments":{
+      "type":"structure",
+      "members":{
+        "IND":{"shape":"INDTaxDocuments"}
+      }
     },
     "Timestamp":{"type":"timestamp"},
     "UnsupportedAddressException":{

@@ -248,6 +248,12 @@
         "LambdaResource$EventTriggers": "<p>The array of ARNs for <a>S3Resource</a> objects to trigger the <a>LambdaResource</a> objects associated with this job.</p>"
       }
     },
+    "GSTIN": {
+      "base": null,
+      "refs": {
+        "INDTaxDocuments$GSTIN": "<p>The Goods and Services Tax (GST) documents required in AWS Regions in India.</p>"
+      }
+    },
     "GetJobManifestRequest": {
       "base": null,
       "refs": {
@@ -286,6 +292,12 @@
     "GetSoftwareUpdatesResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "INDTaxDocuments": {
+      "base": "<p>The tax documents required in AWS Regions in India.</p>",
+      "refs": {
+        "TaxDocuments$IND": "<p>The tax documents required in AWS Regions in India.</p>"
       }
     },
     "Integer": {
@@ -567,9 +579,9 @@
     "SnowballType": {
       "base": null,
       "refs": {
-        "ClusterMetadata$SnowballType": "<p>The type of AWS Snowball device to use for this cluster. Currently, the only supported device type for cluster jobs is <code>EDGE</code>.</p>",
-        "CreateClusterRequest$SnowballType": "<p>The type of AWS Snowball device to use for this cluster. Currently, the only supported device type for cluster jobs is <code>EDGE</code>.</p>",
-        "CreateJobRequest$SnowballType": "<p>The type of AWS Snowball device to use for this job. Currently, the only supported device type for cluster jobs is <code>EDGE</code>.</p>",
+        "ClusterMetadata$SnowballType": "<p>The type of AWS Snowball device to use for this cluster. Currently, the only supported device type for cluster jobs is <code>EDGE</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/snowball/latest/developer-guide/device-differences.html\">Snowball Edge Device Options</a> in the Snowball Edge Developer Guide.</p>",
+        "CreateClusterRequest$SnowballType": "<p>The type of AWS Snowball device to use for this cluster. Currently, the only supported device type for cluster jobs is <code>EDGE</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/snowball/latest/developer-guide/device-differences.html\">Snowball Edge Device Options</a> in the Snowball Edge Developer Guide.</p>",
+        "CreateJobRequest$SnowballType": "<p>The type of AWS Snowball device to use for this job. Currently, the only supported device type for cluster jobs is <code>EDGE</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/snowball/latest/developer-guide/device-differences.html\">Snowball Edge Device Options</a> in the Snowball Edge Developer Guide.</p>",
         "JobListEntry$SnowballType": "<p>The type of device used with this job.</p>",
         "JobMetadata$SnowballType": "<p>The type of device used with this job.</p>"
       }
@@ -642,6 +654,15 @@
         "UnsupportedAddressException$Message": null,
         "UpdateClusterRequest$Description": "<p>The updated description of this cluster.</p>",
         "UpdateJobRequest$Description": "<p>The updated description of this job's <a>JobMetadata</a> object.</p>"
+      }
+    },
+    "TaxDocuments": {
+      "base": "<p>The tax documents required in your AWS Region.</p>",
+      "refs": {
+        "ClusterMetadata$TaxDocuments": "<p>The tax documents required in your AWS Region.</p>",
+        "CreateClusterRequest$TaxDocuments": "<p>The tax documents required in your AWS Region.</p>",
+        "CreateJobRequest$TaxDocuments": "<p>The tax documents required in your AWS Region.</p>",
+        "JobMetadata$TaxDocuments": "<p>The metadata associated with the tax documents required in your AWS Region.</p>"
       }
     },
     "Timestamp": {

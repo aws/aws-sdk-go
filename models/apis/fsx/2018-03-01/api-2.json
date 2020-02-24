@@ -82,6 +82,7 @@
         {"shape":"InvalidImportPath"},
         {"shape":"InvalidExportPath"},
         {"shape":"InvalidNetworkSettings"},
+        {"shape":"InvalidPerUnitStorageThroughput"},
         {"shape":"ServiceLimitExceeded"},
         {"shape":"InternalServerError"},
         {"shape":"MissingFileSystemConfiguration"}
@@ -496,7 +497,9 @@
         "WeeklyMaintenanceStartTime":{"shape":"WeeklyTime"},
         "ImportPath":{"shape":"ArchivePath"},
         "ExportPath":{"shape":"ArchivePath"},
-        "ImportedFileChunkSize":{"shape":"Megabytes"}
+        "ImportedFileChunkSize":{"shape":"Megabytes"},
+        "DeploymentType":{"shape":"LustreDeploymentType"},
+        "PerUnitStorageThroughput":{"shape":"PerUnitStorageThroughput"}
       }
     },
     "CreateFileSystemRequest":{
@@ -973,6 +976,13 @@
       },
       "exception":true
     },
+    "InvalidPerUnitStorageThroughput":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
     "IpAddress":{
       "type":"string",
       "max":15,
@@ -1002,12 +1012,29 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "LustreDeploymentType":{
+      "type":"string",
+      "enum":[
+        "SCRATCH_1",
+        "SCRATCH_2",
+        "PERSISTENT_1"
+      ]
+    },
     "LustreFileSystemConfiguration":{
       "type":"structure",
       "members":{
         "WeeklyMaintenanceStartTime":{"shape":"WeeklyTime"},
-        "DataRepositoryConfiguration":{"shape":"DataRepositoryConfiguration"}
+        "DataRepositoryConfiguration":{"shape":"DataRepositoryConfiguration"},
+        "DeploymentType":{"shape":"LustreDeploymentType"},
+        "PerUnitStorageThroughput":{"shape":"PerUnitStorageThroughput"},
+        "MountName":{"shape":"LustreFileSystemMountName"}
       }
+    },
+    "LustreFileSystemMountName":{
+      "type":"string",
+      "max":8,
+      "min":1,
+      "pattern":"^([A-Za-z0-9_-]{1,8})$"
     },
     "MaxResults":{
       "type":"integer",
@@ -1065,6 +1092,11 @@
     "Parameter":{
       "type":"string",
       "min":1
+    },
+    "PerUnitStorageThroughput":{
+      "type":"integer",
+      "max":200,
+      "min":50
     },
     "ProgressPercent":{
       "type":"integer",
