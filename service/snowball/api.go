@@ -2318,7 +2318,13 @@ type ClusterMetadata struct {
 
 	// The type of AWS Snowball device to use for this cluster. Currently, the only
 	// supported device type for cluster jobs is EDGE.
+	//
+	// For more information, see Snowball Edge Device Options (https://docs.aws.amazon.com/snowball/latest/developer-guide/device-differences.html)
+	// in the Snowball Edge Developer Guide.
 	SnowballType *string `type:"string" enum:"Type"`
+
+	// The tax documents required in your AWS Region.
+	TaxDocuments *TaxDocuments `type:"structure"`
 }
 
 // String returns the string representation
@@ -2406,6 +2412,12 @@ func (s *ClusterMetadata) SetShippingOption(v string) *ClusterMetadata {
 // SetSnowballType sets the SnowballType field's value.
 func (s *ClusterMetadata) SetSnowballType(v string) *ClusterMetadata {
 	s.SnowballType = &v
+	return s
+}
+
+// SetTaxDocuments sets the TaxDocuments field's value.
+func (s *ClusterMetadata) SetTaxDocuments(v *TaxDocuments) *ClusterMetadata {
+	s.TaxDocuments = v
 	return s
 }
 
@@ -2579,7 +2591,13 @@ type CreateClusterInput struct {
 
 	// The type of AWS Snowball device to use for this cluster. Currently, the only
 	// supported device type for cluster jobs is EDGE.
+	//
+	// For more information, see Snowball Edge Device Options (https://docs.aws.amazon.com/snowball/latest/developer-guide/device-differences.html)
+	// in the Snowball Edge Developer Guide.
 	SnowballType *string `type:"string" enum:"Type"`
+
+	// The tax documents required in your AWS Region.
+	TaxDocuments *TaxDocuments `type:"structure"`
 }
 
 // String returns the string representation
@@ -2691,6 +2709,12 @@ func (s *CreateClusterInput) SetSnowballType(v string) *CreateClusterInput {
 	return s
 }
 
+// SetTaxDocuments sets the TaxDocuments field's value.
+func (s *CreateClusterInput) SetTaxDocuments(v *TaxDocuments) *CreateClusterInput {
+	s.TaxDocuments = v
+	return s
+}
+
 type CreateClusterOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2786,7 +2810,13 @@ type CreateJobInput struct {
 
 	// The type of AWS Snowball device to use for this job. Currently, the only
 	// supported device type for cluster jobs is EDGE.
+	//
+	// For more information, see Snowball Edge Device Options (https://docs.aws.amazon.com/snowball/latest/developer-guide/device-differences.html)
+	// in the Snowball Edge Developer Guide.
 	SnowballType *string `type:"string" enum:"Type"`
+
+	// The tax documents required in your AWS Region.
+	TaxDocuments *TaxDocuments `type:"structure"`
 }
 
 // String returns the string representation
@@ -2895,6 +2925,12 @@ func (s *CreateJobInput) SetSnowballCapacityPreference(v string) *CreateJobInput
 // SetSnowballType sets the SnowballType field's value.
 func (s *CreateJobInput) SetSnowballType(v string) *CreateJobInput {
 	s.SnowballType = &v
+	return s
+}
+
+// SetTaxDocuments sets the TaxDocuments field's value.
+func (s *CreateJobInput) SetTaxDocuments(v *TaxDocuments) *CreateJobInput {
+	s.TaxDocuments = v
 	return s
 }
 
@@ -3650,6 +3686,30 @@ func (s *GetSoftwareUpdatesOutput) SetUpdatesURI(v string) *GetSoftwareUpdatesOu
 	return s
 }
 
+// The tax documents required in AWS Regions in India.
+type INDTaxDocuments struct {
+	_ struct{} `type:"structure"`
+
+	// The Goods and Services Tax (GST) documents required in AWS Regions in India.
+	GSTIN *string `type:"string"`
+}
+
+// String returns the string representation
+func (s INDTaxDocuments) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s INDTaxDocuments) GoString() string {
+	return s.String()
+}
+
+// SetGSTIN sets the GSTIN field's value.
+func (s *INDTaxDocuments) SetGSTIN(v string) *INDTaxDocuments {
+	s.GSTIN = &v
+	return s
+}
+
 // The address provided was invalid. Check the address with your region's carrier,
 // and try again.
 type InvalidAddressException struct {
@@ -4158,6 +4218,9 @@ type JobMetadata struct {
 
 	// The type of device used with this job.
 	SnowballType *string `type:"string" enum:"Type"`
+
+	// The metadata associated with the tax documents required in your AWS Region.
+	TaxDocuments *TaxDocuments `type:"structure"`
 }
 
 // String returns the string representation
@@ -4269,6 +4332,12 @@ func (s *JobMetadata) SetSnowballCapacityPreference(v string) *JobMetadata {
 // SetSnowballType sets the SnowballType field's value.
 func (s *JobMetadata) SetSnowballType(v string) *JobMetadata {
 	s.SnowballType = &v
+	return s
+}
+
+// SetTaxDocuments sets the TaxDocuments field's value.
+func (s *JobMetadata) SetTaxDocuments(v *TaxDocuments) *JobMetadata {
+	s.TaxDocuments = v
 	return s
 }
 
@@ -5043,6 +5112,30 @@ func (s *ShippingDetails) SetOutboundShipment(v *Shipment) *ShippingDetails {
 // SetShippingOption sets the ShippingOption field's value.
 func (s *ShippingDetails) SetShippingOption(v string) *ShippingDetails {
 	s.ShippingOption = &v
+	return s
+}
+
+// The tax documents required in your AWS Region.
+type TaxDocuments struct {
+	_ struct{} `type:"structure"`
+
+	// The tax documents required in AWS Regions in India.
+	IND *INDTaxDocuments `type:"structure"`
+}
+
+// String returns the string representation
+func (s TaxDocuments) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TaxDocuments) GoString() string {
+	return s.String()
+}
+
+// SetIND sets the IND field's value.
+func (s *TaxDocuments) SetIND(v *INDTaxDocuments) *TaxDocuments {
+	s.IND = v
 	return s
 }
 

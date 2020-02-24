@@ -21,6 +21,7 @@
       "input":{"shape":"ActivateEventSourceRequest"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ConcurrentModificationException"},
         {"shape":"InvalidStateException"},
         {"shape":"InternalException"}
       ]
@@ -66,6 +67,7 @@
       "input":{"shape":"DeactivateEventSourceRequest"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ConcurrentModificationException"},
         {"shape":"InvalidStateException"},
         {"shape":"InternalException"}
       ]
@@ -78,7 +80,8 @@
       },
       "input":{"shape":"DeleteEventBusRequest"},
       "errors":[
-        {"shape":"InternalException"}
+        {"shape":"InternalException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "DeletePartnerEventSource":{
@@ -89,7 +92,8 @@
       },
       "input":{"shape":"DeletePartnerEventSourceRequest"},
       "errors":[
-        {"shape":"InternalException"}
+        {"shape":"InternalException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "DeleteRule":{
@@ -521,7 +525,8 @@
       "required":["Name"],
       "members":{
         "Name":{"shape":"EventBusName"},
-        "EventSourceName":{"shape":"EventSourceName"}
+        "EventSourceName":{"shape":"EventSourceName"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateEventBusResponse":{
@@ -1053,7 +1058,7 @@
       "type":"structure",
       "members":{
         "Time":{"shape":"EventTime"},
-        "Source":{"shape":"String"},
+        "Source":{"shape":"EventSourceName"},
         "Resources":{"shape":"EventResourceList"},
         "DetailType":{"shape":"String"},
         "Detail":{"shape":"String"}

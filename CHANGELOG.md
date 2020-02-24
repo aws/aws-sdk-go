@@ -1,3 +1,17 @@
+Release v1.29.9 (2020-02-24)
+===
+
+### Service Client Updates
+* `service/docdb`: Updates service documentation
+  * Documentation updates for docdb
+* `service/eventbridge`: Updates service API and documentation
+* `service/events`: Updates service API and documentation
+  * This release allows you to create and manage tags for event buses.
+* `service/fsx`: Updates service API and documentation
+* `service/iotevents`: Updates service documentation
+* `service/snowball`: Updates service API and documentation
+  * AWS Snowball adds a field for entering your GSTIN when creating AWS Snowball jobs in the Asia Pacific (Mumbai) region.
+
 Release v1.29.8 (2020-02-21)
 ===
 
