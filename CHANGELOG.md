@@ -8,6 +8,7 @@ Release v1.29.9 (2020-02-24)
 * `service/events`: Updates service API and documentation
   * This release allows you to create and manage tags for event buses.
 * `service/fsx`: Updates service API and documentation
+  * Announcing persistent file systems for Amazon FSx for Lustre that are ideal for longer-term storage and workloads, and a new generation of scratch file systems that offer higher burst throughput for spiky workloads.
 * `service/iotevents`: Updates service documentation
 * `service/snowball`: Updates service API and documentation
   * AWS Snowball adds a field for entering your GSTIN when creating AWS Snowball jobs in the Asia Pacific (Mumbai) region.
