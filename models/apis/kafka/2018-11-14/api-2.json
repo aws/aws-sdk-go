@@ -684,6 +684,23 @@
         "KafkaBrokerNodeId"
       ]
     },
+    "BrokerLogs" : {
+      "type" : "structure",
+      "members" : {
+        "CloudWatchLogs" : {
+          "shape" : "CloudWatchLogs",
+          "locationName" : "cloudWatchLogs"
+        },
+        "Firehose" : {
+          "shape" : "Firehose",
+          "locationName" : "firehose"
+        },
+        "S3" : {
+          "shape" : "S3",
+          "locationName" : "s3"
+        }
+      }
+    },
     "BrokerNodeGroupInfo": {
       "type": "structure",
       "members": {
@@ -776,6 +793,20 @@
         "PLAINTEXT"
       ]
     },
+    "CloudWatchLogs" : {
+      "type" : "structure",
+      "members" : {
+        "Enabled" : {
+          "shape" : "__boolean",
+          "locationName" : "enabled"
+        },
+        "LogGroup" : {
+          "shape" : "__string",
+          "locationName" : "logGroup"
+        }
+      },
+      "required" : [ "Enabled" ]
+    },
     "ClusterInfo": {
       "type": "structure",
       "members": {
@@ -806,6 +837,10 @@
         "CurrentBrokerSoftwareInfo": {
           "shape": "BrokerSoftwareInfo",
           "locationName": "currentBrokerSoftwareInfo"
+        },
+        "LoggingInfo": {
+          "shape": "LoggingInfo",
+          "locationName": "loggingInfo"
         },
         "CurrentVersion": {
           "shape": "__string",
@@ -1018,6 +1053,10 @@
         "KafkaVersion": {
           "shape": "__stringMin1Max128",
           "locationName": "kafkaVersion"
+        },
+        "LoggingInfo": {
+          "shape": "LoggingInfo",
+          "locationName": "loggingInfo"
         },
         "NumberOfBrokerNodes": {
           "shape": "__integerMin1Max15",
@@ -1331,6 +1370,20 @@
           "locationName": "message"
         }
       }
+    },
+    "Firehose" : {
+      "type" : "structure",
+      "members" : {
+        "DeliveryStream" : {
+          "shape" : "__string",
+          "locationName" : "deliveryStream"
+        },
+        "Enabled" : {
+          "shape" : "__boolean",
+          "locationName" : "enabled"
+        }
+      },
+      "required" : [ "Enabled" ]
     },
     "ErrorInfo": {
       "type": "structure",
@@ -1649,6 +1702,16 @@
       "min": 1,
       "max": 100
     },
+    "LoggingInfo": {
+      "type": "structure",
+      "members": {
+        "BrokerLogs": {
+          "shape": "BrokerLogs",
+          "locationName": "brokerLogs"
+        }
+      },
+     "required": [ "BrokerLogs" ]
+    },
     "MutableClusterInfo": {
       "type": "structure",
       "members": {
@@ -1671,6 +1734,10 @@
         "EnhancedMonitoring" : {
           "shape" : "EnhancedMonitoring",
           "locationName" : "enhancedMonitoring"
+        },
+        "LoggingInfo": {
+          "shape": "LoggingInfo",
+          "locationName": "loggingInfo"
         }
       }
     },
@@ -1972,6 +2039,10 @@
         "OpenMonitoring" : {
           "shape" : "OpenMonitoringInfo",
           "locationName" : "openMonitoring"
+        },
+        "LoggingInfo": {
+          "shape": "LoggingInfo",
+          "locationName": "loggingInfo"
         }
       },
       "required" : [ "ClusterArn", "CurrentVersion" ]
@@ -2059,6 +2130,24 @@
           "locationName" : "nodeExporter"
         }
       }
+    },
+    "S3" : {
+      "type" : "structure",
+      "members" : {
+        "Bucket" : {
+          "shape" : "__string",
+          "locationName" : "bucket"
+        },
+        "Enabled" : {
+          "shape" : "__boolean",
+          "locationName" : "enabled"
+        },
+        "Prefix" : {
+          "shape" : "__string",
+          "locationName" : "prefix"
+        }
+      },
+      "required" : [ "Enabled" ]
     },
     "JmxExporter" : {
       "type" : "structure",

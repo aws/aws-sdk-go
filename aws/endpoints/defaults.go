@@ -1571,6 +1571,17 @@ var awsPartition = partition{
 				"us-west-2":      endpoint{},
 			},
 		},
+		"elastic-inference": service{
+
+			Endpoints: endpoints{
+				"ap-northeast-1": endpoint{},
+				"ap-northeast-2": endpoint{},
+				"eu-west-1":      endpoint{},
+				"us-east-1":      endpoint{},
+				"us-east-2":      endpoint{},
+				"us-west-2":      endpoint{},
+			},
+		},
 		"elasticache": service{
 
 			Endpoints: endpoints{

@@ -9,6 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
 const opCreateOutpost = "CreateOutpost"
@@ -97,6 +98,184 @@ func (c *Outposts) CreateOutpost(input *CreateOutpostInput) (*CreateOutpostOutpu
 // for more information on using Contexts.
 func (c *Outposts) CreateOutpostWithContext(ctx aws.Context, input *CreateOutpostInput, opts ...request.Option) (*CreateOutpostOutput, error) {
 	req, out := c.CreateOutpostRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteOutpost = "DeleteOutpost"
+
+// DeleteOutpostRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteOutpost operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteOutpost for more information on using the DeleteOutpost
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteOutpostRequest method.
+//    req, resp := client.DeleteOutpostRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/DeleteOutpost
+func (c *Outposts) DeleteOutpostRequest(input *DeleteOutpostInput) (req *request.Request, output *DeleteOutpostOutput) {
+	op := &request.Operation{
+		Name:       opDeleteOutpost,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/outposts/{OutpostId}",
+	}
+
+	if input == nil {
+		input = &DeleteOutpostInput{}
+	}
+
+	output = &DeleteOutpostOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteOutpost API operation for AWS Outposts.
+//
+// Deletes the Outpost.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Outposts's
+// API operation DeleteOutpost for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   A parameter is not valid.
+//
+//   * NotFoundException
+//   The specified request is not valid.
+//
+//   * AccessDeniedException
+//   You do not have permission to perform this operation.
+//
+//   * InternalServerException
+//   An internal error has occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/DeleteOutpost
+func (c *Outposts) DeleteOutpost(input *DeleteOutpostInput) (*DeleteOutpostOutput, error) {
+	req, out := c.DeleteOutpostRequest(input)
+	return out, req.Send()
+}
+
+// DeleteOutpostWithContext is the same as DeleteOutpost with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteOutpost for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) DeleteOutpostWithContext(ctx aws.Context, input *DeleteOutpostInput, opts ...request.Option) (*DeleteOutpostOutput, error) {
+	req, out := c.DeleteOutpostRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteSite = "DeleteSite"
+
+// DeleteSiteRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteSite operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteSite for more information on using the DeleteSite
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteSiteRequest method.
+//    req, resp := client.DeleteSiteRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/DeleteSite
+func (c *Outposts) DeleteSiteRequest(input *DeleteSiteInput) (req *request.Request, output *DeleteSiteOutput) {
+	op := &request.Operation{
+		Name:       opDeleteSite,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/sites/{SiteId}",
+	}
+
+	if input == nil {
+		input = &DeleteSiteInput{}
+	}
+
+	output = &DeleteSiteOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteSite API operation for AWS Outposts.
+//
+// Deletes the site.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Outposts's
+// API operation DeleteSite for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   A parameter is not valid.
+//
+//   * NotFoundException
+//   The specified request is not valid.
+//
+//   * AccessDeniedException
+//   You do not have permission to perform this operation.
+//
+//   * InternalServerException
+//   An internal error has occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/DeleteSite
+func (c *Outposts) DeleteSite(input *DeleteSiteInput) (*DeleteSiteOutput, error) {
+	req, out := c.DeleteSiteRequest(input)
+	return out, req.Send()
+}
+
+// DeleteSiteWithContext is the same as DeleteSite with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteSite for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) DeleteSiteWithContext(ctx aws.Context, input *DeleteSiteInput, opts ...request.Option) (*DeleteSiteOutput, error) {
+	req, out := c.DeleteSiteRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -730,6 +909,116 @@ func (s CreateOutpostOutput) GoString() string {
 func (s *CreateOutpostOutput) SetOutpost(v *Outpost) *CreateOutpostOutput {
 	s.Outpost = v
 	return s
+}
+
+type DeleteOutpostInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Outpost.
+	//
+	// OutpostId is a required field
+	OutpostId *string `location:"uri" locationName:"OutpostId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteOutpostInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteOutpostInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteOutpostInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteOutpostInput"}
+	if s.OutpostId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutpostId"))
+	}
+	if s.OutpostId != nil && len(*s.OutpostId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutpostId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOutpostId sets the OutpostId field's value.
+func (s *DeleteOutpostInput) SetOutpostId(v string) *DeleteOutpostInput {
+	s.OutpostId = &v
+	return s
+}
+
+type DeleteOutpostOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteOutpostOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteOutpostOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteSiteInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the site.
+	//
+	// SiteId is a required field
+	SiteId *string `location:"uri" locationName:"SiteId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteSiteInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSiteInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteSiteInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteSiteInput"}
+	if s.SiteId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SiteId"))
+	}
+	if s.SiteId != nil && len(*s.SiteId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SiteId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSiteId sets the SiteId field's value.
+func (s *DeleteSiteInput) SetSiteId(v string) *DeleteSiteInput {
+	s.SiteId = &v
+	return s
+}
+
+type DeleteSiteOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteSiteOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSiteOutput) GoString() string {
+	return s.String()
 }
 
 type GetOutpostInput struct {

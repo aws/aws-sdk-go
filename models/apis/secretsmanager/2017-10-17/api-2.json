@@ -787,7 +787,7 @@
     },
     "SecretBinaryType":{
       "type":"blob",
-      "max":10240,
+      "max":65536,
       "min":0,
       "sensitive":true
     },
@@ -838,7 +838,7 @@
     },
     "SecretStringType":{
       "type":"string",
-      "max":10240,
+      "max":65536,
       "min":0,
       "sensitive":true
     },

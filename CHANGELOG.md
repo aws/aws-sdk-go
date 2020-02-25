@@ -1,3 +1,14 @@
+Release v1.29.10 (2020-02-25)
+===
+
+### Service Client Updates
+* `service/kafka`: Updates service API and documentation
+* `service/outposts`: Updates service API and documentation
+* `service/secretsmanager`: Updates service API and documentation
+  * This release increases the maximum allowed size of SecretString or SecretBinary from 10KB to 64KB in the CreateSecret, UpdateSecret, PutSecretValue and GetSecretValue APIs.
+* `service/states`: Updates service API and documentation
+  * This release adds support for CloudWatch Logs for Standard Workflows.
+
 Release v1.29.9 (2020-02-24)
 ===
 

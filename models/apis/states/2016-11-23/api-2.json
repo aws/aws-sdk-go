@@ -575,7 +575,8 @@
         "name":{"shape":"Name"},
         "definition":{"shape":"Definition"},
         "roleArn":{"shape":"Arn"},
-        "updateDate":{"shape":"Timestamp"}
+        "updateDate":{"shape":"Timestamp"},
+        "loggingConfiguration":{"shape":"LoggingConfiguration"}
       }
     },
     "DescribeStateMachineInput":{

@@ -64,6 +64,14 @@ type OutpostsAPI interface {
 	CreateOutpostWithContext(aws.Context, *outposts.CreateOutpostInput, ...request.Option) (*outposts.CreateOutpostOutput, error)
 	CreateOutpostRequest(*outposts.CreateOutpostInput) (*request.Request, *outposts.CreateOutpostOutput)
 
+	DeleteOutpost(*outposts.DeleteOutpostInput) (*outposts.DeleteOutpostOutput, error)
+	DeleteOutpostWithContext(aws.Context, *outposts.DeleteOutpostInput, ...request.Option) (*outposts.DeleteOutpostOutput, error)
+	DeleteOutpostRequest(*outposts.DeleteOutpostInput) (*request.Request, *outposts.DeleteOutpostOutput)
+
+	DeleteSite(*outposts.DeleteSiteInput) (*outposts.DeleteSiteOutput, error)
+	DeleteSiteWithContext(aws.Context, *outposts.DeleteSiteInput, ...request.Option) (*outposts.DeleteSiteOutput, error)
+	DeleteSiteRequest(*outposts.DeleteSiteInput) (*request.Request, *outposts.DeleteSiteOutput)
+
 	GetOutpost(*outposts.GetOutpostInput) (*outposts.GetOutpostOutput, error)
 	GetOutpostWithContext(aws.Context, *outposts.GetOutpostInput, ...request.Option) (*outposts.GetOutpostOutput, error)
 	GetOutpostRequest(*outposts.GetOutpostInput) (*request.Request, *outposts.GetOutpostOutput)
