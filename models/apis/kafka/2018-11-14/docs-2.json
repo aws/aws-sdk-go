@@ -41,6 +41,12 @@
         "__listOfBrokerEBSVolumeInfo$member" : null
       }
     },
+    "BrokerLogs" : {
+      "base" : "<p>The broker logs configuration for this MSK cluster.</p>",
+      "refs" : {
+        "LoggingInfo$BrokerLogs" : "<p>You can configure your MSK cluster to send broker logs to different destination types. This configuration specifies the details of these destinations.</p>"
+      }
+    },
     "BrokerNodeGroupInfo" : {
       "base" : "<p>Describes the setup to be used for Kafka broker nodes in the cluster.</p>",
       "refs" : {
@@ -72,6 +78,12 @@
       "base" : "<p>Client-broker encryption in transit setting.</p>",
       "refs" : {
         "EncryptionInTransit$ClientBroker" : "<p>Indicates the encryption setting for data in transit between clients and brokers. You must set it to one of the following values.</p> <p>TLS means that client-broker communication is enabled with TLS only.</p> <p>TLS_PLAINTEXT means that client-broker communication is enabled for both TLS-encrypted, as well as plaintext data.</p> <p>PLAINTEXT means that client-broker communication is enabled in plaintext only.</p> <p>The default value is TLS.</p>"
+      }
+    },
+    "CloudWatchLogs" : {
+      "base" : "<p>Details of the CloudWatch Logs destination for broker logs.</p>",
+      "refs" : {
+        "BrokerLogs$CloudWatchLogs" : "<p>Details of the CloudWatch Logs destination for broker logs.</p>"
       }
     },
     "ClusterInfo" : {
@@ -203,6 +215,12 @@
         "ClusterOperationInfo$ErrorInfo" : "<p>Describes the error if the operation fails.</p>"
       }
     },
+    "Firehose" : {
+      "base" : "<p>Firehose details for BrokerLogs.</p>",
+      "refs" : {
+        "BrokerLogs$Firehose" : "<p>Details of the Kinesis Data Firehose delivery stream that is the destination for broker logs.</p>"
+      }
+    },
     "ForbiddenException" : {
       "base" : "<p>Returns information about an error.</p>",
       "refs" : { }
@@ -236,7 +254,7 @@
     "KafkaVersionStatus" : {
       "base" : "<p>The status of a Kafka version.</p>",
       "refs" : {
-        "KafkaVersion$Status" : null
+        "KafkaVersion$Status" : "<p>The status of the Apache Kafka version.</p>"
       }
     },
     "ListClusterOperationsResponse" : {
@@ -266,6 +284,15 @@
     "ListTagsForResourceResponse" : {
       "base" : "<p>Response of listing tags for a resource.</p>",
       "refs" : { }
+    },
+    "LoggingInfo" : {
+      "base" : "<p>You can configure your MSK cluster to send broker logs to different destination types. This is a container for the configuration details related to broker logs.</p>",
+      "refs" : {
+        "ClusterInfo$LoggingInfo" : "<p>You can configure your MSK cluster to send broker logs to different destination types. This is a container for the configuration details related to broker logs.</p>",
+        "CreateClusterRequest$LoggingInfo" : "<p>LoggingInfo details.</p>",
+        "MutableClusterInfo$LoggingInfo" : "<p>LoggingInfo details.</p>",
+        "UpdateMonitoringRequest$LoggingInfo" : "<p>LoggingInfo details.</p>"
+      }
     },
     "MutableClusterInfo" : {
       "base" : "<p>Information about cluster attributes that can be updated via update APIs.</p>",
@@ -326,6 +353,12 @@
       "base" : "<p>Prometheus settings.</p>",
       "refs" : {
         "OpenMonitoringInfo$Prometheus" : "<p>Prometheus settings.</p>"
+      }
+    },
+    "S3" : {
+      "base" : "<p>The details of the Amazon S3 destination for broker logs.</p>",
+      "refs" : {
+        "BrokerLogs$S3" : "<p>Details of the Amazon S3 destination for broker logs.</p>"
       }
     },
     "ServiceUnavailableException" : {
@@ -403,11 +436,14 @@
     "__boolean" : {
       "base" : null,
       "refs" : {
+        "CloudWatchLogs$Enabled" : "<p>Specifies whether broker logs get sent to the specified CloudWatch Logs destination.</p>",
         "EncryptionInTransit$InCluster" : "<p>When set to true, it indicates that data communication among the broker nodes of the cluster is encrypted. When set to false, the communication happens in plaintext.</p> <p>The default value is true.</p>",
+        "Firehose$Enabled" : "<p>Specifies whether broker logs get sent to the specified Kinesis Data Firehose delivery stream.</p>",
         "JmxExporter$EnabledInBroker" : "<p>Indicates whether you want to enable or disable the JMX Exporter.</p>",
-        "JmxExporterInfo$EnabledInBroker" : "<p>Indicates whether you want to enable or disable the JMX Exporter.</p>",
+        "JmxExporterInfo$EnabledInBroker" : "<p>JMX Exporter being enabled in broker.</p>",
         "NodeExporter$EnabledInBroker" : "<p>Indicates whether you want to enable or disable the Node Exporter.</p>",
-        "NodeExporterInfo$EnabledInBroker" : "<p>Indicates whether you want to enable or disable the Node Exporter.</p>"
+        "NodeExporterInfo$EnabledInBroker" : "<p>Node Exporter being enabled in broker.</p>",
+        "S3$Enabled" : "<p>Specifies whether broker logs get sent to the specified Amazon S3 destination.</p>"
       }
     },
     "__double" : {
@@ -522,6 +558,7 @@
         "BrokerNodeInfo$ClientVpcIpAddress" : "<p>The virtual private cloud (VPC) of the client.</p>",
         "BrokerSoftwareInfo$ConfigurationArn" : "<p>The Amazon Resource Name (ARN) of the configuration used for the cluster. This field isn't visible in this preview release.</p>",
         "BrokerSoftwareInfo$KafkaVersion" : "<p>The version of Apache Kafka.</p>",
+        "CloudWatchLogs$LogGroup" : "<p>The CloudWatch log group that is the destination for broker logs.</p>",
         "ClusterInfo$ActiveOperationArn" : "<p>Arn of active cluster operation.</p>",
         "ClusterInfo$ClusterArn" : "<p>The Amazon Resource Name (ARN) that uniquely identifies the cluster.</p>",
         "ClusterInfo$ClusterName" : "<p>The name of the cluster.</p>",
@@ -554,6 +591,7 @@
         "Error$Message" : "<p>The description of the error.</p>",
         "ErrorInfo$ErrorCode" : "<p>A number describing the error programmatically.</p>",
         "ErrorInfo$ErrorString" : "<p>An optional field to provide more details about the error.</p>",
+        "Firehose$DeliveryStream" : "<p>The Kinesis Data Firehose delivery stream that is the destination for broker logs.</p>",
         "GetBootstrapBrokersResponse$BootstrapBrokerString" : "<p>A string containing one or more hostname:port pairs.</p>",
         "GetBootstrapBrokersResponse$BootstrapBrokerStringTls" : "<p>A string containing one or more DNS names (or IP) and TLS port pairs. The following is an example.</p> <programlisting>{\n    \"BootstrapBrokerStringTls\": \"b-3.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9094,b-1.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9094,b-2.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9094\"\n}</programlisting>",
         "KafkaVersion$Version" : "<p>The Kafka version.</p>",
@@ -566,6 +604,8 @@
         "NodeInfo$AddedToClusterTime" : "<p>The start time.</p>",
         "NodeInfo$InstanceType" : "<p>The instance type.</p>",
         "NodeInfo$NodeARN" : "<p>The Amazon Resource Name (ARN) of the node.</p>",
+        "S3$Bucket" : "<p>The name of the S3 bucket that is the destination for broker logs.</p>",
+        "S3$Prefix" : "<p>The S3 prefix that is the destination for broker logs.</p>",
         "StateInfo$Code" : "<p>If the cluster is in an unusable state, this field contains the code that describes the issue.</p>",
         "StateInfo$Message" : "<p>If the cluster is in an unusable state, this field contains a message that describes the issue.</p>",
         "UpdateBrokerCountRequest$CurrentVersion" : "<p>The current version of the cluster.</p>",

@@ -29,6 +29,36 @@
         {"shape":"ServiceQuotaExceededException"}
       ]
     },
+    "DeleteOutpost":{
+      "name":"DeleteOutpost",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/outposts/{OutpostId}"
+      },
+      "input":{"shape":"DeleteOutpostInput"},
+      "output":{"shape":"DeleteOutpostOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DeleteSite":{
+      "name":"DeleteSite",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/sites/{SiteId}"
+      },
+      "input":{"shape":"DeleteSiteInput"},
+      "output":{"shape":"DeleteSiteOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "GetOutpost":{
       "name":"GetOutpost",
       "http":{
@@ -129,6 +159,38 @@
       "type":"structure",
       "members":{
         "Outpost":{"shape":"Outpost"}
+      }
+    },
+    "DeleteOutpostInput":{
+      "type":"structure",
+      "required":["OutpostId"],
+      "members":{
+        "OutpostId":{
+          "shape":"OutpostId",
+          "location":"uri",
+          "locationName":"OutpostId"
+        }
+      }
+    },
+    "DeleteOutpostOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteSiteInput":{
+      "type":"structure",
+      "required":["SiteId"],
+      "members":{
+        "SiteId":{
+          "shape":"SiteId",
+          "location":"uri",
+          "locationName":"SiteId"
+        }
+      }
+    },
+    "DeleteSiteOutput":{
+      "type":"structure",
+      "members":{
       }
     },
     "ErrorMessage":{

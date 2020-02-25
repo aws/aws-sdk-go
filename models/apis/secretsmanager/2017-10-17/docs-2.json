@@ -331,8 +331,8 @@
     "OwningServiceType": {
       "base": null,
       "refs": {
-        "DescribeSecretResponse$OwningService": null,
-        "SecretListEntry$OwningService": null
+        "DescribeSecretResponse$OwningService": "<p>Returns the name of the service that created this secret.</p>",
+        "SecretListEntry$OwningService": "<p>Returns the name of the service that created the secret.</p>"
       }
     },
     "PasswordLengthType": {
@@ -418,7 +418,7 @@
       "base": null,
       "refs": {
         "DescribeSecretResponse$RotationEnabled": "<p>Specifies whether automatic rotation is enabled for this secret.</p> <p>To enable rotation, use <a>RotateSecret</a> with <code>AutomaticallyRotateAfterDays</code> set to a value greater than 0. To disable rotation, use <a>CancelRotateSecret</a>.</p>",
-        "SecretListEntry$RotationEnabled": "<p>Indicated whether automatic, scheduled rotation is enabled for this secret.</p>"
+        "SecretListEntry$RotationEnabled": "<p>Indicates whether automatic, scheduled rotation is enabled for this secret.</p>"
       }
     },
     "RotationLambdaARNType": {
