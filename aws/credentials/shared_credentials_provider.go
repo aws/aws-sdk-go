@@ -3,6 +3,7 @@ package credentials
 import (
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/internal/ini"
@@ -37,6 +38,9 @@ type SharedCredentialsProvider struct {
 
 	// retrieved states if the credentials have been successfully retrieved.
 	retrieved bool
+
+	// expiration is the session expiration time, if available.
+	expiration *time.Time
 }
 
 // NewSharedCredentials returns a pointer to a new Credentials object
@@ -58,10 +62,12 @@ func (p *SharedCredentialsProvider) Retrieve() (Value, error) {
 		return Value{ProviderName: SharedCredsProviderName}, err
 	}
 
-	creds, err := loadProfile(filename, p.profile())
+	creds, expiration, err := loadProfile(filename, p.profile())
 	if err != nil {
 		return Value{ProviderName: SharedCredsProviderName}, err
 	}
+
+	p.expiration = expiration
 
 	p.retrieved = true
 	return creds, nil
@@ -69,36 +75,53 @@ func (p *SharedCredentialsProvider) Retrieve() (Value, error) {
 
 // IsExpired returns if the shared credentials have expired.
 func (p *SharedCredentialsProvider) IsExpired() bool {
+	// Use the session expiration time, if available
+	if p.expiration != nil {
+		return p.expiration.Before(time.Now())
+	}
+
+	// Otherwise, mark the creds as expired if they
+	// haven't been successfully retrieved
 	return !p.retrieved
 }
 
 // loadProfiles loads from the file pointed to by shared credentials filename for profile.
 // The credentials retrieved from the profile will be returned or error. Error will be
 // returned if it fails to read from the file, or the data is invalid.
-func loadProfile(filename, profile string) (Value, error) {
+func loadProfile(filename, profile string) (Value, *time.Time, error) {
 	config, err := ini.OpenFile(filename)
 	if err != nil {
-		return Value{ProviderName: SharedCredsProviderName}, awserr.New("SharedCredsLoad", "failed to load shared credentials file", err)
+		return Value{ProviderName: SharedCredsProviderName}, nil, awserr.New("SharedCredsLoad", "failed to load shared credentials file", err)
 	}
 
 	iniProfile, ok := config.GetSection(profile)
 	if !ok {
-		return Value{ProviderName: SharedCredsProviderName}, awserr.New("SharedCredsLoad", "failed to get profile", nil)
+		return Value{ProviderName: SharedCredsProviderName}, nil, awserr.New("SharedCredsLoad", "failed to get profile", nil)
 	}
 
 	id := iniProfile.String("aws_access_key_id")
 	if len(id) == 0 {
-		return Value{ProviderName: SharedCredsProviderName}, awserr.New("SharedCredsAccessKey",
+		return Value{ProviderName: SharedCredsProviderName}, nil, awserr.New("SharedCredsAccessKey",
 			fmt.Sprintf("shared credentials %s in %s did not contain aws_access_key_id", profile, filename),
 			nil)
 	}
 
 	secret := iniProfile.String("aws_secret_access_key")
 	if len(secret) == 0 {
-		return Value{ProviderName: SharedCredsProviderName}, awserr.New("SharedCredsSecret",
+		return Value{ProviderName: SharedCredsProviderName}, nil, awserr.New("SharedCredsSecret",
 			fmt.Sprintf("shared credentials %s in %s did not contain aws_secret_access_key", profile, filename),
 			nil)
 	}
+
+	var sessionExpiration *time.Time
+	sessionExpirationStr := iniProfile.String("aws_session_expiration")
+	if len(sessionExpirationStr) != 0 {
+		parsedTime, err := time.Parse(time.RFC3339, sessionExpirationStr)
+		if err == nil {
+			sessionExpiration = &parsedTime
+		}
+	}
+
 
 	// Default to empty string if not found
 	token := iniProfile.String("aws_session_token")
@@ -108,7 +131,7 @@ func loadProfile(filename, profile string) (Value, error) {
 		SecretAccessKey: secret,
 		SessionToken:    token,
 		ProviderName:    SharedCredsProviderName,
-	}, nil
+	}, sessionExpiration, nil
 }
 
 // filename returns the filename to use to read AWS shared credentials.

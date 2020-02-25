@@ -50,6 +50,54 @@ func TestSharedCredentialsProviderIsExpired(t *testing.T) {
 	}
 }
 
+func TestSharedCredentialsProviderIsExpiredSessionExpired(t *testing.T) {
+	restoreEnvFn := sdktesting.StashEnv()
+	defer restoreEnvFn()
+
+	p := SharedCredentialsProvider{Filename: "example.ini", Profile: "expired"}
+	_, err := p.Retrieve()
+
+	if err != nil {
+		t.Errorf("expect nil, got %v", err)
+	}
+
+	if !p.IsExpired() {
+		t.Errorf("Expect creds to be expired, when aws_session_expiration is in the past")
+	}
+}
+
+func TestSharedCredentialsProviderIsExpiredSessionNotExpired(t *testing.T) {
+	restoreEnvFn := sdktesting.StashEnv()
+	defer restoreEnvFn()
+
+	p := SharedCredentialsProvider{Filename: "example.ini", Profile: "not_expired"}
+	_, err := p.Retrieve()
+
+	if err != nil {
+		t.Errorf("expect nil, got %v", err)
+	}
+
+	if p.IsExpired() {
+		t.Errorf("Expect creds to not be expired, when aws_session_expiration is in the future")
+	}
+}
+
+func TestSharedCredentialsProviderIsExpiredInvalidExpiration(t *testing.T) {
+	restoreEnvFn := sdktesting.StashEnv()
+	defer restoreEnvFn()
+
+	p := SharedCredentialsProvider{Filename: "example.ini", Profile: "invalid_expiration"}
+	_, err := p.Retrieve()
+
+	if err != nil {
+		t.Errorf("expect nil, got %v", err)
+	}
+
+	if p.IsExpired() {
+		t.Errorf("Expect creds to not be expired after retrieve (same behavior as missing expiration)")
+	}
+}
+
 func TestSharedCredentialsProviderWithAWS_SHARED_CREDENTIALS_FILE(t *testing.T) {
 	restoreEnvFn := sdktesting.StashEnv()
 	defer restoreEnvFn()
