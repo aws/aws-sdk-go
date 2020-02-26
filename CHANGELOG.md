@@ -1,3 +1,14 @@
+Release v1.29.11 (2020-02-26)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * This release changes the RunInstances CLI and SDK's so that if you do not specify a client token, a randomly generated token is used for the request to ensure idempotency.
+* `service/sagemaker`: Updates service API and documentation
+  * SageMaker UpdateEndpoint API now supports retained variant properties, e.g., instance count, variant weight. SageMaker ListTrials API filter by TrialComponentName. Make ExperimentConfig name length limits consistent with CreateExperiment, CreateTrial, and CreateTrialComponent APIs.
+* `service/securityhub`: Updates service API and documentation
+* `service/transcribe`: Updates service API and documentation
+
 Release v1.29.10 (2020-02-25)
 ===
 

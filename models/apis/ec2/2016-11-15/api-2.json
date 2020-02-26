@@ -24318,6 +24318,7 @@
         },
         "ClientToken":{
           "shape":"String",
+          "idempotencyToken":true,
           "locationName":"clientToken"
         },
         "DisableApiTermination":{

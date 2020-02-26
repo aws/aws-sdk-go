@@ -4491,16 +4491,10 @@
     "ExperimentConfig":{
       "type":"structure",
       "members":{
-        "ExperimentName":{"shape":"ExperimentConfigName"},
-        "TrialName":{"shape":"ExperimentConfigName"},
-        "TrialComponentDisplayName":{"shape":"ExperimentConfigName"}
+        "ExperimentName":{"shape":"ExperimentEntityName"},
+        "TrialName":{"shape":"ExperimentEntityName"},
+        "TrialComponentDisplayName":{"shape":"ExperimentEntityName"}
       }
-    },
-    "ExperimentConfigName":{
-      "type":"string",
-      "max":64,
-      "min":1,
-      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*"
     },
     "ExperimentDescription":{
       "type":"string",
@@ -6108,6 +6102,7 @@
       "type":"structure",
       "members":{
         "ExperimentName":{"shape":"ExperimentEntityName"},
+        "TrialComponentName":{"shape":"ExperimentEntityName"},
         "CreatedAfter":{"shape":"Timestamp"},
         "CreatedBefore":{"shape":"Timestamp"},
         "SortBy":{"shape":"SortTrialsBy"},
@@ -8105,14 +8100,17 @@
         "jetson_tx1",
         "jetson_tx2",
         "jetson_nano",
+        "jetson_xavier",
         "rasp3b",
+        "imx8qm",
         "deeplens",
         "rk3399",
         "rk3288",
         "aisage",
         "sbe_c",
         "qcs605",
-        "qcs603"
+        "qcs603",
+        "amba_cv22"
       ]
     },
     "TargetObjectiveMetricValue":{"type":"float"},
@@ -8851,7 +8849,9 @@
       ],
       "members":{
         "EndpointName":{"shape":"EndpointName"},
-        "EndpointConfigName":{"shape":"EndpointConfigName"}
+        "EndpointConfigName":{"shape":"EndpointConfigName"},
+        "RetainAllVariantProperties":{"shape":"Boolean"},
+        "ExcludeRetainedVariantProperties":{"shape":"VariantPropertyList"}
       }
     },
     "UpdateEndpointOutput":{
@@ -9105,6 +9105,27 @@
       "type":"string",
       "max":63,
       "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*"
+    },
+    "VariantProperty":{
+      "type":"structure",
+      "required":["VariantPropertyType"],
+      "members":{
+        "VariantPropertyType":{"shape":"VariantPropertyType"}
+      }
+    },
+    "VariantPropertyList":{
+      "type":"list",
+      "member":{"shape":"VariantProperty"},
+      "max":3,
+      "min":0
+    },
+    "VariantPropertyType":{
+      "type":"string",
+      "enum":[
+        "DesiredInstanceCount",
+        "DesiredWeight",
+        "DataCaptureConfig"
+      ]
     },
     "VariantWeight":{
       "type":"float",
