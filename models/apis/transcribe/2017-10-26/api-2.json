@@ -234,6 +234,17 @@
       },
       "exception":true
     },
+    "ContentRedaction":{
+      "type":"structure",
+      "required":[
+        "RedactionType",
+        "RedactionOutput"
+      ],
+      "members":{
+        "RedactionType":{"shape":"RedactionType"},
+        "RedactionOutput":{"shape":"RedactionOutput"}
+      }
+    },
     "CreateVocabularyFilterRequest":{
       "type":"structure",
       "required":[
@@ -534,6 +545,17 @@
       "type":"list",
       "member":{"shape":"Phrase"}
     },
+    "RedactionOutput":{
+      "type":"string",
+      "enum":[
+        "redacted",
+        "redacted_and_unredacted"
+      ]
+    },
+    "RedactionType":{
+      "type":"string",
+      "enum":["PII"]
+    },
     "Settings":{
       "type":"structure",
       "members":{
@@ -563,7 +585,8 @@
         "OutputBucketName":{"shape":"OutputBucketName"},
         "OutputEncryptionKMSKeyId":{"shape":"KMSKeyId"},
         "Settings":{"shape":"Settings"},
-        "JobExecutionSettings":{"shape":"JobExecutionSettings"}
+        "JobExecutionSettings":{"shape":"JobExecutionSettings"},
+        "ContentRedaction":{"shape":"ContentRedaction"}
       }
     },
     "StartTranscriptionJobResponse":{
@@ -576,7 +599,8 @@
     "Transcript":{
       "type":"structure",
       "members":{
-        "TranscriptFileUri":{"shape":"Uri"}
+        "TranscriptFileUri":{"shape":"Uri"},
+        "RedactedTranscriptFileUri":{"shape":"Uri"}
       }
     },
     "TranscriptionJob":{
@@ -594,7 +618,8 @@
         "CompletionTime":{"shape":"DateTime"},
         "FailureReason":{"shape":"FailureReason"},
         "Settings":{"shape":"Settings"},
-        "JobExecutionSettings":{"shape":"JobExecutionSettings"}
+        "JobExecutionSettings":{"shape":"JobExecutionSettings"},
+        "ContentRedaction":{"shape":"ContentRedaction"}
       }
     },
     "TranscriptionJobName":{
@@ -626,7 +651,8 @@
         "LanguageCode":{"shape":"LanguageCode"},
         "TranscriptionJobStatus":{"shape":"TranscriptionJobStatus"},
         "FailureReason":{"shape":"FailureReason"},
-        "OutputLocationType":{"shape":"OutputLocationType"}
+        "OutputLocationType":{"shape":"OutputLocationType"},
+        "ContentRedaction":{"shape":"ContentRedaction"}
       }
     },
     "UpdateVocabularyFilterRequest":{

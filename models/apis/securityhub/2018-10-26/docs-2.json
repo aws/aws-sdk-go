@@ -1,10 +1,10 @@
 {
   "version": "2.0",
-  "service": "<p>Security Hub provides you with a comprehensive view of the security state of your AWS environment and resources. It also provides you with the compliance status of your environment based on controls from supported standards. Security Hub collects security data from AWS accounts, services, and integrated third-party products and helps you analyze security trends in your environment to identify the highest priority security issues. For more information about Security Hub, see the <i> <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html\">AWS Security Hub User Guide</a> </i>.</p> <p>When you use operations in the Security Hub API, the requests are executed only in the AWS Region that is currently active or in the specific AWS Region that you specify in your request. Any configuration or settings change that results from the operation is applied only to that Region. To make the same change in other Regions, execute the same command for each Region to apply the change to.</p> <p>For example, if your Region is set to <code>us-west-2</code>, when you use <code> <a>CreateMembers</a> </code> to add a member account to Security Hub, the association of the member account with the master account is created only in the <code>us-west-2</code> Region. Security Hub must be enabled for the member account in the same Region that the invitation was sent from.</p> <p>The following throttling limits apply to using Security Hub API operations.</p> <ul> <li> <p> <code> <a>GetFindings</a> </code> - <code>RateLimit</code> of 3 requests per second. <code>BurstLimit</code> of 6 requests per second.</p> </li> <li> <p> <code> <a>UpdateFindings</a> </code> - <code>RateLimit</code> of 1 request per second. <code>BurstLimit</code> of 5 requests per second.</p> </li> <li> <p>All other operations - <code>RateLimit</code> of 10 requests per second. <code>BurstLimit</code> of 30 requests per second.</p> </li> </ul>",
+  "service": "<p>Security Hub provides you with a comprehensive view of the security state of your AWS environment and resources. It also provides you with the readiness status of your environment based on controls from supported security standards. Security Hub collects security data from AWS accounts, services, and integrated third-party products and helps you analyze security trends in your environment to identify the highest priority security issues. For more information about Security Hub, see the <i> <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html\">AWS Security Hub User Guide</a> </i>.</p> <p>When you use operations in the Security Hub API, the requests are executed only in the AWS Region that is currently active or in the specific AWS Region that you specify in your request. Any configuration or settings change that results from the operation is applied only to that Region. To make the same change in other Regions, execute the same command for each Region to apply the change to.</p> <p>For example, if your Region is set to <code>us-west-2</code>, when you use <code> <a>CreateMembers</a> </code> to add a member account to Security Hub, the association of the member account with the master account is created only in the <code>us-west-2</code> Region. Security Hub must be enabled for the member account in the same Region that the invitation was sent from.</p> <p>The following throttling limits apply to using Security Hub API operations.</p> <ul> <li> <p> <code> <a>GetFindings</a> </code> - <code>RateLimit</code> of 3 requests per second. <code>BurstLimit</code> of 6 requests per second.</p> </li> <li> <p> <code> <a>UpdateFindings</a> </code> - <code>RateLimit</code> of 1 request per second. <code>BurstLimit</code> of 5 requests per second.</p> </li> <li> <p>All other operations - <code>RateLimit</code> of 10 requests per second. <code>BurstLimit</code> of 30 requests per second.</p> </li> </ul>",
   "operations": {
     "AcceptInvitation": "<p>Accepts the invitation to be a member account and be monitored by the Security Hub master account that the invitation was sent from.</p> <p>When the member account accepts the invitation, permission is granted to the master account to view findings generated in the member account.</p>",
-    "BatchDisableStandards": "<p>Disables the standards specified by the provided <code>StandardsSubscriptionArns</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards.html\">Compliance Standards</a> section of the <i>AWS Security Hub User Guide</i>.</p>",
-    "BatchEnableStandards": "<p>Enables the standards specified by the provided <code>StandardsArn</code>. To obtain the ARN for a standard, use the <code> <a>DescribeStandards</a> </code> operation.</p> <p>For more information, see the <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards.html\">Compliance Standards</a> section of the <i>AWS Security Hub User Guide</i>.</p>",
+    "BatchDisableStandards": "<p>Disables the standards specified by the provided <code>StandardsSubscriptionArns</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards.html\">Security Standards</a> section of the <i>AWS Security Hub User Guide</i>.</p>",
+    "BatchEnableStandards": "<p>Enables the standards specified by the provided <code>StandardsArn</code>. To obtain the ARN for a standard, use the <code> <a>DescribeStandards</a> </code> operation.</p> <p>For more information, see the <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards.html\">Security Standards</a> section of the <i>AWS Security Hub User Guide</i>.</p>",
     "BatchImportFindings": "<p>Imports security findings generated from an integrated third-party product into Security Hub. This action is requested by the integrated product to import its findings into Security Hub.</p> <p>The maximum allowed size for a finding is 240 Kb. An error is returned for any finding larger than 240 Kb.</p>",
     "CreateActionTarget": "<p>Creates a custom action target in Security Hub.</p> <p>You can use custom actions on findings and insights in Security Hub to trigger target actions in Amazon CloudWatch Events.</p>",
     "CreateInsight": "<p>Creates a custom insight in Security Hub. An insight is a consolidation of findings that relate to a security issue that requires attention or remediation.</p> <p>To group the related findings in the insight, use the <code>GroupByAttribute</code>.</p>",
@@ -18,7 +18,7 @@
     "DescribeHub": "<p>Returns details about the Hub resource in your account, including the <code>HubArn</code> and the time when you enabled Security Hub.</p>",
     "DescribeProducts": "<p>Returns information about the available products that you can subscribe to and integrate with Security Hub in order to consolidate findings.</p>",
     "DescribeStandards": "<p>Returns a list of the available standards in Security Hub.</p> <p>For each standard, the results include the standard ARN, the name, and a description. </p>",
-    "DescribeStandardsControls": "<p>Returns a list of compliance standards controls.</p> <p>For each control, the results include information about whether it is currently enabled, the severity, and a link to remediation information.</p>",
+    "DescribeStandardsControls": "<p>Returns a list of security standards controls.</p> <p>For each control, the results include information about whether it is currently enabled, the severity, and a link to remediation information.</p>",
     "DisableImportFindingsForProduct": "<p>Disables the integration of the specified product with Security Hub. After the integration is disabled, findings from that product are no longer sent to Security Hub.</p>",
     "DisableSecurityHub": "<p>Disables Security Hub in your account only in the current Region. To disable Security Hub in all Regions, you must submit one request per Region where you have enabled Security Hub.</p> <p>When you disable Security Hub for a master account, it doesn't disable Security Hub for any associated member accounts.</p> <p>When you disable Security Hub, your existing findings and insights and any Security Hub configuration settings are deleted after 90 days and cannot be recovered. Any standards that were enabled are disabled, and your master and member account associations are removed.</p> <p>If you want to save your existing findings, you must export them before you disable Security Hub.</p>",
     "DisassociateFromMasterAccount": "<p>Disassociates the current Security Hub member account from the associated master account.</p>",
@@ -42,7 +42,7 @@
     "UpdateActionTarget": "<p>Updates the name and description of a custom action target in Security Hub.</p>",
     "UpdateFindings": "<p>Updates the <code>Note</code> and <code>RecordState</code> of the Security Hub-aggregated findings that the filter attributes specify. Any member account that can view the finding also sees the update to the finding.</p>",
     "UpdateInsight": "<p>Updates the Security Hub insight identified by the specified insight ARN.</p>",
-    "UpdateStandardsControl": "<p>Used to control whether an individual compliance standard control is enabled or disabled.</p>"
+    "UpdateStandardsControl": "<p>Used to control whether an individual security standard control is enabled or disabled.</p>"
   },
   "shapes": {
     "AcceptInvitationRequest": {
@@ -455,7 +455,7 @@
       }
     },
     "AwsSecurityFinding": {
-      "base": "<p>Provides consistent format for the contents of the Security Hub-aggregated findings. <code>AwsSecurityFinding</code> format enables you to share findings between AWS security services and third-party solutions, and compliance checks.</p> <note> <p>A finding is a potential security issue generated either by AWS services (Amazon GuardDuty, Amazon Inspector, and Amazon Macie) or by the integrated third-party solutions and compliance checks.</p> </note>",
+      "base": "<p>Provides consistent format for the contents of the Security Hub-aggregated findings. <code>AwsSecurityFinding</code> format enables you to share findings between AWS security services and third-party solutions, and security standards checks.</p> <note> <p>A finding is a potential security issue generated either by AWS services (Amazon GuardDuty, Amazon Inspector, and Amazon Macie) or by the integrated third-party solutions and standards checks.</p> </note>",
       "refs": {
         "AwsSecurityFindingList$member": null
       }
@@ -574,15 +574,15 @@
       }
     },
     "Compliance": {
-      "base": "<p>Exclusive to findings that are generated as the result of a check run against a specific rule in a supported standard, such as CIS AWS Foundations. Contains compliance-related finding details.</p> <p>Values include the following:</p> <ul> <li> <p>Allowed values are the following:</p> <ul> <li> <p> <code>PASSED</code> - Compliance check passed for all evaluated resources.</p> </li> <li> <p> <code>WARNING</code> - Some information is missing or this check is not supported given your configuration.</p> </li> <li> <p> <code>FAILED</code> - Compliance check failed for at least one evaluated resource.</p> </li> <li> <p> <code>NOT_AVAILABLE</code> - Check could not be performed due to a service outage, API error, or because the result of the AWS Config evaluation was <code>NOT_APPLICABLE</code>. If the AWS Config evaluation result was <code> NOT_APPLICABLE</code>, then after 3 days, Security Hub automatically archives the finding.</p> </li> </ul> </li> </ul>",
+      "base": "<p>Exclusive to findings that are generated as the result of a check run against a specific rule in a supported security standard, such as CIS AWS Foundations. Contains security standard-related finding details.</p> <p>Values include the following:</p> <ul> <li> <p>Allowed values are the following:</p> <ul> <li> <p> <code>PASSED</code> - Standards check passed for all evaluated resources.</p> </li> <li> <p> <code>WARNING</code> - Some information is missing or this check is not supported given your configuration.</p> </li> <li> <p> <code>FAILED</code> - Standards check failed for at least one evaluated resource.</p> </li> <li> <p> <code>NOT_AVAILABLE</code> - Check could not be performed due to a service outage, API error, or because the result of the AWS Config evaluation was <code>NOT_APPLICABLE</code>. If the AWS Config evaluation result was <code> NOT_APPLICABLE</code>, then after 3 days, Security Hub automatically archives the finding.</p> </li> </ul> </li> </ul>",
       "refs": {
-        "AwsSecurityFinding$Compliance": "<p>This data type is exclusive to findings that are generated as the result of a check run against a specific rule in a supported standard, such as CIS AWS Foundations. Contains compliance-related finding details.</p>"
+        "AwsSecurityFinding$Compliance": "<p>This data type is exclusive to findings that are generated as the result of a check run against a specific rule in a supported security standard, such as CIS AWS Foundations. Contains security standard-related finding details.</p>"
       }
     },
     "ComplianceStatus": {
       "base": null,
       "refs": {
-        "Compliance$Status": "<p>The result of a compliance check.</p>"
+        "Compliance$Status": "<p>The result of a standards check.</p>"
       }
     },
     "ContainerDetails": {
@@ -594,8 +594,8 @@
     "ControlStatus": {
       "base": null,
       "refs": {
-        "StandardsControl$ControlStatus": "<p>The current status of the compliance standard control. Indicates whether the control is enabled or disabled. Security Hub does not check against disabled controls.</p>",
-        "UpdateStandardsControlRequest$ControlStatus": "<p>The updated status of the compliance standard control.</p>"
+        "StandardsControl$ControlStatus": "<p>The current status of the security standard control. Indicates whether the control is enabled or disabled. Security Hub does not check against disabled controls.</p>",
+        "UpdateStandardsControlRequest$ControlStatus": "<p>The updated status of the security standard control.</p>"
       }
     },
     "CreateActionTargetRequest": {
@@ -984,6 +984,18 @@
         "Severity$Normalized": "<p>The normalized severity of a finding.</p>"
       }
     },
+    "IntegrationType": {
+      "base": null,
+      "refs": {
+        "IntegrationTypeList$member": null
+      }
+    },
+    "IntegrationTypeList": {
+      "base": null,
+      "refs": {
+        "Product$IntegrationTypes": "<p>The types of integration that the product supports. Available values are the following.</p> <ul> <li> <p> <code>SEND_FINDINGS_TO_SECURITY_HUB</code> - Indicates that the integration sends findings to Security Hub.</p> </li> <li> <p> <code>RECEIVE_FINDINGS_FROM_SECURITY_HUB</code> - Indicates that the integration receives findings from Security Hub.</p> </li> </ul>"
+      }
+    },
     "InternalException": {
       "base": "<p>Internal server error.</p>",
       "refs": {
@@ -1152,7 +1164,7 @@
       "refs": {
         "DescribeActionTargetsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "DescribeProductsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
-        "DescribeStandardsControlsRequest$MaxResults": "<p>The maximum number of compliance standard controls to return.</p>",
+        "DescribeStandardsControlsRequest$MaxResults": "<p>The maximum number of security standard controls to return.</p>",
         "DescribeStandardsRequest$MaxResults": "<p>The maximum number of standards to return.</p>",
         "GetEnabledStandardsRequest$MaxResults": "<p>The maximum number of results to return in the response.</p>",
         "GetFindingsRequest$MaxResults": "<p>The maximum number of findings to return.</p>",
@@ -1474,11 +1486,11 @@
         "Standard$StandardsArn": "<p>The ARN of a standard.</p>",
         "Standard$Name": "<p>The name of the standard.</p>",
         "Standard$Description": "<p>A description of the standard.</p>",
-        "StandardsControl$StandardsControlArn": "<p>The ARN of the compliance standard control.</p>",
+        "StandardsControl$StandardsControlArn": "<p>The ARN of the security standard control.</p>",
         "StandardsControl$DisabledReason": "<p>The reason provided for the most recent change in status for the control.</p>",
-        "StandardsControl$ControlId": "<p>The identifier of the compliance standard control.</p>",
-        "StandardsControl$Title": "<p>The title of the compliance standard control.</p>",
-        "StandardsControl$Description": "<p>The longer description of the compliance standard control. Provides information about what the control is checking for.</p>",
+        "StandardsControl$ControlId": "<p>The identifier of the security standard control.</p>",
+        "StandardsControl$Title": "<p>The title of the security standard control.</p>",
+        "StandardsControl$Description": "<p>The longer description of the security standard control. Provides information about what the control is checking for.</p>",
         "StandardsControl$RemediationUrl": "<p>A link to remediation information for the control in the Security Hub user documentation.</p>",
         "StandardsInputParameterMap$key": null,
         "StandardsInputParameterMap$value": null,
@@ -1499,8 +1511,8 @@
         "UpdateInsightRequest$InsightArn": "<p>The ARN of the insight that you want to update.</p>",
         "UpdateInsightRequest$Name": "<p>The updated name for the insight.</p>",
         "UpdateInsightRequest$GroupByAttribute": "<p>The updated <code>GroupBy</code> attribute that defines this insight.</p>",
-        "UpdateStandardsControlRequest$StandardsControlArn": "<p>The ARN of the compliance standard control to enable or disable.</p>",
-        "UpdateStandardsControlRequest$DisabledReason": "<p>A description of the reason why you are disabling a compliance standard control.</p>",
+        "UpdateStandardsControlRequest$StandardsControlArn": "<p>The ARN of the security standard control to enable or disable.</p>",
+        "UpdateStandardsControlRequest$DisabledReason": "<p>A description of the reason why you are disabling a security standard control.</p>",
         "WafAction$Type": "<p>Specifies how you want AWS WAF to respond to requests that match the settings in a Rule.</p> <p>Valid settings include the following:</p> <ul> <li> <p> <code>ALLOW</code> - AWS WAF allows requests</p> </li> <li> <p> <code>BLOCK</code> - AWS WAF blocks requests</p> </li> <li> <p> <code>COUNT</code> - AWS WAF increments a counter of the requests that match all of the conditions in the rule. AWS WAF then continues to inspect the web request based on the remaining rules in the web ACL. You can't specify <code>COUNT</code> for the default action for a WebACL.</p> </li> </ul>",
         "WafExcludedRule$RuleId": "<p>The unique identifier for the rule to exclude from the rule group.</p>",
         "WafOverrideAction$Type": "<p> <code>COUNT</code> overrides the action specified by the individual rule within a RuleGroup .</p> <p>If set to <code>NONE</code>, the rule's action takes place.</p>"
@@ -1516,7 +1528,7 @@
         "AwsElasticsearchDomainVPCOptions$SubnetIds": "<p>A list of subnet IDs associated with the VPC endpoints for the domain.</p>",
         "AwsLambdaFunctionVpcConfig$SecurityGroupIds": "<p>A list of VPC security groups IDs.</p>",
         "AwsLambdaFunctionVpcConfig$SubnetIds": "<p>A list of VPC subnet IDs.</p>",
-        "AwsLambdaLayerVersionDetails$CompatibleRuntimes": "<p>The layer's compatible runtimes. Maximum number of 5 items.</p> <p>Valid values: <code>nodejs8.10</code> | <code>nodejs10.x</code> | <code>nodejs12.x</code> | <code>java8</code> | <code>java11</code> | <code>python2.7</code> | <code>python3.6</code> | <code>python3.7</code> | <code>python3.8</code> | <code>dotnetcore1.0</code> | <code>dotnetcore2.1</code> | <code>go1.x</code> | <code>ruby2.5</code> | <code>provided</code> </p>"
+        "AwsLambdaLayerVersionDetails$CompatibleRuntimes": "<p>The layer's compatible runtimes. Maximum number of 5 items.</p> <p>Valid values: <code>nodejs10.x</code> | <code>nodejs12.x</code> | <code>java8</code> | <code>java11</code> | <code>python2.7</code> | <code>python3.6</code> | <code>python3.7</code> | <code>python3.8</code> | <code>dotnetcore1.0</code> | <code>dotnetcore2.1</code> | <code>go1.x</code> | <code>ruby2.5</code> | <code>provided</code> </p>"
       }
     },
     "Note": {
@@ -1686,7 +1698,7 @@
     "SeverityRating": {
       "base": null,
       "refs": {
-        "StandardsControl$SeverityRating": "<p>The severity of findings generated from this compliance standard control.</p> <p>The finding severity is based on an assessment of how easy it would be to compromise AWS resources if the compliance issue is detected.</p>"
+        "StandardsControl$SeverityRating": "<p>The severity of findings generated from this security standard control.</p> <p>The finding severity is based on an assessment of how easy it would be to compromise AWS resources if the issue is detected.</p>"
       }
     },
     "SortCriteria": {
@@ -1720,7 +1732,7 @@
       }
     },
     "StandardsControl": {
-      "base": "<p>Details for an individual compliance standard control.</p>",
+      "base": "<p>Details for an individual security standard control.</p>",
       "refs": {
         "StandardsControls$member": null
       }
@@ -1728,7 +1740,7 @@
     "StandardsControls": {
       "base": null,
       "refs": {
-        "DescribeStandardsControlsResponse$Controls": "<p>A list of compliance standards controls.</p>"
+        "DescribeStandardsControlsResponse$Controls": "<p>A list of security standards controls.</p>"
       }
     },
     "StandardsInputParameterMap": {
@@ -1766,7 +1778,7 @@
     "StandardsSubscriptionRequests": {
       "base": null,
       "refs": {
-        "BatchEnableStandardsRequest$StandardsSubscriptionRequests": "<p>The list of standards compliance checks to enable.</p>"
+        "BatchEnableStandardsRequest$StandardsSubscriptionRequests": "<p>The list of standards checks to enable.</p>"
       }
     },
     "StandardsSubscriptions": {
@@ -1837,7 +1849,7 @@
         "AwsSecurityFindingFilters$ResourceContainerName": "<p>The name of the container related to a finding.</p>",
         "AwsSecurityFindingFilters$ResourceContainerImageId": "<p>The identifier of the image related to a finding.</p>",
         "AwsSecurityFindingFilters$ResourceContainerImageName": "<p>The name of the image related to a finding.</p>",
-        "AwsSecurityFindingFilters$ComplianceStatus": "<p>Exclusive to findings that are generated as the result of a check run against a specific rule in a supported standard, such as CIS AWS Foundations. Contains compliance-related finding details.</p>",
+        "AwsSecurityFindingFilters$ComplianceStatus": "<p>Exclusive to findings that are generated as the result of a check run against a specific rule in a supported standard, such as CIS AWS Foundations. Contains security standard-related finding details.</p>",
         "AwsSecurityFindingFilters$VerificationState": "<p>The veracity of a finding.</p>",
         "AwsSecurityFindingFilters$WorkflowState": "<p>The workflow state of a finding.</p>",
         "AwsSecurityFindingFilters$RecordState": "<p>The updated record state for the finding.</p>",
@@ -1921,7 +1933,7 @@
         "Invitation$InvitedAt": "<p>The timestamp of when the invitation was sent.</p>",
         "Member$InvitedAt": "<p>A timestamp for the date and time when the invitation was sent to the member account.</p>",
         "Member$UpdatedAt": "<p>The timestamp for the date and time when the member account was updated.</p>",
-        "StandardsControl$ControlStatusUpdatedAt": "<p>The date and time that the status of the compliance standard control was most recently updated.</p>"
+        "StandardsControl$ControlStatusUpdatedAt": "<p>The date and time that the status of the security standard control was most recently updated.</p>"
       }
     },
     "TypeList": {

@@ -540,7 +540,8 @@ func (c *TranscribeService) GetTranscriptionJobRequest(input *GetTranscriptionJo
 // Returns information about a transcription job. To see the status of the job,
 // check the TranscriptionJobStatus field. If the status is COMPLETED, the job
 // is finished and you can find the results at the location specified in the
-// TranscriptionFileUri field.
+// TranscriptFileUri field. If you enable content redaction, the redacted transcript
+// appears in RedactedTranscriptFileUri.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1637,6 +1638,71 @@ func (s ConflictException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s ConflictException) RequestID() string {
 	return s.respMetadata.RequestID
+}
+
+// Settings for content redaction within a transcription job.
+//
+// You can redact transcripts in US English (en-us). For more information see:
+// Automatic Content Redaction (https://docs.aws.amazon.com/transcribe/latest/dg/content-redaction.html)
+type ContentRedaction struct {
+	_ struct{} `type:"structure"`
+
+	// Request parameter where you choose whether to output only the redacted transcript
+	// or generate an additional unredacted transcript.
+	//
+	// When you choose redacted Amazon Transcribe outputs a JSON file with only
+	// the redacted transcript and related information.
+	//
+	// When you choose redacted_and_unredacted Amazon Transcribe outputs a JSON
+	// file with the unredacted transcript and related information in addition to
+	// the JSON file with the redacted transcript.
+	//
+	// RedactionOutput is a required field
+	RedactionOutput *string `type:"string" required:"true" enum:"RedactionOutput"`
+
+	// Request parameter that defines the entities to be redacted. The only accepted
+	// value is PII.
+	//
+	// RedactionType is a required field
+	RedactionType *string `type:"string" required:"true" enum:"RedactionType"`
+}
+
+// String returns the string representation
+func (s ContentRedaction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ContentRedaction) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContentRedaction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContentRedaction"}
+	if s.RedactionOutput == nil {
+		invalidParams.Add(request.NewErrParamRequired("RedactionOutput"))
+	}
+	if s.RedactionType == nil {
+		invalidParams.Add(request.NewErrParamRequired("RedactionType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRedactionOutput sets the RedactionOutput field's value.
+func (s *ContentRedaction) SetRedactionOutput(v string) *ContentRedaction {
+	s.RedactionOutput = &v
+	return s
+}
+
+// SetRedactionType sets the RedactionType field's value.
+func (s *ContentRedaction) SetRedactionType(v string) *ContentRedaction {
+	s.RedactionType = &v
+	return s
 }
 
 type CreateVocabularyFilterInput struct {
@@ -2857,16 +2923,16 @@ func (s *ListVocabularyFiltersOutput) SetVocabularyFilters(v []*VocabularyFilter
 type Media struct {
 	_ struct{} `type:"structure"`
 
-	// The S3 location of the input media file. The URI must be in the same region
-	// as the API endpoint that you are calling. The general form is:
+	// The S3 object location of the input media file. The URI must be in the same
+	// region as the API endpoint that you are calling. The general form is:
 	//
-	// https://s3.<aws-region>.amazonaws.com/<bucket-name>/<keyprefix>/<objectkey>
+	// s3://<bucket-name>/<keyprefix>/<objectkey>
 	//
 	// For example:
 	//
-	// https://s3.us-east-1.amazonaws.com/examplebucket/example.mp4
+	// s3://examplebucket/example.mp4
 	//
-	// https://s3.us-east-1.amazonaws.com/examplebucket/mediadocs/example.mp4
+	// s3://examplebucket/mediadocs/example.mp4
 	//
 	// For more information about S3 object names, see Object Keys (http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys)
 	// in the Amazon S3 Developer Guide.
@@ -3097,6 +3163,9 @@ func (s *Settings) SetVocabularyName(v string) *Settings {
 type StartTranscriptionJobInput struct {
 	_ struct{} `type:"structure"`
 
+	// An object that contains the request parameters for content redaction.
+	ContentRedaction *ContentRedaction `type:"structure"`
+
 	// Provides information about how a transcription job is executed. Use this
 	// field to indicate that the job can be queued for deferred execution if the
 	// concurrency limit is reached and there are no slots available to immediately
@@ -3126,9 +3195,12 @@ type StartTranscriptionJobInput struct {
 
 	// The location where the transcription is stored.
 	//
-	// If you set the OutputBucketName, Amazon Transcribe puts the transcription
-	// in the specified S3 bucket. When you call the GetTranscriptionJob operation,
-	// the operation returns this location in the TranscriptFileUri field. The S3
+	// If you set the OutputBucketName, Amazon Transcribe puts the transcript in
+	// the specified S3 bucket. When you call the GetTranscriptionJob operation,
+	// the operation returns this location in the TranscriptFileUri field. If you
+	// enable content redaction, the redacted transcript appears in RedactedTranscriptFileUri.
+	// If you enable content redaction and choose to output an unredacted transcript,
+	// that transcript's location still appears in the TranscriptFileUri. The S3
 	// bucket must have permissions that allow Amazon Transcribe to put files in
 	// the bucket. For more information, see Permissions Required for IAM User Roles
 	// (https://docs.aws.amazon.com/transcribe/latest/dg/security_iam_id-based-policy-examples.html#auth-role-iam-user).
@@ -3211,6 +3283,11 @@ func (s *StartTranscriptionJobInput) Validate() error {
 	if s.TranscriptionJobName != nil && len(*s.TranscriptionJobName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TranscriptionJobName", 1))
 	}
+	if s.ContentRedaction != nil {
+		if err := s.ContentRedaction.Validate(); err != nil {
+			invalidParams.AddNested("ContentRedaction", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Media != nil {
 		if err := s.Media.Validate(); err != nil {
 			invalidParams.AddNested("Media", err.(request.ErrInvalidParams))
@@ -3226,6 +3303,12 @@ func (s *StartTranscriptionJobInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetContentRedaction sets the ContentRedaction field's value.
+func (s *StartTranscriptionJobInput) SetContentRedaction(v *ContentRedaction) *StartTranscriptionJobInput {
+	s.ContentRedaction = v
+	return s
 }
 
 // SetJobExecutionSettings sets the JobExecutionSettings field's value.
@@ -3309,12 +3392,20 @@ func (s *StartTranscriptionJobOutput) SetTranscriptionJob(v *TranscriptionJob) *
 type Transcript struct {
 	_ struct{} `type:"structure"`
 
-	// The location where the transcription is stored.
+	// The S3 object location of the redacted transcript.
 	//
-	// Use this URI to access the transcription. If you specified an S3 bucket in
-	// the OutputBucketName field when you created the job, this is the URI of that
-	// bucket. If you chose to store the transcription in Amazon Transcribe, this
+	// Use this URI to access the redacated transcript. If you specified an S3 bucket
+	// in the OutputBucketName field when you created the job, this is the URI of
+	// that bucket. If you chose to store the transcript in Amazon Transcribe, this
 	// is a shareable URL that provides secure access to that location.
+	RedactedTranscriptFileUri *string `min:"1" type:"string"`
+
+	// The S3 object location of the the transcript.
+	//
+	// Use this URI to access the transcript. If you specified an S3 bucket in the
+	// OutputBucketName field when you created the job, this is the URI of that
+	// bucket. If you chose to store the transcript in Amazon Transcribe, this is
+	// a shareable URL that provides secure access to that location.
 	TranscriptFileUri *string `min:"1" type:"string"`
 }
 
@@ -3326,6 +3417,12 @@ func (s Transcript) String() string {
 // GoString returns the string representation
 func (s Transcript) GoString() string {
 	return s.String()
+}
+
+// SetRedactedTranscriptFileUri sets the RedactedTranscriptFileUri field's value.
+func (s *Transcript) SetRedactedTranscriptFileUri(v string) *Transcript {
+	s.RedactedTranscriptFileUri = &v
+	return s
 }
 
 // SetTranscriptFileUri sets the TranscriptFileUri field's value.
@@ -3341,6 +3438,10 @@ type TranscriptionJob struct {
 
 	// A timestamp that shows when the job was completed.
 	CompletionTime *time.Time `type:"timestamp"`
+
+	// An object that describes content redaction settings for the transcription
+	// job.
+	ContentRedaction *ContentRedaction `type:"structure"`
 
 	// A timestamp that shows when the job was created.
 	CreationTime *time.Time `type:"timestamp"`
@@ -3429,6 +3530,12 @@ func (s *TranscriptionJob) SetCompletionTime(v time.Time) *TranscriptionJob {
 	return s
 }
 
+// SetContentRedaction sets the ContentRedaction field's value.
+func (s *TranscriptionJob) SetContentRedaction(v *ContentRedaction) *TranscriptionJob {
+	s.ContentRedaction = v
+	return s
+}
+
 // SetCreationTime sets the CreationTime field's value.
 func (s *TranscriptionJob) SetCreationTime(v time.Time) *TranscriptionJob {
 	s.CreationTime = &v
@@ -3508,6 +3615,9 @@ type TranscriptionJobSummary struct {
 	// A timestamp that shows when the job was completed.
 	CompletionTime *time.Time `type:"timestamp"`
 
+	// The content redaction settings of the transcription job.
+	ContentRedaction *ContentRedaction `type:"structure"`
+
 	// A timestamp that shows when the job was created.
 	CreationTime *time.Time `type:"timestamp"`
 
@@ -3552,6 +3662,12 @@ func (s TranscriptionJobSummary) GoString() string {
 // SetCompletionTime sets the CompletionTime field's value.
 func (s *TranscriptionJobSummary) SetCompletionTime(v time.Time) *TranscriptionJobSummary {
 	s.CompletionTime = &v
+	return s
+}
+
+// SetContentRedaction sets the ContentRedaction field's value.
+func (s *TranscriptionJobSummary) SetContentRedaction(v *ContentRedaction) *TranscriptionJobSummary {
+	s.ContentRedaction = v
 	return s
 }
 
@@ -4066,6 +4182,19 @@ const (
 
 	// OutputLocationTypeServiceBucket is a OutputLocationType enum value
 	OutputLocationTypeServiceBucket = "SERVICE_BUCKET"
+)
+
+const (
+	// RedactionOutputRedacted is a RedactionOutput enum value
+	RedactionOutputRedacted = "redacted"
+
+	// RedactionOutputRedactedAndUnredacted is a RedactionOutput enum value
+	RedactionOutputRedactedAndUnredacted = "redacted_and_unredacted"
+)
+
+const (
+	// RedactionTypePii is a RedactionType enum value
+	RedactionTypePii = "PII"
 )
 
 const (

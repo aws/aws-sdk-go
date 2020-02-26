@@ -1951,6 +1951,17 @@
       }
     },
     "Integer":{"type":"integer"},
+    "IntegrationType":{
+      "type":"string",
+      "enum":[
+        "SEND_FINDINGS_TO_SECURITY_HUB",
+        "RECEIVE_FINDINGS_FROM_SECURITY_HUB"
+      ]
+    },
+    "IntegrationTypeList":{
+      "type":"list",
+      "member":{"shape":"IntegrationType"}
+    },
     "InternalException":{
       "type":"structure",
       "members":{
@@ -2301,6 +2312,7 @@
         "CompanyName":{"shape":"NonEmptyString"},
         "Description":{"shape":"NonEmptyString"},
         "Categories":{"shape":"CategoryList"},
+        "IntegrationTypes":{"shape":"IntegrationTypeList"},
         "MarketplaceUrl":{"shape":"NonEmptyString"},
         "ActivationUrl":{"shape":"NonEmptyString"},
         "ProductSubscriptionResourcePolicy":{"shape":"NonEmptyString"}
