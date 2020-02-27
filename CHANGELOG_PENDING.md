@@ -6,3 +6,4 @@
   * Related to [#3127](https://github.com/aws/aws-sdk-go/pull/3127).
 
 ### SDK Bugs
+* `service/s3/s3manager`: Fix resource leak on UploadPart failures ([#3144](https://github.com/aws/aws-sdk-go/pull/3144))
