@@ -6398,6 +6398,12 @@ var awsisobPartition = partition{
 				"us-isob-east-1": endpoint{},
 			},
 		},
+		"ssm": service{
+
+			Endpoints: endpoints{
+				"us-isob-east-1": endpoint{},
+			},
+		},
 		"states": service{
 
 			Endpoints: endpoints{

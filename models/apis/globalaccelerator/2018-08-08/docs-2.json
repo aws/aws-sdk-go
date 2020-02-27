@@ -1,24 +1,32 @@
 {
   "version": "2.0",
-  "service": "<fullname>AWS Global Accelerator</fullname> <p>This is the <i>AWS Global Accelerator API Reference</i>. This guide is for developers who need detailed information about AWS Global Accelerator API actions, data types, and errors. For more information about Global Accelerator features, see the <a href=\"https://docs.aws.amazon.com/global-accelerator/latest/dg/Welcome.html\">AWS Global Accelerator Developer Guide</a>. </p> <p>AWS Global Accelerator is a network layer service in which you create accelerators to improve availability and performance for internet applications used by a global audience. </p> <important> <p>You must specify the US-West-2 (Oregon) Region to create or update accelerators.</p> </important> <p>Global Accelerator provides you with static IP addresses that you associate with your accelerator. These IP addresses are anycast from the AWS edge network and distribute incoming application traffic across multiple endpoint resources in multiple AWS Regions, which increases the availability of your applications. Endpoints can be Elastic IP addresses, Network Load Balancers, and Application Load Balancers that are located in one AWS Region or multiple Regions.</p> <p>Global Accelerator uses the AWS global network to route traffic to the optimal regional endpoint based on health, client location, and policies that you configure. The service reacts instantly to changes in health or configuration to ensure that internet traffic from clients is directed to only healthy endpoints.</p> <p>Global Accelerator includes components that work together to help you improve performance and availability for your applications:</p> <dl> <dt>Static IP address</dt> <dd> <p>AWS Global Accelerator provides you with a set of static IP addresses which are anycast from the AWS edge network and serve as the single fixed entry points for your clients. If you already have Elastic Load Balancing or Elastic IP address resources set up for your applications, you can easily add those to Global Accelerator to allow the resources to be accessed by a Global Accelerator static IP address.</p> </dd> <dt>Accelerator</dt> <dd> <p>An accelerator directs traffic to optimal endpoints over the AWS global network to improve availability and performance for your internet applications that have a global audience. Each accelerator includes one or more listeners.</p> </dd> <dt>Network zone</dt> <dd> <p>A network zone services the static IP addresses for your accelerator from a unique IP subnet. Similar to an AWS Availability Zone, a network zone is an isolated unit with its own set of physical infrastructure. When you configure an accelerator, Global Accelerator allocates two IPv4 addresses for it. If one IP address from a network zone becomes unavailable due to IP address blocking by certain client networks, or network disruptions, then client applications can retry on the healthy static IP address from the other isolated network zone.</p> </dd> <dt>Listener</dt> <dd> <p>A listener processes inbound connections from clients to Global Accelerator, based on the protocol and port that you configure. Each listener has one or more endpoint groups associated with it, and traffic is forwarded to endpoints in one of the groups. You associate endpoint groups with listeners by specifying the Regions that you want to distribute traffic to. Traffic is distributed to optimal endpoints within the endpoint groups associated with a listener.</p> </dd> <dt>Endpoint group</dt> <dd> <p>Each endpoint group is associated with a specific AWS Region. Endpoint groups include one or more endpoints in the Region. You can increase or reduce the percentage of traffic that would be otherwise directed to an endpoint group by adjusting a setting called a <i>traffic dial</i>. The traffic dial lets you easily do performance testing or blue/green deployment testing for new releases across different AWS Regions, for example. </p> </dd> <dt>Endpoint</dt> <dd> <p>An endpoint is an Elastic IP address, Network Load Balancer, or Application Load Balancer. Traffic is routed to endpoints based on several factors, including the geo-proximity to the user, the health of the endpoint, and the configuration options that you choose, such as endpoint weights. For each endpoint, you can configure weights, which are numbers that you can use to specify the proportion of traffic to route to each one. This can be useful, for example, to do performance testing within a Region.</p> </dd> </dl>",
+  "service": "<fullname>AWS Global Accelerator</fullname> <p>This is the <i>AWS Global Accelerator API Reference</i>. This guide is for developers who need detailed information about AWS Global Accelerator API actions, data types, and errors. For more information about Global Accelerator features, see the <a href=\"https://docs.aws.amazon.com/global-accelerator/latest/dg/Welcome.html\">AWS Global Accelerator Developer Guide</a>. </p> <p>AWS Global Accelerator is a service in which you create accelerators to improve availability and performance of your applications for local and global users. </p> <important> <p>You must specify the US West (Oregon) Region to create or update accelerators.</p> </important> <p>By default, Global Accelerator provides you with static IP addresses that you associate with your accelerator. (Instead of using the IP addresses that Global Accelerator provides, you can configure these entry points to be IPv4 addresses from your own IP address ranges that you bring to Global Accelerator.) The static IP addresses are anycast from the AWS edge network and distribute incoming application traffic across multiple endpoint resources in multiple AWS Regions, which increases the availability of your applications. Endpoints can be Network Load Balancers, Application Load Balancers, EC2 instances, or Elastic IP addresses that are located in one AWS Region or multiple Regions.</p> <p>Global Accelerator uses the AWS global network to route traffic to the optimal regional endpoint based on health, client location, and policies that you configure. The service reacts instantly to changes in health or configuration to ensure that internet traffic from clients is directed to only healthy endpoints.</p> <p>Global Accelerator includes components that work together to help you improve performance and availability for your applications:</p> <dl> <dt>Static IP address</dt> <dd> <p>By default, AWS Global Accelerator provides you with a set of static IP addresses that are anycast from the AWS edge network and serve as the single fixed entry points for your clients. Or you can configure these entry points to be IPv4 addresses from your own IP address ranges that you bring to Global Accelerator (BYOIP). For more information, see <a href=\"https://docs.aws.amazon.com/global-accelerator/latest/dg/using-byoip.html\">Bring Your Own IP Addresses (BYOIP)</a> in the <i>AWS Global Accelerator Developer Guide</i>. If you already have load balancers, EC2 instances, or Elastic IP addresses set up for your applications, you can easily add those to Global Accelerator to allow the resources to be accessed by the static IP addresses.</p> <important> <p>The static IP addresses remain assigned to your accelerator for as long as it exists, even if you disable the accelerator and it no longer accepts or routes traffic. However, when you <i>delete</i> an accelerator, you lose the static IP addresses that are assigned to it, so you can no longer route traffic by using them. You can use IAM policies with Global Accelerator to limit the users who have permissions to delete an accelerator. For more information, see <a href=\"https://docs.aws.amazon.com/global-accelerator/latest/dg/auth-and-access-control.html\">Authentication and Access Control</a> in the <i>AWS Global Accelerator Developer Guide</i>. </p> </important> </dd> <dt>Accelerator</dt> <dd> <p>An accelerator directs traffic to optimal endpoints over the AWS global network to improve availability and performance for your internet applications that have a global audience. Each accelerator includes one or more listeners.</p> </dd> <dt>DNS name</dt> <dd> <p>Global Accelerator assigns each accelerator a default Domain Name System (DNS) name, similar to <code>a1234567890abcdef.awsglobalaccelerator.com</code>, that points to your Global Accelerator static IP addresses. Depending on the use case, you can use your accelerator's static IP addresses or DNS name to route traffic to your accelerator, or set up DNS records to route traffic using your own custom domain name.</p> </dd> <dt>Network zone</dt> <dd> <p>A network zone services the static IP addresses for your accelerator from a unique IP subnet. Similar to an AWS Availability Zone, a network zone is an isolated unit with its own set of physical infrastructure. When you configure an accelerator, by default, Global Accelerator allocates two IPv4 addresses for it. If one IP address from a network zone becomes unavailable due to IP address blocking by certain client networks, or network disruptions, then client applications can retry on the healthy static IP address from the other isolated network zone.</p> </dd> <dt>Listener</dt> <dd> <p>A listener processes inbound connections from clients to Global Accelerator, based on the protocol and port that you configure. Each listener has one or more endpoint groups associated with it, and traffic is forwarded to endpoints in one of the groups. You associate endpoint groups with listeners by specifying the Regions that you want to distribute traffic to. Traffic is distributed to optimal endpoints within the endpoint groups associated with a listener.</p> </dd> <dt>Endpoint group</dt> <dd> <p>Each endpoint group is associated with a specific AWS Region. Endpoint groups include one or more endpoints in the Region. You can increase or reduce the percentage of traffic that would be otherwise directed to an endpoint group by adjusting a setting called a <i>traffic dial</i>. The traffic dial lets you easily do performance testing or blue/green deployment testing for new releases across different AWS Regions, for example. </p> </dd> <dt>Endpoint</dt> <dd> <p>An endpoint is a Network Load Balancer, Application Load Balancer, EC2 instance, or Elastic IP address. Traffic is routed to endpoints based on several factors, including the geo-proximity to the user, the health of the endpoint, and the configuration options that you choose, such as endpoint weights. For each endpoint, you can configure weights, which are numbers that you can use to specify the proportion of traffic to route to each one. This can be useful, for example, to do performance testing within a Region.</p> </dd> </dl>",
   "operations": {
-    "CreateAccelerator": "<p>Create an accelerator. An accelerator includes one or more listeners that process inbound connections and direct traffic to one or more endpoint groups, each of which includes endpoints, such as Network Load Balancers. To see an AWS CLI example of creating an accelerator, scroll down to <b>Example</b>.</p> <important> <p>You must specify the US-West-2 (Oregon) Region to create or update accelerators.</p> </important>",
+    "AdvertiseByoipCidr": "<p>Advertises an IPv4 address range that is provisioned for use with your AWS resources through bring your own IP addresses (BYOIP). It can take a few minutes before traffic to the specified addresses starts routing to AWS because of propagation delays. To see an AWS CLI example of advertising an address range, scroll down to <b>Example</b>.</p> <p>To stop advertising the BYOIP address range, use <a href=\"https://docs.aws.amazon.com/global-accelerator/latest/api/WithdrawByoipCidr.html\"> WithdrawByoipCidr</a>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/global-accelerator/latest/dg/using-byoip.html\">Bring Your Own IP Addresses (BYOIP)</a> in the <i>AWS Global Accelerator Developer Guide</i>.</p>",
+    "CreateAccelerator": "<p>Create an accelerator. An accelerator includes one or more listeners that process inbound connections and direct traffic to one or more endpoint groups, each of which includes endpoints, such as Network Load Balancers. To see an AWS CLI example of creating an accelerator, scroll down to <b>Example</b>.</p> <p>If you bring your own IP address ranges to AWS Global Accelerator (BYOIP), you can assign IP addresses from your own pool to your accelerator as the static IP address entry points. Only one IP address from each of your IP address ranges can be used for each accelerator.</p> <important> <p>You must specify the US West (Oregon) Region to create or update accelerators.</p> </important>",
     "CreateEndpointGroup": "<p>Create an endpoint group for the specified listener. An endpoint group is a collection of endpoints in one AWS Region. To see an AWS CLI example of creating an endpoint group, scroll down to <b>Example</b>.</p>",
     "CreateListener": "<p>Create a listener to process inbound connections from clients to an accelerator. Connections arrive to assigned static IP addresses on a port, port range, or list of port ranges that you specify. To see an AWS CLI example of creating a listener, scroll down to <b>Example</b>.</p>",
-    "DeleteAccelerator": "<p>Delete an accelerator. Note: before you can delete an accelerator, you must disable it and remove all dependent resources (listeners and endpoint groups).</p>",
+    "DeleteAccelerator": "<p>Delete an accelerator. Before you can delete an accelerator, you must disable it and remove all dependent resources (listeners and endpoint groups). To disable the accelerator, update the accelerator to set <code>Enabled</code> to false.</p> <important> <p>When you create an accelerator, by default, Global Accelerator provides you with a set of two static IP addresses. Alternatively, you can bring your own IP address ranges to Global Accelerator and assign IP addresses from those ranges. </p> <p>The IP addresses are assigned to your accelerator for as long as it exists, even if you disable the accelerator and it no longer accepts or routes traffic. However, when you <i>delete</i> an accelerator, you lose the static IP addresses that are assigned to the accelerator, so you can no longer route traffic by using them. As a best practice, ensure that you have permissions in place to avoid inadvertently deleting accelerators. You can use IAM policies with Global Accelerator to limit the users who have permissions to delete an accelerator. For more information, see <a href=\"https://docs.aws.amazon.com/global-accelerator/latest/dg/auth-and-access-control.html\">Authentication and Access Control</a> in the <i>AWS Global Accelerator Developer Guide</i>.</p> </important>",
     "DeleteEndpointGroup": "<p>Delete an endpoint group from a listener.</p>",
     "DeleteListener": "<p>Delete a listener from an accelerator.</p>",
+    "DeprovisionByoipCidr": "<p>Releases the specified address range that you provisioned to use with your AWS resources through bring your own IP addresses (BYOIP) and deletes the corresponding address pool. To see an AWS CLI example of deprovisioning an address range, scroll down to <b>Example</b>.</p> <p>Before you can release an address range, you must stop advertising it by using <a href=\"https://docs.aws.amazon.com/global-accelerator/latest/api/WithdrawByoipCidr.html\">WithdrawByoipCidr</a> and you must not have any accelerators that are using static IP addresses allocated from its address range. </p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/global-accelerator/latest/dg/using-byoip.html\">Bring Your Own IP Addresses (BYOIP)</a> in the <i>AWS Global Accelerator Developer Guide</i>.</p>",
     "DescribeAccelerator": "<p>Describe an accelerator. To see an AWS CLI example of describing an accelerator, scroll down to <b>Example</b>.</p>",
-    "DescribeAcceleratorAttributes": "<p>Describe the attributes of an accelerator.</p>",
+    "DescribeAcceleratorAttributes": "<p>Describe the attributes of an accelerator. To see an AWS CLI example of describing the attributes of an accelerator, scroll down to <b>Example</b>.</p>",
     "DescribeEndpointGroup": "<p>Describe an endpoint group.</p>",
-    "DescribeListener": "<p>Describe a listener.</p>",
-    "ListAccelerators": "<p>List the accelerators for an AWS account.</p>",
-    "ListEndpointGroups": "<p>List the endpoint groups that are associated with a listener.</p>",
-    "ListListeners": "<p>List the listeners for an accelerator.</p>",
-    "UpdateAccelerator": "<p>Update an accelerator. To see an AWS CLI example of updating an accelerator, scroll down to <b>Example</b>.</p> <important> <p>You must specify the US-West-2 (Oregon) Region to create or update accelerators.</p> </important>",
+    "DescribeListener": "<p>Describe a listener. To see an AWS CLI example of describing a listener, scroll down to <b>Example</b>.</p>",
+    "ListAccelerators": "<p>List the accelerators for an AWS account. To see an AWS CLI example of listing the accelerators for an AWS account, scroll down to <b>Example</b>.</p>",
+    "ListByoipCidrs": "<p>Lists the IP address ranges that were specified in calls to <a href=\"https://docs.aws.amazon.com/global-accelerator/latest/api/ProvisionByoipCidr.html\">ProvisionByoipCidr</a>.</p> <p>To see an AWS CLI example of listing BYOIP CIDR addresses, scroll down to <b>Example</b>.</p>",
+    "ListEndpointGroups": "<p>List the endpoint groups that are associated with a listener. To see an AWS CLI example of listing the endpoint groups for listener, scroll down to <b>Example</b>.</p>",
+    "ListListeners": "<p>List the listeners for an accelerator. To see an AWS CLI example of listing the listeners for an accelerator, scroll down to <b>Example</b>.</p>",
+    "ListTagsForResource": "<p>List all tags for an accelerator. To see an AWS CLI example of listing tags for an accelerator, scroll down to <b>Example</b>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/global-accelerator/latest/dg/tagging-in-global-accelerator.html\">Tagging in AWS Global Accelerator</a> in the <i>AWS Global Accelerator Developer Guide</i>. </p>",
+    "ProvisionByoipCidr": "<p>Provisions an IP address range to use with your AWS resources through bring your own IP addresses (BYOIP) and creates a corresponding address pool. After the address range is provisioned, it is ready to be advertised using <a href=\"https://docs.aws.amazon.com/global-accelerator/latest/api/AdvertiseByoipCidr.html\"> AdvertiseByoipCidr</a>.</p> <p>To see an AWS CLI example of provisioning an address range for BYOIP, scroll down to <b>Example</b>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/global-accelerator/latest/dg/using-byoip.html\">Bring Your Own IP Addresses (BYOIP)</a> in the <i>AWS Global Accelerator Developer Guide</i>.</p>",
+    "TagResource": "<p>Add tags to an accelerator resource. To see an AWS CLI example of adding tags to an accelerator, scroll down to <b>Example</b>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/global-accelerator/latest/dg/tagging-in-global-accelerator.html\">Tagging in AWS Global Accelerator</a> in the <i>AWS Global Accelerator Developer Guide</i>. </p>",
+    "UntagResource": "<p>Remove tags from a Global Accelerator resource. When you specify a tag key, the action removes both that key and its associated value. To see an AWS CLI example of removing tags from an accelerator, scroll down to <b>Example</b>. The operation succeeds even if you attempt to remove tags from an accelerator that was already removed.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/global-accelerator/latest/dg/tagging-in-global-accelerator.html\">Tagging in AWS Global Accelerator</a> in the <i>AWS Global Accelerator Developer Guide</i>.</p>",
+    "UpdateAccelerator": "<p>Update an accelerator. To see an AWS CLI example of updating an accelerator, scroll down to <b>Example</b>.</p> <important> <p>You must specify the US West (Oregon) Region to create or update accelerators.</p> </important>",
     "UpdateAcceleratorAttributes": "<p>Update the attributes for an accelerator. To see an AWS CLI example of updating an accelerator to enable flow logs, scroll down to <b>Example</b>.</p>",
     "UpdateEndpointGroup": "<p>Update an endpoint group. To see an AWS CLI example of updating an endpoint group, scroll down to <b>Example</b>.</p>",
-    "UpdateListener": "<p>Update a listener.</p>"
+    "UpdateListener": "<p>Update a listener. To see an AWS CLI example of updating listener, scroll down to <b>Example</b>.</p>",
+    "WithdrawByoipCidr": "<p>Stops advertising an address range that is provisioned as an address pool. You can perform this operation at most once every 10 seconds, even if you specify different address ranges each time. To see an AWS CLI example of withdrawing an address range for BYOIP so it will no longer be advertised by AWS, scroll down to <b>Example</b>.</p> <p>It can take a few minutes before traffic to the specified addresses stops routing to AWS because of propagation delays.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/global-accelerator/latest/dg/using-byoip.html\">Bring Your Own IP Addresses (BYOIP)</a> in the <i>AWS Global Accelerator Developer Guide</i>.</p>"
   },
   "shapes": {
     "Accelerator": {
@@ -64,6 +72,16 @@
       "refs": {
       }
     },
+    "AdvertiseByoipCidrRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AdvertiseByoipCidrResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "AssociatedEndpointGroupFoundException": {
       "base": "<p>The listener that you specified has an endpoint group associated with it. You must remove all dependent resources from a listener before you can delete it.</p>",
       "refs": {
@@ -72,6 +90,39 @@
     "AssociatedListenerFoundException": {
       "base": "<p>The accelerator that you specified has a listener associated with it. You must remove all dependent resources from an accelerator before you can delete it.</p>",
       "refs": {
+      }
+    },
+    "ByoipCidr": {
+      "base": "<p>Information about an IP address range that is provisioned for use with your AWS resources through bring your own IP addresses (BYOIP).</p> <p>The following describes each BYOIP <code>State</code> that your IP address range can be in.</p> <ul> <li> <p> <b>PENDING_PROVISIONING</b> — You’ve submitted a request to provision an IP address range but it is not yet provisioned with AWS Global Accelerator.</p> </li> <li> <p> <b>READY</b> — The address range is provisioned with AWS Global Accelerator and can be advertised.</p> </li> <li> <p> <b>PENDING_ADVERTISING</b> — You’ve submitted a request for AWS Global Accelerator to advertise an address range but it is not yet being advertised.</p> </li> <li> <p> <b>ADVERTISING</b> — The address range is being advertised by AWS Global Accelerator.</p> </li> <li> <p> <b>PENDING_WITHDRAWING</b> — You’ve submitted a request to withdraw an address range from being advertised but it is still being advertised by AWS Global Accelerator.</p> </li> <li> <p> <b>PENDING_DEPROVISIONING</b> — You’ve submitted a request to deprovision an address range from AWS Global Accelerator but it is still provisioned.</p> </li> <li> <p> <b>DEPROVISIONED</b> — The address range is deprovisioned from AWS Global Accelerator.</p> </li> <li> <p> <b>FAILED_PROVISION </b> — The request to provision the address range from AWS Global Accelerator was not successful. Please make sure that you provide all of the correct information, and try again. If the request fails a second time, contact AWS support.</p> </li> <li> <p> <b>FAILED_ADVERTISING</b> — The request for AWS Global Accelerator to advertise the address range was not successful. Please make sure that you provide all of the correct information, and try again. If the request fails a second time, contact AWS support.</p> </li> <li> <p> <b>FAILED_WITHDRAW</b> — The request to withdraw the address range from advertising by AWS Global Accelerator was not successful. Please make sure that you provide all of the correct information, and try again. If the request fails a second time, contact AWS support.</p> </li> <li> <p> <b>FAILED_DEPROVISION </b> — The request to deprovision the address range from AWS Global Accelerator was not successful. Please make sure that you provide all of the correct information, and try again. If the request fails a second time, contact AWS support.</p> </li> </ul>",
+      "refs": {
+        "AdvertiseByoipCidrResponse$ByoipCidr": "<p>Information about the address range.</p>",
+        "ByoipCidrs$member": null,
+        "DeprovisionByoipCidrResponse$ByoipCidr": "<p>Information about the address range.</p>",
+        "ProvisionByoipCidrResponse$ByoipCidr": "<p>Information about the address range.</p>",
+        "WithdrawByoipCidrResponse$ByoipCidr": "<p>Information about the address pool.</p>"
+      }
+    },
+    "ByoipCidrNotFoundException": {
+      "base": "<p>The CIDR that you specified was not found or is incorrect.</p>",
+      "refs": {
+      }
+    },
+    "ByoipCidrState": {
+      "base": null,
+      "refs": {
+        "ByoipCidr$State": "<p>The state of the address pool.</p>"
+      }
+    },
+    "ByoipCidrs": {
+      "base": null,
+      "refs": {
+        "ListByoipCidrsResponse$ByoipCidrs": "<p>Information about your address ranges.</p>"
+      }
+    },
+    "CidrAuthorizationContext": {
+      "base": "<p>Provides authorization for Amazon to bring a specific IP address range to a specific AWS account using bring your own IP addresses (BYOIP). </p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/global-accelerator/latest/dg/using-byoip.html\">Bring Your Own IP Addresses (BYOIP)</a> in the <i>AWS Global Accelerator Developer Guide</i>.</p>",
+      "refs": {
+        "ProvisionByoipCidrRequest$CidrAuthorizationContext": "<p>A signed document that proves that you are authorized to bring the specified IP address range to Amazon using BYOIP. </p>"
       }
     },
     "ClientAffinity": {
@@ -123,6 +174,16 @@
       }
     },
     "DeleteListenerRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeprovisionByoipCidrRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeprovisionByoipCidrResponse": {
       "base": null,
       "refs": {
       }
@@ -232,8 +293,10 @@
         "AccessDeniedException$Message": null,
         "AssociatedEndpointGroupFoundException$Message": null,
         "AssociatedListenerFoundException$Message": null,
+        "ByoipCidrNotFoundException$Message": null,
         "EndpointGroupAlreadyExistsException$Message": null,
         "EndpointGroupNotFoundException$Message": null,
+        "IncorrectCidrStateException$Message": null,
         "InternalServiceErrorException$Message": null,
         "InvalidArgumentException$Message": null,
         "InvalidNextTokenException$Message": null,
@@ -259,9 +322,13 @@
       "refs": {
         "Accelerator$AcceleratorArn": "<p>The Amazon Resource Name (ARN) of the accelerator.</p>",
         "Accelerator$Name": "<p>The name of the accelerator. The name must contain only alphanumeric characters or hyphens (-), and must not begin or end with a hyphen.</p>",
-        "Accelerator$DnsName": "<p>The Domain Name System (DNS) name that Global Accelerator creates that points to your accelerator's static IP addresses. </p> <p>The naming convention for the DNS name is: a lower case letter a, followed by a 16-bit random hex string, followed by .awsglobalaccelerator.com. For example: a1234567890abcdef.awsglobalaccelerator.com.</p> <p>For more information about the default DNS name, see <a href=\"https://docs.aws.amazon.com/global-accelerator/latest/dg/about-accelerators.html#about-accelerators.dns-addressing\">Support for DNS Addressing in Global Accelerator</a> in the <i>AWS Global Accelerator Developer Guide</i>.</p>",
+        "Accelerator$DnsName": "<p>The Domain Name System (DNS) name that Global Accelerator creates that points to your accelerator's static IP addresses. </p> <p>The naming convention for the DNS name is the following: A lowercase letter a, followed by a 16-bit random hex string, followed by .awsglobalaccelerator.com. For example: a1234567890abcdef.awsglobalaccelerator.com.</p> <p>For more information about the default DNS name, see <a href=\"https://docs.aws.amazon.com/global-accelerator/latest/dg/about-accelerators.html#about-accelerators.dns-addressing\"> Support for DNS Addressing in Global Accelerator</a> in the <i>AWS Global Accelerator Developer Guide</i>.</p>",
         "AcceleratorAttributes$FlowLogsS3Bucket": "<p>The name of the Amazon S3 bucket for the flow logs. Attribute is required if <code>FlowLogsEnabled</code> is <code>true</code>. The bucket must exist and have a bucket policy that grants AWS Global Accelerator permission to write to the bucket.</p>",
-        "AcceleratorAttributes$FlowLogsS3Prefix": "<p>The prefix for the location in the Amazon S3 bucket for the flow logs. Attribute is required if <code>FlowLogsEnabled</code> is <code>true</code>. If you don’t specify a prefix, the flow logs are stored in the root of the bucket.</p>",
+        "AcceleratorAttributes$FlowLogsS3Prefix": "<p>The prefix for the location in the Amazon S3 bucket for the flow logs. Attribute is required if <code>FlowLogsEnabled</code> is <code>true</code>.</p> <p>If you don’t specify a prefix, the flow logs are stored in the root of the bucket. If you specify slash (/) for the S3 bucket prefix, the log file bucket folder structure will include a double slash (//), like the following:</p> <p>s3-bucket_name//AWSLogs/aws_account_id</p>",
+        "AdvertiseByoipCidrRequest$Cidr": "<p>The address range, in CIDR notation. This must be the exact range that you provisioned. You can't advertise only a portion of the provisioned range.</p>",
+        "ByoipCidr$Cidr": "<p>The address range, in CIDR notation.</p>",
+        "CidrAuthorizationContext$Message": "<p>The plain-text authorization message for the prefix and account.</p>",
+        "CidrAuthorizationContext$Signature": "<p>The signed authorization message for the prefix and account.</p>",
         "CreateAcceleratorRequest$Name": "<p>The name of an accelerator. The name can have a maximum of 32 characters, must contain only alphanumeric characters or hyphens (-), and must not begin or end with a hyphen.</p>",
         "CreateEndpointGroupRequest$ListenerArn": "<p>The Amazon Resource Name (ARN) of the listener.</p>",
         "CreateEndpointGroupRequest$EndpointGroupRegion": "<p>The name of the AWS Region where the endpoint group is located. A listener can have only one endpoint group in a specific Region.</p>",
@@ -270,12 +337,13 @@
         "DeleteAcceleratorRequest$AcceleratorArn": "<p>The Amazon Resource Name (ARN) of an accelerator.</p>",
         "DeleteEndpointGroupRequest$EndpointGroupArn": "<p>The Amazon Resource Name (ARN) of the endpoint group to delete.</p>",
         "DeleteListenerRequest$ListenerArn": "<p>The Amazon Resource Name (ARN) of the listener.</p>",
+        "DeprovisionByoipCidrRequest$Cidr": "<p>The address range, in CIDR notation. The prefix must be the same prefix that you specified when you provisioned the address range.</p>",
         "DescribeAcceleratorAttributesRequest$AcceleratorArn": "<p>The Amazon Resource Name (ARN) of the accelerator with the attributes that you want to describe.</p>",
         "DescribeAcceleratorRequest$AcceleratorArn": "<p>The Amazon Resource Name (ARN) of the accelerator to describe.</p>",
         "DescribeEndpointGroupRequest$EndpointGroupArn": "<p>The Amazon Resource Name (ARN) of the endpoint group to describe.</p>",
         "DescribeListenerRequest$ListenerArn": "<p>The Amazon Resource Name (ARN) of the listener to describe.</p>",
-        "EndpointConfiguration$EndpointId": "<p>An ID for the endpoint. If the endpoint is a Network Load Balancer or Application Load Balancer, this is the Amazon Resource Name (ARN) of the resource. If the endpoint is an Elastic IP address, this is the Elastic IP address allocation ID.</p>",
-        "EndpointDescription$EndpointId": "<p>An ID for the endpoint. If the endpoint is a Network Load Balancer or Application Load Balancer, this is the Amazon Resource Name (ARN) of the resource. If the endpoint is an Elastic IP address, this is the Elastic IP address allocation ID. An Application Load Balancer can be either internal or internet-facing.</p>",
+        "EndpointConfiguration$EndpointId": "<p>An ID for the endpoint. If the endpoint is a Network Load Balancer or Application Load Balancer, this is the Amazon Resource Name (ARN) of the resource. If the endpoint is an Elastic IP address, this is the Elastic IP address allocation ID. For EC2 instances, this is the EC2 instance ID. </p> <p>An Application Load Balancer can be either internal or internet-facing.</p>",
+        "EndpointDescription$EndpointId": "<p>An ID for the endpoint. If the endpoint is a Network Load Balancer or Application Load Balancer, this is the Amazon Resource Name (ARN) of the resource. If the endpoint is an Elastic IP address, this is the Elastic IP address allocation ID. For EC2 instances, this is the EC2 instance ID. </p> <p>An Application Load Balancer can be either internal or internet-facing.</p>",
         "EndpointDescription$HealthReason": "<p>The reason code associated with why the endpoint is not healthy. If the endpoint state is healthy, a reason code is not provided.</p> <p>If the endpoint state is <b>unhealthy</b>, the reason code can be one of the following values:</p> <ul> <li> <p> <b>Timeout</b>: The health check requests to the endpoint are timing out before returning a status.</p> </li> <li> <p> <b>Failed</b>: The health check failed, for example because the endpoint response was invalid (malformed).</p> </li> </ul> <p>If the endpoint state is <b>initial</b>, the reason code can be one of the following values:</p> <ul> <li> <p> <b>ProvisioningInProgress</b>: The endpoint is in the process of being provisioned.</p> </li> <li> <p> <b>InitialHealthChecking</b>: Global Accelerator is still setting up the minimum number of health checks for the endpoint that are required to determine its health status.</p> </li> </ul>",
         "EndpointGroup$EndpointGroupArn": "<p>The Amazon Resource Name (ARN) of the endpoint group.</p>",
         "EndpointGroup$EndpointGroupRegion": "<p>The AWS Region that this endpoint group belongs.</p>",
@@ -283,6 +351,8 @@
         "IpSet$IpFamily": "<p>The types of IP addresses included in this IP set.</p>",
         "ListAcceleratorsRequest$NextToken": "<p>The token for the next set of results. You receive this token from a previous call.</p>",
         "ListAcceleratorsResponse$NextToken": "<p>The token for the next set of results. You receive this token from a previous call.</p>",
+        "ListByoipCidrsRequest$NextToken": "<p>The token for the next page of results.</p>",
+        "ListByoipCidrsResponse$NextToken": "<p>The token for the next page of results.</p>",
         "ListEndpointGroupsRequest$ListenerArn": "<p>The Amazon Resource Name (ARN) of the listener.</p>",
         "ListEndpointGroupsRequest$NextToken": "<p>The token for the next set of results. You receive this token from a previous call.</p>",
         "ListEndpointGroupsResponse$NextToken": "<p>The token for the next set of results. You receive this token from a previous call.</p>",
@@ -290,14 +360,16 @@
         "ListListenersRequest$NextToken": "<p>The token for the next set of results. You receive this token from a previous call.</p>",
         "ListListenersResponse$NextToken": "<p>The token for the next set of results. You receive this token from a previous call.</p>",
         "Listener$ListenerArn": "<p>The Amazon Resource Name (ARN) of the listener.</p>",
+        "ProvisionByoipCidrRequest$Cidr": "<p>The public IPv4 address range, in CIDR notation. The most specific IP prefix that you can specify is /24. The address range cannot overlap with another address range that you've brought to this or another Region.</p>",
         "UpdateAcceleratorAttributesRequest$AcceleratorArn": "<p>The Amazon Resource Name (ARN) of the accelerator that you want to update.</p>",
         "UpdateAcceleratorAttributesRequest$FlowLogsS3Bucket": "<p>The name of the Amazon S3 bucket for the flow logs. Attribute is required if <code>FlowLogsEnabled</code> is <code>true</code>. The bucket must exist and have a bucket policy that grants AWS Global Accelerator permission to write to the bucket.</p>",
-        "UpdateAcceleratorAttributesRequest$FlowLogsS3Prefix": "<p>Update the prefix for the location in the Amazon S3 bucket for the flow logs. Attribute is required if <code>FlowLogsEnabled</code> is <code>true</code>. If you don’t specify a prefix, the flow logs are stored in the root of the bucket.</p>",
+        "UpdateAcceleratorAttributesRequest$FlowLogsS3Prefix": "<p>Update the prefix for the location in the Amazon S3 bucket for the flow logs. Attribute is required if <code>FlowLogsEnabled</code> is <code>true</code>. </p> <p>If you don’t specify a prefix, the flow logs are stored in the root of the bucket. If you specify slash (/) for the S3 bucket prefix, the log file bucket folder structure will include a double slash (//), like the following:</p> <p>s3-bucket_name//AWSLogs/aws_account_id</p>",
         "UpdateAcceleratorRequest$AcceleratorArn": "<p>The Amazon Resource Name (ARN) of the accelerator to update.</p>",
         "UpdateAcceleratorRequest$Name": "<p>The name of the accelerator. The name can have a maximum of 32 characters, must contain only alphanumeric characters or hyphens (-), and must not begin or end with a hyphen.</p>",
         "UpdateEndpointGroupRequest$EndpointGroupArn": "<p>The Amazon Resource Name (ARN) of the endpoint group.</p>",
         "UpdateEndpointGroupRequest$HealthCheckPath": "<p>If the protocol is HTTP/S, then this specifies the path that is the destination for health check targets. The default value is slash (/).</p>",
-        "UpdateListenerRequest$ListenerArn": "<p>The Amazon Resource Name (ARN) of the listener to update.</p>"
+        "UpdateListenerRequest$ListenerArn": "<p>The Amazon Resource Name (ARN) of the listener to update.</p>",
+        "WithdrawByoipCidrRequest$Cidr": "<p>The address range, in CIDR notation.</p>"
       }
     },
     "HealthCheckIntervalSeconds": {
@@ -338,6 +410,11 @@
         "CreateListenerRequest$IdempotencyToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency—that is, the uniqueness—of the request.</p>"
       }
     },
+    "IncorrectCidrStateException": {
+      "base": "<p>The CIDR that you specified is not valid for this action. For example, the state of the CIDR might be incorrect for this action.</p>",
+      "refs": {
+      }
+    },
     "InternalServiceErrorException": {
       "base": "<p>There was an internal error for AWS Global Accelerator.</p>",
       "refs": {
@@ -375,6 +452,7 @@
     "IpAddresses": {
       "base": null,
       "refs": {
+        "CreateAcceleratorRequest$IpAddresses": "<p>Optionally, if you've added your own IP address pool to Global Accelerator, you can choose IP addresses from your own pool to use for the accelerator's static IP addresses. You can specify one or two addresses, separated by a comma. Do not include the /32 suffix.</p> <p>If you specify only one IP address from your IP address range, Global Accelerator assigns a second static IP address for the accelerator from the AWS IP address pool.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/global-accelerator/latest/dg/using-byoip.html\">Bring Your Own IP Addresses (BYOIP)</a> in the <i>AWS Global Accelerator Developer Guide</i>.</p>",
         "IpSet$IpAddresses": "<p>The array of IP addresses in the IP address set. An IP address set can have a maximum of two IP addresses.</p>"
       }
     },
@@ -405,6 +483,16 @@
       "refs": {
       }
     },
+    "ListByoipCidrsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListByoipCidrsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListEndpointGroupsRequest": {
       "base": null,
       "refs": {
@@ -421,6 +509,16 @@
       }
     },
     "ListListenersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
       "base": null,
       "refs": {
       }
@@ -449,6 +547,7 @@
       "base": null,
       "refs": {
         "ListAcceleratorsRequest$MaxResults": "<p>The number of Global Accelerator objects that you want to return with this call. The default value is 10.</p>",
+        "ListByoipCidrsRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>",
         "ListEndpointGroupsRequest$MaxResults": "<p>The number of endpoint group objects that you want to return with this call. The default value is 10.</p>",
         "ListListenersRequest$MaxResults": "<p>The number of listener objects that you want to return with this call. The default value is 10.</p>"
       }
@@ -482,6 +581,67 @@
         "UpdateListenerRequest$Protocol": "<p>The updated protocol for the connections from clients to the accelerator.</p>"
       }
     },
+    "ProvisionByoipCidrRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ProvisionByoipCidrResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ResourceArn": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the accelerator to list tags for. An ARN uniquely identifies an accelerator.</p>",
+        "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the Global Accelerator resource to add tags to. An ARN uniquely identifies a resource.</p>",
+        "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the Global Accelerator resource to remove tags from. An ARN uniquely identifies a resource.</p>"
+      }
+    },
+    "Tag": {
+      "base": "<p>A complex type that contains a <code>Tag</code> key and <code>Tag</code> value.</p>",
+      "refs": {
+        "Tags$member": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "Tag$Key": "<p>A string that contains a <code>Tag</code> key.</p>",
+        "TagKeys$member": null
+      }
+    },
+    "TagKeys": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$TagKeys": "<p>The tag key pairs that you want to remove from the specified resources.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "Tag$Value": "<p>A string that contains a <code>Tag</code> value.</p>"
+      }
+    },
+    "Tags": {
+      "base": null,
+      "refs": {
+        "CreateAcceleratorRequest$Tags": "<p>Create tags for an accelerator.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/global-accelerator/latest/dg/tagging-in-global-accelerator.html\">Tagging in AWS Global Accelerator</a> in the <i>AWS Global Accelerator Developer Guide</i>.</p>",
+        "ListTagsForResourceResponse$Tags": "<p>Root level tag for the Tags parameters.</p>",
+        "TagResourceRequest$Tags": "<p>The tags to add to a resource. A tag consists of a key and a value that you define.</p>"
+      }
+    },
     "ThresholdCount": {
       "base": null,
       "refs": {
@@ -503,6 +663,16 @@
         "CreateEndpointGroupRequest$TrafficDialPercentage": "<p>The percentage of traffic to send to an AWS Region. Additional traffic is distributed to other endpoint groups for this listener. </p> <p>Use this action to increase (dial up) or decrease (dial down) traffic to a specific Region. The percentage is applied to the traffic that would otherwise have been routed to the Region based on optimal routing.</p> <p>The default value is 100.</p>",
         "EndpointGroup$TrafficDialPercentage": "<p>The percentage of traffic to send to an AWS Region. Additional traffic is distributed to other endpoint groups for this listener. </p> <p>Use this action to increase (dial up) or decrease (dial down) traffic to a specific Region. The percentage is applied to the traffic that would otherwise have been routed to the Region based on optimal routing.</p> <p>The default value is 100.</p>",
         "UpdateEndpointGroupRequest$TrafficDialPercentage": "<p>The percentage of traffic to send to an AWS Region. Additional traffic is distributed to other endpoint groups for this listener. </p> <p>Use this action to increase (dial up) or decrease (dial down) traffic to a specific Region. The percentage is applied to the traffic that would otherwise have been routed to the Region based on optimal routing.</p> <p>The default value is 100.</p>"
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateAcceleratorAttributesRequest": {
@@ -541,6 +711,16 @@
       }
     },
     "UpdateListenerResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "WithdrawByoipCidrRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "WithdrawByoipCidrResponse": {
       "base": null,
       "refs": {
       }

@@ -92,6 +92,10 @@ type LightsailAPI interface {
 	CreateCloudFormationStackWithContext(aws.Context, *lightsail.CreateCloudFormationStackInput, ...request.Option) (*lightsail.CreateCloudFormationStackOutput, error)
 	CreateCloudFormationStackRequest(*lightsail.CreateCloudFormationStackInput) (*request.Request, *lightsail.CreateCloudFormationStackOutput)
 
+	CreateContactMethod(*lightsail.CreateContactMethodInput) (*lightsail.CreateContactMethodOutput, error)
+	CreateContactMethodWithContext(aws.Context, *lightsail.CreateContactMethodInput, ...request.Option) (*lightsail.CreateContactMethodOutput, error)
+	CreateContactMethodRequest(*lightsail.CreateContactMethodInput) (*request.Request, *lightsail.CreateContactMethodOutput)
+
 	CreateDisk(*lightsail.CreateDiskInput) (*lightsail.CreateDiskOutput, error)
 	CreateDiskWithContext(aws.Context, *lightsail.CreateDiskInput, ...request.Option) (*lightsail.CreateDiskOutput, error)
 	CreateDiskRequest(*lightsail.CreateDiskInput) (*request.Request, *lightsail.CreateDiskOutput)
@@ -148,9 +152,17 @@ type LightsailAPI interface {
 	CreateRelationalDatabaseSnapshotWithContext(aws.Context, *lightsail.CreateRelationalDatabaseSnapshotInput, ...request.Option) (*lightsail.CreateRelationalDatabaseSnapshotOutput, error)
 	CreateRelationalDatabaseSnapshotRequest(*lightsail.CreateRelationalDatabaseSnapshotInput) (*request.Request, *lightsail.CreateRelationalDatabaseSnapshotOutput)
 
+	DeleteAlarm(*lightsail.DeleteAlarmInput) (*lightsail.DeleteAlarmOutput, error)
+	DeleteAlarmWithContext(aws.Context, *lightsail.DeleteAlarmInput, ...request.Option) (*lightsail.DeleteAlarmOutput, error)
+	DeleteAlarmRequest(*lightsail.DeleteAlarmInput) (*request.Request, *lightsail.DeleteAlarmOutput)
+
 	DeleteAutoSnapshot(*lightsail.DeleteAutoSnapshotInput) (*lightsail.DeleteAutoSnapshotOutput, error)
 	DeleteAutoSnapshotWithContext(aws.Context, *lightsail.DeleteAutoSnapshotInput, ...request.Option) (*lightsail.DeleteAutoSnapshotOutput, error)
 	DeleteAutoSnapshotRequest(*lightsail.DeleteAutoSnapshotInput) (*request.Request, *lightsail.DeleteAutoSnapshotOutput)
+
+	DeleteContactMethod(*lightsail.DeleteContactMethodInput) (*lightsail.DeleteContactMethodOutput, error)
+	DeleteContactMethodWithContext(aws.Context, *lightsail.DeleteContactMethodInput, ...request.Option) (*lightsail.DeleteContactMethodOutput, error)
+	DeleteContactMethodRequest(*lightsail.DeleteContactMethodInput) (*request.Request, *lightsail.DeleteContactMethodOutput)
 
 	DeleteDisk(*lightsail.DeleteDiskInput) (*lightsail.DeleteDiskOutput, error)
 	DeleteDiskWithContext(aws.Context, *lightsail.DeleteDiskInput, ...request.Option) (*lightsail.DeleteDiskOutput, error)
@@ -232,6 +244,10 @@ type LightsailAPI interface {
 	GetActiveNamesWithContext(aws.Context, *lightsail.GetActiveNamesInput, ...request.Option) (*lightsail.GetActiveNamesOutput, error)
 	GetActiveNamesRequest(*lightsail.GetActiveNamesInput) (*request.Request, *lightsail.GetActiveNamesOutput)
 
+	GetAlarms(*lightsail.GetAlarmsInput) (*lightsail.GetAlarmsOutput, error)
+	GetAlarmsWithContext(aws.Context, *lightsail.GetAlarmsInput, ...request.Option) (*lightsail.GetAlarmsOutput, error)
+	GetAlarmsRequest(*lightsail.GetAlarmsInput) (*request.Request, *lightsail.GetAlarmsOutput)
+
 	GetAutoSnapshots(*lightsail.GetAutoSnapshotsInput) (*lightsail.GetAutoSnapshotsOutput, error)
 	GetAutoSnapshotsWithContext(aws.Context, *lightsail.GetAutoSnapshotsInput, ...request.Option) (*lightsail.GetAutoSnapshotsOutput, error)
 	GetAutoSnapshotsRequest(*lightsail.GetAutoSnapshotsInput) (*request.Request, *lightsail.GetAutoSnapshotsOutput)
@@ -247,6 +263,10 @@ type LightsailAPI interface {
 	GetCloudFormationStackRecords(*lightsail.GetCloudFormationStackRecordsInput) (*lightsail.GetCloudFormationStackRecordsOutput, error)
 	GetCloudFormationStackRecordsWithContext(aws.Context, *lightsail.GetCloudFormationStackRecordsInput, ...request.Option) (*lightsail.GetCloudFormationStackRecordsOutput, error)
 	GetCloudFormationStackRecordsRequest(*lightsail.GetCloudFormationStackRecordsInput) (*request.Request, *lightsail.GetCloudFormationStackRecordsOutput)
+
+	GetContactMethods(*lightsail.GetContactMethodsInput) (*lightsail.GetContactMethodsOutput, error)
+	GetContactMethodsWithContext(aws.Context, *lightsail.GetContactMethodsInput, ...request.Option) (*lightsail.GetContactMethodsOutput, error)
+	GetContactMethodsRequest(*lightsail.GetContactMethodsInput) (*request.Request, *lightsail.GetContactMethodsOutput)
 
 	GetDisk(*lightsail.GetDiskInput) (*lightsail.GetDiskOutput, error)
 	GetDiskWithContext(aws.Context, *lightsail.GetDiskInput, ...request.Option) (*lightsail.GetDiskOutput, error)
@@ -420,6 +440,10 @@ type LightsailAPI interface {
 	PeerVpcWithContext(aws.Context, *lightsail.PeerVpcInput, ...request.Option) (*lightsail.PeerVpcOutput, error)
 	PeerVpcRequest(*lightsail.PeerVpcInput) (*request.Request, *lightsail.PeerVpcOutput)
 
+	PutAlarm(*lightsail.PutAlarmInput) (*lightsail.PutAlarmOutput, error)
+	PutAlarmWithContext(aws.Context, *lightsail.PutAlarmInput, ...request.Option) (*lightsail.PutAlarmOutput, error)
+	PutAlarmRequest(*lightsail.PutAlarmInput) (*request.Request, *lightsail.PutAlarmOutput)
+
 	PutInstancePublicPorts(*lightsail.PutInstancePublicPortsInput) (*lightsail.PutInstancePublicPortsOutput, error)
 	PutInstancePublicPortsWithContext(aws.Context, *lightsail.PutInstancePublicPortsInput, ...request.Option) (*lightsail.PutInstancePublicPortsOutput, error)
 	PutInstancePublicPortsRequest(*lightsail.PutInstancePublicPortsInput) (*request.Request, *lightsail.PutInstancePublicPortsOutput)
@@ -435,6 +459,10 @@ type LightsailAPI interface {
 	ReleaseStaticIp(*lightsail.ReleaseStaticIpInput) (*lightsail.ReleaseStaticIpOutput, error)
 	ReleaseStaticIpWithContext(aws.Context, *lightsail.ReleaseStaticIpInput, ...request.Option) (*lightsail.ReleaseStaticIpOutput, error)
 	ReleaseStaticIpRequest(*lightsail.ReleaseStaticIpInput) (*request.Request, *lightsail.ReleaseStaticIpOutput)
+
+	SendContactMethodVerification(*lightsail.SendContactMethodVerificationInput) (*lightsail.SendContactMethodVerificationOutput, error)
+	SendContactMethodVerificationWithContext(aws.Context, *lightsail.SendContactMethodVerificationInput, ...request.Option) (*lightsail.SendContactMethodVerificationOutput, error)
+	SendContactMethodVerificationRequest(*lightsail.SendContactMethodVerificationInput) (*request.Request, *lightsail.SendContactMethodVerificationOutput)
 
 	StartInstance(*lightsail.StartInstanceInput) (*lightsail.StartInstanceOutput, error)
 	StartInstanceWithContext(aws.Context, *lightsail.StartInstanceInput, ...request.Option) (*lightsail.StartInstanceOutput, error)
@@ -455,6 +483,10 @@ type LightsailAPI interface {
 	TagResource(*lightsail.TagResourceInput) (*lightsail.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *lightsail.TagResourceInput, ...request.Option) (*lightsail.TagResourceOutput, error)
 	TagResourceRequest(*lightsail.TagResourceInput) (*request.Request, *lightsail.TagResourceOutput)
+
+	TestAlarm(*lightsail.TestAlarmInput) (*lightsail.TestAlarmOutput, error)
+	TestAlarmWithContext(aws.Context, *lightsail.TestAlarmInput, ...request.Option) (*lightsail.TestAlarmOutput, error)
+	TestAlarmRequest(*lightsail.TestAlarmInput) (*request.Request, *lightsail.TestAlarmOutput)
 
 	UnpeerVpc(*lightsail.UnpeerVpcInput) (*lightsail.UnpeerVpcOutput, error)
 	UnpeerVpcWithContext(aws.Context, *lightsail.UnpeerVpcInput, ...request.Option) (*lightsail.UnpeerVpcOutput, error)
