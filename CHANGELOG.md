@@ -1,3 +1,11 @@
+Release v1.29.12 (2020-02-27)
+===
+
+### Service Client Updates
+* `service/globalaccelerator`: Updates service API and documentation
+* `service/lightsail`: Updates service API and documentation
+  * Adds support to create notification contacts in Amazon Lightsail, and to create instance, database, and load balancer metric alarms that notify you based on the value of a metric relative to a threshold that you specify.
+
 Release v1.29.11 (2020-02-26)
 ===
 
