@@ -8,6 +8,14 @@ import (
 
 const (
 
+	// ErrCodeConflictException for service response error code
+	// "ConflictException".
+	//
+	// Your request has the same name as another active human loop but has different
+	// input data. You cannot start two human loops with the same name and different
+	// input data.
+	ErrCodeConflictException = "ConflictException"
+
 	// ErrCodeInternalServerException for service response error code
 	// "InternalServerException".
 	//
@@ -41,6 +49,7 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"ConflictException":             newErrorConflictException,
 	"InternalServerException":       newErrorInternalServerException,
 	"ResourceNotFoundException":     newErrorResourceNotFoundException,
 	"ServiceQuotaExceededException": newErrorServiceQuotaExceededException,

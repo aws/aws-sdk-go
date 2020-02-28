@@ -168,7 +168,8 @@
       "output":{"shape":"DeleteRemediationConfigurationResponse"},
       "errors":[
         {"shape":"NoSuchRemediationConfigurationException"},
-        {"shape":"RemediationInProgressException"}
+        {"shape":"RemediationInProgressException"},
+        {"shape":"InsufficientPermissionsException"}
       ]
     },
     "DeleteRemediationExceptions":{
@@ -985,6 +986,21 @@
         {"shape":"MaxNumberOfRetentionConfigurationsExceededException"}
       ]
     },
+    "SelectAggregateResourceConfig":{
+      "name":"SelectAggregateResourceConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SelectAggregateResourceConfigRequest"},
+      "output":{"shape":"SelectAggregateResourceConfigResponse"},
+      "errors":[
+        {"shape":"InvalidExpressionException"},
+        {"shape":"NoSuchConfigurationAggregatorException"},
+        {"shape":"InvalidLimitException"},
+        {"shape":"InvalidNextTokenException"}
+      ]
+    },
     "SelectResourceConfig":{
       "name":"SelectResourceConfig",
       "http":{
@@ -1216,7 +1232,7 @@
     "AllSupported":{"type":"boolean"},
     "AmazonResourceName":{
       "type":"string",
-      "max":256,
+      "max":1000,
       "min":1
     },
     "Annotation":{
@@ -1407,9 +1423,9 @@
       "type":"structure",
       "required":["Source"],
       "members":{
-        "ConfigRuleName":{"shape":"StringWithCharLimit64"},
-        "ConfigRuleArn":{"shape":"String"},
-        "ConfigRuleId":{"shape":"String"},
+        "ConfigRuleName":{"shape":"ConfigRuleName"},
+        "ConfigRuleArn":{"shape":"StringWithCharLimit256"},
+        "ConfigRuleId":{"shape":"StringWithCharLimit64"},
         "Description":{"shape":"EmptiableStringWithCharLimit256"},
         "Scope":{"shape":"Scope"},
         "Source":{"shape":"Source"},
@@ -1445,7 +1461,7 @@
     "ConfigRuleEvaluationStatus":{
       "type":"structure",
       "members":{
-        "ConfigRuleName":{"shape":"StringWithCharLimit64"},
+        "ConfigRuleName":{"shape":"ConfigRuleName"},
         "ConfigRuleArn":{"shape":"String"},
         "ConfigRuleId":{"shape":"String"},
         "LastSuccessfulInvocationTime":{"shape":"Date"},
@@ -1453,6 +1469,7 @@
         "LastSuccessfulEvaluationTime":{"shape":"Date"},
         "LastFailedEvaluationTime":{"shape":"Date"},
         "FirstActivatedTime":{"shape":"Date"},
+        "LastDeactivatedTime":{"shape":"Date"},
         "LastErrorCode":{"shape":"String"},
         "LastErrorMessage":{"shape":"String"},
         "FirstEvaluationStarted":{"shape":"Boolean"}
@@ -1833,7 +1850,7 @@
       "type":"structure",
       "required":["ConfigRuleName"],
       "members":{
-        "ConfigRuleName":{"shape":"StringWithCharLimit64"}
+        "ConfigRuleName":{"shape":"ConfigRuleName"}
       }
     },
     "DeleteConfigurationAggregatorRequest":{
@@ -1906,7 +1923,7 @@
       "required":["ConfigRuleName"],
       "members":{
         "ConfigRuleName":{"shape":"ConfigRuleName"},
-        "ResourceType":{"shape":"String"}
+        "ResourceType":{"shape":"StringWithCharLimit256"}
       }
     },
     "DeleteRemediationConfigurationResponse":{
@@ -2427,7 +2444,7 @@
     "EvaluationResultQualifier":{
       "type":"structure",
       "members":{
-        "ConfigRuleName":{"shape":"StringWithCharLimit64"},
+        "ConfigRuleName":{"shape":"ConfigRuleName"},
         "ResourceType":{"shape":"StringWithCharLimit256"},
         "ResourceId":{"shape":"BaseResourceId"}
       }
@@ -3645,7 +3662,7 @@
     },
     "ReevaluateConfigRuleNames":{
       "type":"list",
-      "member":{"shape":"StringWithCharLimit64"},
+      "member":{"shape":"ConfigRuleName"},
       "max":25,
       "min":1
     },
@@ -3679,9 +3696,9 @@
         "ConfigRuleName":{"shape":"ConfigRuleName"},
         "TargetType":{"shape":"RemediationTargetType"},
         "TargetId":{"shape":"StringWithCharLimit256"},
-        "TargetVersion":{"shape":"String"},
+        "TargetVersion":{"shape":"StringWithCharLimit256"},
         "Parameters":{"shape":"RemediationParameters"},
-        "ResourceType":{"shape":"String"},
+        "ResourceType":{"shape":"StringWithCharLimit256"},
         "Automatic":{"shape":"Boolean"},
         "ExecutionControls":{"shape":"ExecutionControls"},
         "MaximumAutomaticAttempts":{"shape":"AutoRemediationAttempts"},
@@ -3904,62 +3921,111 @@
     "ResourceType":{
       "type":"string",
       "enum":[
-        "AWS::EC2::CustomerGateway",
-        "AWS::EC2::EIP",
-        "AWS::EC2::Host",
-        "AWS::EC2::Instance",
-        "AWS::EC2::InternetGateway",
-        "AWS::EC2::NetworkAcl",
-        "AWS::EC2::NetworkInterface",
-        "AWS::EC2::RouteTable",
-        "AWS::EC2::SecurityGroup",
-        "AWS::EC2::Subnet",
-        "AWS::CloudTrail::Trail",
-        "AWS::EC2::Volume",
-        "AWS::EC2::VPC",
-        "AWS::EC2::VPNConnection",
-        "AWS::EC2::VPNGateway",
-        "AWS::EC2::RegisteredHAInstance",
-        "AWS::EC2::NatGateway",
-        "AWS::EC2::EgressOnlyInternetGateway",
-        "AWS::EC2::VPCEndpoint",
-        "AWS::EC2::VPCEndpointService",
-        "AWS::EC2::FlowLog",
-        "AWS::EC2::VPCPeeringConnection",
-        "AWS::IAM::Group",
-        "AWS::IAM::Policy",
-        "AWS::IAM::Role",
-        "AWS::IAM::User",
-        "AWS::ElasticLoadBalancingV2::LoadBalancer",
         "AWS::ACM::Certificate",
-        "AWS::RDS::DBInstance",
-        "AWS::RDS::DBParameterGroup",
-        "AWS::RDS::DBOptionGroup",
-        "AWS::RDS::DBSubnetGroup",
-        "AWS::RDS::DBSecurityGroup",
-        "AWS::RDS::DBSnapshot",
-        "AWS::RDS::DBCluster",
-        "AWS::RDS::DBClusterParameterGroup",
-        "AWS::RDS::DBClusterSnapshot",
-        "AWS::RDS::EventSubscription",
-        "AWS::S3::Bucket",
-        "AWS::S3::AccountPublicAccessBlock",
-        "AWS::Redshift::Cluster",
-        "AWS::Redshift::ClusterSnapshot",
-        "AWS::Redshift::ClusterParameterGroup",
-        "AWS::Redshift::ClusterSecurityGroup",
-        "AWS::Redshift::ClusterSubnetGroup",
-        "AWS::Redshift::EventSubscription",
-        "AWS::SSM::ManagedInstanceInventory",
-        "AWS::CloudWatch::Alarm",
-        "AWS::CloudFormation::Stack",
-        "AWS::ElasticLoadBalancing::LoadBalancer",
+        "AWS::ApiGateway::DomainName",
+        "AWS::ApiGateway::Method",
+        "AWS::ApiGateway::RestApi",
+        "AWS::ApiGateway::Stage",
+        "AWS::ApiGatewayV2::Api",
+        "AWS::ApiGatewayV2::DomainName",
+        "AWS::ApiGatewayV2::Stage",
         "AWS::AutoScaling::AutoScalingGroup",
         "AWS::AutoScaling::LaunchConfiguration",
         "AWS::AutoScaling::ScalingPolicy",
         "AWS::AutoScaling::ScheduledAction",
-        "AWS::DynamoDB::Table",
+        "AWS::CloudFormation::Stack",
+        "AWS::CloudFront::Distribution",
+        "AWS::CloudFront::StreamingDistribution",
+        "AWS::CloudTrail::Trail",
+        "AWS::CloudWatch::Alarm",
         "AWS::CodeBuild::Project",
+        "AWS::CodePipeline::Pipeline",
+        "AWS::Config::ResourceCompliance",
+        "AWS::DynamoDB::Table",
+        "AWS::EC2::CustomerGateway",
+        "AWS::EC2::EgressOnlyInternetGateway",
+        "AWS::EC2::EIP",
+        "AWS::EC2::FlowLog",
+        "AWS::EC2::Host",
+        "AWS::EC2::Instance",
+        "AWS::EC2::InternetGateway",
+        "AWS::EC2::NatGateway",
+        "AWS::EC2::NetworkAcl",
+        "AWS::EC2::NetworkInterface",
+        "AWS::EC2::RegisteredHAInstance",
+        "AWS::EC2::RouteTable",
+        "AWS::EC2::SecurityGroup",
+        "AWS::EC2::Subnet",
+        "AWS::EC2::Volume",
+        "AWS::EC2::VPC",
+        "AWS::EC2::VPCEndpoint",
+        "AWS::EC2::VPCEndpointService",
+        "AWS::EC2::VPCPeeringConnection",
+        "AWS::EC2::VPNConnection",
+        "AWS::EC2::VPNGateway",
+        "AWS::ECR::Repository",
+        "AWS::ECS::Cluster",
+        "AWS::ECS::PrimaryTaskSet",
+        "AWS::ECS::Service",
+        "AWS::ECS::TaskDefinition",
+        "AWS::ECS::TaskSet",
+        "AWS::EKS::Cluster",
+        "AWS::EKS::Nodegroup",
+        "AWS::ElasticBeanstalk::Application",
+        "AWS::ElasticBeanstalk::ApplicationVersion",
+        "AWS::ElasticBeanstalk::Environment",
+        "AWS::ElasticLoadBalancing::LoadBalancer",
+        "AWS::ElasticLoadBalancingV2::LoadBalancer",
+        "AWS::Elasticsearch::Domain",
+        "AWS::IAM::Group",
+        "AWS::IAM::Policy",
+        "AWS::IAM::Role",
+        "AWS::IAM::User",
+        "AWS::Kinesis::Stream",
+        "AWS::Kinesis::StreamConsumer",
+        "AWS::KinesisAnalytics::Application",
+        "AWS::KinesisAnalytics::ApplicationOutput",
+        "AWS::KinesisAnalytics::ApplicationReferenceDataSource",
+        "AWS::KinesisAnalyticsV2::Application",
+        "AWS::KinesisAnalyticsV2::ApplicationCloudWatchLoggingOption",
+        "AWS::KinesisAnalyticsV2::ApplicationOutput",
+        "AWS::KinesisAnalyticsV2::ApplicationReferenceDataSource",
+        "AWS::KinesisFirehose::DeliveryStream",
+        "AWS::KMS::Key",
+        "AWS::Lambda::Alias",
+        "AWS::Lambda::Function",
+        "AWS::LicenseManager::LicenseConfiguration",
+        "AWS::MobileHub::Project",
+        "AWS::QLDB::Ledger",
+        "AWS::RDS::DBCluster",
+        "AWS::RDS::DBClusterParameterGroup",
+        "AWS::RDS::DBClusterSnapshot",
+        "AWS::RDS::DBInstance",
+        "AWS::RDS::DBOptionGroup",
+        "AWS::RDS::DBParameterGroup",
+        "AWS::RDS::DBSecurityGroup",
+        "AWS::RDS::DBSnapshot",
+        "AWS::RDS::DBSubnetGroup",
+        "AWS::RDS::EventSubscription",
+        "AWS::Redshift::Cluster",
+        "AWS::Redshift::ClusterParameterGroup",
+        "AWS::Redshift::ClusterSecurityGroup",
+        "AWS::Redshift::ClusterSnapshot",
+        "AWS::Redshift::ClusterSubnetGroup",
+        "AWS::Redshift::EventSubscription",
+        "AWS::S3::AccountPublicAccessBlock",
+        "AWS::S3::Bucket",
+        "AWS::SecretsManager::Secret",
+        "AWS::ServiceCatalog::CloudFormationProduct",
+        "AWS::ServiceCatalog::CloudFormationProvisionedProduct",
+        "AWS::ServiceCatalog::Portfolio",
+        "AWS::Shield::Protection",
+        "AWS::ShieldRegional::Protection",
+        "AWS::SNS::Topic",
+        "AWS::SQS::Queue",
+        "AWS::SSM::AssociationCompliance",
+        "AWS::SSM::ManagedInstanceInventory",
+        "AWS::SSM::PatchCompliance",
         "AWS::WAF::RateBasedRule",
         "AWS::WAF::Rule",
         "AWS::WAF::RuleGroup",
@@ -3968,32 +4034,12 @@
         "AWS::WAFRegional::Rule",
         "AWS::WAFRegional::RuleGroup",
         "AWS::WAFRegional::WebACL",
-        "AWS::CloudFront::Distribution",
-        "AWS::CloudFront::StreamingDistribution",
-        "AWS::Lambda::Alias",
-        "AWS::Lambda::Function",
-        "AWS::ElasticBeanstalk::Application",
-        "AWS::ElasticBeanstalk::ApplicationVersion",
-        "AWS::ElasticBeanstalk::Environment",
-        "AWS::MobileHub::Project",
-        "AWS::XRay::EncryptionConfig",
-        "AWS::SSM::AssociationCompliance",
-        "AWS::SSM::PatchCompliance",
-        "AWS::Shield::Protection",
-        "AWS::ShieldRegional::Protection",
-        "AWS::Config::ResourceCompliance",
-        "AWS::LicenseManager::LicenseConfiguration",
-        "AWS::ApiGateway::DomainName",
-        "AWS::ApiGateway::Method",
-        "AWS::ApiGateway::Stage",
-        "AWS::ApiGateway::RestApi",
-        "AWS::ApiGatewayV2::DomainName",
-        "AWS::ApiGatewayV2::Stage",
-        "AWS::ApiGatewayV2::Api",
-        "AWS::CodePipeline::Pipeline",
-        "AWS::ServiceCatalog::CloudFormationProvisionedProduct",
-        "AWS::ServiceCatalog::CloudFormationProduct",
-        "AWS::ServiceCatalog::Portfolio"
+        "AWS::WAFv2::WebACL",
+        "AWS::WAFv2::RuleGroup",
+        "AWS::WAFv2::IPSet",
+        "AWS::WAFv2::RegexPatternSet",
+        "AWS::WAFv2::ManagedRuleSet",
+        "AWS::XRay::EncryptionConfig"
       ]
     },
     "ResourceTypeList":{
@@ -4082,6 +4128,28 @@
         "TagKey":{"shape":"StringWithCharLimit128"},
         "TagValue":{"shape":"StringWithCharLimit256"},
         "ComplianceResourceId":{"shape":"BaseResourceId"}
+      }
+    },
+    "SelectAggregateResourceConfigRequest":{
+      "type":"structure",
+      "required":[
+        "Expression",
+        "ConfigurationAggregatorName"
+      ],
+      "members":{
+        "Expression":{"shape":"Expression"},
+        "ConfigurationAggregatorName":{"shape":"ConfigurationAggregatorName"},
+        "Limit":{"shape":"Limit"},
+        "MaxResults":{"shape":"Limit"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "SelectAggregateResourceConfigResponse":{
+      "type":"structure",
+      "members":{
+        "Results":{"shape":"Results"},
+        "QueryInfo":{"shape":"QueryInfo"},
+        "NextToken":{"shape":"NextToken"}
       }
     },
     "SelectResourceConfigRequest":{

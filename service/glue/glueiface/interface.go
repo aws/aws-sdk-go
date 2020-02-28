@@ -476,6 +476,13 @@ type GlueAPI interface {
 	ListJobsPages(*glue.ListJobsInput, func(*glue.ListJobsOutput, bool) bool) error
 	ListJobsPagesWithContext(aws.Context, *glue.ListJobsInput, func(*glue.ListJobsOutput, bool) bool, ...request.Option) error
 
+	ListMLTransforms(*glue.ListMLTransformsInput) (*glue.ListMLTransformsOutput, error)
+	ListMLTransformsWithContext(aws.Context, *glue.ListMLTransformsInput, ...request.Option) (*glue.ListMLTransformsOutput, error)
+	ListMLTransformsRequest(*glue.ListMLTransformsInput) (*request.Request, *glue.ListMLTransformsOutput)
+
+	ListMLTransformsPages(*glue.ListMLTransformsInput, func(*glue.ListMLTransformsOutput, bool) bool) error
+	ListMLTransformsPagesWithContext(aws.Context, *glue.ListMLTransformsInput, func(*glue.ListMLTransformsOutput, bool) bool, ...request.Option) error
+
 	ListTriggers(*glue.ListTriggersInput) (*glue.ListTriggersOutput, error)
 	ListTriggersWithContext(aws.Context, *glue.ListTriggersInput, ...request.Option) (*glue.ListTriggersOutput, error)
 	ListTriggersRequest(*glue.ListTriggersInput) (*request.Request, *glue.ListTriggersOutput)

@@ -880,6 +880,23 @@
         {"shape":"ResourceUnavailableException"}
       ]
     },
+    "SearchDashboards":{
+      "name":"SearchDashboards",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{AwsAccountId}/search/dashboards"
+      },
+      "input":{"shape":"SearchDashboardsRequest"},
+      "output":{"shape":"SearchDashboardsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"UnsupportedUserEditionException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "TagResource":{
       "name":"TagResource",
       "http":{
@@ -1858,6 +1875,10 @@
         "COLUMN_REPLACEMENT_MISSING"
       ]
     },
+    "DashboardFilterAttribute":{
+      "type":"string",
+      "enum":["QUICKSIGHT_USER"]
+    },
     "DashboardName":{
       "type":"string",
       "max":2048,
@@ -1871,6 +1892,20 @@
         "ExportToCSVOption":{"shape":"ExportToCSVOption"},
         "SheetControlsOption":{"shape":"SheetControlsOption"}
       }
+    },
+    "DashboardSearchFilter":{
+      "type":"structure",
+      "required":["Operator"],
+      "members":{
+        "Operator":{"shape":"FilterOperator"},
+        "Name":{"shape":"DashboardFilterAttribute"},
+        "Value":{"shape":"String"}
+      }
+    },
+    "DashboardSearchFilterList":{
+      "type":"list",
+      "member":{"shape":"DashboardSearchFilter"},
+      "max":1
     },
     "DashboardSourceEntity":{
       "type":"structure",
@@ -3031,6 +3066,10 @@
       "members":{
         "ConditionExpression":{"shape":"Expression"}
       }
+    },
+    "FilterOperator":{
+      "type":"string",
+      "enum":["StringEquals"]
     },
     "GeoSpatialColumnGroup":{
       "type":"structure",
@@ -4514,6 +4553,35 @@
         "DataSourceArn":{"shape":"Arn"},
         "UploadSettings":{"shape":"UploadSettings"},
         "InputColumns":{"shape":"InputColumnList"}
+      }
+    },
+    "SearchDashboardsRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "Filters"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "Filters":{"shape":"DashboardSearchFilterList"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"MaxResults"}
+      }
+    },
+    "SearchDashboardsResponse":{
+      "type":"structure",
+      "members":{
+        "DashboardSummaryList":{"shape":"DashboardSummaryList"},
+        "NextToken":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        },
+        "RequestId":{"shape":"String"}
       }
     },
     "ServiceNowParameters":{

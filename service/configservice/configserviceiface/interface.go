@@ -353,6 +353,13 @@ type ConfigServiceAPI interface {
 	PutRetentionConfigurationWithContext(aws.Context, *configservice.PutRetentionConfigurationInput, ...request.Option) (*configservice.PutRetentionConfigurationOutput, error)
 	PutRetentionConfigurationRequest(*configservice.PutRetentionConfigurationInput) (*request.Request, *configservice.PutRetentionConfigurationOutput)
 
+	SelectAggregateResourceConfig(*configservice.SelectAggregateResourceConfigInput) (*configservice.SelectAggregateResourceConfigOutput, error)
+	SelectAggregateResourceConfigWithContext(aws.Context, *configservice.SelectAggregateResourceConfigInput, ...request.Option) (*configservice.SelectAggregateResourceConfigOutput, error)
+	SelectAggregateResourceConfigRequest(*configservice.SelectAggregateResourceConfigInput) (*request.Request, *configservice.SelectAggregateResourceConfigOutput)
+
+	SelectAggregateResourceConfigPages(*configservice.SelectAggregateResourceConfigInput, func(*configservice.SelectAggregateResourceConfigOutput, bool) bool) error
+	SelectAggregateResourceConfigPagesWithContext(aws.Context, *configservice.SelectAggregateResourceConfigInput, func(*configservice.SelectAggregateResourceConfigOutput, bool) bool, ...request.Option) error
+
 	SelectResourceConfig(*configservice.SelectResourceConfigInput) (*configservice.SelectResourceConfigOutput, error)
 	SelectResourceConfigWithContext(aws.Context, *configservice.SelectResourceConfigInput, ...request.Option) (*configservice.SelectResourceConfigOutput, error)
 	SelectResourceConfigRequest(*configservice.SelectResourceConfigInput) (*request.Request, *configservice.SelectResourceConfigOutput)

@@ -73,6 +73,7 @@
     "PutRemediationExceptions": "<p>A remediation exception is when a specific resource is no longer considered for auto-remediation. This API adds a new exception or updates an exisiting exception for a specific resource with a specific AWS Config rule. </p>",
     "PutResourceConfig": "<p>Records the configuration state for the resource provided in the request. The configuration state of a resource is represented in AWS Config as Configuration Items. Once this API records the configuration item, you can retrieve the list of configuration items for the custom resource type using existing AWS Config APIs. </p> <note> <p>The custom resource type must be registered with AWS CloudFormation. This API accepts the configuration item registered with AWS CloudFormation.</p> <p>When you call this API, AWS Config only stores configuration state of the resource provided in the request. This API does not change or remediate the configuration of the resource. </p> </note>",
     "PutRetentionConfiguration": "<p>Creates and updates the retention configuration with details about retention period (number of days) that AWS Config stores your historical information. The API creates the <code>RetentionConfiguration</code> object and names the object as <b>default</b>. When you have a <code>RetentionConfiguration</code> object named <b>default</b>, calling the API modifies the default object. </p> <note> <p>Currently, AWS Config supports only one retention configuration per region in your account.</p> </note>",
+    "SelectAggregateResourceConfig": "<p>Accepts a structured query language (SQL) SELECT command and an aggregator to query configuration state of AWS resources across multiple accounts and regions, performs the corresponding search, and returns resource configurations matching the properties.</p> <p>For more information about query components, see the <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/query-components.html\"> <b>Query Components</b> </a> section in the AWS Config Developer Guide.</p>",
     "SelectResourceConfig": "<p>Accepts a structured query language (SQL) <code>SELECT</code> command, performs the corresponding search, and returns resource configurations matching the properties.</p> <p>For more information about query components, see the <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/query-components.html\"> <b>Query Components</b> </a> section in the AWS Config Developer Guide.</p>",
     "StartConfigRulesEvaluation": "<p>Runs an on-demand evaluation for the specified AWS Config rules against the last known configuration state of the resources. Use <code>StartConfigRulesEvaluation</code> when you want to test that a rule you updated is working as expected. <code>StartConfigRulesEvaluation</code> does not re-record the latest configuration state for your resources. It re-runs an evaluation against the last known state of your resources. </p> <p>You can specify up to 25 AWS Config rules per request. </p> <p>An existing <code>StartConfigRulesEvaluation</code> call for the specified rules must complete before you can call the API again. If you chose to have AWS Config stream to an Amazon SNS topic, you will receive a <code>ConfigRuleEvaluationStarted</code> notification when the evaluation starts.</p> <note> <p>You don't need to call the <code>StartConfigRulesEvaluation</code> API to run an evaluation for a new rule. When you create a rule, AWS Config evaluates your resources against the rule automatically. </p> </note> <p>The <code>StartConfigRulesEvaluation</code> API is useful if you want to run on-demand evaluations, such as the following example:</p> <ol> <li> <p>You have a custom rule that evaluates your IAM resources every 24 hours.</p> </li> <li> <p>You update your Lambda function to add additional conditions to your rule.</p> </li> <li> <p>Instead of waiting for the next periodic evaluation, you call the <code>StartConfigRulesEvaluation</code> API.</p> </li> <li> <p>AWS Config invokes your Lambda function and evaluates your IAM resources.</p> </li> <li> <p>Your custom rule will still run periodic evaluations every 24 hours.</p> </li> </ol>",
     "StartConfigurationRecorder": "<p>Starts recording configurations of the AWS resources you have selected to record in your AWS account.</p> <p>You must have created at least one delivery channel to successfully start the configuration recorder.</p>",
@@ -497,15 +498,20 @@
       "base": null,
       "refs": {
         "AggregateComplianceByConfigRule$ConfigRuleName": "<p>The name of the AWS Config rule.</p>",
+        "ConfigRule$ConfigRuleName": "<p>The name that you assign to the AWS Config rule. The name is required if you are adding a new rule.</p>",
         "ConfigRuleComplianceFilters$ConfigRuleName": "<p>The name of the AWS Config rule.</p>",
+        "ConfigRuleEvaluationStatus$ConfigRuleName": "<p>The name of the AWS Config rule.</p>",
         "ConfigRuleNames$member": null,
         "ConformancePackRuleCompliance$ConfigRuleName": "<p>Name of the config rule.</p>",
+        "DeleteConfigRuleRequest$ConfigRuleName": "<p>The name of the AWS Config rule that you want to delete.</p>",
         "DeleteRemediationConfigurationRequest$ConfigRuleName": "<p>The name of the AWS Config rule for which you want to delete remediation configuration.</p>",
         "DeleteRemediationExceptionsRequest$ConfigRuleName": "<p>The name of the AWS Config rule for which you want to delete remediation exception configuration.</p>",
         "DescribeRemediationExceptionsRequest$ConfigRuleName": "<p>The name of the AWS Config rule.</p>",
         "DescribeRemediationExecutionStatusRequest$ConfigRuleName": "<p>A list of AWS Config rule names.</p>",
+        "EvaluationResultQualifier$ConfigRuleName": "<p>The name of the AWS Config rule that was used in the evaluation.</p>",
         "GetAggregateComplianceDetailsByConfigRuleRequest$ConfigRuleName": "<p>The name of the AWS Config rule for which you want compliance information.</p>",
         "PutRemediationExceptionsRequest$ConfigRuleName": "<p>The name of the AWS Config rule for which you want to create remediation exception.</p>",
+        "ReevaluateConfigRuleNames$member": null,
         "RemediationConfiguration$ConfigRuleName": "<p>The name of the AWS Config rule.</p>",
         "RemediationException$ConfigRuleName": "<p>The name of the AWS Config rule.</p>",
         "StartRemediationExecutionRequest$ConfigRuleName": "<p>The list of names of AWS Config rules that you want to run remediation execution for.</p>"
@@ -585,7 +591,8 @@
         "GetAggregateDiscoveredResourceCountsRequest$ConfigurationAggregatorName": "<p>The name of the configuration aggregator.</p>",
         "GetAggregateResourceConfigRequest$ConfigurationAggregatorName": "<p>The name of the configuration aggregator.</p>",
         "ListAggregateDiscoveredResourcesRequest$ConfigurationAggregatorName": "<p>The name of the configuration aggregator. </p>",
-        "PutConfigurationAggregatorRequest$ConfigurationAggregatorName": "<p>The name of the configuration aggregator.</p>"
+        "PutConfigurationAggregatorRequest$ConfigurationAggregatorName": "<p>The name of the configuration aggregator.</p>",
+        "SelectAggregateResourceConfigRequest$ConfigurationAggregatorName": "<p>The name of the configuration aggregator.</p>"
       }
     },
     "ConfigurationAggregatorNameList": {
@@ -864,6 +871,7 @@
         "ConfigRuleEvaluationStatus$LastSuccessfulEvaluationTime": "<p>The time that AWS Config last successfully evaluated your AWS resources against the rule.</p>",
         "ConfigRuleEvaluationStatus$LastFailedEvaluationTime": "<p>The time that AWS Config last failed to evaluate your AWS resources against the rule.</p>",
         "ConfigRuleEvaluationStatus$FirstActivatedTime": "<p>The time that you first activated the AWS Config rule.</p>",
+        "ConfigRuleEvaluationStatus$LastDeactivatedTime": null,
         "ConfigStreamDeliveryInfo$lastStatusChangeTime": "<p>The time from the last status change.</p>",
         "ConfigurationAggregator$CreationTime": "<p>The time stamp when the configuration aggregator was created.</p>",
         "ConfigurationAggregator$LastUpdatedTime": "<p>The time of the last update.</p>",
@@ -1378,6 +1386,7 @@
     "Expression": {
       "base": null,
       "refs": {
+        "SelectAggregateResourceConfigRequest$Expression": "<p>The SQL query SELECT command. </p>",
         "SelectResourceConfigRequest$Expression": "<p>The SQL query <code>SELECT</code> command.</p>"
       }
     },
@@ -1705,6 +1714,8 @@
         "ListAggregateDiscoveredResourcesRequest$Limit": "<p>The maximum number of resource identifiers returned on each page. The default is 100. You cannot specify a number greater than 100. If you specify 0, AWS Config uses the default.</p>",
         "ListDiscoveredResourcesRequest$limit": "<p>The maximum number of resource identifiers returned on each page. The default is 100. You cannot specify a number greater than 100. If you specify 0, AWS Config uses the default.</p>",
         "ListTagsForResourceRequest$Limit": "<p>The maximum number of tags returned on each page. The limit maximum is 50. You cannot specify a number greater than 50. If you specify 0, AWS Config uses the default. </p>",
+        "SelectAggregateResourceConfigRequest$Limit": "<p>The maximum number of query results returned on each page. </p>",
+        "SelectAggregateResourceConfigRequest$MaxResults": null,
         "SelectResourceConfigRequest$Limit": "<p>The maximum number of query results returned on each page. </p>"
       }
     },
@@ -1864,6 +1875,8 @@
         "ListDiscoveredResourcesResponse$nextToken": "<p>The string that you use in a subsequent request to get the next page of results in a paginated response.</p>",
         "ListTagsForResourceRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
         "ListTagsForResourceResponse$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response. </p>",
+        "SelectAggregateResourceConfigRequest$NextToken": "<p>The nextToken string returned in a previous request that you use to request the next page of results in a paginated response. </p>",
+        "SelectAggregateResourceConfigResponse$NextToken": "<p>The nextToken string returned in a previous request that you use to request the next page of results in a paginated response. </p>",
         "SelectResourceConfigRequest$NextToken": "<p>The <code>nextToken</code> string returned in a previous request that you use to request the next page of results in a paginated response. </p>",
         "SelectResourceConfigResponse$NextToken": "<p>The <code>nextToken</code> string returned in a previous request that you use to request the next page of results in a paginated response. </p>"
       }
@@ -2291,6 +2304,7 @@
     "QueryInfo": {
       "base": "<p>Details about the query.</p>",
       "refs": {
+        "SelectAggregateResourceConfigResponse$QueryInfo": null,
         "SelectResourceConfigResponse$QueryInfo": "<p>Returns the <code>QueryInfo</code> object.</p>"
       }
     },
@@ -2640,6 +2654,7 @@
     "Results": {
       "base": null,
       "refs": {
+        "SelectAggregateResourceConfigResponse$Results": "<p>Returns the results for the SQL query.</p>",
         "SelectResourceConfigResponse$Results": "<p>Returns the results for the SQL query.</p>"
       }
     },
@@ -2693,6 +2708,16 @@
       "base": "<p>Defines which resources trigger an evaluation for an AWS Config rule. The scope can include one or more resource types, a combination of a tag key and value, or a combination of one resource type and one resource ID. Specify a scope to constrain which resources trigger an evaluation for a rule. Otherwise, evaluations for the rule are triggered when any resource in your recording group changes in configuration.</p>",
       "refs": {
         "ConfigRule$Scope": "<p>Defines which resources can trigger an evaluation for the rule. The scope can include one or more resource types, a combination of one resource type and one resource ID, or a combination of a tag key and value. Specify a scope to constrain the resources that can trigger an evaluation for the rule. If you do not specify a scope, evaluations are triggered when any resource in the recording group changes.</p>"
+      }
+    },
+    "SelectAggregateResourceConfigRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SelectAggregateResourceConfigResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "SelectResourceConfigRequest": {
@@ -2793,8 +2818,6 @@
         "AggregatorRegionList$member": null,
         "ConfigExportDeliveryInfo$lastErrorCode": "<p>The error code from the last attempted delivery.</p>",
         "ConfigExportDeliveryInfo$lastErrorMessage": "<p>The error message from the last attempted delivery.</p>",
-        "ConfigRule$ConfigRuleArn": "<p>The Amazon Resource Name (ARN) of the AWS Config rule.</p>",
-        "ConfigRule$ConfigRuleId": "<p>The ID of the AWS Config rule.</p>",
         "ConfigRuleEvaluationStatus$ConfigRuleArn": "<p>The Amazon Resource Name (ARN) of the AWS Config rule.</p>",
         "ConfigRuleEvaluationStatus$ConfigRuleId": "<p>The ID of the AWS Config rule.</p>",
         "ConfigRuleEvaluationStatus$LastErrorCode": "<p>The error code that AWS Config returned when the rule last failed.</p>",
@@ -2805,7 +2828,6 @@
         "ConfigurationRecorderStatus$name": "<p>The name of the configuration recorder.</p>",
         "ConfigurationRecorderStatus$lastErrorCode": "<p>The error code indicating that the recording failed.</p>",
         "ConfigurationRecorderStatus$lastErrorMessage": "<p>The message indicating that the recording failed due to an error.</p>",
-        "DeleteRemediationConfigurationRequest$ResourceType": "<p>The type of a resource.</p>",
         "DeliverConfigSnapshotResponse$configSnapshotId": "<p>The ID of the snapshot that is being created.</p>",
         "DeliveryChannel$s3BucketName": "<p>The name of the Amazon S3 bucket to which AWS Config delivers configuration snapshots and configuration history files.</p> <p>If you specify a bucket that belongs to another AWS account, that bucket must have policies that grant access permissions to AWS Config. For more information, see <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/s3-bucket-policy.html\">Permissions for the Amazon S3 Bucket</a> in the AWS Config Developer Guide.</p>",
         "DeliveryChannel$s3KeyPrefix": "<p>The prefix for the specified Amazon S3 bucket.</p>",
@@ -2857,8 +2879,6 @@
         "OrganizationConformancePackStatus$ErrorCode": "<p>An error code that is returned when organization conformance pack creation or deletion has failed in a member account. </p>",
         "OrganizationConformancePackStatus$ErrorMessage": "<p>An error message indicating that organization conformance pack creation or deletion failed due to an error. </p>",
         "PutEvaluationsRequest$ResultToken": "<p>An encrypted token that associates an evaluation with an AWS Config rule. Identifies the rule and the event that triggered the evaluation.</p>",
-        "RemediationConfiguration$TargetVersion": "<p>Version of the target. For example, version of the SSM document.</p>",
-        "RemediationConfiguration$ResourceType": "<p>The type of a resource. </p>",
         "RemediationExecutionStep$Name": "<p>The details of the step.</p>",
         "RemediationExecutionStep$ErrorMessage": "<p>An error message if the step was interrupted during execution.</p>",
         "Results$member": null,
@@ -2900,10 +2920,12 @@
         "ComplianceByResource$ResourceType": "<p>The type of the AWS resource that was evaluated.</p>",
         "ComplianceResourceTypes$member": null,
         "ComplianceSummaryByResourceType$ResourceType": "<p>The type of AWS resource.</p>",
+        "ConfigRule$ConfigRuleArn": "<p>The Amazon Resource Name (ARN) of the AWS Config rule.</p>",
         "ConfigRule$CreatedBy": "<p>Service principal name of the service that created the rule.</p> <note> <p>The field is populated only if the service linked rule is created by a service. The field is empty if you create your own rule.</p> </note>",
         "ConformancePackComplianceResourceIds$member": null,
         "ConformancePackDetail$CreatedBy": "<p>AWS service that created the conformance pack.</p>",
         "ConformancePackEvaluationFilters$ResourceType": "<p>Filters the results by the resource type (for example, <code>\"AWS::EC2::Instance\"</code>). </p>",
+        "DeleteRemediationConfigurationRequest$ResourceType": "<p>The type of a resource.</p>",
         "DescribeComplianceByResourceRequest$ResourceType": "<p>The types of AWS resources for which you want compliance information (for example, <code>AWS::EC2::Instance</code>). For this action, you can specify that the resource type is an AWS account by specifying <code>AWS::::Account</code>.</p>",
         "Evaluation$ComplianceResourceType": "<p>The type of AWS resource that was evaluated.</p>",
         "Evaluation$Annotation": "<p>Supplementary information about how the evaluation determined the compliance.</p>",
@@ -2923,6 +2945,8 @@
         "PutOrganizationConfigRuleResponse$OrganizationConfigRuleArn": "<p>The Amazon Resource Name (ARN) of an organization config rule.</p>",
         "PutOrganizationConformancePackResponse$OrganizationConformancePackArn": "<p>ARN of the organization conformance pack.</p>",
         "RemediationConfiguration$TargetId": "<p>Target ID is the name of the public document.</p>",
+        "RemediationConfiguration$TargetVersion": "<p>Version of the target. For example, version of the SSM document.</p>",
+        "RemediationConfiguration$ResourceType": "<p>The type of a resource. </p>",
         "RemediationException$ResourceType": "<p>The type of a resource.</p>",
         "RemediationExceptionResourceKey$ResourceType": "<p>The type of a resource.</p>",
         "RemediationParameters$key": null,
@@ -2944,16 +2968,12 @@
       "base": null,
       "refs": {
         "ComplianceByConfigRule$ConfigRuleName": "<p>The name of the AWS Config rule.</p>",
-        "ConfigRule$ConfigRuleName": "<p>The name that you assign to the AWS Config rule. The name is required if you are adding a new rule.</p>",
-        "ConfigRuleEvaluationStatus$ConfigRuleName": "<p>The name of the AWS Config rule.</p>",
+        "ConfigRule$ConfigRuleId": "<p>The ID of the AWS Config rule.</p>",
         "ConformancePackConfigRuleNames$member": null,
-        "DeleteConfigRuleRequest$ConfigRuleName": "<p>The name of the AWS Config rule that you want to delete.</p>",
         "DeleteEvaluationResultsRequest$ConfigRuleName": "<p>The name of the AWS Config rule for which you want to delete the evaluation results.</p>",
-        "EvaluationResultQualifier$ConfigRuleName": "<p>The name of the AWS Config rule that was used in the evaluation.</p>",
         "GetComplianceDetailsByConfigRuleRequest$ConfigRuleName": "<p>The name of the AWS Config rule for which you want compliance information.</p>",
         "MemberAccountStatus$ConfigRuleName": "<p>The name of config rule deployed in the member account.</p>",
-        "OrganizationConfigRuleNames$member": null,
-        "ReevaluateConfigRuleNames$member": null
+        "OrganizationConfigRuleNames$member": null
       }
     },
     "StringWithCharLimit768": {

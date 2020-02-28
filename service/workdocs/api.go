@@ -2852,6 +2852,11 @@ func (c *WorkDocs) GetCurrentUserRequest(input *GetCurrentUserInput) (req *reque
 // Retrieves details of the current user for whom the authentication token was
 // generated. This is not a valid action for SigV4 (administrative API) clients.
 //
+// This action requires an authentication token. To get an authentication token,
+// register an application with Amazon WorkDocs. For more information, see Authentication
+// and Access Control for User Applications (https://docs.aws.amazon.com/workdocs/latest/developerguide/wd-auth-user.html)
+// in the Amazon WorkDocs Developer Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4224,8 +4229,8 @@ func (c *WorkDocs) UpdateUserWithContext(ctx aws.Context, input *UpdateUserInput
 type AbortDocumentVersionUploadInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The ID of the document.
@@ -4309,8 +4314,8 @@ func (s AbortDocumentVersionUploadOutput) GoString() string {
 type ActivateUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The ID of the user.
@@ -4489,8 +4494,8 @@ func (s *Activity) SetType(v string) *Activity {
 type AddResourcePermissionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The notification options.
@@ -4873,8 +4878,8 @@ func (s ConflictingOperationException) RequestID() string {
 type CreateCommentInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The ID of the document.
@@ -5029,8 +5034,8 @@ func (s *CreateCommentOutput) SetComment(v *Comment) *CreateCommentOutput {
 type CreateCustomMetadataInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// Custom metadata in the form of name-value pairs.
@@ -5127,8 +5132,8 @@ func (s CreateCustomMetadataOutput) GoString() string {
 type CreateFolderInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The name of the new folder.
@@ -5216,8 +5221,8 @@ func (s *CreateFolderOutput) SetMetadata(v *FolderMetadata) *CreateFolderOutput 
 type CreateLabelsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// List of labels to add to the resource.
@@ -5409,8 +5414,8 @@ func (s *CreateNotificationSubscriptionOutput) SetSubscription(v *Subscription) 
 type CreateUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The email address of the user.
@@ -5639,8 +5644,8 @@ func (s CustomMetadataLimitExceededException) RequestID() string {
 type DeactivateUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The ID of the user.
@@ -5763,8 +5768,8 @@ func (s DeactivatingLastSystemUserException) RequestID() string {
 type DeleteCommentInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The ID of the comment.
@@ -5865,8 +5870,8 @@ func (s DeleteCommentOutput) GoString() string {
 type DeleteCustomMetadataInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// Flag to indicate removal of all custom metadata properties from the specified
@@ -5965,8 +5970,8 @@ func (s DeleteCustomMetadataOutput) GoString() string {
 type DeleteDocumentInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The ID of the document.
@@ -6033,8 +6038,8 @@ func (s DeleteDocumentOutput) GoString() string {
 type DeleteFolderContentsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The ID of the folder.
@@ -6101,8 +6106,8 @@ func (s DeleteFolderContentsOutput) GoString() string {
 type DeleteFolderInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The ID of the folder.
@@ -6169,8 +6174,8 @@ func (s DeleteFolderOutput) GoString() string {
 type DeleteLabelsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// Flag to request removal of all labels from the specified resource.
@@ -6399,8 +6404,8 @@ type DescribeActivitiesInput struct {
 	// is left empty, all activity types are returned.
 	ActivityTypes *string `location:"querystring" locationName:"activityTypes" min:"1" type:"string"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The timestamp that determines the end time of the activities. The response
@@ -6572,8 +6577,8 @@ func (s *DescribeActivitiesOutput) SetUserActivities(v []*Activity) *DescribeAct
 type DescribeCommentsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The ID of the document.
@@ -6701,8 +6706,8 @@ func (s *DescribeCommentsOutput) SetMarker(v string) *DescribeCommentsOutput {
 type DescribeDocumentVersionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The ID of the document.
@@ -6839,8 +6844,8 @@ func (s *DescribeDocumentVersionsOutput) SetMarker(v string) *DescribeDocumentVe
 type DescribeFolderContentsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The ID of the folder.
@@ -6999,8 +7004,8 @@ func (s *DescribeFolderContentsOutput) SetMarker(v string) *DescribeFolderConten
 type DescribeGroupsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The maximum number of items to return with this call.
@@ -7222,8 +7227,8 @@ func (s *DescribeNotificationSubscriptionsOutput) SetSubscriptions(v []*Subscrip
 type DescribeResourcePermissionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The maximum number of items to return with this call.
@@ -7346,8 +7351,7 @@ func (s *DescribeResourcePermissionsOutput) SetPrincipals(v []*Principal) *Descr
 type DescribeRootFoldersInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token.
 	//
 	// AuthenticationToken is a required field
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" required:"true" sensitive:"true"`
@@ -7445,8 +7449,8 @@ func (s *DescribeRootFoldersOutput) SetMarker(v string) *DescribeRootFoldersOutp
 type DescribeUsersInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// A comma-separated list of values. Specify "STORAGE_METADATA" to include the
@@ -8246,8 +8250,7 @@ func (s *FolderMetadata) SetSize(v int64) *FolderMetadata {
 type GetCurrentUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token.
 	//
 	// AuthenticationToken is a required field
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" required:"true" sensitive:"true"`
@@ -8311,8 +8314,8 @@ func (s *GetCurrentUserOutput) SetUser(v *User) *GetCurrentUserOutput {
 type GetDocumentInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The ID of the document.
@@ -8406,8 +8409,8 @@ func (s *GetDocumentOutput) SetMetadata(v *DocumentMetadata) *GetDocumentOutput 
 type GetDocumentPathInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The ID of the document.
@@ -8520,8 +8523,8 @@ func (s *GetDocumentPathOutput) SetPath(v *ResourcePath) *GetDocumentPathOutput 
 type GetDocumentVersionInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The ID of the document.
@@ -8645,8 +8648,8 @@ func (s *GetDocumentVersionOutput) SetMetadata(v *DocumentVersionMetadata) *GetD
 type GetFolderInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The ID of the folder.
@@ -8740,8 +8743,8 @@ func (s *GetFolderOutput) SetMetadata(v *FolderMetadata) *GetFolderOutput {
 type GetFolderPathInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// A comma-separated list of values. Specify "NAME" to include the names of
@@ -8854,8 +8857,8 @@ func (s *GetFolderPathOutput) SetPath(v *ResourcePath) *GetFolderPathOutput {
 type GetResourcesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon WorkDocs authentication token. Do not set this field when using
-	// administrative API actions, as in accessing the API operation using AWS credentials.
+	// The Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The collection type.
@@ -9069,8 +9072,8 @@ func (s IllegalUserStateException) RequestID() string {
 type InitiateDocumentVersionUploadInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The timestamp when the content of the document was originally created.
@@ -9695,8 +9698,8 @@ func (s ProhibitedStateException) RequestID() string {
 type RemoveAllResourcePermissionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The ID of the resource.
@@ -9763,8 +9766,8 @@ func (s RemoveAllResourcePermissionsOutput) GoString() string {
 type RemoveResourcePermissionInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The principal ID of the resource.
@@ -10713,8 +10716,8 @@ func (s UnauthorizedResourceAccessException) RequestID() string {
 type UpdateDocumentInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The ID of the document.
@@ -10814,8 +10817,8 @@ func (s UpdateDocumentOutput) GoString() string {
 type UpdateDocumentVersionInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The ID of the document.
@@ -10908,8 +10911,8 @@ func (s UpdateDocumentVersionOutput) GoString() string {
 type UpdateFolderInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The ID of the folder.
@@ -11010,8 +11013,8 @@ func (s UpdateFolderOutput) GoString() string {
 type UpdateUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon WorkDocs authentication token. Do not set this field when using administrative
-	// API actions, as in accessing the API using AWS credentials.
+	// Amazon WorkDocs authentication token. Not required when using AWS administrator
+	// credentials to access the API.
 	AuthenticationToken *string `location:"header" locationName:"Authentication" min:"1" type:"string" sensitive:"true"`
 
 	// The given name of the user.

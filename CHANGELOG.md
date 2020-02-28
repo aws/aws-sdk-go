@@ -1,3 +1,20 @@
+Release v1.29.13 (2020-02-28)
+===
+
+### Service Client Updates
+* `service/accessanalyzer`: Updates service paginators
+* `service/appmesh`: Updates service API and documentation
+* `service/codeguruprofiler`: Updates service documentation
+* `service/config`: Updates service API, documentation, and paginators
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `service/glue`: Updates service API, documentation, and paginators
+  * AWS Glue adds resource tagging support for Machine Learning Transforms and adds a new API, ListMLTransforms to support tag filtering.  With this feature, customers can use tags in AWS Glue to organize and control access to Machine Learning Transforms.
+* `service/quicksight`: Updates service API, documentation, and paginators
+  * Added SearchDashboards API that allows listing of dashboards that a specific user has access to.
+* `service/sagemaker-a2i-runtime`: Updates service API and documentation
+* `service/workdocs`: Updates service documentation
+  * Documentation updates for workdocs
+
 Release v1.29.12 (2020-02-27)
 ===
 

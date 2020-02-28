@@ -240,7 +240,8 @@ func (c *AugmentedAIRuntime) ListHumanLoopsRequest(input *ListHumanLoopsInput) (
 
 // ListHumanLoops API operation for Amazon Augmented AI Runtime.
 //
-// Returns information about human loops, given the specified parameters.
+// Returns information about human loops, given the specified parameters. If
+// a human loop was deleted, it will not be included.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -400,6 +401,11 @@ func (c *AugmentedAIRuntime) StartHumanLoopRequest(input *StartHumanLoopInput) (
 //   * InternalServerException
 //   Your request could not be processed.
 //
+//   * ConflictException
+//   Your request has the same name as another active human loop but has different
+//   input data. You cannot start two human loops with the same name and different
+//   input data.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-a2i-runtime-2019-11-07/StartHumanLoop
 func (c *AugmentedAIRuntime) StartHumanLoop(input *StartHumanLoopInput) (*StartHumanLoopOutput, error) {
 	req, out := c.StartHumanLoopRequest(input)
@@ -511,6 +517,64 @@ func (c *AugmentedAIRuntime) StopHumanLoopWithContext(ctx aws.Context, input *St
 	return out, req.Send()
 }
 
+// Your request has the same name as another active human loop but has different
+// input data. You cannot start two human loops with the same name and different
+// input data.
+type ConflictException struct {
+	_            struct{} `type:"structure"`
+	respMetadata protocol.ResponseMetadata
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		respMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s ConflictException) StatusCode() int {
+	return s.respMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s ConflictException) RequestID() string {
+	return s.respMetadata.RequestID
+}
+
 type DeleteHumanLoopInput struct {
 	_ struct{} `type:"structure"`
 
@@ -569,7 +633,7 @@ func (s DeleteHumanLoopOutput) GoString() string {
 type DescribeHumanLoopInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the human loop.
+	// The unique name of the human loop.
 	//
 	// HumanLoopName is a required field
 	HumanLoopName *string `location:"uri" locationName:"HumanLoopName" min:"1" type:"string" required:"true"`
@@ -610,10 +674,10 @@ func (s *DescribeHumanLoopInput) SetHumanLoopName(v string) *DescribeHumanLoopIn
 type DescribeHumanLoopOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The timestamp when Amazon Augmented AI created the human loop.
+	// The creation time when Amazon Augmented AI created the human loop.
 	//
-	// CreationTimestamp is a required field
-	CreationTimestamp *time.Time `type:"timestamp" required:"true"`
+	// CreationTime is a required field
+	CreationTime *time.Time `type:"timestamp" required:"true"`
 
 	// A failure code denoting a specific type of failure.
 	FailureCode *string `type:"string"`
@@ -632,18 +696,13 @@ type DescribeHumanLoopOutput struct {
 	// HumanLoopArn is a required field
 	HumanLoopArn *string `type:"string" required:"true"`
 
-	// An object containing information about the human loop input.
-	//
-	// HumanLoopInput is a required field
-	HumanLoopInput *HumanLoopInputContent `type:"structure" required:"true"`
-
 	// The name of the human loop.
 	//
 	// HumanLoopName is a required field
 	HumanLoopName *string `min:"1" type:"string" required:"true"`
 
 	// An object containing information about the output of the human loop.
-	HumanLoopOutput *HumanLoopOutputContent `type:"structure"`
+	HumanLoopOutput *HumanLoopOutput `type:"structure"`
 
 	// The status of the human loop. Valid values:
 	//
@@ -661,9 +720,9 @@ func (s DescribeHumanLoopOutput) GoString() string {
 	return s.String()
 }
 
-// SetCreationTimestamp sets the CreationTimestamp field's value.
-func (s *DescribeHumanLoopOutput) SetCreationTimestamp(v time.Time) *DescribeHumanLoopOutput {
-	s.CreationTimestamp = &v
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeHumanLoopOutput) SetCreationTime(v time.Time) *DescribeHumanLoopOutput {
+	s.CreationTime = &v
 	return s
 }
 
@@ -691,12 +750,6 @@ func (s *DescribeHumanLoopOutput) SetHumanLoopArn(v string) *DescribeHumanLoopOu
 	return s
 }
 
-// SetHumanLoopInput sets the HumanLoopInput field's value.
-func (s *DescribeHumanLoopOutput) SetHumanLoopInput(v *HumanLoopInputContent) *DescribeHumanLoopOutput {
-	s.HumanLoopInput = v
-	return s
-}
-
 // SetHumanLoopName sets the HumanLoopName field's value.
 func (s *DescribeHumanLoopOutput) SetHumanLoopName(v string) *DescribeHumanLoopOutput {
 	s.HumanLoopName = &v
@@ -704,7 +757,7 @@ func (s *DescribeHumanLoopOutput) SetHumanLoopName(v string) *DescribeHumanLoopO
 }
 
 // SetHumanLoopOutput sets the HumanLoopOutput field's value.
-func (s *DescribeHumanLoopOutput) SetHumanLoopOutput(v *HumanLoopOutputContent) *DescribeHumanLoopOutput {
+func (s *DescribeHumanLoopOutput) SetHumanLoopOutput(v *HumanLoopOutput) *DescribeHumanLoopOutput {
 	s.HumanLoopOutput = v
 	return s
 }
@@ -715,90 +768,74 @@ func (s *DescribeHumanLoopOutput) SetHumanLoopStatus(v string) *DescribeHumanLoo
 	return s
 }
 
-// Contains information about why a human loop was triggered. If at least one
-// activation reason is evaluated to be true, the human loop is activated.
-type HumanLoopActivationReason struct {
+// Attributes of the data specified by the customer. Use these to describe the
+// data to be labeled.
+type HumanLoopDataAttributes struct {
 	_ struct{} `type:"structure"`
 
-	// True if the specified conditions were matched to trigger the human loop.
-	ConditionsMatched *bool `type:"boolean"`
+	// Declares that your content is free of personally identifiable information
+	// or adult content.
+	//
+	// Amazon SageMaker can restrict the Amazon Mechanical Turk workers who can
+	// view your task based on this information.
+	//
+	// ContentClassifiers is a required field
+	ContentClassifiers []*string `type:"list" required:"true"`
 }
 
 // String returns the string representation
-func (s HumanLoopActivationReason) String() string {
+func (s HumanLoopDataAttributes) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s HumanLoopActivationReason) GoString() string {
+func (s HumanLoopDataAttributes) GoString() string {
 	return s.String()
 }
 
-// SetConditionsMatched sets the ConditionsMatched field's value.
-func (s *HumanLoopActivationReason) SetConditionsMatched(v bool) *HumanLoopActivationReason {
-	s.ConditionsMatched = &v
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HumanLoopDataAttributes) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HumanLoopDataAttributes"}
+	if s.ContentClassifiers == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContentClassifiers"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContentClassifiers sets the ContentClassifiers field's value.
+func (s *HumanLoopDataAttributes) SetContentClassifiers(v []*string) *HumanLoopDataAttributes {
+	s.ContentClassifiers = v
 	return s
 }
 
-// Information about the corresponding flow definition's human loop activation
-// condition evaluation. Null if StartHumanLoop was invoked directly.
-type HumanLoopActivationResults struct {
+// An object containing the human loop input in JSON format.
+type HumanLoopInput struct {
 	_ struct{} `type:"structure"`
 
-	// A copy of the human loop activation conditions of the flow definition, augmented
-	// with the results of evaluating those conditions on the input provided to
-	// the StartHumanLoop operation.
-	HumanLoopActivationConditionsEvaluationResults *string `type:"string"`
-
-	// An object containing information about why a human loop was triggered.
-	HumanLoopActivationReason *HumanLoopActivationReason `type:"structure"`
-}
-
-// String returns the string representation
-func (s HumanLoopActivationResults) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s HumanLoopActivationResults) GoString() string {
-	return s.String()
-}
-
-// SetHumanLoopActivationConditionsEvaluationResults sets the HumanLoopActivationConditionsEvaluationResults field's value.
-func (s *HumanLoopActivationResults) SetHumanLoopActivationConditionsEvaluationResults(v string) *HumanLoopActivationResults {
-	s.HumanLoopActivationConditionsEvaluationResults = &v
-	return s
-}
-
-// SetHumanLoopActivationReason sets the HumanLoopActivationReason field's value.
-func (s *HumanLoopActivationResults) SetHumanLoopActivationReason(v *HumanLoopActivationReason) *HumanLoopActivationResults {
-	s.HumanLoopActivationReason = v
-	return s
-}
-
-// An object containing the input.
-type HumanLoopInputContent struct {
-	_ struct{} `type:"structure"`
-
-	// Serialized input from the human loop.
+	// Serialized input from the human loop. The input must be a string representation
+	// of a file in JSON format.
 	//
 	// InputContent is a required field
 	InputContent *string `type:"string" required:"true"`
 }
 
 // String returns the string representation
-func (s HumanLoopInputContent) String() string {
+func (s HumanLoopInput) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s HumanLoopInputContent) GoString() string {
+func (s HumanLoopInput) GoString() string {
 	return s.String()
 }
 
 // Validate inspects the fields of the type to determine if they are valid.
-func (s *HumanLoopInputContent) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "HumanLoopInputContent"}
+func (s *HumanLoopInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HumanLoopInput"}
 	if s.InputContent == nil {
 		invalidParams.Add(request.NewErrParamRequired("InputContent"))
 	}
@@ -810,34 +847,34 @@ func (s *HumanLoopInputContent) Validate() error {
 }
 
 // SetInputContent sets the InputContent field's value.
-func (s *HumanLoopInputContent) SetInputContent(v string) *HumanLoopInputContent {
+func (s *HumanLoopInput) SetInputContent(v string) *HumanLoopInput {
 	s.InputContent = &v
 	return s
 }
 
 // Information about where the human output will be stored.
-type HumanLoopOutputContent struct {
+type HumanLoopOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The location of the Amazon S3 object where Amazon Augmented AI stores your
-	// human loop output. The output is stored at the following location: s3://S3OutputPath/HumanLoopName/CreationTime/output.json.
+	// human loop output.
 	//
 	// OutputS3Uri is a required field
 	OutputS3Uri *string `type:"string" required:"true"`
 }
 
 // String returns the string representation
-func (s HumanLoopOutputContent) String() string {
+func (s HumanLoopOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s HumanLoopOutputContent) GoString() string {
+func (s HumanLoopOutput) GoString() string {
 	return s.String()
 }
 
 // SetOutputS3Uri sets the OutputS3Uri field's value.
-func (s *HumanLoopOutputContent) SetOutputS3Uri(v string) *HumanLoopOutputContent {
+func (s *HumanLoopOutput) SetOutputS3Uri(v string) *HumanLoopOutput {
 	s.OutputS3Uri = &v
 	return s
 }
@@ -903,48 +940,6 @@ func (s *HumanLoopSummary) SetHumanLoopStatus(v string) *HumanLoopSummary {
 	return s
 }
 
-// Attributes of the data specified by the customer. Use these to describe the
-// data to be labeled.
-type HumanReviewDataAttributes struct {
-	_ struct{} `type:"structure"`
-
-	// Declares that your content is free of personally identifiable information
-	// or adult content. Amazon SageMaker may restrict the Amazon Mechanical Turk
-	// workers that can view your task based on this information.
-	//
-	// ContentClassifiers is a required field
-	ContentClassifiers []*string `type:"list" required:"true"`
-}
-
-// String returns the string representation
-func (s HumanReviewDataAttributes) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s HumanReviewDataAttributes) GoString() string {
-	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *HumanReviewDataAttributes) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "HumanReviewDataAttributes"}
-	if s.ContentClassifiers == nil {
-		invalidParams.Add(request.NewErrParamRequired("ContentClassifiers"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
-// SetContentClassifiers sets the ContentClassifiers field's value.
-func (s *HumanReviewDataAttributes) SetContentClassifiers(v []*string) *HumanReviewDataAttributes {
-	s.ContentClassifiers = v
-	return s
-}
-
 // Your request could not be processed.
 type InternalServerException struct {
 	_            struct{} `type:"structure"`
@@ -1004,13 +999,18 @@ func (s InternalServerException) RequestID() string {
 type ListHumanLoopsInput struct {
 	_ struct{} `type:"structure"`
 
-	// (Optional) The timestamp of the date when you want the human loops to begin.
-	// For example, 1551000000.
+	// (Optional) The timestamp of the date when you want the human loops to begin
+	// in ISO 8601 format. For example, 2020-02-24.
 	CreationTimeAfter *time.Time `location:"querystring" locationName:"CreationTimeAfter" type:"timestamp"`
 
 	// (Optional) The timestamp of the date before which you want the human loops
-	// to begin. For example, 1550000000.
+	// to begin in ISO 8601 format. For example, 2020-02-24.
 	CreationTimeBefore *time.Time `location:"querystring" locationName:"CreationTimeBefore" type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of a flow definition.
+	//
+	// FlowDefinitionArn is a required field
+	FlowDefinitionArn *string `location:"querystring" locationName:"FlowDefinitionArn" type:"string" required:"true"`
 
 	// The total number of items to return. If the total number of available items
 	// is more than the value specified in MaxResults, then a NextToken will be
@@ -1038,6 +1038,9 @@ func (s ListHumanLoopsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListHumanLoopsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListHumanLoopsInput"}
+	if s.FlowDefinitionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowDefinitionArn"))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -1057,6 +1060,12 @@ func (s *ListHumanLoopsInput) SetCreationTimeAfter(v time.Time) *ListHumanLoopsI
 // SetCreationTimeBefore sets the CreationTimeBefore field's value.
 func (s *ListHumanLoopsInput) SetCreationTimeBefore(v time.Time) *ListHumanLoopsInput {
 	s.CreationTimeBefore = &v
+	return s
+}
+
+// SetFlowDefinitionArn sets the FlowDefinitionArn field's value.
+func (s *ListHumanLoopsInput) SetFlowDefinitionArn(v string) *ListHumanLoopsInput {
+	s.FlowDefinitionArn = &v
 	return s
 }
 
@@ -1229,7 +1238,7 @@ type StartHumanLoopInput struct {
 	_ struct{} `type:"structure"`
 
 	// Attributes of the data specified by the customer.
-	DataAttributes *HumanReviewDataAttributes `type:"structure"`
+	DataAttributes *HumanLoopDataAttributes `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the flow definition.
 	//
@@ -1239,7 +1248,7 @@ type StartHumanLoopInput struct {
 	// An object containing information about the human loop.
 	//
 	// HumanLoopInput is a required field
-	HumanLoopInput *HumanLoopInputContent `type:"structure" required:"true"`
+	HumanLoopInput *HumanLoopInput `type:"structure" required:"true"`
 
 	// The name of the human loop.
 	//
@@ -1290,7 +1299,7 @@ func (s *StartHumanLoopInput) Validate() error {
 }
 
 // SetDataAttributes sets the DataAttributes field's value.
-func (s *StartHumanLoopInput) SetDataAttributes(v *HumanReviewDataAttributes) *StartHumanLoopInput {
+func (s *StartHumanLoopInput) SetDataAttributes(v *HumanLoopDataAttributes) *StartHumanLoopInput {
 	s.DataAttributes = v
 	return s
 }
@@ -1302,7 +1311,7 @@ func (s *StartHumanLoopInput) SetFlowDefinitionArn(v string) *StartHumanLoopInpu
 }
 
 // SetHumanLoopInput sets the HumanLoopInput field's value.
-func (s *StartHumanLoopInput) SetHumanLoopInput(v *HumanLoopInputContent) *StartHumanLoopInput {
+func (s *StartHumanLoopInput) SetHumanLoopInput(v *HumanLoopInput) *StartHumanLoopInput {
 	s.HumanLoopInput = v
 	return s
 }
@@ -1316,9 +1325,6 @@ func (s *StartHumanLoopInput) SetHumanLoopName(v string) *StartHumanLoopInput {
 type StartHumanLoopOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An object containing information about the human loop activation.
-	HumanLoopActivationResults *HumanLoopActivationResults `type:"structure"`
-
 	// The Amazon Resource Name (ARN) of the human loop.
 	HumanLoopArn *string `type:"string"`
 }
@@ -1331,12 +1337,6 @@ func (s StartHumanLoopOutput) String() string {
 // GoString returns the string representation
 func (s StartHumanLoopOutput) GoString() string {
 	return s.String()
-}
-
-// SetHumanLoopActivationResults sets the HumanLoopActivationResults field's value.
-func (s *StartHumanLoopOutput) SetHumanLoopActivationResults(v *HumanLoopActivationResults) *StartHumanLoopOutput {
-	s.HumanLoopActivationResults = v
-	return s
 }
 
 // SetHumanLoopArn sets the HumanLoopArn field's value.

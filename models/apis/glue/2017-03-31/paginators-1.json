@@ -101,6 +101,11 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken"
     },
+    "ListMLTransforms": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
     "ListTriggers": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

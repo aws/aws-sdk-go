@@ -68,7 +68,8 @@
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"},
         {"shape":"ServiceQuotaExceededException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ConflictException"}
       ]
     },
     "StopHumanLoop":{
@@ -88,7 +89,14 @@
     }
   },
   "shapes":{
-    "Boolean":{"type":"boolean"},
+    "ConflictException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"FailureReason"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
     "ContentClassifier":{
       "type":"string",
       "enum":[
@@ -131,23 +139,21 @@
     "DescribeHumanLoopResponse":{
       "type":"structure",
       "required":[
-        "CreationTimestamp",
+        "CreationTime",
         "HumanLoopStatus",
         "HumanLoopName",
         "HumanLoopArn",
-        "FlowDefinitionArn",
-        "HumanLoopInput"
+        "FlowDefinitionArn"
       ],
       "members":{
-        "CreationTimestamp":{"shape":"Timestamp"},
+        "CreationTime":{"shape":"Timestamp"},
         "FailureReason":{"shape":"String"},
         "FailureCode":{"shape":"String"},
         "HumanLoopStatus":{"shape":"HumanLoopStatus"},
         "HumanLoopName":{"shape":"HumanLoopName"},
         "HumanLoopArn":{"shape":"HumanLoopArn"},
         "FlowDefinitionArn":{"shape":"FlowDefinitionArn"},
-        "HumanLoopInput":{"shape":"HumanLoopInputContent"},
-        "HumanLoopOutput":{"shape":"HumanLoopOutputContent"}
+        "HumanLoopOutput":{"shape":"HumanLoopOutput"}
       }
     },
     "FailureReason":{
@@ -159,25 +165,19 @@
       "max":1024,
       "pattern":"arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:flow-definition/.*"
     },
-    "HumanLoopActivationReason":{
-      "type":"structure",
-      "members":{
-        "ConditionsMatched":{"shape":"Boolean"}
-      }
-    },
-    "HumanLoopActivationResults":{
-      "type":"structure",
-      "members":{
-        "HumanLoopActivationReason":{"shape":"HumanLoopActivationReason"},
-        "HumanLoopActivationConditionsEvaluationResults":{"shape":"String"}
-      }
-    },
     "HumanLoopArn":{
       "type":"string",
       "max":1024,
       "pattern":"arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:human-loop/.*"
     },
-    "HumanLoopInputContent":{
+    "HumanLoopDataAttributes":{
+      "type":"structure",
+      "required":["ContentClassifiers"],
+      "members":{
+        "ContentClassifiers":{"shape":"ContentClassifiers"}
+      }
+    },
+    "HumanLoopInput":{
       "type":"structure",
       "required":["InputContent"],
       "members":{
@@ -190,7 +190,7 @@
       "min":1,
       "pattern":"^[a-z0-9](-*[a-z0-9])*$"
     },
-    "HumanLoopOutputContent":{
+    "HumanLoopOutput":{
       "type":"structure",
       "required":["OutputS3Uri"],
       "members":{
@@ -221,13 +221,6 @@
         "FlowDefinitionArn":{"shape":"FlowDefinitionArn"}
       }
     },
-    "HumanReviewDataAttributes":{
-      "type":"structure",
-      "required":["ContentClassifiers"],
-      "members":{
-        "ContentClassifiers":{"shape":"ContentClassifiers"}
-      }
-    },
     "InputContent":{
       "type":"string",
       "max":4194304
@@ -242,6 +235,7 @@
     },
     "ListHumanLoopsRequest":{
       "type":"structure",
+      "required":["FlowDefinitionArn"],
       "members":{
         "CreationTimeAfter":{
           "shape":"Timestamp",
@@ -252,6 +246,11 @@
           "shape":"Timestamp",
           "location":"querystring",
           "locationName":"CreationTimeBefore"
+        },
+        "FlowDefinitionArn":{
+          "shape":"FlowDefinitionArn",
+          "location":"querystring",
+          "locationName":"FlowDefinitionArn"
         },
         "SortOrder":{
           "shape":"SortOrder",
@@ -322,15 +321,14 @@
       "members":{
         "HumanLoopName":{"shape":"HumanLoopName"},
         "FlowDefinitionArn":{"shape":"FlowDefinitionArn"},
-        "HumanLoopInput":{"shape":"HumanLoopInputContent"},
-        "DataAttributes":{"shape":"HumanReviewDataAttributes"}
+        "HumanLoopInput":{"shape":"HumanLoopInput"},
+        "DataAttributes":{"shape":"HumanLoopDataAttributes"}
       }
     },
     "StartHumanLoopResponse":{
       "type":"structure",
       "members":{
-        "HumanLoopArn":{"shape":"HumanLoopArn"},
-        "HumanLoopActivationResults":{"shape":"HumanLoopActivationResults"}
+        "HumanLoopArn":{"shape":"HumanLoopArn"}
       }
     },
     "StopHumanLoopRequest":{

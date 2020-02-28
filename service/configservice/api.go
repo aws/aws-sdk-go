@@ -1258,6 +1258,23 @@ func (c *ConfigService) DeleteRemediationConfigurationRequest(input *DeleteRemed
 //   Remediation action is in progress. You can either cancel execution in AWS
 //   Systems Manager or wait and try again later.
 //
+//   * InsufficientPermissionsException
+//   Indicates one of the following errors:
+//
+//      * For PutConfigRule, the rule cannot be created because the IAM role assigned
+//      to AWS Config lacks permissions to perform the config:Put* action.
+//
+//      * For PutConfigRule, the AWS Lambda function cannot be invoked. Check
+//      the function ARN, and check the function's permissions.
+//
+//      * For PutOrganizationConfigRule, organization config rule cannot be created
+//      because you do not have permissions to call IAM GetRole action or create
+//      a service linked role.
+//
+//      * For PutConformancePack and PutOrganizationConformancePack, a conformance
+//      pack cannot be created because you do not have permissions: To call IAM
+//      GetRole action or create a service linked role. To read Amazon S3 bucket.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DeleteRemediationConfiguration
 func (c *ConfigService) DeleteRemediationConfiguration(input *DeleteRemediationConfigurationInput) (*DeleteRemediationConfigurationOutput, error) {
 	req, out := c.DeleteRemediationConfigurationRequest(input)
@@ -7137,6 +7154,159 @@ func (c *ConfigService) PutRetentionConfigurationWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+const opSelectAggregateResourceConfig = "SelectAggregateResourceConfig"
+
+// SelectAggregateResourceConfigRequest generates a "aws/request.Request" representing the
+// client's request for the SelectAggregateResourceConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SelectAggregateResourceConfig for more information on using the SelectAggregateResourceConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SelectAggregateResourceConfigRequest method.
+//    req, resp := client.SelectAggregateResourceConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/SelectAggregateResourceConfig
+func (c *ConfigService) SelectAggregateResourceConfigRequest(input *SelectAggregateResourceConfigInput) (req *request.Request, output *SelectAggregateResourceConfigOutput) {
+	op := &request.Operation{
+		Name:       opSelectAggregateResourceConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SelectAggregateResourceConfigInput{}
+	}
+
+	output = &SelectAggregateResourceConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SelectAggregateResourceConfig API operation for AWS Config.
+//
+// Accepts a structured query language (SQL) SELECT command and an aggregator
+// to query configuration state of AWS resources across multiple accounts and
+// regions, performs the corresponding search, and returns resource configurations
+// matching the properties.
+//
+// For more information about query components, see the Query Components (https://docs.aws.amazon.com/config/latest/developerguide/query-components.html)
+// section in the AWS Config Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation SelectAggregateResourceConfig for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidExpressionException
+//   The syntax of the query is incorrect.
+//
+//   * NoSuchConfigurationAggregatorException
+//   You have specified a configuration aggregator that does not exist.
+//
+//   * InvalidLimitException
+//   The specified limit is outside the allowable range.
+//
+//   * InvalidNextTokenException
+//   The specified next token is invalid. Specify the nextToken string that was
+//   returned in the previous response to get the next page of results.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/SelectAggregateResourceConfig
+func (c *ConfigService) SelectAggregateResourceConfig(input *SelectAggregateResourceConfigInput) (*SelectAggregateResourceConfigOutput, error) {
+	req, out := c.SelectAggregateResourceConfigRequest(input)
+	return out, req.Send()
+}
+
+// SelectAggregateResourceConfigWithContext is the same as SelectAggregateResourceConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SelectAggregateResourceConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) SelectAggregateResourceConfigWithContext(ctx aws.Context, input *SelectAggregateResourceConfigInput, opts ...request.Option) (*SelectAggregateResourceConfigOutput, error) {
+	req, out := c.SelectAggregateResourceConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SelectAggregateResourceConfigPages iterates over the pages of a SelectAggregateResourceConfig operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SelectAggregateResourceConfig method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a SelectAggregateResourceConfig operation.
+//    pageNum := 0
+//    err := client.SelectAggregateResourceConfigPages(params,
+//        func(page *configservice.SelectAggregateResourceConfigOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) SelectAggregateResourceConfigPages(input *SelectAggregateResourceConfigInput, fn func(*SelectAggregateResourceConfigOutput, bool) bool) error {
+	return c.SelectAggregateResourceConfigPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SelectAggregateResourceConfigPagesWithContext same as SelectAggregateResourceConfigPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) SelectAggregateResourceConfigPagesWithContext(ctx aws.Context, input *SelectAggregateResourceConfigInput, fn func(*SelectAggregateResourceConfigOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SelectAggregateResourceConfigInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SelectAggregateResourceConfigRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SelectAggregateResourceConfigOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opSelectResourceConfig = "SelectResourceConfig"
 
 // SelectResourceConfigRequest generates a "aws/request.Request" representing the
@@ -8962,10 +9132,10 @@ type ConfigRule struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the AWS Config rule.
-	ConfigRuleArn *string `type:"string"`
+	ConfigRuleArn *string `min:"1" type:"string"`
 
 	// The ID of the AWS Config rule.
-	ConfigRuleId *string `type:"string"`
+	ConfigRuleId *string `min:"1" type:"string"`
 
 	// The name that you assign to the AWS Config rule. The name is required if
 	// you are adding a new rule.
@@ -9042,6 +9212,12 @@ func (s ConfigRule) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ConfigRule) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ConfigRule"}
+	if s.ConfigRuleArn != nil && len(*s.ConfigRuleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigRuleArn", 1))
+	}
+	if s.ConfigRuleId != nil && len(*s.ConfigRuleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigRuleId", 1))
+	}
 	if s.ConfigRuleName != nil && len(*s.ConfigRuleName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ConfigRuleName", 1))
 	}
@@ -9279,6 +9455,8 @@ type ConfigRuleEvaluationStatus struct {
 	//    against the rule.
 	FirstEvaluationStarted *bool `type:"boolean"`
 
+	LastDeactivatedTime *time.Time `type:"timestamp"`
+
 	// The error code that AWS Config returned when the rule last failed.
 	LastErrorCode *string `type:"string"`
 
@@ -9339,6 +9517,12 @@ func (s *ConfigRuleEvaluationStatus) SetFirstActivatedTime(v time.Time) *ConfigR
 // SetFirstEvaluationStarted sets the FirstEvaluationStarted field's value.
 func (s *ConfigRuleEvaluationStatus) SetFirstEvaluationStarted(v bool) *ConfigRuleEvaluationStatus {
 	s.FirstEvaluationStarted = &v
+	return s
+}
+
+// SetLastDeactivatedTime sets the LastDeactivatedTime field's value.
+func (s *ConfigRuleEvaluationStatus) SetLastDeactivatedTime(v time.Time) *ConfigRuleEvaluationStatus {
+	s.LastDeactivatedTime = &v
 	return s
 }
 
@@ -11068,7 +11252,7 @@ type DeleteRemediationConfigurationInput struct {
 	ConfigRuleName *string `min:"1" type:"string" required:"true"`
 
 	// The type of a resource.
-	ResourceType *string `type:"string"`
+	ResourceType *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -11089,6 +11273,9 @@ func (s *DeleteRemediationConfigurationInput) Validate() error {
 	}
 	if s.ConfigRuleName != nil && len(*s.ConfigRuleName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ConfigRuleName", 1))
+	}
+	if s.ResourceType != nil && len(*s.ResourceType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceType", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -20824,7 +21011,7 @@ type RemediationConfiguration struct {
 	Parameters map[string]*RemediationParameterValue `type:"map"`
 
 	// The type of a resource.
-	ResourceType *string `type:"string"`
+	ResourceType *string `min:"1" type:"string"`
 
 	// Maximum time in seconds that AWS Config runs auto-remediation. If you do
 	// not select a number, the default is 60 seconds.
@@ -20845,7 +21032,7 @@ type RemediationConfiguration struct {
 	TargetType *string `type:"string" required:"true" enum:"RemediationTargetType"`
 
 	// Version of the target. For example, version of the SSM document.
-	TargetVersion *string `type:"string"`
+	TargetVersion *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -20876,6 +21063,9 @@ func (s *RemediationConfiguration) Validate() error {
 	if s.MaximumAutomaticAttempts != nil && *s.MaximumAutomaticAttempts < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaximumAutomaticAttempts", 1))
 	}
+	if s.ResourceType != nil && len(*s.ResourceType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceType", 1))
+	}
 	if s.RetryAttemptSeconds != nil && *s.RetryAttemptSeconds < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("RetryAttemptSeconds", 1))
 	}
@@ -20887,6 +21077,9 @@ func (s *RemediationConfiguration) Validate() error {
 	}
 	if s.TargetType == nil {
 		invalidParams.Add(request.NewErrParamRequired("TargetType"))
+	}
+	if s.TargetVersion != nil && len(*s.TargetVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetVersion", 1))
 	}
 	if s.ExecutionControls != nil {
 		if err := s.ExecutionControls.Validate(); err != nil {
@@ -21949,6 +22142,133 @@ func (s *Scope) SetTagKey(v string) *Scope {
 // SetTagValue sets the TagValue field's value.
 func (s *Scope) SetTagValue(v string) *Scope {
 	s.TagValue = &v
+	return s
+}
+
+type SelectAggregateResourceConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the configuration aggregator.
+	//
+	// ConfigurationAggregatorName is a required field
+	ConfigurationAggregatorName *string `min:"1" type:"string" required:"true"`
+
+	// The SQL query SELECT command.
+	//
+	// Expression is a required field
+	Expression *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of query results returned on each page.
+	Limit *int64 `type:"integer"`
+
+	MaxResults *int64 `type:"integer"`
+
+	// The nextToken string returned in a previous request that you use to request
+	// the next page of results in a paginated response.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SelectAggregateResourceConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SelectAggregateResourceConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SelectAggregateResourceConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SelectAggregateResourceConfigInput"}
+	if s.ConfigurationAggregatorName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationAggregatorName"))
+	}
+	if s.ConfigurationAggregatorName != nil && len(*s.ConfigurationAggregatorName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationAggregatorName", 1))
+	}
+	if s.Expression == nil {
+		invalidParams.Add(request.NewErrParamRequired("Expression"))
+	}
+	if s.Expression != nil && len(*s.Expression) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Expression", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigurationAggregatorName sets the ConfigurationAggregatorName field's value.
+func (s *SelectAggregateResourceConfigInput) SetConfigurationAggregatorName(v string) *SelectAggregateResourceConfigInput {
+	s.ConfigurationAggregatorName = &v
+	return s
+}
+
+// SetExpression sets the Expression field's value.
+func (s *SelectAggregateResourceConfigInput) SetExpression(v string) *SelectAggregateResourceConfigInput {
+	s.Expression = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *SelectAggregateResourceConfigInput) SetLimit(v int64) *SelectAggregateResourceConfigInput {
+	s.Limit = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SelectAggregateResourceConfigInput) SetMaxResults(v int64) *SelectAggregateResourceConfigInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SelectAggregateResourceConfigInput) SetNextToken(v string) *SelectAggregateResourceConfigInput {
+	s.NextToken = &v
+	return s
+}
+
+type SelectAggregateResourceConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The nextToken string returned in a previous request that you use to request
+	// the next page of results in a paginated response.
+	NextToken *string `type:"string"`
+
+	// Details about the query.
+	QueryInfo *QueryInfo `type:"structure"`
+
+	// Returns the results for the SQL query.
+	Results []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s SelectAggregateResourceConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SelectAggregateResourceConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SelectAggregateResourceConfigOutput) SetNextToken(v string) *SelectAggregateResourceConfigOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetQueryInfo sets the QueryInfo field's value.
+func (s *SelectAggregateResourceConfigOutput) SetQueryInfo(v *QueryInfo) *SelectAggregateResourceConfigOutput {
+	s.QueryInfo = v
+	return s
+}
+
+// SetResults sets the Results field's value.
+func (s *SelectAggregateResourceConfigOutput) SetResults(v []*string) *SelectAggregateResourceConfigOutput {
+	s.Results = v
 	return s
 }
 
@@ -23287,155 +23607,29 @@ const (
 )
 
 const (
-	// ResourceTypeAwsEc2CustomerGateway is a ResourceType enum value
-	ResourceTypeAwsEc2CustomerGateway = "AWS::EC2::CustomerGateway"
-
-	// ResourceTypeAwsEc2Eip is a ResourceType enum value
-	ResourceTypeAwsEc2Eip = "AWS::EC2::EIP"
-
-	// ResourceTypeAwsEc2Host is a ResourceType enum value
-	ResourceTypeAwsEc2Host = "AWS::EC2::Host"
-
-	// ResourceTypeAwsEc2Instance is a ResourceType enum value
-	ResourceTypeAwsEc2Instance = "AWS::EC2::Instance"
-
-	// ResourceTypeAwsEc2InternetGateway is a ResourceType enum value
-	ResourceTypeAwsEc2InternetGateway = "AWS::EC2::InternetGateway"
-
-	// ResourceTypeAwsEc2NetworkAcl is a ResourceType enum value
-	ResourceTypeAwsEc2NetworkAcl = "AWS::EC2::NetworkAcl"
-
-	// ResourceTypeAwsEc2NetworkInterface is a ResourceType enum value
-	ResourceTypeAwsEc2NetworkInterface = "AWS::EC2::NetworkInterface"
-
-	// ResourceTypeAwsEc2RouteTable is a ResourceType enum value
-	ResourceTypeAwsEc2RouteTable = "AWS::EC2::RouteTable"
-
-	// ResourceTypeAwsEc2SecurityGroup is a ResourceType enum value
-	ResourceTypeAwsEc2SecurityGroup = "AWS::EC2::SecurityGroup"
-
-	// ResourceTypeAwsEc2Subnet is a ResourceType enum value
-	ResourceTypeAwsEc2Subnet = "AWS::EC2::Subnet"
-
-	// ResourceTypeAwsCloudTrailTrail is a ResourceType enum value
-	ResourceTypeAwsCloudTrailTrail = "AWS::CloudTrail::Trail"
-
-	// ResourceTypeAwsEc2Volume is a ResourceType enum value
-	ResourceTypeAwsEc2Volume = "AWS::EC2::Volume"
-
-	// ResourceTypeAwsEc2Vpc is a ResourceType enum value
-	ResourceTypeAwsEc2Vpc = "AWS::EC2::VPC"
-
-	// ResourceTypeAwsEc2Vpnconnection is a ResourceType enum value
-	ResourceTypeAwsEc2Vpnconnection = "AWS::EC2::VPNConnection"
-
-	// ResourceTypeAwsEc2Vpngateway is a ResourceType enum value
-	ResourceTypeAwsEc2Vpngateway = "AWS::EC2::VPNGateway"
-
-	// ResourceTypeAwsEc2RegisteredHainstance is a ResourceType enum value
-	ResourceTypeAwsEc2RegisteredHainstance = "AWS::EC2::RegisteredHAInstance"
-
-	// ResourceTypeAwsEc2NatGateway is a ResourceType enum value
-	ResourceTypeAwsEc2NatGateway = "AWS::EC2::NatGateway"
-
-	// ResourceTypeAwsEc2EgressOnlyInternetGateway is a ResourceType enum value
-	ResourceTypeAwsEc2EgressOnlyInternetGateway = "AWS::EC2::EgressOnlyInternetGateway"
-
-	// ResourceTypeAwsEc2Vpcendpoint is a ResourceType enum value
-	ResourceTypeAwsEc2Vpcendpoint = "AWS::EC2::VPCEndpoint"
-
-	// ResourceTypeAwsEc2VpcendpointService is a ResourceType enum value
-	ResourceTypeAwsEc2VpcendpointService = "AWS::EC2::VPCEndpointService"
-
-	// ResourceTypeAwsEc2FlowLog is a ResourceType enum value
-	ResourceTypeAwsEc2FlowLog = "AWS::EC2::FlowLog"
-
-	// ResourceTypeAwsEc2VpcpeeringConnection is a ResourceType enum value
-	ResourceTypeAwsEc2VpcpeeringConnection = "AWS::EC2::VPCPeeringConnection"
-
-	// ResourceTypeAwsIamGroup is a ResourceType enum value
-	ResourceTypeAwsIamGroup = "AWS::IAM::Group"
-
-	// ResourceTypeAwsIamPolicy is a ResourceType enum value
-	ResourceTypeAwsIamPolicy = "AWS::IAM::Policy"
-
-	// ResourceTypeAwsIamRole is a ResourceType enum value
-	ResourceTypeAwsIamRole = "AWS::IAM::Role"
-
-	// ResourceTypeAwsIamUser is a ResourceType enum value
-	ResourceTypeAwsIamUser = "AWS::IAM::User"
-
-	// ResourceTypeAwsElasticLoadBalancingV2LoadBalancer is a ResourceType enum value
-	ResourceTypeAwsElasticLoadBalancingV2LoadBalancer = "AWS::ElasticLoadBalancingV2::LoadBalancer"
-
 	// ResourceTypeAwsAcmCertificate is a ResourceType enum value
 	ResourceTypeAwsAcmCertificate = "AWS::ACM::Certificate"
 
-	// ResourceTypeAwsRdsDbinstance is a ResourceType enum value
-	ResourceTypeAwsRdsDbinstance = "AWS::RDS::DBInstance"
+	// ResourceTypeAwsApiGatewayDomainName is a ResourceType enum value
+	ResourceTypeAwsApiGatewayDomainName = "AWS::ApiGateway::DomainName"
 
-	// ResourceTypeAwsRdsDbparameterGroup is a ResourceType enum value
-	ResourceTypeAwsRdsDbparameterGroup = "AWS::RDS::DBParameterGroup"
+	// ResourceTypeAwsApiGatewayMethod is a ResourceType enum value
+	ResourceTypeAwsApiGatewayMethod = "AWS::ApiGateway::Method"
 
-	// ResourceTypeAwsRdsDboptionGroup is a ResourceType enum value
-	ResourceTypeAwsRdsDboptionGroup = "AWS::RDS::DBOptionGroup"
+	// ResourceTypeAwsApiGatewayRestApi is a ResourceType enum value
+	ResourceTypeAwsApiGatewayRestApi = "AWS::ApiGateway::RestApi"
 
-	// ResourceTypeAwsRdsDbsubnetGroup is a ResourceType enum value
-	ResourceTypeAwsRdsDbsubnetGroup = "AWS::RDS::DBSubnetGroup"
+	// ResourceTypeAwsApiGatewayStage is a ResourceType enum value
+	ResourceTypeAwsApiGatewayStage = "AWS::ApiGateway::Stage"
 
-	// ResourceTypeAwsRdsDbsecurityGroup is a ResourceType enum value
-	ResourceTypeAwsRdsDbsecurityGroup = "AWS::RDS::DBSecurityGroup"
+	// ResourceTypeAwsApiGatewayV2Api is a ResourceType enum value
+	ResourceTypeAwsApiGatewayV2Api = "AWS::ApiGatewayV2::Api"
 
-	// ResourceTypeAwsRdsDbsnapshot is a ResourceType enum value
-	ResourceTypeAwsRdsDbsnapshot = "AWS::RDS::DBSnapshot"
+	// ResourceTypeAwsApiGatewayV2DomainName is a ResourceType enum value
+	ResourceTypeAwsApiGatewayV2DomainName = "AWS::ApiGatewayV2::DomainName"
 
-	// ResourceTypeAwsRdsDbcluster is a ResourceType enum value
-	ResourceTypeAwsRdsDbcluster = "AWS::RDS::DBCluster"
-
-	// ResourceTypeAwsRdsDbclusterParameterGroup is a ResourceType enum value
-	ResourceTypeAwsRdsDbclusterParameterGroup = "AWS::RDS::DBClusterParameterGroup"
-
-	// ResourceTypeAwsRdsDbclusterSnapshot is a ResourceType enum value
-	ResourceTypeAwsRdsDbclusterSnapshot = "AWS::RDS::DBClusterSnapshot"
-
-	// ResourceTypeAwsRdsEventSubscription is a ResourceType enum value
-	ResourceTypeAwsRdsEventSubscription = "AWS::RDS::EventSubscription"
-
-	// ResourceTypeAwsS3Bucket is a ResourceType enum value
-	ResourceTypeAwsS3Bucket = "AWS::S3::Bucket"
-
-	// ResourceTypeAwsS3AccountPublicAccessBlock is a ResourceType enum value
-	ResourceTypeAwsS3AccountPublicAccessBlock = "AWS::S3::AccountPublicAccessBlock"
-
-	// ResourceTypeAwsRedshiftCluster is a ResourceType enum value
-	ResourceTypeAwsRedshiftCluster = "AWS::Redshift::Cluster"
-
-	// ResourceTypeAwsRedshiftClusterSnapshot is a ResourceType enum value
-	ResourceTypeAwsRedshiftClusterSnapshot = "AWS::Redshift::ClusterSnapshot"
-
-	// ResourceTypeAwsRedshiftClusterParameterGroup is a ResourceType enum value
-	ResourceTypeAwsRedshiftClusterParameterGroup = "AWS::Redshift::ClusterParameterGroup"
-
-	// ResourceTypeAwsRedshiftClusterSecurityGroup is a ResourceType enum value
-	ResourceTypeAwsRedshiftClusterSecurityGroup = "AWS::Redshift::ClusterSecurityGroup"
-
-	// ResourceTypeAwsRedshiftClusterSubnetGroup is a ResourceType enum value
-	ResourceTypeAwsRedshiftClusterSubnetGroup = "AWS::Redshift::ClusterSubnetGroup"
-
-	// ResourceTypeAwsRedshiftEventSubscription is a ResourceType enum value
-	ResourceTypeAwsRedshiftEventSubscription = "AWS::Redshift::EventSubscription"
-
-	// ResourceTypeAwsSsmManagedInstanceInventory is a ResourceType enum value
-	ResourceTypeAwsSsmManagedInstanceInventory = "AWS::SSM::ManagedInstanceInventory"
-
-	// ResourceTypeAwsCloudWatchAlarm is a ResourceType enum value
-	ResourceTypeAwsCloudWatchAlarm = "AWS::CloudWatch::Alarm"
-
-	// ResourceTypeAwsCloudFormationStack is a ResourceType enum value
-	ResourceTypeAwsCloudFormationStack = "AWS::CloudFormation::Stack"
-
-	// ResourceTypeAwsElasticLoadBalancingLoadBalancer is a ResourceType enum value
-	ResourceTypeAwsElasticLoadBalancingLoadBalancer = "AWS::ElasticLoadBalancing::LoadBalancer"
+	// ResourceTypeAwsApiGatewayV2Stage is a ResourceType enum value
+	ResourceTypeAwsApiGatewayV2Stage = "AWS::ApiGatewayV2::Stage"
 
 	// ResourceTypeAwsAutoScalingAutoScalingGroup is a ResourceType enum value
 	ResourceTypeAwsAutoScalingAutoScalingGroup = "AWS::AutoScaling::AutoScalingGroup"
@@ -23449,11 +23643,284 @@ const (
 	// ResourceTypeAwsAutoScalingScheduledAction is a ResourceType enum value
 	ResourceTypeAwsAutoScalingScheduledAction = "AWS::AutoScaling::ScheduledAction"
 
-	// ResourceTypeAwsDynamoDbTable is a ResourceType enum value
-	ResourceTypeAwsDynamoDbTable = "AWS::DynamoDB::Table"
+	// ResourceTypeAwsCloudFormationStack is a ResourceType enum value
+	ResourceTypeAwsCloudFormationStack = "AWS::CloudFormation::Stack"
+
+	// ResourceTypeAwsCloudFrontDistribution is a ResourceType enum value
+	ResourceTypeAwsCloudFrontDistribution = "AWS::CloudFront::Distribution"
+
+	// ResourceTypeAwsCloudFrontStreamingDistribution is a ResourceType enum value
+	ResourceTypeAwsCloudFrontStreamingDistribution = "AWS::CloudFront::StreamingDistribution"
+
+	// ResourceTypeAwsCloudTrailTrail is a ResourceType enum value
+	ResourceTypeAwsCloudTrailTrail = "AWS::CloudTrail::Trail"
+
+	// ResourceTypeAwsCloudWatchAlarm is a ResourceType enum value
+	ResourceTypeAwsCloudWatchAlarm = "AWS::CloudWatch::Alarm"
 
 	// ResourceTypeAwsCodeBuildProject is a ResourceType enum value
 	ResourceTypeAwsCodeBuildProject = "AWS::CodeBuild::Project"
+
+	// ResourceTypeAwsCodePipelinePipeline is a ResourceType enum value
+	ResourceTypeAwsCodePipelinePipeline = "AWS::CodePipeline::Pipeline"
+
+	// ResourceTypeAwsConfigResourceCompliance is a ResourceType enum value
+	ResourceTypeAwsConfigResourceCompliance = "AWS::Config::ResourceCompliance"
+
+	// ResourceTypeAwsDynamoDbTable is a ResourceType enum value
+	ResourceTypeAwsDynamoDbTable = "AWS::DynamoDB::Table"
+
+	// ResourceTypeAwsEc2CustomerGateway is a ResourceType enum value
+	ResourceTypeAwsEc2CustomerGateway = "AWS::EC2::CustomerGateway"
+
+	// ResourceTypeAwsEc2EgressOnlyInternetGateway is a ResourceType enum value
+	ResourceTypeAwsEc2EgressOnlyInternetGateway = "AWS::EC2::EgressOnlyInternetGateway"
+
+	// ResourceTypeAwsEc2Eip is a ResourceType enum value
+	ResourceTypeAwsEc2Eip = "AWS::EC2::EIP"
+
+	// ResourceTypeAwsEc2FlowLog is a ResourceType enum value
+	ResourceTypeAwsEc2FlowLog = "AWS::EC2::FlowLog"
+
+	// ResourceTypeAwsEc2Host is a ResourceType enum value
+	ResourceTypeAwsEc2Host = "AWS::EC2::Host"
+
+	// ResourceTypeAwsEc2Instance is a ResourceType enum value
+	ResourceTypeAwsEc2Instance = "AWS::EC2::Instance"
+
+	// ResourceTypeAwsEc2InternetGateway is a ResourceType enum value
+	ResourceTypeAwsEc2InternetGateway = "AWS::EC2::InternetGateway"
+
+	// ResourceTypeAwsEc2NatGateway is a ResourceType enum value
+	ResourceTypeAwsEc2NatGateway = "AWS::EC2::NatGateway"
+
+	// ResourceTypeAwsEc2NetworkAcl is a ResourceType enum value
+	ResourceTypeAwsEc2NetworkAcl = "AWS::EC2::NetworkAcl"
+
+	// ResourceTypeAwsEc2NetworkInterface is a ResourceType enum value
+	ResourceTypeAwsEc2NetworkInterface = "AWS::EC2::NetworkInterface"
+
+	// ResourceTypeAwsEc2RegisteredHainstance is a ResourceType enum value
+	ResourceTypeAwsEc2RegisteredHainstance = "AWS::EC2::RegisteredHAInstance"
+
+	// ResourceTypeAwsEc2RouteTable is a ResourceType enum value
+	ResourceTypeAwsEc2RouteTable = "AWS::EC2::RouteTable"
+
+	// ResourceTypeAwsEc2SecurityGroup is a ResourceType enum value
+	ResourceTypeAwsEc2SecurityGroup = "AWS::EC2::SecurityGroup"
+
+	// ResourceTypeAwsEc2Subnet is a ResourceType enum value
+	ResourceTypeAwsEc2Subnet = "AWS::EC2::Subnet"
+
+	// ResourceTypeAwsEc2Volume is a ResourceType enum value
+	ResourceTypeAwsEc2Volume = "AWS::EC2::Volume"
+
+	// ResourceTypeAwsEc2Vpc is a ResourceType enum value
+	ResourceTypeAwsEc2Vpc = "AWS::EC2::VPC"
+
+	// ResourceTypeAwsEc2Vpcendpoint is a ResourceType enum value
+	ResourceTypeAwsEc2Vpcendpoint = "AWS::EC2::VPCEndpoint"
+
+	// ResourceTypeAwsEc2VpcendpointService is a ResourceType enum value
+	ResourceTypeAwsEc2VpcendpointService = "AWS::EC2::VPCEndpointService"
+
+	// ResourceTypeAwsEc2VpcpeeringConnection is a ResourceType enum value
+	ResourceTypeAwsEc2VpcpeeringConnection = "AWS::EC2::VPCPeeringConnection"
+
+	// ResourceTypeAwsEc2Vpnconnection is a ResourceType enum value
+	ResourceTypeAwsEc2Vpnconnection = "AWS::EC2::VPNConnection"
+
+	// ResourceTypeAwsEc2Vpngateway is a ResourceType enum value
+	ResourceTypeAwsEc2Vpngateway = "AWS::EC2::VPNGateway"
+
+	// ResourceTypeAwsEcrRepository is a ResourceType enum value
+	ResourceTypeAwsEcrRepository = "AWS::ECR::Repository"
+
+	// ResourceTypeAwsEcsCluster is a ResourceType enum value
+	ResourceTypeAwsEcsCluster = "AWS::ECS::Cluster"
+
+	// ResourceTypeAwsEcsPrimaryTaskSet is a ResourceType enum value
+	ResourceTypeAwsEcsPrimaryTaskSet = "AWS::ECS::PrimaryTaskSet"
+
+	// ResourceTypeAwsEcsService is a ResourceType enum value
+	ResourceTypeAwsEcsService = "AWS::ECS::Service"
+
+	// ResourceTypeAwsEcsTaskDefinition is a ResourceType enum value
+	ResourceTypeAwsEcsTaskDefinition = "AWS::ECS::TaskDefinition"
+
+	// ResourceTypeAwsEcsTaskSet is a ResourceType enum value
+	ResourceTypeAwsEcsTaskSet = "AWS::ECS::TaskSet"
+
+	// ResourceTypeAwsEksCluster is a ResourceType enum value
+	ResourceTypeAwsEksCluster = "AWS::EKS::Cluster"
+
+	// ResourceTypeAwsEksNodegroup is a ResourceType enum value
+	ResourceTypeAwsEksNodegroup = "AWS::EKS::Nodegroup"
+
+	// ResourceTypeAwsElasticBeanstalkApplication is a ResourceType enum value
+	ResourceTypeAwsElasticBeanstalkApplication = "AWS::ElasticBeanstalk::Application"
+
+	// ResourceTypeAwsElasticBeanstalkApplicationVersion is a ResourceType enum value
+	ResourceTypeAwsElasticBeanstalkApplicationVersion = "AWS::ElasticBeanstalk::ApplicationVersion"
+
+	// ResourceTypeAwsElasticBeanstalkEnvironment is a ResourceType enum value
+	ResourceTypeAwsElasticBeanstalkEnvironment = "AWS::ElasticBeanstalk::Environment"
+
+	// ResourceTypeAwsElasticLoadBalancingLoadBalancer is a ResourceType enum value
+	ResourceTypeAwsElasticLoadBalancingLoadBalancer = "AWS::ElasticLoadBalancing::LoadBalancer"
+
+	// ResourceTypeAwsElasticLoadBalancingV2LoadBalancer is a ResourceType enum value
+	ResourceTypeAwsElasticLoadBalancingV2LoadBalancer = "AWS::ElasticLoadBalancingV2::LoadBalancer"
+
+	// ResourceTypeAwsElasticsearchDomain is a ResourceType enum value
+	ResourceTypeAwsElasticsearchDomain = "AWS::Elasticsearch::Domain"
+
+	// ResourceTypeAwsIamGroup is a ResourceType enum value
+	ResourceTypeAwsIamGroup = "AWS::IAM::Group"
+
+	// ResourceTypeAwsIamPolicy is a ResourceType enum value
+	ResourceTypeAwsIamPolicy = "AWS::IAM::Policy"
+
+	// ResourceTypeAwsIamRole is a ResourceType enum value
+	ResourceTypeAwsIamRole = "AWS::IAM::Role"
+
+	// ResourceTypeAwsIamUser is a ResourceType enum value
+	ResourceTypeAwsIamUser = "AWS::IAM::User"
+
+	// ResourceTypeAwsKinesisStream is a ResourceType enum value
+	ResourceTypeAwsKinesisStream = "AWS::Kinesis::Stream"
+
+	// ResourceTypeAwsKinesisStreamConsumer is a ResourceType enum value
+	ResourceTypeAwsKinesisStreamConsumer = "AWS::Kinesis::StreamConsumer"
+
+	// ResourceTypeAwsKinesisAnalyticsApplication is a ResourceType enum value
+	ResourceTypeAwsKinesisAnalyticsApplication = "AWS::KinesisAnalytics::Application"
+
+	// ResourceTypeAwsKinesisAnalyticsApplicationOutput is a ResourceType enum value
+	ResourceTypeAwsKinesisAnalyticsApplicationOutput = "AWS::KinesisAnalytics::ApplicationOutput"
+
+	// ResourceTypeAwsKinesisAnalyticsApplicationReferenceDataSource is a ResourceType enum value
+	ResourceTypeAwsKinesisAnalyticsApplicationReferenceDataSource = "AWS::KinesisAnalytics::ApplicationReferenceDataSource"
+
+	// ResourceTypeAwsKinesisAnalyticsV2Application is a ResourceType enum value
+	ResourceTypeAwsKinesisAnalyticsV2Application = "AWS::KinesisAnalyticsV2::Application"
+
+	// ResourceTypeAwsKinesisAnalyticsV2ApplicationCloudWatchLoggingOption is a ResourceType enum value
+	ResourceTypeAwsKinesisAnalyticsV2ApplicationCloudWatchLoggingOption = "AWS::KinesisAnalyticsV2::ApplicationCloudWatchLoggingOption"
+
+	// ResourceTypeAwsKinesisAnalyticsV2ApplicationOutput is a ResourceType enum value
+	ResourceTypeAwsKinesisAnalyticsV2ApplicationOutput = "AWS::KinesisAnalyticsV2::ApplicationOutput"
+
+	// ResourceTypeAwsKinesisAnalyticsV2ApplicationReferenceDataSource is a ResourceType enum value
+	ResourceTypeAwsKinesisAnalyticsV2ApplicationReferenceDataSource = "AWS::KinesisAnalyticsV2::ApplicationReferenceDataSource"
+
+	// ResourceTypeAwsKinesisFirehoseDeliveryStream is a ResourceType enum value
+	ResourceTypeAwsKinesisFirehoseDeliveryStream = "AWS::KinesisFirehose::DeliveryStream"
+
+	// ResourceTypeAwsKmsKey is a ResourceType enum value
+	ResourceTypeAwsKmsKey = "AWS::KMS::Key"
+
+	// ResourceTypeAwsLambdaAlias is a ResourceType enum value
+	ResourceTypeAwsLambdaAlias = "AWS::Lambda::Alias"
+
+	// ResourceTypeAwsLambdaFunction is a ResourceType enum value
+	ResourceTypeAwsLambdaFunction = "AWS::Lambda::Function"
+
+	// ResourceTypeAwsLicenseManagerLicenseConfiguration is a ResourceType enum value
+	ResourceTypeAwsLicenseManagerLicenseConfiguration = "AWS::LicenseManager::LicenseConfiguration"
+
+	// ResourceTypeAwsMobileHubProject is a ResourceType enum value
+	ResourceTypeAwsMobileHubProject = "AWS::MobileHub::Project"
+
+	// ResourceTypeAwsQldbLedger is a ResourceType enum value
+	ResourceTypeAwsQldbLedger = "AWS::QLDB::Ledger"
+
+	// ResourceTypeAwsRdsDbcluster is a ResourceType enum value
+	ResourceTypeAwsRdsDbcluster = "AWS::RDS::DBCluster"
+
+	// ResourceTypeAwsRdsDbclusterParameterGroup is a ResourceType enum value
+	ResourceTypeAwsRdsDbclusterParameterGroup = "AWS::RDS::DBClusterParameterGroup"
+
+	// ResourceTypeAwsRdsDbclusterSnapshot is a ResourceType enum value
+	ResourceTypeAwsRdsDbclusterSnapshot = "AWS::RDS::DBClusterSnapshot"
+
+	// ResourceTypeAwsRdsDbinstance is a ResourceType enum value
+	ResourceTypeAwsRdsDbinstance = "AWS::RDS::DBInstance"
+
+	// ResourceTypeAwsRdsDboptionGroup is a ResourceType enum value
+	ResourceTypeAwsRdsDboptionGroup = "AWS::RDS::DBOptionGroup"
+
+	// ResourceTypeAwsRdsDbparameterGroup is a ResourceType enum value
+	ResourceTypeAwsRdsDbparameterGroup = "AWS::RDS::DBParameterGroup"
+
+	// ResourceTypeAwsRdsDbsecurityGroup is a ResourceType enum value
+	ResourceTypeAwsRdsDbsecurityGroup = "AWS::RDS::DBSecurityGroup"
+
+	// ResourceTypeAwsRdsDbsnapshot is a ResourceType enum value
+	ResourceTypeAwsRdsDbsnapshot = "AWS::RDS::DBSnapshot"
+
+	// ResourceTypeAwsRdsDbsubnetGroup is a ResourceType enum value
+	ResourceTypeAwsRdsDbsubnetGroup = "AWS::RDS::DBSubnetGroup"
+
+	// ResourceTypeAwsRdsEventSubscription is a ResourceType enum value
+	ResourceTypeAwsRdsEventSubscription = "AWS::RDS::EventSubscription"
+
+	// ResourceTypeAwsRedshiftCluster is a ResourceType enum value
+	ResourceTypeAwsRedshiftCluster = "AWS::Redshift::Cluster"
+
+	// ResourceTypeAwsRedshiftClusterParameterGroup is a ResourceType enum value
+	ResourceTypeAwsRedshiftClusterParameterGroup = "AWS::Redshift::ClusterParameterGroup"
+
+	// ResourceTypeAwsRedshiftClusterSecurityGroup is a ResourceType enum value
+	ResourceTypeAwsRedshiftClusterSecurityGroup = "AWS::Redshift::ClusterSecurityGroup"
+
+	// ResourceTypeAwsRedshiftClusterSnapshot is a ResourceType enum value
+	ResourceTypeAwsRedshiftClusterSnapshot = "AWS::Redshift::ClusterSnapshot"
+
+	// ResourceTypeAwsRedshiftClusterSubnetGroup is a ResourceType enum value
+	ResourceTypeAwsRedshiftClusterSubnetGroup = "AWS::Redshift::ClusterSubnetGroup"
+
+	// ResourceTypeAwsRedshiftEventSubscription is a ResourceType enum value
+	ResourceTypeAwsRedshiftEventSubscription = "AWS::Redshift::EventSubscription"
+
+	// ResourceTypeAwsS3AccountPublicAccessBlock is a ResourceType enum value
+	ResourceTypeAwsS3AccountPublicAccessBlock = "AWS::S3::AccountPublicAccessBlock"
+
+	// ResourceTypeAwsS3Bucket is a ResourceType enum value
+	ResourceTypeAwsS3Bucket = "AWS::S3::Bucket"
+
+	// ResourceTypeAwsSecretsManagerSecret is a ResourceType enum value
+	ResourceTypeAwsSecretsManagerSecret = "AWS::SecretsManager::Secret"
+
+	// ResourceTypeAwsServiceCatalogCloudFormationProduct is a ResourceType enum value
+	ResourceTypeAwsServiceCatalogCloudFormationProduct = "AWS::ServiceCatalog::CloudFormationProduct"
+
+	// ResourceTypeAwsServiceCatalogCloudFormationProvisionedProduct is a ResourceType enum value
+	ResourceTypeAwsServiceCatalogCloudFormationProvisionedProduct = "AWS::ServiceCatalog::CloudFormationProvisionedProduct"
+
+	// ResourceTypeAwsServiceCatalogPortfolio is a ResourceType enum value
+	ResourceTypeAwsServiceCatalogPortfolio = "AWS::ServiceCatalog::Portfolio"
+
+	// ResourceTypeAwsShieldProtection is a ResourceType enum value
+	ResourceTypeAwsShieldProtection = "AWS::Shield::Protection"
+
+	// ResourceTypeAwsShieldRegionalProtection is a ResourceType enum value
+	ResourceTypeAwsShieldRegionalProtection = "AWS::ShieldRegional::Protection"
+
+	// ResourceTypeAwsSnsTopic is a ResourceType enum value
+	ResourceTypeAwsSnsTopic = "AWS::SNS::Topic"
+
+	// ResourceTypeAwsSqsQueue is a ResourceType enum value
+	ResourceTypeAwsSqsQueue = "AWS::SQS::Queue"
+
+	// ResourceTypeAwsSsmAssociationCompliance is a ResourceType enum value
+	ResourceTypeAwsSsmAssociationCompliance = "AWS::SSM::AssociationCompliance"
+
+	// ResourceTypeAwsSsmManagedInstanceInventory is a ResourceType enum value
+	ResourceTypeAwsSsmManagedInstanceInventory = "AWS::SSM::ManagedInstanceInventory"
+
+	// ResourceTypeAwsSsmPatchCompliance is a ResourceType enum value
+	ResourceTypeAwsSsmPatchCompliance = "AWS::SSM::PatchCompliance"
 
 	// ResourceTypeAwsWafRateBasedRule is a ResourceType enum value
 	ResourceTypeAwsWafRateBasedRule = "AWS::WAF::RateBasedRule"
@@ -23479,83 +23946,23 @@ const (
 	// ResourceTypeAwsWafregionalWebAcl is a ResourceType enum value
 	ResourceTypeAwsWafregionalWebAcl = "AWS::WAFRegional::WebACL"
 
-	// ResourceTypeAwsCloudFrontDistribution is a ResourceType enum value
-	ResourceTypeAwsCloudFrontDistribution = "AWS::CloudFront::Distribution"
+	// ResourceTypeAwsWafv2WebAcl is a ResourceType enum value
+	ResourceTypeAwsWafv2WebAcl = "AWS::WAFv2::WebACL"
 
-	// ResourceTypeAwsCloudFrontStreamingDistribution is a ResourceType enum value
-	ResourceTypeAwsCloudFrontStreamingDistribution = "AWS::CloudFront::StreamingDistribution"
+	// ResourceTypeAwsWafv2RuleGroup is a ResourceType enum value
+	ResourceTypeAwsWafv2RuleGroup = "AWS::WAFv2::RuleGroup"
 
-	// ResourceTypeAwsLambdaAlias is a ResourceType enum value
-	ResourceTypeAwsLambdaAlias = "AWS::Lambda::Alias"
+	// ResourceTypeAwsWafv2Ipset is a ResourceType enum value
+	ResourceTypeAwsWafv2Ipset = "AWS::WAFv2::IPSet"
 
-	// ResourceTypeAwsLambdaFunction is a ResourceType enum value
-	ResourceTypeAwsLambdaFunction = "AWS::Lambda::Function"
+	// ResourceTypeAwsWafv2RegexPatternSet is a ResourceType enum value
+	ResourceTypeAwsWafv2RegexPatternSet = "AWS::WAFv2::RegexPatternSet"
 
-	// ResourceTypeAwsElasticBeanstalkApplication is a ResourceType enum value
-	ResourceTypeAwsElasticBeanstalkApplication = "AWS::ElasticBeanstalk::Application"
-
-	// ResourceTypeAwsElasticBeanstalkApplicationVersion is a ResourceType enum value
-	ResourceTypeAwsElasticBeanstalkApplicationVersion = "AWS::ElasticBeanstalk::ApplicationVersion"
-
-	// ResourceTypeAwsElasticBeanstalkEnvironment is a ResourceType enum value
-	ResourceTypeAwsElasticBeanstalkEnvironment = "AWS::ElasticBeanstalk::Environment"
-
-	// ResourceTypeAwsMobileHubProject is a ResourceType enum value
-	ResourceTypeAwsMobileHubProject = "AWS::MobileHub::Project"
+	// ResourceTypeAwsWafv2ManagedRuleSet is a ResourceType enum value
+	ResourceTypeAwsWafv2ManagedRuleSet = "AWS::WAFv2::ManagedRuleSet"
 
 	// ResourceTypeAwsXrayEncryptionConfig is a ResourceType enum value
 	ResourceTypeAwsXrayEncryptionConfig = "AWS::XRay::EncryptionConfig"
-
-	// ResourceTypeAwsSsmAssociationCompliance is a ResourceType enum value
-	ResourceTypeAwsSsmAssociationCompliance = "AWS::SSM::AssociationCompliance"
-
-	// ResourceTypeAwsSsmPatchCompliance is a ResourceType enum value
-	ResourceTypeAwsSsmPatchCompliance = "AWS::SSM::PatchCompliance"
-
-	// ResourceTypeAwsShieldProtection is a ResourceType enum value
-	ResourceTypeAwsShieldProtection = "AWS::Shield::Protection"
-
-	// ResourceTypeAwsShieldRegionalProtection is a ResourceType enum value
-	ResourceTypeAwsShieldRegionalProtection = "AWS::ShieldRegional::Protection"
-
-	// ResourceTypeAwsConfigResourceCompliance is a ResourceType enum value
-	ResourceTypeAwsConfigResourceCompliance = "AWS::Config::ResourceCompliance"
-
-	// ResourceTypeAwsLicenseManagerLicenseConfiguration is a ResourceType enum value
-	ResourceTypeAwsLicenseManagerLicenseConfiguration = "AWS::LicenseManager::LicenseConfiguration"
-
-	// ResourceTypeAwsApiGatewayDomainName is a ResourceType enum value
-	ResourceTypeAwsApiGatewayDomainName = "AWS::ApiGateway::DomainName"
-
-	// ResourceTypeAwsApiGatewayMethod is a ResourceType enum value
-	ResourceTypeAwsApiGatewayMethod = "AWS::ApiGateway::Method"
-
-	// ResourceTypeAwsApiGatewayStage is a ResourceType enum value
-	ResourceTypeAwsApiGatewayStage = "AWS::ApiGateway::Stage"
-
-	// ResourceTypeAwsApiGatewayRestApi is a ResourceType enum value
-	ResourceTypeAwsApiGatewayRestApi = "AWS::ApiGateway::RestApi"
-
-	// ResourceTypeAwsApiGatewayV2DomainName is a ResourceType enum value
-	ResourceTypeAwsApiGatewayV2DomainName = "AWS::ApiGatewayV2::DomainName"
-
-	// ResourceTypeAwsApiGatewayV2Stage is a ResourceType enum value
-	ResourceTypeAwsApiGatewayV2Stage = "AWS::ApiGatewayV2::Stage"
-
-	// ResourceTypeAwsApiGatewayV2Api is a ResourceType enum value
-	ResourceTypeAwsApiGatewayV2Api = "AWS::ApiGatewayV2::Api"
-
-	// ResourceTypeAwsCodePipelinePipeline is a ResourceType enum value
-	ResourceTypeAwsCodePipelinePipeline = "AWS::CodePipeline::Pipeline"
-
-	// ResourceTypeAwsServiceCatalogCloudFormationProvisionedProduct is a ResourceType enum value
-	ResourceTypeAwsServiceCatalogCloudFormationProvisionedProduct = "AWS::ServiceCatalog::CloudFormationProvisionedProduct"
-
-	// ResourceTypeAwsServiceCatalogCloudFormationProduct is a ResourceType enum value
-	ResourceTypeAwsServiceCatalogCloudFormationProduct = "AWS::ServiceCatalog::CloudFormationProduct"
-
-	// ResourceTypeAwsServiceCatalogPortfolio is a ResourceType enum value
-	ResourceTypeAwsServiceCatalogPortfolio = "AWS::ServiceCatalog::Portfolio"
 )
 
 const (

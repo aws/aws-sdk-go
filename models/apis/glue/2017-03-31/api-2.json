@@ -1353,6 +1353,21 @@
         {"shape":"OperationTimeoutException"}
       ]
     },
+    "ListMLTransforms":{
+      "name":"ListMLTransforms",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListMLTransformsRequest"},
+      "output":{"shape":"ListMLTransformsResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "ListTriggers":{
       "name":"ListTriggers",
       "http":{
@@ -2855,7 +2870,8 @@
         "WorkerType":{"shape":"WorkerType"},
         "NumberOfWorkers":{"shape":"NullableInteger"},
         "Timeout":{"shape":"Timeout"},
-        "MaxRetries":{"shape":"NullableInteger"}
+        "MaxRetries":{"shape":"NullableInteger"},
+        "Tags":{"shape":"TagsMap"}
       }
     },
     "CreateMLTransformResponse":{
@@ -4629,6 +4645,24 @@
         "NextToken":{"shape":"GenericString"}
       }
     },
+    "ListMLTransformsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"PaginationToken"},
+        "MaxResults":{"shape":"PageSize"},
+        "Filter":{"shape":"TransformFilterCriteria"},
+        "Sort":{"shape":"TransformSortCriteria"},
+        "Tags":{"shape":"TagsMap"}
+      }
+    },
+    "ListMLTransformsResponse":{
+      "type":"structure",
+      "required":["TransformIds"],
+      "members":{
+        "TransformIds":{"shape":"TransformIdList"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
     "ListTriggersRequest":{
       "type":"structure",
       "members":{
@@ -5735,6 +5769,10 @@
         "LastModifiedAfter":{"shape":"Timestamp"},
         "Schema":{"shape":"TransformSchema"}
       }
+    },
+    "TransformIdList":{
+      "type":"list",
+      "member":{"shape":"HashString"}
     },
     "TransformList":{
       "type":"list",
