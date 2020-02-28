@@ -16,6 +16,11 @@
       "limit_key": "limit",
       "output_token": "nextToken",
       "result_key": "configurationItems"
+    },
+    "SelectAggregateResourceConfig": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
     }
   }
 }

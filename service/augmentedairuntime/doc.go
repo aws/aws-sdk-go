@@ -30,9 +30,9 @@
 // Events to detect human work results.
 //
 // You can find additional Augmented AI API documentation in the following reference
-// guides: Amazon Rekognition (https://aws.amazon.com/rekognition/latest/dg/API_Reference.html),
-// Amazon SageMaker (https://aws.amazon.com/sagemaker/latest/dg/API_Reference.html),
-// and Amazon Textract (https://aws.amazon.com/textract/latest/dg/API_Reference.html).
+// guides: Amazon Rekognition (https://docs.aws.amazon.com/rekognition/latest/dg/API_Reference.html),
+// Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/API_Reference.html),
+// and Amazon Textract (https://docs.aws.amazon.com/textract/latest/dg/API_Reference.html).
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/sagemaker-a2i-runtime-2019-11-07 for more information on this service.
 //

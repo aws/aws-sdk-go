@@ -11,37 +11,41 @@ const (
 	// ErrCodeConflictException for service response error code
 	// "ConflictException".
 	//
-	// Request can can cause an inconsistent state for the resource.
+	// The requested operation would cause a conflict with the current state of
+	// a service resource associated with the request. Resolve the conflict before
+	// retrying this request.
 	ErrCodeConflictException = "ConflictException"
 
 	// ErrCodeInternalServerException for service response error code
 	// "InternalServerException".
 	//
-	// Unexpected error during processing of request.
+	// The server encountered an internal error and is unable to complete the request.
 	ErrCodeInternalServerException = "InternalServerException"
 
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
-	// Request references a resource which does not exist.
+	// The resource specified in the request does not exist.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
 	// ErrCodeServiceQuotaExceededException for service response error code
 	// "ServiceQuotaExceededException".
 	//
-	// Request would cause a service quota to be exceeded.
+	// You have exceeded your service quota. To perform the requested action, remove
+	// some of the relevant resources, or use Service Quotas (https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html)
+	// to request a service quota increase.
 	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
 
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
 	//
-	// Request was denied due to request throttling.
+	// The request was denied due to request throttling.
 	ErrCodeThrottlingException = "ThrottlingException"
 
 	// ErrCodeValidationException for service response error code
 	// "ValidationException".
 	//
-	// The input fails to satisfy the constraints of the API.
+	// The parameter is not valid.
 	ErrCodeValidationException = "ValidationException"
 )
 

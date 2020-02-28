@@ -3,10 +3,10 @@
   "service": "<p>AWS App Mesh is a service mesh based on the Envoy proxy that makes it easy to monitor and\n         control microservices. App Mesh standardizes how your microservices communicate, giving you\n         end-to-end visibility and helping to ensure high availability for your applications.</p>\n         <p>App Mesh gives you consistent visibility and network traffic controls for every\n         microservice in an application. You can use App Mesh with AWS Fargate, Amazon ECS, Amazon EKS,\n         Kubernetes on AWS, and Amazon EC2.</p>\n         <note>\n            <p>App Mesh supports microservice applications that use service discovery naming for their\n            components. For more information about service discovery on Amazon ECS, see <a href=\"http://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html\">Service Discovery</a> in the\n               <i>Amazon Elastic Container Service Developer Guide</i>. Kubernetes <code>kube-dns</code> and\n               <code>coredns</code> are supported. For more information, see <a href=\"https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/\">DNS\n               for Services and Pods</a> in the Kubernetes documentation.</p>\n         </note>",
   "operations": {
     "CreateMesh": "<p>Creates a service mesh. A service mesh is a logical boundary for network traffic between\n         the services that reside within it.</p>\n         <p>After you create your service mesh, you can create virtual services, virtual nodes,\n         virtual routers, and routes to distribute traffic between the applications in your\n         mesh.</p>",
-    "CreateRoute": "<p>Creates a route that is associated with a virtual router.</p>\n         <p>You can use the <code>prefix</code> parameter in your route specification for path-based\n         routing of requests. For example, if your virtual service name is\n            <code>my-service.local</code> and you want the route to match requests to\n            <code>my-service.local/metrics</code>, your prefix should be\n         <code>/metrics</code>.</p>\n         <p>If your route matches a request, you can distribute traffic to one or more target\n         virtual nodes with relative weighting.</p>",
-    "CreateVirtualNode": "<p>Creates a virtual node within a service mesh.</p>\n         <p>A virtual node acts as a logical pointer to a particular task group, such as an Amazon ECS\n         service or a Kubernetes deployment. When you create a virtual node, you can specify the\n         service discovery information for your task group.</p>\n         <p>Any inbound traffic that your virtual node expects should be specified as a\n            <code>listener</code>. Any outbound traffic that your virtual node expects to reach\n         should be specified as a <code>backend</code>.</p>\n         <p>The response metadata for your new virtual node contains the <code>arn</code> that is\n         associated with the virtual node. Set this value (either the full ARN or the truncated\n         resource name: for example, <code>mesh/default/virtualNode/simpleapp</code>) as the\n            <code>APPMESH_VIRTUAL_NODE_NAME</code> environment variable for your task group's Envoy\n         proxy container in your task definition or pod spec. This is then mapped to the\n            <code>node.id</code> and <code>node.cluster</code> Envoy parameters.</p>\n         <note>\n            <p>If you require your Envoy stats or tracing to use a different name, you can override\n            the <code>node.cluster</code> value that is set by\n               <code>APPMESH_VIRTUAL_NODE_NAME</code> with the\n               <code>APPMESH_VIRTUAL_NODE_CLUSTER</code> environment variable.</p>\n         </note>",
-    "CreateVirtualRouter": "<p>Creates a virtual router within a service mesh.</p>\n         <p>Any inbound traffic that your virtual router expects should be specified as a\n            <code>listener</code>. </p>\n         <p>Virtual routers handle traffic for one or more virtual services within your mesh. After\n         you create your virtual router, create and associate routes for your virtual router that\n         direct incoming requests to different virtual nodes.</p>",
-    "CreateVirtualService": "<p>Creates a virtual service within a service mesh.</p>\n         <p>A virtual service is an abstraction of a real service that is provided by a virtual node\n         directly or indirectly by means of a virtual router. Dependent services call your virtual\n         service by its <code>virtualServiceName</code>, and those requests are routed to the\n         virtual node or virtual router that is specified as the provider for the virtual\n         service.</p>",
+    "CreateRoute": "<p>Creates a route that is associated with a virtual router.</p>\n         <p>You can use the <code>prefix</code> parameter in your route specification for path-based\n         routing of requests. For example, if your virtual service name is\n            <code>my-service.local</code> and you want the route to match requests to\n            <code>my-service.local/metrics</code>, your prefix should be\n         <code>/metrics</code>.</p>\n         <p>If your route matches a request, you can distribute traffic to one or more target\n         virtual nodes with relative weighting.</p>\n         <p>For more information about routes, see <a href=\"https://docs.aws.amazon.com//app-mesh/latest/userguide/routes.html\">Routes</a>.</p>",
+    "CreateVirtualNode": "<p>Creates a virtual node within a service mesh.</p>\n         <p>A virtual node acts as a logical pointer to a particular task group, such as an Amazon ECS\n         service or a Kubernetes deployment. When you create a virtual node, you can specify the\n         service discovery information for your task group.</p>\n         <p>Any inbound traffic that your virtual node expects should be specified as a\n            <code>listener</code>. Any outbound traffic that your virtual node expects to reach\n         should be specified as a <code>backend</code>.</p>\n         <p>The response metadata for your new virtual node contains the <code>arn</code> that is\n         associated with the virtual node. Set this value (either the full ARN or the truncated\n         resource name: for example, <code>mesh/default/virtualNode/simpleapp</code>) as the\n            <code>APPMESH_VIRTUAL_NODE_NAME</code> environment variable for your task group's Envoy\n         proxy container in your task definition or pod spec. This is then mapped to the\n            <code>node.id</code> and <code>node.cluster</code> Envoy parameters.</p>\n         <note>\n            <p>If you require your Envoy stats or tracing to use a different name, you can override\n            the <code>node.cluster</code> value that is set by\n               <code>APPMESH_VIRTUAL_NODE_NAME</code> with the\n               <code>APPMESH_VIRTUAL_NODE_CLUSTER</code> environment variable.</p>\n         </note>\n         <p>For more information about virtual nodes, see <a href=\"https://docs.aws.amazon.com//app-mesh/latest/userguide/virtual_nodes.html\">Virtual Nodes</a>.</p>",
+    "CreateVirtualRouter": "<p>Creates a virtual router within a service mesh.</p>\n         <p>Any inbound traffic that your virtual router expects should be specified as a\n            <code>listener</code>. </p>\n         <p>Virtual routers handle traffic for one or more virtual services within your mesh. After\n         you create your virtual router, create and associate routes for your virtual router that\n         direct incoming requests to different virtual nodes.</p>\n         <p>For more information about virtual routers, see <a href=\"https://docs.aws.amazon.com//app-mesh/latest/userguide/virtual_routers.html\">Virtual Routers</a>.</p>",
+    "CreateVirtualService": "<p>Creates a virtual service within a service mesh.</p>\n         <p>A virtual service is an abstraction of a real service that is provided by a virtual node\n         directly or indirectly by means of a virtual router. Dependent services call your virtual\n         service by its <code>virtualServiceName</code>, and those requests are routed to the\n         virtual node or virtual router that is specified as the provider for the virtual\n         service.</p>\n         <p>For more information about virtual services, see <a href=\"https://docs.aws.amazon.com//app-mesh/latest/userguide/virtual_services.html\">Virtual Services</a>.</p>",
     "DeleteMesh": "<p>Deletes an existing service mesh.</p>\n         <p>You must delete all resources (virtual services, routes, virtual routers, and virtual\n         nodes) in the service mesh before you can delete the mesh itself.</p>",
     "DeleteRoute": "<p>Deletes an existing route.</p>",
     "DeleteVirtualNode": "<p>Deletes an existing virtual node.</p>\n         <p>You must delete any virtual services that list a virtual node as a service provider\n         before you can delete the virtual node itself.</p>",
@@ -81,6 +81,12 @@
         "Backend$virtualService": "<p>Specifies a virtual service to use as a backend for a virtual node. </p>"
       }
     },
+    "BackendDefaults": {
+      "base": "<p>An object that represents the default properties for a backend.</p>",
+      "refs": {
+        "BackendDefaults$clientPolicy": "<p>A reference to an object that represents a client policy.</p>"
+      }
+    },
     "Backends": {
       "base": null,
       "refs": {
@@ -94,6 +100,26 @@
     "Boolean": {
       "base": null,
       "refs": { }
+    },
+    "CertificateAuthorityArns": {
+      "base": null,
+      "refs": {
+        "CertificateAuthorityArns$member": null
+      }
+    },
+    "ClientPolicy": {
+      "base": "<p>An object that represents a client policy.</p>",
+      "refs": {
+        "ClientPolicy$tls": "<p>A reference to an object that represents a Transport Layer Security (TLS) client policy.</p>"
+      }
+    },
+    "ClientPolicyTls": {
+      "base": "<p>An object that represents a Transport Layer Security (TLS) client policy.</p>",
+      "refs": {
+        "ClientPolicyTls$enforce": "<p>Whether the policy is enforced. The default is <code>True</code>, if a value isn't specified.</p>",
+        "ClientPolicyTls$ports": "<p>The range of ports that the policy is enforced for.</p>",
+        "ClientPolicyTls$validation": "<p>A reference to an object that represents a TLS validation context.</p>"
+      }
     },
     "ConflictException": {
       "base": "<p>The request contains a client token that was used for a previous update resource call\n         with different specifications. Try the request again with a new client token.</p>",
@@ -375,7 +401,7 @@
       }
     },
     "GrpcRoute": {
-      "base": "<p>An object that represents a GRPC route type.</p>",
+      "base": "<p>An object that represents a gRPC route type.</p>",
       "refs": {
         "GrpcRoute$action": "<p>An object that represents the action to take if a match is determined.</p>",
         "GrpcRoute$match": "<p>An object that represents the criteria for determining a request match.</p>",
@@ -447,9 +473,9 @@
       "refs": {
         "HealthCheckPolicy$healthyThreshold": "<p>The number of consecutive successful health checks that must occur before declaring\n         listener healthy.</p>",
         "HealthCheckPolicy$intervalMillis": "<p>The time period in milliseconds between each health check execution.</p>",
-        "HealthCheckPolicy$path": "<p>The destination path for the health check request. This is required only if the\n         specified protocol is HTTP. If the protocol is TCP, this parameter is ignored.</p>",
+        "HealthCheckPolicy$path": "<p>The destination path for the health check request. This value is only used if the specified \n         protocol is HTTP or HTTP/2. For any other protocol, this value is ignored.</p>",
         "HealthCheckPolicy$port": "<p>The destination port for the health check request. This port must match the port defined\n         in the <a>PortMapping</a> for the listener.</p>",
-        "HealthCheckPolicy$protocol": "<p>The protocol for the health check request.</p>",
+        "HealthCheckPolicy$protocol": "<p>The protocol for the health check request. If you specify <code>grpc</code>, then your service must conform to the <a href=\"https://github.com/grpc/grpc/blob/master/doc/health-checking.md\">GRPC Health Checking Protocol</a>.</p>",
         "HealthCheckPolicy$timeoutMillis": "<p>The amount of time to wait when receiving a response from the health check, in\n         milliseconds.</p>",
         "HealthCheckPolicy$unhealthyThreshold": "<p>The number of consecutive failed health checks that must occur before declaring a\n         virtual node unhealthy. </p>"
       }
@@ -490,7 +516,7 @@
       }
     },
     "HttpRoute": {
-      "base": "<p>An object that represents an HTTP or HTTP2 route type.</p>",
+      "base": "<p>An object that represents an HTTP or HTTP/2 route type.</p>",
       "refs": {
         "HttpRoute$action": "<p>An object that represents the action to take if a match is determined.</p>",
         "HttpRoute$match": "<p>An object that represents the criteria for determining a request match.</p>",
@@ -652,8 +678,40 @@
       "base": "<p>An object that represents a listener for a virtual node.</p>",
       "refs": {
         "Listener$healthCheck": "<p>The health check information for the listener.</p>",
-        "Listener$portMapping": "<p>The port mapping information for the listener.</p>"
+        "Listener$portMapping": "<p>The port mapping information for the listener.</p>",
+        "Listener$tls": "<p>A reference to an object that represents the Transport Layer Security (TLS) properties for a listener.</p>"
       }
+    },
+    "ListenerTls": {
+      "base": "<p>An object that represents the Transport Layer Security (TLS) properties for a listener.</p>",
+      "refs": {
+        "ListenerTls$certificate": "<p>A reference to an object that represents a listener's TLS certificate.</p>",
+        "ListenerTls$mode": "<p>Specify one of the following modes.</p>\n         <ul>\n            <li>\n               <p>\n                  <b/>STRICT – Listener only accepts connections with TLS enabled. </p>\n            </li>\n            <li>\n               <p>\n                  <b/>PERMISSIVE – Listener accepts connections with or without TLS enabled.</p>\n            </li>\n            <li>\n               <p>\n                  <b/>DISABLED –  Listener only accepts connections without TLS. </p>\n            </li>\n         </ul>"
+      }
+    },
+    "ListenerTlsAcmCertificate": {
+      "base": "<p>An object that represents an AWS Certicate Manager (ACM) certificate.</p>",
+      "refs": {
+        "ListenerTlsAcmCertificate$certificateArn": "<p>The Amazon Resource Name (ARN) for the certificate. The certificate must meet specific requirements and you must have proxy authorization enabled. For more information, see <a href=\"https://docs.aws.amazon.com//app-mesh/latest/userguide/virtual-node-tls.html#virtual-node-tls-prerequisites\">TLS Encryption</a>.</p>"
+      }
+    },
+    "ListenerTlsCertificate": {
+      "base": "<p>An object that represents a listener's Transport Layer Security (TLS) certificate.</p>",
+      "refs": {
+        "ListenerTlsCertificate$acm": "<p>A reference to an object that represents an AWS Certicate Manager (ACM) certificate.</p>",
+        "ListenerTlsCertificate$file": "<p>A reference to an object that represents a local file certificate.</p>"
+      }
+    },
+    "ListenerTlsFileCertificate": {
+      "base": "<p>An object that represents a local file certificate. The certificate must meet specific requirements and you must have proxy authorization enabled. For more information, see <a href=\"https://docs.aws.amazon.com//app-mesh/latest/userguide/virtual-node-tls.html#virtual-node-tls-prerequisites\">TLS Encryption</a>.</p>",
+      "refs": {
+        "ListenerTlsFileCertificate$certificateChain": "<p>The certificate chain for the certificate.</p>",
+        "ListenerTlsFileCertificate$privateKey": "<p>The private key for a certificate stored on the file system of the virtual node that the proxy is running on.</p>"
+      }
+    },
+    "ListenerTlsMode": {
+      "base": null,
+      "refs": { }
     },
     "Listeners": {
       "base": null,
@@ -747,6 +805,12 @@
       "base": null,
       "refs": { }
     },
+    "PortSet": {
+      "base": null,
+      "refs": {
+        "PortSet$member": null
+      }
+    },
     "ResourceInUseException": {
       "base": "<p>You can't delete the specified resource because it's in use or required by another\n         resource.</p>",
       "refs": { }
@@ -798,8 +862,8 @@
     "RouteSpec": {
       "base": "<p>An object that represents a route specification. Specify one route type.</p>",
       "refs": {
-        "RouteSpec$grpcRoute": "<p>An object that represents the specification of a GRPC route.</p>",
-        "RouteSpec$http2Route": "<p>An object that represents the specification of an HTTP2 route.</p>",
+        "RouteSpec$grpcRoute": "<p>An object that represents the specification of a gRPC route.</p>",
+        "RouteSpec$http2Route": "<p>An object that represents the specification of an HTTP/2 route.</p>",
         "RouteSpec$httpRoute": "<p>An object that represents the specification of an HTTP route.</p>",
         "RouteSpec$priority": "<p>The priority for the route. Routes are matched based on the specified value, where 0 is\n         the highest priority.</p>",
         "RouteSpec$tcpRoute": "<p>An object that represents the specification of a TCP route.</p>"
@@ -901,6 +965,31 @@
     "Timestamp": {
       "base": null,
       "refs": { }
+    },
+    "TlsValidationContext": {
+      "base": "<p>An object that represents a Transport Layer Security (TLS) validation context.</p>",
+      "refs": {
+        "TlsValidationContext$trust": "<p>A reference to an object that represents a TLS validation context trust.</p>"
+      }
+    },
+    "TlsValidationContextAcmTrust": {
+      "base": "<p>An object that represents a TLS validation context trust for an AWS Certicate Manager (ACM) certificate.</p>",
+      "refs": {
+        "TlsValidationContextAcmTrust$certificateAuthorityArns": "<p>One or more ACM Amazon Resource Name (ARN)s.</p>"
+      }
+    },
+    "TlsValidationContextFileTrust": {
+      "base": "<p>An object that represents a Transport Layer Security (TLS) validation context trust for a local file.</p>",
+      "refs": {
+        "TlsValidationContextFileTrust$certificateChain": "<p>The certificate trust chain for a certificate stored on the file system of the virtual node that the proxy is running on.</p>"
+      }
+    },
+    "TlsValidationContextTrust": {
+      "base": "<p>An object that represents a Transport Layer Security (TLS) validation context trust.</p>",
+      "refs": {
+        "TlsValidationContextTrust$acm": "<p>A reference to an object that represents a TLS validation context trust for an AWS Certicate Manager (ACM) certificate.</p>",
+        "TlsValidationContextTrust$file": "<p>An object that represents a TLS validation context trust for a local file.</p>"
+      }
     },
     "TooManyRequestsException": {
       "base": "<p>The maximum request rate permitted by the App Mesh APIs has been exceeded for your\n         account. For best results, use an increasing or variable sleep interval between\n         requests.</p>",
@@ -1027,10 +1116,11 @@
     "VirtualNodeSpec": {
       "base": "<p>An object that represents the specification of a virtual node.</p>",
       "refs": {
+        "VirtualNodeSpec$backendDefaults": "<p>A reference to an object that represents the defaults for backends.</p>",
         "VirtualNodeSpec$backends": "<p>The backends that the virtual node is expected to send outbound traffic to.</p>",
-        "VirtualNodeSpec$listeners": "<p>The listeners that the virtual node is expected to receive inbound traffic from.\n         You can specify one listener.</p>",
+        "VirtualNodeSpec$listeners": "<p>The listener that the virtual node is expected to receive inbound traffic from.\n         You can specify one listener.</p>",
         "VirtualNodeSpec$logging": "<p>The inbound and outbound access logging information for the virtual node.</p>",
-        "VirtualNodeSpec$serviceDiscovery": "<p>The service discovery information for the virtual node. If your virtual node does not\n         expect ingress traffic, you can omit this parameter.</p>"
+        "VirtualNodeSpec$serviceDiscovery": "<p>The service discovery information for the virtual node. If your virtual node does not\n         expect ingress traffic, you can omit this parameter. If you specify a <code>listener</code>,\n         then you must specify service discovery information.</p>"
       }
     },
     "VirtualNodeStatus": {
@@ -1102,6 +1192,7 @@
     "VirtualServiceBackend": {
       "base": "<p>An object that represents a virtual service backend for a virtual node.</p>",
       "refs": {
+        "VirtualServiceBackend$clientPolicy": "<p>A reference to an object that represents the client policy for a backend.</p>",
         "VirtualServiceBackend$virtualServiceName": "<p>The name of the virtual service that is acting as a virtual node backend.</p>"
       }
     },

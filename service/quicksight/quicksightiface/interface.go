@@ -284,6 +284,13 @@ type QuickSightAPI interface {
 	RegisterUserWithContext(aws.Context, *quicksight.RegisterUserInput, ...request.Option) (*quicksight.RegisterUserOutput, error)
 	RegisterUserRequest(*quicksight.RegisterUserInput) (*request.Request, *quicksight.RegisterUserOutput)
 
+	SearchDashboards(*quicksight.SearchDashboardsInput) (*quicksight.SearchDashboardsOutput, error)
+	SearchDashboardsWithContext(aws.Context, *quicksight.SearchDashboardsInput, ...request.Option) (*quicksight.SearchDashboardsOutput, error)
+	SearchDashboardsRequest(*quicksight.SearchDashboardsInput) (*request.Request, *quicksight.SearchDashboardsOutput)
+
+	SearchDashboardsPages(*quicksight.SearchDashboardsInput, func(*quicksight.SearchDashboardsOutput, bool) bool) error
+	SearchDashboardsPagesWithContext(aws.Context, *quicksight.SearchDashboardsInput, func(*quicksight.SearchDashboardsOutput, bool) bool, ...request.Option) error
+
 	TagResource(*quicksight.TagResourceInput) (*quicksight.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *quicksight.TagResourceInput, ...request.Option) (*quicksight.TagResourceOutput, error)
 	TagResourceRequest(*quicksight.TagResourceInput) (*request.Request, *quicksight.TagResourceOutput)

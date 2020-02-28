@@ -3,7 +3,8 @@
 // Package codeguruprofiler provides the client and types for making API
 // requests to Amazon CodeGuru Profiler.
 //
-// Example service documentation.
+// This section provides documentation for the Amazon CodeGuru Profiler API
+// operations.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18 for more information on this service.
 //

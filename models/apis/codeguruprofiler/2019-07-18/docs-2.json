@@ -1,275 +1,275 @@
 {
   "version": "2.0",
-  "service": "<p>Example service documentation.</p>",
+  "service": "<p>This section provides documentation for the Amazon CodeGuru Profiler API operations.</p>",
   "operations": {
-    "ConfigureAgent": "<p>Provides the configuration to use for an agent of the profiling group.</p>",
-    "CreateProfilingGroup": "<p>Create a profiling group.</p>",
-    "DeleteProfilingGroup": "<p>Delete a profiling group.</p>",
-    "DescribeProfilingGroup": "<p>Describe a profiling group.</p>",
-    "GetProfile": "<p>Get the aggregated profile of a profiling group for the specified time range. If the requested time range does not align with the available aggregated profiles, it will be expanded to attain alignment. If aggregated profiles are available only for part of the period requested, the profile is returned from the earliest available to the latest within the requested time range. For instance, if the requested time range is from 00:00 to 00:20 and the available profiles are from 00:15 to 00:25, then the returned profile will be from 00:15 to 00:20.</p>",
+    "ConfigureAgent": "<p/>",
+    "CreateProfilingGroup": "<p>Creates a profiling group.</p>",
+    "DeleteProfilingGroup": "<p>Deletes a profiling group.</p>",
+    "DescribeProfilingGroup": "<p>Describes a profiling group.</p>",
+    "GetProfile": "<p>Gets the aggregated profile of a profiling group for the specified time range. If the requested time range does not align with the available aggregated profiles, it is expanded to attain alignment. If aggregated profiles are available only for part of the period requested, the profile is returned from the earliest available to the latest within the requested time range. </p> <p>For example, if the requested time range is from 00:00 to 00:20 and the available profiles are from 00:15 to 00:25, the returned profile will be from 00:15 to 00:20. </p> <p>You must specify exactly two of the following parameters: <code>startTime</code>, <code>period</code>, and <code>endTime</code>. </p>",
     "ListProfileTimes": "<p>List the start times of the available aggregated profiles of a profiling group for an aggregation period within the specified time range.</p>",
-    "ListProfilingGroups": "<p>List profiling groups in the account.</p>",
-    "PostAgentProfile": "<p>Submit profile collected by an agent belonging to a profiling group for aggregation.</p>",
-    "UpdateProfilingGroup": "<p>Update a profiling group.</p>"
+    "ListProfilingGroups": "<p>Lists profiling groups.</p>",
+    "PostAgentProfile": "<p/>",
+    "UpdateProfilingGroup": "<p>Updates a profiling group.</p>"
   },
   "shapes": {
     "AgentConfiguration": {
-      "base": "<p>The configuration for the agent to use.</p>",
+      "base": "<p/>",
       "refs": {
-        "ConfigureAgentResponse$configuration": "<p>The configuration for the agent to use.</p>"
+        "ConfigureAgentResponse$configuration": "<p/>"
       }
     },
     "AgentOrchestrationConfig": {
-      "base": "<p>Configuration to orchestrate agents to create and report agent profiles of the profiling group. Agents are orchestrated if they follow the agent orchestration protocol.</p>",
+      "base": "<p/>",
       "refs": {
-        "CreateProfilingGroupRequest$agentOrchestrationConfig": null,
-        "ProfilingGroupDescription$agentOrchestrationConfig": null,
-        "UpdateProfilingGroupRequest$agentOrchestrationConfig": "<p>Remote configuration to configure the agents of the profiling group.</p>"
+        "CreateProfilingGroupRequest$agentOrchestrationConfig": "<p>The agent orchestration configuration.</p>",
+        "ProfilingGroupDescription$agentOrchestrationConfig": "<p/>",
+        "UpdateProfilingGroupRequest$agentOrchestrationConfig": "<p/>"
       }
     },
     "AgentProfile": {
-      "base": "<p>The profile collected by an agent for a time range.</p>",
+      "base": null,
       "refs": {
-        "PostAgentProfileRequest$agentProfile": null
+        "PostAgentProfileRequest$agentProfile": "<p/>"
       }
     },
     "AggregatedProfile": {
-      "base": "<p>The profile representing the aggregation of agent profiles of the profiling group for a time range.</p>",
+      "base": null,
       "refs": {
-        "GetProfileResponse$profile": null
+        "GetProfileResponse$profile": "<p>Information about the profile.</p>"
       }
     },
     "AggregatedProfileTime": {
-      "base": "<p>The time range of an aggregated profile.</p>",
+      "base": "<p>Information about the time range of the latest available aggregated profile.</p>",
       "refs": {
-        "ProfilingStatus$latestAggregatedProfile": "<p>The time range of latest aggregated profile available.</p>"
+        "ProfilingStatus$latestAggregatedProfile": "<p>The latest aggregated profile</p>"
       }
     },
     "AggregationPeriod": {
-      "base": "<p>Periods of time used for aggregation of profiles, represented using ISO 8601 format.</p>",
+      "base": null,
       "refs": {
-        "AggregatedProfileTime$period": "<p>The aggregation period of the aggregated profile.</p>",
-        "ListProfileTimesRequest$period": "<p>The aggregation period to list the profiles for.</p>"
+        "AggregatedProfileTime$period": "<p>The time period.</p>",
+        "ListProfileTimesRequest$period": "<p>The aggregation period.</p>"
       }
     },
     "Boolean": {
       "base": null,
       "refs": {
-        "AgentConfiguration$shouldProfile": "<p>Specifies if the profiling should be enabled by the agent.</p>",
-        "AgentOrchestrationConfig$profilingEnabled": "<p>If the agents should be enabled to create and report profiles.</p>",
-        "ListProfilingGroupsRequest$includeDescription": "<p>If set to true, returns the full description of the profiling groups instead of the names. Defaults to false.</p>"
+        "AgentConfiguration$shouldProfile": "<p/>",
+        "AgentOrchestrationConfig$profilingEnabled": "<p/>",
+        "ListProfilingGroupsRequest$includeDescription": "<p>A Boolean value indicating whether to include a description.</p>"
       }
     },
     "ClientToken": {
-      "base": "<p>Client token for the request.</p>",
+      "base": null,
       "refs": {
-        "CreateProfilingGroupRequest$clientToken": null,
-        "PostAgentProfileRequest$profileToken": "<p>Client generated token to deduplicate the agent profile during aggregation.</p>"
+        "CreateProfilingGroupRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p> <p>This parameter specifies a unique identifier for the new profiling group that helps ensure idempotency.</p>",
+        "PostAgentProfileRequest$profileToken": "<p/>"
       }
     },
     "ConfigureAgentRequest": {
-      "base": "<p>Request for ConfigureAgent operation.</p>",
+      "base": "<p>The structure representing the configureAgentRequest.</p>",
       "refs": {
       }
     },
     "ConfigureAgentResponse": {
-      "base": "<p>Response for ConfigureAgent operation.</p>",
+      "base": "<p>The structure representing the configureAgentResponse.</p>",
       "refs": {
       }
     },
     "ConflictException": {
-      "base": "<p>Request can can cause an inconsistent state for the resource.</p>",
+      "base": "<p>The requested operation would cause a conflict with the current state of a service resource associated with the request. Resolve the conflict before retrying this request. </p>",
       "refs": {
       }
     },
     "CreateProfilingGroupRequest": {
-      "base": "<p>Request for CreateProfilingGroup operation.</p>",
+      "base": "<p>The structure representing the createProfiliingGroupRequest.</p>",
       "refs": {
       }
     },
     "CreateProfilingGroupResponse": {
-      "base": "<p>Response for CreateProfilingGroup operation.</p>",
+      "base": "<p>The structure representing the createProfilingGroupResponse.</p>",
       "refs": {
       }
     },
     "DeleteProfilingGroupRequest": {
-      "base": "<p>Request for DeleteProfilingGroup operation.</p>",
+      "base": "<p>The structure representing the deleteProfilingGroupRequest.</p>",
       "refs": {
       }
     },
     "DeleteProfilingGroupResponse": {
-      "base": "<p>Response for DeleteProfilingGroup operation.</p>",
+      "base": "<p>The structure representing the deleteProfilingGroupResponse.</p>",
       "refs": {
       }
     },
     "DescribeProfilingGroupRequest": {
-      "base": "<p>Request for DescribeProfilingGroup operation.</p>",
+      "base": "<p>The structure representing the describeProfilingGroupRequest.</p>",
       "refs": {
       }
     },
     "DescribeProfilingGroupResponse": {
-      "base": "<p>Response for DescribeProfilingGroup operation.</p>",
+      "base": "<p>The structure representing the describeProfilingGroupResponse.</p>",
       "refs": {
       }
     },
     "FleetInstanceId": {
-      "base": "<p>Identifier of the instance of compute fleet being profiled by the agent. For instance, host name in EC2, task id for ECS, function name for AWS Lambda</p>",
+      "base": null,
       "refs": {
-        "ConfigureAgentRequest$fleetInstanceId": null
+        "ConfigureAgentRequest$fleetInstanceId": "<p/>"
       }
     },
     "GetProfileRequest": {
-      "base": "<p>Request for GetProfile operation.</p>",
+      "base": "<p>The structure representing the getProfileRequest.</p>",
       "refs": {
       }
     },
     "GetProfileResponse": {
-      "base": "<p>Response for GetProfile operation.</p>",
+      "base": "<p>The structure representing the getProfileResponse.</p>",
       "refs": {
       }
     },
     "Integer": {
       "base": null,
       "refs": {
-        "AgentConfiguration$periodInSeconds": "<p>Specifies the period to follow the configuration (to profile or not) and call back to get a new configuration.</p>"
+        "AgentConfiguration$periodInSeconds": "<p/>"
       }
     },
     "InternalServerException": {
-      "base": "<p>Unexpected error during processing of request.</p>",
+      "base": "<p>The server encountered an internal error and is unable to complete the request.</p>",
       "refs": {
       }
     },
     "ListProfileTimesRequest": {
-      "base": "<p>Request for ListProfileTimes operation.</p>",
+      "base": "<p>The structure representing the listProfileTimesRequest.</p>",
       "refs": {
       }
     },
     "ListProfileTimesResponse": {
-      "base": "<p>Response for ListProfileTimes operation.</p>",
+      "base": "<p>The structure representing the listProfileTimesResponse.</p>",
       "refs": {
       }
     },
     "ListProfilingGroupsRequest": {
-      "base": "<p>Request for ListProfilingGroups operation.</p>",
+      "base": "<p>The structure representing the listProfilingGroupsRequest.</p>",
       "refs": {
       }
     },
     "ListProfilingGroupsResponse": {
-      "base": "<p>Response for ListProfilingGroups operation.</p>",
+      "base": "<p>The structure representing the listProfilingGroupsResponse.</p>",
       "refs": {
       }
     },
     "MaxDepth": {
-      "base": "<p>Limit the max depth of the profile.</p>",
+      "base": null,
       "refs": {
-        "GetProfileRequest$maxDepth": null
+        "GetProfileRequest$maxDepth": "<p>The maximum depth of the graph.</p>"
       }
     },
     "MaxResults": {
-      "base": "<p>Upper bound on the number of results to list in a single call.</p>",
+      "base": null,
       "refs": {
-        "ListProfileTimesRequest$maxResults": null,
-        "ListProfilingGroupsRequest$maxResults": null
+        "ListProfileTimesRequest$maxResults": "<p>The maximum number of profile time results returned by <code>ListProfileTimes</code> in paginated output. When this parameter is used, <code>ListProfileTimes</code> only returns <code>maxResults</code> results in a single page with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListProfileTimes</code> request with the returned <code>nextToken</code> value. </p>",
+        "ListProfilingGroupsRequest$maxResults": "<p>The maximum number of profiling groups results returned by <code>ListProfilingGroups</code> in paginated output. When this parameter is used, <code>ListProfilingGroups</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListProfilingGroups</code> request with the returned <code>nextToken</code> value. </p>"
       }
     },
     "OrderBy": {
       "base": null,
       "refs": {
-        "ListProfileTimesRequest$orderBy": "<p>The order (ascending or descending by start time of the profile) to list the profiles by. Defaults to TIMESTAMP_DESCENDING.</p>"
+        "ListProfileTimesRequest$orderBy": "<p>The order (ascending or descending by start time of the profile) to use when listing profiles. Defaults to <code>TIMESTAMP_DESCENDING</code>. </p>"
       }
     },
     "PaginationToken": {
-      "base": "<p>Token for paginating results.</p>",
+      "base": null,
       "refs": {
-        "ListProfileTimesRequest$nextToken": null,
-        "ListProfileTimesResponse$nextToken": null,
-        "ListProfilingGroupsRequest$nextToken": null,
-        "ListProfilingGroupsResponse$nextToken": null
+        "ListProfileTimesRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListProfileTimes</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. </p> <note> <p>This token should be treated as an opaque identifier that is only used to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
+        "ListProfileTimesResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>ListProfileTimes</code> request. When the results of a <code>ListProfileTimes</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>",
+        "ListProfilingGroupsRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListProfilingGroups</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. </p> <note> <p>This token should be treated as an opaque identifier that is only used to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
+        "ListProfilingGroupsResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>ListProfilingGroups</code> request. When the results of a <code>ListProfilingGroups</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>"
       }
     },
     "Period": {
-      "base": "<p>Periods of time represented using <a href=\"https://en.wikipedia.org/wiki/ISO_8601#Durations\">ISO 8601 format</a>.</p>",
+      "base": null,
       "refs": {
-        "GetProfileRequest$period": "<p>The period of the profile to get. Exactly two of <code>startTime</code>, <code>period</code> and <code>endTime</code> must be specified. Must be positive and the overall time range to be in the past and not larger than a week.</p>"
+        "GetProfileRequest$period": "<p>The period of the profile to get. The time range must be in the past and not longer than one week. </p> <p>You must specify exactly two of the following parameters: <code>startTime</code>, <code>period</code>, and <code>endTime</code>. </p>"
       }
     },
     "PostAgentProfileRequest": {
-      "base": "<p>Request for PostAgentProfile operation.</p>",
+      "base": "<p>The structure representing the postAgentProfileRequest.</p>",
       "refs": {
       }
     },
     "PostAgentProfileResponse": {
-      "base": "<p>Response for PostAgentProfile operation.</p>",
+      "base": "<p>The structure representing the postAgentProfileResponse.</p>",
       "refs": {
       }
     },
     "ProfileTime": {
-      "base": "<p>Periods of time used for aggregation of profiles, represented using ISO 8601 format.</p>",
+      "base": "<p>Information about the profile time.</p>",
       "refs": {
         "ProfileTimes$member": null
       }
     },
     "ProfileTimes": {
-      "base": "<p>List of profile times.</p>",
+      "base": null,
       "refs": {
-        "ListProfileTimesResponse$profileTimes": "<p>List of start times of the available profiles for the aggregation period in the specified time range.</p>"
+        "ListProfileTimesResponse$profileTimes": "<p>The list of start times of the available profiles for the aggregation period in the specified time range. </p>"
       }
     },
     "ProfilingGroupArn": {
-      "base": "<p>The ARN of the profiling group.</p>",
+      "base": null,
       "refs": {
-        "ProfilingGroupDescription$arn": null
+        "ProfilingGroupDescription$arn": "<p>The Amazon Resource Name (ARN) identifying the profiling group.</p>"
       }
     },
     "ProfilingGroupDescription": {
       "base": "<p>The description of a profiling group.</p>",
       "refs": {
-        "CreateProfilingGroupResponse$profilingGroup": null,
-        "DescribeProfilingGroupResponse$profilingGroup": null,
+        "CreateProfilingGroupResponse$profilingGroup": "<p>Information about the new profiling group</p>",
+        "DescribeProfilingGroupResponse$profilingGroup": "<p>Information about a profiling group.</p>",
         "ProfilingGroupDescriptions$member": null,
-        "UpdateProfilingGroupResponse$profilingGroup": null
+        "UpdateProfilingGroupResponse$profilingGroup": "<p>Updated information about the profiling group.</p>"
       }
     },
     "ProfilingGroupDescriptions": {
-      "base": "<p>List of profiling group descriptions.</p>",
+      "base": null,
       "refs": {
-        "ListProfilingGroupsResponse$profilingGroups": null
+        "ListProfilingGroupsResponse$profilingGroups": "<p>Information about profiling groups.</p>"
       }
     },
     "ProfilingGroupName": {
-      "base": "<p>The name of the profiling group.</p>",
+      "base": null,
       "refs": {
-        "ConfigureAgentRequest$profilingGroupName": null,
-        "CreateProfilingGroupRequest$profilingGroupName": null,
-        "DeleteProfilingGroupRequest$profilingGroupName": null,
-        "DescribeProfilingGroupRequest$profilingGroupName": null,
-        "GetProfileRequest$profilingGroupName": null,
-        "ListProfileTimesRequest$profilingGroupName": null,
-        "PostAgentProfileRequest$profilingGroupName": null,
-        "ProfilingGroupDescription$name": null,
+        "ConfigureAgentRequest$profilingGroupName": "<p/>",
+        "CreateProfilingGroupRequest$profilingGroupName": "<p>The name of the profiling group.</p>",
+        "DeleteProfilingGroupRequest$profilingGroupName": "<p>The profiling group name to delete.</p>",
+        "DescribeProfilingGroupRequest$profilingGroupName": "<p>The profiling group name.</p>",
+        "GetProfileRequest$profilingGroupName": "<p>The name of the profiling group to get.</p>",
+        "ListProfileTimesRequest$profilingGroupName": "<p>The name of the profiling group.</p>",
+        "PostAgentProfileRequest$profilingGroupName": "<p/>",
+        "ProfilingGroupDescription$name": "<p>The name of the profiling group.</p>",
         "ProfilingGroupNames$member": null,
-        "UpdateProfilingGroupRequest$profilingGroupName": null
+        "UpdateProfilingGroupRequest$profilingGroupName": "<p>The name of the profiling group to update.</p>"
       }
     },
     "ProfilingGroupNames": {
-      "base": "<p>List of profiling group names.</p>",
+      "base": null,
       "refs": {
-        "ListProfilingGroupsResponse$profilingGroupNames": null
+        "ListProfilingGroupsResponse$profilingGroupNames": "<p>Information about profiling group names.</p>"
       }
     },
     "ProfilingStatus": {
-      "base": "<p>The status of profiling of a profiling group.</p>",
+      "base": "<p>Information about the profiling status.</p>",
       "refs": {
-        "ProfilingGroupDescription$profilingStatus": null
+        "ProfilingGroupDescription$profilingStatus": "<p>The status of the profiling group.</p>"
       }
     },
     "ResourceNotFoundException": {
-      "base": "<p>Request references a resource which does not exist.</p>",
+      "base": "<p>The resource specified in the request does not exist.</p>",
       "refs": {
       }
     },
     "ServiceQuotaExceededException": {
-      "base": "<p>Request would cause a service quota to be exceeded.</p>",
+      "base": "<p>You have exceeded your service quota. To perform the requested action, remove some of the relevant resources, or use <a href=\"https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html\">Service Quotas</a> to request a service quota increase. </p>",
       "refs": {
       }
     },
@@ -277,11 +277,11 @@
       "base": null,
       "refs": {
         "ConflictException$message": null,
-        "GetProfileRequest$accept": "<p>The format of the profile to return. Supports application/json or application/x-amzn-ion. Defaults to application/x-amzn-ion.</p>",
-        "GetProfileResponse$contentEncoding": "<p>The content encoding of the profile in the payload.</p>",
-        "GetProfileResponse$contentType": "<p>The content type of the profile in the payload. Will be application/json or application/x-amzn-ion based on Accept header in the request.</p>",
+        "GetProfileRequest$accept": "<p>The format of the profile to return. You can choose <code>application/json</code> or the default <code>application/x-amzn-ion</code>. </p>",
+        "GetProfileResponse$contentEncoding": "<p>The content encoding of the profile.</p>",
+        "GetProfileResponse$contentType": "<p>The content type of the profile in the payload. It is either <code>application/json</code> or the default <code>application/x-amzn-ion</code>.</p>",
         "InternalServerException$message": null,
-        "PostAgentProfileRequest$contentType": "<p>The content type of the agent profile in the payload. Recommended to send the profile gzipped with content-type application/octet-stream. Other accepted values are application/x-amzn-ion and application/json for unzipped Ion and JSON respectively.</p>",
+        "PostAgentProfileRequest$contentType": "<p/>",
         "ResourceNotFoundException$message": null,
         "ServiceQuotaExceededException$message": null,
         "ThrottlingException$message": null,
@@ -289,37 +289,37 @@
       }
     },
     "ThrottlingException": {
-      "base": "<p>Request was denied due to request throttling.</p>",
+      "base": "<p>The request was denied due to request throttling.</p>",
       "refs": {
       }
     },
     "Timestamp": {
       "base": null,
       "refs": {
-        "AggregatedProfileTime$start": "<p>The start time of the aggregated profile.</p>",
-        "GetProfileRequest$endTime": "<p>The end time of the profile to get. Either period or endTime must be specified. Must be greater than start and the overall time range to be in the past and not larger than a week.</p>",
-        "GetProfileRequest$startTime": "<p>The start time of the profile to get.</p>",
-        "ListProfileTimesRequest$endTime": "<p>The end time of the time range to list profiles until.</p>",
-        "ListProfileTimesRequest$startTime": "<p>The start time of the time range to list the profiles from.</p>",
+        "AggregatedProfileTime$start": "<p>The start time.</p>",
+        "GetProfileRequest$endTime": "<p/> <p>You must specify exactly two of the following parameters: <code>startTime</code>, <code>period</code>, and <code>endTime</code>. </p>",
+        "GetProfileRequest$startTime": "<p>The start time of the profile to get.</p> <p>You must specify exactly two of the following parameters: <code>startTime</code>, <code>period</code>, and <code>endTime</code>. </p>",
+        "ListProfileTimesRequest$endTime": "<p>The end time of the time range from which to list the profiles.</p>",
+        "ListProfileTimesRequest$startTime": "<p>The start time of the time range from which to list the profiles.</p>",
         "ProfileTime$start": "<p>The start time of the profile.</p>",
-        "ProfilingGroupDescription$createdAt": "<p>The timestamp of when the profiling group was created.</p>",
-        "ProfilingGroupDescription$updatedAt": "<p>The timestamp of when the profiling group was last updated.</p>",
-        "ProfilingStatus$latestAgentOrchestratedAt": "<p>Timestamp of when the last interaction of the agent with configureAgent API for orchestration.</p>",
-        "ProfilingStatus$latestAgentProfileReportedAt": "<p>Timestamp of when the latest agent profile was successfully reported.</p>"
+        "ProfilingGroupDescription$createdAt": "<p>The time, in milliseconds since the epoch, when the profiling group was created.</p>",
+        "ProfilingGroupDescription$updatedAt": "<p>The time, in milliseconds since the epoch, when the profiling group was last updated.</p>",
+        "ProfilingStatus$latestAgentOrchestratedAt": "<p>The time, in milliseconds since the epoch, when the latest agent was orchestrated.</p>",
+        "ProfilingStatus$latestAgentProfileReportedAt": "<p>The time, in milliseconds since the epoch, when the latest agent was reported..</p>"
       }
     },
     "UpdateProfilingGroupRequest": {
-      "base": "<p>Request for UpdateProfilingGroup operation.</p>",
+      "base": "<p>The structure representing the updateProfilingGroupRequest.</p>",
       "refs": {
       }
     },
     "UpdateProfilingGroupResponse": {
-      "base": "<p>Response for UpdateProfilingGroup operation.</p>",
+      "base": "<p>The structure representing the updateProfilingGroupResponse.</p>",
       "refs": {
       }
     },
     "ValidationException": {
-      "base": "<p>The input fails to satisfy the constraints of the API.</p>",
+      "base": "<p>The parameter is not valid.</p>",
       "refs": {
       }
     }

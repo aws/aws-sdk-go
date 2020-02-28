@@ -57,8 +57,6 @@ func (c *CodeGuruProfiler) ConfigureAgentRequest(input *ConfigureAgentInput) (re
 
 // ConfigureAgent API operation for Amazon CodeGuru Profiler.
 //
-// Provides the configuration to use for an agent of the profiling group.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -68,16 +66,16 @@ func (c *CodeGuruProfiler) ConfigureAgentRequest(input *ConfigureAgentInput) (re
 //
 // Returned Error Types:
 //   * InternalServerException
-//   Unexpected error during processing of request.
+//   The server encountered an internal error and is unable to complete the request.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints of the API.
+//   The parameter is not valid.
 //
 //   * ThrottlingException
-//   Request was denied due to request throttling.
+//   The request was denied due to request throttling.
 //
 //   * ResourceNotFoundException
-//   Request references a resource which does not exist.
+//   The resource specified in the request does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/ConfigureAgent
 func (c *CodeGuruProfiler) ConfigureAgent(input *ConfigureAgentInput) (*ConfigureAgentOutput, error) {
@@ -145,7 +143,7 @@ func (c *CodeGuruProfiler) CreateProfilingGroupRequest(input *CreateProfilingGro
 
 // CreateProfilingGroup API operation for Amazon CodeGuru Profiler.
 //
-// Create a profiling group.
+// Creates a profiling group.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -156,19 +154,23 @@ func (c *CodeGuruProfiler) CreateProfilingGroupRequest(input *CreateProfilingGro
 //
 // Returned Error Types:
 //   * ServiceQuotaExceededException
-//   Request would cause a service quota to be exceeded.
+//   You have exceeded your service quota. To perform the requested action, remove
+//   some of the relevant resources, or use Service Quotas (https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html)
+//   to request a service quota increase.
 //
 //   * InternalServerException
-//   Unexpected error during processing of request.
+//   The server encountered an internal error and is unable to complete the request.
 //
 //   * ConflictException
-//   Request can can cause an inconsistent state for the resource.
+//   The requested operation would cause a conflict with the current state of
+//   a service resource associated with the request. Resolve the conflict before
+//   retrying this request.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints of the API.
+//   The parameter is not valid.
 //
 //   * ThrottlingException
-//   Request was denied due to request throttling.
+//   The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/CreateProfilingGroup
 func (c *CodeGuruProfiler) CreateProfilingGroup(input *CreateProfilingGroupInput) (*CreateProfilingGroupOutput, error) {
@@ -237,7 +239,7 @@ func (c *CodeGuruProfiler) DeleteProfilingGroupRequest(input *DeleteProfilingGro
 
 // DeleteProfilingGroup API operation for Amazon CodeGuru Profiler.
 //
-// Delete a profiling group.
+// Deletes a profiling group.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -248,16 +250,16 @@ func (c *CodeGuruProfiler) DeleteProfilingGroupRequest(input *DeleteProfilingGro
 //
 // Returned Error Types:
 //   * InternalServerException
-//   Unexpected error during processing of request.
+//   The server encountered an internal error and is unable to complete the request.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints of the API.
+//   The parameter is not valid.
 //
 //   * ThrottlingException
-//   Request was denied due to request throttling.
+//   The request was denied due to request throttling.
 //
 //   * ResourceNotFoundException
-//   Request references a resource which does not exist.
+//   The resource specified in the request does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/DeleteProfilingGroup
 func (c *CodeGuruProfiler) DeleteProfilingGroup(input *DeleteProfilingGroupInput) (*DeleteProfilingGroupOutput, error) {
@@ -325,7 +327,7 @@ func (c *CodeGuruProfiler) DescribeProfilingGroupRequest(input *DescribeProfilin
 
 // DescribeProfilingGroup API operation for Amazon CodeGuru Profiler.
 //
-// Describe a profiling group.
+// Describes a profiling group.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -336,16 +338,16 @@ func (c *CodeGuruProfiler) DescribeProfilingGroupRequest(input *DescribeProfilin
 //
 // Returned Error Types:
 //   * InternalServerException
-//   Unexpected error during processing of request.
+//   The server encountered an internal error and is unable to complete the request.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints of the API.
+//   The parameter is not valid.
 //
 //   * ThrottlingException
-//   Request was denied due to request throttling.
+//   The request was denied due to request throttling.
 //
 //   * ResourceNotFoundException
-//   Request references a resource which does not exist.
+//   The resource specified in the request does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/DescribeProfilingGroup
 func (c *CodeGuruProfiler) DescribeProfilingGroup(input *DescribeProfilingGroupInput) (*DescribeProfilingGroupOutput, error) {
@@ -413,14 +415,18 @@ func (c *CodeGuruProfiler) GetProfileRequest(input *GetProfileInput) (req *reque
 
 // GetProfile API operation for Amazon CodeGuru Profiler.
 //
-// Get the aggregated profile of a profiling group for the specified time range.
+// Gets the aggregated profile of a profiling group for the specified time range.
 // If the requested time range does not align with the available aggregated
-// profiles, it will be expanded to attain alignment. If aggregated profiles
-// are available only for part of the period requested, the profile is returned
+// profiles, it is expanded to attain alignment. If aggregated profiles are
+// available only for part of the period requested, the profile is returned
 // from the earliest available to the latest within the requested time range.
-// For instance, if the requested time range is from 00:00 to 00:20 and the
-// available profiles are from 00:15 to 00:25, then the returned profile will
-// be from 00:15 to 00:20.
+//
+// For example, if the requested time range is from 00:00 to 00:20 and the available
+// profiles are from 00:15 to 00:25, the returned profile will be from 00:15
+// to 00:20.
+//
+// You must specify exactly two of the following parameters: startTime, period,
+// and endTime.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -431,16 +437,16 @@ func (c *CodeGuruProfiler) GetProfileRequest(input *GetProfileInput) (req *reque
 //
 // Returned Error Types:
 //   * InternalServerException
-//   Unexpected error during processing of request.
+//   The server encountered an internal error and is unable to complete the request.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints of the API.
+//   The parameter is not valid.
 //
 //   * ThrottlingException
-//   Request was denied due to request throttling.
+//   The request was denied due to request throttling.
 //
 //   * ResourceNotFoundException
-//   Request references a resource which does not exist.
+//   The resource specified in the request does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/GetProfile
 func (c *CodeGuruProfiler) GetProfile(input *GetProfileInput) (*GetProfileOutput, error) {
@@ -526,16 +532,16 @@ func (c *CodeGuruProfiler) ListProfileTimesRequest(input *ListProfileTimesInput)
 //
 // Returned Error Types:
 //   * InternalServerException
-//   Unexpected error during processing of request.
+//   The server encountered an internal error and is unable to complete the request.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints of the API.
+//   The parameter is not valid.
 //
 //   * ThrottlingException
-//   Request was denied due to request throttling.
+//   The request was denied due to request throttling.
 //
 //   * ResourceNotFoundException
-//   Request references a resource which does not exist.
+//   The resource specified in the request does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/ListProfileTimes
 func (c *CodeGuruProfiler) ListProfileTimes(input *ListProfileTimesInput) (*ListProfileTimesOutput, error) {
@@ -661,7 +667,7 @@ func (c *CodeGuruProfiler) ListProfilingGroupsRequest(input *ListProfilingGroups
 
 // ListProfilingGroups API operation for Amazon CodeGuru Profiler.
 //
-// List profiling groups in the account.
+// Lists profiling groups.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -672,10 +678,10 @@ func (c *CodeGuruProfiler) ListProfilingGroupsRequest(input *ListProfilingGroups
 //
 // Returned Error Types:
 //   * InternalServerException
-//   Unexpected error during processing of request.
+//   The server encountered an internal error and is unable to complete the request.
 //
 //   * ThrottlingException
-//   Request was denied due to request throttling.
+//   The request was denied due to request throttling.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/ListProfilingGroups
 func (c *CodeGuruProfiler) ListProfilingGroups(input *ListProfilingGroupsInput) (*ListProfilingGroupsOutput, error) {
@@ -796,8 +802,6 @@ func (c *CodeGuruProfiler) PostAgentProfileRequest(input *PostAgentProfileInput)
 
 // PostAgentProfile API operation for Amazon CodeGuru Profiler.
 //
-// Submit profile collected by an agent belonging to a profiling group for aggregation.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -807,16 +811,16 @@ func (c *CodeGuruProfiler) PostAgentProfileRequest(input *PostAgentProfileInput)
 //
 // Returned Error Types:
 //   * InternalServerException
-//   Unexpected error during processing of request.
+//   The server encountered an internal error and is unable to complete the request.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints of the API.
+//   The parameter is not valid.
 //
 //   * ThrottlingException
-//   Request was denied due to request throttling.
+//   The request was denied due to request throttling.
 //
 //   * ResourceNotFoundException
-//   Request references a resource which does not exist.
+//   The resource specified in the request does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/PostAgentProfile
 func (c *CodeGuruProfiler) PostAgentProfile(input *PostAgentProfileInput) (*PostAgentProfileOutput, error) {
@@ -884,7 +888,7 @@ func (c *CodeGuruProfiler) UpdateProfilingGroupRequest(input *UpdateProfilingGro
 
 // UpdateProfilingGroup API operation for Amazon CodeGuru Profiler.
 //
-// Update a profiling group.
+// Updates a profiling group.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -895,19 +899,21 @@ func (c *CodeGuruProfiler) UpdateProfilingGroupRequest(input *UpdateProfilingGro
 //
 // Returned Error Types:
 //   * InternalServerException
-//   Unexpected error during processing of request.
+//   The server encountered an internal error and is unable to complete the request.
 //
 //   * ConflictException
-//   Request can can cause an inconsistent state for the resource.
+//   The requested operation would cause a conflict with the current state of
+//   a service resource associated with the request. Resolve the conflict before
+//   retrying this request.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints of the API.
+//   The parameter is not valid.
 //
 //   * ThrottlingException
-//   Request was denied due to request throttling.
+//   The request was denied due to request throttling.
 //
 //   * ResourceNotFoundException
-//   Request references a resource which does not exist.
+//   The resource specified in the request does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/UpdateProfilingGroup
 func (c *CodeGuruProfiler) UpdateProfilingGroup(input *UpdateProfilingGroupInput) (*UpdateProfilingGroupOutput, error) {
@@ -931,18 +937,12 @@ func (c *CodeGuruProfiler) UpdateProfilingGroupWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
-// The configuration for the agent to use.
 type AgentConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the period to follow the configuration (to profile or not) and
-	// call back to get a new configuration.
-	//
 	// PeriodInSeconds is a required field
 	PeriodInSeconds *int64 `locationName:"periodInSeconds" type:"integer" required:"true"`
 
-	// Specifies if the profiling should be enabled by the agent.
-	//
 	// ShouldProfile is a required field
 	ShouldProfile *bool `locationName:"shouldProfile" type:"boolean" required:"true"`
 }
@@ -969,14 +969,9 @@ func (s *AgentConfiguration) SetShouldProfile(v bool) *AgentConfiguration {
 	return s
 }
 
-// Configuration to orchestrate agents to create and report agent profiles of
-// the profiling group. Agents are orchestrated if they follow the agent orchestration
-// protocol.
 type AgentOrchestrationConfig struct {
 	_ struct{} `type:"structure"`
 
-	// If the agents should be enabled to create and report profiles.
-	//
 	// ProfilingEnabled is a required field
 	ProfilingEnabled *bool `locationName:"profilingEnabled" type:"boolean" required:"true"`
 }
@@ -1010,14 +1005,14 @@ func (s *AgentOrchestrationConfig) SetProfilingEnabled(v bool) *AgentOrchestrati
 	return s
 }
 
-// The time range of an aggregated profile.
+// Information about the time range of the latest available aggregated profile.
 type AggregatedProfileTime struct {
 	_ struct{} `type:"structure"`
 
-	// The aggregation period of the aggregated profile.
+	// The time period.
 	Period *string `locationName:"period" type:"string" enum:"AggregationPeriod"`
 
-	// The start time of the aggregated profile.
+	// The start time.
 	Start *time.Time `locationName:"start" type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -1043,16 +1038,12 @@ func (s *AggregatedProfileTime) SetStart(v time.Time) *AggregatedProfileTime {
 	return s
 }
 
-// Request for ConfigureAgent operation.
+// The structure representing the configureAgentRequest.
 type ConfigureAgentInput struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier of the instance of compute fleet being profiled by the agent.
-	// For instance, host name in EC2, task id for ECS, function name for AWS Lambda
 	FleetInstanceId *string `locationName:"fleetInstanceId" min:"1" type:"string"`
 
-	// The name of the profiling group.
-	//
 	// ProfilingGroupName is a required field
 	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
 }
@@ -1098,12 +1089,10 @@ func (s *ConfigureAgentInput) SetProfilingGroupName(v string) *ConfigureAgentInp
 	return s
 }
 
-// Response for ConfigureAgent operation.
+// The structure representing the configureAgentResponse.
 type ConfigureAgentOutput struct {
 	_ struct{} `type:"structure" payload:"Configuration"`
 
-	// The configuration for the agent to use.
-	//
 	// Configuration is a required field
 	Configuration *AgentConfiguration `locationName:"configuration" type:"structure" required:"true"`
 }
@@ -1124,7 +1113,9 @@ func (s *ConfigureAgentOutput) SetConfiguration(v *AgentConfiguration) *Configur
 	return s
 }
 
-// Request can can cause an inconsistent state for the resource.
+// The requested operation would cause a conflict with the current state of
+// a service resource associated with the request. Resolve the conflict before
+// retrying this request.
 type ConflictException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
@@ -1180,16 +1171,18 @@ func (s ConflictException) RequestID() string {
 	return s.respMetadata.RequestID
 }
 
-// Request for CreateProfilingGroup operation.
+// The structure representing the createProfiliingGroupRequest.
 type CreateProfilingGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// Configuration to orchestrate agents to create and report agent profiles of
-	// the profiling group. Agents are orchestrated if they follow the agent orchestration
-	// protocol.
+	// The agent orchestration configuration.
 	AgentOrchestrationConfig *AgentOrchestrationConfig `locationName:"agentOrchestrationConfig" type:"structure"`
 
-	// Client token for the request.
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	//
+	// This parameter specifies a unique identifier for the new profiling group
+	// that helps ensure idempotency.
 	ClientToken *string `location:"querystring" locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The name of the profiling group.
@@ -1250,11 +1243,11 @@ func (s *CreateProfilingGroupInput) SetProfilingGroupName(v string) *CreateProfi
 	return s
 }
 
-// Response for CreateProfilingGroup operation.
+// The structure representing the createProfilingGroupResponse.
 type CreateProfilingGroupOutput struct {
 	_ struct{} `type:"structure" payload:"ProfilingGroup"`
 
-	// The description of a profiling group.
+	// Information about the new profiling group
 	//
 	// ProfilingGroup is a required field
 	ProfilingGroup *ProfilingGroupDescription `locationName:"profilingGroup" type:"structure" required:"true"`
@@ -1276,11 +1269,11 @@ func (s *CreateProfilingGroupOutput) SetProfilingGroup(v *ProfilingGroupDescript
 	return s
 }
 
-// Request for DeleteProfilingGroup operation.
+// The structure representing the deleteProfilingGroupRequest.
 type DeleteProfilingGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the profiling group.
+	// The profiling group name to delete.
 	//
 	// ProfilingGroupName is a required field
 	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
@@ -1318,7 +1311,7 @@ func (s *DeleteProfilingGroupInput) SetProfilingGroupName(v string) *DeleteProfi
 	return s
 }
 
-// Response for DeleteProfilingGroup operation.
+// The structure representing the deleteProfilingGroupResponse.
 type DeleteProfilingGroupOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1333,11 +1326,11 @@ func (s DeleteProfilingGroupOutput) GoString() string {
 	return s.String()
 }
 
-// Request for DescribeProfilingGroup operation.
+// The structure representing the describeProfilingGroupRequest.
 type DescribeProfilingGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the profiling group.
+	// The profiling group name.
 	//
 	// ProfilingGroupName is a required field
 	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
@@ -1375,11 +1368,11 @@ func (s *DescribeProfilingGroupInput) SetProfilingGroupName(v string) *DescribeP
 	return s
 }
 
-// Response for DescribeProfilingGroup operation.
+// The structure representing the describeProfilingGroupResponse.
 type DescribeProfilingGroupOutput struct {
 	_ struct{} `type:"structure" payload:"ProfilingGroup"`
 
-	// The description of a profiling group.
+	// Information about a profiling group.
 	//
 	// ProfilingGroup is a required field
 	ProfilingGroup *ProfilingGroupDescription `locationName:"profilingGroup" type:"structure" required:"true"`
@@ -1401,33 +1394,37 @@ func (s *DescribeProfilingGroupOutput) SetProfilingGroup(v *ProfilingGroupDescri
 	return s
 }
 
-// Request for GetProfile operation.
+// The structure representing the getProfileRequest.
 type GetProfileInput struct {
 	_ struct{} `type:"structure"`
 
-	// The format of the profile to return. Supports application/json or application/x-amzn-ion.
-	// Defaults to application/x-amzn-ion.
+	// The format of the profile to return. You can choose application/json or the
+	// default application/x-amzn-ion.
 	Accept *string `location:"header" locationName:"Accept" type:"string"`
 
-	// The end time of the profile to get. Either period or endTime must be specified.
-	// Must be greater than start and the overall time range to be in the past and
-	// not larger than a week.
+	// You must specify exactly two of the following parameters: startTime, period,
+	// and endTime.
 	EndTime *time.Time `location:"querystring" locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
 
-	// Limit the max depth of the profile.
+	// The maximum depth of the graph.
 	MaxDepth *int64 `location:"querystring" locationName:"maxDepth" min:"1" type:"integer"`
 
-	// The period of the profile to get. Exactly two of startTime, period and endTime
-	// must be specified. Must be positive and the overall time range to be in the
-	// past and not larger than a week.
+	// The period of the profile to get. The time range must be in the past and
+	// not longer than one week.
+	//
+	// You must specify exactly two of the following parameters: startTime, period,
+	// and endTime.
 	Period *string `location:"querystring" locationName:"period" min:"1" type:"string"`
 
-	// The name of the profiling group.
+	// The name of the profiling group to get.
 	//
 	// ProfilingGroupName is a required field
 	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
 
 	// The start time of the profile to get.
+	//
+	// You must specify exactly two of the following parameters: startTime, period,
+	// and endTime.
 	StartTime *time.Time `location:"querystring" locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -1499,21 +1496,20 @@ func (s *GetProfileInput) SetStartTime(v time.Time) *GetProfileInput {
 	return s
 }
 
-// Response for GetProfile operation.
+// The structure representing the getProfileResponse.
 type GetProfileOutput struct {
 	_ struct{} `type:"structure" payload:"Profile"`
 
-	// The content encoding of the profile in the payload.
+	// The content encoding of the profile.
 	ContentEncoding *string `location:"header" locationName:"Content-Encoding" type:"string"`
 
-	// The content type of the profile in the payload. Will be application/json
-	// or application/x-amzn-ion based on Accept header in the request.
+	// The content type of the profile in the payload. It is either application/json
+	// or the default application/x-amzn-ion.
 	//
 	// ContentType is a required field
 	ContentType *string `location:"header" locationName:"Content-Type" type:"string" required:"true"`
 
-	// The profile representing the aggregation of agent profiles of the profiling
-	// group for a time range.
+	// Information about the profile.
 	//
 	// Profile is a required field
 	Profile []byte `locationName:"profile" type:"blob" required:"true"`
@@ -1547,7 +1543,7 @@ func (s *GetProfileOutput) SetProfile(v []byte) *GetProfileOutput {
 	return s
 }
 
-// Unexpected error during processing of request.
+// The server encountered an internal error and is unable to complete the request.
 type InternalServerException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
@@ -1603,26 +1599,36 @@ func (s InternalServerException) RequestID() string {
 	return s.respMetadata.RequestID
 }
 
-// Request for ListProfileTimes operation.
+// The structure representing the listProfileTimesRequest.
 type ListProfileTimesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The end time of the time range to list profiles until.
+	// The end time of the time range from which to list the profiles.
 	//
 	// EndTime is a required field
 	EndTime *time.Time `location:"querystring" locationName:"endTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// Upper bound on the number of results to list in a single call.
+	// The maximum number of profile time results returned by ListProfileTimes in
+	// paginated output. When this parameter is used, ListProfileTimes only returns
+	// maxResults results in a single page with a nextToken response element. The
+	// remaining results of the initial request can be seen by sending another ListProfileTimes
+	// request with the returned nextToken value.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// Token for paginating results.
+	// The nextToken value returned from a previous paginated ListProfileTimes request
+	// where maxResults was used and the results exceeded the value of that parameter.
+	// Pagination continues from the end of the previous results that returned the
+	// nextToken value.
+	//
+	// This token should be treated as an opaque identifier that is only used to
+	// retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 
-	// The order (ascending or descending by start time of the profile) to list
-	// the profiles by. Defaults to TIMESTAMP_DESCENDING.
+	// The order (ascending or descending by start time of the profile) to use when
+	// listing profiles. Defaults to TIMESTAMP_DESCENDING.
 	OrderBy *string `location:"querystring" locationName:"orderBy" type:"string" enum:"OrderBy"`
 
-	// The aggregation period to list the profiles for.
+	// The aggregation period.
 	//
 	// Period is a required field
 	Period *string `location:"querystring" locationName:"period" type:"string" required:"true" enum:"AggregationPeriod"`
@@ -1632,7 +1638,7 @@ type ListProfileTimesInput struct {
 	// ProfilingGroupName is a required field
 	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
 
-	// The start time of the time range to list the profiles from.
+	// The start time of the time range from which to list the profiles.
 	//
 	// StartTime is a required field
 	StartTime *time.Time `location:"querystring" locationName:"startTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -1721,14 +1727,17 @@ func (s *ListProfileTimesInput) SetStartTime(v time.Time) *ListProfileTimesInput
 	return s
 }
 
-// Response for ListProfileTimes operation.
+// The structure representing the listProfileTimesResponse.
 type ListProfileTimesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Token for paginating results.
+	// The nextToken value to include in a future ListProfileTimes request. When
+	// the results of a ListProfileTimes request exceed maxResults, this value can
+	// be used to retrieve the next page of results. This value is null when there
+	// are no more results to return.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
-	// List of start times of the available profiles for the aggregation period
+	// The list of start times of the available profiles for the aggregation period
 	// in the specified time range.
 	//
 	// ProfileTimes is a required field
@@ -1757,18 +1766,27 @@ func (s *ListProfileTimesOutput) SetProfileTimes(v []*ProfileTime) *ListProfileT
 	return s
 }
 
-// Request for ListProfilingGroups operation.
+// The structure representing the listProfilingGroupsRequest.
 type ListProfilingGroupsInput struct {
 	_ struct{} `type:"structure"`
 
-	// If set to true, returns the full description of the profiling groups instead
-	// of the names. Defaults to false.
+	// A Boolean value indicating whether to include a description.
 	IncludeDescription *bool `location:"querystring" locationName:"includeDescription" type:"boolean"`
 
-	// Upper bound on the number of results to list in a single call.
+	// The maximum number of profiling groups results returned by ListProfilingGroups
+	// in paginated output. When this parameter is used, ListProfilingGroups only
+	// returns maxResults results in a single page along with a nextToken response
+	// element. The remaining results of the initial request can be seen by sending
+	// another ListProfilingGroups request with the returned nextToken value.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// Token for paginating results.
+	// The nextToken value returned from a previous paginated ListProfilingGroups
+	// request where maxResults was used and the results exceeded the value of that
+	// parameter. Pagination continues from the end of the previous results that
+	// returned the nextToken value.
+	//
+	// This token should be treated as an opaque identifier that is only used to
+	// retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -1816,19 +1834,22 @@ func (s *ListProfilingGroupsInput) SetNextToken(v string) *ListProfilingGroupsIn
 	return s
 }
 
-// Response for ListProfilingGroups operation.
+// The structure representing the listProfilingGroupsResponse.
 type ListProfilingGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Token for paginating results.
+	// The nextToken value to include in a future ListProfilingGroups request. When
+	// the results of a ListProfilingGroups request exceed maxResults, this value
+	// can be used to retrieve the next page of results. This value is null when
+	// there are no more results to return.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
-	// List of profiling group names.
+	// Information about profiling group names.
 	//
 	// ProfilingGroupNames is a required field
 	ProfilingGroupNames []*string `locationName:"profilingGroupNames" type:"list" required:"true"`
 
-	// List of profiling group descriptions.
+	// Information about profiling groups.
 	ProfilingGroups []*ProfilingGroupDescription `locationName:"profilingGroups" type:"list"`
 }
 
@@ -1860,28 +1881,18 @@ func (s *ListProfilingGroupsOutput) SetProfilingGroups(v []*ProfilingGroupDescri
 	return s
 }
 
-// Request for PostAgentProfile operation.
+// The structure representing the postAgentProfileRequest.
 type PostAgentProfileInput struct {
 	_ struct{} `type:"structure" payload:"AgentProfile"`
 
-	// The profile collected by an agent for a time range.
-	//
 	// AgentProfile is a required field
 	AgentProfile []byte `locationName:"agentProfile" type:"blob" required:"true"`
 
-	// The content type of the agent profile in the payload. Recommended to send
-	// the profile gzipped with content-type application/octet-stream. Other accepted
-	// values are application/x-amzn-ion and application/json for unzipped Ion and
-	// JSON respectively.
-	//
 	// ContentType is a required field
 	ContentType *string `location:"header" locationName:"Content-Type" type:"string" required:"true"`
 
-	// Client generated token to deduplicate the agent profile during aggregation.
 	ProfileToken *string `location:"querystring" locationName:"profileToken" min:"1" type:"string" idempotencyToken:"true"`
 
-	// The name of the profiling group.
-	//
 	// ProfilingGroupName is a required field
 	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
 }
@@ -1945,7 +1956,7 @@ func (s *PostAgentProfileInput) SetProfilingGroupName(v string) *PostAgentProfil
 	return s
 }
 
-// Response for PostAgentProfile operation.
+// The structure representing the postAgentProfileResponse.
 type PostAgentProfileOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -1960,8 +1971,7 @@ func (s PostAgentProfileOutput) GoString() string {
 	return s.String()
 }
 
-// Periods of time used for aggregation of profiles, represented using ISO 8601
-// format.
+// Information about the profile time.
 type ProfileTime struct {
 	_ struct{} `type:"structure"`
 
@@ -1989,24 +1999,22 @@ func (s *ProfileTime) SetStart(v time.Time) *ProfileTime {
 type ProfilingGroupDescription struct {
 	_ struct{} `type:"structure"`
 
-	// Configuration to orchestrate agents to create and report agent profiles of
-	// the profiling group. Agents are orchestrated if they follow the agent orchestration
-	// protocol.
 	AgentOrchestrationConfig *AgentOrchestrationConfig `locationName:"agentOrchestrationConfig" type:"structure"`
 
-	// The ARN of the profiling group.
+	// The Amazon Resource Name (ARN) identifying the profiling group.
 	Arn *string `locationName:"arn" type:"string"`
 
-	// The timestamp of when the profiling group was created.
+	// The time, in milliseconds since the epoch, when the profiling group was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
 
 	// The name of the profiling group.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// The status of profiling of a profiling group.
+	// The status of the profiling group.
 	ProfilingStatus *ProfilingStatus `locationName:"profilingStatus" type:"structure"`
 
-	// The timestamp of when the profiling group was last updated.
+	// The time, in milliseconds since the epoch, when the profiling group was last
+	// updated.
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -2056,18 +2064,17 @@ func (s *ProfilingGroupDescription) SetUpdatedAt(v time.Time) *ProfilingGroupDes
 	return s
 }
 
-// The status of profiling of a profiling group.
+// Information about the profiling status.
 type ProfilingStatus struct {
 	_ struct{} `type:"structure"`
 
-	// Timestamp of when the last interaction of the agent with configureAgent API
-	// for orchestration.
+	// The time, in milliseconds since the epoch, when the latest agent was orchestrated.
 	LatestAgentOrchestratedAt *time.Time `locationName:"latestAgentOrchestratedAt" type:"timestamp" timestampFormat:"iso8601"`
 
-	// Timestamp of when the latest agent profile was successfully reported.
+	// The time, in milliseconds since the epoch, when the latest agent was reported..
 	LatestAgentProfileReportedAt *time.Time `locationName:"latestAgentProfileReportedAt" type:"timestamp" timestampFormat:"iso8601"`
 
-	// The time range of latest aggregated profile available.
+	// The latest aggregated profile
 	LatestAggregatedProfile *AggregatedProfileTime `locationName:"latestAggregatedProfile" type:"structure"`
 }
 
@@ -2099,7 +2106,7 @@ func (s *ProfilingStatus) SetLatestAggregatedProfile(v *AggregatedProfileTime) *
 	return s
 }
 
-// Request references a resource which does not exist.
+// The resource specified in the request does not exist.
 type ResourceNotFoundException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
@@ -2155,7 +2162,9 @@ func (s ResourceNotFoundException) RequestID() string {
 	return s.respMetadata.RequestID
 }
 
-// Request would cause a service quota to be exceeded.
+// You have exceeded your service quota. To perform the requested action, remove
+// some of the relevant resources, or use Service Quotas (https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html)
+// to request a service quota increase.
 type ServiceQuotaExceededException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
@@ -2211,7 +2220,7 @@ func (s ServiceQuotaExceededException) RequestID() string {
 	return s.respMetadata.RequestID
 }
 
-// Request was denied due to request throttling.
+// The request was denied due to request throttling.
 type ThrottlingException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
@@ -2267,16 +2276,14 @@ func (s ThrottlingException) RequestID() string {
 	return s.respMetadata.RequestID
 }
 
-// Request for UpdateProfilingGroup operation.
+// The structure representing the updateProfilingGroupRequest.
 type UpdateProfilingGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// Remote configuration to configure the agents of the profiling group.
-	//
 	// AgentOrchestrationConfig is a required field
 	AgentOrchestrationConfig *AgentOrchestrationConfig `locationName:"agentOrchestrationConfig" type:"structure" required:"true"`
 
-	// The name of the profiling group.
+	// The name of the profiling group to update.
 	//
 	// ProfilingGroupName is a required field
 	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
@@ -2328,11 +2335,11 @@ func (s *UpdateProfilingGroupInput) SetProfilingGroupName(v string) *UpdateProfi
 	return s
 }
 
-// Response for UpdateProfilingGroup operation.
+// The structure representing the updateProfilingGroupResponse.
 type UpdateProfilingGroupOutput struct {
 	_ struct{} `type:"structure" payload:"ProfilingGroup"`
 
-	// The description of a profiling group.
+	// Updated information about the profiling group.
 	//
 	// ProfilingGroup is a required field
 	ProfilingGroup *ProfilingGroupDescription `locationName:"profilingGroup" type:"structure" required:"true"`
@@ -2354,7 +2361,7 @@ func (s *UpdateProfilingGroupOutput) SetProfilingGroup(v *ProfilingGroupDescript
 	return s
 }
 
-// The input fails to satisfy the constraints of the API.
+// The parameter is not valid.
 type ValidationException struct {
 	_            struct{} `type:"structure"`
 	respMetadata protocol.ResponseMetadata
@@ -2410,8 +2417,6 @@ func (s ValidationException) RequestID() string {
 	return s.respMetadata.RequestID
 }
 
-// Periods of time used for aggregation of profiles, represented using ISO 8601
-// format.
 const (
 	// AggregationPeriodP1d is a AggregationPeriod enum value
 	AggregationPeriodP1d = "P1D"
