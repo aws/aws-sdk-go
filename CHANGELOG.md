@@ -1,3 +1,9 @@
+Release v1.29.14 (2020-02-29)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API and documentation
+
 Release v1.29.13 (2020-02-28)
 ===
 
