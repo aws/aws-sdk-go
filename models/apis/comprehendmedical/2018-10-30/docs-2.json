@@ -5,10 +5,10 @@
     "DescribeEntitiesDetectionV2Job": "<p>Gets the properties associated with a medical entities detection job. Use this operation to get the status of a detection job.</p>",
     "DescribePHIDetectionJob": "<p>Gets the properties associated with a protected health information (PHI) detection job. Use this operation to get the status of a detection job.</p>",
     "DetectEntities": "<p>The <code>DetectEntities</code> operation is deprecated. You should use the <a>DetectEntitiesV2</a> operation instead.</p> <p> Inspects the clinical text for a variety of medical entities and returns specific information about them such as entity category, location, and confidence score on that information .</p>",
-    "DetectEntitiesV2": "<p>Inspects the clinical text for a variety of medical entities and returns specific information about them such as entity category, location, and confidence score on that information.</p> <p>The <code>DetectEntitiesV2</code> operation replaces the <a>DetectEntities</a> operation. This new action uses a different model for determining the entities in your medical text and changes the way that some entities are returned in the output. You should use the <code>DetectEntitiesV2</code> operation in all new applications.</p> <p>The <code>DetectEntitiesV2</code> operation returns the <code>Acuity</code> and <code>Direction</code> entities as attributes instead of types. </p>",
-    "DetectPHI": "<p> Inspects the clinical text for protected health information (PHI) entities and entity category, location, and confidence score on that information.</p>",
-    "InferICD10CM": "<p>InferICD10CM detects medical conditions as entities listed in a patient record and links those entities to normalized concept identifiers in the ICD-10-CM knowledge base from the Centers for Disease Control.</p>",
-    "InferRxNorm": "<p>InferRxNorm detects medications as entities listed in a patient record and links to the normalized concept identifiers in the RxNorm database from the National Library of Medicine.</p>",
+    "DetectEntitiesV2": "<p>Inspects the clinical text for a variety of medical entities and returns specific information about them such as entity category, location, and confidence score on that information. Amazon Comprehend Medical only detects medical entities in English language texts.</p> <p>The <code>DetectEntitiesV2</code> operation replaces the <a>DetectEntities</a> operation. This new action uses a different model for determining the entities in your medical text and changes the way that some entities are returned in the output. You should use the <code>DetectEntitiesV2</code> operation in all new applications.</p> <p>The <code>DetectEntitiesV2</code> operation returns the <code>Acuity</code> and <code>Direction</code> entities as attributes instead of types. </p>",
+    "DetectPHI": "<p> Inspects the clinical text for protected health information (PHI) entities and returns the entity category, location, and confidence score for each entity. Amazon Comprehend Medical only detects entities in English language texts.</p>",
+    "InferICD10CM": "<p>InferICD10CM detects medical conditions as entities listed in a patient record and links those entities to normalized concept identifiers in the ICD-10-CM knowledge base from the Centers for Disease Control. Amazon Comprehend Medical only detects medical entities in English language texts.</p>",
+    "InferRxNorm": "<p>InferRxNorm detects medications as entities listed in a patient record and links to the normalized concept identifiers in the RxNorm database from the National Library of Medicine. Amazon Comprehend Medical only detects medical entities in English language texts.</p>",
     "ListEntitiesDetectionV2Jobs": "<p>Gets a list of medical entity detection jobs that you have submitted.</p>",
     "ListPHIDetectionJobs": "<p>Gets a list of protected health information (PHI) detection jobs that you have submitted.</p>",
     "StartEntitiesDetectionV2Job": "<p>Starts an asynchronous medical entity detection job for a collection of documents. Use the <code>DescribeEntitiesDetectionV2Job</code> operation to track the status of a job.</p>",
@@ -153,6 +153,7 @@
     "EntityType": {
       "base": null,
       "refs": {
+        "Attribute$Category": "<p> The category of attribute. </p>",
         "Entity$Category": "<p> The category of the entity.</p>",
         "UnmappedAttribute$Type": "<p> The type of the attribute, could be one of the following values: \"MEDICATION\", \"MEDICAL_CONDITION\", \"ANATOMY\", \"TEST_AND_TREATMENT_PROCEDURE\" or \"PROTECTED_HEALTH_INFORMATION\". </p>"
       }
@@ -278,7 +279,7 @@
       }
     },
     "InputDataConfig": {
-      "base": "<p>The input properties for an entities detection job</p>",
+      "base": "<p>The input properties for an entities detection job.</p>",
       "refs": {
         "ComprehendMedicalAsyncJobProperties$InputDataConfig": "<p>The input data configuration that you supplied when you created the detection job.</p>",
         "StartEntitiesDetectionV2JobRequest$InputDataConfig": "<p>Specifies the format and location of the input data for the job.</p>",
@@ -423,6 +424,12 @@
         "ComprehendMedicalAsyncJobProperties$OutputDataConfig": "<p>The output data configuration that you supplied when you created the detection job.</p>",
         "StartEntitiesDetectionV2JobRequest$OutputDataConfig": "<p>Specifies where to send the output files.</p>",
         "StartPHIDetectionJobRequest$OutputDataConfig": "<p>Specifies where to send the output files.</p>"
+      }
+    },
+    "RelationshipType": {
+      "base": null,
+      "refs": {
+        "Attribute$RelationshipType": "<p>The type of relationship between the entity and attribute. Type for the relationship is <code>OVERLAP</code>, indicating that the entity occurred at the same time as the <code>Date_Expression</code>. </p>"
       }
     },
     "ResourceNotFoundException": {

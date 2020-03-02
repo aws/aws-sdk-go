@@ -343,6 +343,17 @@
         {"shape":"MissingRequiredParameterException"}
       ]
     },
+    "PutCompositeAlarm":{
+      "name":"PutCompositeAlarm",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutCompositeAlarmInput"},
+      "errors":[
+        {"shape":"LimitExceededFault"}
+      ]
+    },
     "PutDashboard":{
       "name":"PutDashboard",
       "http":{
@@ -471,6 +482,7 @@
       "type":"structure",
       "members":{
         "AlarmName":{"shape":"AlarmName"},
+        "AlarmType":{"shape":"AlarmType"},
         "Timestamp":{"shape":"Timestamp"},
         "HistoryItemType":{"shape":"HistoryItemType"},
         "HistorySummary":{"shape":"HistorySummary"},
@@ -495,6 +507,22 @@
       "type":"list",
       "member":{"shape":"AlarmName"},
       "max":100
+    },
+    "AlarmRule":{
+      "type":"string",
+      "max":10240,
+      "min":1
+    },
+    "AlarmType":{
+      "type":"string",
+      "enum":[
+        "CompositeAlarm",
+        "MetricAlarm"
+      ]
+    },
+    "AlarmTypes":{
+      "type":"list",
+      "member":{"shape":"AlarmType"}
     },
     "AmazonResourceName":{
       "type":"string",
@@ -552,6 +580,43 @@
         "LessThanLowerThreshold",
         "GreaterThanUpperThreshold"
       ]
+    },
+    "CompositeAlarm":{
+      "type":"structure",
+      "members":{
+        "ActionsEnabled":{"shape":"ActionsEnabled"},
+        "AlarmActions":{"shape":"ResourceList"},
+        "AlarmArn":{"shape":"AlarmArn"},
+        "AlarmConfigurationUpdatedTimestamp":{"shape":"Timestamp"},
+        "AlarmDescription":{"shape":"AlarmDescription"},
+        "AlarmName":{"shape":"AlarmName"},
+        "AlarmRule":{"shape":"AlarmRule"},
+        "InsufficientDataActions":{"shape":"ResourceList"},
+        "OKActions":{"shape":"ResourceList"},
+        "StateReason":{"shape":"StateReason"},
+        "StateReasonData":{"shape":"StateReasonData"},
+        "StateUpdatedTimestamp":{"shape":"Timestamp"},
+        "StateValue":{"shape":"StateValue"}
+      },
+      "xmlOrder":[
+        "ActionsEnabled",
+        "AlarmActions",
+        "AlarmArn",
+        "AlarmConfigurationUpdatedTimestamp",
+        "AlarmDescription",
+        "AlarmName",
+        "AlarmRule",
+        "InsufficientDataActions",
+        "OKActions",
+        "StateReason",
+        "StateReasonData",
+        "StateUpdatedTimestamp",
+        "StateValue"
+      ]
+    },
+    "CompositeAlarms":{
+      "type":"list",
+      "member":{"shape":"CompositeAlarm"}
     },
     "ConcurrentModificationException":{
       "type":"structure",
@@ -723,11 +788,13 @@
       "type":"structure",
       "members":{
         "AlarmName":{"shape":"AlarmName"},
+        "AlarmTypes":{"shape":"AlarmTypes"},
         "HistoryItemType":{"shape":"HistoryItemType"},
         "StartDate":{"shape":"Timestamp"},
         "EndDate":{"shape":"Timestamp"},
         "MaxRecords":{"shape":"MaxRecords"},
-        "NextToken":{"shape":"NextToken"}
+        "NextToken":{"shape":"NextToken"},
+        "ScanBy":{"shape":"ScanBy"}
       }
     },
     "DescribeAlarmHistoryOutput":{
@@ -764,6 +831,9 @@
       "members":{
         "AlarmNames":{"shape":"AlarmNames"},
         "AlarmNamePrefix":{"shape":"AlarmNamePrefix"},
+        "AlarmTypes":{"shape":"AlarmTypes"},
+        "ChildrenOfAlarmName":{"shape":"AlarmName"},
+        "ParentsOfAlarmName":{"shape":"AlarmName"},
         "StateValue":{"shape":"StateValue"},
         "ActionPrefix":{"shape":"ActionPrefix"},
         "MaxRecords":{"shape":"MaxRecords"},
@@ -773,6 +843,7 @@
     "DescribeAlarmsOutput":{
       "type":"structure",
       "members":{
+        "CompositeAlarms":{"shape":"CompositeAlarms"},
         "MetricAlarms":{"shape":"MetricAlarms"},
         "NextToken":{"shape":"NextToken"}
       }
@@ -1548,6 +1619,23 @@
     "PutAnomalyDetectorOutput":{
       "type":"structure",
       "members":{
+      }
+    },
+    "PutCompositeAlarmInput":{
+      "type":"structure",
+      "required":[
+        "AlarmName",
+        "AlarmRule"
+      ],
+      "members":{
+        "ActionsEnabled":{"shape":"ActionsEnabled"},
+        "AlarmActions":{"shape":"ResourceList"},
+        "AlarmDescription":{"shape":"AlarmDescription"},
+        "AlarmName":{"shape":"AlarmName"},
+        "AlarmRule":{"shape":"AlarmRule"},
+        "InsufficientDataActions":{"shape":"ResourceList"},
+        "OKActions":{"shape":"ResourceList"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "PutDashboardInput":{

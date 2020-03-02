@@ -228,10 +228,12 @@
         "Type":{"shape":"EntitySubType"},
         "Score":{"shape":"Float"},
         "RelationshipScore":{"shape":"Float"},
+        "RelationshipType":{"shape":"RelationshipType"},
         "Id":{"shape":"Integer"},
         "BeginOffset":{"shape":"Integer"},
         "EndOffset":{"shape":"Integer"},
         "Text":{"shape":"String"},
+        "Category":{"shape":"EntityType"},
         "Traits":{"shape":"TraitList"}
       }
     },
@@ -424,7 +426,13 @@
         "SYSTEM_ORGAN_SITE",
         "DIRECTION",
         "QUALITY",
-        "QUANTITY"
+        "QUANTITY",
+        "TIME_EXPRESSION",
+        "TIME_TO_MEDICATION_NAME",
+        "TIME_TO_DX_NAME",
+        "TIME_TO_TEST_NAME",
+        "TIME_TO_PROCEDURE_NAME",
+        "TIME_TO_TREATMENT_NAME"
       ]
     },
     "EntityType":{
@@ -434,7 +442,8 @@
         "MEDICAL_CONDITION",
         "PROTECTED_HEALTH_INFORMATION",
         "TEST_TREATMENT_PROCEDURE",
-        "ANATOMY"
+        "ANATOMY",
+        "TIME_EXPRESSION"
       ]
     },
     "Float":{"type":"float"},
@@ -680,6 +689,28 @@
         "S3Bucket":{"shape":"S3Bucket"},
         "S3Key":{"shape":"S3Key"}
       }
+    },
+    "RelationshipType":{
+      "type":"string",
+      "enum":[
+        "EVERY",
+        "WITH_DOSAGE",
+        "ADMINISTERED_VIA",
+        "FOR",
+        "NEGATIVE",
+        "OVERLAP",
+        "DOSAGE",
+        "ROUTE_OR_MODE",
+        "FORM",
+        "FREQUENCY",
+        "DURATION",
+        "STRENGTH",
+        "RATE",
+        "ACUITY",
+        "TEST_VALUE",
+        "TEST_UNITS",
+        "DIRECTION"
+      ]
     },
     "ResourceNotFoundException":{
       "type":"structure",

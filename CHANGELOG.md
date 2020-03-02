@@ -1,3 +1,11 @@
+Release v1.29.15 (2020-03-02)
+===
+
+### Service Client Updates
+* `service/comprehendmedical`: Updates service API and documentation
+* `service/monitoring`: Updates service API, documentation, waiters, and paginators
+  * Introducing Amazon CloudWatch Composite Alarms
+
 Release v1.29.14 (2020-02-29)
 ===
 

@@ -358,7 +358,8 @@ func (c *ComprehendMedical) DetectEntitiesV2Request(input *DetectEntitiesV2Input
 //
 // Inspects the clinical text for a variety of medical entities and returns
 // specific information about them such as entity category, location, and confidence
-// score on that information.
+// score on that information. Amazon Comprehend Medical only detects medical
+// entities in English language texts.
 //
 // The DetectEntitiesV2 operation replaces the DetectEntities operation. This
 // new action uses a different model for determining the entities in your medical
@@ -467,7 +468,9 @@ func (c *ComprehendMedical) DetectPHIRequest(input *DetectPHIInput) (req *reques
 // DetectPHI API operation for AWS Comprehend Medical.
 //
 // Inspects the clinical text for protected health information (PHI) entities
-// and entity category, location, and confidence score on that information.
+// and returns the entity category, location, and confidence score for each
+// entity. Amazon Comprehend Medical only detects entities in English language
+// texts.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -569,7 +572,8 @@ func (c *ComprehendMedical) InferICD10CMRequest(input *InferICD10CMInput) (req *
 //
 // InferICD10CM detects medical conditions as entities listed in a patient record
 // and links those entities to normalized concept identifiers in the ICD-10-CM
-// knowledge base from the Centers for Disease Control.
+// knowledge base from the Centers for Disease Control. Amazon Comprehend Medical
+// only detects medical entities in English language texts.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -671,7 +675,8 @@ func (c *ComprehendMedical) InferRxNormRequest(input *InferRxNormInput) (req *re
 //
 // InferRxNorm detects medications as entities listed in a patient record and
 // links to the normalized concept identifiers in the RxNorm database from the
-// National Library of Medicine.
+// National Library of Medicine. Amazon Comprehend Medical only detects medical
+// entities in English language texts.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1284,6 +1289,9 @@ type Attribute struct {
 	// begins. The offset returns the UTF-8 code point in the string.
 	BeginOffset *int64 `type:"integer"`
 
+	// The category of attribute.
+	Category *string `type:"string" enum:"EntityType"`
+
 	// The 0-based character offset in the input text that shows where the attribute
 	// ends. The offset returns the UTF-8 code point in the string.
 	EndOffset *int64 `type:"integer"`
@@ -1295,6 +1303,10 @@ type Attribute struct {
 	// The level of confidence that Amazon Comprehend Medical has that this attribute
 	// is correctly related to this entity.
 	RelationshipScore *float64 `type:"float"`
+
+	// The type of relationship between the entity and attribute. Type for the relationship
+	// is OVERLAP, indicating that the entity occurred at the same time as the Date_Expression.
+	RelationshipType *string `type:"string" enum:"RelationshipType"`
 
 	// The level of confidence that Amazon Comprehend Medical has that the segment
 	// of text is correctly recognized as an attribute.
@@ -1326,6 +1338,12 @@ func (s *Attribute) SetBeginOffset(v int64) *Attribute {
 	return s
 }
 
+// SetCategory sets the Category field's value.
+func (s *Attribute) SetCategory(v string) *Attribute {
+	s.Category = &v
+	return s
+}
+
 // SetEndOffset sets the EndOffset field's value.
 func (s *Attribute) SetEndOffset(v int64) *Attribute {
 	s.EndOffset = &v
@@ -1341,6 +1359,12 @@ func (s *Attribute) SetId(v int64) *Attribute {
 // SetRelationshipScore sets the RelationshipScore field's value.
 func (s *Attribute) SetRelationshipScore(v float64) *Attribute {
 	s.RelationshipScore = &v
+	return s
+}
+
+// SetRelationshipType sets the RelationshipType field's value.
+func (s *Attribute) SetRelationshipType(v string) *Attribute {
+	s.RelationshipType = &v
 	return s
 }
 
@@ -2592,7 +2616,7 @@ func (s *InferRxNormOutput) SetPaginationToken(v string) *InferRxNormOutput {
 	return s
 }
 
-// The input properties for an entities detection job
+// The input properties for an entities detection job.
 type InputDataConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -4253,6 +4277,24 @@ const (
 
 	// EntitySubTypeQuantity is a EntitySubType enum value
 	EntitySubTypeQuantity = "QUANTITY"
+
+	// EntitySubTypeTimeExpression is a EntitySubType enum value
+	EntitySubTypeTimeExpression = "TIME_EXPRESSION"
+
+	// EntitySubTypeTimeToMedicationName is a EntitySubType enum value
+	EntitySubTypeTimeToMedicationName = "TIME_TO_MEDICATION_NAME"
+
+	// EntitySubTypeTimeToDxName is a EntitySubType enum value
+	EntitySubTypeTimeToDxName = "TIME_TO_DX_NAME"
+
+	// EntitySubTypeTimeToTestName is a EntitySubType enum value
+	EntitySubTypeTimeToTestName = "TIME_TO_TEST_NAME"
+
+	// EntitySubTypeTimeToProcedureName is a EntitySubType enum value
+	EntitySubTypeTimeToProcedureName = "TIME_TO_PROCEDURE_NAME"
+
+	// EntitySubTypeTimeToTreatmentName is a EntitySubType enum value
+	EntitySubTypeTimeToTreatmentName = "TIME_TO_TREATMENT_NAME"
 )
 
 const (
@@ -4270,6 +4312,9 @@ const (
 
 	// EntityTypeAnatomy is a EntityType enum value
 	EntityTypeAnatomy = "ANATOMY"
+
+	// EntityTypeTimeExpression is a EntityType enum value
+	EntityTypeTimeExpression = "TIME_EXPRESSION"
 )
 
 const (
@@ -4339,6 +4384,59 @@ const (
 const (
 	// LanguageCodeEn is a LanguageCode enum value
 	LanguageCodeEn = "en"
+)
+
+const (
+	// RelationshipTypeEvery is a RelationshipType enum value
+	RelationshipTypeEvery = "EVERY"
+
+	// RelationshipTypeWithDosage is a RelationshipType enum value
+	RelationshipTypeWithDosage = "WITH_DOSAGE"
+
+	// RelationshipTypeAdministeredVia is a RelationshipType enum value
+	RelationshipTypeAdministeredVia = "ADMINISTERED_VIA"
+
+	// RelationshipTypeFor is a RelationshipType enum value
+	RelationshipTypeFor = "FOR"
+
+	// RelationshipTypeNegative is a RelationshipType enum value
+	RelationshipTypeNegative = "NEGATIVE"
+
+	// RelationshipTypeOverlap is a RelationshipType enum value
+	RelationshipTypeOverlap = "OVERLAP"
+
+	// RelationshipTypeDosage is a RelationshipType enum value
+	RelationshipTypeDosage = "DOSAGE"
+
+	// RelationshipTypeRouteOrMode is a RelationshipType enum value
+	RelationshipTypeRouteOrMode = "ROUTE_OR_MODE"
+
+	// RelationshipTypeForm is a RelationshipType enum value
+	RelationshipTypeForm = "FORM"
+
+	// RelationshipTypeFrequency is a RelationshipType enum value
+	RelationshipTypeFrequency = "FREQUENCY"
+
+	// RelationshipTypeDuration is a RelationshipType enum value
+	RelationshipTypeDuration = "DURATION"
+
+	// RelationshipTypeStrength is a RelationshipType enum value
+	RelationshipTypeStrength = "STRENGTH"
+
+	// RelationshipTypeRate is a RelationshipType enum value
+	RelationshipTypeRate = "RATE"
+
+	// RelationshipTypeAcuity is a RelationshipType enum value
+	RelationshipTypeAcuity = "ACUITY"
+
+	// RelationshipTypeTestValue is a RelationshipType enum value
+	RelationshipTypeTestValue = "TEST_VALUE"
+
+	// RelationshipTypeTestUnits is a RelationshipType enum value
+	RelationshipTypeTestUnits = "TEST_UNITS"
+
+	// RelationshipTypeDirection is a RelationshipType enum value
+	RelationshipTypeDirection = "DIRECTION"
 )
 
 const (
