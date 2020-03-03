@@ -1,20 +1,18 @@
-// +build integration
-
 package mediastoredata_test
 
 import (
-	"testing"
+	"log"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/awstesting/integration"
+	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/service/mediastore"
 	"github.com/aws/aws-sdk-go/service/mediastoredata"
 )
 
-func TestInteg_DescribeEndpoint(t *testing.T) {
+func ExampleMediaStoreData_DescribeEndpoint_shared00() {
 	const containerName = "awsgosdkteamintegcontainer"
 
-	sess := integration.Session.Copy()
+	sess := unit.Session
 	if v := aws.StringValue(sess.Config.Region); len(v) == 0 {
 		sess.Config.Region = aws.String("us-east-1")
 	}
@@ -24,7 +22,7 @@ func TestInteg_DescribeEndpoint(t *testing.T) {
 		ContainerName: aws.String(containerName),
 	})
 	if err != nil {
-		t.Fatalf("failed to get mediastore container endpoint, %v", err)
+		log.Fatalf("failed to get mediastore container endpoint, %v", err)
 	}
 
 	dataSvc := mediastoredata.New(sess, &aws.Config{
@@ -32,6 +30,6 @@ func TestInteg_DescribeEndpoint(t *testing.T) {
 	})
 	_, err = dataSvc.ListItems(&mediastoredata.ListItemsInput{})
 	if err != nil {
-		t.Fatalf("failed to make medaistoredata API call, %v", err)
+		log.Fatalf("failed to make medaistoredata API call, %v", err)
 	}
 }
