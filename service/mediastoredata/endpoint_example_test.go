@@ -1,7 +1,7 @@
 package mediastoredata_test
 
 import (
-	"log"
+	"fmt"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
@@ -22,7 +22,7 @@ func ExampleMediaStoreData_DescribeEndpoint_shared00() {
 		ContainerName: aws.String(containerName),
 	})
 	if err != nil {
-		log.Fatalf("failed to get mediastore container endpoint, %v", err)
+		fmt.Printf("failed to get mediastore container endpoint, %v", err)
 	}
 
 	dataSvc := mediastoredata.New(sess, &aws.Config{
@@ -30,6 +30,6 @@ func ExampleMediaStoreData_DescribeEndpoint_shared00() {
 	})
 	_, err = dataSvc.ListItems(&mediastoredata.ListItemsInput{})
 	if err != nil {
-		log.Fatalf("failed to make medaistoredata API call, %v", err)
+		fmt.Printf("failed to make medaistoredata API call, %v", err)
 	}
 }

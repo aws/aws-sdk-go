@@ -1,7 +1,7 @@
 package iotdataplane_test
 
 import (
-	"log"
+	"fmt"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
@@ -19,7 +19,7 @@ func ExampleIoTDataPlane_DescribeEndpoint_shared00() {
 	ctrlSvc := iot.New(sess)
 	descResp, err := ctrlSvc.DescribeEndpoint(&iot.DescribeEndpointInput{})
 	if err != nil {
-		log.Fatalf("failed to get dataplane endpoint, %v", err)
+		fmt.Printf("failed to get dataplane endpoint, %v", err)
 	}
 
 	dataSvc := iotdataplane.New(sess, &aws.Config{
@@ -29,14 +29,14 @@ func ExampleIoTDataPlane_DescribeEndpoint_shared00() {
 		ThingName: aws.String("fake-thing"),
 	})
 	if err == nil {
-		log.Fatalf("expect error")
+		fmt.Printf("expect error")
 	}
 
 	aerr, ok := err.(awserr.Error)
 	if !ok {
-		log.Fatalf("expect awserr.Error, got %T, %v", err, err)
+		fmt.Printf("expect awserr.Error, got %T, %v", err, err)
 	}
 	if e, a := "ResourceNotFoundException", aerr.Code(); e != a {
-		log.Fatalf("expect %v error, got %v", e, aerr)
+		fmt.Printf("expect %v error, got %v", e, aerr)
 	}
 }
