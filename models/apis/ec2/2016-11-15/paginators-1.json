@@ -60,6 +60,12 @@
       "output_token": "NextToken",
       "result_key": "ClientVpnTargetNetworks"
     },
+    "DescribeCoipPools": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "CoipPools"
+    },
     "DescribeConversionTasks": {
       "result_key": "ConversionTasks"
     },
@@ -162,6 +168,18 @@
       "output_token": "NextToken",
       "result_key": "InstanceStatuses"
     },
+    "DescribeInstanceTypeOfferings": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "InstanceTypeOfferings"
+    },
+    "DescribeInstanceTypes": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "InstanceTypes"
+    },
     "DescribeInstances": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -194,6 +212,42 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken",
       "result_key": "LaunchTemplates"
+    },
+    "DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociations": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "LocalGatewayRouteTableVirtualInterfaceGroupAssociations"
+    },
+    "DescribeLocalGatewayRouteTableVpcAssociations": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "LocalGatewayRouteTableVpcAssociations"
+    },
+    "DescribeLocalGatewayRouteTables": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "LocalGatewayRouteTables"
+    },
+    "DescribeLocalGatewayVirtualInterfaceGroups": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "LocalGatewayVirtualInterfaceGroups"
+    },
+    "DescribeLocalGatewayVirtualInterfaces": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "LocalGatewayVirtualInterfaces"
+    },
+    "DescribeLocalGateways": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "LocalGateways"
     },
     "DescribeMovingAddresses": {
       "input_token": "NextToken",
@@ -356,6 +410,18 @@
       "output_token": "NextToken",
       "result_key": "TransitGatewayAttachments"
     },
+    "DescribeTransitGatewayMulticastDomains": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "TransitGatewayMulticastDomains"
+    },
+    "DescribeTransitGatewayPeeringAttachments": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "TransitGatewayPeeringAttachments"
+    },
     "DescribeTransitGatewayRouteTables": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -458,6 +524,12 @@
       "output_token": "NextToken",
       "result_key": "TransitGatewayAttachmentPropagations"
     },
+    "GetTransitGatewayMulticastDomainAssociations": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "MulticastDomainAssociations"
+    },
     "GetTransitGatewayRouteTableAssociations": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -469,6 +541,18 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken",
       "result_key": "TransitGatewayRouteTablePropagations"
+    },
+    "SearchLocalGatewayRoutes": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Routes"
+    },
+    "SearchTransitGatewayMulticastGroups": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "MulticastGroups"
     }
   }
 }

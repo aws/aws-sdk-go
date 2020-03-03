@@ -6612,6 +6612,10 @@
         "LogDestinationType":{"shape":"LogDestinationType"},
         "LogDestination":{"shape":"String"},
         "LogFormat":{"shape":"String"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        },
         "MaxAggregationInterval":{"shape":"Integer"}
       }
     },
@@ -14560,7 +14564,7 @@
       "type":"structure",
       "members":{
         "CreationTime":{
-          "shape":"DateTime",
+          "shape":"MillisecondDateTime",
           "locationName":"creationTime"
         },
         "DeliverLogsErrorMessage":{
@@ -14606,6 +14610,10 @@
         "LogFormat":{
           "shape":"String",
           "locationName":"logFormat"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
         },
         "MaxAggregationInterval":{
           "shape":"Integer",
@@ -23801,7 +23809,8 @@
         "vpc",
         "vpc-peering-connection",
         "vpn-connection",
-        "vpn-gateway"
+        "vpn-gateway",
+        "vpc-flow-log"
       ]
     },
     "ResponseError":{
@@ -24318,7 +24327,6 @@
         },
         "ClientToken":{
           "shape":"String",
-          "idempotencyToken":true,
           "locationName":"clientToken"
         },
         "DisableApiTermination":{
