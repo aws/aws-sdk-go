@@ -1,3 +1,10 @@
+Release v1.29.16 (2020-03-03)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API, documentation, and paginators
+  * Amazon VPC Flow Logs adds support for tags and tagging on resource creation.
+
 Release v1.29.15 (2020-03-02)
 ===
 
