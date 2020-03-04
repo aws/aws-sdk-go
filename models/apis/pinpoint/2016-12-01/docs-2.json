@@ -9,6 +9,7 @@
     "CreateImportJob" : "<p>Creates an import job for an application.</p>",
     "CreateJourney" : "<p>Creates a journey for an application.</p>",
     "CreatePushTemplate" : "<p>Creates a message template for messages that are sent through a push notification channel.</p>",
+    "CreateRecommenderConfiguration" : "<p>Creates an Amazon Pinpoint configuration for a recommender model.</p>",
     "CreateSegment" : "<p>Creates a new segment for an application or updates the configuration, dimension, and other settings for an existing segment that's associated with an application.</p>",
     "CreateSmsTemplate" : "<p>Creates a message template for messages that are sent through the SMS channel.</p>",
     "CreateVoiceTemplate" : "<p>Creates a message template for messages that are sent through the voice channel.</p>",
@@ -27,6 +28,7 @@
     "DeleteGcmChannel" : "<p>Disables the GCM channel for an application and deletes any existing settings for the channel.</p>",
     "DeleteJourney" : "<p>Deletes a journey from an application.</p>",
     "DeletePushTemplate" : "<p>Deletes a message template for messages that were sent through a push notification channel.</p>",
+    "DeleteRecommenderConfiguration" : "<p>Deletes an Amazon Pinpoint configuration for a recommender model.</p>",
     "DeleteSegment" : "<p>Deletes a segment from an application.</p>",
     "DeleteSmsChannel" : "<p>Disables the SMS channel for an application and deletes any existing settings for the channel.</p>",
     "DeleteSmsTemplate" : "<p>Deletes a message template for messages that were sent through the SMS channel.</p>",
@@ -64,6 +66,8 @@
     "GetJourneyExecutionActivityMetrics" : "<p>Retrieves (queries) pre-aggregated data for a standard execution metric that applies to a journey activity.</p>",
     "GetJourneyExecutionMetrics" : "<p>Retrieves (queries) pre-aggregated data for a standard execution metric that applies to a journey.</p>",
     "GetPushTemplate" : "<p>Retrieves the content and settings of a message template for messages that are sent through a push notification channel.</p>",
+    "GetRecommenderConfiguration" : "<p>Retrieves information about an Amazon Pinpoint configuration for a recommender model.</p>",
+    "GetRecommenderConfigurations" : "<p>Retrieves information about all the recommender model configurations that are associated with your Amazon Pinpoint account.</p>",
     "GetSegment" : "<p>Retrieves information about the configuration, dimension, and other settings for a specific segment that's associated with an application.</p>",
     "GetSegmentExportJobs" : "<p>Retrieves information about the status and settings of the export jobs for a segment.</p>",
     "GetSegmentImportJobs" : "<p>Retrieves information about the status and settings of the import jobs for a segment.</p>",
@@ -76,7 +80,7 @@
     "GetVoiceChannel" : "<p>Retrieves information about the status and settings of the voice channel for an application.</p>",
     "GetVoiceTemplate" : "<p>Retrieves the content and settings of a message template for messages that are sent through the voice channel.</p>",
     "ListJourneys" : "<p>Retrieves information about the status, configuration, and other settings for all the journeys that are associated with an application.</p>",
-    "ListTagsForResource" : "<p>Retrieves all the tags (keys and values) that are associated with an application, campaign, journey, message template, or segment.</p>",
+    "ListTagsForResource" : "<p>Retrieves all the tags (keys and values) that are associated with an application, campaign, message template, or segment.</p>",
     "ListTemplateVersions" : "<p>Retrieves information about all the versions of a specific message template.</p>",
     "ListTemplates" : "<p>Retrieves information about all the message templates that are associated with your Amazon Pinpoint account.</p>",
     "PhoneNumberValidate" : "<p>Retrieves information about a phone number.</p>",
@@ -85,8 +89,8 @@
     "RemoveAttributes" : "<p>Removes one or more attributes, of the same attribute type, from all the endpoints that are associated with an application.</p>",
     "SendMessages" : "<p>Creates and sends a direct message.</p>",
     "SendUsersMessages" : "<p>Creates and sends a message to a list of users.</p>",
-    "TagResource" : "<p>Adds one or more tags (keys and values) to an application, campaign, journey, message template, or segment.</p>",
-    "UntagResource" : "<p>Removes one or more tags (keys and values) from an application, campaign, journey, message template, or segment.</p>",
+    "TagResource" : "<p>Adds one or more tags (keys and values) to an application, campaign, message template, or segment.</p>",
+    "UntagResource" : "<p>Removes one or more tags (keys and values) from an application, campaign, message template, or segment.</p>",
     "UpdateAdmChannel" : "<p>Enables the ADM channel for an application or updates the status and settings of the ADM channel for an application.</p>",
     "UpdateApnsChannel" : "<p>Enables the APNs channel for an application or updates the status and settings of the APNs channel for an application.</p>",
     "UpdateApnsSandboxChannel" : "<p>Enables the APNs sandbox channel for an application or updates the status and settings of the APNs sandbox channel for an application.</p>",
@@ -103,6 +107,7 @@
     "UpdateJourney" : "<p>Updates the configuration and other settings for a journey.</p>",
     "UpdateJourneyState" : "<p>Cancels (stops) an active journey.</p>",
     "UpdatePushTemplate" : "<p>Updates an existing message template for messages that are sent through a push notification channel.</p>",
+    "UpdateRecommenderConfiguration" : "<p>Updates an Amazon Pinpoint configuration for a recommender model.</p>",
     "UpdateSegment" : "<p>Creates a new segment for an application or updates the configuration, dimension, and other settings for an existing segment that's associated with an application.</p>",
     "UpdateSmsChannel" : "<p>Enables the SMS channel for an application or updates the status and settings of the SMS channel for an application.</p>",
     "UpdateSmsTemplate" : "<p>Updates an existing message template for messages that are sent through the SMS channel.</p>",
@@ -377,6 +382,10 @@
       "base" : "<p>Specifies the display name of an application and the tags to associate with the application.</p>",
       "refs" : { }
     },
+    "CreateRecommenderConfiguration" : {
+      "base" : "<p>Specifies Amazon Pinpoint configuration settings for retrieving and processing recommendation data from a recommender model.</p>",
+      "refs" : { }
+    },
     "CreateTemplateMessageBody" : {
       "base" : "<p>Provides information about a request to create a message template.</p>",
       "refs" : { }
@@ -403,8 +412,8 @@
     "DeliveryStatus" : {
       "base" : null,
       "refs" : {
-        "EndpointMessageResult$DeliveryStatus" : "<p>The delivery status of the message. Possible values are:</p> <ul> <li><p>DUPLICATE - The endpoint address is a duplicate of another endpoint address. Amazon Pinpoint won't attempt to send the message again.</p></li> <li><p>OPT_OUT - The user who's associated with the endpoint has opted out of receiving messages from you. Amazon Pinpoint won't attempt to send the message again.</p></li> <li><p>PERMANENT_FAILURE - An error occurred when delivering the message to the endpoint. Amazon Pinpoint won't attempt to send the message again.</p></li>    <li><p>SUCCESSFUL - The message was successfully delivered to the endpoint.</p></li> <li><p>TEMPORARY_FAILURE - A temporary error occurred. Amazon Pinpoint will attempt to deliver the message again later.</p></li> <li><p>THROTTLED - Amazon Pinpoint throttled the operation to send the message to the endpoint.</p></li> <li><p>TIMEOUT - The message couldn't be sent within the timeout period.</p></li> <li><p>UNKNOWN_FAILURE - An unknown error occurred.</p></li></ul>",
-        "MessageResult$DeliveryStatus" : "<p>The delivery status of the message. Possible values are:</p> <ul> <li><p>DUPLICATE - The endpoint address is a duplicate of another endpoint address. Amazon Pinpoint won't attempt to send the message again.</p></li>   <li><p>OPT_OUT - The user who's associated with the endpoint address has opted out of receiving messages from you. Amazon Pinpoint won't attempt to send the message again.</p></li> <li><p>PERMANENT_FAILURE - An error occurred when delivering the message to the endpoint address. Amazon Pinpoint won't attempt to send the message again.</p></li>   <li><p>SUCCESSFUL - The message was successfully delivered to the endpoint address.</p></li> <li><p>TEMPORARY_FAILURE - A temporary error occurred. Amazon Pinpoint will attempt to deliver the message again later.</p></li> <li><p>THROTTLED - Amazon Pinpoint throttled the operation to send the message to the endpoint address.</p></li> <li><p>TIMEOUT - The message couldn't be sent within the timeout period.</p></li> <li><p>UNKNOWN_FAILURE - An unknown error occurred.</p></li></ul>"
+        "EndpointMessageResult$DeliveryStatus" : "<p>The delivery status of the message. Possible values are:</p> <ul> <li><p>DUPLICATE - The endpoint address is a duplicate of another endpoint address. Amazon Pinpoint won't attempt to send the message again.</p></li> <li><p>OPT_OUT - The user who's associated with the endpoint has opted out of receiving messages from you. Amazon Pinpoint won't attempt to send the message again.</p></li> <li><p>PERMANENT_FAILURE - An error occurred when delivering the message to the endpoint. Amazon Pinpoint won't attempt to send the message again.</p></li>    <li><p>SUCCESSFUL - The message was successfully delivered to the endpoint.</p></li> <li><p>TEMPORARY_FAILURE - A temporary error occurred. Amazon Pinpoint won't attempt to send the message again.</p></li> <li><p>THROTTLED - Amazon Pinpoint throttled the operation to send the message to the endpoint.</p></li> <li><p>TIMEOUT - The message couldn't be sent within the timeout period.</p></li> <li><p>UNKNOWN_FAILURE - An unknown error occurred.</p></li></ul>",
+        "MessageResult$DeliveryStatus" : "<p>The delivery status of the message. Possible values are:</p> <ul> <li><p>DUPLICATE - The endpoint address is a duplicate of another endpoint address. Amazon Pinpoint won't attempt to send the message again.</p></li>   <li><p>OPT_OUT - The user who's associated with the endpoint address has opted out of receiving messages from you. Amazon Pinpoint won't attempt to send the message again.</p></li> <li><p>PERMANENT_FAILURE - An error occurred when delivering the message to the endpoint address. Amazon Pinpoint won't attempt to send the message again.</p></li>   <li><p>SUCCESSFUL - The message was successfully delivered to the endpoint address.</p></li> <li><p>TEMPORARY_FAILURE - A temporary error occurred. Amazon Pinpoint won't attempt to send the message again.</p></li> <li><p>THROTTLED - Amazon Pinpoint throttled the operation to send the message to the endpoint address.</p></li> <li><p>TIMEOUT - The message couldn't be sent within the timeout period.</p></li> <li><p>UNKNOWN_FAILURE - An unknown error occurred.</p></li></ul>"
       }
     },
     "DimensionType" : {
@@ -513,7 +522,7 @@
     "EndpointUser" : {
       "base" : "<p>Specifies data for one or more attributes that describe the user who's associated with an endpoint.</p>",
       "refs" : {
-        "EndpointBatchItem$User" : "<p>One or more custom user attributes that your app reports to Amazon Pinpoint for the user who's associated with the endpoint.</p>",
+        "EndpointBatchItem$User" : "<p>One or more custom user attributes that describe the user who's associated with the endpoint.</p>",
         "EndpointRequest$User" : "<p>One or more custom user attributes that describe the user who's associated with the endpoint.</p>",
         "EndpointResponse$User" : "<p>One or more custom user attributes that your app reports to Amazon Pinpoint for the user who's associated with the endpoint.</p>",
         "PublicEndpoint$User" : "<p>One or more custom user attributes that your app reports to Amazon Pinpoint for the user who's associated with the endpoint.</p>"
@@ -589,7 +598,7 @@
     "FilterType" : {
       "base" : null,
       "refs" : {
-        "CampaignEventFilter$FilterType" : "<p>The type of event that causes the campaign to be sent. Valid values are: SYSTEM, sends the campaign when a system event occurs; and, ENDPOINT, sends the campaign when an endpoint event (<link  linkend=\"apps-application-id-events\">Events resource</link>) occurs.</p>"
+        "CampaignEventFilter$FilterType" : "<p>The type of event that causes the campaign to be sent. Valid values are: SYSTEM, sends the campaign when a system event occurs; and, ENDPOINT, sends the campaign when an endpoint event (<link  linkend=\"apps-application-id-events\">Events</link> resource) occurs.</p>"
       }
     },
     "ForbiddenException" : {
@@ -731,6 +740,10 @@
       "base" : "<p>Provides information about the status, configuration, and other settings for all the journeys that are associated with an application.</p>",
       "refs" : { }
     },
+    "ListRecommenderConfigurationsResponse" : {
+      "base" : "<p>Provides information about all the recommender model configurations that are associated with your Amazon Pinpoint account.</p>",
+      "refs" : { }
+    },
     "Message" : {
       "base" : "<p>Specifies the content and settings for a push notification that's sent to recipients of a campaign.</p>",
       "refs" : {
@@ -821,6 +834,10 @@
         "Condition$Operator" : "<p>Specifies how to handle multiple conditions for the activity. For example, if you specify two conditions for an activity, whether both or only one of the conditions must be met for the activity to be performed.</p>"
       }
     },
+    "PayloadTooLargeException" : {
+      "base" : "<p>Provides information about an API request or response.</p>",
+      "refs" : { }
+    },
     "PublicEndpoint" : {
       "base" : "<p>Specifies the properties and attributes of an endpoint that's associated with an event.</p>",
       "refs" : {
@@ -873,6 +890,12 @@
       "base" : null,
       "refs" : {
         "RecencyDimension$RecencyType" : "<p>The type of recency dimension to use for the segment. Valid values are: ACTIVE, endpoints that were active within the specified duration are included in the segment; and, INACTIVE, endpoints that weren't active within the specified duration are included in the segment.</p>"
+      }
+    },
+    "RecommenderConfigurationResponse" : {
+      "base" : "<p>Provides information about Amazon Pinpoint configuration settings for retrieving and processing data from a recommender model.</p>",
+      "refs" : {
+        "ListOfRecommenderConfigurationResponse$member" : null
       }
     },
     "ResultRow" : {
@@ -1010,7 +1033,7 @@
     "SetDimension" : {
       "base" : "<p>Specifies the dimension type and values for a segment dimension.</p>",
       "refs" : {
-        "EventDimensions$EventType" : "<p>The name of the event that causes the campaign to be sent or the journey activity to be performed. This can be a standard type of event that Amazon Pinpoint generates, such as _email.delivered, or a custom event that's specific to your application.</p>",
+        "EventDimensions$EventType" : "<p>The name of the event that causes the campaign to be sent or the journey activity to be performed. This can be a standard event that Amazon Pinpoint generates, such as _email.delivered. For campaigns, this can also be a custom event that's specific to your application. For information about standard events, see <a href=\"https://docs.aws.amazon.com/pinpoint/latest/developerguide/event-streams.html\">Streaming Amazon Pinpoint Events</a> in the <i>Amazon Pinpoint Developer Guide</i>.</p>",
         "SegmentDemographics$AppVersion" : "<p>The app version criteria for the segment.</p>",
         "SegmentDemographics$Channel" : "<p>The channel criteria for the segment.</p>",
         "SegmentDemographics$DeviceType" : "<p>The device type criteria for the segment.</p>",
@@ -1063,7 +1086,7 @@
       }
     },
     "TagsModel" : {
-      "base" : "<p>Specifies the tags (keys and values) for an application, campaign, journey, message template, or segment.</p>",
+      "base" : "<p>Specifies the tags (keys and values) for an application, campaign, message template, or segment.</p>",
       "refs" : { }
     },
     "Template" : {
@@ -1072,7 +1095,7 @@
         "TemplateConfiguration$EmailTemplate" : "<p>The email template to use for the message.</p>",
         "TemplateConfiguration$PushTemplate" : "<p>The push notification template to use for the message.</p>",
         "TemplateConfiguration$SMSTemplate" : "<p>The SMS template to use for the message.</p>",
-        "TemplateConfiguration$VoiceTemplate" : "<p>The voice template to use for the message.</p>"
+        "TemplateConfiguration$VoiceTemplate" : "<p>The voice template to use for the message. This object isn't supported for campaigns.</p>"
       }
     },
     "TemplateActiveVersionRequest" : {
@@ -1138,6 +1161,10 @@
     },
     "UpdateAttributesRequest" : {
       "base" : "<p>Specifies one or more attributes to remove from all the endpoints that are associated with an application.</p>",
+      "refs" : { }
+    },
+    "UpdateRecommenderConfiguration" : {
+      "base" : "<p>Specifies Amazon Pinpoint configuration settings for retrieving and processing recommendation data from a recommender model.</p>",
       "refs" : { }
     },
     "VoiceChannelRequest" : {
@@ -1306,6 +1333,7 @@
         "CampaignResponse$SegmentVersion" : "<p>The version number of the segment that's associated with the campaign.</p>",
         "CampaignResponse$Version" : "<p>The version number of the campaign.</p>",
         "ChannelResponse$Version" : "<p>The current version of the channel.</p>",
+        "CreateRecommenderConfiguration$RecommendationsPerMessage" : "<p>The number of recommended items to retrieve from the model for each endpoint or user, depending on the value for the RecommenderUserIdType property. This number determines how many recommended attributes are available for use as message variables in message templates. The minimum value is 1. The maximum value is 5. The default value is 5.</p> <p>To use multiple recommended items and custom attributes with message variables, you have to use an AWS Lambda function (LambdaFunctionArn) to perform additional processing of recommendation data.</p>",
         "EmailChannelResponse$MessagesPerSecond" : "<p>The maximum number of emails that you can send through the channel each second.</p>",
         "EmailChannelResponse$Version" : "<p>The current version of the email channel.</p>",
         "EndpointItemResponse$StatusCode" : "<p>The status code that's returned in the response as a result of processing the endpoint data.</p>",
@@ -1333,6 +1361,7 @@
         "MessageResult$StatusCode" : "<p>The downstream service status code for delivering the message.</p>",
         "NumberValidateResponse$PhoneTypeCode" : "<p>The phone type, represented by an integer. Valid values are: 0 (mobile), 1 (landline), 2 (VoIP), 3 (invalid), 4 (other), and 5 (prepaid).</p>",
         "RandomSplitEntry$Percentage" : "<p>The percentage of participants to send down the activity path.</p> <p>To determine which participants are sent down each path, Amazon Pinpoint applies a probability-based algorithm to the percentages that you specify for the paths. Therefore, the actual percentage of participants who are sent down a path may not be equal to the percentage that you specify.</p>",
+        "RecommenderConfigurationResponse$RecommendationsPerMessage" : "<p>The number of recommended items that are retrieved from the model for each endpoint or user, depending on the value for the RecommenderUserIdType property. This number determines how many recommended attributes are available for use as message variables in message templates.</p>",
         "SMSChannelResponse$PromotionalMessagesPerSecond" : "<p>The maximum number of promotional messages that you can send through the SMS channel each second.</p>",
         "SMSChannelResponse$TransactionalMessagesPerSecond" : "<p>The maximum number of transactional messages that you can send through the SMS channel each second.</p>",
         "SMSChannelResponse$Version" : "<p>The current version of the SMS channel.</p>",
@@ -1341,6 +1370,7 @@
         "SegmentResponse$Version" : "<p>The version number of the segment.</p>",
         "Session$Duration" : "<p>The duration of the session, in milliseconds.</p>",
         "TreatmentResource$SizePercent" : "<p>The allocated percentage of users (segment members) that the treatment is sent to.</p>",
+        "UpdateRecommenderConfiguration$RecommendationsPerMessage" : "<p>The number of recommended items to retrieve from the model for each endpoint or user, depending on the value for the RecommenderUserIdType property. This number determines how many recommended attributes are available for use as message variables in message templates. The minimum value is 1. The maximum value is 5. The default value is 5.</p> <p>To use multiple recommended items and custom attributes with message variables, you have to use an AWS Lambda function (LambdaFunctionArn) to perform additional processing of recommendation data.</p>",
         "VoiceChannelResponse$Version" : "<p>The current version of the voice channel.</p>",
         "WriteCampaignRequest$HoldoutPercent" : "<p>The allocated percentage of users (segment members) who shouldn't receive messages from the campaign.</p>",
         "WriteCampaignRequest$SegmentVersion" : "<p>The version of the segment to associate with the campaign.</p>",
@@ -1406,6 +1436,12 @@
       "base" : null,
       "refs" : {
         "RandomSplitActivity$Branches" : "<p>The paths for the activity, including the percentage of participants to enter each path and the activity to perform for each path.</p>"
+      }
+    },
+    "ListOfRecommenderConfigurationResponse" : {
+      "base" : null,
+      "refs" : {
+        "ListRecommenderConfigurationsResponse$Item" : "<p>An array of responses, one for each recommender model configuration that's associated with your Amazon Pinpoint account.</p>"
       }
     },
     "ListOfResultRow" : {
@@ -1492,7 +1528,7 @@
       "base" : null,
       "refs" : {
         "JourneyResponse$Activities" : "<p>A map that contains a set of Activity objects, one object for each activity in the journey. For each Activity object, the key is the unique identifier (string) for an activity and the value is the settings for the activity.</p>",
-        "WriteJourneyRequest$Activities" : "<p>A map that contains a set of Activity objects, one object for each activity in the journey. For each Activity object, the key is the unique identifier (string) for an activity and the value is the settings for the activity. An activity identifier can contain a maximum of 128 characters. The characters must be alphanumeric characters.</p>"
+        "WriteJourneyRequest$Activities" : "<p>A map that contains a set of Activity objects, one object for each activity in the journey. For each Activity object, the key is the unique identifier (string) for an activity and the value is the settings for the activity. An activity identifier can contain a maximum of 100 characters. The characters must be alphanumeric characters.</p>"
       }
     },
     "MapOfAddressConfiguration" : {
@@ -1592,11 +1628,11 @@
         "DefaultMessage$Substitutions" : "<p>The default message variables to use in the message. You can override these default variables with individual address variables.</p>",
         "DefaultPushNotificationMessage$Substitutions" : "<p>The default message variables to use in the notification message. You can override the default variables with individual address variables.</p>",
         "EmailMessage$Substitutions" : "<p>The default message variables to use in the email message. You can override the default variables with individual address variables.</p>",
-        "EndpointBatchItem$Attributes" : "<p>One or more custom attributes that describe the endpoint by associating a name with an array of values. For example, the value of a custom attribute named Interests might be: [\"science\", \"music\", \"travel\"]. You can use these attributes as filter criteria when you create segments.</p> <p>When you define the name of a custom attribute, avoid using the following characters: number sign (#), colon (:), question mark (?), backslash (\\), and slash (/). The Amazon Pinpoint console can't display attribute names that contain these characters. This limitation doesn't apply to attribute values.</p>",
-        "EndpointRequest$Attributes" : "<p>One or more custom attributes that describe the endpoint by associating a name with an array of values. For example, the value of a custom attribute named Interests might be: [\"science\", \"music\", \"travel\"]. You can use these attributes as filter criteria when you create segments.</p> <p>When you define the name of a custom attribute, avoid using the following characters: number sign (#), colon (:), question mark (?), backslash (\\), and slash (/). The Amazon Pinpoint console can't display attribute names that contain these characters. This limitation doesn't apply to attribute values.</p>",
-        "EndpointResponse$Attributes" : "<p>One or more custom attributes that describe the endpoint by associating a name with an array of values. For example, the value of a custom attribute named Interests might be: [\"science\", \"music\", \"travel\"]. You can use these attributes as filter criteria when you create segments.</p>",
+        "EndpointBatchItem$Attributes" : "<p>One or more custom attributes that describe the endpoint by associating a name with an array of values. For example, the value of a custom attribute named Interests might be: [\"Science\", \"Music\", \"Travel\"]. You can use these attributes as filter criteria when you create segments. Attribute names are case sensitive.</p> <p>An attribute name can contain up to 50 characters. An attribute value can contain up to 100 characters. When you define the name of a custom attribute, avoid using the following characters: number sign (#), colon (:), question mark (?), backslash (\\), and slash (/). The Amazon Pinpoint console can't display attribute names that contain these characters. This restriction doesn't apply to attribute values.</p>",
+        "EndpointRequest$Attributes" : "<p>One or more custom attributes that describe the endpoint by associating a name with an array of values. For example, the value of a custom attribute named Interests might be: [\"Science\", \"Music\", \"Travel\"]. You can use these attributes as filter criteria when you create segments. Attribute names are case sensitive.</p> <p>An attribute name can contain up to 50 characters. An attribute value can contain up to 100 characters. When you define the name of a custom attribute, avoid using the following characters: number sign (#), colon (:), question mark (?), backslash (\\), and slash (/). The Amazon Pinpoint console can't display attribute names that contain these characters. This restriction doesn't apply to attribute values.</p>",
+        "EndpointResponse$Attributes" : "<p>One or more custom attributes that describe the endpoint by associating a name with an array of values. For example, the value of a custom attribute named Interests might be: [\"Science\", \"Music\", \"Travel\"]. You can use these attributes as filter criteria when you create segments.</p>",
         "EndpointSendConfiguration$Substitutions" : "<p>A map of the message variables to merge with the variables specified for the default message (DefaultMessage.Substitutions). The variables specified in this map take precedence over all other variables.</p>",
-        "EndpointUser$UserAttributes" : "<p>One or more custom attributes that describe the user by associating a name with an array of values. For example, the value of an attribute named Interests might be: [\"science\", \"music\", \"travel\"]. You can use these attributes as filter criteria when you create segments.</p> <p>When you define the name of a custom attribute, avoid using the following characters: number sign (#), colon (:), question mark (?), backslash (\\), and slash (/). The Amazon Pinpoint console can't display attribute names that contain these characters. This limitation doesn't apply to attribute values.</p>",
+        "EndpointUser$UserAttributes" : "<p>One or more custom attributes that describe the user by associating a name with an array of values. For example, the value of an attribute named Interests might be: [\"Science\", \"Music\", \"Travel\"]. You can use these attributes as filter criteria when you create segments. Attribute names are case sensitive.</p> <p>An attribute name can contain up to 50 characters. An attribute value can contain up to 100 characters. When you define the name of a custom attribute, avoid using the following characters: number sign (#), colon (:), question mark (?), backslash (\\), and slash (/). The Amazon Pinpoint console can't display attribute names that contain these characters. This restriction doesn't apply to attribute values.</p>",
         "GCMMessage$Substitutions" : "<p>The default message variables to use in the notification message. You can override the default variables with individual address variables.</p>",
         "PublicEndpoint$Attributes" : "<p>One or more custom attributes that describe the endpoint by associating a name with an array of values. You can use these attributes as filter criteria when you create segments.</p>",
         "SMSMessage$Substitutions" : "<p>The message variables to use in the SMS message. You can override the default variables with individual address variables.</p>",
@@ -1614,29 +1650,32 @@
       "refs" : {
         "ADMMessage$Data" : "<p>The JSON data payload to use for the push notification, if the notification is a silent push notification. This payload is added to the data.pinpoint.jsonBody object of the notification.</p>",
         "APNSMessage$Data" : "<p>The JSON payload to use for a silent push notification. This payload is added to the data.pinpoint.jsonBody object of the notification.</p>",
-        "AddressConfiguration$Context" : "<p>An object that maps custom attributes to attributes for the address and is attached to the message. For a push notification, this payload is added to the data.pinpoint object. For an email or text message, this payload is added to email/SMS delivery receipt event attributes.</p>",
+        "AddressConfiguration$Context" : "<p>An object that maps custom attributes to attributes for the address and is attached to the message. Attribute names are case sensitive.</p> <p>For a push notification, this payload is added to the data.pinpoint object. For an email or text message, this payload is added to email/SMS delivery receipt event attributes.</p>",
         "ApplicationResponse$tags" : "<p>A string-to-string map of key-value pairs that identifies the tags that are associated with the application. Each tag consists of a required tag key and an associated tag value.</p>",
         "BaiduMessage$Data" : "<p>The JSON data payload to use for the push notification, if the notification is a silent push notification. This payload is added to the data.pinpoint.jsonBody object of the notification.</p>",
         "CampaignResponse$tags" : "<p>A string-to-string map of key-value pairs that identifies the tags that are associated with the campaign. Each tag consists of a required tag key and an associated tag value.</p>",
         "CreateApplicationRequest$tags" : "<p>A string-to-string map of key-value pairs that defines the tags to associate with the application. Each tag consists of a required tag key and an associated tag value.</p>",
+        "CreateRecommenderConfiguration$Attributes" : "<p>A map of key-value pairs that defines 1-10 custom endpoint or user attributes, depending on the value for the RecommenderUserIdType property. Each of these attributes temporarily stores a recommended item that's retrieved from the recommender model and sent to an AWS Lambda function for additional processing. Each attribute can be used as a message variable in a message template.</p> <p>In the map, the key is the name of a custom attribute and the value is a custom display name for that attribute. The display name appears in the <b>Attribute finder</b> pane of the template editor on the Amazon Pinpoint console. The following restrictions apply to these names:</p> <ul><li><p>An attribute name must start with a letter or number and it can contain up to 50 characters. The characters can be letters, numbers, underscores (_), or hyphens (-). Attribute names are case sensitive and must be unique.</p></li> <li><p>An attribute display name must start with a letter or number and it can contain up to 25 characters. The characters can be letters, numbers, spaces, underscores (_), or hyphens (-).</p></li></ul> <p>This object is required if the configuration invokes an AWS Lambda function (LambdaFunctionArn) to process recommendation data. Otherwise, don't include this object in your request.</p>",
         "DefaultPushNotificationMessage$Data" : "<p>The JSON data payload to use for the default push notification, if the notification is a silent push notification. This payload is added to the data.pinpoint.jsonBody object of the notification.</p>",
         "EmailTemplateRequest$tags" : "<p>A string-to-string map of key-value pairs that defines the tags to associate with the message template. Each tag consists of a required tag key and an associated tag value.</p>",
         "EmailTemplateResponse$tags" : "<p>A string-to-string map of key-value pairs that identifies the tags that are associated with the message template. Each tag consists of a required tag key and an associated tag value.</p>",
-        "EndpointSendConfiguration$Context" : "<p>A map of custom attributes to attach to the message for the address. For a push notification, this payload is added to the data.pinpoint object. For an email or text message, this payload is added to email/SMS delivery receipt event attributes.</p>",
+        "EndpointSendConfiguration$Context" : "<p>A map of custom attributes to attach to the message for the address. Attribute names are case sensitive.</p> <p>For a push notification, this payload is added to the data.pinpoint object. For an email or text message, this payload is added to email/SMS delivery receipt event attributes.</p>",
         "Event$Attributes" : "<p>One or more custom attributes that are associated with the event.</p>",
         "GCMMessage$Data" : "<p>The JSON data payload to use for the push notification, if the notification is a silent push notification. This payload is added to the data.pinpoint.jsonBody object of the notification.</p>",
         "JourneyExecutionActivityMetricsResponse$Metrics" : "<p>A JSON object that contains the results of the query. The results vary depending on the type of activity (ActivityType). For information about the structure and contents of the results, see the <a href=\"https://docs.aws.amazon.com/pinpoint/latest/developerguide/welcome.html\">Amazon Pinpoint Developer Guide</a>.</p>",
         "JourneyExecutionMetricsResponse$Metrics" : "<p>A JSON object that contains the results of the query. For information about the structure and contents of the results, see the <a href=\"https://docs.aws.amazon.com/pinpoint/latest/developerguide/welcome.html\">Amazon Pinpoint Developer Guide</a>.</p>",
-        "JourneyResponse$tags" : "<p>A string-to-string map of key-value pairs that identifies the tags that are associated with the journey. Each tag consists of a required tag key and an associated tag value.</p>",
+        "JourneyResponse$tags" : "<p>This object is not used or supported.</p>",
         "MessageRequest$Context" : "<p>A map of custom attributes to attach to the message. For a push notification, this payload is added to the data.pinpoint object. For an email or text message, this payload is added to email/SMS delivery receipt event attributes.</p>",
         "PushNotificationTemplateRequest$tags" : "<p>A string-to-string map of key-value pairs that defines the tags to associate with the message template. Each tag consists of a required tag key and an associated tag value.</p>",
         "PushNotificationTemplateResponse$tags" : "<p>A string-to-string map of key-value pairs that identifies the tags that are associated with the message template. Each tag consists of a required tag key and an associated tag value.</p>",
+        "RecommenderConfigurationResponse$Attributes" : "<p>A map that defines 1-10 custom endpoint or user attributes, depending on the value for the RecommenderUserIdType property. Each of these attributes temporarily stores a recommended item that's retrieved from the recommender model and sent to an AWS Lambda function for additional processing. Each attribute can be used as a message variable in a message template.</p> <p>This value is null if the configuration doesn't invoke an AWS Lambda function (LambdaFunctionArn) to perform additional processing of recommendation data.</p>",
         "SMSTemplateRequest$tags" : "<p>A string-to-string map of key-value pairs that defines the tags to associate with the message template. Each tag consists of a required tag key and an associated tag value.</p>",
         "SMSTemplateResponse$tags" : "<p>A string-to-string map of key-value pairs that identifies the tags that are associated with the message template. Each tag consists of a required tag key and an associated tag value.</p>",
         "SegmentResponse$tags" : "<p>A string-to-string map of key-value pairs that identifies the tags that are associated with the segment. Each tag consists of a required tag key and an associated tag value.</p>",
         "SendUsersMessageRequest$Context" : "<p>A map of custom attribute-value pairs. For a push notification, Amazon Pinpoint adds these attributes to the data.pinpoint object in the body of the notification payload. Amazon Pinpoint also provides these attributes in the events that it generates for users-messages deliveries.</p>",
-        "TagsModel$tags" : "<p>A string-to-string map of key-value pairs that defines the tags for an application, campaign, journey, message template, or segment. Each of these resources can have a maximum of 50 tags.</p> <p>Each tag consists of a required tag key and an associated tag value. The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.</p>",
-        "TemplateResponse$tags" : "<p>A string-to-string map of key-value pairs that identifies the tags that are associated with the message template. Each tag consists of a required tag key and an associated tag value.</p>",
+        "TagsModel$tags" : "<p>A string-to-string map of key-value pairs that defines the tags for an application, campaign, message template, or segment. Each of these resources can have a maximum of 50 tags.</p> <p>Each tag consists of a required tag key and an associated tag value. The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.</p>",
+        "TemplateResponse$tags" : "<p>A map of key-value pairs that identifies the tags that are associated with the message template. This object isn't included in a TemplateResponse object. To retrieve this object for a template, use the GetEmailTemplate, GetPushTemplate, GetSmsTemplate, or GetVoiceTemplate operation, depending on the type of template that you want to retrieve the object for.</p>",
+        "UpdateRecommenderConfiguration$Attributes" : "<p>A map of key-value pairs that defines 1-10 custom endpoint or user attributes, depending on the value for the RecommenderUserIdType property. Each of these attributes temporarily stores a recommended item that's retrieved from the recommender model and sent to an AWS Lambda function for additional processing. Each attribute can be used as a message variable in a message template.</p> <p>In the map, the key is the name of a custom attribute and the value is a custom display name for that attribute. The display name appears in the <b>Attribute finder</b> pane of the template editor on the Amazon Pinpoint console. The following restrictions apply to these names:</p> <ul><li><p>An attribute name must start with a letter or number and it can contain up to 50 characters. The characters can be letters, numbers, underscores (_), or hyphens (-). Attribute names are case sensitive and must be unique.</p></li> <li><p>An attribute display name must start with a letter or number and it can contain up to 25 characters. The characters can be letters, numbers, spaces, underscores (_), or hyphens (-).</p></li></ul> <p>This object is required if the configuration invokes an AWS Lambda function (LambdaFunctionArn) to process recommendation data. Otherwise, don't include this object in your request.</p>",
         "VoiceTemplateRequest$tags" : "<p>A string-to-string map of key-value pairs that defines the tags to associate with the message template. Each tag consists of a required tag key and an associated tag value.</p>",
         "VoiceTemplateResponse$tags" : "<p>A string-to-string map of key-value pairs that identifies the tags that are associated with the message template. Each tag consists of a required tag key and an associated tag value.</p>",
         "WriteCampaignRequest$tags" : "<p>A string-to-string map of key-value pairs that defines the tags to associate with the campaign. Each tag consists of a required tag key and an associated tag value.</p>",
@@ -1761,7 +1800,7 @@
         "AndroidPushNotificationTemplate$SmallImageIconUrl" : "<p>The URL of the small icon image to display in the status bar and the content view of a push notification that's based on the message template.</p>",
         "AndroidPushNotificationTemplate$Sound" : "<p>The sound to play when a recipient receives a push notification that's based on the message template. You can use the default stream or specify the file name of a sound resource that's bundled in your app. On an Android platform, the sound file must reside in /res/raw/.</p>",
         "AndroidPushNotificationTemplate$Title" : "<p>The title to use in a push notification that's based on the message template. This title appears above the notification message on a recipient's device.</p>",
-        "AndroidPushNotificationTemplate$Url" : "<p>The URL to open in a recipient's default mobile browser, if a recipient taps a a push notification that's based on the message template and the value of the Action property is URL.</p>",
+        "AndroidPushNotificationTemplate$Url" : "<p>The URL to open in a recipient's default mobile browser, if a recipient taps a push notification that's based on the message template and the value of the Action property is URL.</p>",
         "ApplicationDateRangeKpiResponse$ApplicationId" : "<p>The unique identifier for the application that the metric applies to.</p>",
         "ApplicationDateRangeKpiResponse$EndTime" : "<p>The last date and time of the date range that was used to filter the query results, in extended ISO 8601 format. The date range is inclusive.</p>",
         "ApplicationDateRangeKpiResponse$KpiName" : "<p>The name of the metric, also referred to as a <i>key performance indicator (KPI)</i>, that the data was retrieved for. This value describes the associated metric and consists of two or more terms, which are comprised of lowercase alphanumeric characters, separated by a hyphen. For a list of possible values, see the <a href=\"https://docs.aws.amazon.com/pinpoint/latest/developerguide/welcome.html\">Amazon Pinpoint Developer Guide</a>.</p>",
@@ -1826,6 +1865,13 @@
         "ConditionalSplitActivity$FalseActivity" : "<p>The unique identifier for the activity to perform if the conditions aren't met.</p>",
         "ConditionalSplitActivity$TrueActivity" : "<p>The unique identifier for the activity to perform if the conditions are met.</p>",
         "CreateApplicationRequest$Name" : "<p>The display name of the application. This name is displayed as the <b>Project name</b> on the Amazon Pinpoint console.</p>",
+        "CreateRecommenderConfiguration$Description" : "<p>A custom description of the configuration for the recommender model. The description can contain up to 128 characters.</p>",
+        "CreateRecommenderConfiguration$Name" : "<p>A custom name of the configuration for the recommender model. The name must start with a letter or number and it can contain up to 128 characters. The characters can be letters, numbers, spaces, underscores (_), or hyphens (-).</p>",
+        "CreateRecommenderConfiguration$RecommendationProviderIdType" : "<p>The type of Amazon Pinpoint ID to associate with unique user IDs in the recommender model. This value enables the model to use attribute and event data that’s specific to a particular endpoint or user in an Amazon Pinpoint application. Valid values are:</p> <ul><li><p>PINPOINT_ENDPOINT_ID - Associate each user in the model with a particular endpoint in Amazon Pinpoint. The data is correlated based on endpoint IDs in Amazon Pinpoint. This is the default value.</p></li> <li><p>PINPOINT_USER_ID - Associate each user in the model with a particular user and endpoint in Amazon Pinpoint. The data is correlated based on user IDs in Amazon Pinpoint. If you specify this value, an endpoint definition in Amazon Pinpoint has to specify a both a user ID (UserId) and an endpoint ID. Otherwise, messages won’t be sent to the user's endpoint.</p></li></ul>",
+        "CreateRecommenderConfiguration$RecommendationProviderRoleArn" : "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that authorizes Amazon Pinpoint to retrieve recommendation data from the recommender model.</p>",
+        "CreateRecommenderConfiguration$RecommendationProviderUri" : "<p>The Amazon Resource Name (ARN) of the recommender model to retrieve recommendation data from. This value must match the ARN of an Amazon Personalize campaign.</p>",
+        "CreateRecommenderConfiguration$RecommendationTransformerUri" : "<p>The name or Amazon Resource Name (ARN) of the AWS Lambda function to invoke for additional processing of recommendation data that's retrieved from the recommender model.</p>",
+        "CreateRecommenderConfiguration$RecommendationsDisplayName" : "<p>A custom display name for the standard endpoint or user attribute (RecommendationItems) that temporarily stores a recommended item for each endpoint or user, depending on the value for the RecommenderUserIdType property. This value is required if the configuration doesn't invoke an AWS Lambda function (LambdaFunctionArn) to perform additional processing of recommendation data.</p> <p>This name appears in the <b>Attribute finder</b> pane of the template editor on the Amazon Pinpoint console. The name can contain up to 25 characters. The characters can be letters, numbers, spaces, underscores (_), or hyphens (-). These restrictions don't apply to attribute values.</p>",
         "CreateTemplateMessageBody$Arn" : "<p>The Amazon Resource Name (ARN) of the message template that was created.</p>",
         "CreateTemplateMessageBody$Message" : "<p>The message that's returned from the API for the request to create the message template.</p>",
         "CreateTemplateMessageBody$RequestID" : "<p>The unique identifier for the request to create the message template.</p>",
@@ -1856,9 +1902,10 @@
         "EmailMessage$FromAddress" : "<p>The verified email address to send the email message from. The default value is the FromAddress specified for the email channel.</p>",
         "EmailMessageActivity$NextActivity" : "<p>The unique identifier for the next activity to perform, after the message is sent.</p>",
         "EmailMessageActivity$TemplateName" : "<p>The name of the email template to use for the message.</p>",
-        "EmailMessageActivity$TemplateVersion" : "<p>The unique identifier for the version of the email template to use for the message. If specified, this value must match the identifier for an existing template version. To retrieve a list of versions and version identifiers for a template, use the <link  linkend=\"templates-template-name-template-type-versions\">Template Versions</link> resource.</p> <p>If you don't specify a value for this property, Amazon Pinpoint uses the <i>active</i> version of the template. The <i>active</i> version is typically the version of a template that's been most recently reviewed and approved for use, depending on your workflow. It isn't necessarily the latest version of a template.</p>",
+        "EmailMessageActivity$TemplateVersion" : "<p>The unique identifier for the version of the email template to use for the message. If specified, this value must match the identifier for an existing template version. To retrieve a list of versions and version identifiers for a template, use the <link  linkend=\"templates-template-name-template-type-versions\">Template Versions</link> resource.</p> <p>If you don't specify a value for this property, Amazon Pinpoint uses the <i>active version</i> of the template. The <i>active version</i> is typically the version of a template that's been most recently reviewed and approved for use, depending on your workflow. It isn't necessarily the latest version of a template.</p>",
         "EmailTemplateRequest$DefaultSubstitutions" : "<p>A JSON object that specifies the default values to use for message variables in the message template. This object is a set of key-value pairs. Each key defines a message variable in the template. The corresponding value defines the default value for that variable. When you create a message that's based on the template, you can override these defaults with message-specific and address-specific variables and values.</p>",
         "EmailTemplateRequest$HtmlPart" : "<p>The message body, in HTML format, to use in email messages that are based on the message template. We recommend using HTML format for email clients that render HTML content. You can include links, formatted text, and more in an HTML message.</p>",
+        "EmailTemplateRequest$RecommenderId" : "<p>The unique identifier for the recommender model to use for the message template. Amazon Pinpoint uses this value to determine how to retrieve and process data from a recommender model when it sends messages that use the template, if the template contains message variables for recommendation data.</p>",
         "EmailTemplateRequest$Subject" : "<p>The subject line, or title, to use in email messages that are based on the message template.</p>",
         "EmailTemplateRequest$TemplateDescription" : "<p>A custom description of the message template.</p>",
         "EmailTemplateRequest$TextPart" : "<p>The message body, in plain text format, to use in email messages that are based on the message template. We recommend using plain text format for email clients that don't render HTML content and clients that are connected to high-latency networks, such as mobile devices.</p>",
@@ -1867,6 +1914,7 @@
         "EmailTemplateResponse$DefaultSubstitutions" : "<p>The JSON object that specifies the default values that are used for message variables in the message template. This object is a set of key-value pairs. Each key defines a message variable in the template. The corresponding value defines the default value for that variable.</p>",
         "EmailTemplateResponse$HtmlPart" : "<p>The message body, in HTML format, that's used in email messages that are based on the message template.</p>",
         "EmailTemplateResponse$LastModifiedDate" : "<p>The date, in ISO 8601 format, when the message template was last modified.</p>",
+        "EmailTemplateResponse$RecommenderId" : "<p>The unique identifier for the recommender model that's used by the message template.</p>",
         "EmailTemplateResponse$Subject" : "<p>The subject line, or title, that's used in email messages that are based on the message template.</p>",
         "EmailTemplateResponse$TemplateDescription" : "<p>The custom description of the message template.</p>",
         "EmailTemplateResponse$TemplateName" : "<p>The name of the message template.</p>",
@@ -1965,7 +2013,7 @@
         "ImportJobRequest$RoleArn" : "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that authorizes Amazon Pinpoint to access the Amazon S3 location to import endpoint definitions from.</p>",
         "ImportJobRequest$S3Url" : "<p>The URL of the Amazon Simple Storage Service (Amazon S3) bucket that contains the endpoint definitions to import. This location can be a folder or a single file. If the location is a folder, Amazon Pinpoint imports endpoint definitions from the files in this location, including any subfolders that the folder contains.</p> <p>The URL should be in the following format: s3://<replaceable>bucket-name</replaceable>/<replaceable>folder-name</replaceable>/<replaceable>file-name</replaceable>. The location can end with the key for an individual object or a prefix that qualifies multiple objects.</p>",
         "ImportJobRequest$SegmentId" : "<p>The identifier for the segment to update or add the imported endpoint definitions to, if the import job is meant to update an existing segment.</p>",
-        "ImportJobRequest$SegmentName" : "<p>The custom name for the segment that's created by the import job, if the value of the DefineSegment property is true.</p>",
+        "ImportJobRequest$SegmentName" : "<p>A custom name for the segment that's created by the import job, if the value of the DefineSegment property is true.</p>",
         "ImportJobResource$ExternalId" : "<p>(Deprecated) Your AWS account ID, which you assigned to an external ID key in an IAM trust policy. Amazon Pinpoint previously used this value to assume an IAM role when importing endpoint definitions, but we removed this requirement. We don't recommend use of external IDs for IAM roles that are assumed by Amazon Pinpoint.</p>",
         "ImportJobResource$RoleArn" : "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that authorizes Amazon Pinpoint to access the Amazon S3 location to import endpoint definitions from.</p>",
         "ImportJobResource$S3Url" : "<p>The URL of the Amazon Simple Storage Service (Amazon S3) bucket that contains the endpoint definitions to import. This location can be a folder or a single file. If the location is a folder, Amazon Pinpoint imports endpoint definitions from the files in this location, including any subfolders that the folder contains.</p> <p>The URL should be in the following format: s3://<replaceable>bucket-name</replaceable>/<replaceable>folder-name</replaceable>/<replaceable>file-name</replaceable>. The location can end with the key for an individual object or a prefix that qualifies multiple objects.</p>",
@@ -2003,6 +2051,7 @@
         "JourneySchedule$StartTime" : "<p>The scheduled time, in ISO 8601 format, when the journey began or will begin.</p>",
         "JourneySchedule$Timezone" : "<p>The starting UTC offset for the journey schedule, if the value of the journey's LocalTime property is true. Valid values are: UTC,\n                  UTC+01, UTC+02, UTC+03, UTC+03:30, UTC+04, UTC+04:30, UTC+05, UTC+05:30,\n                  UTC+05:45, UTC+06, UTC+06:30, UTC+07, UTC+08, UTC+08:45, UTC+09, UTC+09:30,\n                  UTC+10, UTC+10:30, UTC+11, UTC+12, UTC+12:45, UTC+13, UTC+13:45, UTC-02,\n                  UTC-02:30, UTC-03, UTC-03:30, UTC-04, UTC-05, UTC-06, UTC-07, UTC-08, UTC-09,\n                  UTC-09:30, UTC-10, and UTC-11.</p>",
         "JourneysResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null if there are no additional pages.</p>",
+        "ListRecommenderConfigurationsResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null if there are no additional pages.</p>",
         "Message$Body" : "<p>The body of the notification message. The maximum number of characters is 200.</p>",
         "Message$ImageIconUrl" : "<p>The URL of the image to display as the push-notification icon, such as the icon for the app.</p>",
         "Message$ImageSmallIconUrl" : "<p>The URL of the image to display as the small, push-notification icon, such as a small version of the icon for the app.</p>",
@@ -2044,11 +2093,13 @@
         "PublicEndpoint$OptOut" : "<p>Specifies whether the user who's associated with the endpoint has opted out of receiving messages and push notifications from you. Possible values are: ALL, the user has opted out and doesn't want to receive any messages or push notifications; and, NONE, the user hasn't opted out and wants to receive all messages and push notifications.</p>",
         "PublicEndpoint$RequestId" : "<p>A unique identifier that's generated each time the endpoint is updated.</p>",
         "PushNotificationTemplateRequest$DefaultSubstitutions" : "<p>A JSON object that specifies the default values to use for message variables in the message template. This object is a set of key-value pairs. Each key defines a message variable in the template. The corresponding value defines the default value for that variable. When you create a message that's based on the template, you can override these defaults with message-specific and address-specific variables and values.</p>",
+        "PushNotificationTemplateRequest$RecommenderId" : "<p>The unique identifier for the recommender model to use for the message template. Amazon Pinpoint uses this value to determine how to retrieve and process data from a recommender model when it sends messages that use the template, if the template contains message variables for recommendation data.</p>",
         "PushNotificationTemplateRequest$TemplateDescription" : "<p>A custom description of the message template.</p>",
         "PushNotificationTemplateResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the message template.</p>",
         "PushNotificationTemplateResponse$CreationDate" : "<p>The date, in ISO 8601 format, when the message template was created.</p>",
         "PushNotificationTemplateResponse$DefaultSubstitutions" : "<p>The JSON object that specifies the default values that are used for message variables in the message template. This object is a set of key-value pairs. Each key defines a message variable in the template. The corresponding value defines the default value for that variable.</p>",
         "PushNotificationTemplateResponse$LastModifiedDate" : "<p>The date, in ISO 8601 format, when the message template was last modified.</p>",
+        "PushNotificationTemplateResponse$RecommenderId" : "<p>The unique identifier for the recommender model that's used by the message template.</p>",
         "PushNotificationTemplateResponse$TemplateDescription" : "<p>The custom description of the message template.</p>",
         "PushNotificationTemplateResponse$TemplateName" : "<p>The name of the message template.</p>",
         "PushNotificationTemplateResponse$Version" : "<p>The unique identifier, as an integer, for the active version of the message template, or the version of the template that you specified by using the version parameter in your request.</p>",
@@ -2056,6 +2107,16 @@
         "QuietTime$Start" : "<p>The specific time when quiet time begins. This value has to use 24-hour notation and be in HH:MM format, where HH is the hour (with a leading zero, if applicable) and MM is the minutes. For example, use 02:30 to represent 2:30 AM, or 14:30 to represent 2:30 PM.</p>",
         "RandomSplitEntry$NextActivity" : "<p>The unique identifier for the next activity to perform, after completing the activity for the path.</p>",
         "RawEmail$Data" : "<p>The email message, represented as a raw MIME message. The entire message must be base64 encoded.</p>",
+        "RecommenderConfigurationResponse$CreationDate" : "<p>The date, in extended ISO 8601 format, when the configuration was created for the recommender model.</p>",
+        "RecommenderConfigurationResponse$Description" : "<p>The custom description of the configuration for the recommender model.</p>",
+        "RecommenderConfigurationResponse$Id" : "<p>The unique identifier for the recommender model configuration.</p>",
+        "RecommenderConfigurationResponse$LastModifiedDate" : "<p>The date, in extended ISO 8601 format, when the configuration for the recommender model was last modified.</p>",
+        "RecommenderConfigurationResponse$Name" : "<p>The custom name of the configuration for the recommender model.</p>",
+        "RecommenderConfigurationResponse$RecommendationProviderIdType" : "<p>The type of Amazon Pinpoint ID that's associated with unique user IDs in the recommender model. This value enables the model to use attribute and event data that’s specific to a particular endpoint or user in an Amazon Pinpoint application. Possible values are:</p> <ul><li><p>PINPOINT_ENDPOINT_ID - Each user in the model is associated with a particular endpoint in Amazon Pinpoint. The data is correlated based on endpoint IDs in Amazon Pinpoint. This is the default value.</p></li> <li><p>PINPOINT_USER_ID - Each user in the model is associated with a particular user and endpoint in Amazon Pinpoint. The data is correlated based on user IDs in Amazon Pinpoint. If this value is specified, an endpoint definition in Amazon Pinpoint has to specify both a user ID (UserId) and an endpoint ID. Otherwise, messages won’t be sent to the user's endpoint.</p></li></ul>",
+        "RecommenderConfigurationResponse$RecommendationProviderRoleArn" : "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that authorizes Amazon Pinpoint to retrieve recommendation data from the recommender model.</p>",
+        "RecommenderConfigurationResponse$RecommendationProviderUri" : "<p>The Amazon Resource Name (ARN) of the recommender model that Amazon Pinpoint retrieves the recommendation data from. This value is the ARN of an Amazon Personalize campaign.</p>",
+        "RecommenderConfigurationResponse$RecommendationTransformerUri" : "<p>The name or Amazon Resource Name (ARN) of the AWS Lambda function that Amazon Pinpoint invokes to perform additional processing of recommendation data that it retrieves from the recommender model.</p>",
+        "RecommenderConfigurationResponse$RecommendationsDisplayName" : "<p>The custom display name for the standard endpoint or user attribute (RecommendationItems) that temporarily stores a recommended item for each endpoint or user, depending on the value for the RecommenderUserIdType property. This name appears in the <b>Attribute finder</b> pane of the template editor on the Amazon Pinpoint console.</p> <p>This value is null if the configuration doesn't invoke an AWS Lambda function (LambdaFunctionArn) to perform additional processing of recommendation data.</p>",
         "ResultRowValue$Key" : "<p>The friendly name of the metric whose value is specified by the Value property.</p>",
         "ResultRowValue$Type" : "<p>The data type of the value specified by the Value property.</p>",
         "ResultRowValue$Value" : "<p>In a Values object, the value for the metric that the query retrieved data for. In a GroupedBys object, the value for the field that was used to group data in a result set that contains multiple results (Values objects).</p>",
@@ -2075,17 +2136,19 @@
         "SMSMessage$SenderId" : "<p>The sender ID to display as the sender of the message on a recipient's device. Support for sender IDs varies by country or region.</p>",
         "SMSTemplateRequest$Body" : "<p>The message body to use in text messages that are based on the message template.</p>",
         "SMSTemplateRequest$DefaultSubstitutions" : "<p>A JSON object that specifies the default values to use for message variables in the message template. This object is a set of key-value pairs. Each key defines a message variable in the template. The corresponding value defines the default value for that variable. When you create a message that's based on the template, you can override these defaults with message-specific and address-specific variables and values.</p>",
+        "SMSTemplateRequest$RecommenderId" : "<p>The unique identifier for the recommender model to use for the message template. Amazon Pinpoint uses this value to determine how to retrieve and process data from a recommender model when it sends messages that use the template, if the template contains message variables for recommendation data.</p>",
         "SMSTemplateRequest$TemplateDescription" : "<p>A custom description of the message template.</p>",
         "SMSTemplateResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the message template.</p>",
         "SMSTemplateResponse$Body" : "<p>The message body that's used in text messages that are based on the message template.</p>",
         "SMSTemplateResponse$CreationDate" : "<p>The date, in ISO 8601 format, when the message template was created.</p>",
         "SMSTemplateResponse$DefaultSubstitutions" : "<p>The JSON object that specifies the default values that are used for message variables in the message template. This object is a set of key-value pairs. Each key defines a message variable in the template. The corresponding value defines the default value for that variable.</p>",
         "SMSTemplateResponse$LastModifiedDate" : "<p>The date, in ISO 8601 format, when the message template was last modified.</p>",
+        "SMSTemplateResponse$RecommenderId" : "<p>The unique identifier for the recommender model that's used by the message template.</p>",
         "SMSTemplateResponse$TemplateDescription" : "<p>The custom description of the message template.</p>",
         "SMSTemplateResponse$TemplateName" : "<p>The name of the message template.</p>",
         "SMSTemplateResponse$Version" : "<p>The unique identifier, as an integer, for the active version of the message template, or the version of the template that you specified by using the version parameter in your request.</p>",
         "Schedule$EndTime" : "<p>The scheduled time, in ISO 8601 format, when the campaign ended or will end.</p>",
-        "Schedule$StartTime" : "<p>The scheduled time, in ISO 8601 format, when the campaign began or will begin.</p>",
+        "Schedule$StartTime" : "<p>The scheduled time when the campaign began or will begin. Valid values are: IMMEDIATE, to start the campaign immediately; or, a specific time in ISO 8601 format.</p>",
         "Schedule$Timezone" : "<p>The starting UTC offset for the campaign schedule, if the value of the IsLocalTime property is true. Valid values are: UTC, UTC+01, UTC+02, UTC+03, UTC+03:30, UTC+04, UTC+04:30, UTC+05,\n                  UTC+05:30, UTC+05:45, UTC+06, UTC+06:30, UTC+07, UTC+08, UTC+09, UTC+09:30,\n                  UTC+10, UTC+10:30, UTC+11, UTC+12, UTC+13, UTC-02, UTC-03, UTC-04, UTC-05, UTC-06,\n                  UTC-07, UTC-08, UTC-09, UTC-10, and UTC-11.</p>",
         "SegmentCondition$SegmentId" : "<p>The unique identifier for the segment to associate with the activity.</p>",
         "SegmentImportResource$ExternalId" : "<p>(Deprecated) Your AWS account ID, which you assigned to an external ID key in an IAM trust policy. Amazon Pinpoint previously used this value to assume an IAM role when importing endpoint definitions, but we removed this requirement. We don't recommend use of external IDs for IAM roles that are assumed by Amazon Pinpoint.</p>",
@@ -2109,13 +2172,13 @@
         "SimpleEmailPart$Data" : "<p>The textual data of the message content.</p>",
         "StartCondition$Description" : "<p>The custom description of the condition.</p>",
         "Template$Name" : "<p>The name of the message template to use for the message. If specified, this value must match the name of an existing message template.</p>",
-        "Template$Version" : "<p>The unique identifier for the version of the message template to use for the message. If specified, this value must match the identifier for an existing template version. To retrieve a list of versions and version identifiers for a template, use the <link  linkend=\"templates-template-name-template-type-versions\">Template Versions</link> resource.</p> <p>If you don't specify a value for this property, Amazon Pinpoint uses the <i>active</i> version of the template. The <i>active</i> version is typically the version of a template that's been most recently reviewed and approved for use, depending on your workflow. It isn't necessarily the latest version of a template.</p>",
-        "TemplateActiveVersionRequest$Version" : "<p>The unique identifier for the version of the message template to use as the active version of the template. If specified, this value must match the identifier for an existing template version. To retrieve a list of versions and version identifiers for a template, use the <link  linkend=\"templates-template-name-template-type-versions\">Template Versions</link> resource.</p>",
-        "TemplateResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the message template.</p>",
+        "Template$Version" : "<p>The unique identifier for the version of the message template to use for the message. If specified, this value must match the identifier for an existing template version. To retrieve a list of versions and version identifiers for a template, use the <link  linkend=\"templates-template-name-template-type-versions\">Template Versions</link> resource.</p> <p>If you don't specify a value for this property, Amazon Pinpoint uses the <i>active version</i> of the template. The <i>active version</i> is typically the version of a template that's been most recently reviewed and approved for use, depending on your workflow. It isn't necessarily the latest version of a template.</p>",
+        "TemplateActiveVersionRequest$Version" : "<p>The version of the message template to use as the active version of the template. Valid values are: latest, for the most recent version of the template; or, the unique identifier for any existing version of the template. If you specify an identifier, the value must match the identifier for an existing template version. To retrieve a list of versions and version identifiers for a template, use the <link  linkend=\"templates-template-name-template-type-versions\">Template Versions</link> resource.</p>",
+        "TemplateResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the message template. This value isn't included in a TemplateResponse object. To retrieve the ARN of a template, use the GetEmailTemplate, GetPushTemplate, GetSmsTemplate, or GetVoiceTemplate operation, depending on the type of template that you want to retrieve the ARN for.</p>",
         "TemplateResponse$CreationDate" : "<p>The date, in ISO 8601 format, when the message template was created.</p>",
-        "TemplateResponse$DefaultSubstitutions" : "<p>The JSON object that specifies the default values that are used for message variables in the message template. This object is a set of key-value pairs. Each key defines a message variable in the template. The corresponding value defines the default value for that variable.</p>",
+        "TemplateResponse$DefaultSubstitutions" : "<p>The JSON object that specifies the default values that are used for message variables in the message template. This object isn't included in a TemplateResponse object. To retrieve this object for a template, use the GetEmailTemplate, GetPushTemplate, GetSmsTemplate, or GetVoiceTemplate operation, depending on the type of template that you want to retrieve the object for.</p>",
         "TemplateResponse$LastModifiedDate" : "<p>The date, in ISO 8601 format, when the message template was last modified.</p>",
-        "TemplateResponse$TemplateDescription" : "<p>The custom description of the message template.</p>",
+        "TemplateResponse$TemplateDescription" : "<p>The custom description of the message template. This value isn't included in a TemplateResponse object. To retrieve the description of a template, use the GetEmailTemplate, GetPushTemplate, GetSmsTemplate, or GetVoiceTemplate operation, depending on the type of template that you want to retrieve the description for.</p>",
         "TemplateResponse$TemplateName" : "<p>The name of the message template.</p>",
         "TemplateResponse$Version" : "<p>The unique identifier, as an integer, for the active version of the message template.</p>",
         "TemplateVersionResponse$CreationDate" : "<p>The date, in ISO 8601 format, when the version of the message template was created.</p>",
@@ -2132,6 +2195,13 @@
         "TreatmentResource$Id" : "<p>The unique identifier for the treatment.</p>",
         "TreatmentResource$TreatmentDescription" : "<p>The custom description of the treatment.</p>",
         "TreatmentResource$TreatmentName" : "<p>The custom name of the treatment. A treatment is a variation of a campaign that's used for A/B testing of a campaign.</p>",
+        "UpdateRecommenderConfiguration$Description" : "<p>A custom description of the configuration for the recommender model. The description can contain up to 128 characters.</p>",
+        "UpdateRecommenderConfiguration$Name" : "<p>A custom name of the configuration for the recommender model. The name must start with a letter or number and it can contain up to 128 characters. The characters can be letters, numbers, spaces, underscores (_), or hyphens (-).</p>",
+        "UpdateRecommenderConfiguration$RecommendationProviderIdType" : "<p>The type of Amazon Pinpoint ID to associate with unique user IDs in the recommender model. This value enables the model to use attribute and event data that’s specific to a particular endpoint or user in an Amazon Pinpoint application. Valid values are:</p> <ul><li><p>PINPOINT_ENDPOINT_ID - Associate each user in the model with a particular endpoint in Amazon Pinpoint. The data is correlated based on endpoint IDs in Amazon Pinpoint. This is the default value.</p></li> <li><p>PINPOINT_USER_ID - Associate each user in the model with a particular user and endpoint in Amazon Pinpoint. The data is correlated based on user IDs in Amazon Pinpoint. If you specify this value, an endpoint definition in Amazon Pinpoint has to specify a both a user ID (UserId) and an endpoint ID. Otherwise, messages won’t be sent to the user's endpoint.</p></li></ul>",
+        "UpdateRecommenderConfiguration$RecommendationProviderRoleArn" : "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that authorizes Amazon Pinpoint to retrieve recommendation data from the recommender model.</p>",
+        "UpdateRecommenderConfiguration$RecommendationProviderUri" : "<p>The Amazon Resource Name (ARN) of the recommender model to retrieve recommendation data from. This value must match the ARN of an Amazon Personalize campaign.</p>",
+        "UpdateRecommenderConfiguration$RecommendationTransformerUri" : "<p>The name or Amazon Resource Name (ARN) of the AWS Lambda function to invoke for additional processing of recommendation data that's retrieved from the recommender model.</p>",
+        "UpdateRecommenderConfiguration$RecommendationsDisplayName" : "<p>A custom display name for the standard endpoint or user attribute (RecommendationItems) that temporarily stores a recommended item for each endpoint or user, depending on the value for the RecommenderUserIdType property. This value is required if the configuration doesn't invoke an AWS Lambda function (LambdaFunctionArn) to perform additional processing of recommendation data.</p> <p>This name appears in the <b>Attribute finder</b> pane of the template editor on the Amazon Pinpoint console. The name can contain up to 25 characters. The characters can be letters, numbers, spaces, underscores (_), or hyphens (-). These restrictions don't apply to attribute values.</p>",
         "VoiceChannelResponse$ApplicationId" : "<p>The unique identifier for the application that the voice channel applies to.</p>",
         "VoiceChannelResponse$CreationDate" : "<p>The date and time, in ISO 8601 format, when the voice channel was enabled.</p>",
         "VoiceChannelResponse$Id" : "<p>(Deprecated) An identifier for the voice channel. This property is retained only for backward compatibility.</p>",
@@ -2161,20 +2231,20 @@
         "WaitTime$WaitFor" : "<p>The amount of time to wait, as a duration in ISO 8601 format, before determining whether the activity's conditions have been met or moving participants to the next activity in the journey.</p>",
         "WaitTime$WaitUntil" : "<p>The date and time, in ISO 8601 format, when Amazon Pinpoint determines whether the activity's conditions have been met or the activity moves participants to the next activity in the journey.</p>",
         "WriteCampaignRequest$Description" : "<p>A custom description of the campaign.</p>",
-        "WriteCampaignRequest$Name" : "<p>The custom name of the campaign.</p>",
+        "WriteCampaignRequest$Name" : "<p>A custom name for the campaign.</p>",
         "WriteCampaignRequest$SegmentId" : "<p>The unique identifier for the segment to associate with the campaign.</p>",
         "WriteCampaignRequest$TreatmentDescription" : "<p>A custom description of a variation of the campaign to use for A/B testing.</p>",
-        "WriteCampaignRequest$TreatmentName" : "<p>The custom name of a variation of the campaign to use for A/B testing.</p>",
+        "WriteCampaignRequest$TreatmentName" : "<p>A custom name for a variation of the campaign to use for A/B testing.</p>",
         "WriteEventStream$DestinationStreamArn" : "<p>The Amazon Resource Name (ARN) of the Amazon Kinesis data stream or Amazon Kinesis Data Firehose delivery stream that you want to publish event data to.</p> <p>For a Kinesis data stream, the ARN format is: arn:aws:kinesis:<replaceable>region</replaceable>:<replaceable>account-id</replaceable>:stream/<replaceable>stream_name</replaceable>\n               </p> <p>For a Kinesis Data Firehose delivery stream, the ARN format is: arn:aws:firehose:<replaceable>region</replaceable>:<replaceable>account-id</replaceable>:deliverystream/<replaceable>stream_name</replaceable>\n               </p>",
         "WriteEventStream$RoleArn" : "<p>The AWS Identity and Access Management (IAM) role that authorizes Amazon Pinpoint to publish event data to the stream in your AWS account.</p>",
         "WriteJourneyRequest$CreationDate" : "<p>The date, in ISO 8601 format, when the journey was created.</p>",
         "WriteJourneyRequest$LastModifiedDate" : "<p>The date, in ISO 8601 format, when the journey was last modified.</p>",
         "WriteJourneyRequest$Name" : "<p>The name of the journey. A journey name can contain a maximum of 150 characters. The characters can be alphanumeric characters or symbols, such as underscores (_) or hyphens (-). A journey name can't contain any spaces.</p>",
         "WriteJourneyRequest$RefreshFrequency" : "<p>The frequency with which Amazon Pinpoint evaluates segment and event data for the journey, as a duration in ISO 8601 format.</p>",
-        "WriteJourneyRequest$StartActivity" : "<p>The unique identifier for the first activity in the journey. An activity identifier can contain a maximum of 128 characters. The characters must be alphanumeric characters.</p>",
+        "WriteJourneyRequest$StartActivity" : "<p>The unique identifier for the first activity in the journey. The identifier for this activity can contain a maximum of 128 characters. The characters must be alphanumeric characters.</p>",
         "WriteSegmentRequest$Name" : "<p>The name of the segment.</p>",
         "WriteTreatmentResource$TreatmentDescription" : "<p>A custom description of the treatment.</p>",
-        "WriteTreatmentResource$TreatmentName" : "<p>The custom name of the treatment. A treatment is a variation of a campaign that's used for A/B testing of a campaign.</p>",
+        "WriteTreatmentResource$TreatmentName" : "<p>A custom name for the treatment. A treatment is a variation of a campaign that's used for A/B testing of a campaign.</p>",
         "ListOf__string$member" : null,
         "MapOf__string$member" : null
       }

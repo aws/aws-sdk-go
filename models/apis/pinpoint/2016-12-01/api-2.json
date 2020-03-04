@@ -32,6 +32,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -64,6 +67,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -131,6 +137,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -165,6 +174,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -197,6 +209,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -243,6 +258,43 @@
         }
       ]
     },
+    "CreateRecommenderConfiguration": {
+      "name": "CreateRecommenderConfiguration",
+      "http": {
+        "method": "POST",
+        "requestUri": "/v1/recommenders",
+        "responseCode": 201
+      },
+      "input": {
+        "shape": "CreateRecommenderConfigurationRequest"
+      },
+      "output": {
+        "shape": "CreateRecommenderConfigurationResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
     "CreateSegment": {
       "name": "CreateSegment",
       "http": {
@@ -262,6 +314,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -360,6 +415,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -392,6 +450,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -428,6 +489,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -460,6 +524,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -496,6 +563,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -528,6 +598,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -564,6 +637,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -596,6 +672,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -632,6 +711,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -664,6 +746,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -700,6 +785,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -732,6 +820,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -768,6 +859,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -800,6 +894,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -836,6 +933,46 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "DeleteRecommenderConfiguration": {
+      "name": "DeleteRecommenderConfiguration",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/v1/recommenders/{recommender-id}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DeleteRecommenderConfigurationRequest"
+      },
+      "output": {
+        "shape": "DeleteRecommenderConfigurationResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -868,6 +1005,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -904,6 +1044,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -936,6 +1079,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -972,6 +1118,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -1004,6 +1153,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -1040,6 +1192,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -1072,6 +1227,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -1108,6 +1266,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -1140,6 +1301,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -1176,6 +1340,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -1208,6 +1375,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -1244,6 +1414,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -1276,6 +1449,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -1312,6 +1488,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -1344,6 +1523,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -1380,6 +1562,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -1412,6 +1597,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -1448,6 +1636,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -1480,6 +1671,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -1516,6 +1710,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -1548,6 +1745,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -1584,6 +1784,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -1616,6 +1819,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -1652,6 +1858,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -1684,6 +1893,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -1720,6 +1932,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -1752,6 +1967,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -1788,6 +2006,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -1820,6 +2041,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -1856,6 +2080,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -1888,6 +2115,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -1924,6 +2154,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -1956,6 +2189,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -1992,6 +2228,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -2024,6 +2263,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -2060,6 +2302,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -2092,6 +2337,83 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "GetRecommenderConfiguration": {
+      "name": "GetRecommenderConfiguration",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/recommenders/{recommender-id}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetRecommenderConfigurationRequest"
+      },
+      "output": {
+        "shape": "GetRecommenderConfigurationResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "GetRecommenderConfigurations": {
+      "name": "GetRecommenderConfigurations",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/recommenders",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetRecommenderConfigurationsRequest"
+      },
+      "output": {
+        "shape": "GetRecommenderConfigurationsResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -2128,6 +2450,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -2160,6 +2485,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -2196,6 +2524,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -2228,6 +2559,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -2264,6 +2598,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -2296,6 +2633,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -2332,6 +2672,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -2364,6 +2707,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -2400,6 +2746,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -2432,6 +2781,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -2468,6 +2820,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -2500,6 +2855,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -2549,6 +2907,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -2616,6 +2977,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -2648,6 +3012,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -2684,6 +3051,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -2716,6 +3086,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -2752,6 +3125,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -2784,6 +3160,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -2844,6 +3223,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -2876,6 +3258,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -2912,6 +3297,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -2944,6 +3332,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -2980,6 +3371,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -3012,6 +3406,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -3048,6 +3445,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -3080,6 +3480,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -3116,6 +3519,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -3148,6 +3554,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -3184,6 +3593,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -3216,6 +3628,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -3252,6 +3667,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -3284,6 +3702,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -3320,6 +3741,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -3352,6 +3776,46 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "UpdateRecommenderConfiguration": {
+      "name": "UpdateRecommenderConfiguration",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v1/recommenders/{recommender-id}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateRecommenderConfigurationRequest"
+      },
+      "output": {
+        "shape": "UpdateRecommenderConfigurationResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -3388,6 +3852,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -3420,6 +3887,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -3456,6 +3926,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -3488,6 +3961,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -3524,6 +4000,9 @@
           "shape": "InternalServerErrorException"
         },
         {
+          "shape": "PayloadTooLargeException"
+        },
+        {
           "shape": "ForbiddenException"
         },
         {
@@ -3556,6 +4035,9 @@
         },
         {
           "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
         },
         {
           "shape": "ForbiddenException"
@@ -5004,6 +5486,66 @@
       ],
       "payload": "CreateTemplateMessageBody"
     },
+    "CreateRecommenderConfiguration": {
+      "type": "structure",
+      "members": {
+        "Attributes": {
+          "shape": "MapOf__string"
+        },
+        "Description": {
+          "shape": "__string"
+        },
+        "Name": {
+          "shape": "__string"
+        },
+        "RecommendationProviderIdType": {
+          "shape": "__string"
+        },
+        "RecommendationProviderRoleArn": {
+          "shape": "__string"
+        },
+        "RecommendationProviderUri": {
+          "shape": "__string"
+        },
+        "RecommendationTransformerUri": {
+          "shape": "__string"
+        },
+        "RecommendationsDisplayName": {
+          "shape": "__string"
+        },
+        "RecommendationsPerMessage": {
+          "shape": "__integer"
+        }
+      },
+      "required": [
+        "RecommendationProviderUri",
+        "RecommendationProviderRoleArn"
+      ]
+    },
+    "CreateRecommenderConfigurationRequest": {
+      "type": "structure",
+      "members": {
+        "CreateRecommenderConfiguration": {
+          "shape": "CreateRecommenderConfiguration"
+        }
+      },
+      "required": [
+        "CreateRecommenderConfiguration"
+      ],
+      "payload": "CreateRecommenderConfiguration"
+    },
+    "CreateRecommenderConfigurationResponse": {
+      "type": "structure",
+      "members": {
+        "RecommenderConfigurationResponse": {
+          "shape": "RecommenderConfigurationResponse"
+        }
+      },
+      "required": [
+        "RecommenderConfigurationResponse"
+      ],
+      "payload": "RecommenderConfigurationResponse"
+    },
     "CreateSegmentRequest": {
       "type": "structure",
       "members": {
@@ -5568,6 +6110,31 @@
       ],
       "payload": "MessageBody"
     },
+    "DeleteRecommenderConfigurationRequest": {
+      "type": "structure",
+      "members": {
+        "RecommenderId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "recommender-id"
+        }
+      },
+      "required": [
+        "RecommenderId"
+      ]
+    },
+    "DeleteRecommenderConfigurationResponse": {
+      "type": "structure",
+      "members": {
+        "RecommenderConfigurationResponse": {
+          "shape": "RecommenderConfigurationResponse"
+        }
+      },
+      "required": [
+        "RecommenderConfigurationResponse"
+      ],
+      "payload": "RecommenderConfigurationResponse"
+    },
     "DeleteSegmentRequest": {
       "type": "structure",
       "members": {
@@ -5929,6 +6496,9 @@
         "HtmlPart": {
           "shape": "__string"
         },
+        "RecommenderId": {
+          "shape": "__string"
+        },
         "Subject": {
           "shape": "__string"
         },
@@ -5960,6 +6530,9 @@
           "shape": "__string"
         },
         "LastModifiedDate": {
+          "shape": "__string"
+        },
+        "RecommenderId": {
           "shape": "__string"
         },
         "Subject": {
@@ -7712,6 +8285,58 @@
       ],
       "payload": "PushNotificationTemplateResponse"
     },
+    "GetRecommenderConfigurationRequest": {
+      "type": "structure",
+      "members": {
+        "RecommenderId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "recommender-id"
+        }
+      },
+      "required": [
+        "RecommenderId"
+      ]
+    },
+    "GetRecommenderConfigurationResponse": {
+      "type": "structure",
+      "members": {
+        "RecommenderConfigurationResponse": {
+          "shape": "RecommenderConfigurationResponse"
+        }
+      },
+      "required": [
+        "RecommenderConfigurationResponse"
+      ],
+      "payload": "RecommenderConfigurationResponse"
+    },
+    "GetRecommenderConfigurationsRequest": {
+      "type": "structure",
+      "members": {
+        "PageSize": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "page-size"
+        },
+        "Token": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "token"
+        }
+      }
+    },
+    "GetRecommenderConfigurationsResponse": {
+      "type": "structure",
+      "members": {
+        "ListRecommenderConfigurationsResponse": {
+          "shape": "ListRecommenderConfigurationsResponse"
+        }
+      },
+      "required": [
+        "ListRecommenderConfigurationsResponse"
+      ],
+      "payload": "ListRecommenderConfigurationsResponse"
+    },
     "GetSegmentExportJobsRequest": {
       "type": "structure",
       "members": {
@@ -8512,6 +9137,20 @@
       ],
       "payload": "JourneysResponse"
     },
+    "ListRecommenderConfigurationsResponse": {
+      "type": "structure",
+      "members": {
+        "Item": {
+          "shape": "ListOfRecommenderConfigurationResponse"
+        },
+        "NextToken": {
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "Item"
+      ]
+    },
     "ListTagsForResourceRequest": {
       "type": "structure",
       "members": {
@@ -8912,6 +9551,21 @@
         "ANY"
       ]
     },
+    "PayloadTooLargeException": {
+      "type": "structure",
+      "members": {
+        "Message": {
+          "shape": "__string"
+        },
+        "RequestID": {
+          "shape": "__string"
+        }
+      },
+      "exception": true,
+      "error": {
+        "httpStatusCode": 413
+      }
+    },
     "PhoneNumberValidateRequest": {
       "type": "structure",
       "members": {
@@ -8995,6 +9649,9 @@
         "GCM": {
           "shape": "AndroidPushNotificationTemplate"
         },
+        "RecommenderId": {
+          "shape": "__string"
+        },
         "tags": {
           "shape": "MapOf__string",
           "locationName": "tags"
@@ -9032,6 +9689,9 @@
           "shape": "AndroidPushNotificationTemplate"
         },
         "LastModifiedDate": {
+          "shape": "__string"
+        },
+        "RecommenderId": {
           "shape": "__string"
         },
         "tags": {
@@ -9179,6 +9839,54 @@
       "enum": [
         "ACTIVE",
         "INACTIVE"
+      ]
+    },
+    "RecommenderConfigurationResponse": {
+      "type": "structure",
+      "members": {
+        "Attributes": {
+          "shape": "MapOf__string"
+        },
+        "CreationDate": {
+          "shape": "__string"
+        },
+        "Description": {
+          "shape": "__string"
+        },
+        "Id": {
+          "shape": "__string"
+        },
+        "LastModifiedDate": {
+          "shape": "__string"
+        },
+        "Name": {
+          "shape": "__string"
+        },
+        "RecommendationProviderIdType": {
+          "shape": "__string"
+        },
+        "RecommendationProviderRoleArn": {
+          "shape": "__string"
+        },
+        "RecommendationProviderUri": {
+          "shape": "__string"
+        },
+        "RecommendationTransformerUri": {
+          "shape": "__string"
+        },
+        "RecommendationsDisplayName": {
+          "shape": "__string"
+        },
+        "RecommendationsPerMessage": {
+          "shape": "__integer"
+        }
+      },
+      "required": [
+        "RecommendationProviderUri",
+        "LastModifiedDate",
+        "CreationDate",
+        "RecommendationProviderRoleArn",
+        "Id"
       ]
     },
     "RemoveAttributesRequest": {
@@ -9347,6 +10055,9 @@
         "DefaultSubstitutions": {
           "shape": "__string"
         },
+        "RecommenderId": {
+          "shape": "__string"
+        },
         "tags": {
           "shape": "MapOf__string",
           "locationName": "tags"
@@ -9372,6 +10083,9 @@
           "shape": "__string"
         },
         "LastModifiedDate": {
+          "shape": "__string"
+        },
+        "RecommenderId": {
           "shape": "__string"
         },
         "tags": {
@@ -10637,6 +11351,72 @@
       ],
       "payload": "MessageBody"
     },
+    "UpdateRecommenderConfiguration": {
+      "type": "structure",
+      "members": {
+        "Attributes": {
+          "shape": "MapOf__string"
+        },
+        "Description": {
+          "shape": "__string"
+        },
+        "Name": {
+          "shape": "__string"
+        },
+        "RecommendationProviderIdType": {
+          "shape": "__string"
+        },
+        "RecommendationProviderRoleArn": {
+          "shape": "__string"
+        },
+        "RecommendationProviderUri": {
+          "shape": "__string"
+        },
+        "RecommendationTransformerUri": {
+          "shape": "__string"
+        },
+        "RecommendationsDisplayName": {
+          "shape": "__string"
+        },
+        "RecommendationsPerMessage": {
+          "shape": "__integer"
+        }
+      },
+      "required": [
+        "RecommendationProviderUri",
+        "RecommendationProviderRoleArn"
+      ]
+    },
+    "UpdateRecommenderConfigurationRequest": {
+      "type": "structure",
+      "members": {
+        "RecommenderId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "recommender-id"
+        },
+        "UpdateRecommenderConfiguration": {
+          "shape": "UpdateRecommenderConfiguration"
+        }
+      },
+      "required": [
+        "RecommenderId",
+        "UpdateRecommenderConfiguration"
+      ],
+      "payload": "UpdateRecommenderConfiguration"
+    },
+    "UpdateRecommenderConfigurationResponse": {
+      "type": "structure",
+      "members": {
+        "RecommenderConfigurationResponse": {
+          "shape": "RecommenderConfigurationResponse"
+        }
+      },
+      "required": [
+        "RecommenderConfigurationResponse"
+      ],
+      "payload": "RecommenderConfigurationResponse"
+    },
     "UpdateSegmentRequest": {
       "type": "structure",
       "members": {
@@ -11247,6 +12027,12 @@
       "type": "list",
       "member": {
         "shape": "RandomSplitEntry"
+      }
+    },
+    "ListOfRecommenderConfigurationResponse": {
+      "type": "list",
+      "member": {
+        "shape": "RecommenderConfigurationResponse"
       }
     },
     "ListOfResultRow": {
