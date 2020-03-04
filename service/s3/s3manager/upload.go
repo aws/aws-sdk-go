@@ -366,6 +366,7 @@ func (u *uploader) upload() (*UploadOutput, error) {
 	if err := u.init(); err != nil {
 		return nil, awserr.New("ReadRequestBody", "unable to initialize upload", err)
 	}
+	defer u.cfg.partPool.Empty()
 
 	if u.cfg.PartSize < MinUploadPartSize {
 		msg := fmt.Sprintf("part size must be at least %d bytes", MinUploadPartSize)
@@ -404,8 +405,13 @@ func (u *uploader) init() error {
 
 	// If PartSize was changed or partPool was never setup then we need to allocated a new pool
 	// so that we return []byte slices of the correct size
-	if u.cfg.partPool == nil || u.cfg.partPool.Size() != u.cfg.PartSize {
+	poolCap := u.cfg.Concurrency + 1
+	if u.cfg.partPool == nil || u.cfg.partPool.SliceSize() != u.cfg.PartSize {
 		u.cfg.partPool = newByteSlicePool(u.cfg.PartSize)
+		u.cfg.partPool.ModifyCapacity(poolCap)
+	} else {
+		u.cfg.partPool = &returnCapacityPoolCloser{byteSlicePool: u.cfg.partPool}
+		u.cfg.partPool.ModifyCapacity(poolCap)
 	}
 
 	return nil
@@ -441,10 +447,6 @@ func (u *uploader) initSize() error {
 // does not need to be wrapped in a mutex because nextReader is only called
 // from the main thread.
 func (u *uploader) nextReader() (io.ReadSeeker, int, func(), error) {
-	type readerAtSeeker interface {
-		io.ReaderAt
-		io.ReadSeeker
-	}
 	switch r := u.in.Body.(type) {
 	case readerAtSeeker:
 		var err error
@@ -767,37 +769,173 @@ func (u *multiuploader) complete() *s3.CompleteMultipartUploadOutput {
 type byteSlicePool interface {
 	Get() *[]byte
 	Put(*[]byte)
-	Size() int64
+	ModifyCapacity(int)
+	SliceSize() int64
+	Empty()
 }
 
-type partPool struct {
-	partSize int64
-	sync.Pool
+type maxSlicePool struct {
+	allocator sliceAllocator
+
+	slices      chan *[]byte
+	allocations chan struct{}
+
+	allocated int
+	max       int
+	sliceSize int64
+
+	mtx  sync.Mutex
+	cond sync.Cond
 }
 
-func (p *partPool) Get() *[]byte {
-	return p.Pool.Get().(*[]byte)
-}
-
-func (p *partPool) Put(b *[]byte) {
-	p.Pool.Put(b)
-}
-
-func (p *partPool) Size() int64 {
-	return p.partSize
-}
-
-func newPartPool(partSize int64) *partPool {
-	p := &partPool{partSize: partSize}
-
-	p.New = func() interface{} {
-		bs := make([]byte, p.partSize)
+func newMaxSlicePool(sliceSize int64) *maxSlicePool {
+	p := &maxSlicePool{sliceSize: sliceSize}
+	p.cond.L = &p.mtx
+	p.allocator = func() *[]byte {
+		bs := make([]byte, p.sliceSize)
 		return &bs
 	}
 
 	return p
 }
 
-var newByteSlicePool = func(partSize int64) byteSlicePool {
-	return newPartPool(partSize)
+func (p *maxSlicePool) Get() *[]byte {
+	p.mtx.Lock()
+	defer p.mtx.Unlock()
+
+	for {
+		select {
+		case bs := <-p.slices:
+			return bs
+		case _ = <-p.allocations:
+			p.allocated++
+			return p.allocator()
+		default:
+			if p.max == 0 {
+				return nil
+			}
+			p.cond.Wait()
+		}
+	}
+}
+
+func (p *maxSlicePool) Put(bs *[]byte) {
+	p.mtx.Lock()
+	defer p.mtx.Unlock()
+
+	if p.max == 0 {
+		bs = nil
+		return
+	}
+
+	if p.allocated > p.max {
+		p.allocated--
+		bs = nil
+		return
+	}
+
+	p.slices <- bs
+	p.cond.Signal()
+}
+
+func (p *maxSlicePool) ModifyCapacity(delta int) {
+	if delta == 0 {
+		return
+	}
+
+	p.mtx.Lock()
+	defer p.mtx.Unlock()
+	defer p.cond.Broadcast()
+
+	p.max += delta
+
+	if p.max == 0 {
+		p.empty()
+		return
+	}
+
+	origAllocations := p.allocations
+	p.allocations = make(chan struct{}, p.max)
+
+	for i := 0; i < len(origAllocations)+delta; i++ {
+		p.allocations <- struct{}{}
+	}
+	if origAllocations != nil {
+		close(origAllocations)
+	}
+
+	origSlices := p.slices
+	p.slices = make(chan *[]byte, p.max)
+	if origSlices == nil {
+		return
+	}
+
+	close(origSlices)
+	for bs := range origSlices {
+		select {
+		case p.slices <- bs:
+		default:
+			bs = nil
+		}
+	}
+}
+
+func (p *maxSlicePool) SliceSize() int64 {
+	return p.sliceSize
+}
+
+func (p *maxSlicePool) Empty() {
+	p.mtx.Lock()
+	defer p.mtx.Unlock()
+	p.empty()
+}
+
+func (p *maxSlicePool) empty() {
+	p.allocated = 0
+	p.max = 0
+
+	if p.allocations != nil {
+		close(p.allocations)
+		for range p.allocations {
+			// drain channel
+		}
+		p.allocations = nil
+	}
+
+	if p.slices != nil {
+		close(p.slices)
+		for range p.slices {
+			// drain channel
+		}
+		p.slices = nil
+	}
+}
+
+type returnCapacityPoolCloser struct {
+	byteSlicePool
+	returnCapacity int
+}
+
+func (n *returnCapacityPoolCloser) ModifyCapacity(delta int) {
+	if delta > 0 {
+		n.returnCapacity = -1 * delta
+	}
+	n.byteSlicePool.ModifyCapacity(delta)
+}
+
+func (n *returnCapacityPoolCloser) Empty() {
+	if n.returnCapacity < 0 {
+		n.byteSlicePool.ModifyCapacity(n.returnCapacity)
+	}
+}
+
+type sliceAllocator func() *[]byte
+
+var newByteSlicePool = func(sliceSize int64) byteSlicePool {
+	return newMaxSlicePool(sliceSize)
+}
+
+type readerAtSeeker interface {
+	io.ReaderAt
+	io.ReadSeeker
 }

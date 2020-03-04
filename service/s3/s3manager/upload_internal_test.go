@@ -22,39 +22,40 @@ import (
 )
 
 type recordedPartPool struct {
-	allocations uint64
-	gets        uint64
-	outstanding int64
-	*partPool
+	recordedAllocs      uint64
+	recordedGets        uint64
+	recordedOutstanding int64
+	*maxSlicePool
 }
 
-func newRecordedPartPool(partSize int64) *recordedPartPool {
-	rp := &recordedPartPool{}
-	pp := newPartPool(partSize)
+func newRecordedPartPool(sliceSize int64) *recordedPartPool {
+	sp := newMaxSlicePool(sliceSize)
 
-	n := pp.New
-	pp.New = func() interface{} {
-		atomic.AddUint64(&rp.allocations, 1)
-		return n()
+	rp := &recordedPartPool{}
+
+	allocator := sp.allocator
+	sp.allocator = func() *[]byte {
+		atomic.AddUint64(&rp.recordedAllocs, 1)
+		return allocator()
 	}
 
-	rp.partPool = pp
+	rp.maxSlicePool = sp
 
 	return rp
 }
 
 func (r *recordedPartPool) Get() *[]byte {
-	atomic.AddUint64(&r.gets, 1)
-	atomic.AddInt64(&r.outstanding, 1)
-	return r.partPool.Get()
+	atomic.AddUint64(&r.recordedGets, 1)
+	atomic.AddInt64(&r.recordedOutstanding, 1)
+	return r.maxSlicePool.Get()
 }
 
 func (r *recordedPartPool) Put(b *[]byte) {
-	atomic.AddInt64(&r.outstanding, -1)
-	r.partPool.Put(b)
+	atomic.AddInt64(&r.recordedOutstanding, -1)
+	r.maxSlicePool.Put(b)
 }
 
-func swapByteSlicePool(f func(partSize int64) byteSlicePool) func() {
+func swapByteSlicePool(f func(sliceSize int64) byteSlicePool) func() {
 	orig := newByteSlicePool
 
 	newByteSlicePool = f
@@ -77,16 +78,28 @@ func (r *testReader) Read(p []byte) (n int, err error) {
 
 func TestUploadByteSlicePool(t *testing.T) {
 	cases := map[string]struct {
-		PartSize int64
-		FileSize int64
+		PartSize      int64
+		FileSize      int64
+		Concurrency   int
+		ExAllocations uint64
 	}{
-		"single part": {
-			PartSize: sdkio.MebiByte * 5,
-			FileSize: sdkio.MebiByte * 5,
+		"single part, single concurrency": {
+			PartSize:      sdkio.MebiByte * 5,
+			FileSize:      sdkio.MebiByte * 5,
+			ExAllocations: 2,
+			Concurrency:   1,
 		},
-		"multi-part": {
-			PartSize: sdkio.MebiByte * 5,
-			FileSize: sdkio.MebiByte * 10,
+		"multi-part, single concurrency": {
+			PartSize:      sdkio.MebiByte * 5,
+			FileSize:      sdkio.MebiByte * 10,
+			ExAllocations: 2,
+			Concurrency:   1,
+		},
+		"multi-part, multiple concurrency": {
+			PartSize:      sdkio.MebiByte * 5,
+			FileSize:      sdkio.MebiByte * 20,
+			ExAllocations: 3,
+			Concurrency:   2,
 		},
 	}
 
@@ -94,8 +107,8 @@ func TestUploadByteSlicePool(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			var p *recordedPartPool
 
-			unswap := swapByteSlicePool(func(partSize int64) byteSlicePool {
-				p = newRecordedPartPool(partSize)
+			unswap := swapByteSlicePool(func(sliceSize int64) byteSlicePool {
+				p = newRecordedPartPool(sliceSize)
 				return p
 			})
 			defer unswap()
@@ -131,7 +144,7 @@ func TestUploadByteSlicePool(t *testing.T) {
 
 			uploader := NewUploaderWithClient(svc, func(u *Uploader) {
 				u.PartSize = tt.PartSize
-				u.Concurrency = 50
+				u.Concurrency = tt.Concurrency
 			})
 
 			expected := s3testing.GetTestBytes(int(tt.FileSize))
@@ -144,13 +157,16 @@ func TestUploadByteSlicePool(t *testing.T) {
 				t.Errorf("expected no error, but got %v", err)
 			}
 
-			if v := atomic.LoadInt64(&p.outstanding); v != 0 {
+			if v := atomic.LoadInt64(&p.recordedOutstanding); v != 0 {
 				t.Fatalf("expected zero outsnatding pool parts, got %d", v)
 			}
 
-			gets, allocs := atomic.LoadUint64(&p.gets), atomic.LoadUint64(&p.allocations)
+			gets, allocs := atomic.LoadUint64(&p.recordedGets), atomic.LoadUint64(&p.recordedAllocs)
 
 			t.Logf("total gets %v, total allocations %v", gets, allocs)
+			if e, a := tt.ExAllocations, allocs; e != a {
+				t.Errorf("expected %v allocations, got %v", e, a)
+			}
 		})
 	}
 }
@@ -185,8 +201,8 @@ func TestUploadByteSlicePool_Failures(t *testing.T) {
 				t.Run(operation, func(t *testing.T) {
 					var p *recordedPartPool
 
-					unswap := swapByteSlicePool(func(partSize int64) byteSlicePool {
-						p = newRecordedPartPool(partSize)
+					unswap := swapByteSlicePool(func(sliceSize int64) byteSlicePool {
+						p = newRecordedPartPool(sliceSize)
 						return p
 					})
 					defer unswap()
@@ -245,7 +261,7 @@ func TestUploadByteSlicePool_Failures(t *testing.T) {
 						t.Fatalf("expected error but got none")
 					}
 
-					if v := atomic.LoadInt64(&p.outstanding); v != 0 {
+					if v := atomic.LoadInt64(&p.recordedOutstanding); v != 0 {
 						t.Fatalf("expected zero outsnatding pool parts, got %d", v)
 					}
 				})
