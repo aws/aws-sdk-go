@@ -10,7 +10,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/iotdataplane"
 )
 
-func ExampleMediaStoreData_describeEndpoint() {
+func ExampleIoTDataPlane_describeEndpoint() {
 	sess, err := session.NewSession(aws.NewConfig())
 	if err != nil {
 		log.Fatal("Failed to create aws session", err)
