@@ -153,11 +153,17 @@ func BenchmarkUpload(b *testing.B) {
 										sdkConfig.BufferProvider = s3manager.NewBufferedReadSeekerWriteToPool(bufferSize)
 									}
 
-									reader := aws.ReadSeekCloser(io.LimitReader(&awstesting.EndlessReader{}, fileSize))
-
-									b.ResetTimer()
 									for i := 0; i < b.N; i++ {
-										benchUpload(b, benchConfig.bucket, integration.UniqueID(), reader, sdkConfig, benchConfig.clientConfig)
+										for {
+											b.ResetTimer()
+											reader := aws.ReadSeekCloser(io.LimitReader(&awstesting.EndlessReader{}, fileSize))
+											err := benchUpload(b, benchConfig.bucket, integration.UniqueID(), reader, sdkConfig, benchConfig.clientConfig)
+											if err != nil {
+												b.Logf("upload failed, retrying: %v", err)
+												continue
+											}
+											break
+										}
 									}
 								})
 							}
@@ -169,7 +175,7 @@ func BenchmarkUpload(b *testing.B) {
 	}
 }
 
-func benchUpload(b *testing.B, bucket, key string, reader io.ReadSeeker, sdkConfig SDKConfig, clientConfig ClientConfig) {
+func benchUpload(b *testing.B, bucket, key string, reader io.ReadSeeker, sdkConfig SDKConfig, clientConfig ClientConfig) error {
 	uploader := newUploader(clientConfig, sdkConfig, SetUnsignedPayload)
 	_, err := uploader.Upload(&s3manager.UploadInput{
 		Bucket: &bucket,
@@ -177,8 +183,9 @@ func benchUpload(b *testing.B, bucket, key string, reader io.ReadSeeker, sdkConf
 		Body:   reader,
 	})
 	if err != nil {
-		b.Fatalf("failed to upload object, %v", err)
+		return err
 	}
+	return nil
 }
 
 func TestMain(m *testing.M) {
