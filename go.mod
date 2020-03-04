@@ -1,4 +1,4 @@
-module github.com/aws/aws-sdk-go
+module github.com/gregory-v/aws-sdk-go
 
 require (
 	github.com/go-sql-driver/mysql v1.5.0
