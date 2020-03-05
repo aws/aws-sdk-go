@@ -9,6 +9,7 @@ import (
 	"io/ioutil"
 	random "math/rand"
 	"net/http"
+	"strconv"
 	"sync"
 	"sync/atomic"
 	"testing"
@@ -20,50 +21,6 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/internal/s3testing"
 )
-
-type recordedPartPool struct {
-	recordedAllocs      uint64
-	recordedGets        uint64
-	recordedOutstanding int64
-	*maxSlicePool
-}
-
-func newRecordedPartPool(sliceSize int64) *recordedPartPool {
-	sp := newMaxSlicePool(sliceSize)
-
-	rp := &recordedPartPool{}
-
-	allocator := sp.allocator
-	sp.allocator = func() *[]byte {
-		atomic.AddUint64(&rp.recordedAllocs, 1)
-		return allocator()
-	}
-
-	rp.maxSlicePool = sp
-
-	return rp
-}
-
-func (r *recordedPartPool) Get() *[]byte {
-	atomic.AddUint64(&r.recordedGets, 1)
-	atomic.AddInt64(&r.recordedOutstanding, 1)
-	return r.maxSlicePool.Get()
-}
-
-func (r *recordedPartPool) Put(b *[]byte) {
-	atomic.AddInt64(&r.recordedOutstanding, -1)
-	r.maxSlicePool.Put(b)
-}
-
-func swapByteSlicePool(f func(sliceSize int64) byteSlicePool) func() {
-	orig := newByteSlicePool
-
-	newByteSlicePool = f
-
-	return func() {
-		newByteSlicePool = orig
-	}
-}
 
 type testReader struct {
 	br *bytes.Reader
@@ -263,6 +220,100 @@ func TestUploadByteSlicePool_Failures(t *testing.T) {
 
 					if v := atomic.LoadInt64(&p.recordedOutstanding); v != 0 {
 						t.Fatalf("expected zero outsnatding pool parts, got %d", v)
+					}
+				})
+			}
+		})
+	}
+}
+
+func BenchmarkPools(b *testing.B) {
+	cases := []struct {
+		PartSize      int64
+		FileSize      int64
+		Concurrency   int
+		ExAllocations uint64
+	}{
+		0: {
+			PartSize:    sdkio.MebiByte * 5,
+			FileSize:    sdkio.MebiByte * 5,
+			Concurrency: 1,
+		},
+		1: {
+			PartSize:    sdkio.MebiByte * 5,
+			FileSize:    sdkio.MebiByte * 10,
+			Concurrency: 1,
+		},
+		2: {
+			PartSize:    sdkio.MebiByte * 5,
+			FileSize:    sdkio.MebiByte * 20,
+			Concurrency: 2,
+		},
+		3: {
+			PartSize:    sdkio.MebiByte * 5,
+			FileSize:    sdkio.MebiByte * 250,
+			Concurrency: 10,
+		},
+	}
+
+	sess := unit.Session.Copy()
+	svc := s3.New(sess)
+	svc.Handlers.Unmarshal.Clear()
+	svc.Handlers.UnmarshalMeta.Clear()
+	svc.Handlers.UnmarshalError.Clear()
+	svc.Handlers.Send.Clear()
+	svc.Handlers.Send.PushFront(func(r *request.Request) {
+		if r.Body != nil {
+			io.Copy(ioutil.Discard, r.Body)
+		}
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Body:       ioutil.NopCloser(bytes.NewReader([]byte{})),
+		}
+
+		switch data := r.Data.(type) {
+		case *s3.CreateMultipartUploadOutput:
+			data.UploadId = aws.String("UPLOAD-ID")
+		case *s3.UploadPartOutput:
+			data.ETag = aws.String(fmt.Sprintf("ETAG%d", random.Int()))
+		case *s3.CompleteMultipartUploadOutput:
+			data.Location = aws.String("https://location")
+			data.VersionId = aws.String("VERSION-ID")
+		case *s3.PutObjectOutput:
+			data.VersionId = aws.String("VERSION-ID")
+		}
+	})
+
+	pools := map[string]func(sliceSize int64) byteSlicePool{
+		"sync.Pool": func(sliceSize int64) byteSlicePool {
+			return newSyncSlicePool(sliceSize)
+		},
+		"custom": func(sliceSize int64) byteSlicePool {
+			return newMaxSlicePool(sliceSize)
+		},
+	}
+
+	for name, poolFunc := range pools {
+		b.Run(name, func(b *testing.B) {
+			unswap := swapByteSlicePool(poolFunc)
+			defer unswap()
+			for i, c := range cases {
+				b.Run(strconv.Itoa(i), func(b *testing.B) {
+					uploader := NewUploaderWithClient(svc, func(u *Uploader) {
+						u.PartSize = c.PartSize
+						u.Concurrency = c.Concurrency
+					})
+
+					expected := s3testing.GetTestBytes(int(c.FileSize))
+					b.ResetTimer()
+					_, err := uploader.Upload(&UploadInput{
+						Bucket: aws.String("bucket"),
+						Key:    aws.String("key"),
+						Body:   &testReader{br: bytes.NewReader(expected)},
+					})
+					if err != nil {
+						b.Fatalf("expected no error, but got %v", err)
 					}
 				})
 			}
