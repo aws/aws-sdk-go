@@ -59,6 +59,7 @@ func TestEndpointDiscoveryWithCustomEndpoint(t *testing.T) {
 			}
 
 			svc := New(unit.Session, cfg)
+			svc.Handlers.Clear()
 			// Add a handler to verify no call goes to DescribeEndpoints operation
 			svc.Handlers.Send.PushBack(func(r *request.Request) {
 				if ne, a := opDescribeEndpoints, r.Operation.Name; strings.EqualFold(ne, a) {
@@ -86,7 +87,9 @@ func TestEndpointDiscoveryWithCustomEndpoint(t *testing.T) {
 					t.Errorf("expected %q, but received %q", e, a)
 				}
 			})
-			req.Send()
+			if err := req.Send(); err != nil {
+				t.Fatal(err)
+			}
 		})
 	}
 }
