@@ -11,9 +11,40 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/endpoints"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
 )
+
+func TestEndpointDiscoveryWithCustomEndpoint(t *testing.T) {
+	mockEndpointResolver := endpoints.ResolverFunc(func(service string, region string, opts ...func(options *endpoints.Options)) (endpoints.ResolvedEndpoint, error) {
+		return endpoints.ResolvedEndpoint{
+			URL: "https://mockEndpointForDiscovery",
+		}, nil
+	})
+	svc := New(unit.Session, &aws.Config{
+		EnableEndpointDiscovery: aws.Bool(true),
+		EndpointResolver:        mockEndpointResolver,
+		Endpoint:                aws.String("https://mockCustomEndpoint"),
+	})
+
+	svc.Handlers.Clear()
+	req, _ := svc.TestDiscoveryIdentifiersRequiredRequest(
+		&TestDiscoveryIdentifiersRequiredInput{
+			Sdk: aws.String("sdk"),
+		},
+	)
+
+	req.Handlers.Send.PushBack(func(r *request.Request) {
+		if e, a := "https://mockCustomEndpoint/", r.HTTPRequest.URL.String(); e != a {
+			t.Errorf("expected %q, but received %q", e, a)
+		}
+	})
+
+	if err := req.Send(); err != nil {
+		t.Fatal(err)
+	}
+}
 
 func TestEndpointDiscovery(t *testing.T) {
 	svc := New(unit.Session, &aws.Config{
