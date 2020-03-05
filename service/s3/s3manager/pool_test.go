@@ -1,13 +1,14 @@
 package s3manager
 
 import (
+	"context"
 	"sync"
 	"sync/atomic"
 	"testing"
 )
 
 func TestMaxSlicePool(t *testing.T) {
-	pool := newMaxSlicePool(1)
+	pool := newMaxSlicePool(0)
 
 	var wg sync.WaitGroup
 	for i := 0; i < 100; i++ {
@@ -19,20 +20,40 @@ func TestMaxSlicePool(t *testing.T) {
 			pool.ModifyCapacity(2)
 
 			// remove 2 items
-			bsOne := pool.Get()
-			bsTwo := pool.Get()
+			bsOne, err := pool.Get(context.Background())
+			if err != nil {
+				t.Errorf("failed to get slice from pool: %v", err)
+			}
+			bsTwo, err := pool.Get(context.Background())
+			if err != nil {
+				t.Errorf("failed to get slice from pool: %v", err)
+			}
 
-			// attempt to remove a 3rd
-			unblocked := make(chan struct{})
+			done := make(chan struct{})
 			go func() {
-				defer close(unblocked)
-				bs := pool.Get()
+				defer close(done)
+
+				// attempt to remove a 3rd in parallel
+				bs, err := pool.Get(context.Background())
+				if err != nil {
+					t.Errorf("failed to get slice from pool: %v", err)
+				}
 				pool.Put(bs)
+
+				// attempt to remove a 4th that has been canceled
+				ctx, cancel := context.WithCancel(context.Background())
+				cancel()
+				bs, err = pool.Get(ctx)
+				if err == nil {
+					pool.Put(bs)
+					t.Errorf("expected no slice to be returned")
+					return
+				}
 			}()
 
 			pool.Put(bsOne)
 
-			<-unblocked
+			<-done
 
 			pool.ModifyCapacity(-1)
 
@@ -40,11 +61,22 @@ func TestMaxSlicePool(t *testing.T) {
 
 			pool.ModifyCapacity(-1)
 
-			rando := make([]byte, 1)
+			// any excess returns should drop
+			rando := make([]byte, 0)
 			pool.Put(&rando)
 		}()
 	}
 	wg.Wait()
+
+	if e, a := 0, len(pool.slices); e != a {
+		t.Errorf("expected %v, got %v", e, a)
+	}
+	if e, a := 0, len(pool.allocations); e != a {
+		t.Errorf("expected %v, got %v", e, a)
+	}
+	if e, a := 0, pool.max; e != a {
+		t.Errorf("expected %v, got %v", e, a)
+	}
 
 	pool.Empty()
 }
@@ -72,10 +104,10 @@ func newRecordedPartPool(sliceSize int64) *recordedPartPool {
 	return rp
 }
 
-func (r *recordedPartPool) Get() *[]byte {
+func (r *recordedPartPool) Get(ctx context.Context) (*[]byte, error) {
 	atomic.AddUint64(&r.recordedGets, 1)
 	atomic.AddInt64(&r.recordedOutstanding, 1)
-	return r.maxSlicePool.Get()
+	return r.maxSlicePool.Get(ctx)
 }
 
 func (r *recordedPartPool) Put(b *[]byte) {

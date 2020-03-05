@@ -478,7 +478,11 @@ func (u *uploader) nextReader() (io.ReadSeeker, int, func(), error) {
 		return reader, int(n), cleanup, err
 
 	default:
-		part := u.cfg.partPool.Get()
+		part, err := u.cfg.partPool.Get(u.ctx)
+		if err != nil {
+			return nil, 0, func() {}, err
+		}
+
 		n, err := readFillBuf(r, *part)
 		u.readerPos += int64(n)
 

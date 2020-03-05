@@ -1,9 +1,12 @@
 package s3manager
 
-import "sync"
+import (
+	"context"
+	"sync"
+)
 
 type byteSlicePool interface {
-	Get() *[]byte
+	Get(context.Context) (*[]byte, error)
 	Put(*[]byte)
 	ModifyCapacity(int)
 	SliceSize() int64
@@ -24,8 +27,13 @@ func newSyncSlicePool(sliceSize int64) *syncSlicePool {
 	return p
 }
 
-func (s *syncSlicePool) Get() *[]byte {
-	return s.Pool.Get().(*[]byte)
+func (s *syncSlicePool) Get(ctx context.Context) (*[]byte, error) {
+	select {
+	case <-ctx.Done():
+		return nil, ctx.Err()
+	default:
+		return s.Pool.Get().(*[]byte), nil
+	}
 }
 
 func (s *syncSlicePool) Put(bs *[]byte) {
@@ -66,15 +74,23 @@ func newMaxSlicePool(sliceSize int64) *maxSlicePool {
 	return p
 }
 
-func (p *maxSlicePool) Get() *[]byte {
+func (p *maxSlicePool) Get(ctx context.Context) (*[]byte, error) {
 	p.mtx.RLock()
 	defer p.mtx.RUnlock()
 
 	select {
+	case <-ctx.Done():
+		return nil, ctx.Err()
+	default:
+	}
+
+	select {
 	case bs := <-p.slices:
-		return bs
+		return bs, nil
 	case _ = <-p.allocations:
-		return p.allocator()
+		return p.allocator(), nil
+	case <-ctx.Done():
+		return nil, ctx.Err()
 	}
 }
 

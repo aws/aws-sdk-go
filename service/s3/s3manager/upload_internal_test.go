@@ -227,6 +227,103 @@ func TestUploadByteSlicePool_Failures(t *testing.T) {
 	}
 }
 
+func TestUploadByteSlicePoolConcurrentMultiPartSize(t *testing.T) {
+	var (
+		pools []*recordedPartPool
+		mtx   sync.Mutex
+	)
+
+	unswap := swapByteSlicePool(func(sliceSize int64) byteSlicePool {
+		mtx.Lock()
+		defer mtx.Unlock()
+		b := newRecordedPartPool(sliceSize)
+		pools = append(pools, b)
+		return b
+	})
+	defer unswap()
+
+	sess := unit.Session.Copy()
+	svc := s3.New(sess)
+	svc.Handlers.Unmarshal.Clear()
+	svc.Handlers.UnmarshalMeta.Clear()
+	svc.Handlers.UnmarshalError.Clear()
+	svc.Handlers.Send.Clear()
+	svc.Handlers.Send.PushFront(func(r *request.Request) {
+		if r.Body != nil {
+			io.Copy(ioutil.Discard, r.Body)
+		}
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Body:       ioutil.NopCloser(bytes.NewReader([]byte{})),
+		}
+
+		switch data := r.Data.(type) {
+		case *s3.CreateMultipartUploadOutput:
+			data.UploadId = aws.String("UPLOAD-ID")
+		case *s3.UploadPartOutput:
+			data.ETag = aws.String(fmt.Sprintf("ETAG%d", random.Int()))
+		case *s3.CompleteMultipartUploadOutput:
+			data.Location = aws.String("https://location")
+			data.VersionId = aws.String("VERSION-ID")
+		case *s3.PutObjectOutput:
+			data.VersionId = aws.String("VERSION-ID")
+		}
+	})
+
+	uploader := NewUploaderWithClient(svc, func(u *Uploader) {
+		u.PartSize = 5 * sdkio.MebiByte
+		u.Concurrency = 2
+	})
+
+	var wg sync.WaitGroup
+	for i := 0; i < 2; i++ {
+		wg.Add(2)
+		go func() {
+			defer wg.Done()
+			expected := s3testing.GetTestBytes(int(15 * sdkio.MebiByte))
+			_, err := uploader.Upload(&UploadInput{
+				Bucket: aws.String("bucket"),
+				Key:    aws.String("key"),
+				Body:   &testReader{br: bytes.NewReader(expected)},
+			})
+			if err != nil {
+				t.Errorf("expected no error, but got %v", err)
+			}
+		}()
+		go func() {
+			defer wg.Done()
+			expected := s3testing.GetTestBytes(int(15 * sdkio.MebiByte))
+			_, err := uploader.Upload(&UploadInput{
+				Bucket: aws.String("bucket"),
+				Key:    aws.String("key"),
+				Body:   &testReader{br: bytes.NewReader(expected)},
+			}, func(u *Uploader) {
+				u.PartSize = 6 * sdkio.MebiByte
+			})
+			if err != nil {
+				t.Errorf("expected no error, but got %v", err)
+			}
+		}()
+	}
+
+	wg.Wait()
+
+	if e, a := 3, len(pools); e != a {
+		t.Errorf("expected %v, got %v", e, a)
+	}
+
+	for _, p := range pools {
+		if v := atomic.LoadInt64(&p.recordedOutstanding); v != 0 {
+			t.Fatalf("expected zero outsnatding pool parts, got %d", v)
+		}
+
+		t.Logf("total gets %v, total allocations %v",
+			atomic.LoadUint64(&p.recordedGets),
+			atomic.LoadUint64(&p.recordedAllocs))
+	}
+}
+
 func BenchmarkPools(b *testing.B) {
 	cases := []struct {
 		PartSize      int64
