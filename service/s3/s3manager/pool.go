@@ -1,12 +1,13 @@
 package s3manager
 
 import (
-	"context"
 	"sync"
+
+	"github.com/aws/aws-sdk-go/aws"
 )
 
 type byteSlicePool interface {
-	Get(context.Context) (*[]byte, error)
+	Get(aws.Context) (*[]byte, error)
 	Put(*[]byte)
 	ModifyCapacity(int)
 	SliceSize() int64
@@ -27,7 +28,7 @@ func newSyncSlicePool(sliceSize int64) *syncSlicePool {
 	return p
 }
 
-func (s *syncSlicePool) Get(ctx context.Context) (*[]byte, error) {
+func (s *syncSlicePool) Get(ctx aws.Context) (*[]byte, error) {
 	select {
 	case <-ctx.Done():
 		return nil, ctx.Err()
@@ -74,7 +75,7 @@ func newMaxSlicePool(sliceSize int64) *maxSlicePool {
 	return p
 }
 
-func (p *maxSlicePool) Get(ctx context.Context) (*[]byte, error) {
+func (p *maxSlicePool) Get(ctx aws.Context) (*[]byte, error) {
 	p.mtx.RLock()
 	defer p.mtx.RUnlock()
 

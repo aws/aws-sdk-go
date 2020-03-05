@@ -5,6 +5,8 @@ import (
 	"sync"
 	"sync/atomic"
 	"testing"
+
+	"github.com/aws/aws-sdk-go/aws"
 )
 
 func TestMaxSlicePool(t *testing.T) {
@@ -104,7 +106,7 @@ func newRecordedPartPool(sliceSize int64) *recordedPartPool {
 	return rp
 }
 
-func (r *recordedPartPool) Get(ctx context.Context) (*[]byte, error) {
+func (r *recordedPartPool) Get(ctx aws.Context) (*[]byte, error) {
 	atomic.AddUint64(&r.recordedGets, 1)
 	atomic.AddInt64(&r.recordedOutstanding, 1)
 	return r.maxSlicePool.Get(ctx)
