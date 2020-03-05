@@ -211,6 +211,19 @@
       "refs": {
       }
     },
+    "EncryptionConfig": {
+      "base": "<p>The encryption configuration for the cluster.</p>",
+      "refs": {
+        "EncryptionConfigList$member": null
+      }
+    },
+    "EncryptionConfigList": {
+      "base": null,
+      "refs": {
+        "Cluster$encryptionConfig": "<p>The encryption configuration for the cluster.</p>",
+        "CreateClusterRequest$encryptionConfig": "<p>The encryption configuration for the cluster.</p>"
+      }
+    },
     "ErrorCode": {
       "base": null,
       "refs": {
@@ -447,6 +460,12 @@
         "Identity$oidc": "<p>The <a href=\"https://openid.net/connect/\">OpenID Connect</a> identity provider information for the cluster.</p>"
       }
     },
+    "Provider": {
+      "base": "<p>Identifies the AWS Key Management Service (AWS KMS) customer master key (CMK) used to encrypt the secrets.</p>",
+      "refs": {
+        "EncryptionConfig$provider": "<p>AWS Key Management Service (AWS KMS) customer master key (CMK). Either the ARN or the alias can be used.</p>"
+      }
+    },
     "RemoteAccessConfig": {
       "base": "<p>An object representing the remote access configuration for the managed node group.</p>",
       "refs": {
@@ -559,6 +578,7 @@
         "NodegroupResources$remoteAccessSecurityGroup": "<p>The remote access security group associated with the node group. This security group controls SSH access to the worker nodes.</p>",
         "NotFoundException$message": null,
         "OIDC$issuer": "<p>The issuer URL for the OpenID Connect identity provider.</p>",
+        "Provider$keyArn": "<p>Amazon Resource Name (ARN) or alias of the customer master key (CMK). The CMK must be symmetric, created in the same region as the cluster, and if the CMK was created in a different account, the user must have access to the CMK. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html\">Allowing Users in Other Accounts to Use a CMK</a> in the <i>AWS Key Management Service Developer Guide</i>.</p>",
         "RemoteAccessConfig$ec2SshKey": "<p>The Amazon EC2 SSH key that provides access for SSH communication with the worker nodes in the managed node group. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html\">Amazon EC2 Key Pairs</a> in the <i>Amazon Elastic Compute Cloud User Guide for Linux Instances</i>.</p>",
         "ResourceInUseException$clusterName": "<p>The Amazon EKS cluster associated with the exception.</p>",
         "ResourceInUseException$nodegroupName": "<p>The Amazon EKS managed node group associated with the exception.</p>",
@@ -606,6 +626,7 @@
         "CreateFargateProfileRequest$subnets": "<p>The IDs of subnets to launch your pods into. At this time, pods running on Fargate are not assigned public IP addresses, so only private subnets (with no direct route to an Internet Gateway) are accepted for this parameter.</p>",
         "CreateNodegroupRequest$subnets": "<p>The subnets to use for the Auto Scaling group that is created for your node group. These subnets must have the tag key <code>kubernetes.io/cluster/CLUSTER_NAME</code> with a value of <code>shared</code>, where <code>CLUSTER_NAME</code> is replaced with the name of your cluster.</p>",
         "CreateNodegroupRequest$instanceTypes": "<p>The instance type to use for your node group. Currently, you can specify a single instance type for a node group. The default value for this parameter is <code>t3.medium</code>. If you choose a GPU instance type, be sure to specify the <code>AL2_x86_64_GPU</code> with the <code>amiType</code> parameter.</p>",
+        "EncryptionConfig$resources": "<p>Specifies the resources to be encrypted. The only supported value is \"secrets\".</p>",
         "ErrorDetail$resourceIds": "<p>An optional field that contains the resource IDs associated with the error.</p>",
         "FargateProfile$subnets": "<p>The IDs of subnets to launch pods into.</p>",
         "Issue$resourceIds": "<p>The AWS resources that are afflicted by this issue.</p>",

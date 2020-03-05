@@ -416,7 +416,8 @@
         "certificateAuthority":{"shape":"Certificate"},
         "clientRequestToken":{"shape":"String"},
         "platformVersion":{"shape":"String"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "encryptionConfig":{"shape":"EncryptionConfigList"}
       }
     },
     "ClusterName":{
@@ -452,7 +453,8 @@
           "shape":"String",
           "idempotencyToken":true
         },
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "encryptionConfig":{"shape":"EncryptionConfigList"}
       }
     },
     "CreateClusterResponse":{
@@ -692,6 +694,18 @@
       "members":{
         "update":{"shape":"Update"}
       }
+    },
+    "EncryptionConfig":{
+      "type":"structure",
+      "members":{
+        "resources":{"shape":"StringList"},
+        "provider":{"shape":"Provider"}
+      }
+    },
+    "EncryptionConfigList":{
+      "type":"list",
+      "member":{"shape":"EncryptionConfig"},
+      "max":1
     },
     "ErrorCode":{
       "type":"string",
@@ -1071,6 +1085,12 @@
       "type":"structure",
       "members":{
         "issuer":{"shape":"String"}
+      }
+    },
+    "Provider":{
+      "type":"structure",
+      "members":{
+        "keyArn":{"shape":"String"}
       }
     },
     "RemoteAccessConfig":{
