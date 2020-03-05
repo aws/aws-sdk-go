@@ -194,6 +194,12 @@ func (c *AwsEndpointDiscoveryTest) TestDiscoveryIdentifiersRequiredRequest(input
 
 	output = &TestDiscoveryIdentifiersRequiredOutput{}
 	req = c.newRequest(op, input, output)
+
+	// if a custom endpoint is provided for the request,
+	// we skip endpoint discovery workflow
+	if req.Config.Endpoint != nil {
+		return
+	}
 	de := discovererDescribeEndpoints{
 		Required:      true,
 		EndpointCache: c.endpointCache,
@@ -283,6 +289,12 @@ func (c *AwsEndpointDiscoveryTest) TestDiscoveryOptionalRequest(input *TestDisco
 
 	output = &TestDiscoveryOptionalOutput{}
 	req = c.newRequest(op, input, output)
+
+	// if a custom endpoint is provided for the request,
+	// we skip endpoint discovery workflow
+	if req.Config.Endpoint != nil {
+		return
+	}
 	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
 		de := discovererDescribeEndpoints{
 			Required:      false,
@@ -373,6 +385,12 @@ func (c *AwsEndpointDiscoveryTest) TestDiscoveryRequiredRequest(input *TestDisco
 
 	output = &TestDiscoveryRequiredOutput{}
 	req = c.newRequest(op, input, output)
+
+	// if a custom endpoint is provided for the request,
+	// we skip endpoint discovery workflow
+	if req.Config.Endpoint != nil {
+		return
+	}
 	if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
 		de := discovererDescribeEndpoints{
 			Required:      false,
