@@ -2644,6 +2644,15 @@
         }
       }
     },
+    "LocalIpDetails":{
+      "type":"structure",
+      "members":{
+        "IpAddressV4":{
+          "shape":"String",
+          "locationName":"ipAddressV4"
+        }
+      }
+    },
     "LocalPortDetails":{
       "type":"structure",
       "members":{
@@ -2763,6 +2772,10 @@
           "shape":"String",
           "locationName":"protocol"
         },
+        "LocalIpDetails":{
+          "shape":"LocalIpDetails",
+          "locationName":"localIpDetails"
+        },
         "RemoteIpDetails":{
           "shape":"RemoteIpDetails",
           "locationName":"remoteIpDetails"
@@ -2873,6 +2886,10 @@
         "LocalPortDetails":{
           "shape":"LocalPortDetails",
           "locationName":"localPortDetails"
+        },
+        "LocalIpDetails":{
+          "shape":"LocalIpDetails",
+          "locationName":"localIpDetails"
         },
         "RemoteIpDetails":{
           "shape":"RemoteIpDetails",

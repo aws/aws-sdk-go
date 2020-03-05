@@ -1,3 +1,15 @@
+Release v1.29.18 (2020-03-05)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * You can now create AWS Client VPN Endpoints with a specified VPC and Security Group. Additionally, you can modify these attributes when modifying the endpoint.
+* `service/eks`: Updates service API and documentation
+* `service/guardduty`: Updates service API and documentation
+  * Add a new finding field for EC2 findings indicating the instance's local IP address involved in the threat.
+* `service/opsworkscm`: Updates service API
+  * Updated the Tag regex pattern to align with AWS tagging APIs.
+
 Release v1.29.17 (2020-03-04)
 ===
 

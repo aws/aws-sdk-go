@@ -5810,6 +5810,14 @@
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
+        },
+        "SecurityGroupIds":{
+          "shape":"ClientVpnSecurityGroupIdSet",
+          "locationName":"securityGroupIdSet"
+        },
+        "VpcId":{
+          "shape":"VpcId",
+          "locationName":"vpcId"
         }
       }
     },
@@ -6334,7 +6342,12 @@
         "TagSpecifications":{
           "shape":"TagSpecificationList",
           "locationName":"TagSpecification"
-        }
+        },
+        "SecurityGroupIds":{
+          "shape":"ClientVpnSecurityGroupIdSet",
+          "locationName":"SecurityGroupId"
+        },
+        "VpcId":{"shape":"VpcId"}
       }
     },
     "CreateClientVpnEndpointResult":{
@@ -19668,7 +19681,12 @@
         "VpnPort":{"shape":"Integer"},
         "Description":{"shape":"String"},
         "SplitTunnel":{"shape":"Boolean"},
-        "DryRun":{"shape":"Boolean"}
+        "DryRun":{"shape":"Boolean"},
+        "SecurityGroupIds":{
+          "shape":"ClientVpnSecurityGroupIdSet",
+          "locationName":"SecurityGroupId"
+        },
+        "VpcId":{"shape":"VpcId"}
       }
     },
     "ModifyClientVpnEndpointResult":{
