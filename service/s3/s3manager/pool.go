@@ -1,6 +1,7 @@
 package s3manager
 
 import (
+	"fmt"
 	"sync"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -11,49 +12,13 @@ type byteSlicePool interface {
 	Put(*[]byte)
 	ModifyCapacity(int)
 	SliceSize() int64
-	Empty()
-}
-
-type syncSlicePool struct {
-	sync.Pool
-	sliceSize int64
-}
-
-func newSyncSlicePool(sliceSize int64) *syncSlicePool {
-	p := &syncSlicePool{sliceSize: sliceSize}
-	p.New = func() interface{} {
-		bs := make([]byte, p.sliceSize)
-		return &bs
-	}
-	return p
-}
-
-func (s *syncSlicePool) Get(ctx aws.Context) (*[]byte, error) {
-	select {
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	default:
-		return s.Pool.Get().(*[]byte), nil
-	}
-}
-
-func (s *syncSlicePool) Put(bs *[]byte) {
-	s.Pool.Put(bs)
-}
-
-func (s *syncSlicePool) ModifyCapacity(_ int) {
-	return
-}
-
-func (s *syncSlicePool) SliceSize() int64 {
-	return s.sliceSize
-}
-
-func (s *syncSlicePool) Empty() {
-	return
+	Close()
 }
 
 type maxSlicePool struct {
+	// allocator is defined as a function pointer to allow
+	// for test cases to instrument custom tracers when allocations
+	// occur.
 	allocator sliceAllocator
 
 	slices      chan *[]byte
@@ -79,10 +44,16 @@ func (p *maxSlicePool) Get(ctx aws.Context) (*[]byte, error) {
 	p.mtx.RLock()
 	defer p.mtx.RUnlock()
 
+	// check if context is canceled before attempting to get a slice
+	// this ensures priority is given to the cancel case first
 	select {
 	case <-ctx.Done():
 		return nil, ctx.Err()
 	default:
+	}
+
+	if p.max == 0 {
+		return nil, fmt.Errorf("get called on zero capacity pool")
 	}
 
 	select {
@@ -100,14 +71,12 @@ func (p *maxSlicePool) Put(bs *[]byte) {
 	defer p.mtx.RUnlock()
 
 	if p.max == 0 {
-		bs = nil
 		return
 	}
 
 	select {
 	case p.slices <- bs:
 	default:
-		bs = nil
 	}
 }
 
@@ -147,7 +116,6 @@ func (p *maxSlicePool) ModifyCapacity(delta int) {
 		select {
 		case p.slices <- bs:
 		default:
-			bs = nil
 		}
 	}
 }
@@ -156,7 +124,7 @@ func (p *maxSlicePool) SliceSize() int64 {
 	return p.sliceSize
 }
 
-func (p *maxSlicePool) Empty() {
+func (p *maxSlicePool) Close() {
 	p.mtx.Lock()
 	defer p.mtx.Unlock()
 	p.empty()
@@ -194,7 +162,7 @@ func (n *returnCapacityPoolCloser) ModifyCapacity(delta int) {
 	n.byteSlicePool.ModifyCapacity(delta)
 }
 
-func (n *returnCapacityPoolCloser) Empty() {
+func (n *returnCapacityPoolCloser) Close() {
 	if n.returnCapacity < 0 {
 		n.byteSlicePool.ModifyCapacity(n.returnCapacity)
 	}

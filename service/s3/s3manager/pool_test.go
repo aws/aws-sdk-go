@@ -1,3 +1,5 @@
+// +build go1.7
+
 package s3manager
 
 import (
@@ -80,7 +82,12 @@ func TestMaxSlicePool(t *testing.T) {
 		t.Errorf("expected %v, got %v", e, a)
 	}
 
-	pool.Empty()
+	_, err := pool.Get(context.Background())
+	if err == nil {
+		t.Errorf("expected error on zero capacity pool")
+	}
+
+	pool.Close()
 }
 
 type recordedPartPool struct {
@@ -125,4 +132,43 @@ func swapByteSlicePool(f func(sliceSize int64) byteSlicePool) func() {
 	return func() {
 		newByteSlicePool = orig
 	}
+}
+
+type syncSlicePool struct {
+	sync.Pool
+	sliceSize int64
+}
+
+func newSyncSlicePool(sliceSize int64) *syncSlicePool {
+	p := &syncSlicePool{sliceSize: sliceSize}
+	p.New = func() interface{} {
+		bs := make([]byte, p.sliceSize)
+		return &bs
+	}
+	return p
+}
+
+func (s *syncSlicePool) Get(ctx aws.Context) (*[]byte, error) {
+	select {
+	case <-ctx.Done():
+		return nil, ctx.Err()
+	default:
+		return s.Pool.Get().(*[]byte), nil
+	}
+}
+
+func (s *syncSlicePool) Put(bs *[]byte) {
+	s.Pool.Put(bs)
+}
+
+func (s *syncSlicePool) ModifyCapacity(_ int) {
+	return
+}
+
+func (s *syncSlicePool) SliceSize() int64 {
+	return s.sliceSize
+}
+
+func (s *syncSlicePool) Close() {
+	return
 }

@@ -366,7 +366,7 @@ func (u *uploader) upload() (*UploadOutput, error) {
 	if err := u.init(); err != nil {
 		return nil, awserr.New("ReadRequestBody", "unable to initialize upload", err)
 	}
-	defer u.cfg.partPool.Empty()
+	defer u.cfg.partPool.Close()
 
 	if u.cfg.PartSize < MinUploadPartSize {
 		msg := fmt.Sprintf("part size must be at least %d bytes", MinUploadPartSize)
