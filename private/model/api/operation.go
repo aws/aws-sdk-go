@@ -267,6 +267,13 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 	{{- end }}
 
 	{{- if .EndpointDiscovery }}
+		
+		// if a custom endpoint is provided for the request, 
+        // we skip endpoint discovery workflow
+		if req.Config.Endpoint != nil {
+			return
+		}
+
 		{{- if not .EndpointDiscovery.Required }}
 			if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
 		{{- end }}
