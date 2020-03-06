@@ -2209,6 +2209,10 @@
           "shape":"String",
           "locationName":"instanceType"
         },
+        "OutpostArn":{
+          "shape":"String",
+          "locationName":"outpostArn"
+        },
         "LaunchTime":{
           "shape":"String",
           "locationName":"launchTime"

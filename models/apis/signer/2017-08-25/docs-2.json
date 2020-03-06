@@ -12,8 +12,8 @@
     "ListTagsForResource": "<p>Returns a list of the tags associated with a signing profile resource.</p>",
     "PutSigningProfile": "<p>Creates a signing profile. A signing profile is a code signing template that can be used to carry out a pre-defined signing job. For more information, see <a href=\"http://docs.aws.amazon.com/signer/latest/developerguide/gs-profile.html\">http://docs.aws.amazon.com/signer/latest/developerguide/gs-profile.html</a> </p>",
     "StartSigningJob": "<p>Initiates a signing job to be performed on the code provided. Signing jobs are viewable by the <code>ListSigningJobs</code> operation for two years after they are performed. Note the following requirements: </p> <ul> <li> <p> You must create an Amazon S3 source bucket. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html\">Create a Bucket</a> in the <i>Amazon S3 Getting Started Guide</i>. </p> </li> <li> <p>Your S3 source bucket must be version enabled.</p> </li> <li> <p>You must create an S3 destination bucket. Code signing uses your S3 destination bucket to write your signed code.</p> </li> <li> <p>You specify the name of the source and destination buckets when calling the <code>StartSigningJob</code> operation.</p> </li> <li> <p>You must also specify a request token that identifies your request to code signing.</p> </li> </ul> <p>You can call the <a>DescribeSigningJob</a> and the <a>ListSigningJobs</a> actions after you call <code>StartSigningJob</code>.</p> <p>For a Java example that shows how to use this action, see <a href=\"http://docs.aws.amazon.com/acm/latest/userguide/\">http://docs.aws.amazon.com/acm/latest/userguide/</a> </p>",
-    "TagResource": "<p>Adds one or more tags to a signing profile. Tags are labels that you can use to identify and organize your AWS resources. Each tag consists of a key and an optional value. You specify the signing profile using its Amazon Resource Name (ARN). You specify the tag by using a key-value pair.</p>",
-    "UntagResource": "<p>Remove one or more tags from a signing profile. Specify a list of tag keys to remove the tags.</p>"
+    "TagResource": "<p>Adds one or more tags to a signing profile. Tags are labels that you can use to identify and organize your AWS resources. Each tag consists of a key and an optional value. To specify the signing profile, use its Amazon Resource Name (ARN). To specify the tag, use a key-value pair.</p>",
+    "UntagResource": "<p>Removes one or more tags from a signing profile. To remove the tags, specify a list of tag keys.</p>"
   },
   "shapes": {
     "key": {
@@ -162,7 +162,7 @@
     "HashAlgorithmOptions": {
       "base": "<p>The hash algorithms that are available to a code signing job.</p>",
       "refs": {
-        "SigningConfiguration$hashAlgorithmOptions": "<p>The hash algorithm options that are available for a a code signing job.</p>"
+        "SigningConfiguration$hashAlgorithmOptions": "<p>The hash algorithm options that are available for a code signing job.</p>"
       }
     },
     "HashAlgorithms": {
@@ -175,13 +175,14 @@
       "base": null,
       "refs": {
         "ImageFormats$member": null,
-        "SigningImageFormat$defaultFormat": "<p>The default format of a code signing signing image.</p>"
+        "SigningImageFormat$defaultFormat": "<p>The default format of a code signing image.</p>",
+        "SigningPlatformOverrides$signingImageFormat": "<p>A signed image is a JSON object. When overriding the default signing platform configuration, a customer can select either of two signing formats, <code>JSONEmbedded</code> or <code>JSONDetached</code>. (A third format value, <code>JSON</code>, is reserved for future use.) With <code>JSONEmbedded</code>, the signing image has the payload embedded in it. With <code>JSONDetached</code>, the payload is not be embedded in the signing image.</p>"
       }
     },
     "ImageFormats": {
       "base": null,
       "refs": {
-        "SigningImageFormat$supportedFormats": "<p>The supported formats of a code signing signing image.</p>"
+        "SigningImageFormat$supportedFormats": "<p>The supported formats of a code signing image.</p>"
       }
     },
     "InternalServiceErrorException": {
@@ -281,7 +282,7 @@
         "GetSigningPlatformResponse$platformId": "<p>The ID of the target signing platform.</p>",
         "GetSigningProfileResponse$platformId": "<p>The ID of the platform that is used by the target signing profile.</p>",
         "ListSigningJobsRequest$platformId": "<p>The ID of microcontroller platform that you specified for the distribution of your code image.</p>",
-        "PutSigningProfileRequest$platformId": "<p>The ID of the signing profile to be created.</p>",
+        "PutSigningProfileRequest$platformId": "<p>The ID of the signing platform to be created.</p>",
         "SigningProfile$platformId": "<p>The ID of a platform that is available for use by a signing profile.</p>"
       }
     },
@@ -385,7 +386,7 @@
     "SigningMaterial": {
       "base": "<p>The ACM certificate that is used to sign your code.</p>",
       "refs": {
-        "DescribeSigningJobResponse$signingMaterial": "<p>Amazon Resource Name (ARN) of your code signing certificate.</p>",
+        "DescribeSigningJobResponse$signingMaterial": "<p>The Amazon Resource Name (ARN) of your code signing certificate.</p>",
         "GetSigningProfileResponse$signingMaterial": "<p>The ARN of the certificate that the target profile uses for signing operations.</p>",
         "PutSigningProfileRequest$signingMaterial": "<p>The AWS Certificate Manager certificate that will be used to sign code with the new signing profile.</p>",
         "SigningJob$signingMaterial": "<p>A <code>SigningMaterial</code> object that contains the Amazon Resource Name (ARN) of the certificate used for the signing job.</p>",
@@ -414,7 +415,7 @@
       }
     },
     "SigningPlatform": {
-      "base": "<p>Contains information about the signing configurations and parameters that is used to perform a code signing job.</p>",
+      "base": "<p>Contains information about the signing configurations and parameters that are used to perform a code signing job.</p>",
       "refs": {
         "SigningPlatforms$member": null
       }
@@ -499,8 +500,8 @@
         "SigningPlatform$displayName": "<p>The display name of a code signing platform.</p>",
         "SigningPlatform$partner": "<p>Any partner entities linked to a code signing platform.</p>",
         "SigningPlatform$target": "<p>The types of targets that can be signed by a code signing platform.</p>",
-        "TagResourceRequest$resourceArn": "<p>Amazon Resource Name (ARN) for the signing profile.</p>",
-        "UntagResourceRequest$resourceArn": "<p>Amazon Resource Name (ARN) for the signing profile .</p>"
+        "TagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) for the signing profile.</p>",
+        "UntagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) for the signing profile.</p>"
       }
     },
     "TagKey": {
@@ -513,7 +514,7 @@
     "TagKeyList": {
       "base": null,
       "refs": {
-        "UntagResourceRequest$tagKeys": "<p>A list of tag keys to be removed from the signing profile .</p>"
+        "UntagResourceRequest$tagKeys": "<p>A list of tag keys to be removed from the signing profile.</p>"
       }
     },
     "TagMap": {
@@ -521,7 +522,7 @@
       "refs": {
         "GetSigningProfileResponse$tags": "<p>A list of tags associated with the signing profile.</p>",
         "ListTagsForResourceResponse$tags": "<p>A list of tags associated with the signing profile.</p>",
-        "PutSigningProfileRequest$tags": "<p>Tags to be associated with the signing profile being created.</p>",
+        "PutSigningProfileRequest$tags": "<p>Tags to be associated with the signing profile that is being created.</p>",
         "SigningProfile$tags": "<p>A list of tags associated with the signing profile.</p>",
         "TagResourceRequest$tags": "<p>One or more tags to be associated with the signing profile.</p>"
       }
@@ -579,7 +580,7 @@
       "refs": {
         "GetSigningProfileResponse$arn": "<p>The Amazon Resource Name (ARN) for the signing profile.</p>",
         "PutSigningProfileResponse$arn": "<p>The Amazon Resource Name (ARN) of the signing profile created.</p>",
-        "SigningProfile$arn": "<p>Amazon Resource Name (ARN) for the signing profile.</p>"
+        "SigningProfile$arn": "<p>The Amazon Resource Name (ARN) for the signing profile.</p>"
       }
     }
   }
