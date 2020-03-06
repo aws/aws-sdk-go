@@ -33,10 +33,7 @@ type maxSlicePool struct {
 
 func newMaxSlicePool(sliceSize int64) *maxSlicePool {
 	p := &maxSlicePool{sliceSize: sliceSize}
-	p.allocator = func() *[]byte {
-		bs := make([]byte, p.sliceSize)
-		return &bs
-	}
+	p.allocator = p.newSlice
 
 	return p
 }
@@ -195,6 +192,11 @@ func (p *maxSlicePool) empty() {
 		}
 		p.slices = nil
 	}
+}
+
+func (p *maxSlicePool) newSlice() *[]byte {
+	bs := make([]byte, p.sliceSize)
+	return &bs
 }
 
 type returnCapacityPoolCloser struct {
