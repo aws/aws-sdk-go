@@ -1,3 +1,16 @@
+Release v1.29.19 (2020-03-06)
+===
+
+### Service Client Updates
+* `service/appmesh`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * This release provides customers with a self-service option to enable Local Zones.
+* `service/guardduty`: Updates service API and documentation
+  * Amazon GuardDuty findings now include the OutpostArn if the finding is generated for an AWS Outposts EC2 host.
+* `service/robomaker`: Updates service API and documentation
+* `service/signer`: Updates service API and documentation
+  * This release enables signing image format override in PutSigningProfile requests, adding two more enum fields, JSONEmbedded and JSONDetached. This release also extends the length limit of SigningProfile name from 20 to 64.
+
 Release v1.29.18 (2020-03-05)
 ===
 

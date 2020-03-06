@@ -311,6 +311,7 @@
     "ImportKeyPair": "<p>Imports the public key from an RSA key pair that you created with a third-party tool. Compare this with <a>CreateKeyPair</a>, in which AWS creates the key pair and gives the keys to you (AWS keeps a copy of the public key). With ImportKeyPair, you create the key pair and give AWS just the public key. The private key is never transferred between you and AWS.</p> <p>For more information about key pairs, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html\">Key Pairs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "ImportSnapshot": "<p>Imports a disk into an EBS snapshot.</p>",
     "ImportVolume": "<p>Creates an import volume task using metadata from the specified disk image.For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/importing-your-volumes-into-amazon-ebs.html\">Importing Disks to Amazon EBS</a>.</p> <p>For information about the import manifest referenced by this API action, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html\">VM Import Manifest</a>.</p>",
+    "ModifyAvailabilityZoneGroup": "<p>Enables or disables a Zone Group for your account. To use Local Zones, you must first enable the Zone Group.</p>",
     "ModifyCapacityReservation": "<p>Modifies a Capacity Reservation's capacity and the conditions under which it is to be released. You cannot change a Capacity Reservation's instance type, EBS optimization, instance store settings, platform, Availability Zone, or instance eligibility. If you need to modify any of these attributes, we recommend that you cancel the Capacity Reservation, and then create a new one with the required attributes.</p>",
     "ModifyClientVpnEndpoint": "<p>Modifies the specified Client VPN endpoint. Modifying the DNS server resets existing client connections.</p>",
     "ModifyDefaultCreditSpecification": "<p>Modifies the default credit option for CPU usage of burstable performance instances. The default credit option is set at the account level per AWS Region, and is specified per instance family. All new burstable performance instances in the account launch using the default credit option.</p> <p> <code>ModifyDefaultCreditSpecification</code> is an asynchronous operation, which works at an AWS Region level and modifies the credit option for each Availability Zone. All zones in a Region are updated within five minutes. But if instances are launched during this operation, they might not get the new credit option until the zone is updated. To verify whether the update has occurred, you can call <code>GetDefaultCreditSpecification</code> and check <code>DefaultCreditSpecification</code> for updates.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html\">Burstable Performance Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
@@ -1431,6 +1432,8 @@
         "LaunchTemplateVersion$DefaultVersion": "<p>Indicates whether the version is the default version.</p>",
         "LaunchTemplatesMonitoring$Enabled": "<p>Indicates whether detailed monitoring is enabled. Otherwise, basic monitoring is enabled.</p>",
         "LaunchTemplatesMonitoringRequest$Enabled": "<p>Specify <code>true</code> to enable detailed monitoring. Otherwise, basic monitoring is enabled.</p>",
+        "ModifyAvailabilityZoneGroupRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "ModifyAvailabilityZoneGroupResult$Return": "<p>Is <code>true</code> if the request succeeds, and an error otherwise.</p>",
         "ModifyCapacityReservationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyCapacityReservationResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
         "ModifyClientVpnEndpointRequest$SplitTunnel": "<p>Indicates whether the VPN is split-tunnel.</p> <p>For information about split-tunnel VPN endpoints, see <a href=\"https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/split-tunnel-vpn.html\">Split-Tunnel AWS Client VPN Endpoint</a> in the <i>AWS Client VPN Administrator Guide</i>.</p>",
@@ -8887,6 +8890,22 @@
         "VpcEndpointConnection$CreationTimestamp": "<p>The date and time that the VPC endpoint was created.</p>"
       }
     },
+    "ModifyAvailabilityZoneGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyAvailabilityZoneGroupResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyAvailabilityZoneOptInStatus": {
+      "base": null,
+      "refs": {
+        "ModifyAvailabilityZoneGroupRequest$OptInStatus": "<p>Indicates whether to enable or disable Zone Group membership. The valid values are <code>opted-in</code>.</p>"
+      }
+    },
     "ModifyCapacityReservationRequest": {
       "base": null,
       "refs": {
@@ -12654,6 +12673,7 @@
         "LocalGatewayVirtualInterface$LocalAddress": "<p>The local address.</p>",
         "LocalGatewayVirtualInterface$PeerAddress": "<p>The peer address.</p>",
         "LocalGatewayVirtualInterfaceGroup$LocalGatewayId": "<p>The ID of the local gateway.</p>",
+        "ModifyAvailabilityZoneGroupRequest$GroupName": "<p>The names of the Zone Group.</p>",
         "ModifyClientVpnEndpointRequest$ServerCertificateArn": "<p>The ARN of the server certificate to be used. The server certificate must be provisioned in AWS Certificate Manager (ACM).</p>",
         "ModifyClientVpnEndpointRequest$Description": "<p>A brief description of the Client VPN endpoint.</p>",
         "ModifyDefaultCreditSpecificationRequest$CpuCredits": "<p>The credit option for CPU usage of the instance family.</p> <p>Valid Values: <code>standard</code> | <code>unlimited</code> </p>",

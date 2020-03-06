@@ -1089,10 +1089,12 @@
         "RobotDeploymentNoResponse",
         "RobotAgentConnectionTimeout",
         "GreengrassDeploymentFailed",
+        "InvalidGreengrassGroup",
         "MissingRobotArchitecture",
         "MissingRobotApplicationArchitecture",
         "MissingRobotDeploymentResource",
         "GreengrassGroupVersionDoesNotExist",
+        "LambdaDeleted",
         "ExtractingBundleFailure",
         "PreLaunchFileFailure",
         "PostLaunchFileFailure",
@@ -1398,7 +1400,12 @@
       "min":0
     },
     "GenericInteger":{"type":"integer"},
-    "GenericString":{"type":"string"},
+    "GenericString":{
+      "type":"string",
+      "max":1024,
+      "min":0,
+      "pattern":".*"
+    },
     "IamRole":{
       "type":"string",
       "max":255,
@@ -1449,7 +1456,8 @@
         "packageName":{"shape":"Command"},
         "launchFile":{"shape":"Command"},
         "environmentVariables":{"shape":"EnvironmentVariableMap"},
-        "portForwardingConfig":{"shape":"PortForwardingConfig"}
+        "portForwardingConfig":{"shape":"PortForwardingConfig"},
+        "streamUI":{"shape":"Boolean"}
       }
     },
     "LimitExceededException":{
@@ -1611,7 +1619,8 @@
     "NonEmptyString":{
       "type":"string",
       "max":255,
-      "min":1
+      "min":1,
+      "pattern":".+"
     },
     "NonSystemPort":{
       "type":"integer",
@@ -1716,6 +1725,8 @@
     },
     "RenderingEngineVersionType":{
       "type":"string",
+      "max":4,
+      "min":1,
       "pattern":"1.x"
     },
     "ResourceAlreadyExistsException":{
@@ -2128,6 +2139,8 @@
     },
     "SimulationSoftwareSuiteVersionType":{
       "type":"string",
+      "max":1024,
+      "min":0,
       "pattern":"7|9|Kinetic|Melodic|Dashing"
     },
     "SimulationTimeMillis":{"type":"long"},
@@ -2160,7 +2173,10 @@
       "type":"structure",
       "required":["createSimulationJobRequests"],
       "members":{
-        "clientRequestToken":{"shape":"ClientRequestToken"},
+        "clientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        },
         "batchPolicy":{"shape":"BatchPolicy"},
         "createSimulationJobRequests":{"shape":"CreateSimulationJobRequests"},
         "tags":{"shape":"TagMap"}
@@ -2373,6 +2389,8 @@
     },
     "VersionQualifier":{
       "type":"string",
+      "max":255,
+      "min":1,
       "pattern":"ALL"
     },
     "errorMessage":{"type":"string"}

@@ -358,7 +358,11 @@
     },
     "ImageFormat":{
       "type":"string",
-      "enum":["JSON"]
+      "enum":[
+        "JSON",
+        "JSONEmbedded",
+        "JSONDetached"
+      ]
     },
     "ImageFormats":{
       "type":"list",
@@ -512,7 +516,7 @@
     "Prefix":{"type":"string"},
     "ProfileName":{
       "type":"string",
-      "max":20,
+      "max":64,
       "min":2,
       "pattern":"^[a-zA-Z0-9_]{2,}"
     },
@@ -658,7 +662,8 @@
     "SigningPlatformOverrides":{
       "type":"structure",
       "members":{
-        "signingConfiguration":{"shape":"SigningConfigurationOverrides"}
+        "signingConfiguration":{"shape":"SigningConfigurationOverrides"},
+        "signingImageFormat":{"shape":"ImageFormat"}
       }
     },
     "SigningPlatforms":{

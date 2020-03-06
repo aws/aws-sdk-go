@@ -2754,6 +2754,15 @@
       "input":{"shape":"ImportVolumeRequest"},
       "output":{"shape":"ImportVolumeResult"}
     },
+    "ModifyAvailabilityZoneGroup":{
+      "name":"ModifyAvailabilityZoneGroup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyAvailabilityZoneGroupRequest"},
+      "output":{"shape":"ModifyAvailabilityZoneGroupResult"}
+    },
     "ModifyCapacityReservation":{
       "name":"ModifyCapacityReservation",
       "http":{
@@ -19650,6 +19659,34 @@
     },
     "MemorySize":{"type":"long"},
     "MillisecondDateTime":{"type":"timestamp"},
+    "ModifyAvailabilityZoneGroupRequest":{
+      "type":"structure",
+      "required":[
+        "GroupName",
+        "OptInStatus"
+      ],
+      "members":{
+        "GroupName":{"shape":"String"},
+        "OptInStatus":{"shape":"ModifyAvailabilityZoneOptInStatus"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "ModifyAvailabilityZoneGroupResult":{
+      "type":"structure",
+      "members":{
+        "Return":{
+          "shape":"Boolean",
+          "locationName":"return"
+        }
+      }
+    },
+    "ModifyAvailabilityZoneOptInStatus":{
+      "type":"string",
+      "enum":[
+        "opted-in",
+        "not-opted-in"
+      ]
+    },
     "ModifyCapacityReservationRequest":{
       "type":"structure",
       "required":["CapacityReservationId"],

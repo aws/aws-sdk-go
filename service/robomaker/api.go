@@ -5332,6 +5332,11 @@ func (s *CreateSimulationApplicationInput) Validate() error {
 	if s.Sources == nil {
 		invalidParams.Add(request.NewErrParamRequired("Sources"))
 	}
+	if s.RenderingEngine != nil {
+		if err := s.RenderingEngine.Validate(); err != nil {
+			invalidParams.AddNested("RenderingEngine", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Sources != nil {
 		for i, v := range s.Sources {
 			if v == nil {
@@ -8459,6 +8464,12 @@ type LaunchConfig struct {
 
 	// The port forwarding configuration.
 	PortForwardingConfig *PortForwardingConfig `locationName:"portForwardingConfig" type:"structure"`
+
+	// Boolean indicating whether a streaming session will be configured for the
+	// application. If True, AWS RoboMaker will configure a connection so you can
+	// interact with your application as it is running in the simulation. You must
+	// configure and luanch the component. It must have a graphical user interface.
+	StreamUI *bool `locationName:"streamUI" type:"boolean"`
 }
 
 // String returns the string representation
@@ -8519,6 +8530,12 @@ func (s *LaunchConfig) SetPackageName(v string) *LaunchConfig {
 // SetPortForwardingConfig sets the PortForwardingConfig field's value.
 func (s *LaunchConfig) SetPortForwardingConfig(v *PortForwardingConfig) *LaunchConfig {
 	s.PortForwardingConfig = v
+	return s
+}
+
+// SetStreamUI sets the StreamUI field's value.
+func (s *LaunchConfig) SetStreamUI(v bool) *LaunchConfig {
+	s.StreamUI = &v
 	return s
 }
 
@@ -8834,7 +8851,7 @@ type ListRobotApplicationsInput struct {
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	// The version qualifier of the robot application.
-	VersionQualifier *string `locationName:"versionQualifier" type:"string"`
+	VersionQualifier *string `locationName:"versionQualifier" min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -8855,6 +8872,9 @@ func (s *ListRobotApplicationsInput) Validate() error {
 	}
 	if s.NextToken != nil && len(*s.NextToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.VersionQualifier != nil && len(*s.VersionQualifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VersionQualifier", 1))
 	}
 	if s.Filters != nil {
 		for i, v := range s.Filters {
@@ -9071,7 +9091,7 @@ type ListSimulationApplicationsInput struct {
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	// The version qualifier of the simulation application.
-	VersionQualifier *string `locationName:"versionQualifier" type:"string"`
+	VersionQualifier *string `locationName:"versionQualifier" min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -9092,6 +9112,9 @@ func (s *ListSimulationApplicationsInput) Validate() error {
 	}
 	if s.NextToken != nil && len(*s.NextToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.VersionQualifier != nil && len(*s.VersionQualifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VersionQualifier", 1))
 	}
 	if s.Filters != nil {
 		for i, v := range s.Filters {
@@ -9882,7 +9905,7 @@ type RenderingEngine struct {
 	Name *string `locationName:"name" type:"string" enum:"RenderingEngineType"`
 
 	// The version of the rendering engine.
-	Version *string `locationName:"version" type:"string"`
+	Version *string `locationName:"version" min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -9893,6 +9916,19 @@ func (s RenderingEngine) String() string {
 // GoString returns the string representation
 func (s RenderingEngine) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RenderingEngine) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RenderingEngine"}
+	if s.Version != nil && len(*s.Version) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Version", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetName sets the Name field's value.
@@ -11484,7 +11520,7 @@ type StartSimulationJobBatchInput struct {
 
 	// Unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request.
-	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string"`
+	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// A list of simulation job requests to create in the batch.
 	//
@@ -12348,6 +12384,11 @@ func (s *UpdateSimulationApplicationInput) Validate() error {
 	if s.Sources == nil {
 		invalidParams.Add(request.NewErrParamRequired("Sources"))
 	}
+	if s.RenderingEngine != nil {
+		if err := s.RenderingEngine.Validate(); err != nil {
+			invalidParams.AddNested("RenderingEngine", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Sources != nil {
 		for i, v := range s.Sources {
 			if v == nil {
@@ -12650,6 +12691,9 @@ const (
 	// DeploymentJobErrorCodeGreengrassDeploymentFailed is a DeploymentJobErrorCode enum value
 	DeploymentJobErrorCodeGreengrassDeploymentFailed = "GreengrassDeploymentFailed"
 
+	// DeploymentJobErrorCodeInvalidGreengrassGroup is a DeploymentJobErrorCode enum value
+	DeploymentJobErrorCodeInvalidGreengrassGroup = "InvalidGreengrassGroup"
+
 	// DeploymentJobErrorCodeMissingRobotArchitecture is a DeploymentJobErrorCode enum value
 	DeploymentJobErrorCodeMissingRobotArchitecture = "MissingRobotArchitecture"
 
@@ -12661,6 +12705,9 @@ const (
 
 	// DeploymentJobErrorCodeGreengrassGroupVersionDoesNotExist is a DeploymentJobErrorCode enum value
 	DeploymentJobErrorCodeGreengrassGroupVersionDoesNotExist = "GreengrassGroupVersionDoesNotExist"
+
+	// DeploymentJobErrorCodeLambdaDeleted is a DeploymentJobErrorCode enum value
+	DeploymentJobErrorCodeLambdaDeleted = "LambdaDeleted"
 
 	// DeploymentJobErrorCodeExtractingBundleFailure is a DeploymentJobErrorCode enum value
 	DeploymentJobErrorCodeExtractingBundleFailure = "ExtractingBundleFailure"

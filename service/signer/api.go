@@ -1156,8 +1156,8 @@ func (c *Signer) TagResourceRequest(input *TagResourceInput) (req *request.Reque
 //
 // Adds one or more tags to a signing profile. Tags are labels that you can
 // use to identify and organize your AWS resources. Each tag consists of a key
-// and an optional value. You specify the signing profile using its Amazon Resource
-// Name (ARN). You specify the tag by using a key-value pair.
+// and an optional value. To specify the signing profile, use its Amazon Resource
+// Name (ARN). To specify the tag, use a key-value pair.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1244,8 +1244,8 @@ func (c *Signer) UntagResourceRequest(input *UntagResourceInput) (req *request.R
 
 // UntagResource API operation for AWS Signer.
 //
-// Remove one or more tags from a signing profile. Specify a list of tag keys
-// to remove the tags.
+// Removes one or more tags from a signing profile. To remove the tags, specify
+// a list of tag keys.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1523,7 +1523,7 @@ type DescribeSigningJobOutput struct {
 	// Name of the S3 bucket where the signed code image is saved by code signing.
 	SignedObject *SignedObject `locationName:"signedObject" type:"structure"`
 
-	// Amazon Resource Name (ARN) of your code signing certificate.
+	// The Amazon Resource Name (ARN) of your code signing certificate.
 	SigningMaterial *SigningMaterial `locationName:"signingMaterial" type:"structure"`
 
 	// Map of user-assigned key-value pairs used during signing. These values contain
@@ -2476,7 +2476,7 @@ type PutSigningProfileInput struct {
 	// or signing-algorithm).
 	Overrides *SigningPlatformOverrides `locationName:"overrides" type:"structure"`
 
-	// The ID of the signing profile to be created.
+	// The ID of the signing platform to be created.
 	//
 	// PlatformId is a required field
 	PlatformId *string `locationName:"platformId" type:"string" required:"true"`
@@ -2496,7 +2496,7 @@ type PutSigningProfileInput struct {
 	// you want to use during signing.
 	SigningParameters map[string]*string `locationName:"signingParameters" type:"map"`
 
-	// Tags to be associated with the signing profile being created.
+	// Tags to be associated with the signing profile that is being created.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
@@ -2824,7 +2824,7 @@ type SigningConfiguration struct {
 	// EncryptionAlgorithmOptions is a required field
 	EncryptionAlgorithmOptions *EncryptionAlgorithmOptions `locationName:"encryptionAlgorithmOptions" type:"structure" required:"true"`
 
-	// The hash algorithm options that are available for a a code signing job.
+	// The hash algorithm options that are available for a code signing job.
 	//
 	// HashAlgorithmOptions is a required field
 	HashAlgorithmOptions *HashAlgorithmOptions `locationName:"hashAlgorithmOptions" type:"structure" required:"true"`
@@ -2892,12 +2892,12 @@ func (s *SigningConfigurationOverrides) SetHashAlgorithm(v string) *SigningConfi
 type SigningImageFormat struct {
 	_ struct{} `type:"structure"`
 
-	// The default format of a code signing signing image.
+	// The default format of a code signing image.
 	//
 	// DefaultFormat is a required field
 	DefaultFormat *string `locationName:"defaultFormat" type:"string" required:"true" enum:"ImageFormat"`
 
-	// The supported formats of a code signing signing image.
+	// The supported formats of a code signing image.
 	//
 	// SupportedFormats is a required field
 	SupportedFormats []*string `locationName:"supportedFormats" type:"list" required:"true"`
@@ -3037,7 +3037,7 @@ func (s *SigningMaterial) SetCertificateArn(v string) *SigningMaterial {
 }
 
 // Contains information about the signing configurations and parameters that
-// is used to perform a code signing job.
+// are used to perform a code signing job.
 type SigningPlatform struct {
 	_ struct{} `type:"structure"`
 
@@ -3133,6 +3133,13 @@ type SigningPlatformOverrides struct {
 	// A signing configuration that overrides the default encryption or hash algorithm
 	// of a signing job.
 	SigningConfiguration *SigningConfigurationOverrides `locationName:"signingConfiguration" type:"structure"`
+
+	// A signed image is a JSON object. When overriding the default signing platform
+	// configuration, a customer can select either of two signing formats, JSONEmbedded
+	// or JSONDetached. (A third format value, JSON, is reserved for future use.)
+	// With JSONEmbedded, the signing image has the payload embedded in it. With
+	// JSONDetached, the payload is not be embedded in the signing image.
+	SigningImageFormat *string `locationName:"signingImageFormat" type:"string" enum:"ImageFormat"`
 }
 
 // String returns the string representation
@@ -3151,12 +3158,18 @@ func (s *SigningPlatformOverrides) SetSigningConfiguration(v *SigningConfigurati
 	return s
 }
 
+// SetSigningImageFormat sets the SigningImageFormat field's value.
+func (s *SigningPlatformOverrides) SetSigningImageFormat(v string) *SigningPlatformOverrides {
+	s.SigningImageFormat = &v
+	return s
+}
+
 // Contains information about the ACM certificates and code signing configuration
 // parameters that can be used by a given code signing user.
 type SigningProfile struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon Resource Name (ARN) for the signing profile.
+	// The Amazon Resource Name (ARN) for the signing profile.
 	Arn *string `locationName:"arn" type:"string"`
 
 	// The ID of a platform that is available for use by a signing profile.
@@ -3377,7 +3390,7 @@ func (s *StartSigningJobOutput) SetJobId(v string) *StartSigningJobOutput {
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon Resource Name (ARN) for the signing profile.
+	// The Amazon Resource Name (ARN) for the signing profile.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
@@ -3505,12 +3518,12 @@ func (s ThrottlingException) RequestID() string {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon Resource Name (ARN) for the signing profile .
+	// The Amazon Resource Name (ARN) for the signing profile.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 
-	// A list of tag keys to be removed from the signing profile .
+	// A list of tag keys to be removed from the signing profile.
 	//
 	// TagKeys is a required field
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" min:"1" type:"list" required:"true"`
@@ -3654,6 +3667,12 @@ const (
 const (
 	// ImageFormatJson is a ImageFormat enum value
 	ImageFormatJson = "JSON"
+
+	// ImageFormatJsonembedded is a ImageFormat enum value
+	ImageFormatJsonembedded = "JSONEmbedded"
+
+	// ImageFormatJsondetached is a ImageFormat enum value
+	ImageFormatJsondetached = "JSONDetached"
 )
 
 const (
