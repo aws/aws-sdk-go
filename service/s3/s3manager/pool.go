@@ -21,9 +21,9 @@ type maxSlicePool struct {
 	// occur.
 	allocator sliceAllocator
 
-	slices            chan *[]byte
-	allocations       chan struct{}
-	capacityAvailable chan struct{}
+	slices         chan *[]byte
+	allocations    chan struct{}
+	capacityChange chan struct{}
 
 	max       int
 	sliceSize int64
@@ -77,10 +77,7 @@ func (p *maxSlicePool) Get(ctx aws.Context) (*[]byte, error) {
 			p.mtx.RUnlock()
 
 			select {
-			case _, ok := <-p.capacityAvailable:
-				if !ok {
-					return nil, errZeroCapacity
-				}
+			case _ = <-p.capacityChange:
 				p.mtx.RLock()
 			case <-ctx.Done():
 				return nil, ctx.Err()
@@ -119,9 +116,10 @@ func (p *maxSlicePool) ModifyCapacity(delta int) {
 		return
 	}
 
-	if p.capacityAvailable == nil {
-		p.capacityAvailable = make(chan struct{})
+	if p.capacityChange != nil {
+		close(p.capacityChange)
 	}
+	p.capacityChange = make(chan struct{}, p.max)
 
 	origAllocations := p.allocations
 	p.allocations = make(chan struct{}, p.max)
@@ -129,7 +127,6 @@ func (p *maxSlicePool) ModifyCapacity(delta int) {
 	newAllocs := len(origAllocations) + delta
 	for i := 0; i < newAllocs; i++ {
 		p.allocations <- struct{}{}
-		p.notifyCapacity()
 	}
 
 	if origAllocations != nil {
@@ -146,7 +143,6 @@ func (p *maxSlicePool) ModifyCapacity(delta int) {
 	for bs := range origSlices {
 		select {
 		case p.slices <- bs:
-			p.notifyCapacity()
 		default:
 		}
 	}
@@ -154,7 +150,7 @@ func (p *maxSlicePool) ModifyCapacity(delta int) {
 
 func (p *maxSlicePool) notifyCapacity() {
 	select {
-	case p.capacityAvailable <- struct{}{}:
+	case p.capacityChange <- struct{}{}:
 	default:
 	}
 }
@@ -172,9 +168,9 @@ func (p *maxSlicePool) Close() {
 func (p *maxSlicePool) empty() {
 	p.max = 0
 
-	if p.capacityAvailable != nil {
-		close(p.capacityAvailable)
-		p.capacityAvailable = nil
+	if p.capacityChange != nil {
+		close(p.capacityChange)
+		p.capacityChange = nil
 	}
 
 	if p.allocations != nil {
