@@ -132,9 +132,6 @@ func (p *maxSlicePool) ModifyCapacity(delta int) {
 	newAllocs := len(origAllocations) + delta
 	for i := 0; i < newAllocs; i++ {
 		p.allocations <- struct{}{}
-	}
-
-	if newAllocs > 0 {
 		p.notifyCapacity()
 	}
 
