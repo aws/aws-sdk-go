@@ -267,40 +267,44 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 	{{- end }}
 
 	{{- if .EndpointDiscovery }}
-		{{- if not .EndpointDiscovery.Required }}
-			if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
-		{{- end }}
-		de := discoverer{{ .API.EndpointDiscoveryOp.Name }}{
-			Required: {{ .EndpointDiscovery.Required }},
-			EndpointCache: c.endpointCache,
-			Params: map[string]*string{
-				"op": aws.String(req.Operation.Name),
-				{{- range $key, $ref := .InputRef.Shape.MemberRefs -}}
-					{{- if $ref.EndpointDiscoveryID -}}
-						{{- if ne (len $ref.LocationName) 0 -}}
-							"{{ $ref.LocationName }}": input.{{ $key }},
-						{{- else }}
-							"{{ $key }}": input.{{ $key }},
+		// if a custom endpoint is provided for the request, 
+		// we skip endpoint discovery workflow
+		if req.Config.Endpoint == nil {
+			{{- if not .EndpointDiscovery.Required }}
+				if aws.BoolValue(req.Config.EnableEndpointDiscovery) {
+			{{- end }}
+			de := discoverer{{ .API.EndpointDiscoveryOp.Name }}{
+				Required: {{ .EndpointDiscovery.Required }},
+				EndpointCache: c.endpointCache,
+				Params: map[string]*string{
+					"op": aws.String(req.Operation.Name),
+					{{- range $key, $ref := .InputRef.Shape.MemberRefs -}}
+						{{- if $ref.EndpointDiscoveryID -}}
+							{{- if ne (len $ref.LocationName) 0 -}}
+								"{{ $ref.LocationName }}": input.{{ $key }},
+							{{- else }}
+								"{{ $key }}": input.{{ $key }},
+							{{- end }}
 						{{- end }}
 					{{- end }}
-				{{- end }}
-			},
-			Client: c,
-		}
-
-		for k, v := range de.Params {
-			if v == nil {
-				delete(de.Params, k)
+				},
+				Client: c,
 			}
-		}
 
-		req.Handlers.Build.PushFrontNamed(request.NamedHandler{
-			Name: "crr.endpointdiscovery",
-			Fn: de.Handler,
-		})
-		{{- if not .EndpointDiscovery.Required }}
+			for k, v := range de.Params {
+				if v == nil {
+					delete(de.Params, k)
+				}
 			}
-		{{- end }}
+
+			req.Handlers.Build.PushFrontNamed(request.NamedHandler{
+				Name: "crr.endpointdiscovery",
+				Fn: de.Handler,
+			})
+			{{- if not .EndpointDiscovery.Required }}
+				}
+			{{- end }}
+		}
 	{{- end }}
 
 	{{- range $_, $handler := $.CustomBuildHandlers }}
