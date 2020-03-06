@@ -21,8 +21,9 @@ type maxSlicePool struct {
 	// occur.
 	allocator sliceAllocator
 
-	slices      chan *[]byte
-	allocations chan struct{}
+	slices            chan *[]byte
+	allocations       chan struct{}
+	capacityAvailable chan struct{}
 
 	max       int
 	sliceSize int64
@@ -40,10 +41,9 @@ func newMaxSlicePool(sliceSize int64) *maxSlicePool {
 	return p
 }
 
-func (p *maxSlicePool) Get(ctx aws.Context) (*[]byte, error) {
-	p.mtx.RLock()
-	defer p.mtx.RUnlock()
+var errZeroCapacity = fmt.Errorf("get called on zero capacity pool")
 
+func (p *maxSlicePool) Get(ctx aws.Context) (*[]byte, error) {
 	// check if context is canceled before attempting to get a slice
 	// this ensures priority is given to the cancel case first
 	select {
@@ -52,17 +52,43 @@ func (p *maxSlicePool) Get(ctx aws.Context) (*[]byte, error) {
 	default:
 	}
 
-	if p.max == 0 {
-		return nil, fmt.Errorf("get called on zero capacity pool")
-	}
+	p.mtx.RLock()
 
-	select {
-	case bs := <-p.slices:
-		return bs, nil
-	case _ = <-p.allocations:
-		return p.allocator(), nil
-	case <-ctx.Done():
-		return nil, ctx.Err()
+	for {
+		select {
+		case bs, ok := <-p.slices:
+			p.mtx.RUnlock()
+			if !ok {
+				return nil, errZeroCapacity
+			}
+			return bs, nil
+		case _, ok := <-p.allocations:
+			p.mtx.RUnlock()
+			if !ok {
+				return nil, errZeroCapacity
+			}
+			return p.allocator(), nil
+		case <-ctx.Done():
+			p.mtx.RUnlock()
+			return nil, ctx.Err()
+		default:
+			if p.max == 0 {
+				p.mtx.RUnlock()
+				return nil, errZeroCapacity
+			}
+
+			p.mtx.RUnlock()
+
+			select {
+			case _, ok := <-p.capacityAvailable:
+				if !ok {
+					return nil, errZeroCapacity
+				}
+				p.mtx.RLock()
+			case <-ctx.Done():
+				return nil, ctx.Err()
+			}
+		}
 	}
 }
 
@@ -76,6 +102,7 @@ func (p *maxSlicePool) Put(bs *[]byte) {
 
 	select {
 	case p.slices <- bs:
+		p.notifyCapacity()
 	default:
 	}
 }
@@ -95,12 +122,22 @@ func (p *maxSlicePool) ModifyCapacity(delta int) {
 		return
 	}
 
+	if p.capacityAvailable == nil {
+		p.capacityAvailable = make(chan struct{})
+	}
+
 	origAllocations := p.allocations
 	p.allocations = make(chan struct{}, p.max)
 
-	for i := 0; i < len(origAllocations)+delta; i++ {
+	newAllocs := len(origAllocations) + delta
+	for i := 0; i < newAllocs; i++ {
 		p.allocations <- struct{}{}
 	}
+
+	if newAllocs > 0 {
+		p.notifyCapacity()
+	}
+
 	if origAllocations != nil {
 		close(origAllocations)
 	}
@@ -115,8 +152,16 @@ func (p *maxSlicePool) ModifyCapacity(delta int) {
 	for bs := range origSlices {
 		select {
 		case p.slices <- bs:
+			p.notifyCapacity()
 		default:
 		}
+	}
+}
+
+func (p *maxSlicePool) notifyCapacity() {
+	select {
+	case p.capacityAvailable <- struct{}{}:
+	default:
 	}
 }
 
@@ -132,6 +177,11 @@ func (p *maxSlicePool) Close() {
 
 func (p *maxSlicePool) empty() {
 	p.max = 0
+
+	if p.capacityAvailable != nil {
+		close(p.capacityAvailable)
+		p.capacityAvailable = nil
+	}
 
 	if p.allocations != nil {
 		close(p.allocations)
