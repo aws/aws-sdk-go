@@ -74,10 +74,12 @@ func (p *maxSlicePool) Get(ctx aws.Context) (*[]byte, error) {
 				return nil, errZeroCapacity
 			}
 
+			c := p.capacityChange
+
 			p.mtx.RUnlock()
 
 			select {
-			case _ = <-p.capacityChange:
+			case _ = <-c:
 				p.mtx.RLock()
 			case <-ctx.Done():
 				return nil, ctx.Err()
