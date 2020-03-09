@@ -1,3 +1,14 @@
+Release v1.29.20 (2020-03-09)
+===
+
+### Service Client Updates
+* `service/dms`: Updates service API and documentation
+  * Added new settings for Kinesis target to include detailed transaction info; to capture table DDL details; to use single-line unformatted json, which can be directly queried by AWS Athena if data is streamed into S3 through AWS Kinesis Firehose. Added CdcInsertsAndUpdates in S3 target settings to allow capture ongoing insertions and updates only.
+* `service/ec2`: Updates service API and documentation
+  * Amazon Virtual Private Cloud (VPC) NAT Gateway adds support for tagging on resource creation.
+* `service/medialive`: Updates service API and documentation
+  * AWS Elemental MediaLive now supports the ability to configure the Preferred Channel Pipeline for channels contributing to a Multiplex.
+
 Release v1.29.19 (2020-03-06)
 ===
 

@@ -46691,12 +46691,21 @@ type CreateNatGatewayInput struct {
 	// of the request. For more information, see How to Ensure Idempotency (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
 	//
 	// Constraint: Maximum 64 ASCII characters.
-	ClientToken *string `type:"string"`
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// Checks whether you have the required permissions for the action, without
+	// actually making the request, and provides an error response. If you have
+	// the required permissions, the error response is DryRunOperation. Otherwise,
+	// it is UnauthorizedOperation.
+	DryRun *bool `type:"boolean"`
 
 	// The subnet in which to create the NAT gateway.
 	//
 	// SubnetId is a required field
 	SubnetId *string `type:"string" required:"true"`
+
+	// The tags to assign to the NAT gateway.
+	TagSpecifications []*TagSpecification `locationName:"TagSpecification" locationNameList:"item" type:"list"`
 }
 
 // String returns the string representation
@@ -46737,9 +46746,21 @@ func (s *CreateNatGatewayInput) SetClientToken(v string) *CreateNatGatewayInput 
 	return s
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *CreateNatGatewayInput) SetDryRun(v bool) *CreateNatGatewayInput {
+	s.DryRun = &v
+	return s
+}
+
 // SetSubnetId sets the SubnetId field's value.
 func (s *CreateNatGatewayInput) SetSubnetId(v string) *CreateNatGatewayInput {
 	s.SubnetId = &v
+	return s
+}
+
+// SetTagSpecifications sets the TagSpecifications field's value.
+func (s *CreateNatGatewayInput) SetTagSpecifications(v []*TagSpecification) *CreateNatGatewayInput {
+	s.TagSpecifications = v
 	return s
 }
 
@@ -52137,6 +52158,12 @@ func (s *DeleteLocalGatewayRouteTableVpcAssociationOutput) SetLocalGatewayRouteT
 type DeleteNatGatewayInput struct {
 	_ struct{} `type:"structure"`
 
+	// Checks whether you have the required permissions for the action, without
+	// actually making the request, and provides an error response. If you have
+	// the required permissions, the error response is DryRunOperation. Otherwise,
+	// it is UnauthorizedOperation.
+	DryRun *bool `type:"boolean"`
+
 	// The ID of the NAT gateway.
 	//
 	// NatGatewayId is a required field
@@ -52164,6 +52191,12 @@ func (s *DeleteNatGatewayInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DeleteNatGatewayInput) SetDryRun(v bool) *DeleteNatGatewayInput {
+	s.DryRun = &v
+	return s
 }
 
 // SetNatGatewayId sets the NatGatewayId field's value.
@@ -61695,6 +61728,12 @@ func (s *DescribeMovingAddressesOutput) SetNextToken(v string) *DescribeMovingAd
 type DescribeNatGatewaysInput struct {
 	_ struct{} `type:"structure"`
 
+	// Checks whether you have the required permissions for the action, without
+	// actually making the request, and provides an error response. If you have
+	// the required permissions, the error response is DryRunOperation. Otherwise,
+	// it is UnauthorizedOperation.
+	DryRun *bool `type:"boolean"`
+
 	// One or more filters.
 	//
 	//    * nat-gateway-id - The ID of the NAT gateway.
@@ -61749,6 +61788,12 @@ func (s *DescribeNatGatewaysInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *DescribeNatGatewaysInput) SetDryRun(v bool) *DescribeNatGatewaysInput {
+	s.DryRun = &v
+	return s
 }
 
 // SetFilter sets the Filter field's value.
