@@ -56,12 +56,14 @@ func (p *maxSlicePool) Get(ctx aws.Context) (*[]byte, error) {
 		case bs, ok := <-p.slices:
 			p.mtx.RUnlock()
 			if !ok {
+				// attempt to get on a zero capacity pool
 				return nil, errZeroCapacity
 			}
 			return bs, nil
 		case _, ok := <-p.allocations:
 			p.mtx.RUnlock()
 			if !ok {
+				// attempt to get on a zero capacity pool
 				return nil, errZeroCapacity
 			}
 			return p.allocator(), nil
@@ -69,11 +71,23 @@ func (p *maxSlicePool) Get(ctx aws.Context) (*[]byte, error) {
 			p.mtx.RUnlock()
 			return nil, ctx.Err()
 		default:
+			// In the event that there are no slices or allocations available
+			// This prevents some deadlock situations that can occur around sync.RWMutex
+			// When a lock request occurs on ModifyCapacity, no new readers are allowed to acquire a read lock.
+			// By releasing the read lock here and waiting for a notification, we prevent a deadlock situation where
+			// Get could hold the read lock indefinitely waiting for capacity, ModifyCapacity is waiting for a write lock,
+			// and a Put is blocked trying to get a read-lock which is blocked by ModifyCapacity.
+
+			// Short-circuit if the pool capacity is zero.
 			if p.max == 0 {
 				p.mtx.RUnlock()
 				return nil, errZeroCapacity
 			}
 
+			// Since we will be releasing the read-lock we need to take the reference to the channel.
+			// Since channels are references we will still get notified if slices are added, or if
+			// the channel is closed due to a capacity modification. This specifically avoids a data race condition
+			// where ModifyCapacity both closes a channel and initializes a new one while we don't have a read-lock.
 			c := p.capacityChange
 
 			p.mtx.RUnlock()
@@ -100,6 +114,9 @@ func (p *maxSlicePool) Put(bs *[]byte) {
 	case p.slices <- bs:
 		p.notifyCapacity()
 	default:
+		// If the new channel when attempting to add the slice then we drop the slice.
+		// The logic here is to prevent a deadlock situation if channel is already at max capacity.
+		// Allows us to reap allocations that are returned and are no longer needed.
 	}
 }
 
@@ -146,6 +163,9 @@ func (p *maxSlicePool) ModifyCapacity(delta int) {
 		select {
 		case p.slices <- bs:
 		default:
+			// If the new channel blocks while adding slices from the old channel
+			// then we drop the slice. The logic here is to prevent a deadlock situation
+			// if the new channel has a smaller capacity then the old.
 		}
 	}
 }
@@ -154,6 +174,8 @@ func (p *maxSlicePool) notifyCapacity() {
 	select {
 	case p.capacityChange <- struct{}{}:
 	default:
+		// This *shouldn't* happen as the channel is both buffered to the max pool capacity size and is resized
+		// on capacity modifications. This is just a safety to ensure that a blocking situation can't occur.
 	}
 }
 
