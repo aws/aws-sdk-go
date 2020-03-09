@@ -121,7 +121,7 @@ func TestUploadByteSlicePool(t *testing.T) {
 			gets, allocs := atomic.LoadUint64(&p.recordedGets), atomic.LoadUint64(&p.recordedAllocs)
 
 			t.Logf("total gets %v, total allocations %v", gets, allocs)
-			if e, a := tt.ExAllocations, allocs; a <= e {
+			if e, a := tt.ExAllocations, allocs; a > e {
 				t.Errorf("expected %v allocations, got %v", e, a)
 			}
 		})
