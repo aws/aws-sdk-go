@@ -60,6 +60,24 @@ role_session_name = assume_role_w_creds_session_name
 aws_access_key_id = assume_role_w_creds_akid
 aws_secret_access_key = assume_role_w_creds_secret
 
+[assume_role_w_creds_w_duration]
+role_arn = assume_role_w_creds_role_arn
+source_profile = assume_role_w_creds_w_duration
+duration_seconds = 1800
+external_id = 1234
+role_session_name = assume_role_w_creds_session_name
+aws_access_key_id = assume_role_w_creds_akid
+aws_secret_access_key = assume_role_w_creds_secret
+
+[assume_role_w_creds_w_invalid_duration]
+role_arn = assume_role_w_creds_role_arn
+source_profile = assume_role_w_creds_w_invalid_duration
+duration_seconds = 600
+external_id = 1234
+role_session_name = assume_role_w_creds_session_name
+aws_access_key_id = assume_role_w_creds_akid
+aws_secret_access_key = assume_role_w_creds_secret
+
 [assume_role_wo_creds]
 role_arn = assume_role_wo_creds_role_arn
 source_profile = assume_role_wo_creds
