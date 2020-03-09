@@ -799,6 +799,7 @@
         "DmsTransferSettings":{"shape":"DmsTransferSettings"},
         "MongoDbSettings":{"shape":"MongoDbSettings"},
         "KinesisSettings":{"shape":"KinesisSettings"},
+        "KafkaSettings":{"shape":"KafkaSettings"},
         "ElasticsearchSettings":{"shape":"ElasticsearchSettings"},
         "RedshiftSettings":{"shape":"RedshiftSettings"}
       }
@@ -1365,6 +1366,7 @@
         "DmsTransferSettings":{"shape":"DmsTransferSettings"},
         "MongoDbSettings":{"shape":"MongoDbSettings"},
         "KinesisSettings":{"shape":"KinesisSettings"},
+        "KafkaSettings":{"shape":"KafkaSettings"},
         "ElasticsearchSettings":{"shape":"ElasticsearchSettings"},
         "RedshiftSettings":{"shape":"RedshiftSettings"}
       }
@@ -1528,6 +1530,13 @@
       },
       "exception":true
     },
+    "KafkaSettings":{
+      "type":"structure",
+      "members":{
+        "Broker":{"shape":"String"},
+        "Topic":{"shape":"String"}
+      }
+    },
     "KeyList":{
       "type":"list",
       "member":{"shape":"String"}
@@ -1537,7 +1546,12 @@
       "members":{
         "StreamArn":{"shape":"String"},
         "MessageFormat":{"shape":"MessageFormatValue"},
-        "ServiceAccessRoleArn":{"shape":"String"}
+        "ServiceAccessRoleArn":{"shape":"String"},
+        "IncludeTransactionDetails":{"shape":"BooleanOptional"},
+        "IncludePartitionValue":{"shape":"BooleanOptional"},
+        "PartitionIncludeSchemaTable":{"shape":"BooleanOptional"},
+        "IncludeTableAlterOperations":{"shape":"BooleanOptional"},
+        "IncludeControlDetails":{"shape":"BooleanOptional"}
       }
     },
     "ListTagsForResourceMessage":{
@@ -1556,7 +1570,10 @@
     "Long":{"type":"long"},
     "MessageFormatValue":{
       "type":"string",
-      "enum":["json"]
+      "enum":[
+        "json",
+        "json-unformatted"
+      ]
     },
     "MigrationTypeValue":{
       "type":"string",
@@ -1589,6 +1606,7 @@
         "DmsTransferSettings":{"shape":"DmsTransferSettings"},
         "MongoDbSettings":{"shape":"MongoDbSettings"},
         "KinesisSettings":{"shape":"KinesisSettings"},
+        "KafkaSettings":{"shape":"KafkaSettings"},
         "ElasticsearchSettings":{"shape":"ElasticsearchSettings"},
         "RedshiftSettings":{"shape":"RedshiftSettings"}
       }
@@ -2074,7 +2092,8 @@
         "IncludeOpForFullLoad":{"shape":"BooleanOptional"},
         "CdcInsertsOnly":{"shape":"BooleanOptional"},
         "TimestampColumnName":{"shape":"String"},
-        "ParquetTimestampInMillisecond":{"shape":"BooleanOptional"}
+        "ParquetTimestampInMillisecond":{"shape":"BooleanOptional"},
+        "CdcInsertsAndUpdates":{"shape":"BooleanOptional"}
       }
     },
     "SNSInvalidTopicFault":{
@@ -2222,6 +2241,9 @@
         "FullLoadRows":{"shape":"Long"},
         "FullLoadCondtnlChkFailedRows":{"shape":"Long"},
         "FullLoadErrorRows":{"shape":"Long"},
+        "FullLoadStartTime":{"shape":"TStamp"},
+        "FullLoadEndTime":{"shape":"TStamp"},
+        "FullLoadReloaded":{"shape":"BooleanOptional"},
         "LastUpdateTime":{"shape":"TStamp"},
         "TableState":{"shape":"String"},
         "ValidationPendingRecords":{"shape":"Long"},

@@ -6890,8 +6890,16 @@
       ],
       "members":{
         "AllocationId":{"shape":"AllocationId"},
-        "ClientToken":{"shape":"String"},
-        "SubnetId":{"shape":"SubnetId"}
+        "ClientToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        },
+        "DryRun":{"shape":"Boolean"},
+        "SubnetId":{"shape":"SubnetId"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        }
       }
     },
     "CreateNatGatewayResult":{
@@ -8385,6 +8393,7 @@
       "type":"structure",
       "required":["NatGatewayId"],
       "members":{
+        "DryRun":{"shape":"Boolean"},
         "NatGatewayId":{"shape":"NatGatewayId"}
       }
     },
@@ -10817,6 +10826,7 @@
     "DescribeNatGatewaysRequest":{
       "type":"structure",
       "members":{
+        "DryRun":{"shape":"Boolean"},
         "Filter":{"shape":"FilterList"},
         "MaxResults":{"shape":"DescribeNatGatewaysMaxResults"},
         "NatGatewayIds":{

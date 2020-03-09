@@ -7690,6 +7690,10 @@
     "MultiplexProgramSettings": {
       "type": "structure",
       "members": {
+        "PreferredChannelPipeline": {
+          "shape": "PreferredChannelPipeline",
+          "locationName": "preferredChannelPipeline"
+        },
         "ProgramNumber": {
           "shape": "__integerMin0Max65535",
           "locationName": "programNumber"
@@ -8184,6 +8188,14 @@
       },
       "required": [
         "PipelineId"
+      ]
+    },
+    "PreferredChannelPipeline": {
+      "type": "string",
+      "enum": [
+        "CURRENTLY_ACTIVE",
+        "PIPELINE_0",
+        "PIPELINE_1"
       ]
     },
     "PurchaseOffering": {

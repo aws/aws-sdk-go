@@ -2059,6 +2059,12 @@
         "__listOfPipelinePauseStateSettings$member": null
       }
     },
+    "PreferredChannelPipeline": {
+      "base": "Indicates which pipeline is preferred by the multiplex for program ingest.\nIf set to \\\"PIPELINE_0\\\" or \\\"PIPELINE_1\\\" and an unhealthy ingest causes the multiplex to switch to the non-preferred pipeline,\nit will switch back once that ingest is healthy again. If set to \\\"CURRENTLY_ACTIVE\\\",\nit will not switch back to the other pipeline based on it recovering to a healthy state,\nit will only switch if the active pipeline becomes unhealthy.\n",
+      "refs": {
+        "MultiplexProgramSettings$PreferredChannelPipeline": "Indicates which pipeline is preferred by the multiplex for program ingest."
+      }
+    },
     "PurchaseOffering": {
       "base": "PurchaseOffering request",
       "refs": {
