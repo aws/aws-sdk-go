@@ -15,6 +15,7 @@ go:
     - 1.11.x
     - 1.12.x
     - 1.13.x
+    - 1.14.x
     - tip
 
 matrix:
@@ -30,9 +31,9 @@ matrix:
           os: osx
     include:
         - os: windows
-          go: 1.12.x
-        - os: windows
           go: 1.13.x
+        - os: windows
+          go: 1.14.x
         - os: windows
           go: tip
 
@@ -49,8 +50,8 @@ script:
       make get-deps;
     fi;
     if [ "$TRAVIS_GO_VERSION" == "tip" ] ||
-        [ "$TRAVIS_GO_VERSION" == "1.13.x" ] ||
-        [ "$TRAVIS_GO_VERSION" == "1.12.x" ]; then
+        [ "$TRAVIS_GO_VERSION" == "1.14.x" ] ||
+        [ "$TRAVIS_GO_VERSION" == "1.13.x" ]; then
 
       if [ "$TRAVIS_OS_NAME" = "windows" ]; then
         make unit-no-verify;
