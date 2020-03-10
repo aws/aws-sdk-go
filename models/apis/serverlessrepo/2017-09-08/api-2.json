@@ -306,6 +306,28 @@
         "shape" : "ForbiddenException"
       } ]
     },
+    "UnshareApplication" : {
+      "name" : "UnshareApplication",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/applications/{applicationId}/unshare",
+        "responseCode" : 204
+      },
+      "input" : {
+        "shape" : "UnshareApplicationRequest"
+      },
+      "errors" : [ {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      }, {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "InternalServerErrorException"
+      }, {
+        "shape" : "ForbiddenException"
+      } ]
+    },
     "UpdateApplication" : {
       "name" : "UpdateApplication",
       "http" : {
@@ -451,6 +473,10 @@
         "Actions" : {
           "shape" : "__listOf__string",
           "locationName" : "actions"
+        },
+        "PrincipalOrgIDs" : {
+          "shape" : "__listOf__string",
+          "locationName" : "principalOrgIDs"
         },
         "Principals" : {
           "shape" : "__listOf__string",
@@ -1541,6 +1567,31 @@
       "error" : {
         "httpStatusCode" : 429
       }
+    },
+    "UnshareApplicationInput" : {
+      "type" : "structure",
+      "members" : {
+        "OrganizationId" : {
+          "shape" : "__string",
+          "locationName" : "organizationId"
+        }
+      },
+      "required" : [ "OrganizationId" ]
+    },
+    "UnshareApplicationRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ApplicationId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "applicationId"
+        },
+        "OrganizationId" : {
+          "shape" : "__string",
+          "locationName" : "organizationId"
+        }
+      },
+      "required" : [ "ApplicationId", "OrganizationId" ]
     },
     "UpdateApplicationInput" : {
       "type" : "structure",

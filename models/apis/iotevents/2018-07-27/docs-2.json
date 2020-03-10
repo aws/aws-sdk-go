@@ -524,7 +524,7 @@
       }
     },
     "ResetTimerAction": {
-      "base": "<p>Information needed to reset the timer.</p>",
+      "base": "<p>Information required to reset the timer. The timer is reset to the previously evaluated result of the duration. </p>",
       "refs": {
         "Action$resetTimer": "<p>Information needed to reset the timer.</p>"
       }
@@ -553,7 +553,7 @@
     "Seconds": {
       "base": null,
       "refs": {
-        "SetTimerAction$seconds": "<p>The number of seconds until the timer expires. The minimum value is 60 seconds to ensure accuracy. The maximum value is 31622400 seconds. </p>"
+        "SetTimerAction$seconds": "<p>The number of seconds until the timer expires. The minimum value is 60 seconds to ensure accuracy.</p>"
       }
     },
     "ServiceUnavailableException": {
@@ -720,7 +720,7 @@
     "UseBase64": {
       "base": null,
       "refs": {
-        "SqsAction$useBase64": "<p>Set this to TRUE if you want the data to be base-64 encoded before it is written to the queue. Otherwise, set this to FALSE.</p>"
+        "SqsAction$useBase64": "<p>Set this to TRUE if you want the data to be base-64 encoded before it is written to the queue.</p>"
       }
     },
     "VariableName": {
@@ -732,6 +732,7 @@
     "VariableValue": {
       "base": null,
       "refs": {
+        "SetTimerAction$durationExpression": "<p>The duration of the timer, in seconds. You can use a string expression that includes numbers, variables (<code>$variable.&lt;variable-name&gt;</code>), and input values (<code>$input.&lt;input-name&gt;.&lt;path-to-datum&gt;</code>) as the duration. The range of the duration is 1-31622400 seconds. To ensure accuracy, the minimum duration is 60 seconds. The evaluated result of the duration is rounded down to the nearest whole number. </p>",
         "SetVariableAction$value": "<p>The new value of the variable.</p>"
       }
     },

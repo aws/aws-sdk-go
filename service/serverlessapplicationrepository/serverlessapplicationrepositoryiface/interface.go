@@ -117,6 +117,10 @@ type ServerlessApplicationRepositoryAPI interface {
 	PutApplicationPolicyWithContext(aws.Context, *serverlessapplicationrepository.PutApplicationPolicyInput, ...request.Option) (*serverlessapplicationrepository.PutApplicationPolicyOutput, error)
 	PutApplicationPolicyRequest(*serverlessapplicationrepository.PutApplicationPolicyInput) (*request.Request, *serverlessapplicationrepository.PutApplicationPolicyOutput)
 
+	UnshareApplication(*serverlessapplicationrepository.UnshareApplicationInput) (*serverlessapplicationrepository.UnshareApplicationOutput, error)
+	UnshareApplicationWithContext(aws.Context, *serverlessapplicationrepository.UnshareApplicationInput, ...request.Option) (*serverlessapplicationrepository.UnshareApplicationOutput, error)
+	UnshareApplicationRequest(*serverlessapplicationrepository.UnshareApplicationInput) (*request.Request, *serverlessapplicationrepository.UnshareApplicationOutput)
+
 	UpdateApplication(*serverlessapplicationrepository.UpdateApplicationRequest) (*serverlessapplicationrepository.UpdateApplicationOutput, error)
 	UpdateApplicationWithContext(aws.Context, *serverlessapplicationrepository.UpdateApplicationRequest, ...request.Option) (*serverlessapplicationrepository.UpdateApplicationOutput, error)
 	UpdateApplicationRequest(*serverlessapplicationrepository.UpdateApplicationRequest) (*request.Request, *serverlessapplicationrepository.UpdateApplicationOutput)
