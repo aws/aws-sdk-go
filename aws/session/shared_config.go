@@ -75,11 +75,11 @@ type sharedConfig struct {
 	CredentialProcess    string
 	WebIdentityTokenFile string
 
-	RoleARN             string
-	RoleSessionName     string
-	ExternalID          string
-	MFASerial           string
-	RoleDurationSeconds *time.Duration
+	RoleARN            string
+	RoleSessionName    string
+	ExternalID         string
+	MFASerial          string
+	AssumeRoleDuration *time.Duration
 
 	SourceProfileName string
 	SourceProfile     *sharedConfig
@@ -279,7 +279,7 @@ func (cfg *sharedConfig) setFromIniFile(profile string, file sharedConfigFile, e
 
 		if section.Has(roleDurationSecondsKey) {
 			d := time.Duration(section.Int(roleDurationSecondsKey)) * time.Second
-			cfg.RoleDurationSeconds = &d
+			cfg.AssumeRoleDuration = &d
 		}
 
 		if v := section.String(stsRegionalEndpointSharedKey); len(v) != 0 {

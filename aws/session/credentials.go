@@ -209,9 +209,9 @@ func credsFromAssumeRole(cfg aws.Config,
 			opt.RoleSessionName = sharedCfg.RoleSessionName
 
 			if sessOpts.AssumeRoleDuration == 0 &&
-				sharedCfg.RoleDurationSeconds != nil &&
-				*sharedCfg.RoleDurationSeconds/time.Minute > 15 {
-				opt.Duration = *sharedCfg.RoleDurationSeconds
+				sharedCfg.AssumeRoleDuration != nil &&
+				*sharedCfg.AssumeRoleDuration/time.Minute > 15 {
+				opt.Duration = *sharedCfg.AssumeRoleDuration
 			} else if sessOpts.AssumeRoleDuration != 0 {
 				opt.Duration = sessOpts.AssumeRoleDuration
 			}
