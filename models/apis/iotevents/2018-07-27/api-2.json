@@ -904,7 +904,11 @@
         "targetArn":{"shape":"AmazonResourceName"}
       }
     },
-    "Seconds":{"type":"integer"},
+    "Seconds":{
+      "type":"integer",
+      "max":31622400,
+      "min":1
+    },
     "ServiceUnavailableException":{
       "type":"structure",
       "members":{
@@ -916,13 +920,15 @@
     },
     "SetTimerAction":{
       "type":"structure",
-      "required":[
-        "timerName",
-        "seconds"
-      ],
+      "required":["timerName"],
       "members":{
         "timerName":{"shape":"TimerName"},
-        "seconds":{"shape":"Seconds"}
+        "seconds":{
+          "shape":"Seconds",
+          "deprecated":true,
+          "deprecatedMessage":"seconds is deprecated. You can use durationExpression for SetTimerAction. The value of seconds can be used as a string expression for durationExpression."
+        },
+        "durationExpression":{"shape":"VariableValue"}
       }
     },
     "SetVariableAction":{

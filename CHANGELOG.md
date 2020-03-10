@@ -1,3 +1,21 @@
+Release v1.29.21 (2020-03-10)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * Documentation updates for EC2
+* `service/iotevents`: Updates service API and documentation
+* `service/marketplacecommerceanalytics`: Updates service documentation
+  * Change the disbursement data set to look past 31 days instead until the beginning of the month.
+* `service/serverlessrepo`: Updates service API and documentation
+
+### SDK Enhancements
+* `aws/credentials`: Clarify `token` usage in `NewStaticCredentials` documentation.
+  * Related to [#3162](https://github.com/aws/aws-sdk-go/issues/3162).
+* `service/s3/s3manager`: Improve memory allocation behavior by replacing sync.Pool with custom pool implementation ([#3183](https://github.com/aws/aws-sdk-go/pull/3183))
+  * Improves memory allocations that occur when the provided `io.Reader` to upload does not satisfy both the `io.ReaderAt` and `io.ReadSeeker` interfaces.
+  * Fixes [#3075](https://github.com/aws/aws-sdk-go/issues/3075)
+
 Release v1.29.20 (2020-03-09)
 ===
 
