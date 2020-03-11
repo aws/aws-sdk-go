@@ -1,3 +1,12 @@
+Release v1.29.22 (2020-03-11)
+===
+
+### Service Client Updates
+* `service/elasticfilesystem`: Updates service documentation
+  * Documentation updates for elasticfilesystem
+* `service/redshift`: Updates service API and documentation
+  * Amazon Redshift now supports operations to pause and resume a cluster on demand or on a schedule.
+
 Release v1.29.21 (2020-03-10)
 ===
 
