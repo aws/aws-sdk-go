@@ -70,6 +70,7 @@ var testDate, _ = time.Parse(time.RFC3339, "2016-05-03T17:06:26.209072Z")
 var sharedTestCases = []struct {
 	in                   *dynamodb.AttributeValue
 	actual, expected     interface{}
+	encoderOpts          func(encoder *Encoder)
 	enableEmptyString    bool
 	enableEmptyByteSlice bool
 	err                  error
@@ -326,23 +327,75 @@ var sharedTestCases = []struct {
 			Abc *time.Time `json:"abc" dynamodbav:"abc"`
 		}{Abc: &testDate},
 	},
-	24: { // empty string
-		in:                &dynamodb.AttributeValue{S: aws.String("")},
-		enableEmptyString: true,
-		actual:            new(string),
-		expected:          "",
+	24: { // empty string and NullEmptyString off
+		encoderOpts: func(encoder *Encoder) {
+			encoder.NullEmptyString = false
+		},
+		in:       &dynamodb.AttributeValue{S: aws.String("")},
+		actual:   new(string),
+		expected: "",
 	},
-	25: { // empty ptr string
-		in:                &dynamodb.AttributeValue{S: aws.String("")},
-		enableEmptyString: true,
-		actual:            new(*string),
-		expected:          "",
+	25: { // empty ptr string and NullEmptyString off
+		encoderOpts: func(encoder *Encoder) {
+			encoder.NullEmptyString = false
+		},
+		in:       &dynamodb.AttributeValue{S: aws.String("")},
+		actual:   new(*string),
+		expected: "",
 	},
-	26: { // empty byte slice
-		in:                   &dynamodb.AttributeValue{B: []byte{}},
-		enableEmptyByteSlice: true,
-		actual:               &[]byte{},
-		expected:             []byte{},
+	26: { // string set with empty string and NullEmptyString off
+		encoderOpts: func(encoder *Encoder) {
+			encoder.NullEmptyString = false
+		},
+		in: &dynamodb.AttributeValue{M: map[string]*dynamodb.AttributeValue{
+			"Value": {SS: []*string{aws.String("one"), aws.String(""), aws.String("three")}},
+		}},
+		actual: &struct {
+			Value []string `dynamodbav:",stringset"`
+		}{},
+		expected: struct {
+			Value []string `dynamodbav:",stringset"`
+		}{
+			Value: []string{"one", "", "three"},
+		},
+	},
+	27: { // empty byte slice and NullEmptyString off
+		encoderOpts: func(encoder *Encoder) {
+			encoder.NullEmptyByteSlice = false
+		},
+		in:       &dynamodb.AttributeValue{B: []byte{}},
+		actual:   &[]byte{},
+		expected: []byte{},
+	},
+	28: { // byte slice set with empty values and NullEmptyString off
+		encoderOpts: func(encoder *Encoder) {
+			encoder.NullEmptyByteSlice = false
+		},
+		in: &dynamodb.AttributeValue{M: map[string]*dynamodb.AttributeValue{"Value": {BS: [][]byte{{0x0}, {}, {0x2}}}}},
+		actual: struct {
+			Value [][]byte `dynamodbav:",binaryset"`
+		}{},
+		expected: struct {
+			Value [][]byte `dynamodbav:",binaryset"`
+		}{
+			Value: [][]byte{{0x0}, {}, {0x2}},
+		},
+	},
+	29: { // empty byte slice and NullEmptyByteSlice disabled, and omitempty
+		encoderOpts: func(encoder *Encoder) {
+			encoder.NullEmptyByteSlice = false
+		},
+		in: &dynamodb.AttributeValue{
+			NULL: aws.Bool(true),
+		},
+		actual: &struct {
+			Value []byte `dynamodbav:",omitempty"`
+		}{
+			Value: []byte{},
+		},
+		expected: &struct {
+			Value []byte `dynamodbav:",omitempty"`
+		}{},
 	},
 }
 

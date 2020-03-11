@@ -105,6 +105,7 @@ type testEmptyCollectionStructOmitted struct {
 }
 
 var sharedEmptyCollectionsTestCases = []struct {
+	encoderOpts      func(encoder *Encoder)
 	in               *dynamodb.AttributeValue
 	actual, expected interface{}
 	err              error
@@ -596,12 +597,41 @@ var sharedEmptyCollectionsTestCases = []struct {
 			InitPtrStruct: &testEmptyCollectionStructOmitted{Slice: []string{"test"}},
 		},
 	},
+	21: { // empty slice and NullEmptyByteSlice disabled
+		encoderOpts: func(encoder *Encoder) {
+			encoder.NullEmptyByteSlice = false
+		},
+		in: &dynamodb.AttributeValue{
+			B: []byte{},
+		},
+		actual:   &[]byte{},
+		expected: []byte{},
+	},
+	22: { // empty slice and NullEmptyByteSlice disabled, and omitempty
+		encoderOpts: func(encoder *Encoder) {
+			encoder.NullEmptyByteSlice = false
+		},
+		in: &dynamodb.AttributeValue{
+			M: map[string]*dynamodb.AttributeValue{},
+		},
+		actual: &struct {
+			Value []byte `dynamodbav:",omitempty"`
+		}{
+			Value: []byte{},
+		},
+		expected: &struct {
+			Value []byte `dynamodbav:",omitempty"`
+		}{},
+	},
 }
 
 func TestMarshalEmptyCollections(t *testing.T) {
 	for i, c := range sharedEmptyCollectionsTestCases {
 		encoder := NewEncoder(func(e *Encoder) {
 			e.EnableEmptyCollections = true
+			if c.encoderOpts != nil {
+				c.encoderOpts(e)
+			}
 		})
 		av, err := encoder.Encode(c.expected)
 		assertConvertTest(t, i, av, c.in, err, c.err)

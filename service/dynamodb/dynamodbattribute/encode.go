@@ -219,7 +219,7 @@ type Encoder struct {
 	// to skip empty (zero) values in lists, sets and maps.
 	//
 	// Enabled by default.
-	NullEmptyByteSlices bool
+	NullEmptyByteSlice bool
 }
 
 // NewEncoder creates a new Encoder with default configuration. Use
@@ -229,8 +229,8 @@ func NewEncoder(opts ...func(*Encoder)) *Encoder {
 		MarshalOptions: MarshalOptions{
 			SupportJSONTags: true,
 		},
-		NullEmptyString:     true,
-		NullEmptyByteSlices: true,
+		NullEmptyString:    true,
+		NullEmptyByteSlice: true,
 	}
 	for _, o := range opts {
 		o(e)
@@ -370,7 +370,7 @@ func (e *Encoder) encodeSlice(av *dynamodb.AttributeValue, v reflect.Value, fiel
 		reflect.Copy(slice, v)
 
 		b := slice.Bytes()
-		if (v.Kind() == reflect.Slice && v.IsNil()) || (len(b) == 0 && !e.EnableEmptyCollections && e.NullEmptyByteSlices) {
+		if (v.Kind() == reflect.Slice && v.IsNil()) || (len(b) == 0 && !e.EnableEmptyCollections && e.NullEmptyByteSlice) {
 			encodeNull(av)
 			return nil
 		}
