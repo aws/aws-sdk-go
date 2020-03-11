@@ -1008,7 +1008,8 @@
         {"shape":"BucketNotFoundFault"},
         {"shape":"InsufficientS3BucketPolicyFault"},
         {"shape":"InvalidS3KeyPrefixFault"},
-        {"shape":"InvalidS3BucketNameFault"}
+        {"shape":"InvalidS3BucketNameFault"},
+        {"shape":"InvalidClusterStateFault"}
       ]
     },
     "EnableSnapshotCopy":{
@@ -1150,7 +1151,8 @@
         "resultWrapper":"ModifyClusterMaintenanceResult"
       },
       "errors":[
-        {"shape":"ClusterNotFoundFault"}
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"InvalidClusterStateFault"}
       ]
     },
     "ModifyClusterParameterGroup":{
@@ -1297,6 +1299,22 @@
         {"shape":"SnapshotScheduleUpdateInProgressFault"}
       ]
     },
+    "PauseCluster":{
+      "name":"PauseCluster",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PauseClusterMessage"},
+      "output":{
+        "shape":"PauseClusterResult",
+        "resultWrapper":"PauseClusterResult"
+      },
+      "errors":[
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"InvalidClusterStateFault"}
+      ]
+    },
     "PurchaseReservedNodeOffering":{
       "name":"PurchaseReservedNodeOffering",
       "http":{
@@ -1428,6 +1446,22 @@
         {"shape":"ClusterNotFoundFault"},
         {"shape":"InvalidClusterStateFault"},
         {"shape":"UnsupportedOperationFault"}
+      ]
+    },
+    "ResumeCluster":{
+      "name":"ResumeCluster",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ResumeClusterMessage"},
+      "output":{
+        "shape":"ResumeClusterResult",
+        "resultWrapper":"ResumeClusterResult"
+      },
+      "errors":[
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"InvalidClusterStateFault"}
       ]
     },
     "RevokeClusterSecurityGroupIngress":{
@@ -4040,6 +4074,19 @@
         "locationName":"Parameter"
       }
     },
+    "PauseClusterMessage":{
+      "type":"structure",
+      "required":["ClusterIdentifier"],
+      "members":{
+        "ClusterIdentifier":{"shape":"String"}
+      }
+    },
+    "PauseClusterResult":{
+      "type":"structure",
+      "members":{
+        "Cluster":{"shape":"Cluster"}
+      }
+    },
     "PendingActionsList":{
       "type":"list",
       "member":{"shape":"String"}
@@ -4387,6 +4434,19 @@
         "TableRestoreStatus":{"shape":"TableRestoreStatus"}
       }
     },
+    "ResumeClusterMessage":{
+      "type":"structure",
+      "required":["ClusterIdentifier"],
+      "members":{
+        "ClusterIdentifier":{"shape":"String"}
+      }
+    },
+    "ResumeClusterResult":{
+      "type":"structure",
+      "members":{
+        "Cluster":{"shape":"Cluster"}
+      }
+    },
     "RevisionTarget":{
       "type":"structure",
       "members":{
@@ -4604,7 +4664,9 @@
     "ScheduledActionType":{
       "type":"structure",
       "members":{
-        "ResizeCluster":{"shape":"ResizeClusterMessage"}
+        "ResizeCluster":{"shape":"ResizeClusterMessage"},
+        "PauseCluster":{"shape":"PauseClusterMessage"},
+        "ResumeCluster":{"shape":"ResumeClusterMessage"}
       }
     },
     "ScheduledActionTypeUnsupportedFault":{
@@ -4620,7 +4682,11 @@
     },
     "ScheduledActionTypeValues":{
       "type":"string",
-      "enum":["ResizeCluster"]
+      "enum":[
+        "ResizeCluster",
+        "PauseCluster",
+        "ResumeCluster"
+      ]
     },
     "ScheduledActionsMessage":{
       "type":"structure",

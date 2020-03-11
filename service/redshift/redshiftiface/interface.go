@@ -419,6 +419,10 @@ type RedshiftAPI interface {
 	ModifySnapshotScheduleWithContext(aws.Context, *redshift.ModifySnapshotScheduleInput, ...request.Option) (*redshift.ModifySnapshotScheduleOutput, error)
 	ModifySnapshotScheduleRequest(*redshift.ModifySnapshotScheduleInput) (*request.Request, *redshift.ModifySnapshotScheduleOutput)
 
+	PauseCluster(*redshift.PauseClusterInput) (*redshift.PauseClusterOutput, error)
+	PauseClusterWithContext(aws.Context, *redshift.PauseClusterInput, ...request.Option) (*redshift.PauseClusterOutput, error)
+	PauseClusterRequest(*redshift.PauseClusterInput) (*request.Request, *redshift.PauseClusterOutput)
+
 	PurchaseReservedNodeOffering(*redshift.PurchaseReservedNodeOfferingInput) (*redshift.PurchaseReservedNodeOfferingOutput, error)
 	PurchaseReservedNodeOfferingWithContext(aws.Context, *redshift.PurchaseReservedNodeOfferingInput, ...request.Option) (*redshift.PurchaseReservedNodeOfferingOutput, error)
 	PurchaseReservedNodeOfferingRequest(*redshift.PurchaseReservedNodeOfferingInput) (*request.Request, *redshift.PurchaseReservedNodeOfferingOutput)
@@ -442,6 +446,10 @@ type RedshiftAPI interface {
 	RestoreTableFromClusterSnapshot(*redshift.RestoreTableFromClusterSnapshotInput) (*redshift.RestoreTableFromClusterSnapshotOutput, error)
 	RestoreTableFromClusterSnapshotWithContext(aws.Context, *redshift.RestoreTableFromClusterSnapshotInput, ...request.Option) (*redshift.RestoreTableFromClusterSnapshotOutput, error)
 	RestoreTableFromClusterSnapshotRequest(*redshift.RestoreTableFromClusterSnapshotInput) (*request.Request, *redshift.RestoreTableFromClusterSnapshotOutput)
+
+	ResumeCluster(*redshift.ResumeClusterInput) (*redshift.ResumeClusterOutput, error)
+	ResumeClusterWithContext(aws.Context, *redshift.ResumeClusterInput, ...request.Option) (*redshift.ResumeClusterOutput, error)
+	ResumeClusterRequest(*redshift.ResumeClusterInput) (*request.Request, *redshift.ResumeClusterOutput)
 
 	RevokeClusterSecurityGroupIngress(*redshift.RevokeClusterSecurityGroupIngressInput) (*redshift.RevokeClusterSecurityGroupIngressOutput, error)
 	RevokeClusterSecurityGroupIngressWithContext(aws.Context, *redshift.RevokeClusterSecurityGroupIngressInput, ...request.Option) (*redshift.RevokeClusterSecurityGroupIngressOutput, error)

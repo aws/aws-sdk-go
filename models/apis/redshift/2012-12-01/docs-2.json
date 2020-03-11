@@ -79,12 +79,14 @@
     "ModifyScheduledAction": "<p>Modifies a scheduled action. </p>",
     "ModifySnapshotCopyRetentionPeriod": "<p>Modifies the number of days to retain snapshots in the destination AWS Region after they are copied from the source AWS Region. By default, this operation only changes the retention period of copied automated snapshots. The retention periods for both new and existing copied automated snapshots are updated with the new retention period. You can set the manual option to change only the retention periods of copied manual snapshots. If you set this option, only newly copied manual snapshots have the new retention period. </p>",
     "ModifySnapshotSchedule": "<p>Modifies a snapshot schedule. Any schedule associated with a cluster is modified asynchronously.</p>",
+    "PauseCluster": "<p>Pauses a cluster.</p>",
     "PurchaseReservedNodeOffering": "<p>Allows you to purchase reserved nodes. Amazon Redshift offers a predefined set of reserved node offerings. You can purchase one or more of the offerings. You can call the <a>DescribeReservedNodeOfferings</a> API to obtain the available reserved node offerings. You can call this API by providing a specific reserved node offering and the number of nodes you want to reserve. </p> <p> For more information about reserved node offerings, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/purchase-reserved-node-instance.html\">Purchasing Reserved Nodes</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
     "RebootCluster": "<p>Reboots a cluster. This action is taken as soon as possible. It results in a momentary outage to the cluster, during which the cluster status is set to <code>rebooting</code>. A cluster event is created when the reboot is completed. Any pending cluster modifications (see <a>ModifyCluster</a>) are applied at this reboot. For more information about managing clusters, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html\">Amazon Redshift Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>",
     "ResetClusterParameterGroup": "<p>Sets one or more parameters of the specified parameter group to their default values and sets the source values of the parameters to \"engine-default\". To reset the entire parameter group specify the <i>ResetAllParameters</i> parameter. For parameter changes to take effect you must reboot any associated clusters. </p>",
     "ResizeCluster": "<p>Changes the size of the cluster. You can change the cluster's type, or change the number or type of nodes. The default behavior is to use the elastic resize method. With an elastic resize, your cluster is available for read and write operations more quickly than with the classic resize method. </p> <p>Elastic resize operations have the following restrictions:</p> <ul> <li> <p>You can only resize clusters of the following types:</p> <ul> <li> <p>dc2.large</p> </li> <li> <p>dc2.8xlarge</p> </li> <li> <p>ds2.xlarge</p> </li> <li> <p>ds2.8xlarge</p> </li> <li> <p>ra3.16xlarge</p> </li> </ul> </li> <li> <p>The type of nodes that you add must match the node type for the cluster.</p> </li> </ul>",
     "RestoreFromClusterSnapshot": "<p>Creates a new cluster from a snapshot. By default, Amazon Redshift creates the resulting cluster with the same configuration as the original cluster from which the snapshot was created, except that the new cluster is created with the default cluster security and parameter groups. After Amazon Redshift creates the cluster, you can use the <a>ModifyCluster</a> API to associate a different security group and different parameter group with the restored cluster. If you are using a DS node type, you can also choose to change to another DS node type of the same size during restore.</p> <p>If you restore a cluster into a VPC, you must provide a cluster subnet group where you want the cluster restored.</p> <p> For more information about working with snapshots, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html\">Amazon Redshift Snapshots</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
     "RestoreTableFromClusterSnapshot": "<p>Creates a new table from a table in an Amazon Redshift cluster snapshot. You must create the new table within the Amazon Redshift cluster that the snapshot was taken from.</p> <p>You cannot use <code>RestoreTableFromClusterSnapshot</code> to restore a table with the same name as an existing table in an Amazon Redshift cluster. That is, you cannot overwrite an existing table in a cluster with a restored table. If you want to replace your original table with a new, restored table, then rename or drop your original table before you call <code>RestoreTableFromClusterSnapshot</code>. When you have renamed your original table, then you can pass the original name of the table as the <code>NewTableName</code> parameter value in the call to <code>RestoreTableFromClusterSnapshot</code>. This way, you can replace the original table with the table created from the snapshot.</p>",
+    "ResumeCluster": "<p>Resumes a paused cluster.</p>",
     "RevokeClusterSecurityGroupIngress": "<p>Revokes an ingress rule in an Amazon Redshift security group for a previously authorized IP range or Amazon EC2 security group. To add an ingress rule, see <a>AuthorizeClusterSecurityGroupIngress</a>. For information about managing security groups, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-security-groups.html\">Amazon Redshift Cluster Security Groups</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>",
     "RevokeSnapshotAccess": "<p>Removes the ability of the specified AWS customer account to restore the specified snapshot. If the account is currently restoring the snapshot, the restore will run to completion.</p> <p> For more information about working with snapshots, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html\">Amazon Redshift Snapshots</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
     "RotateEncryptionKey": "<p>Rotates the encryption keys for a cluster.</p>"
@@ -327,9 +329,11 @@
         "ModifyClusterMaintenanceResult$Cluster": null,
         "ModifyClusterResult$Cluster": null,
         "ModifySnapshotCopyRetentionPeriodResult$Cluster": null,
+        "PauseClusterResult$Cluster": null,
         "RebootClusterResult$Cluster": null,
         "ResizeClusterResult$Cluster": null,
         "RestoreFromClusterSnapshotResult$Cluster": null,
+        "ResumeClusterResult$Cluster": null,
         "RotateEncryptionKeyResult$Cluster": null
       }
     },
@@ -1748,6 +1752,17 @@
         "ResetClusterParameterGroupMessage$Parameters": "<p>An array of names of parameters to be reset. If <i>ResetAllParameters</i> option is not used, then at least one parameter name must be supplied. </p> <p>Constraints: A maximum of 20 parameters can be reset in a single request.</p>"
       }
     },
+    "PauseClusterMessage": {
+      "base": null,
+      "refs": {
+        "ScheduledActionType$PauseCluster": "<p>An action that runs a <code>PauseCluster</code> API operation. </p>"
+      }
+    },
+    "PauseClusterResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "PendingActionsList": {
       "base": null,
       "refs": {
@@ -1927,6 +1942,17 @@
       }
     },
     "RestoreTableFromClusterSnapshotResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ResumeClusterMessage": {
+      "base": null,
+      "refs": {
+        "ScheduledActionType$ResumeCluster": "<p>An action that runs a <code>ResumeCluster</code> API operation. </p>"
+      }
+    },
+    "ResumeClusterResult": {
       "base": null,
       "refs": {
       }
@@ -2284,7 +2310,7 @@
         "CancelResizeMessage$ClusterIdentifier": "<p>The unique identifier for the cluster that you want to cancel a resize operation for.</p>",
         "Cluster$ClusterIdentifier": "<p>The unique identifier of the cluster.</p>",
         "Cluster$NodeType": "<p>The node type for the nodes in the cluster.</p>",
-        "Cluster$ClusterStatus": "<p> The current state of the cluster. Possible values are the following:</p> <ul> <li> <p> <code>available</code> </p> </li> <li> <p> <code>available, prep-for-resize</code> </p> </li> <li> <p> <code>available, resize-cleanup</code> </p> </li> <li> <p> <code>cancelling-resize</code> </p> </li> <li> <p> <code>creating</code> </p> </li> <li> <p> <code>deleting</code> </p> </li> <li> <p> <code>final-snapshot</code> </p> </li> <li> <p> <code>hardware-failure</code> </p> </li> <li> <p> <code>incompatible-hsm</code> </p> </li> <li> <p> <code>incompatible-network</code> </p> </li> <li> <p> <code>incompatible-parameters</code> </p> </li> <li> <p> <code>incompatible-restore</code> </p> </li> <li> <p> <code>modifying</code> </p> </li> <li> <p> <code>rebooting</code> </p> </li> <li> <p> <code>renaming</code> </p> </li> <li> <p> <code>resizing</code> </p> </li> <li> <p> <code>rotating-keys</code> </p> </li> <li> <p> <code>storage-full</code> </p> </li> <li> <p> <code>updating-hsm</code> </p> </li> </ul>",
+        "Cluster$ClusterStatus": "<p> The current state of the cluster. Possible values are the following:</p> <ul> <li> <p> <code>available</code> </p> </li> <li> <p> <code>available, prep-for-resize</code> </p> </li> <li> <p> <code>available, resize-cleanup</code> </p> </li> <li> <p> <code>cancelling-resize</code> </p> </li> <li> <p> <code>creating</code> </p> </li> <li> <p> <code>deleting</code> </p> </li> <li> <p> <code>final-snapshot</code> </p> </li> <li> <p> <code>hardware-failure</code> </p> </li> <li> <p> <code>incompatible-hsm</code> </p> </li> <li> <p> <code>incompatible-network</code> </p> </li> <li> <p> <code>incompatible-parameters</code> </p> </li> <li> <p> <code>incompatible-restore</code> </p> </li> <li> <p> <code>modifying</code> </p> </li> <li> <p> <code>paused</code> </p> </li> <li> <p> <code>rebooting</code> </p> </li> <li> <p> <code>renaming</code> </p> </li> <li> <p> <code>resizing</code> </p> </li> <li> <p> <code>rotating-keys</code> </p> </li> <li> <p> <code>storage-full</code> </p> </li> <li> <p> <code>updating-hsm</code> </p> </li> </ul>",
         "Cluster$ClusterAvailabilityStatus": "<p>The availability status of the cluster for queries. Possible values are the following:</p> <ul> <li> <p>Available - The cluster is available for queries. </p> </li> <li> <p>Unavailable - The cluster is not available for queries.</p> </li> <li> <p>Maintenance - The cluster is intermittently available for queries due to maintenance activities.</p> </li> <li> <p>Modifying - The cluster is intermittently available for queries due to changes that modify the cluster.</p> </li> <li> <p>Failed - The cluster failed and is not available for queries.</p> </li> </ul>",
         "Cluster$ModifyStatus": "<p>The status of a modify operation, if any, initiated for the cluster.</p>",
         "Cluster$MasterUsername": "<p>The master user name for the cluster. This name is used to connect to the database that is specified in the <b>DBName</b> parameter. </p>",
@@ -2577,6 +2603,7 @@
         "Parameter$DataType": "<p>The data type of the parameter.</p>",
         "Parameter$AllowedValues": "<p>The valid range of values for the parameter.</p>",
         "Parameter$MinimumEngineVersion": "<p>The earliest engine version to which the parameter can apply.</p>",
+        "PauseClusterMessage$ClusterIdentifier": "<p>The identifier of the cluster to be paused.</p>",
         "PendingActionsList$member": null,
         "PendingModifiedValues$MasterUserPassword": "<p>The pending or in-progress change of the master user password for the cluster.</p>",
         "PendingModifiedValues$NodeType": "<p>The pending or in-progress change of the cluster's node type.</p>",
@@ -2637,6 +2664,7 @@
         "RestoreTableFromClusterSnapshotMessage$TargetDatabaseName": "<p>The name of the database to restore the table to.</p>",
         "RestoreTableFromClusterSnapshotMessage$TargetSchemaName": "<p>The name of the schema to restore the table to.</p>",
         "RestoreTableFromClusterSnapshotMessage$NewTableName": "<p>The name of the table to create as a result of the current request.</p>",
+        "ResumeClusterMessage$ClusterIdentifier": "<p>The identifier of the cluster to be resumed.</p>",
         "RevisionTarget$DatabaseRevision": "<p>A unique string that identifies the version to update the cluster to. You can use this value in <a>ModifyClusterDbRevision</a>.</p>",
         "RevisionTarget$Description": "<p>A string that describes the changes and features that will be applied to the cluster when it is updated to the corresponding <a>ClusterDbRevision</a>.</p>",
         "RevokeClusterSecurityGroupIngressMessage$ClusterSecurityGroupName": "<p>The name of the security Group from which to revoke the ingress rule.</p>",
