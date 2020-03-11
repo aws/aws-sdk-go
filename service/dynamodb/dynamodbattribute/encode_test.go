@@ -18,7 +18,11 @@ func TestMarshalErrorTypes(t *testing.T) {
 
 func TestMarshalShared(t *testing.T) {
 	for i, c := range sharedTestCases {
-		av, err := Marshal(c.expected)
+		e := NewEncoder(func(encoder *Encoder) {
+			encoder.NullEmptyString = !c.enableEmptyString
+			encoder.NullEmptyByteSlices = !c.enableEmptyByteSlice
+		})
+		av, err := e.Encode(c.expected)
 		assertConvertTest(t, i, av, c.in, err, c.err)
 	}
 }
