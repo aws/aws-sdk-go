@@ -35,8 +35,8 @@
     "CreateScheduledAudit": "<p>Creates a scheduled audit that is run at a specified time interval.</p>",
     "CreateSecurityProfile": "<p>Creates a Device Defender security profile.</p>",
     "CreateStream": "<p>Creates a stream for delivering one or more large files in chunks over MQTT. A stream transports data bytes in chunks or blocks packaged as MQTT messages from a source like S3. You can have one or more files associated with a stream.</p>",
-    "CreateThing": "<p>Creates a thing record in the registry. If this call is made multiple times using the same thing name and configuration, the call will succeed. If this call is made with the same thing name but different configuration a <code>ResourceAlreadyExistsException</code> is thrown.</p> <note> <p>This is a control plane operation. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/authorization.html\">Authorization</a> for information about authorizing control plane actions.</p> </note>",
-    "CreateThingGroup": "<p>Create a thing group.</p> <note> <p>This is a control plane operation. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/authorization.html\">Authorization</a> for information about authorizing control plane actions.</p> </note>",
+    "CreateThing": "<p>Creates a thing record in the registry. If this call is made multiple times using the same thing name and configuration, the call will succeed. If this call is made with the same thing name but different configuration a <code>ResourceAlreadyExistsException</code> is thrown.</p> <note> <p>This is a control plane operation. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/iot-authorization.html\">Authorization</a> for information about authorizing control plane actions.</p> </note>",
+    "CreateThingGroup": "<p>Create a thing group.</p> <note> <p>This is a control plane operation. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/iot-authorization.html\">Authorization</a> for information about authorizing control plane actions.</p> </note>",
     "CreateThingType": "<p>Creates a new thing type.</p>",
     "CreateTopicRule": "<p>Creates a rule. Creating rules is an administrator-level action. Any user who has permission to create rules will be able to access data processed by the rule.</p>",
     "CreateTopicRuleDestination": "<p>Creates a topic rule destination. The destination must be confirmed prior to use.</p>",
@@ -921,6 +921,7 @@
       "base": null,
       "refs": {
         "CloudwatchAlarmAction$roleArn": "<p>The IAM role that allows access to the CloudWatch alarm.</p>",
+        "CloudwatchLogsAction$roleArn": "<p>The IAM role that allows access to the CloudWatch log.</p>",
         "CloudwatchMetricAction$roleArn": "<p>The IAM role that allows access to the CloudWatch metric.</p>",
         "DeleteTopicRuleDestinationRequest$arn": "<p>The ARN of the topic rule destination to delete.</p>",
         "DynamoDBAction$roleArn": "<p>The ARN of the IAM role that grants access to the DynamoDB table.</p>",
@@ -1302,7 +1303,7 @@
         "Certificate$status": "<p>The status of the certificate.</p> <p>The status value REGISTER_INACTIVE is deprecated and should not be used.</p>",
         "CertificateDescription$status": "<p>The status of the certificate.</p>",
         "RegisterCertificateRequest$status": "<p>The status of the register certificate request.</p>",
-        "UpdateCertificateRequest$newStatus": "<p>The new status.</p> <p> <b>Note:</b> Setting the status to PENDING_TRANSFER will result in an exception being thrown. PENDING_TRANSFER is a status used internally by AWS IoT. It is not intended for developer use.</p> <p> <b>Note:</b> The status value REGISTER_INACTIVE is deprecated and should not be used.</p>"
+        "UpdateCertificateRequest$newStatus": "<p>The new status.</p> <p> <b>Note:</b> Setting the status to PENDING_TRANSFER or PENDING_ACTIVATION will result in an exception being thrown. PENDING_TRANSFER and PENDING_ACTIVATION are statuses used internally by AWS IoT. They are not intended for developer use.</p> <p> <b>Note:</b> The status value REGISTER_INACTIVE is deprecated and should not be used.</p>"
       }
     },
     "CertificateValidationException": {
@@ -1376,6 +1377,12 @@
       "base": "<p>Describes an action that updates a CloudWatch alarm.</p>",
       "refs": {
         "Action$cloudwatchAlarm": "<p>Change the state of a CloudWatch alarm.</p>"
+      }
+    },
+    "CloudwatchLogsAction": {
+      "base": "<p>Describes an action that sends data to CloudWatch logs.</p>",
+      "refs": {
+        "Action$cloudwatchLogs": "<p>Send data to CloudWatch logs.</p>"
       }
     },
     "CloudwatchMetricAction": {
@@ -2619,7 +2626,7 @@
     "EndpointType": {
       "base": null,
       "refs": {
-        "DescribeEndpointRequest$endpointType": "<p>The endpoint type. Valid endpoint types include:</p> <ul> <li> <p> <code>iot:Data</code> - Returns a VeriSign signed data endpoint.</p> </li> </ul> <ul> <li> <p> <code>iot:Data-ATS</code> - Returns an ATS signed data endpoint.</p> </li> </ul> <ul> <li> <p> <code>iot:CredentialProvider</code> - Returns an AWS IoT credentials provider API endpoint.</p> </li> </ul> <ul> <li> <p> <code>iot:Jobs</code> - Returns an AWS IoT device management Jobs API endpoint.</p> </li> </ul>"
+        "DescribeEndpointRequest$endpointType": "<p>The endpoint type. Valid endpoint types include:</p> <ul> <li> <p> <code>iot:Data</code> - Returns a VeriSign signed data endpoint.</p> </li> </ul> <ul> <li> <p> <code>iot:Data-ATS</code> - Returns an ATS signed data endpoint.</p> </li> </ul> <ul> <li> <p> <code>iot:CredentialProvider</code> - Returns an AWS IoT credentials provider API endpoint.</p> </li> </ul> <ul> <li> <p> <code>iot:Jobs</code> - Returns an AWS IoT device management Jobs API endpoint.</p> </li> </ul> <p>We strongly recommend that customers use the newer <code>iot:Data-ATS</code> endpoint type to avoid issues related to the widespread distrust of Symantec certificate authorities.</p>"
       }
     },
     "ErrorCode": {
@@ -3954,6 +3961,12 @@
     "ListViolationEventsResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "LogGroupName": {
+      "base": null,
+      "refs": {
+        "CloudwatchLogsAction$logGroupName": "<p>The CloudWatch log group to which the action sends data.</p>"
       }
     },
     "LogLevel": {
@@ -6040,7 +6053,7 @@
         "DescribeProvisioningTemplateResponse$templateBody": "<p>The JSON formatted contents of the fleet provisioning template.</p>",
         "DescribeProvisioningTemplateVersionResponse$templateBody": "<p>The JSON formatted contents of the fleet provisioning template version.</p>",
         "DescribeThingRegistrationTaskResponse$templateBody": "<p>The task's template.</p>",
-        "RegisterThingRequest$templateBody": "<p>The provisioning template. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/programmatic-provisioning.html\">Programmatic Provisioning</a> for more information.</p>",
+        "RegisterThingRequest$templateBody": "<p>The provisioning template. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/provision-w-cert.html\">Provisioning Devices That Have Device Certificates</a> for more information.</p>",
         "RegistrationConfig$templateBody": "<p>The template body.</p>",
         "StartThingRegistrationTaskRequest$templateBody": "<p>The provisioning template.</p>"
       }

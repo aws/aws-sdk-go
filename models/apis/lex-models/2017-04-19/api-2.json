@@ -515,6 +515,22 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"GET",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "PutBot":{
       "name":"PutBot",
       "http":{
@@ -597,6 +613,40 @@
         {"shape":"InternalFailureException"},
         {"shape":"BadRequestException"}
       ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":204
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":204
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"LimitExceededException"}
+      ]
     }
   },
   "shapes":{
@@ -611,6 +661,11 @@
       "max":100,
       "min":1,
       "pattern":"^(-|^([A-Za-z]_?)+$)$"
+    },
+    "AmazonResourceName":{
+      "type":"string",
+      "max":1011,
+      "min":1
     },
     "BadRequestException":{
       "type":"structure",
@@ -1821,6 +1876,23 @@
       "type":"list",
       "member":{"shape":"UtteranceData"}
     },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "resourceArn":{
+          "shape":"AmazonResourceName",
+          "location":"uri",
+          "locationName":"resourceArn"
+        }
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "tags":{"shape":"TagList"}
+      }
+    },
     "ListsOfUtterances":{
       "type":"list",
       "member":{"shape":"UtteranceList"}
@@ -1998,7 +2070,8 @@
           "locationName":"botName"
         },
         "checksum":{"shape":"String"},
-        "conversationLogs":{"shape":"ConversationLogsRequest"}
+        "conversationLogs":{"shape":"ConversationLogsRequest"},
+        "tags":{"shape":"TagList"}
       }
     },
     "PutBotAliasResponse":{
@@ -2011,7 +2084,8 @@
         "lastUpdatedDate":{"shape":"Timestamp"},
         "createdDate":{"shape":"Timestamp"},
         "checksum":{"shape":"String"},
-        "conversationLogs":{"shape":"ConversationLogsResponse"}
+        "conversationLogs":{"shape":"ConversationLogsResponse"},
+        "tags":{"shape":"TagList"}
       }
     },
     "PutBotRequest":{
@@ -2038,7 +2112,8 @@
         "locale":{"shape":"Locale"},
         "childDirected":{"shape":"Boolean"},
         "detectSentiment":{"shape":"Boolean"},
-        "createVersion":{"shape":"Boolean"}
+        "createVersion":{"shape":"Boolean"},
+        "tags":{"shape":"TagList"}
       }
     },
     "PutBotResponse":{
@@ -2060,7 +2135,8 @@
         "locale":{"shape":"Locale"},
         "childDirected":{"shape":"Boolean"},
         "createVersion":{"shape":"Boolean"},
-        "detectSentiment":{"shape":"Boolean"}
+        "detectSentiment":{"shape":"Boolean"},
+        "tags":{"shape":"TagList"}
       }
     },
     "PutIntentRequest":{
@@ -2299,7 +2375,8 @@
       "members":{
         "payload":{"shape":"Blob"},
         "resourceType":{"shape":"ResourceType"},
-        "mergeStrategy":{"shape":"MergeStrategy"}
+        "mergeStrategy":{"shape":"MergeStrategy"},
+        "tags":{"shape":"TagList"}
       }
     },
     "StartImportResponse":{
@@ -2310,6 +2387,7 @@
         "mergeStrategy":{"shape":"MergeStrategy"},
         "importId":{"shape":"String"},
         "importStatus":{"shape":"ImportStatus"},
+        "tags":{"shape":"TagList"},
         "createdDate":{"shape":"Timestamp"}
       }
     },
@@ -2347,7 +2425,84 @@
       "type":"list",
       "member":{"shape":"Value"}
     },
+    "Tag":{
+      "type":"structure",
+      "required":[
+        "key",
+        "value"
+      ],
+      "members":{
+        "key":{"shape":"TagKey"},
+        "value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":200,
+      "min":0
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"},
+      "max":200,
+      "min":0
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tags"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"AmazonResourceName",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "tags":{"shape":"TagList"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
     "Timestamp":{"type":"timestamp"},
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tagKeys"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"AmazonResourceName",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "tagKeys":{
+          "shape":"TagKeyList",
+          "location":"querystring",
+          "locationName":"tagKeys"
+        }
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UserId":{
       "type":"string",
       "max":100,

@@ -266,6 +266,41 @@
         "shape" : "ConflictException"
       } ]
     },
+    "CreateVpcLink" : {
+      "name" : "CreateVpcLink",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/v2/vpclinks",
+        "responseCode" : 201
+      },
+      "input" : {
+        "shape" : "CreateVpcLinkRequest"
+      },
+      "output" : {
+        "shape" : "CreateVpcLinkResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
+    },
+    "DeleteAccessLogSettings" : {
+      "name" : "DeleteAccessLogSettings",
+      "http" : {
+        "method" : "DELETE",
+        "requestUri" : "/v2/apis/{apiId}/stages/{stageName}/accesslogsettings",
+        "responseCode" : 204
+      },
+      "input" : {
+        "shape" : "DeleteAccessLogSettingsRequest"
+      },
+      "errors" : [ {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
+    },
     "DeleteApi" : {
       "name" : "DeleteApi",
       "http" : {
@@ -428,6 +463,22 @@
         "shape" : "TooManyRequestsException"
       } ]
     },
+    "DeleteRouteRequestParameter" : {
+      "name" : "DeleteRouteRequestParameter",
+      "http" : {
+        "method" : "DELETE",
+        "requestUri" : "/v2/apis/{apiId}/routes/{routeId}/requestparameters/{requestParameterKey}",
+        "responseCode" : 204
+      },
+      "input" : {
+        "shape" : "DeleteRouteRequestParameterRequest"
+      },
+      "errors" : [ {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
+    },
     "DeleteRouteResponse" : {
       "name" : "DeleteRouteResponse",
       "http" : {
@@ -469,6 +520,25 @@
       },
       "input" : {
         "shape" : "DeleteStageRequest"
+      },
+      "errors" : [ {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
+    },
+    "DeleteVpcLink" : {
+      "name" : "DeleteVpcLink",
+      "http" : {
+        "method" : "DELETE",
+        "requestUri" : "/v2/vpclinks/{vpcLinkId}",
+        "responseCode" : 202
+      },
+      "input" : {
+        "shape" : "DeleteVpcLinkRequest"
+      },
+      "output" : {
+        "shape" : "DeleteVpcLinkResponse"
       },
       "errors" : [ {
         "shape" : "NotFoundException"
@@ -960,6 +1030,44 @@
         "shape" : "ConflictException"
       } ]
     },
+    "GetVpcLink" : {
+      "name" : "GetVpcLink",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/v2/vpclinks/{vpcLinkId}",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "GetVpcLinkRequest"
+      },
+      "output" : {
+        "shape" : "GetVpcLinkResponse"
+      },
+      "errors" : [ {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
+    },
+    "GetVpcLinks" : {
+      "name" : "GetVpcLinks",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/v2/vpclinks",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "GetVpcLinksRequest"
+      },
+      "output" : {
+        "shape" : "GetVpcLinksResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
+    },
     "ImportApi" : {
       "name" : "ImportApi",
       "http" : {
@@ -1300,6 +1408,27 @@
         "shape" : "BadRequestException"
       }, {
         "shape" : "ConflictException"
+      } ]
+    },
+    "UpdateVpcLink" : {
+      "name" : "UpdateVpcLink",
+      "http" : {
+        "method" : "PATCH",
+        "requestUri" : "/v2/vpclinks/{vpcLinkId}",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "UpdateVpcLinkRequest"
+      },
+      "output" : {
+        "shape" : "UpdateVpcLinkResponse"
+      },
+      "errors" : [ {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      }, {
+        "shape" : "BadRequestException"
       } ]
     }
   },
@@ -2122,6 +2251,10 @@
         "TimeoutInMillis" : {
           "shape" : "IntegerWithLengthBetween50And29000",
           "locationName" : "timeoutInMillis"
+        },
+        "TlsConfig" : {
+          "shape" : "TlsConfigInput",
+          "locationName" : "tlsConfig"
         }
       },
       "required" : [ "IntegrationType" ]
@@ -2189,6 +2322,10 @@
         "TimeoutInMillis" : {
           "shape" : "IntegerWithLengthBetween50And29000",
           "locationName" : "timeoutInMillis"
+        },
+        "TlsConfig" : {
+          "shape" : "TlsConfigInput",
+          "locationName" : "tlsConfig"
         }
       },
       "required" : [ "ApiId", "IntegrationType" ]
@@ -2263,6 +2400,10 @@
         "TimeoutInMillis" : {
           "shape" : "IntegerWithLengthBetween50And29000",
           "locationName" : "timeoutInMillis"
+        },
+        "TlsConfig" : {
+          "shape" : "TlsConfig",
+          "locationName" : "tlsConfig"
         }
       }
     },
@@ -2830,6 +2971,107 @@
         }
       }
     },
+    "CreateVpcLinkInput" : {
+      "type" : "structure",
+      "members" : {
+        "Name" : {
+          "shape" : "StringWithLengthBetween1And128",
+          "locationName" : "name"
+        },
+        "SecurityGroupIds" : {
+          "shape" : "SecurityGroupIdList",
+          "locationName" : "securityGroupIds"
+        },
+        "SubnetIds" : {
+          "shape" : "SubnetIdList",
+          "locationName" : "subnetIds"
+        },
+        "Tags" : {
+          "shape" : "Tags",
+          "locationName" : "tags"
+        }
+      },
+      "required" : [ "SubnetIds", "Name" ]
+    },
+    "CreateVpcLinkRequest" : {
+      "type" : "structure",
+      "members" : {
+        "Name" : {
+          "shape" : "StringWithLengthBetween1And128",
+          "locationName" : "name"
+        },
+        "SecurityGroupIds" : {
+          "shape" : "SecurityGroupIdList",
+          "locationName" : "securityGroupIds"
+        },
+        "SubnetIds" : {
+          "shape" : "SubnetIdList",
+          "locationName" : "subnetIds"
+        },
+        "Tags" : {
+          "shape" : "Tags",
+          "locationName" : "tags"
+        }
+      },
+      "required" : [ "SubnetIds", "Name" ]
+    },
+    "CreateVpcLinkResponse" : {
+      "type" : "structure",
+      "members" : {
+        "CreatedDate" : {
+          "shape" : "__timestampIso8601",
+          "locationName" : "createdDate"
+        },
+        "Name" : {
+          "shape" : "StringWithLengthBetween1And128",
+          "locationName" : "name"
+        },
+        "SecurityGroupIds" : {
+          "shape" : "SecurityGroupIdList",
+          "locationName" : "securityGroupIds"
+        },
+        "SubnetIds" : {
+          "shape" : "SubnetIdList",
+          "locationName" : "subnetIds"
+        },
+        "Tags" : {
+          "shape" : "Tags",
+          "locationName" : "tags"
+        },
+        "VpcLinkId" : {
+          "shape" : "Id",
+          "locationName" : "vpcLinkId"
+        },
+        "VpcLinkStatus" : {
+          "shape" : "VpcLinkStatus",
+          "locationName" : "vpcLinkStatus"
+        },
+        "VpcLinkStatusMessage" : {
+          "shape" : "StringWithLengthBetween0And1024",
+          "locationName" : "vpcLinkStatusMessage"
+        },
+        "VpcLinkVersion" : {
+          "shape" : "VpcLinkVersion",
+          "locationName" : "vpcLinkVersion"
+        }
+      }
+    },
+    "DeleteAccessLogSettingsRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ApiId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "apiId"
+        },
+        "StageName" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "stageName"
+        }
+      },
+      "required" : [ "StageName", "ApiId" ]
+    },
     "DeleteApiMappingRequest" : {
       "type" : "structure",
       "members" : {
@@ -2980,6 +3222,27 @@
       },
       "required" : [ "ApiId", "RouteId" ]
     },
+    "DeleteRouteRequestParameterRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ApiId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "apiId"
+        },
+        "RequestParameterKey" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "requestParameterKey"
+        },
+        "RouteId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "routeId"
+        }
+      },
+      "required" : [ "RequestParameterKey", "ApiId", "RouteId" ]
+    },
     "DeleteRouteResponseRequest" : {
       "type" : "structure",
       "members" : {
@@ -3010,7 +3273,7 @@
           "locationName" : "apiId"
         },
         "RouteKey" : {
-          "shape" : "SelectionKey",
+          "shape" : "__string",
           "location" : "uri",
           "locationName" : "routeKey"
         },
@@ -3020,7 +3283,7 @@
           "locationName" : "stageName"
         }
       },
-      "required" : [ "StageName", "ApiId", "RouteKey" ]
+      "required" : [ "StageName", "RouteKey", "ApiId" ]
     },
     "DeleteStageRequest" : {
       "type" : "structure",
@@ -3037,6 +3300,21 @@
         }
       },
       "required" : [ "StageName", "ApiId" ]
+    },
+    "DeleteVpcLinkRequest" : {
+      "type" : "structure",
+      "members" : {
+        "VpcLinkId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "vpcLinkId"
+        }
+      },
+      "required" : [ "VpcLinkId" ]
+    },
+    "DeleteVpcLinkResponse" : {
+      "type" : "structure",
+      "members" : { }
     },
     "Deployment" : {
       "type" : "structure",
@@ -3661,6 +3939,10 @@
         "TimeoutInMillis" : {
           "shape" : "IntegerWithLengthBetween50And29000",
           "locationName" : "timeoutInMillis"
+        },
+        "TlsConfig" : {
+          "shape" : "TlsConfig",
+          "locationName" : "tlsConfig"
         }
       }
     },
@@ -4206,10 +4488,89 @@
       "members" : {
         "Tags" : {
           "shape" : "Tags",
-          "locationName" : "tags"
+          "locationName": "tags"
+        }
+      }
+    },
+    "GetVpcLinkRequest" : {
+      "type" : "structure",
+      "members" : {
+        "VpcLinkId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "vpcLinkId"
         }
       },
-      "required" : [ "Tags" ]
+      "required" : [ "VpcLinkId" ]
+    },
+    "GetVpcLinkResponse" : {
+      "type" : "structure",
+      "members" : {
+        "CreatedDate" : {
+          "shape" : "__timestampIso8601",
+          "locationName" : "createdDate"
+        },
+        "Name" : {
+          "shape" : "StringWithLengthBetween1And128",
+          "locationName" : "name"
+        },
+        "SecurityGroupIds" : {
+          "shape" : "SecurityGroupIdList",
+          "locationName" : "securityGroupIds"
+        },
+        "SubnetIds" : {
+          "shape" : "SubnetIdList",
+          "locationName" : "subnetIds"
+        },
+        "Tags" : {
+          "shape" : "Tags",
+          "locationName" : "tags"
+        },
+        "VpcLinkId" : {
+          "shape" : "Id",
+          "locationName" : "vpcLinkId"
+        },
+        "VpcLinkStatus" : {
+          "shape" : "VpcLinkStatus",
+          "locationName" : "vpcLinkStatus"
+        },
+        "VpcLinkStatusMessage" : {
+          "shape" : "StringWithLengthBetween0And1024",
+          "locationName" : "vpcLinkStatusMessage"
+        },
+        "VpcLinkVersion" : {
+          "shape" : "VpcLinkVersion",
+          "locationName" : "vpcLinkVersion"
+        }
+      }
+    },
+    "GetVpcLinksRequest" : {
+      "type" : "structure",
+      "members" : {
+        "MaxResults" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "maxResults"
+        },
+        "NextToken" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "nextToken"
+        }
+      }
+    },
+    "GetVpcLinksResponse" : {
+      "type" : "structure",
+      "members" : {
+        "Items" : {
+          "shape" : "__listOfVpcLink",
+          "locationName" : "items"
+        },
+        "NextToken" : {
+          "shape" : "NextToken",
+          "locationName" : "nextToken"
+        }
+      }
     },
     "Id" : {
       "type" : "string"
@@ -4396,6 +4757,10 @@
         "TimeoutInMillis" : {
           "shape" : "IntegerWithLengthBetween50And29000",
           "locationName" : "timeoutInMillis"
+        },
+        "TlsConfig" : {
+          "shape" : "TlsConfig",
+          "locationName" : "tlsConfig"
         }
       }
     },
@@ -4496,7 +4861,7 @@
     },
     "LoggingLevel" : {
       "type" : "string",
-      "enum" : [ "ERROR", "INFO", "false" ]
+      "enum" : [ "ERROR", "INFO", "OFF" ]
     },
     "Model" : {
       "type" : "structure",
@@ -4832,6 +5197,12 @@
         }
       }
     },
+    "SecurityGroupIdList" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "__string"
+      }
+    },
     "SecurityPolicy" : {
       "type" : "string",
       "enum" : [ "TLS_1_0", "TLS_1_2" ]
@@ -4953,6 +5324,12 @@
     "StringWithLengthBetween1And64" : {
       "type" : "string"
     },
+    "SubnetIdList" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "__string"
+      }
+    },
     "TagResourceInput" : {
       "type" : "structure",
       "members" : {
@@ -5006,6 +5383,24 @@
       },
       "value" : {
         "shape" : "StringWithLengthBetween0And32K"
+      }
+    },
+    "TlsConfig" : {
+      "type" : "structure",
+      "members" : {
+        "ServerNameToVerify" : {
+          "shape" : "StringWithLengthBetween1And512",
+          "locationName" : "serverNameToVerify"
+        }
+      }
+    },
+    "TlsConfigInput" : {
+      "type" : "structure",
+      "members" : {
+        "ServerNameToVerify" : {
+          "shape" : "StringWithLengthBetween1And512",
+          "locationName" : "serverNameToVerify"
+        }
       }
     },
     "TooManyRequestsException" : {
@@ -5551,6 +5946,10 @@
         "TimeoutInMillis" : {
           "shape" : "IntegerWithLengthBetween50And29000",
           "locationName" : "timeoutInMillis"
+        },
+        "TlsConfig" : {
+          "shape" : "TlsConfigInput",
+          "locationName" : "tlsConfig"
         }
       }
     },
@@ -5622,6 +6021,10 @@
         "TimeoutInMillis" : {
           "shape" : "IntegerWithLengthBetween50And29000",
           "locationName" : "timeoutInMillis"
+        },
+        "TlsConfig" : {
+          "shape" : "TlsConfigInput",
+          "locationName" : "tlsConfig"
         }
       },
       "required" : [ "ApiId", "IntegrationId" ]
@@ -5696,6 +6099,10 @@
         "TimeoutInMillis" : {
           "shape" : "IntegerWithLengthBetween50And29000",
           "locationName" : "timeoutInMillis"
+        },
+        "TlsConfig" : {
+          "shape" : "TlsConfig",
+          "locationName" : "tlsConfig"
         }
       }
     },
@@ -6267,8 +6674,136 @@
         }
       }
     },
+    "UpdateVpcLinkInput" : {
+      "type" : "structure",
+      "members" : {
+        "Name" : {
+          "shape" : "StringWithLengthBetween1And128",
+          "locationName" : "name"
+        }
+      }
+    },
+    "UpdateVpcLinkRequest" : {
+      "type" : "structure",
+      "members" : {
+        "Name" : {
+          "shape" : "StringWithLengthBetween1And128",
+          "locationName" : "name"
+        },
+        "VpcLinkId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "vpcLinkId"
+        }
+      },
+      "required" : [ "VpcLinkId" ]
+    },
+    "UpdateVpcLinkResponse" : {
+      "type" : "structure",
+      "members" : {
+        "CreatedDate" : {
+          "shape" : "__timestampIso8601",
+          "locationName" : "createdDate"
+        },
+        "Name" : {
+          "shape" : "StringWithLengthBetween1And128",
+          "locationName" : "name"
+        },
+        "SecurityGroupIds" : {
+          "shape" : "SecurityGroupIdList",
+          "locationName" : "securityGroupIds"
+        },
+        "SubnetIds" : {
+          "shape" : "SubnetIdList",
+          "locationName" : "subnetIds"
+        },
+        "Tags" : {
+          "shape" : "Tags",
+          "locationName" : "tags"
+        },
+        "VpcLinkId" : {
+          "shape" : "Id",
+          "locationName" : "vpcLinkId"
+        },
+        "VpcLinkStatus" : {
+          "shape" : "VpcLinkStatus",
+          "locationName" : "vpcLinkStatus"
+        },
+        "VpcLinkStatusMessage" : {
+          "shape" : "StringWithLengthBetween0And1024",
+          "locationName" : "vpcLinkStatusMessage"
+        },
+        "VpcLinkVersion" : {
+          "shape" : "VpcLinkVersion",
+          "locationName" : "vpcLinkVersion"
+        }
+      }
+    },
     "UriWithLengthBetween1And2048" : {
       "type" : "string"
+    },
+    "VpcLink" : {
+      "type" : "structure",
+      "members" : {
+        "CreatedDate" : {
+          "shape" : "__timestampIso8601",
+          "locationName" : "createdDate"
+        },
+        "Name" : {
+          "shape" : "StringWithLengthBetween1And128",
+          "locationName" : "name"
+        },
+        "SecurityGroupIds" : {
+          "shape" : "SecurityGroupIdList",
+          "locationName" : "securityGroupIds"
+        },
+        "SubnetIds" : {
+          "shape" : "SubnetIdList",
+          "locationName" : "subnetIds"
+        },
+        "Tags" : {
+          "shape" : "Tags",
+          "locationName" : "tags"
+        },
+        "VpcLinkId" : {
+          "shape" : "Id",
+          "locationName" : "vpcLinkId"
+        },
+        "VpcLinkStatus" : {
+          "shape" : "VpcLinkStatus",
+          "locationName" : "vpcLinkStatus"
+        },
+        "VpcLinkStatusMessage" : {
+          "shape" : "StringWithLengthBetween0And1024",
+          "locationName" : "vpcLinkStatusMessage"
+        },
+        "VpcLinkVersion" : {
+          "shape" : "VpcLinkVersion",
+          "locationName" : "vpcLinkVersion"
+        }
+      },
+      "required" : [ "VpcLinkId", "SecurityGroupIds", "SubnetIds", "Name" ]
+    },
+    "VpcLinkStatus" : {
+      "type" : "string",
+      "enum" : [ "PENDING", "AVAILABLE", "DELETING", "FAILED", "INACTIVE" ]
+    },
+    "VpcLinkVersion" : {
+      "type" : "string",
+      "enum" : [ "V2" ]
+    },
+    "VpcLinks" : {
+      "type" : "structure",
+      "members" : {
+        "Items" : {
+          "shape" : "__listOfVpcLink",
+          "locationName" : "items"
+        },
+        "NextToken" : {
+          "shape" : "NextToken",
+          "locationName" : "nextToken"
+        }
+      }
     },
     "__boolean" : {
       "type" : "boolean"
@@ -6345,6 +6880,12 @@
         "shape" : "Stage"
       }
     },
+    "__listOfVpcLink" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "VpcLink"
+      }
+    },
     "__listOf__string" : {
       "type" : "list",
       "member" : {
@@ -6364,16 +6905,6 @@
     "__timestampUnix" : {
       "type" : "timestamp",
       "timestampFormat" : "unixTimestamp"
-    }
-  },
-  "authorizers" : {
-    "authorization_strategy" : {
-      "name" : "authorization_strategy",
-      "type" : "provided",
-      "placement" : {
-        "location" : "header",
-        "name" : "Authorization"
-      }
     }
   }
 }

@@ -214,6 +214,10 @@ type LexModelBuildingServiceAPI interface {
 	GetUtterancesViewWithContext(aws.Context, *lexmodelbuildingservice.GetUtterancesViewInput, ...request.Option) (*lexmodelbuildingservice.GetUtterancesViewOutput, error)
 	GetUtterancesViewRequest(*lexmodelbuildingservice.GetUtterancesViewInput) (*request.Request, *lexmodelbuildingservice.GetUtterancesViewOutput)
 
+	ListTagsForResource(*lexmodelbuildingservice.ListTagsForResourceInput) (*lexmodelbuildingservice.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *lexmodelbuildingservice.ListTagsForResourceInput, ...request.Option) (*lexmodelbuildingservice.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*lexmodelbuildingservice.ListTagsForResourceInput) (*request.Request, *lexmodelbuildingservice.ListTagsForResourceOutput)
+
 	PutBot(*lexmodelbuildingservice.PutBotInput) (*lexmodelbuildingservice.PutBotOutput, error)
 	PutBotWithContext(aws.Context, *lexmodelbuildingservice.PutBotInput, ...request.Option) (*lexmodelbuildingservice.PutBotOutput, error)
 	PutBotRequest(*lexmodelbuildingservice.PutBotInput) (*request.Request, *lexmodelbuildingservice.PutBotOutput)
@@ -233,6 +237,14 @@ type LexModelBuildingServiceAPI interface {
 	StartImport(*lexmodelbuildingservice.StartImportInput) (*lexmodelbuildingservice.StartImportOutput, error)
 	StartImportWithContext(aws.Context, *lexmodelbuildingservice.StartImportInput, ...request.Option) (*lexmodelbuildingservice.StartImportOutput, error)
 	StartImportRequest(*lexmodelbuildingservice.StartImportInput) (*request.Request, *lexmodelbuildingservice.StartImportOutput)
+
+	TagResource(*lexmodelbuildingservice.TagResourceInput) (*lexmodelbuildingservice.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *lexmodelbuildingservice.TagResourceInput, ...request.Option) (*lexmodelbuildingservice.TagResourceOutput, error)
+	TagResourceRequest(*lexmodelbuildingservice.TagResourceInput) (*request.Request, *lexmodelbuildingservice.TagResourceOutput)
+
+	UntagResource(*lexmodelbuildingservice.UntagResourceInput) (*lexmodelbuildingservice.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *lexmodelbuildingservice.UntagResourceInput, ...request.Option) (*lexmodelbuildingservice.UntagResourceOutput, error)
+	UntagResourceRequest(*lexmodelbuildingservice.UntagResourceInput) (*request.Request, *lexmodelbuildingservice.UntagResourceOutput)
 }
 
 var _ LexModelBuildingServiceAPI = (*lexmodelbuildingservice.LexModelBuildingService)(nil)
