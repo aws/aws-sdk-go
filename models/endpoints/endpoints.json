@@ -1132,6 +1132,12 @@
           "eu-west-1" : { },
           "eu-west-2" : { },
           "eu-west-3" : { },
+          "fips-ca-central-1" : {
+            "credentialScope" : {
+              "region" : "ca-central-1"
+            },
+            "hostname" : "datasync-fips.ca-central-1.amazonaws.com"
+          },
           "fips-us-east-1" : {
             "credentialScope" : {
               "region" : "us-east-1"
@@ -1332,6 +1338,7 @@
           "eu-west-1" : { },
           "eu-west-2" : { },
           "eu-west-3" : { },
+          "me-south-1" : { },
           "sa-east-1" : { },
           "us-east-1" : { },
           "us-east-2" : { },
@@ -2293,6 +2300,7 @@
       },
       "managedblockchain" : {
         "endpoints" : {
+          "ap-southeast-1" : { },
           "us-east-1" : { }
         }
       },
@@ -2579,6 +2587,12 @@
               "region" : "eu-west-2"
             },
             "hostname" : "rds.eu-west-2.amazonaws.com"
+          },
+          "eu-west-3" : {
+            "credentialScope" : {
+              "region" : "eu-west-3"
+            },
+            "hostname" : "rds.eu-west-3.amazonaws.com"
           },
           "me-south-1" : {
             "credentialScope" : {
@@ -4892,6 +4906,12 @@
       },
       "datasync" : {
         "endpoints" : {
+          "fips-us-gov-east-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-east-1"
+            },
+            "hostname" : "datasync-fips.us-gov-east-1.amazonaws.com"
+          },
           "fips-us-gov-west-1" : {
             "credentialScope" : {
               "region" : "us-gov-west-1"
@@ -5075,6 +5095,11 @@
             "service" : "execute-api"
           }
         },
+        "endpoints" : {
+          "us-gov-west-1" : { }
+        }
+      },
+      "iotsecuredtunneling" : {
         "endpoints" : {
           "us-gov-west-1" : { }
         }
@@ -5376,6 +5401,7 @@
       },
       "storagegateway" : {
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
       },
@@ -5890,6 +5916,11 @@
             },
             "hostname" : "kms-fips.us-isob-east-1.sc2s.sgov.gov"
           },
+          "us-isob-east-1" : { }
+        }
+      },
+      "license-manager" : {
+        "endpoints" : {
           "us-isob-east-1" : { }
         }
       },

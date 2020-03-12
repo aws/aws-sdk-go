@@ -3319,6 +3319,7 @@
         "firehose":{"shape":"FirehoseAction"},
         "cloudwatchMetric":{"shape":"CloudwatchMetricAction"},
         "cloudwatchAlarm":{"shape":"CloudwatchAlarmAction"},
+        "cloudwatchLogs":{"shape":"CloudwatchLogsAction"},
         "elasticsearch":{"shape":"ElasticsearchAction"},
         "salesforce":{"shape":"SalesforceAction"},
         "iotAnalytics":{"shape":"IotAnalyticsAction"},
@@ -4302,6 +4303,17 @@
         "alarmName":{"shape":"AlarmName"},
         "stateReason":{"shape":"StateReason"},
         "stateValue":{"shape":"StateValue"}
+      }
+    },
+    "CloudwatchLogsAction":{
+      "type":"structure",
+      "required":[
+        "roleArn",
+        "logGroupName"
+      ],
+      "members":{
+        "roleArn":{"shape":"AwsArn"},
+        "logGroupName":{"shape":"LogGroupName"}
       }
     },
     "CloudwatchMetricAction":{
@@ -8556,6 +8568,7 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "LogGroupName":{"type":"string"},
     "LogLevel":{
       "type":"string",
       "enum":[

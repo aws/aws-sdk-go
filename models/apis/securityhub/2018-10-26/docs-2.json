@@ -108,7 +108,7 @@
       "base": null,
       "refs": {
         "DescribeActionTargetsRequest$ActionTargetArns": "<p>A list of custom action target ARNs for the custom action targets to retrieve.</p>",
-        "GetInsightsRequest$InsightArns": "<p>The ARNs of the insights to describe.</p>"
+        "GetInsightsRequest$InsightArns": "<p>The ARNs of the insights to describe. If you do not provide any insight ARNs, then <code>GetInsights</code> returns all of your custom insights. It does not return any managed insights.</p>"
       }
     },
     "AvailabilityZone": {
@@ -452,6 +452,36 @@
       "base": "<p>The details of an Amazon S3 bucket.</p>",
       "refs": {
         "ResourceDetails$AwsS3Bucket": "<p>Details about an Amazon S3 Bucket related to a finding.</p>"
+      }
+    },
+    "AwsS3BucketServerSideEncryptionByDefault": {
+      "base": "<p>Specifies the default server-side encryption to apply to new objects in the bucket.</p>",
+      "refs": {
+        "AwsS3BucketServerSideEncryptionRule$ApplyServerSideEncryptionByDefault": "<p>Specifies the default server-side encryption to apply to new objects in the bucket. If a <code>PUT</code> Object request doesn't specify any server-side encryption, this default encryption is applied.</p>"
+      }
+    },
+    "AwsS3BucketServerSideEncryptionConfiguration": {
+      "base": "<p>The encryption configuration for the S3 bucket.</p>",
+      "refs": {
+        "AwsS3BucketDetails$ServerSideEncryptionConfiguration": "<p>The encryption rules that are applied to the S3 bucket.</p>"
+      }
+    },
+    "AwsS3BucketServerSideEncryptionRule": {
+      "base": "<p>An encryption rule to apply to the S3 bucket.</p>",
+      "refs": {
+        "AwsS3BucketServerSideEncryptionRules$member": null
+      }
+    },
+    "AwsS3BucketServerSideEncryptionRules": {
+      "base": null,
+      "refs": {
+        "AwsS3BucketServerSideEncryptionConfiguration$Rules": "<p>The encryption rules that are applied to the S3 bucket.</p>"
+      }
+    },
+    "AwsS3ObjectDetails": {
+      "base": "<p>Details about an AWS S3 object.</p>",
+      "refs": {
+        "ResourceDetails$AwsS3Object": "<p>Details about an Amazon S3 object related to a finding.</p>"
       }
     },
     "AwsSecurityFinding": {
@@ -981,7 +1011,7 @@
         "Network$DestinationPort": "<p>The destination port of network-related information about a finding.</p>",
         "ProcessDetails$Pid": "<p>The process ID.</p>",
         "ProcessDetails$ParentPid": "<p>The parent process ID.</p>",
-        "Severity$Normalized": "<p>The normalized severity of a finding.</p>"
+        "Severity$Normalized": "<p>Deprecated. This attribute is being deprecated. Instead of providing <code>Normalized</code>, provide <code>Label</code>.</p> <p>If you provide <code>Normalized</code> and do not provide <code>Label</code>, <code>Label</code> is set automatically as follows. </p> <ul> <li> <p>0 - <code>INFORMATIONAL</code> </p> </li> <li> <p>1–39 - <code>LOW</code> </p> </li> <li> <p>40–69 - <code>MEDIUM</code> </p> </li> <li> <p>70–89 - <code>HIGH</code> </p> </li> <li> <p>90–100 - <code>CRITICAL</code> </p> </li> </ul>"
       }
     },
     "IntegrationType": {
@@ -1357,9 +1387,18 @@
         "AwsRdsDbInstanceVpcSecurityGroup$Status": "<p>The status of the VPC security group.</p>",
         "AwsS3BucketDetails$OwnerId": "<p>The canonical user ID of the owner of the S3 bucket.</p>",
         "AwsS3BucketDetails$OwnerName": "<p>The display name of the owner of the S3 bucket.</p>",
+        "AwsS3BucketDetails$CreatedAt": "<p>The date and time when the S3 bucket was created.</p>",
+        "AwsS3BucketServerSideEncryptionByDefault$SSEAlgorithm": "<p>Server-side encryption algorithm to use for the default encryption.</p>",
+        "AwsS3BucketServerSideEncryptionByDefault$KMSMasterKeyID": "<p>AWS KMS customer master key (CMK) ID to use for the default encryption.</p>",
+        "AwsS3ObjectDetails$LastModified": "<p>The date and time when the object was last modified.</p>",
+        "AwsS3ObjectDetails$ETag": "<p>The opaque identifier assigned by a web server to a specific version of a resource found at a URL.</p>",
+        "AwsS3ObjectDetails$VersionId": "<p>The version of the object.</p>",
+        "AwsS3ObjectDetails$ContentType": "<p>A standard MIME type describing the format of the object data.</p>",
+        "AwsS3ObjectDetails$ServerSideEncryption": "<p>If the object is stored using server-side encryption, the value of the server-side encryption algorithm used when storing this object in Amazon S3.</p>",
+        "AwsS3ObjectDetails$SSEKMSKeyId": "<p>The identifier of the AWS Key Management Service (AWS KMS) symmetric customer managed customer master key (CMK) that was used for the object.</p>",
         "AwsSecurityFinding$SchemaVersion": "<p>The schema version that a finding is formatted for.</p>",
         "AwsSecurityFinding$Id": "<p>The security findings provider-specific identifier for a finding.</p>",
-        "AwsSecurityFinding$ProductArn": "<p>The ARN generated by Security Hub that uniquely identifies a third-party company (security-findings provider) after this provider's product (solution that generates findings) is registered with Security Hub. </p>",
+        "AwsSecurityFinding$ProductArn": "<p>The ARN generated by Security Hub that uniquely identifies a product that generates findings. This can be the ARN for a third-party product that is integrated with Security Hub, or the ARN for a custom integration.</p>",
         "AwsSecurityFinding$GeneratorId": "<p>The identifier for the solution-specific component (a discrete unit of logic) that generated a finding. In various security-findings providers' solutions, this generator can be called a rule, a check, a detector, a plug-in, etc. </p>",
         "AwsSecurityFinding$AwsAccountId": "<p>The AWS account ID that a finding is generated in.</p>",
         "AwsSecurityFinding$FirstObservedAt": "<p>An ISO8601-formatted timestamp that indicates when the security-findings provider first observed the potential security issue that a finding captured.</p>",
@@ -1695,6 +1734,12 @@
         "AwsSecurityFinding$Severity": "<p>A finding's severity.</p>"
       }
     },
+    "SeverityLabel": {
+      "base": null,
+      "refs": {
+        "Severity$Label": "<p>The severity value of the finding. The allowed values are the following.</p> <ul> <li> <p> <code>INFORMATIONAL</code> - No issue was found.</p> </li> <li> <p> <code>LOW</code> - The issue does not require action on its own.</p> </li> <li> <p> <code>MEDIUM</code> - The issue must be addressed but not urgently.</p> </li> <li> <p> <code>HIGH</code> - The issue must be addressed as a priority.</p> </li> <li> <p> <code>CRITICAL</code> - The issue must be remediated immediately to avoid it escalating.</p> </li> </ul>"
+      }
+    },
     "SeverityRating": {
       "base": null,
       "refs": {
@@ -1852,6 +1897,7 @@
         "AwsSecurityFindingFilters$ComplianceStatus": "<p>Exclusive to findings that are generated as the result of a check run against a specific rule in a supported standard, such as CIS AWS Foundations. Contains security standard-related finding details.</p>",
         "AwsSecurityFindingFilters$VerificationState": "<p>The veracity of a finding.</p>",
         "AwsSecurityFindingFilters$WorkflowState": "<p>The workflow state of a finding.</p>",
+        "AwsSecurityFindingFilters$WorkflowStatus": "<p>The status of the investigation into a finding. Allowed values are the following.</p> <ul> <li> <p> <code>NEW</code> - The initial state of a finding, before it is reviewed.</p> </li> <li> <p> <code>NOTIFIED</code> - Indicates that the resource owner has been notified about the security issue. Used when the initial reviewer is not the resource owner, and needs intervention from the resource owner.</p> </li> <li> <p> <code>SUPPRESSED</code> - The finding will not be reviewed again and will not be acted upon.</p> </li> <li> <p> <code>RESOLVED</code> - The finding was reviewed and remediated and is now considered resolved. </p> </li> </ul>",
         "AwsSecurityFindingFilters$RecordState": "<p>The updated record state for the finding.</p>",
         "AwsSecurityFindingFilters$RelatedFindingsProductArn": "<p>The ARN of the solution that generated a related finding.</p>",
         "AwsSecurityFindingFilters$RelatedFindingsId": "<p>The solution-generated identifier for a related finding.</p>",
@@ -2022,10 +2068,22 @@
         "AwsWafWebAclRule$OverrideAction": "<p>Use the <code>OverrideAction</code> to test your RuleGroup.</p> <p>Any rule in a RuleGroup can potentially block a request. If you set the <code>OverrideAction</code> to <code>None</code>, the RuleGroup blocks a request if any individual rule in the RuleGroup matches the request and is configured to block that request.</p> <p>However, if you first want to test the RuleGroup, set the <code>OverrideAction</code> to <code>Count</code>. The RuleGroup then overrides any block action specified by individual rules contained within the group. Instead of blocking matching requests, those requests are counted.</p> <p> <code>ActivatedRule</code>|<code>OverrideAction</code> applies only when updating or adding a RuleGroup to a WebACL. In this case you do not use <code>ActivatedRule</code>|<code>Action</code>. For all other update requests, <code>ActivatedRule</code>|<code>Action</code> is used instead of <code>ActivatedRule</code>|<code>OverrideAction</code>. </p>"
       }
     },
+    "Workflow": {
+      "base": "<p>Provides information about the status of the investigation into a finding.</p>",
+      "refs": {
+        "AwsSecurityFinding$Workflow": "<p>Provides information about the status of the investigation into a finding.</p>"
+      }
+    },
     "WorkflowState": {
       "base": null,
       "refs": {
         "AwsSecurityFinding$WorkflowState": "<p>The workflow state of a finding. </p>"
+      }
+    },
+    "WorkflowStatus": {
+      "base": null,
+      "refs": {
+        "Workflow$Status": "<p>The status of the investigation into the finding. The allowed values are the following.</p> <ul> <li> <p> <code>NEW</code> - The initial state of a finding, before it is reviewed.</p> </li> <li> <p> <code>NOTIFIED</code> - Indicates that you notified the resource owner about the security issue. Used when the initial reviewer is not the resource owner, and needs intervention from the resource owner.</p> </li> <li> <p> <code>SUPPRESSED</code> - The finding will not be reviewed again and will not be acted upon.</p> </li> <li> <p> <code>RESOLVED</code> - The finding was reviewed and remediated and is now considered resolved. </p> </li> </ul>"
       }
     }
   }

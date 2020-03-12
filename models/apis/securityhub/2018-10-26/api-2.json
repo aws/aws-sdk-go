@@ -1173,7 +1173,43 @@
       "type":"structure",
       "members":{
         "OwnerId":{"shape":"NonEmptyString"},
-        "OwnerName":{"shape":"NonEmptyString"}
+        "OwnerName":{"shape":"NonEmptyString"},
+        "CreatedAt":{"shape":"NonEmptyString"},
+        "ServerSideEncryptionConfiguration":{"shape":"AwsS3BucketServerSideEncryptionConfiguration"}
+      }
+    },
+    "AwsS3BucketServerSideEncryptionByDefault":{
+      "type":"structure",
+      "members":{
+        "SSEAlgorithm":{"shape":"NonEmptyString"},
+        "KMSMasterKeyID":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsS3BucketServerSideEncryptionConfiguration":{
+      "type":"structure",
+      "members":{
+        "Rules":{"shape":"AwsS3BucketServerSideEncryptionRules"}
+      }
+    },
+    "AwsS3BucketServerSideEncryptionRule":{
+      "type":"structure",
+      "members":{
+        "ApplyServerSideEncryptionByDefault":{"shape":"AwsS3BucketServerSideEncryptionByDefault"}
+      }
+    },
+    "AwsS3BucketServerSideEncryptionRules":{
+      "type":"list",
+      "member":{"shape":"AwsS3BucketServerSideEncryptionRule"}
+    },
+    "AwsS3ObjectDetails":{
+      "type":"structure",
+      "members":{
+        "LastModified":{"shape":"NonEmptyString"},
+        "ETag":{"shape":"NonEmptyString"},
+        "VersionId":{"shape":"NonEmptyString"},
+        "ContentType":{"shape":"NonEmptyString"},
+        "ServerSideEncryption":{"shape":"NonEmptyString"},
+        "SSEKMSKeyId":{"shape":"NonEmptyString"}
       }
     },
     "AwsSecurityFinding":{
@@ -1220,6 +1256,7 @@
         "Compliance":{"shape":"Compliance"},
         "VerificationState":{"shape":"VerificationState"},
         "WorkflowState":{"shape":"WorkflowState"},
+        "Workflow":{"shape":"Workflow"},
         "RecordState":{"shape":"RecordState"},
         "RelatedFindings":{"shape":"RelatedFindingList"},
         "Note":{"shape":"Note"}
@@ -1304,6 +1341,7 @@
         "ComplianceStatus":{"shape":"StringFilterList"},
         "VerificationState":{"shape":"StringFilterList"},
         "WorkflowState":{"shape":"StringFilterList"},
+        "WorkflowStatus":{"shape":"StringFilterList"},
         "RecordState":{"shape":"StringFilterList"},
         "RelatedFindingsProductArn":{"shape":"StringFilterList"},
         "RelatedFindingsId":{"shape":"StringFilterList"},
@@ -2404,6 +2442,7 @@
         "AwsElbv2LoadBalancer":{"shape":"AwsElbv2LoadBalancerDetails"},
         "AwsElasticsearchDomain":{"shape":"AwsElasticsearchDomainDetails"},
         "AwsS3Bucket":{"shape":"AwsS3BucketDetails"},
+        "AwsS3Object":{"shape":"AwsS3ObjectDetails"},
         "AwsIamAccessKey":{"shape":"AwsIamAccessKeyDetails"},
         "AwsIamRole":{"shape":"AwsIamRoleDetails"},
         "AwsKmsKey":{"shape":"AwsKmsKeyDetails"},
@@ -2447,11 +2486,21 @@
     },
     "Severity":{
       "type":"structure",
-      "required":["Normalized"],
       "members":{
         "Product":{"shape":"Double"},
+        "Label":{"shape":"SeverityLabel"},
         "Normalized":{"shape":"Integer"}
       }
+    },
+    "SeverityLabel":{
+      "type":"string",
+      "enum":[
+        "INFORMATIONAL",
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "CRITICAL"
+      ]
     },
     "SeverityRating":{
       "type":"string",
@@ -2804,14 +2853,31 @@
         "Type":{"shape":"NonEmptyString"}
       }
     },
+    "Workflow":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"WorkflowStatus"}
+      }
+    },
     "WorkflowState":{
       "type":"string",
+      "deprecated":true,
+      "deprecatedMessage":"This field is deprecated, use Workflow.Status instead.",
       "enum":[
         "NEW",
         "ASSIGNED",
         "IN_PROGRESS",
         "DEFERRED",
         "RESOLVED"
+      ]
+    },
+    "WorkflowStatus":{
+      "type":"string",
+      "enum":[
+        "NEW",
+        "NOTIFIED",
+        "RESOLVED",
+        "SUPPRESSED"
       ]
     }
   }
