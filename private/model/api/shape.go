@@ -814,12 +814,12 @@ func newError{{ $.ShapeName }}(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s {{ $.ShapeName }}) Code() string {
+func (s *{{ $.ShapeName }}) Code() string {
 	return "{{ $.ErrorName }}"
 }
 
 // Message returns the exception's message.
-func (s {{ $.ShapeName }}) Message() string {
+func (s *{{ $.ShapeName }}) Message() string {
 	{{- if index $.MemberRefs "Message_" }}
 		if s.Message_ != nil {
 			return *s.Message_
@@ -829,11 +829,11 @@ func (s {{ $.ShapeName }}) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s {{ $.ShapeName }}) OrigErr() error {
+func (s *{{ $.ShapeName }}) OrigErr() error {
 	return nil
 }
 
-func (s {{ $.ShapeName }}) Error() string {
+func (s *{{ $.ShapeName }}) Error() string {
 	{{- if or (and (eq (len $.MemberRefs) 1) (not (index $.MemberRefs "Message_"))) (gt (len $.MemberRefs) 1) }}
 		return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 	{{- else }}
@@ -842,12 +842,12 @@ func (s {{ $.ShapeName }}) Error() string {
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s {{ $.ShapeName }}) StatusCode() int {
+func (s *{{ $.ShapeName }}) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s {{ $.ShapeName }}) RequestID() string {
+func (s *{{ $.ShapeName }}) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 `))
