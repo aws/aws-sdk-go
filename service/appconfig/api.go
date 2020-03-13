@@ -144,8 +144,9 @@ func (c *AppConfig) CreateConfigurationProfileRequest(input *CreateConfiguration
 // CreateConfigurationProfile API operation for Amazon AppConfig.
 //
 // Information that enables AppConfig to access the configuration source. Valid
-// configuration sources include Systems Manager (SSM) documents and SSM Parameter
-// Store parameters. A configuration profile includes the following information.
+// configuration sources include Systems Manager (SSM) documents, SSM Parameter
+// Store parameters, and Amazon S3 objects. A configuration profile includes
+// the following information.
 //
 //    * The Uri location of the configuration data.
 //
@@ -154,6 +155,10 @@ func (c *AppConfig) CreateConfigurationProfileRequest(input *CreateConfiguration
 //
 //    * A validator for the configuration data. Available validators include
 //    either a JSON Schema or an AWS Lambda function.
+//
+// For more information, see Create a Configuration and a Configuration Profile
+// (http://docs.aws.amazon.com/systems-manager/latest/userguide/appconfig-creating-configuration-and-profile.html)
+// in the AWS AppConfig User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3143,11 +3148,13 @@ type CreateConfigurationProfileInput struct {
 	// A description of the configuration profile.
 	Description *string `type:"string"`
 
-	// A URI to locate the configuration. You can specify either a Systems Manager
-	// (SSM) document or an SSM Parameter Store parameter. For an SSM document,
-	// specify either the document name in the format ssm-document://<Document name>
+	// A URI to locate the configuration. You can specify a Systems Manager (SSM)
+	// document, an SSM Parameter Store parameter, or an Amazon S3 object. For an
+	// SSM document, specify either the document name in the format ssm-document://<Document_name>
 	// or the Amazon Resource Name (ARN). For a parameter, specify either the parameter
-	// name in the format ssm-parameter://<Parameter name> or the ARN.
+	// name in the format ssm-parameter://<Parameter_name> or the ARN. For an Amazon
+	// S3 object, specify the URI in the following format: s3://<bucket>/<objectKey>
+	// . Here is an example: s3://my-bucket/my-app/us-east-1/my-config.json
 	//
 	// LocationUri is a required field
 	LocationUri *string `min:"1" type:"string" required:"true"`
@@ -4362,7 +4369,8 @@ func (s *GetApplicationOutput) SetName(v string) *GetApplicationOutput {
 type GetConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The application to get.
+	// The application to get. Specify either the application name or the application
+	// ID.
 	//
 	// Application is a required field
 	Application *string `location:"uri" locationName:"Application" min:"1" type:"string" required:"true"`
@@ -4377,12 +4385,14 @@ type GetConfigurationInput struct {
 	// ClientId is a required field
 	ClientId *string `location:"querystring" locationName:"client_id" min:"1" type:"string" required:"true"`
 
-	// The configuration to get.
+	// The configuration to get. Specify either the configuration name or the configuration
+	// ID.
 	//
 	// Configuration is a required field
 	Configuration *string `location:"uri" locationName:"Configuration" min:"1" type:"string" required:"true"`
 
-	// The environment to get.
+	// The environment to get. Specify either the environment name or the environment
+	// ID.
 	//
 	// Environment is a required field
 	Environment *string `location:"uri" locationName:"Environment" min:"1" type:"string" required:"true"`

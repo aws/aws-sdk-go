@@ -1,3 +1,9 @@
+Release v1.29.24 (2020-03-13)
+===
+
+### Service Client Updates
+* `service/appconfig`: Updates service documentation
+
 Release v1.29.23 (2020-03-12)
 ===
 
