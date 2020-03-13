@@ -422,12 +422,12 @@ func newErrorInvalidInputException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s InvalidInputException) Code() string {
+func (s *InvalidInputException) Code() string {
 	return "InvalidInputException"
 }
 
 // Message returns the exception's message.
-func (s InvalidInputException) Message() string {
+func (s *InvalidInputException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -435,21 +435,21 @@ func (s InvalidInputException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s InvalidInputException) OrigErr() error {
+func (s *InvalidInputException) OrigErr() error {
 	return nil
 }
 
-func (s InvalidInputException) Error() string {
+func (s *InvalidInputException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s InvalidInputException) StatusCode() int {
+func (s *InvalidInputException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s InvalidInputException) RequestID() string {
+func (s *InvalidInputException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -504,12 +504,12 @@ func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s ResourceNotFoundException) Code() string {
+func (s *ResourceNotFoundException) Code() string {
 	return "ResourceNotFoundException"
 }
 
 // Message returns the exception's message.
-func (s ResourceNotFoundException) Message() string {
+func (s *ResourceNotFoundException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -517,20 +517,20 @@ func (s ResourceNotFoundException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s ResourceNotFoundException) OrigErr() error {
+func (s *ResourceNotFoundException) OrigErr() error {
 	return nil
 }
 
-func (s ResourceNotFoundException) Error() string {
+func (s *ResourceNotFoundException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s ResourceNotFoundException) StatusCode() int {
+func (s *ResourceNotFoundException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s ResourceNotFoundException) RequestID() string {
+func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }

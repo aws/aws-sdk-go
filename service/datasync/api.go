@@ -5297,12 +5297,12 @@ func newErrorInternalException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s InternalException) Code() string {
+func (s *InternalException) Code() string {
 	return "InternalException"
 }
 
 // Message returns the exception's message.
-func (s InternalException) Message() string {
+func (s *InternalException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -5310,21 +5310,21 @@ func (s InternalException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s InternalException) OrigErr() error {
+func (s *InternalException) OrigErr() error {
 	return nil
 }
 
-func (s InternalException) Error() string {
+func (s *InternalException) Error() string {
 	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s InternalException) StatusCode() int {
+func (s *InternalException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s InternalException) RequestID() string {
+func (s *InternalException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -5355,12 +5355,12 @@ func newErrorInvalidRequestException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s InvalidRequestException) Code() string {
+func (s *InvalidRequestException) Code() string {
 	return "InvalidRequestException"
 }
 
 // Message returns the exception's message.
-func (s InvalidRequestException) Message() string {
+func (s *InvalidRequestException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -5368,21 +5368,21 @@ func (s InvalidRequestException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s InvalidRequestException) OrigErr() error {
+func (s *InvalidRequestException) OrigErr() error {
 	return nil
 }
 
-func (s InvalidRequestException) Error() string {
+func (s *InvalidRequestException) Error() string {
 	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s InvalidRequestException) StatusCode() int {
+func (s *InvalidRequestException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s InvalidRequestException) RequestID() string {
+func (s *InvalidRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 

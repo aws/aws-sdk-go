@@ -1644,12 +1644,12 @@ func newErrorCloudHsmAccessDeniedException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s CloudHsmAccessDeniedException) Code() string {
+func (s *CloudHsmAccessDeniedException) Code() string {
 	return "CloudHsmAccessDeniedException"
 }
 
 // Message returns the exception's message.
-func (s CloudHsmAccessDeniedException) Message() string {
+func (s *CloudHsmAccessDeniedException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -1657,21 +1657,21 @@ func (s CloudHsmAccessDeniedException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s CloudHsmAccessDeniedException) OrigErr() error {
+func (s *CloudHsmAccessDeniedException) OrigErr() error {
 	return nil
 }
 
-func (s CloudHsmAccessDeniedException) Error() string {
+func (s *CloudHsmAccessDeniedException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s CloudHsmAccessDeniedException) StatusCode() int {
+func (s *CloudHsmAccessDeniedException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s CloudHsmAccessDeniedException) RequestID() string {
+func (s *CloudHsmAccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -1701,12 +1701,12 @@ func newErrorCloudHsmInternalFailureException(v protocol.ResponseMetadata) error
 }
 
 // Code returns the exception type name.
-func (s CloudHsmInternalFailureException) Code() string {
+func (s *CloudHsmInternalFailureException) Code() string {
 	return "CloudHsmInternalFailureException"
 }
 
 // Message returns the exception's message.
-func (s CloudHsmInternalFailureException) Message() string {
+func (s *CloudHsmInternalFailureException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -1714,21 +1714,21 @@ func (s CloudHsmInternalFailureException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s CloudHsmInternalFailureException) OrigErr() error {
+func (s *CloudHsmInternalFailureException) OrigErr() error {
 	return nil
 }
 
-func (s CloudHsmInternalFailureException) Error() string {
+func (s *CloudHsmInternalFailureException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s CloudHsmInternalFailureException) StatusCode() int {
+func (s *CloudHsmInternalFailureException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s CloudHsmInternalFailureException) RequestID() string {
+func (s *CloudHsmInternalFailureException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -1757,12 +1757,12 @@ func newErrorCloudHsmInvalidRequestException(v protocol.ResponseMetadata) error 
 }
 
 // Code returns the exception type name.
-func (s CloudHsmInvalidRequestException) Code() string {
+func (s *CloudHsmInvalidRequestException) Code() string {
 	return "CloudHsmInvalidRequestException"
 }
 
 // Message returns the exception's message.
-func (s CloudHsmInvalidRequestException) Message() string {
+func (s *CloudHsmInvalidRequestException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -1770,21 +1770,21 @@ func (s CloudHsmInvalidRequestException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s CloudHsmInvalidRequestException) OrigErr() error {
+func (s *CloudHsmInvalidRequestException) OrigErr() error {
 	return nil
 }
 
-func (s CloudHsmInvalidRequestException) Error() string {
+func (s *CloudHsmInvalidRequestException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s CloudHsmInvalidRequestException) StatusCode() int {
+func (s *CloudHsmInvalidRequestException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s CloudHsmInvalidRequestException) RequestID() string {
+func (s *CloudHsmInvalidRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -1813,12 +1813,12 @@ func newErrorCloudHsmResourceNotFoundException(v protocol.ResponseMetadata) erro
 }
 
 // Code returns the exception type name.
-func (s CloudHsmResourceNotFoundException) Code() string {
+func (s *CloudHsmResourceNotFoundException) Code() string {
 	return "CloudHsmResourceNotFoundException"
 }
 
 // Message returns the exception's message.
-func (s CloudHsmResourceNotFoundException) Message() string {
+func (s *CloudHsmResourceNotFoundException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -1826,21 +1826,21 @@ func (s CloudHsmResourceNotFoundException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s CloudHsmResourceNotFoundException) OrigErr() error {
+func (s *CloudHsmResourceNotFoundException) OrigErr() error {
 	return nil
 }
 
-func (s CloudHsmResourceNotFoundException) Error() string {
+func (s *CloudHsmResourceNotFoundException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s CloudHsmResourceNotFoundException) StatusCode() int {
+func (s *CloudHsmResourceNotFoundException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s CloudHsmResourceNotFoundException) RequestID() string {
+func (s *CloudHsmResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -1869,12 +1869,12 @@ func newErrorCloudHsmServiceException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s CloudHsmServiceException) Code() string {
+func (s *CloudHsmServiceException) Code() string {
 	return "CloudHsmServiceException"
 }
 
 // Message returns the exception's message.
-func (s CloudHsmServiceException) Message() string {
+func (s *CloudHsmServiceException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -1882,21 +1882,21 @@ func (s CloudHsmServiceException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s CloudHsmServiceException) OrigErr() error {
+func (s *CloudHsmServiceException) OrigErr() error {
 	return nil
 }
 
-func (s CloudHsmServiceException) Error() string {
+func (s *CloudHsmServiceException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s CloudHsmServiceException) StatusCode() int {
+func (s *CloudHsmServiceException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s CloudHsmServiceException) RequestID() string {
+func (s *CloudHsmServiceException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -1924,12 +1924,12 @@ func newErrorCloudHsmTagException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s CloudHsmTagException) Code() string {
+func (s *CloudHsmTagException) Code() string {
 	return "CloudHsmTagException"
 }
 
 // Message returns the exception's message.
-func (s CloudHsmTagException) Message() string {
+func (s *CloudHsmTagException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -1937,21 +1937,21 @@ func (s CloudHsmTagException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s CloudHsmTagException) OrigErr() error {
+func (s *CloudHsmTagException) OrigErr() error {
 	return nil
 }
 
-func (s CloudHsmTagException) Error() string {
+func (s *CloudHsmTagException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s CloudHsmTagException) StatusCode() int {
+func (s *CloudHsmTagException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s CloudHsmTagException) RequestID() string {
+func (s *CloudHsmTagException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 

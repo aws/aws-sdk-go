@@ -10119,12 +10119,12 @@ func newErrorWAFBadRequestException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s WAFBadRequestException) Code() string {
+func (s *WAFBadRequestException) Code() string {
 	return "WAFBadRequestException"
 }
 
 // Message returns the exception's message.
-func (s WAFBadRequestException) Message() string {
+func (s *WAFBadRequestException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -10132,21 +10132,21 @@ func (s WAFBadRequestException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s WAFBadRequestException) OrigErr() error {
+func (s *WAFBadRequestException) OrigErr() error {
 	return nil
 }
 
-func (s WAFBadRequestException) Error() string {
+func (s *WAFBadRequestException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s WAFBadRequestException) StatusCode() int {
+func (s *WAFBadRequestException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s WAFBadRequestException) RequestID() string {
+func (s *WAFBadRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -10175,12 +10175,12 @@ func newErrorWAFDisallowedNameException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s WAFDisallowedNameException) Code() string {
+func (s *WAFDisallowedNameException) Code() string {
 	return "WAFDisallowedNameException"
 }
 
 // Message returns the exception's message.
-func (s WAFDisallowedNameException) Message() string {
+func (s *WAFDisallowedNameException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -10188,21 +10188,21 @@ func (s WAFDisallowedNameException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s WAFDisallowedNameException) OrigErr() error {
+func (s *WAFDisallowedNameException) OrigErr() error {
 	return nil
 }
 
-func (s WAFDisallowedNameException) Error() string {
+func (s *WAFDisallowedNameException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s WAFDisallowedNameException) StatusCode() int {
+func (s *WAFDisallowedNameException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s WAFDisallowedNameException) RequestID() string {
+func (s *WAFDisallowedNameException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -10232,12 +10232,12 @@ func newErrorWAFInternalErrorException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s WAFInternalErrorException) Code() string {
+func (s *WAFInternalErrorException) Code() string {
 	return "WAFInternalErrorException"
 }
 
 // Message returns the exception's message.
-func (s WAFInternalErrorException) Message() string {
+func (s *WAFInternalErrorException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -10245,21 +10245,21 @@ func (s WAFInternalErrorException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s WAFInternalErrorException) OrigErr() error {
+func (s *WAFInternalErrorException) OrigErr() error {
 	return nil
 }
 
-func (s WAFInternalErrorException) Error() string {
+func (s *WAFInternalErrorException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s WAFInternalErrorException) StatusCode() int {
+func (s *WAFInternalErrorException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s WAFInternalErrorException) RequestID() string {
+func (s *WAFInternalErrorException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -10289,12 +10289,12 @@ func newErrorWAFInvalidAccountException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s WAFInvalidAccountException) Code() string {
+func (s *WAFInvalidAccountException) Code() string {
 	return "WAFInvalidAccountException"
 }
 
 // Message returns the exception's message.
-func (s WAFInvalidAccountException) Message() string {
+func (s *WAFInvalidAccountException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -10302,21 +10302,21 @@ func (s WAFInvalidAccountException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s WAFInvalidAccountException) OrigErr() error {
+func (s *WAFInvalidAccountException) OrigErr() error {
 	return nil
 }
 
-func (s WAFInvalidAccountException) Error() string {
+func (s *WAFInvalidAccountException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s WAFInvalidAccountException) StatusCode() int {
+func (s *WAFInvalidAccountException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s WAFInvalidAccountException) RequestID() string {
+func (s *WAFInvalidAccountException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -10360,12 +10360,12 @@ func newErrorWAFInvalidOperationException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s WAFInvalidOperationException) Code() string {
+func (s *WAFInvalidOperationException) Code() string {
 	return "WAFInvalidOperationException"
 }
 
 // Message returns the exception's message.
-func (s WAFInvalidOperationException) Message() string {
+func (s *WAFInvalidOperationException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -10373,21 +10373,21 @@ func (s WAFInvalidOperationException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s WAFInvalidOperationException) OrigErr() error {
+func (s *WAFInvalidOperationException) OrigErr() error {
 	return nil
 }
 
-func (s WAFInvalidOperationException) Error() string {
+func (s *WAFInvalidOperationException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s WAFInvalidOperationException) StatusCode() int {
+func (s *WAFInvalidOperationException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s WAFInvalidOperationException) RequestID() string {
+func (s *WAFInvalidOperationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -10448,12 +10448,12 @@ func newErrorWAFInvalidParameterException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s WAFInvalidParameterException) Code() string {
+func (s *WAFInvalidParameterException) Code() string {
 	return "WAFInvalidParameterException"
 }
 
 // Message returns the exception's message.
-func (s WAFInvalidParameterException) Message() string {
+func (s *WAFInvalidParameterException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -10461,21 +10461,21 @@ func (s WAFInvalidParameterException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s WAFInvalidParameterException) OrigErr() error {
+func (s *WAFInvalidParameterException) OrigErr() error {
 	return nil
 }
 
-func (s WAFInvalidParameterException) Error() string {
+func (s *WAFInvalidParameterException) Error() string {
 	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s WAFInvalidParameterException) StatusCode() int {
+func (s *WAFInvalidParameterException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s WAFInvalidParameterException) RequestID() string {
+func (s *WAFInvalidParameterException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -10525,12 +10525,12 @@ func newErrorWAFInvalidPermissionPolicyException(v protocol.ResponseMetadata) er
 }
 
 // Code returns the exception type name.
-func (s WAFInvalidPermissionPolicyException) Code() string {
+func (s *WAFInvalidPermissionPolicyException) Code() string {
 	return "WAFInvalidPermissionPolicyException"
 }
 
 // Message returns the exception's message.
-func (s WAFInvalidPermissionPolicyException) Message() string {
+func (s *WAFInvalidPermissionPolicyException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -10538,21 +10538,21 @@ func (s WAFInvalidPermissionPolicyException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s WAFInvalidPermissionPolicyException) OrigErr() error {
+func (s *WAFInvalidPermissionPolicyException) OrigErr() error {
 	return nil
 }
 
-func (s WAFInvalidPermissionPolicyException) Error() string {
+func (s *WAFInvalidPermissionPolicyException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s WAFInvalidPermissionPolicyException) StatusCode() int {
+func (s *WAFInvalidPermissionPolicyException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s WAFInvalidPermissionPolicyException) RequestID() string {
+func (s *WAFInvalidPermissionPolicyException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -10581,12 +10581,12 @@ func newErrorWAFInvalidRegexPatternException(v protocol.ResponseMetadata) error 
 }
 
 // Code returns the exception type name.
-func (s WAFInvalidRegexPatternException) Code() string {
+func (s *WAFInvalidRegexPatternException) Code() string {
 	return "WAFInvalidRegexPatternException"
 }
 
 // Message returns the exception's message.
-func (s WAFInvalidRegexPatternException) Message() string {
+func (s *WAFInvalidRegexPatternException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -10594,21 +10594,21 @@ func (s WAFInvalidRegexPatternException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s WAFInvalidRegexPatternException) OrigErr() error {
+func (s *WAFInvalidRegexPatternException) OrigErr() error {
 	return nil
 }
 
-func (s WAFInvalidRegexPatternException) Error() string {
+func (s *WAFInvalidRegexPatternException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s WAFInvalidRegexPatternException) StatusCode() int {
+func (s *WAFInvalidRegexPatternException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s WAFInvalidRegexPatternException) RequestID() string {
+func (s *WAFInvalidRegexPatternException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -10640,12 +10640,12 @@ func newErrorWAFLimitsExceededException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s WAFLimitsExceededException) Code() string {
+func (s *WAFLimitsExceededException) Code() string {
 	return "WAFLimitsExceededException"
 }
 
 // Message returns the exception's message.
-func (s WAFLimitsExceededException) Message() string {
+func (s *WAFLimitsExceededException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -10653,21 +10653,21 @@ func (s WAFLimitsExceededException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s WAFLimitsExceededException) OrigErr() error {
+func (s *WAFLimitsExceededException) OrigErr() error {
 	return nil
 }
 
-func (s WAFLimitsExceededException) Error() string {
+func (s *WAFLimitsExceededException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s WAFLimitsExceededException) StatusCode() int {
+func (s *WAFLimitsExceededException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s WAFLimitsExceededException) RequestID() string {
+func (s *WAFLimitsExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -10707,12 +10707,12 @@ func newErrorWAFNonEmptyEntityException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s WAFNonEmptyEntityException) Code() string {
+func (s *WAFNonEmptyEntityException) Code() string {
 	return "WAFNonEmptyEntityException"
 }
 
 // Message returns the exception's message.
-func (s WAFNonEmptyEntityException) Message() string {
+func (s *WAFNonEmptyEntityException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -10720,21 +10720,21 @@ func (s WAFNonEmptyEntityException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s WAFNonEmptyEntityException) OrigErr() error {
+func (s *WAFNonEmptyEntityException) OrigErr() error {
 	return nil
 }
 
-func (s WAFNonEmptyEntityException) Error() string {
+func (s *WAFNonEmptyEntityException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s WAFNonEmptyEntityException) StatusCode() int {
+func (s *WAFNonEmptyEntityException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s WAFNonEmptyEntityException) RequestID() string {
+func (s *WAFNonEmptyEntityException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -10776,12 +10776,12 @@ func newErrorWAFNonexistentContainerException(v protocol.ResponseMetadata) error
 }
 
 // Code returns the exception type name.
-func (s WAFNonexistentContainerException) Code() string {
+func (s *WAFNonexistentContainerException) Code() string {
 	return "WAFNonexistentContainerException"
 }
 
 // Message returns the exception's message.
-func (s WAFNonexistentContainerException) Message() string {
+func (s *WAFNonexistentContainerException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -10789,21 +10789,21 @@ func (s WAFNonexistentContainerException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s WAFNonexistentContainerException) OrigErr() error {
+func (s *WAFNonexistentContainerException) OrigErr() error {
 	return nil
 }
 
-func (s WAFNonexistentContainerException) Error() string {
+func (s *WAFNonexistentContainerException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s WAFNonexistentContainerException) StatusCode() int {
+func (s *WAFNonexistentContainerException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s WAFNonexistentContainerException) RequestID() string {
+func (s *WAFNonexistentContainerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -10832,12 +10832,12 @@ func newErrorWAFNonexistentItemException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s WAFNonexistentItemException) Code() string {
+func (s *WAFNonexistentItemException) Code() string {
 	return "WAFNonexistentItemException"
 }
 
 // Message returns the exception's message.
-func (s WAFNonexistentItemException) Message() string {
+func (s *WAFNonexistentItemException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -10845,21 +10845,21 @@ func (s WAFNonexistentItemException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s WAFNonexistentItemException) OrigErr() error {
+func (s *WAFNonexistentItemException) OrigErr() error {
 	return nil
 }
 
-func (s WAFNonexistentItemException) Error() string {
+func (s *WAFNonexistentItemException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s WAFNonexistentItemException) StatusCode() int {
+func (s *WAFNonexistentItemException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s WAFNonexistentItemException) RequestID() string {
+func (s *WAFNonexistentItemException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -10893,12 +10893,12 @@ func newErrorWAFReferencedItemException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s WAFReferencedItemException) Code() string {
+func (s *WAFReferencedItemException) Code() string {
 	return "WAFReferencedItemException"
 }
 
 // Message returns the exception's message.
-func (s WAFReferencedItemException) Message() string {
+func (s *WAFReferencedItemException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -10906,21 +10906,21 @@ func (s WAFReferencedItemException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s WAFReferencedItemException) OrigErr() error {
+func (s *WAFReferencedItemException) OrigErr() error {
 	return nil
 }
 
-func (s WAFReferencedItemException) Error() string {
+func (s *WAFReferencedItemException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s WAFReferencedItemException) StatusCode() int {
+func (s *WAFReferencedItemException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s WAFReferencedItemException) RequestID() string {
+func (s *WAFReferencedItemException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -10956,12 +10956,12 @@ func newErrorWAFServiceLinkedRoleErrorException(v protocol.ResponseMetadata) err
 }
 
 // Code returns the exception type name.
-func (s WAFServiceLinkedRoleErrorException) Code() string {
+func (s *WAFServiceLinkedRoleErrorException) Code() string {
 	return "WAFServiceLinkedRoleErrorException"
 }
 
 // Message returns the exception's message.
-func (s WAFServiceLinkedRoleErrorException) Message() string {
+func (s *WAFServiceLinkedRoleErrorException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -10969,21 +10969,21 @@ func (s WAFServiceLinkedRoleErrorException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s WAFServiceLinkedRoleErrorException) OrigErr() error {
+func (s *WAFServiceLinkedRoleErrorException) OrigErr() error {
 	return nil
 }
 
-func (s WAFServiceLinkedRoleErrorException) Error() string {
+func (s *WAFServiceLinkedRoleErrorException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s WAFServiceLinkedRoleErrorException) StatusCode() int {
+func (s *WAFServiceLinkedRoleErrorException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s WAFServiceLinkedRoleErrorException) RequestID() string {
+func (s *WAFServiceLinkedRoleErrorException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -11013,12 +11013,12 @@ func newErrorWAFStaleDataException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s WAFStaleDataException) Code() string {
+func (s *WAFStaleDataException) Code() string {
 	return "WAFStaleDataException"
 }
 
 // Message returns the exception's message.
-func (s WAFStaleDataException) Message() string {
+func (s *WAFStaleDataException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -11026,21 +11026,21 @@ func (s WAFStaleDataException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s WAFStaleDataException) OrigErr() error {
+func (s *WAFStaleDataException) OrigErr() error {
 	return nil
 }
 
-func (s WAFStaleDataException) Error() string {
+func (s *WAFStaleDataException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s WAFStaleDataException) StatusCode() int {
+func (s *WAFStaleDataException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s WAFStaleDataException) RequestID() string {
+func (s *WAFStaleDataException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -11069,12 +11069,12 @@ func newErrorWAFSubscriptionNotFoundException(v protocol.ResponseMetadata) error
 }
 
 // Code returns the exception type name.
-func (s WAFSubscriptionNotFoundException) Code() string {
+func (s *WAFSubscriptionNotFoundException) Code() string {
 	return "WAFSubscriptionNotFoundException"
 }
 
 // Message returns the exception's message.
-func (s WAFSubscriptionNotFoundException) Message() string {
+func (s *WAFSubscriptionNotFoundException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -11082,21 +11082,21 @@ func (s WAFSubscriptionNotFoundException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s WAFSubscriptionNotFoundException) OrigErr() error {
+func (s *WAFSubscriptionNotFoundException) OrigErr() error {
 	return nil
 }
 
-func (s WAFSubscriptionNotFoundException) Error() string {
+func (s *WAFSubscriptionNotFoundException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s WAFSubscriptionNotFoundException) StatusCode() int {
+func (s *WAFSubscriptionNotFoundException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s WAFSubscriptionNotFoundException) RequestID() string {
+func (s *WAFSubscriptionNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -11124,12 +11124,12 @@ func newErrorWAFTagOperationException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s WAFTagOperationException) Code() string {
+func (s *WAFTagOperationException) Code() string {
 	return "WAFTagOperationException"
 }
 
 // Message returns the exception's message.
-func (s WAFTagOperationException) Message() string {
+func (s *WAFTagOperationException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -11137,21 +11137,21 @@ func (s WAFTagOperationException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s WAFTagOperationException) OrigErr() error {
+func (s *WAFTagOperationException) OrigErr() error {
 	return nil
 }
 
-func (s WAFTagOperationException) Error() string {
+func (s *WAFTagOperationException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s WAFTagOperationException) StatusCode() int {
+func (s *WAFTagOperationException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s WAFTagOperationException) RequestID() string {
+func (s *WAFTagOperationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -11179,12 +11179,12 @@ func newErrorWAFTagOperationInternalErrorException(v protocol.ResponseMetadata) 
 }
 
 // Code returns the exception type name.
-func (s WAFTagOperationInternalErrorException) Code() string {
+func (s *WAFTagOperationInternalErrorException) Code() string {
 	return "WAFTagOperationInternalErrorException"
 }
 
 // Message returns the exception's message.
-func (s WAFTagOperationInternalErrorException) Message() string {
+func (s *WAFTagOperationInternalErrorException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -11192,21 +11192,21 @@ func (s WAFTagOperationInternalErrorException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s WAFTagOperationInternalErrorException) OrigErr() error {
+func (s *WAFTagOperationInternalErrorException) OrigErr() error {
 	return nil
 }
 
-func (s WAFTagOperationInternalErrorException) Error() string {
+func (s *WAFTagOperationInternalErrorException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s WAFTagOperationInternalErrorException) StatusCode() int {
+func (s *WAFTagOperationInternalErrorException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s WAFTagOperationInternalErrorException) RequestID() string {
+func (s *WAFTagOperationInternalErrorException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -11236,12 +11236,12 @@ func newErrorWAFUnavailableEntityException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s WAFUnavailableEntityException) Code() string {
+func (s *WAFUnavailableEntityException) Code() string {
 	return "WAFUnavailableEntityException"
 }
 
 // Message returns the exception's message.
-func (s WAFUnavailableEntityException) Message() string {
+func (s *WAFUnavailableEntityException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -11249,21 +11249,21 @@ func (s WAFUnavailableEntityException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s WAFUnavailableEntityException) OrigErr() error {
+func (s *WAFUnavailableEntityException) OrigErr() error {
 	return nil
 }
 
-func (s WAFUnavailableEntityException) Error() string {
+func (s *WAFUnavailableEntityException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s WAFUnavailableEntityException) StatusCode() int {
+func (s *WAFUnavailableEntityException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s WAFUnavailableEntityException) RequestID() string {
+func (s *WAFUnavailableEntityException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 

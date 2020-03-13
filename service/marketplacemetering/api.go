@@ -601,12 +601,12 @@ func newErrorCustomerNotEntitledException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s CustomerNotEntitledException) Code() string {
+func (s *CustomerNotEntitledException) Code() string {
 	return "CustomerNotEntitledException"
 }
 
 // Message returns the exception's message.
-func (s CustomerNotEntitledException) Message() string {
+func (s *CustomerNotEntitledException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -614,21 +614,21 @@ func (s CustomerNotEntitledException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s CustomerNotEntitledException) OrigErr() error {
+func (s *CustomerNotEntitledException) OrigErr() error {
 	return nil
 }
 
-func (s CustomerNotEntitledException) Error() string {
+func (s *CustomerNotEntitledException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s CustomerNotEntitledException) StatusCode() int {
+func (s *CustomerNotEntitledException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s CustomerNotEntitledException) RequestID() string {
+func (s *CustomerNotEntitledException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -657,12 +657,12 @@ func newErrorDisabledApiException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s DisabledApiException) Code() string {
+func (s *DisabledApiException) Code() string {
 	return "DisabledApiException"
 }
 
 // Message returns the exception's message.
-func (s DisabledApiException) Message() string {
+func (s *DisabledApiException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -670,21 +670,21 @@ func (s DisabledApiException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s DisabledApiException) OrigErr() error {
+func (s *DisabledApiException) OrigErr() error {
 	return nil
 }
 
-func (s DisabledApiException) Error() string {
+func (s *DisabledApiException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s DisabledApiException) StatusCode() int {
+func (s *DisabledApiException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s DisabledApiException) RequestID() string {
+func (s *DisabledApiException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -715,12 +715,12 @@ func newErrorDuplicateRequestException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s DuplicateRequestException) Code() string {
+func (s *DuplicateRequestException) Code() string {
 	return "DuplicateRequestException"
 }
 
 // Message returns the exception's message.
-func (s DuplicateRequestException) Message() string {
+func (s *DuplicateRequestException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -728,21 +728,21 @@ func (s DuplicateRequestException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s DuplicateRequestException) OrigErr() error {
+func (s *DuplicateRequestException) OrigErr() error {
 	return nil
 }
 
-func (s DuplicateRequestException) Error() string {
+func (s *DuplicateRequestException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s DuplicateRequestException) StatusCode() int {
+func (s *DuplicateRequestException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s DuplicateRequestException) RequestID() string {
+func (s *DuplicateRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -775,12 +775,12 @@ func newErrorExpiredTokenException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s ExpiredTokenException) Code() string {
+func (s *ExpiredTokenException) Code() string {
 	return "ExpiredTokenException"
 }
 
 // Message returns the exception's message.
-func (s ExpiredTokenException) Message() string {
+func (s *ExpiredTokenException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -788,21 +788,21 @@ func (s ExpiredTokenException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s ExpiredTokenException) OrigErr() error {
+func (s *ExpiredTokenException) OrigErr() error {
 	return nil
 }
 
-func (s ExpiredTokenException) Error() string {
+func (s *ExpiredTokenException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s ExpiredTokenException) StatusCode() int {
+func (s *ExpiredTokenException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s ExpiredTokenException) RequestID() string {
+func (s *ExpiredTokenException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -832,12 +832,12 @@ func newErrorInternalServiceErrorException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s InternalServiceErrorException) Code() string {
+func (s *InternalServiceErrorException) Code() string {
 	return "InternalServiceErrorException"
 }
 
 // Message returns the exception's message.
-func (s InternalServiceErrorException) Message() string {
+func (s *InternalServiceErrorException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -845,21 +845,21 @@ func (s InternalServiceErrorException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s InternalServiceErrorException) OrigErr() error {
+func (s *InternalServiceErrorException) OrigErr() error {
 	return nil
 }
 
-func (s InternalServiceErrorException) Error() string {
+func (s *InternalServiceErrorException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s InternalServiceErrorException) StatusCode() int {
+func (s *InternalServiceErrorException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s InternalServiceErrorException) RequestID() string {
+func (s *InternalServiceErrorException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -888,12 +888,12 @@ func newErrorInvalidCustomerIdentifierException(v protocol.ResponseMetadata) err
 }
 
 // Code returns the exception type name.
-func (s InvalidCustomerIdentifierException) Code() string {
+func (s *InvalidCustomerIdentifierException) Code() string {
 	return "InvalidCustomerIdentifierException"
 }
 
 // Message returns the exception's message.
-func (s InvalidCustomerIdentifierException) Message() string {
+func (s *InvalidCustomerIdentifierException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -901,21 +901,21 @@ func (s InvalidCustomerIdentifierException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s InvalidCustomerIdentifierException) OrigErr() error {
+func (s *InvalidCustomerIdentifierException) OrigErr() error {
 	return nil
 }
 
-func (s InvalidCustomerIdentifierException) Error() string {
+func (s *InvalidCustomerIdentifierException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s InvalidCustomerIdentifierException) StatusCode() int {
+func (s *InvalidCustomerIdentifierException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s InvalidCustomerIdentifierException) RequestID() string {
+func (s *InvalidCustomerIdentifierException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -946,12 +946,12 @@ func newErrorInvalidEndpointRegionException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s InvalidEndpointRegionException) Code() string {
+func (s *InvalidEndpointRegionException) Code() string {
 	return "InvalidEndpointRegionException"
 }
 
 // Message returns the exception's message.
-func (s InvalidEndpointRegionException) Message() string {
+func (s *InvalidEndpointRegionException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -959,21 +959,21 @@ func (s InvalidEndpointRegionException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s InvalidEndpointRegionException) OrigErr() error {
+func (s *InvalidEndpointRegionException) OrigErr() error {
 	return nil
 }
 
-func (s InvalidEndpointRegionException) Error() string {
+func (s *InvalidEndpointRegionException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s InvalidEndpointRegionException) StatusCode() int {
+func (s *InvalidEndpointRegionException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s InvalidEndpointRegionException) RequestID() string {
+func (s *InvalidEndpointRegionException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -1003,12 +1003,12 @@ func newErrorInvalidProductCodeException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s InvalidProductCodeException) Code() string {
+func (s *InvalidProductCodeException) Code() string {
 	return "InvalidProductCodeException"
 }
 
 // Message returns the exception's message.
-func (s InvalidProductCodeException) Message() string {
+func (s *InvalidProductCodeException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -1016,21 +1016,21 @@ func (s InvalidProductCodeException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s InvalidProductCodeException) OrigErr() error {
+func (s *InvalidProductCodeException) OrigErr() error {
 	return nil
 }
 
-func (s InvalidProductCodeException) Error() string {
+func (s *InvalidProductCodeException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s InvalidProductCodeException) StatusCode() int {
+func (s *InvalidProductCodeException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s InvalidProductCodeException) RequestID() string {
+func (s *InvalidProductCodeException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -1059,12 +1059,12 @@ func newErrorInvalidPublicKeyVersionException(v protocol.ResponseMetadata) error
 }
 
 // Code returns the exception type name.
-func (s InvalidPublicKeyVersionException) Code() string {
+func (s *InvalidPublicKeyVersionException) Code() string {
 	return "InvalidPublicKeyVersionException"
 }
 
 // Message returns the exception's message.
-func (s InvalidPublicKeyVersionException) Message() string {
+func (s *InvalidPublicKeyVersionException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -1072,21 +1072,21 @@ func (s InvalidPublicKeyVersionException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s InvalidPublicKeyVersionException) OrigErr() error {
+func (s *InvalidPublicKeyVersionException) OrigErr() error {
 	return nil
 }
 
-func (s InvalidPublicKeyVersionException) Error() string {
+func (s *InvalidPublicKeyVersionException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s InvalidPublicKeyVersionException) StatusCode() int {
+func (s *InvalidPublicKeyVersionException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s InvalidPublicKeyVersionException) RequestID() string {
+func (s *InvalidPublicKeyVersionException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -1117,12 +1117,12 @@ func newErrorInvalidRegionException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s InvalidRegionException) Code() string {
+func (s *InvalidRegionException) Code() string {
 	return "InvalidRegionException"
 }
 
 // Message returns the exception's message.
-func (s InvalidRegionException) Message() string {
+func (s *InvalidRegionException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -1130,21 +1130,21 @@ func (s InvalidRegionException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s InvalidRegionException) OrigErr() error {
+func (s *InvalidRegionException) OrigErr() error {
 	return nil
 }
 
-func (s InvalidRegionException) Error() string {
+func (s *InvalidRegionException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s InvalidRegionException) StatusCode() int {
+func (s *InvalidRegionException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s InvalidRegionException) RequestID() string {
+func (s *InvalidRegionException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -1173,12 +1173,12 @@ func newErrorInvalidTokenException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s InvalidTokenException) Code() string {
+func (s *InvalidTokenException) Code() string {
 	return "InvalidTokenException"
 }
 
 // Message returns the exception's message.
-func (s InvalidTokenException) Message() string {
+func (s *InvalidTokenException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -1186,21 +1186,21 @@ func (s InvalidTokenException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s InvalidTokenException) OrigErr() error {
+func (s *InvalidTokenException) OrigErr() error {
 	return nil
 }
 
-func (s InvalidTokenException) Error() string {
+func (s *InvalidTokenException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s InvalidTokenException) StatusCode() int {
+func (s *InvalidTokenException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s InvalidTokenException) RequestID() string {
+func (s *InvalidTokenException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -1230,12 +1230,12 @@ func newErrorInvalidUsageDimensionException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s InvalidUsageDimensionException) Code() string {
+func (s *InvalidUsageDimensionException) Code() string {
 	return "InvalidUsageDimensionException"
 }
 
 // Message returns the exception's message.
-func (s InvalidUsageDimensionException) Message() string {
+func (s *InvalidUsageDimensionException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -1243,21 +1243,21 @@ func (s InvalidUsageDimensionException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s InvalidUsageDimensionException) OrigErr() error {
+func (s *InvalidUsageDimensionException) OrigErr() error {
 	return nil
 }
 
-func (s InvalidUsageDimensionException) Error() string {
+func (s *InvalidUsageDimensionException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s InvalidUsageDimensionException) StatusCode() int {
+func (s *InvalidUsageDimensionException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s InvalidUsageDimensionException) RequestID() string {
+func (s *InvalidUsageDimensionException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -1407,12 +1407,12 @@ func newErrorPlatformNotSupportedException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s PlatformNotSupportedException) Code() string {
+func (s *PlatformNotSupportedException) Code() string {
 	return "PlatformNotSupportedException"
 }
 
 // Message returns the exception's message.
-func (s PlatformNotSupportedException) Message() string {
+func (s *PlatformNotSupportedException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -1420,21 +1420,21 @@ func (s PlatformNotSupportedException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s PlatformNotSupportedException) OrigErr() error {
+func (s *PlatformNotSupportedException) OrigErr() error {
 	return nil
 }
 
-func (s PlatformNotSupportedException) Error() string {
+func (s *PlatformNotSupportedException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s PlatformNotSupportedException) StatusCode() int {
+func (s *PlatformNotSupportedException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s PlatformNotSupportedException) RequestID() string {
+func (s *PlatformNotSupportedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -1644,12 +1644,12 @@ func newErrorThrottlingException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s ThrottlingException) Code() string {
+func (s *ThrottlingException) Code() string {
 	return "ThrottlingException"
 }
 
 // Message returns the exception's message.
-func (s ThrottlingException) Message() string {
+func (s *ThrottlingException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -1657,21 +1657,21 @@ func (s ThrottlingException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s ThrottlingException) OrigErr() error {
+func (s *ThrottlingException) OrigErr() error {
 	return nil
 }
 
-func (s ThrottlingException) Error() string {
+func (s *ThrottlingException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s ThrottlingException) StatusCode() int {
+func (s *ThrottlingException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s ThrottlingException) RequestID() string {
+func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -1700,12 +1700,12 @@ func newErrorTimestampOutOfBoundsException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s TimestampOutOfBoundsException) Code() string {
+func (s *TimestampOutOfBoundsException) Code() string {
 	return "TimestampOutOfBoundsException"
 }
 
 // Message returns the exception's message.
-func (s TimestampOutOfBoundsException) Message() string {
+func (s *TimestampOutOfBoundsException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -1713,21 +1713,21 @@ func (s TimestampOutOfBoundsException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s TimestampOutOfBoundsException) OrigErr() error {
+func (s *TimestampOutOfBoundsException) OrigErr() error {
 	return nil
 }
 
-func (s TimestampOutOfBoundsException) Error() string {
+func (s *TimestampOutOfBoundsException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s TimestampOutOfBoundsException) StatusCode() int {
+func (s *TimestampOutOfBoundsException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s TimestampOutOfBoundsException) RequestID() string {
+func (s *TimestampOutOfBoundsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 

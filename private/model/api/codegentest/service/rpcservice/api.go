@@ -1017,12 +1017,12 @@ func newErrorExceptionEvent(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s ExceptionEvent) Code() string {
+func (s *ExceptionEvent) Code() string {
 	return "ExceptionEvent"
 }
 
 // Message returns the exception's message.
-func (s ExceptionEvent) Message() string {
+func (s *ExceptionEvent) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -1030,21 +1030,21 @@ func (s ExceptionEvent) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s ExceptionEvent) OrigErr() error {
+func (s *ExceptionEvent) OrigErr() error {
 	return nil
 }
 
-func (s ExceptionEvent) Error() string {
+func (s *ExceptionEvent) Error() string {
 	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s ExceptionEvent) StatusCode() int {
+func (s *ExceptionEvent) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s ExceptionEvent) RequestID() string {
+func (s *ExceptionEvent) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -1099,12 +1099,12 @@ func newErrorExceptionEvent2(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s ExceptionEvent2) Code() string {
+func (s *ExceptionEvent2) Code() string {
 	return "ExceptionEvent2"
 }
 
 // Message returns the exception's message.
-func (s ExceptionEvent2) Message() string {
+func (s *ExceptionEvent2) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -1112,21 +1112,21 @@ func (s ExceptionEvent2) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s ExceptionEvent2) OrigErr() error {
+func (s *ExceptionEvent2) OrigErr() error {
 	return nil
 }
 
-func (s ExceptionEvent2) Error() string {
+func (s *ExceptionEvent2) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s ExceptionEvent2) StatusCode() int {
+func (s *ExceptionEvent2) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s ExceptionEvent2) RequestID() string {
+func (s *ExceptionEvent2) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 

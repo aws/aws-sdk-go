@@ -1813,12 +1813,12 @@ func newErrorContainerInUseException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s ContainerInUseException) Code() string {
+func (s *ContainerInUseException) Code() string {
 	return "ContainerInUseException"
 }
 
 // Message returns the exception's message.
-func (s ContainerInUseException) Message() string {
+func (s *ContainerInUseException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -1826,21 +1826,21 @@ func (s ContainerInUseException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s ContainerInUseException) OrigErr() error {
+func (s *ContainerInUseException) OrigErr() error {
 	return nil
 }
 
-func (s ContainerInUseException) Error() string {
+func (s *ContainerInUseException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s ContainerInUseException) StatusCode() int {
+func (s *ContainerInUseException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s ContainerInUseException) RequestID() string {
+func (s *ContainerInUseException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -1869,12 +1869,12 @@ func newErrorContainerNotFoundException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s ContainerNotFoundException) Code() string {
+func (s *ContainerNotFoundException) Code() string {
 	return "ContainerNotFoundException"
 }
 
 // Message returns the exception's message.
-func (s ContainerNotFoundException) Message() string {
+func (s *ContainerNotFoundException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -1882,21 +1882,21 @@ func (s ContainerNotFoundException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s ContainerNotFoundException) OrigErr() error {
+func (s *ContainerNotFoundException) OrigErr() error {
 	return nil
 }
 
-func (s ContainerNotFoundException) Error() string {
+func (s *ContainerNotFoundException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s ContainerNotFoundException) StatusCode() int {
+func (s *ContainerNotFoundException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s ContainerNotFoundException) RequestID() string {
+func (s *ContainerNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -1925,12 +1925,12 @@ func newErrorCorsPolicyNotFoundException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s CorsPolicyNotFoundException) Code() string {
+func (s *CorsPolicyNotFoundException) Code() string {
 	return "CorsPolicyNotFoundException"
 }
 
 // Message returns the exception's message.
-func (s CorsPolicyNotFoundException) Message() string {
+func (s *CorsPolicyNotFoundException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -1938,21 +1938,21 @@ func (s CorsPolicyNotFoundException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s CorsPolicyNotFoundException) OrigErr() error {
+func (s *CorsPolicyNotFoundException) OrigErr() error {
 	return nil
 }
 
-func (s CorsPolicyNotFoundException) Error() string {
+func (s *CorsPolicyNotFoundException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s CorsPolicyNotFoundException) StatusCode() int {
+func (s *CorsPolicyNotFoundException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s CorsPolicyNotFoundException) RequestID() string {
+func (s *CorsPolicyNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -2673,12 +2673,12 @@ func newErrorInternalServerError(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s InternalServerError) Code() string {
+func (s *InternalServerError) Code() string {
 	return "InternalServerError"
 }
 
 // Message returns the exception's message.
-func (s InternalServerError) Message() string {
+func (s *InternalServerError) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -2686,21 +2686,21 @@ func (s InternalServerError) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s InternalServerError) OrigErr() error {
+func (s *InternalServerError) OrigErr() error {
 	return nil
 }
 
-func (s InternalServerError) Error() string {
+func (s *InternalServerError) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s InternalServerError) StatusCode() int {
+func (s *InternalServerError) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s InternalServerError) RequestID() string {
+func (s *InternalServerError) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -2729,12 +2729,12 @@ func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s LimitExceededException) Code() string {
+func (s *LimitExceededException) Code() string {
 	return "LimitExceededException"
 }
 
 // Message returns the exception's message.
-func (s LimitExceededException) Message() string {
+func (s *LimitExceededException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -2742,21 +2742,21 @@ func (s LimitExceededException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s LimitExceededException) OrigErr() error {
+func (s *LimitExceededException) OrigErr() error {
 	return nil
 }
 
-func (s LimitExceededException) Error() string {
+func (s *LimitExceededException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s LimitExceededException) StatusCode() int {
+func (s *LimitExceededException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s LimitExceededException) RequestID() string {
+func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -2937,12 +2937,12 @@ func newErrorPolicyNotFoundException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s PolicyNotFoundException) Code() string {
+func (s *PolicyNotFoundException) Code() string {
 	return "PolicyNotFoundException"
 }
 
 // Message returns the exception's message.
-func (s PolicyNotFoundException) Message() string {
+func (s *PolicyNotFoundException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -2950,21 +2950,21 @@ func (s PolicyNotFoundException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s PolicyNotFoundException) OrigErr() error {
+func (s *PolicyNotFoundException) OrigErr() error {
 	return nil
 }
 
-func (s PolicyNotFoundException) Error() string {
+func (s *PolicyNotFoundException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s PolicyNotFoundException) StatusCode() int {
+func (s *PolicyNotFoundException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s PolicyNotFoundException) RequestID() string {
+func (s *PolicyNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 

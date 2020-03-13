@@ -1716,12 +1716,12 @@ func newErrorAttachmentIdNotFound(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s AttachmentIdNotFound) Code() string {
+func (s *AttachmentIdNotFound) Code() string {
 	return "AttachmentIdNotFound"
 }
 
 // Message returns the exception's message.
-func (s AttachmentIdNotFound) Message() string {
+func (s *AttachmentIdNotFound) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -1729,21 +1729,21 @@ func (s AttachmentIdNotFound) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s AttachmentIdNotFound) OrigErr() error {
+func (s *AttachmentIdNotFound) OrigErr() error {
 	return nil
 }
 
-func (s AttachmentIdNotFound) Error() string {
+func (s *AttachmentIdNotFound) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s AttachmentIdNotFound) StatusCode() int {
+func (s *AttachmentIdNotFound) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s AttachmentIdNotFound) RequestID() string {
+func (s *AttachmentIdNotFound) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -1775,12 +1775,12 @@ func newErrorAttachmentLimitExceeded(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s AttachmentLimitExceeded) Code() string {
+func (s *AttachmentLimitExceeded) Code() string {
 	return "AttachmentLimitExceeded"
 }
 
 // Message returns the exception's message.
-func (s AttachmentLimitExceeded) Message() string {
+func (s *AttachmentLimitExceeded) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -1788,21 +1788,21 @@ func (s AttachmentLimitExceeded) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s AttachmentLimitExceeded) OrigErr() error {
+func (s *AttachmentLimitExceeded) OrigErr() error {
 	return nil
 }
 
-func (s AttachmentLimitExceeded) Error() string {
+func (s *AttachmentLimitExceeded) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s AttachmentLimitExceeded) StatusCode() int {
+func (s *AttachmentLimitExceeded) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s AttachmentLimitExceeded) RequestID() string {
+func (s *AttachmentLimitExceeded) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -1834,12 +1834,12 @@ func newErrorAttachmentSetExpired(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s AttachmentSetExpired) Code() string {
+func (s *AttachmentSetExpired) Code() string {
 	return "AttachmentSetExpired"
 }
 
 // Message returns the exception's message.
-func (s AttachmentSetExpired) Message() string {
+func (s *AttachmentSetExpired) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -1847,21 +1847,21 @@ func (s AttachmentSetExpired) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s AttachmentSetExpired) OrigErr() error {
+func (s *AttachmentSetExpired) OrigErr() error {
 	return nil
 }
 
-func (s AttachmentSetExpired) Error() string {
+func (s *AttachmentSetExpired) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s AttachmentSetExpired) StatusCode() int {
+func (s *AttachmentSetExpired) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s AttachmentSetExpired) RequestID() string {
+func (s *AttachmentSetExpired) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -1891,12 +1891,12 @@ func newErrorAttachmentSetIdNotFound(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s AttachmentSetIdNotFound) Code() string {
+func (s *AttachmentSetIdNotFound) Code() string {
 	return "AttachmentSetIdNotFound"
 }
 
 // Message returns the exception's message.
-func (s AttachmentSetIdNotFound) Message() string {
+func (s *AttachmentSetIdNotFound) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -1904,21 +1904,21 @@ func (s AttachmentSetIdNotFound) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s AttachmentSetIdNotFound) OrigErr() error {
+func (s *AttachmentSetIdNotFound) OrigErr() error {
 	return nil
 }
 
-func (s AttachmentSetIdNotFound) Error() string {
+func (s *AttachmentSetIdNotFound) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s AttachmentSetIdNotFound) StatusCode() int {
+func (s *AttachmentSetIdNotFound) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s AttachmentSetIdNotFound) RequestID() string {
+func (s *AttachmentSetIdNotFound) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -1950,12 +1950,12 @@ func newErrorAttachmentSetSizeLimitExceeded(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s AttachmentSetSizeLimitExceeded) Code() string {
+func (s *AttachmentSetSizeLimitExceeded) Code() string {
 	return "AttachmentSetSizeLimitExceeded"
 }
 
 // Message returns the exception's message.
-func (s AttachmentSetSizeLimitExceeded) Message() string {
+func (s *AttachmentSetSizeLimitExceeded) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -1963,21 +1963,21 @@ func (s AttachmentSetSizeLimitExceeded) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s AttachmentSetSizeLimitExceeded) OrigErr() error {
+func (s *AttachmentSetSizeLimitExceeded) OrigErr() error {
 	return nil
 }
 
-func (s AttachmentSetSizeLimitExceeded) Error() string {
+func (s *AttachmentSetSizeLimitExceeded) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s AttachmentSetSizeLimitExceeded) StatusCode() int {
+func (s *AttachmentSetSizeLimitExceeded) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s AttachmentSetSizeLimitExceeded) RequestID() string {
+func (s *AttachmentSetSizeLimitExceeded) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -2008,12 +2008,12 @@ func newErrorCaseCreationLimitExceeded(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s CaseCreationLimitExceeded) Code() string {
+func (s *CaseCreationLimitExceeded) Code() string {
 	return "CaseCreationLimitExceeded"
 }
 
 // Message returns the exception's message.
-func (s CaseCreationLimitExceeded) Message() string {
+func (s *CaseCreationLimitExceeded) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -2021,21 +2021,21 @@ func (s CaseCreationLimitExceeded) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s CaseCreationLimitExceeded) OrigErr() error {
+func (s *CaseCreationLimitExceeded) OrigErr() error {
 	return nil
 }
 
-func (s CaseCreationLimitExceeded) Error() string {
+func (s *CaseCreationLimitExceeded) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s CaseCreationLimitExceeded) StatusCode() int {
+func (s *CaseCreationLimitExceeded) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s CaseCreationLimitExceeded) RequestID() string {
+func (s *CaseCreationLimitExceeded) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -2234,12 +2234,12 @@ func newErrorCaseIdNotFound(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s CaseIdNotFound) Code() string {
+func (s *CaseIdNotFound) Code() string {
 	return "CaseIdNotFound"
 }
 
 // Message returns the exception's message.
-func (s CaseIdNotFound) Message() string {
+func (s *CaseIdNotFound) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -2247,21 +2247,21 @@ func (s CaseIdNotFound) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s CaseIdNotFound) OrigErr() error {
+func (s *CaseIdNotFound) OrigErr() error {
 	return nil
 }
 
-func (s CaseIdNotFound) Error() string {
+func (s *CaseIdNotFound) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s CaseIdNotFound) StatusCode() int {
+func (s *CaseIdNotFound) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s CaseIdNotFound) RequestID() string {
+func (s *CaseIdNotFound) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -2588,12 +2588,12 @@ func newErrorDescribeAttachmentLimitExceeded(v protocol.ResponseMetadata) error 
 }
 
 // Code returns the exception type name.
-func (s DescribeAttachmentLimitExceeded) Code() string {
+func (s *DescribeAttachmentLimitExceeded) Code() string {
 	return "DescribeAttachmentLimitExceeded"
 }
 
 // Message returns the exception's message.
-func (s DescribeAttachmentLimitExceeded) Message() string {
+func (s *DescribeAttachmentLimitExceeded) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -2601,21 +2601,21 @@ func (s DescribeAttachmentLimitExceeded) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s DescribeAttachmentLimitExceeded) OrigErr() error {
+func (s *DescribeAttachmentLimitExceeded) OrigErr() error {
 	return nil
 }
 
-func (s DescribeAttachmentLimitExceeded) Error() string {
+func (s *DescribeAttachmentLimitExceeded) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s DescribeAttachmentLimitExceeded) StatusCode() int {
+func (s *DescribeAttachmentLimitExceeded) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s DescribeAttachmentLimitExceeded) RequestID() string {
+func (s *DescribeAttachmentLimitExceeded) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -3313,12 +3313,12 @@ func newErrorInternalServerError(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s InternalServerError) Code() string {
+func (s *InternalServerError) Code() string {
 	return "InternalServerError"
 }
 
 // Message returns the exception's message.
-func (s InternalServerError) Message() string {
+func (s *InternalServerError) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -3326,21 +3326,21 @@ func (s InternalServerError) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s InternalServerError) OrigErr() error {
+func (s *InternalServerError) OrigErr() error {
 	return nil
 }
 
-func (s InternalServerError) Error() string {
+func (s *InternalServerError) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s InternalServerError) StatusCode() int {
+func (s *InternalServerError) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s InternalServerError) RequestID() string {
+func (s *InternalServerError) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
