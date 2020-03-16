@@ -21765,8 +21765,7 @@ func (s *DescribeParametersInput) SetParameterFilters(v []*ParameterStringFilter
 type DescribeParametersOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token to use when requesting the next set of items. If there are no additional
-	// items to return, the string is empty.
+	// The token to use when requesting the next set of items.
 	NextToken *string `type:"string"`
 
 	// Parameters returned by the request.
@@ -36893,8 +36892,7 @@ type PatchRule struct {
 	// a value of 7 means that patches are approved seven days after they are released.
 	ApproveAfterDays *int64 `type:"integer"`
 
-	// The cutoff date for auto approval of released patches. Any patches released
-	// on or before this date will be installed automatically
+	// Example API
 	ApproveUntilDate *string `min:"1" type:"string"`
 
 	// A compliance severity level for all approved patches in a patch baseline.
@@ -39030,6 +39028,46 @@ func (s ResourceDataSyncCountExceededException) RequestID() string {
 	return s.respMetadata.RequestID
 }
 
+// Synchronize Systems Manager Inventory data from multiple AWS accounts defined
+// in AWS Organizations to a centralized Amazon S3 bucket. Data is synchronized
+// to individual key prefixes in the central bucket. Each key prefix represents
+// a different AWS account ID.
+type ResourceDataSyncDestinationDataSharing struct {
+	_ struct{} `type:"structure"`
+
+	// The sharing data type. Only Organization is supported.
+	DestinationDataSharingType *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceDataSyncDestinationDataSharing) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceDataSyncDestinationDataSharing) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResourceDataSyncDestinationDataSharing) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResourceDataSyncDestinationDataSharing"}
+	if s.DestinationDataSharingType != nil && len(*s.DestinationDataSharingType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DestinationDataSharingType", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinationDataSharingType sets the DestinationDataSharingType field's value.
+func (s *ResourceDataSyncDestinationDataSharing) SetDestinationDataSharingType(v string) *ResourceDataSyncDestinationDataSharing {
+	s.DestinationDataSharingType = &v
+	return s
+}
+
 // The specified sync configuration is invalid.
 type ResourceDataSyncInvalidConfigurationException struct {
 	_            struct{} `type:"structure"`
@@ -39305,6 +39343,9 @@ type ResourceDataSyncS3Destination struct {
 	// BucketName is a required field
 	BucketName *string `min:"1" type:"string" required:"true"`
 
+	// Enables destination data sharing. By default, this field is null.
+	DestinationDataSharing *ResourceDataSyncDestinationDataSharing `type:"structure"`
+
 	// An Amazon S3 prefix for the bucket.
 	Prefix *string `min:"1" type:"string"`
 
@@ -39353,6 +39394,11 @@ func (s *ResourceDataSyncS3Destination) Validate() error {
 	if s.SyncFormat == nil {
 		invalidParams.Add(request.NewErrParamRequired("SyncFormat"))
 	}
+	if s.DestinationDataSharing != nil {
+		if err := s.DestinationDataSharing.Validate(); err != nil {
+			invalidParams.AddNested("DestinationDataSharing", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -39369,6 +39415,12 @@ func (s *ResourceDataSyncS3Destination) SetAWSKMSKeyARN(v string) *ResourceDataS
 // SetBucketName sets the BucketName field's value.
 func (s *ResourceDataSyncS3Destination) SetBucketName(v string) *ResourceDataSyncS3Destination {
 	s.BucketName = &v
+	return s
+}
+
+// SetDestinationDataSharing sets the DestinationDataSharing field's value.
+func (s *ResourceDataSyncS3Destination) SetDestinationDataSharing(v *ResourceDataSyncDestinationDataSharing) *ResourceDataSyncS3Destination {
+	s.DestinationDataSharing = v
 	return s
 }
 

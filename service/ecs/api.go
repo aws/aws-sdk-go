@@ -256,7 +256,7 @@ func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *request.Requ
 // Runs and maintains a desired number of tasks from a specified task definition.
 // If the number of tasks running in a service drops below the desiredCount,
 // Amazon ECS runs another copy of the task in the specified cluster. To update
-// an existing service, see UpdateService.
+// an existing service, see the UpdateService action.
 //
 // In addition to maintaining the desired count of tasks in your service, you
 // can optionally run your service behind one or more load balancers. The load
@@ -7327,10 +7327,19 @@ type ContainerDefinition struct {
 	// give up and not start. This results in the task transitioning to a STOPPED
 	// state.
 	//
-	// For tasks using the EC2 launch type, the container instances require at least
-	// version 1.26.0 of the container agent to enable a container start timeout
-	// value. However, we recommend using the latest container agent version. For
-	// information about checking your agent version and updating to the latest
+	// For tasks using the Fargate launch type, this parameter requires that the
+	// task or service uses platform version 1.3.0 or later. If this parameter is
+	// not specified, the default value of 3 minutes is used.
+	//
+	// For tasks using the EC2 launch type, if the startTimeout parameter is not
+	// specified, the value set for the Amazon ECS container agent configuration
+	// variable ECS_CONTAINER_START_TIMEOUT is used by default. If neither the startTimeout
+	// parameter or the ECS_CONTAINER_START_TIMEOUT agent configuration variable
+	// are set, then the default values of 3 minutes for Linux containers and 8
+	// minutes on Windows containers are used. Your container instances require
+	// at least version 1.26.0 of the container agent to enable a container start
+	// timeout value. However, we recommend using the latest container agent version.
+	// For information about checking your agent version and updating to the latest
 	// version, see Updating the Amazon ECS Container Agent (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-update.html)
 	// in the Amazon Elastic Container Service Developer Guide. If you are using
 	// an Amazon ECS-optimized Linux AMI, your instance needs at least version 1.26.0-1
@@ -7339,24 +7348,25 @@ type ContainerDefinition struct {
 	// agent and ecs-init. For more information, see Amazon ECS-optimized Linux
 	// AMI (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html)
 	// in the Amazon Elastic Container Service Developer Guide.
-	//
-	// For tasks using the Fargate launch type, the task or service requires platform
-	// version 1.3.0 or later.
 	StartTimeout *int64 `locationName:"startTimeout" type:"integer"`
 
 	// Time duration (in seconds) to wait before the container is forcefully killed
 	// if it doesn't exit normally on its own.
 	//
-	// For tasks using the Fargate launch type, the max stopTimeout value is 2 minutes
-	// and the task or service requires platform version 1.3.0 or later.
+	// For tasks using the Fargate launch type, the task or service requires platform
+	// version 1.3.0 or later. The max stop timeout value is 120 seconds and if
+	// the parameter is not specified, the default value of 30 seconds is used.
 	//
-	// For tasks using the EC2 launch type, the stop timeout value for the container
-	// takes precedence over the ECS_CONTAINER_STOP_TIMEOUT container agent configuration
-	// parameter, if used. Container instances require at least version 1.26.0 of
-	// the container agent to enable a container stop timeout value. However, we
-	// recommend using the latest container agent version. For information about
-	// checking your agent version and updating to the latest version, see Updating
-	// the Amazon ECS Container Agent (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-update.html)
+	// For tasks using the EC2 launch type, if the stopTimeout parameter is not
+	// specified, the value set for the Amazon ECS container agent configuration
+	// variable ECS_CONTAINER_STOP_TIMEOUT is used by default. If neither the stopTimeout
+	// parameter or the ECS_CONTAINER_STOP_TIMEOUT agent configuration variable
+	// are set, then the default values of 30 seconds for Linux containers and 30
+	// seconds on Windows containers are used. Your container instances require
+	// at least version 1.26.0 of the container agent to enable a container stop
+	// timeout value. However, we recommend using the latest container agent version.
+	// For information about checking your agent version and updating to the latest
+	// version, see Updating the Amazon ECS Container Agent (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-update.html)
 	// in the Amazon Elastic Container Service Developer Guide. If you are using
 	// an Amazon ECS-optimized Linux AMI, your instance needs at least version 1.26.0-1
 	// of the ecs-init package. If your container instances are launched from version
@@ -8631,13 +8641,16 @@ type CreateServiceInput struct {
 
 	// The period of time, in seconds, that the Amazon ECS service scheduler should
 	// ignore unhealthy Elastic Load Balancing target health checks after a task
-	// has first started. This is only valid if your service is configured to use
-	// a load balancer. If your service's tasks take a while to start and respond
-	// to Elastic Load Balancing health checks, you can specify a health check grace
-	// period of up to 2,147,483,647 seconds. During that time, the ECS service
-	// scheduler ignores health check status. This grace period can prevent the
-	// ECS service scheduler from marking tasks as unhealthy and stopping them before
-	// they have time to come up.
+	// has first started. This is only used when your service is configured to use
+	// a load balancer. If your service has a load balancer defined and you don't
+	// specify a health check grace period value, the default value of 0 is used.
+	//
+	// If your service's tasks take a while to start and respond to Elastic Load
+	// Balancing health checks, you can specify a health check grace period of up
+	// to 2,147,483,647 seconds. During that time, the Amazon ECS service scheduler
+	// ignores health check status. This grace period can prevent the service scheduler
+	// from marking tasks as unhealthy and stopping them before they have time to
+	// come up.
 	HealthCheckGracePeriodSeconds *int64 `locationName:"healthCheckGracePeriodSeconds" type:"integer"`
 
 	// The launch type on which to run your service. For more information, see Amazon
@@ -12884,8 +12897,10 @@ func (s *ListTasksOutput) SetTaskArns(v []*string) *ListTasksOutput {
 	return s
 }
 
-// Details on the load balancer or load balancers to use with a service or task
-// set.
+// The load balancer configuration to use with a service or task set.
+//
+// For specific notes and restrictions regarding the use of load balancers with
+// services and task sets, see the CreateService and CreateTaskSet actions.
 type LoadBalancer struct {
 	_ struct{} `type:"structure"`
 
@@ -12905,15 +12920,15 @@ type LoadBalancer struct {
 	//
 	// A load balancer name is only specified when using a Classic Load Balancer.
 	// If you are using an Application Load Balancer or a Network Load Balancer
-	// this should be omitted.
+	// the load balancer name parameter should be omitted.
 	LoadBalancerName *string `locationName:"loadBalancerName" type:"string"`
 
 	// The full Amazon Resource Name (ARN) of the Elastic Load Balancing target
 	// group or groups associated with a service or task set.
 	//
 	// A target group ARN is only specified when using an Application Load Balancer
-	// or Network Load Balancer. If you are using a Classic Load Balancer this should
-	// be omitted.
+	// or Network Load Balancer. If you are using a Classic Load Balancer the target
+	// group ARN should be omitted.
 	//
 	// For services using the ECS deployment controller, you can specify one or
 	// multiple target groups. For more information, see Registering Multiple Target
@@ -19163,6 +19178,25 @@ type UpdateServiceInput struct {
 	// An object representing the network configuration for a task or service.
 	NetworkConfiguration *NetworkConfiguration `locationName:"networkConfiguration" type:"structure"`
 
+	// An array of task placement constraint objects to update the service to use.
+	// If no value is specified, the existing placement constraints for the service
+	// will remain unchanged. If this value is specified, it will override any existing
+	// placement constraints defined for the service. To remove all existing placement
+	// constraints, specify an empty array.
+	//
+	// You can specify a maximum of 10 constraints per task (this limit includes
+	// constraints in the task definition and those specified at runtime).
+	PlacementConstraints []*PlacementConstraint `locationName:"placementConstraints" type:"list"`
+
+	// The task placement strategy objects to update the service to use. If no value
+	// is specified, the existing placement strategy for the service will remain
+	// unchanged. If this value is specified, it will override the existing placement
+	// strategy defined for the service. To remove an existing placement strategy,
+	// specify an empty object.
+	//
+	// You can specify a maximum of five strategy rules per service.
+	PlacementStrategy []*PlacementStrategy `locationName:"placementStrategy" type:"list"`
+
 	// The platform version on which your tasks in the service are running. A platform
 	// version is only specified for tasks using the Fargate launch type. If a platform
 	// version is not specified, the LATEST platform version is used by default.
@@ -19260,6 +19294,18 @@ func (s *UpdateServiceInput) SetHealthCheckGracePeriodSeconds(v int64) *UpdateSe
 // SetNetworkConfiguration sets the NetworkConfiguration field's value.
 func (s *UpdateServiceInput) SetNetworkConfiguration(v *NetworkConfiguration) *UpdateServiceInput {
 	s.NetworkConfiguration = v
+	return s
+}
+
+// SetPlacementConstraints sets the PlacementConstraints field's value.
+func (s *UpdateServiceInput) SetPlacementConstraints(v []*PlacementConstraint) *UpdateServiceInput {
+	s.PlacementConstraints = v
+	return s
+}
+
+// SetPlacementStrategy sets the PlacementStrategy field's value.
+func (s *UpdateServiceInput) SetPlacementStrategy(v []*PlacementStrategy) *UpdateServiceInput {
+	s.PlacementStrategy = v
 	return s
 }
 

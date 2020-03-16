@@ -3082,6 +3082,8 @@
         "capacityProviderStrategy":{"shape":"CapacityProviderStrategy"},
         "deploymentConfiguration":{"shape":"DeploymentConfiguration"},
         "networkConfiguration":{"shape":"NetworkConfiguration"},
+        "placementConstraints":{"shape":"PlacementConstraints"},
+        "placementStrategy":{"shape":"PlacementStrategies"},
         "platformVersion":{"shape":"String"},
         "forceNewDeployment":{"shape":"Boolean"},
         "healthCheckGracePeriodSeconds":{"shape":"BoxedInteger"}

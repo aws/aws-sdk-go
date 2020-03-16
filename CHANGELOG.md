@@ -1,3 +1,17 @@
+Release v1.29.25 (2020-03-16)
+===
+
+### Service Client Updates
+* `service/cognito-idp`: Updates service API and documentation
+* `service/ecs`: Updates service API and documentation
+  * This release adds the ability to update the task placement strategy and constraints for Amazon ECS services.
+* `service/elasticache`: Updates service API, documentation, and paginators
+  * Amazon ElastiCache now supports Global Datastore for Redis. Global Datastore for Redis offers fully managed, fast, reliable and secure cross-region replication. Using Global Datastore for Redis, you can create cross-region read replica clusters for ElastiCache for Redis to enable low-latency reads and disaster recovery across regions. You can create, modify and describe a Global Datastore, as well as add or remove regions from your Global Datastore and promote a region as primary in Global Datastore.
+* `service/s3control`: Updates service API and documentation
+  * Amazon S3 now supports Batch Operations job tagging.
+* `service/ssm`: Updates service API and documentation
+  * Resource data sync for AWS Systems Manager Inventory now includes destination data sharing. This feature enables you to synchronize inventory data from multiple AWS accounts into a central Amazon S3 bucket. To use this feature, all AWS accounts must be listed in AWS Organizations.
+
 Release v1.29.24 (2020-03-13)
 ===
 

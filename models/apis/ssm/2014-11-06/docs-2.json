@@ -4378,7 +4378,7 @@
         "DescribeMaintenanceWindowsRequest$NextToken": "<p>The token for the next set of items to return. (You received this token from a previous call.)</p>",
         "DescribeMaintenanceWindowsResult$NextToken": "<p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>",
         "DescribeParametersRequest$NextToken": "<p>The token for the next set of items to return. (You received this token from a previous call.)</p>",
-        "DescribeParametersResult$NextToken": "<p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>",
+        "DescribeParametersResult$NextToken": "<p>The token to use when requesting the next set of items.</p>",
         "DescribePatchBaselinesRequest$NextToken": "<p>The token for the next set of items to return. (You received this token from a previous call.)</p>",
         "DescribePatchBaselinesResult$NextToken": "<p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>",
         "DescribePatchGroupsRequest$NextToken": "<p>The token for the next set of items to return. (You received this token from a previous call.)</p>",
@@ -5577,10 +5577,10 @@
         "EffectivePatch$PatchStatus": "<p>The status of the patch in a patch baseline. This includes information about whether the patch is currently approved, due to be approved by a rule, explicitly approved, or explicitly rejected and the date the patch was or will be approved.</p>"
       }
     },
-    "PatchStringDate": {
+    "PatchStringDateTime": {
       "base": null,
       "refs": {
-        "PatchRule$ApproveUntilDate": "<p>The cutoff date for auto approval of released patches. Any patches released on or before this date will be installed automatically</p>"
+        "PatchRule$ApproveUntilDate": "<p>Example API</p>"
       }
     },
     "PatchTitle": {
@@ -5850,6 +5850,18 @@
       "base": null,
       "refs": {
         "ResourceDataSyncItem$SyncCreatedTime": "<p>The date and time the configuration was created (UTC).</p>"
+      }
+    },
+    "ResourceDataSyncDestinationDataSharing": {
+      "base": "<p>Synchronize Systems Manager Inventory data from multiple AWS accounts defined in AWS Organizations to a centralized Amazon S3 bucket. Data is synchronized to individual key prefixes in the central bucket. Each key prefix represents a different AWS account ID.</p>",
+      "refs": {
+        "ResourceDataSyncS3Destination$DestinationDataSharing": "<p>Enables destination data sharing. By default, this field is <code>null</code>.</p>"
+      }
+    },
+    "ResourceDataSyncDestinationDataSharingType": {
+      "base": null,
+      "refs": {
+        "ResourceDataSyncDestinationDataSharing$DestinationDataSharingType": "<p>The sharing data type. Only <code>Organization</code> is supported.</p>"
       }
     },
     "ResourceDataSyncIncludeFutureRegions": {

@@ -6058,11 +6058,12 @@ func (c *CognitoIdentityProvider) ForgotPasswordRequest(input *ForgotPasswordInp
 //
 // Calling this API causes a message to be sent to the end user with a confirmation
 // code that is required to change the user's password. For the Username parameter,
-// you can use the username or user alias. If a verified phone number exists
-// for the user, the confirmation code is sent to the phone number. Otherwise,
-// if a verified email exists, the confirmation code is sent to the email. If
-// neither a verified phone number nor a verified email exists, InvalidParameterException
-// is thrown. To use the confirmation code for resetting the password, call .
+// you can use the username or user alias. The method used to send the confirmation
+// code is sent according to the specified AccountRecoverySetting. For more
+// information, see Recovering User Accounts in the Amazon Cognito Developer
+// Guide. If neither a verified phone number nor a verified email exists, an
+// InvalidParameterException is thrown. To use the confirmation code for resetting
+// the password, call .
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14829,6 +14830,10 @@ func (s AliasExistsException) RequestID() string {
 
 // The Amazon Pinpoint analytics configuration for collecting metrics for a
 // user pool.
+//
+// Cognito User Pools only supports sending events to Amazon Pinpoint projects
+// in the US East (N. Virginia) us-east-1 Region, regardless of the region in
+// which the user pool resides.
 type AnalyticsConfigurationType struct {
 	_ struct{} `type:"structure"`
 
@@ -14913,6 +14918,10 @@ func (s *AnalyticsConfigurationType) SetUserDataShared(v bool) *AnalyticsConfigu
 //
 // An endpoint uniquely identifies a mobile device, email address, or phone
 // number that can receive messages from Amazon Pinpoint analytics.
+//
+// Cognito User Pools only supports sending events to Amazon Pinpoint projects
+// in the US East (N. Virginia) us-east-1 Region, regardless of the region in
+// which the user pool resides.
 type AnalyticsMetadataType struct {
 	_ struct{} `type:"structure"`
 
@@ -16356,7 +16365,7 @@ type CreateIdentityProviderInput struct {
 	//    discovery URL specified by oidc_issuer key jwks_uri if not available from
 	//    discovery URL specified by oidc_issuer key authorize_scopes
 	//
-	//    * For SAML providers: MetadataFile OR MetadataURL IDPSignOut optional
+	//    * For SAML providers: MetadataFile OR MetadataURL IDPSignout optional
 	//
 	// ProviderDetails is a required field
 	ProviderDetails map[string]*string `type:"map" required:"true"`
@@ -16726,6 +16735,10 @@ type CreateUserPoolClientInput struct {
 
 	// The Amazon Pinpoint analytics configuration for collecting metrics for this
 	// user pool.
+	//
+	// Cognito User Pools only supports sending events to Amazon Pinpoint projects
+	// in the US East (N. Virginia) us-east-1 Region, regardless of the region in
+	// which the user pool resides.
 	AnalyticsConfiguration *AnalyticsConfigurationType `type:"structure"`
 
 	// A list of allowed redirect (callback) URLs for the identity providers.
@@ -19181,6 +19194,10 @@ func (s *EventFeedbackType) SetProvider(v string) *EventFeedbackType {
 type EventRiskType struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates whether compromised credentials were detected during an authentication
+	// event.
+	CompromisedCredentialsDetected *bool `type:"boolean"`
+
 	// The risk decision.
 	RiskDecision *string `type:"string" enum:"RiskDecisionType"`
 
@@ -19196,6 +19213,12 @@ func (s EventRiskType) String() string {
 // GoString returns the string representation
 func (s EventRiskType) GoString() string {
 	return s.String()
+}
+
+// SetCompromisedCredentialsDetected sets the CompromisedCredentialsDetected field's value.
+func (s *EventRiskType) SetCompromisedCredentialsDetected(v bool) *EventRiskType {
+	s.CompromisedCredentialsDetected = &v
+	return s
 }
 
 // SetRiskDecision sets the RiskDecision field's value.
@@ -26692,6 +26715,10 @@ type UpdateUserPoolClientInput struct {
 
 	// The Amazon Pinpoint analytics configuration for collecting metrics for this
 	// user pool.
+	//
+	// Cognito User Pools only supports sending events to Amazon Pinpoint projects
+	// in the US East (N. Virginia) us-east-1 Region, regardless of the region in
+	// which the user pool resides.
 	AnalyticsConfiguration *AnalyticsConfigurationType `type:"structure"`
 
 	// A list of allowed redirect (callback) URLs for the identity providers.
@@ -27953,6 +27980,10 @@ type UserPoolClientType struct {
 	AllowedOAuthScopes []*string `type:"list"`
 
 	// The Amazon Pinpoint analytics configuration for the user pool client.
+	//
+	// Cognito User Pools only supports sending events to Amazon Pinpoint projects
+	// in the US East (N. Virginia) us-east-1 Region, regardless of the region in
+	// which the user pool resides.
 	AnalyticsConfiguration *AnalyticsConfigurationType `type:"structure"`
 
 	// A list of allowed redirect (callback) URLs for the identity providers.

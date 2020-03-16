@@ -76,6 +76,10 @@ type S3ControlAPI interface {
 	DeleteAccessPointPolicyWithContext(aws.Context, *s3control.DeleteAccessPointPolicyInput, ...request.Option) (*s3control.DeleteAccessPointPolicyOutput, error)
 	DeleteAccessPointPolicyRequest(*s3control.DeleteAccessPointPolicyInput) (*request.Request, *s3control.DeleteAccessPointPolicyOutput)
 
+	DeleteJobTagging(*s3control.DeleteJobTaggingInput) (*s3control.DeleteJobTaggingOutput, error)
+	DeleteJobTaggingWithContext(aws.Context, *s3control.DeleteJobTaggingInput, ...request.Option) (*s3control.DeleteJobTaggingOutput, error)
+	DeleteJobTaggingRequest(*s3control.DeleteJobTaggingInput) (*request.Request, *s3control.DeleteJobTaggingOutput)
+
 	DeletePublicAccessBlock(*s3control.DeletePublicAccessBlockInput) (*s3control.DeletePublicAccessBlockOutput, error)
 	DeletePublicAccessBlockWithContext(aws.Context, *s3control.DeletePublicAccessBlockInput, ...request.Option) (*s3control.DeletePublicAccessBlockOutput, error)
 	DeletePublicAccessBlockRequest(*s3control.DeletePublicAccessBlockInput) (*request.Request, *s3control.DeletePublicAccessBlockOutput)
@@ -95,6 +99,10 @@ type S3ControlAPI interface {
 	GetAccessPointPolicyStatus(*s3control.GetAccessPointPolicyStatusInput) (*s3control.GetAccessPointPolicyStatusOutput, error)
 	GetAccessPointPolicyStatusWithContext(aws.Context, *s3control.GetAccessPointPolicyStatusInput, ...request.Option) (*s3control.GetAccessPointPolicyStatusOutput, error)
 	GetAccessPointPolicyStatusRequest(*s3control.GetAccessPointPolicyStatusInput) (*request.Request, *s3control.GetAccessPointPolicyStatusOutput)
+
+	GetJobTagging(*s3control.GetJobTaggingInput) (*s3control.GetJobTaggingOutput, error)
+	GetJobTaggingWithContext(aws.Context, *s3control.GetJobTaggingInput, ...request.Option) (*s3control.GetJobTaggingOutput, error)
+	GetJobTaggingRequest(*s3control.GetJobTaggingInput) (*request.Request, *s3control.GetJobTaggingOutput)
 
 	GetPublicAccessBlock(*s3control.GetPublicAccessBlockInput) (*s3control.GetPublicAccessBlockOutput, error)
 	GetPublicAccessBlockWithContext(aws.Context, *s3control.GetPublicAccessBlockInput, ...request.Option) (*s3control.GetPublicAccessBlockOutput, error)
@@ -117,6 +125,10 @@ type S3ControlAPI interface {
 	PutAccessPointPolicy(*s3control.PutAccessPointPolicyInput) (*s3control.PutAccessPointPolicyOutput, error)
 	PutAccessPointPolicyWithContext(aws.Context, *s3control.PutAccessPointPolicyInput, ...request.Option) (*s3control.PutAccessPointPolicyOutput, error)
 	PutAccessPointPolicyRequest(*s3control.PutAccessPointPolicyInput) (*request.Request, *s3control.PutAccessPointPolicyOutput)
+
+	PutJobTagging(*s3control.PutJobTaggingInput) (*s3control.PutJobTaggingOutput, error)
+	PutJobTaggingWithContext(aws.Context, *s3control.PutJobTaggingInput, ...request.Option) (*s3control.PutJobTaggingOutput, error)
+	PutJobTaggingRequest(*s3control.PutJobTaggingInput) (*request.Request, *s3control.PutJobTaggingOutput)
 
 	PutPublicAccessBlock(*s3control.PutPublicAccessBlockInput) (*s3control.PutPublicAccessBlockOutput, error)
 	PutPublicAccessBlockWithContext(aws.Context, *s3control.PutPublicAccessBlockInput, ...request.Option) (*s3control.PutPublicAccessBlockOutput, error)
