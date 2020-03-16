@@ -6,15 +6,18 @@
     "CreateJob": "<p>Creates an Amazon S3 batch operations job.</p>",
     "DeleteAccessPoint": "<p>Deletes the specified access point.</p>",
     "DeleteAccessPointPolicy": "<p>Deletes the access point policy for the specified access point.</p>",
+    "DeleteJobTagging": "<p>Delete the tags on a Amazon S3 batch operations job, if any.</p>",
     "DeletePublicAccessBlock": "<p>Removes the <code>PublicAccessBlock</code> configuration for an Amazon Web Services account.</p>",
     "DescribeJob": "<p>Retrieves the configuration parameters and status for a batch operations job.</p>",
     "GetAccessPoint": "<p>Returns configuration information about the specified access point.</p>",
     "GetAccessPointPolicy": "<p>Returns the access point policy associated with the specified access point.</p>",
     "GetAccessPointPolicyStatus": "<p>Indicates whether the specified access point currently has a policy that allows public access. For more information about public access through access points, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/access-points.html\">Managing Data Access with Amazon S3 Access Points</a> in the <i>Amazon Simple Storage Service Developer Guide</i>.</p>",
+    "GetJobTagging": "<p>Retrieve the tags on a Amazon S3 batch operations job.</p>",
     "GetPublicAccessBlock": "<p>Retrieves the <code>PublicAccessBlock</code> configuration for an Amazon Web Services account.</p>",
     "ListAccessPoints": "<p>Returns a list of the access points currently associated with the specified bucket. You can retrieve up to 1000 access points per call. If the specified bucket has more than 1000 access points (or the number specified in <code>maxResults</code>, whichever is less), then the response will include a continuation token that you can use to list the additional access points.</p>",
     "ListJobs": "<p>Lists current jobs and jobs that have ended within the last 30 days for the AWS account making the request.</p>",
     "PutAccessPointPolicy": "<p>Associates an access policy with the specified access point. Each access point can have only one policy, so a request made to this API replaces any existing policy associated with the specified access point.</p>",
+    "PutJobTagging": "<p>Replace the set of tags on a Amazon S3 batch operations job.</p>",
     "PutPublicAccessBlock": "<p>Creates or modifies the <code>PublicAccessBlock</code> configuration for an Amazon Web Services account.</p>",
     "UpdateJobPriority": "<p>Updates an existing job's priority.</p>",
     "UpdateJobStatus": "<p>Updates the status for the specified job. Use this operation to confirm that you want to run a job or to cancel an existing job.</p>"
@@ -53,15 +56,18 @@
         "CreateJobRequest$AccountId": "<p/>",
         "DeleteAccessPointPolicyRequest$AccountId": "<p>The account ID for the account that owns the specified access point.</p>",
         "DeleteAccessPointRequest$AccountId": "<p>The account ID for the account that owns the specified access point.</p>",
+        "DeleteJobTaggingRequest$AccountId": "<p>The account ID for the Amazon Web Services account associated with the Amazon S3 batch operations job you want to remove tags from.</p>",
         "DeletePublicAccessBlockRequest$AccountId": "<p>The account ID for the Amazon Web Services account whose <code>PublicAccessBlock</code> configuration you want to remove.</p>",
         "DescribeJobRequest$AccountId": "<p/>",
         "GetAccessPointPolicyRequest$AccountId": "<p>The account ID for the account that owns the specified access point.</p>",
         "GetAccessPointPolicyStatusRequest$AccountId": "<p>The account ID for the account that owns the specified access point.</p>",
         "GetAccessPointRequest$AccountId": "<p>The account ID for the account that owns the specified access point.</p>",
+        "GetJobTaggingRequest$AccountId": "<p>The account ID for the Amazon Web Services account associated with the Amazon S3 batch operations job you want to retrieve tags for.</p>",
         "GetPublicAccessBlockRequest$AccountId": "<p>The account ID for the Amazon Web Services account whose <code>PublicAccessBlock</code> configuration you want to retrieve.</p>",
         "ListAccessPointsRequest$AccountId": "<p>The AWS account ID for owner of the bucket whose access points you want to list.</p>",
         "ListJobsRequest$AccountId": "<p/>",
         "PutAccessPointPolicyRequest$AccountId": "<p>The AWS account ID for owner of the bucket associated with the specified access point.</p>",
+        "PutJobTaggingRequest$AccountId": "<p>The account ID for the Amazon Web Services account associated with the Amazon S3 batch operations job you want to replace tags on.</p>",
         "PutPublicAccessBlockRequest$AccountId": "<p>The account ID for the Amazon Web Services account whose <code>PublicAccessBlock</code> configuration you want to set.</p>",
         "UpdateJobPriorityRequest$AccountId": "<p/>",
         "UpdateJobStatusRequest$AccountId": "<p/>"
@@ -127,6 +133,16 @@
       "refs": {
       }
     },
+    "DeleteJobTaggingRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteJobTaggingResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeletePublicAccessBlockRequest": {
       "base": null,
       "refs": {
@@ -152,7 +168,8 @@
         "InvalidRequestException$Message": null,
         "JobStatusException$Message": null,
         "NotFoundException$Message": null,
-        "TooManyRequestsException$Message": null
+        "TooManyRequestsException$Message": null,
+        "TooManyTagsException$Message": null
       }
     },
     "GetAccessPointPolicyRequest": {
@@ -181,6 +198,16 @@
       }
     },
     "GetAccessPointResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetJobTaggingRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetJobTaggingResult": {
       "base": null,
       "refs": {
       }
@@ -275,9 +302,12 @@
       "base": null,
       "refs": {
         "CreateJobResult$JobId": "<p>The ID for this job. Amazon S3 generates this ID automatically and returns it after a successful <code>Create Job</code> request.</p>",
+        "DeleteJobTaggingRequest$JobId": "<p>The ID for the job whose tags you want to delete.</p>",
         "DescribeJobRequest$JobId": "<p>The ID for the job whose information you want to retrieve.</p>",
+        "GetJobTaggingRequest$JobId": "<p>The ID for the job whose tags you want to retrieve.</p>",
         "JobDescriptor$JobId": "<p>The ID for the specified job.</p>",
         "JobListDescriptor$JobId": "<p>The ID for the specified job.</p>",
+        "PutJobTaggingRequest$JobId": "<p>The ID for the job whose tags you want to replace.</p>",
         "UpdateJobPriorityRequest$JobId": "<p>The ID for the job whose priority you want to update.</p>",
         "UpdateJobPriorityResult$JobId": "<p>The ID for the job whose priority Amazon S3 updated.</p>",
         "UpdateJobStatusRequest$JobId": "<p>The ID of the job whose status you want to update.</p>",
@@ -575,6 +605,16 @@
       "refs": {
       }
     },
+    "PutJobTaggingRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutJobTaggingResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "PutPublicAccessBlockRequest": {
       "base": null,
       "refs": {
@@ -754,6 +794,9 @@
     "S3TagSet": {
       "base": null,
       "refs": {
+        "CreateJobRequest$Tags": "<p>An optional set of tags to associate with the job when it is created.</p>",
+        "GetJobTaggingResult$Tags": "<p>The set of tags associated with the job.</p>",
+        "PutJobTaggingRequest$Tags": "<p>The set of tags to associate with the job.</p>",
         "S3CopyObjectOperation$NewObjectTagging": "<p/>",
         "S3SetObjectTaggingOperation$TagSet": "<p/>"
       }
@@ -796,6 +839,11 @@
     },
     "TooManyRequestsException": {
       "base": "<p/>",
+      "refs": {
+      }
+    },
+    "TooManyTagsException": {
+      "base": null,
       "refs": {
       }
     },

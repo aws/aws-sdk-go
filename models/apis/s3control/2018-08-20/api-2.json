@@ -58,6 +58,20 @@
       },
       "input":{"shape":"DeleteAccessPointPolicyRequest"}
     },
+    "DeleteJobTagging":{
+      "name":"DeleteJobTagging",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v20180820/jobs/{id}/tagging"
+      },
+      "input":{"shape":"DeleteJobTaggingRequest"},
+      "output":{"shape":"DeleteJobTaggingResult"},
+      "errors":[
+        {"shape":"InternalServiceException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
     "DeletePublicAccessBlock":{
       "name":"DeletePublicAccessBlock",
       "http":{
@@ -108,6 +122,20 @@
       "input":{"shape":"GetAccessPointPolicyStatusRequest"},
       "output":{"shape":"GetAccessPointPolicyStatusResult"}
     },
+    "GetJobTagging":{
+      "name":"GetJobTagging",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20180820/jobs/{id}/tagging"
+      },
+      "input":{"shape":"GetJobTaggingRequest"},
+      "output":{"shape":"GetJobTaggingResult"},
+      "errors":[
+        {"shape":"InternalServiceException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
     "GetPublicAccessBlock":{
       "name":"GetPublicAccessBlock",
       "http":{
@@ -154,6 +182,25 @@
         "locationName":"PutAccessPointPolicyRequest",
         "xmlNamespace":{"uri":"http://awss3control.amazonaws.com/doc/2018-08-20/"}
       }
+    },
+    "PutJobTagging":{
+      "name":"PutJobTagging",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v20180820/jobs/{id}/tagging"
+      },
+      "input":{
+        "shape":"PutJobTaggingRequest",
+        "locationName":"PutJobTaggingRequest",
+        "xmlNamespace":{"uri":"http://awss3control.amazonaws.com/doc/2018-08-20/"}
+      },
+      "output":{"shape":"PutJobTaggingResult"},
+      "errors":[
+        {"shape":"InternalServiceException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyTagsException"}
+      ]
     },
     "PutPublicAccessBlock":{
       "name":"PutPublicAccessBlock",
@@ -296,7 +343,8 @@
           "shape":"JobPriority",
           "box":true
         },
-        "RoleArn":{"shape":"IAMRoleArn"}
+        "RoleArn":{"shape":"IAMRoleArn"},
+        "Tags":{"shape":"S3TagSet"}
       }
     },
     "CreateJobResult":{
@@ -342,6 +390,30 @@
           "location":"uri",
           "locationName":"name"
         }
+      }
+    },
+    "DeleteJobTaggingRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "JobId"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "JobId":{
+          "shape":"JobId",
+          "location":"uri",
+          "locationName":"id"
+        }
+      }
+    },
+    "DeleteJobTaggingResult":{
+      "type":"structure",
+      "members":{
       }
     },
     "DeletePublicAccessBlockRequest":{
@@ -463,6 +535,31 @@
         "VpcConfiguration":{"shape":"VpcConfiguration"},
         "PublicAccessBlockConfiguration":{"shape":"PublicAccessBlockConfiguration"},
         "CreationDate":{"shape":"CreationDate"}
+      }
+    },
+    "GetJobTaggingRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "JobId"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "JobId":{
+          "shape":"JobId",
+          "location":"uri",
+          "locationName":"id"
+        }
+      }
+    },
+    "GetJobTaggingResult":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"S3TagSet"}
       }
     },
     "GetPublicAccessBlockOutput":{
@@ -1005,6 +1102,32 @@
         "Policy":{"shape":"Policy"}
       }
     },
+    "PutJobTaggingRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "JobId",
+        "Tags"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "JobId":{
+          "shape":"JobId",
+          "location":"uri",
+          "locationName":"id"
+        },
+        "Tags":{"shape":"S3TagSet"}
+      }
+    },
+    "PutJobTaggingResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "PutPublicAccessBlockRequest":{
       "type":"structure",
       "required":[
@@ -1281,6 +1404,13 @@
     "SuspendedDate":{"type":"timestamp"},
     "TimeStamp":{"type":"timestamp"},
     "TooManyRequestsException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
+    "TooManyTagsException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"ExceptionMessage"}
