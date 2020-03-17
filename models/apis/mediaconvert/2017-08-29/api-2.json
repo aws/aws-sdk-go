@@ -1398,6 +1398,110 @@
         "USE_CONFIGURED"
       ]
     },
+    "Av1AdaptiveQuantization": {
+      "type": "string",
+      "enum": [
+        "OFF",
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "HIGHER",
+        "MAX"
+      ]
+    },
+    "Av1FramerateControl": {
+      "type": "string",
+      "enum": [
+        "INITIALIZE_FROM_SOURCE",
+        "SPECIFIED"
+      ]
+    },
+    "Av1FramerateConversionAlgorithm": {
+      "type": "string",
+      "enum": [
+        "DUPLICATE_DROP",
+        "INTERPOLATE"
+      ]
+    },
+    "Av1QvbrSettings": {
+      "type": "structure",
+      "members": {
+        "QvbrQualityLevel": {
+          "shape": "__integerMin1Max10",
+          "locationName": "qvbrQualityLevel"
+        },
+        "QvbrQualityLevelFineTune": {
+          "shape": "__doubleMin0Max1",
+          "locationName": "qvbrQualityLevelFineTune"
+        }
+      }
+    },
+    "Av1RateControlMode": {
+      "type": "string",
+      "enum": [
+        "QVBR"
+      ]
+    },
+    "Av1Settings": {
+      "type": "structure",
+      "members": {
+        "AdaptiveQuantization": {
+          "shape": "Av1AdaptiveQuantization",
+          "locationName": "adaptiveQuantization"
+        },
+        "FramerateControl": {
+          "shape": "Av1FramerateControl",
+          "locationName": "framerateControl"
+        },
+        "FramerateConversionAlgorithm": {
+          "shape": "Av1FramerateConversionAlgorithm",
+          "locationName": "framerateConversionAlgorithm"
+        },
+        "FramerateDenominator": {
+          "shape": "__integerMin1Max2147483647",
+          "locationName": "framerateDenominator"
+        },
+        "FramerateNumerator": {
+          "shape": "__integerMin1Max2147483647",
+          "locationName": "framerateNumerator"
+        },
+        "GopSize": {
+          "shape": "__doubleMin0",
+          "locationName": "gopSize"
+        },
+        "MaxBitrate": {
+          "shape": "__integerMin1000Max1152000000",
+          "locationName": "maxBitrate"
+        },
+        "NumberBFramesBetweenReferenceFrames": {
+          "shape": "__integerMin7Max15",
+          "locationName": "numberBFramesBetweenReferenceFrames"
+        },
+        "QvbrSettings": {
+          "shape": "Av1QvbrSettings",
+          "locationName": "qvbrSettings"
+        },
+        "RateControlMode": {
+          "shape": "Av1RateControlMode",
+          "locationName": "rateControlMode"
+        },
+        "Slices": {
+          "shape": "__integerMin1Max32",
+          "locationName": "slices"
+        },
+        "SpatialAdaptiveQuantization": {
+          "shape": "Av1SpatialAdaptiveQuantization",
+          "locationName": "spatialAdaptiveQuantization"
+        }
+      }
+    },
+    "Av1SpatialAdaptiveQuantization": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "ENABLED"
+      ]
+    },
     "AvailBlanking": {
       "type": "structure",
       "members": {
@@ -7665,6 +7769,7 @@
       "type": "string",
       "enum": [
         "FRAME_CAPTURE",
+        "AV1",
         "H_264",
         "H_265",
         "MPEG2",
@@ -7674,6 +7779,10 @@
     "VideoCodecSettings": {
       "type": "structure",
       "members": {
+        "Av1Settings": {
+          "shape": "Av1Settings",
+          "locationName": "av1Settings"
+        },
         "Codec": {
           "shape": "VideoCodec",
           "locationName": "codec"
@@ -8219,6 +8328,11 @@
       "type": "integer",
       "min": 64000,
       "max": 640000
+    },
+    "__integerMin7Max15": {
+      "type": "integer",
+      "min": 7,
+      "max": 15
     },
     "__integerMin8000Max192000": {
       "type": "integer",

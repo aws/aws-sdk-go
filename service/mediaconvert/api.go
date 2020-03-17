@@ -3619,6 +3619,255 @@ func (s *AudioSelectorGroup) SetAudioSelectorNames(v []*string) *AudioSelectorGr
 	return s
 }
 
+// Settings for quality-defined variable bitrate encoding with the AV1 codec.
+// Required when you set Rate control mode to QVBR. Not valid when you set Rate
+// control mode to a value other than QVBR, or when you don't define Rate control
+// mode.
+type Av1QvbrSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Required when you use QVBR rate control mode. That is, when you specify qvbrSettings
+	// within av1Settings. Specify the general target quality level for this output,
+	// from 1 to 10. Use higher numbers for greater quality. Level 10 results in
+	// nearly lossless compression. The quality level for most broadcast-quality
+	// transcodes is between 6 and 9. Optionally, to specify a value between whole
+	// numbers, also provide a value for the setting qvbrQualityLevelFineTune. For
+	// example, if you want your QVBR quality level to be 7.33, set qvbrQualityLevel
+	// to 7 and set qvbrQualityLevelFineTune to .33.
+	QvbrQualityLevel *int64 `locationName:"qvbrQualityLevel" min:"1" type:"integer"`
+
+	// Optional. Specify a value here to set the QVBR quality to a level that is
+	// between whole numbers. For example, if you want your QVBR quality level to
+	// be 7.33, set qvbrQualityLevel to 7 and set qvbrQualityLevelFineTune to .33.
+	// MediaConvert rounds your QVBR quality level to the nearest third of a whole
+	// number. For example, if you set qvbrQualityLevel to 7 and you set qvbrQualityLevelFineTune
+	// to .25, your actual QVBR quality level is 7.33.
+	QvbrQualityLevelFineTune *float64 `locationName:"qvbrQualityLevelFineTune" type:"double"`
+}
+
+// String returns the string representation
+func (s Av1QvbrSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Av1QvbrSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Av1QvbrSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Av1QvbrSettings"}
+	if s.QvbrQualityLevel != nil && *s.QvbrQualityLevel < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("QvbrQualityLevel", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetQvbrQualityLevel sets the QvbrQualityLevel field's value.
+func (s *Av1QvbrSettings) SetQvbrQualityLevel(v int64) *Av1QvbrSettings {
+	s.QvbrQualityLevel = &v
+	return s
+}
+
+// SetQvbrQualityLevelFineTune sets the QvbrQualityLevelFineTune field's value.
+func (s *Av1QvbrSettings) SetQvbrQualityLevelFineTune(v float64) *Av1QvbrSettings {
+	s.QvbrQualityLevelFineTune = &v
+	return s
+}
+
+// Required when you set Codec, under VideoDescription>CodecSettings to the
+// value AV1.
+type Av1Settings struct {
+	_ struct{} `type:"structure"`
+
+	// Adaptive quantization. Allows intra-frame quantizers to vary to improve visual
+	// quality.
+	AdaptiveQuantization *string `locationName:"adaptiveQuantization" type:"string" enum:"Av1AdaptiveQuantization"`
+
+	// If you are using the console, use the Framerate setting to specify the frame
+	// rate for this output. If you want to keep the same frame rate as the input
+	// video, choose Follow source. If you want to do frame rate conversion, choose
+	// a frame rate from the dropdown list or choose Custom. The framerates shown
+	// in the dropdown list are decimal approximations of fractions. If you choose
+	// Custom, specify your frame rate as a fraction. If you are creating your transcoding
+	// job specification as a JSON file without the console, use FramerateControl
+	// to specify which value the service uses for the frame rate for this output.
+	// Choose INITIALIZE_FROM_SOURCE if you want the service to use the frame rate
+	// from the input. Choose SPECIFIED if you want the service to use the frame
+	// rate you specify in the settings FramerateNumerator and FramerateDenominator.
+	FramerateControl *string `locationName:"framerateControl" type:"string" enum:"Av1FramerateControl"`
+
+	// When set to INTERPOLATE, produces smoother motion during frame rate conversion.
+	FramerateConversionAlgorithm *string `locationName:"framerateConversionAlgorithm" type:"string" enum:"Av1FramerateConversionAlgorithm"`
+
+	// When you use the API for transcode jobs that use frame rate conversion, specify
+	// the frame rate as a fraction. For example, 24000 / 1001 = 23.976 fps. Use
+	// FramerateDenominator to specify the denominator of this fraction. In this
+	// example, use 1001 for the value of FramerateDenominator. When you use the
+	// console for transcode jobs that use frame rate conversion, provide the value
+	// as a decimal number for Framerate. In this example, specify 23.976.
+	FramerateDenominator *int64 `locationName:"framerateDenominator" min:"1" type:"integer"`
+
+	// When you use the API for transcode jobs that use frame rate conversion, specify
+	// the frame rate as a fraction. For example, 24000 / 1001 = 23.976 fps. Use
+	// FramerateNumerator to specify the numerator of this fraction. In this example,
+	// use 24000 for the value of FramerateNumerator. When you use the console for
+	// transcode jobs that use frame rate conversion, provide the value as a decimal
+	// number for Framerate. In this example, specify 23.976.
+	FramerateNumerator *int64 `locationName:"framerateNumerator" min:"1" type:"integer"`
+
+	// Specify the GOP length (keyframe interval) in frames. With AV1, MediaConvert
+	// doesn't support GOP length in seconds. This value must be greater than zero
+	// and preferably equal to 1 + ((numberBFrames + 1) * x), where x is an integer
+	// value.
+	GopSize *float64 `locationName:"gopSize" type:"double"`
+
+	// Maximum bitrate in bits/second. For example, enter five megabits per second
+	// as 5000000. Required when Rate control mode is QVBR.
+	MaxBitrate *int64 `locationName:"maxBitrate" min:"1000" type:"integer"`
+
+	// Specify the number of B-frames. With AV1, MediaConvert supports only 7 or
+	// 15.
+	NumberBFramesBetweenReferenceFrames *int64 `locationName:"numberBFramesBetweenReferenceFrames" min:"7" type:"integer"`
+
+	// Settings for quality-defined variable bitrate encoding with the AV1 codec.
+	// Required when you set Rate control mode to QVBR. Not valid when you set Rate
+	// control mode to a value other than QVBR, or when you don't define Rate control
+	// mode.
+	QvbrSettings *Av1QvbrSettings `locationName:"qvbrSettings" type:"structure"`
+
+	// 'With AV1 outputs, for rate control mode, MediaConvert supports only quality-defined
+	// variable bitrate (QVBR). You can''t use CBR or VBR.'
+	RateControlMode *string `locationName:"rateControlMode" type:"string" enum:"Av1RateControlMode"`
+
+	// Specify the number of slices per picture. This value must be 1, 2, 4, 8,
+	// 16, or 32. For progressive pictures, this value must be less than or equal
+	// to the number of macroblock rows. For interlaced pictures, this value must
+	// be less than or equal to half the number of macroblock rows.
+	Slices *int64 `locationName:"slices" min:"1" type:"integer"`
+
+	// Adjust quantization within each frame based on spatial variation of content
+	// complexity.
+	SpatialAdaptiveQuantization *string `locationName:"spatialAdaptiveQuantization" type:"string" enum:"Av1SpatialAdaptiveQuantization"`
+}
+
+// String returns the string representation
+func (s Av1Settings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Av1Settings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Av1Settings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Av1Settings"}
+	if s.FramerateDenominator != nil && *s.FramerateDenominator < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("FramerateDenominator", 1))
+	}
+	if s.FramerateNumerator != nil && *s.FramerateNumerator < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("FramerateNumerator", 1))
+	}
+	if s.MaxBitrate != nil && *s.MaxBitrate < 1000 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxBitrate", 1000))
+	}
+	if s.NumberBFramesBetweenReferenceFrames != nil && *s.NumberBFramesBetweenReferenceFrames < 7 {
+		invalidParams.Add(request.NewErrParamMinValue("NumberBFramesBetweenReferenceFrames", 7))
+	}
+	if s.Slices != nil && *s.Slices < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Slices", 1))
+	}
+	if s.QvbrSettings != nil {
+		if err := s.QvbrSettings.Validate(); err != nil {
+			invalidParams.AddNested("QvbrSettings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAdaptiveQuantization sets the AdaptiveQuantization field's value.
+func (s *Av1Settings) SetAdaptiveQuantization(v string) *Av1Settings {
+	s.AdaptiveQuantization = &v
+	return s
+}
+
+// SetFramerateControl sets the FramerateControl field's value.
+func (s *Av1Settings) SetFramerateControl(v string) *Av1Settings {
+	s.FramerateControl = &v
+	return s
+}
+
+// SetFramerateConversionAlgorithm sets the FramerateConversionAlgorithm field's value.
+func (s *Av1Settings) SetFramerateConversionAlgorithm(v string) *Av1Settings {
+	s.FramerateConversionAlgorithm = &v
+	return s
+}
+
+// SetFramerateDenominator sets the FramerateDenominator field's value.
+func (s *Av1Settings) SetFramerateDenominator(v int64) *Av1Settings {
+	s.FramerateDenominator = &v
+	return s
+}
+
+// SetFramerateNumerator sets the FramerateNumerator field's value.
+func (s *Av1Settings) SetFramerateNumerator(v int64) *Av1Settings {
+	s.FramerateNumerator = &v
+	return s
+}
+
+// SetGopSize sets the GopSize field's value.
+func (s *Av1Settings) SetGopSize(v float64) *Av1Settings {
+	s.GopSize = &v
+	return s
+}
+
+// SetMaxBitrate sets the MaxBitrate field's value.
+func (s *Av1Settings) SetMaxBitrate(v int64) *Av1Settings {
+	s.MaxBitrate = &v
+	return s
+}
+
+// SetNumberBFramesBetweenReferenceFrames sets the NumberBFramesBetweenReferenceFrames field's value.
+func (s *Av1Settings) SetNumberBFramesBetweenReferenceFrames(v int64) *Av1Settings {
+	s.NumberBFramesBetweenReferenceFrames = &v
+	return s
+}
+
+// SetQvbrSettings sets the QvbrSettings field's value.
+func (s *Av1Settings) SetQvbrSettings(v *Av1QvbrSettings) *Av1Settings {
+	s.QvbrSettings = v
+	return s
+}
+
+// SetRateControlMode sets the RateControlMode field's value.
+func (s *Av1Settings) SetRateControlMode(v string) *Av1Settings {
+	s.RateControlMode = &v
+	return s
+}
+
+// SetSlices sets the Slices field's value.
+func (s *Av1Settings) SetSlices(v int64) *Av1Settings {
+	s.Slices = &v
+	return s
+}
+
+// SetSpatialAdaptiveQuantization sets the SpatialAdaptiveQuantization field's value.
+func (s *Av1Settings) SetSpatialAdaptiveQuantization(v string) *Av1Settings {
+	s.SpatialAdaptiveQuantization = &v
+	return s
+}
+
 // Settings for Avail Blanking
 type AvailBlanking struct {
 	_ struct{} `type:"structure"`
@@ -4998,10 +5247,11 @@ type ColorCorrector struct {
 	Brightness *int64 `locationName:"brightness" min:"1" type:"integer"`
 
 	// Specify the color space you want for this output. The service supports conversion
-	// between HDR formats, between SDR formats, and from SDR to HDR. The service
-	// doesn't support conversion from HDR to SDR. SDR to HDR conversion doesn't
-	// upgrade the dynamic range. The converted video has an HDR format, but visually
-	// appears the same as an unconverted output.
+	// between HDR formats, between SDR formats, from SDR to HDR, and from HDR to
+	// SDR. SDR to HDR conversion doesn't upgrade the dynamic range. The converted
+	// video has an HDR format, but visually appears the same as an unconverted
+	// output. HDR to SDR conversion uses Elemental tone mapping technology to approximate
+	// the outcome of manually regrading from HDR to SDR.
 	ColorSpaceConversion *string `locationName:"colorSpaceConversion" type:"string" enum:"ColorSpaceConversion"`
 
 	// Contrast level.
@@ -17285,10 +17535,14 @@ func (s *UpdateQueueOutput) SetQueue(v *Queue) *UpdateQueueOutput {
 // vary depending on the value that you choose for Video codec (Codec). For
 // each codec enum that you choose, define the corresponding settings object.
 // The following lists the codec enum, settings object pairs. * FRAME_CAPTURE,
-// FrameCaptureSettings * H_264, H264Settings * H_265, H265Settings * MPEG2,
-// Mpeg2Settings * PRORES, ProresSettings
+// FrameCaptureSettings * AV1, Av1Settings * H_264, H264Settings * H_265, H265Settings
+// * MPEG2, Mpeg2Settings * PRORES, ProresSettings
 type VideoCodecSettings struct {
 	_ struct{} `type:"structure"`
+
+	// Required when you set Codec, under VideoDescription>CodecSettings to the
+	// value AV1.
+	Av1Settings *Av1Settings `locationName:"av1Settings" type:"structure"`
 
 	// Specifies the video codec. This must be equal to one of the enum values defined
 	// by the object VideoCodec.
@@ -17327,6 +17581,11 @@ func (s VideoCodecSettings) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *VideoCodecSettings) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "VideoCodecSettings"}
+	if s.Av1Settings != nil {
+		if err := s.Av1Settings.Validate(); err != nil {
+			invalidParams.AddNested("Av1Settings", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.FrameCaptureSettings != nil {
 		if err := s.FrameCaptureSettings.Validate(); err != nil {
 			invalidParams.AddNested("FrameCaptureSettings", err.(request.ErrInvalidParams))
@@ -17357,6 +17616,12 @@ func (s *VideoCodecSettings) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAv1Settings sets the Av1Settings field's value.
+func (s *VideoCodecSettings) SetAv1Settings(v *Av1Settings) *VideoCodecSettings {
+	s.Av1Settings = v
+	return s
 }
 
 // SetCodec sets the Codec field's value.
@@ -17417,8 +17682,8 @@ type VideoDescription struct {
 	// vary depending on the value that you choose for Video codec (Codec). For
 	// each codec enum that you choose, define the corresponding settings object.
 	// The following lists the codec enum, settings object pairs. * FRAME_CAPTURE,
-	// FrameCaptureSettings * H_264, H264Settings * H_265, H265Settings * MPEG2,
-	// Mpeg2Settings * PRORES, ProresSettings
+	// FrameCaptureSettings * AV1, Av1Settings * H_264, H264Settings * H_265, H265Settings
+	// * MPEG2, Mpeg2Settings * PRORES, ProresSettings
 	CodecSettings *VideoCodecSettings `locationName:"codecSettings" type:"structure"`
 
 	// Choose Insert (INSERT) for this setting to include color metadata in this
@@ -18402,6 +18667,73 @@ const (
 	AudioTypeControlUseConfigured = "USE_CONFIGURED"
 )
 
+// Adaptive quantization. Allows intra-frame quantizers to vary to improve visual
+// quality.
+const (
+	// Av1AdaptiveQuantizationOff is a Av1AdaptiveQuantization enum value
+	Av1AdaptiveQuantizationOff = "OFF"
+
+	// Av1AdaptiveQuantizationLow is a Av1AdaptiveQuantization enum value
+	Av1AdaptiveQuantizationLow = "LOW"
+
+	// Av1AdaptiveQuantizationMedium is a Av1AdaptiveQuantization enum value
+	Av1AdaptiveQuantizationMedium = "MEDIUM"
+
+	// Av1AdaptiveQuantizationHigh is a Av1AdaptiveQuantization enum value
+	Av1AdaptiveQuantizationHigh = "HIGH"
+
+	// Av1AdaptiveQuantizationHigher is a Av1AdaptiveQuantization enum value
+	Av1AdaptiveQuantizationHigher = "HIGHER"
+
+	// Av1AdaptiveQuantizationMax is a Av1AdaptiveQuantization enum value
+	Av1AdaptiveQuantizationMax = "MAX"
+)
+
+// If you are using the console, use the Framerate setting to specify the frame
+// rate for this output. If you want to keep the same frame rate as the input
+// video, choose Follow source. If you want to do frame rate conversion, choose
+// a frame rate from the dropdown list or choose Custom. The framerates shown
+// in the dropdown list are decimal approximations of fractions. If you choose
+// Custom, specify your frame rate as a fraction. If you are creating your transcoding
+// job specification as a JSON file without the console, use FramerateControl
+// to specify which value the service uses for the frame rate for this output.
+// Choose INITIALIZE_FROM_SOURCE if you want the service to use the frame rate
+// from the input. Choose SPECIFIED if you want the service to use the frame
+// rate you specify in the settings FramerateNumerator and FramerateDenominator.
+const (
+	// Av1FramerateControlInitializeFromSource is a Av1FramerateControl enum value
+	Av1FramerateControlInitializeFromSource = "INITIALIZE_FROM_SOURCE"
+
+	// Av1FramerateControlSpecified is a Av1FramerateControl enum value
+	Av1FramerateControlSpecified = "SPECIFIED"
+)
+
+// When set to INTERPOLATE, produces smoother motion during frame rate conversion.
+const (
+	// Av1FramerateConversionAlgorithmDuplicateDrop is a Av1FramerateConversionAlgorithm enum value
+	Av1FramerateConversionAlgorithmDuplicateDrop = "DUPLICATE_DROP"
+
+	// Av1FramerateConversionAlgorithmInterpolate is a Av1FramerateConversionAlgorithm enum value
+	Av1FramerateConversionAlgorithmInterpolate = "INTERPOLATE"
+)
+
+// 'With AV1 outputs, for rate control mode, MediaConvert supports only quality-defined
+// variable bitrate (QVBR). You can''t use CBR or VBR.'
+const (
+	// Av1RateControlModeQvbr is a Av1RateControlMode enum value
+	Av1RateControlModeQvbr = "QVBR"
+)
+
+// Adjust quantization within each frame based on spatial variation of content
+// complexity.
+const (
+	// Av1SpatialAdaptiveQuantizationDisabled is a Av1SpatialAdaptiveQuantization enum value
+	Av1SpatialAdaptiveQuantizationDisabled = "DISABLED"
+
+	// Av1SpatialAdaptiveQuantizationEnabled is a Av1SpatialAdaptiveQuantization enum value
+	Av1SpatialAdaptiveQuantizationEnabled = "ENABLED"
+)
+
 // Optional. Choose a tag type that AWS Billing and Cost Management will use
 // to sort your AWS Elemental MediaConvert costs on any billing report that
 // you set up. Any transcoding outputs that don't have an associated tag will
@@ -18806,10 +19138,11 @@ const (
 )
 
 // Specify the color space you want for this output. The service supports conversion
-// between HDR formats, between SDR formats, and from SDR to HDR. The service
-// doesn't support conversion from HDR to SDR. SDR to HDR conversion doesn't
-// upgrade the dynamic range. The converted video has an HDR format, but visually
-// appears the same as an unconverted output.
+// between HDR formats, between SDR formats, from SDR to HDR, and from HDR to
+// SDR. SDR to HDR conversion doesn't upgrade the dynamic range. The converted
+// video has an HDR format, but visually appears the same as an unconverted
+// output. HDR to SDR conversion uses Elemental tone mapping technology to approximate
+// the outcome of manually regrading from HDR to SDR.
 const (
 	// ColorSpaceConversionNone is a ColorSpaceConversion enum value
 	ColorSpaceConversionNone = "NONE"
@@ -22315,6 +22648,9 @@ const (
 const (
 	// VideoCodecFrameCapture is a VideoCodec enum value
 	VideoCodecFrameCapture = "FRAME_CAPTURE"
+
+	// VideoCodecAv1 is a VideoCodec enum value
+	VideoCodecAv1 = "AV1"
 
 	// VideoCodecH264 is a VideoCodec enum value
 	VideoCodecH264 = "H_264"
