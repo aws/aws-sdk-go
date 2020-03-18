@@ -1,3 +1,12 @@
+Release v1.29.27 (2020-03-18)
+===
+
+### Service Client Updates
+* `service/mediaconnect`: Updates service API and documentation
+* `service/personalize`: Updates service API and documentation
+* `service/rds`: Updates service API and documentation
+  * Updated the MaxRecords type in DescribeExportTasks to Integer.
+
 Release v1.29.26 (2020-03-17)
 ===
 

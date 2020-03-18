@@ -56,7 +56,7 @@ func (c *MediaConnect) AddFlowOutputsRequest(input *AddFlowOutputsInput) (req *r
 
 // AddFlowOutputs API operation for AWS MediaConnect.
 //
-// Adds outputs to an existing flow. You can create up to 20 outputs per flow.
+// Adds outputs to an existing flow. You can create up to 50 outputs per flow.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -123,6 +123,112 @@ func (c *MediaConnect) AddFlowOutputsWithContext(ctx aws.Context, input *AddFlow
 	return out, req.Send()
 }
 
+const opAddFlowSources = "AddFlowSources"
+
+// AddFlowSourcesRequest generates a "aws/request.Request" representing the
+// client's request for the AddFlowSources operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AddFlowSources for more information on using the AddFlowSources
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AddFlowSourcesRequest method.
+//    req, resp := client.AddFlowSourcesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/AddFlowSources
+func (c *MediaConnect) AddFlowSourcesRequest(input *AddFlowSourcesInput) (req *request.Request, output *AddFlowSourcesOutput) {
+	op := &request.Operation{
+		Name:       opAddFlowSources,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/flows/{flowArn}/source",
+	}
+
+	if input == nil {
+		input = &AddFlowSourcesInput{}
+	}
+
+	output = &AddFlowSourcesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AddFlowSources API operation for AWS MediaConnect.
+//
+// Adds Sources to flow
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaConnect's
+// API operation AddFlowSources for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * InternalServerErrorException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * ForbiddenException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * NotFoundException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * ServiceUnavailableException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * TooManyRequestsException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/AddFlowSources
+func (c *MediaConnect) AddFlowSources(input *AddFlowSourcesInput) (*AddFlowSourcesOutput, error) {
+	req, out := c.AddFlowSourcesRequest(input)
+	return out, req.Send()
+}
+
+// AddFlowSourcesWithContext is the same as AddFlowSources with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AddFlowSources for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaConnect) AddFlowSourcesWithContext(ctx aws.Context, input *AddFlowSourcesInput, opts ...request.Option) (*AddFlowSourcesOutput, error) {
+	req, out := c.AddFlowSourcesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateFlow = "CreateFlow"
 
 // CreateFlowRequest generates a "aws/request.Request" representing the
@@ -168,7 +274,7 @@ func (c *MediaConnect) CreateFlowRequest(input *CreateFlowInput) (req *request.R
 // CreateFlow API operation for AWS MediaConnect.
 //
 // Creates a new flow. The request must include one source. The request optionally
-// can include outputs (up to 20) and entitlements (up to 50).
+// can include outputs (up to 50) and entitlements (up to 50).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1066,6 +1172,113 @@ func (c *MediaConnect) RemoveFlowOutputWithContext(ctx aws.Context, input *Remov
 	return out, req.Send()
 }
 
+const opRemoveFlowSource = "RemoveFlowSource"
+
+// RemoveFlowSourceRequest generates a "aws/request.Request" representing the
+// client's request for the RemoveFlowSource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RemoveFlowSource for more information on using the RemoveFlowSource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RemoveFlowSourceRequest method.
+//    req, resp := client.RemoveFlowSourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/RemoveFlowSource
+func (c *MediaConnect) RemoveFlowSourceRequest(input *RemoveFlowSourceInput) (req *request.Request, output *RemoveFlowSourceOutput) {
+	op := &request.Operation{
+		Name:       opRemoveFlowSource,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v1/flows/{flowArn}/source/{sourceArn}",
+	}
+
+	if input == nil {
+		input = &RemoveFlowSourceInput{}
+	}
+
+	output = &RemoveFlowSourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RemoveFlowSource API operation for AWS MediaConnect.
+//
+// Removes a source from an existing flow. This request can be made only if
+// there is more than one source on the flow.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaConnect's
+// API operation RemoveFlowSource for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * InternalServerErrorException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * ForbiddenException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * NotFoundException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * ServiceUnavailableException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * TooManyRequestsException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/RemoveFlowSource
+func (c *MediaConnect) RemoveFlowSource(input *RemoveFlowSourceInput) (*RemoveFlowSourceOutput, error) {
+	req, out := c.RemoveFlowSourceRequest(input)
+	return out, req.Send()
+}
+
+// RemoveFlowSourceWithContext is the same as RemoveFlowSource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RemoveFlowSource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaConnect) RemoveFlowSourceWithContext(ctx aws.Context, input *RemoveFlowSourceInput, opts ...request.Option) (*RemoveFlowSourceOutput, error) {
+	req, out := c.RemoveFlowSourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opRevokeFlowEntitlement = "RevokeFlowEntitlement"
 
 // RevokeFlowEntitlementRequest generates a "aws/request.Request" representing the
@@ -1572,6 +1785,112 @@ func (c *MediaConnect) UntagResourceWithContext(ctx aws.Context, input *UntagRes
 	return out, req.Send()
 }
 
+const opUpdateFlow = "UpdateFlow"
+
+// UpdateFlowRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFlow operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateFlow for more information on using the UpdateFlow
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateFlowRequest method.
+//    req, resp := client.UpdateFlowRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/UpdateFlow
+func (c *MediaConnect) UpdateFlowRequest(input *UpdateFlowInput) (req *request.Request, output *UpdateFlowOutput) {
+	op := &request.Operation{
+		Name:       opUpdateFlow,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v1/flows/{flowArn}",
+	}
+
+	if input == nil {
+		input = &UpdateFlowInput{}
+	}
+
+	output = &UpdateFlowOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateFlow API operation for AWS MediaConnect.
+//
+// Updates flow
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaConnect's
+// API operation UpdateFlow for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * InternalServerErrorException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * ForbiddenException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * NotFoundException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * ServiceUnavailableException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * TooManyRequestsException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/UpdateFlow
+func (c *MediaConnect) UpdateFlow(input *UpdateFlowInput) (*UpdateFlowOutput, error) {
+	req, out := c.UpdateFlowRequest(input)
+	return out, req.Send()
+}
+
+// UpdateFlowWithContext is the same as UpdateFlow with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFlow for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaConnect) UpdateFlowWithContext(ctx aws.Context, input *UpdateFlowInput, opts ...request.Option) (*UpdateFlowOutput, error) {
+	req, out := c.UpdateFlowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateFlowEntitlement = "UpdateFlowEntitlement"
 
 // UpdateFlowEntitlementRequest generates a "aws/request.Request" representing the
@@ -1950,7 +2269,7 @@ func (s AddFlowOutputs420Exception) RequestID() string {
 	return s.respMetadata.RequestID
 }
 
-// Adds outputs to an existing flow. You can create up to 20 outputs per flow.
+// Adds outputs to an existing flow. You can create up to 50 outputs per flow.
 type AddFlowOutputsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2045,6 +2364,104 @@ func (s *AddFlowOutputsOutput) SetFlowArn(v string) *AddFlowOutputsOutput {
 // SetOutputs sets the Outputs field's value.
 func (s *AddFlowOutputsOutput) SetOutputs(v []*Output) *AddFlowOutputsOutput {
 	s.Outputs = v
+	return s
+}
+
+// Adds sources to an existing flow.
+type AddFlowSourcesInput struct {
+	_ struct{} `type:"structure"`
+
+	// FlowArn is a required field
+	FlowArn *string `location:"uri" locationName:"flowArn" type:"string" required:"true"`
+
+	// A list of sources that you want to add.
+	//
+	// Sources is a required field
+	Sources []*SetSourceRequest `locationName:"sources" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s AddFlowSourcesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddFlowSourcesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddFlowSourcesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddFlowSourcesInput"}
+	if s.FlowArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowArn"))
+	}
+	if s.FlowArn != nil && len(*s.FlowArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowArn", 1))
+	}
+	if s.Sources == nil {
+		invalidParams.Add(request.NewErrParamRequired("Sources"))
+	}
+	if s.Sources != nil {
+		for i, v := range s.Sources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Sources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFlowArn sets the FlowArn field's value.
+func (s *AddFlowSourcesInput) SetFlowArn(v string) *AddFlowSourcesInput {
+	s.FlowArn = &v
+	return s
+}
+
+// SetSources sets the Sources field's value.
+func (s *AddFlowSourcesInput) SetSources(v []*SetSourceRequest) *AddFlowSourcesInput {
+	s.Sources = v
+	return s
+}
+
+// The result of a successful AddFlowSources request. The response includes
+// the details of the newly added sources.
+type AddFlowSourcesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the flow that these sources were added to.
+	FlowArn *string `locationName:"flowArn" type:"string"`
+
+	// The details of the newly added sources.
+	Sources []*Source `locationName:"sources" type:"list"`
+}
+
+// String returns the string representation
+func (s AddFlowSourcesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddFlowSourcesOutput) GoString() string {
+	return s.String()
+}
+
+// SetFlowArn sets the FlowArn field's value.
+func (s *AddFlowSourcesOutput) SetFlowArn(v string) *AddFlowSourcesOutput {
+	s.FlowArn = &v
+	return s
+}
+
+// SetSources sets the Sources field's value.
+func (s *AddFlowSourcesOutput) SetSources(v []*Source) *AddFlowSourcesOutput {
+	s.Sources = v
 	return s
 }
 
@@ -2304,7 +2721,7 @@ func (s CreateFlow420Exception) RequestID() string {
 }
 
 // Creates a new flow. The request must include one source. The request optionally
-// can include outputs (up to 20) and one entitlement.
+// can include outputs (up to 50) and one entitlement.
 type CreateFlowInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2324,9 +2741,12 @@ type CreateFlowInput struct {
 	Outputs []*AddOutputRequest `locationName:"outputs" type:"list"`
 
 	// The settings for the source of the flow.
-	//
-	// Source is a required field
-	Source *SetSourceRequest `locationName:"source" type:"structure" required:"true"`
+	Source *SetSourceRequest `locationName:"source" type:"structure"`
+
+	// The settings for source failover
+	SourceFailoverConfig *FailoverConfig `locationName:"sourceFailoverConfig" type:"structure"`
+
+	Sources []*SetSourceRequest `locationName:"sources" type:"list"`
 }
 
 // String returns the string representation
@@ -2344,9 +2764,6 @@ func (s *CreateFlowInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateFlowInput"}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
-	}
-	if s.Source == nil {
-		invalidParams.Add(request.NewErrParamRequired("Source"))
 	}
 	if s.Entitlements != nil {
 		for i, v := range s.Entitlements {
@@ -2371,6 +2788,16 @@ func (s *CreateFlowInput) Validate() error {
 	if s.Source != nil {
 		if err := s.Source.Validate(); err != nil {
 			invalidParams.AddNested("Source", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Sources != nil {
+		for i, v := range s.Sources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Sources", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -2407,6 +2834,18 @@ func (s *CreateFlowInput) SetOutputs(v []*AddOutputRequest) *CreateFlowInput {
 // SetSource sets the Source field's value.
 func (s *CreateFlowInput) SetSource(v *SetSourceRequest) *CreateFlowInput {
 	s.Source = v
+	return s
+}
+
+// SetSourceFailoverConfig sets the SourceFailoverConfig field's value.
+func (s *CreateFlowInput) SetSourceFailoverConfig(v *FailoverConfig) *CreateFlowInput {
+	s.SourceFailoverConfig = v
+	return s
+}
+
+// SetSources sets the Sources field's value.
+func (s *CreateFlowInput) SetSources(v []*SetSourceRequest) *CreateFlowInput {
+	s.Sources = v
 	return s
 }
 
@@ -2787,6 +3226,38 @@ func (s *Entitlement) SetSubscribers(v []*string) *Entitlement {
 	return s
 }
 
+// The settings for source failover
+type FailoverConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Search window time to look for dash-7 packets
+	RecoveryWindow *int64 `locationName:"recoveryWindow" type:"integer"`
+
+	State *string `locationName:"state" type:"string" enum:"State"`
+}
+
+// String returns the string representation
+func (s FailoverConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FailoverConfig) GoString() string {
+	return s.String()
+}
+
+// SetRecoveryWindow sets the RecoveryWindow field's value.
+func (s *FailoverConfig) SetRecoveryWindow(v int64) *FailoverConfig {
+	s.RecoveryWindow = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *FailoverConfig) SetState(v string) *FailoverConfig {
+	s.State = &v
+	return s
+}
+
 // The settings for a flow, including its source, outputs, and entitlements.
 type Flow struct {
 	_ struct{} `type:"structure"`
@@ -2829,6 +3300,11 @@ type Flow struct {
 	//
 	// Source is a required field
 	Source *Source `locationName:"source" type:"structure" required:"true"`
+
+	// The settings for source failover
+	SourceFailoverConfig *FailoverConfig `locationName:"sourceFailoverConfig" type:"structure"`
+
+	Sources []*Source `locationName:"sources" type:"list"`
 
 	// The current status of the flow.
 	//
@@ -2891,6 +3367,18 @@ func (s *Flow) SetOutputs(v []*Output) *Flow {
 // SetSource sets the Source field's value.
 func (s *Flow) SetSource(v *Source) *Flow {
 	s.Source = v
+	return s
+}
+
+// SetSourceFailoverConfig sets the SourceFailoverConfig field's value.
+func (s *Flow) SetSourceFailoverConfig(v *FailoverConfig) *Flow {
+	s.SourceFailoverConfig = v
+	return s
+}
+
+// SetSources sets the Sources field's value.
+func (s *Flow) SetSources(v []*Source) *Flow {
+	s.Sources = v
 	return s
 }
 
@@ -3899,6 +4387,94 @@ func (s *RemoveFlowOutputOutput) SetOutputArn(v string) *RemoveFlowOutputOutput 
 	return s
 }
 
+type RemoveFlowSourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// FlowArn is a required field
+	FlowArn *string `location:"uri" locationName:"flowArn" type:"string" required:"true"`
+
+	// SourceArn is a required field
+	SourceArn *string `location:"uri" locationName:"sourceArn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RemoveFlowSourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveFlowSourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RemoveFlowSourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RemoveFlowSourceInput"}
+	if s.FlowArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowArn"))
+	}
+	if s.FlowArn != nil && len(*s.FlowArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowArn", 1))
+	}
+	if s.SourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceArn"))
+	}
+	if s.SourceArn != nil && len(*s.SourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFlowArn sets the FlowArn field's value.
+func (s *RemoveFlowSourceInput) SetFlowArn(v string) *RemoveFlowSourceInput {
+	s.FlowArn = &v
+	return s
+}
+
+// SetSourceArn sets the SourceArn field's value.
+func (s *RemoveFlowSourceInput) SetSourceArn(v string) *RemoveFlowSourceInput {
+	s.SourceArn = &v
+	return s
+}
+
+// The result of a successful RemoveFlowSource request including the flow ARN
+// and the source ARN that was removed.
+type RemoveFlowSourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the flow that is associated with the source you removed.
+	FlowArn *string `locationName:"flowArn" type:"string"`
+
+	// The ARN of the source that was removed.
+	SourceArn *string `locationName:"sourceArn" type:"string"`
+}
+
+// String returns the string representation
+func (s RemoveFlowSourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveFlowSourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetFlowArn sets the FlowArn field's value.
+func (s *RemoveFlowSourceOutput) SetFlowArn(v string) *RemoveFlowSourceOutput {
+	s.FlowArn = &v
+	return s
+}
+
+// SetSourceArn sets the SourceArn field's value.
+func (s *RemoveFlowSourceOutput) SetSourceArn(v string) *RemoveFlowSourceOutput {
+	s.SourceArn = &v
+	return s
+}
+
 type RevokeFlowEntitlementInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4819,6 +5395,38 @@ func (s *UpdateEncryption) SetUrl(v string) *UpdateEncryption {
 	return s
 }
 
+// The settings for source failover
+type UpdateFailoverConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Recovery window time to look for dash-7 packets
+	RecoveryWindow *int64 `locationName:"recoveryWindow" type:"integer"`
+
+	State *string `locationName:"state" type:"string" enum:"State"`
+}
+
+// String returns the string representation
+func (s UpdateFailoverConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFailoverConfig) GoString() string {
+	return s.String()
+}
+
+// SetRecoveryWindow sets the RecoveryWindow field's value.
+func (s *UpdateFailoverConfig) SetRecoveryWindow(v int64) *UpdateFailoverConfig {
+	s.RecoveryWindow = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *UpdateFailoverConfig) SetState(v string) *UpdateFailoverConfig {
+	s.State = &v
+	return s
+}
+
 // The updates that you want to make to a specific entitlement.
 type UpdateFlowEntitlementInput struct {
 	_ struct{} `type:"structure"`
@@ -4937,6 +5545,79 @@ func (s *UpdateFlowEntitlementOutput) SetEntitlement(v *Entitlement) *UpdateFlow
 // SetFlowArn sets the FlowArn field's value.
 func (s *UpdateFlowEntitlementOutput) SetFlowArn(v string) *UpdateFlowEntitlementOutput {
 	s.FlowArn = &v
+	return s
+}
+
+// Updates an existing flow.
+type UpdateFlowInput struct {
+	_ struct{} `type:"structure"`
+
+	// FlowArn is a required field
+	FlowArn *string `location:"uri" locationName:"flowArn" type:"string" required:"true"`
+
+	// The settings for source failover
+	SourceFailoverConfig *UpdateFailoverConfig `locationName:"sourceFailoverConfig" type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateFlowInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFlowInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFlowInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFlowInput"}
+	if s.FlowArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowArn"))
+	}
+	if s.FlowArn != nil && len(*s.FlowArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFlowArn sets the FlowArn field's value.
+func (s *UpdateFlowInput) SetFlowArn(v string) *UpdateFlowInput {
+	s.FlowArn = &v
+	return s
+}
+
+// SetSourceFailoverConfig sets the SourceFailoverConfig field's value.
+func (s *UpdateFlowInput) SetSourceFailoverConfig(v *UpdateFailoverConfig) *UpdateFlowInput {
+	s.SourceFailoverConfig = v
+	return s
+}
+
+// Updates an existing flow.
+type UpdateFlowOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The settings for a flow, including its source, outputs, and entitlements.
+	Flow *Flow `locationName:"flow" type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateFlowOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFlowOutput) GoString() string {
+	return s.String()
+}
+
+// SetFlow sets the Flow field's value.
+func (s *UpdateFlowOutput) SetFlow(v *Flow) *UpdateFlowOutput {
+	s.Flow = v
 	return s
 }
 
@@ -5343,6 +6024,14 @@ const (
 
 	// SourceTypeEntitled is a SourceType enum value
 	SourceTypeEntitled = "ENTITLED"
+)
+
+const (
+	// StateEnabled is a State enum value
+	StateEnabled = "ENABLED"
+
+	// StateDisabled is a State enum value
+	StateDisabled = "DISABLED"
 )
 
 const (

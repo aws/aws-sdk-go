@@ -48,6 +48,40 @@
         }
       ]
     },
+    "AddFlowSources": {
+      "name": "AddFlowSources",
+      "http": {
+        "method": "POST",
+        "requestUri": "/v1/flows/{flowArn}/source",
+        "responseCode": 201
+      },
+      "input": {
+        "shape": "AddFlowSourcesRequest"
+      },
+      "output": {
+        "shape": "AddFlowSourcesResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
     "CreateFlow": {
       "name": "CreateFlow",
       "http": {
@@ -302,6 +336,40 @@
         }
       ]
     },
+    "RemoveFlowSource": {
+      "name": "RemoveFlowSource",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/v1/flows/{flowArn}/source/{sourceArn}",
+        "responseCode": 202
+      },
+      "input": {
+        "shape": "RemoveFlowSourceRequest"
+      },
+      "output": {
+        "shape": "RemoveFlowSourceResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
     "RevokeFlowEntitlement": {
       "name": "RevokeFlowEntitlement",
       "http": {
@@ -445,6 +513,40 @@
         },
         {
           "shape": "InternalServerErrorException"
+        }
+      ]
+    },
+    "UpdateFlow": {
+      "name": "UpdateFlow",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v1/flows/{flowArn}",
+        "responseCode": 202
+      },
+      "input": {
+        "shape": "UpdateFlowRequest"
+      },
+      "output": {
+        "shape": "UpdateFlowResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
         }
       ]
     },
@@ -599,6 +701,37 @@
         }
       }
     },
+    "AddFlowSourcesRequest": {
+      "type": "structure",
+      "members": {
+        "FlowArn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "flowArn"
+        },
+        "Sources": {
+          "shape": "__listOfSetSourceRequest",
+          "locationName": "sources"
+        }
+      },
+      "required": [
+        "FlowArn",
+        "Sources"
+      ]
+    },
+    "AddFlowSourcesResponse": {
+      "type": "structure",
+      "members": {
+        "FlowArn": {
+          "shape": "__string",
+          "locationName": "flowArn"
+        },
+        "Sources": {
+          "shape": "__listOfSource",
+          "locationName": "sources"
+        }
+      }
+    },
     "AddOutputRequest": {
       "type": "structure",
       "members": {
@@ -713,10 +846,17 @@
         "Source": {
           "shape": "SetSourceRequest",
           "locationName": "source"
+        },
+        "SourceFailoverConfig": {
+          "shape": "FailoverConfig",
+          "locationName": "sourceFailoverConfig"
+        },
+        "Sources": {
+          "shape": "__listOfSetSourceRequest",
+          "locationName": "sources"
         }
       },
       "required": [
-        "Source",
         "Name"
       ]
     },
@@ -860,6 +1000,19 @@
         "Name"
       ]
     },
+    "FailoverConfig": {
+      "type": "structure",
+      "members": {
+        "RecoveryWindow": {
+          "shape": "__integer",
+          "locationName": "recoveryWindow"
+        },
+        "State": {
+          "shape": "State",
+          "locationName": "state"
+        }
+      }
+    },
     "Flow": {
       "type": "structure",
       "members": {
@@ -894,6 +1047,14 @@
         "Source": {
           "shape": "Source",
           "locationName": "source"
+        },
+        "SourceFailoverConfig": {
+          "shape": "FailoverConfig",
+          "locationName": "sourceFailoverConfig"
+        },
+        "Sources": {
+          "shape": "__listOfSource",
+          "locationName": "sources"
         },
         "Status": {
           "shape": "Status",
@@ -1284,6 +1445,38 @@
         }
       }
     },
+    "RemoveFlowSourceRequest": {
+      "type": "structure",
+      "members": {
+        "FlowArn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "flowArn"
+        },
+        "SourceArn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "sourceArn"
+        }
+      },
+      "required": [
+        "FlowArn",
+        "SourceArn"
+      ]
+    },
+    "RemoveFlowSourceResponse": {
+      "type": "structure",
+      "members": {
+        "FlowArn": {
+          "shape": "__string",
+          "locationName": "flowArn"
+        },
+        "SourceArn": {
+          "shape": "__string",
+          "locationName": "sourceArn"
+        }
+      }
+    },
     "ResponseError": {
       "type": "structure",
       "members": {
@@ -1471,6 +1664,13 @@
         }
       }
     },
+    "State": {
+      "type": "string",
+      "enum": [
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "Status": {
       "type": "string",
       "enum": [
@@ -1639,6 +1839,19 @@
         }
       }
     },
+    "UpdateFailoverConfig": {
+      "type": "structure",
+      "members": {
+        "RecoveryWindow": {
+          "shape": "__integer",
+          "locationName": "recoveryWindow"
+        },
+        "State": {
+          "shape": "State",
+          "locationName": "state"
+        }
+      }
+    },
     "UpdateFlowEntitlementRequest": {
       "type": "structure",
       "members": {
@@ -1755,6 +1968,32 @@
         }
       }
     },
+    "UpdateFlowRequest": {
+      "type": "structure",
+      "members": {
+        "FlowArn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "flowArn"
+        },
+        "SourceFailoverConfig": {
+          "shape": "UpdateFailoverConfig",
+          "locationName": "sourceFailoverConfig"
+        }
+      },
+      "required": [
+        "FlowArn"
+      ]
+    },
+    "UpdateFlowResponse": {
+      "type": "structure",
+      "members": {
+        "Flow": {
+          "shape": "Flow",
+          "locationName": "flow"
+        }
+      }
+    },
     "UpdateFlowSourceRequest": {
       "type": "structure",
       "members": {
@@ -1866,6 +2105,24 @@
       "type": "list",
       "member": {
         "shape": "Output"
+      }
+    },
+    "__listOfSetSourceRequest": {
+      "type": "list",
+      "member": {
+        "shape": "SetSourceRequest"
+      }
+    },
+    "__listOfSource": {
+      "type": "list",
+      "member": {
+        "shape": "Source"
+      }
+    },
+    "__listOf__integer": {
+      "type": "list",
+      "member": {
+        "shape": "__integer"
       }
     },
     "__listOf__string": {

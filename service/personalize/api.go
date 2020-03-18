@@ -4662,6 +4662,9 @@ type BatchInferenceJobSummary struct {
 	// The time at which the batch inference job was last updated.
 	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
 
+	// The ARN of the solution version used by the batch inference job.
+	SolutionVersionArn *string `locationName:"solutionVersionArn" type:"string"`
+
 	// The status of the batch inference job. The status is one of the following
 	// values:
 	//
@@ -4712,6 +4715,12 @@ func (s *BatchInferenceJobSummary) SetJobName(v string) *BatchInferenceJobSummar
 // SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
 func (s *BatchInferenceJobSummary) SetLastUpdatedDateTime(v time.Time) *BatchInferenceJobSummary {
 	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetSolutionVersionArn sets the SolutionVersionArn field's value.
+func (s *BatchInferenceJobSummary) SetSolutionVersionArn(v string) *BatchInferenceJobSummary {
+	s.SolutionVersionArn = &v
 	return s
 }
 
@@ -8310,7 +8319,7 @@ type HPOObjective struct {
 	// A regular expression for finding the metric in the training job logs.
 	MetricRegex *string `locationName:"metricRegex" type:"string"`
 
-	// The data type of the metric.
+	// The type of the metric. Valid values are Maximize and Minimize.
 	Type *string `locationName:"type" type:"string"`
 }
 
@@ -10275,6 +10284,10 @@ type SolutionVersion struct {
 	// The UPDATE option can only be used after you've created a solution version
 	// with the FULL option and the training solution uses the native-recipe-hrnn-coldstart.
 	TrainingMode *string `locationName:"trainingMode" type:"string" enum:"TrainingMode"`
+
+	// If hyperparameter optimization was performed, contains the hyperparameter
+	// values of the best performing model.
+	TunedHPOParams *TunedHPOParams `locationName:"tunedHPOParams" type:"structure"`
 }
 
 // String returns the string representation
@@ -10371,6 +10384,12 @@ func (s *SolutionVersion) SetTrainingMode(v string) *SolutionVersion {
 	return s
 }
 
+// SetTunedHPOParams sets the TunedHPOParams field's value.
+func (s *SolutionVersion) SetTunedHPOParams(v *TunedHPOParams) *SolutionVersion {
+	s.TunedHPOParams = v
+	return s
+}
+
 // Provides a summary of the properties of a solution version. For a complete
 // listing, call the DescribeSolutionVersion API.
 type SolutionVersionSummary struct {
@@ -10433,6 +10452,31 @@ func (s *SolutionVersionSummary) SetSolutionVersionArn(v string) *SolutionVersio
 // SetStatus sets the Status field's value.
 func (s *SolutionVersionSummary) SetStatus(v string) *SolutionVersionSummary {
 	s.Status = &v
+	return s
+}
+
+// If hyperparameter optimization (HPO) was performed, contains the hyperparameter
+// values of the best performing model.
+type TunedHPOParams struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the hyperparameter values of the best performing model.
+	AlgorithmHyperParameters map[string]*string `locationName:"algorithmHyperParameters" type:"map"`
+}
+
+// String returns the string representation
+func (s TunedHPOParams) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TunedHPOParams) GoString() string {
+	return s.String()
+}
+
+// SetAlgorithmHyperParameters sets the AlgorithmHyperParameters field's value.
+func (s *TunedHPOParams) SetAlgorithmHyperParameters(v map[string]*string) *TunedHPOParams {
+	s.AlgorithmHyperParameters = v
 	return s
 }
 
