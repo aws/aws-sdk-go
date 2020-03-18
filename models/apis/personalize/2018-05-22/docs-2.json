@@ -71,6 +71,7 @@
         "BatchInferenceJob$batchInferenceJobArn": "<p>The Amazon Resource Name (ARN) of the batch inference job.</p>",
         "BatchInferenceJob$solutionVersionArn": "<p>The Amazon Resource Name (ARN) of the solution version from which the batch inference job was created.</p>",
         "BatchInferenceJobSummary$batchInferenceJobArn": "<p>The Amazon Resource Name (ARN) of the batch inference job.</p>",
+        "BatchInferenceJobSummary$solutionVersionArn": "<p>The ARN of the solution version used by the batch inference job.</p>",
         "Campaign$campaignArn": "<p>The Amazon Resource Name (ARN) of the campaign. </p>",
         "Campaign$solutionVersionArn": "<p>The Amazon Resource Name (ARN) of a specific version of the solution.</p>",
         "CampaignSummary$campaignArn": "<p>The Amazon Resource Name (ARN) of the campaign.</p>",
@@ -820,7 +821,7 @@
     "HPOObjectiveType": {
       "base": null,
       "refs": {
-        "HPOObjective$type": "<p>The data type of the metric.</p>"
+        "HPOObjective$type": "<p>The type of the metric. Valid values are <code>Maximize</code> and <code>Minimize</code>.</p>"
       }
     },
     "HPOResource": {
@@ -846,7 +847,8 @@
       "base": null,
       "refs": {
         "Algorithm$defaultHyperParameters": "<p>Specifies the default hyperparameters.</p>",
-        "SolutionConfig$algorithmHyperParameters": "<p>Lists the hyperparameter names and ranges.</p>"
+        "SolutionConfig$algorithmHyperParameters": "<p>Lists the hyperparameter names and ranges.</p>",
+        "TunedHPOParams$algorithmHyperParameters": "<p>A list of the hyperparameter values of the best performing model.</p>"
       }
     },
     "IntegerHyperParameterRange": {
@@ -1336,6 +1338,12 @@
         "DefaultCategoricalHyperParameterRange$isTunable": "<p>Whether the hyperparameter is tunable.</p>",
         "DefaultContinuousHyperParameterRange$isTunable": "<p>Whether the hyperparameter is tunable.</p>",
         "DefaultIntegerHyperParameterRange$isTunable": "<p>Indicates whether the hyperparameter is tunable.</p>"
+      }
+    },
+    "TunedHPOParams": {
+      "base": "<p>If hyperparameter optimization (HPO) was performed, contains the hyperparameter values of the best performing model.</p>",
+      "refs": {
+        "SolutionVersion$tunedHPOParams": "<p>If hyperparameter optimization was performed, contains the hyperparameter values of the best performing model.</p>"
       }
     },
     "UpdateCampaignRequest": {

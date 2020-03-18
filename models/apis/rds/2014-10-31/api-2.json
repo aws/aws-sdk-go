@@ -4876,7 +4876,7 @@
         "SourceArn":{"shape":"String"},
         "Filters":{"shape":"FilterList"},
         "Marker":{"shape":"String"},
-        "MaxRecords":{"shape":"String"}
+        "MaxRecords":{"shape":"MaxRecords"}
       }
     },
     "DescribeGlobalClustersMessage":{

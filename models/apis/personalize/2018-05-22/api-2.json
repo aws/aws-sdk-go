@@ -668,7 +668,8 @@
         "status":{"shape":"Status"},
         "creationDateTime":{"shape":"Date"},
         "lastUpdatedDateTime":{"shape":"Date"},
-        "failureReason":{"shape":"FailureReason"}
+        "failureReason":{"shape":"FailureReason"},
+        "solutionVersionArn":{"shape":"Arn"}
       }
     },
     "BatchInferenceJobs":{
@@ -1790,6 +1791,7 @@
         "solutionConfig":{"shape":"SolutionConfig"},
         "trainingHours":{"shape":"TrainingHours"},
         "trainingMode":{"shape":"TrainingMode"},
+        "tunedHPOParams":{"shape":"TunedHPOParams"},
         "status":{"shape":"Status"},
         "failureReason":{"shape":"FailureReason"},
         "creationDateTime":{"shape":"Date"},
@@ -1844,6 +1846,12 @@
       "min":1
     },
     "Tunable":{"type":"boolean"},
+    "TunedHPOParams":{
+      "type":"structure",
+      "members":{
+        "algorithmHyperParameters":{"shape":"HyperParameters"}
+      }
+    },
     "UpdateCampaignRequest":{
       "type":"structure",
       "required":["campaignArn"],
