@@ -1622,7 +1622,7 @@ func (s *Certificates) SetManufacturerHardwareCertificate(v string) *Certificate
 // perform the requested operation.
 type CloudHsmAccessDeniedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1639,7 +1639,7 @@ func (s CloudHsmAccessDeniedException) GoString() string {
 
 func newErrorCloudHsmAccessDeniedException(v protocol.ResponseMetadata) error {
 	return &CloudHsmAccessDeniedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1667,19 +1667,19 @@ func (s CloudHsmAccessDeniedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CloudHsmAccessDeniedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CloudHsmAccessDeniedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because of an AWS CloudHSM internal failure. The
 // request can be retried.
 type CloudHsmInternalFailureException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1696,7 +1696,7 @@ func (s CloudHsmInternalFailureException) GoString() string {
 
 func newErrorCloudHsmInternalFailureException(v protocol.ResponseMetadata) error {
 	return &CloudHsmInternalFailureException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1724,18 +1724,18 @@ func (s CloudHsmInternalFailureException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CloudHsmInternalFailureException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CloudHsmInternalFailureException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because it is not a valid request.
 type CloudHsmInvalidRequestException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1752,7 +1752,7 @@ func (s CloudHsmInvalidRequestException) GoString() string {
 
 func newErrorCloudHsmInvalidRequestException(v protocol.ResponseMetadata) error {
 	return &CloudHsmInvalidRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1780,18 +1780,18 @@ func (s CloudHsmInvalidRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CloudHsmInvalidRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CloudHsmInvalidRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because it refers to a resource that cannot be found.
 type CloudHsmResourceNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1808,7 +1808,7 @@ func (s CloudHsmResourceNotFoundException) GoString() string {
 
 func newErrorCloudHsmResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &CloudHsmResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1836,18 +1836,18 @@ func (s CloudHsmResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CloudHsmResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CloudHsmResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because an error occurred.
 type CloudHsmServiceException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1864,7 +1864,7 @@ func (s CloudHsmServiceException) GoString() string {
 
 func newErrorCloudHsmServiceException(v protocol.ResponseMetadata) error {
 	return &CloudHsmServiceException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1892,17 +1892,17 @@ func (s CloudHsmServiceException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CloudHsmServiceException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CloudHsmServiceException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type CloudHsmTagException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1919,7 +1919,7 @@ func (s CloudHsmTagException) GoString() string {
 
 func newErrorCloudHsmTagException(v protocol.ResponseMetadata) error {
 	return &CloudHsmTagException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1947,12 +1947,12 @@ func (s CloudHsmTagException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CloudHsmTagException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CloudHsmTagException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains information about an AWS CloudHSM cluster.

@@ -4604,7 +4604,7 @@ func (s *EnhancedMonitoringOutput) SetStreamName(v string) *EnhancedMonitoringOu
 // The provided iterator exceeds the maximum age allowed.
 type ExpiredIteratorException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// A message that provides information about the error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -4622,7 +4622,7 @@ func (s ExpiredIteratorException) GoString() string {
 
 func newErrorExpiredIteratorException(v protocol.ResponseMetadata) error {
 	return &ExpiredIteratorException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4650,18 +4650,18 @@ func (s ExpiredIteratorException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ExpiredIteratorException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ExpiredIteratorException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The pagination token passed to the operation is expired.
 type ExpiredNextTokenException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4678,7 +4678,7 @@ func (s ExpiredNextTokenException) GoString() string {
 
 func newErrorExpiredNextTokenException(v protocol.ResponseMetadata) error {
 	return &ExpiredNextTokenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4706,12 +4706,12 @@ func (s ExpiredNextTokenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ExpiredNextTokenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ExpiredNextTokenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents the input for GetRecords.
@@ -5076,7 +5076,7 @@ func (s IncreaseStreamRetentionPeriodOutput) GoString() string {
 
 type InternalFailureException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5120,7 +5120,7 @@ func (s *InternalFailureException) MarshalEvent(pm protocol.PayloadMarshaler) (m
 
 func newErrorInternalFailureException(v protocol.ResponseMetadata) error {
 	return &InternalFailureException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5148,19 +5148,19 @@ func (s InternalFailureException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalFailureException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalFailureException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A specified parameter exceeds its restrictions, is not supported, or can't
 // be used. For more information, see the returned message.
 type InvalidArgumentException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// A message that provides information about the error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -5178,7 +5178,7 @@ func (s InvalidArgumentException) GoString() string {
 
 func newErrorInvalidArgumentException(v protocol.ResponseMetadata) error {
 	return &InvalidArgumentException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5206,19 +5206,19 @@ func (s InvalidArgumentException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidArgumentException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidArgumentException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The ciphertext references a key that doesn't exist or that you don't have
 // access to.
 type KMSAccessDeniedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// A message that provides information about the error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -5263,7 +5263,7 @@ func (s *KMSAccessDeniedException) MarshalEvent(pm protocol.PayloadMarshaler) (m
 
 func newErrorKMSAccessDeniedException(v protocol.ResponseMetadata) error {
 	return &KMSAccessDeniedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5291,19 +5291,19 @@ func (s KMSAccessDeniedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s KMSAccessDeniedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s KMSAccessDeniedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because the specified customer master key (CMK)
 // isn't enabled.
 type KMSDisabledException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// A message that provides information about the error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -5348,7 +5348,7 @@ func (s *KMSDisabledException) MarshalEvent(pm protocol.PayloadMarshaler) (msg e
 
 func newErrorKMSDisabledException(v protocol.ResponseMetadata) error {
 	return &KMSDisabledException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5376,12 +5376,12 @@ func (s KMSDisabledException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s KMSDisabledException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s KMSDisabledException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because the state of the specified resource isn't
@@ -5390,7 +5390,7 @@ func (s KMSDisabledException) RequestID() string {
 // in the AWS Key Management Service Developer Guide.
 type KMSInvalidStateException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// A message that provides information about the error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -5435,7 +5435,7 @@ func (s *KMSInvalidStateException) MarshalEvent(pm protocol.PayloadMarshaler) (m
 
 func newErrorKMSInvalidStateException(v protocol.ResponseMetadata) error {
 	return &KMSInvalidStateException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5463,19 +5463,19 @@ func (s KMSInvalidStateException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s KMSInvalidStateException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s KMSInvalidStateException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because the specified entity or resource can't be
 // found.
 type KMSNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// A message that provides information about the error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -5520,7 +5520,7 @@ func (s *KMSNotFoundException) MarshalEvent(pm protocol.PayloadMarshaler) (msg e
 
 func newErrorKMSNotFoundException(v protocol.ResponseMetadata) error {
 	return &KMSNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5548,18 +5548,18 @@ func (s KMSNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s KMSNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s KMSNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The AWS access key ID needs a subscription for the service.
 type KMSOptInRequired struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// A message that provides information about the error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -5604,7 +5604,7 @@ func (s *KMSOptInRequired) MarshalEvent(pm protocol.PayloadMarshaler) (msg event
 
 func newErrorKMSOptInRequired(v protocol.ResponseMetadata) error {
 	return &KMSOptInRequired{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5632,12 +5632,12 @@ func (s KMSOptInRequired) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s KMSOptInRequired) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s KMSOptInRequired) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was denied due to request throttling. For more information about
@@ -5645,7 +5645,7 @@ func (s KMSOptInRequired) RequestID() string {
 // in the AWS Key Management Service Developer Guide.
 type KMSThrottlingException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// A message that provides information about the error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -5690,7 +5690,7 @@ func (s *KMSThrottlingException) MarshalEvent(pm protocol.PayloadMarshaler) (msg
 
 func newErrorKMSThrottlingException(v protocol.ResponseMetadata) error {
 	return &KMSThrottlingException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5718,19 +5718,19 @@ func (s KMSThrottlingException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s KMSThrottlingException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s KMSThrottlingException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The requested resource exceeds the maximum number allowed, or the number
 // of concurrent stream requests exceeds the maximum number allowed.
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// A message that provides information about the error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -5748,7 +5748,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5776,12 +5776,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListShardsInput struct {
@@ -6388,7 +6388,7 @@ func (s MergeShardsOutput) GoString() string {
 // in the AWS General Reference.
 type ProvisionedThroughputExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// A message that provides information about the error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -6406,7 +6406,7 @@ func (s ProvisionedThroughputExceededException) GoString() string {
 
 func newErrorProvisionedThroughputExceededException(v protocol.ResponseMetadata) error {
 	return &ProvisionedThroughputExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6434,12 +6434,12 @@ func (s ProvisionedThroughputExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ProvisionedThroughputExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ProvisionedThroughputExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents the input for PutRecord.
@@ -7108,7 +7108,7 @@ func (s RemoveTagsFromStreamOutput) GoString() string {
 // the resource must be in the ACTIVE state.
 type ResourceInUseException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// A message that provides information about the error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -7153,7 +7153,7 @@ func (s *ResourceInUseException) MarshalEvent(pm protocol.PayloadMarshaler) (msg
 
 func newErrorResourceInUseException(v protocol.ResponseMetadata) error {
 	return &ResourceInUseException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7181,19 +7181,19 @@ func (s ResourceInUseException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceInUseException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceInUseException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The requested resource could not be found. The stream might not be specified
 // correctly.
 type ResourceNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// A message that provides information about the error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -7238,7 +7238,7 @@ func (s *ResourceNotFoundException) MarshalEvent(pm protocol.PayloadMarshaler) (
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7266,12 +7266,12 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The range of possible sequence numbers for the shard.

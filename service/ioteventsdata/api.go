@@ -997,7 +997,7 @@ func (s *DetectorSummary) SetState(v *DetectorStateSummary) *DetectorSummary {
 // An internal failure occured.
 type InternalFailureException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -1015,7 +1015,7 @@ func (s InternalFailureException) GoString() string {
 
 func newErrorInternalFailureException(v protocol.ResponseMetadata) error {
 	return &InternalFailureException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1043,18 +1043,18 @@ func (s InternalFailureException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalFailureException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalFailureException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was invalid.
 type InvalidRequestException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -1072,7 +1072,7 @@ func (s InvalidRequestException) GoString() string {
 
 func newErrorInvalidRequestException(v protocol.ResponseMetadata) error {
 	return &InvalidRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1100,12 +1100,12 @@ func (s InvalidRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListDetectorsInput struct {
@@ -1296,7 +1296,7 @@ func (s *Message) SetPayload(v []byte) *Message {
 // The resource was not found.
 type ResourceNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -1314,7 +1314,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1342,18 +1342,18 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The service is currently unavailable.
 type ServiceUnavailableException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -1371,7 +1371,7 @@ func (s ServiceUnavailableException) GoString() string {
 
 func newErrorServiceUnavailableException(v protocol.ResponseMetadata) error {
 	return &ServiceUnavailableException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1399,18 +1399,18 @@ func (s ServiceUnavailableException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceUnavailableException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceUnavailableException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request could not be completed due to throttling.
 type ThrottlingException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -1428,7 +1428,7 @@ func (s ThrottlingException) GoString() string {
 
 func newErrorThrottlingException(v protocol.ResponseMetadata) error {
 	return &ThrottlingException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1456,12 +1456,12 @@ func (s ThrottlingException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ThrottlingException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ThrottlingException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The current state of a timer.

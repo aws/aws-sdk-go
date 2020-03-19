@@ -1159,7 +1159,7 @@ func (s *DescribeTextTranslationJobOutput) SetTextTranslationJobProperties(v *Te
 // operation in the Amazon Comprehend Developer Guide.
 type DetectedLanguageLowConfidenceException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The language code of the auto-detected language from Amazon Comprehend.
 	DetectedLanguageCode *string `min:"2" type:"string"`
@@ -1179,7 +1179,7 @@ func (s DetectedLanguageLowConfidenceException) GoString() string {
 
 func newErrorDetectedLanguageLowConfidenceException(v protocol.ResponseMetadata) error {
 	return &DetectedLanguageLowConfidenceException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1207,12 +1207,12 @@ func (s DetectedLanguageLowConfidenceException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DetectedLanguageLowConfidenceException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DetectedLanguageLowConfidenceException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The encryption key used to encrypt the custom terminologies used by Amazon
@@ -1542,7 +1542,7 @@ func (s *InputDataConfig) SetS3Uri(v string) *InputDataConfig {
 // An internal server error occurred. Retry your request.
 type InternalServerException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1559,7 +1559,7 @@ func (s InternalServerException) GoString() string {
 
 func newErrorInternalServerException(v protocol.ResponseMetadata) error {
 	return &InternalServerException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1587,18 +1587,18 @@ func (s InternalServerException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServerException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServerException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The filter specified for the operation is invalid. Specify a different filter.
 type InvalidFilterException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1615,7 +1615,7 @@ func (s InvalidFilterException) GoString() string {
 
 func newErrorInvalidFilterException(v protocol.ResponseMetadata) error {
 	return &InvalidFilterException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1643,19 +1643,19 @@ func (s InvalidFilterException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidFilterException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidFilterException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The value of the parameter is invalid. Review the value of the parameter
 // you are using to correct it, and then retry your operation.
 type InvalidParameterValueException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1672,7 +1672,7 @@ func (s InvalidParameterValueException) GoString() string {
 
 func newErrorInvalidParameterValueException(v protocol.ResponseMetadata) error {
 	return &InvalidParameterValueException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1700,19 +1700,19 @@ func (s InvalidParameterValueException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidParameterValueException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidParameterValueException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request that you made is invalid. Check your request to determine why
 // it's invalid and then retry the request.
 type InvalidRequestException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1729,7 +1729,7 @@ func (s InvalidRequestException) GoString() string {
 
 func newErrorInvalidRequestException(v protocol.ResponseMetadata) error {
 	return &InvalidRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1757,12 +1757,12 @@ func (s InvalidRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The number of documents successfully and unsuccessfully processed during
@@ -1813,7 +1813,7 @@ func (s *JobDetails) SetTranslatedDocumentsCount(v int64) *JobDetails {
 // a quantity below the stated limit.
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1830,7 +1830,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1858,12 +1858,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListTerminologiesInput struct {
@@ -2085,7 +2085,7 @@ func (s *OutputDataConfig) SetS3Uri(v string) *OutputDataConfig {
 // before retrying the revised request.
 type ResourceNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2102,7 +2102,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2130,19 +2130,19 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The Amazon Translate service is temporarily unavailable. Please wait a bit
 // and then retry your request.
 type ServiceUnavailableException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2159,7 +2159,7 @@ func (s ServiceUnavailableException) GoString() string {
 
 func newErrorServiceUnavailableException(v protocol.ResponseMetadata) error {
 	return &ServiceUnavailableException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2187,12 +2187,12 @@ func (s ServiceUnavailableException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceUnavailableException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceUnavailableException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type StartTextTranslationJobInput struct {
@@ -2868,7 +2868,7 @@ func (s *TextOutput) SetTranslatedText(v string) *TextOutput {
 // of the text or use a smaller document and then retry your request.
 type TextSizeLimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2885,7 +2885,7 @@ func (s TextSizeLimitExceededException) GoString() string {
 
 func newErrorTextSizeLimitExceededException(v protocol.ResponseMetadata) error {
 	return &TextSizeLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2913,12 +2913,12 @@ func (s TextSizeLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TextSizeLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TextSizeLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Provides information for filtering a list of translation jobs. For more information,
@@ -3134,7 +3134,7 @@ func (s *TextTranslationJobProperties) SetTerminologyNames(v []*string) *TextTra
 // short time and then try your request again.
 type TooManyRequestsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3151,7 +3151,7 @@ func (s TooManyRequestsException) GoString() string {
 
 func newErrorTooManyRequestsException(v protocol.ResponseMetadata) error {
 	return &TooManyRequestsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3179,19 +3179,19 @@ func (s TooManyRequestsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TooManyRequestsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TooManyRequestsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Amazon Translate does not support translation from the language of the source
 // text into the requested target language. For more information, see how-to-error-msg.
 type UnsupportedLanguagePairException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -3214,7 +3214,7 @@ func (s UnsupportedLanguagePairException) GoString() string {
 
 func newErrorUnsupportedLanguagePairException(v protocol.ResponseMetadata) error {
 	return &UnsupportedLanguagePairException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3242,12 +3242,12 @@ func (s UnsupportedLanguagePairException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnsupportedLanguagePairException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnsupportedLanguagePairException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 const (

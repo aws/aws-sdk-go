@@ -13394,7 +13394,7 @@ func (s *AttributesResource) SetAttributes(v []*string) *AttributesResource {
 // Provides information about an API request or response.
 type BadRequestException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -13413,7 +13413,7 @@ func (s BadRequestException) GoString() string {
 
 func newErrorBadRequestException(v protocol.ResponseMetadata) error {
 	return &BadRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -13441,12 +13441,12 @@ func (s BadRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s BadRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s BadRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Specifies the status and settings of the Baidu (Baidu Cloud Push) channel
@@ -20235,7 +20235,7 @@ func (s *ExportJobsResponse) SetNextToken(v string) *ExportJobsResponse {
 // Provides information about an API request or response.
 type ForbiddenException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -20254,7 +20254,7 @@ func (s ForbiddenException) GoString() string {
 
 func newErrorForbiddenException(v protocol.ResponseMetadata) error {
 	return &ForbiddenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -20282,12 +20282,12 @@ func (s ForbiddenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ForbiddenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ForbiddenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Specifies the status and settings of the GCM channel for an application.
@@ -24811,7 +24811,7 @@ func (s *ImportJobsResponse) SetNextToken(v string) *ImportJobsResponse {
 // Provides information about an API request or response.
 type InternalServerErrorException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -24830,7 +24830,7 @@ func (s InternalServerErrorException) GoString() string {
 
 func newErrorInternalServerErrorException(v protocol.ResponseMetadata) error {
 	return &InternalServerErrorException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -24858,12 +24858,12 @@ func (s InternalServerErrorException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServerErrorException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServerErrorException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Provides information about the results of a request to create or update an
@@ -26419,7 +26419,7 @@ func (s *MessageResult) SetUpdatedToken(v string) *MessageResult {
 // Provides information about an API request or response.
 type MethodNotAllowedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -26438,7 +26438,7 @@ func (s MethodNotAllowedException) GoString() string {
 
 func newErrorMethodNotAllowedException(v protocol.ResponseMetadata) error {
 	return &MethodNotAllowedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -26466,12 +26466,12 @@ func (s MethodNotAllowedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MethodNotAllowedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MethodNotAllowedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Specifies metric-based criteria for including or excluding endpoints from
@@ -26649,7 +26649,7 @@ func (s *MultiConditionalSplitActivity) SetEvaluationWaitTime(v *WaitTime) *Mult
 // Provides information about an API request or response.
 type NotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -26668,7 +26668,7 @@ func (s NotFoundException) GoString() string {
 
 func newErrorNotFoundException(v protocol.ResponseMetadata) error {
 	return &NotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -26696,12 +26696,12 @@ func (s NotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Specifies a phone number to validate and retrieve information about.
@@ -26894,7 +26894,7 @@ func (s *NumberValidateResponse) SetZipCode(v string) *NumberValidateResponse {
 // Provides information about an API request or response.
 type PayloadTooLargeException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -26913,7 +26913,7 @@ func (s PayloadTooLargeException) GoString() string {
 
 func newErrorPayloadTooLargeException(v protocol.ResponseMetadata) error {
 	return &PayloadTooLargeException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -26941,12 +26941,12 @@ func (s PayloadTooLargeException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PayloadTooLargeException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PayloadTooLargeException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type PhoneNumberValidateInput struct {
@@ -30776,7 +30776,7 @@ func (s *TemplatesResponse) SetNextToken(v string) *TemplatesResponse {
 // Provides information about an API request or response.
 type TooManyRequestsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -30795,7 +30795,7 @@ func (s TooManyRequestsException) GoString() string {
 
 func newErrorTooManyRequestsException(v protocol.ResponseMetadata) error {
 	return &TooManyRequestsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -30823,12 +30823,12 @@ func (s TooManyRequestsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TooManyRequestsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TooManyRequestsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Specifies the settings for a campaign treatment. A treatment is a variation

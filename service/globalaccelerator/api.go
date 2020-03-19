@@ -2506,7 +2506,7 @@ func (s *AcceleratorAttributes) SetFlowLogsS3Prefix(v string) *AcceleratorAttrib
 // The accelerator that you specified could not be disabled.
 type AcceleratorNotDisabledException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2523,7 +2523,7 @@ func (s AcceleratorNotDisabledException) GoString() string {
 
 func newErrorAcceleratorNotDisabledException(v protocol.ResponseMetadata) error {
 	return &AcceleratorNotDisabledException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2551,18 +2551,18 @@ func (s AcceleratorNotDisabledException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AcceleratorNotDisabledException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AcceleratorNotDisabledException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The accelerator that you specified doesn't exist.
 type AcceleratorNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2579,7 +2579,7 @@ func (s AcceleratorNotFoundException) GoString() string {
 
 func newErrorAcceleratorNotFoundException(v protocol.ResponseMetadata) error {
 	return &AcceleratorNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2607,18 +2607,18 @@ func (s AcceleratorNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AcceleratorNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AcceleratorNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You don't have access permission.
 type AccessDeniedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2635,7 +2635,7 @@ func (s AccessDeniedException) GoString() string {
 
 func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
 	return &AccessDeniedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2663,12 +2663,12 @@ func (s AccessDeniedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccessDeniedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccessDeniedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type AdvertiseByoipCidrInput struct {
@@ -2738,7 +2738,7 @@ func (s *AdvertiseByoipCidrOutput) SetByoipCidr(v *ByoipCidr) *AdvertiseByoipCid
 // it.
 type AssociatedEndpointGroupFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2755,7 +2755,7 @@ func (s AssociatedEndpointGroupFoundException) GoString() string {
 
 func newErrorAssociatedEndpointGroupFoundException(v protocol.ResponseMetadata) error {
 	return &AssociatedEndpointGroupFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2783,12 +2783,12 @@ func (s AssociatedEndpointGroupFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AssociatedEndpointGroupFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AssociatedEndpointGroupFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The accelerator that you specified has a listener associated with it. You
@@ -2796,7 +2796,7 @@ func (s AssociatedEndpointGroupFoundException) RequestID() string {
 // it.
 type AssociatedListenerFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2813,7 +2813,7 @@ func (s AssociatedListenerFoundException) GoString() string {
 
 func newErrorAssociatedListenerFoundException(v protocol.ResponseMetadata) error {
 	return &AssociatedListenerFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2841,12 +2841,12 @@ func (s AssociatedListenerFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AssociatedListenerFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AssociatedListenerFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Information about an IP address range that is provisioned for use with your
@@ -2931,7 +2931,7 @@ func (s *ByoipCidr) SetState(v string) *ByoipCidr {
 // The CIDR that you specified was not found or is incorrect.
 type ByoipCidrNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2948,7 +2948,7 @@ func (s ByoipCidrNotFoundException) GoString() string {
 
 func newErrorByoipCidrNotFoundException(v protocol.ResponseMetadata) error {
 	return &ByoipCidrNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2976,12 +2976,12 @@ func (s ByoipCidrNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ByoipCidrNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ByoipCidrNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Provides authorization for Amazon to bring a specific IP address range to
@@ -4238,7 +4238,7 @@ func (s *EndpointGroup) SetTrafficDialPercentage(v float64) *EndpointGroup {
 // The endpoint group that you specified already exists.
 type EndpointGroupAlreadyExistsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4255,7 +4255,7 @@ func (s EndpointGroupAlreadyExistsException) GoString() string {
 
 func newErrorEndpointGroupAlreadyExistsException(v protocol.ResponseMetadata) error {
 	return &EndpointGroupAlreadyExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4283,18 +4283,18 @@ func (s EndpointGroupAlreadyExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s EndpointGroupAlreadyExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s EndpointGroupAlreadyExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The endpoint group that you specified doesn't exist.
 type EndpointGroupNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4311,7 +4311,7 @@ func (s EndpointGroupNotFoundException) GoString() string {
 
 func newErrorEndpointGroupNotFoundException(v protocol.ResponseMetadata) error {
 	return &EndpointGroupNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4339,19 +4339,19 @@ func (s EndpointGroupNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s EndpointGroupNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s EndpointGroupNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The CIDR that you specified is not valid for this action. For example, the
 // state of the CIDR might be incorrect for this action.
 type IncorrectCidrStateException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4368,7 +4368,7 @@ func (s IncorrectCidrStateException) GoString() string {
 
 func newErrorIncorrectCidrStateException(v protocol.ResponseMetadata) error {
 	return &IncorrectCidrStateException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4396,18 +4396,18 @@ func (s IncorrectCidrStateException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s IncorrectCidrStateException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s IncorrectCidrStateException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // There was an internal error for AWS Global Accelerator.
 type InternalServiceErrorException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4424,7 +4424,7 @@ func (s InternalServiceErrorException) GoString() string {
 
 func newErrorInternalServiceErrorException(v protocol.ResponseMetadata) error {
 	return &InternalServiceErrorException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4452,18 +4452,18 @@ func (s InternalServiceErrorException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServiceErrorException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServiceErrorException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An argument that you specified is invalid.
 type InvalidArgumentException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4480,7 +4480,7 @@ func (s InvalidArgumentException) GoString() string {
 
 func newErrorInvalidArgumentException(v protocol.ResponseMetadata) error {
 	return &InvalidArgumentException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4508,18 +4508,18 @@ func (s InvalidArgumentException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidArgumentException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidArgumentException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // There isn't another item to return.
 type InvalidNextTokenException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4536,7 +4536,7 @@ func (s InvalidNextTokenException) GoString() string {
 
 func newErrorInvalidNextTokenException(v protocol.ResponseMetadata) error {
 	return &InvalidNextTokenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4564,19 +4564,19 @@ func (s InvalidNextTokenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidNextTokenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidNextTokenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The port numbers that you specified are not valid numbers or are not unique
 // for this accelerator.
 type InvalidPortRangeException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4593,7 +4593,7 @@ func (s InvalidPortRangeException) GoString() string {
 
 func newErrorInvalidPortRangeException(v protocol.ResponseMetadata) error {
 	return &InvalidPortRangeException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4621,12 +4621,12 @@ func (s InvalidPortRangeException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidPortRangeException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidPortRangeException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A complex type for the set of IP addresses for an accelerator.
@@ -4667,7 +4667,7 @@ func (s *IpSet) SetIpFamily(v string) *IpSet {
 // limit.
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4684,7 +4684,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4712,12 +4712,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListAcceleratorsInput struct {
@@ -5205,7 +5205,7 @@ func (s *Listener) SetProtocol(v string) *Listener {
 // The listener that you specified doesn't exist.
 type ListenerNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -5222,7 +5222,7 @@ func (s ListenerNotFoundException) GoString() string {
 
 func newErrorListenerNotFoundException(v protocol.ResponseMetadata) error {
 	return &ListenerNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5250,12 +5250,12 @@ func (s ListenerNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ListenerNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ListenerNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A complex type for a range of ports for a listener.

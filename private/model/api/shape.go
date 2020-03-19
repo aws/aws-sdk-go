@@ -691,7 +691,7 @@ type {{ $.ShapeName }} struct {
 
 	{{- if $.Exception }}
 		{{- $_ := $.API.AddSDKImport "private/protocol" }}
-		respMetadata protocol.ResponseMetadata
+		RespMetadata protocol.ResponseMetadata
 	{{- end }}
 
 	{{- if $.OutputEventStreamAPI }}
@@ -809,7 +809,7 @@ var exceptionShapeMethodTmpl = template.Must(
 {{/* TODO allow service custom input to be used */}}
 func newError{{ $.ShapeName }}(v protocol.ResponseMetadata) error {
 	return &{{ $.ShapeName }}{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -843,12 +843,12 @@ func (s {{ $.ShapeName }}) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s {{ $.ShapeName }}) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s {{ $.ShapeName }}) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 `))
 

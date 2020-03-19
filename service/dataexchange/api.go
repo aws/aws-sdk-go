@@ -2212,7 +2212,7 @@ func (c *DataExchange) UpdateRevisionWithContext(ctx aws.Context, input *UpdateR
 // Access to the resource is denied.
 type AccessDeniedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// Access to the resource is denied.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -2230,7 +2230,7 @@ func (s AccessDeniedException) GoString() string {
 
 func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
 	return &AccessDeniedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2258,12 +2258,12 @@ func (s AccessDeniedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccessDeniedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccessDeniedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The destination for the asset.
@@ -2592,7 +2592,7 @@ func (s CancelJobOutput) GoString() string {
 // state of the resource.
 type ConflictException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The request couldn't be completed because it conflicted with the current
 	// state of the resource.
@@ -2617,7 +2617,7 @@ func (s ConflictException) GoString() string {
 
 func newErrorConflictException(v protocol.ResponseMetadata) error {
 	return &ConflictException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2645,12 +2645,12 @@ func (s ConflictException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ConflictException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ConflictException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A request to create a data set that contains one or more revisions.
@@ -4684,7 +4684,7 @@ func (s *ImportAssetsFromS3ResponseDetails) SetRevisionId(v string) *ImportAsset
 // An exception occurred with the service.
 type InternalServerException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The message identifying the service exception that occurred.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -4702,7 +4702,7 @@ func (s InternalServerException) GoString() string {
 
 func newErrorInternalServerException(v protocol.ResponseMetadata) error {
 	return &InternalServerException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4730,12 +4730,12 @@ func (s InternalServerException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServerException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServerException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // AWS Data Exchange Jobs are asynchronous import or export operations used
@@ -5461,7 +5461,7 @@ func (s *RequestDetails) SetImportAssetsFromS3(v *ImportAssetsFromS3RequestDetai
 // The resource couldn't be found.
 type ResourceNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The resource couldn't be found.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -5485,7 +5485,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5513,12 +5513,12 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Details for the response.
@@ -5708,7 +5708,7 @@ func (s *S3SnapshotAsset) SetSize(v float64) *S3SnapshotAsset {
 // The request has exceeded the quotas imposed by the service.
 type ServiceLimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	LimitName *string `type:"string" enum:"LimitName"`
 
@@ -5729,7 +5729,7 @@ func (s ServiceLimitExceededException) GoString() string {
 
 func newErrorServiceLimitExceededException(v protocol.ResponseMetadata) error {
 	return &ServiceLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5757,12 +5757,12 @@ func (s ServiceLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type StartJobInput struct {
@@ -5886,7 +5886,7 @@ func (s TagResourceOutput) GoString() string {
 // The limit on the number of requests per second was exceeded.
 type ThrottlingException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The limit on the number of requests per second was exceeded.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -5904,7 +5904,7 @@ func (s ThrottlingException) GoString() string {
 
 func newErrorThrottlingException(v protocol.ResponseMetadata) error {
 	return &ThrottlingException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5932,12 +5932,12 @@ func (s ThrottlingException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ThrottlingException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ThrottlingException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UntagResourceInput struct {
@@ -6524,7 +6524,7 @@ func (s *UpdateRevisionOutput) SetUpdatedAt(v time.Time) *UpdateRevisionOutput {
 // The request was invalid.
 type ValidationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The message that informs you about what was invalid about the request.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -6542,7 +6542,7 @@ func (s ValidationException) GoString() string {
 
 func newErrorValidationException(v protocol.ResponseMetadata) error {
 	return &ValidationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6570,12 +6570,12 @@ func (s ValidationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ValidationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ValidationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The type of file your data is stored in. Currently, the supported asset type

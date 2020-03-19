@@ -1979,7 +1979,7 @@ func (s CancelJobOutput) GoString() string {
 // action or resource, or specifying an identifier that is not valid.
 type ClientException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1996,7 +1996,7 @@ func (s ClientException) GoString() string {
 
 func newErrorClientException(v protocol.ResponseMetadata) error {
 	return &ClientException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2024,12 +2024,12 @@ func (s ClientException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ClientException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ClientException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An object representing an AWS Batch compute environment.
@@ -5511,7 +5511,7 @@ func (s *RetryStrategy) SetAttempts(v int64) *RetryStrategy {
 // These errors are usually caused by a server issue.
 type ServerException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5528,7 +5528,7 @@ func (s ServerException) GoString() string {
 
 func newErrorServerException(v protocol.ResponseMetadata) error {
 	return &ServerException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5556,12 +5556,12 @@ func (s ServerException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServerException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServerException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type SubmitJobInput struct {

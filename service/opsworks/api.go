@@ -14325,7 +14325,7 @@ func (s *ReportedOs) SetVersion(v string) *ReportedOs {
 // Indicates that a resource was not found.
 type ResourceNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The exception message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -14343,7 +14343,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -14371,12 +14371,12 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Describes a user's SSH information.
@@ -17173,7 +17173,7 @@ func (s *UserProfile) SetSshUsername(v string) *UserProfile {
 // Indicates that a request was not valid.
 type ValidationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The exception message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -17191,7 +17191,7 @@ func (s ValidationException) GoString() string {
 
 func newErrorValidationException(v protocol.ResponseMetadata) error {
 	return &ValidationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17219,12 +17219,12 @@ func (s ValidationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ValidationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ValidationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Describes an instance's Amazon EBS volume.

@@ -11984,7 +11984,7 @@ func (s *VisibilityConfig) SetSampledRequestsEnabled(v bool) *VisibilityConfig {
 // by another resource or it’s associated with another resource.
 type WAFAssociatedItemException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12001,7 +12001,7 @@ func (s WAFAssociatedItemException) GoString() string {
 
 func newErrorWAFAssociatedItemException(v protocol.ResponseMetadata) error {
 	return &WAFAssociatedItemException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12029,19 +12029,19 @@ func (s WAFAssociatedItemException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFAssociatedItemException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFAssociatedItemException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // AWS WAF couldn’t perform the operation because the resource that you tried
 // to save is a duplicate of an existing one.
 type WAFDuplicateItemException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12058,7 +12058,7 @@ func (s WAFDuplicateItemException) GoString() string {
 
 func newErrorWAFDuplicateItemException(v protocol.ResponseMetadata) error {
 	return &WAFDuplicateItemException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12086,19 +12086,19 @@ func (s WAFDuplicateItemException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFDuplicateItemException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFDuplicateItemException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Your request is valid, but AWS WAF couldn’t perform the operation because
 // of a system problem. Retry your request.
 type WAFInternalErrorException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12115,7 +12115,7 @@ func (s WAFInternalErrorException) GoString() string {
 
 func newErrorWAFInternalErrorException(v protocol.ResponseMetadata) error {
 	return &WAFInternalErrorException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12143,12 +12143,12 @@ func (s WAFInternalErrorException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFInternalErrorException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFInternalErrorException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation failed because AWS WAF didn't recognize a parameter in the
@@ -12166,7 +12166,7 @@ func (s WAFInternalErrorException) RequestID() string {
 //    a resource with which a Web ACL cannot be associated.
 type WAFInvalidParameterException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Field *string `type:"string" enum:"ParameterExceptionField"`
 
@@ -12189,7 +12189,7 @@ func (s WAFInvalidParameterException) GoString() string {
 
 func newErrorWAFInvalidParameterException(v protocol.ResponseMetadata) error {
 	return &WAFInvalidParameterException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12217,19 +12217,19 @@ func (s WAFInvalidParameterException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFInvalidParameterException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFInvalidParameterException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // AWS WAF couldn’t perform the operation because the resource that you requested
 // isn’t valid. Check the resource, and try again.
 type WAFInvalidResourceException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12246,7 +12246,7 @@ func (s WAFInvalidResourceException) GoString() string {
 
 func newErrorWAFInvalidResourceException(v protocol.ResponseMetadata) error {
 	return &WAFInvalidResourceException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12274,12 +12274,12 @@ func (s WAFInvalidResourceException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFInvalidResourceException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFInvalidResourceException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // AWS WAF couldn’t perform the operation because you exceeded your resource
@@ -12288,7 +12288,7 @@ func (s WAFInvalidResourceException) RequestID() string {
 // in the AWS WAF Developer Guide.
 type WAFLimitsExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12305,7 +12305,7 @@ func (s WAFLimitsExceededException) GoString() string {
 
 func newErrorWAFLimitsExceededException(v protocol.ResponseMetadata) error {
 	return &WAFLimitsExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12333,19 +12333,19 @@ func (s WAFLimitsExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFLimitsExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFLimitsExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // AWS WAF couldn’t perform the operation because your resource doesn’t
 // exist.
 type WAFNonexistentItemException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12362,7 +12362,7 @@ func (s WAFNonexistentItemException) GoString() string {
 
 func newErrorWAFNonexistentItemException(v protocol.ResponseMetadata) error {
 	return &WAFNonexistentItemException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12390,12 +12390,12 @@ func (s WAFNonexistentItemException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFNonexistentItemException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFNonexistentItemException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // AWS WAF couldn’t save your changes because you tried to update or delete
@@ -12404,7 +12404,7 @@ func (s WAFNonexistentItemException) RequestID() string {
 // operation.
 type WAFOptimisticLockException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12421,7 +12421,7 @@ func (s WAFOptimisticLockException) GoString() string {
 
 func newErrorWAFOptimisticLockException(v protocol.ResponseMetadata) error {
 	return &WAFOptimisticLockException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12449,12 +12449,12 @@ func (s WAFOptimisticLockException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFOptimisticLockException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFOptimisticLockException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // AWS WAF is not able to access the service linked role. This can be caused
@@ -12467,7 +12467,7 @@ func (s WAFOptimisticLockException) RequestID() string {
 // time until the role is unlocked.
 type WAFServiceLinkedRoleErrorException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12484,7 +12484,7 @@ func (s WAFServiceLinkedRoleErrorException) GoString() string {
 
 func newErrorWAFServiceLinkedRoleErrorException(v protocol.ResponseMetadata) error {
 	return &WAFServiceLinkedRoleErrorException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12512,17 +12512,17 @@ func (s WAFServiceLinkedRoleErrorException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFServiceLinkedRoleErrorException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFServiceLinkedRoleErrorException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type WAFSubscriptionNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12539,7 +12539,7 @@ func (s WAFSubscriptionNotFoundException) GoString() string {
 
 func newErrorWAFSubscriptionNotFoundException(v protocol.ResponseMetadata) error {
 	return &WAFSubscriptionNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12567,18 +12567,18 @@ func (s WAFSubscriptionNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFSubscriptionNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFSubscriptionNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An error occurred during the tagging operation. Retry your request.
 type WAFTagOperationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12595,7 +12595,7 @@ func (s WAFTagOperationException) GoString() string {
 
 func newErrorWAFTagOperationException(v protocol.ResponseMetadata) error {
 	return &WAFTagOperationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12623,19 +12623,19 @@ func (s WAFTagOperationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFTagOperationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFTagOperationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // AWS WAF couldn’t perform your tagging operation because of an internal
 // error. Retry your request.
 type WAFTagOperationInternalErrorException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12652,7 +12652,7 @@ func (s WAFTagOperationInternalErrorException) GoString() string {
 
 func newErrorWAFTagOperationInternalErrorException(v protocol.ResponseMetadata) error {
 	return &WAFTagOperationInternalErrorException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12680,18 +12680,18 @@ func (s WAFTagOperationInternalErrorException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFTagOperationInternalErrorException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFTagOperationInternalErrorException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // AWS WAF couldn’t retrieve the resource that you requested. Retry your request.
 type WAFUnavailableEntityException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12708,7 +12708,7 @@ func (s WAFUnavailableEntityException) GoString() string {
 
 func newErrorWAFUnavailableEntityException(v protocol.ResponseMetadata) error {
 	return &WAFUnavailableEntityException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12736,12 +12736,12 @@ func (s WAFUnavailableEntityException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFUnavailableEntityException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFUnavailableEntityException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 //

@@ -2757,7 +2757,7 @@ func (s *AdvancedSecurityOptionsStatus) SetStatus(v *OptionStatus) *AdvancedSecu
 // An error occurred while processing the request.
 type BaseException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// A description of the error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -2775,7 +2775,7 @@ func (s BaseException) GoString() string {
 
 func newErrorBaseException(v protocol.ResponseMetadata) error {
 	return &BaseException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2803,12 +2803,12 @@ func (s BaseException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s BaseException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s BaseException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Container for the parameters to the CancelElasticsearchServiceSoftwareUpdate
@@ -3808,7 +3808,7 @@ func (s *DescribeReservedElasticsearchInstancesOutput) SetReservedElasticsearchI
 // Gives http status code of 409.
 type DisabledOperationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3825,7 +3825,7 @@ func (s DisabledOperationException) GoString() string {
 
 func newErrorDisabledOperationException(v protocol.ResponseMetadata) error {
 	return &DisabledOperationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3853,12 +3853,12 @@ func (s DisabledOperationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DisabledOperationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DisabledOperationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Options to configure endpoint for the Elasticsearch domain.
@@ -5040,7 +5040,7 @@ func (s *InstanceLimits) SetInstanceCountLimits(v *InstanceCountLimits) *Instanc
 // of 500.
 type InternalException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5057,7 +5057,7 @@ func (s InternalException) GoString() string {
 
 func newErrorInternalException(v protocol.ResponseMetadata) error {
 	return &InternalException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5085,19 +5085,19 @@ func (s InternalException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An exception for trying to create or access sub-resource that is either invalid
 // or not supported. Gives http status code of 409.
 type InvalidTypeException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5114,7 +5114,7 @@ func (s InvalidTypeException) GoString() string {
 
 func newErrorInvalidTypeException(v protocol.ResponseMetadata) error {
 	return &InvalidTypeException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5142,19 +5142,19 @@ func (s InvalidTypeException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidTypeException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidTypeException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An exception for trying to create more than allowed resources or sub-resources.
 // Gives http status code of 409.
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5171,7 +5171,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5199,12 +5199,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Limits for given InstanceType and for each of it's role. Limits contains
@@ -6249,7 +6249,7 @@ func (s *ReservedElasticsearchInstanceOffering) SetUsagePrice(v float64) *Reserv
 // code of 400.
 type ResourceAlreadyExistsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6266,7 +6266,7 @@ func (s ResourceAlreadyExistsException) GoString() string {
 
 func newErrorResourceAlreadyExistsException(v protocol.ResponseMetadata) error {
 	return &ResourceAlreadyExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6294,19 +6294,19 @@ func (s ResourceAlreadyExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceAlreadyExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceAlreadyExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An exception for accessing or deleting a resource that does not exist. Gives
 // http status code of 400.
 type ResourceNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6323,7 +6323,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6351,12 +6351,12 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The current options of an Elasticsearch domain service software options.
@@ -7274,7 +7274,7 @@ func (s *VPCOptions) SetSubnetIds(v []*string) *VPCOptions {
 // 400.
 type ValidationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7291,7 +7291,7 @@ func (s ValidationException) GoString() string {
 
 func newErrorValidationException(v protocol.ResponseMetadata) error {
 	return &ValidationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7319,12 +7319,12 @@ func (s ValidationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ValidationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ValidationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Specifies the zone awareness configuration for the domain cluster, such as

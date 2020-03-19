@@ -1693,7 +1693,7 @@ func (s *AttachmentDetails) SetFileName(v string) *AttachmentDetails {
 // An attachment with the specified ID could not be found.
 type AttachmentIdNotFound struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// An attachment with the specified ID could not be found.
 	Message_ *string `locationName:"message" type:"string"`
@@ -1711,7 +1711,7 @@ func (s AttachmentIdNotFound) GoString() string {
 
 func newErrorAttachmentIdNotFound(v protocol.ResponseMetadata) error {
 	return &AttachmentIdNotFound{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1739,19 +1739,19 @@ func (s AttachmentIdNotFound) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AttachmentIdNotFound) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AttachmentIdNotFound) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The limit for the number of attachment sets created in a short period of
 // time has been exceeded.
 type AttachmentLimitExceeded struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The limit for the number of attachment sets created in a short period of
 	// time has been exceeded.
@@ -1770,7 +1770,7 @@ func (s AttachmentLimitExceeded) GoString() string {
 
 func newErrorAttachmentLimitExceeded(v protocol.ResponseMetadata) error {
 	return &AttachmentLimitExceeded{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1798,19 +1798,19 @@ func (s AttachmentLimitExceeded) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AttachmentLimitExceeded) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AttachmentLimitExceeded) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The expiration time of the attachment set has passed. The set expires 1 hour
 // after it is created.
 type AttachmentSetExpired struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The expiration time of the attachment set has passed. The set expires 1 hour
 	// after it is created.
@@ -1829,7 +1829,7 @@ func (s AttachmentSetExpired) GoString() string {
 
 func newErrorAttachmentSetExpired(v protocol.ResponseMetadata) error {
 	return &AttachmentSetExpired{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1857,18 +1857,18 @@ func (s AttachmentSetExpired) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AttachmentSetExpired) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AttachmentSetExpired) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An attachment set with the specified ID could not be found.
 type AttachmentSetIdNotFound struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// An attachment set with the specified ID could not be found.
 	Message_ *string `locationName:"message" type:"string"`
@@ -1886,7 +1886,7 @@ func (s AttachmentSetIdNotFound) GoString() string {
 
 func newErrorAttachmentSetIdNotFound(v protocol.ResponseMetadata) error {
 	return &AttachmentSetIdNotFound{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1914,19 +1914,19 @@ func (s AttachmentSetIdNotFound) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AttachmentSetIdNotFound) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AttachmentSetIdNotFound) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A limit for the size of an attachment set has been exceeded. The limits are
 // 3 attachments and 5 MB per attachment.
 type AttachmentSetSizeLimitExceeded struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// A limit for the size of an attachment set has been exceeded. The limits are
 	// 3 attachments and 5 MB per attachment.
@@ -1945,7 +1945,7 @@ func (s AttachmentSetSizeLimitExceeded) GoString() string {
 
 func newErrorAttachmentSetSizeLimitExceeded(v protocol.ResponseMetadata) error {
 	return &AttachmentSetSizeLimitExceeded{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1973,18 +1973,18 @@ func (s AttachmentSetSizeLimitExceeded) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AttachmentSetSizeLimitExceeded) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AttachmentSetSizeLimitExceeded) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The case creation limit for the account has been exceeded.
 type CaseCreationLimitExceeded struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// An error message that indicates that you have exceeded the number of cases
 	// you can have open.
@@ -2003,7 +2003,7 @@ func (s CaseCreationLimitExceeded) GoString() string {
 
 func newErrorCaseCreationLimitExceeded(v protocol.ResponseMetadata) error {
 	return &CaseCreationLimitExceeded{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2031,12 +2031,12 @@ func (s CaseCreationLimitExceeded) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CaseCreationLimitExceeded) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CaseCreationLimitExceeded) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A JSON-formatted object that contains the metadata for a support case. It
@@ -2211,7 +2211,7 @@ func (s *CaseDetails) SetTimeCreated(v string) *CaseDetails {
 // The requested caseId could not be located.
 type CaseIdNotFound struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The requested CaseId could not be located.
 	Message_ *string `locationName:"message" type:"string"`
@@ -2229,7 +2229,7 @@ func (s CaseIdNotFound) GoString() string {
 
 func newErrorCaseIdNotFound(v protocol.ResponseMetadata) error {
 	return &CaseIdNotFound{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2257,12 +2257,12 @@ func (s CaseIdNotFound) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CaseIdNotFound) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CaseIdNotFound) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A JSON-formatted name/value pair that represents the category name and category
@@ -2564,7 +2564,7 @@ func (s *DescribeAttachmentInput) SetAttachmentId(v string) *DescribeAttachmentI
 // of time has been exceeded.
 type DescribeAttachmentLimitExceeded struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The limit for the number of DescribeAttachment requests in a short period
 	// of time has been exceeded.
@@ -2583,7 +2583,7 @@ func (s DescribeAttachmentLimitExceeded) GoString() string {
 
 func newErrorDescribeAttachmentLimitExceeded(v protocol.ResponseMetadata) error {
 	return &DescribeAttachmentLimitExceeded{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2611,12 +2611,12 @@ func (s DescribeAttachmentLimitExceeded) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DescribeAttachmentLimitExceeded) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DescribeAttachmentLimitExceeded) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The content and file name of the attachment returned by the DescribeAttachment
@@ -3290,7 +3290,7 @@ func (s *DescribeTrustedAdvisorChecksOutput) SetChecks(v []*TrustedAdvisorCheckD
 // An internal server error occurred.
 type InternalServerError struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// An internal server error occurred.
 	Message_ *string `locationName:"message" type:"string"`
@@ -3308,7 +3308,7 @@ func (s InternalServerError) GoString() string {
 
 func newErrorInternalServerError(v protocol.ResponseMetadata) error {
 	return &InternalServerError{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3336,12 +3336,12 @@ func (s InternalServerError) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServerError) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServerError) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The five most recent communications associated with the case.

@@ -5020,7 +5020,7 @@ func (s *AwsApiCallAction) SetServiceName(v string) *AwsApiCallAction {
 // Bad request exception object.
 type BadRequestException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The error message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -5041,7 +5041,7 @@ func (s BadRequestException) GoString() string {
 
 func newErrorBadRequestException(v protocol.ResponseMetadata) error {
 	return &BadRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5069,12 +5069,12 @@ func (s BadRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s BadRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s BadRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains information about the city associated with the IP address.
@@ -8397,7 +8397,7 @@ func (s *InstanceDetails) SetTags(v []*Tag) *InstanceDetails {
 // Internal server error exception object.
 type InternalServerErrorException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The error message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -8418,7 +8418,7 @@ func (s InternalServerErrorException) GoString() string {
 
 func newErrorInternalServerErrorException(v protocol.ResponseMetadata) error {
 	return &InternalServerErrorException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8446,12 +8446,12 @@ func (s InternalServerErrorException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServerErrorException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServerErrorException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains information about the invitation to become a member account.

@@ -10097,7 +10097,7 @@ func (s *ListResourcesForWebACLOutput) SetResourceArns(v []*string) *ListResourc
 
 type WAFBadRequestException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10114,7 +10114,7 @@ func (s WAFBadRequestException) GoString() string {
 
 func newErrorWAFBadRequestException(v protocol.ResponseMetadata) error {
 	return &WAFBadRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10142,18 +10142,18 @@ func (s WAFBadRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFBadRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFBadRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The name specified is invalid.
 type WAFDisallowedNameException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10170,7 +10170,7 @@ func (s WAFDisallowedNameException) GoString() string {
 
 func newErrorWAFDisallowedNameException(v protocol.ResponseMetadata) error {
 	return &WAFDisallowedNameException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10198,19 +10198,19 @@ func (s WAFDisallowedNameException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFDisallowedNameException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFDisallowedNameException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation failed because of a system problem, even though the request
 // was valid. Retry your request.
 type WAFInternalErrorException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10227,7 +10227,7 @@ func (s WAFInternalErrorException) GoString() string {
 
 func newErrorWAFInternalErrorException(v protocol.ResponseMetadata) error {
 	return &WAFInternalErrorException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10255,19 +10255,19 @@ func (s WAFInternalErrorException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFInternalErrorException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFInternalErrorException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation failed because you tried to create, update, or delete an object
 // by using an invalid account identifier.
 type WAFInvalidAccountException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10284,7 +10284,7 @@ func (s WAFInvalidAccountException) GoString() string {
 
 func newErrorWAFInvalidAccountException(v protocol.ResponseMetadata) error {
 	return &WAFInvalidAccountException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10312,12 +10312,12 @@ func (s WAFInvalidAccountException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFInvalidAccountException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFInvalidAccountException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation failed because there was nothing to do. For example:
@@ -10338,7 +10338,7 @@ func (s WAFInvalidAccountException) RequestID() string {
 //    already exists in the specified WebACL.
 type WAFInvalidOperationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10355,7 +10355,7 @@ func (s WAFInvalidOperationException) GoString() string {
 
 func newErrorWAFInvalidOperationException(v protocol.ResponseMetadata) error {
 	return &WAFInvalidOperationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10383,12 +10383,12 @@ func (s WAFInvalidOperationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFInvalidOperationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFInvalidOperationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation failed because AWS WAF didn't recognize a parameter in the
@@ -10420,7 +10420,7 @@ func (s WAFInvalidOperationException) RequestID() string {
 //    a resource with which a web ACL cannot be associated.
 type WAFInvalidParameterException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Field *string `locationName:"field" type:"string" enum:"ParameterExceptionField"`
 
@@ -10443,7 +10443,7 @@ func (s WAFInvalidParameterException) GoString() string {
 
 func newErrorWAFInvalidParameterException(v protocol.ResponseMetadata) error {
 	return &WAFInvalidParameterException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10471,12 +10471,12 @@ func (s WAFInvalidParameterException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFInvalidParameterException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFInvalidParameterException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation failed because the specified policy is not in the proper format.
@@ -10503,7 +10503,7 @@ func (s WAFInvalidParameterException) RequestID() string {
 //    * Your policy must be composed using IAM Policy version 2012-10-17.
 type WAFInvalidPermissionPolicyException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10520,7 +10520,7 @@ func (s WAFInvalidPermissionPolicyException) GoString() string {
 
 func newErrorWAFInvalidPermissionPolicyException(v protocol.ResponseMetadata) error {
 	return &WAFInvalidPermissionPolicyException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10548,18 +10548,18 @@ func (s WAFInvalidPermissionPolicyException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFInvalidPermissionPolicyException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFInvalidPermissionPolicyException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The regular expression (regex) you specified in RegexPatternString is invalid.
 type WAFInvalidRegexPatternException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10576,7 +10576,7 @@ func (s WAFInvalidRegexPatternException) GoString() string {
 
 func newErrorWAFInvalidRegexPatternException(v protocol.ResponseMetadata) error {
 	return &WAFInvalidRegexPatternException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10604,12 +10604,12 @@ func (s WAFInvalidRegexPatternException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFInvalidRegexPatternException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFInvalidRegexPatternException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation exceeds a resource limit, for example, the maximum number of
@@ -10618,7 +10618,7 @@ func (s WAFInvalidRegexPatternException) RequestID() string {
 // in the AWS WAF Developer Guide.
 type WAFLimitsExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10635,7 +10635,7 @@ func (s WAFLimitsExceededException) GoString() string {
 
 func newErrorWAFLimitsExceededException(v protocol.ResponseMetadata) error {
 	return &WAFLimitsExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10663,12 +10663,12 @@ func (s WAFLimitsExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFLimitsExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFLimitsExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation failed because you tried to delete an object that isn't empty.
@@ -10685,7 +10685,7 @@ func (s WAFLimitsExceededException) RequestID() string {
 //    * You tried to delete an IPSet that references one or more IP addresses.
 type WAFNonEmptyEntityException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10702,7 +10702,7 @@ func (s WAFNonEmptyEntityException) GoString() string {
 
 func newErrorWAFNonEmptyEntityException(v protocol.ResponseMetadata) error {
 	return &WAFNonEmptyEntityException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10730,12 +10730,12 @@ func (s WAFNonEmptyEntityException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFNonEmptyEntityException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFNonEmptyEntityException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation failed because you tried to add an object to or delete an object
@@ -10754,7 +10754,7 @@ func (s WAFNonEmptyEntityException) RequestID() string {
 //    a ByteMatchSet that doesn't exist.
 type WAFNonexistentContainerException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10771,7 +10771,7 @@ func (s WAFNonexistentContainerException) GoString() string {
 
 func newErrorWAFNonexistentContainerException(v protocol.ResponseMetadata) error {
 	return &WAFNonexistentContainerException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10799,18 +10799,18 @@ func (s WAFNonexistentContainerException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFNonexistentContainerException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFNonexistentContainerException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation failed because the referenced object doesn't exist.
 type WAFNonexistentItemException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10827,7 +10827,7 @@ func (s WAFNonexistentItemException) GoString() string {
 
 func newErrorWAFNonexistentItemException(v protocol.ResponseMetadata) error {
 	return &WAFNonexistentItemException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10855,12 +10855,12 @@ func (s WAFNonexistentItemException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFNonexistentItemException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFNonexistentItemException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation failed because you tried to delete an object that is still
@@ -10871,7 +10871,7 @@ func (s WAFNonexistentItemException) RequestID() string {
 //    * You tried to delete a Rule that is still referenced by a WebACL.
 type WAFReferencedItemException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10888,7 +10888,7 @@ func (s WAFReferencedItemException) GoString() string {
 
 func newErrorWAFReferencedItemException(v protocol.ResponseMetadata) error {
 	return &WAFReferencedItemException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10916,12 +10916,12 @@ func (s WAFReferencedItemException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFReferencedItemException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFReferencedItemException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // AWS WAF is not able to access the service linked role. This can be caused
@@ -10934,7 +10934,7 @@ func (s WAFReferencedItemException) RequestID() string {
 // unlocked.
 type WAFServiceLinkedRoleErrorException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10951,7 +10951,7 @@ func (s WAFServiceLinkedRoleErrorException) GoString() string {
 
 func newErrorWAFServiceLinkedRoleErrorException(v protocol.ResponseMetadata) error {
 	return &WAFServiceLinkedRoleErrorException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10979,19 +10979,19 @@ func (s WAFServiceLinkedRoleErrorException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFServiceLinkedRoleErrorException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFServiceLinkedRoleErrorException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation failed because you tried to create, update, or delete an object
 // by using a change token that has already been used.
 type WAFStaleDataException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11008,7 +11008,7 @@ func (s WAFStaleDataException) GoString() string {
 
 func newErrorWAFStaleDataException(v protocol.ResponseMetadata) error {
 	return &WAFStaleDataException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11036,18 +11036,18 @@ func (s WAFStaleDataException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFStaleDataException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFStaleDataException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified subscription does not exist.
 type WAFSubscriptionNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11064,7 +11064,7 @@ func (s WAFSubscriptionNotFoundException) GoString() string {
 
 func newErrorWAFSubscriptionNotFoundException(v protocol.ResponseMetadata) error {
 	return &WAFSubscriptionNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11092,17 +11092,17 @@ func (s WAFSubscriptionNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFSubscriptionNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFSubscriptionNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type WAFTagOperationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11119,7 +11119,7 @@ func (s WAFTagOperationException) GoString() string {
 
 func newErrorWAFTagOperationException(v protocol.ResponseMetadata) error {
 	return &WAFTagOperationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11147,17 +11147,17 @@ func (s WAFTagOperationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFTagOperationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFTagOperationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type WAFTagOperationInternalErrorException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11174,7 +11174,7 @@ func (s WAFTagOperationInternalErrorException) GoString() string {
 
 func newErrorWAFTagOperationInternalErrorException(v protocol.ResponseMetadata) error {
 	return &WAFTagOperationInternalErrorException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11202,19 +11202,19 @@ func (s WAFTagOperationInternalErrorException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFTagOperationInternalErrorException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFTagOperationInternalErrorException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation failed because the entity referenced is temporarily unavailable.
 // Retry your request.
 type WAFUnavailableEntityException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11231,7 +11231,7 @@ func (s WAFUnavailableEntityException) GoString() string {
 
 func newErrorWAFUnavailableEntityException(v protocol.ResponseMetadata) error {
 	return &WAFUnavailableEntityException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11259,12 +11259,12 @@ func (s WAFUnavailableEntityException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WAFUnavailableEntityException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WAFUnavailableEntityException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 const (

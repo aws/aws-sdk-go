@@ -8008,7 +8008,7 @@ func (s *AccountSettings) SetUnmeteredRemoteAccessDevices(v map[string]*int64) *
 // An invalid argument was specified.
 type ArgumentException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// Any additional information about the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -8026,7 +8026,7 @@ func (s ArgumentException) GoString() string {
 
 func newErrorArgumentException(v protocol.ResponseMetadata) error {
 	return &ArgumentException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8054,12 +8054,12 @@ func (s ArgumentException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ArgumentException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ArgumentException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents the output of a test. Examples of artifacts include logs and screenshots.
@@ -8229,7 +8229,7 @@ func (s *CPU) SetFrequency(v string) *CPU {
 // The requested object could not be deleted.
 type CannotDeleteException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8246,7 +8246,7 @@ func (s CannotDeleteException) GoString() string {
 
 func newErrorCannotDeleteException(v protocol.ResponseMetadata) error {
 	return &CannotDeleteException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8274,12 +8274,12 @@ func (s CannotDeleteException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CannotDeleteException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CannotDeleteException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents entity counters.
@@ -12178,7 +12178,7 @@ func (s *GetVPCEConfigurationOutput) SetVpceConfiguration(v *VPCEConfiguration) 
 // An entity with the same name already exists.
 type IdempotencyException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// Any additional information about the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -12196,7 +12196,7 @@ func (s IdempotencyException) GoString() string {
 
 func newErrorIdempotencyException(v protocol.ResponseMetadata) error {
 	return &IdempotencyException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12224,12 +12224,12 @@ func (s IdempotencyException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s IdempotencyException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s IdempotencyException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents information about incompatibility.
@@ -12443,7 +12443,7 @@ func (s *InstanceProfile) SetRebootAfterUse(v bool) *InstanceProfile {
 // (mailto:aws-devicefarm-support@amazon.com) if you see this error.
 type InternalServiceException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12460,7 +12460,7 @@ func (s InternalServiceException) GoString() string {
 
 func newErrorInternalServiceException(v protocol.ResponseMetadata) error {
 	return &InternalServiceException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12488,19 +12488,19 @@ func (s InternalServiceException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServiceException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServiceException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // There was an error with the update request, or you do not have sufficient
 // permissions to update this VPC endpoint configuration.
 type InvalidOperationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12517,7 +12517,7 @@ func (s InvalidOperationException) GoString() string {
 
 func newErrorInvalidOperationException(v protocol.ResponseMetadata) error {
 	return &InvalidOperationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12545,12 +12545,12 @@ func (s InvalidOperationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidOperationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidOperationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents a device.
@@ -12782,7 +12782,7 @@ func (s *Job) SetVideoEndpoint(v string) *Job {
 // A limit was exceeded.
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// Any additional information about the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -12800,7 +12800,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12828,12 +12828,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents a request to the list artifacts operation.
@@ -15350,7 +15350,7 @@ func (s *NetworkProfile) SetUplinkLossPercent(v int64) *NetworkProfile {
 // transaction.
 type NotEligibleException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The HTTP response code of a Not Eligible exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -15368,7 +15368,7 @@ func (s NotEligibleException) GoString() string {
 
 func newErrorNotEligibleException(v protocol.ResponseMetadata) error {
 	return &NotEligibleException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15396,18 +15396,18 @@ func (s NotEligibleException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NotEligibleException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NotEligibleException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified entity was not found.
 type NotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// Any additional information about the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -15425,7 +15425,7 @@ func (s NotFoundException) GoString() string {
 
 func newErrorNotFoundException(v protocol.ResponseMetadata) error {
 	return &NotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15453,12 +15453,12 @@ func (s NotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents the metadata of a device offering.
@@ -17458,7 +17458,7 @@ func (s *ScheduleRunTest) SetType(v string) *ScheduleRunTest {
 // There was a problem with the service account.
 type ServiceAccountException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// Any additional information about the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -17476,7 +17476,7 @@ func (s ServiceAccountException) GoString() string {
 
 func newErrorServiceAccountException(v protocol.ResponseMetadata) error {
 	return &ServiceAccountException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17504,12 +17504,12 @@ func (s ServiceAccountException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceAccountException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceAccountException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type StopJobInput struct {
@@ -17964,7 +17964,7 @@ func (s *Tag) SetValue(v string) *Tag {
 // The operation was not successful. Try again.
 type TagOperationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -17983,7 +17983,7 @@ func (s TagOperationException) GoString() string {
 
 func newErrorTagOperationException(v protocol.ResponseMetadata) error {
 	return &TagOperationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18011,19 +18011,19 @@ func (s TagOperationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TagOperationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TagOperationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request doesn't comply with the AWS Identity and Access Management (IAM)
 // tag policy. Correct your request and then retry it.
 type TagPolicyException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -18042,7 +18042,7 @@ func (s TagPolicyException) GoString() string {
 
 func newErrorTagPolicyException(v protocol.ResponseMetadata) error {
 	return &TagPolicyException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18070,12 +18070,12 @@ func (s TagPolicyException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TagPolicyException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TagPolicyException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type TagResourceInput struct {
@@ -18582,7 +18582,7 @@ func (s *TestGridSessionArtifact) SetUrl(v string) *TestGridSessionArtifact {
 // of tags that can be applied to a repository is 50.
 type TooManyTagsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -18601,7 +18601,7 @@ func (s TooManyTagsException) GoString() string {
 
 func newErrorTooManyTagsException(v protocol.ResponseMetadata) error {
 	return &TooManyTagsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18629,12 +18629,12 @@ func (s TooManyTagsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TooManyTagsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TooManyTagsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents information about free trial device minutes for an AWS account.

@@ -5661,7 +5661,7 @@ func (s *BGPPeer) SetCustomerAddress(v string) *BGPPeer {
 // One or more parameters are not valid.
 type ClientException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5678,7 +5678,7 @@ func (s ClientException) GoString() string {
 
 func newErrorClientException(v protocol.ResponseMetadata) error {
 	return &ClientException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5706,12 +5706,12 @@ func (s ClientException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ClientException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ClientException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ConfirmConnectionInput struct {
@@ -8715,7 +8715,7 @@ func (s *DisassociateConnectionFromLagInput) SetLagId(v string) *DisassociateCon
 // A tag key was specified more than once.
 type DuplicateTagKeysException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8732,7 +8732,7 @@ func (s DuplicateTagKeysException) GoString() string {
 
 func newErrorDuplicateTagKeysException(v protocol.ResponseMetadata) error {
 	return &DuplicateTagKeysException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8760,12 +8760,12 @@ func (s DuplicateTagKeysException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DuplicateTagKeysException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DuplicateTagKeysException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Information about a Direct Connect gateway, which enables you to connect
@@ -10535,7 +10535,7 @@ func (s *RouteFilterPrefix) SetCidr(v string) *RouteFilterPrefix {
 // A server-side error occurred.
 type ServerException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10552,7 +10552,7 @@ func (s ServerException) GoString() string {
 
 func newErrorServerException(v protocol.ResponseMetadata) error {
 	return &ServerException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10580,12 +10580,12 @@ func (s ServerException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServerException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServerException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Information about a tag.
@@ -10721,7 +10721,7 @@ func (s TagResourceOutput) GoString() string {
 // You have reached the limit on the number of tags that can be assigned.
 type TooManyTagsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10738,7 +10738,7 @@ func (s TooManyTagsException) GoString() string {
 
 func newErrorTooManyTagsException(v protocol.ResponseMetadata) error {
 	return &TooManyTagsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10766,12 +10766,12 @@ func (s TooManyTagsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TooManyTagsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TooManyTagsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UntagResourceInput struct {

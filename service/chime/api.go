@@ -10113,7 +10113,7 @@ func (c *Chime) UpdateVoiceConnectorGroupWithContext(ctx aws.Context, input *Upd
 // You don't have permissions to perform the requested operation.
 type AccessDeniedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
 
@@ -10132,7 +10132,7 @@ func (s AccessDeniedException) GoString() string {
 
 func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
 	return &AccessDeniedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10160,12 +10160,12 @@ func (s AccessDeniedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccessDeniedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccessDeniedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The Amazon Chime account details. An AWS account can have multiple Amazon
@@ -10718,7 +10718,7 @@ func (s *Attendee) SetJoinToken(v string) *Attendee {
 // The input parameters don't match the service's restrictions.
 type BadRequestException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
 
@@ -10737,7 +10737,7 @@ func (s BadRequestException) GoString() string {
 
 func newErrorBadRequestException(v protocol.ResponseMetadata) error {
 	return &BadRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10765,12 +10765,12 @@ func (s BadRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s BadRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s BadRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type BatchCreateAttendeeInput struct {
@@ -11484,7 +11484,7 @@ func (s *BusinessCallingSettings) SetCdrBucket(v string) *BusinessCallingSetting
 // of the resource.
 type ConflictException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
 
@@ -11503,7 +11503,7 @@ func (s ConflictException) GoString() string {
 
 func newErrorConflictException(v protocol.ResponseMetadata) error {
 	return &ConflictException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11531,12 +11531,12 @@ func (s ConflictException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ConflictException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ConflictException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type CreateAccountInput struct {
@@ -13677,7 +13677,7 @@ func (s *EventsConfiguration) SetOutboundEventsHTTPSEndpoint(v string) *EventsCo
 // when a user tries to create an account from an unsupported Region.
 type ForbiddenException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
 
@@ -13696,7 +13696,7 @@ func (s ForbiddenException) GoString() string {
 
 func newErrorForbiddenException(v protocol.ResponseMetadata) error {
 	return &ForbiddenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -13724,12 +13724,12 @@ func (s ForbiddenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ForbiddenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ForbiddenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type GetAccountInput struct {
@@ -16724,7 +16724,7 @@ func (s *MembershipItem) SetRole(v string) *MembershipItem {
 // One or more of the resources in the request does not exist in the system.
 type NotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
 
@@ -16743,7 +16743,7 @@ func (s NotFoundException) GoString() string {
 
 func newErrorNotFoundException(v protocol.ResponseMetadata) error {
 	return &NotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -16771,12 +16771,12 @@ func (s NotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A phone number for which an order has been placed.
@@ -17959,7 +17959,7 @@ func (s *ResetPersonalPINOutput) SetUser(v *User) *ResetPersonalPINOutput {
 // The request exceeds the resource limit.
 type ResourceLimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
 
@@ -17978,7 +17978,7 @@ func (s ResourceLimitExceededException) GoString() string {
 
 func newErrorResourceLimitExceededException(v protocol.ResponseMetadata) error {
 	return &ResourceLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18006,12 +18006,12 @@ func (s ResourceLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type RestorePhoneNumberInput struct {
@@ -18326,7 +18326,7 @@ func (s *SearchAvailablePhoneNumbersOutput) SetE164PhoneNumbers(v []*string) *Se
 // The service encountered an unexpected error.
 type ServiceFailureException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
 
@@ -18345,7 +18345,7 @@ func (s ServiceFailureException) GoString() string {
 
 func newErrorServiceFailureException(v protocol.ResponseMetadata) error {
 	return &ServiceFailureException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18373,18 +18373,18 @@ func (s ServiceFailureException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceFailureException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceFailureException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The service is currently unavailable.
 type ServiceUnavailableException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
 
@@ -18403,7 +18403,7 @@ func (s ServiceUnavailableException) GoString() string {
 
 func newErrorServiceUnavailableException(v protocol.ResponseMetadata) error {
 	return &ServiceUnavailableException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18431,12 +18431,12 @@ func (s ServiceUnavailableException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceUnavailableException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceUnavailableException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An Active Directory (AD) group whose members are granted permission to act
@@ -18694,7 +18694,7 @@ func (s *TerminationHealth) SetTimestamp(v time.Time) *TerminationHealth {
 // The client exceeded its request rate limit.
 type ThrottledClientException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
 
@@ -18713,7 +18713,7 @@ func (s ThrottledClientException) GoString() string {
 
 func newErrorThrottledClientException(v protocol.ResponseMetadata) error {
 	return &ThrottledClientException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18741,18 +18741,18 @@ func (s ThrottledClientException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ThrottledClientException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ThrottledClientException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The client is not currently authorized to make the request.
 type UnauthorizedClientException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
 
@@ -18771,7 +18771,7 @@ func (s UnauthorizedClientException) GoString() string {
 
 func newErrorUnauthorizedClientException(v protocol.ResponseMetadata) error {
 	return &UnauthorizedClientException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18799,19 +18799,19 @@ func (s UnauthorizedClientException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnauthorizedClientException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnauthorizedClientException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was well-formed but was unable to be followed due to semantic
 // errors.
 type UnprocessableEntityException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
 
@@ -18830,7 +18830,7 @@ func (s UnprocessableEntityException) GoString() string {
 
 func newErrorUnprocessableEntityException(v protocol.ResponseMetadata) error {
 	return &UnprocessableEntityException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18858,12 +18858,12 @@ func (s UnprocessableEntityException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnprocessableEntityException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnprocessableEntityException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UpdateAccountInput struct {

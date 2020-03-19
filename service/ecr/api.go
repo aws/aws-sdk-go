@@ -4458,7 +4458,7 @@ func (s *DescribeRepositoriesOutput) SetRepositories(v []*Repository) *DescribeR
 // The specified layer upload does not contain any layer parts.
 type EmptyUploadException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -4476,7 +4476,7 @@ func (s EmptyUploadException) GoString() string {
 
 func newErrorEmptyUploadException(v protocol.ResponseMetadata) error {
 	return &EmptyUploadException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4504,12 +4504,12 @@ func (s EmptyUploadException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s EmptyUploadException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s EmptyUploadException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type GetAuthorizationTokenInput struct {
@@ -5115,7 +5115,7 @@ func (s *Image) SetRepositoryName(v string) *Image {
 // the manifest or image tag after the last push.
 type ImageAlreadyExistsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -5133,7 +5133,7 @@ func (s ImageAlreadyExistsException) GoString() string {
 
 func newErrorImageAlreadyExistsException(v protocol.ResponseMetadata) error {
 	return &ImageAlreadyExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5161,12 +5161,12 @@ func (s ImageAlreadyExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ImageAlreadyExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ImageAlreadyExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An object that describes an image returned by a DescribeImages operation.
@@ -5353,7 +5353,7 @@ func (s *ImageIdentifier) SetImageTag(v string) *ImageIdentifier {
 // The image requested does not exist in the specified repository.
 type ImageNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5370,7 +5370,7 @@ func (s ImageNotFoundException) GoString() string {
 
 func newErrorImageNotFoundException(v protocol.ResponseMetadata) error {
 	return &ImageNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5398,12 +5398,12 @@ func (s ImageNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ImageNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ImageNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains information about an image scan finding.
@@ -5624,7 +5624,7 @@ func (s *ImageScanningConfiguration) SetScanOnPush(v bool) *ImageScanningConfigu
 // is configured for tag immutability.
 type ImageTagAlreadyExistsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5641,7 +5641,7 @@ func (s ImageTagAlreadyExistsException) GoString() string {
 
 func newErrorImageTagAlreadyExistsException(v protocol.ResponseMetadata) error {
 	return &ImageTagAlreadyExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5669,12 +5669,12 @@ func (s ImageTagAlreadyExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ImageTagAlreadyExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ImageTagAlreadyExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type InitiateLayerUploadInput struct {
@@ -5766,7 +5766,7 @@ func (s *InitiateLayerUploadOutput) SetUploadId(v string) *InitiateLayerUploadOu
 // image layer does not match the digest specified.
 type InvalidLayerException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -5784,7 +5784,7 @@ func (s InvalidLayerException) GoString() string {
 
 func newErrorInvalidLayerException(v protocol.ResponseMetadata) error {
 	return &InvalidLayerException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5812,19 +5812,19 @@ func (s InvalidLayerException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidLayerException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidLayerException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The layer part size is not valid, or the first byte specified is not consecutive
 // to the last byte of a previous layer part upload.
 type InvalidLayerPartException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The last valid byte received from the layer part upload that is associated
 	// with the exception.
@@ -5855,7 +5855,7 @@ func (s InvalidLayerPartException) GoString() string {
 
 func newErrorInvalidLayerPartException(v protocol.ResponseMetadata) error {
 	return &InvalidLayerPartException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5883,19 +5883,19 @@ func (s InvalidLayerPartException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidLayerPartException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidLayerPartException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified parameter is invalid. Review the available parameters for the
 // API request.
 type InvalidParameterException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -5913,7 +5913,7 @@ func (s InvalidParameterException) GoString() string {
 
 func newErrorInvalidParameterException(v protocol.ResponseMetadata) error {
 	return &InvalidParameterException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5941,12 +5941,12 @@ func (s InvalidParameterException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidParameterException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidParameterException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An invalid parameter has been specified. Tag keys can have a maximum character
@@ -5954,7 +5954,7 @@ func (s InvalidParameterException) RequestID() string {
 // characters.
 type InvalidTagParameterException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5971,7 +5971,7 @@ func (s InvalidTagParameterException) GoString() string {
 
 func newErrorInvalidTagParameterException(v protocol.ResponseMetadata) error {
 	return &InvalidTagParameterException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5999,12 +5999,12 @@ func (s InvalidTagParameterException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidTagParameterException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidTagParameterException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An object representing an Amazon ECR image layer.
@@ -6062,7 +6062,7 @@ func (s *Layer) SetMediaType(v string) *Layer {
 // The image layer already exists in the associated repository.
 type LayerAlreadyExistsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -6080,7 +6080,7 @@ func (s LayerAlreadyExistsException) GoString() string {
 
 func newErrorLayerAlreadyExistsException(v protocol.ResponseMetadata) error {
 	return &LayerAlreadyExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6108,12 +6108,12 @@ func (s LayerAlreadyExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LayerAlreadyExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LayerAlreadyExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An object representing an Amazon ECR image layer failure.
@@ -6162,7 +6162,7 @@ func (s *LayerFailure) SetLayerDigest(v string) *LayerFailure {
 // image. Unassociated image layers may be cleaned up at any time.
 type LayerInaccessibleException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -6180,7 +6180,7 @@ func (s LayerInaccessibleException) GoString() string {
 
 func newErrorLayerInaccessibleException(v protocol.ResponseMetadata) error {
 	return &LayerInaccessibleException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6208,18 +6208,18 @@ func (s LayerInaccessibleException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LayerInaccessibleException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LayerInaccessibleException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Layer parts must be at least 5 MiB in size.
 type LayerPartTooSmallException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -6237,7 +6237,7 @@ func (s LayerPartTooSmallException) GoString() string {
 
 func newErrorLayerPartTooSmallException(v protocol.ResponseMetadata) error {
 	return &LayerPartTooSmallException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6265,19 +6265,19 @@ func (s LayerPartTooSmallException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LayerPartTooSmallException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LayerPartTooSmallException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified layers could not be found, or the specified layer is not valid
 // for this repository.
 type LayersNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -6295,7 +6295,7 @@ func (s LayersNotFoundException) GoString() string {
 
 func newErrorLayersNotFoundException(v protocol.ResponseMetadata) error {
 	return &LayersNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6323,18 +6323,18 @@ func (s LayersNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LayersNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LayersNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The lifecycle policy could not be found, and no policy is set to the repository.
 type LifecyclePolicyNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6351,7 +6351,7 @@ func (s LifecyclePolicyNotFoundException) GoString() string {
 
 func newErrorLifecyclePolicyNotFoundException(v protocol.ResponseMetadata) error {
 	return &LifecyclePolicyNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6379,12 +6379,12 @@ func (s LifecyclePolicyNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LifecyclePolicyNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LifecyclePolicyNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The filter for the lifecycle policy preview.
@@ -6415,7 +6415,7 @@ func (s *LifecyclePolicyPreviewFilter) SetTagStatus(v string) *LifecyclePolicyPr
 // again later.
 type LifecyclePolicyPreviewInProgressException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6432,7 +6432,7 @@ func (s LifecyclePolicyPreviewInProgressException) GoString() string {
 
 func newErrorLifecyclePolicyPreviewInProgressException(v protocol.ResponseMetadata) error {
 	return &LifecyclePolicyPreviewInProgressException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6460,18 +6460,18 @@ func (s LifecyclePolicyPreviewInProgressException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LifecyclePolicyPreviewInProgressException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LifecyclePolicyPreviewInProgressException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // There is no dry run for this repository.
 type LifecyclePolicyPreviewNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6488,7 +6488,7 @@ func (s LifecyclePolicyPreviewNotFoundException) GoString() string {
 
 func newErrorLifecyclePolicyPreviewNotFoundException(v protocol.ResponseMetadata) error {
 	return &LifecyclePolicyPreviewNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6516,12 +6516,12 @@ func (s LifecyclePolicyPreviewNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LifecyclePolicyPreviewNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LifecyclePolicyPreviewNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The result of the lifecycle policy preview.
@@ -6639,7 +6639,7 @@ func (s *LifecyclePolicyRuleAction) SetType(v string) *LifecyclePolicyRuleAction
 // in the Amazon Elastic Container Registry User Guide.
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -6657,7 +6657,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6685,12 +6685,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An object representing a filter on a ListImages operation.
@@ -7427,7 +7427,7 @@ func (s *Repository) SetRepositoryUri(v string) *Repository {
 // The specified repository already exists in the specified registry.
 type RepositoryAlreadyExistsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -7445,7 +7445,7 @@ func (s RepositoryAlreadyExistsException) GoString() string {
 
 func newErrorRepositoryAlreadyExistsException(v protocol.ResponseMetadata) error {
 	return &RepositoryAlreadyExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7473,19 +7473,19 @@ func (s RepositoryAlreadyExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s RepositoryAlreadyExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s RepositoryAlreadyExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified repository contains images. To delete a repository that contains
 // images, you must force the deletion with the force parameter.
 type RepositoryNotEmptyException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -7503,7 +7503,7 @@ func (s RepositoryNotEmptyException) GoString() string {
 
 func newErrorRepositoryNotEmptyException(v protocol.ResponseMetadata) error {
 	return &RepositoryNotEmptyException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7531,19 +7531,19 @@ func (s RepositoryNotEmptyException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s RepositoryNotEmptyException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s RepositoryNotEmptyException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified repository could not be found. Check the spelling of the specified
 // repository and ensure that you are performing operations on the correct registry.
 type RepositoryNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -7561,7 +7561,7 @@ func (s RepositoryNotFoundException) GoString() string {
 
 func newErrorRepositoryNotFoundException(v protocol.ResponseMetadata) error {
 	return &RepositoryNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7589,19 +7589,19 @@ func (s RepositoryNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s RepositoryNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s RepositoryNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified repository and registry combination does not have an associated
 // repository policy.
 type RepositoryPolicyNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -7619,7 +7619,7 @@ func (s RepositoryPolicyNotFoundException) GoString() string {
 
 func newErrorRepositoryPolicyNotFoundException(v protocol.ResponseMetadata) error {
 	return &RepositoryPolicyNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7647,19 +7647,19 @@ func (s RepositoryPolicyNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s RepositoryPolicyNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s RepositoryPolicyNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified image scan could not be found. Ensure that image scanning is
 // enabled on the repository and try again.
 type ScanNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7676,7 +7676,7 @@ func (s ScanNotFoundException) GoString() string {
 
 func newErrorScanNotFoundException(v protocol.ResponseMetadata) error {
 	return &ScanNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7704,18 +7704,18 @@ func (s ScanNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ScanNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ScanNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // These errors are usually caused by a server-side issue.
 type ServerException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -7733,7 +7733,7 @@ func (s ServerException) GoString() string {
 
 func newErrorServerException(v protocol.ResponseMetadata) error {
 	return &ServerException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7761,12 +7761,12 @@ func (s ServerException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServerException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServerException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type SetRepositoryPolicyInput struct {
@@ -8234,7 +8234,7 @@ func (s TagResourceOutput) GoString() string {
 // of tags that can be applied to a repository is 50.
 type TooManyTagsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8251,7 +8251,7 @@ func (s TooManyTagsException) GoString() string {
 
 func newErrorTooManyTagsException(v protocol.ResponseMetadata) error {
 	return &TooManyTagsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8279,12 +8279,12 @@ func (s TooManyTagsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TooManyTagsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TooManyTagsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UntagResourceInput struct {
@@ -8518,7 +8518,7 @@ func (s *UploadLayerPartOutput) SetUploadId(v string) *UploadLayerPartOutput {
 // this repository.
 type UploadNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -8536,7 +8536,7 @@ func (s UploadNotFoundException) GoString() string {
 
 func newErrorUploadNotFoundException(v protocol.ResponseMetadata) error {
 	return &UploadNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8564,12 +8564,12 @@ func (s UploadNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UploadNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UploadNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 const (

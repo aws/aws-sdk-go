@@ -2489,7 +2489,7 @@ func (s *GetProtectionStatusOutput) SetServiceType(v string) *GetProtectionStatu
 // was valid. Retry your request.
 type InternalErrorException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2506,7 +2506,7 @@ func (s InternalErrorException) GoString() string {
 
 func newErrorInternalErrorException(v protocol.ResponseMetadata) error {
 	return &InternalErrorException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2534,18 +2534,18 @@ func (s InternalErrorException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalErrorException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalErrorException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The parameters of the request were invalid.
 type InvalidInputException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2562,7 +2562,7 @@ func (s InvalidInputException) GoString() string {
 
 func newErrorInvalidInputException(v protocol.ResponseMetadata) error {
 	return &InvalidInputException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2590,12 +2590,12 @@ func (s InvalidInputException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidInputException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidInputException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation failed because there was nothing to do. For example, you might
@@ -2603,7 +2603,7 @@ func (s InvalidInputException) RequestID() string {
 // you submitted was already set as the AWS Firewall Manager administrator.
 type InvalidOperationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2620,7 +2620,7 @@ func (s InvalidOperationException) GoString() string {
 
 func newErrorInvalidOperationException(v protocol.ResponseMetadata) error {
 	return &InvalidOperationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2648,18 +2648,18 @@ func (s InvalidOperationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidOperationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidOperationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The value of the Type parameter is invalid.
 type InvalidTypeException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2676,7 +2676,7 @@ func (s InvalidTypeException) GoString() string {
 
 func newErrorInvalidTypeException(v protocol.ResponseMetadata) error {
 	return &InvalidTypeException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2704,12 +2704,12 @@ func (s InvalidTypeException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidTypeException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidTypeException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation exceeds a resource limit, for example, the maximum number of
@@ -2718,7 +2718,7 @@ func (s InvalidTypeException) RequestID() string {
 // in the AWS WAF Developer Guide.
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2735,7 +2735,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2763,12 +2763,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListComplianceStatusInput struct {
@@ -3750,7 +3750,7 @@ func (s *PutPolicyOutput) SetPolicyArn(v string) *PutPolicyOutput {
 // The specified resource was not found.
 type ResourceNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3767,7 +3767,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3795,12 +3795,12 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The resource tags that AWS Firewall Manager uses to determine if a particular

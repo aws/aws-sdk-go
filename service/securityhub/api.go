@@ -4500,7 +4500,7 @@ func (s AcceptInvitationOutput) GoString() string {
 // You don't have permission to perform the action specified in the request.
 type AccessDeniedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -4519,7 +4519,7 @@ func (s AccessDeniedException) GoString() string {
 
 func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
 	return &AccessDeniedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4547,12 +4547,12 @@ func (s AccessDeniedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccessDeniedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccessDeniedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The details of an AWS account.
@@ -11260,7 +11260,7 @@ func (s *InsightResults) SetResultValues(v []*InsightResultValue) *InsightResult
 // Internal server error.
 type InternalException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -11279,7 +11279,7 @@ func (s InternalException) GoString() string {
 
 func newErrorInternalException(v protocol.ResponseMetadata) error {
 	return &InternalException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11307,18 +11307,18 @@ func (s InternalException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // AWS Security Hub isn't enabled for the account used to make this request.
 type InvalidAccessException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -11337,7 +11337,7 @@ func (s InvalidAccessException) GoString() string {
 
 func newErrorInvalidAccessException(v protocol.ResponseMetadata) error {
 	return &InvalidAccessException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11365,19 +11365,19 @@ func (s InvalidAccessException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidAccessException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidAccessException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because you supplied an invalid or out-of-range
 // value for an input parameter.
 type InvalidInputException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -11396,7 +11396,7 @@ func (s InvalidInputException) GoString() string {
 
 func newErrorInvalidInputException(v protocol.ResponseMetadata) error {
 	return &InvalidInputException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11424,12 +11424,12 @@ func (s InvalidInputException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidInputException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidInputException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Details about an invitation.
@@ -11584,7 +11584,7 @@ func (s *KeywordFilter) SetValue(v string) *KeywordFilter {
 // the current AWS account limits. The error code describes the limit exceeded.
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -11603,7 +11603,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11631,12 +11631,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListEnabledProductsForImportInput struct {
@@ -12851,7 +12851,7 @@ func (s *Resource) SetType(v string) *Resource {
 // The resource specified in the request conflicts with an existing resource.
 type ResourceConflictException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -12870,7 +12870,7 @@ func (s ResourceConflictException) GoString() string {
 
 func newErrorResourceConflictException(v protocol.ResponseMetadata) error {
 	return &ResourceConflictException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12898,12 +12898,12 @@ func (s ResourceConflictException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceConflictException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceConflictException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Additional details about a resource related to a finding.
@@ -13138,7 +13138,7 @@ func (s *ResourceDetails) SetOther(v map[string]*string) *ResourceDetails {
 // The request was rejected because we can't find the specified resource.
 type ResourceNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -13157,7 +13157,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -13185,12 +13185,12 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Details about the account that was not processed.

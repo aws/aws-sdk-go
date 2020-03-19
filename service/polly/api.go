@@ -1122,7 +1122,7 @@ func (s *DescribeVoicesOutput) SetVoices(v []*Voice) *DescribeVoicesOutput {
 // the operation.
 type EngineNotSupportedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1139,7 +1139,7 @@ func (s EngineNotSupportedException) GoString() string {
 
 func newErrorEngineNotSupportedException(v protocol.ResponseMetadata) error {
 	return &EngineNotSupportedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1167,12 +1167,12 @@ func (s EngineNotSupportedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s EngineNotSupportedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s EngineNotSupportedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type GetLexiconInput struct {
@@ -1319,7 +1319,7 @@ func (s *GetSpeechSynthesisTaskOutput) SetSynthesisTask(v *SynthesisTask) *GetSp
 // name is spelled correctly, and then try again.
 type InvalidLexiconException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1336,7 +1336,7 @@ func (s InvalidLexiconException) GoString() string {
 
 func newErrorInvalidLexiconException(v protocol.ResponseMetadata) error {
 	return &InvalidLexiconException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1364,19 +1364,19 @@ func (s InvalidLexiconException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidLexiconException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidLexiconException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The NextToken is invalid. Verify that it's spelled correctly, and then try
 // again.
 type InvalidNextTokenException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1393,7 +1393,7 @@ func (s InvalidNextTokenException) GoString() string {
 
 func newErrorInvalidNextTokenException(v protocol.ResponseMetadata) error {
 	return &InvalidNextTokenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1421,19 +1421,19 @@ func (s InvalidNextTokenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidNextTokenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidNextTokenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The provided Amazon S3 bucket name is invalid. Please check your input with
 // S3 bucket naming requirements and try again.
 type InvalidS3BucketException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1450,7 +1450,7 @@ func (s InvalidS3BucketException) GoString() string {
 
 func newErrorInvalidS3BucketException(v protocol.ResponseMetadata) error {
 	return &InvalidS3BucketException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1478,19 +1478,19 @@ func (s InvalidS3BucketException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidS3BucketException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidS3BucketException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The provided Amazon S3 key prefix is invalid. Please provide a valid S3 object
 // key name.
 type InvalidS3KeyException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1507,7 +1507,7 @@ func (s InvalidS3KeyException) GoString() string {
 
 func newErrorInvalidS3KeyException(v protocol.ResponseMetadata) error {
 	return &InvalidS3KeyException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1535,18 +1535,18 @@ func (s InvalidS3KeyException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidS3KeyException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidS3KeyException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified sample rate is not valid.
 type InvalidSampleRateException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1563,7 +1563,7 @@ func (s InvalidSampleRateException) GoString() string {
 
 func newErrorInvalidSampleRateException(v protocol.ResponseMetadata) error {
 	return &InvalidSampleRateException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1591,19 +1591,19 @@ func (s InvalidSampleRateException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidSampleRateException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidSampleRateException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The provided SNS topic ARN is invalid. Please provide a valid SNS topic ARN
 // and try again.
 type InvalidSnsTopicArnException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1620,7 +1620,7 @@ func (s InvalidSnsTopicArnException) GoString() string {
 
 func newErrorInvalidSnsTopicArnException(v protocol.ResponseMetadata) error {
 	return &InvalidSnsTopicArnException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1648,19 +1648,19 @@ func (s InvalidSnsTopicArnException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidSnsTopicArnException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidSnsTopicArnException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The SSML you provided is invalid. Verify the SSML syntax, spelling of tags
 // and values, and then try again.
 type InvalidSsmlException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1677,7 +1677,7 @@ func (s InvalidSsmlException) GoString() string {
 
 func newErrorInvalidSsmlException(v protocol.ResponseMetadata) error {
 	return &InvalidSsmlException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1705,19 +1705,19 @@ func (s InvalidSsmlException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidSsmlException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidSsmlException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The provided Task ID is not valid. Please provide a valid Task ID and try
 // again.
 type InvalidTaskIdException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1734,7 +1734,7 @@ func (s InvalidTaskIdException) GoString() string {
 
 func newErrorInvalidTaskIdException(v protocol.ResponseMetadata) error {
 	return &InvalidTaskIdException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1762,19 +1762,19 @@ func (s InvalidTaskIdException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidTaskIdException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidTaskIdException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The language specified is not currently supported by Amazon Polly in this
 // capacity.
 type LanguageNotSupportedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1791,7 +1791,7 @@ func (s LanguageNotSupportedException) GoString() string {
 
 func newErrorLanguageNotSupportedException(v protocol.ResponseMetadata) error {
 	return &LanguageNotSupportedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1819,12 +1819,12 @@ func (s LanguageNotSupportedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LanguageNotSupportedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LanguageNotSupportedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Provides lexicon name and lexicon content in string format. For more information,
@@ -1975,7 +1975,7 @@ func (s *LexiconDescription) SetName(v string) *LexiconDescription {
 // you spelled its name is spelled correctly. Then try again.
 type LexiconNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1992,7 +1992,7 @@ func (s LexiconNotFoundException) GoString() string {
 
 func newErrorLexiconNotFoundException(v protocol.ResponseMetadata) error {
 	return &LexiconNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2020,18 +2020,18 @@ func (s LexiconNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LexiconNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LexiconNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The maximum size of the specified lexicon would be exceeded by this operation.
 type LexiconSizeExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2048,7 +2048,7 @@ func (s LexiconSizeExceededException) GoString() string {
 
 func newErrorLexiconSizeExceededException(v protocol.ResponseMetadata) error {
 	return &LexiconSizeExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2076,12 +2076,12 @@ func (s LexiconSizeExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LexiconSizeExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LexiconSizeExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListLexiconsInput struct {
@@ -2235,7 +2235,7 @@ func (s *ListSpeechSynthesisTasksOutput) SetSynthesisTasks(v []*SynthesisTask) *
 // are only available for content in json format.
 type MarksNotSupportedForFormatException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2252,7 +2252,7 @@ func (s MarksNotSupportedForFormatException) GoString() string {
 
 func newErrorMarksNotSupportedForFormatException(v protocol.ResponseMetadata) error {
 	return &MarksNotSupportedForFormatException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2280,18 +2280,18 @@ func (s MarksNotSupportedForFormatException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MarksNotSupportedForFormatException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MarksNotSupportedForFormatException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The maximum size of the lexeme would be exceeded by this operation.
 type MaxLexemeLengthExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2308,7 +2308,7 @@ func (s MaxLexemeLengthExceededException) GoString() string {
 
 func newErrorMaxLexemeLengthExceededException(v protocol.ResponseMetadata) error {
 	return &MaxLexemeLengthExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2336,18 +2336,18 @@ func (s MaxLexemeLengthExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MaxLexemeLengthExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MaxLexemeLengthExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The maximum number of lexicons would be exceeded by this operation.
 type MaxLexiconsNumberExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2364,7 +2364,7 @@ func (s MaxLexiconsNumberExceededException) GoString() string {
 
 func newErrorMaxLexiconsNumberExceededException(v protocol.ResponseMetadata) error {
 	return &MaxLexiconsNumberExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2392,12 +2392,12 @@ func (s MaxLexiconsNumberExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MaxLexiconsNumberExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MaxLexiconsNumberExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type PutLexiconInput struct {
@@ -2474,7 +2474,7 @@ func (s PutLexiconOutput) GoString() string {
 // An unknown condition has caused a service failure.
 type ServiceFailureException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2491,7 +2491,7 @@ func (s ServiceFailureException) GoString() string {
 
 func newErrorServiceFailureException(v protocol.ResponseMetadata) error {
 	return &ServiceFailureException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2519,18 +2519,18 @@ func (s ServiceFailureException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceFailureException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceFailureException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // SSML speech marks are not supported for plain text-type input.
 type SsmlMarksNotSupportedForTextTypeException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2547,7 +2547,7 @@ func (s SsmlMarksNotSupportedForTextTypeException) GoString() string {
 
 func newErrorSsmlMarksNotSupportedForTextTypeException(v protocol.ResponseMetadata) error {
 	return &SsmlMarksNotSupportedForTextTypeException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2575,12 +2575,12 @@ func (s SsmlMarksNotSupportedForTextTypeException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s SsmlMarksNotSupportedForTextTypeException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s SsmlMarksNotSupportedForTextTypeException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type StartSpeechSynthesisTaskInput struct {
@@ -2956,7 +2956,7 @@ func (s *SynthesisTask) SetVoiceId(v string) *SynthesisTask {
 // The Speech Synthesis task with requested Task ID cannot be found.
 type SynthesisTaskNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2973,7 +2973,7 @@ func (s SynthesisTaskNotFoundException) GoString() string {
 
 func newErrorSynthesisTaskNotFoundException(v protocol.ResponseMetadata) error {
 	return &SynthesisTaskNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3001,12 +3001,12 @@ func (s SynthesisTaskNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s SynthesisTaskNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s SynthesisTaskNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type SynthesizeSpeechInput struct {
@@ -3217,7 +3217,7 @@ func (s *SynthesizeSpeechOutput) SetRequestCharacters(v int64) *SynthesizeSpeech
 // be billed characters. SSML tags are not counted as billed characters.
 type TextLengthExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3234,7 +3234,7 @@ func (s TextLengthExceededException) GoString() string {
 
 func newErrorTextLengthExceededException(v protocol.ResponseMetadata) error {
 	return &TextLengthExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3262,19 +3262,19 @@ func (s TextLengthExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TextLengthExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TextLengthExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The alphabet specified by the lexicon is not a supported alphabet. Valid
 // values are x-sampa and ipa.
 type UnsupportedPlsAlphabetException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3291,7 +3291,7 @@ func (s UnsupportedPlsAlphabetException) GoString() string {
 
 func newErrorUnsupportedPlsAlphabetException(v protocol.ResponseMetadata) error {
 	return &UnsupportedPlsAlphabetException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3319,19 +3319,19 @@ func (s UnsupportedPlsAlphabetException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnsupportedPlsAlphabetException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnsupportedPlsAlphabetException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The language specified in the lexicon is unsupported. For a list of supported
 // languages, see Lexicon Attributes (https://docs.aws.amazon.com/polly/latest/dg/API_LexiconAttributes.html).
 type UnsupportedPlsLanguageException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3348,7 +3348,7 @@ func (s UnsupportedPlsLanguageException) GoString() string {
 
 func newErrorUnsupportedPlsLanguageException(v protocol.ResponseMetadata) error {
 	return &UnsupportedPlsLanguageException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3376,12 +3376,12 @@ func (s UnsupportedPlsLanguageException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnsupportedPlsLanguageException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnsupportedPlsLanguageException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Description of the voice.

@@ -3839,7 +3839,7 @@ func (c *AppSync) UpdateTypeWithContext(ctx aws.Context, input *UpdateTypeInput,
 // You do not have access to perform this operation on this resource.
 type AccessDeniedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3856,7 +3856,7 @@ func (s AccessDeniedException) GoString() string {
 
 func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
 	return &AccessDeniedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3884,12 +3884,12 @@ func (s AccessDeniedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccessDeniedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccessDeniedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Describes an additional authentication provider.
@@ -4137,7 +4137,7 @@ func (s *ApiKey) SetId(v string) *ApiKey {
 // The API key exceeded a limit. Try your request again.
 type ApiKeyLimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4154,7 +4154,7 @@ func (s ApiKeyLimitExceededException) GoString() string {
 
 func newErrorApiKeyLimitExceededException(v protocol.ResponseMetadata) error {
 	return &ApiKeyLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4182,19 +4182,19 @@ func (s ApiKeyLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ApiKeyLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ApiKeyLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The API key expiration must be set to a value between 1 and 365 days from
 // creation (for CreateApiKey) or from update (for UpdateApiKey).
 type ApiKeyValidityOutOfBoundsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4211,7 +4211,7 @@ func (s ApiKeyValidityOutOfBoundsException) GoString() string {
 
 func newErrorApiKeyValidityOutOfBoundsException(v protocol.ResponseMetadata) error {
 	return &ApiKeyValidityOutOfBoundsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4239,18 +4239,18 @@ func (s ApiKeyValidityOutOfBoundsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ApiKeyValidityOutOfBoundsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ApiKeyValidityOutOfBoundsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The GraphQL API exceeded a limit. Try your request again.
 type ApiLimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4267,7 +4267,7 @@ func (s ApiLimitExceededException) GoString() string {
 
 func newErrorApiLimitExceededException(v protocol.ResponseMetadata) error {
 	return &ApiLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4295,12 +4295,12 @@ func (s ApiLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ApiLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ApiLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The authorization config in case the HTTP endpoint requires authorization.
@@ -4390,7 +4390,7 @@ func (s *AwsIamConfig) SetSigningServiceName(v string) *AwsIamConfig {
 // field is missing. Check the field values, and then try again.
 type BadRequestException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4407,7 +4407,7 @@ func (s BadRequestException) GoString() string {
 
 func newErrorBadRequestException(v protocol.ResponseMetadata) error {
 	return &BadRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4435,12 +4435,12 @@ func (s BadRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s BadRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s BadRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The caching configuration for a resolver that has caching enabled.
@@ -4548,7 +4548,7 @@ func (s *CognitoUserPoolConfig) SetUserPoolId(v string) *CognitoUserPoolConfig {
 // you can make your change.
 type ConcurrentModificationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4565,7 +4565,7 @@ func (s ConcurrentModificationException) GoString() string {
 
 func newErrorConcurrentModificationException(v protocol.ResponseMetadata) error {
 	return &ConcurrentModificationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4593,12 +4593,12 @@ func (s ConcurrentModificationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ConcurrentModificationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ConcurrentModificationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents the input of a CreateApiCache operation.
@@ -7187,7 +7187,7 @@ func (s *GetTypeOutput) SetType(v *Type) *GetTypeOutput {
 // The GraphQL schema is not valid.
 type GraphQLSchemaException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7204,7 +7204,7 @@ func (s GraphQLSchemaException) GoString() string {
 
 func newErrorGraphQLSchemaException(v protocol.ResponseMetadata) error {
 	return &GraphQLSchemaException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7232,12 +7232,12 @@ func (s GraphQLSchemaException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s GraphQLSchemaException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s GraphQLSchemaException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Describes a GraphQL API.
@@ -7408,7 +7408,7 @@ func (s *HttpDataSourceConfig) SetEndpoint(v string) *HttpDataSourceConfig {
 // An internal AWS AppSync error occurred. Try your request again.
 type InternalFailureException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7425,7 +7425,7 @@ func (s InternalFailureException) GoString() string {
 
 func newErrorInternalFailureException(v protocol.ResponseMetadata) error {
 	return &InternalFailureException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7453,12 +7453,12 @@ func (s InternalFailureException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalFailureException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalFailureException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The LambdaConflictHandlerConfig object when configuring LAMBDA as the Conflict
@@ -7528,7 +7528,7 @@ func (s *LambdaDataSourceConfig) SetLambdaFunctionArn(v string) *LambdaDataSourc
 // The request exceeded a limit. Try your request again.
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7545,7 +7545,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7573,12 +7573,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListApiKeysInput struct {
@@ -8425,7 +8425,7 @@ func (s *LogConfig) SetFieldLogLevel(v string) *LogConfig {
 // and then try again.
 type NotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8442,7 +8442,7 @@ func (s NotFoundException) GoString() string {
 
 func newErrorNotFoundException(v protocol.ResponseMetadata) error {
 	return &NotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8470,12 +8470,12 @@ func (s NotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Describes an OpenID Connect configuration.
@@ -9054,7 +9054,7 @@ func (s *Type) SetName(v string) *Type {
 // You are not authorized to perform this operation.
 type UnauthorizedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9071,7 +9071,7 @@ func (s UnauthorizedException) GoString() string {
 
 func newErrorUnauthorizedException(v protocol.ResponseMetadata) error {
 	return &UnauthorizedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9099,12 +9099,12 @@ func (s UnauthorizedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnauthorizedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnauthorizedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UntagResourceInput struct {

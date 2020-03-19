@@ -113,7 +113,7 @@ func (c *EC2InstanceConnect) SendSSHPublicKeyWithContext(ctx aws.Context, input 
 // access to the EC2 instance.
 type AuthException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -130,7 +130,7 @@ func (s AuthException) GoString() string {
 
 func newErrorAuthException(v protocol.ResponseMetadata) error {
 	return &AuthException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -158,19 +158,19 @@ func (s AuthException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AuthException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AuthException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Indicates that the instance requested was not found in the given zone. Check
 // that you have provided a valid instance ID and the correct zone.
 type EC2InstanceNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -187,7 +187,7 @@ func (s EC2InstanceNotFoundException) GoString() string {
 
 func newErrorEC2InstanceNotFoundException(v protocol.ResponseMetadata) error {
 	return &EC2InstanceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -215,19 +215,19 @@ func (s EC2InstanceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s EC2InstanceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s EC2InstanceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Indicates that you provided bad input. Ensure you have a valid instance ID,
 // the correct zone, and a valid SSH public key.
 type InvalidArgsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -244,7 +244,7 @@ func (s InvalidArgsException) GoString() string {
 
 func newErrorInvalidArgsException(v protocol.ResponseMetadata) error {
 	return &InvalidArgsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -272,12 +272,12 @@ func (s InvalidArgsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidArgsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidArgsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type SendSSHPublicKeyInput struct {
@@ -411,7 +411,7 @@ func (s *SendSSHPublicKeyOutput) SetSuccess(v bool) *SendSSHPublicKeyOutput {
 // and try again.
 type ServiceException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -428,7 +428,7 @@ func (s ServiceException) GoString() string {
 
 func newErrorServiceException(v protocol.ResponseMetadata) error {
 	return &ServiceException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -456,12 +456,12 @@ func (s ServiceException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Indicates you have been making requests too frequently and have been throttled.
@@ -469,7 +469,7 @@ func (s ServiceException) RequestID() string {
 // AWS Support.
 type ThrottlingException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -486,7 +486,7 @@ func (s ThrottlingException) GoString() string {
 
 func newErrorThrottlingException(v protocol.ResponseMetadata) error {
 	return &ThrottlingException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -514,10 +514,10 @@ func (s ThrottlingException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ThrottlingException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ThrottlingException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }

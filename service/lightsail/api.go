@@ -12167,7 +12167,7 @@ func (c *Lightsail) UpdateRelationalDatabaseParametersWithContext(ctx aws.Contex
 // uses invalid credentials to access a resource.
 type AccessDeniedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"code" type:"string"`
 
@@ -12190,7 +12190,7 @@ func (s AccessDeniedException) GoString() string {
 
 func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
 	return &AccessDeniedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12218,19 +12218,19 @@ func (s AccessDeniedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccessDeniedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccessDeniedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Lightsail throws this exception when an account is still in the setup in
 // progress state.
 type AccountSetupInProgressException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"code" type:"string"`
 
@@ -12253,7 +12253,7 @@ func (s AccountSetupInProgressException) GoString() string {
 
 func newErrorAccountSetupInProgressException(v protocol.ResponseMetadata) error {
 	return &AccountSetupInProgressException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12281,12 +12281,12 @@ func (s AccountSetupInProgressException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccountSetupInProgressException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccountSetupInProgressException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Describes an add-on that is enabled for an Amazon Lightsail resource.
@@ -23431,7 +23431,7 @@ func (s *InstanceState) SetName(v string) *InstanceState {
 // edit these resources.
 type InvalidInputException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"code" type:"string"`
 
@@ -23454,7 +23454,7 @@ func (s InvalidInputException) GoString() string {
 
 func newErrorInvalidInputException(v protocol.ResponseMetadata) error {
 	return &InvalidInputException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -23482,12 +23482,12 @@ func (s InvalidInputException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidInputException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidInputException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type IsVpcPeeredInput struct {
@@ -24415,7 +24415,7 @@ func (s *MonthlyTransfer) SetGbPerMonthAllocated(v int64) *MonthlyTransfer {
 // Lightsail throws this exception when it cannot find a resource.
 type NotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"code" type:"string"`
 
@@ -24438,7 +24438,7 @@ func (s NotFoundException) GoString() string {
 
 func newErrorNotFoundException(v protocol.ResponseMetadata) error {
 	return &NotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -24466,12 +24466,12 @@ func (s NotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type OpenInstancePublicPortsInput struct {
@@ -24677,7 +24677,7 @@ func (s *Operation) SetStatusChangedAt(v time.Time) *Operation {
 // Lightsail throws this exception when an operation fails to execute.
 type OperationFailureException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"code" type:"string"`
 
@@ -24700,7 +24700,7 @@ func (s OperationFailureException) GoString() string {
 
 func newErrorOperationFailureException(v protocol.ResponseMetadata) error {
 	return &OperationFailureException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -24728,12 +24728,12 @@ func (s OperationFailureException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s OperationFailureException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s OperationFailureException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The password data for the Windows Server-based instance, including the ciphertext
@@ -26456,7 +26456,7 @@ func (s *SendContactMethodVerificationOutput) SetOperations(v []*Operation) *Sen
 // A general service exception.
 type ServiceException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"code" type:"string"`
 
@@ -26479,7 +26479,7 @@ func (s ServiceException) GoString() string {
 
 func newErrorServiceException(v protocol.ResponseMetadata) error {
 	return &ServiceException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -26507,12 +26507,12 @@ func (s ServiceException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type StartInstanceInput struct {
@@ -27108,7 +27108,7 @@ func (s *TestAlarmOutput) SetOperations(v []*Operation) *TestAlarmOutput {
 // Lightsail throws this exception when the user has not been authenticated.
 type UnauthenticatedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"code" type:"string"`
 
@@ -27131,7 +27131,7 @@ func (s UnauthenticatedException) GoString() string {
 
 func newErrorUnauthenticatedException(v protocol.ResponseMetadata) error {
 	return &UnauthenticatedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -27159,12 +27159,12 @@ func (s UnauthenticatedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnauthenticatedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnauthenticatedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UnpeerVpcInput struct {

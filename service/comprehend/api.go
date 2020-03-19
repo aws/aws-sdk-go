@@ -5961,7 +5961,7 @@ func (s *BatchItemError) SetIndex(v int64) *BatchItemError {
 // request again with fewer documents.
 type BatchSizeLimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -5978,7 +5978,7 @@ func (s BatchSizeLimitExceededException) GoString() string {
 
 func newErrorBatchSizeLimitExceededException(v protocol.ResponseMetadata) error {
 	return &BatchSizeLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6006,12 +6006,12 @@ func (s BatchSizeLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s BatchSizeLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s BatchSizeLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Describes the result metrics for the test data associated with an documentation
@@ -6276,7 +6276,7 @@ func (s *ClassifyDocumentOutput) SetLabels(v []*DocumentLabel) *ClassifyDocument
 // resource is not supported.
 type ConcurrentModificationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -6293,7 +6293,7 @@ func (s ConcurrentModificationException) GoString() string {
 
 func newErrorConcurrentModificationException(v protocol.ResponseMetadata) error {
 	return &ConcurrentModificationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6321,12 +6321,12 @@ func (s ConcurrentModificationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ConcurrentModificationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ConcurrentModificationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type CreateDocumentClassifierInput struct {
@@ -9974,7 +9974,7 @@ func (s *InputDataConfig) SetS3Uri(v string) *InputDataConfig {
 // An internal server error occurred. Retry your request.
 type InternalServerException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -9991,7 +9991,7 @@ func (s InternalServerException) GoString() string {
 
 func newErrorInternalServerException(v protocol.ResponseMetadata) error {
 	return &InternalServerException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10019,18 +10019,18 @@ func (s InternalServerException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServerException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServerException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The filter specified for the operation is invalid. Specify a different filter.
 type InvalidFilterException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -10047,7 +10047,7 @@ func (s InvalidFilterException) GoString() string {
 
 func newErrorInvalidFilterException(v protocol.ResponseMetadata) error {
 	return &InvalidFilterException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10075,18 +10075,18 @@ func (s InvalidFilterException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidFilterException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidFilterException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request is invalid.
 type InvalidRequestException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -10103,7 +10103,7 @@ func (s InvalidRequestException) GoString() string {
 
 func newErrorInvalidRequestException(v protocol.ResponseMetadata) error {
 	return &InvalidRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10131,18 +10131,18 @@ func (s InvalidRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified job was not found. Check the job ID and try again.
 type JobNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -10159,7 +10159,7 @@ func (s JobNotFoundException) GoString() string {
 
 func newErrorJobNotFoundException(v protocol.ResponseMetadata) error {
 	return &JobNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10187,12 +10187,12 @@ func (s JobNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s JobNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s JobNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Describes a key noun phrase.
@@ -10464,7 +10464,7 @@ func (s *KeyPhrasesDetectionJobProperties) SetVpcConfig(v *VpcConfig) *KeyPhrase
 // key and re-enter it.
 type KmsKeyValidationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -10481,7 +10481,7 @@ func (s KmsKeyValidationException) GoString() string {
 
 func newErrorKmsKeyValidationException(v protocol.ResponseMetadata) error {
 	return &KmsKeyValidationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10509,12 +10509,12 @@ func (s KmsKeyValidationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s KmsKeyValidationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s KmsKeyValidationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListDocumentClassificationJobsInput struct {
@@ -11549,7 +11549,7 @@ func (s *PartOfSpeechTag) SetTag(v string) *PartOfSpeechTag {
 // again.
 type ResourceInUseException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -11566,7 +11566,7 @@ func (s ResourceInUseException) GoString() string {
 
 func newErrorResourceInUseException(v protocol.ResponseMetadata) error {
 	return &ResourceInUseException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11594,19 +11594,19 @@ func (s ResourceInUseException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceInUseException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceInUseException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The maximum number of recognizers per account has been exceeded. Review the
 // recognizers, perform cleanup, and then try your request again.
 type ResourceLimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -11623,7 +11623,7 @@ func (s ResourceLimitExceededException) GoString() string {
 
 func newErrorResourceLimitExceededException(v protocol.ResponseMetadata) error {
 	return &ResourceLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11651,19 +11651,19 @@ func (s ResourceLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified resource ARN was not found. Check the ARN and try your request
 // again.
 type ResourceNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -11680,7 +11680,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11708,19 +11708,19 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified resource is not available. Check to see if the resource is
 // in the TRAINED state and try your request again.
 type ResourceUnavailableException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -11737,7 +11737,7 @@ func (s ResourceUnavailableException) GoString() string {
 
 func newErrorResourceUnavailableException(v protocol.ResponseMetadata) error {
 	return &ResourceUnavailableException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11765,12 +11765,12 @@ func (s ResourceUnavailableException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceUnavailableException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceUnavailableException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Provides information for filtering a list of dominant language detection
@@ -13819,7 +13819,7 @@ func (s TagResourceOutput) GoString() string {
 // The size of the input text exceeds the limit. Use a smaller document.
 type TextSizeLimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -13836,7 +13836,7 @@ func (s TextSizeLimitExceededException) GoString() string {
 
 func newErrorTextSizeLimitExceededException(v protocol.ResponseMetadata) error {
 	return &TextSizeLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -13864,18 +13864,18 @@ func (s TextSizeLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TextSizeLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TextSizeLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The number of requests exceeds the limit. Resubmit your request later.
 type TooManyRequestsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -13892,7 +13892,7 @@ func (s TooManyRequestsException) GoString() string {
 
 func newErrorTooManyRequestsException(v protocol.ResponseMetadata) error {
 	return &TooManyRequestsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -13920,19 +13920,19 @@ func (s TooManyRequestsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TooManyRequestsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TooManyRequestsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request contains more tag keys than can be associated with a resource
 // (50 tag keys per resource).
 type TooManyTagKeysException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -13949,7 +13949,7 @@ func (s TooManyTagKeysException) GoString() string {
 
 func newErrorTooManyTagKeysException(v protocol.ResponseMetadata) error {
 	return &TooManyTagKeysException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -13977,12 +13977,12 @@ func (s TooManyTagKeysException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TooManyTagKeysException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TooManyTagKeysException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request contains more tags than can be associated with a resource (50
@@ -13990,7 +13990,7 @@ func (s TooManyTagKeysException) RequestID() string {
 // and those included in your current request.
 type TooManyTagsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -14007,7 +14007,7 @@ func (s TooManyTagsException) GoString() string {
 
 func newErrorTooManyTagsException(v protocol.ResponseMetadata) error {
 	return &TooManyTagsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -14035,12 +14035,12 @@ func (s TooManyTagsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TooManyTagsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TooManyTagsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Provides information for filtering topic detection jobs. For more information,
@@ -14256,7 +14256,7 @@ func (s *TopicsDetectionJobProperties) SetVpcConfig(v *VpcConfig) *TopicsDetecti
 // languages, see supported-languages.
 type UnsupportedLanguageException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -14273,7 +14273,7 @@ func (s UnsupportedLanguageException) GoString() string {
 
 func newErrorUnsupportedLanguageException(v protocol.ResponseMetadata) error {
 	return &UnsupportedLanguageException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -14301,12 +14301,12 @@ func (s UnsupportedLanguageException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnsupportedLanguageException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnsupportedLanguageException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UntagResourceInput struct {

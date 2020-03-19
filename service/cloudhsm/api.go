@@ -2019,7 +2019,7 @@ func (s *AddTagsToResourceOutput) SetStatus(v string) *AddTagsToResourceOutput {
 // Indicates that an internal error occurred.
 type CloudHsmInternalException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2036,7 +2036,7 @@ func (s CloudHsmInternalException) GoString() string {
 
 func newErrorCloudHsmInternalException(v protocol.ResponseMetadata) error {
 	return &CloudHsmInternalException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2064,18 +2064,18 @@ func (s CloudHsmInternalException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CloudHsmInternalException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CloudHsmInternalException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Indicates that an exception occurred in the AWS CloudHSM service.
 type CloudHsmServiceException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// Additional information about the error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -2096,7 +2096,7 @@ func (s CloudHsmServiceException) GoString() string {
 
 func newErrorCloudHsmServiceException(v protocol.ResponseMetadata) error {
 	return &CloudHsmServiceException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2124,12 +2124,12 @@ func (s CloudHsmServiceException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CloudHsmServiceException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CloudHsmServiceException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains the inputs for the CreateHapgRequest action.
@@ -3196,7 +3196,7 @@ func (s *GetConfigOutput) SetConfigType(v string) *GetConfigOutput {
 // Indicates that one or more of the request parameters are not valid.
 type InvalidRequestException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3213,7 +3213,7 @@ func (s InvalidRequestException) GoString() string {
 
 func newErrorInvalidRequestException(v protocol.ResponseMetadata) error {
 	return &InvalidRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3241,12 +3241,12 @@ func (s InvalidRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains the inputs for the ListAvailableZones action.

@@ -579,7 +579,7 @@ func (s *BatchMeterUsageOutput) SetUnprocessedRecords(v []*UsageRecord) *BatchMe
 // the product.
 type CustomerNotEntitledException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -596,7 +596,7 @@ func (s CustomerNotEntitledException) GoString() string {
 
 func newErrorCustomerNotEntitledException(v protocol.ResponseMetadata) error {
 	return &CustomerNotEntitledException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -624,18 +624,18 @@ func (s CustomerNotEntitledException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CustomerNotEntitledException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CustomerNotEntitledException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The API is disabled in the Region.
 type DisabledApiException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -652,7 +652,7 @@ func (s DisabledApiException) GoString() string {
 
 func newErrorDisabledApiException(v protocol.ResponseMetadata) error {
 	return &DisabledApiException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -680,12 +680,12 @@ func (s DisabledApiException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DisabledApiException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DisabledApiException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A metering record has already been emitted by the same EC2 instance, ECS
@@ -693,7 +693,7 @@ func (s DisabledApiException) RequestID() string {
 // usageQuantity.
 type DuplicateRequestException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -710,7 +710,7 @@ func (s DuplicateRequestException) GoString() string {
 
 func newErrorDuplicateRequestException(v protocol.ResponseMetadata) error {
 	return &DuplicateRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -738,12 +738,12 @@ func (s DuplicateRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DuplicateRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DuplicateRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The submitted registration token has expired. This can happen if the buyer's
@@ -753,7 +753,7 @@ func (s DuplicateRequestException) RequestID() string {
 // as soon as it is submitted by the buyer's browser.
 type ExpiredTokenException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -770,7 +770,7 @@ func (s ExpiredTokenException) GoString() string {
 
 func newErrorExpiredTokenException(v protocol.ResponseMetadata) error {
 	return &ExpiredTokenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -798,19 +798,19 @@ func (s ExpiredTokenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ExpiredTokenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ExpiredTokenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An internal error has occurred. Retry your request. If the problem persists,
 // post a message with details on the AWS forums.
 type InternalServiceErrorException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -827,7 +827,7 @@ func (s InternalServiceErrorException) GoString() string {
 
 func newErrorInternalServiceErrorException(v protocol.ResponseMetadata) error {
 	return &InternalServiceErrorException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -855,18 +855,18 @@ func (s InternalServiceErrorException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServiceErrorException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServiceErrorException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You have metered usage for a CustomerIdentifier that does not exist.
 type InvalidCustomerIdentifierException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -883,7 +883,7 @@ func (s InvalidCustomerIdentifierException) GoString() string {
 
 func newErrorInvalidCustomerIdentifierException(v protocol.ResponseMetadata) error {
 	return &InvalidCustomerIdentifierException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -911,12 +911,12 @@ func (s InvalidCustomerIdentifierException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidCustomerIdentifierException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidCustomerIdentifierException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The endpoint being called is in a AWS Region different from your EC2 instance,
@@ -924,7 +924,7 @@ func (s InvalidCustomerIdentifierException) RequestID() string {
 // AWS Region of the resource must match.
 type InvalidEndpointRegionException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -941,7 +941,7 @@ func (s InvalidEndpointRegionException) GoString() string {
 
 func newErrorInvalidEndpointRegionException(v protocol.ResponseMetadata) error {
 	return &InvalidEndpointRegionException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -969,19 +969,19 @@ func (s InvalidEndpointRegionException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidEndpointRegionException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidEndpointRegionException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The product code passed does not match the product code used for publishing
 // the product.
 type InvalidProductCodeException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -998,7 +998,7 @@ func (s InvalidProductCodeException) GoString() string {
 
 func newErrorInvalidProductCodeException(v protocol.ResponseMetadata) error {
 	return &InvalidProductCodeException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1026,18 +1026,18 @@ func (s InvalidProductCodeException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidProductCodeException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidProductCodeException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Public Key version is invalid.
 type InvalidPublicKeyVersionException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1054,7 +1054,7 @@ func (s InvalidPublicKeyVersionException) GoString() string {
 
 func newErrorInvalidPublicKeyVersionException(v protocol.ResponseMetadata) error {
 	return &InvalidPublicKeyVersionException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1082,12 +1082,12 @@ func (s InvalidPublicKeyVersionException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidPublicKeyVersionException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidPublicKeyVersionException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // RegisterUsage must be called in the same AWS Region the ECS task was launched
@@ -1095,7 +1095,7 @@ func (s InvalidPublicKeyVersionException) RequestID() string {
 // when calling RegisterUsage.
 type InvalidRegionException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1112,7 +1112,7 @@ func (s InvalidRegionException) GoString() string {
 
 func newErrorInvalidRegionException(v protocol.ResponseMetadata) error {
 	return &InvalidRegionException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1140,18 +1140,18 @@ func (s InvalidRegionException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidRegionException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidRegionException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Registration token is invalid.
 type InvalidTokenException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1168,7 +1168,7 @@ func (s InvalidTokenException) GoString() string {
 
 func newErrorInvalidTokenException(v protocol.ResponseMetadata) error {
 	return &InvalidTokenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1196,19 +1196,19 @@ func (s InvalidTokenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidTokenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidTokenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The usage dimension does not match one of the UsageDimensions associated
 // with products.
 type InvalidUsageDimensionException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1225,7 +1225,7 @@ func (s InvalidUsageDimensionException) GoString() string {
 
 func newErrorInvalidUsageDimensionException(v protocol.ResponseMetadata) error {
 	return &InvalidUsageDimensionException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1253,12 +1253,12 @@ func (s InvalidUsageDimensionException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidUsageDimensionException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidUsageDimensionException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type MeterUsageInput struct {
@@ -1385,7 +1385,7 @@ func (s *MeterUsageOutput) SetMeteringRecordId(v string) *MeterUsageOutput {
 // Currently, only Amazon ECS is supported.
 type PlatformNotSupportedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1402,7 +1402,7 @@ func (s PlatformNotSupportedException) GoString() string {
 
 func newErrorPlatformNotSupportedException(v protocol.ResponseMetadata) error {
 	return &PlatformNotSupportedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1430,12 +1430,12 @@ func (s PlatformNotSupportedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PlatformNotSupportedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PlatformNotSupportedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type RegisterUsageInput struct {
@@ -1622,7 +1622,7 @@ func (s *ResolveCustomerOutput) SetProductCode(v string) *ResolveCustomerOutput 
 // The calls to the API are throttled.
 type ThrottlingException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1639,7 +1639,7 @@ func (s ThrottlingException) GoString() string {
 
 func newErrorThrottlingException(v protocol.ResponseMetadata) error {
 	return &ThrottlingException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1667,18 +1667,18 @@ func (s ThrottlingException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ThrottlingException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ThrottlingException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The timestamp value passed in the meterUsage() is out of allowed range.
 type TimestampOutOfBoundsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1695,7 +1695,7 @@ func (s TimestampOutOfBoundsException) GoString() string {
 
 func newErrorTimestampOutOfBoundsException(v protocol.ResponseMetadata) error {
 	return &TimestampOutOfBoundsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1723,12 +1723,12 @@ func (s TimestampOutOfBoundsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TimestampOutOfBoundsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TimestampOutOfBoundsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A UsageRecord indicates a quantity of usage for a given product, customer,

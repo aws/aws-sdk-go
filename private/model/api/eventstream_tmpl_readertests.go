@@ -302,7 +302,7 @@ func (c *loopReader) Read(p []byte) (int, error) {
 {{ define "set event type" }}
 	&{{ $.ShapeName }}{
 		{{- if $.Exception }}
-			respMetadata: protocol.ResponseMetadata{
+			RespMetadata: protocol.ResponseMetadata{
 				StatusCode: 200,
 			},
 		{{- end }}

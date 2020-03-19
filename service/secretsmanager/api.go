@@ -2875,7 +2875,7 @@ func (s *CreateSecretOutput) SetVersionId(v string) *CreateSecretOutput {
 // KMS key.
 type DecryptionFailure struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2892,7 +2892,7 @@ func (s DecryptionFailure) GoString() string {
 
 func newErrorDecryptionFailure(v protocol.ResponseMetadata) error {
 	return &DecryptionFailure{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2920,12 +2920,12 @@ func (s DecryptionFailure) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DecryptionFailure) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DecryptionFailure) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type DeleteResourcePolicyInput struct {
@@ -3372,7 +3372,7 @@ func (s *DescribeSecretOutput) SetVersionIdsToStages(v map[string][]*string) *De
 // Use of a Customer Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html).
 type EncryptionFailure struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3389,7 +3389,7 @@ func (s EncryptionFailure) GoString() string {
 
 func newErrorEncryptionFailure(v protocol.ResponseMetadata) error {
 	return &EncryptionFailure{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3417,12 +3417,12 @@ func (s EncryptionFailure) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s EncryptionFailure) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s EncryptionFailure) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type GetRandomPasswordInput struct {
@@ -3866,7 +3866,7 @@ func (s *GetSecretValueOutput) SetVersionStages(v []*string) *GetSecretValueOutp
 // An error occurred on the server side.
 type InternalServiceError struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3883,7 +3883,7 @@ func (s InternalServiceError) GoString() string {
 
 func newErrorInternalServiceError(v protocol.ResponseMetadata) error {
 	return &InternalServiceError{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3911,18 +3911,18 @@ func (s InternalServiceError) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServiceError) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServiceError) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You provided an invalid NextToken value.
 type InvalidNextTokenException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3939,7 +3939,7 @@ func (s InvalidNextTokenException) GoString() string {
 
 func newErrorInvalidNextTokenException(v protocol.ResponseMetadata) error {
 	return &InvalidNextTokenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3967,18 +3967,18 @@ func (s InvalidNextTokenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidNextTokenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidNextTokenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You provided an invalid value for a parameter.
 type InvalidParameterException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3995,7 +3995,7 @@ func (s InvalidParameterException) GoString() string {
 
 func newErrorInvalidParameterException(v protocol.ResponseMetadata) error {
 	return &InvalidParameterException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4023,12 +4023,12 @@ func (s InvalidParameterException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidParameterException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidParameterException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You provided a parameter value that is not valid for the current state of
@@ -4044,7 +4044,7 @@ func (s InvalidParameterException) RequestID() string {
 //    parameter in this call.
 type InvalidRequestException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4061,7 +4061,7 @@ func (s InvalidRequestException) GoString() string {
 
 func newErrorInvalidRequestException(v protocol.ResponseMetadata) error {
 	return &InvalidRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4089,19 +4089,19 @@ func (s InvalidRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request failed because it would exceed one of the Secrets Manager internal
 // limits.
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4118,7 +4118,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4146,12 +4146,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListSecretVersionIdsInput struct {
@@ -4418,7 +4418,7 @@ func (s *ListSecretsOutput) SetSecretList(v []*SecretListEntry) *ListSecretsOutp
 // The policy document that you provided isn't valid.
 type MalformedPolicyDocumentException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4435,7 +4435,7 @@ func (s MalformedPolicyDocumentException) GoString() string {
 
 func newErrorMalformedPolicyDocumentException(v protocol.ResponseMetadata) error {
 	return &MalformedPolicyDocumentException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4463,18 +4463,18 @@ func (s MalformedPolicyDocumentException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MalformedPolicyDocumentException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MalformedPolicyDocumentException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request failed because you did not complete all the prerequisite steps.
 type PreconditionNotMetException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4491,7 +4491,7 @@ func (s PreconditionNotMetException) GoString() string {
 
 func newErrorPreconditionNotMetException(v protocol.ResponseMetadata) error {
 	return &PreconditionNotMetException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4519,12 +4519,12 @@ func (s PreconditionNotMetException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PreconditionNotMetException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PreconditionNotMetException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type PutResourcePolicyInput struct {
@@ -4857,7 +4857,7 @@ func (s *PutSecretValueOutput) SetVersionStages(v []*string) *PutSecretValueOutp
 // A resource with the ID you requested already exists.
 type ResourceExistsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4874,7 +4874,7 @@ func (s ResourceExistsException) GoString() string {
 
 func newErrorResourceExistsException(v protocol.ResponseMetadata) error {
 	return &ResourceExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4902,18 +4902,18 @@ func (s ResourceExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // We can't find the resource that you asked for.
 type ResourceNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4930,7 +4930,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4958,12 +4958,12 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type RestoreSecretInput struct {

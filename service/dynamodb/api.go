@@ -6809,7 +6809,7 @@ func (s *BackupDetails) SetBackupType(v string) *BackupDetails {
 // table. The backup is either being created, deleted or restored to a table.
 type BackupInUseException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6826,7 +6826,7 @@ func (s BackupInUseException) GoString() string {
 
 func newErrorBackupInUseException(v protocol.ResponseMetadata) error {
 	return &BackupInUseException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6854,18 +6854,18 @@ func (s BackupInUseException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s BackupInUseException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s BackupInUseException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Backup not found for the given BackupARN.
 type BackupNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6882,7 +6882,7 @@ func (s BackupNotFoundException) GoString() string {
 
 func newErrorBackupNotFoundException(v protocol.ResponseMetadata) error {
 	return &BackupNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6910,12 +6910,12 @@ func (s BackupNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s BackupNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s BackupNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains details for the backup.
@@ -7819,7 +7819,7 @@ func (s *ConditionCheck) SetTableName(v string) *ConditionCheck {
 // A condition specified in the operation could not be evaluated.
 type ConditionalCheckFailedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The conditional request failed.
 	Message_ *string `locationName:"message" type:"string"`
@@ -7837,7 +7837,7 @@ func (s ConditionalCheckFailedException) GoString() string {
 
 func newErrorConditionalCheckFailedException(v protocol.ResponseMetadata) error {
 	return &ConditionalCheckFailedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7865,12 +7865,12 @@ func (s ConditionalCheckFailedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ConditionalCheckFailedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ConditionalCheckFailedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The capacity units consumed by an operation. The data returned includes the
@@ -7995,7 +7995,7 @@ func (s *ContinuousBackupsDescription) SetPointInTimeRecoveryDescription(v *Poin
 // Backups have not yet been enabled for this table.
 type ContinuousBackupsUnavailableException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8012,7 +8012,7 @@ func (s ContinuousBackupsUnavailableException) GoString() string {
 
 func newErrorContinuousBackupsUnavailableException(v protocol.ResponseMetadata) error {
 	return &ContinuousBackupsUnavailableException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8040,12 +8040,12 @@ func (s ContinuousBackupsUnavailableException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ContinuousBackupsUnavailableException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ContinuousBackupsUnavailableException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents a Contributor Insights summary entry..
@@ -11274,7 +11274,7 @@ func (s *GlobalTable) SetReplicationGroup(v []*Replica) *GlobalTable {
 // The specified global table already exists.
 type GlobalTableAlreadyExistsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11291,7 +11291,7 @@ func (s GlobalTableAlreadyExistsException) GoString() string {
 
 func newErrorGlobalTableAlreadyExistsException(v protocol.ResponseMetadata) error {
 	return &GlobalTableAlreadyExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11319,12 +11319,12 @@ func (s GlobalTableAlreadyExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s GlobalTableAlreadyExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s GlobalTableAlreadyExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains details about the global table.
@@ -11470,7 +11470,7 @@ func (s *GlobalTableGlobalSecondaryIndexSettingsUpdate) SetProvisionedWriteCapac
 // The specified global table does not exist.
 type GlobalTableNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11487,7 +11487,7 @@ func (s GlobalTableNotFoundException) GoString() string {
 
 func newErrorGlobalTableNotFoundException(v protocol.ResponseMetadata) error {
 	return &GlobalTableNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11515,19 +11515,19 @@ func (s GlobalTableNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s GlobalTableNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s GlobalTableNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // DynamoDB rejected the request because you retried a request with a different
 // payload but with an idempotent token that was already used.
 type IdempotentParameterMismatchException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -11544,7 +11544,7 @@ func (s IdempotentParameterMismatchException) GoString() string {
 
 func newErrorIdempotentParameterMismatchException(v protocol.ResponseMetadata) error {
 	return &IdempotentParameterMismatchException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11572,18 +11572,18 @@ func (s IdempotentParameterMismatchException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s IdempotentParameterMismatchException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s IdempotentParameterMismatchException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation tried to access a nonexistent index.
 type IndexNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11600,7 +11600,7 @@ func (s IndexNotFoundException) GoString() string {
 
 func newErrorIndexNotFoundException(v protocol.ResponseMetadata) error {
 	return &IndexNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11628,18 +11628,18 @@ func (s IndexNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s IndexNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s IndexNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An error occurred on the server side.
 type InternalServerError struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The server encountered an internal error trying to fulfill the request.
 	Message_ *string `locationName:"message" type:"string"`
@@ -11657,7 +11657,7 @@ func (s InternalServerError) GoString() string {
 
 func newErrorInternalServerError(v protocol.ResponseMetadata) error {
 	return &InternalServerError{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11685,19 +11685,19 @@ func (s InternalServerError) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServerError) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServerError) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An invalid restore time was specified. RestoreDateTime must be between EarliestRestorableDateTime
 // and LatestRestorableDateTime.
 type InvalidRestoreTimeException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11714,7 +11714,7 @@ func (s InvalidRestoreTimeException) GoString() string {
 
 func newErrorInvalidRestoreTimeException(v protocol.ResponseMetadata) error {
 	return &InvalidRestoreTimeException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11742,12 +11742,12 @@ func (s InvalidRestoreTimeException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidRestoreTimeException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidRestoreTimeException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Information about item collections, if any, that were affected by the operation.
@@ -11799,7 +11799,7 @@ func (s *ItemCollectionMetrics) SetSizeEstimateRangeGB(v []*float64) *ItemCollec
 // that have one or more local secondary indexes.
 type ItemCollectionSizeLimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The total size of an item collection has exceeded the maximum limit of 10
 	// gigabytes.
@@ -11818,7 +11818,7 @@ func (s ItemCollectionSizeLimitExceededException) GoString() string {
 
 func newErrorItemCollectionSizeLimitExceededException(v protocol.ResponseMetadata) error {
 	return &ItemCollectionSizeLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11846,12 +11846,12 @@ func (s ItemCollectionSizeLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ItemCollectionSizeLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ItemCollectionSizeLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Details for the requested item.
@@ -12105,7 +12105,7 @@ func (s *KeysAndAttributes) SetProjectionExpression(v string) *KeysAndAttributes
 // There is a soft account limit of 256 tables.
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// Too many operations for a given subscriber.
 	Message_ *string `locationName:"message" type:"string"`
@@ -12123,7 +12123,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12151,12 +12151,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListBackupsInput struct {
@@ -13007,7 +13007,7 @@ func (s *PointInTimeRecoverySpecification) SetPointInTimeRecoveryEnabled(v bool)
 // Point in time recovery has not yet been enabled for this source table.
 type PointInTimeRecoveryUnavailableException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13024,7 +13024,7 @@ func (s PointInTimeRecoveryUnavailableException) GoString() string {
 
 func newErrorPointInTimeRecoveryUnavailableException(v protocol.ResponseMetadata) error {
 	return &PointInTimeRecoveryUnavailableException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -13052,12 +13052,12 @@ func (s PointInTimeRecoveryUnavailableException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PointInTimeRecoveryUnavailableException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PointInTimeRecoveryUnavailableException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents attributes that are copied (projected) from the table into an
@@ -13270,7 +13270,7 @@ func (s *ProvisionedThroughputDescription) SetWriteCapacityUnits(v int64) *Provi
 // in the Amazon DynamoDB Developer Guide.
 type ProvisionedThroughputExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// You exceeded your maximum allowed provisioned throughput.
 	Message_ *string `locationName:"message" type:"string"`
@@ -13288,7 +13288,7 @@ func (s ProvisionedThroughputExceededException) GoString() string {
 
 func newErrorProvisionedThroughputExceededException(v protocol.ResponseMetadata) error {
 	return &ProvisionedThroughputExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -13316,12 +13316,12 @@ func (s ProvisionedThroughputExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ProvisionedThroughputExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ProvisionedThroughputExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Replica-specific provisioned throughput settings. If not specified, uses
@@ -14361,7 +14361,7 @@ func (s *Replica) SetRegionName(v string) *Replica {
 // The specified replica is already part of the global table.
 type ReplicaAlreadyExistsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14378,7 +14378,7 @@ func (s ReplicaAlreadyExistsException) GoString() string {
 
 func newErrorReplicaAlreadyExistsException(v protocol.ResponseMetadata) error {
 	return &ReplicaAlreadyExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -14406,12 +14406,12 @@ func (s ReplicaAlreadyExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ReplicaAlreadyExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ReplicaAlreadyExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents the auto scaling settings of the replica.
@@ -15011,7 +15011,7 @@ func (s *ReplicaGlobalSecondaryIndexSettingsUpdate) SetProvisionedReadCapacityUn
 // The specified replica is no longer part of the global table.
 type ReplicaNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -15028,7 +15028,7 @@ func (s ReplicaNotFoundException) GoString() string {
 
 func newErrorReplicaNotFoundException(v protocol.ResponseMetadata) error {
 	return &ReplicaNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15056,12 +15056,12 @@ func (s ReplicaNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ReplicaNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ReplicaNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents the properties of a replica.
@@ -15401,7 +15401,7 @@ func (s *ReplicationGroupUpdate) SetUpdate(v *UpdateReplicationGroupMemberAction
 // a limit increase.
 type RequestLimitExceeded struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -15418,7 +15418,7 @@ func (s RequestLimitExceeded) GoString() string {
 
 func newErrorRequestLimitExceeded(v protocol.ResponseMetadata) error {
 	return &RequestLimitExceeded{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15446,12 +15446,12 @@ func (s RequestLimitExceeded) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s RequestLimitExceeded) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s RequestLimitExceeded) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation conflicts with the resource's availability. For example, you
@@ -15459,7 +15459,7 @@ func (s RequestLimitExceeded) RequestID() string {
 // in the CREATING state.
 type ResourceInUseException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The resource which is being attempted to be changed is in use.
 	Message_ *string `locationName:"message" type:"string"`
@@ -15477,7 +15477,7 @@ func (s ResourceInUseException) GoString() string {
 
 func newErrorResourceInUseException(v protocol.ResponseMetadata) error {
 	return &ResourceInUseException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15505,19 +15505,19 @@ func (s ResourceInUseException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceInUseException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceInUseException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation tried to access a nonexistent table or index. The resource
 // might not be specified correctly, or its status might not be ACTIVE.
 type ResourceNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The resource which is being requested does not exist.
 	Message_ *string `locationName:"message" type:"string"`
@@ -15535,7 +15535,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15563,12 +15563,12 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains details for the restore.
@@ -16793,7 +16793,7 @@ func (s *StreamSpecification) SetStreamViewType(v string) *StreamSpecification {
 // A target table with the specified name already exists.
 type TableAlreadyExistsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16810,7 +16810,7 @@ func (s TableAlreadyExistsException) GoString() string {
 
 func newErrorTableAlreadyExistsException(v protocol.ResponseMetadata) error {
 	return &TableAlreadyExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -16838,12 +16838,12 @@ func (s TableAlreadyExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TableAlreadyExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TableAlreadyExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents the auto scaling configuration for a global table.
@@ -17247,7 +17247,7 @@ func (s *TableDescription) SetTableStatus(v string) *TableDescription {
 // A target table with the specified name is either being created or deleted.
 type TableInUseException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17264,7 +17264,7 @@ func (s TableInUseException) GoString() string {
 
 func newErrorTableInUseException(v protocol.ResponseMetadata) error {
 	return &TableInUseException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17292,19 +17292,19 @@ func (s TableInUseException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TableInUseException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TableInUseException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A source table with the name TableName does not currently exist within the
 // subscriber's account.
 type TableNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17321,7 +17321,7 @@ func (s TableNotFoundException) GoString() string {
 
 func newErrorTableNotFoundException(v protocol.ResponseMetadata) error {
 	return &TableNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17349,12 +17349,12 @@ func (s TableNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TableNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TableNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Describes a tag. A tag is a key-value pair. You can add up to 50 tags to
@@ -18071,7 +18071,7 @@ func (s *TransactWriteItemsOutput) SetItemCollectionMetrics(v map[string][]*Item
 //    the item.
 type TransactionCanceledException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// A list of cancellation reasons.
 	CancellationReasons []*CancellationReason `min:"1" type:"list"`
@@ -18091,7 +18091,7 @@ func (s TransactionCanceledException) GoString() string {
 
 func newErrorTransactionCanceledException(v protocol.ResponseMetadata) error {
 	return &TransactionCanceledException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18119,18 +18119,18 @@ func (s TransactionCanceledException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TransactionCanceledException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TransactionCanceledException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Operation was rejected because there is an ongoing transaction for the item.
 type TransactionConflictException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18147,7 +18147,7 @@ func (s TransactionConflictException) GoString() string {
 
 func newErrorTransactionConflictException(v protocol.ResponseMetadata) error {
 	return &TransactionConflictException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18175,18 +18175,18 @@ func (s TransactionConflictException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TransactionConflictException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TransactionConflictException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The transaction with the given request token is already in progress.
 type TransactionInProgressException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -18203,7 +18203,7 @@ func (s TransactionInProgressException) GoString() string {
 
 func newErrorTransactionInProgressException(v protocol.ResponseMetadata) error {
 	return &TransactionInProgressException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18231,12 +18231,12 @@ func (s TransactionInProgressException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TransactionInProgressException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TransactionInProgressException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UntagResourceInput struct {

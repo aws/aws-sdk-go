@@ -8637,7 +8637,7 @@ func (s RejectQualificationRequestOutput) GoString() string {
 // Your request is invalid.
 type RequestError struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -8656,7 +8656,7 @@ func (s RequestError) GoString() string {
 
 func newErrorRequestError(v protocol.ResponseMetadata) error {
 	return &RequestError{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8684,12 +8684,12 @@ func (s RequestError) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s RequestError) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s RequestError) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Both the AssignmentReviewReport and the HITReviewReport elements contains
@@ -9143,7 +9143,7 @@ func (s SendTestEventNotificationOutput) GoString() string {
 // your call again.
 type ServiceFault struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -9162,7 +9162,7 @@ func (s ServiceFault) GoString() string {
 
 func newErrorServiceFault(v protocol.ResponseMetadata) error {
 	return &ServiceFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9190,12 +9190,12 @@ func (s ServiceFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UpdateExpirationForHITInput struct {

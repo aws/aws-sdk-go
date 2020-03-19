@@ -2750,7 +2750,7 @@ func (c *EFS) UpdateFileSystemWithContext(ctx aws.Context, input *UpdateFileSyst
 // the creation token you provided in the request.
 type AccessPointAlreadyExists struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// AccessPointId is a required field
 	AccessPointId *string `type:"string" required:"true"`
@@ -2773,7 +2773,7 @@ func (s AccessPointAlreadyExists) GoString() string {
 
 func newErrorAccessPointAlreadyExists(v protocol.ResponseMetadata) error {
 	return &AccessPointAlreadyExists{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2801,12 +2801,12 @@ func (s AccessPointAlreadyExists) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccessPointAlreadyExists) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccessPointAlreadyExists) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Provides a description of an EFS file system access point.
@@ -2921,7 +2921,7 @@ func (s *AccessPointDescription) SetTags(v []*Tag) *AccessPointDescription {
 // points allowed per file system.
 type AccessPointLimitExceeded struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -2941,7 +2941,7 @@ func (s AccessPointLimitExceeded) GoString() string {
 
 func newErrorAccessPointLimitExceeded(v protocol.ResponseMetadata) error {
 	return &AccessPointLimitExceeded{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2969,19 +2969,19 @@ func (s AccessPointLimitExceeded) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccessPointLimitExceeded) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccessPointLimitExceeded) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Returned if the specified AccessPointId value doesn't exist in the requester's
 // AWS account.
 type AccessPointNotFound struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -3001,7 +3001,7 @@ func (s AccessPointNotFound) GoString() string {
 
 func newErrorAccessPointNotFound(v protocol.ResponseMetadata) error {
 	return &AccessPointNotFound{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3029,19 +3029,19 @@ func (s AccessPointNotFound) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccessPointNotFound) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccessPointNotFound) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Returned if the request is malformed or contains an error such as an invalid
 // parameter value or a missing required parameter.
 type BadRequest struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -3061,7 +3061,7 @@ func (s BadRequest) GoString() string {
 
 func newErrorBadRequest(v protocol.ResponseMetadata) error {
 	return &BadRequest{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3089,12 +3089,12 @@ func (s BadRequest) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s BadRequest) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s BadRequest) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type CreateAccessPointInput struct {
@@ -3981,7 +3981,7 @@ func (s DeleteTagsOutput) GoString() string {
 // try the call again.
 type DependencyTimeout struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -4001,7 +4001,7 @@ func (s DependencyTimeout) GoString() string {
 
 func newErrorDependencyTimeout(v protocol.ResponseMetadata) error {
 	return &DependencyTimeout{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4029,12 +4029,12 @@ func (s DependencyTimeout) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DependencyTimeout) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DependencyTimeout) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type DescribeAccessPointsInput struct {
@@ -4703,7 +4703,7 @@ func (s *DescribeTagsOutput) SetTags(v []*Tag) *DescribeTagsOutput {
 // the creation token you provided.
 type FileSystemAlreadyExists struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -4726,7 +4726,7 @@ func (s FileSystemAlreadyExists) GoString() string {
 
 func newErrorFileSystemAlreadyExists(v protocol.ResponseMetadata) error {
 	return &FileSystemAlreadyExists{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4754,12 +4754,12 @@ func (s FileSystemAlreadyExists) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s FileSystemAlreadyExists) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s FileSystemAlreadyExists) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A description of the file system.
@@ -4947,7 +4947,7 @@ func (s *FileSystemDescription) SetThroughputMode(v string) *FileSystemDescripti
 // Returned if a file system has mount targets.
 type FileSystemInUse struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -4967,7 +4967,7 @@ func (s FileSystemInUse) GoString() string {
 
 func newErrorFileSystemInUse(v protocol.ResponseMetadata) error {
 	return &FileSystemInUse{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4995,19 +4995,19 @@ func (s FileSystemInUse) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s FileSystemInUse) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s FileSystemInUse) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Returned if the AWS account has already created the maximum number of file
 // systems allowed per account.
 type FileSystemLimitExceeded struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -5027,7 +5027,7 @@ func (s FileSystemLimitExceeded) GoString() string {
 
 func newErrorFileSystemLimitExceeded(v protocol.ResponseMetadata) error {
 	return &FileSystemLimitExceeded{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5055,19 +5055,19 @@ func (s FileSystemLimitExceeded) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s FileSystemLimitExceeded) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s FileSystemLimitExceeded) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Returned if the specified FileSystemId value doesn't exist in the requester's
 // AWS account.
 type FileSystemNotFound struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -5087,7 +5087,7 @@ func (s FileSystemNotFound) GoString() string {
 
 func newErrorFileSystemNotFound(v protocol.ResponseMetadata) error {
 	return &FileSystemNotFound{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5115,12 +5115,12 @@ func (s FileSystemNotFound) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s FileSystemNotFound) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s FileSystemNotFound) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The latest known metered size (in bytes) of data stored in the file system,
@@ -5189,7 +5189,7 @@ func (s *FileSystemSize) SetValueInStandard(v int64) *FileSystemSize {
 // Returned if the file system's lifecycle state is not "available".
 type IncorrectFileSystemLifeCycleState struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -5209,7 +5209,7 @@ func (s IncorrectFileSystemLifeCycleState) GoString() string {
 
 func newErrorIncorrectFileSystemLifeCycleState(v protocol.ResponseMetadata) error {
 	return &IncorrectFileSystemLifeCycleState{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5237,18 +5237,18 @@ func (s IncorrectFileSystemLifeCycleState) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s IncorrectFileSystemLifeCycleState) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s IncorrectFileSystemLifeCycleState) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Returned if the mount target is not in the correct state for the operation.
 type IncorrectMountTargetState struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -5268,7 +5268,7 @@ func (s IncorrectMountTargetState) GoString() string {
 
 func newErrorIncorrectMountTargetState(v protocol.ResponseMetadata) error {
 	return &IncorrectMountTargetState{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5296,12 +5296,12 @@ func (s IncorrectMountTargetState) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s IncorrectMountTargetState) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s IncorrectMountTargetState) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Returned if there's not enough capacity to provision additional throughput.
@@ -5311,7 +5311,7 @@ func (s IncorrectMountTargetState) RequestID() string {
 // system from bursting to provisioned throughput mode.
 type InsufficientThroughputCapacity struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -5331,7 +5331,7 @@ func (s InsufficientThroughputCapacity) GoString() string {
 
 func newErrorInsufficientThroughputCapacity(v protocol.ResponseMetadata) error {
 	return &InsufficientThroughputCapacity{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5359,18 +5359,18 @@ func (s InsufficientThroughputCapacity) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InsufficientThroughputCapacity) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InsufficientThroughputCapacity) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Returned if an error occurred on the server side.
 type InternalServerError struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -5390,7 +5390,7 @@ func (s InternalServerError) GoString() string {
 
 func newErrorInternalServerError(v protocol.ResponseMetadata) error {
 	return &InternalServerError{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5418,12 +5418,12 @@ func (s InternalServerError) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServerError) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServerError) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Returned if the FileSystemPolicy is is malformed or contains an error such
@@ -5431,7 +5431,7 @@ func (s InternalServerError) RequestID() string {
 // the case of a policy lockout safety check error.
 type InvalidPolicyException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	ErrorCode *string `min:"1" type:"string"`
 
@@ -5450,7 +5450,7 @@ func (s InvalidPolicyException) GoString() string {
 
 func newErrorInvalidPolicyException(v protocol.ResponseMetadata) error {
 	return &InvalidPolicyException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5478,19 +5478,19 @@ func (s InvalidPolicyException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidPolicyException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidPolicyException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Returned if the request specified an IpAddress that is already in use in
 // the subnet.
 type IpAddressInUse struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -5510,7 +5510,7 @@ func (s IpAddressInUse) GoString() string {
 
 func newErrorIpAddressInUse(v protocol.ResponseMetadata) error {
 	return &IpAddressInUse{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5538,12 +5538,12 @@ func (s IpAddressInUse) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s IpAddressInUse) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s IpAddressInUse) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Describes a policy used by EFS lifecycle management to transition files to
@@ -5739,7 +5739,7 @@ func (s ModifyMountTargetSecurityGroupsOutput) GoString() string {
 // based on the file system's existing mount targets.
 type MountTargetConflict struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -5759,7 +5759,7 @@ func (s MountTargetConflict) GoString() string {
 
 func newErrorMountTargetConflict(v protocol.ResponseMetadata) error {
 	return &MountTargetConflict{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5787,12 +5787,12 @@ func (s MountTargetConflict) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MountTargetConflict) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MountTargetConflict) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Provides a description of a mount target.
@@ -5909,7 +5909,7 @@ func (s *MountTargetDescription) SetSubnetId(v string) *MountTargetDescription {
 // account.
 type MountTargetNotFound struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -5929,7 +5929,7 @@ func (s MountTargetNotFound) GoString() string {
 
 func newErrorMountTargetNotFound(v protocol.ResponseMetadata) error {
 	return &MountTargetNotFound{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5957,12 +5957,12 @@ func (s MountTargetNotFound) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MountTargetNotFound) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MountTargetNotFound) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The calling account has reached the limit for elastic network interfaces
@@ -5973,7 +5973,7 @@ func (s MountTargetNotFound) RequestID() string {
 // the table).
 type NetworkInterfaceLimitExceeded struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -5993,7 +5993,7 @@ func (s NetworkInterfaceLimitExceeded) GoString() string {
 
 func newErrorNetworkInterfaceLimitExceeded(v protocol.ResponseMetadata) error {
 	return &NetworkInterfaceLimitExceeded{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6021,19 +6021,19 @@ func (s NetworkInterfaceLimitExceeded) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NetworkInterfaceLimitExceeded) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NetworkInterfaceLimitExceeded) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Returned if IpAddress was not specified in the request and there are no free
 // IP addresses in the subnet.
 type NoFreeAddressesInSubnet struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -6053,7 +6053,7 @@ func (s NoFreeAddressesInSubnet) GoString() string {
 
 func newErrorNoFreeAddressesInSubnet(v protocol.ResponseMetadata) error {
 	return &NoFreeAddressesInSubnet{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6081,19 +6081,19 @@ func (s NoFreeAddressesInSubnet) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NoFreeAddressesInSubnet) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NoFreeAddressesInSubnet) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Returned if the default file system policy is in effect for the EFS file
 // system specified.
 type PolicyNotFound struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	ErrorCode *string `min:"1" type:"string"`
 
@@ -6112,7 +6112,7 @@ func (s PolicyNotFound) GoString() string {
 
 func newErrorPolicyNotFound(v protocol.ResponseMetadata) error {
 	return &PolicyNotFound{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6140,12 +6140,12 @@ func (s PolicyNotFound) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PolicyNotFound) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PolicyNotFound) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The full POSIX identity, including the user ID, group ID, and any secondary
@@ -6472,7 +6472,7 @@ func (s *RootDirectory) SetPath(v string) *RootDirectory {
 // than five.
 type SecurityGroupLimitExceeded struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -6492,7 +6492,7 @@ func (s SecurityGroupLimitExceeded) GoString() string {
 
 func newErrorSecurityGroupLimitExceeded(v protocol.ResponseMetadata) error {
 	return &SecurityGroupLimitExceeded{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6520,19 +6520,19 @@ func (s SecurityGroupLimitExceeded) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s SecurityGroupLimitExceeded) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s SecurityGroupLimitExceeded) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Returned if one of the specified security groups doesn't exist in the subnet's
 // VPC.
 type SecurityGroupNotFound struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -6552,7 +6552,7 @@ func (s SecurityGroupNotFound) GoString() string {
 
 func newErrorSecurityGroupNotFound(v protocol.ResponseMetadata) error {
 	return &SecurityGroupNotFound{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6580,18 +6580,18 @@ func (s SecurityGroupNotFound) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s SecurityGroupNotFound) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s SecurityGroupNotFound) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Returned if there is no subnet with ID SubnetId provided in the request.
 type SubnetNotFound struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -6611,7 +6611,7 @@ func (s SubnetNotFound) GoString() string {
 
 func newErrorSubnetNotFound(v protocol.ResponseMetadata) error {
 	return &SubnetNotFound{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6639,12 +6639,12 @@ func (s SubnetNotFound) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s SubnetNotFound) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s SubnetNotFound) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A tag is a key-value pair. Allowed characters are letters, white space, and
@@ -6786,7 +6786,7 @@ func (s TagResourceOutput) GoString() string {
 // be changed because the throughput limit of 1024 MiB/s has been reached.
 type ThroughputLimitExceeded struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -6806,7 +6806,7 @@ func (s ThroughputLimitExceeded) GoString() string {
 
 func newErrorThroughputLimitExceeded(v protocol.ResponseMetadata) error {
 	return &ThroughputLimitExceeded{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6834,19 +6834,19 @@ func (s ThroughputLimitExceeded) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ThroughputLimitExceeded) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ThroughputLimitExceeded) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Returned if you don’t wait at least 24 hours before changing the throughput
 // mode, or decreasing the Provisioned Throughput value.
 type TooManyRequests struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -6866,7 +6866,7 @@ func (s TooManyRequests) GoString() string {
 
 func newErrorTooManyRequests(v protocol.ResponseMetadata) error {
 	return &TooManyRequests{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6894,17 +6894,17 @@ func (s TooManyRequests) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TooManyRequests) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TooManyRequests) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UnsupportedAvailabilityZone struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -6924,7 +6924,7 @@ func (s UnsupportedAvailabilityZone) GoString() string {
 
 func newErrorUnsupportedAvailabilityZone(v protocol.ResponseMetadata) error {
 	return &UnsupportedAvailabilityZone{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6952,12 +6952,12 @@ func (s UnsupportedAvailabilityZone) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnsupportedAvailabilityZone) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnsupportedAvailabilityZone) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UntagResourceInput struct {

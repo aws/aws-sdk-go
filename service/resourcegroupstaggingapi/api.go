@@ -1213,7 +1213,7 @@ func (s *ComplianceDetails) SetNoncompliantKeys(v []*string) *ComplianceDetails 
 // Try again later.
 type ConcurrentModificationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1230,7 +1230,7 @@ func (s ConcurrentModificationException) GoString() string {
 
 func newErrorConcurrentModificationException(v protocol.ResponseMetadata) error {
 	return &ConcurrentModificationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1258,12 +1258,12 @@ func (s ConcurrentModificationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ConcurrentModificationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ConcurrentModificationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was denied because performing this operation violates a constraint.
@@ -1283,7 +1283,7 @@ func (s ConcurrentModificationException) RequestID() string {
 //    or an account.
 type ConstraintViolationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1300,7 +1300,7 @@ func (s ConstraintViolationException) GoString() string {
 
 func newErrorConstraintViolationException(v protocol.ResponseMetadata) error {
 	return &ConstraintViolationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1328,12 +1328,12 @@ func (s ConstraintViolationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ConstraintViolationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ConstraintViolationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type DescribeReportCreationInput struct {
@@ -1986,7 +1986,7 @@ func (s *GetTagValuesOutput) SetTagValues(v []*string) *GetTagValuesOutput {
 // failure. You can retry the request.
 type InternalServiceException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2003,7 +2003,7 @@ func (s InternalServiceException) GoString() string {
 
 func newErrorInternalServiceException(v protocol.ResponseMetadata) error {
 	return &InternalServiceException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2031,12 +2031,12 @@ func (s InternalServiceException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServiceException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServiceException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This error indicates one of the following:
@@ -2055,7 +2055,7 @@ func (s InternalServiceException) RequestID() string {
 //    in the AWS Organizations User Guide.
 type InvalidParameterException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2072,7 +2072,7 @@ func (s InvalidParameterException) GoString() string {
 
 func newErrorInvalidParameterException(v protocol.ResponseMetadata) error {
 	return &InvalidParameterException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2100,19 +2100,19 @@ func (s InvalidParameterException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidParameterException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidParameterException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A PaginationToken is valid for a maximum of 15 minutes. Your request was
 // denied because the specified PaginationToken has expired.
 type PaginationTokenExpiredException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2129,7 +2129,7 @@ func (s PaginationTokenExpiredException) GoString() string {
 
 func newErrorPaginationTokenExpiredException(v protocol.ResponseMetadata) error {
 	return &PaginationTokenExpiredException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2157,12 +2157,12 @@ func (s PaginationTokenExpiredException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PaginationTokenExpiredException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PaginationTokenExpiredException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A list of resource ARNs and the tags (keys and values) that are associated
@@ -2523,7 +2523,7 @@ func (s *TagResourcesOutput) SetFailedResourcesMap(v map[string]*FailureInfo) *T
 // The request was denied to limit the frequency of submitted requests.
 type ThrottledException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2540,7 +2540,7 @@ func (s ThrottledException) GoString() string {
 
 func newErrorThrottledException(v protocol.ResponseMetadata) error {
 	return &ThrottledException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2568,12 +2568,12 @@ func (s ThrottledException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ThrottledException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ThrottledException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UntagResourcesInput struct {

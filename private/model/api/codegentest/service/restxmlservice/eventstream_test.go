@@ -455,7 +455,7 @@ func mockGetEventStreamReadEvents() (
 func TestGetEventStream_ReadException(t *testing.T) {
 	expectEvents := []EventStreamEvent{
 		&ExceptionEvent{
-			respMetadata: protocol.ResponseMetadata{
+			RespMetadata: protocol.ResponseMetadata{
 				StatusCode: 200,
 			},
 			IntVal:   aws.Int64(123),
@@ -510,7 +510,7 @@ func TestGetEventStream_ReadException(t *testing.T) {
 	}
 
 	expectErr := &ExceptionEvent{
-		respMetadata: protocol.ResponseMetadata{
+		RespMetadata: protocol.ResponseMetadata{
 			StatusCode: 200,
 		},
 		IntVal:   aws.Int64(123),

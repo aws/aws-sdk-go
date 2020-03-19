@@ -1899,7 +1899,7 @@ func (c *CostExplorer) UpdateCostCategoryDefinitionWithContext(ctx aws.Context, 
 // The requested report expired. Update the date interval and try again.
 type BillExpirationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1916,7 +1916,7 @@ func (s BillExpirationException) GoString() string {
 
 func newErrorBillExpirationException(v protocol.ResponseMetadata) error {
 	return &BillExpirationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1944,12 +1944,12 @@ func (s BillExpirationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s BillExpirationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s BillExpirationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 //
@@ -2679,7 +2679,7 @@ func (s *CurrentInstance) SetTotalRunningHoursInLookbackPeriod(v string) *Curren
 // The requested data is unavailable.
 type DataUnavailableException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2696,7 +2696,7 @@ func (s DataUnavailableException) GoString() string {
 
 func newErrorDataUnavailableException(v protocol.ResponseMetadata) error {
 	return &DataUnavailableException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2724,12 +2724,12 @@ func (s DataUnavailableException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DataUnavailableException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DataUnavailableException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The time period that you want the usage and costs for.
@@ -6089,7 +6089,7 @@ func (s *InstanceDetails) SetRedshiftInstanceDetails(v *RedshiftInstanceDetails)
 // The pagination token is invalid. Try again without a pagination token.
 type InvalidNextTokenException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -6106,7 +6106,7 @@ func (s InvalidNextTokenException) GoString() string {
 
 func newErrorInvalidNextTokenException(v protocol.ResponseMetadata) error {
 	return &InvalidNextTokenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6134,18 +6134,18 @@ func (s InvalidNextTokenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidNextTokenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidNextTokenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You made too many calls in a short period of time. Try again later.
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -6162,7 +6162,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6190,12 +6190,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListCostCategoryDefinitionsInput struct {
@@ -6503,7 +6503,7 @@ func (s *RedshiftInstanceDetails) SetSizeFlexEligible(v bool) *RedshiftInstanceD
 // or without a pagination token.
 type RequestChangedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -6520,7 +6520,7 @@ func (s RequestChangedException) GoString() string {
 
 func newErrorRequestChangedException(v protocol.ResponseMetadata) error {
 	return &RequestChangedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6548,12 +6548,12 @@ func (s RequestChangedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s RequestChangedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s RequestChangedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The aggregated numbers for your reservation usage.
@@ -7177,7 +7177,7 @@ func (s *ResourceDetails) SetEC2ResourceDetails(v *EC2ResourceDetails) *Resource
 // The specified ARN in the request doesn't exist.
 type ResourceNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -7194,7 +7194,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7222,12 +7222,12 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Resource utilization of current resource.
@@ -8318,7 +8318,7 @@ func (s *SavingsPlansUtilizationDetail) SetUtilization(v *SavingsPlansUtilizatio
 // the size of an individual resources.
 type ServiceQuotaExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -8335,7 +8335,7 @@ func (s ServiceQuotaExceededException) GoString() string {
 
 func newErrorServiceQuotaExceededException(v protocol.ResponseMetadata) error {
 	return &ServiceQuotaExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8363,12 +8363,12 @@ func (s ServiceQuotaExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceQuotaExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceQuotaExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Hardware specifications for the service that you want recommendations for.
@@ -8538,7 +8538,7 @@ func (s *TerminateRecommendationDetail) SetEstimatedMonthlySavings(v string) *Te
 // filter selections that contain matching units, for example: hours.
 type UnresolvableUsageUnitException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -8555,7 +8555,7 @@ func (s UnresolvableUsageUnitException) GoString() string {
 
 func newErrorUnresolvableUsageUnitException(v protocol.ResponseMetadata) error {
 	return &UnresolvableUsageUnitException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8583,12 +8583,12 @@ func (s UnresolvableUsageUnitException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnresolvableUsageUnitException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnresolvableUsageUnitException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UpdateCostCategoryDefinitionInput struct {

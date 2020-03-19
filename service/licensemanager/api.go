@@ -1546,7 +1546,7 @@ func (c *LicenseManager) UpdateServiceSettingsWithContext(ctx aws.Context, input
 // Access to resource denied.
 type AccessDeniedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1563,7 +1563,7 @@ func (s AccessDeniedException) GoString() string {
 
 func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
 	return &AccessDeniedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1591,19 +1591,19 @@ func (s AccessDeniedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccessDeniedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccessDeniedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The AWS user account does not have permission to perform the action. Check
 // the IAM policy associated with this account.
 type AuthorizationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1620,7 +1620,7 @@ func (s AuthorizationException) GoString() string {
 
 func newErrorAuthorizationException(v protocol.ResponseMetadata) error {
 	return &AuthorizationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1648,12 +1648,12 @@ func (s AuthorizationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AuthorizationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AuthorizationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Describes automated discovery.
@@ -1919,7 +1919,7 @@ func (s DeleteLicenseConfigurationOutput) GoString() string {
 // A dependency required to run the API is missing.
 type FailedDependencyException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1936,7 +1936,7 @@ func (s FailedDependencyException) GoString() string {
 
 func newErrorFailedDependencyException(v protocol.ResponseMetadata) error {
 	return &FailedDependencyException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1964,12 +1964,12 @@ func (s FailedDependencyException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s FailedDependencyException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s FailedDependencyException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A filter name and value pair that is used to return more specific results
@@ -2010,7 +2010,7 @@ func (s *Filter) SetValues(v []*string) *Filter {
 // The request uses too many filters or too many filter values.
 type FilterLimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2027,7 +2027,7 @@ func (s FilterLimitExceededException) GoString() string {
 
 func newErrorFilterLimitExceededException(v protocol.ResponseMetadata) error {
 	return &FilterLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2055,12 +2055,12 @@ func (s FilterLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s FilterLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s FilterLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type GetLicenseConfigurationInput struct {
@@ -2338,7 +2338,7 @@ func (s *GetServiceSettingsOutput) SetSnsTopicArn(v string) *GetServiceSettingsO
 // One or more parameter values are not valid.
 type InvalidParameterValueException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2355,7 +2355,7 @@ func (s InvalidParameterValueException) GoString() string {
 
 func newErrorInvalidParameterValueException(v protocol.ResponseMetadata) error {
 	return &InvalidParameterValueException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2383,12 +2383,12 @@ func (s InvalidParameterValueException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidParameterValueException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidParameterValueException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // License Manager cannot allocate a license to a resource because of its state.
@@ -2397,7 +2397,7 @@ func (s InvalidParameterValueException) RequestID() string {
 // of shutting down.
 type InvalidResourceStateException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2414,7 +2414,7 @@ func (s InvalidResourceStateException) GoString() string {
 
 func newErrorInvalidResourceStateException(v protocol.ResponseMetadata) error {
 	return &InvalidResourceStateException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2442,12 +2442,12 @@ func (s InvalidResourceStateException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidResourceStateException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidResourceStateException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An inventory filter.
@@ -2916,7 +2916,7 @@ func (s *LicenseSpecification) SetLicenseConfigurationArn(v string) *LicenseSpec
 // You do not have enough licenses available to support a new resource launch.
 type LicenseUsageException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2933,7 +2933,7 @@ func (s LicenseUsageException) GoString() string {
 
 func newErrorLicenseUsageException(v protocol.ResponseMetadata) error {
 	return &LicenseUsageException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2961,12 +2961,12 @@ func (s LicenseUsageException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LicenseUsageException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LicenseUsageException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListAssociationsForLicenseConfigurationInput struct {
@@ -3859,7 +3859,7 @@ func (s *ProductInformationFilter) SetProductInformationFilterValue(v []*string)
 // Too many requests have been submitted. Try again after a brief wait.
 type RateLimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3876,7 +3876,7 @@ func (s RateLimitExceededException) GoString() string {
 
 func newErrorRateLimitExceededException(v protocol.ResponseMetadata) error {
 	return &RateLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3904,12 +3904,12 @@ func (s RateLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s RateLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s RateLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Details about a resource.
@@ -3984,7 +3984,7 @@ func (s *ResourceInventory) SetResourceType(v string) *ResourceInventory {
 // Your resource limits have been exceeded.
 type ResourceLimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4001,7 +4001,7 @@ func (s ResourceLimitExceededException) GoString() string {
 
 func newErrorResourceLimitExceededException(v protocol.ResponseMetadata) error {
 	return &ResourceLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4029,18 +4029,18 @@ func (s ResourceLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The server experienced an internal error. Try again.
 type ServerInternalException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4057,7 +4057,7 @@ func (s ServerInternalException) GoString() string {
 
 func newErrorServerInternalException(v protocol.ResponseMetadata) error {
 	return &ServerInternalException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4085,12 +4085,12 @@ func (s ServerInternalException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServerInternalException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServerInternalException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Details about a tag for a license configuration.

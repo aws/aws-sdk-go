@@ -1630,7 +1630,7 @@ func (s *AffectedEntity) SetTags(v map[string]*string) *AffectedEntity {
 // the DescribeHealthServiceStatusForOrganization operation.
 type ConcurrentModificationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1647,7 +1647,7 @@ func (s ConcurrentModificationException) GoString() string {
 
 func newErrorConcurrentModificationException(v protocol.ResponseMetadata) error {
 	return &ConcurrentModificationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1675,12 +1675,12 @@ func (s ConcurrentModificationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ConcurrentModificationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ConcurrentModificationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A range of dates and times that is used by the EventFilter and EntityFilter
@@ -3619,7 +3619,7 @@ func (s *EventTypeFilter) SetServices(v []*string) *EventTypeFilter {
 // The specified pagination token (nextToken) is not valid.
 type InvalidPaginationToken struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3636,7 +3636,7 @@ func (s InvalidPaginationToken) GoString() string {
 
 func newErrorInvalidPaginationToken(v protocol.ResponseMetadata) error {
 	return &InvalidPaginationToken{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3664,12 +3664,12 @@ func (s InvalidPaginationToken) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidPaginationToken) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidPaginationToken) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Error information returned when a DescribeAffectedEntitiesForOrganization
@@ -4101,7 +4101,7 @@ func (s *OrganizationEventFilter) SetStartTime(v *DateTimeRange) *OrganizationEv
 // The specified locale is not supported.
 type UnsupportedLocale struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4118,7 +4118,7 @@ func (s UnsupportedLocale) GoString() string {
 
 func newErrorUnsupportedLocale(v protocol.ResponseMetadata) error {
 	return &UnsupportedLocale{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4146,12 +4146,12 @@ func (s UnsupportedLocale) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnsupportedLocale) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnsupportedLocale) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 const (

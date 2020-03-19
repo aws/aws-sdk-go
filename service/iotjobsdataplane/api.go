@@ -396,7 +396,7 @@ func (c *IoTJobsDataPlane) UpdateJobExecutionWithContext(ctx aws.Context, input 
 // The certificate is invalid.
 type CertificateValidationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// Additional information about the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -414,7 +414,7 @@ func (s CertificateValidationException) GoString() string {
 
 func newErrorCertificateValidationException(v protocol.ResponseMetadata) error {
 	return &CertificateValidationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -442,12 +442,12 @@ func (s CertificateValidationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CertificateValidationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CertificateValidationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type DescribeJobExecutionInput struct {
@@ -629,7 +629,7 @@ func (s *GetPendingJobExecutionsOutput) SetQueuedJobs(v []*JobExecutionSummary) 
 // contains details about the error.
 type InvalidRequestException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -647,7 +647,7 @@ func (s InvalidRequestException) GoString() string {
 
 func newErrorInvalidRequestException(v protocol.ResponseMetadata) error {
 	return &InvalidRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -675,12 +675,12 @@ func (s InvalidRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An update attempted to change the job execution to a state that is invalid
@@ -689,7 +689,7 @@ func (s InvalidRequestException) RequestID() string {
 // body of the error message also contains the executionState field.
 type InvalidStateTransitionException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -706,7 +706,7 @@ func (s InvalidStateTransitionException) GoString() string {
 
 func newErrorInvalidStateTransitionException(v protocol.ResponseMetadata) error {
 	return &InvalidStateTransitionException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -734,12 +734,12 @@ func (s InvalidStateTransitionException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidStateTransitionException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidStateTransitionException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains data about a job execution.
@@ -979,7 +979,7 @@ func (s *JobExecutionSummary) SetVersionNumber(v int64) *JobExecutionSummary {
 // The specified resource does not exist.
 type ResourceNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -997,7 +997,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1025,18 +1025,18 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The service is temporarily unavailable.
 type ServiceUnavailableException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -1054,7 +1054,7 @@ func (s ServiceUnavailableException) GoString() string {
 
 func newErrorServiceUnavailableException(v protocol.ResponseMetadata) error {
 	return &ServiceUnavailableException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1082,12 +1082,12 @@ func (s ServiceUnavailableException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceUnavailableException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceUnavailableException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type StartNextPendingJobExecutionInput struct {
@@ -1183,7 +1183,7 @@ func (s *StartNextPendingJobExecutionOutput) SetExecution(v *JobExecution) *Star
 // The job is in a terminal state.
 type TerminalStateException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1200,7 +1200,7 @@ func (s TerminalStateException) GoString() string {
 
 func newErrorTerminalStateException(v protocol.ResponseMetadata) error {
 	return &TerminalStateException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1228,18 +1228,18 @@ func (s TerminalStateException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TerminalStateException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TerminalStateException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The rate exceeds the limit.
 type ThrottlingException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -1262,7 +1262,7 @@ func (s ThrottlingException) GoString() string {
 
 func newErrorThrottlingException(v protocol.ResponseMetadata) error {
 	return &ThrottlingException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1290,12 +1290,12 @@ func (s ThrottlingException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ThrottlingException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ThrottlingException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UpdateJobExecutionInput struct {

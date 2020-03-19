@@ -221,7 +221,7 @@ func (c *KinesisVideoSignalingChannels) SendAlexaOfferToMasterWithContext(ctx aw
 // client calls. Try making the call later.
 type ClientLimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -238,7 +238,7 @@ func (s ClientLimitExceededException) GoString() string {
 
 func newErrorClientLimitExceededException(v protocol.ResponseMetadata) error {
 	return &ClientLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -266,12 +266,12 @@ func (s ClientLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ClientLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ClientLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type GetIceServerConfigInput struct {
@@ -430,7 +430,7 @@ func (s *IceServer) SetUsername(v string) *IceServer {
 // The value for this input parameter is invalid.
 type InvalidArgumentException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -447,7 +447,7 @@ func (s InvalidArgumentException) GoString() string {
 
 func newErrorInvalidArgumentException(v protocol.ResponseMetadata) error {
 	return &InvalidArgumentException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -475,18 +475,18 @@ func (s InvalidArgumentException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidArgumentException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidArgumentException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified client is invalid.
 type InvalidClientException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -503,7 +503,7 @@ func (s InvalidClientException) GoString() string {
 
 func newErrorInvalidClientException(v protocol.ResponseMetadata) error {
 	return &InvalidClientException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -531,18 +531,18 @@ func (s InvalidClientException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidClientException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidClientException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The caller is not authorized to perform this operation.
 type NotAuthorizedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -559,7 +559,7 @@ func (s NotAuthorizedException) GoString() string {
 
 func newErrorNotAuthorizedException(v protocol.ResponseMetadata) error {
 	return &NotAuthorizedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -587,18 +587,18 @@ func (s NotAuthorizedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NotAuthorizedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NotAuthorizedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified resource is not found.
 type ResourceNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -615,7 +615,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -643,12 +643,12 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type SendAlexaOfferToMasterInput struct {
@@ -754,7 +754,7 @@ func (s *SendAlexaOfferToMasterOutput) SetAnswer(v string) *SendAlexaOfferToMast
 // sending/receiving messages.
 type SessionExpiredException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -771,7 +771,7 @@ func (s SessionExpiredException) GoString() string {
 
 func newErrorSessionExpiredException(v protocol.ResponseMetadata) error {
 	return &SessionExpiredException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -799,12 +799,12 @@ func (s SessionExpiredException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s SessionExpiredException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s SessionExpiredException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 const (

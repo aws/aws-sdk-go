@@ -1334,7 +1334,7 @@ func (c *LakeFormation) UpdateResourceWithContext(ctx aws.Context, input *Update
 // A resource to be created or added already exists.
 type AlreadyExistsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -1352,7 +1352,7 @@ func (s AlreadyExistsException) GoString() string {
 
 func newErrorAlreadyExistsException(v protocol.ResponseMetadata) error {
 	return &AlreadyExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1380,12 +1380,12 @@ func (s AlreadyExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AlreadyExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AlreadyExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type BatchGrantPermissionsInput struct {
@@ -1726,7 +1726,7 @@ func (s *ColumnWildcard) SetExcludedColumnNames(v []*string) *ColumnWildcard {
 // Two processes are trying to modify a resource simultaneously.
 type ConcurrentModificationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -1744,7 +1744,7 @@ func (s ConcurrentModificationException) GoString() string {
 
 func newErrorConcurrentModificationException(v protocol.ResponseMetadata) error {
 	return &ConcurrentModificationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1772,12 +1772,12 @@ func (s ConcurrentModificationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ConcurrentModificationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ConcurrentModificationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The AWS Lake Formation principal.
@@ -2099,7 +2099,7 @@ func (s *DescribeResourceOutput) SetResourceInfo(v *ResourceInfo) *DescribeResou
 // A specified entity does not exist
 type EntityNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -2117,7 +2117,7 @@ func (s EntityNotFoundException) GoString() string {
 
 func newErrorEntityNotFoundException(v protocol.ResponseMetadata) error {
 	return &EntityNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2145,12 +2145,12 @@ func (s EntityNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s EntityNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s EntityNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains details about an error.
@@ -2529,7 +2529,7 @@ func (s GrantPermissionsOutput) GoString() string {
 // An internal service error occurred.
 type InternalServiceException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -2547,7 +2547,7 @@ func (s InternalServiceException) GoString() string {
 
 func newErrorInternalServiceException(v protocol.ResponseMetadata) error {
 	return &InternalServiceException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2575,18 +2575,18 @@ func (s InternalServiceException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServiceException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServiceException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The input provided was not valid.
 type InvalidInputException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -2604,7 +2604,7 @@ func (s InvalidInputException) GoString() string {
 
 func newErrorInvalidInputException(v protocol.ResponseMetadata) error {
 	return &InvalidInputException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2632,12 +2632,12 @@ func (s InvalidInputException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidInputException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidInputException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListPermissionsInput struct {
@@ -2867,7 +2867,7 @@ func (s *ListResourcesOutput) SetResourceInfoList(v []*ResourceInfo) *ListResour
 // The operation timed out.
 type OperationTimeoutException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -2885,7 +2885,7 @@ func (s OperationTimeoutException) GoString() string {
 
 func newErrorOperationTimeoutException(v protocol.ResponseMetadata) error {
 	return &OperationTimeoutException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2913,12 +2913,12 @@ func (s OperationTimeoutException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s OperationTimeoutException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s OperationTimeoutException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Permissions granted to a principal.

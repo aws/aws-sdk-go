@@ -1674,7 +1674,7 @@ func (c *CognitoSync) UpdateRecordsWithContext(ctx aws.Context, input *UpdateRec
 // 24 hours after a previous bulk publish operation completed successfully.
 type AlreadyStreamedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The message associated with the AlreadyStreamedException exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -1692,7 +1692,7 @@ func (s AlreadyStreamedException) GoString() string {
 
 func newErrorAlreadyStreamedException(v protocol.ResponseMetadata) error {
 	return &AlreadyStreamedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1720,12 +1720,12 @@ func (s AlreadyStreamedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AlreadyStreamedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AlreadyStreamedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The input for the BulkPublish operation.
@@ -1864,7 +1864,7 @@ func (s *CognitoStreams) SetStreamingStatus(v string) *CognitoStreams {
 // Thrown if there are parallel requests to modify a resource.
 type ConcurrentModificationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The message returned by a ConcurrentModicationException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -1882,7 +1882,7 @@ func (s ConcurrentModificationException) GoString() string {
 
 func newErrorConcurrentModificationException(v protocol.ResponseMetadata) error {
 	return &ConcurrentModificationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1910,12 +1910,12 @@ func (s ConcurrentModificationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ConcurrentModificationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ConcurrentModificationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A collection of data for an identity pool. An identity pool can have multiple
@@ -2373,7 +2373,7 @@ func (s *DescribeIdentityUsageOutput) SetIdentityUsage(v *IdentityUsage) *Descri
 // the given identity pool.
 type DuplicateRequestException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The message associated with the DuplicateRequestException exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -2391,7 +2391,7 @@ func (s DuplicateRequestException) GoString() string {
 
 func newErrorDuplicateRequestException(v protocol.ResponseMetadata) error {
 	return &DuplicateRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2419,12 +2419,12 @@ func (s DuplicateRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DuplicateRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DuplicateRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The input for the GetBulkPublishDetails operation.
@@ -2812,7 +2812,7 @@ func (s *IdentityUsage) SetLastModifiedDate(v time.Time) *IdentityUsage {
 // Indicates an internal service error.
 type InternalErrorException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// Message returned by InternalErrorException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -2830,7 +2830,7 @@ func (s InternalErrorException) GoString() string {
 
 func newErrorInternalErrorException(v protocol.ResponseMetadata) error {
 	return &InternalErrorException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2858,17 +2858,17 @@ func (s InternalErrorException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalErrorException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalErrorException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type InvalidConfigurationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// Message returned by InvalidConfigurationException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -2886,7 +2886,7 @@ func (s InvalidConfigurationException) GoString() string {
 
 func newErrorInvalidConfigurationException(v protocol.ResponseMetadata) error {
 	return &InvalidConfigurationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2914,18 +2914,18 @@ func (s InvalidConfigurationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidConfigurationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidConfigurationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The AWS Lambda function returned invalid output or an exception.
 type InvalidLambdaFunctionOutputException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// A message returned when an InvalidLambdaFunctionOutputException occurs
 	Message_ *string `locationName:"message" type:"string"`
@@ -2943,7 +2943,7 @@ func (s InvalidLambdaFunctionOutputException) GoString() string {
 
 func newErrorInvalidLambdaFunctionOutputException(v protocol.ResponseMetadata) error {
 	return &InvalidLambdaFunctionOutputException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2971,18 +2971,18 @@ func (s InvalidLambdaFunctionOutputException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidLambdaFunctionOutputException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidLambdaFunctionOutputException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Thrown when a request parameter does not comply with the associated constraints.
 type InvalidParameterException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// Message returned by InvalidParameterException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -3000,7 +3000,7 @@ func (s InvalidParameterException) GoString() string {
 
 func newErrorInvalidParameterException(v protocol.ResponseMetadata) error {
 	return &InvalidParameterException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3028,18 +3028,18 @@ func (s InvalidParameterException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidParameterException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidParameterException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // AWS Lambda throttled your account, please contact AWS Support
 type LambdaThrottledException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// A message returned when an LambdaThrottledException is thrown
 	Message_ *string `locationName:"message" type:"string"`
@@ -3057,7 +3057,7 @@ func (s LambdaThrottledException) GoString() string {
 
 func newErrorLambdaThrottledException(v protocol.ResponseMetadata) error {
 	return &LambdaThrottledException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3085,18 +3085,18 @@ func (s LambdaThrottledException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LambdaThrottledException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LambdaThrottledException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Thrown when the limit on the number of objects or operations has been exceeded.
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// Message returned by LimitExceededException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -3114,7 +3114,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3142,12 +3142,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Request for a list of datasets for an identity.
@@ -3569,7 +3569,7 @@ func (s *ListRecordsOutput) SetSyncSessionToken(v string) *ListRecordsOutput {
 // Thrown when a user is not authorized to access the requested resource.
 type NotAuthorizedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The message returned by a NotAuthorizedException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -3587,7 +3587,7 @@ func (s NotAuthorizedException) GoString() string {
 
 func newErrorNotAuthorizedException(v protocol.ResponseMetadata) error {
 	return &NotAuthorizedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3615,12 +3615,12 @@ func (s NotAuthorizedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NotAuthorizedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NotAuthorizedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Configuration options to be applied to the identity pool.
@@ -3943,7 +3943,7 @@ func (s *RegisterDeviceOutput) SetDeviceId(v string) *RegisterDeviceOutput {
 // another call and this would result in a conflict.
 type ResourceConflictException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The message returned by a ResourceConflictException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -3961,7 +3961,7 @@ func (s ResourceConflictException) GoString() string {
 
 func newErrorResourceConflictException(v protocol.ResponseMetadata) error {
 	return &ResourceConflictException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3989,18 +3989,18 @@ func (s ResourceConflictException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceConflictException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceConflictException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Thrown if the resource doesn't exist.
 type ResourceNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// Message returned by a ResourceNotFoundException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -4018,7 +4018,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4046,12 +4046,12 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A request to configure Cognito Events"
@@ -4351,7 +4351,7 @@ func (s SubscribeToDatasetOutput) GoString() string {
 // Thrown if the request is throttled.
 type TooManyRequestsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// Message returned by a TooManyRequestsException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -4369,7 +4369,7 @@ func (s TooManyRequestsException) GoString() string {
 
 func newErrorTooManyRequestsException(v protocol.ResponseMetadata) error {
 	return &TooManyRequestsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4397,12 +4397,12 @@ func (s TooManyRequestsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TooManyRequestsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TooManyRequestsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A request to UnsubscribeFromDataset.

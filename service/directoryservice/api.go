@@ -5570,7 +5570,7 @@ func (s *AcceptSharedDirectoryOutput) SetSharedDirectory(v *SharedDirectory) *Ac
 // You do not have sufficient access to perform this action.
 type AccessDeniedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -5591,7 +5591,7 @@ func (s AccessDeniedException) GoString() string {
 
 func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
 	return &AccessDeniedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5619,12 +5619,12 @@ func (s AccessDeniedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccessDeniedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccessDeniedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type AddIpRoutesInput struct {
@@ -5873,7 +5873,7 @@ func (s *Attribute) SetValue(v string) *Attribute {
 // An authentication error occurred.
 type AuthenticationFailedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The textual message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -5894,7 +5894,7 @@ func (s AuthenticationFailedException) GoString() string {
 
 func newErrorAuthenticationFailedException(v protocol.ResponseMetadata) error {
 	return &AuthenticationFailedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5922,12 +5922,12 @@ func (s AuthenticationFailedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AuthenticationFailedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AuthenticationFailedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type CancelSchemaExtensionInput struct {
@@ -6068,7 +6068,7 @@ func (s *Certificate) SetStateReason(v string) *Certificate {
 // The certificate has already been registered into the system.
 type CertificateAlreadyExistsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -6089,7 +6089,7 @@ func (s CertificateAlreadyExistsException) GoString() string {
 
 func newErrorCertificateAlreadyExistsException(v protocol.ResponseMetadata) error {
 	return &CertificateAlreadyExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6117,18 +6117,18 @@ func (s CertificateAlreadyExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CertificateAlreadyExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CertificateAlreadyExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The certificate is not present in the system for describe or deregister activities.
 type CertificateDoesNotExistException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -6149,7 +6149,7 @@ func (s CertificateDoesNotExistException) GoString() string {
 
 func newErrorCertificateDoesNotExistException(v protocol.ResponseMetadata) error {
 	return &CertificateDoesNotExistException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6177,19 +6177,19 @@ func (s CertificateDoesNotExistException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CertificateDoesNotExistException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CertificateDoesNotExistException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The certificate is being used for the LDAP security connection and cannot
 // be removed without disabling LDAP security.
 type CertificateInUseException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -6210,7 +6210,7 @@ func (s CertificateInUseException) GoString() string {
 
 func newErrorCertificateInUseException(v protocol.ResponseMetadata) error {
 	return &CertificateInUseException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6238,12 +6238,12 @@ func (s CertificateInUseException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CertificateInUseException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CertificateInUseException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains general information about a certificate.
@@ -6301,7 +6301,7 @@ func (s *CertificateInfo) SetState(v string) *CertificateInfo {
 // reached.
 type CertificateLimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -6322,7 +6322,7 @@ func (s CertificateLimitExceededException) GoString() string {
 
 func newErrorCertificateLimitExceededException(v protocol.ResponseMetadata) error {
 	return &CertificateLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6350,18 +6350,18 @@ func (s CertificateLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CertificateLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CertificateLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A client exception has occurred.
 type ClientException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -6382,7 +6382,7 @@ func (s ClientException) GoString() string {
 
 func newErrorClientException(v protocol.ResponseMetadata) error {
 	return &ClientException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6410,12 +6410,12 @@ func (s ClientException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ClientException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ClientException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains information about a computer account in a directory.
@@ -8814,7 +8814,7 @@ func (s *DescribeTrustsOutput) SetTrusts(v []*Trust) *DescribeTrustsOutput {
 // The specified directory has already been shared with this AWS account.
 type DirectoryAlreadySharedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -8835,7 +8835,7 @@ func (s DirectoryAlreadySharedException) GoString() string {
 
 func newErrorDirectoryAlreadySharedException(v protocol.ResponseMetadata) error {
 	return &DirectoryAlreadySharedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8863,12 +8863,12 @@ func (s DirectoryAlreadySharedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DirectoryAlreadySharedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DirectoryAlreadySharedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains information for the ConnectDirectory operation when an AD Connector
@@ -9285,7 +9285,7 @@ func (s *DirectoryDescription) SetVpcSettings(v *DirectoryVpcSettingsDescription
 // The specified directory does not exist in the system.
 type DirectoryDoesNotExistException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -9306,7 +9306,7 @@ func (s DirectoryDoesNotExistException) GoString() string {
 
 func newErrorDirectoryDoesNotExistException(v protocol.ResponseMetadata) error {
 	return &DirectoryDoesNotExistException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9334,12 +9334,12 @@ func (s DirectoryDoesNotExistException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DirectoryDoesNotExistException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DirectoryDoesNotExistException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The maximum number of directories in the region has been reached. You can
@@ -9347,7 +9347,7 @@ func (s DirectoryDoesNotExistException) RequestID() string {
 // the region.
 type DirectoryLimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -9368,7 +9368,7 @@ func (s DirectoryLimitExceededException) GoString() string {
 
 func newErrorDirectoryLimitExceededException(v protocol.ResponseMetadata) error {
 	return &DirectoryLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9396,12 +9396,12 @@ func (s DirectoryLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DirectoryLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DirectoryLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains directory limit information for a Region.
@@ -9504,7 +9504,7 @@ func (s *DirectoryLimits) SetConnectedDirectoriesLimitReached(v bool) *Directory
 // The specified directory has not been shared with this AWS account.
 type DirectoryNotSharedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -9525,7 +9525,7 @@ func (s DirectoryNotSharedException) GoString() string {
 
 func newErrorDirectoryNotSharedException(v protocol.ResponseMetadata) error {
 	return &DirectoryNotSharedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9553,18 +9553,18 @@ func (s DirectoryNotSharedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DirectoryNotSharedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DirectoryNotSharedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified directory is unavailable or could not be found.
 type DirectoryUnavailableException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -9585,7 +9585,7 @@ func (s DirectoryUnavailableException) GoString() string {
 
 func newErrorDirectoryUnavailableException(v protocol.ResponseMetadata) error {
 	return &DirectoryUnavailableException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9613,12 +9613,12 @@ func (s DirectoryUnavailableException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DirectoryUnavailableException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DirectoryUnavailableException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains VPC information for the CreateDirectory or CreateMicrosoftAD operation.
@@ -10044,7 +10044,7 @@ func (s *DomainController) SetVpcId(v string) *DomainController {
 // The default limit per directory is 20 domain controllers.
 type DomainControllerLimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -10065,7 +10065,7 @@ func (s DomainControllerLimitExceededException) GoString() string {
 
 func newErrorDomainControllerLimitExceededException(v protocol.ResponseMetadata) error {
 	return &DomainControllerLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10093,12 +10093,12 @@ func (s DomainControllerLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DomainControllerLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DomainControllerLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type EnableLDAPSInput struct {
@@ -10331,7 +10331,7 @@ func (s EnableSsoOutput) GoString() string {
 // The specified entity already exists.
 type EntityAlreadyExistsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -10352,7 +10352,7 @@ func (s EntityAlreadyExistsException) GoString() string {
 
 func newErrorEntityAlreadyExistsException(v protocol.ResponseMetadata) error {
 	return &EntityAlreadyExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10380,18 +10380,18 @@ func (s EntityAlreadyExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s EntityAlreadyExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s EntityAlreadyExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified entity could not be found.
 type EntityDoesNotExistException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -10412,7 +10412,7 @@ func (s EntityDoesNotExistException) GoString() string {
 
 func newErrorEntityDoesNotExistException(v protocol.ResponseMetadata) error {
 	return &EntityDoesNotExistException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10440,12 +10440,12 @@ func (s EntityDoesNotExistException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s EntityDoesNotExistException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s EntityDoesNotExistException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Information about SNS topic and AWS Directory Service directory associations.
@@ -10616,7 +10616,7 @@ func (s *GetSnapshotLimitsOutput) SetSnapshotLimits(v *SnapshotLimits) *GetSnaps
 // The account does not have sufficient permission to perform the operation.
 type InsufficientPermissionsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -10637,7 +10637,7 @@ func (s InsufficientPermissionsException) GoString() string {
 
 func newErrorInsufficientPermissionsException(v protocol.ResponseMetadata) error {
 	return &InsufficientPermissionsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10665,18 +10665,18 @@ func (s InsufficientPermissionsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InsufficientPermissionsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InsufficientPermissionsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The certificate PEM that was provided has incorrect encoding.
 type InvalidCertificateException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -10697,7 +10697,7 @@ func (s InvalidCertificateException) GoString() string {
 
 func newErrorInvalidCertificateException(v protocol.ResponseMetadata) error {
 	return &InvalidCertificateException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10725,19 +10725,19 @@ func (s InvalidCertificateException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidCertificateException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidCertificateException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The LDAP activities could not be performed because they are limited by the
 // LDAPS status.
 type InvalidLDAPSStatusException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -10758,7 +10758,7 @@ func (s InvalidLDAPSStatusException) GoString() string {
 
 func newErrorInvalidLDAPSStatusException(v protocol.ResponseMetadata) error {
 	return &InvalidLDAPSStatusException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10786,18 +10786,18 @@ func (s InvalidLDAPSStatusException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidLDAPSStatusException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidLDAPSStatusException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The NextToken value is not valid.
 type InvalidNextTokenException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -10818,7 +10818,7 @@ func (s InvalidNextTokenException) GoString() string {
 
 func newErrorInvalidNextTokenException(v protocol.ResponseMetadata) error {
 	return &InvalidNextTokenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10846,18 +10846,18 @@ func (s InvalidNextTokenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidNextTokenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidNextTokenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // One or more parameters are not valid.
 type InvalidParameterException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -10878,7 +10878,7 @@ func (s InvalidParameterException) GoString() string {
 
 func newErrorInvalidParameterException(v protocol.ResponseMetadata) error {
 	return &InvalidParameterException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10906,19 +10906,19 @@ func (s InvalidParameterException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidParameterException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidParameterException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The new password provided by the user does not meet the password complexity
 // requirements defined in your directory.
 type InvalidPasswordException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -10939,7 +10939,7 @@ func (s InvalidPasswordException) GoString() string {
 
 func newErrorInvalidPasswordException(v protocol.ResponseMetadata) error {
 	return &InvalidPasswordException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10967,18 +10967,18 @@ func (s InvalidPasswordException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidPasswordException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidPasswordException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified shared target is not valid.
 type InvalidTargetException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -10999,7 +10999,7 @@ func (s InvalidTargetException) GoString() string {
 
 func newErrorInvalidTargetException(v protocol.ResponseMetadata) error {
 	return &InvalidTargetException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11027,12 +11027,12 @@ func (s InvalidTargetException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidTargetException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidTargetException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // IP address block. This is often the address block of the DNS server used
@@ -11144,7 +11144,7 @@ func (s *IpRouteInfo) SetIpRouteStatusReason(v string) *IpRouteInfo {
 // is 100 IP address blocks.
 type IpRouteLimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -11165,7 +11165,7 @@ func (s IpRouteLimitExceededException) GoString() string {
 
 func newErrorIpRouteLimitExceededException(v protocol.ResponseMetadata) error {
 	return &IpRouteLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11193,12 +11193,12 @@ func (s IpRouteLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s IpRouteLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s IpRouteLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains general information about the LDAPS settings.
@@ -11735,7 +11735,7 @@ func (s *LogSubscription) SetSubscriptionCreatedDateTime(v time.Time) *LogSubscr
 // must be registered with the system.
 type NoAvailableCertificateException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -11756,7 +11756,7 @@ func (s NoAvailableCertificateException) GoString() string {
 
 func newErrorNoAvailableCertificateException(v protocol.ResponseMetadata) error {
 	return &NoAvailableCertificateException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11784,18 +11784,18 @@ func (s NoAvailableCertificateException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NoAvailableCertificateException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NoAvailableCertificateException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Exception encountered while trying to access your AWS organization.
 type OrganizationsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -11816,7 +11816,7 @@ func (s OrganizationsException) GoString() string {
 
 func newErrorOrganizationsException(v protocol.ResponseMetadata) error {
 	return &OrganizationsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11844,12 +11844,12 @@ func (s OrganizationsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s OrganizationsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s OrganizationsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Describes the directory owner account details that have been shared to the
@@ -12604,7 +12604,7 @@ func (s *SchemaExtensionInfo) SetStartDateTime(v time.Time) *SchemaExtensionInfo
 // An exception has occurred in AWS Directory Service.
 type ServiceException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -12625,7 +12625,7 @@ func (s ServiceException) GoString() string {
 
 func newErrorServiceException(v protocol.ResponseMetadata) error {
 	return &ServiceException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12653,12 +12653,12 @@ func (s ServiceException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ShareDirectoryInput struct {
@@ -12775,7 +12775,7 @@ func (s *ShareDirectoryOutput) SetSharedDirectoryId(v string) *ShareDirectoryOut
 // has been reached.
 type ShareLimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -12796,7 +12796,7 @@ func (s ShareLimitExceededException) GoString() string {
 
 func newErrorShareLimitExceededException(v protocol.ResponseMetadata) error {
 	return &ShareLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12824,12 +12824,12 @@ func (s ShareLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ShareLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ShareLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Identifier that contains details about the directory consumer account.
@@ -13066,7 +13066,7 @@ func (s *Snapshot) SetType(v string) *Snapshot {
 // for a directory.
 type SnapshotLimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -13087,7 +13087,7 @@ func (s SnapshotLimitExceededException) GoString() string {
 
 func newErrorSnapshotLimitExceededException(v protocol.ResponseMetadata) error {
 	return &SnapshotLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -13115,12 +13115,12 @@ func (s SnapshotLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s SnapshotLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s SnapshotLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains manual snapshot limit information for a directory.
@@ -13338,7 +13338,7 @@ func (s *Tag) SetValue(v string) *Tag {
 // The maximum allowed number of tags was exceeded.
 type TagLimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -13359,7 +13359,7 @@ func (s TagLimitExceededException) GoString() string {
 
 func newErrorTagLimitExceededException(v protocol.ResponseMetadata) error {
 	return &TagLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -13387,12 +13387,12 @@ func (s TagLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TagLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TagLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Describes a trust relationship between an AWS Managed Microsoft AD directory
@@ -13654,7 +13654,7 @@ func (s *UnshareTarget) SetType(v string) *UnshareTarget {
 // The operation is not supported.
 type UnsupportedOperationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -13675,7 +13675,7 @@ func (s UnsupportedOperationException) GoString() string {
 
 func newErrorUnsupportedOperationException(v protocol.ResponseMetadata) error {
 	return &UnsupportedOperationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -13703,12 +13703,12 @@ func (s UnsupportedOperationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnsupportedOperationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnsupportedOperationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Updates a conditional forwarder.
@@ -14021,7 +14021,7 @@ func (s *UpdateTrustOutput) SetTrustId(v string) *UpdateTrustOutput {
 // The user provided a username that does not exist in your directory.
 type UserDoesNotExistException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -14042,7 +14042,7 @@ func (s UserDoesNotExistException) GoString() string {
 
 func newErrorUserDoesNotExistException(v protocol.ResponseMetadata) error {
 	return &UserDoesNotExistException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -14070,12 +14070,12 @@ func (s UserDoesNotExistException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UserDoesNotExistException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UserDoesNotExistException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Initiates the verification of an existing trust relationship between an AWS

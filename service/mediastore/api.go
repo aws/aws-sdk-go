@@ -1791,7 +1791,7 @@ func (s *Container) SetStatus(v string) *Container {
 // updated.
 type ContainerInUseException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -1808,7 +1808,7 @@ func (s ContainerInUseException) GoString() string {
 
 func newErrorContainerInUseException(v protocol.ResponseMetadata) error {
 	return &ContainerInUseException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1836,18 +1836,18 @@ func (s ContainerInUseException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ContainerInUseException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ContainerInUseException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The container that you specified in the request does not exist.
 type ContainerNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -1864,7 +1864,7 @@ func (s ContainerNotFoundException) GoString() string {
 
 func newErrorContainerNotFoundException(v protocol.ResponseMetadata) error {
 	return &ContainerNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1892,18 +1892,18 @@ func (s ContainerNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ContainerNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ContainerNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The CORS policy that you specified in the request does not exist.
 type CorsPolicyNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -1920,7 +1920,7 @@ func (s CorsPolicyNotFoundException) GoString() string {
 
 func newErrorCorsPolicyNotFoundException(v protocol.ResponseMetadata) error {
 	return &CorsPolicyNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1948,12 +1948,12 @@ func (s CorsPolicyNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CorsPolicyNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CorsPolicyNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A rule for a CORS policy. You can add up to 100 rules to a CORS policy. If
@@ -2651,7 +2651,7 @@ func (s *GetLifecyclePolicyOutput) SetLifecyclePolicy(v string) *GetLifecyclePol
 // The service is temporarily unavailable.
 type InternalServerError struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -2668,7 +2668,7 @@ func (s InternalServerError) GoString() string {
 
 func newErrorInternalServerError(v protocol.ResponseMetadata) error {
 	return &InternalServerError{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2696,18 +2696,18 @@ func (s InternalServerError) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServerError) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServerError) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A service limit has been exceeded.
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -2724,7 +2724,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2752,12 +2752,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListContainersInput struct {
@@ -2915,7 +2915,7 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 // The policy that you specified in the request does not exist.
 type PolicyNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -2932,7 +2932,7 @@ func (s PolicyNotFoundException) GoString() string {
 
 func newErrorPolicyNotFoundException(v protocol.ResponseMetadata) error {
 	return &PolicyNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2960,12 +2960,12 @@ func (s PolicyNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PolicyNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PolicyNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type PutContainerPolicyInput struct {

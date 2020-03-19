@@ -4189,7 +4189,7 @@ func (c *PinpointEmail) UpdateConfigurationSetEventDestinationWithContext(ctx aw
 // been permanently restricted.
 type AccountSuspendedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4206,7 +4206,7 @@ func (s AccountSuspendedException) GoString() string {
 
 func newErrorAccountSuspendedException(v protocol.ResponseMetadata) error {
 	return &AccountSuspendedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4234,18 +4234,18 @@ func (s AccountSuspendedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccountSuspendedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccountSuspendedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The resource specified in your request already exists.
 type AlreadyExistsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4262,7 +4262,7 @@ func (s AlreadyExistsException) GoString() string {
 
 func newErrorAlreadyExistsException(v protocol.ResponseMetadata) error {
 	return &AlreadyExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4290,18 +4290,18 @@ func (s AlreadyExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AlreadyExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AlreadyExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The input you provided is invalid.
 type BadRequestException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4318,7 +4318,7 @@ func (s BadRequestException) GoString() string {
 
 func newErrorBadRequestException(v protocol.ResponseMetadata) error {
 	return &BadRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4346,12 +4346,12 @@ func (s BadRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s BadRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s BadRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An object that contains information about a blacklisting event that impacts
@@ -4596,7 +4596,7 @@ func (s *CloudWatchDimensionConfiguration) SetDimensionValueSource(v string) *Cl
 // The resource is being modified by another operation or thread.
 type ConcurrentModificationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4613,7 +4613,7 @@ func (s ConcurrentModificationException) GoString() string {
 
 func newErrorConcurrentModificationException(v protocol.ResponseMetadata) error {
 	return &ConcurrentModificationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4641,12 +4641,12 @@ func (s ConcurrentModificationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ConcurrentModificationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ConcurrentModificationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An object that represents the content of the email, and optionally a character
@@ -7622,7 +7622,7 @@ func (s *KinesisFirehoseDestination) SetIamRoleArn(v string) *KinesisFirehoseDes
 // There are too many instances of the specified resource type.
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7639,7 +7639,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7667,12 +7667,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A request to obtain a list of configuration sets for your Amazon Pinpoint
@@ -8258,7 +8258,7 @@ func (s *MailFromAttributes) SetMailFromDomainStatus(v string) *MailFromAttribut
 // The message can't be sent because the sending domain isn't verified.
 type MailFromDomainNotVerifiedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8275,7 +8275,7 @@ func (s MailFromDomainNotVerifiedException) GoString() string {
 
 func newErrorMailFromDomainNotVerifiedException(v protocol.ResponseMetadata) error {
 	return &MailFromDomainNotVerifiedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8303,12 +8303,12 @@ func (s MailFromDomainNotVerifiedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MailFromDomainNotVerifiedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MailFromDomainNotVerifiedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents the email message that you're sending. The Message object consists
@@ -8381,7 +8381,7 @@ func (s *Message) SetSubject(v *Content) *Message {
 // The message can't be sent because it contains invalid content.
 type MessageRejected struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8398,7 +8398,7 @@ func (s MessageRejected) GoString() string {
 
 func newErrorMessageRejected(v protocol.ResponseMetadata) error {
 	return &MessageRejected{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8426,12 +8426,12 @@ func (s MessageRejected) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MessageRejected) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MessageRejected) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains the name and value of a tag that you apply to an email. You can
@@ -8503,7 +8503,7 @@ func (s *MessageTag) SetValue(v string) *MessageTag {
 // The resource you attempted to access doesn't exist.
 type NotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8520,7 +8520,7 @@ func (s NotFoundException) GoString() string {
 
 func newErrorNotFoundException(v protocol.ResponseMetadata) error {
 	return &NotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8548,12 +8548,12 @@ func (s NotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An object that contains information about email that was sent from the selected
@@ -9865,7 +9865,7 @@ func (s *SendingOptions) SetSendingEnabled(v bool) *SendingOptions {
 // currently paused.
 type SendingPausedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9882,7 +9882,7 @@ func (s SendingPausedException) GoString() string {
 
 func newErrorSendingPausedException(v protocol.ResponseMetadata) error {
 	return &SendingPausedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9910,12 +9910,12 @@ func (s SendingPausedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s SendingPausedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s SendingPausedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An object that defines an Amazon SNS destination for email events. You can
@@ -10163,7 +10163,7 @@ func (s *Template) SetTemplateData(v string) *Template {
 // Too many requests have been made to the operation.
 type TooManyRequestsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10180,7 +10180,7 @@ func (s TooManyRequestsException) GoString() string {
 
 func newErrorTooManyRequestsException(v protocol.ResponseMetadata) error {
 	return &TooManyRequestsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10208,12 +10208,12 @@ func (s TooManyRequestsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TooManyRequestsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TooManyRequestsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An object that defines the tracking options for a configuration set. When

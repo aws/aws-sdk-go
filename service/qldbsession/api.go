@@ -138,7 +138,7 @@ func (s AbortTransactionResult) GoString() string {
 // parameter value or a missing required parameter.
 type BadRequestException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -157,7 +157,7 @@ func (s BadRequestException) GoString() string {
 
 func newErrorBadRequestException(v protocol.ResponseMetadata) error {
 	return &BadRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -185,12 +185,12 @@ func (s BadRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s BadRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s BadRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains the details of the transaction to commit.
@@ -507,7 +507,7 @@ func (s *FetchPageResult) SetPage(v *Page) *FetchPageResult {
 // Returned if the session doesn't exist anymore because it timed-out or expired.
 type InvalidSessionException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -526,7 +526,7 @@ func (s InvalidSessionException) GoString() string {
 
 func newErrorInvalidSessionException(v protocol.ResponseMetadata) error {
 	return &InvalidSessionException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -554,18 +554,18 @@ func (s InvalidSessionException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidSessionException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidSessionException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Returned if a resource limit such as number of active sessions is exceeded.
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -582,7 +582,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -610,19 +610,19 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Returned when a transaction cannot be written to the journal due to a failure
 // in the verification phase of Optimistic Concurrency Control.
 type OccConflictException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -639,7 +639,7 @@ func (s OccConflictException) GoString() string {
 
 func newErrorOccConflictException(v protocol.ResponseMetadata) error {
 	return &OccConflictException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -667,12 +667,12 @@ func (s OccConflictException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s OccConflictException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s OccConflictException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains details of the fetched page.
@@ -711,7 +711,7 @@ func (s *Page) SetValues(v []*ValueHolder) *Page {
 // Returned when the rate of requests exceeds the allowed throughput.
 type RateExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -728,7 +728,7 @@ func (s RateExceededException) GoString() string {
 
 func newErrorRateExceededException(v protocol.ResponseMetadata) error {
 	return &RateExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -756,12 +756,12 @@ func (s RateExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s RateExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s RateExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type SendCommandInput struct {

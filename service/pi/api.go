@@ -897,7 +897,7 @@ func (s *GetResourceMetricsOutput) SetNextToken(v string) *GetResourceMetricsOut
 // The request failed due to an unknown error.
 type InternalServiceError struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -914,7 +914,7 @@ func (s InternalServiceError) GoString() string {
 
 func newErrorInternalServiceError(v protocol.ResponseMetadata) error {
 	return &InternalServiceError{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -942,18 +942,18 @@ func (s InternalServiceError) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServiceError) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServiceError) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // One of the arguments provided is invalid for this request.
 type InvalidArgumentException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -970,7 +970,7 @@ func (s InvalidArgumentException) GoString() string {
 
 func newErrorInvalidArgumentException(v protocol.ResponseMetadata) error {
 	return &InvalidArgumentException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -998,12 +998,12 @@ func (s InvalidArgumentException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidArgumentException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidArgumentException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A time-ordered series of data points, correpsonding to a dimension of a Performance
@@ -1127,7 +1127,7 @@ func (s *MetricQuery) SetMetric(v string) *MetricQuery {
 // The user is not authorized to perform this request.
 type NotAuthorizedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1144,7 +1144,7 @@ func (s NotAuthorizedException) GoString() string {
 
 func newErrorNotAuthorizedException(v protocol.ResponseMetadata) error {
 	return &NotAuthorizedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1172,12 +1172,12 @@ func (s NotAuthorizedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NotAuthorizedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NotAuthorizedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // If PartitionBy was specified in a DescribeDimensionKeys request, the dimensions

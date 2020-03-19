@@ -3243,7 +3243,7 @@ func (s *BatchRetryStrategy) SetAttempts(v int64) *BatchRetryStrategy {
 // There is concurrent modification on a rule or target.
 type ConcurrentModificationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3260,7 +3260,7 @@ func (s ConcurrentModificationException) GoString() string {
 
 func newErrorConcurrentModificationException(v protocol.ResponseMetadata) error {
 	return &ConcurrentModificationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3288,12 +3288,12 @@ func (s ConcurrentModificationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ConcurrentModificationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ConcurrentModificationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A JSON string which you can use to limit the event bus permissions you are
@@ -4709,7 +4709,7 @@ func (s *InputTransformer) SetInputTemplate(v string) *InputTransformer {
 // This exception occurs due to unexpected causes.
 type InternalException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4726,7 +4726,7 @@ func (s InternalException) GoString() string {
 
 func newErrorInternalException(v protocol.ResponseMetadata) error {
 	return &InternalException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4754,18 +4754,18 @@ func (s InternalException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The event pattern is not valid.
 type InvalidEventPatternException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4782,7 +4782,7 @@ func (s InvalidEventPatternException) GoString() string {
 
 func newErrorInvalidEventPatternException(v protocol.ResponseMetadata) error {
 	return &InvalidEventPatternException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4810,18 +4810,18 @@ func (s InvalidEventPatternException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidEventPatternException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidEventPatternException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified state is not a valid state for an event source.
 type InvalidStateException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4838,7 +4838,7 @@ func (s InvalidStateException) GoString() string {
 
 func newErrorInvalidStateException(v protocol.ResponseMetadata) error {
 	return &InvalidStateException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4866,12 +4866,12 @@ func (s InvalidStateException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidStateException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidStateException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This object enables you to specify a JSON path to extract from the event
@@ -4921,7 +4921,7 @@ func (s *KinesisParameters) SetPartitionKeyPath(v string) *KinesisParameters {
 // You tried to create more rules or add more targets to a rule than is allowed.
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4938,7 +4938,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4966,12 +4966,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListEventBusesInput struct {
@@ -5769,7 +5769,7 @@ func (s *ListTargetsByRuleOutput) SetTargets(v []*Target) *ListTargetsByRuleOutp
 // or UntagResource.
 type ManagedRuleException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5786,7 +5786,7 @@ func (s ManagedRuleException) GoString() string {
 
 func newErrorManagedRuleException(v protocol.ResponseMetadata) error {
 	return &ManagedRuleException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5814,12 +5814,12 @@ func (s ManagedRuleException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ManagedRuleException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ManagedRuleException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This structure specifies the network configuration for an ECS task.
@@ -5957,7 +5957,7 @@ func (s *PartnerEventSourceAccount) SetState(v string) *PartnerEventSourceAccoun
 // The event bus policy is too long. For more information, see the limits.
 type PolicyLengthExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5974,7 +5974,7 @@ func (s PolicyLengthExceededException) GoString() string {
 
 func newErrorPolicyLengthExceededException(v protocol.ResponseMetadata) error {
 	return &PolicyLengthExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6002,12 +6002,12 @@ func (s PolicyLengthExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PolicyLengthExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PolicyLengthExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type PutEventsInput struct {
@@ -7097,7 +7097,7 @@ func (s *RemoveTargetsResultEntry) SetTargetId(v string) *RemoveTargetsResultEnt
 // The resource you are trying to create already exists.
 type ResourceAlreadyExistsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7114,7 +7114,7 @@ func (s ResourceAlreadyExistsException) GoString() string {
 
 func newErrorResourceAlreadyExistsException(v protocol.ResponseMetadata) error {
 	return &ResourceAlreadyExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7142,18 +7142,18 @@ func (s ResourceAlreadyExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceAlreadyExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceAlreadyExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An entity that you specified does not exist.
 type ResourceNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7170,7 +7170,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7198,12 +7198,12 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains information about a rule in Amazon EventBridge.

@@ -6847,7 +6847,7 @@ func (s *GetMLModelOutput) SetTrainingParameters(v map[string]*string) *GetMLMod
 // request.
 type IdempotentParameterMismatchException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *int64 `locationName:"code" type:"integer"`
 
@@ -6866,7 +6866,7 @@ func (s IdempotentParameterMismatchException) GoString() string {
 
 func newErrorIdempotentParameterMismatchException(v protocol.ResponseMetadata) error {
 	return &IdempotentParameterMismatchException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6894,18 +6894,18 @@ func (s IdempotentParameterMismatchException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s IdempotentParameterMismatchException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s IdempotentParameterMismatchException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An error on the server occurred when trying to process a request.
 type InternalServerException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *int64 `locationName:"code" type:"integer"`
 
@@ -6924,7 +6924,7 @@ func (s InternalServerException) GoString() string {
 
 func newErrorInternalServerException(v protocol.ResponseMetadata) error {
 	return &InternalServerException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6952,19 +6952,19 @@ func (s InternalServerException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServerException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServerException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An error on the client occurred. Typically, the cause is an invalid input
 // value.
 type InvalidInputException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *int64 `locationName:"code" type:"integer"`
 
@@ -6983,7 +6983,7 @@ func (s InvalidInputException) GoString() string {
 
 func newErrorInvalidInputException(v protocol.ResponseMetadata) error {
 	return &InvalidInputException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7011,17 +7011,17 @@ func (s InvalidInputException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidInputException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidInputException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type InvalidTagException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7038,7 +7038,7 @@ func (s InvalidTagException) GoString() string {
 
 func newErrorInvalidTagException(v protocol.ResponseMetadata) error {
 	return &InvalidTagException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7066,19 +7066,19 @@ func (s InvalidTagException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidTagException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidTagException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The subscriber exceeded the maximum number of operations. This exception
 // can occur when listing objects such as DataSource.
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *int64 `locationName:"code" type:"integer"`
 
@@ -7097,7 +7097,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7125,12 +7125,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents the output of a GetMLModel operation.
@@ -7589,7 +7589,7 @@ func (s *Prediction) SetPredictedValue(v float64) *Prediction {
 // The exception is thrown when a predict request is made to an unmounted MLModel.
 type PredictorNotMountedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7606,7 +7606,7 @@ func (s PredictorNotMountedException) GoString() string {
 
 func newErrorPredictorNotMountedException(v protocol.ResponseMetadata) error {
 	return &PredictorNotMountedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7634,12 +7634,12 @@ func (s PredictorNotMountedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PredictorNotMountedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PredictorNotMountedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The data specification of an Amazon Relational Database Service (Amazon RDS)
@@ -8578,7 +8578,7 @@ func (s *RedshiftMetadata) SetSelectSqlQuery(v string) *RedshiftMetadata {
 // A specified resource cannot be located.
 type ResourceNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *int64 `locationName:"code" type:"integer"`
 
@@ -8597,7 +8597,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8625,12 +8625,12 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Describes the data specification of a DataSource.
@@ -8837,7 +8837,7 @@ func (s *Tag) SetValue(v string) *Tag {
 
 type TagLimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8854,7 +8854,7 @@ func (s TagLimitExceededException) GoString() string {
 
 func newErrorTagLimitExceededException(v protocol.ResponseMetadata) error {
 	return &TagLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8882,12 +8882,12 @@ func (s TagLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TagLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TagLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UpdateBatchPredictionInput struct {

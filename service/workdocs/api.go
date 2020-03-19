@@ -4765,7 +4765,7 @@ func (s *CommentMetadata) SetRecipientId(v string) *CommentMetadata {
 // The resource hierarchy is changing.
 type ConcurrentModificationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4782,7 +4782,7 @@ func (s ConcurrentModificationException) GoString() string {
 
 func newErrorConcurrentModificationException(v protocol.ResponseMetadata) error {
 	return &ConcurrentModificationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4810,19 +4810,19 @@ func (s ConcurrentModificationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ConcurrentModificationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ConcurrentModificationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Another operation is in progress on the resource that conflicts with the
 // current operation.
 type ConflictingOperationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4839,7 +4839,7 @@ func (s ConflictingOperationException) GoString() string {
 
 func newErrorConflictingOperationException(v protocol.ResponseMetadata) error {
 	return &ConflictingOperationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4867,12 +4867,12 @@ func (s ConflictingOperationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ConflictingOperationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ConflictingOperationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type CreateCommentInput struct {
@@ -5588,7 +5588,7 @@ func (s *CreateUserOutput) SetUser(v *User) *CreateUserOutput {
 // resource.
 type CustomMetadataLimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -5605,7 +5605,7 @@ func (s CustomMetadataLimitExceededException) GoString() string {
 
 func newErrorCustomMetadataLimitExceededException(v protocol.ResponseMetadata) error {
 	return &CustomMetadataLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5633,12 +5633,12 @@ func (s CustomMetadataLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CustomMetadataLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CustomMetadataLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type DeactivateUserInput struct {
@@ -5712,7 +5712,7 @@ func (s DeactivateUserOutput) GoString() string {
 // The last user in the organization is being deactivated.
 type DeactivatingLastSystemUserException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5729,7 +5729,7 @@ func (s DeactivatingLastSystemUserException) GoString() string {
 
 func newErrorDeactivatingLastSystemUserException(v protocol.ResponseMetadata) error {
 	return &DeactivatingLastSystemUserException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5757,12 +5757,12 @@ func (s DeactivatingLastSystemUserException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DeactivatingLastSystemUserException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DeactivatingLastSystemUserException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type DeleteCommentInput struct {
@@ -7632,7 +7632,7 @@ func (s *DescribeUsersOutput) SetUsers(v []*User) *DescribeUsersOutput {
 // tries to create or delete a comment on that document.
 type DocumentLockedForCommentsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -7649,7 +7649,7 @@ func (s DocumentLockedForCommentsException) GoString() string {
 
 func newErrorDocumentLockedForCommentsException(v protocol.ResponseMetadata) error {
 	return &DocumentLockedForCommentsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7677,12 +7677,12 @@ func (s DocumentLockedForCommentsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DocumentLockedForCommentsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DocumentLockedForCommentsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Describes the document.
@@ -7908,7 +7908,7 @@ func (s *DocumentVersionMetadata) SetThumbnail(v map[string]*string) *DocumentVe
 // version upload calls for a document that has been checked out from Web client.
 type DraftUploadOutOfSyncException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -7925,7 +7925,7 @@ func (s DraftUploadOutOfSyncException) GoString() string {
 
 func newErrorDraftUploadOutOfSyncException(v protocol.ResponseMetadata) error {
 	return &DraftUploadOutOfSyncException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7953,18 +7953,18 @@ func (s DraftUploadOutOfSyncException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DraftUploadOutOfSyncException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DraftUploadOutOfSyncException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The resource already exists.
 type EntityAlreadyExistsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -7981,7 +7981,7 @@ func (s EntityAlreadyExistsException) GoString() string {
 
 func newErrorEntityAlreadyExistsException(v protocol.ResponseMetadata) error {
 	return &EntityAlreadyExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8009,18 +8009,18 @@ func (s EntityAlreadyExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s EntityAlreadyExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s EntityAlreadyExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The resource does not exist.
 type EntityNotExistsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	EntityIds []*string `type:"list"`
 
@@ -8039,7 +8039,7 @@ func (s EntityNotExistsException) GoString() string {
 
 func newErrorEntityNotExistsException(v protocol.ResponseMetadata) error {
 	return &EntityNotExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8067,12 +8067,12 @@ func (s EntityNotExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s EntityNotExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s EntityNotExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The AWS Directory Service cannot reach an on-premises instance. Or a dependency
@@ -8080,7 +8080,7 @@ func (s EntityNotExistsException) RequestID() string {
 // Directory.
 type FailedDependencyException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -8097,7 +8097,7 @@ func (s FailedDependencyException) GoString() string {
 
 func newErrorFailedDependencyException(v protocol.ResponseMetadata) error {
 	return &FailedDependencyException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8125,12 +8125,12 @@ func (s FailedDependencyException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s FailedDependencyException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s FailedDependencyException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Describes a folder.
@@ -9016,7 +9016,7 @@ func (s *GroupMetadata) SetName(v string) *GroupMetadata {
 // The user is undergoing transfer of ownership.
 type IllegalUserStateException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -9033,7 +9033,7 @@ func (s IllegalUserStateException) GoString() string {
 
 func newErrorIllegalUserStateException(v protocol.ResponseMetadata) error {
 	return &IllegalUserStateException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9061,12 +9061,12 @@ func (s IllegalUserStateException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s IllegalUserStateException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s IllegalUserStateException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type InitiateDocumentVersionUploadInput struct {
@@ -9221,7 +9221,7 @@ func (s *InitiateDocumentVersionUploadOutput) SetUploadMetadata(v *UploadMetadat
 // The pagination marker or limit fields are not valid.
 type InvalidArgumentException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -9238,7 +9238,7 @@ func (s InvalidArgumentException) GoString() string {
 
 func newErrorInvalidArgumentException(v protocol.ResponseMetadata) error {
 	return &InvalidArgumentException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9266,18 +9266,18 @@ func (s InvalidArgumentException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidArgumentException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidArgumentException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The requested operation is not allowed on the specified comment object.
 type InvalidCommentOperationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -9294,7 +9294,7 @@ func (s InvalidCommentOperationException) GoString() string {
 
 func newErrorInvalidCommentOperationException(v protocol.ResponseMetadata) error {
 	return &InvalidCommentOperationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9322,18 +9322,18 @@ func (s InvalidCommentOperationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidCommentOperationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidCommentOperationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation is invalid.
 type InvalidOperationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -9350,7 +9350,7 @@ func (s InvalidOperationException) GoString() string {
 
 func newErrorInvalidOperationException(v protocol.ResponseMetadata) error {
 	return &InvalidOperationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9378,18 +9378,18 @@ func (s InvalidOperationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidOperationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidOperationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The password is invalid.
 type InvalidPasswordException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -9406,7 +9406,7 @@ func (s InvalidPasswordException) GoString() string {
 
 func newErrorInvalidPasswordException(v protocol.ResponseMetadata) error {
 	return &InvalidPasswordException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9434,18 +9434,18 @@ func (s InvalidPasswordException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidPasswordException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidPasswordException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The maximum of 100,000 folders under the parent folder has been exceeded.
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -9462,7 +9462,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9490,12 +9490,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Set of options which defines notification preferences of given action.
@@ -9642,7 +9642,7 @@ func (s *Principal) SetType(v string) *Principal {
 // The specified document version is not in the INITIALIZED state.
 type ProhibitedStateException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -9659,7 +9659,7 @@ func (s ProhibitedStateException) GoString() string {
 
 func newErrorProhibitedStateException(v protocol.ResponseMetadata) error {
 	return &ProhibitedStateException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9687,12 +9687,12 @@ func (s ProhibitedStateException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ProhibitedStateException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ProhibitedStateException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type RemoveAllResourcePermissionsInput struct {
@@ -9861,7 +9861,7 @@ func (s RemoveResourcePermissionOutput) GoString() string {
 // reduce the size of the response.
 type RequestedEntityTooLargeException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -9878,7 +9878,7 @@ func (s RequestedEntityTooLargeException) GoString() string {
 
 func newErrorRequestedEntityTooLargeException(v protocol.ResponseMetadata) error {
 	return &RequestedEntityTooLargeException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9906,18 +9906,18 @@ func (s RequestedEntityTooLargeException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s RequestedEntityTooLargeException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s RequestedEntityTooLargeException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The resource is already checked out.
 type ResourceAlreadyCheckedOutException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -9934,7 +9934,7 @@ func (s ResourceAlreadyCheckedOutException) GoString() string {
 
 func newErrorResourceAlreadyCheckedOutException(v protocol.ResponseMetadata) error {
 	return &ResourceAlreadyCheckedOutException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9962,12 +9962,12 @@ func (s ResourceAlreadyCheckedOutException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceAlreadyCheckedOutException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceAlreadyCheckedOutException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Describes the metadata of a resource.
@@ -10109,7 +10109,7 @@ func (s *ResourcePathComponent) SetName(v string) *ResourcePathComponent {
 // One or more of the dependencies is unavailable.
 type ServiceUnavailableException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -10126,7 +10126,7 @@ func (s ServiceUnavailableException) GoString() string {
 
 func newErrorServiceUnavailableException(v protocol.ResponseMetadata) error {
 	return &ServiceUnavailableException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10154,12 +10154,12 @@ func (s ServiceUnavailableException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceUnavailableException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceUnavailableException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Describes the recipient type and ID, if available.
@@ -10304,7 +10304,7 @@ func (s *ShareResult) SetStatusMessage(v string) *ShareResult {
 // The storage limit has been exceeded.
 type StorageLimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -10321,7 +10321,7 @@ func (s StorageLimitExceededException) GoString() string {
 
 func newErrorStorageLimitExceededException(v protocol.ResponseMetadata) error {
 	return &StorageLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10349,18 +10349,18 @@ func (s StorageLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s StorageLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s StorageLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The storage limit will be exceeded.
 type StorageLimitWillExceedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -10377,7 +10377,7 @@ func (s StorageLimitWillExceedException) GoString() string {
 
 func newErrorStorageLimitWillExceedException(v protocol.ResponseMetadata) error {
 	return &StorageLimitWillExceedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10405,12 +10405,12 @@ func (s StorageLimitWillExceedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s StorageLimitWillExceedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s StorageLimitWillExceedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Describes the storage for a user.
@@ -10491,7 +10491,7 @@ func (s *Subscription) SetSubscriptionId(v string) *Subscription {
 // The limit has been reached on the number of labels for the specified resource.
 type TooManyLabelsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -10508,7 +10508,7 @@ func (s TooManyLabelsException) GoString() string {
 
 func newErrorTooManyLabelsException(v protocol.ResponseMetadata) error {
 	return &TooManyLabelsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10536,19 +10536,19 @@ func (s TooManyLabelsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TooManyLabelsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TooManyLabelsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You've reached the limit on the number of subscriptions for the WorkDocs
 // instance.
 type TooManySubscriptionsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -10565,7 +10565,7 @@ func (s TooManySubscriptionsException) GoString() string {
 
 func newErrorTooManySubscriptionsException(v protocol.ResponseMetadata) error {
 	return &TooManySubscriptionsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10593,18 +10593,18 @@ func (s TooManySubscriptionsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TooManySubscriptionsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TooManySubscriptionsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation is not permitted.
 type UnauthorizedOperationException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10621,7 +10621,7 @@ func (s UnauthorizedOperationException) GoString() string {
 
 func newErrorUnauthorizedOperationException(v protocol.ResponseMetadata) error {
 	return &UnauthorizedOperationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10649,18 +10649,18 @@ func (s UnauthorizedOperationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnauthorizedOperationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnauthorizedOperationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The caller does not have access to perform the action on the resource.
 type UnauthorizedResourceAccessException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -10677,7 +10677,7 @@ func (s UnauthorizedResourceAccessException) GoString() string {
 
 func newErrorUnauthorizedResourceAccessException(v protocol.ResponseMetadata) error {
 	return &UnauthorizedResourceAccessException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10705,12 +10705,12 @@ func (s UnauthorizedResourceAccessException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnauthorizedResourceAccessException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnauthorizedResourceAccessException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UpdateDocumentInput struct {

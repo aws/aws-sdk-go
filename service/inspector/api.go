@@ -4028,7 +4028,7 @@ func (c *Inspector) UpdateAssessmentTargetWithContext(ctx aws.Context, input *Up
 // You do not have required permissions to access the requested resource.
 type AccessDeniedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// You can immediately retry your request.
 	//
@@ -4056,7 +4056,7 @@ func (s AccessDeniedException) GoString() string {
 
 func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
 	return &AccessDeniedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4084,12 +4084,12 @@ func (s AccessDeniedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccessDeniedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccessDeniedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type AddAttributesToFindingsInput struct {
@@ -4374,7 +4374,7 @@ func (s *AgentPreview) SetOperatingSystem(v string) *AgentPreview {
 // in another assessment run.
 type AgentsAlreadyRunningAssessmentException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// Agents is a required field
 	Agents []*AgentAlreadyRunningAssessment `locationName:"agents" min:"1" type:"list" required:"true"`
@@ -4403,7 +4403,7 @@ func (s AgentsAlreadyRunningAssessmentException) GoString() string {
 
 func newErrorAgentsAlreadyRunningAssessmentException(v protocol.ResponseMetadata) error {
 	return &AgentsAlreadyRunningAssessmentException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4431,12 +4431,12 @@ func (s AgentsAlreadyRunningAssessmentException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AgentsAlreadyRunningAssessmentException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AgentsAlreadyRunningAssessmentException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A snapshot of an Amazon Inspector assessment run that contains the findings
@@ -4828,7 +4828,7 @@ func (s *AssessmentRunFilter) SetStates(v []*string) *AssessmentRunFilter {
 // progress.
 type AssessmentRunInProgressException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The ARNs of the assessment runs that are currently in progress.
 	//
@@ -4862,7 +4862,7 @@ func (s AssessmentRunInProgressException) GoString() string {
 
 func newErrorAssessmentRunInProgressException(v protocol.ResponseMetadata) error {
 	return &AssessmentRunInProgressException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4890,12 +4890,12 @@ func (s AssessmentRunInProgressException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AssessmentRunInProgressException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AssessmentRunInProgressException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Used as one of the elements of the AssessmentRun data type.
@@ -7530,7 +7530,7 @@ func (s *GetTelemetryMetadataOutput) SetTelemetryMetadata(v []*TelemetryMetadata
 // Internal server error.
 type InternalException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// You can immediately retry your request.
 	//
@@ -7553,7 +7553,7 @@ func (s InternalException) GoString() string {
 
 func newErrorInternalException(v protocol.ResponseMetadata) error {
 	return &InternalException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7581,19 +7581,19 @@ func (s InternalException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Amazon Inspector cannot assume the cross-account role that it needs to list
 // your EC2 instances during the assessment run.
 type InvalidCrossAccountRoleException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// You can immediately retry your request.
 	//
@@ -7621,7 +7621,7 @@ func (s InvalidCrossAccountRoleException) GoString() string {
 
 func newErrorInvalidCrossAccountRoleException(v protocol.ResponseMetadata) error {
 	return &InvalidCrossAccountRoleException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7649,19 +7649,19 @@ func (s InvalidCrossAccountRoleException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidCrossAccountRoleException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidCrossAccountRoleException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because an invalid or out-of-range value was supplied
 // for an input parameter.
 type InvalidInputException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// You can immediately retry your request.
 	//
@@ -7689,7 +7689,7 @@ func (s InvalidInputException) GoString() string {
 
 func newErrorInvalidInputException(v protocol.ResponseMetadata) error {
 	return &InvalidInputException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7717,19 +7717,19 @@ func (s InvalidInputException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidInputException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidInputException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because it attempted to create resources beyond
 // the current AWS account limits. The error code describes the limit exceeded.
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// You can immediately retry your request.
 	//
@@ -7757,7 +7757,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7785,12 +7785,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListAssessmentRunAgentsInput struct {
@@ -8835,7 +8835,7 @@ func (s *NetworkInterface) SetVpcId(v string) *NetworkInterface {
 // The error code describes the entity.
 type NoSuchEntityException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// You can immediately retry your request.
 	//
@@ -8863,7 +8863,7 @@ func (s NoSuchEntityException) GoString() string {
 
 func newErrorNoSuchEntityException(v protocol.ResponseMetadata) error {
 	return &NoSuchEntityException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8891,12 +8891,12 @@ func (s NoSuchEntityException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NoSuchEntityException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NoSuchEntityException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type PreviewAgentsInput struct {
@@ -9006,7 +9006,7 @@ func (s *PreviewAgentsOutput) SetNextToken(v string) *PreviewAgentsOutput {
 // an exclusions preview.
 type PreviewGenerationInProgressException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9023,7 +9023,7 @@ func (s PreviewGenerationInProgressException) GoString() string {
 
 func newErrorPreviewGenerationInProgressException(v protocol.ResponseMetadata) error {
 	return &PreviewGenerationInProgressException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9051,12 +9051,12 @@ func (s PreviewGenerationInProgressException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PreviewGenerationInProgressException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PreviewGenerationInProgressException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains information about a private IP address associated with a network
@@ -9521,7 +9521,7 @@ func (s *ServiceAttributes) SetSchemaVersion(v int64) *ServiceAttributes {
 // The serice is temporary unavailable.
 type ServiceTemporarilyUnavailableException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// You can wait and then retry your request.
 	//
@@ -9544,7 +9544,7 @@ func (s ServiceTemporarilyUnavailableException) GoString() string {
 
 func newErrorServiceTemporarilyUnavailableException(v protocol.ResponseMetadata) error {
 	return &ServiceTemporarilyUnavailableException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9572,12 +9572,12 @@ func (s ServiceTemporarilyUnavailableException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceTemporarilyUnavailableException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceTemporarilyUnavailableException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type SetTagsForResourceInput struct {
@@ -10172,7 +10172,7 @@ func (s UnsubscribeFromEventOutput) GoString() string {
 // Inspector became available.
 type UnsupportedFeatureException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// CanRetry is a required field
 	CanRetry *bool `locationName:"canRetry" type:"boolean" required:"true"`
@@ -10192,7 +10192,7 @@ func (s UnsupportedFeatureException) GoString() string {
 
 func newErrorUnsupportedFeatureException(v protocol.ResponseMetadata) error {
 	return &UnsupportedFeatureException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10220,12 +10220,12 @@ func (s UnsupportedFeatureException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnsupportedFeatureException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnsupportedFeatureException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UpdateAssessmentTargetInput struct {

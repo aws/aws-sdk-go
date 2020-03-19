@@ -509,7 +509,7 @@ func (s *DescribeStreamOutput) SetStreamDescription(v *StreamDescription) *Descr
 // the GetShardIterator action.
 type ExpiredIteratorException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The provided iterator exceeds the maximum age allowed.
 	Message_ *string `locationName:"message" type:"string"`
@@ -527,7 +527,7 @@ func (s ExpiredIteratorException) GoString() string {
 
 func newErrorExpiredIteratorException(v protocol.ResponseMetadata) error {
 	return &ExpiredIteratorException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -555,12 +555,12 @@ func (s ExpiredIteratorException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ExpiredIteratorException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ExpiredIteratorException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents the input of a GetRecords operation.
@@ -818,7 +818,7 @@ func (s *Identity) SetType(v string) *Identity {
 // An error occurred on the server side.
 type InternalServerError struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The server encountered an internal error trying to fulfill the request.
 	Message_ *string `locationName:"message" type:"string"`
@@ -836,7 +836,7 @@ func (s InternalServerError) GoString() string {
 
 func newErrorInternalServerError(v protocol.ResponseMetadata) error {
 	return &InternalServerError{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -864,12 +864,12 @@ func (s InternalServerError) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServerError) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServerError) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Your request rate is too high. The AWS SDKs for DynamoDB automatically retry
@@ -880,7 +880,7 @@ func (s InternalServerError) RequestID() string {
 // in the Amazon DynamoDB Developer Guide.
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// Too many operations for a given subscriber.
 	Message_ *string `locationName:"message" type:"string"`
@@ -898,7 +898,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -926,12 +926,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents the input of a ListStreams operation.
@@ -1140,7 +1140,7 @@ func (s *Record) SetUserIdentity(v *Identity) *Record {
 // The operation tried to access a nonexistent stream.
 type ResourceNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The resource which is being requested does not exist.
 	Message_ *string `locationName:"message" type:"string"`
@@ -1158,7 +1158,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1186,12 +1186,12 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The beginning and ending sequence numbers for the stream records contained
@@ -1562,7 +1562,7 @@ func (s *StreamRecord) SetStreamViewType(v string) *StreamRecord {
 //    trimmed. This causes the iterator to access a record that no longer exists.
 type TrimmedDataAccessException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// "The data you are trying to access has been trimmed.
 	Message_ *string `locationName:"message" type:"string"`
@@ -1580,7 +1580,7 @@ func (s TrimmedDataAccessException) GoString() string {
 
 func newErrorTrimmedDataAccessException(v protocol.ResponseMetadata) error {
 	return &TrimmedDataAccessException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1608,12 +1608,12 @@ func (s TrimmedDataAccessException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TrimmedDataAccessException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TrimmedDataAccessException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 const (

@@ -3409,7 +3409,7 @@ func (s *ContactFlowSummary) SetName(v string) *ContactFlowSummary {
 // The contact with the specified ID is not active or does not exist.
 type ContactNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The message.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -3427,7 +3427,7 @@ func (s ContactNotFoundException) GoString() string {
 
 func newErrorContactNotFoundException(v protocol.ResponseMetadata) error {
 	return &ContactNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3455,12 +3455,12 @@ func (s ContactNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ContactNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ContactNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type CreateUserInput struct {
@@ -4122,7 +4122,7 @@ func (s *DescribeUserOutput) SetUser(v *User) *DescribeUserOutput {
 // Outbound calls to the destination number are not allowed.
 type DestinationNotAllowedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The message.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -4140,7 +4140,7 @@ func (s DestinationNotAllowedException) GoString() string {
 
 func newErrorDestinationNotAllowedException(v protocol.ResponseMetadata) error {
 	return &DestinationNotAllowedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4168,12 +4168,12 @@ func (s DestinationNotAllowedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DestinationNotAllowedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DestinationNotAllowedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains information about the dimensions for a set of metrics.
@@ -4212,7 +4212,7 @@ func (s *Dimensions) SetQueue(v *QueueReference) *Dimensions {
 // A resource with the specified name already exists.
 type DuplicateResourceException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4229,7 +4229,7 @@ func (s DuplicateResourceException) GoString() string {
 
 func newErrorDuplicateResourceException(v protocol.ResponseMetadata) error {
 	return &DuplicateResourceException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4257,12 +4257,12 @@ func (s DuplicateResourceException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DuplicateResourceException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DuplicateResourceException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains the filter to apply when retrieving metrics.
@@ -5443,7 +5443,7 @@ func (s *HoursOfOperationSummary) SetName(v string) *HoursOfOperationSummary {
 // Request processing failed due to an error or failure with the service.
 type InternalServiceException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The message.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -5461,7 +5461,7 @@ func (s InternalServiceException) GoString() string {
 
 func newErrorInternalServiceException(v protocol.ResponseMetadata) error {
 	return &InternalServiceException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5489,18 +5489,18 @@ func (s InternalServiceException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServiceException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServiceException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // One or more of the specified parameters are not valid.
 type InvalidParameterException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The message.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -5518,7 +5518,7 @@ func (s InvalidParameterException) GoString() string {
 
 func newErrorInvalidParameterException(v protocol.ResponseMetadata) error {
 	return &InvalidParameterException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5546,18 +5546,18 @@ func (s InvalidParameterException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidParameterException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidParameterException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request is not valid.
 type InvalidRequestException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The message.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -5575,7 +5575,7 @@ func (s InvalidRequestException) GoString() string {
 
 func newErrorInvalidRequestException(v protocol.ResponseMetadata) error {
 	return &InvalidRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5603,18 +5603,18 @@ func (s InvalidRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The allowed limit for the resource has been exceeded.
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The message.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -5632,7 +5632,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5660,12 +5660,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListContactFlowsInput struct {
@@ -6531,7 +6531,7 @@ func (s *ListUsersOutput) SetUserSummaryList(v []*UserSummary) *ListUsersOutput 
 // The contact is not permitted.
 type OutboundContactNotPermittedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The message.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -6549,7 +6549,7 @@ func (s OutboundContactNotPermittedException) GoString() string {
 
 func newErrorOutboundContactNotPermittedException(v protocol.ResponseMetadata) error {
 	return &OutboundContactNotPermittedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6577,12 +6577,12 @@ func (s OutboundContactNotPermittedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s OutboundContactNotPermittedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s OutboundContactNotPermittedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The customer's details.
@@ -6774,7 +6774,7 @@ func (s *QueueSummary) SetQueueType(v string) *QueueSummary {
 // The specified resource was not found.
 type ResourceNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	// The message.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -6792,7 +6792,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6820,12 +6820,12 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains summary information about a routing profile.
@@ -7389,7 +7389,7 @@ func (s *Threshold) SetThresholdValue(v float64) *Threshold {
 // The throttling limit has been exceeded.
 type ThrottlingException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -7406,7 +7406,7 @@ func (s ThrottlingException) GoString() string {
 
 func newErrorThrottlingException(v protocol.ResponseMetadata) error {
 	return &ThrottlingException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7434,12 +7434,12 @@ func (s ThrottlingException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ThrottlingException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ThrottlingException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UntagResourceInput struct {
@@ -8212,7 +8212,7 @@ func (s *UserIdentityInfo) SetLastName(v string) *UserIdentityInfo {
 // No user with the specified credentials was found in the Amazon Connect instance.
 type UserNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -8229,7 +8229,7 @@ func (s UserNotFoundException) GoString() string {
 
 func newErrorUserNotFoundException(v protocol.ResponseMetadata) error {
 	return &UserNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8257,12 +8257,12 @@ func (s UserNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UserNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UserNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains information about the phone configuration settings for a user.

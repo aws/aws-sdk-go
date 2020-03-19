@@ -2902,7 +2902,7 @@ func (s AssociateConfigurationItemsToApplicationOutput) GoString() string {
 // the IAM policy associated with this account.
 type AuthorizationErrorException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2919,7 +2919,7 @@ func (s AuthorizationErrorException) GoString() string {
 
 func newErrorAuthorizationErrorException(v protocol.ResponseMetadata) error {
 	return &AuthorizationErrorException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2947,12 +2947,12 @@ func (s AuthorizationErrorException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AuthorizationErrorException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AuthorizationErrorException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Error messages returned for each import task that you deleted as a response
@@ -3129,7 +3129,7 @@ func (s *ConfigurationTag) SetValue(v string) *ConfigurationTag {
 
 type ConflictErrorException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3146,7 +3146,7 @@ func (s ConflictErrorException) GoString() string {
 
 func newErrorConflictErrorException(v protocol.ResponseMetadata) error {
 	return &ConflictErrorException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3174,12 +3174,12 @@ func (s ConflictErrorException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ConflictErrorException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ConflictErrorException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A list of continuous export descriptions.
@@ -4875,7 +4875,7 @@ func (s *GetDiscoverySummaryOutput) SetServersMappedtoTags(v int64) *GetDiscover
 // The home region is not set. Set the home region to continue.
 type HomeRegionNotSetException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4892,7 +4892,7 @@ func (s HomeRegionNotSetException) GoString() string {
 
 func newErrorHomeRegionNotSetException(v protocol.ResponseMetadata) error {
 	return &HomeRegionNotSetException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4920,12 +4920,12 @@ func (s HomeRegionNotSetException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s HomeRegionNotSetException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s HomeRegionNotSetException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An array of information related to the import task request that includes
@@ -5142,7 +5142,7 @@ func (s *ImportTaskFilter) SetValues(v []*string) *ImportTaskFilter {
 // One or more parameters are not valid. Verify the parameters and try again.
 type InvalidParameterException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5159,7 +5159,7 @@ func (s InvalidParameterException) GoString() string {
 
 func newErrorInvalidParameterException(v protocol.ResponseMetadata) error {
 	return &InvalidParameterException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5187,19 +5187,19 @@ func (s InvalidParameterException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidParameterException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidParameterException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The value of one or more parameters are either invalid or out of range. Verify
 // the parameter values and try again.
 type InvalidParameterValueException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5216,7 +5216,7 @@ func (s InvalidParameterValueException) GoString() string {
 
 func newErrorInvalidParameterValueException(v protocol.ResponseMetadata) error {
 	return &InvalidParameterValueException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5244,12 +5244,12 @@ func (s InvalidParameterValueException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidParameterValueException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidParameterValueException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListConfigurationsInput struct {
@@ -5589,7 +5589,7 @@ func (s *NeighborConnectionDetail) SetTransportProtocol(v string) *NeighborConne
 // This operation is not permitted.
 type OperationNotPermittedException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5606,7 +5606,7 @@ func (s OperationNotPermittedException) GoString() string {
 
 func newErrorOperationNotPermittedException(v protocol.ResponseMetadata) error {
 	return &OperationNotPermittedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5634,12 +5634,12 @@ func (s OperationNotPermittedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s OperationNotPermittedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s OperationNotPermittedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A field and direction for ordered output.
@@ -5697,7 +5697,7 @@ func (s *OrderByElement) SetSortOrder(v string) *OrderByElement {
 // and try again.
 type ResourceInUseException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5714,7 +5714,7 @@ func (s ResourceInUseException) GoString() string {
 
 func newErrorResourceInUseException(v protocol.ResponseMetadata) error {
 	return &ResourceInUseException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5742,19 +5742,19 @@ func (s ResourceInUseException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceInUseException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceInUseException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified configuration ID was not located. Verify the configuration
 // ID and try again.
 type ResourceNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5771,7 +5771,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5799,18 +5799,18 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The server experienced an internal error. Try again.
 type ServerInternalErrorException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5827,7 +5827,7 @@ func (s ServerInternalErrorException) GoString() string {
 
 func newErrorServerInternalErrorException(v protocol.ResponseMetadata) error {
 	return &ServerInternalErrorException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5855,12 +5855,12 @@ func (s ServerInternalErrorException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServerInternalErrorException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServerInternalErrorException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type StartContinuousExportInput struct {

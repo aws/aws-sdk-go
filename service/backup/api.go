@@ -4918,7 +4918,7 @@ func (c *Backup) UpdateRecoveryPointLifecycleWithContext(ctx aws.Context, input 
 // The required resource already exists.
 type AlreadyExistsException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Arn *string `type:"string"`
 
@@ -4945,7 +4945,7 @@ func (s AlreadyExistsException) GoString() string {
 
 func newErrorAlreadyExistsException(v protocol.ResponseMetadata) error {
 	return &AlreadyExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4973,12 +4973,12 @@ func (s AlreadyExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AlreadyExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AlreadyExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains DeleteAt and MoveToColdStorageAt timestamps, which are used to specify
@@ -6093,7 +6093,7 @@ func (s DeleteRecoveryPointOutput) GoString() string {
 // and the action cannot be completed.
 type DependencyFailureException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -6116,7 +6116,7 @@ func (s DependencyFailureException) GoString() string {
 
 func newErrorDependencyFailureException(v protocol.ResponseMetadata) error {
 	return &DependencyFailureException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6144,12 +6144,12 @@ func (s DependencyFailureException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DependencyFailureException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DependencyFailureException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type DescribeBackupJobInput struct {
@@ -7901,7 +7901,7 @@ func (s *GetSupportedResourceTypesOutput) SetResourceTypes(v []*string) *GetSupp
 // the value is out of range.
 type InvalidParameterValueException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -7924,7 +7924,7 @@ func (s InvalidParameterValueException) GoString() string {
 
 func newErrorInvalidParameterValueException(v protocol.ResponseMetadata) error {
 	return &InvalidParameterValueException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7952,19 +7952,19 @@ func (s InvalidParameterValueException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidParameterValueException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidParameterValueException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Indicates that something is wrong with the input to the request. For example,
 // a parameter is of the wrong type.
 type InvalidRequestException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -7987,7 +7987,7 @@ func (s InvalidRequestException) GoString() string {
 
 func newErrorInvalidRequestException(v protocol.ResponseMetadata) error {
 	return &InvalidRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8015,12 +8015,12 @@ func (s InvalidRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains detailed information about a backup job.
@@ -8264,7 +8264,7 @@ func (s *Lifecycle) SetMoveToColdStorageAfterDays(v int64) *Lifecycle {
 // items allowed in a request.
 type LimitExceededException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -8287,7 +8287,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8315,12 +8315,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListBackupJobsInput struct {
@@ -9616,7 +9616,7 @@ func (s *ListTagsOutput) SetTags(v map[string]*string) *ListTagsOutput {
 // Indicates that a required parameter is missing.
 type MissingParameterValueException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -9639,7 +9639,7 @@ func (s MissingParameterValueException) GoString() string {
 
 func newErrorMissingParameterValueException(v protocol.ResponseMetadata) error {
 	return &MissingParameterValueException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9667,12 +9667,12 @@ func (s MissingParameterValueException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MissingParameterValueException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MissingParameterValueException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains an optional backup plan display name and an array of BackupRule
@@ -10442,7 +10442,7 @@ func (s *RecoveryPointCreator) SetBackupRuleId(v string) *RecoveryPointCreator {
 // A resource that is required for the action doesn't exist.
 type ResourceNotFoundException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -10465,7 +10465,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10493,12 +10493,12 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains metadata about a restore job.
@@ -11034,7 +11034,7 @@ func (s *SelectionsListMember) SetSelectionName(v string) *SelectionsListMember 
 // The request failed due to a temporary failure of the server.
 type ServiceUnavailableException struct {
 	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	RespMetadata protocol.ResponseMetadata
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -11057,7 +11057,7 @@ func (s ServiceUnavailableException) GoString() string {
 
 func newErrorServiceUnavailableException(v protocol.ResponseMetadata) error {
 	return &ServiceUnavailableException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11085,12 +11085,12 @@ func (s ServiceUnavailableException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceUnavailableException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceUnavailableException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type StartBackupJobInput struct {
