@@ -1,3 +1,11 @@
+Release v1.29.28 (2020-03-19)
+===
+
+### Service Client Updates
+* `service/acm`: Updates service API and documentation
+  * AWS Certificate Manager documentation updated on API calls ImportCertificate and ListCertificate. Specific updates included input constraints, private key size for import and next token size for list.
+* `service/outposts`: Updates service documentation
+
 Release v1.29.27 (2020-03-18)
 ===
 

@@ -647,7 +647,7 @@
     },
     "NextToken":{
       "type":"string",
-      "max":320,
+      "max":10000,
       "min":1,
       "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]*"
     },
@@ -666,7 +666,7 @@
     },
     "PrivateKeyBlob":{
       "type":"blob",
-      "max":524288,
+      "max":5120,
       "min":1,
       "sensitive":true
     },

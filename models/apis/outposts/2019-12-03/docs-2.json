@@ -23,14 +23,14 @@
       }
     },
     "AvailabilityZone": {
-      "base": "<p>The Availability Zone.</p>",
+      "base": "<p>The Availability Zone.</p> <p>You must specify <code>AvailabilityZone</code> or <code>AvailabilityZoneId</code>.</p>",
       "refs": {
         "CreateOutpostInput$AvailabilityZone": null,
         "Outpost$AvailabilityZone": null
       }
     },
     "AvailabilityZoneId": {
-      "base": "<p>The ID of the Availability Zone.</p>",
+      "base": "<p>The ID of the Availability Zone.</p> <p>You must specify <code>AvailabilityZone</code> or <code>AvailabilityZoneId</code>.</p>",
       "refs": {
         "CreateOutpostInput$AvailabilityZoneId": null,
         "Outpost$AvailabilityZoneId": null
