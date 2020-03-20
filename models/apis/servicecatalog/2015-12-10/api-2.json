@@ -1339,7 +1339,9 @@
         "ConstraintId":{"shape":"Id"},
         "Type":{"shape":"ConstraintType"},
         "Description":{"shape":"ConstraintDescription"},
-        "Owner":{"shape":"AccountId"}
+        "Owner":{"shape":"AccountId"},
+        "ProductId":{"shape":"Id"},
+        "PortfolioId":{"shape":"Id"}
       }
     },
     "ConstraintDetails":{

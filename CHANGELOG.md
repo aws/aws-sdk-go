@@ -1,3 +1,10 @@
+Release v1.29.29 (2020-03-20)
+===
+
+### Service Client Updates
+* `service/servicecatalog`: Updates service API and documentation
+  * Added "productId" and "portfolioId" to responses from CreateConstraint, UpdateConstraint, ListConstraintsForPortfolio, and DescribeConstraint APIs
+
 Release v1.29.28 (2020-03-19)
 ===
 
