@@ -1007,6 +1007,8 @@
         "AssociateServiceActionWithProvisioningArtifactInput$ProvisioningArtifactId": "<p>The identifier of the provisioning artifact. For example, <code>pa-4abcdjnxjj6ne</code>.</p>",
         "AssociateServiceActionWithProvisioningArtifactInput$ServiceActionId": "<p>The self-service action identifier. For example, <code>act-fs7abcd89wxyz</code>.</p>",
         "ConstraintDetail$ConstraintId": "<p>The identifier of the constraint.</p>",
+        "ConstraintDetail$ProductId": "<p>The identifier of the product the constraint applies to. Note that a constraint applies to a specific instance of a product within a certain portfolio.</p>",
+        "ConstraintDetail$PortfolioId": "<p>The identifier of the portfolio the product resides in. The constraint applies only to the instance of the product that lives within this portfolio.</p>",
         "CopyProductInput$TargetProductId": "<p>The identifier of the target product. By default, a new product is created.</p>",
         "CopyProductOutput$CopyProductToken": "<p>The token to use to track the progress of the operation.</p>",
         "CreateConstraintInput$PortfolioId": "<p>The portfolio identifier.</p>",
