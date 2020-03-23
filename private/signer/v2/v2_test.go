@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"strconv"
 	"testing"
 	"time"
 
@@ -31,7 +32,7 @@ func (sb signerBuilder) BuildSigner() signer {
 		reader := bytes.NewReader(body)
 		req, _ = http.NewRequest(sb.Method, endpoint, reader)
 		req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
-		req.Header.Add("Content-Length", string(len(body)))
+		req.Header.Add("Content-Length", strconv.Itoa(len(body)))
 	} else {
 		req, _ = http.NewRequest(sb.Method, endpoint, nil)
 		req.URL.RawQuery = sb.Query.Encode()
