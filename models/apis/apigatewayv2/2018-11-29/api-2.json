@@ -2249,7 +2249,7 @@
           "locationName" : "templateSelectionExpression"
         },
         "TimeoutInMillis" : {
-          "shape" : "IntegerWithLengthBetween50And29000",
+          "shape" : "IntegerWithLengthBetween50And30000",
           "locationName" : "timeoutInMillis"
         },
         "TlsConfig" : {
@@ -2320,7 +2320,7 @@
           "locationName" : "templateSelectionExpression"
         },
         "TimeoutInMillis" : {
-          "shape" : "IntegerWithLengthBetween50And29000",
+          "shape" : "IntegerWithLengthBetween50And30000",
           "locationName" : "timeoutInMillis"
         },
         "TlsConfig" : {
@@ -2398,7 +2398,7 @@
           "locationName" : "templateSelectionExpression"
         },
         "TimeoutInMillis" : {
-          "shape" : "IntegerWithLengthBetween50And29000",
+          "shape" : "IntegerWithLengthBetween50And30000",
           "locationName" : "timeoutInMillis"
         },
         "TlsConfig" : {
@@ -3937,7 +3937,7 @@
           "locationName" : "templateSelectionExpression"
         },
         "TimeoutInMillis" : {
-          "shape" : "IntegerWithLengthBetween50And29000",
+          "shape" : "IntegerWithLengthBetween50And30000",
           "locationName" : "timeoutInMillis"
         },
         "TlsConfig" : {
@@ -4677,10 +4677,10 @@
       "min" : 0,
       "max" : 3600
     },
-    "IntegerWithLengthBetween50And29000" : {
+    "IntegerWithLengthBetween50And30000" : {
       "type" : "integer",
       "min" : 50,
-      "max" : 29000
+      "max" : 30000
     },
     "IntegerWithLengthBetweenMinus1And86400" : {
       "type" : "integer",
@@ -4755,7 +4755,7 @@
           "locationName" : "templateSelectionExpression"
         },
         "TimeoutInMillis" : {
-          "shape" : "IntegerWithLengthBetween50And29000",
+          "shape" : "IntegerWithLengthBetween50And30000",
           "locationName" : "timeoutInMillis"
         },
         "TlsConfig" : {
@@ -5944,7 +5944,7 @@
           "locationName" : "templateSelectionExpression"
         },
         "TimeoutInMillis" : {
-          "shape" : "IntegerWithLengthBetween50And29000",
+          "shape" : "IntegerWithLengthBetween50And30000",
           "locationName" : "timeoutInMillis"
         },
         "TlsConfig" : {
@@ -6019,7 +6019,7 @@
           "locationName" : "templateSelectionExpression"
         },
         "TimeoutInMillis" : {
-          "shape" : "IntegerWithLengthBetween50And29000",
+          "shape" : "IntegerWithLengthBetween50And30000",
           "locationName" : "timeoutInMillis"
         },
         "TlsConfig" : {
@@ -6097,7 +6097,7 @@
           "locationName" : "templateSelectionExpression"
         },
         "TimeoutInMillis" : {
-          "shape" : "IntegerWithLengthBetween50And29000",
+          "shape" : "IntegerWithLengthBetween50And30000",
           "locationName" : "timeoutInMillis"
         },
         "TlsConfig" : {

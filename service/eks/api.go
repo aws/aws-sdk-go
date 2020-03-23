@@ -452,7 +452,8 @@ func (c *EKS) DeleteClusterRequest(input *DeleteClusterInput) (req *request.Requ
 // in the Amazon EKS User Guide.
 //
 // If you have managed node groups or Fargate profiles attached to the cluster,
-// you must delete them first. For more information, see DeleteNodegroup andDeleteFargateProfile.
+// you must delete them first. For more information, see DeleteNodegroup and
+// DeleteFargateProfile.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3092,12 +3093,13 @@ type CreateNodegroupInput struct {
 	// are created.
 	Labels map[string]*string `locationName:"labels" type:"map"`
 
-	// The IAM role associated with your node group. The Amazon EKS worker node
-	// kubelet daemon makes calls to AWS APIs on your behalf. Worker nodes receive
-	// permissions for these API calls through an IAM instance profile and associated
-	// policies. Before you can launch worker nodes and register them into a cluster,
-	// you must create an IAM role for those worker nodes to use when they are launched.
-	// For more information, see Amazon EKS Worker Node IAM Role (https://docs.aws.amazon.com/eks/latest/userguide/worker_node_IAM_role.html)
+	// The Amazon Resource Name (ARN) of the IAM role to associate with your node
+	// group. The Amazon EKS worker node kubelet daemon makes calls to AWS APIs
+	// on your behalf. Worker nodes receive permissions for these API calls through
+	// an IAM instance profile and associated policies. Before you can launch worker
+	// nodes and register them into a cluster, you must create an IAM role for those
+	// worker nodes to use when they are launched. For more information, see Amazon
+	// EKS Worker Node IAM Role (https://docs.aws.amazon.com/eks/latest/userguide/worker_node_IAM_role.html)
 	// in the Amazon EKS User Guide .
 	//
 	// NodeRole is a required field
@@ -6744,6 +6746,9 @@ const (
 
 	// NodegroupIssueCodeIamInstanceProfileNotFound is a NodegroupIssueCode enum value
 	NodegroupIssueCodeIamInstanceProfileNotFound = "IamInstanceProfileNotFound"
+
+	// NodegroupIssueCodeIamLimitExceeded is a NodegroupIssueCode enum value
+	NodegroupIssueCodeIamLimitExceeded = "IamLimitExceeded"
 
 	// NodegroupIssueCodeIamNodeRoleNotFound is a NodegroupIssueCode enum value
 	NodegroupIssueCodeIamNodeRoleNotFound = "IamNodeRoleNotFound"
