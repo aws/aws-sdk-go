@@ -691,7 +691,7 @@ type {{ $.ShapeName }} struct {
 
 	{{- if $.Exception }}
 		{{- $_ := $.API.AddSDKImport "private/protocol" }}
-		RespMetadata protocol.ResponseMetadata
+		RespMetadata protocol.ResponseMetadata` + "`json:\"-\" xml:\"-\"`" + `
 	{{- end }}
 
 	{{- if $.OutputEventStreamAPI }}
