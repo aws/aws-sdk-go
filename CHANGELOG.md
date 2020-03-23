@@ -1,3 +1,13 @@
+Release v1.29.30 (2020-03-23)
+===
+
+### Service Client Updates
+* `service/apigatewayv2`: Updates service API and documentation
+  * Documentation updates to reflect that the default timeout for integrations is now 30 seconds for HTTP APIs.
+* `service/eks`: Updates service API and documentation
+* `service/route53`: Updates service documentation
+  * Documentation updates for Route 53.
+
 Release v1.29.29 (2020-03-20)
 ===
 
