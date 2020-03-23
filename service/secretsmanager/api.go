@@ -2874,8 +2874,8 @@ func (s *CreateSecretOutput) SetVersionId(v string) *CreateSecretOutput {
 // Secrets Manager can't decrypt the protected secret text using the provided
 // KMS key.
 type DecryptionFailure struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3371,8 +3371,8 @@ func (s *DescribeSecretOutput) SetVersionIdsToStages(v map[string][]*string) *De
 // and not in an invalid state. For more information, see How Key State Affects
 // Use of a Customer Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html).
 type EncryptionFailure struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3865,8 +3865,8 @@ func (s *GetSecretValueOutput) SetVersionStages(v []*string) *GetSecretValueOutp
 
 // An error occurred on the server side.
 type InternalServiceError struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3921,8 +3921,8 @@ func (s InternalServiceError) RequestID() string {
 
 // You provided an invalid NextToken value.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3977,8 +3977,8 @@ func (s InvalidNextTokenException) RequestID() string {
 
 // You provided an invalid value for a parameter.
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4043,8 +4043,8 @@ func (s InvalidParameterException) RequestID() string {
 //    Lambda function ARN configured and you didn't include such an ARN as a
 //    parameter in this call.
 type InvalidRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4100,8 +4100,8 @@ func (s InvalidRequestException) RequestID() string {
 // The request failed because it would exceed one of the Secrets Manager internal
 // limits.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4417,8 +4417,8 @@ func (s *ListSecretsOutput) SetSecretList(v []*SecretListEntry) *ListSecretsOutp
 
 // The policy document that you provided isn't valid.
 type MalformedPolicyDocumentException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4473,8 +4473,8 @@ func (s MalformedPolicyDocumentException) RequestID() string {
 
 // The request failed because you did not complete all the prerequisite steps.
 type PreconditionNotMetException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4856,8 +4856,8 @@ func (s *PutSecretValueOutput) SetVersionStages(v []*string) *PutSecretValueOutp
 
 // A resource with the ID you requested already exists.
 type ResourceExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4912,8 +4912,8 @@ func (s ResourceExistsException) RequestID() string {
 
 // We can't find the resource that you asked for.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

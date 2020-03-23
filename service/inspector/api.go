@@ -4027,8 +4027,8 @@ func (c *Inspector) UpdateAssessmentTargetWithContext(ctx aws.Context, input *Up
 
 // You do not have required permissions to access the requested resource.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// You can immediately retry your request.
 	//
@@ -4373,8 +4373,8 @@ func (s *AgentPreview) SetOperatingSystem(v string) *AgentPreview {
 // You started an assessment run, but one of the instances is already participating
 // in another assessment run.
 type AgentsAlreadyRunningAssessmentException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Agents is a required field
 	Agents []*AgentAlreadyRunningAssessment `locationName:"agents" min:"1" type:"list" required:"true"`
@@ -4827,8 +4827,8 @@ func (s *AssessmentRunFilter) SetStates(v []*string) *AssessmentRunFilter {
 // You cannot perform a specified action if an assessment run is currently in
 // progress.
 type AssessmentRunInProgressException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The ARNs of the assessment runs that are currently in progress.
 	//
@@ -7529,8 +7529,8 @@ func (s *GetTelemetryMetadataOutput) SetTelemetryMetadata(v []*TelemetryMetadata
 
 // Internal server error.
 type InternalException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// You can immediately retry your request.
 	//
@@ -7592,8 +7592,8 @@ func (s InternalException) RequestID() string {
 // Amazon Inspector cannot assume the cross-account role that it needs to list
 // your EC2 instances during the assessment run.
 type InvalidCrossAccountRoleException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// You can immediately retry your request.
 	//
@@ -7660,8 +7660,8 @@ func (s InvalidCrossAccountRoleException) RequestID() string {
 // The request was rejected because an invalid or out-of-range value was supplied
 // for an input parameter.
 type InvalidInputException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// You can immediately retry your request.
 	//
@@ -7728,8 +7728,8 @@ func (s InvalidInputException) RequestID() string {
 // The request was rejected because it attempted to create resources beyond
 // the current AWS account limits. The error code describes the limit exceeded.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// You can immediately retry your request.
 	//
@@ -8834,8 +8834,8 @@ func (s *NetworkInterface) SetVpcId(v string) *NetworkInterface {
 // The request was rejected because it referenced an entity that does not exist.
 // The error code describes the entity.
 type NoSuchEntityException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// You can immediately retry your request.
 	//
@@ -9005,8 +9005,8 @@ func (s *PreviewAgentsOutput) SetNextToken(v string) *PreviewAgentsOutput {
 // The request is rejected. The specified assessment template is currently generating
 // an exclusions preview.
 type PreviewGenerationInProgressException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9520,8 +9520,8 @@ func (s *ServiceAttributes) SetSchemaVersion(v int64) *ServiceAttributes {
 
 // The serice is temporary unavailable.
 type ServiceTemporarilyUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// You can wait and then retry your request.
 	//
@@ -10171,8 +10171,8 @@ func (s UnsubscribeFromEventOutput) GoString() string {
 // runs that took place or will take place after generating reports in Amazon
 // Inspector became available.
 type UnsupportedFeatureException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// CanRetry is a required field
 	CanRetry *bool `locationName:"canRetry" type:"boolean" required:"true"`

@@ -15280,8 +15280,8 @@ func (s *CompilationJobSummary) SetLastModifiedTime(v time.Time) *CompilationJob
 // There was a conflict when you attempted to modify an experiment, trial, or
 // trial component.
 type ConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -39254,8 +39254,8 @@ func (s *ResourceConfig) SetVolumeSizeInGB(v int64) *ResourceConfig {
 
 // Resource being accessed is in use.
 type ResourceInUse struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -39311,8 +39311,8 @@ func (s ResourceInUse) RequestID() string {
 // You have exceeded an Amazon SageMaker resource limit. For example, you might
 // have too many training jobs created.
 type ResourceLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -39429,8 +39429,8 @@ func (s *ResourceLimits) SetMaxParallelTrainingJobs(v int64) *ResourceLimits {
 
 // Resource being access is not found.
 type ResourceNotFound struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

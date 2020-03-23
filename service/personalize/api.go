@@ -8516,8 +8516,8 @@ func (s *IntegerHyperParameterRange) SetName(v string) *IntegerHyperParameterRan
 
 // Provide a valid value for the field or parameter.
 type InvalidInputException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8572,8 +8572,8 @@ func (s InvalidInputException) RequestID() string {
 
 // The token is not valid.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8628,8 +8628,8 @@ func (s InvalidNextTokenException) RequestID() string {
 
 // The limit on the number of requests per second has been exceeded.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9708,8 +9708,8 @@ func (s *RecipeSummary) SetStatus(v string) *RecipeSummary {
 
 // The specified resource already exists.
 type ResourceAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9764,8 +9764,8 @@ func (s ResourceAlreadyExistsException) RequestID() string {
 
 // The specified resource is in use.
 type ResourceInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9820,8 +9820,8 @@ func (s ResourceInUseException) RequestID() string {
 
 // Could not find the specified resource.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

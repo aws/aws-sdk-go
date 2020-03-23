@@ -638,8 +638,8 @@ func (c *LexRuntimeService) PutSessionWithContext(ctx aws.Context, input *PutSes
 // Either the Amazon Lex bot is still building, or one of the dependent services
 // (Amazon Polly, AWS Lambda) failed with an internal service error.
 type BadGatewayException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -695,8 +695,8 @@ func (s BadGatewayException) RequestID() string {
 // Request validation failed, there is no usable message in the context, or
 // the bot build failed, is still in progress, or contains unbuilt changes.
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -791,8 +791,8 @@ func (s *Button) SetValue(v string) *Button {
 
 // Two clients are using the same AWS account, Amazon Lex bot, and user ID.
 type ConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -981,8 +981,8 @@ func (s *DeleteSessionOutput) SetUserId(v string) *DeleteSessionOutput {
 //    * If a fulfillment Lambda function returns a Delegate dialog action without
 //    removing any slot values.
 type DependencyFailedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1518,8 +1518,8 @@ func (s *IntentSummary) SetSlots(v map[string]*string) *IntentSummary {
 
 // Internal service error. Retry the call.
 type InternalFailureException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1574,8 +1574,8 @@ func (s InternalFailureException) RequestID() string {
 
 // Exceeded a limit.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -1632,8 +1632,8 @@ func (s LimitExceededException) RequestID() string {
 
 // This exception is not used.
 type LoopDetectedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1688,8 +1688,8 @@ func (s LoopDetectedException) RequestID() string {
 
 // The accept header in the request does not have a valid value.
 type NotAcceptableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1745,8 +1745,8 @@ func (s NotAcceptableException) RequestID() string {
 // The resource (such as the Amazon Lex bot or an alias) that is referred to
 // is not found.
 type NotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2838,8 +2838,8 @@ func (s *PutSessionOutput) SetSlots(v aws.JSONValue) *PutSessionOutput {
 
 // The input speech is too long.
 type RequestTimeoutException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2976,8 +2976,8 @@ func (s *SentimentResponse) SetSentimentScore(v string) *SentimentResponse {
 
 // The Content-Type header (PostContent API) has an invalid value.
 type UnsupportedMediaTypeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

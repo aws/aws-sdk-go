@@ -124,8 +124,8 @@ func (c *SageMakerRuntime) InvokeEndpointWithContext(ctx aws.Context, input *Inv
 
 // An internal failure occurred.
 type InternalFailure struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -357,8 +357,8 @@ func (s *InvokeEndpointOutput) SetInvokedProductionVariant(v string) *InvokeEndp
 // Model (owned by the customer in the container) returned 4xx or 5xx error
 // code.
 type ModelError struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The Amazon Resource Name (ARN) of the log stream.
 	LogStreamArn *string `type:"string"`
@@ -422,8 +422,8 @@ func (s ModelError) RequestID() string {
 
 // The service is unavailable. Try your call again.
 type ServiceUnavailable struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -478,8 +478,8 @@ func (s ServiceUnavailable) RequestID() string {
 
 // Inspect your request and try again.
 type ValidationError struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

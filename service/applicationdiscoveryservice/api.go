@@ -2901,8 +2901,8 @@ func (s AssociateConfigurationItemsToApplicationOutput) GoString() string {
 // The AWS user account does not have permission to perform the action. Check
 // the IAM policy associated with this account.
 type AuthorizationErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3128,8 +3128,8 @@ func (s *ConfigurationTag) SetValue(v string) *ConfigurationTag {
 }
 
 type ConflictErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4874,8 +4874,8 @@ func (s *GetDiscoverySummaryOutput) SetServersMappedtoTags(v int64) *GetDiscover
 
 // The home region is not set. Set the home region to continue.
 type HomeRegionNotSetException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5141,8 +5141,8 @@ func (s *ImportTaskFilter) SetValues(v []*string) *ImportTaskFilter {
 
 // One or more parameters are not valid. Verify the parameters and try again.
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5198,8 +5198,8 @@ func (s InvalidParameterException) RequestID() string {
 // The value of one or more parameters are either invalid or out of range. Verify
 // the parameter values and try again.
 type InvalidParameterValueException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5588,8 +5588,8 @@ func (s *NeighborConnectionDetail) SetTransportProtocol(v string) *NeighborConne
 
 // This operation is not permitted.
 type OperationNotPermittedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5696,8 +5696,8 @@ func (s *OrderByElement) SetSortOrder(v string) *OrderByElement {
 // the import tasks are meant to be different, use a different clientRequestToken,
 // and try again.
 type ResourceInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5753,8 +5753,8 @@ func (s ResourceInUseException) RequestID() string {
 // The specified configuration ID was not located. Verify the configuration
 // ID and try again.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5809,8 +5809,8 @@ func (s ResourceNotFoundException) RequestID() string {
 
 // The server experienced an internal error. Try again.
 type ServerInternalErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

@@ -159,8 +159,8 @@ func (s *GetRawMessageContentOutput) SetMessageContent(v io.ReadCloser) *GetRawM
 
 // The requested email message is not found.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

@@ -4855,8 +4855,8 @@ func (c *SESV2) UpdateConfigurationSetEventDestinationWithContext(ctx aws.Contex
 // The message can't be sent because the account's ability to send email has
 // been permanently restricted.
 type AccountSuspendedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4911,8 +4911,8 @@ func (s AccountSuspendedException) RequestID() string {
 
 // The resource specified in your request already exists.
 type AlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4967,8 +4967,8 @@ func (s AlreadyExistsException) RequestID() string {
 
 // The input you provided is invalid.
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5261,8 +5261,8 @@ func (s *CloudWatchDimensionConfiguration) SetDimensionValueSource(v string) *Cl
 
 // The resource is being modified by another operation or thread.
 type ConcurrentModificationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8456,8 +8456,8 @@ func (s *InboxPlacementTrackingOption) SetTrackedIsps(v []*string) *InboxPlaceme
 
 // The specified request includes an invalid or expired token.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8603,8 +8603,8 @@ func (s *KinesisFirehoseDestination) SetIamRoleArn(v string) *KinesisFirehoseDes
 
 // There are too many instances of the specified resource type.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9341,8 +9341,8 @@ func (s *MailFromAttributes) SetMailFromDomainStatus(v string) *MailFromAttribut
 
 // The message can't be sent because the sending domain isn't verified.
 type MailFromDomainNotVerifiedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9464,8 +9464,8 @@ func (s *Message) SetSubject(v *Content) *Message {
 
 // The message can't be sent because it contains invalid content.
 type MessageRejected struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9586,8 +9586,8 @@ func (s *MessageTag) SetValue(v string) *MessageTag {
 
 // The resource you attempted to access doesn't exist.
 type NotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11292,8 +11292,8 @@ func (s *SendingOptions) SetSendingEnabled(v bool) *SendingOptions {
 // The message can't be sent because the account's ability to send email is
 // currently paused.
 type SendingPausedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11807,8 +11807,8 @@ func (s *Template) SetTemplateData(v string) *Template {
 
 // Too many requests have been made to the operation.
 type TooManyRequestsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

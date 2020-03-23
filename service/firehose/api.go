@@ -1470,8 +1470,8 @@ func (s *CloudWatchLoggingOptions) SetLogStreamName(v string) *CloudWatchLogging
 // Another modification has already happened. Fetch VersionId again and use
 // it to update the destination.
 type ConcurrentModificationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message that provides information about the error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -3693,8 +3693,8 @@ func (s *InputFormatConfiguration) SetDeserializer(v *Deserializer) *InputFormat
 
 // The specified input parameter has a value that is not valid.
 type InvalidArgumentException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message that provides information about the error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -3753,8 +3753,8 @@ func (s InvalidArgumentException) RequestID() string {
 // KMS service throws one of the following exception types: AccessDeniedException,
 // InvalidStateException, DisabledException, or NotFoundException.
 type InvalidKMSResourceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"code" type:"string"`
 
@@ -3964,8 +3964,8 @@ func (s *KinesisStreamSourceDescription) SetRoleARN(v string) *KinesisStreamSour
 
 // You have already reached the limit for a requested resource.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message that provides information about the error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -5540,8 +5540,8 @@ func (s *RedshiftRetryOptions) SetDurationInSeconds(v int64) *RedshiftRetryOptio
 
 // The resource is already in use and not available for this operation.
 type ResourceInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message that provides information about the error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -5597,8 +5597,8 @@ func (s ResourceInUseException) RequestID() string {
 
 // The specified resource could not be found.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message that provides information about the error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -6161,8 +6161,8 @@ func (s *Serializer) SetParquetSerDe(v *ParquetSerDe) *Serializer {
 // been exceeded. For more information about limits and how to request an increase,
 // see Amazon Kinesis Data Firehose Limits (https://docs.aws.amazon.com/firehose/latest/dev/limits.html).
 type ServiceUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message that provides information about the error.
 	Message_ *string `locationName:"message" type:"string"`

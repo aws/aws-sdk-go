@@ -2161,8 +2161,8 @@ func (c *ManagedBlockchain) VoteOnProposalWithContext(ctx aws.Context, input *Vo
 
 // You do not have sufficient access to perform this action.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3313,8 +3313,8 @@ func (s *GetProposalOutput) SetProposal(v *Proposal) *GetProposalOutput {
 }
 
 type IllegalActionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3370,8 +3370,8 @@ func (s IllegalActionException) RequestID() string {
 // The request processing has failed because of an unknown error, exception
 // or failure.
 type InternalServiceErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3427,8 +3427,8 @@ func (s InternalServiceErrorException) RequestID() string {
 // The action or operation requested is invalid. Verify that the action is typed
 // correctly.
 type InvalidRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -5650,8 +5650,8 @@ func (s *RemoveAction) SetMemberId(v string) *RemoveAction {
 
 // A resource request is issued for a resource that already exists.
 type ResourceAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -5708,8 +5708,8 @@ func (s ResourceAlreadyExistsException) RequestID() string {
 // requested are within the boundaries of the service edition and your account
 // limits.
 type ResourceLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -5765,8 +5765,8 @@ func (s ResourceLimitExceededException) RequestID() string {
 // A requested resource does not exist on the network. It may have been deleted
 // or referenced inaccurately.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -5822,8 +5822,8 @@ func (s ResourceNotFoundException) RequestID() string {
 // The requested resource exists but is not in a status that can complete the
 // operation.
 type ResourceNotReadyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -5881,8 +5881,8 @@ func (s ResourceNotReadyException) RequestID() string {
 // such that your service limit for EC2 instances is exceeded. Request a limit
 // increase or delete unused resources if possible.
 type ThrottlingException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

@@ -5569,8 +5569,8 @@ func (s *AcceptSharedDirectoryOutput) SetSharedDirectory(v *SharedDirectory) *Ac
 
 // You do not have sufficient access to perform this action.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -5872,8 +5872,8 @@ func (s *Attribute) SetValue(v string) *Attribute {
 
 // An authentication error occurred.
 type AuthenticationFailedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The textual message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -6067,8 +6067,8 @@ func (s *Certificate) SetStateReason(v string) *Certificate {
 
 // The certificate has already been registered into the system.
 type CertificateAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -6127,8 +6127,8 @@ func (s CertificateAlreadyExistsException) RequestID() string {
 
 // The certificate is not present in the system for describe or deregister activities.
 type CertificateDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -6188,8 +6188,8 @@ func (s CertificateDoesNotExistException) RequestID() string {
 // The certificate is being used for the LDAP security connection and cannot
 // be removed without disabling LDAP security.
 type CertificateInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -6300,8 +6300,8 @@ func (s *CertificateInfo) SetState(v string) *CertificateInfo {
 // The certificate could not be added because the certificate limit has been
 // reached.
 type CertificateLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -6360,8 +6360,8 @@ func (s CertificateLimitExceededException) RequestID() string {
 
 // A client exception has occurred.
 type ClientException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -8813,8 +8813,8 @@ func (s *DescribeTrustsOutput) SetTrusts(v []*Trust) *DescribeTrustsOutput {
 
 // The specified directory has already been shared with this AWS account.
 type DirectoryAlreadySharedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -9284,8 +9284,8 @@ func (s *DirectoryDescription) SetVpcSettings(v *DirectoryVpcSettingsDescription
 
 // The specified directory does not exist in the system.
 type DirectoryDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -9346,8 +9346,8 @@ func (s DirectoryDoesNotExistException) RequestID() string {
 // use the GetDirectoryLimits operation to determine your directory limits in
 // the region.
 type DirectoryLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -9503,8 +9503,8 @@ func (s *DirectoryLimits) SetConnectedDirectoriesLimitReached(v bool) *Directory
 
 // The specified directory has not been shared with this AWS account.
 type DirectoryNotSharedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -9563,8 +9563,8 @@ func (s DirectoryNotSharedException) RequestID() string {
 
 // The specified directory is unavailable or could not be found.
 type DirectoryUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -10043,8 +10043,8 @@ func (s *DomainController) SetVpcId(v string) *DomainController {
 // The maximum allowed number of domain controllers per directory was exceeded.
 // The default limit per directory is 20 domain controllers.
 type DomainControllerLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -10330,8 +10330,8 @@ func (s EnableSsoOutput) GoString() string {
 
 // The specified entity already exists.
 type EntityAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -10390,8 +10390,8 @@ func (s EntityAlreadyExistsException) RequestID() string {
 
 // The specified entity could not be found.
 type EntityDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -10615,8 +10615,8 @@ func (s *GetSnapshotLimitsOutput) SetSnapshotLimits(v *SnapshotLimits) *GetSnaps
 
 // The account does not have sufficient permission to perform the operation.
 type InsufficientPermissionsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -10675,8 +10675,8 @@ func (s InsufficientPermissionsException) RequestID() string {
 
 // The certificate PEM that was provided has incorrect encoding.
 type InvalidCertificateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -10736,8 +10736,8 @@ func (s InvalidCertificateException) RequestID() string {
 // The LDAP activities could not be performed because they are limited by the
 // LDAPS status.
 type InvalidLDAPSStatusException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -10796,8 +10796,8 @@ func (s InvalidLDAPSStatusException) RequestID() string {
 
 // The NextToken value is not valid.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -10856,8 +10856,8 @@ func (s InvalidNextTokenException) RequestID() string {
 
 // One or more parameters are not valid.
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -10917,8 +10917,8 @@ func (s InvalidParameterException) RequestID() string {
 // The new password provided by the user does not meet the password complexity
 // requirements defined in your directory.
 type InvalidPasswordException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -10977,8 +10977,8 @@ func (s InvalidPasswordException) RequestID() string {
 
 // The specified shared target is not valid.
 type InvalidTargetException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -11143,8 +11143,8 @@ func (s *IpRouteInfo) SetIpRouteStatusReason(v string) *IpRouteInfo {
 // The maximum allowed number of IP addresses was exceeded. The default limit
 // is 100 IP address blocks.
 type IpRouteLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -11734,8 +11734,8 @@ func (s *LogSubscription) SetSubscriptionCreatedDateTime(v time.Time) *LogSubscr
 // The LDAP activities could not be performed because at least one valid certificate
 // must be registered with the system.
 type NoAvailableCertificateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -11794,8 +11794,8 @@ func (s NoAvailableCertificateException) RequestID() string {
 
 // Exception encountered while trying to access your AWS organization.
 type OrganizationsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -12603,8 +12603,8 @@ func (s *SchemaExtensionInfo) SetStartDateTime(v time.Time) *SchemaExtensionInfo
 
 // An exception has occurred in AWS Directory Service.
 type ServiceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -12774,8 +12774,8 @@ func (s *ShareDirectoryOutput) SetSharedDirectoryId(v string) *ShareDirectoryOut
 // The maximum number of AWS accounts that you can share with this directory
 // has been reached.
 type ShareLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -13065,8 +13065,8 @@ func (s *Snapshot) SetType(v string) *Snapshot {
 // You can use the GetSnapshotLimits operation to determine the snapshot limits
 // for a directory.
 type SnapshotLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -13337,8 +13337,8 @@ func (s *Tag) SetValue(v string) *Tag {
 
 // The maximum allowed number of tags was exceeded.
 type TagLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -13653,8 +13653,8 @@ func (s *UnshareTarget) SetType(v string) *UnshareTarget {
 
 // The operation is not supported.
 type UnsupportedOperationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -14020,8 +14020,8 @@ func (s *UpdateTrustOutput) SetTrustId(v string) *UpdateTrustOutput {
 
 // The user provided a username that does not exist in your directory.
 type UserDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`

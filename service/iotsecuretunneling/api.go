@@ -846,8 +846,8 @@ func (s *DestinationConfig) SetThingName(v string) *DestinationConfig {
 
 // Thrown when a tunnel limit is exceeded.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1190,8 +1190,8 @@ func (s *OpenTunnelOutput) SetTunnelId(v string) *OpenTunnelOutput {
 
 // Thrown when an operation is attempted on a resource that does not exist.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

@@ -3905,8 +3905,8 @@ func (s *DemodulationConfig) SetUnvalidatedJSON(v string) *DemodulationConfig {
 
 // Dependency encountered an error.
 type DependencyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -4965,8 +4965,8 @@ func (s *GetSatelliteOutput) SetSatelliteId(v string) *GetSatelliteOutput {
 
 // One or more parameters are not valid.
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -5748,8 +5748,8 @@ func (s *ReserveContactOutput) SetContactId(v string) *ReserveContactOutput {
 
 // Account limits for this resource have been exceeded.
 type ResourceLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -5806,8 +5806,8 @@ func (s ResourceLimitExceededException) RequestID() string {
 
 // Resource was not found.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

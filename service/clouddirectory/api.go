@@ -8720,8 +8720,8 @@ func (c *CloudDirectory) UpgradePublishedSchemaWithContext(ctx aws.Context, inpu
 
 // Access denied. Check your permissions.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12824,8 +12824,8 @@ func (s *BatchUpdateObjectAttributesResponse) SetObjectIdentifier(v string) *Bat
 
 // A BatchWrite exception has occurred.
 type BatchWriteException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Index *int64 `type:"integer"`
 
@@ -13363,8 +13363,8 @@ func (s *BatchWriteOutput) SetResponses(v []*BatchWriteOperationResponse) *Batch
 
 // Cannot list the parents of a Directory root.
 type CannotListParentOfRootException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14763,8 +14763,8 @@ func (s *Directory) SetState(v string) *Directory {
 // Indicates that a Directory could not be created due to a naming conflict.
 // Choose a different name and try again.
 type DirectoryAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14820,8 +14820,8 @@ func (s DirectoryAlreadyExistsException) RequestID() string {
 // A directory that has been deleted and to which access has been attempted.
 // Note: The requested resource will eventually cease to exist.
 type DirectoryDeletedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14876,8 +14876,8 @@ func (s DirectoryDeletedException) RequestID() string {
 
 // An operation can only operate on a disabled directory.
 type DirectoryNotDisabledException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14932,8 +14932,8 @@ func (s DirectoryNotDisabledException) RequestID() string {
 
 // Operations are only permitted on enabled directories.
 type DirectoryNotEnabledException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -15161,8 +15161,8 @@ func (s *Facet) SetObjectType(v string) *Facet {
 
 // A facet with the same name already exists.
 type FacetAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -15480,8 +15480,8 @@ func (s *FacetAttributeUpdate) SetAttribute(v *FacetAttribute) *FacetAttributeUp
 // Occurs when deleting a facet that contains an attribute that is a target
 // to an attribute reference in a different facet.
 type FacetInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -15536,8 +15536,8 @@ func (s FacetInUseException) RequestID() string {
 
 // The specified Facet could not be found.
 type FacetNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -15593,8 +15593,8 @@ func (s FacetNotFoundException) RequestID() string {
 // The Facet that you provided was not well formed or could not be validated
 // with the schema.
 type FacetValidationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -16326,8 +16326,8 @@ func (s *GetTypedLinkFacetInformationOutput) SetIdentityAttributeOrder(v []*stri
 // between the specified schema and the schema that is currently applied to
 // the directory.
 type IncompatibleSchemaException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -16419,8 +16419,8 @@ func (s *IndexAttachment) SetObjectIdentifier(v string) *IndexAttachment {
 // An object has been attempted to be attached to an object that does not have
 // the appropriate attribute value.
 type IndexedAttributeMissingException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -16478,8 +16478,8 @@ func (s IndexedAttributeMissingException) RequestID() string {
 // Otherwise, go to the AWS Service Health Dashboard (http://status.aws.amazon.com/)
 // site to see if there are any operational issues with the service.
 type InternalServiceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -16534,8 +16534,8 @@ func (s InternalServiceException) RequestID() string {
 
 // Indicates that the provided ARN value is not valid.
 type InvalidArnException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -16592,8 +16592,8 @@ func (s InvalidArnException) RequestID() string {
 // attaching two nodes with a link type that is not applicable to the nodes
 // or attempting to apply a schema to a directory a second time.
 type InvalidAttachmentException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -16648,8 +16648,8 @@ func (s InvalidAttachmentException) RequestID() string {
 
 // An attempt to modify a Facet resulted in an invalid schema exception.
 type InvalidFacetUpdateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -16704,8 +16704,8 @@ func (s InvalidFacetUpdateException) RequestID() string {
 
 // Indicates that the NextToken value is not valid.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -16760,8 +16760,8 @@ func (s InvalidNextTokenException) RequestID() string {
 
 // Occurs when any of the rule parameter keys or values are invalid.
 type InvalidRuleException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -16816,8 +16816,8 @@ func (s InvalidRuleException) RequestID() string {
 
 // Indicates that the provided SchemaDoc value is not valid.
 type InvalidSchemaDocException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -16874,8 +16874,8 @@ func (s InvalidSchemaDocException) RequestID() string {
 // exist or if you specify a higher number of tags for a resource than the allowed
 // limit. Allowed limit is 50 tags per resource.
 type InvalidTaggingRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -16931,8 +16931,8 @@ func (s InvalidTaggingRequestException) RequestID() string {
 // Indicates that limits are exceeded. See Limits (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/limits.html)
 // for more information.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -17070,8 +17070,8 @@ func (s *LinkAttributeUpdate) SetAttributeKey(v *AttributeKey) *LinkAttributeUpd
 // Indicates that a link could not be created due to a naming conflict. Choose
 // a different name and then try again.
 type LinkNameAlreadyInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -19451,8 +19451,8 @@ func (s *LookupPolicyOutput) SetPolicyToPathList(v []*PolicyToPath) *LookupPolic
 
 // Indicates that the requested operation can only operate on index objects.
 type NotIndexException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -19508,8 +19508,8 @@ func (s NotIndexException) RequestID() string {
 // Occurs when any invalid operations are performed on an object that is not
 // a node, such as calling ListObjectChildren for a leaf node object.
 type NotNodeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -19564,8 +19564,8 @@ func (s NotNodeException) RequestID() string {
 
 // Indicates that the requested operation can only operate on policy objects.
 type NotPolicyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -19620,8 +19620,8 @@ func (s NotPolicyException) RequestID() string {
 
 // Indicates that the object is not attached to the index.
 type ObjectAlreadyDetachedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -19844,8 +19844,8 @@ func (s *ObjectIdentifierAndLinkNameTuple) SetObjectIdentifier(v string) *Object
 // Indicates that the requested operation cannot be completed because the object
 // has not been detached from the tree.
 type ObjectNotDetachedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -20318,8 +20318,8 @@ func (s RemoveFacetFromObjectOutput) GoString() string {
 
 // The specified resource could not be found.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -20379,8 +20379,8 @@ func (s ResourceNotFoundException) RequestID() string {
 // to propagate to the host serving the current request. A retry (with appropriate
 // backoff logic) is the recommended response to this exception.
 type RetryableConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -20470,8 +20470,8 @@ func (s *Rule) SetType(v string) *Rule {
 // Indicates that a schema could not be created due to a naming conflict. Please
 // select a different name and then try again.
 type SchemaAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -20526,8 +20526,8 @@ func (s SchemaAlreadyExistsException) RequestID() string {
 
 // Indicates that a schema is already published.
 type SchemaAlreadyPublishedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -20631,8 +20631,8 @@ func (s *SchemaFacet) SetSchemaArn(v string) *SchemaFacet {
 // The object could not be deleted because links still exist. Remove the links
 // and then try the operation again.
 type StillContainsLinksException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -21373,8 +21373,8 @@ func (s *TypedLinkSpecifier) SetTypedLinkFacet(v *TypedLinkSchemaAndFacetName) *
 
 // Indicates that the requested index type is not supported.
 type UnsupportedIndexTypeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -22187,8 +22187,8 @@ func (s *UpgradePublishedSchemaOutput) SetUpgradedSchemaArn(v string) *UpgradePu
 // Indicates that your request is malformed in some manner. See the exception
 // message.
 type ValidationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

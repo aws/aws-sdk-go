@@ -502,8 +502,8 @@ func eventTypeForAudioStreamEvent(event eventstreamapi.Marshaler) (string, error
 // For example, MediaEncoding was not set to pcm or LanguageCode was not set
 // to a valid code. Check the parameters and try your request again.
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -586,8 +586,8 @@ func (s BadRequestException) RequestID() string {
 // A new stream started with the same session ID. The current stream has been
 // terminated.
 type ConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -670,8 +670,8 @@ func (s ConflictException) RequestID() string {
 // A problem occurred while processing the audio. Amazon Transcribe terminated
 // processing. Try your request again.
 type InternalFailureException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -811,8 +811,8 @@ func (s *Item) SetType(v string) *Item {
 // of 4 hours. Wait until a stream has finished processing, or break your audio
 // stream into smaller chunks and try your request again.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

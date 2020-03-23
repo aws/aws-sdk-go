@@ -4951,8 +4951,8 @@ func (c *DatabaseMigrationService) TestConnectionWithContext(ctx aws.Context, in
 // AWS DMS was denied access to the endpoint. Check that the role is correctly
 // configured.
 type AccessDeniedFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9485,8 +9485,8 @@ func (s *ImportCertificateOutput) SetCertificate(v *Certificate) *ImportCertific
 
 // There are not enough resources allocated to the database migration.
 type InsufficientResourceCapacityFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9541,8 +9541,8 @@ func (s InsufficientResourceCapacityFault) RequestID() string {
 
 // The certificate was not valid.
 type InvalidCertificateFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9598,8 +9598,8 @@ func (s InvalidCertificateFault) RequestID() string {
 // The resource is in a state that prevents it from being used for database
 // migration.
 type InvalidResourceStateFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9654,8 +9654,8 @@ func (s InvalidResourceStateFault) RequestID() string {
 
 // The subnet provided is invalid.
 type InvalidSubnet struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9711,8 +9711,8 @@ func (s InvalidSubnet) RequestID() string {
 // The ciphertext references a key that doesn't exist or that the DMS account
 // doesn't have access to.
 type KMSAccessDeniedFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9767,8 +9767,8 @@ func (s KMSAccessDeniedFault) RequestID() string {
 
 // The specified master key (CMK) isn't enabled.
 type KMSDisabledFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9823,8 +9823,8 @@ func (s KMSDisabledFault) RequestID() string {
 
 // The state of the specified AWS KMS resource isn't valid for this request.
 type KMSInvalidStateFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9879,8 +9879,8 @@ func (s KMSInvalidStateFault) RequestID() string {
 
 // AWS DMS cannot access the AWS KMS key.
 type KMSKeyNotAccessibleFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9935,8 +9935,8 @@ func (s KMSKeyNotAccessibleFault) RequestID() string {
 
 // The specified AWS KMS entity or resource can't be found.
 type KMSNotFoundFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9991,8 +9991,8 @@ func (s KMSNotFoundFault) RequestID() string {
 
 // This request triggered AWS KMS request throttling.
 type KMSThrottlingFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12501,8 +12501,8 @@ func (s *ReplicationSubnetGroup) SetVpcId(v string) *ReplicationSubnetGroup {
 // The replication subnet group does not cover enough Availability Zones (AZs).
 // Edit the replication subnet group and add more AZs.
 type ReplicationSubnetGroupDoesNotCoverEnoughAZs struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12949,8 +12949,8 @@ func (s *ReplicationTaskStats) SetTablesQueued(v int64) *ReplicationTaskStats {
 
 // The resource you are attempting to create already exists.
 type ResourceAlreadyExistsFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -13007,8 +13007,8 @@ func (s ResourceAlreadyExistsFault) RequestID() string {
 
 // The resource could not be found.
 type ResourceNotFoundFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13099,8 +13099,8 @@ func (s *ResourcePendingMaintenanceActions) SetResourceIdentifier(v string) *Res
 
 // The quota for this resource quota has been exceeded.
 type ResourceQuotaExceededFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13529,8 +13529,8 @@ func (s *S3Settings) SetTimestampColumnName(v string) *S3Settings {
 
 // The SNS topic is invalid.
 type SNSInvalidTopicFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13585,8 +13585,8 @@ func (s SNSInvalidTopicFault) RequestID() string {
 
 // You are not authorized for the SNS subscription.
 type SNSNoAuthorizationFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13891,8 +13891,8 @@ func (s *StopReplicationTaskOutput) SetReplicationTask(v *ReplicationTask) *Stop
 
 // The storage quota has been exceeded.
 type StorageQuotaExceededFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13991,8 +13991,8 @@ func (s *Subnet) SetSubnetStatus(v string) *Subnet {
 
 // The specified subnet is already in use.
 type SubnetAlreadyInUse struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14477,8 +14477,8 @@ func (s *TestConnectionOutput) SetConnection(v *Connection) *TestConnectionOutpu
 
 // An upgrade dependency is preventing the database migration.
 type UpgradeDependencyFailureFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

@@ -1333,8 +1333,8 @@ func (s *Account) SetEmailAddress(v string) *Account {
 
 // The request attempted an invalid action.
 type ConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1872,8 +1872,8 @@ func (s *Graph) SetCreatedTime(v time.Time) *Graph {
 
 // The request was valid but failed because of a problem with the service.
 type InternalServerException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2361,8 +2361,8 @@ func (s RejectInvitationOutput) GoString() string {
 
 // The request refers to a nonexistent resource.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2419,8 +2419,8 @@ func (s ResourceNotFoundException) RequestID() string {
 // to exceed the maximum allowed. A behavior graph cannot have more than 1000
 // member accounts.
 type ServiceQuotaExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2511,8 +2511,8 @@ func (s *UnprocessedAccount) SetReason(v string) *UnprocessedAccount {
 
 // The request parameters are invalid.
 type ValidationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

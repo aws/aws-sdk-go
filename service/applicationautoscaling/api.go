@@ -1344,8 +1344,8 @@ func (s *Alarm) SetAlarmName(v string) *Alarm {
 // Concurrent updates caused an exception, for example, if you request an update
 // to an Application Auto Scaling resource that already has a pending update.
 type ConcurrentUpdateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2863,8 +2863,8 @@ func (s *DescribeScheduledActionsOutput) SetScheduledActions(v []*ScheduledActio
 // DescribeAlarms (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_DescribeAlarms.html)
 // on your behalf.
 type FailedResourceAccessException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2919,8 +2919,8 @@ func (s FailedResourceAccessException) RequestID() string {
 
 // The service encountered an internal error.
 type InternalServiceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2975,8 +2975,8 @@ func (s InternalServiceException) RequestID() string {
 
 // The next token supplied was invalid.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3032,8 +3032,8 @@ func (s InvalidNextTokenException) RequestID() string {
 // A per-account resource limit is exceeded. For more information, see Application
 // Auto Scaling Limits (https://docs.aws.amazon.com/ApplicationAutoScaling/latest/userguide/application-auto-scaling-limits.html).
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3145,8 +3145,8 @@ func (s *MetricDimension) SetValue(v string) *MetricDimension {
 // does not exist. For any operation that deletes or deregisters a resource,
 // this exception is thrown if the resource cannot be found.
 type ObjectNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -5213,8 +5213,8 @@ func (s *TargetTrackingScalingPolicyConfiguration) SetTargetValue(v float64) *Ta
 // An exception was thrown for a validation issue. Review the available parameters
 // for the API request.
 type ValidationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

@@ -578,8 +578,8 @@ func (s *BatchMeterUsageOutput) SetUnprocessedRecords(v []*UsageRecord) *BatchMe
 // Exception thrown when the customer does not have a valid subscription for
 // the product.
 type CustomerNotEntitledException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -634,8 +634,8 @@ func (s CustomerNotEntitledException) RequestID() string {
 
 // The API is disabled in the Region.
 type DisabledApiException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -692,8 +692,8 @@ func (s DisabledApiException) RequestID() string {
 // task, or EKS pod for the given {usageDimension, timestamp} with a different
 // usageQuantity.
 type DuplicateRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -752,8 +752,8 @@ func (s DuplicateRequestException) RequestID() string {
 // token for too long. Your SaaS registration website should redeem this token
 // as soon as it is submitted by the buyer's browser.
 type ExpiredTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -809,8 +809,8 @@ func (s ExpiredTokenException) RequestID() string {
 // An internal error has occurred. Retry your request. If the problem persists,
 // post a message with details on the AWS forums.
 type InternalServiceErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -865,8 +865,8 @@ func (s InternalServiceErrorException) RequestID() string {
 
 // You have metered usage for a CustomerIdentifier that does not exist.
 type InvalidCustomerIdentifierException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -923,8 +923,8 @@ func (s InvalidCustomerIdentifierException) RequestID() string {
 // ECS task, or EKS pod. The Region of the Metering Service endpoint and the
 // AWS Region of the resource must match.
 type InvalidEndpointRegionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -980,8 +980,8 @@ func (s InvalidEndpointRegionException) RequestID() string {
 // The product code passed does not match the product code used for publishing
 // the product.
 type InvalidProductCodeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1036,8 +1036,8 @@ func (s InvalidProductCodeException) RequestID() string {
 
 // Public Key version is invalid.
 type InvalidPublicKeyVersionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1094,8 +1094,8 @@ func (s InvalidPublicKeyVersionException) RequestID() string {
 // in. This prevents a container from hardcoding a Region (e.g. withRegion(“us-east-1”)
 // when calling RegisterUsage.
 type InvalidRegionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1150,8 +1150,8 @@ func (s InvalidRegionException) RequestID() string {
 
 // Registration token is invalid.
 type InvalidTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1207,8 +1207,8 @@ func (s InvalidTokenException) RequestID() string {
 // The usage dimension does not match one of the UsageDimensions associated
 // with products.
 type InvalidUsageDimensionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1384,8 +1384,8 @@ func (s *MeterUsageOutput) SetMeteringRecordId(v string) *MeterUsageOutput {
 // AWS Marketplace does not support metering usage from the underlying platform.
 // Currently, only Amazon ECS is supported.
 type PlatformNotSupportedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1621,8 +1621,8 @@ func (s *ResolveCustomerOutput) SetProductCode(v string) *ResolveCustomerOutput 
 
 // The calls to the API are throttled.
 type ThrottlingException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1677,8 +1677,8 @@ func (s ThrottlingException) RequestID() string {
 
 // The timestamp value passed in the meterUsage() is out of allowed range.
 type TimestampOutOfBoundsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

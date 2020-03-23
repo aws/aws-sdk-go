@@ -5309,8 +5309,8 @@ func (s *GetVariablesOutput) SetVariables(v []*Variable) *GetVariablesOutput {
 
 // An exception indicating an internal server error.
 type InternalServerException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6435,8 +6435,8 @@ func (s PutOutcomeOutput) GoString() string {
 
 // An exception indicating the specified resource was not found.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6716,8 +6716,8 @@ func (s *RuleDetail) SetRuleVersion(v string) *RuleDetail {
 
 // An exception indicating a throttling error.
 type ThrottlingException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7543,8 +7543,8 @@ func (s UpdateVariableOutput) GoString() string {
 
 // An exception indicating a specified value is not allowed.
 type ValidationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

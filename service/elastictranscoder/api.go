@@ -1865,8 +1865,8 @@ func (c *ElasticTranscoder) UpdatePipelineStatusWithContext(ctx aws.Context, inp
 
 // General authentication failure. The request was not signed correctly.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4095,8 +4095,8 @@ func (s *HlsContentProtection) SetMethod(v string) *HlsContentProtection {
 }
 
 type IncompatibleVersionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4224,8 +4224,8 @@ func (s *InputCaptions) SetMergePolicy(v string) *InputCaptions {
 // Elastic Transcoder encountered an unexpected exception while trying to fulfill
 // the request.
 type InternalServiceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5131,8 +5131,8 @@ func (s *JobWatermark) SetPresetWatermarkId(v string) *JobWatermark {
 // Too many operations for a given AWS account. For example, the number of pipelines
 // exceeds the maximum allowed.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6763,8 +6763,8 @@ func (s *ReadPresetOutput) SetPreset(v *Preset) *ReadPresetOutput {
 // The resource you are attempting to change is in use. For example, you are
 // attempting to delete a pipeline that is currently in use.
 type ResourceInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6821,8 +6821,8 @@ func (s ResourceInUseException) RequestID() string {
 // pipeline to which you're trying to add a job doesn't exist or is still being
 // created.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7708,8 +7708,8 @@ func (s *UpdatePipelineStatusOutput) SetPipeline(v *Pipeline) *UpdatePipelineSta
 
 // One or more required parameter values were not provided in the request.
 type ValidationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

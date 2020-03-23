@@ -3408,8 +3408,8 @@ func (s *ContactFlowSummary) SetName(v string) *ContactFlowSummary {
 
 // The contact with the specified ID is not active or does not exist.
 type ContactNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -4121,8 +4121,8 @@ func (s *DescribeUserOutput) SetUser(v *User) *DescribeUserOutput {
 
 // Outbound calls to the destination number are not allowed.
 type DestinationNotAllowedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -4211,8 +4211,8 @@ func (s *Dimensions) SetQueue(v *QueueReference) *Dimensions {
 
 // A resource with the specified name already exists.
 type DuplicateResourceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -5442,8 +5442,8 @@ func (s *HoursOfOperationSummary) SetName(v string) *HoursOfOperationSummary {
 
 // Request processing failed due to an error or failure with the service.
 type InternalServiceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -5499,8 +5499,8 @@ func (s InternalServiceException) RequestID() string {
 
 // One or more of the specified parameters are not valid.
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -5556,8 +5556,8 @@ func (s InvalidParameterException) RequestID() string {
 
 // The request is not valid.
 type InvalidRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -5613,8 +5613,8 @@ func (s InvalidRequestException) RequestID() string {
 
 // The allowed limit for the resource has been exceeded.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -6530,8 +6530,8 @@ func (s *ListUsersOutput) SetUserSummaryList(v []*UserSummary) *ListUsersOutput 
 
 // The contact is not permitted.
 type OutboundContactNotPermittedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -6773,8 +6773,8 @@ func (s *QueueSummary) SetQueueType(v string) *QueueSummary {
 
 // The specified resource was not found.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -7388,8 +7388,8 @@ func (s *Threshold) SetThresholdValue(v float64) *Threshold {
 
 // The throttling limit has been exceeded.
 type ThrottlingException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -8211,8 +8211,8 @@ func (s *UserIdentityInfo) SetLastName(v string) *UserIdentityInfo {
 
 // No user with the specified credentials was found in the Amazon Connect instance.
 type UserNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

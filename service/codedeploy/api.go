@@ -5176,8 +5176,8 @@ func (s *AlarmConfiguration) SetIgnorePollAlarmFailure(v bool) *AlarmConfigurati
 
 // The maximum number of alarms for a deployment group (10) was exceeded.
 type AlarmsLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5280,8 +5280,8 @@ func (s *AppSpecContent) SetSha256(v string) *AppSpecContent {
 // An application with the specified name with the IAM user or AWS account already
 // exists.
 type ApplicationAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5336,8 +5336,8 @@ func (s ApplicationAlreadyExistsException) RequestID() string {
 
 // The application does not exist with the IAM user or AWS account.
 type ApplicationDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5463,8 +5463,8 @@ func (s *ApplicationInfo) SetLinkedToGitHub(v bool) *ApplicationInfo {
 
 // More applications were attempted to be created than are allowed.
 type ApplicationLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5519,8 +5519,8 @@ func (s ApplicationLimitExceededException) RequestID() string {
 
 // The minimum number of required application names was not specified.
 type ApplicationNameRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5576,8 +5576,8 @@ func (s ApplicationNameRequiredException) RequestID() string {
 // The specified ARN is not supported. For example, it might be an ARN for a
 // resource that is not expected.
 type ArnNotSupportedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6245,8 +6245,8 @@ func (s *BatchGetOnPremisesInstancesOutput) SetInstanceInfos(v []*InstanceInfo) 
 
 // The maximum number of names or IDs allowed for this request (100) was exceeded.
 type BatchLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6394,8 +6394,8 @@ func (s *BlueInstanceTerminationOption) SetTerminationWaitTimeInMinutes(v int64)
 
 // A bucket name is required, but was not provided.
 type BucketNameFilterRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7402,8 +7402,8 @@ func (s *DeleteGitHubAccountTokenOutput) SetTokenName(v string) *DeleteGitHubAcc
 
 // The deployment is already complete.
 type DeploymentAlreadyCompletedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7459,8 +7459,8 @@ func (s DeploymentAlreadyCompletedException) RequestID() string {
 // A deployment configuration with the specified name with the IAM user or AWS
 // account already exists .
 type DeploymentConfigAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7515,8 +7515,8 @@ func (s DeploymentConfigAlreadyExistsException) RequestID() string {
 
 // The deployment configuration does not exist with the IAM user or AWS account.
 type DeploymentConfigDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7571,8 +7571,8 @@ func (s DeploymentConfigDoesNotExistException) RequestID() string {
 
 // The deployment configuration is still in use.
 type DeploymentConfigInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7697,8 +7697,8 @@ func (s *DeploymentConfigInfo) SetTrafficRoutingConfig(v *TrafficRoutingConfig) 
 
 // The deployment configurations limit was exceeded.
 type DeploymentConfigLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7753,8 +7753,8 @@ func (s DeploymentConfigLimitExceededException) RequestID() string {
 
 // The deployment configuration name was not specified.
 type DeploymentConfigNameRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7809,8 +7809,8 @@ func (s DeploymentConfigNameRequiredException) RequestID() string {
 
 // The deployment with the IAM user or AWS account does not exist.
 type DeploymentDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7866,8 +7866,8 @@ func (s DeploymentDoesNotExistException) RequestID() string {
 // A deployment group with the specified name with the IAM user or AWS account
 // already exists.
 type DeploymentGroupAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7922,8 +7922,8 @@ func (s DeploymentGroupAlreadyExistsException) RequestID() string {
 
 // The named deployment group with the IAM user or AWS account does not exist.
 type DeploymentGroupDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8199,8 +8199,8 @@ func (s *DeploymentGroupInfo) SetTriggerConfigurations(v []*TriggerConfig) *Depl
 
 // The deployment groups limit was exceeded.
 type DeploymentGroupLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8255,8 +8255,8 @@ func (s DeploymentGroupLimitExceededException) RequestID() string {
 
 // The deployment group name was not specified.
 type DeploymentGroupNameRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8311,8 +8311,8 @@ func (s DeploymentGroupNameRequiredException) RequestID() string {
 
 // At least one deployment ID must be specified.
 type DeploymentIdRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8679,8 +8679,8 @@ func (s *DeploymentInfo) SetUpdateOutdatedInstancesOnly(v bool) *DeploymentInfo 
 
 // The deployment does not have a status of Ready and can't continue yet.
 type DeploymentIsNotInReadyStateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8735,8 +8735,8 @@ func (s DeploymentIsNotInReadyStateException) RequestID() string {
 
 // The number of allowed deployments was exceeded.
 type DeploymentLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8791,8 +8791,8 @@ func (s DeploymentLimitExceededException) RequestID() string {
 
 // The specified deployment has not started.
 type DeploymentNotStartedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9052,8 +9052,8 @@ func (s *DeploymentTarget) SetLambdaTarget(v *LambdaTarget) *DeploymentTarget {
 
 // The provided target ID does not belong to the attempted deployment.
 type DeploymentTargetDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9108,8 +9108,8 @@ func (s DeploymentTargetDoesNotExistException) RequestID() string {
 
 // A deployment target ID was not provided.
 type DeploymentTargetIdRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9167,8 +9167,8 @@ func (s DeploymentTargetIdRequiredException) RequestID() string {
 // must have exactly one item. This exception does not apply to EC2/On-premises
 // deployments.
 type DeploymentTargetListSizeExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9276,8 +9276,8 @@ func (s DeregisterOnPremisesInstanceOutput) GoString() string {
 
 // The description is too long.
 type DescriptionTooLongException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9509,8 +9509,8 @@ func (s *ECSService) SetServiceName(v string) *ECSService {
 // The Amazon ECS service is associated with more than one deployment groups.
 // An Amazon ECS service can be associated with only one deployment group.
 type ECSServiceMappingLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10491,8 +10491,8 @@ func (s *GetOnPremisesInstanceOutput) SetInstanceInfo(v *InstanceInfo) *GetOnPre
 
 // No GitHub account connection exists with the named specified in the call.
 type GitHubAccountTokenDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10547,8 +10547,8 @@ func (s GitHubAccountTokenDoesNotExistException) RequestID() string {
 
 // The call is missing a required GitHub account connection name.
 type GitHubAccountTokenNameRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10672,8 +10672,8 @@ func (s *GreenFleetProvisioningOption) SetAction(v string) *GreenFleetProvisioni
 // No IAM ARN was included in the request. You must use an IAM session ARN or
 // IAM user ARN in the request.
 type IamArnRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10729,8 +10729,8 @@ func (s IamArnRequiredException) RequestID() string {
 // The request included an IAM session ARN that has already been used to register
 // a different instance.
 type IamSessionArnAlreadyRegisteredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10785,8 +10785,8 @@ func (s IamSessionArnAlreadyRegisteredException) RequestID() string {
 
 // The specified IAM user ARN is already registered with an on-premises instance.
 type IamUserArnAlreadyRegisteredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10841,8 +10841,8 @@ func (s IamUserArnAlreadyRegisteredException) RequestID() string {
 
 // An IAM user ARN was not specified.
 type IamUserArnRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10899,8 +10899,8 @@ func (s IamUserArnRequiredException) RequestID() string {
 //
 // Deprecated: This exception is deprecated, use DeploymentTargetDoesNotExistException instead.
 type InstanceDoesNotExistException struct {
-	_            struct{} `deprecated:"true" type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `deprecated:"true" type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10957,8 +10957,8 @@ func (s InstanceDoesNotExistException) RequestID() string {
 //
 // Deprecated: This exception is deprecated, use DeploymentTargetIdRequiredException instead.
 type InstanceIdRequiredException struct {
-	_            struct{} `deprecated:"true" type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `deprecated:"true" type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11093,8 +11093,8 @@ func (s *InstanceInfo) SetTags(v []*Tag) *InstanceInfo {
 // The maximum number of allowed on-premises instances in a single call was
 // exceeded.
 type InstanceLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11149,8 +11149,8 @@ func (s InstanceLimitExceededException) RequestID() string {
 
 // The specified on-premises instance name is already registered.
 type InstanceNameAlreadyRegisteredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11205,8 +11205,8 @@ func (s InstanceNameAlreadyRegisteredException) RequestID() string {
 
 // An on-premises instance name was not specified.
 type InstanceNameRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11261,8 +11261,8 @@ func (s InstanceNameRequiredException) RequestID() string {
 
 // The specified on-premises instance is not registered.
 type InstanceNotRegisteredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11495,8 +11495,8 @@ func (s *InstanceTarget) SetTargetId(v string) *InstanceTarget {
 //
 //    * The alarm configuration is enabled, but the alarm list is empty.
 type InvalidAlarmConfigException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11551,8 +11551,8 @@ func (s InvalidAlarmConfigException) RequestID() string {
 
 // The application name was specified in an invalid format.
 type InvalidApplicationNameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11607,8 +11607,8 @@ func (s InvalidApplicationNameException) RequestID() string {
 
 // The specified ARN is not in a valid format.
 type InvalidArnException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11665,8 +11665,8 @@ func (s InvalidArnException) RequestID() string {
 // For example, automatic rollback is enabled, but an invalid triggering event
 // type or no event types were listed.
 type InvalidAutoRollbackConfigException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11721,8 +11721,8 @@ func (s InvalidAutoRollbackConfigException) RequestID() string {
 
 // The Auto Scaling group was specified in an invalid format or does not exist.
 type InvalidAutoScalingGroupException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11779,8 +11779,8 @@ func (s InvalidAutoScalingGroupException) RequestID() string {
 // invalid format. For information about deployment configuration format, see
 // CreateDeploymentConfig.
 type InvalidBlueGreenDeploymentConfigurationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11835,8 +11835,8 @@ func (s InvalidBlueGreenDeploymentConfigurationException) RequestID() string {
 
 // The bucket name either doesn't exist or was specified in an invalid format.
 type InvalidBucketNameFilterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11891,8 +11891,8 @@ func (s InvalidBucketNameFilterException) RequestID() string {
 
 // The computePlatform is invalid. The computePlatform should be Lambda or Server.
 type InvalidComputePlatformException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11947,8 +11947,8 @@ func (s InvalidComputePlatformException) RequestID() string {
 
 // The deployed state filter was specified in an invalid format.
 type InvalidDeployedStateFilterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12003,8 +12003,8 @@ func (s InvalidDeployedStateFilterException) RequestID() string {
 
 // The deployment configuration name was specified in an invalid format.
 type InvalidDeploymentConfigNameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12059,8 +12059,8 @@ func (s InvalidDeploymentConfigNameException) RequestID() string {
 
 // The deployment group name was specified in an invalid format.
 type InvalidDeploymentGroupNameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12115,8 +12115,8 @@ func (s InvalidDeploymentGroupNameException) RequestID() string {
 
 // At least one of the deployment IDs was specified in an invalid format.
 type InvalidDeploymentIdException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12172,8 +12172,8 @@ func (s InvalidDeploymentIdException) RequestID() string {
 // An instance type was specified for an in-place deployment. Instance types
 // are supported for blue/green deployments only.
 type InvalidDeploymentInstanceTypeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12228,8 +12228,8 @@ func (s InvalidDeploymentInstanceTypeException) RequestID() string {
 
 // The specified deployment status doesn't exist or cannot be determined.
 type InvalidDeploymentStatusException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12286,8 +12286,8 @@ func (s InvalidDeploymentStatusException) RequestID() string {
 // "IN_PLACE" and "BLUE_GREEN." Valid deployment options include "WITH_TRAFFIC_CONTROL"
 // and "WITHOUT_TRAFFIC_CONTROL."
 type InvalidDeploymentStyleException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12342,8 +12342,8 @@ func (s InvalidDeploymentStyleException) RequestID() string {
 
 // The target ID provided was not valid.
 type InvalidDeploymentTargetIdException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12398,8 +12398,8 @@ func (s InvalidDeploymentTargetIdException) RequestID() string {
 
 // The wait type is invalid.
 type InvalidDeploymentWaitTypeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12455,8 +12455,8 @@ func (s InvalidDeploymentWaitTypeException) RequestID() string {
 // A call was submitted that specified both Ec2TagFilters and Ec2TagSet, but
 // only one of these data types can be used in a single call.
 type InvalidEC2TagCombinationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12511,8 +12511,8 @@ func (s InvalidEC2TagCombinationException) RequestID() string {
 
 // The tag was specified in an invalid format.
 type InvalidEC2TagException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12567,8 +12567,8 @@ func (s InvalidEC2TagException) RequestID() string {
 
 // The Amazon ECS service identifier is not valid.
 type InvalidECSServiceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12626,8 +12626,8 @@ func (s InvalidECSServiceException) RequestID() string {
 // but weren't part of the previous successful deployment. Valid values include
 // "DISALLOW," "OVERWRITE," and "RETAIN."
 type InvalidFileExistsBehaviorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12682,8 +12682,8 @@ func (s InvalidFileExistsBehaviorException) RequestID() string {
 
 // The GitHub token is not valid.
 type InvalidGitHubAccountTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12738,8 +12738,8 @@ func (s InvalidGitHubAccountTokenException) RequestID() string {
 
 // The format of the specified GitHub account connection name is invalid.
 type InvalidGitHubAccountTokenNameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12794,8 +12794,8 @@ func (s InvalidGitHubAccountTokenNameException) RequestID() string {
 
 // The IAM session ARN was specified in an invalid format.
 type InvalidIamSessionArnException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12850,8 +12850,8 @@ func (s InvalidIamSessionArnException) RequestID() string {
 
 // The IAM user ARN was specified in an invalid format.
 type InvalidIamUserArnException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12907,8 +12907,8 @@ func (s InvalidIamUserArnException) RequestID() string {
 // The IgnoreApplicationStopFailures value is invalid. For AWS Lambda deployments,
 // false is expected. For EC2/On-premises deployments, true or false is expected.
 type InvalidIgnoreApplicationStopFailuresValueException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12963,8 +12963,8 @@ func (s InvalidIgnoreApplicationStopFailuresValueException) RequestID() string {
 
 // The input was specified in an invalid format.
 type InvalidInputException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13019,8 +13019,8 @@ func (s InvalidInputException) RequestID() string {
 
 // The on-premises instance name was specified in an invalid format.
 type InvalidInstanceNameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13075,8 +13075,8 @@ func (s InvalidInstanceNameException) RequestID() string {
 
 // The specified instance status does not exist.
 type InvalidInstanceStatusException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13133,8 +13133,8 @@ func (s InvalidInstanceStatusException) RequestID() string {
 // Valid values include "Blue" for an original environment and "Green" for a
 // replacement environment.
 type InvalidInstanceTypeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13189,8 +13189,8 @@ func (s InvalidInstanceTypeException) RequestID() string {
 
 // The specified key prefix filter was specified in an invalid format.
 type InvalidKeyPrefixFilterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13246,8 +13246,8 @@ func (s InvalidKeyPrefixFilterException) RequestID() string {
 // A lifecycle event hook is invalid. Review the hooks section in your AppSpec
 // file to ensure the lifecycle events and hooks functions are valid.
 type InvalidLifecycleEventHookExecutionIdException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13303,8 +13303,8 @@ func (s InvalidLifecycleEventHookExecutionIdException) RequestID() string {
 // The result of a Lambda validation function that verifies a lifecycle event
 // is invalid. It should return Succeeded or Failed.
 type InvalidLifecycleEventHookExecutionStatusException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13359,8 +13359,8 @@ func (s InvalidLifecycleEventHookExecutionStatusException) RequestID() string {
 
 // An invalid load balancer name, or no load balancer name, was specified.
 type InvalidLoadBalancerInfoException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13415,8 +13415,8 @@ func (s InvalidLoadBalancerInfoException) RequestID() string {
 
 // The minimum healthy instance value was specified in an invalid format.
 type InvalidMinimumHealthyHostValueException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13471,8 +13471,8 @@ func (s InvalidMinimumHealthyHostValueException) RequestID() string {
 
 // The next token was specified in an invalid format.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13528,8 +13528,8 @@ func (s InvalidNextTokenException) RequestID() string {
 // A call was submitted that specified both OnPremisesTagFilters and OnPremisesTagSet,
 // but only one of these data types can be used in a single call.
 type InvalidOnPremisesTagCombinationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13584,8 +13584,8 @@ func (s InvalidOnPremisesTagCombinationException) RequestID() string {
 
 // An invalid operation was detected.
 type InvalidOperationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13640,8 +13640,8 @@ func (s InvalidOperationException) RequestID() string {
 
 // The registration status was specified in an invalid format.
 type InvalidRegistrationStatusException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13696,8 +13696,8 @@ func (s InvalidRegistrationStatusException) RequestID() string {
 
 // The revision was specified in an invalid format.
 type InvalidRevisionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13754,8 +13754,8 @@ func (s InvalidRevisionException) RequestID() string {
 // group was specified, the specified service role does not grant the appropriate
 // permissions to Amazon EC2 Auto Scaling.
 type InvalidRoleException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13811,8 +13811,8 @@ func (s InvalidRoleException) RequestID() string {
 // The column name to sort by is either not present or was specified in an invalid
 // format.
 type InvalidSortByException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13867,8 +13867,8 @@ func (s InvalidSortByException) RequestID() string {
 
 // The sort order was specified in an invalid format.
 type InvalidSortOrderException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13923,8 +13923,8 @@ func (s InvalidSortOrderException) RequestID() string {
 
 // The tag was specified in an invalid format.
 type InvalidTagException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13979,8 +13979,8 @@ func (s InvalidTagException) RequestID() string {
 
 // The tag filter was specified in an invalid format.
 type InvalidTagFilterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14035,8 +14035,8 @@ func (s InvalidTagFilterException) RequestID() string {
 
 // The specified tags are not valid.
 type InvalidTagsToAddException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14091,8 +14091,8 @@ func (s InvalidTagsToAddException) RequestID() string {
 
 // The target filter name is invalid.
 type InvalidTargetFilterNameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14147,8 +14147,8 @@ func (s InvalidTargetFilterNameException) RequestID() string {
 
 // A target group pair associated with this deployment is not valid.
 type InvalidTargetGroupPairException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14212,8 +14212,8 @@ func (s InvalidTargetGroupPairException) RequestID() string {
 //
 //    * A specified tag is not currently applied to any instances.
 type InvalidTargetInstancesException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14268,8 +14268,8 @@ func (s InvalidTargetInstancesException) RequestID() string {
 
 // The specified time range was specified in an invalid format.
 type InvalidTimeRangeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14325,8 +14325,8 @@ func (s InvalidTimeRangeException) RequestID() string {
 // The configuration that specifies how traffic is routed during a deployment
 // is invalid.
 type InvalidTrafficRoutingConfigurationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14381,8 +14381,8 @@ func (s InvalidTrafficRoutingConfigurationException) RequestID() string {
 
 // The trigger was specified in an invalid format.
 type InvalidTriggerConfigException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14438,8 +14438,8 @@ func (s InvalidTriggerConfigException) RequestID() string {
 // The UpdateOutdatedInstancesOnly value is invalid. For AWS Lambda deployments,
 // false is expected. For EC2/On-premises deployments, true or false is expected.
 type InvalidUpdateOutdatedInstancesOnlyValueException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14762,8 +14762,8 @@ func (s *LifecycleEvent) SetStatus(v string) *LifecycleEvent {
 
 // An attempt to return the status of an already completed lifecycle event occurred.
 type LifecycleEventAlreadyCompletedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14818,8 +14818,8 @@ func (s LifecycleEventAlreadyCompletedException) RequestID() string {
 
 // The limit for lifecycle hooks was exceeded.
 type LifecycleHookLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -15925,8 +15925,8 @@ func (s *MinimumHealthyHosts) SetValue(v int64) *MinimumHealthyHosts {
 // Both an IAM user ARN and an IAM session ARN were included in the request.
 // Use only one ARN type.
 type MultipleIamArnsProvidedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16007,8 +16007,8 @@ func (s *OnPremisesTagSet) SetOnPremisesTagSetList(v [][]*TagFilter) *OnPremises
 
 // The API used does not support the deployment.
 type OperationNotSupportedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16389,8 +16389,8 @@ func (s RemoveTagsFromOnPremisesInstancesOutput) GoString() string {
 
 // The ARN of a resource is required, but was not found.
 type ResourceArnRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16445,8 +16445,8 @@ func (s ResourceArnRequiredException) RequestID() string {
 
 // The specified resource could not be validated.
 type ResourceValidationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16501,8 +16501,8 @@ func (s ResourceValidationException) RequestID() string {
 
 // The named revision does not exist with the IAM user or AWS account.
 type RevisionDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16661,8 +16661,8 @@ func (s *RevisionLocation) SetString_(v *RawString) *RevisionLocation {
 
 // The revision ID was not specified.
 type RevisionRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16717,8 +16717,8 @@ func (s RevisionRequiredException) RequestID() string {
 
 // The role ID was not specified.
 type RoleRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17099,8 +17099,8 @@ func (s *TagFilter) SetValue(v string) *TagFilter {
 
 // The maximum allowed number of tags was exceeded.
 type TagLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17155,8 +17155,8 @@ func (s TagLimitExceededException) RequestID() string {
 
 // A tag was not specified.
 type TagRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17282,8 +17282,8 @@ func (s TagResourceOutput) GoString() string {
 // The number of tag groups included in the tag set list exceeded the maximum
 // allowed limit of 3.
 type TagSetListLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17465,8 +17465,8 @@ func (s *TargetInstances) SetTagFilters(v []*EC2TagFilter) *TargetInstances {
 
 // An API function was called too frequently.
 type ThrottlingException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17752,8 +17752,8 @@ func (s *TriggerConfig) SetTriggerTargetArn(v string) *TriggerConfig {
 
 // The maximum allowed number of triggers was exceeded.
 type TriggerTargetsLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17808,8 +17808,8 @@ func (s TriggerTargetsLimitExceededException) RequestID() string {
 
 // A call was submitted that is not supported for the specified deployment type.
 type UnsupportedActionForDeploymentTypeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

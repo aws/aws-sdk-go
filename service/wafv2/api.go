@@ -11983,8 +11983,8 @@ func (s *VisibilityConfig) SetSampledRequestsEnabled(v bool) *VisibilityConfig {
 // AWS WAF couldn’t perform the operation because your resource is being used
 // by another resource or it’s associated with another resource.
 type WAFAssociatedItemException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12040,8 +12040,8 @@ func (s WAFAssociatedItemException) RequestID() string {
 // AWS WAF couldn’t perform the operation because the resource that you tried
 // to save is a duplicate of an existing one.
 type WAFDuplicateItemException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12097,8 +12097,8 @@ func (s WAFDuplicateItemException) RequestID() string {
 // Your request is valid, but AWS WAF couldn’t perform the operation because
 // of a system problem. Retry your request.
 type WAFInternalErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12165,8 +12165,8 @@ func (s WAFInternalErrorException) RequestID() string {
 //    * Your request references an ARN that is malformed, or corresponds to
 //    a resource with which a Web ACL cannot be associated.
 type WAFInvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Field *string `type:"string" enum:"ParameterExceptionField"`
 
@@ -12228,8 +12228,8 @@ func (s WAFInvalidParameterException) RequestID() string {
 // AWS WAF couldn’t perform the operation because the resource that you requested
 // isn’t valid. Check the resource, and try again.
 type WAFInvalidResourceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12287,8 +12287,8 @@ func (s WAFInvalidResourceException) RequestID() string {
 // for an AWS account. For more information, see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 // in the AWS WAF Developer Guide.
 type WAFLimitsExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12344,8 +12344,8 @@ func (s WAFLimitsExceededException) RequestID() string {
 // AWS WAF couldn’t perform the operation because your resource doesn’t
 // exist.
 type WAFNonexistentItemException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12403,8 +12403,8 @@ func (s WAFNonexistentItemException) RequestID() string {
 // again, make any changes you need to make to the new copy, and retry your
 // operation.
 type WAFOptimisticLockException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12466,8 +12466,8 @@ func (s WAFOptimisticLockException) RequestID() string {
 // again. If you receive this same exception again, you will have to wait additional
 // time until the role is unlocked.
 type WAFServiceLinkedRoleErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12521,8 +12521,8 @@ func (s WAFServiceLinkedRoleErrorException) RequestID() string {
 }
 
 type WAFSubscriptionNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12577,8 +12577,8 @@ func (s WAFSubscriptionNotFoundException) RequestID() string {
 
 // An error occurred during the tagging operation. Retry your request.
 type WAFTagOperationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12634,8 +12634,8 @@ func (s WAFTagOperationException) RequestID() string {
 // AWS WAF couldn’t perform your tagging operation because of an internal
 // error. Retry your request.
 type WAFTagOperationInternalErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12690,8 +12690,8 @@ func (s WAFTagOperationInternalErrorException) RequestID() string {
 
 // AWS WAF couldn’t retrieve the resource that you requested. Retry your request.
 type WAFUnavailableEntityException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

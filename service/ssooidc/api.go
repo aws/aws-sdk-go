@@ -327,8 +327,8 @@ func (c *SSOOIDC) StartDeviceAuthorizationWithContext(ctx aws.Context, input *St
 
 // You do not have sufficient access to perform this action.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Error_ *string `locationName:"error" type:"string"`
 
@@ -388,8 +388,8 @@ func (s AccessDeniedException) RequestID() string {
 // Indicates that a request to authorize a client with an access user session
 // token is pending.
 type AuthorizationPendingException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Error_ *string `locationName:"error" type:"string"`
 
@@ -636,8 +636,8 @@ func (s *CreateTokenOutput) SetTokenType(v string) *CreateTokenOutput {
 // Indicates that the token issued by the service is expired and is no longer
 // valid.
 type ExpiredTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Error_ *string `locationName:"error" type:"string"`
 
@@ -697,8 +697,8 @@ func (s ExpiredTokenException) RequestID() string {
 // Indicates that an error from the service occurred while trying to process
 // a request.
 type InternalServerException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Error_ *string `locationName:"error" type:"string"`
 
@@ -759,8 +759,8 @@ func (s InternalServerException) RequestID() string {
 // example, this can occur when a client sends an incorrect clientId or an expired
 // clientSecret.
 type InvalidClientException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Error_ *string `locationName:"error" type:"string"`
 
@@ -820,8 +820,8 @@ func (s InvalidClientException) RequestID() string {
 // Indicates that the client information sent in the request during registration
 // is invalid.
 type InvalidClientMetadataException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Error_ *string `locationName:"error" type:"string"`
 
@@ -881,8 +881,8 @@ func (s InvalidClientMetadataException) RequestID() string {
 // Indicates that a request contains an invalid grant. This can occur if a client
 // makes a CreateToken request with an invalid grant type.
 type InvalidGrantException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Error_ *string `locationName:"error" type:"string"`
 
@@ -942,8 +942,8 @@ func (s InvalidGrantException) RequestID() string {
 // Indicates that something is wrong with the input to the request. For example,
 // a required parameter might be missing or out of range.
 type InvalidRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Error_ *string `locationName:"error" type:"string"`
 
@@ -1002,8 +1002,8 @@ func (s InvalidRequestException) RequestID() string {
 
 // Indicates that the scope provided in the request is invalid.
 type InvalidScopeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Error_ *string `locationName:"error" type:"string"`
 
@@ -1196,8 +1196,8 @@ func (s *RegisterClientOutput) SetTokenEndpoint(v string) *RegisterClientOutput 
 // Indicates that the client is making the request too frequently and is more
 // than the service can handle.
 type SlowDownException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Error_ *string `locationName:"error" type:"string"`
 
@@ -1403,8 +1403,8 @@ func (s *StartDeviceAuthorizationOutput) SetVerificationUriComplete(v string) *S
 // Indicates that the client is not currently authorized to make the request.
 // This can happen when a clientId is not issued for a public client.
 type UnauthorizedClientException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Error_ *string `locationName:"error" type:"string"`
 
@@ -1463,8 +1463,8 @@ func (s UnauthorizedClientException) RequestID() string {
 
 // Indicates that the grant type in the request is not supported by the service.
 type UnsupportedGrantTypeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Error_ *string `locationName:"error" type:"string"`
 

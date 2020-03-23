@@ -8007,8 +8007,8 @@ func (s *AccountSettings) SetUnmeteredRemoteAccessDevices(v map[string]*int64) *
 
 // An invalid argument was specified.
 type ArgumentException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Any additional information about the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -8228,8 +8228,8 @@ func (s *CPU) SetFrequency(v string) *CPU {
 
 // The requested object could not be deleted.
 type CannotDeleteException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12177,8 +12177,8 @@ func (s *GetVPCEConfigurationOutput) SetVpceConfiguration(v *VPCEConfiguration) 
 
 // An entity with the same name already exists.
 type IdempotencyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Any additional information about the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -12442,8 +12442,8 @@ func (s *InstanceProfile) SetRebootAfterUse(v bool) *InstanceProfile {
 // An internal exception was raised in the service. Contact aws-devicefarm-support@amazon.com
 // (mailto:aws-devicefarm-support@amazon.com) if you see this error.
 type InternalServiceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12499,8 +12499,8 @@ func (s InternalServiceException) RequestID() string {
 // There was an error with the update request, or you do not have sufficient
 // permissions to update this VPC endpoint configuration.
 type InvalidOperationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12781,8 +12781,8 @@ func (s *Job) SetVideoEndpoint(v string) *Job {
 
 // A limit was exceeded.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Any additional information about the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -15349,8 +15349,8 @@ func (s *NetworkProfile) SetUplinkLossPercent(v int64) *NetworkProfile {
 // Exception gets thrown when a user is not eligible to perform the specified
 // transaction.
 type NotEligibleException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The HTTP response code of a Not Eligible exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -15406,8 +15406,8 @@ func (s NotEligibleException) RequestID() string {
 
 // The specified entity was not found.
 type NotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Any additional information about the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -17457,8 +17457,8 @@ func (s *ScheduleRunTest) SetType(v string) *ScheduleRunTest {
 
 // There was a problem with the service account.
 type ServiceAccountException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Any additional information about the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -17963,8 +17963,8 @@ func (s *Tag) SetValue(v string) *Tag {
 
 // The operation was not successful. Try again.
 type TagOperationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -18022,8 +18022,8 @@ func (s TagOperationException) RequestID() string {
 // The request doesn't comply with the AWS Identity and Access Management (IAM)
 // tag policy. Correct your request and then retry it.
 type TagPolicyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -18581,8 +18581,8 @@ func (s *TestGridSessionArtifact) SetUrl(v string) *TestGridSessionArtifact {
 // The list of tags on the repository is over the limit. The maximum number
 // of tags that can be applied to a repository is 50.
 type TooManyTagsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 

@@ -10602,8 +10602,8 @@ func (s *ConformancePackStatusDetail) SetStackArn(v string) *ConformancePackStat
 
 // You have specified a template that is not valid or supported.
 type ConformancePackTemplateValidationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -15624,8 +15624,8 @@ func (s *GroupedResourceCount) SetResourceCount(v int64) *GroupedResourceCount {
 
 // Your Amazon S3 bucket policy does not permit AWS Config to write to it.
 type InsufficientDeliveryPolicyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -15694,8 +15694,8 @@ func (s InsufficientDeliveryPolicyException) RequestID() string {
 //    pack cannot be created because you do not have permissions: To call IAM
 //    GetRole action or create a service linked role. To read Amazon S3 bucket.
 type InsufficientPermissionsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -15750,8 +15750,8 @@ func (s InsufficientPermissionsException) RequestID() string {
 
 // You have provided a configuration recorder name that is not valid.
 type InvalidConfigurationRecorderNameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -15806,8 +15806,8 @@ func (s InvalidConfigurationRecorderNameException) RequestID() string {
 
 // The specified delivery channel name is not valid.
 type InvalidDeliveryChannelNameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -15862,8 +15862,8 @@ func (s InvalidDeliveryChannelNameException) RequestID() string {
 
 // The syntax of the query is incorrect.
 type InvalidExpressionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -15918,8 +15918,8 @@ func (s InvalidExpressionException) RequestID() string {
 
 // The specified limit is outside the allowable range.
 type InvalidLimitException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -15975,8 +15975,8 @@ func (s InvalidLimitException) RequestID() string {
 // The specified next token is invalid. Specify the nextToken string that was
 // returned in the previous response to get the next page of results.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16032,8 +16032,8 @@ func (s InvalidNextTokenException) RequestID() string {
 // One or more of the specified parameters are invalid. Verify that your parameters
 // are valid and try again.
 type InvalidParameterValueException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16089,8 +16089,8 @@ func (s InvalidParameterValueException) RequestID() string {
 // AWS Config throws an exception if the recording group does not contain a
 // valid list of resource types. Invalid values might also be incorrectly formatted.
 type InvalidRecordingGroupException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16145,8 +16145,8 @@ func (s InvalidRecordingGroupException) RequestID() string {
 
 // The specified ResultToken is invalid.
 type InvalidResultTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16201,8 +16201,8 @@ func (s InvalidResultTokenException) RequestID() string {
 
 // You have provided a null or empty role ARN.
 type InvalidRoleException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16257,8 +16257,8 @@ func (s InvalidRoleException) RequestID() string {
 
 // The specified Amazon S3 key prefix is not valid.
 type InvalidS3KeyPrefixException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16313,8 +16313,8 @@ func (s InvalidS3KeyPrefixException) RequestID() string {
 
 // The specified Amazon SNS topic does not exist.
 type InvalidSNSTopicARNException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16370,8 +16370,8 @@ func (s InvalidSNSTopicARNException) RequestID() string {
 // The specified time range is not valid. The earlier time is not chronologically
 // before the later time.
 type InvalidTimeRangeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16427,8 +16427,8 @@ func (s InvalidTimeRangeException) RequestID() string {
 // You cannot delete the delivery channel you specified because the configuration
 // recorder is running.
 type LastDeliveryChannelDeleteFailedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16488,8 +16488,8 @@ func (s LastDeliveryChannelDeleteFailedException) RequestID() string {
 // For PutConfigurationAggregator API, this exception is thrown if the number
 // of accounts and aggregators exceeds the limit.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16890,8 +16890,8 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 // You have reached the limit (100,000) of active custom resource types in your
 // account. Delete unused resources using DeleteResourceConfig.
 type MaxActiveResourcesExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16948,8 +16948,8 @@ func (s MaxActiveResourcesExceededException) RequestID() string {
 // maximum number of 150 rules. Consider deleting any deactivated rules before
 // you add new rules.
 type MaxNumberOfConfigRulesExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17004,8 +17004,8 @@ func (s MaxNumberOfConfigRulesExceededException) RequestID() string {
 
 // You have reached the limit of the number of recorders you can create.
 type MaxNumberOfConfigurationRecordersExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17061,8 +17061,8 @@ func (s MaxNumberOfConfigurationRecordersExceededException) RequestID() string {
 // You have reached the limit (6) of the number of conformance packs in an account
 // (6 conformance pack with 25 AWS Config rules per pack).
 type MaxNumberOfConformancePacksExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17117,8 +17117,8 @@ func (s MaxNumberOfConformancePacksExceededException) RequestID() string {
 
 // You have reached the limit of the number of delivery channels you can create.
 type MaxNumberOfDeliveryChannelsExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17174,8 +17174,8 @@ func (s MaxNumberOfDeliveryChannelsExceededException) RequestID() string {
 // You have reached the limit of the number of organization config rules you
 // can create.
 type MaxNumberOfOrganizationConfigRulesExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17232,8 +17232,8 @@ func (s MaxNumberOfOrganizationConfigRulesExceededException) RequestID() string 
 // packs in an account (6 conformance pack with 25 AWS Config rules per pack
 // per account).
 type MaxNumberOfOrganizationConformancePacksExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17289,8 +17289,8 @@ func (s MaxNumberOfOrganizationConformancePacksExceededException) RequestID() st
 // Failed to add the retention configuration because a retention configuration
 // with that name already exists.
 type MaxNumberOfRetentionConfigurationsExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17450,8 +17450,8 @@ func (s *MemberAccountStatus) SetMemberAccountRuleStatus(v string) *MemberAccoun
 // There are no configuration recorders available to provide the role needed
 // to describe your resources. Create a configuration recorder.
 type NoAvailableConfigurationRecorderException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17506,8 +17506,8 @@ func (s NoAvailableConfigurationRecorderException) RequestID() string {
 
 // There is no delivery channel available to record configurations.
 type NoAvailableDeliveryChannelException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17562,8 +17562,8 @@ func (s NoAvailableDeliveryChannelException) RequestID() string {
 
 // Organization is no longer available.
 type NoAvailableOrganizationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17618,8 +17618,8 @@ func (s NoAvailableOrganizationException) RequestID() string {
 
 // There is no configuration recorder running.
 type NoRunningConfigurationRecorderException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17674,8 +17674,8 @@ func (s NoRunningConfigurationRecorderException) RequestID() string {
 
 // The specified Amazon S3 bucket does not exist.
 type NoSuchBucketException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17731,8 +17731,8 @@ func (s NoSuchBucketException) RequestID() string {
 // One or more AWS Config rules in the request are invalid. Verify that the
 // rule names are correct and try again.
 type NoSuchConfigRuleException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17787,8 +17787,8 @@ func (s NoSuchConfigRuleException) RequestID() string {
 
 // AWS Config rule that you passed in the filter does not exist.
 type NoSuchConfigRuleInConformancePackException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17843,8 +17843,8 @@ func (s NoSuchConfigRuleInConformancePackException) RequestID() string {
 
 // You have specified a configuration aggregator that does not exist.
 type NoSuchConfigurationAggregatorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17899,8 +17899,8 @@ func (s NoSuchConfigurationAggregatorException) RequestID() string {
 
 // You have specified a configuration recorder that does not exist.
 type NoSuchConfigurationRecorderException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17955,8 +17955,8 @@ func (s NoSuchConfigurationRecorderException) RequestID() string {
 
 // You specified one or more conformance packs that do not exist.
 type NoSuchConformancePackException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18011,8 +18011,8 @@ func (s NoSuchConformancePackException) RequestID() string {
 
 // You have specified a delivery channel that does not exist.
 type NoSuchDeliveryChannelException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18067,8 +18067,8 @@ func (s NoSuchDeliveryChannelException) RequestID() string {
 
 // You specified one or more organization config rules that do not exist.
 type NoSuchOrganizationConfigRuleException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18127,8 +18127,8 @@ func (s NoSuchOrganizationConfigRuleException) RequestID() string {
 // For DeleteOrganizationConformancePack, you tried to delete an organization
 // conformance pack that does not exist.
 type NoSuchOrganizationConformancePackException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18183,8 +18183,8 @@ func (s NoSuchOrganizationConformancePackException) RequestID() string {
 
 // You specified an AWS Config rule without a remediation configuration.
 type NoSuchRemediationConfigurationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18239,8 +18239,8 @@ func (s NoSuchRemediationConfigurationException) RequestID() string {
 
 // You tried to delete a remediation exception that does not exist.
 type NoSuchRemediationExceptionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18295,8 +18295,8 @@ func (s NoSuchRemediationExceptionException) RequestID() string {
 
 // You have specified a retention configuration that does not exist.
 type NoSuchRetentionConfigurationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18356,8 +18356,8 @@ func (s NoSuchRetentionConfigurationException) RequestID() string {
 // Config throws an exception if APIs are called from member accounts. All APIs
 // must be called from organization master account.
 type OrganizationAccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18475,8 +18475,8 @@ func (s *OrganizationAggregationSource) SetRoleArn(v string) *OrganizationAggreg
 // AWS Config resource cannot be created because your organization does not
 // have all features enabled.
 type OrganizationAllFeaturesNotEnabledException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -19009,8 +19009,8 @@ func (s *OrganizationConformancePackStatus) SetStatus(v string) *OrganizationCon
 
 // You have specified a template that is not valid or supported.
 type OrganizationConformancePackTemplateValidationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -19420,8 +19420,8 @@ func (s *OrganizationResourceDetailedStatusFilters) SetStatus(v string) *Organiz
 
 // The configuration item size is outside the allowable range.
 type OversizedConfigurationItemException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -21409,8 +21409,8 @@ func (s *RemediationExecutionStep) SetStopTime(v time.Time) *RemediationExecutio
 // Remediation action is in progress. You can either cancel execution in AWS
 // Systems Manager or wait and try again later.
 type RemediationInProgressException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -21751,8 +21751,8 @@ func (s *ResourceIdentifier) SetResourceType(v string) *ResourceIdentifier {
 //    * For DeleteConformancePack, a conformance pack creation, update, and
 //    deletion is in progress. Try your request again later.
 type ResourceInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -21864,8 +21864,8 @@ func (s *ResourceKey) SetResourceType(v string) *ResourceKey {
 
 // You have specified a resource that is either unknown or has not been discovered.
 type ResourceNotDiscoveredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -21920,8 +21920,8 @@ func (s ResourceNotDiscoveredException) RequestID() string {
 
 // You have specified a resource that does not exist.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -23074,8 +23074,8 @@ func (s TagResourceOutput) GoString() string {
 // You have reached the limit of the number of tags you can use. You have more
 // than 50 tags.
 type TooManyTagsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -23204,8 +23204,8 @@ func (s UntagResourceOutput) GoString() string {
 
 // The requested action is not valid.
 type ValidationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

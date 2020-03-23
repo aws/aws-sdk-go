@@ -93,8 +93,8 @@ func (c *MobileAnalytics) PutEventsWithContext(ctx aws.Context, input *PutEvents
 
 // An exception object returned when a request fails.
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A text description associated with the BadRequestException object.
 	Message_ *string `locationName:"message" type:"string"`

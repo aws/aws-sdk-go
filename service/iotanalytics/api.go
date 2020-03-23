@@ -7191,8 +7191,8 @@ func (s *GlueConfiguration) SetTableName(v string) *GlueConfiguration {
 
 // There was an internal failure.
 type InternalFailureException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7247,8 +7247,8 @@ func (s InternalFailureException) RequestID() string {
 
 // The request was not valid.
 type InvalidRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7454,8 +7454,8 @@ func (s *LambdaActivity) SetNext(v string) *LambdaActivity {
 
 // The command caused an internal limit to be exceeded.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8770,8 +8770,8 @@ func (s *ReprocessingSummary) SetStatus(v string) *ReprocessingSummary {
 
 // A resource with the same name already exists.
 type ResourceAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -8890,8 +8890,8 @@ func (s *ResourceConfiguration) SetVolumeSizeInGB(v int64) *ResourceConfiguratio
 
 // A resource with the specified name could not be found.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9447,8 +9447,8 @@ func (s ServiceManagedDatastoreS3StorageSummary) GoString() string {
 
 // The service is temporarily unavailable.
 type ServiceUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9784,8 +9784,8 @@ func (s TagResourceOutput) GoString() string {
 
 // The request was denied due to request throttling.
 type ThrottlingException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

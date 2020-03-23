@@ -12325,8 +12325,8 @@ func (s AddTagsToResourceOutput) GoString() string {
 // Error returned if an attempt is made to register a patch group with a patch
 // baseline that is already registered with a different patch baseline.
 type AlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12382,8 +12382,8 @@ func (s AlreadyExistsException) RequestID() string {
 // You must disassociate a document from all instances before you can delete
 // it.
 type AssociatedInstances struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12544,8 +12544,8 @@ func (s *Association) SetTargets(v []*Target) *Association {
 
 // The specified association already exists.
 type AssociationAlreadyExists struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12816,8 +12816,8 @@ func (s *AssociationDescription) SetTargets(v []*Target) *AssociationDescription
 
 // The specified association does not exist.
 type AssociationDoesNotExist struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12960,8 +12960,8 @@ func (s *AssociationExecution) SetStatus(v string) *AssociationExecution {
 
 // The specified execution ID does not exist. Verify the ID number and try again.
 type AssociationExecutionDoesNotExist struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -13294,8 +13294,8 @@ func (s *AssociationFilter) SetValue(v string) *AssociationFilter {
 
 // You can have at most 2,000 active associations.
 type AssociationLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13631,8 +13631,8 @@ func (s *AssociationVersionInfo) SetTargets(v []*Target) *AssociationVersionInfo
 // You have reached the maximum number versions allowed for an association.
 // Each association has a limit of 1,000 versions.
 type AssociationVersionLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -13844,8 +13844,8 @@ func (s *AttachmentsSource) SetValues(v []*string) *AttachmentsSource {
 
 // An Automation document with the specified name could not be found.
 type AutomationDefinitionNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -13900,8 +13900,8 @@ func (s AutomationDefinitionNotFoundException) RequestID() string {
 
 // An Automation document with the specified name and version could not be found.
 type AutomationDefinitionVersionNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14265,8 +14265,8 @@ func (s *AutomationExecutionFilter) SetValues(v []*string) *AutomationExecutionF
 // The number of simultaneously running Automation executions exceeded the allowable
 // limit.
 type AutomationExecutionLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14540,8 +14540,8 @@ func (s *AutomationExecutionMetadata) SetTargets(v []*Target) *AutomationExecuti
 // There is no automation execution information for the requested automation
 // execution ID.
 type AutomationExecutionNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14597,8 +14597,8 @@ func (s AutomationExecutionNotFoundException) RequestID() string {
 // The specified step name and execution ID don't exist. Verify the information
 // and try again.
 type AutomationStepNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -15955,8 +15955,8 @@ func (s *ComplianceSummaryItem) SetNonCompliantSummary(v *NonCompliantSummary) *
 // You specified too many custom compliance types. You can specify a maximum
 // of 10 different types.
 type ComplianceTypeCountLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -17725,8 +17725,8 @@ func (s CreateResourceDataSyncOutput) GoString() string {
 // You have exceeded the limit for custom schemas. Delete one or more custom
 // schemas and try again.
 type CustomSchemaCountLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -22382,8 +22382,8 @@ func (s *DescribeSessionsOutput) SetSessions(v []*Session) *DescribeSessionsOutp
 
 // The specified document already exists.
 type DocumentAlreadyExists struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -22951,8 +22951,8 @@ func (s *DocumentKeyValuesFilter) SetValues(v []*string) *DocumentKeyValuesFilte
 
 // You can have at most 500 active Systems Manager documents.
 type DocumentLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -23063,8 +23063,8 @@ func (s *DocumentParameter) SetType(v string) *DocumentParameter {
 // a document with a maximum of 20 accounts. You can publicly share up to five
 // documents. If you need to increase this limit, contact AWS Support.
 type DocumentPermissionLimit struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -23262,8 +23262,8 @@ func (s *DocumentVersionInfo) SetVersionName(v string) *DocumentVersionInfo {
 // The document has too many versions. Delete one or more document versions
 // and try again.
 type DocumentVersionLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -23323,8 +23323,8 @@ func (s DocumentVersionLimitExceeded) RequestID() string {
 // Service Quotas (http://docs.aws.amazon.com/general/latest/gr/ssm.html#limits_ssm)
 // in the AWS General Reference.
 type DoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -23380,8 +23380,8 @@ func (s DoesNotExistException) RequestID() string {
 // The content of the association document matches another document. Change
 // the content of the document and try again.
 type DuplicateDocumentContent struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -23437,8 +23437,8 @@ func (s DuplicateDocumentContent) RequestID() string {
 // The version name has already been used in this document. Specify a different
 // version name, and then try again.
 type DuplicateDocumentVersionName struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -23493,8 +23493,8 @@ func (s DuplicateDocumentVersionName) RequestID() string {
 
 // You cannot specify an instance ID in more than one association.
 type DuplicateInstanceId struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -23677,8 +23677,8 @@ func (s *FailureDetails) SetFailureType(v string) *FailureDetails {
 // You attempted to register a LAMBDA or STEP_FUNCTIONS task in a region where
 // the corresponding service is not available.
 type FeatureNotAvailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -26782,8 +26782,8 @@ func (s *GetServiceSettingOutput) SetServiceSetting(v *ServiceSetting) *GetServi
 // and Constraints for Parameter Names (http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-parameter-name-constraints.html)
 // in the AWS Systems Manager User Guide.
 type HierarchyLevelLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A hierarchy can have a maximum of 15 levels. For more information, see Requirements
 	// and Constraints for Parameter Names (http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-parameter-name-constraints.html)
@@ -26843,8 +26843,8 @@ func (s HierarchyLevelLimitExceededException) RequestID() string {
 // For example, you can't change a parameter from a String type to a SecureString
 // type. You must create a new, unique parameter.
 type HierarchyTypeMismatchException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Parameter Store does not support changing a parameter type in a hierarchy.
 	// For example, you can't change a parameter from a String type to a SecureString
@@ -26903,8 +26903,8 @@ func (s HierarchyTypeMismatchException) RequestID() string {
 // Error returned when an idempotent operation is retried and the parameters
 // don't match the original call to the API with the same idempotency token.
 type IdempotentParameterMismatch struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -26961,8 +26961,8 @@ func (s IdempotentParameterMismatch) RequestID() string {
 // for example, specify two Expiration policies for a parameter. Review your
 // policies, and try again.
 type IncompatiblePolicyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -27915,8 +27915,8 @@ func (s *InstancePatchStateFilter) SetValues(v []*string) *InstancePatchStateFil
 
 // An error occurred on the server side.
 type InternalServerError struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -27972,8 +27972,8 @@ func (s InternalServerError) RequestID() string {
 // The activation is not valid. The activation might have been deleted, or the
 // ActivationId and the ActivationCode do not match.
 type InvalidActivation struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -28029,8 +28029,8 @@ func (s InvalidActivation) RequestID() string {
 // The activation ID is not valid. Verify the you entered the correct ActivationId
 // or ActivationCode and try again.
 type InvalidActivationId struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -28086,8 +28086,8 @@ func (s InvalidActivationId) RequestID() string {
 // The specified aggregator is not valid for inventory groups. Verify that the
 // aggregator uses a valid inventory type such as AWS:Application or AWS:InstanceInformation.
 type InvalidAggregatorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -28142,8 +28142,8 @@ func (s InvalidAggregatorException) RequestID() string {
 
 // The request does not meet the regular expression requirement.
 type InvalidAllowedPatternException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The request does not meet the regular expression requirement.
 	Message_ *string `locationName:"message" type:"string"`
@@ -28199,8 +28199,8 @@ func (s InvalidAllowedPatternException) RequestID() string {
 
 // The association is not valid or does not exist.
 type InvalidAssociation struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -28257,8 +28257,8 @@ func (s InvalidAssociation) RequestID() string {
 // all versions of an association according to the association ID. Or, use the
 // $LATEST parameter to view the latest version of the association.
 type InvalidAssociationVersion struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -28315,8 +28315,8 @@ func (s InvalidAssociationVersion) RequestID() string {
 // incorrect. For example, they may not match the set of parameters permitted
 // for the specified Automation document.
 type InvalidAutomationExecutionParametersException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -28371,8 +28371,8 @@ func (s InvalidAutomationExecutionParametersException) RequestID() string {
 
 // The signal is not valid for the current Automation execution.
 type InvalidAutomationSignalException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -28427,8 +28427,8 @@ func (s InvalidAutomationSignalException) RequestID() string {
 
 // The specified update status operation is not valid.
 type InvalidAutomationStatusUpdateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -28482,8 +28482,8 @@ func (s InvalidAutomationStatusUpdateException) RequestID() string {
 }
 
 type InvalidCommandId struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -28539,8 +28539,8 @@ func (s InvalidCommandId) RequestID() string {
 // One or more of the parameters specified for the delete operation is not valid.
 // Verify all parameters and try again.
 type InvalidDeleteInventoryParametersException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -28596,8 +28596,8 @@ func (s InvalidDeleteInventoryParametersException) RequestID() string {
 // The ID specified for the delete operation does not exist or is not valid.
 // Verify the ID and try again.
 type InvalidDeletionIdException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -28652,8 +28652,8 @@ func (s InvalidDeletionIdException) RequestID() string {
 
 // The specified document does not exist.
 type InvalidDocument struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The document does not exist or the document is not available to the user.
 	// This exception can be issued by CreateAssociation, CreateAssociationBatch,
@@ -28712,8 +28712,8 @@ func (s InvalidDocument) RequestID() string {
 
 // The content for the document is not valid.
 type InvalidDocumentContent struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A description of the validation error.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -28770,8 +28770,8 @@ func (s InvalidDocumentContent) RequestID() string {
 // You attempted to delete a document while it is still shared. You must stop
 // sharing the document before you can delete it.
 type InvalidDocumentOperation struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -28826,8 +28826,8 @@ func (s InvalidDocumentOperation) RequestID() string {
 
 // The version of the document schema is not supported.
 type InvalidDocumentSchemaVersion struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -28883,8 +28883,8 @@ func (s InvalidDocumentSchemaVersion) RequestID() string {
 // The document type is not valid. Valid document types are described in the
 // DocumentType property.
 type InvalidDocumentType struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -28939,8 +28939,8 @@ func (s InvalidDocumentType) RequestID() string {
 
 // The document version is not valid or does not exist.
 type InvalidDocumentVersion struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -28996,8 +28996,8 @@ func (s InvalidDocumentVersion) RequestID() string {
 // The filter name is not valid. Verify the you entered the correct name and
 // try again.
 type InvalidFilter struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -29052,8 +29052,8 @@ func (s InvalidFilter) RequestID() string {
 
 // The specified key is not valid.
 type InvalidFilterKey struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -29109,8 +29109,8 @@ func (s InvalidFilterKey) RequestID() string {
 // The specified filter option is not valid. Valid options are Equals and BeginsWith.
 // For Path filter, valid options are Recursive and OneLevel.
 type InvalidFilterOption struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The specified filter option is not valid. Valid options are Equals and BeginsWith.
 	// For Path filter, valid options are Recursive and OneLevel.
@@ -29167,8 +29167,8 @@ func (s InvalidFilterOption) RequestID() string {
 
 // The filter value is not valid. Verify the value and try again.
 type InvalidFilterValue struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -29232,8 +29232,8 @@ func (s InvalidFilterValue) RequestID() string {
 // The instance is not in valid state. Valid states are: Running, Pending, Stopped,
 // Stopping. Invalid states are: Shutting-down and Terminated.
 type InvalidInstanceId struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -29288,8 +29288,8 @@ func (s InvalidInstanceId) RequestID() string {
 
 // The specified filter value is not valid.
 type InvalidInstanceInformationFilterValue struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -29344,8 +29344,8 @@ func (s InvalidInstanceInformationFilterValue) RequestID() string {
 
 // The specified inventory group is not valid.
 type InvalidInventoryGroupException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -29401,8 +29401,8 @@ func (s InvalidInventoryGroupException) RequestID() string {
 // You specified invalid keys or values in the Context attribute for InventoryItem.
 // Verify the keys and values, and try again.
 type InvalidInventoryItemContextException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -29457,8 +29457,8 @@ func (s InvalidInventoryItemContextException) RequestID() string {
 
 // The request is not valid.
 type InvalidInventoryRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -29513,8 +29513,8 @@ func (s InvalidInventoryRequestException) RequestID() string {
 
 // One or more content items is not valid.
 type InvalidItemContentException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -29571,8 +29571,8 @@ func (s InvalidItemContentException) RequestID() string {
 
 // The query key ID is not valid.
 type InvalidKeyId struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -29627,8 +29627,8 @@ func (s InvalidKeyId) RequestID() string {
 
 // The specified token is not valid.
 type InvalidNextToken struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -29684,8 +29684,8 @@ func (s InvalidNextToken) RequestID() string {
 // One or more configuration items is not valid. Verify that a valid Amazon
 // Resource Name (ARN) was provided for an Amazon SNS topic.
 type InvalidNotificationConfig struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -29741,8 +29741,8 @@ func (s InvalidNotificationConfig) RequestID() string {
 // The delete inventory option specified is not valid. Verify the option and
 // try again.
 type InvalidOptionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -29797,8 +29797,8 @@ func (s InvalidOptionException) RequestID() string {
 
 // The S3 bucket does not exist.
 type InvalidOutputFolder struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -29853,8 +29853,8 @@ func (s InvalidOutputFolder) RequestID() string {
 
 // The output location is not valid or does not exist.
 type InvalidOutputLocation struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -29911,8 +29911,8 @@ func (s InvalidOutputLocation) RequestID() string {
 // document. You can only supply values to parameters defined in the Systems
 // Manager document.
 type InvalidParameters struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -29968,8 +29968,8 @@ func (s InvalidParameters) RequestID() string {
 // The permission type is not supported. Share is the only supported permission
 // type.
 type InvalidPermissionType struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -30024,8 +30024,8 @@ func (s InvalidPermissionType) RequestID() string {
 
 // The plugin name is not valid.
 type InvalidPluginName struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -30080,8 +30080,8 @@ func (s InvalidPluginName) RequestID() string {
 
 // A policy attribute or its value is invalid.
 type InvalidPolicyAttributeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -30137,8 +30137,8 @@ func (s InvalidPolicyAttributeException) RequestID() string {
 // The policy type is not supported. Parameter Store supports the following
 // policy types: Expiration, ExpirationNotification, and NoChangeNotification.
 type InvalidPolicyTypeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -30194,8 +30194,8 @@ func (s InvalidPolicyTypeException) RequestID() string {
 // The resource ID is not valid. Verify that you entered the correct ID and
 // try again.
 type InvalidResourceId struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -30251,8 +30251,8 @@ func (s InvalidResourceId) RequestID() string {
 // The resource type is not valid. For example, if you are attempting to tag
 // an instance, the instance must be a registered, managed instance.
 type InvalidResourceType struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -30307,8 +30307,8 @@ func (s InvalidResourceType) RequestID() string {
 
 // The specified inventory item result attribute is not valid.
 type InvalidResultAttributeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -30367,8 +30367,8 @@ func (s InvalidResultAttributeException) RequestID() string {
 // see Configuring Amazon SNS Notifications for Run Command (http://docs.aws.amazon.com/systems-manager/latest/userguide/rc-sns-notifications.html)
 // in the AWS Systems Manager User Guide.
 type InvalidRole struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -30423,8 +30423,8 @@ func (s InvalidRole) RequestID() string {
 
 // The schedule is invalid. Verify your cron or rate expression and try again.
 type InvalidSchedule struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -30480,8 +30480,8 @@ func (s InvalidSchedule) RequestID() string {
 // The target is not valid or does not exist. It might not be configured for
 // EC2 Systems Manager or you might not have permission to perform the operation.
 type InvalidTarget struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -30536,8 +30536,8 @@ func (s InvalidTarget) RequestID() string {
 
 // The parameter type name is not valid.
 type InvalidTypeNameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -30592,8 +30592,8 @@ func (s InvalidTypeNameException) RequestID() string {
 
 // The update is not valid.
 type InvalidUpdate struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -31351,8 +31351,8 @@ func (s *InventoryResultItem) SetTypeName(v string) *InventoryResultItem {
 // The command ID and instance ID you specified did not match any invocations.
 // Verify the command ID and the instance ID and try again.
 type InvocationDoesNotExist struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -31407,8 +31407,8 @@ func (s InvocationDoesNotExist) RequestID() string {
 
 // The inventory item has invalid content.
 type ItemContentMismatchException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -31465,8 +31465,8 @@ func (s ItemContentMismatchException) RequestID() string {
 
 // The inventory item size has exceeded the size limit.
 type ItemSizeLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -34241,8 +34241,8 @@ func (s *MaintenanceWindowTaskParameterValueExpression) SetValues(v []*string) *
 
 // The size limit of a document is 64 KB.
 type MaxDocumentSizeExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -34917,8 +34917,8 @@ func (s *OpsItem) SetVersion(v string) *OpsItem {
 
 // The OpsItem already exists.
 type OpsItemAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -35077,8 +35077,8 @@ func (s *OpsItemFilter) SetValues(v []*string) *OpsItemFilter {
 // A specified parameter argument isn't valid. Verify the available arguments
 // and try again.
 type OpsItemInvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -35136,8 +35136,8 @@ func (s OpsItemInvalidParameterException) RequestID() string {
 // The request caused OpsItems to exceed one or more quotas. For information
 // about OpsItem quotas, see What are the resource limits for OpsCenter? (http://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter-learn-more.html#OpsCenter-learn-more-limits).
 type OpsItemLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Limit *int64 `type:"integer"`
 
@@ -35198,8 +35198,8 @@ func (s OpsItemLimitExceededException) RequestID() string {
 
 // The specified OpsItem ID doesn't exist. Verify the ID and try again.
 type OpsItemNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -35577,8 +35577,8 @@ func (s *Parameter) SetVersion(v int64) *Parameter {
 
 // The parameter already exists. You can't create duplicate parameters.
 type ParameterAlreadyExists struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -35808,8 +35808,8 @@ func (s *ParameterInlinePolicy) SetPolicyType(v string) *ParameterInlinePolicy {
 // You have exceeded the number of parameters for this AWS account. Delete one
 // or more parameters and try again.
 type ParameterLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -35864,8 +35864,8 @@ func (s ParameterLimitExceeded) RequestID() string {
 
 // The parameter exceeded the maximum number of allowed versions.
 type ParameterMaxVersionLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -36029,8 +36029,8 @@ func (s *ParameterMetadata) SetVersion(v int64) *ParameterMetadata {
 
 // The parameter could not be found. Verify the name and try again.
 type ParameterNotFound struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -36085,8 +36085,8 @@ func (s ParameterNotFound) RequestID() string {
 
 // The parameter name is not valid.
 type ParameterPatternMismatchException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The parameter name is not valid.
 	Message_ *string `locationName:"message" type:"string"`
@@ -36229,8 +36229,8 @@ func (s *ParameterStringFilter) SetValues(v []*string) *ParameterStringFilter {
 
 // A parameter version can have a maximum of ten labels.
 type ParameterVersionLabelLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -36286,8 +36286,8 @@ func (s ParameterVersionLabelLimitExceeded) RequestID() string {
 // The specified parameter version was not found. Verify the parameter name
 // and version, and try again.
 type ParameterVersionNotFound struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -37151,8 +37151,8 @@ func (s *PatchStatus) SetDeploymentStatus(v string) *PatchStatus {
 // You specified more than the maximum number of allowed policies for the parameter.
 // The maximum is 10.
 type PoliciesLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -38790,8 +38790,8 @@ func (s *ResourceComplianceSummaryItem) SetStatus(v string) *ResourceComplianceS
 
 // A sync configuration with the same name already exists.
 type ResourceDataSyncAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -38918,8 +38918,8 @@ func (s *ResourceDataSyncAwsOrganizationsSource) SetOrganizationalUnits(v []*Res
 // Another UpdateResourceDataSync request is being processed. Wait a few minutes
 // and try again.
 type ResourceDataSyncConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -38974,8 +38974,8 @@ func (s ResourceDataSyncConflictException) RequestID() string {
 
 // You have exceeded the allowed maximum sync configurations.
 type ResourceDataSyncCountExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -39070,8 +39070,8 @@ func (s *ResourceDataSyncDestinationDataSharing) SetDestinationDataSharingType(v
 
 // The specified sync configuration is invalid.
 type ResourceDataSyncInvalidConfigurationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -39235,8 +39235,8 @@ func (s *ResourceDataSyncItem) SetSyncType(v string) *ResourceDataSyncItem {
 
 // The specified sync name was not found.
 type ResourceDataSyncNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -39616,8 +39616,8 @@ func (s *ResourceDataSyncSourceWithState) SetState(v string) *ResourceDataSyncSo
 // Error returned if an attempt is made to delete a patch baseline that is registered
 // for a patch group.
 type ResourceInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -39677,8 +39677,8 @@ func (s ResourceInUseException) RequestID() string {
 // Service Quotas (http://docs.aws.amazon.com/general/latest/gr/ssm.html#limits_ssm)
 // in the AWS General Reference.
 type ResourceLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -40465,8 +40465,8 @@ func (s *ServiceSetting) SetStatus(v string) *ServiceSetting {
 // The specified service setting was not found. Either the service name or the
 // setting has not been provisioned by the AWS service team.
 type ServiceSettingNotFound struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -41215,8 +41215,8 @@ func (s *StartSessionOutput) SetTokenValue(v string) *StartSessionOutput {
 
 // The updated status is the same as the current status.
 type StatusUnchanged struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -41619,8 +41619,8 @@ func (s StopAutomationExecutionOutput) GoString() string {
 
 // The sub-type count exceeded the limit for the inventory type.
 type SubTypeCountLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -41825,8 +41825,8 @@ func (s *Target) SetValues(v []*string) *Target {
 // You specified the Safe option for the DeregisterTargetFromMaintenanceWindow
 // operation, but the target is still referenced in a task.
 type TargetInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -41972,8 +41972,8 @@ func (s *TargetLocation) SetTargetLocationMaxErrors(v string) *TargetLocation {
 // Session Manager (http://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-getting-started.html)
 // in the AWS Systems Manager User Guide.
 type TargetNotConnected struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -42093,8 +42093,8 @@ func (s *TerminateSessionOutput) SetSessionId(v string) *TerminateSessionOutput 
 // The Targets parameter includes too many tags. Remove one or more tags and
 // try the command again.
 type TooManyTagsError struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -42150,8 +42150,8 @@ func (s TooManyTagsError) RequestID() string {
 // There are concurrent updates for a resource that supports one update at a
 // time.
 type TooManyUpdates struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -42206,8 +42206,8 @@ func (s TooManyUpdates) RequestID() string {
 
 // The size of inventory data has exceeded the total size limit for the resource.
 type TotalSizeLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -42263,8 +42263,8 @@ func (s TotalSizeLimitExceededException) RequestID() string {
 // The calendar entry contained in the specified Systems Manager document is
 // not supported.
 type UnsupportedCalendarException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -42323,8 +42323,8 @@ func (s UnsupportedCalendarException) RequestID() string {
 // Tier (http://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-managedinstances-advanced.html)
 // in the AWS Systems Manager User Guide.
 type UnsupportedFeatureRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -42381,8 +42381,8 @@ func (s UnsupportedFeatureRequiredException) RequestID() string {
 // for this inventory type. You can only use the Context attribute with inventory
 // types like AWS:ComplianceItem.
 type UnsupportedInventoryItemContextException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -42441,8 +42441,8 @@ func (s UnsupportedInventoryItemContextException) RequestID() string {
 // service. Check output of GetInventorySchema to see the available schema version
 // for each type.
 type UnsupportedInventorySchemaVersionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -42499,8 +42499,8 @@ func (s UnsupportedInventorySchemaVersionException) RequestID() string {
 // not supported for the operating system. Valid operating systems include:
 // Windows, AmazonLinux, RedhatEnterpriseLinux, and Ubuntu.
 type UnsupportedOperatingSystem struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -42555,8 +42555,8 @@ func (s UnsupportedOperatingSystem) RequestID() string {
 
 // The parameter type is not supported.
 type UnsupportedParameterType struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -42612,8 +42612,8 @@ func (s UnsupportedParameterType) RequestID() string {
 // The document does not support the platform type of the given instance ID(s).
 // For example, you sent an document for a Windows instance to a Linux instance.
 type UnsupportedPlatformType struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

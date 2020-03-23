@@ -1511,8 +1511,8 @@ func (s *FinalizeDeviceClaimOutput) SetState(v string) *FinalizeDeviceClaimOutpu
 }
 
 type ForbiddenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// 403
 	Code_ *string `locationName:"code" type:"string"`
@@ -1693,8 +1693,8 @@ func (s *InitiateDeviceClaimOutput) SetState(v string) *InitiateDeviceClaimOutpu
 }
 
 type InternalFailureException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// 500
 	Code_ *string `locationName:"code" type:"string"`
@@ -1752,8 +1752,8 @@ func (s InternalFailureException) RequestID() string {
 }
 
 type InvalidRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// 400
 	Code_ *string `locationName:"code" type:"string"`
@@ -2147,8 +2147,8 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 }
 
 type PreconditionFailedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// 412
 	Code_ *string `locationName:"code" type:"string"`
@@ -2206,8 +2206,8 @@ func (s PreconditionFailedException) RequestID() string {
 }
 
 type RangeNotSatisfiableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// 416
 	Code_ *string `locationName:"code" type:"string"`
@@ -2265,8 +2265,8 @@ func (s RangeNotSatisfiableException) RequestID() string {
 }
 
 type ResourceConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// 409
 	Code_ *string `locationName:"code" type:"string"`
@@ -2324,8 +2324,8 @@ func (s ResourceConflictException) RequestID() string {
 }
 
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// 404
 	Code_ *string `locationName:"code" type:"string"`

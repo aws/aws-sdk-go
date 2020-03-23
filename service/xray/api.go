@@ -4354,8 +4354,8 @@ func (s *InstanceIdDetail) SetId(v string) *InstanceIdDetail {
 
 // The request is missing required parameters or has invalid parameters.
 type InvalidRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4834,8 +4834,8 @@ func (s *RootCauseException) SetName(v string) *RootCauseException {
 
 // You have reached the maximum number of sampling rules.
 type RuleLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -5918,8 +5918,8 @@ func (s *TelemetryRecord) SetTimestamp(v time.Time) *TelemetryRecord {
 
 // The request exceeds the maximum number of requests per second.
 type ThrottledException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

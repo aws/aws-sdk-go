@@ -2899,8 +2899,8 @@ func (s *InstanceIdentity) SetSignature(v string) *InstanceIdentity {
 
 // An internal service error occurred.
 type InternalServiceError struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Description of the error message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -2958,8 +2958,8 @@ func (s InternalServiceError) RequestID() string {
 // that the signature was generated with the correct credentials, and that you
 // haven't exceeded any of the service limits for your account.
 type InvalidRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Description of the error message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -3344,8 +3344,8 @@ func (s *ParameterValue) SetStringValue(v string) *ParameterValue {
 
 // The specified pipeline has been deleted.
 type PipelineDeletedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Description of the error message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -3507,8 +3507,8 @@ func (s *PipelineIdName) SetName(v string) *PipelineIdName {
 // The specified pipeline was not found. Verify that you used the correct user
 // and account identifiers.
 type PipelineNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Description of the error message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -4612,8 +4612,8 @@ func (s *Tag) SetValue(v string) *Tag {
 
 // The specified task was not found.
 type TaskNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Description of the error message.
 	Message_ *string `locationName:"message" type:"string"`

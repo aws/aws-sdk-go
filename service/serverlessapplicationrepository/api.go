@@ -1727,8 +1727,8 @@ func (s *ApplicationSummary) SetSpdxLicenseId(v string) *ApplicationSummary {
 
 // One of the parameters in the request is invalid.
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// 400
 	ErrorCode *string `locationName:"errorCode" type:"string"`
@@ -1787,8 +1787,8 @@ func (s BadRequestException) RequestID() string {
 
 // The resource already exists.
 type ConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// 409
 	ErrorCode *string `locationName:"errorCode" type:"string"`
@@ -2677,8 +2677,8 @@ func (s DeleteApplicationOutput) GoString() string {
 
 // The client is not authenticated.
 type ForbiddenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// 403
 	ErrorCode *string `locationName:"errorCode" type:"string"`
@@ -3089,8 +3089,8 @@ func (s *GetCloudFormationTemplateOutput) SetTemplateUrl(v string) *GetCloudForm
 // The AWS Serverless Application Repository service encountered an internal
 // error.
 type InternalServerErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// 500
 	ErrorCode *string `locationName:"errorCode" type:"string"`
@@ -3408,8 +3408,8 @@ func (s *ListApplicationsOutput) SetNextToken(v string) *ListApplicationsOutput 
 // The resource (for example, an access policy statement) specified in the request
 // doesn't exist.
 type NotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// 404
 	ErrorCode *string `locationName:"errorCode" type:"string"`
@@ -3966,8 +3966,8 @@ func (s *Tag) SetValue(v string) *Tag {
 // The client is sending more than the allowed number of requests per unit of
 // time.
 type TooManyRequestsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// 429
 	ErrorCode *string `locationName:"errorCode" type:"string"`

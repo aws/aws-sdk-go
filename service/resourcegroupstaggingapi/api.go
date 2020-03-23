@@ -1212,8 +1212,8 @@ func (s *ComplianceDetails) SetNoncompliantKeys(v []*string) *ComplianceDetails 
 // The target of the operation is currently being modified by a different request.
 // Try again later.
 type ConcurrentModificationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1282,8 +1282,8 @@ func (s ConcurrentModificationException) RequestID() string {
 //    * You must have a tag policy attached to the organization root, an OU,
 //    or an account.
 type ConstraintViolationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1985,8 +1985,8 @@ func (s *GetTagValuesOutput) SetTagValues(v []*string) *GetTagValuesOutput {
 // The request processing failed because of an unknown error, exception, or
 // failure. You can retry the request.
 type InternalServiceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2054,8 +2054,8 @@ func (s InternalServiceException) RequestID() string {
 //    (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-prereqs.html#bucket-policies-org-report)
 //    in the AWS Organizations User Guide.
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2111,8 +2111,8 @@ func (s InvalidParameterException) RequestID() string {
 // A PaginationToken is valid for a maximum of 15 minutes. Your request was
 // denied because the specified PaginationToken has expired.
 type PaginationTokenExpiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2522,8 +2522,8 @@ func (s *TagResourcesOutput) SetFailedResourcesMap(v map[string]*FailureInfo) *T
 
 // The request was denied to limit the frequency of submitted requests.
 type ThrottledException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

@@ -3412,8 +3412,8 @@ func (s *GetResolverRulePolicyOutput) SetResolverRulePolicy(v string) *GetResolv
 
 // We encountered an unknown error. Try again in a few minutes.
 type InternalServiceErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3468,8 +3468,8 @@ func (s InternalServiceErrorException) RequestID() string {
 
 // The value that you specified for NextToken in a List request isn't valid.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3524,8 +3524,8 @@ func (s InvalidNextTokenException) RequestID() string {
 
 // One or more parameters in this request are not valid.
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// For an InvalidParameterException error, the name of the parameter that's
 	// invalid.
@@ -3584,8 +3584,8 @@ func (s InvalidParameterException) RequestID() string {
 
 // The specified resolver rule policy is invalid.
 type InvalidPolicyDocument struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3640,8 +3640,8 @@ func (s InvalidPolicyDocument) RequestID() string {
 
 // The request is invalid.
 type InvalidRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3696,8 +3696,8 @@ func (s InvalidRequestException) RequestID() string {
 
 // The specified tag is invalid.
 type InvalidTagException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3952,8 +3952,8 @@ func (s *IpAddressUpdate) SetSubnetId(v string) *IpAddressUpdate {
 
 // The request caused one or more limits to be exceeded.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -5088,8 +5088,8 @@ func (s *ResolverRuleConfig) SetTargetIps(v []*TargetAddress) *ResolverRuleConfi
 
 // The resource that you tried to create already exists.
 type ResourceExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -5148,8 +5148,8 @@ func (s ResourceExistsException) RequestID() string {
 
 // The resource that you tried to update or delete is currently in use.
 type ResourceInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -5208,8 +5208,8 @@ func (s ResourceInUseException) RequestID() string {
 
 // The specified resource doesn't exist.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -5268,8 +5268,8 @@ func (s ResourceNotFoundException) RequestID() string {
 
 // The specified resource isn't available.
 type ResourceUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -5500,8 +5500,8 @@ func (s *TargetAddress) SetPort(v int64) *TargetAddress {
 
 // The request was throttled. Try again in a few minutes.
 type ThrottlingException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -5556,8 +5556,8 @@ func (s ThrottlingException) RequestID() string {
 
 // The specified resource doesn't exist.
 type UnknownResourceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

@@ -3510,8 +3510,8 @@ func (s *BackendDefaults) SetClientPolicy(v *ClientPolicy) *BackendDefaults {
 
 // The request syntax was malformed. Check your request syntax and try again.
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3667,8 +3667,8 @@ func (s *ClientPolicyTls) SetValidation(v *TlsValidationContext) *ClientPolicyTl
 // call with different specifications. Try the request again with a new client
 // token.
 type ConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5414,8 +5414,8 @@ func (s *FileAccessLog) SetPath(v string) *FileAccessLog {
 
 // You don't have permissions to perform this action.
 type ForbiddenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6445,8 +6445,8 @@ func (s *HttpRouteMatch) SetScheme(v string) *HttpRouteMatch {
 // The request processing has failed because of an unknown error, exception,
 // or failure.
 type InternalServerErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6503,8 +6503,8 @@ func (s InternalServerErrorException) RequestID() string {
 // see Service Limits (https://docs.aws.amazon.com/app-mesh/latest/userguide/service_limits.html)
 // in the AWS App Mesh User Guide.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7674,8 +7674,8 @@ func (s *MeshStatus) SetStatus(v string) *MeshStatus {
 
 // The specified resource doesn't exist. Check your request syntax and try again.
 type NotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7783,8 +7783,8 @@ func (s *PortMapping) SetProtocol(v string) *PortMapping {
 // You can't delete the specified resource because it's in use or required by
 // another resource.
 type ResourceInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8230,8 +8230,8 @@ func (s *ServiceDiscovery) SetDns(v *DnsServiceDiscovery) *ServiceDiscovery {
 
 // The request has failed due to a temporary failure of the service.
 type ServiceUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8688,8 +8688,8 @@ func (s *TlsValidationContextTrust) SetFile(v *TlsValidationContextFileTrust) *T
 // for your account. For best results, use an increasing or variable sleep interval
 // between requests.
 type TooManyRequestsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8746,8 +8746,8 @@ func (s TooManyRequestsException) RequestID() string {
 // The current limit is 50 user tags per resource. You must reduce the number
 // of tags in the request. None of the tags in this request were applied.
 type TooManyTagsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

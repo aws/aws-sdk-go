@@ -4764,8 +4764,8 @@ func (s *CommentMetadata) SetRecipientId(v string) *CommentMetadata {
 
 // The resource hierarchy is changing.
 type ConcurrentModificationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4821,8 +4821,8 @@ func (s ConcurrentModificationException) RequestID() string {
 // Another operation is in progress on the resource that conflicts with the
 // current operation.
 type ConflictingOperationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -5587,8 +5587,8 @@ func (s *CreateUserOutput) SetUser(v *User) *CreateUserOutput {
 // The limit has been reached on the number of custom properties for the specified
 // resource.
 type CustomMetadataLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -5711,8 +5711,8 @@ func (s DeactivateUserOutput) GoString() string {
 
 // The last user in the organization is being deactivated.
 type DeactivatingLastSystemUserException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7631,8 +7631,8 @@ func (s *DescribeUsersOutput) SetUsers(v []*User) *DescribeUsersOutput {
 // This exception is thrown when the document is locked for comments and user
 // tries to create or delete a comment on that document.
 type DocumentLockedForCommentsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -7907,8 +7907,8 @@ func (s *DocumentVersionMetadata) SetThumbnail(v map[string]*string) *DocumentVe
 // This exception is thrown when a valid checkout ID is not presented on document
 // version upload calls for a document that has been checked out from Web client.
 type DraftUploadOutOfSyncException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -7963,8 +7963,8 @@ func (s DraftUploadOutOfSyncException) RequestID() string {
 
 // The resource already exists.
 type EntityAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -8019,8 +8019,8 @@ func (s EntityAlreadyExistsException) RequestID() string {
 
 // The resource does not exist.
 type EntityNotExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	EntityIds []*string `type:"list"`
 
@@ -8079,8 +8079,8 @@ func (s EntityNotExistsException) RequestID() string {
 // under the control of the organization is failing, such as a connected Active
 // Directory.
 type FailedDependencyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -9015,8 +9015,8 @@ func (s *GroupMetadata) SetName(v string) *GroupMetadata {
 
 // The user is undergoing transfer of ownership.
 type IllegalUserStateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -9220,8 +9220,8 @@ func (s *InitiateDocumentVersionUploadOutput) SetUploadMetadata(v *UploadMetadat
 
 // The pagination marker or limit fields are not valid.
 type InvalidArgumentException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -9276,8 +9276,8 @@ func (s InvalidArgumentException) RequestID() string {
 
 // The requested operation is not allowed on the specified comment object.
 type InvalidCommentOperationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -9332,8 +9332,8 @@ func (s InvalidCommentOperationException) RequestID() string {
 
 // The operation is invalid.
 type InvalidOperationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -9388,8 +9388,8 @@ func (s InvalidOperationException) RequestID() string {
 
 // The password is invalid.
 type InvalidPasswordException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -9444,8 +9444,8 @@ func (s InvalidPasswordException) RequestID() string {
 
 // The maximum of 100,000 folders under the parent folder has been exceeded.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -9641,8 +9641,8 @@ func (s *Principal) SetType(v string) *Principal {
 
 // The specified document version is not in the INITIALIZED state.
 type ProhibitedStateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -9860,8 +9860,8 @@ func (s RemoveResourcePermissionOutput) GoString() string {
 // The response is too large to return. The request must include a filter to
 // reduce the size of the response.
 type RequestedEntityTooLargeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -9916,8 +9916,8 @@ func (s RequestedEntityTooLargeException) RequestID() string {
 
 // The resource is already checked out.
 type ResourceAlreadyCheckedOutException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -10108,8 +10108,8 @@ func (s *ResourcePathComponent) SetName(v string) *ResourcePathComponent {
 
 // One or more of the dependencies is unavailable.
 type ServiceUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -10303,8 +10303,8 @@ func (s *ShareResult) SetStatusMessage(v string) *ShareResult {
 
 // The storage limit has been exceeded.
 type StorageLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -10359,8 +10359,8 @@ func (s StorageLimitExceededException) RequestID() string {
 
 // The storage limit will be exceeded.
 type StorageLimitWillExceedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -10490,8 +10490,8 @@ func (s *Subscription) SetSubscriptionId(v string) *Subscription {
 
 // The limit has been reached on the number of labels for the specified resource.
 type TooManyLabelsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -10547,8 +10547,8 @@ func (s TooManyLabelsException) RequestID() string {
 // You've reached the limit on the number of subscriptions for the WorkDocs
 // instance.
 type TooManySubscriptionsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -10603,8 +10603,8 @@ func (s TooManySubscriptionsException) RequestID() string {
 
 // The operation is not permitted.
 type UnauthorizedOperationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10659,8 +10659,8 @@ func (s UnauthorizedOperationException) RequestID() string {
 
 // The caller does not have access to perform the action on the resource.
 type UnauthorizedResourceAccessException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

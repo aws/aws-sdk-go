@@ -8725,8 +8725,8 @@ func (s *AddressBookData) SetName(v string) *AddressBookData {
 
 // The resource being created already exists.
 type AlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -9497,8 +9497,8 @@ func (s *Category) SetCategoryName(v string) *Category {
 
 // There is a concurrent modification of resources.
 type ConcurrentModificationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12578,8 +12578,8 @@ func (s *DeviceNetworkProfileInfo) SetNetworkProfileArn(v string) *DeviceNetwork
 // The request failed because this device is no longer registered and therefore
 // no longer managed by this account.
 type DeviceNotRegisteredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14154,8 +14154,8 @@ func (s *InstantBooking) SetEnabled(v bool) *InstantBooking {
 
 // The Certificate Authority can't issue or revoke a certificate.
 type InvalidCertificateAuthorityException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14210,8 +14210,8 @@ func (s InvalidCertificateAuthorityException) RequestID() string {
 
 // The device is in an invalid state.
 type InvalidDeviceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14266,8 +14266,8 @@ func (s InvalidDeviceException) RequestID() string {
 
 // A password in SecretsManager is in an invalid state.
 type InvalidSecretsManagerResourceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14322,8 +14322,8 @@ func (s InvalidSecretsManagerResourceException) RequestID() string {
 
 // The service linked role is locked for deletion.
 type InvalidServiceLinkedRoleStateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14378,8 +14378,8 @@ func (s InvalidServiceLinkedRoleStateException) RequestID() string {
 
 // The attempt to update a user is invalid due to the user's current status.
 type InvalidUserStatusException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14434,8 +14434,8 @@ func (s InvalidUserStatusException) RequestID() string {
 
 // You are performing an action that would put you beyond your account's limits.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -15515,8 +15515,8 @@ func (s *MeetingSetting) SetRequirePin(v string) *MeetingSetting {
 
 // The name sent in the request is already in use.
 type NameInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -15763,8 +15763,8 @@ func (s *NetworkProfileData) SetSsid(v string) *NetworkProfileData {
 
 // The resource is not found.
 type NotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -16795,8 +16795,8 @@ func (s *ResolveRoomOutput) SetRoomSkillParameters(v []*RoomSkillParameter) *Res
 
 // Another resource is associated with the resource in the request.
 type ResourceAssociatedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -16851,8 +16851,8 @@ func (s ResourceAssociatedException) RequestID() string {
 
 // The resource in the request is already in use.
 type ResourceInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A unique, user-specified identifier for the request that ensures idempotency.
 	ClientRequestToken *string `min:"10" type:"string"`
@@ -18619,8 +18619,8 @@ func (s *SkillGroupData) SetSkillGroupName(v string) *SkillGroupData {
 
 // The skill must be linked to a third-party account.
 type SkillNotLinkedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -19276,8 +19276,8 @@ func (s *Text) SetValue(v string) *Text {
 // The caller has no permissions to operate on the resource involved in the
 // API call.
 type UnauthorizedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

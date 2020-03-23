@@ -2211,8 +2211,8 @@ func (c *DataExchange) UpdateRevisionWithContext(ctx aws.Context, input *UpdateR
 
 // Access to the resource is denied.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Access to the resource is denied.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -2591,8 +2591,8 @@ func (s CancelJobOutput) GoString() string {
 // The request couldn't be completed because it conflicted with the current
 // state of the resource.
 type ConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The request couldn't be completed because it conflicted with the current
 	// state of the resource.
@@ -4683,8 +4683,8 @@ func (s *ImportAssetsFromS3ResponseDetails) SetRevisionId(v string) *ImportAsset
 
 // An exception occurred with the service.
 type InternalServerException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message identifying the service exception that occurred.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -5460,8 +5460,8 @@ func (s *RequestDetails) SetImportAssetsFromS3(v *ImportAssetsFromS3RequestDetai
 
 // The resource couldn't be found.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The resource couldn't be found.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -5707,8 +5707,8 @@ func (s *S3SnapshotAsset) SetSize(v float64) *S3SnapshotAsset {
 
 // The request has exceeded the quotas imposed by the service.
 type ServiceLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	LimitName *string `type:"string" enum:"LimitName"`
 
@@ -5885,8 +5885,8 @@ func (s TagResourceOutput) GoString() string {
 
 // The limit on the number of requests per second was exceeded.
 type ThrottlingException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The limit on the number of requests per second was exceeded.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -6523,8 +6523,8 @@ func (s *UpdateRevisionOutput) SetUpdatedAt(v time.Time) *UpdateRevisionOutput {
 
 // The request was invalid.
 type ValidationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message that informs you about what was invalid about the request.
 	Message_ *string `locationName:"Message" type:"string"`

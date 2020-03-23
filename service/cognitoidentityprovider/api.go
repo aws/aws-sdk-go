@@ -14773,8 +14773,8 @@ func (s AdminUserGlobalSignOutOutput) GoString() string {
 // account. This exception tells user that an account with this email or phone
 // already exists.
 type AliasExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message sent to the user when an alias exists.
 	Message_ *string `locationName:"message" type:"string"`
@@ -15401,8 +15401,8 @@ func (s *CodeDeliveryDetailsType) SetDestination(v string) *CodeDeliveryDetailsT
 
 // This exception is thrown when a verification code fails to deliver successfully.
 type CodeDeliveryFailureException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message sent when a verification code fails to deliver successfully.
 	Message_ *string `locationName:"message" type:"string"`
@@ -15459,8 +15459,8 @@ func (s CodeDeliveryFailureException) RequestID() string {
 // This exception is thrown if the provided code does not match what the server
 // was expecting.
 type CodeMismatchException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message provided when the code mismatch exception is thrown.
 	Message_ *string `locationName:"message" type:"string"`
@@ -15609,8 +15609,8 @@ func (s *CompromisedCredentialsRiskConfigurationType) SetEventFilter(v []*string
 
 // This exception is thrown if two or more modifications are happening concurrently.
 type ConcurrentModificationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message provided when the concurrent exception is thrown.
 	Message_ *string `locationName:"message" type:"string"`
@@ -18834,8 +18834,8 @@ func (s *DomainDescriptionType) SetVersion(v string) *DomainDescriptionType {
 // This exception is thrown when the provider is already supported by the user
 // pool.
 type DuplicateProviderException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -19030,8 +19030,8 @@ func (s *EmailConfigurationType) SetSourceArn(v string) *EmailConfigurationType 
 // This exception is thrown when there is a code mismatch and the service fails
 // to configure the software token TOTP multi-factor authentication (MFA).
 type EnableSoftwareTokenMFAException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -19235,8 +19235,8 @@ func (s *EventRiskType) SetRiskLevel(v string) *EventRiskType {
 
 // This exception is thrown if a code has expired.
 type ExpiredCodeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the expired code exception is thrown.
 	Message_ *string `locationName:"message" type:"string"`
@@ -20354,8 +20354,8 @@ func (s GlobalSignOutOutput) GoString() string {
 // This exception is thrown when Amazon Cognito encounters a group that already
 // exists in the user pool.
 type GroupExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -20914,8 +20914,8 @@ func (s *InitiateAuthOutput) SetSession(v string) *InitiateAuthOutput {
 
 // This exception is thrown when Amazon Cognito encounters an internal error.
 type InternalErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when Amazon Cognito throws an internal error exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -20972,8 +20972,8 @@ func (s InternalErrorException) RequestID() string {
 // This exception is thrown when Amazon Cognito is not allowed to use your email
 // identity. HTTP status code: 400.
 type InvalidEmailRoleAccessPolicyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when you have an unverified email address or the identity
 	// policy is not set on an email address that Amazon Cognito can access.
@@ -21031,8 +21031,8 @@ func (s InvalidEmailRoleAccessPolicyException) RequestID() string {
 // This exception is thrown when the Amazon Cognito service encounters an invalid
 // AWS Lambda response.
 type InvalidLambdaResponseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the Amazon Cognito service throws an invalid AWS
 	// Lambda response exception.
@@ -21089,8 +21089,8 @@ func (s InvalidLambdaResponseException) RequestID() string {
 
 // This exception is thrown when the specified OAuth flow is invalid.
 type InvalidOAuthFlowException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -21146,8 +21146,8 @@ func (s InvalidOAuthFlowException) RequestID() string {
 // This exception is thrown when the Amazon Cognito service encounters an invalid
 // parameter.
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the Amazon Cognito service throws an invalid parameter
 	// exception.
@@ -21205,8 +21205,8 @@ func (s InvalidParameterException) RequestID() string {
 // This exception is thrown when the Amazon Cognito service encounters an invalid
 // password.
 type InvalidPasswordException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the Amazon Cognito service throws an invalid user
 	// password exception.
@@ -21264,8 +21264,8 @@ func (s InvalidPasswordException) RequestID() string {
 // This exception is returned when the role provided for SMS configuration does
 // not have permission to publish using Amazon SNS.
 type InvalidSmsRoleAccessPolicyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message retuned when the invalid SMS role access policy exception is
 	// thrown.
@@ -21325,8 +21325,8 @@ func (s InvalidSmsRoleAccessPolicyException) RequestID() string {
 // or the external ID provided in the role does not match what is provided in
 // the SMS configuration for the user pool.
 type InvalidSmsRoleTrustRelationshipException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the role trust relationship for the SMS message
 	// is invalid.
@@ -21383,8 +21383,8 @@ func (s InvalidSmsRoleTrustRelationshipException) RequestID() string {
 
 // This exception is thrown when the user pool configuration is invalid.
 type InvalidUserPoolConfigurationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the user pool configuration is invalid.
 	Message_ *string `locationName:"message" type:"string"`
@@ -21586,8 +21586,8 @@ func (s *LambdaConfigType) SetVerifyAuthChallengeResponse(v string) *LambdaConfi
 // This exception is thrown when a user exceeds the limit for a requested AWS
 // resource.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when Amazon Cognito throws a limit exceeded exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -22664,8 +22664,8 @@ func (s *ListUsersOutput) SetUsers(v []*UserType) *ListUsersOutput {
 // This exception is thrown when Amazon Cognito cannot find a multi-factor authentication
 // (MFA) method.
 type MFAMethodNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when Amazon Cognito throws an MFA method not found exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -22869,8 +22869,8 @@ func (s *NewDeviceMetadataType) SetDeviceKey(v string) *NewDeviceMetadataType {
 
 // This exception is thrown when a user is not authorized.
 type NotAuthorizedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the Amazon Cognito service returns a not authorized
 	// exception.
@@ -23227,8 +23227,8 @@ func (s *PasswordPolicyType) SetTemporaryPasswordValidityDays(v int64) *Password
 
 // This exception is thrown when a password reset is required.
 type PasswordResetRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when a password reset is required.
 	Message_ *string `locationName:"message" type:"string"`
@@ -23284,8 +23284,8 @@ func (s PasswordResetRequiredException) RequestID() string {
 
 // This exception is thrown when a precondition is not met.
 type PreconditionNotMetException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when a precondition is not met.
 	Message_ *string `locationName:"message" type:"string"`
@@ -23661,8 +23661,8 @@ func (s *ResendConfirmationCodeOutput) SetCodeDeliveryDetails(v *CodeDeliveryDet
 // This exception is thrown when the Amazon Cognito service cannot find the
 // requested resource.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the Amazon Cognito service returns a resource not
 	// found exception.
@@ -24295,8 +24295,8 @@ func (s *SchemaAttributeType) SetStringAttributeConstraints(v *StringAttributeCo
 
 // This exception is thrown when the specified scope does not exist.
 type ScopeDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -25199,8 +25199,8 @@ func (s *SmsMfaConfigType) SetSmsConfiguration(v *SmsConfigurationType) *SmsMfaC
 // This exception is thrown when the software token TOTP multi-factor authentication
 // (MFA) is not enabled for the user pool.
 type SoftwareTokenMFANotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -25583,8 +25583,8 @@ func (s TagResourceOutput) GoString() string {
 // This exception is thrown when the user has made too many failed attempts
 // for a given action (e.g., sign in).
 type TooManyFailedAttemptsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the Amazon Cognito service returns a too many failed
 	// attempts exception.
@@ -25642,8 +25642,8 @@ func (s TooManyFailedAttemptsException) RequestID() string {
 // This exception is thrown when the user has made too many requests for a given
 // operation.
 type TooManyRequestsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the Amazon Cognito service returns a too many requests
 	// exception.
@@ -25780,8 +25780,8 @@ func (s *UICustomizationType) SetUserPoolId(v string) *UICustomizationType {
 // This exception is thrown when the Amazon Cognito service encounters an unexpected
 // exception with the AWS Lambda service.
 type UnexpectedLambdaException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the Amazon Cognito service returns an unexpected
 	// AWS Lambda exception.
@@ -25838,8 +25838,8 @@ func (s UnexpectedLambdaException) RequestID() string {
 
 // This exception is thrown when the specified identifier is not supported.
 type UnsupportedIdentityProviderException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -25894,8 +25894,8 @@ func (s UnsupportedIdentityProviderException) RequestID() string {
 
 // The request failed because the user is in an unsupported state.
 type UnsupportedUserStateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the user is in an unsupported state.
 	Message_ *string `locationName:"message" type:"string"`
@@ -27431,8 +27431,8 @@ func (s *UserContextDataType) SetEncodedData(v string) *UserContextDataType {
 // This exception is thrown when you are trying to modify a user pool while
 // a user import job is in progress for that pool.
 type UserImportInProgressException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the user pool has an import job running.
 	Message_ *string `locationName:"message" type:"string"`
@@ -27644,8 +27644,8 @@ func (s *UserImportJobType) SetUserPoolId(v string) *UserImportJobType {
 // This exception is thrown when the Amazon Cognito service encounters a user
 // validation exception with the AWS Lambda service.
 type UserLambdaValidationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the Amazon Cognito service returns a user validation
 	// exception with the AWS Lambda service.
@@ -27702,8 +27702,8 @@ func (s UserLambdaValidationException) RequestID() string {
 
 // This exception is thrown when a user is not confirmed successfully.
 type UserNotConfirmedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when a user is not confirmed successfully.
 	Message_ *string `locationName:"message" type:"string"`
@@ -27759,8 +27759,8 @@ func (s UserNotConfirmedException) RequestID() string {
 
 // This exception is thrown when a user is not found.
 type UserNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when a user is not found.
 	Message_ *string `locationName:"message" type:"string"`
@@ -27816,8 +27816,8 @@ func (s UserNotFoundException) RequestID() string {
 
 // This exception is thrown when user pool add-ons are not enabled.
 type UserPoolAddOnNotEnabledException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -28354,8 +28354,8 @@ func (s *UserPoolPolicyType) SetPasswordPolicy(v *PasswordPolicyType) *UserPoolP
 
 // This exception is thrown when a user pool tag cannot be set or updated.
 type UserPoolTaggingException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -28876,8 +28876,8 @@ func (s *UsernameConfigurationType) SetCaseSensitive(v bool) *UsernameConfigurat
 // This exception is thrown when Amazon Cognito encounters a user name that
 // already exists in the user pool.
 type UsernameExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when Amazon Cognito throws a user name exists exception.
 	Message_ *string `locationName:"message" type:"string"`

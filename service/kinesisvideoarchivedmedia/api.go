@@ -830,8 +830,8 @@ func (c *KinesisVideoArchivedMedia) ListFragmentsPagesWithContext(ctx aws.Contex
 // Kinesis Video Streams has throttled the request because you have exceeded
 // the limit of allowed client calls. Try making the call later.
 type ClientLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1874,8 +1874,8 @@ func (s *HLSTimestampRange) SetStartTimestamp(v time.Time) *HLSTimestampRange {
 // A specified parameter exceeds its restrictions, is not supported, or can't
 // be used.
 type InvalidArgumentException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1931,8 +1931,8 @@ func (s InvalidArgumentException) RequestID() string {
 // The codec private data in at least one of the tracks of the video stream
 // is not valid for this operation.
 type InvalidCodecPrivateDataException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2105,8 +2105,8 @@ func (s *ListFragmentsOutput) SetNextToken(v string) *ListFragmentsOutput {
 
 // No codec private data was found in at least one of tracks of the video stream.
 type MissingCodecPrivateDataException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2162,8 +2162,8 @@ func (s MissingCodecPrivateDataException) RequestID() string {
 // A streaming session was requested for a stream that does not retain data
 // (that is, has a DataRetentionInHours of 0).
 type NoDataRetentionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2219,8 +2219,8 @@ func (s NoDataRetentionException) RequestID() string {
 // Status Code: 403, The caller is not authorized to perform an operation on
 // the given stream, or the token has expired.
 type NotAuthorizedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2282,8 +2282,8 @@ func (s NotAuthorizedException) RequestID() string {
 // a session with a PlaybackMode of LIVE is requested for a stream that has
 // no fragments within the last 30 seconds.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2394,8 +2394,8 @@ func (s *TimestampRange) SetStartTimestamp(v time.Time) *TimestampRange {
 // fragment for a playback session. The codec ID for track 1 should be V_MPEG/ISO/AVC
 // and, optionally, the codec ID for track 2 should be A_AAC.
 type UnsupportedStreamMediaTypeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

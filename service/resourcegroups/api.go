@@ -1334,8 +1334,8 @@ func (c *ResourceGroups) UpdateGroupQueryWithContext(ctx aws.Context, input *Upd
 // The request does not comply with validation rules that are defined for the
 // request parameters.
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -1582,8 +1582,8 @@ func (s *DeleteGroupOutput) SetGroup(v *Group) *DeleteGroupOutput {
 
 // The caller is not authorized to make the request.
 type ForbiddenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -2017,8 +2017,8 @@ func (s *GroupQuery) SetResourceQuery(v *ResourceQuery) *GroupQuery {
 
 // An internal error occurred while processing the request.
 type InternalServerErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -2324,8 +2324,8 @@ func (s *ListGroupsOutput) SetNextToken(v string) *ListGroupsOutput {
 
 // The request uses an HTTP method which is not allowed for the specified resource.
 type MethodNotAllowedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -2380,8 +2380,8 @@ func (s MethodNotAllowedException) RequestID() string {
 
 // One or more resources specified in the request do not exist.
 type NotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -2859,8 +2859,8 @@ func (s *TagOutput) SetTags(v map[string]*string) *TagOutput {
 
 // The caller has exceeded throttling limits.
 type TooManyRequestsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -2916,8 +2916,8 @@ func (s TooManyRequestsException) RequestID() string {
 // The request has not been applied because it lacks valid authentication credentials
 // for the target resource.
 type UnauthorizedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }

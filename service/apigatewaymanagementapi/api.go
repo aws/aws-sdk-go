@@ -331,8 +331,8 @@ func (s DeleteConnectionOutput) GoString() string {
 
 // The caller is not authorized to invoke this operation.
 type ForbiddenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -464,8 +464,8 @@ func (s *GetConnectionOutput) SetLastActiveAt(v time.Time) *GetConnectionOutput 
 
 // The connection with the provided id no longer exists.
 type GoneException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -557,8 +557,8 @@ func (s *Identity) SetUserAgent(v string) *Identity {
 // The client is sending more than the allowed number of requests per unit of
 // time or the WebSocket client side buffer is full.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -613,8 +613,8 @@ func (s LimitExceededException) RequestID() string {
 
 // The data has exceeded the maximum size allowed.
 type PayloadTooLargeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

@@ -137,8 +137,8 @@ func (s AbortTransactionResult) GoString() string {
 // Returned if the request is malformed or contains an error such as an invalid
 // parameter value or a missing required parameter.
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -506,8 +506,8 @@ func (s *FetchPageResult) SetPage(v *Page) *FetchPageResult {
 
 // Returned if the session doesn't exist anymore because it timed-out or expired.
 type InvalidSessionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -564,8 +564,8 @@ func (s InvalidSessionException) RequestID() string {
 
 // Returned if a resource limit such as number of active sessions is exceeded.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -621,8 +621,8 @@ func (s LimitExceededException) RequestID() string {
 // Returned when a transaction cannot be written to the journal due to a failure
 // in the verification phase of Optimistic Concurrency Control.
 type OccConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -710,8 +710,8 @@ func (s *Page) SetValues(v []*ValueHolder) *Page {
 
 // Returned when the rate of requests exceeds the allowed throughput.
 type RateExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

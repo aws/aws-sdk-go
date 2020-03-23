@@ -2579,8 +2579,8 @@ func (s *CertificateAuthorityConfiguration) SetSubject(v *ASN1Subject) *Certific
 // The certificate authority certificate you are importing does not comply with
 // conditions specified in the certificate that signed it.
 type CertificateMismatchException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2635,8 +2635,8 @@ func (s CertificateMismatchException) RequestID() string {
 
 // A previous update to your private CA is still ongoing.
 type ConcurrentModificationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3848,8 +3848,8 @@ func (s ImportCertificateAuthorityCertificateOutput) GoString() string {
 
 // One or more of the specified arguments was not valid.
 type InvalidArgsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3904,8 +3904,8 @@ func (s InvalidArgsException) RequestID() string {
 
 // The requested Amazon Resource Name (ARN) does not refer to an existing resource.
 type InvalidArnException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3961,8 +3961,8 @@ func (s InvalidArnException) RequestID() string {
 // The token specified in the NextToken argument is not valid. Use the token
 // returned from your previous call to ListCertificateAuthorities.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4018,8 +4018,8 @@ func (s InvalidNextTokenException) RequestID() string {
 // The S3 bucket policy is not valid. The policy must give ACM Private CA rights
 // to read from and write to the bucket and find the bucket location.
 type InvalidPolicyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4074,8 +4074,8 @@ func (s InvalidPolicyException) RequestID() string {
 
 // The request action cannot be performed or is prohibited.
 type InvalidRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4131,8 +4131,8 @@ func (s InvalidRequestException) RequestID() string {
 // The private CA is in a state during which a report or certificate cannot
 // be generated.
 type InvalidStateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4188,8 +4188,8 @@ func (s InvalidStateException) RequestID() string {
 // The tag associated with the CA is not valid. The invalid argument is contained
 // in the message field.
 type InvalidTagException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4428,8 +4428,8 @@ func (s *IssueCertificateOutput) SetCertificateArn(v string) *IssueCertificateOu
 // An ACM Private CA limit has been exceeded. See the exception message returned
 // to determine the limit that was exceeded.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4784,8 +4784,8 @@ func (s *ListTagsOutput) SetTags(v []*Tag) *ListTagsOutput {
 
 // The certificate signing request is invalid.
 type MalformedCSRException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4840,8 +4840,8 @@ func (s MalformedCSRException) RequestID() string {
 
 // One or more fields in the certificate are invalid.
 type MalformedCertificateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4972,8 +4972,8 @@ func (s *Permission) SetSourceAccount(v string) *Permission {
 
 // The designated permission has already been given to the user.
 type PermissionAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5028,8 +5028,8 @@ func (s PermissionAlreadyExistsException) RequestID() string {
 
 // Your request has already been completed.
 type RequestAlreadyProcessedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5084,8 +5084,8 @@ func (s RequestAlreadyProcessedException) RequestID() string {
 
 // The request has failed for an unspecified reason.
 type RequestFailedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5140,8 +5140,8 @@ func (s RequestFailedException) RequestID() string {
 
 // Your request is already in progress.
 type RequestInProgressException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5197,8 +5197,8 @@ func (s RequestInProgressException) RequestID() string {
 // A resource such as a private CA, S3 bucket, certificate, or audit report
 // cannot be found.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5593,8 +5593,8 @@ func (s TagCertificateAuthorityOutput) GoString() string {
 // You can associate up to 50 tags with a private CA. Exception information
 // is contained in the exception message field.
 type TooManyTagsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

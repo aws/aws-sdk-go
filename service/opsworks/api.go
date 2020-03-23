@@ -14324,8 +14324,8 @@ func (s *ReportedOs) SetVersion(v string) *ReportedOs {
 
 // Indicates that a resource was not found.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The exception message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -17172,8 +17172,8 @@ func (s *UserProfile) SetSshUsername(v string) *UserProfile {
 
 // Indicates that a request was not valid.
 type ValidationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The exception message.
 	Message_ *string `locationName:"message" type:"string"`

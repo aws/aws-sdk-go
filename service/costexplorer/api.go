@@ -1898,8 +1898,8 @@ func (c *CostExplorer) UpdateCostCategoryDefinitionWithContext(ctx aws.Context, 
 
 // The requested report expired. Update the date interval and try again.
 type BillExpirationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2678,8 +2678,8 @@ func (s *CurrentInstance) SetTotalRunningHoursInLookbackPeriod(v string) *Curren
 
 // The requested data is unavailable.
 type DataUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -6088,8 +6088,8 @@ func (s *InstanceDetails) SetRedshiftInstanceDetails(v *RedshiftInstanceDetails)
 
 // The pagination token is invalid. Try again without a pagination token.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -6144,8 +6144,8 @@ func (s InvalidNextTokenException) RequestID() string {
 
 // You made too many calls in a short period of time. Try again later.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -6502,8 +6502,8 @@ func (s *RedshiftInstanceDetails) SetSizeFlexEligible(v bool) *RedshiftInstanceD
 // Your request parameters changed between pages. Try again with the old parameters
 // or without a pagination token.
 type RequestChangedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -7176,8 +7176,8 @@ func (s *ResourceDetails) SetEC2ResourceDetails(v *EC2ResourceDetails) *Resource
 
 // The specified ARN in the request doesn't exist.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -8317,8 +8317,8 @@ func (s *SavingsPlansUtilizationDetail) SetUtilization(v *SavingsPlansUtilizatio
 // You've reached the limit on the number of resources you can create, or exceeded
 // the size of an individual resources.
 type ServiceQuotaExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -8537,8 +8537,8 @@ func (s *TerminateRecommendationDetail) SetEstimatedMonthlySavings(v string) *Te
 // Cost Explorer was unable to identify the usage unit. Provide UsageType/UsageTypeGroup
 // filter selections that contain matching units, for example: hours.
 type UnresolvableUsageUnitException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

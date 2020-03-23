@@ -354,8 +354,8 @@ func (c *MigrationHubConfig) GetHomeRegionWithContext(ctx aws.Context, input *Ge
 
 // You do not have sufficient access to perform this action.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -627,8 +627,8 @@ func (s *DescribeHomeRegionControlsOutput) SetNextToken(v string) *DescribeHomeR
 // Exception raised to indicate that authorization of an action was successful,
 // when the DryRun flag is set to true.
 type DryRunOperation struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -779,8 +779,8 @@ func (s *HomeRegionControl) SetTarget(v *Target) *HomeRegionControl {
 // Exception raised when an internal, configuration, or dependency error is
 // encountered.
 type InternalServerError struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -836,8 +836,8 @@ func (s InternalServerError) RequestID() string {
 // Exception raised when the provided input violates a policy constraint or
 // is entered in the wrong format or data type.
 type InvalidInputException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -893,8 +893,8 @@ func (s InvalidInputException) RequestID() string {
 // Exception raised when a request fails due to temporary unavailability of
 // the service.
 type ServiceUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

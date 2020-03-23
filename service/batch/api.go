@@ -1978,8 +1978,8 @@ func (s CancelJobOutput) GoString() string {
 // or resource on behalf of a user that doesn't have permissions to use the
 // action or resource, or specifying an identifier that is not valid.
 type ClientException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5510,8 +5510,8 @@ func (s *RetryStrategy) SetAttempts(v int64) *RetryStrategy {
 
 // These errors are usually caused by a server issue.
 type ServerException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

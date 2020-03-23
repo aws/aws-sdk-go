@@ -8636,8 +8636,8 @@ func (s RejectQualificationRequestOutput) GoString() string {
 
 // Your request is invalid.
 type RequestError struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -9142,8 +9142,8 @@ func (s SendTestEventNotificationOutput) GoString() string {
 // Amazon Mechanical Turk is temporarily unable to process your request. Try
 // your call again.
 type ServiceFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 

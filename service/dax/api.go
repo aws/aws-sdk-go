@@ -2188,8 +2188,8 @@ func (s *Cluster) SetTotalNodes(v int64) *Cluster {
 
 // You already have a DAX cluster with the given identifier.
 type ClusterAlreadyExistsFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2244,8 +2244,8 @@ func (s ClusterAlreadyExistsFault) RequestID() string {
 
 // The requested cluster ID does not refer to an existing DAX cluster.
 type ClusterNotFoundFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2301,8 +2301,8 @@ func (s ClusterNotFoundFault) RequestID() string {
 // You have attempted to exceed the maximum number of DAX clusters for your
 // AWS account.
 type ClusterQuotaForCustomerExceededFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3744,8 +3744,8 @@ func (s *IncreaseReplicationFactorOutput) SetCluster(v *Cluster) *IncreaseReplic
 // There are not enough system resources to create the cluster you requested
 // (or to resize an already-existing cluster).
 type InsufficientClusterCapacityFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3800,8 +3800,8 @@ func (s InsufficientClusterCapacityFault) RequestID() string {
 
 // The Amazon Resource Name (ARN) supplied in the request is not valid.
 type InvalidARNFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3856,8 +3856,8 @@ func (s InvalidARNFault) RequestID() string {
 
 // The requested DAX cluster is not in the available state.
 type InvalidClusterStateFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3912,8 +3912,8 @@ func (s InvalidClusterStateFault) RequestID() string {
 
 // Two or more incompatible parameters were specified.
 type InvalidParameterCombinationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3968,8 +3968,8 @@ func (s InvalidParameterCombinationException) RequestID() string {
 
 // One or more parameters in a parameter group are in an invalid state.
 type InvalidParameterGroupStateFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4024,8 +4024,8 @@ func (s InvalidParameterGroupStateFault) RequestID() string {
 
 // The value for a parameter is invalid.
 type InvalidParameterValueException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4080,8 +4080,8 @@ func (s InvalidParameterValueException) RequestID() string {
 
 // An invalid subnet identifier was specified.
 type InvalidSubnet struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4136,8 +4136,8 @@ func (s InvalidSubnet) RequestID() string {
 
 // The VPC network is in an invalid state.
 type InvalidVPCNetworkStateFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4347,8 +4347,8 @@ func (s *Node) SetParameterGroupStatus(v string) *Node {
 
 // None of the nodes in the cluster have the given node ID.
 type NodeNotFoundFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4403,8 +4403,8 @@ func (s NodeNotFoundFault) RequestID() string {
 
 // You have attempted to exceed the maximum number of nodes for a DAX cluster.
 type NodeQuotaForClusterExceededFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4459,8 +4459,8 @@ func (s NodeQuotaForClusterExceededFault) RequestID() string {
 
 // You have attempted to exceed the maximum number of nodes for your AWS account.
 type NodeQuotaForCustomerExceededFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4725,8 +4725,8 @@ func (s *ParameterGroup) SetParameterGroupName(v string) *ParameterGroup {
 
 // The specified parameter group already exists.
 type ParameterGroupAlreadyExistsFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4781,8 +4781,8 @@ func (s ParameterGroupAlreadyExistsFault) RequestID() string {
 
 // The specified parameter group does not exist.
 type ParameterGroupNotFoundFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4837,8 +4837,8 @@ func (s ParameterGroupNotFoundFault) RequestID() string {
 
 // You have attempted to exceed the maximum number of parameter groups.
 type ParameterGroupQuotaExceededFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5149,8 +5149,8 @@ func (s *SecurityGroupMembership) SetStatus(v string) *SecurityGroupMembership {
 
 // The specified service linked role (SLR) was not found.
 type ServiceLinkedRoleNotFoundFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5295,8 +5295,8 @@ func (s *SubnetGroup) SetVpcId(v string) *SubnetGroup {
 
 // The specified subnet group already exists.
 type SubnetGroupAlreadyExistsFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5351,8 +5351,8 @@ func (s SubnetGroupAlreadyExistsFault) RequestID() string {
 
 // The specified subnet group is currently in use.
 type SubnetGroupInUseFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5407,8 +5407,8 @@ func (s SubnetGroupInUseFault) RequestID() string {
 
 // The requested subnet group name does not refer to an existing subnet group.
 type SubnetGroupNotFoundFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5464,8 +5464,8 @@ func (s SubnetGroupNotFoundFault) RequestID() string {
 // The request cannot be processed because it would exceed the allowed number
 // of subnets in a subnet group.
 type SubnetGroupQuotaExceededFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5520,8 +5520,8 @@ func (s SubnetGroupQuotaExceededFault) RequestID() string {
 
 // The requested subnet is being used by another subnet group.
 type SubnetInUse struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5577,8 +5577,8 @@ func (s SubnetInUse) RequestID() string {
 // The request cannot be processed because it would exceed the allowed number
 // of subnets in a subnet group.
 type SubnetQuotaExceededFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5675,8 +5675,8 @@ func (s *Tag) SetValue(v string) *Tag {
 
 // The tag does not exist.
 type TagNotFoundFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5731,8 +5731,8 @@ func (s TagNotFoundFault) RequestID() string {
 
 // You have exceeded the maximum number of tags for this DAX cluster.
 type TagQuotaPerResourceExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

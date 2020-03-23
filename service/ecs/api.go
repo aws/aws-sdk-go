@@ -5516,8 +5516,8 @@ func (c *ECS) UpdateTaskSetWithContext(ctx aws.Context, input *UpdateTaskSetInpu
 
 // You do not have authorization to perform the requested action.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5756,8 +5756,8 @@ func (s *Attribute) SetValue(v string) *Attribute {
 // of a resource with ListAttributes. You can remove existing attributes on
 // a resource with DeleteAttributes.
 type AttributeLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5955,8 +5955,8 @@ func (s *AwsVpcConfiguration) SetSubnets(v []*string) *AwsVpcConfiguration {
 // Your AWS account has been blocked. For more information, contact AWS Support
 // (http://aws.amazon.com/contact-us/).
 type BlockedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6166,8 +6166,8 @@ func (s *CapacityProviderStrategyItem) SetWeight(v int64) *CapacityProviderStrat
 // or resource on behalf of a user that doesn't have permissions to use the
 // action or resource, or specifying an identifier that is not valid.
 type ClientException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6462,8 +6462,8 @@ func (s *Cluster) SetTags(v []*Tag) *Cluster {
 // deregister the container instances before you can delete the cluster. For
 // more information, see DeregisterContainerInstance.
 type ClusterContainsContainerInstancesException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6520,8 +6520,8 @@ func (s ClusterContainsContainerInstancesException) RequestID() string {
 // to reduce its desired task count to 0 and then delete the service. For more
 // information, see UpdateService and DeleteService.
 type ClusterContainsServicesException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6576,8 +6576,8 @@ func (s ClusterContainsServicesException) RequestID() string {
 
 // You cannot delete a cluster that has active tasks.
 type ClusterContainsTasksException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6633,8 +6633,8 @@ func (s ClusterContainsTasksException) RequestID() string {
 // The specified cluster could not be found. You can view your available clusters
 // with ListClusters. Amazon ECS clusters are Region-specific.
 type ClusterNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11527,8 +11527,8 @@ func (s *InferenceAcceleratorOverride) SetDeviceType(v string) *InferenceAcceler
 // The specified parameter is invalid. Review the available parameters for the
 // API request.
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11686,8 +11686,8 @@ func (s *KeyValuePair) SetValue(v string) *KeyValuePair {
 
 // The limit for the resource has been exceeded.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13206,8 +13206,8 @@ func (s *ManagedScaling) SetTargetCapacity(v int64) *ManagedScaling {
 // with an update. This could be because the agent running on the container
 // instance is an older or custom version that does not use our version information.
 type MissingVersionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13447,8 +13447,8 @@ func (s *NetworkInterface) SetPrivateIpv4Address(v string) *NetworkInterface {
 // be because the agent is already running the latest version, or it is so old
 // that there is no update path to the current version.
 type NoUpdateAvailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13650,8 +13650,8 @@ func (s *PlatformDevice) SetType(v string) *PlatformDevice {
 // The specified platform version does not satisfy the task definition's required
 // capabilities.
 type PlatformTaskDefinitionIncompatibilityException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13706,8 +13706,8 @@ func (s PlatformTaskDefinitionIncompatibilityException) RequestID() string {
 
 // The specified platform version does not exist.
 type PlatformUnknownException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -15080,8 +15080,8 @@ func (s *Resource) SetType(v string) *Resource {
 
 // The specified resource is in-use and cannot be removed.
 type ResourceInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -15136,8 +15136,8 @@ func (s ResourceInUseException) RequestID() string {
 
 // The specified resource could not be found.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -15691,8 +15691,8 @@ func (s *Secret) SetValueFrom(v string) *Secret {
 
 // These errors are usually caused by a server issue.
 type ServerException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16138,8 +16138,8 @@ func (s *ServiceEvent) SetMessage(v string) *ServiceEvent {
 // The specified service is not active. You can't update a service that is inactive.
 // If you have previously deleted a service, you can re-create it with CreateService.
 type ServiceNotActiveException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16195,8 +16195,8 @@ func (s ServiceNotActiveException) RequestID() string {
 // The specified service could not be found. You can view your available services
 // with ListServices. Amazon ECS services are cluster-specific and Region-specific.
 type ServiceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17238,8 +17238,8 @@ func (s TagResourceOutput) GoString() string {
 // instances with ListContainerInstances. Amazon ECS container instances are
 // cluster-specific and Region-specific.
 type TargetNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18505,8 +18505,8 @@ func (s *TaskSet) SetUpdatedAt(v time.Time) *TaskSet {
 // sets with DescribeTaskSets. Task sets are specific to each cluster, service
 // and Region.
 type TaskSetNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18697,8 +18697,8 @@ func (s *Ulimit) SetSoftLimit(v int64) *Ulimit {
 
 // The specified task is not supported in this Region.
 type UnsupportedFeatureException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -19079,8 +19079,8 @@ func (s *UpdateContainerInstancesStateOutput) SetFailures(v []*Failure) *UpdateC
 // process can get stuck in that state. However, when the agent reconnects,
 // it resumes where it stopped previously.
 type UpdateInProgressException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

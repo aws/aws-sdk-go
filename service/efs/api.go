@@ -2749,8 +2749,8 @@ func (c *EFS) UpdateFileSystemWithContext(ctx aws.Context, input *UpdateFileSyst
 // Returned if the access point you are trying to create already exists, with
 // the creation token you provided in the request.
 type AccessPointAlreadyExists struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// AccessPointId is a required field
 	AccessPointId *string `type:"string" required:"true"`
@@ -2920,8 +2920,8 @@ func (s *AccessPointDescription) SetTags(v []*Tag) *AccessPointDescription {
 // Returned if the AWS account has already created the maximum number of access
 // points allowed per file system.
 type AccessPointLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -2980,8 +2980,8 @@ func (s AccessPointLimitExceeded) RequestID() string {
 // Returned if the specified AccessPointId value doesn't exist in the requester's
 // AWS account.
 type AccessPointNotFound struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -3040,8 +3040,8 @@ func (s AccessPointNotFound) RequestID() string {
 // Returned if the request is malformed or contains an error such as an invalid
 // parameter value or a missing required parameter.
 type BadRequest struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -3980,8 +3980,8 @@ func (s DeleteTagsOutput) GoString() string {
 // The service timed out trying to fulfill the request, and the client should
 // try the call again.
 type DependencyTimeout struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -4702,8 +4702,8 @@ func (s *DescribeTagsOutput) SetTags(v []*Tag) *DescribeTagsOutput {
 // Returned if the file system you are trying to create already exists, with
 // the creation token you provided.
 type FileSystemAlreadyExists struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -4946,8 +4946,8 @@ func (s *FileSystemDescription) SetThroughputMode(v string) *FileSystemDescripti
 
 // Returned if a file system has mount targets.
 type FileSystemInUse struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -5006,8 +5006,8 @@ func (s FileSystemInUse) RequestID() string {
 // Returned if the AWS account has already created the maximum number of file
 // systems allowed per account.
 type FileSystemLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -5066,8 +5066,8 @@ func (s FileSystemLimitExceeded) RequestID() string {
 // Returned if the specified FileSystemId value doesn't exist in the requester's
 // AWS account.
 type FileSystemNotFound struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -5188,8 +5188,8 @@ func (s *FileSystemSize) SetValueInStandard(v int64) *FileSystemSize {
 
 // Returned if the file system's lifecycle state is not "available".
 type IncorrectFileSystemLifeCycleState struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -5247,8 +5247,8 @@ func (s IncorrectFileSystemLifeCycleState) RequestID() string {
 
 // Returned if the mount target is not in the correct state for the operation.
 type IncorrectMountTargetState struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -5310,8 +5310,8 @@ func (s IncorrectMountTargetState) RequestID() string {
 // of an existing file system, or when you attempt to change an existing file
 // system from bursting to provisioned throughput mode.
 type InsufficientThroughputCapacity struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -5369,8 +5369,8 @@ func (s InsufficientThroughputCapacity) RequestID() string {
 
 // Returned if an error occurred on the server side.
 type InternalServerError struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -5430,8 +5430,8 @@ func (s InternalServerError) RequestID() string {
 // as an invalid parameter value or a missing required parameter. Returned in
 // the case of a policy lockout safety check error.
 type InvalidPolicyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	ErrorCode *string `min:"1" type:"string"`
 
@@ -5489,8 +5489,8 @@ func (s InvalidPolicyException) RequestID() string {
 // Returned if the request specified an IpAddress that is already in use in
 // the subnet.
 type IpAddressInUse struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -5738,8 +5738,8 @@ func (s ModifyMountTargetSecurityGroupsOutput) GoString() string {
 // Returned if the mount target would violate one of the specified restrictions
 // based on the file system's existing mount targets.
 type MountTargetConflict struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -5908,8 +5908,8 @@ func (s *MountTargetDescription) SetSubnetId(v string) *MountTargetDescription {
 // Returned if there is no mount target with the specified ID found in the caller's
 // account.
 type MountTargetNotFound struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -5972,8 +5972,8 @@ func (s MountTargetNotFound) RequestID() string {
 // in the Amazon VPC User Guide (see the Network interfaces per VPC entry in
 // the table).
 type NetworkInterfaceLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -6032,8 +6032,8 @@ func (s NetworkInterfaceLimitExceeded) RequestID() string {
 // Returned if IpAddress was not specified in the request and there are no free
 // IP addresses in the subnet.
 type NoFreeAddressesInSubnet struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -6092,8 +6092,8 @@ func (s NoFreeAddressesInSubnet) RequestID() string {
 // Returned if the default file system policy is in effect for the EFS file
 // system specified.
 type PolicyNotFound struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	ErrorCode *string `min:"1" type:"string"`
 
@@ -6471,8 +6471,8 @@ func (s *RootDirectory) SetPath(v string) *RootDirectory {
 // Returned if the size of SecurityGroups specified in the request is greater
 // than five.
 type SecurityGroupLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -6531,8 +6531,8 @@ func (s SecurityGroupLimitExceeded) RequestID() string {
 // Returned if one of the specified security groups doesn't exist in the subnet's
 // VPC.
 type SecurityGroupNotFound struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -6590,8 +6590,8 @@ func (s SecurityGroupNotFound) RequestID() string {
 
 // Returned if there is no subnet with ID SubnetId provided in the request.
 type SubnetNotFound struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -6785,8 +6785,8 @@ func (s TagResourceOutput) GoString() string {
 // Returned if the throughput mode or amount of provisioned throughput can't
 // be changed because the throughput limit of 1024 MiB/s has been reached.
 type ThroughputLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -6845,8 +6845,8 @@ func (s ThroughputLimitExceeded) RequestID() string {
 // Returned if you don’t wait at least 24 hours before changing the throughput
 // mode, or decreasing the Provisioned Throughput value.
 type TooManyRequests struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`
@@ -6903,8 +6903,8 @@ func (s TooManyRequests) RequestID() string {
 }
 
 type UnsupportedAvailabilityZone struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// ErrorCode is a required field
 	ErrorCode *string `min:"1" type:"string" required:"true"`

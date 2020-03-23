@@ -508,8 +508,8 @@ func (s *DescribeStreamOutput) SetStreamDescription(v *StreamDescription) *Descr
 // records. A shard iterator expires 15 minutes after it is retrieved using
 // the GetShardIterator action.
 type ExpiredIteratorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The provided iterator exceeds the maximum age allowed.
 	Message_ *string `locationName:"message" type:"string"`
@@ -817,8 +817,8 @@ func (s *Identity) SetType(v string) *Identity {
 
 // An error occurred on the server side.
 type InternalServerError struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The server encountered an internal error trying to fulfill the request.
 	Message_ *string `locationName:"message" type:"string"`
@@ -879,8 +879,8 @@ func (s InternalServerError) RequestID() string {
 // Exponential Backoff (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ErrorHandling.html#APIRetries)
 // in the Amazon DynamoDB Developer Guide.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Too many operations for a given subscriber.
 	Message_ *string `locationName:"message" type:"string"`
@@ -1139,8 +1139,8 @@ func (s *Record) SetUserIdentity(v *Identity) *Record {
 
 // The operation tried to access a nonexistent stream.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The resource which is being requested does not exist.
 	Message_ *string `locationName:"message" type:"string"`
@@ -1561,8 +1561,8 @@ func (s *StreamRecord) SetStreamViewType(v string) *StreamRecord {
 //    request, a stream record in the shard exceeds the 24 hour period and is
 //    trimmed. This causes the iterator to access a record that no longer exists.
 type TrimmedDataAccessException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// "The data you are trying to access has been trimmed.
 	Message_ *string `locationName:"message" type:"string"`

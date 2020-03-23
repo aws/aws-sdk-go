@@ -5019,8 +5019,8 @@ func (s *AwsApiCallAction) SetServiceName(v string) *AwsApiCallAction {
 
 // Bad request exception object.
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -8396,8 +8396,8 @@ func (s *InstanceDetails) SetTags(v []*Tag) *InstanceDetails {
 
 // Internal server error exception object.
 type InternalServerErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message.
 	Message_ *string `locationName:"message" type:"string"`

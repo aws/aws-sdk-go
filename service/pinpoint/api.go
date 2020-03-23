@@ -13393,8 +13393,8 @@ func (s *AttributesResource) SetAttributes(v []*string) *AttributesResource {
 
 // Provides information about an API request or response.
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -20234,8 +20234,8 @@ func (s *ExportJobsResponse) SetNextToken(v string) *ExportJobsResponse {
 
 // Provides information about an API request or response.
 type ForbiddenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -24810,8 +24810,8 @@ func (s *ImportJobsResponse) SetNextToken(v string) *ImportJobsResponse {
 
 // Provides information about an API request or response.
 type InternalServerErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -26418,8 +26418,8 @@ func (s *MessageResult) SetUpdatedToken(v string) *MessageResult {
 
 // Provides information about an API request or response.
 type MethodNotAllowedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -26648,8 +26648,8 @@ func (s *MultiConditionalSplitActivity) SetEvaluationWaitTime(v *WaitTime) *Mult
 
 // Provides information about an API request or response.
 type NotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -26893,8 +26893,8 @@ func (s *NumberValidateResponse) SetZipCode(v string) *NumberValidateResponse {
 
 // Provides information about an API request or response.
 type PayloadTooLargeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -30775,8 +30775,8 @@ func (s *TemplatesResponse) SetNextToken(v string) *TemplatesResponse {
 
 // Provides information about an API request or response.
 type TooManyRequestsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 

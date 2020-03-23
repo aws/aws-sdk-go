@@ -657,8 +657,8 @@ func (s *GetConnectionOutput) SetConnection(v *Connection) *GetConnectionOutput 
 
 // Exceeded the maximum limit for connections.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -808,8 +808,8 @@ func (s *ListConnectionsOutput) SetNextToken(v string) *ListConnectionsOutput {
 
 // Resource not found. Verify the connection resource ARN and try again.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

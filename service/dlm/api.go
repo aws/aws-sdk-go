@@ -1337,8 +1337,8 @@ func (s *GetLifecyclePolicyOutput) SetPolicy(v *LifecyclePolicy) *GetLifecyclePo
 
 // The service failed in an unexpected way.
 type InternalServerException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -1395,8 +1395,8 @@ func (s InternalServerException) RequestID() string {
 
 // Bad request. The request is missing required parameters or has invalid parameters.
 type InvalidRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -1616,8 +1616,8 @@ func (s *LifecyclePolicySummary) SetTags(v map[string]*string) *LifecyclePolicyS
 
 // The request failed because a limit was exceeded.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -1868,8 +1868,8 @@ func (s *PolicyDetails) SetTargetTags(v []*Tag) *PolicyDetails {
 
 // A requested resource was not found.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string"`
 

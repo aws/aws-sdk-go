@@ -505,8 +505,8 @@ func (c *MediaStoreData) PutObjectWithContext(ctx aws.Context, input *PutObjectI
 
 // The specified container was not found for the specified account.
 type ContainerNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -892,8 +892,8 @@ func (s *GetObjectOutput) SetStatusCode(v int64) *GetObjectOutput {
 
 // The service is temporarily unavailable.
 type InternalServerError struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -1122,8 +1122,8 @@ func (s *ListItemsOutput) SetNextToken(v string) *ListItemsOutput {
 
 // Could not perform an operation on an object that does not exist.
 type ObjectNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -1356,8 +1356,8 @@ func (s *PutObjectOutput) SetStorageClass(v string) *PutObjectOutput {
 
 // The requested content range is not valid.
 type RequestedRangeNotSatisfiableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }

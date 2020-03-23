@@ -6132,8 +6132,8 @@ func (s *DescribeUserOutput) SetUserRole(v string) *DescribeUserOutput {
 
 // The directory service doesn't recognize the credentials supplied by WorkMail.
 type DirectoryServiceAuthenticationFailedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -6188,8 +6188,8 @@ func (s DirectoryServiceAuthenticationFailedException) RequestID() string {
 
 // The directory on which you are trying to perform operations isn't available.
 type DirectoryUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -6415,8 +6415,8 @@ func (s DisassociateMemberFromGroupOutput) GoString() string {
 // The email address that you're trying to assign is already created for a different
 // user, group, or resource.
 type EmailAddressInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -6471,8 +6471,8 @@ func (s EmailAddressInUseException) RequestID() string {
 
 // The user, group, or resource that you're trying to register is already registered.
 type EntityAlreadyRegisteredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -6528,8 +6528,8 @@ func (s EntityAlreadyRegisteredException) RequestID() string {
 // The identifier supplied for the user, group, or resource does not exist in
 // your organization.
 type EntityNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -6585,8 +6585,8 @@ func (s EntityNotFoundException) RequestID() string {
 // You are performing an operation on a user, group, or resource that isn't
 // in the expected state, such as trying to delete an active user.
 type EntityStateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -6922,8 +6922,8 @@ func (s *Group) SetState(v string) *Group {
 // to auto-respond to requests or have at least one delegate associated that
 // can do so on its behalf.
 type InvalidConfigurationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -6978,8 +6978,8 @@ func (s InvalidConfigurationException) RequestID() string {
 
 // One or more of the input parameters don't match the service's restrictions.
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -7035,8 +7035,8 @@ func (s InvalidParameterException) RequestID() string {
 // The supplied password doesn't match the minimum security constraints, such
 // as length or use of special characters.
 type InvalidPasswordException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -7091,8 +7091,8 @@ func (s InvalidPasswordException) RequestID() string {
 
 // The request exceeds the limit of the resource.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -8099,8 +8099,8 @@ func (s *ListUsersOutput) SetUsers(v []*User) *ListUsersOutput {
 // For an email or alias to be created in Amazon WorkMail, the included domain
 // must be defined in the organization.
 type MailDomainNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -8156,8 +8156,8 @@ func (s MailDomainNotFoundException) RequestID() string {
 // After a domain has been added to the organization, it must be verified. The
 // domain is not yet verified.
 type MailDomainStateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -8281,8 +8281,8 @@ func (s *Member) SetType(v string) *Member {
 
 // The user, group, or resource name isn't unique in Amazon WorkMail.
 type NameAvailabilityException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -8338,8 +8338,8 @@ func (s NameAvailabilityException) RequestID() string {
 // An operation received a valid organization identifier that either doesn't
 // belong or exist in the system.
 type OrganizationNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -8395,8 +8395,8 @@ func (s OrganizationNotFoundException) RequestID() string {
 // The organization must have a valid state (Active or Synchronizing) to perform
 // certain operations on the organization or its members.
 type OrganizationStateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -8906,8 +8906,8 @@ func (s RegisterToWorkMailOutput) GoString() string {
 
 // This user, group, or resource name is not allowed in Amazon WorkMail.
 type ReservedNameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -9124,8 +9124,8 @@ func (s *Resource) SetType(v string) *Resource {
 
 // The resource cannot be found.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -9315,8 +9315,8 @@ func (s TagResourceOutput) GoString() string {
 
 // The resource can have up to 50 user-applied tags.
 type TooManyTagsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -9371,8 +9371,8 @@ func (s TooManyTagsException) RequestID() string {
 
 // You can't perform a write operation against a read-only directory.
 type UnsupportedOperationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

@@ -2018,8 +2018,8 @@ func (s *AddTagsToResourceOutput) SetStatus(v string) *AddTagsToResourceOutput {
 
 // Indicates that an internal error occurred.
 type CloudHsmInternalException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2074,8 +2074,8 @@ func (s CloudHsmInternalException) RequestID() string {
 
 // Indicates that an exception occurred in the AWS CloudHSM service.
 type CloudHsmServiceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Additional information about the error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -3195,8 +3195,8 @@ func (s *GetConfigOutput) SetConfigType(v string) *GetConfigOutput {
 
 // Indicates that one or more of the request parameters are not valid.
 type InvalidRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

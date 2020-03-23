@@ -10354,8 +10354,8 @@ func (c *CodeCommit) UpdateRepositoryNameWithContext(ctx aws.Context, input *Upd
 
 // The specified Amazon Resource Name (ARN) does not exist in the AWS account.
 type ActorDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10532,8 +10532,8 @@ func (s *ApprovalRule) SetRuleContentSha256(v string) *ApprovalRule {
 // The content for the approval rule is empty. You must provide some content
 // for an approval rule. The content cannot be null.
 type ApprovalRuleContentRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10588,8 +10588,8 @@ func (s ApprovalRuleContentRequiredException) RequestID() string {
 
 // The specified approval rule does not exist.
 type ApprovalRuleDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10687,8 +10687,8 @@ func (s *ApprovalRuleEventMetadata) SetApprovalRuleName(v string) *ApprovalRuleE
 // An approval rule with that name already exists. Approval rule names must
 // be unique within the scope of a pull request.
 type ApprovalRuleNameAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10743,8 +10743,8 @@ func (s ApprovalRuleNameAlreadyExistsException) RequestID() string {
 
 // An approval rule name is required, but was not specified.
 type ApprovalRuleNameRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10923,8 +10923,8 @@ func (s *ApprovalRuleTemplate) SetRuleContentSha256(v string) *ApprovalRuleTempl
 // The content for the approval rule template is empty. You must provide some
 // content for an approval rule template. The content cannot be null.
 type ApprovalRuleTemplateContentRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10981,8 +10981,8 @@ func (s ApprovalRuleTemplateContentRequiredException) RequestID() string {
 // is correct and that you are signed in to the AWS Region where the template
 // was created, and then try again.
 type ApprovalRuleTemplateDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11039,8 +11039,8 @@ func (s ApprovalRuleTemplateDoesNotExistException) RequestID() string {
 // cannot delete a template that is associated with a repository. Remove all
 // associations, and then try again.
 type ApprovalRuleTemplateInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11097,8 +11097,8 @@ func (s ApprovalRuleTemplateInUseException) RequestID() string {
 // with that name already exists in this AWS Region for your AWS account. Approval
 // rule template names must be unique.
 type ApprovalRuleTemplateNameAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11153,8 +11153,8 @@ func (s ApprovalRuleTemplateNameAlreadyExistsException) RequestID() string {
 
 // An approval rule template name is required, but was not specified.
 type ApprovalRuleTemplateNameRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11242,8 +11242,8 @@ func (s *ApprovalStateChangedEventMetadata) SetRevisionId(v string) *ApprovalSta
 
 // An approval state is required, but was not specified.
 type ApprovalStateRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11370,8 +11370,8 @@ func (s AssociateApprovalRuleTemplateWithRepositoryOutput) GoString() string {
 
 // The specified Amazon Resource Name (ARN) does not exist in the AWS account.
 type AuthorDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12195,8 +12195,8 @@ func (s *BatchGetRepositoriesOutput) SetRepositoriesNotFound(v []*string) *Batch
 // The before commit ID and the after commit ID are the same, which is not valid.
 // The before commit ID and the after commit ID must be different commit IDs.
 type BeforeCommitIdAndAfterCommitIdAreSameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12251,8 +12251,8 @@ func (s BeforeCommitIdAndAfterCommitIdAreSameException) RequestID() string {
 
 // The specified blob does not exist.
 type BlobIdDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12307,8 +12307,8 @@ func (s BlobIdDoesNotExistException) RequestID() string {
 
 // A blob ID is required, but was not specified.
 type BlobIdRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12413,8 +12413,8 @@ func (s *BlobMetadata) SetPath(v string) *BlobMetadata {
 
 // The specified branch does not exist.
 type BranchDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12502,8 +12502,8 @@ func (s *BranchInfo) SetCommitId(v string) *BranchInfo {
 
 // The specified branch name already exists.
 type BranchNameExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12560,8 +12560,8 @@ func (s BranchNameExistsException) RequestID() string {
 // name of a branch in the repository. For a list of valid branch names, use
 // ListBranches.
 type BranchNameIsTagNameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12616,8 +12616,8 @@ func (s BranchNameIsTagNameException) RequestID() string {
 
 // A branch name is required, but was not specified.
 type BranchNameRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12673,8 +12673,8 @@ func (s BranchNameRequiredException) RequestID() string {
 // The approval rule cannot be deleted from the pull request because it was
 // created by an approval rule template and applied to the pull request automatically.
 type CannotDeleteApprovalRuleFromTemplateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12730,8 +12730,8 @@ func (s CannotDeleteApprovalRuleFromTemplateException) RequestID() string {
 // The approval rule cannot be modified for the pull request because it was
 // created by an approval rule template and applied to the pull request automatically.
 type CannotModifyApprovalRuleFromTemplateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12790,8 +12790,8 @@ func (s CannotModifyApprovalRuleFromTemplateException) RequestID() string {
 // received with the same parameters and a token is included, the request returns
 // information about the initial request that used that token.
 type ClientRequestTokenRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12937,8 +12937,8 @@ func (s *Comment) SetLastModifiedDate(v time.Time) *Comment {
 // The comment is empty. You must provide some content for a comment. The content
 // cannot be null.
 type CommentContentRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12993,8 +12993,8 @@ func (s CommentContentRequiredException) RequestID() string {
 
 // The comment is too large. Comments are limited to 1,000 characters.
 type CommentContentSizeLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13050,8 +13050,8 @@ func (s CommentContentSizeLimitExceededException) RequestID() string {
 // This comment has already been deleted. You cannot edit or delete a deleted
 // comment.
 type CommentDeletedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13107,8 +13107,8 @@ func (s CommentDeletedException) RequestID() string {
 // No comment exists with the provided ID. Verify that you have used the correct
 // ID, and then try again.
 type CommentDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13163,8 +13163,8 @@ func (s CommentDoesNotExistException) RequestID() string {
 
 // The comment ID is missing or null. A comment ID is required.
 type CommentIdRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13220,8 +13220,8 @@ func (s CommentIdRequiredException) RequestID() string {
 // You cannot modify or delete this comment. Only comment authors can modify
 // or delete their comments.
 type CommentNotCreatedByCallerException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13541,8 +13541,8 @@ func (s *Commit) SetTreeId(v string) *Commit {
 // The specified commit does not exist or no commit was specified, and the specified
 // repository has no default branch.
 type CommitDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13597,8 +13597,8 @@ func (s CommitDoesNotExistException) RequestID() string {
 
 // The specified commit ID does not exist.
 type CommitIdDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13653,8 +13653,8 @@ func (s CommitIdDoesNotExistException) RequestID() string {
 
 // A commit ID was not specified.
 type CommitIdRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13711,8 +13711,8 @@ func (s CommitIdRequiredException) RequestID() string {
 // that your batch requests contains no more than 100 commit IDs, and then try
 // again.
 type CommitIdsLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13768,8 +13768,8 @@ func (s CommitIdsLimitExceededException) RequestID() string {
 // A list of commit IDs is required, but was either not specified or the list
 // was empty.
 type CommitIdsListRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13824,8 +13824,8 @@ func (s CommitIdsListRequiredException) RequestID() string {
 
 // The commit message is too long. Provide a shorter string.
 type CommitMessageLengthExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13880,8 +13880,8 @@ func (s CommitMessageLengthExceededException) RequestID() string {
 
 // A commit was not specified.
 type CommitRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13938,8 +13938,8 @@ func (s CommitRequiredException) RequestID() string {
 // Another user might have modified the target branch while the merge was in
 // progress. Wait a few minutes, and then try again.
 type ConcurrentReferenceUpdateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -15186,8 +15186,8 @@ func (s *CreateUnreferencedMergeCommitOutput) SetTreeId(v string) *CreateUnrefer
 // be deleted. To delete this branch, you must first set another branch as the
 // default branch.
 type DefaultBranchCannotBeDeletedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16223,8 +16223,8 @@ func (s *Difference) SetChangeType(v string) *Difference {
 // provide a different name for the file, or specify a different path for the
 // file.
 type DirectoryNameConflictsWithFileNameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16351,8 +16351,8 @@ func (s DisassociateApprovalRuleTemplateFromRepositoryOutput) GoString() string 
 
 // An encryption integrity check failed.
 type EncryptionIntegrityChecksFailedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16407,8 +16407,8 @@ func (s EncryptionIntegrityChecksFailedException) RequestID() string {
 
 // An encryption key could not be accessed.
 type EncryptionKeyAccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16463,8 +16463,8 @@ func (s EncryptionKeyAccessDeniedException) RequestID() string {
 
 // The encryption key is disabled.
 type EncryptionKeyDisabledException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16519,8 +16519,8 @@ func (s EncryptionKeyDisabledException) RequestID() string {
 
 // No encryption key was found.
 type EncryptionKeyNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16575,8 +16575,8 @@ func (s EncryptionKeyNotFoundException) RequestID() string {
 
 // The encryption key is not available.
 type EncryptionKeyUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16819,8 +16819,8 @@ func (s *File) SetRelativePath(v string) *File {
 // have been specified for the same file. You cannot provide both. Either specify
 // a source file or provide the file content directly.
 type FileContentAndSourceFileSpecifiedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16876,8 +16876,8 @@ func (s FileContentAndSourceFileSpecifiedException) RequestID() string {
 // The file cannot be added because it is empty. Empty files cannot be added
 // to the repository with this API.
 type FileContentRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16934,8 +16934,8 @@ func (s FileContentRequiredException) RequestID() string {
 // 6 MB, and the combined file content change size is 7 MB. Consider making
 // these changes using a Git client.
 type FileContentSizeLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16991,8 +16991,8 @@ func (s FileContentSizeLimitExceededException) RequestID() string {
 // The specified file does not exist. Verify that you have used the correct
 // file name, full path, and extension.
 type FileDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17048,8 +17048,8 @@ func (s FileDoesNotExistException) RequestID() string {
 // The commit cannot be created because no files have been specified as added,
 // updated, or changed (PutFile or DeleteFile) for the commit.
 type FileEntryRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17149,8 +17149,8 @@ func (s *FileMetadata) SetFileMode(v string) *FileMetadata {
 // The commit cannot be created because no file mode has been specified. A file
 // mode is required to update mode permissions for a file.
 type FileModeRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17250,8 +17250,8 @@ func (s *FileModes) SetSource(v string) *FileModes {
 // name for the file, or add the file in a directory that does not match the
 // file name.
 type FileNameConflictsWithDirectoryNameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17308,8 +17308,8 @@ func (s FileNameConflictsWithDirectoryNameException) RequestID() string {
 // Verify that the destination files have valid file paths that do not point
 // to a submodule.
 type FilePathConflictsWithSubmodulePathException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17408,8 +17408,8 @@ func (s *FileSizes) SetSource(v int64) *FileSizes {
 // information about limits in AWS CodeCommit, see AWS CodeCommit User Guide
 // (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html).
 type FileTooLargeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17511,8 +17511,8 @@ func (s *Folder) SetTreeId(v string) *Folder {
 // Either reduce the number and size of your changes, or split the changes across
 // multiple folders.
 type FolderContentSizeLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17568,8 +17568,8 @@ func (s FolderContentSizeLimitExceededException) RequestID() string {
 // The specified folder does not exist. Either the folder name is not correct,
 // or you did not enter the full path to the folder.
 type FolderDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -19571,8 +19571,8 @@ func (s *GetRepositoryTriggersOutput) SetTriggers(v []*RepositoryTrigger) *GetRe
 // The client request token is not valid. Either the token is not in a valid
 // format, or the token has been used in a previous request and cannot be reused.
 type IdempotencyParameterMismatchException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -19629,8 +19629,8 @@ func (s IdempotencyParameterMismatchException) RequestID() string {
 // the full ARN for the user who initiated the change for the pull request,
 // and then try again.
 type InvalidActorArnException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -19685,8 +19685,8 @@ func (s InvalidActorArnException) RequestID() string {
 
 // The content for the approval rule is not valid.
 type InvalidApprovalRuleContentException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -19741,8 +19741,8 @@ func (s InvalidApprovalRuleContentException) RequestID() string {
 
 // The name for the approval rule is not valid.
 type InvalidApprovalRuleNameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -19797,8 +19797,8 @@ func (s InvalidApprovalRuleNameException) RequestID() string {
 
 // The content of the approval rule template is not valid.
 type InvalidApprovalRuleTemplateContentException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -19855,8 +19855,8 @@ func (s InvalidApprovalRuleTemplateContentException) RequestID() string {
 // the maximum characters allowed for a description. For more information about
 // limits in AWS CodeCommit, see AWS CodeCommit User Guide (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html).
 type InvalidApprovalRuleTemplateDescriptionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -19913,8 +19913,8 @@ func (s InvalidApprovalRuleTemplateDescriptionException) RequestID() string {
 // be between 1 and 100 valid characters in length. For more information about
 // limits in AWS CodeCommit, see AWS CodeCommit User Guide (https://docs.aws.amazon.com/codecommit/latest/userguide/limits.html).
 type InvalidApprovalRuleTemplateNameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -19970,8 +19970,8 @@ func (s InvalidApprovalRuleTemplateNameException) RequestID() string {
 // The state for the approval is not valid. Valid values include APPROVE and
 // REVOKE.
 type InvalidApprovalStateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -20027,8 +20027,8 @@ func (s InvalidApprovalStateException) RequestID() string {
 // The Amazon Resource Name (ARN) is not valid. Make sure that you have provided
 // the full ARN for the author of the pull request, and then try again.
 type InvalidAuthorArnException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -20083,8 +20083,8 @@ func (s InvalidAuthorArnException) RequestID() string {
 
 // The specified blob is not valid.
 type InvalidBlobIdException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -20139,8 +20139,8 @@ func (s InvalidBlobIdException) RequestID() string {
 
 // The specified reference name is not valid.
 type InvalidBranchNameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -20195,8 +20195,8 @@ func (s InvalidBranchNameException) RequestID() string {
 
 // The client request token is not valid.
 type InvalidClientRequestTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -20252,8 +20252,8 @@ func (s InvalidClientRequestTokenException) RequestID() string {
 // The comment ID is not in a valid format. Make sure that you have provided
 // the full comment ID.
 type InvalidCommentIdException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -20308,8 +20308,8 @@ func (s InvalidCommentIdException) RequestID() string {
 
 // The specified commit is not valid.
 type InvalidCommitException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -20364,8 +20364,8 @@ func (s InvalidCommitException) RequestID() string {
 
 // The specified commit ID is not valid.
 type InvalidCommitIdException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -20420,8 +20420,8 @@ func (s InvalidCommitIdException) RequestID() string {
 
 // The specified conflict detail level is not valid.
 type InvalidConflictDetailLevelException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -20476,8 +20476,8 @@ func (s InvalidConflictDetailLevelException) RequestID() string {
 
 // The specified conflict resolution list is not valid.
 type InvalidConflictResolutionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -20532,8 +20532,8 @@ func (s InvalidConflictResolutionException) RequestID() string {
 
 // The specified conflict resolution strategy is not valid.
 type InvalidConflictResolutionStrategyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -20588,8 +20588,8 @@ func (s InvalidConflictResolutionStrategyException) RequestID() string {
 
 // The specified continuation token is not valid.
 type InvalidContinuationTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -20644,8 +20644,8 @@ func (s InvalidContinuationTokenException) RequestID() string {
 
 // The specified deletion parameter is not valid.
 type InvalidDeletionParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -20701,8 +20701,8 @@ func (s InvalidDeletionParameterException) RequestID() string {
 // The pull request description is not valid. Descriptions cannot be more than
 // 1,000 characters.
 type InvalidDescriptionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -20758,8 +20758,8 @@ func (s InvalidDescriptionException) RequestID() string {
 // The destination commit specifier is not valid. You must provide a valid branch
 // name, tag, or full commit ID.
 type InvalidDestinationCommitSpecifierException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -20816,8 +20816,8 @@ func (s InvalidDestinationCommitSpecifierException) RequestID() string {
 // not allowed, or it exceeds the maximum number of characters allowed for an
 // email address.
 type InvalidEmailException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -20873,8 +20873,8 @@ func (s InvalidEmailException) RequestID() string {
 // The location of the file is not valid. Make sure that you include the file
 // name and extension.
 type InvalidFileLocationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -20930,8 +20930,8 @@ func (s InvalidFileLocationException) RequestID() string {
 // The specified file mode permission is not valid. For a list of valid file
 // mode permissions, see PutFile.
 type InvalidFileModeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -20987,8 +20987,8 @@ func (s InvalidFileModeException) RequestID() string {
 // The position is not valid. Make sure that the line number exists in the version
 // of the file you want to comment on.
 type InvalidFilePositionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -21043,8 +21043,8 @@ func (s InvalidFilePositionException) RequestID() string {
 
 // The specified value for the number of conflict files to return is not valid.
 type InvalidMaxConflictFilesException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -21099,8 +21099,8 @@ func (s InvalidMaxConflictFilesException) RequestID() string {
 
 // The specified value for the number of merge hunks to return is not valid.
 type InvalidMaxMergeHunksException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -21155,8 +21155,8 @@ func (s InvalidMaxMergeHunksException) RequestID() string {
 
 // The specified number of maximum results is not valid.
 type InvalidMaxResultsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -21212,8 +21212,8 @@ func (s InvalidMaxResultsException) RequestID() string {
 // The specified merge option is not valid for this operation. Not all merge
 // strategies are supported for all operations.
 type InvalidMergeOptionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -21268,8 +21268,8 @@ func (s InvalidMergeOptionException) RequestID() string {
 
 // The specified sort order is not valid.
 type InvalidOrderException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -21324,8 +21324,8 @@ func (s InvalidOrderException) RequestID() string {
 
 // The override status is not valid. Valid statuses are OVERRIDE and REVOKE.
 type InvalidOverrideStatusException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -21382,8 +21382,8 @@ func (s InvalidOverrideStatusException) RequestID() string {
 // match the head commit ID for the branch of the repository where you want
 // to add or update a file.
 type InvalidParentCommitIdException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -21438,8 +21438,8 @@ func (s InvalidParentCommitIdException) RequestID() string {
 
 // The specified path is not valid.
 type InvalidPathException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -21494,8 +21494,8 @@ func (s InvalidPathException) RequestID() string {
 
 // The pull request event type is not valid.
 type InvalidPullRequestEventTypeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -21552,8 +21552,8 @@ func (s InvalidPullRequestEventTypeException) RequestID() string {
 // ID and that the pull request is in the specified repository, and then try
 // again.
 type InvalidPullRequestIdException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -21609,8 +21609,8 @@ func (s InvalidPullRequestIdException) RequestID() string {
 // The pull request status is not valid. The only valid values are OPEN and
 // CLOSED.
 type InvalidPullRequestStatusException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -21666,8 +21666,8 @@ func (s InvalidPullRequestStatusException) RequestID() string {
 // The pull request status update is not valid. The only valid update is from
 // OPEN to CLOSED.
 type InvalidPullRequestStatusUpdateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -21725,8 +21725,8 @@ func (s InvalidPullRequestStatusUpdateException) RequestID() string {
 // see Git Internals - Git References (https://git-scm.com/book/en/v2/Git-Internals-Git-References)
 // or consult your Git documentation.
 type InvalidReferenceNameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -21782,8 +21782,8 @@ func (s InvalidReferenceNameException) RequestID() string {
 // Either the enum is not in a valid format, or the specified file version enum
 // is not valid in respect to the current file version.
 type InvalidRelativeFileVersionEnumException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -21839,8 +21839,8 @@ func (s InvalidRelativeFileVersionEnumException) RequestID() string {
 // Automerge was specified for resolving the conflict, but the replacement type
 // is not valid or content is missing.
 type InvalidReplacementContentException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -21896,8 +21896,8 @@ func (s InvalidReplacementContentException) RequestID() string {
 // Automerge was specified for resolving the conflict, but the specified replacement
 // type is not valid.
 type InvalidReplacementTypeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -21952,8 +21952,8 @@ func (s InvalidReplacementTypeException) RequestID() string {
 
 // The specified repository description is not valid.
 type InvalidRepositoryDescriptionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -22012,8 +22012,8 @@ func (s InvalidRepositoryDescriptionException) RequestID() string {
 // Other exceptions occur when a required repository parameter is missing, or
 // when a specified repository does not exist.
 type InvalidRepositoryNameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -22068,8 +22068,8 @@ func (s InvalidRepositoryNameException) RequestID() string {
 
 // One or more branch names specified for the trigger is not valid.
 type InvalidRepositoryTriggerBranchNameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -22124,8 +22124,8 @@ func (s InvalidRepositoryTriggerBranchNameException) RequestID() string {
 
 // The custom data provided for the trigger is not valid.
 type InvalidRepositoryTriggerCustomDataException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -22182,8 +22182,8 @@ func (s InvalidRepositoryTriggerCustomDataException) RequestID() string {
 // destination. The most common reason for this error is that the ARN does not
 // meet the requirements for the service type.
 type InvalidRepositoryTriggerDestinationArnException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -22239,8 +22239,8 @@ func (s InvalidRepositoryTriggerDestinationArnException) RequestID() string {
 // One or more events specified for the trigger is not valid. Check to make
 // sure that all events specified match the requirements for allowed events.
 type InvalidRepositoryTriggerEventsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -22295,8 +22295,8 @@ func (s InvalidRepositoryTriggerEventsException) RequestID() string {
 
 // The name of the trigger is not valid.
 type InvalidRepositoryTriggerNameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -22353,8 +22353,8 @@ func (s InvalidRepositoryTriggerNameException) RequestID() string {
 // repository. Triggers must be created in the same Region as the target for
 // the trigger.
 type InvalidRepositoryTriggerRegionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -22411,8 +22411,8 @@ func (s InvalidRepositoryTriggerRegionException) RequestID() string {
 // in AWS CodeCommit, see CodeCommit Resources and Operations (https://docs.aws.amazon.com/codecommit/latest/userguide/auth-and-access-control-iam-access-control-identity-based.html#arn-formats)
 // in the AWS CodeCommit User Guide.
 type InvalidResourceArnException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -22467,8 +22467,8 @@ func (s InvalidResourceArnException) RequestID() string {
 
 // The revision ID is not valid. Use GetPullRequest to determine the value.
 type InvalidRevisionIdException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -22523,8 +22523,8 @@ func (s InvalidRevisionIdException) RequestID() string {
 
 // The SHA-256 hash signature for the rule content is not valid.
 type InvalidRuleContentSha256Exception struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -22579,8 +22579,8 @@ func (s InvalidRuleContentSha256Exception) RequestID() string {
 
 // The specified sort by value is not valid.
 type InvalidSortByException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -22636,8 +22636,8 @@ func (s InvalidSortByException) RequestID() string {
 // The source commit specifier is not valid. You must provide a valid branch
 // name, tag, or full commit ID.
 type InvalidSourceCommitSpecifierException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -22692,8 +22692,8 @@ func (s InvalidSourceCommitSpecifierException) RequestID() string {
 
 // The specified tag is not valid. Key names cannot be prefixed with aws:.
 type InvalidSystemTagUsageException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -22748,8 +22748,8 @@ func (s InvalidSystemTagUsageException) RequestID() string {
 
 // The list of tags is not valid.
 type InvalidTagKeysListException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -22804,8 +22804,8 @@ func (s InvalidTagKeysListException) RequestID() string {
 
 // The map of tags is not valid.
 type InvalidTagsMapException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -22860,8 +22860,8 @@ func (s InvalidTagsMapException) RequestID() string {
 
 // The specified target branch is not valid.
 type InvalidTargetBranchException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -22918,8 +22918,8 @@ func (s InvalidTargetBranchException) RequestID() string {
 // values for the repository name, source branch, and destination branch for
 // the pull request.
 type InvalidTargetException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -22977,8 +22977,8 @@ func (s InvalidTargetException) RequestID() string {
 // for the repository name, source branch, and destination branch for a pull
 // request.
 type InvalidTargetsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -23034,8 +23034,8 @@ func (s InvalidTargetsException) RequestID() string {
 // The title of the pull request is not valid. Pull request titles cannot exceed
 // 100 characters in length.
 type InvalidTitleException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -23801,8 +23801,8 @@ func (s *Location) SetRelativeFileVersion(v string) *Location {
 // The pull request cannot be merged automatically into the destination branch.
 // You must manually merge the branches and resolve any conflicts.
 type ManualMergeRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -23857,8 +23857,8 @@ func (s ManualMergeRequiredException) RequestID() string {
 
 // The number of branches for the trigger was exceeded.
 type MaximumBranchesExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -23913,8 +23913,8 @@ func (s MaximumBranchesExceededException) RequestID() string {
 
 // The number of allowed conflict resolution entries was exceeded.
 type MaximumConflictResolutionEntriesExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -23969,8 +23969,8 @@ func (s MaximumConflictResolutionEntriesExceededException) RequestID() string {
 
 // The number of files to load exceeds the allowed limit.
 type MaximumFileContentToLoadExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -24027,8 +24027,8 @@ func (s MaximumFileContentToLoadExceededException) RequestID() string {
 // maximum number of files that can be changed in a single commit. Consider
 // using a Git client for these changes.
 type MaximumFileEntriesExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -24084,8 +24084,8 @@ func (s MaximumFileEntriesExceededException) RequestID() string {
 // The number of items to compare between the source or destination branches
 // and the merge base has exceeded the maximum allowed.
 type MaximumItemsToCompareExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -24141,8 +24141,8 @@ func (s MaximumItemsToCompareExceededException) RequestID() string {
 // The number of approvals required for the approval rule exceeds the maximum
 // number allowed.
 type MaximumNumberOfApprovalsExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -24199,8 +24199,8 @@ func (s MaximumNumberOfApprovalsExceededException) RequestID() string {
 // pull requests. The maximum number of open pull requests for a repository
 // is 1,000. Close one or more open pull requests, and then try again.
 type MaximumOpenPullRequestsExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -24256,8 +24256,8 @@ func (s MaximumOpenPullRequestsExceededException) RequestID() string {
 // The maximum number of allowed repository names was exceeded. Currently, this
 // number is 100.
 type MaximumRepositoryNamesExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -24312,8 +24312,8 @@ func (s MaximumRepositoryNamesExceededException) RequestID() string {
 
 // The number of triggers allowed for the repository was exceeded.
 type MaximumRepositoryTriggersExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -24369,8 +24369,8 @@ func (s MaximumRepositoryTriggersExceededException) RequestID() string {
 // The maximum number of approval rule templates for a repository has been exceeded.
 // You cannot associate more than 25 approval rule templates with a repository.
 type MaximumRuleTemplatesAssociatedWithRepositoryException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -25114,8 +25114,8 @@ func (s *MergeOperations) SetSource(v string) *MergeOperations {
 
 // A merge option or stategy is required, and none was provided.
 type MergeOptionRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -25596,8 +25596,8 @@ func (s *MergePullRequestByThreeWayOutput) SetPullRequest(v *PullRequest) *Merge
 // More than one conflict resolution entries exists for the conflict. A conflict
 // can have only one conflict resolution entry.
 type MultipleConflictResolutionEntriesException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -25654,8 +25654,8 @@ func (s MultipleConflictResolutionEntriesException) RequestID() string {
 // you have specified only one repository name in your request, and then try
 // again.
 type MultipleRepositoriesInPullRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -25711,8 +25711,8 @@ func (s MultipleRepositoriesInPullRequestException) RequestID() string {
 // The user name is not valid because it has exceeded the character limit for
 // author names.
 type NameLengthExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -25768,8 +25768,8 @@ func (s NameLengthExceededException) RequestID() string {
 // The commit cannot be created because no changes will be made to the repository
 // as a result of this commit. A commit must contain at least one change.
 type NoChangeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -25825,8 +25825,8 @@ func (s NoChangeException) RequestID() string {
 // The maximum number of approval rule templates has been exceeded for this
 // AWS Region.
 type NumberOfRuleTemplatesExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -25882,8 +25882,8 @@ func (s NumberOfRuleTemplatesExceededException) RequestID() string {
 // The approval rule cannot be added. The pull request has the maximum number
 // of approval rules associated with it.
 type NumberOfRulesExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -26014,8 +26014,8 @@ func (s *OriginApprovalRuleTemplate) SetApprovalRuleTemplateName(v string) *Orig
 
 // The pull request has already had its approval rules set to override.
 type OverrideAlreadySetException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -26156,8 +26156,8 @@ func (s OverridePullRequestApprovalRulesOutput) GoString() string {
 // An override status is required, but no value was provided. Valid values include
 // OVERRIDE and REVOKE.
 type OverrideStatusRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -26213,8 +26213,8 @@ func (s OverrideStatusRequiredException) RequestID() string {
 // The parent commit ID is not valid because it does not exist. The specified
 // parent commit ID does not exist in the specified branch of the repository.
 type ParentCommitDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -26271,8 +26271,8 @@ func (s ParentCommitDoesNotExistException) RequestID() string {
 // the current tip of the specified branch. To view the full commit ID of the
 // current head of the branch, use GetBranch.
 type ParentCommitIdOutdatedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -26329,8 +26329,8 @@ func (s ParentCommitIdOutdatedException) RequestID() string {
 // a repository, use GetBranch or a Git command (for example, git pull or git
 // log).
 type ParentCommitIdRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -26385,8 +26385,8 @@ func (s ParentCommitIdRequiredException) RequestID() string {
 
 // The specified path does not exist.
 type PathDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -26441,8 +26441,8 @@ func (s PathDoesNotExistException) RequestID() string {
 
 // The folderPath for a location cannot be null.
 type PathRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -27099,8 +27099,8 @@ func (s *PullRequest) SetTitle(v string) *PullRequest {
 
 // The pull request status cannot be updated because it is already closed.
 type PullRequestAlreadyClosedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -27156,8 +27156,8 @@ func (s PullRequestAlreadyClosedException) RequestID() string {
 // The pull request cannot be merged because one or more approval rules applied
 // to the pull request have conditions that have not been met.
 type PullRequestApprovalRulesNotSatisfiedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -27214,8 +27214,8 @@ func (s PullRequestApprovalRulesNotSatisfiedException) RequestID() string {
 // matches the user who created the pull request. You cannot approve a pull
 // request that you created.
 type PullRequestCannotBeApprovedByAuthorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -27325,8 +27325,8 @@ func (s *PullRequestCreatedEventMetadata) SetSourceCommitId(v string) *PullReque
 // The pull request ID could not be found. Make sure that you have specified
 // the correct repository name and pull request ID, and then try again.
 type PullRequestDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -27498,8 +27498,8 @@ func (s *PullRequestEvent) SetPullRequestStatusChangedEventMetadata(v *PullReque
 
 // A pull request ID is required, but none was provided.
 type PullRequestIdRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -27675,8 +27675,8 @@ func (s *PullRequestStatusChangedEventMetadata) SetPullRequestStatus(v string) *
 
 // A pull request status is required, but none was provided.
 type PullRequestStatusRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -27893,8 +27893,8 @@ func (s *PutFileEntry) SetSourceFile(v *SourceFileSpecifier) *PutFileEntry {
 // The commit cannot be created because one or more files specified in the commit
 // reference both a file and a folder.
 type PutFileEntryConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -28233,8 +28233,8 @@ func (s *PutRepositoryTriggersOutput) SetConfigurationId(v string) *PutRepositor
 
 // The specified reference does not exist. You must provide a full commit ID.
 type ReferenceDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -28289,8 +28289,8 @@ func (s ReferenceDoesNotExistException) RequestID() string {
 
 // A reference name is required, but none was provided.
 type ReferenceNameRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -28345,8 +28345,8 @@ func (s ReferenceNameRequiredException) RequestID() string {
 
 // The specified reference is not a supported type.
 type ReferenceTypeNotSupportedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -28475,8 +28475,8 @@ func (s *ReplaceContentEntry) SetReplacementType(v string) *ReplaceContentEntry 
 
 // USE_NEW_CONTENT was specified, but no replacement content has been provided.
 type ReplacementContentRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -28531,8 +28531,8 @@ func (s ReplacementContentRequiredException) RequestID() string {
 
 // A replacement type is required.
 type ReplacementTypeRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -28587,8 +28587,8 @@ func (s ReplacementTypeRequiredException) RequestID() string {
 
 // The specified repository does not exist.
 type RepositoryDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -28643,8 +28643,8 @@ func (s RepositoryDoesNotExistException) RequestID() string {
 
 // A repository resource limit was exceeded.
 type RepositoryLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -28804,8 +28804,8 @@ func (s *RepositoryMetadata) SetRepositoryName(v string) *RepositoryMetadata {
 
 // The specified repository name already exists.
 type RepositoryNameExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -28893,8 +28893,8 @@ func (s *RepositoryNameIdPair) SetRepositoryName(v string) *RepositoryNameIdPair
 
 // A repository name is required, but was not specified.
 type RepositoryNameRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -28949,8 +28949,8 @@ func (s RepositoryNameRequiredException) RequestID() string {
 
 // At least one repository name object is required, but was not specified.
 type RepositoryNamesRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -29007,8 +29007,8 @@ func (s RepositoryNamesRequiredException) RequestID() string {
 // ID. Use GetPullRequest to verify the correct repository name for the pull
 // request ID.
 type RepositoryNotAssociatedWithPullRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -29158,8 +29158,8 @@ func (s *RepositoryTrigger) SetName(v string) *RepositoryTrigger {
 // At least one branch name is required, but was not specified in the trigger
 // configuration.
 type RepositoryTriggerBranchNameListRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -29215,8 +29215,8 @@ func (s RepositoryTriggerBranchNameListRequiredException) RequestID() string {
 // A destination ARN for the target service for the trigger is required, but
 // was not specified.
 type RepositoryTriggerDestinationArnRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -29271,8 +29271,8 @@ func (s RepositoryTriggerDestinationArnRequiredException) RequestID() string {
 
 // At least one event for the trigger is required, but was not specified.
 type RepositoryTriggerEventsListRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -29360,8 +29360,8 @@ func (s *RepositoryTriggerExecutionFailure) SetTrigger(v string) *RepositoryTrig
 
 // A name for the trigger is required, but was not specified.
 type RepositoryTriggerNameRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -29416,8 +29416,8 @@ func (s RepositoryTriggerNameRequiredException) RequestID() string {
 
 // The list of triggers for the repository is required, but was not specified.
 type RepositoryTriggersListRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -29475,8 +29475,8 @@ func (s RepositoryTriggersListRequiredException) RequestID() string {
 // and Operations (https://docs.aws.amazon.com/codecommit/latest/userguide/auth-and-access-control-iam-access-control-identity-based.html#arn-formats)
 // in the AWS CodeCommit User Guide.
 type ResourceArnRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -29532,8 +29532,8 @@ func (s ResourceArnRequiredException) RequestID() string {
 // The commit cannot be created because one of the changes specifies copying
 // or moving a .gitkeep file.
 type RestrictedSourceFileException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -29588,8 +29588,8 @@ func (s RestrictedSourceFileException) RequestID() string {
 
 // A revision ID is required, but was not provided.
 type RevisionIdRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -29645,8 +29645,8 @@ func (s RevisionIdRequiredException) RequestID() string {
 // The revision ID provided in the request does not match the current revision
 // ID. Use GetPullRequest to retrieve the current revision ID.
 type RevisionNotCurrentException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -29703,8 +29703,8 @@ func (s RevisionNotCurrentException) RequestID() string {
 // the same as the content of that file in the repository and branch that you
 // specified.
 type SameFileContentException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -29762,8 +29762,8 @@ func (s SameFileContentException) RequestID() string {
 // request to the same file in the same file path twice, or make a delete request
 // and a move request to the same file as part of the same commit.
 type SamePathRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -29872,8 +29872,8 @@ func (s *SetFileModeEntry) SetFilePath(v string) *SetFileModeEntry {
 // The source branch and destination branch for the pull request are the same.
 // You must specify different branches for the source and destination.
 type SourceAndDestinationAreSameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -29929,8 +29929,8 @@ func (s SourceAndDestinationAreSameException) RequestID() string {
 // The commit cannot be created because no source files or file content have
 // been specified for the commit.
 type SourceFileOrContentRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -30128,8 +30128,8 @@ func (s *SymbolicLink) SetRelativePath(v string) *SymbolicLink {
 
 // A list of tag keys is required. The list cannot be empty or null.
 type TagKeysListRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -30184,8 +30184,8 @@ func (s TagKeysListRequiredException) RequestID() string {
 
 // The tag policy is not valid.
 type TagPolicyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -30307,8 +30307,8 @@ func (s TagResourceOutput) GoString() string {
 
 // A map of tags is required.
 type TagsMapRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -30432,8 +30432,8 @@ func (s *Target) SetSourceReference(v string) *Target {
 // target must contain the full values for the repository name, source branch,
 // and destination branch for the pull request.
 type TargetRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -30488,8 +30488,8 @@ func (s TargetRequiredException) RequestID() string {
 
 // An array of target objects is required. It cannot be empty or null.
 type TargetsRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -30647,8 +30647,8 @@ func (s *TestRepositoryTriggersOutput) SetSuccessfulExecutions(v []*string) *Tes
 // the tip of the source branch specified in your request. The pull request
 // might have been updated. Make sure that you have the latest changes.
 type TipOfSourceReferenceIsDifferentException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -30705,8 +30705,8 @@ func (s TipOfSourceReferenceIsDifferentException) RequestID() string {
 // great to determine whether there might be any merge conflicts. Locally compare
 // the specifiers using git diff or a diff tool.
 type TipsDivergenceExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -30761,8 +30761,8 @@ func (s TipsDivergenceExceededException) RequestID() string {
 
 // A pull request title is required. It cannot be empty or null.
 type TitleRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -30817,8 +30817,8 @@ func (s TitleRequiredException) RequestID() string {
 
 // The maximum number of tags for an AWS CodeCommit resource has been exceeded.
 type TooManyTagsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

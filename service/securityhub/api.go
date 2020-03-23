@@ -4499,8 +4499,8 @@ func (s AcceptInvitationOutput) GoString() string {
 
 // You don't have permission to perform the action specified in the request.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -11259,8 +11259,8 @@ func (s *InsightResults) SetResultValues(v []*InsightResultValue) *InsightResult
 
 // Internal server error.
 type InternalException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -11317,8 +11317,8 @@ func (s InternalException) RequestID() string {
 
 // AWS Security Hub isn't enabled for the account used to make this request.
 type InvalidAccessException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -11376,8 +11376,8 @@ func (s InvalidAccessException) RequestID() string {
 // The request was rejected because you supplied an invalid or out-of-range
 // value for an input parameter.
 type InvalidInputException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -11583,8 +11583,8 @@ func (s *KeywordFilter) SetValue(v string) *KeywordFilter {
 // The request was rejected because it attempted to create resources beyond
 // the current AWS account limits. The error code describes the limit exceeded.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -12850,8 +12850,8 @@ func (s *Resource) SetType(v string) *Resource {
 
 // The resource specified in the request conflicts with an existing resource.
 type ResourceConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -13137,8 +13137,8 @@ func (s *ResourceDetails) SetOther(v map[string]*string) *ResourceDetails {
 
 // The request was rejected because we can't find the specified resource.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string"`
 

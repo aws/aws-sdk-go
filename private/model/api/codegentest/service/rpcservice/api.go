@@ -965,8 +965,8 @@ func (u unmarshalerForEventStreamEvent) UnmarshalerForEventName(eventType string
 }
 
 type ExceptionEvent struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	IntVal *int64 `type:"integer"`
 
@@ -1049,8 +1049,8 @@ func (s ExceptionEvent) RequestID() string {
 }
 
 type ExceptionEvent2 struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

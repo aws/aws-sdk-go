@@ -1333,8 +1333,8 @@ func (c *LakeFormation) UpdateResourceWithContext(ctx aws.Context, input *Update
 
 // A resource to be created or added already exists.
 type AlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -1725,8 +1725,8 @@ func (s *ColumnWildcard) SetExcludedColumnNames(v []*string) *ColumnWildcard {
 
 // Two processes are trying to modify a resource simultaneously.
 type ConcurrentModificationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -2098,8 +2098,8 @@ func (s *DescribeResourceOutput) SetResourceInfo(v *ResourceInfo) *DescribeResou
 
 // A specified entity does not exist
 type EntityNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -2528,8 +2528,8 @@ func (s GrantPermissionsOutput) GoString() string {
 
 // An internal service error occurred.
 type InternalServiceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -2585,8 +2585,8 @@ func (s InternalServiceException) RequestID() string {
 
 // The input provided was not valid.
 type InvalidInputException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -2866,8 +2866,8 @@ func (s *ListResourcesOutput) SetResourceInfoList(v []*ResourceInfo) *ListResour
 
 // The operation timed out.
 type OperationTimeoutException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`

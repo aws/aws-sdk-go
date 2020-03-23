@@ -2146,8 +2146,8 @@ func (s CancelJobOutput) GoString() string {
 // this cluster, try again and create jobs until your cluster has exactly five
 // notes.
 type ClusterLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -3360,8 +3360,8 @@ func (s *Ec2AmiResource) SetSnowballAmiId(v string) *Ec2AmiResource {
 // Your IAM user lacks the necessary Amazon EC2 permissions to perform the attempted
 // action.
 type Ec2RequestFailedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -3713,8 +3713,8 @@ func (s *INDTaxDocuments) SetGSTIN(v string) *INDTaxDocuments {
 // The address provided was invalid. Check the address with your region's carrier,
 // and try again.
 type InvalidAddressException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -3771,8 +3771,8 @@ func (s InvalidAddressException) RequestID() string {
 // that the CreateClusterRequest$SnowballType value supports your CreateJobRequest$JobType,
 // and try again.
 type InvalidInputCombinationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -3828,8 +3828,8 @@ func (s InvalidInputCombinationException) RequestID() string {
 // The action can't be performed because the job's current state doesn't allow
 // that action to be performed.
 type InvalidJobStateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -3885,8 +3885,8 @@ func (s InvalidJobStateException) RequestID() string {
 // The NextToken string was altered unexpectedly, and the operation has stopped.
 // Run the operation without changing the NextToken string, and try again.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -3942,8 +3942,8 @@ func (s InvalidNextTokenException) RequestID() string {
 // The specified resource can't be found. Check the information you provided
 // in your last request, and try again.
 type InvalidResourceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 
@@ -4418,8 +4418,8 @@ func (s *JobResource) SetS3Resources(v []*S3Resource) *JobResource {
 // The provided AWS Key Management Service key lacks the permissions to perform
 // the specified CreateJob or UpdateJob action.
 type KMSRequestFailedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -5143,8 +5143,8 @@ func (s *TaxDocuments) SetIND(v *INDTaxDocuments) *TaxDocuments {
 // error occurred. Check the address with your region's carrier and try again.
 // If the issue persists, contact AWS Support.
 type UnsupportedAddressException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }

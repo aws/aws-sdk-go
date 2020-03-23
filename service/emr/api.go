@@ -7392,8 +7392,8 @@ func (s *InstanceTypeSpecification) SetWeightedCapacity(v int64) *InstanceTypeSp
 // Indicates that an error occurred while processing the request and that the
 // request was not completed.
 type InternalServerError struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7448,8 +7448,8 @@ func (s InternalServerError) RequestID() string {
 
 // This exception occurs when there is an internal failure in the EMR service.
 type InternalServerException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message associated with the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -7505,8 +7505,8 @@ func (s InternalServerException) RequestID() string {
 
 // This exception occurs when there is something wrong with user input.
 type InvalidRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error code associated with the exception.
 	ErrorCode *string `min:"1" type:"string"`

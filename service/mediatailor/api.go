@@ -557,8 +557,8 @@ func (c *MediaTailor) UntagResourceWithContext(ctx aws.Context, input *UntagReso
 
 // One of the parameters in the request is invalid.
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// One of the parameters in the request is invalid.
 	Message_ *string `locationName:"Message" type:"string"`

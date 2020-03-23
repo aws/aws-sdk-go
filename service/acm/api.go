@@ -2527,8 +2527,8 @@ func (s *ImportCertificateOutput) SetCertificateArn(v string) *ImportCertificate
 
 // One or more of of request parameters specified is not valid.
 type InvalidArgsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2583,8 +2583,8 @@ func (s InvalidArgsException) RequestID() string {
 
 // The requested Amazon Resource Name (ARN) does not refer to an existing resource.
 type InvalidArnException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2639,8 +2639,8 @@ func (s InvalidArnException) RequestID() string {
 
 // One or more values in the DomainValidationOption structure is incorrect.
 type InvalidDomainValidationOptionsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2695,8 +2695,8 @@ func (s InvalidDomainValidationOptionsException) RequestID() string {
 
 // An input parameter was invalid.
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2751,8 +2751,8 @@ func (s InvalidParameterException) RequestID() string {
 
 // Processing has reached an invalid state.
 type InvalidStateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2808,8 +2808,8 @@ func (s InvalidStateException) RequestID() string {
 // One or both of the values that make up the key-value pair is not valid. For
 // example, you cannot specify a tag value that begins with aws:.
 type InvalidTagException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2889,8 +2889,8 @@ func (s *KeyUsage) SetName(v string) *KeyUsage {
 
 // An ACM limit has been exceeded.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3547,8 +3547,8 @@ func (s *RequestCertificateOutput) SetCertificateArn(v string) *RequestCertifica
 // The certificate request is in process and the certificate in your account
 // has not yet been issued.
 type RequestInProgressException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3715,8 +3715,8 @@ func (s ResendValidationEmailOutput) GoString() string {
 // The certificate is in use by another AWS service in the caller's account.
 // Remove the association and try again.
 type ResourceInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3772,8 +3772,8 @@ func (s ResourceInUseException) RequestID() string {
 // The specified certificate cannot be found in the caller's account or the
 // caller's account cannot be found.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3930,8 +3930,8 @@ func (s *Tag) SetValue(v string) *Tag {
 
 // A specified tag did not comply with an existing tag policy and was rejected.
 type TagPolicyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3986,8 +3986,8 @@ func (s TagPolicyException) RequestID() string {
 
 // The request contains too many tags. Try the request again with fewer tags.
 type TooManyTagsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

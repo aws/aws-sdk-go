@@ -2524,8 +2524,8 @@ func (c *CloudTrail) UpdateTrailWithContext(ctx aws.Context, input *UpdateTrailI
 //
 // arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail
 type ARNInvalidException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2583,8 +2583,8 @@ func (s ARNInvalidException) RequestID() string {
 // Trusted Access with Other AWS Services (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html)
 // and Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
 type AccessNotEnabledException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2716,8 +2716,8 @@ func (s AddTagsOutput) GoString() string {
 
 // Cannot set a CloudWatch Logs delivery for this region.
 type CloudWatchLogsDeliveryUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4026,8 +4026,8 @@ func (s *GetTrailStatusOutput) SetTimeLoggingStopped(v string) *GetTrailStatusOu
 // If you run GetInsightSelectors on a trail that does not have Insights events
 // enabled, the operation throws the exception InsightNotEnabledException.
 type InsightNotEnabledException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4111,8 +4111,8 @@ func (s *InsightSelector) SetInsightType(v string) *InsightSelector {
 // an organization trail in a required service. For more information, see Prepare
 // For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
 type InsufficientDependencyServiceAccessPermissionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4168,8 +4168,8 @@ func (s InsufficientDependencyServiceAccessPermissionException) RequestID() stri
 // This exception is thrown when the policy on the S3 bucket or KMS key is not
 // sufficient.
 type InsufficientEncryptionPolicyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4224,8 +4224,8 @@ func (s InsufficientEncryptionPolicyException) RequestID() string {
 
 // This exception is thrown when the policy on the S3 bucket is not sufficient.
 type InsufficientS3BucketPolicyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4280,8 +4280,8 @@ func (s InsufficientS3BucketPolicyException) RequestID() string {
 
 // This exception is thrown when the policy on the SNS topic is not sufficient.
 type InsufficientSnsTopicPolicyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4336,8 +4336,8 @@ func (s InsufficientSnsTopicPolicyException) RequestID() string {
 
 // This exception is thrown when the provided CloudWatch log group is not valid.
 type InvalidCloudWatchLogsLogGroupArnException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4392,8 +4392,8 @@ func (s InvalidCloudWatchLogsLogGroupArnException) RequestID() string {
 
 // This exception is thrown when the provided role is not valid.
 type InvalidCloudWatchLogsRoleArnException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4449,8 +4449,8 @@ func (s InvalidCloudWatchLogsRoleArnException) RequestID() string {
 // Occurs if an event category that is not valid is specified as a value of
 // EventCategory.
 type InvalidEventCategoryException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4523,8 +4523,8 @@ func (s InvalidEventCategoryException) RequestID() string {
 //    * Specify a valid value for a parameter. For example, specifying the ReadWriteType
 //    parameter with a value of read-only is invalid.
 type InvalidEventSelectorsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4580,8 +4580,8 @@ func (s InvalidEventSelectorsException) RequestID() string {
 // This exception is thrown when an operation is called on a trail from a region
 // other than the region in which the trail was created.
 type InvalidHomeRegionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4638,8 +4638,8 @@ func (s InvalidHomeRegionException) RequestID() string {
 // or GetInsightSelectors request is not valid, or the specified insight type
 // in the InsightSelectors statement is not a valid insight type.
 type InvalidInsightSelectorsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4694,8 +4694,8 @@ func (s InvalidInsightSelectorsException) RequestID() string {
 
 // This exception is thrown when the KMS key ARN is invalid.
 type InvalidKmsKeyIdException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4750,8 +4750,8 @@ func (s InvalidKmsKeyIdException) RequestID() string {
 
 // Occurs when an invalid lookup attribute is specified.
 type InvalidLookupAttributesException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4806,8 +4806,8 @@ func (s InvalidLookupAttributesException) RequestID() string {
 
 // This exception is thrown if the limit specified is invalid.
 type InvalidMaxResultsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4863,8 +4863,8 @@ func (s InvalidMaxResultsException) RequestID() string {
 // Invalid token or token that was previously used in a request with different
 // parameters. This exception is thrown if the token is invalid.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4920,8 +4920,8 @@ func (s InvalidNextTokenException) RequestID() string {
 // This exception is thrown when the combination of parameters provided is not
 // valid.
 type InvalidParameterCombinationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4976,8 +4976,8 @@ func (s InvalidParameterCombinationException) RequestID() string {
 
 // This exception is thrown when the provided S3 bucket name is not valid.
 type InvalidS3BucketNameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5032,8 +5032,8 @@ func (s InvalidS3BucketNameException) RequestID() string {
 
 // This exception is thrown when the provided S3 prefix is not valid.
 type InvalidS3PrefixException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5088,8 +5088,8 @@ func (s InvalidS3PrefixException) RequestID() string {
 
 // This exception is thrown when the provided SNS topic name is not valid.
 type InvalidSnsTopicNameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5145,8 +5145,8 @@ func (s InvalidSnsTopicNameException) RequestID() string {
 // This exception is thrown when the specified tag key or values are not valid.
 // It can also occur if there are duplicate tags or too many tags on the resource.
 type InvalidTagParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5202,8 +5202,8 @@ func (s InvalidTagParameterException) RequestID() string {
 // Occurs if the timestamp values are invalid. Either the start time occurs
 // after the end time or the time range is outside the range of possible values.
 type InvalidTimeRangeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5258,8 +5258,8 @@ func (s InvalidTimeRangeException) RequestID() string {
 
 // Reserved for future use.
 type InvalidTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5327,8 +5327,8 @@ func (s InvalidTokenException) RequestID() string {
 //
 //    * Not be in IP address format (for example, 192.168.5.4)
 type InvalidTrailNameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5384,8 +5384,8 @@ func (s InvalidTrailNameException) RequestID() string {
 // This exception is thrown when there is an issue with the specified KMS key
 // and the trail can’t be updated.
 type KmsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5442,8 +5442,8 @@ func (s KmsException) RequestID() string {
 //
 // Deprecated: KmsKeyDisabledException has been deprecated
 type KmsKeyDisabledException struct {
-	_            struct{} `deprecated:"true" type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `deprecated:"true" type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5499,8 +5499,8 @@ func (s KmsKeyDisabledException) RequestID() string {
 // This exception is thrown when the KMS key does not exist, or when the S3
 // bucket and the KMS key are not in the same region.
 type KmsKeyNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5981,8 +5981,8 @@ func (s *LookupEventsOutput) SetNextToken(v string) *LookupEventsOutput {
 
 // This exception is thrown when the maximum number of trails is reached.
 type MaximumNumberOfTrailsExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6040,8 +6040,8 @@ func (s MaximumNumberOfTrailsExceededException) RequestID() string {
 // in AWS Organizations. For more information, see Prepare For Creating a Trail
 // For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
 type NotOrganizationMasterAccountException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6096,8 +6096,8 @@ func (s NotOrganizationMasterAccountException) RequestID() string {
 
 // This exception is thrown when the requested operation is not permitted.
 type OperationNotPermittedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6155,8 +6155,8 @@ func (s OperationNotPermittedException) RequestID() string {
 // creating an organization trail. For more information, see Prepare For Creating
 // a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
 type OrganizationNotInAllFeaturesModeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6213,8 +6213,8 @@ func (s OrganizationNotInAllFeaturesModeException) RequestID() string {
 // is not a member of an organization. To make this request, sign in using the
 // credentials of an account that belongs to an organization.
 type OrganizationsNotInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6632,8 +6632,8 @@ func (s *Resource) SetResourceType(v string) *Resource {
 
 // This exception is thrown when the specified resource is not found.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6722,8 +6722,8 @@ func (s *ResourceTag) SetTagsList(v []*Tag) *ResourceTag {
 // This exception is thrown when the specified resource type is not supported
 // by CloudTrail.
 type ResourceTypeNotSupportedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6778,8 +6778,8 @@ func (s ResourceTypeNotSupportedException) RequestID() string {
 
 // This exception is thrown when the specified S3 bucket does not exist.
 type S3BucketDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7002,8 +7002,8 @@ func (s *Tag) SetValue(v string) *Tag {
 // The number of tags per trail has exceeded the permitted amount. Currently,
 // the limit is 50.
 type TagsLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7235,8 +7235,8 @@ func (s *Trail) SetTrailARN(v string) *Trail {
 
 // This exception is thrown when the specified trail already exists.
 type TrailAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7334,8 +7334,8 @@ func (s *TrailInfo) SetTrailARN(v string) *TrailInfo {
 
 // This exception is thrown when the trail with the given name is not found.
 type TrailNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7390,8 +7390,8 @@ func (s TrailNotFoundException) RequestID() string {
 
 // This exception is no longer in use.
 type TrailNotProvidedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7446,8 +7446,8 @@ func (s TrailNotProvidedException) RequestID() string {
 
 // This exception is thrown when the requested operation is not supported.
 type UnsupportedOperationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

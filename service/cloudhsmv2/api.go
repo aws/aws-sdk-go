@@ -1621,8 +1621,8 @@ func (s *Certificates) SetManufacturerHardwareCertificate(v string) *Certificate
 // The request was rejected because the requester does not have permission to
 // perform the requested operation.
 type CloudHsmAccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1678,8 +1678,8 @@ func (s CloudHsmAccessDeniedException) RequestID() string {
 // The request was rejected because of an AWS CloudHSM internal failure. The
 // request can be retried.
 type CloudHsmInternalFailureException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1734,8 +1734,8 @@ func (s CloudHsmInternalFailureException) RequestID() string {
 
 // The request was rejected because it is not a valid request.
 type CloudHsmInvalidRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1790,8 +1790,8 @@ func (s CloudHsmInvalidRequestException) RequestID() string {
 
 // The request was rejected because it refers to a resource that cannot be found.
 type CloudHsmResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1846,8 +1846,8 @@ func (s CloudHsmResourceNotFoundException) RequestID() string {
 
 // The request was rejected because an error occurred.
 type CloudHsmServiceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1901,8 +1901,8 @@ func (s CloudHsmServiceException) RequestID() string {
 }
 
 type CloudHsmTagException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

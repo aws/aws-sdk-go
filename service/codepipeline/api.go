@@ -4684,8 +4684,8 @@ func (s *ActionExecutionResult) SetExternalExecutionUrl(v string) *ActionExecuti
 
 // The specified action cannot be found.
 type ActionNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5037,8 +5037,8 @@ func (s *ActionTypeId) SetVersion(v string) *ActionTypeId {
 
 // The specified action type cannot be found.
 type ActionTypeNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5176,8 +5176,8 @@ func (s *ActionTypeSettings) SetThirdPartyConfigurationUrl(v string) *ActionType
 
 // The approval action has already been approved or rejected.
 type ApprovalAlreadyCompletedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5661,8 +5661,8 @@ func (s *BlockerDeclaration) SetType(v string) *BlockerDeclaration {
 
 // Unable to modify the tag due to a simultaneous update request.
 type ConcurrentModificationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
@@ -6465,8 +6465,8 @@ func (s DisableStageTransitionOutput) GoString() string {
 // out of sequence tasks. If you already chose to stop and abandon, you cannot
 // make that request again.
 type DuplicatedStopRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
@@ -7347,8 +7347,8 @@ func (s *InputArtifact) SetName(v string) *InputArtifact {
 
 // The action declaration was specified in an invalid format.
 type InvalidActionDeclarationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7403,8 +7403,8 @@ func (s InvalidActionDeclarationException) RequestID() string {
 
 // The approval request already received a response or has expired.
 type InvalidApprovalTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7459,8 +7459,8 @@ func (s InvalidApprovalTokenException) RequestID() string {
 
 // The specified resource ARN is invalid.
 type InvalidArnException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
@@ -7515,8 +7515,8 @@ func (s InvalidArnException) RequestID() string {
 
 // Reserved for future use.
 type InvalidBlockerDeclarationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7571,8 +7571,8 @@ func (s InvalidBlockerDeclarationException) RequestID() string {
 
 // The client token was specified in an invalid format
 type InvalidClientTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7627,8 +7627,8 @@ func (s InvalidClientTokenException) RequestID() string {
 
 // The job was specified in an invalid format or cannot be found.
 type InvalidJobException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7683,8 +7683,8 @@ func (s InvalidJobException) RequestID() string {
 
 // The job state was specified in an invalid format.
 type InvalidJobStateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7740,8 +7740,8 @@ func (s InvalidJobStateException) RequestID() string {
 // The next token was specified in an invalid format. Make sure that the next
 // token you provide is the token returned by a previous call.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7796,8 +7796,8 @@ func (s InvalidNextTokenException) RequestID() string {
 
 // The nonce was specified in an invalid format.
 type InvalidNonceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7852,8 +7852,8 @@ func (s InvalidNonceException) RequestID() string {
 
 // The stage declaration was specified in an invalid format.
 type InvalidStageDeclarationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7908,8 +7908,8 @@ func (s InvalidStageDeclarationException) RequestID() string {
 
 // The structure was specified in an invalid format.
 type InvalidStructureException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7964,8 +7964,8 @@ func (s InvalidStructureException) RequestID() string {
 
 // The specified resource tags are invalid.
 type InvalidTagsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
@@ -8020,8 +8020,8 @@ func (s InvalidTagsException) RequestID() string {
 
 // The specified authentication type is in an invalid format.
 type InvalidWebhookAuthenticationParametersException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8076,8 +8076,8 @@ func (s InvalidWebhookAuthenticationParametersException) RequestID() string {
 
 // The specified event filter rule is in an invalid format.
 type InvalidWebhookFilterPatternException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8323,8 +8323,8 @@ func (s *JobDetails) SetId(v string) *JobDetails {
 
 // The job was specified in an invalid format or cannot be found.
 type JobNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8380,8 +8380,8 @@ func (s JobNotFoundException) RequestID() string {
 // The number of pipelines associated with the AWS account has exceeded the
 // limit allowed for the account.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9086,8 +9086,8 @@ func (s *ListWebhooksOutput) SetWebhooks(v []*ListWebhookItem) *ListWebhooksOutp
 // The stage has failed in a later run of the pipeline and the pipelineExecutionId
 // associated with the request is out of date.
 type NotLatestPipelineExecutionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9192,8 +9192,8 @@ func (s *OutputArtifact) SetName(v string) *OutputArtifact {
 
 // Exceeded the total size limit for all variables in the pipeline.
 type OutputVariablesSizeExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
@@ -9532,8 +9532,8 @@ func (s *PipelineExecution) SetStatus(v string) *PipelineExecution {
 // The pipeline execution was specified in an invalid format or cannot be found,
 // or an execution ID does not belong to the specified pipeline.
 type PipelineExecutionNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9589,8 +9589,8 @@ func (s PipelineExecutionNotFoundException) RequestID() string {
 // Unable to stop the pipeline execution. The execution might already be in
 // a Stopped state, or it might no longer be in progress.
 type PipelineExecutionNotStoppableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
@@ -9786,8 +9786,8 @@ func (s *PipelineMetadata) SetUpdated(v time.Time) *PipelineMetadata {
 
 // The specified pipeline name is already in use.
 type PipelineNameInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9842,8 +9842,8 @@ func (s PipelineNameInUseException) RequestID() string {
 
 // The pipeline was specified in an invalid format or cannot be found.
 type PipelineNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9949,8 +9949,8 @@ func (s *PipelineSummary) SetVersion(v int64) *PipelineSummary {
 
 // The pipeline version was specified in an invalid format or cannot be found.
 type PipelineVersionNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10980,8 +10980,8 @@ func (s RegisterWebhookWithThirdPartyOutput) GoString() string {
 
 // The resource was specified in an invalid format.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11427,8 +11427,8 @@ func (s *StageExecution) SetStatus(v string) *StageExecution {
 
 // The stage was specified in an invalid format or cannot be found.
 type StageNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11484,8 +11484,8 @@ func (s StageNotFoundException) RequestID() string {
 // Unable to retry. The pipeline structure or stage state might have changed
 // while actions awaited retry, or the stage contains no failed actions.
 type StageNotRetryableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12106,8 +12106,8 @@ func (s *ThirdPartyJobDetails) SetNonce(v string) *ThirdPartyJobDetails {
 
 // The tags limit for a resource has been exceeded.
 type TooManyTagsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
@@ -12349,8 +12349,8 @@ func (s *UpdatePipelineOutput) SetPipeline(v *PipelineDeclaration) *UpdatePipeli
 
 // The validation was specified in an invalid format.
 type ValidationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12673,8 +12673,8 @@ func (s *WebhookFilterRule) SetMatchEquals(v string) *WebhookFilterRule {
 
 // The specified webhook was entered in an invalid format or cannot be found.
 type WebhookNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

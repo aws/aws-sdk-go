@@ -1948,8 +1948,8 @@ func (s *CodeSource) SetS3(v *S3Location) *CodeSource {
 // Another modification is being made. That modification must complete before
 // you can make your change.
 type ConcurrentModificationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2984,8 +2984,8 @@ func (s *GitHubCodeDestination) SetType(v string) *GitHubCodeDestination {
 
 // The next token is not valid.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3040,8 +3040,8 @@ func (s InvalidNextTokenException) RequestID() string {
 
 // The service role is not valid.
 type InvalidServiceRoleException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3096,8 +3096,8 @@ func (s InvalidServiceRoleException) RequestID() string {
 
 // A resource limit has been exceeded.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3619,8 +3619,8 @@ func (s *ListUserProfilesOutput) SetUserProfiles(v []*UserProfileSummary) *ListU
 // the AWS account. AWS CodeStar project IDs must be unique within a region
 // for the AWS account.
 type ProjectAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3675,8 +3675,8 @@ func (s ProjectAlreadyExistsException) RequestID() string {
 
 // Project configuration information is required but not specified.
 type ProjectConfigurationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3733,8 +3733,8 @@ func (s ProjectConfigurationException) RequestID() string {
 // occurred during project creation. The project could not be created in AWS
 // CodeStar.
 type ProjectCreationFailedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3789,8 +3789,8 @@ func (s ProjectCreationFailedException) RequestID() string {
 
 // The specified AWS CodeStar project was not found.
 type ProjectNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4115,8 +4115,8 @@ func (s *TeamMember) SetUserArn(v string) *TeamMember {
 
 // The team member is already associated with a role in this project.
 type TeamMemberAlreadyAssociatedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4171,8 +4171,8 @@ func (s TeamMemberAlreadyAssociatedException) RequestID() string {
 
 // The specified team member was not found.
 type TeamMemberNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4767,8 +4767,8 @@ func (s *UpdateUserProfileOutput) SetUserArn(v string) *UpdateUserProfileOutput 
 // AWS CodeStar user profile names must be unique within a region for the AWS
 // account.
 type UserProfileAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4823,8 +4823,8 @@ func (s UserProfileAlreadyExistsException) RequestID() string {
 
 // The user profile was not found.
 type UserProfileNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4940,8 +4940,8 @@ func (s *UserProfileSummary) SetUserArn(v string) *UserProfileSummary {
 
 // The specified input is either not valid, or it could not be validated.
 type ValidationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

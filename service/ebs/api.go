@@ -868,8 +868,8 @@ func (s *ListSnapshotBlocksOutput) SetVolumeSize(v int64) *ListSnapshotBlocksOut
 
 // The specified resource does not exist.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -924,8 +924,8 @@ func (s ResourceNotFoundException) RequestID() string {
 
 // The input fails to satisfy the constraints of the EBS direct APIs.
 type ValidationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 

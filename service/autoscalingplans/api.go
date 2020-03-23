@@ -612,8 +612,8 @@ func (s *ApplicationSource) SetTagFilters(v []*TagFilter) *ApplicationSource {
 // Concurrent updates caused an exception, for example, if you request an update
 // to a scaling plan that already has a pending update.
 type ConcurrentUpdateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1539,8 +1539,8 @@ func (s *GetScalingPlanResourceForecastDataOutput) SetDatapoints(v []*Datapoint)
 
 // The service encountered an internal error.
 type InternalServiceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1595,8 +1595,8 @@ func (s InternalServiceException) RequestID() string {
 
 // The token provided is not valid.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1652,8 +1652,8 @@ func (s InvalidNextTokenException) RequestID() string {
 // Your account exceeded a limit. This exception is thrown when a per-account
 // resource limit is exceeded.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1761,8 +1761,8 @@ func (s *MetricDimension) SetValue(v string) *MetricDimension {
 
 // The specified object could not be found.
 type ObjectNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2878,8 +2878,8 @@ func (s UpdateScalingPlanOutput) GoString() string {
 
 // An exception was thrown for a validation issue. Review the parameters provided.
 type ValidationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

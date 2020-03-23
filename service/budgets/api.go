@@ -1318,8 +1318,8 @@ func (c *Budgets) UpdateSubscriberWithContext(ctx aws.Context, input *UpdateSubs
 
 // You are not authorized to use this operation with the given parameters.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message the exception carries.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -2260,8 +2260,8 @@ func (s CreateSubscriberOutput) GoString() string {
 
 // You've exceeded the notification or subscriber limit.
 type CreationLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message the exception carries.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -3163,8 +3163,8 @@ func (s *DescribeSubscribersForNotificationOutput) SetSubscribers(v []*Subscribe
 
 // The budget name already exists. Budget names must be unique within an account.
 type DuplicateRecordException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message the exception carries.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -3220,8 +3220,8 @@ func (s DuplicateRecordException) RequestID() string {
 
 // The pagination token expired.
 type ExpiredNextTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message the exception carries.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -3278,8 +3278,8 @@ func (s ExpiredNextTokenException) RequestID() string {
 // An error on the server occurred during the processing of your request. Try
 // again later.
 type InternalErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message the exception carries.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -3335,8 +3335,8 @@ func (s InternalErrorException) RequestID() string {
 
 // The pagination token is invalid.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message the exception carries.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -3393,8 +3393,8 @@ func (s InvalidNextTokenException) RequestID() string {
 // An error on the client occurred. Typically, the cause is an invalid input
 // value.
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message the exception carries.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -3450,8 +3450,8 @@ func (s InvalidParameterException) RequestID() string {
 
 // We can’t locate the resource that you specified.
 type NotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message the exception carries.
 	Message_ *string `locationName:"Message" type:"string"`

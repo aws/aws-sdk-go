@@ -1629,8 +1629,8 @@ func (s *AffectedEntity) SetTags(v map[string]*string) *AffectedEntity {
 // the action to complete before trying again. To get the current status, use
 // the DescribeHealthServiceStatusForOrganization operation.
 type ConcurrentModificationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3618,8 +3618,8 @@ func (s *EventTypeFilter) SetServices(v []*string) *EventTypeFilter {
 
 // The specified pagination token (nextToken) is not valid.
 type InvalidPaginationToken struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4100,8 +4100,8 @@ func (s *OrganizationEventFilter) SetStartTime(v *DateTimeRange) *OrganizationEv
 
 // The specified locale is not supported.
 type UnsupportedLocale struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

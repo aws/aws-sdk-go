@@ -657,8 +657,8 @@ func (s *ArrayValue) SetStringValues(v []*string) *ArrayValue {
 
 // There is an error in the call or in a SQL statement.
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message returned by this BadRequestException error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -1600,8 +1600,8 @@ func (s *Field) SetStringValue(v string) *Field {
 
 // There are insufficient privileges to make the call.
 type ForbiddenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message returned by this ForbiddenException error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -1657,8 +1657,8 @@ func (s ForbiddenException) RequestID() string {
 
 // An internal error occurred.
 type InternalServerErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1713,8 +1713,8 @@ func (s InternalServerErrorException) RequestID() string {
 
 // The resourceArn, secretArn, or transactionId value can't be found.
 type NotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message returned by this NotFoundException error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -1990,8 +1990,8 @@ func (s *RollbackTransactionOutput) SetTransactionStatus(v string) *RollbackTran
 
 // The service specified by the resourceArn parameter is not available.
 type ServiceUnavailableError struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2137,8 +2137,8 @@ func (s *SqlStatementResult) SetResultFrame(v *ResultFrame) *SqlStatementResult 
 
 // The execution of the SQL statement timed out.
 type StatementTimeoutException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The database connection ID that executed the SQL statement.
 	DbConnectionId *int64 `locationName:"dbConnectionId" type:"long"`

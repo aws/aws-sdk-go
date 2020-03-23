@@ -1525,8 +1525,8 @@ func (c *TranscribeService) UpdateVocabularyFilterWithContext(ctx aws.Context, i
 // state (for example, it's "in progress"). See the exception Message field
 // for more information.
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1586,8 +1586,8 @@ func (s BadRequestException) RequestID() string {
 // When you are using the UpdateVocabulary operation, there are two jobs running
 // at the same time. Resend the second request later.
 type ConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2427,8 +2427,8 @@ func (s *GetVocabularyOutput) SetVocabularyState(v string) *GetVocabularyOutput 
 // There was an internal error. Check the error message and try your request
 // again.
 type InternalFailureException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2531,8 +2531,8 @@ func (s *JobExecutionSettings) SetDataAccessRoleArn(v string) *JobExecutionSetti
 // Either you have sent too many requests or your input file is too long. Wait
 // before you resend your request, or use a smaller file and resend the request.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2971,8 +2971,8 @@ func (s *Media) SetMediaFileUri(v string) *Media {
 // We can't find the requested resource. Check the name and try your request
 // again.
 type NotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

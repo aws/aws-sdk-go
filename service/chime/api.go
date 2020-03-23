@@ -10112,8 +10112,8 @@ func (c *Chime) UpdateVoiceConnectorGroupWithContext(ctx aws.Context, input *Upd
 
 // You don't have permissions to perform the requested operation.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
 
@@ -10717,8 +10717,8 @@ func (s *Attendee) SetJoinToken(v string) *Attendee {
 
 // The input parameters don't match the service's restrictions.
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
 
@@ -11483,8 +11483,8 @@ func (s *BusinessCallingSettings) SetCdrBucket(v string) *BusinessCallingSetting
 // The request could not be processed because of conflict in the current state
 // of the resource.
 type ConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
 
@@ -13676,8 +13676,8 @@ func (s *EventsConfiguration) SetOutboundEventsHTTPSEndpoint(v string) *EventsCo
 // The client is permanently forbidden from making the request. For example,
 // when a user tries to create an account from an unsupported Region.
 type ForbiddenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
 
@@ -16723,8 +16723,8 @@ func (s *MembershipItem) SetRole(v string) *MembershipItem {
 
 // One or more of the resources in the request does not exist in the system.
 type NotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
 
@@ -17958,8 +17958,8 @@ func (s *ResetPersonalPINOutput) SetUser(v *User) *ResetPersonalPINOutput {
 
 // The request exceeds the resource limit.
 type ResourceLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
 
@@ -18325,8 +18325,8 @@ func (s *SearchAvailablePhoneNumbersOutput) SetE164PhoneNumbers(v []*string) *Se
 
 // The service encountered an unexpected error.
 type ServiceFailureException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
 
@@ -18383,8 +18383,8 @@ func (s ServiceFailureException) RequestID() string {
 
 // The service is currently unavailable.
 type ServiceUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
 
@@ -18693,8 +18693,8 @@ func (s *TerminationHealth) SetTimestamp(v time.Time) *TerminationHealth {
 
 // The client exceeded its request rate limit.
 type ThrottledClientException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
 
@@ -18751,8 +18751,8 @@ func (s ThrottledClientException) RequestID() string {
 
 // The client is not currently authorized to make the request.
 type UnauthorizedClientException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
 
@@ -18810,8 +18810,8 @@ func (s UnauthorizedClientException) RequestID() string {
 // The request was well-formed but was unable to be followed due to semantic
 // errors.
 type UnprocessableEntityException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string" enum:"ErrorCode"`
 

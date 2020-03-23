@@ -539,8 +539,8 @@ func (c *ConnectParticipant) SendMessageWithContext(ctx aws.Context, input *Send
 
 // You do not have sufficient access to perform this action.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -939,8 +939,8 @@ func (s *GetTranscriptOutput) SetTranscript(v []*Item) *GetTranscriptOutput {
 // This exception occurs when there is an internal failure in the Amazon Connect
 // service.
 type InternalServerException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1387,8 +1387,8 @@ func (s *StartPosition) SetMostRecent(v int64) *StartPosition {
 
 // The request was denied due to request throttling.
 type ThrottlingException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1443,8 +1443,8 @@ func (s ThrottlingException) RequestID() string {
 
 // The input fails to satisfy the constraints specified by Amazon Connect.
 type ValidationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }

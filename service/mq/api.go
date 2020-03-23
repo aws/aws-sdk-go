@@ -1985,8 +1985,8 @@ func (s *AvailabilityZone) SetName(v string) *AvailabilityZone {
 
 // Returns information about an error.
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	ErrorAttribute *string `locationName:"errorAttribute" type:"string"`
 
@@ -2485,8 +2485,8 @@ func (s *Configurations) SetPending(v *ConfigurationId) *Configurations {
 
 // Returns information about an error.
 type ConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	ErrorAttribute *string `locationName:"errorAttribute" type:"string"`
 
@@ -4055,8 +4055,8 @@ func (s *EngineVersion) SetName(v string) *EngineVersion {
 
 // Returns information about an error.
 type ForbiddenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	ErrorAttribute *string `locationName:"errorAttribute" type:"string"`
 
@@ -4113,8 +4113,8 @@ func (s ForbiddenException) RequestID() string {
 
 // Returns information about an error.
 type InternalServerErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	ErrorAttribute *string `locationName:"errorAttribute" type:"string"`
 
@@ -4691,8 +4691,8 @@ func (s *LogsSummary) SetPending(v *PendingLogs) *LogsSummary {
 
 // Returns information about an error.
 type NotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	ErrorAttribute *string `locationName:"errorAttribute" type:"string"`
 
@@ -4879,8 +4879,8 @@ func (s *SanitizationWarning) SetReason(v string) *SanitizationWarning {
 
 // Returns information about an error.
 type UnauthorizedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	ErrorAttribute *string `locationName:"errorAttribute" type:"string"`
 

@@ -6533,8 +6533,8 @@ func (s *AliasListEntry) SetTargetKeyId(v string) *AliasListEntry {
 // The request was rejected because it attempted to create a resource that already
 // exists.
 type AlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6671,8 +6671,8 @@ func (s *CancelKeyDeletionOutput) SetKeyId(v string) *CancelKeyDeletionOutput {
 // view the cluster certificate of a cluster, use the DescribeClusters (https://docs.aws.amazon.com/cloudhsm/latest/APIReference/API_DescribeClusters.html)
 // operation.
 type CloudHsmClusterInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6756,8 +6756,8 @@ func (s CloudHsmClusterInUseException) RequestID() string {
 // see Configure a Default Security Group (https://docs.aws.amazon.com/cloudhsm/latest/userguide/configure-sg.html)
 // in the AWS CloudHSM User Guide .
 type CloudHsmClusterInvalidConfigurationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6816,8 +6816,8 @@ func (s CloudHsmClusterInvalidConfigurationException) RequestID() string {
 // (https://docs.aws.amazon.com/cloudhsm/latest/userguide/getting-started.html)
 // in the AWS CloudHSM User Guide.
 type CloudHsmClusterNotActiveException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6874,8 +6874,8 @@ func (s CloudHsmClusterNotActiveException) RequestID() string {
 // with the specified cluster ID. Retry the request with a different cluster
 // ID.
 type CloudHsmClusterNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6941,8 +6941,8 @@ func (s CloudHsmClusterNotFoundException) RequestID() string {
 // view the cluster certificate of a cluster, use the DescribeClusters (https://docs.aws.amazon.com/cloudhsm/latest/APIReference/API_DescribeClusters.html)
 // operation.
 type CloudHsmClusterNotRelatedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7714,8 +7714,8 @@ func (s *CreateKeyOutput) SetKeyMetadata(v *KeyMetadata) *CreateKeyOutput {
 // use the ScheduleKeyDeletion operation to delete the CMKs. After they are
 // deleted, you can delete the custom key store.
 type CustomKeyStoreHasCMKsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7786,8 +7786,8 @@ func (s CustomKeyStoreHasCMKsException) RequestID() string {
 //    with a ConnectionState of DISCONNECTING or FAILED. This operation is valid
 //    for all other ConnectionState values.
 type CustomKeyStoreInvalidStateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7844,8 +7844,8 @@ func (s CustomKeyStoreInvalidStateException) RequestID() string {
 // assigned to another custom key store in the account. Try again with a custom
 // key store name that is unique in the account.
 type CustomKeyStoreNameInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7901,8 +7901,8 @@ func (s CustomKeyStoreNameInUseException) RequestID() string {
 // The request was rejected because AWS KMS cannot find a custom key store with
 // the specified key store name or ID.
 type CustomKeyStoreNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8460,8 +8460,8 @@ func (s DeleteImportedKeyMaterialOutput) GoString() string {
 // The system timed out while trying to fulfill the request. The request can
 // be retried.
 type DependencyTimeoutException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8879,8 +8879,8 @@ func (s DisableKeyRotationOutput) GoString() string {
 
 // The request was rejected because the specified CMK is not enabled.
 type DisabledException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9293,8 +9293,8 @@ func (s *EncryptOutput) SetKeyId(v string) *EncryptOutput {
 // GetParametersForImport to get a new import token and public key, use the
 // new public key to encrypt the key material, and then try the request again.
 type ExpiredImportTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10873,8 +10873,8 @@ func (s ImportKeyMaterialOutput) GoString() string {
 // The KeyId in a Decrypt request and the SourceKeyId in a ReEncrypt request
 // must identify the same CMK that was used to encrypt the ciphertext.
 type IncorrectKeyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10931,8 +10931,8 @@ func (s IncorrectKeyException) RequestID() string {
 // invalid, or is not the same key material that was previously imported into
 // this customer master key (CMK).
 type IncorrectKeyMaterialException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10992,8 +10992,8 @@ func (s IncorrectKeyMaterialException) RequestID() string {
 // you create the trust anchor certificate and save it in the customerCA.crt
 // file.
 type IncorrectTrustAnchorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11049,8 +11049,8 @@ func (s IncorrectTrustAnchorException) RequestID() string {
 // The request was rejected because an internal exception occurred. The request
 // can be retried.
 type InternalException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11105,8 +11105,8 @@ func (s InternalException) RequestID() string {
 
 // The request was rejected because the specified alias name is not valid.
 type InvalidAliasNameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11162,8 +11162,8 @@ func (s InvalidAliasNameException) RequestID() string {
 // The request was rejected because a specified ARN, or an ARN in a key policy,
 // is not valid.
 type InvalidArnException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11224,8 +11224,8 @@ func (s InvalidArnException) RequestID() string {
 // From the ImportKeyMaterial operation, the request was rejected because AWS
 // KMS could not decrypt the encrypted (wrapped) key material.
 type InvalidCiphertextException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11280,8 +11280,8 @@ func (s InvalidCiphertextException) RequestID() string {
 
 // The request was rejected because the specified GrantId is not valid.
 type InvalidGrantIdException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11336,8 +11336,8 @@ func (s InvalidGrantIdException) RequestID() string {
 
 // The request was rejected because the specified grant token is not valid.
 type InvalidGrantTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11393,8 +11393,8 @@ func (s InvalidGrantTokenException) RequestID() string {
 // The request was rejected because the provided import token is invalid or
 // is associated with a different customer master key (CMK).
 type InvalidImportTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11461,8 +11461,8 @@ func (s InvalidImportTokenException) RequestID() string {
 // To find the encryption or signing algorithms supported for a particular CMK,
 // use the DescribeKey operation.
 type InvalidKeyUsageException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11518,8 +11518,8 @@ func (s InvalidKeyUsageException) RequestID() string {
 // The request was rejected because the marker that specifies where pagination
 // should next begin is not valid.
 type InvalidMarkerException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11579,8 +11579,8 @@ func (s InvalidMarkerException) RequestID() string {
 // Key State Affects Use of a Customer Master Key (https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
 // in the AWS Key Management Service Developer Guide .
 type InvalidStateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11637,8 +11637,8 @@ func (s InvalidStateException) RequestID() string {
 // verification fails when it cannot confirm that signature was produced by
 // signing the specified message with the specified CMK and signing algorithm.
 type KMSInvalidSignatureException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11940,8 +11940,8 @@ func (s *KeyMetadata) SetValidTo(v time.Time) *KeyMetadata {
 // The request was rejected because the specified CMK was not available. You
 // can retry the request.
 type KeyUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11998,8 +11998,8 @@ func (s KeyUnavailableException) RequestID() string {
 // see Quotas (https://docs.aws.amazon.com/kms/latest/developerguide/limits.html)
 // in the AWS Key Management Service Developer Guide.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12740,8 +12740,8 @@ func (s *ListRetirableGrantsInput) SetRetiringPrincipal(v string) *ListRetirable
 // The request was rejected because the specified policy is not syntactically
 // or semantically correct.
 type MalformedPolicyDocumentException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12797,8 +12797,8 @@ func (s MalformedPolicyDocumentException) RequestID() string {
 // The request was rejected because the specified entity or resource could not
 // be found.
 type NotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13760,8 +13760,8 @@ func (s *Tag) SetTagValue(v string) *Tag {
 
 // The request was rejected because one or more tags are not valid.
 type TagException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13906,8 +13906,8 @@ func (s TagResourceOutput) GoString() string {
 // The request was rejected because a specified parameter is not supported or
 // a specified resource is not valid for this operation.
 type UnsupportedOperationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

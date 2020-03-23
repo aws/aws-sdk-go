@@ -6808,8 +6808,8 @@ func (s *BackupDetails) SetBackupType(v string) *BackupDetails {
 // There is another ongoing conflicting backup control plane operation on the
 // table. The backup is either being created, deleted or restored to a table.
 type BackupInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6864,8 +6864,8 @@ func (s BackupInUseException) RequestID() string {
 
 // Backup not found for the given BackupARN.
 type BackupNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7818,8 +7818,8 @@ func (s *ConditionCheck) SetTableName(v string) *ConditionCheck {
 
 // A condition specified in the operation could not be evaluated.
 type ConditionalCheckFailedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The conditional request failed.
 	Message_ *string `locationName:"message" type:"string"`
@@ -7994,8 +7994,8 @@ func (s *ContinuousBackupsDescription) SetPointInTimeRecoveryDescription(v *Poin
 
 // Backups have not yet been enabled for this table.
 type ContinuousBackupsUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11273,8 +11273,8 @@ func (s *GlobalTable) SetReplicationGroup(v []*Replica) *GlobalTable {
 
 // The specified global table already exists.
 type GlobalTableAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11469,8 +11469,8 @@ func (s *GlobalTableGlobalSecondaryIndexSettingsUpdate) SetProvisionedWriteCapac
 
 // The specified global table does not exist.
 type GlobalTableNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11526,8 +11526,8 @@ func (s GlobalTableNotFoundException) RequestID() string {
 // DynamoDB rejected the request because you retried a request with a different
 // payload but with an idempotent token that was already used.
 type IdempotentParameterMismatchException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -11582,8 +11582,8 @@ func (s IdempotentParameterMismatchException) RequestID() string {
 
 // The operation tried to access a nonexistent index.
 type IndexNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11638,8 +11638,8 @@ func (s IndexNotFoundException) RequestID() string {
 
 // An error occurred on the server side.
 type InternalServerError struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The server encountered an internal error trying to fulfill the request.
 	Message_ *string `locationName:"message" type:"string"`
@@ -11696,8 +11696,8 @@ func (s InternalServerError) RequestID() string {
 // An invalid restore time was specified. RestoreDateTime must be between EarliestRestorableDateTime
 // and LatestRestorableDateTime.
 type InvalidRestoreTimeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11798,8 +11798,8 @@ func (s *ItemCollectionMetrics) SetSizeEstimateRangeGB(v []*float64) *ItemCollec
 // An item collection is too large. This exception is only returned for tables
 // that have one or more local secondary indexes.
 type ItemCollectionSizeLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The total size of an item collection has exceeded the maximum limit of 10
 	// gigabytes.
@@ -12104,8 +12104,8 @@ func (s *KeysAndAttributes) SetProjectionExpression(v string) *KeysAndAttributes
 //
 // There is a soft account limit of 256 tables.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Too many operations for a given subscriber.
 	Message_ *string `locationName:"message" type:"string"`
@@ -13006,8 +13006,8 @@ func (s *PointInTimeRecoverySpecification) SetPointInTimeRecoveryEnabled(v bool)
 
 // Point in time recovery has not yet been enabled for this source table.
 type PointInTimeRecoveryUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13269,8 +13269,8 @@ func (s *ProvisionedThroughputDescription) SetWriteCapacityUnits(v int64) *Provi
 // Exponential Backoff (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Programming.Errors.html#Programming.Errors.RetryAndBackoff)
 // in the Amazon DynamoDB Developer Guide.
 type ProvisionedThroughputExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// You exceeded your maximum allowed provisioned throughput.
 	Message_ *string `locationName:"message" type:"string"`
@@ -14360,8 +14360,8 @@ func (s *Replica) SetRegionName(v string) *Replica {
 
 // The specified replica is already part of the global table.
 type ReplicaAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -15010,8 +15010,8 @@ func (s *ReplicaGlobalSecondaryIndexSettingsUpdate) SetProvisionedReadCapacityUn
 
 // The specified replica is no longer part of the global table.
 type ReplicaNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -15400,8 +15400,8 @@ func (s *ReplicationGroupUpdate) SetUpdate(v *UpdateReplicationGroupMemberAction
 // contact AWS Support at AWS Support (https://aws.amazon.com/support) to request
 // a limit increase.
 type RequestLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -15458,8 +15458,8 @@ func (s RequestLimitExceeded) RequestID() string {
 // attempted to recreate an existing table, or tried to delete a table currently
 // in the CREATING state.
 type ResourceInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The resource which is being attempted to be changed is in use.
 	Message_ *string `locationName:"message" type:"string"`
@@ -15516,8 +15516,8 @@ func (s ResourceInUseException) RequestID() string {
 // The operation tried to access a nonexistent table or index. The resource
 // might not be specified correctly, or its status might not be ACTIVE.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The resource which is being requested does not exist.
 	Message_ *string `locationName:"message" type:"string"`
@@ -16792,8 +16792,8 @@ func (s *StreamSpecification) SetStreamViewType(v string) *StreamSpecification {
 
 // A target table with the specified name already exists.
 type TableAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17246,8 +17246,8 @@ func (s *TableDescription) SetTableStatus(v string) *TableDescription {
 
 // A target table with the specified name is either being created or deleted.
 type TableInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17303,8 +17303,8 @@ func (s TableInUseException) RequestID() string {
 // A source table with the name TableName does not currently exist within the
 // subscriber's account.
 type TableNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18070,8 +18070,8 @@ func (s *TransactWriteItemsOutput) SetItemCollectionMetrics(v map[string][]*Item
 //    The provided expression refers to an attribute that does not exist in
 //    the item.
 type TransactionCanceledException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A list of cancellation reasons.
 	CancellationReasons []*CancellationReason `min:"1" type:"list"`
@@ -18129,8 +18129,8 @@ func (s TransactionCanceledException) RequestID() string {
 
 // Operation was rejected because there is an ongoing transaction for the item.
 type TransactionConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18185,8 +18185,8 @@ func (s TransactionConflictException) RequestID() string {
 
 // The transaction with the given request token is already in progress.
 type TransactionInProgressException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

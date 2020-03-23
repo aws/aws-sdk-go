@@ -1158,8 +1158,8 @@ func (s *DescribeTextTranslationJobOutput) SetTextTranslationJobProperties(v *Te
 // more information, see the DetectDominantLanguage (https://docs.aws.amazon.com/comprehend/latest/dg/API_DetectDominantLanguage.html)
 // operation in the Amazon Comprehend Developer Guide.
 type DetectedLanguageLowConfidenceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The language code of the auto-detected language from Amazon Comprehend.
 	DetectedLanguageCode *string `min:"2" type:"string"`
@@ -1541,8 +1541,8 @@ func (s *InputDataConfig) SetS3Uri(v string) *InputDataConfig {
 
 // An internal server error occurred. Retry your request.
 type InternalServerException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1597,8 +1597,8 @@ func (s InternalServerException) RequestID() string {
 
 // The filter specified for the operation is invalid. Specify a different filter.
 type InvalidFilterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1654,8 +1654,8 @@ func (s InvalidFilterException) RequestID() string {
 // The value of the parameter is invalid. Review the value of the parameter
 // you are using to correct it, and then retry your operation.
 type InvalidParameterValueException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1711,8 +1711,8 @@ func (s InvalidParameterValueException) RequestID() string {
 // The request that you made is invalid. Check your request to determine why
 // it's invalid and then retry the request.
 type InvalidRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1812,8 +1812,8 @@ func (s *JobDetails) SetTranslatedDocumentsCount(v int64) *JobDetails {
 // The specified limit has been exceeded. Review your request and retry it with
 // a quantity below the stated limit.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2084,8 +2084,8 @@ func (s *OutputDataConfig) SetS3Uri(v string) *OutputDataConfig {
 // you're looking for and see if a different resource will accomplish your needs
 // before retrying the revised request.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2141,8 +2141,8 @@ func (s ResourceNotFoundException) RequestID() string {
 // The Amazon Translate service is temporarily unavailable. Please wait a bit
 // and then retry your request.
 type ServiceUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2867,8 +2867,8 @@ func (s *TextOutput) SetTranslatedText(v string) *TextOutput {
 // The size of the text you submitted exceeds the size limit. Reduce the size
 // of the text or use a smaller document and then retry your request.
 type TextSizeLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3133,8 +3133,8 @@ func (s *TextTranslationJobProperties) SetTerminologyNames(v []*string) *TextTra
 // You have made too many requests within a short period of time. Wait for a
 // short time and then try your request again.
 type TooManyRequestsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3190,8 +3190,8 @@ func (s TooManyRequestsException) RequestID() string {
 // Amazon Translate does not support translation from the language of the source
 // text into the requested target language. For more information, see how-to-error-msg.
 type UnsupportedLanguagePairException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 

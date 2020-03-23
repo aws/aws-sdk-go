@@ -3501,8 +3501,8 @@ func (s *ExportServerEngineAttributeOutput) SetServerName(v string) *ExportServe
 
 // This occurs when the provided nextToken is not valid.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Error or informational message that can contain more detail about a nextToken
 	// failure.
@@ -3560,8 +3560,8 @@ func (s InvalidNextTokenException) RequestID() string {
 // The resource is in a state that does not allow you to perform a specified
 // action.
 type InvalidStateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Error or informational message that provides more detail if a resource is
 	// in a state that is not valid for performing a specified action.
@@ -3618,8 +3618,8 @@ func (s InvalidStateException) RequestID() string {
 
 // The limit of servers or backups has been reached.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Error or informational message that the maximum allowed number of servers
 	// or backups has been exceeded.
@@ -3781,8 +3781,8 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 
 // The requested resource cannot be created because it already exists.
 type ResourceAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Error or informational message in response to a CreateServer request that
 	// a resource cannot be created because it already exists.
@@ -3839,8 +3839,8 @@ func (s ResourceAlreadyExistsException) RequestID() string {
 
 // The requested resource does not exist, or access was denied.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Error or informational message that can contain more detail about problems
 	// locating or accessing a resource.
@@ -4813,8 +4813,8 @@ func (s *UpdateServerOutput) SetServer(v *Server) *UpdateServerOutput {
 
 // One or more of the provided request parameters are not valid.
 type ValidationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Error or informational message that can contain more detail about a validation
 	// failure.

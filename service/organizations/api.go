@@ -11552,8 +11552,8 @@ func (c *Organizations) UpdatePolicyWithContext(ctx aws.Context, input *UpdatePo
 // Your account isn't a member of an organization. To make this request, you
 // must use the credentials of an account that belongs to an organization.
 type AWSOrganizationsNotInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -11676,8 +11676,8 @@ func (s *AcceptHandshakeOutput) SetHandshake(v *Handshake) *AcceptHandshakeOutpu
 // Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
 // in the IAM User Guide.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -11734,8 +11734,8 @@ func (s AccessDeniedException) RequestID() string {
 // for organizations.amazonaws.com permission so that AWS Organizations can
 // create the required service-linked role. You don't have that permission.
 type AccessDeniedForDependencyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -11886,8 +11886,8 @@ func (s *Account) SetStatus(v string) *Account {
 // account whose credentials you used to make this request isn't a member of
 // an organization.
 type AccountNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -11945,8 +11945,8 @@ func (s AccountNotFoundException) RequestID() string {
 // information, see Email Address Verification (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_create.html#about-email-verification)
 // in the AWS Organizations User Guide.
 type AccountOwnerNotVerifiedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12002,8 +12002,8 @@ func (s AccountOwnerNotVerifiedException) RequestID() string {
 // This account is already a member of an organization. An account can belong
 // to only one organization at a time.
 type AlreadyInOrganizationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12253,8 +12253,8 @@ func (s *Child) SetType(v string) *Child {
 // We can't find an organizational unit (OU) or AWS account with the ChildId
 // that you specified.
 type ChildNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12310,8 +12310,8 @@ func (s ChildNotFoundException) RequestID() string {
 // The target of the operation is currently being modified by a different request.
 // Try again later.
 type ConcurrentModificationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12465,8 +12465,8 @@ func (s ConcurrentModificationException) RequestID() string {
 //    see Tag Policies (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
 //    in the AWS Organizations User Guide.
 type ConstraintViolationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -12779,8 +12779,8 @@ func (s *CreateAccountStatus) SetState(v string) *CreateAccountStatus {
 // We can't find a create account request with the CreateAccountRequestId that
 // you specified.
 type CreateAccountStatusNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -13888,8 +13888,8 @@ func (s *DescribePolicyOutput) SetPolicy(v *Policy) *DescribePolicyOutput {
 // We can't find the destination container (a root or OU) with the ParentId
 // that you specified.
 type DestinationParentNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14166,8 +14166,8 @@ func (s *DisablePolicyTypeOutput) SetRoot(v *Root) *DisablePolicyTypeOutput {
 
 // That account is already present in the specified destination.
 type DuplicateAccountException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14226,8 +14226,8 @@ func (s DuplicateAccountException) RequestID() string {
 // to resend an invitation to an account, ensure that existing handshakes that
 // might be considered duplicates are canceled or declined.
 type DuplicateHandshakeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14282,8 +14282,8 @@ func (s DuplicateHandshakeException) RequestID() string {
 
 // An OU with the same name already exists.
 type DuplicateOrganizationalUnitException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14338,8 +14338,8 @@ func (s DuplicateOrganizationalUnitException) RequestID() string {
 
 // The selected policy is already attached to the specified target.
 type DuplicatePolicyAttachmentException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14394,8 +14394,8 @@ func (s DuplicatePolicyAttachmentException) RequestID() string {
 
 // A policy with the same name already exists.
 type DuplicatePolicyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14506,8 +14506,8 @@ func (s *EffectivePolicy) SetTargetId(v string) *EffectivePolicy {
 // policy of this type. Contact the administrator of your organization about
 // attaching a policy of this type to the account.
 type EffectivePolicyNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14775,8 +14775,8 @@ func (s *EnabledServicePrincipal) SetServicePrincipal(v string) *EnabledServiceP
 // If after one hour you continue to receive this error, contact AWS Support
 // (https://console.aws.amazon.com/support/home#/).
 type FinalizingOrganizationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14974,8 +14974,8 @@ func (s *Handshake) SetState(v string) *Handshake {
 // The specified handshake is already in the requested state. For example, you
 // can't accept a handshake that was already accepted.
 type HandshakeAlreadyInStateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -15067,8 +15067,8 @@ func (s HandshakeAlreadyInStateException) RequestID() string {
 //    account that doesn't have a payment instrument, such as a credit card,
 //    associated with it.
 type HandshakeConstraintViolationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -15166,8 +15166,8 @@ func (s *HandshakeFilter) SetParentHandshakeId(v string) *HandshakeFilter {
 
 // We can't find a handshake with the HandshakeId that you specified.
 type HandshakeNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -15343,8 +15343,8 @@ func (s *HandshakeResource) SetValue(v string) *HandshakeResource {
 // example, you can't cancel a handshake that was already accepted or accept
 // a handshake that was already declined.
 type InvalidHandshakeTransitionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -15462,8 +15462,8 @@ func (s InvalidHandshakeTransitionException) RequestID() string {
 //    * MOVING_ACCOUNT_BETWEEN_DIFFERENT_ROOTS: You can move an account only
 //    between entities in the same root.
 type InvalidInputException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -17151,8 +17151,8 @@ func (s *ListTargetsForPolicyOutput) SetTargets(v []*PolicyTargetSummary) *ListT
 // service control policy syntax, see Service Control Policy Syntax (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_scp-syntax.html)
 // in the AWS Organizations User Guide.
 type MalformedPolicyDocumentException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -17209,8 +17209,8 @@ func (s MalformedPolicyDocumentException) RequestID() string {
 // account to become a member account in another organization, you must first
 // delete the current organization of the master account.
 type MasterCannotLeaveOrganizationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -17482,8 +17482,8 @@ func (s *Organization) SetMasterAccountId(v string) *Organization {
 // The organization isn't empty. To delete an organization, you must first remove
 // all accounts except the master account, delete all OUs, and delete all policies.
 type OrganizationNotEmptyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -17596,8 +17596,8 @@ func (s *OrganizationalUnit) SetName(v string) *OrganizationalUnit {
 // The specified OU is not empty. Move all accounts to another root or to other
 // OUs, remove all child OUs, and try the operation again.
 type OrganizationalUnitNotEmptyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -17652,8 +17652,8 @@ func (s OrganizationalUnitNotEmptyException) RequestID() string {
 
 // We can't find an OU with the OrganizationalUnitId that you specified.
 type OrganizationalUnitNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -17753,8 +17753,8 @@ func (s *Parent) SetType(v string) *Parent {
 
 // We can't find a root or OU with the ParentId that you specified.
 type ParentNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -17845,8 +17845,8 @@ func (s *Policy) SetPolicySummary(v *PolicySummary) *Policy {
 // Changes to the effective policy are in progress, and its contents can't be
 // returned. Try the operation again later.
 type PolicyChangesInProgressException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -17902,8 +17902,8 @@ func (s PolicyChangesInProgressException) RequestID() string {
 // The policy is attached to one or more entities. You must detach it from all
 // roots, OUs, and accounts before performing this operation.
 type PolicyInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -17958,8 +17958,8 @@ func (s PolicyInUseException) RequestID() string {
 
 // The policy isn't attached to the specified target in the specified root.
 type PolicyNotAttachedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -18014,8 +18014,8 @@ func (s PolicyNotAttachedException) RequestID() string {
 
 // We can't find a policy with the PolicyId that you specified.
 type PolicyNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -18226,8 +18226,8 @@ func (s *PolicyTargetSummary) SetType(v string) *PolicyTargetSummary {
 
 // The specified policy type is already enabled in the specified root.
 type PolicyTypeAlreadyEnabledException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -18286,8 +18286,8 @@ func (s PolicyTypeAlreadyEnabledException) RequestID() string {
 // Disabling a Policy Type on a Root (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies.html#enable_policies_on_root)
 // in the AWS Organizations User Guide.
 type PolicyTypeNotAvailableForOrganizationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -18346,8 +18346,8 @@ func (s PolicyTypeNotAvailableForOrganizationException) RequestID() string {
 // Your Organization (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html)
 // in the AWS Organizations User Guide.
 type PolicyTypeNotEnabledException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -18567,8 +18567,8 @@ func (s *Root) SetPolicyTypes(v []*PolicyTypeSummary) *Root {
 
 // We can't find a root with the RootId that you specified.
 type RootNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -18624,8 +18624,8 @@ func (s RootNotFoundException) RequestID() string {
 // AWS Organizations can't complete your request because of an internal service
 // error. Try again later.
 type ServiceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -18680,8 +18680,8 @@ func (s ServiceException) RequestID() string {
 
 // We can't find a source root or OU with the ParentId that you specified.
 type SourceParentNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -18873,8 +18873,8 @@ func (s TagResourceOutput) GoString() string {
 
 // We can't find a root, OU, or account with the TargetId that you specified.
 type TargetNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -18934,8 +18934,8 @@ func (s TargetNotFoundException) RequestID() string {
 // Organizations (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_limits.html)
 // in the AWS Organizations User Guide.
 type TooManyRequestsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -18992,8 +18992,8 @@ func (s TooManyRequestsException) RequestID() string {
 
 // This action isn't available in the current Region.
 type UnsupportedAPIEndpointException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

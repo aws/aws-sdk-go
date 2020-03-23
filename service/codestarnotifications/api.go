@@ -1305,8 +1305,8 @@ func (c *CodeStarNotifications) UpdateNotificationRuleWithContext(ctx aws.Contex
 // AWS CodeStar Notifications can't create the notification rule because you
 // do not have sufficient permissions.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -1362,8 +1362,8 @@ func (s AccessDeniedException) RequestID() string {
 // AWS CodeStar Notifications can't complete the request because the resource
 // is being modified by another process. Wait a few minutes and try again.
 type ConcurrentModificationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -1418,8 +1418,8 @@ func (s ConcurrentModificationException) RequestID() string {
 
 // Some or all of the configuration is incomplete, missing, or not valid.
 type ConfigurationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -1989,8 +1989,8 @@ func (s *EventTypeSummary) SetServiceName(v string) *EventTypeSummary {
 // The value for the enumeration token used in the request to return the next
 // batch of the results is not valid.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -2047,8 +2047,8 @@ func (s InvalidNextTokenException) RequestID() string {
 // to accounts, notification rules, notifications, resources, and targets. For
 // more information, see Limits.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -2677,8 +2677,8 @@ func (s *NotificationRuleSummary) SetId(v string) *NotificationRuleSummary {
 // A resource with the same name or ID already exists. Notification rule names
 // must be unique in your AWS account.
 type ResourceAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -2734,8 +2734,8 @@ func (s ResourceAlreadyExistsException) RequestID() string {
 // AWS CodeStar Notifications can't find a resource that matches the provided
 // ARN.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -3312,8 +3312,8 @@ func (s UpdateNotificationRuleOutput) GoString() string {
 
 // One or more parameter values are not valid.
 type ValidationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }

@@ -2215,8 +2215,8 @@ func (c *MediaConnect) UpdateFlowSourceWithContext(ctx aws.Context, input *Updat
 // documentation for the operation for more information on the cause of this
 // exception.
 type AddFlowOutputs420Exception struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2608,8 +2608,8 @@ func (s *AddOutputRequest) SetStreamId(v string) *AddOutputRequest {
 // documentation for the operation for more information on the cause of this
 // exception.
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2666,8 +2666,8 @@ func (s BadRequestException) RequestID() string {
 // documentation for the operation for more information on the cause of this
 // exception.
 type CreateFlow420Exception struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3392,8 +3392,8 @@ func (s *Flow) SetStatus(v string) *Flow {
 // documentation for the operation for more information on the cause of this
 // exception.
 type ForbiddenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3536,8 +3536,8 @@ func (s *GrantEntitlementRequest) SetSubscribers(v []*string) *GrantEntitlementR
 // documentation for the operation for more information on the cause of this
 // exception.
 type GrantFlowEntitlements420Exception struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3691,8 +3691,8 @@ func (s *GrantFlowEntitlementsOutput) SetFlowArn(v string) *GrantFlowEntitlement
 // documentation for the operation for more information on the cause of this
 // exception.
 type InternalServerErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4133,8 +4133,8 @@ func (s *Messages) SetErrors(v []*string) *Messages {
 // documentation for the operation for more information on the cause of this
 // exception.
 type NotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4568,8 +4568,8 @@ func (s *RevokeFlowEntitlementOutput) SetFlowArn(v string) *RevokeFlowEntitlemen
 // documentation for the operation for more information on the cause of this
 // exception.
 type ServiceUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5081,8 +5081,8 @@ func (s TagResourceOutput) GoString() string {
 // documentation for the operation for more information on the cause of this
 // exception.
 type TooManyRequestsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

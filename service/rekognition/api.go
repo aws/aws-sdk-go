@@ -5840,8 +5840,8 @@ func (c *Rekognition) StopStreamProcessorWithContext(ctx aws.Context, input *Sto
 
 // You are not authorized to perform the action.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10267,8 +10267,8 @@ func (s *HumanLoopDataAttributes) SetContentClassifiers(v []*string) *HumanLoopD
 // The number of in-progress human reviews you have has exceeded the number
 // allowed.
 type HumanLoopQuotaExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -10331,8 +10331,8 @@ func (s HumanLoopQuotaExceededException) RequestID() string {
 // least one of the other input parameters is different from the previous call
 // to the operation.
 type IdempotentParameterMismatchException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10501,8 +10501,8 @@ func (s *ImageQuality) SetSharpness(v float64) *ImageQuality {
 // The input image size exceeds the allowed limit. For more information, see
 // Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 type ImageTooLargeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10811,8 +10811,8 @@ func (s *Instance) SetConfidence(v float64) *Instance {
 
 // Amazon Rekognition experienced a service issue. Try your call again.
 type InternalServerError struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10867,8 +10867,8 @@ func (s InternalServerError) RequestID() string {
 
 // The provided image format is not supported.
 type InvalidImageFormatException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10923,8 +10923,8 @@ func (s InvalidImageFormatException) RequestID() string {
 
 // Pagination token in the request is not valid.
 type InvalidPaginationTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10980,8 +10980,8 @@ func (s InvalidPaginationTokenException) RequestID() string {
 // Input parameter violated a constraint. Validate your parameter before calling
 // the API operation again.
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11036,8 +11036,8 @@ func (s InvalidParameterException) RequestID() string {
 
 // Amazon Rekognition is unable to access the S3 object specified in the request.
 type InvalidS3ObjectException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11282,8 +11282,8 @@ func (s *Landmark) SetY(v float64) *Landmark {
 // (HTTP status code: 400) until the number of concurrently running jobs is
 // below the Amazon Rekognition service limit.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12221,8 +12221,8 @@ func (s *ProjectVersionDescription) SetTrainingEndTimestamp(v time.Time) *Projec
 // The number of requests exceeded your throughput limit. If you want to increase
 // this limit, contact Amazon Rekognition.
 type ProvisionedThroughputExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12407,8 +12407,8 @@ func (s *RegionOfInterest) SetBoundingBox(v *BoundingBox) *RegionOfInterest {
 
 // A collection with the specified ID already exists.
 type ResourceAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12462,8 +12462,8 @@ func (s ResourceAlreadyExistsException) RequestID() string {
 }
 
 type ResourceInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12518,8 +12518,8 @@ func (s ResourceInUseException) RequestID() string {
 
 // The collection specified in the request cannot be found.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12575,8 +12575,8 @@ func (s ResourceNotFoundException) RequestID() string {
 // The requested resource isn't ready. For example, this exception occurs when
 // you call DetectCustomLabels with a model version that isn't deployed.
 type ResourceNotReadyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14601,8 +14601,8 @@ func (s *TextDetectionResult) SetTimestamp(v int64) *TextDetectionResult {
 // Amazon Rekognition is temporarily unable to process the request. Try your
 // call again.
 type ThrottlingException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14898,8 +14898,8 @@ func (s *VideoMetadata) SetFrameWidth(v int64) *VideoMetadata {
 // The file size or duration of the supplied media is too large. The maximum
 // file size is 10GB. The maximum duration is 6 hours.
 type VideoTooLargeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

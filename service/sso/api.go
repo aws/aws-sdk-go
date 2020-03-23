@@ -635,8 +635,8 @@ func (s *GetRoleCredentialsOutput) SetRoleCredentials(v *RoleCredentials) *GetRo
 // Indicates that a problem occurred with the input to the request. For example,
 // a required parameter might be missing or out of range.
 type InvalidRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -949,8 +949,8 @@ func (s LogoutOutput) GoString() string {
 
 // The specified resource doesn't exist.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1098,8 +1098,8 @@ func (s *RoleInfo) SetRoleName(v string) *RoleInfo {
 // Indicates that the request is being made too frequently and is more than
 // what the server can handle.
 type TooManyRequestsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1155,8 +1155,8 @@ func (s TooManyRequestsException) RequestID() string {
 // Indicates that the request is not authorized. This can happen due to an invalid
 // access token in the request.
 type UnauthorizedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

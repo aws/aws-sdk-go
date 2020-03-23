@@ -220,8 +220,8 @@ func (c *KinesisVideoSignalingChannels) SendAlexaOfferToMasterWithContext(ctx aw
 // Your request was throttled because you have exceeded the limit of allowed
 // client calls. Try making the call later.
 type ClientLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -429,8 +429,8 @@ func (s *IceServer) SetUsername(v string) *IceServer {
 
 // The value for this input parameter is invalid.
 type InvalidArgumentException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -485,8 +485,8 @@ func (s InvalidArgumentException) RequestID() string {
 
 // The specified client is invalid.
 type InvalidClientException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -541,8 +541,8 @@ func (s InvalidClientException) RequestID() string {
 
 // The caller is not authorized to perform this operation.
 type NotAuthorizedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -597,8 +597,8 @@ func (s NotAuthorizedException) RequestID() string {
 
 // The specified resource is not found.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -753,8 +753,8 @@ func (s *SendAlexaOfferToMasterOutput) SetAnswer(v string) *SendAlexaOfferToMast
 // is valid for 45 minutes. Client should reconnect to the channel to continue
 // sending/receiving messages.
 type SessionExpiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

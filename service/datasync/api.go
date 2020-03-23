@@ -5272,8 +5272,8 @@ func (s *FilterRule) SetValue(v string) *FilterRule {
 
 // This exception is thrown when an error occurs in the AWS DataSync service.
 type InternalException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	ErrorCode *string `locationName:"errorCode" type:"string"`
 
@@ -5330,8 +5330,8 @@ func (s InternalException) RequestID() string {
 
 // This exception is thrown when the client submits a malformed request.
 type InvalidRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	ErrorCode *string `locationName:"errorCode" type:"string"`
 

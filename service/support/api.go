@@ -1692,8 +1692,8 @@ func (s *AttachmentDetails) SetFileName(v string) *AttachmentDetails {
 
 // An attachment with the specified ID could not be found.
 type AttachmentIdNotFound struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// An attachment with the specified ID could not be found.
 	Message_ *string `locationName:"message" type:"string"`
@@ -1750,8 +1750,8 @@ func (s AttachmentIdNotFound) RequestID() string {
 // The limit for the number of attachment sets created in a short period of
 // time has been exceeded.
 type AttachmentLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The limit for the number of attachment sets created in a short period of
 	// time has been exceeded.
@@ -1809,8 +1809,8 @@ func (s AttachmentLimitExceeded) RequestID() string {
 // The expiration time of the attachment set has passed. The set expires 1 hour
 // after it is created.
 type AttachmentSetExpired struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The expiration time of the attachment set has passed. The set expires 1 hour
 	// after it is created.
@@ -1867,8 +1867,8 @@ func (s AttachmentSetExpired) RequestID() string {
 
 // An attachment set with the specified ID could not be found.
 type AttachmentSetIdNotFound struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// An attachment set with the specified ID could not be found.
 	Message_ *string `locationName:"message" type:"string"`
@@ -1925,8 +1925,8 @@ func (s AttachmentSetIdNotFound) RequestID() string {
 // A limit for the size of an attachment set has been exceeded. The limits are
 // 3 attachments and 5 MB per attachment.
 type AttachmentSetSizeLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A limit for the size of an attachment set has been exceeded. The limits are
 	// 3 attachments and 5 MB per attachment.
@@ -1983,8 +1983,8 @@ func (s AttachmentSetSizeLimitExceeded) RequestID() string {
 
 // The case creation limit for the account has been exceeded.
 type CaseCreationLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// An error message that indicates that you have exceeded the number of cases
 	// you can have open.
@@ -2210,8 +2210,8 @@ func (s *CaseDetails) SetTimeCreated(v string) *CaseDetails {
 
 // The requested caseId could not be located.
 type CaseIdNotFound struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The requested CaseId could not be located.
 	Message_ *string `locationName:"message" type:"string"`
@@ -2563,8 +2563,8 @@ func (s *DescribeAttachmentInput) SetAttachmentId(v string) *DescribeAttachmentI
 // The limit for the number of DescribeAttachment requests in a short period
 // of time has been exceeded.
 type DescribeAttachmentLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The limit for the number of DescribeAttachment requests in a short period
 	// of time has been exceeded.
@@ -3289,8 +3289,8 @@ func (s *DescribeTrustedAdvisorChecksOutput) SetChecks(v []*TrustedAdvisorCheckD
 
 // An internal server error occurred.
 type InternalServerError struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// An internal server error occurred.
 	Message_ *string `locationName:"message" type:"string"`

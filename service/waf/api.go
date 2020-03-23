@@ -9517,8 +9517,8 @@ func (s *ActivatedRule) SetType(v string) *ActivatedRule {
 }
 
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12462,8 +12462,8 @@ func (s *DeleteXssMatchSetOutput) SetChangeToken(v string) *DeleteXssMatchSetOut
 
 // The name specified is invalid.
 type DisallowedNameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14532,8 +14532,8 @@ func (s *IPSetUpdate) SetIPSetDescriptor(v *IPSetDescriptor) *IPSetUpdate {
 // The operation failed because of a system problem, even though the request
 // was valid. Retry your request.
 type InternalErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14589,8 +14589,8 @@ func (s InternalErrorException) RequestID() string {
 // The operation failed because you tried to create, update, or delete an object
 // by using an invalid account identifier.
 type InvalidAccountException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14660,8 +14660,8 @@ func (s InvalidAccountException) RequestID() string {
 //    * You tried to add a ByteMatchTuple to a ByteMatchSet, but the ByteMatchTuple
 //    already exists in the specified WebACL.
 type InvalidOperationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14742,8 +14742,8 @@ func (s InvalidOperationException) RequestID() string {
 //    * Your request references an ARN that is malformed, or corresponds to
 //    a resource with which a web ACL cannot be associated.
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Field *string `locationName:"field" type:"string" enum:"ParameterExceptionField"`
 
@@ -14825,8 +14825,8 @@ func (s InvalidParameterException) RequestID() string {
 //
 //    * Your policy must be composed using IAM Policy version 2012-10-17.
 type InvalidPermissionPolicyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14881,8 +14881,8 @@ func (s InvalidPermissionPolicyException) RequestID() string {
 
 // The regular expression (regex) you specified in RegexPatternString is invalid.
 type InvalidRegexPatternException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14940,8 +14940,8 @@ func (s InvalidRegexPatternException) RequestID() string {
 // see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 // in the AWS WAF Developer Guide.
 type LimitsExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16507,8 +16507,8 @@ func (s *LoggingConfiguration) SetResourceArn(v string) *LoggingConfiguration {
 //
 //    * You tried to delete an IPSet that references one or more IP addresses.
 type NonEmptyEntityException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16576,8 +16576,8 @@ func (s NonEmptyEntityException) RequestID() string {
 //    * You tried to add a ByteMatchTuple to or delete a ByteMatchTuple from
 //    a ByteMatchSet that doesn't exist.
 type NonexistentContainerException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16632,8 +16632,8 @@ func (s NonexistentContainerException) RequestID() string {
 
 // The operation failed because the referenced object doesn't exist.
 type NonexistentItemException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17029,8 +17029,8 @@ func (s *RateBasedRule) SetRuleId(v string) *RateBasedRule {
 //
 //    * You tried to delete a Rule that is still referenced by a WebACL.
 type ReferencedItemException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18006,8 +18006,8 @@ func (s *SampledHTTPRequest) SetWeight(v int64) *SampledHTTPRequest {
 // exception again, you will have to wait additional time until the role is
 // unlocked.
 type ServiceLinkedRoleErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18709,8 +18709,8 @@ func (s *SqlInjectionMatchTuple) SetTextTransformation(v string) *SqlInjectionMa
 // The operation failed because you tried to create, update, or delete an object
 // by using a change token that has already been used.
 type StaleDataException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18818,8 +18818,8 @@ func (s *SubscribedRuleGroupSummary) SetRuleGroupId(v string) *SubscribedRuleGro
 
 // The specified subscription does not exist.
 type SubscriptionNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18946,8 +18946,8 @@ func (s *TagInfoForResource) SetTagList(v []*Tag) *TagInfoForResource {
 }
 
 type TagOperationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -19001,8 +19001,8 @@ func (s TagOperationException) RequestID() string {
 }
 
 type TagOperationInternalErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

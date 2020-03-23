@@ -2505,8 +2505,8 @@ func (s *AcceleratorAttributes) SetFlowLogsS3Prefix(v string) *AcceleratorAttrib
 
 // The accelerator that you specified could not be disabled.
 type AcceleratorNotDisabledException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2561,8 +2561,8 @@ func (s AcceleratorNotDisabledException) RequestID() string {
 
 // The accelerator that you specified doesn't exist.
 type AcceleratorNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2617,8 +2617,8 @@ func (s AcceleratorNotFoundException) RequestID() string {
 
 // You don't have access permission.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2737,8 +2737,8 @@ func (s *AdvertiseByoipCidrOutput) SetByoipCidr(v *ByoipCidr) *AdvertiseByoipCid
 // You must remove all dependent resources from a listener before you can delete
 // it.
 type AssociatedEndpointGroupFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2795,8 +2795,8 @@ func (s AssociatedEndpointGroupFoundException) RequestID() string {
 // must remove all dependent resources from an accelerator before you can delete
 // it.
 type AssociatedListenerFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2930,8 +2930,8 @@ func (s *ByoipCidr) SetState(v string) *ByoipCidr {
 
 // The CIDR that you specified was not found or is incorrect.
 type ByoipCidrNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4237,8 +4237,8 @@ func (s *EndpointGroup) SetTrafficDialPercentage(v float64) *EndpointGroup {
 
 // The endpoint group that you specified already exists.
 type EndpointGroupAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4293,8 +4293,8 @@ func (s EndpointGroupAlreadyExistsException) RequestID() string {
 
 // The endpoint group that you specified doesn't exist.
 type EndpointGroupNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4350,8 +4350,8 @@ func (s EndpointGroupNotFoundException) RequestID() string {
 // The CIDR that you specified is not valid for this action. For example, the
 // state of the CIDR might be incorrect for this action.
 type IncorrectCidrStateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4406,8 +4406,8 @@ func (s IncorrectCidrStateException) RequestID() string {
 
 // There was an internal error for AWS Global Accelerator.
 type InternalServiceErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4462,8 +4462,8 @@ func (s InternalServiceErrorException) RequestID() string {
 
 // An argument that you specified is invalid.
 type InvalidArgumentException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4518,8 +4518,8 @@ func (s InvalidArgumentException) RequestID() string {
 
 // There isn't another item to return.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4575,8 +4575,8 @@ func (s InvalidNextTokenException) RequestID() string {
 // The port numbers that you specified are not valid numbers or are not unique
 // for this accelerator.
 type InvalidPortRangeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4666,8 +4666,8 @@ func (s *IpSet) SetIpFamily(v string) *IpSet {
 // Processing your request would cause you to exceed an AWS Global Accelerator
 // limit.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -5204,8 +5204,8 @@ func (s *Listener) SetProtocol(v string) *Listener {
 
 // The listener that you specified doesn't exist.
 type ListenerNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

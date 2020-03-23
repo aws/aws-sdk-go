@@ -7168,8 +7168,8 @@ func (c *QuickSight) UpdateUserWithContext(ctx aws.Context, input *UpdateUserInp
 // your policies have the correct permissions, and that you are using the correct
 // access keys.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -7993,8 +7993,8 @@ func (s *ColumnTag) SetColumnGeographicRole(v string) *ColumnTag {
 // A resource is already in a state that indicates an action is happening that
 // must complete before a new update can be applied.
 type ConcurrentUpdatingException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -8051,8 +8051,8 @@ func (s ConcurrentUpdatingException) RequestID() string {
 
 // Updating or deleting a resource can cause an inconsistent state.
 type ConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -14208,8 +14208,8 @@ func (s *DescribeUserOutput) SetUser(v *User) *DescribeUserOutput {
 // The domain specified isn't on the allow list. All domains for embedded dashboards
 // must be added to the approved list by an Amazon QuickSight admin.
 type DomainNotWhitelistedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -14797,8 +14797,8 @@ func (s *IAMPolicyAssignmentSummary) SetAssignmentStatus(v string) *IAMPolicyAss
 // The identity type specified isn't supported. Supported identity types include
 // IAM and QUICKSIGHT.
 type IdentityTypeNotSupportedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -15085,8 +15085,8 @@ func (s *IntegerParameter) SetValues(v []*int64) *IntegerParameter {
 
 // An internal failure occurred.
 type InternalFailureException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -15144,8 +15144,8 @@ func (s InternalFailureException) RequestID() string {
 
 // The NextToken value isn't valid.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -15203,8 +15203,8 @@ func (s InvalidNextTokenException) RequestID() string {
 
 // One or more parameters has a value that isn't valid.
 type InvalidParameterValueException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -15394,8 +15394,8 @@ func (s *JoinInstruction) SetType(v string) *JoinInstruction {
 
 // A limit is exceeded.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -17973,8 +17973,8 @@ func (s *PostgreSqlParameters) SetPort(v int64) *PostgreSqlParameters {
 
 // One or more preconditions aren't met.
 type PreconditionNotMetException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -18684,8 +18684,8 @@ func (s *RenameColumnOperation) SetNewColumnName(v string) *RenameColumnOperatio
 
 // The resource specified already exists.
 type ResourceExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -18746,8 +18746,8 @@ func (s ResourceExistsException) RequestID() string {
 
 // One or more resources can't be found.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -18870,8 +18870,8 @@ func (s *ResourcePermission) SetPrincipal(v string) *ResourcePermission {
 
 // This resource is currently unavailable.
 type ResourceUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -19326,8 +19326,8 @@ func (s *ServiceNowParameters) SetSiteBaseUrl(v string) *ServiceNowParameters {
 // The number of minutes specified for the lifetime of a session isn't valid.
 // The session lifetime must be 15-600 minutes.
 type SessionLifetimeInMinutesInvalidException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -20514,8 +20514,8 @@ func (s *TeradataParameters) SetPort(v int64) *TeradataParameters {
 
 // Access is throttled.
 type ThrottlingException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -20747,8 +20747,8 @@ func (s *TwitterParameters) SetQuery(v string) *TwitterParameters {
 // Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 // Not every operation and capability is available in every edition.
 type UnsupportedUserEditionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -23267,8 +23267,8 @@ func (s *User) SetUserName(v string) *User {
 // operation that requires finding a user based on a provided user name, such
 // as DeleteUser, DescribeUser, and so on.
 type UserNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 

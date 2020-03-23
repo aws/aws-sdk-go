@@ -6144,8 +6144,8 @@ func (c *ApiGatewayV2) UpdateVpcLinkWithContext(ctx aws.Context, input *UpdateVp
 }
 
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6574,8 +6574,8 @@ func (s *Authorizer) SetName(v string) *Authorizer {
 // The request is not valid, for example, the input is incomplete or incorrect.
 // See the accompanying error message for details.
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Describes the error encountered.
 	Message_ *string `locationName:"message" type:"string"`
@@ -6633,8 +6633,8 @@ func (s BadRequestException) RequestID() string {
 // a service resource associated with the request. Resolve the conflict before
 // retrying this request. See the accompanying error message for details.
 type ConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Describes the error encountered.
 	Message_ *string `locationName:"message" type:"string"`
@@ -14274,8 +14274,8 @@ func (s *Model) SetSchema(v string) *Model {
 // The resource specified in the request was not found. See the message field
 // for more information.
 type NotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Describes the error encountered.
 	Message_ *string `locationName:"message" type:"string"`
@@ -15113,8 +15113,8 @@ func (s *TlsConfigInput) SetServerNameToVerify(v string) *TlsConfigInput {
 
 // A limit has been exceeded. See the accompanying error message for details.
 type TooManyRequestsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	LimitType *string `locationName:"limitType" type:"string"`
 

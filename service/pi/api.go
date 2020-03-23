@@ -896,8 +896,8 @@ func (s *GetResourceMetricsOutput) SetNextToken(v string) *GetResourceMetricsOut
 
 // The request failed due to an unknown error.
 type InternalServiceError struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -952,8 +952,8 @@ func (s InternalServiceError) RequestID() string {
 
 // One of the arguments provided is invalid for this request.
 type InvalidArgumentException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1126,8 +1126,8 @@ func (s *MetricQuery) SetMetric(v string) *MetricQuery {
 
 // The user is not authorized to perform this request.
 type NotAuthorizedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

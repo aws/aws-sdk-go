@@ -13262,8 +13262,8 @@ func (s *GatewayInfo) SetGatewayType(v string) *GatewayInfo {
 // An internal server error has occurred during the request. For more information,
 // see the error and message fields.
 type InternalServerError struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A StorageGatewayError that provides more information about the cause of the
 	// error.
@@ -13324,8 +13324,8 @@ func (s InternalServerError) RequestID() string {
 // An exception occurred because an invalid gateway request was issued to the
 // service. For more information, see the error and message fields.
 type InvalidGatewayRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A StorageGatewayError that provides more detail about the cause of the error.
 	Error_ *Error `locationName:"error" type:"structure"`
@@ -15398,8 +15398,8 @@ func (s *SMBFileShareInfo) SetValidUserList(v []*string) *SMBFileShareInfo {
 // An internal server error has occurred because the service is unavailable.
 // For more information, see the error and message fields.
 type ServiceUnavailableError struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A StorageGatewayError that provides more information about the cause of the
 	// error.

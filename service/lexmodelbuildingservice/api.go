@@ -4545,8 +4545,8 @@ func (c *LexModelBuildingService) UntagResourceWithContext(ctx aws.Context, inpu
 // The request is not well formed. For example, a value is invalid or a required
 // field is missing. Check the field values, and try again.
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5025,8 +5025,8 @@ func (s *CodeHook) SetUri(v string) *CodeHook {
 
 // There was a conflict processing the request. Try your request again.
 type ConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9242,8 +9242,8 @@ func (s *IntentMetadata) SetVersion(v string) *IntentMetadata {
 
 // An internal Amazon Lex error occurred. Try your request again.
 type InternalFailureException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9298,8 +9298,8 @@ func (s InternalFailureException) RequestID() string {
 
 // The request exceeded a limit. Try your request again.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -9643,8 +9643,8 @@ func (s *Message) SetGroupNumber(v int64) *Message {
 // The resource specified in the request was not found. Check the resource and
 // try again.
 type NotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9700,8 +9700,8 @@ func (s NotFoundException) RequestID() string {
 // The checksum of the resource that you are trying to change does not match
 // the checksum in the request. Check the resource's checksum and try again.
 type PreconditionFailedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11342,8 +11342,8 @@ func (s *PutSlotTypeOutput) SetVersion(v string) *PutSlotTypeOutput {
 //
 // "name": string, "version": string } }
 type ResourceInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Describes the resource that refers to the resource that you are attempting
 	// to delete. This object is returned as part of the ResourceInUseException

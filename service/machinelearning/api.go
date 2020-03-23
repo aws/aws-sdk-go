@@ -6846,8 +6846,8 @@ func (s *GetMLModelOutput) SetTrainingParameters(v map[string]*string) *GetMLMod
 // from retrying a request using a parameter that was not present in the original
 // request.
 type IdempotentParameterMismatchException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *int64 `locationName:"code" type:"integer"`
 
@@ -6904,8 +6904,8 @@ func (s IdempotentParameterMismatchException) RequestID() string {
 
 // An error on the server occurred when trying to process a request.
 type InternalServerException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *int64 `locationName:"code" type:"integer"`
 
@@ -6963,8 +6963,8 @@ func (s InternalServerException) RequestID() string {
 // An error on the client occurred. Typically, the cause is an invalid input
 // value.
 type InvalidInputException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *int64 `locationName:"code" type:"integer"`
 
@@ -7020,8 +7020,8 @@ func (s InvalidInputException) RequestID() string {
 }
 
 type InvalidTagException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7077,8 +7077,8 @@ func (s InvalidTagException) RequestID() string {
 // The subscriber exceeded the maximum number of operations. This exception
 // can occur when listing objects such as DataSource.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *int64 `locationName:"code" type:"integer"`
 
@@ -7588,8 +7588,8 @@ func (s *Prediction) SetPredictedValue(v float64) *Prediction {
 
 // The exception is thrown when a predict request is made to an unmounted MLModel.
 type PredictorNotMountedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8577,8 +8577,8 @@ func (s *RedshiftMetadata) SetSelectSqlQuery(v string) *RedshiftMetadata {
 
 // A specified resource cannot be located.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *int64 `locationName:"code" type:"integer"`
 
@@ -8836,8 +8836,8 @@ func (s *Tag) SetValue(v string) *Tag {
 }
 
 type TagLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

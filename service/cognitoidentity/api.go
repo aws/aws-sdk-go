@@ -2161,8 +2161,8 @@ func (c *CognitoIdentity) UpdateIdentityPoolWithContext(ctx aws.Context, input *
 
 // Thrown if there are parallel requests to modify a resource.
 type ConcurrentModificationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned by a ConcurrentModificationException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -2620,8 +2620,8 @@ func (s *DescribeIdentityPoolInput) SetIdentityPoolId(v string) *DescribeIdentit
 // The provided developer user identifier is already registered with Cognito
 // under a different identity ID.
 type DeveloperUserAlreadyRegisteredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// This developer user identifier is already registered with Cognito.
 	Message_ *string `locationName:"message" type:"string"`
@@ -2678,8 +2678,8 @@ func (s DeveloperUserAlreadyRegisteredException) RequestID() string {
 // An exception thrown when a dependent service such as Facebook or Twitter
 // is not responding
 type ExternalServiceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned by an ExternalServiceException
 	Message_ *string `locationName:"message" type:"string"`
@@ -3489,8 +3489,8 @@ func (s *IdentityPoolShortDescription) SetIdentityPoolName(v string) *IdentityPo
 
 // Thrown when the service encounters an error during processing the request.
 type InternalErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned by an InternalErrorException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -3547,8 +3547,8 @@ func (s InternalErrorException) RequestID() string {
 // Thrown if the identity pool has no role associated for the given auth type
 // (auth/unauth) or if the AssumeRole fails.
 type InvalidIdentityPoolConfigurationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned for an InvalidIdentityPoolConfigurationException
 	Message_ *string `locationName:"message" type:"string"`
@@ -3604,8 +3604,8 @@ func (s InvalidIdentityPoolConfigurationException) RequestID() string {
 
 // Thrown for missing or bad input parameter(s).
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned by an InvalidParameterException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -3661,8 +3661,8 @@ func (s InvalidParameterException) RequestID() string {
 
 // Thrown when the total number of user pools has exceeded a preset limit.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned by a LimitExceededException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -4354,8 +4354,8 @@ func (s *MergeDeveloperIdentitiesOutput) SetIdentityId(v string) *MergeDeveloper
 
 // Thrown when a user is not authorized to access the requested resource.
 type NotAuthorizedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned by a NotAuthorizedException
 	Message_ *string `locationName:"message" type:"string"`
@@ -4479,8 +4479,8 @@ func (s *Provider) SetServerSideTokenCheck(v bool) *Provider {
 // Thrown when a user tries to use a login which is already linked to another
 // account.
 type ResourceConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned by a ResourceConflictException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -4537,8 +4537,8 @@ func (s ResourceConflictException) RequestID() string {
 // Thrown when the requested resource (for example, a dataset or record) does
 // not exist.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned by a ResourceNotFoundException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -4882,8 +4882,8 @@ func (s TagResourceOutput) GoString() string {
 
 // Thrown when a request is throttled.
 type TooManyRequestsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Message returned by a TooManyRequestsException
 	Message_ *string `locationName:"message" type:"string"`

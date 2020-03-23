@@ -360,8 +360,8 @@ func (s *BucketInfo) SetBuckets(v []*Bucket) *BucketInfo {
 
 // Information about any problems encountered while processing an upload request.
 type DocumentServiceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The description of the errors returned by the document service.
 	Message_ *string `locationName:"message" type:"string"`
@@ -657,8 +657,8 @@ func (s *Hits) SetStart(v int64) *Hits {
 
 // Information about any problems encountered while processing a search request.
 type SearchException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A description of the error returned by the search service.
 	Message_ *string `locationName:"message" type:"string"`

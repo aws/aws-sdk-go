@@ -7143,8 +7143,8 @@ func (s *DecisionTaskTimedOutEventAttributes) SetTimeoutType(v string) *Decision
 // If these parameters aren't set and no default parameters were defined in
 // the workflow type, this error is displayed.
 type DefaultUndefinedFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7830,8 +7830,8 @@ func (s *DescribeWorkflowTypeOutput) SetTypeInfo(v *WorkflowTypeInfo) *DescribeW
 // registering a domain that is either already registered or deprecated, or
 // if you undeprecate a domain that is currently registered.
 type DomainAlreadyExistsFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A description that may help with diagnosing the cause of the fault.
 	Message_ *string `locationName:"message" type:"string"`
@@ -7913,8 +7913,8 @@ func (s *DomainConfiguration) SetWorkflowExecutionRetentionPeriodInDays(v string
 
 // Returned when the specified domain has been deprecated.
 type DomainDeprecatedFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A description that may help with diagnosing the cause of the fault.
 	Message_ *string `locationName:"message" type:"string"`
@@ -9438,8 +9438,8 @@ func (s *LambdaFunctionTimedOutEventAttributes) SetTimeoutType(v string) *Lambda
 // To address this fault you should either clean up unused resources or increase
 // the limit by contacting AWS.
 type LimitExceededFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A description that may help with diagnosing the cause of the fault.
 	Message_ *string `locationName:"message" type:"string"`
@@ -10352,8 +10352,8 @@ func (s *MarkerRecordedEventAttributes) SetMarkerName(v string) *MarkerRecordedE
 // Returned when the caller doesn't have sufficient permissions to invoke the
 // action.
 type OperationNotPermittedFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A description that may help with diagnosing the cause of the fault.
 	Message_ *string `locationName:"message" type:"string"`
@@ -14603,8 +14603,8 @@ func (s *TimerStartedEventAttributes) SetTimerId(v string) *TimerStartedEventAtt
 
 // You've exceeded the number of tags allowed for a domain.
 type TooManyTagsFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14661,8 +14661,8 @@ func (s TooManyTagsFault) RequestID() string {
 // this fault if you are registering a type that is either already registered
 // or deprecated, or if you undeprecate a type that is currently registered.
 type TypeAlreadyExistsFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A description that may help with diagnosing the cause of the fault.
 	Message_ *string `locationName:"message" type:"string"`
@@ -14718,8 +14718,8 @@ func (s TypeAlreadyExistsFault) RequestID() string {
 
 // Returned when the specified activity or workflow type was already deprecated.
 type TypeDeprecatedFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A description that may help with diagnosing the cause of the fault.
 	Message_ *string `locationName:"message" type:"string"`
@@ -14980,8 +14980,8 @@ func (s UndeprecateWorkflowTypeOutput) GoString() string {
 // operation (region or domain). This could happen if the named resource was
 // never created or is no longer available for this operation.
 type UnknownResourceFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A description that may help with diagnosing the cause of the fault.
 	Message_ *string `locationName:"message" type:"string"`
@@ -15166,8 +15166,8 @@ func (s *WorkflowExecution) SetWorkflowId(v string) *WorkflowExecution {
 // Returned by StartWorkflowExecution when an open execution with the same workflowId
 // is already running in the specified domain.
 type WorkflowExecutionAlreadyStartedFault struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A description that may help with diagnosing the cause of the fault.
 	Message_ *string `locationName:"message" type:"string"`

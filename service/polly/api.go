@@ -1121,8 +1121,8 @@ func (s *DescribeVoicesOutput) SetVoices(v []*Voice) *DescribeVoicesOutput {
 // a new voice that is compatible with the engine or change the engine and restart
 // the operation.
 type EngineNotSupportedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1318,8 +1318,8 @@ func (s *GetSpeechSynthesisTaskOutput) SetSynthesisTask(v *SynthesisTask) *GetSp
 // Amazon Polly can't find the specified lexicon. Verify that the lexicon's
 // name is spelled correctly, and then try again.
 type InvalidLexiconException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1375,8 +1375,8 @@ func (s InvalidLexiconException) RequestID() string {
 // The NextToken is invalid. Verify that it's spelled correctly, and then try
 // again.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1432,8 +1432,8 @@ func (s InvalidNextTokenException) RequestID() string {
 // The provided Amazon S3 bucket name is invalid. Please check your input with
 // S3 bucket naming requirements and try again.
 type InvalidS3BucketException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1489,8 +1489,8 @@ func (s InvalidS3BucketException) RequestID() string {
 // The provided Amazon S3 key prefix is invalid. Please provide a valid S3 object
 // key name.
 type InvalidS3KeyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1545,8 +1545,8 @@ func (s InvalidS3KeyException) RequestID() string {
 
 // The specified sample rate is not valid.
 type InvalidSampleRateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1602,8 +1602,8 @@ func (s InvalidSampleRateException) RequestID() string {
 // The provided SNS topic ARN is invalid. Please provide a valid SNS topic ARN
 // and try again.
 type InvalidSnsTopicArnException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1659,8 +1659,8 @@ func (s InvalidSnsTopicArnException) RequestID() string {
 // The SSML you provided is invalid. Verify the SSML syntax, spelling of tags
 // and values, and then try again.
 type InvalidSsmlException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1716,8 +1716,8 @@ func (s InvalidSsmlException) RequestID() string {
 // The provided Task ID is not valid. Please provide a valid Task ID and try
 // again.
 type InvalidTaskIdException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1773,8 +1773,8 @@ func (s InvalidTaskIdException) RequestID() string {
 // The language specified is not currently supported by Amazon Polly in this
 // capacity.
 type LanguageNotSupportedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1974,8 +1974,8 @@ func (s *LexiconDescription) SetName(v string) *LexiconDescription {
 // Verify that the lexicon exists, is in the region (see ListLexicons) and that
 // you spelled its name is spelled correctly. Then try again.
 type LexiconNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2030,8 +2030,8 @@ func (s LexiconNotFoundException) RequestID() string {
 
 // The maximum size of the specified lexicon would be exceeded by this operation.
 type LexiconSizeExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2234,8 +2234,8 @@ func (s *ListSpeechSynthesisTasksOutput) SetSynthesisTasks(v []*SynthesisTask) *
 // Speech marks are not supported for the OutputFormat selected. Speech marks
 // are only available for content in json format.
 type MarksNotSupportedForFormatException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2290,8 +2290,8 @@ func (s MarksNotSupportedForFormatException) RequestID() string {
 
 // The maximum size of the lexeme would be exceeded by this operation.
 type MaxLexemeLengthExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2346,8 +2346,8 @@ func (s MaxLexemeLengthExceededException) RequestID() string {
 
 // The maximum number of lexicons would be exceeded by this operation.
 type MaxLexiconsNumberExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2473,8 +2473,8 @@ func (s PutLexiconOutput) GoString() string {
 
 // An unknown condition has caused a service failure.
 type ServiceFailureException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2529,8 +2529,8 @@ func (s ServiceFailureException) RequestID() string {
 
 // SSML speech marks are not supported for plain text-type input.
 type SsmlMarksNotSupportedForTextTypeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2955,8 +2955,8 @@ func (s *SynthesisTask) SetVoiceId(v string) *SynthesisTask {
 
 // The Speech Synthesis task with requested Task ID cannot be found.
 type SynthesisTaskNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3216,8 +3216,8 @@ func (s *SynthesizeSpeechOutput) SetRequestCharacters(v int64) *SynthesizeSpeech
 // API, the maximum is 200,000 characters, of which no more than 100,000 can
 // be billed characters. SSML tags are not counted as billed characters.
 type TextLengthExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3273,8 +3273,8 @@ func (s TextLengthExceededException) RequestID() string {
 // The alphabet specified by the lexicon is not a supported alphabet. Valid
 // values are x-sampa and ipa.
 type UnsupportedPlsAlphabetException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3330,8 +3330,8 @@ func (s UnsupportedPlsAlphabetException) RequestID() string {
 // The language specified in the lexicon is unsupported. For a list of supported
 // languages, see Lexicon Attributes (https://docs.aws.amazon.com/polly/latest/dg/API_LexiconAttributes.html).
 type UnsupportedPlsLanguageException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

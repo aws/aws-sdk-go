@@ -2277,8 +2277,8 @@ func (c *SFN) UpdateStateMachineWithContext(ctx aws.Context, input *UpdateStateM
 
 // The specified activity does not exist.
 type ActivityDoesNotExist struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2367,8 +2367,8 @@ func (s *ActivityFailedEventDetails) SetError(v string) *ActivityFailedEventDeta
 // The maximum number of activities has been reached. Existing activities must
 // be deleted before a new activity can be created.
 type ActivityLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2657,8 +2657,8 @@ func (s *ActivityTimedOutEventDetails) SetError(v string) *ActivityTimedOutEvent
 // The maximum number of workers concurrently polling for activity tasks has
 // been reached.
 type ActivityWorkerLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3738,8 +3738,8 @@ func (s *ExecutionAbortedEventDetails) SetError(v string) *ExecutionAbortedEvent
 //
 // Executions with the same name and input are considered idempotent.
 type ExecutionAlreadyExists struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3794,8 +3794,8 @@ func (s ExecutionAlreadyExists) RequestID() string {
 
 // The specified execution does not exist.
 type ExecutionDoesNotExist struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3884,8 +3884,8 @@ func (s *ExecutionFailedEventDetails) SetError(v string) *ExecutionFailedEventDe
 // The maximum number of running executions has been reached. Running executions
 // must end or be stopped before a new execution can be started.
 type ExecutionLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4682,8 +4682,8 @@ func (s *HistoryEvent) SetType(v string) *HistoryEvent {
 
 // The provided Amazon Resource Name (ARN) is invalid.
 type InvalidArn struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4738,8 +4738,8 @@ func (s InvalidArn) RequestID() string {
 
 // The provided Amazon States Language definition is invalid.
 type InvalidDefinition struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4794,8 +4794,8 @@ func (s InvalidDefinition) RequestID() string {
 
 // The provided JSON input data is invalid.
 type InvalidExecutionInput struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4849,8 +4849,8 @@ func (s InvalidExecutionInput) RequestID() string {
 }
 
 type InvalidLoggingConfiguration struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4905,8 +4905,8 @@ func (s InvalidLoggingConfiguration) RequestID() string {
 
 // The provided name is invalid.
 type InvalidName struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4961,8 +4961,8 @@ func (s InvalidName) RequestID() string {
 
 // The provided JSON output data is invalid.
 type InvalidOutput struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5017,8 +5017,8 @@ func (s InvalidOutput) RequestID() string {
 
 // The provided token is invalid.
 type InvalidToken struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5803,8 +5803,8 @@ func (s *MapStateStartedEventDetails) SetLength(v int64) *MapStateStartedEventDe
 // Request is missing a required parameter. This error occurs if both definition
 // and roleArn are not specified.
 type MissingRequiredParameter struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5860,8 +5860,8 @@ func (s MissingRequiredParameter) RequestID() string {
 // Could not find the referenced resource. Only state machine and activity ARNs
 // are supported.
 type ResourceNotFound struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -6328,8 +6328,8 @@ func (s *StateExitedEventDetails) SetOutput(v string) *StateExitedEventDetails {
 // A state machine with the same name but a different definition or role ARN
 // already exists.
 type StateMachineAlreadyExists struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6384,8 +6384,8 @@ func (s StateMachineAlreadyExists) RequestID() string {
 
 // The specified state machine is being deleted.
 type StateMachineDeleting struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6440,8 +6440,8 @@ func (s StateMachineDeleting) RequestID() string {
 
 // The specified state machine does not exist.
 type StateMachineDoesNotExist struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6497,8 +6497,8 @@ func (s StateMachineDoesNotExist) RequestID() string {
 // The maximum number of state machines has been reached. Existing state machines
 // must be deleted before a new state machine can be created.
 type StateMachineLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6624,8 +6624,8 @@ func (s *StateMachineListItem) SetType(v string) *StateMachineListItem {
 }
 
 type StateMachineTypeNotSupported struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6900,8 +6900,8 @@ func (s TagResourceOutput) GoString() string {
 }
 
 type TaskDoesNotExist struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7318,8 +7318,8 @@ func (s *TaskSucceededEventDetails) SetResourceType(v string) *TaskSucceededEven
 }
 
 type TaskTimedOut struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7431,8 +7431,8 @@ func (s *TaskTimedOutEventDetails) SetResourceType(v string) *TaskTimedOutEventD
 // Topic (https://docs.aws.amazon.com/step-functions/latest/dg/limits.html)
 // in the AWS Step Functions Developer Guide.
 type TooManyTags struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 

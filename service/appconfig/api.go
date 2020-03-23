@@ -2864,8 +2864,8 @@ func (s *Application) SetName(v string) *Application {
 
 // The input fails to satisfy the constraints specified by an AWS service.
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2981,8 +2981,8 @@ func (s *ConfigurationProfileSummary) SetValidatorTypes(v []*string) *Configurat
 // The request could not be processed because of conflict in the current state
 // of the resource.
 type ConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -5153,8 +5153,8 @@ func (s *GetEnvironmentOutput) SetState(v string) *GetEnvironmentOutput {
 
 // There was an internal failure in the AppConfig service.
 type InternalServerException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -5807,8 +5807,8 @@ func (s *Monitor) SetAlarmRoleArn(v string) *Monitor {
 
 // The requested resource could not be found.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 

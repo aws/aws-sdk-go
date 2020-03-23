@@ -521,8 +521,8 @@ func (c *AugmentedAIRuntime) StopHumanLoopWithContext(ctx aws.Context, input *St
 // input data. You cannot start two human loops with the same name and different
 // input data.
 type ConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -942,8 +942,8 @@ func (s *HumanLoopSummary) SetHumanLoopStatus(v string) *HumanLoopSummary {
 
 // Your request could not be processed.
 type InternalServerException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1123,8 +1123,8 @@ func (s *ListHumanLoopsOutput) SetNextToken(v string) *ListHumanLoopsOutput {
 
 // We were unable to find the requested resource.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1180,8 +1180,8 @@ func (s ResourceNotFoundException) RequestID() string {
 // You have exceeded your service quota. To perform the requested action, remove
 // some of the relevant resources, or request a service quota increase.
 type ServiceQuotaExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1402,8 +1402,8 @@ func (s StopHumanLoopOutput) GoString() string {
 
 // Your request has exceeded the allowed amount of requests.
 type ThrottlingException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1458,8 +1458,8 @@ func (s ThrottlingException) RequestID() string {
 
 // Your request was not valid. Check the syntax and try again.
 type ValidationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

@@ -749,8 +749,8 @@ func (c *PinpointSMSVoice) UpdateConfigurationSetEventDestinationWithContext(ctx
 
 // The resource specified in your request already exists.
 type AlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -805,8 +805,8 @@ func (s AlreadyExistsException) RequestID() string {
 
 // The input you provided is invalid.
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1365,8 +1365,8 @@ func (s *GetConfigurationSetEventDestinationsOutput) SetEventDestinations(v []*E
 // The API encountered an unexpected error and couldn't complete the request.
 // You might be able to successfully issue the request again in the future.
 type InternalServiceErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1457,8 +1457,8 @@ func (s *KinesisFirehoseDestination) SetIamRoleArn(v string) *KinesisFirehoseDes
 
 // There are too many instances of the specified resource type.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1579,8 +1579,8 @@ func (s *ListConfigurationSetsOutput) SetNextToken(v string) *ListConfigurationS
 
 // The resource you attempted to access doesn't exist.
 type NotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1840,8 +1840,8 @@ func (s *SnsDestination) SetTopicArn(v string) *SnsDestination {
 // You've issued too many requests to the resource. Wait a few minutes, and
 // then try again.
 type TooManyRequestsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

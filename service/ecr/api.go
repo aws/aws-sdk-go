@@ -4457,8 +4457,8 @@ func (s *DescribeRepositoriesOutput) SetRepositories(v []*Repository) *DescribeR
 
 // The specified layer upload does not contain any layer parts.
 type EmptyUploadException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -5114,8 +5114,8 @@ func (s *Image) SetRepositoryName(v string) *Image {
 // The specified image has already been pushed, and there were no changes to
 // the manifest or image tag after the last push.
 type ImageAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -5352,8 +5352,8 @@ func (s *ImageIdentifier) SetImageTag(v string) *ImageIdentifier {
 
 // The image requested does not exist in the specified repository.
 type ImageNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5623,8 +5623,8 @@ func (s *ImageScanningConfiguration) SetScanOnPush(v bool) *ImageScanningConfigu
 // The specified image is tagged with a tag that already exists. The repository
 // is configured for tag immutability.
 type ImageTagAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5765,8 +5765,8 @@ func (s *InitiateLayerUploadOutput) SetUploadId(v string) *InitiateLayerUploadOu
 // The layer digest calculation performed by Amazon ECR upon receipt of the
 // image layer does not match the digest specified.
 type InvalidLayerException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -5823,8 +5823,8 @@ func (s InvalidLayerException) RequestID() string {
 // The layer part size is not valid, or the first byte specified is not consecutive
 // to the last byte of a previous layer part upload.
 type InvalidLayerPartException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The last valid byte received from the layer part upload that is associated
 	// with the exception.
@@ -5894,8 +5894,8 @@ func (s InvalidLayerPartException) RequestID() string {
 // The specified parameter is invalid. Review the available parameters for the
 // API request.
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -5953,8 +5953,8 @@ func (s InvalidParameterException) RequestID() string {
 // length of 128 characters, and tag values can have a maximum length of 256
 // characters.
 type InvalidTagParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6061,8 +6061,8 @@ func (s *Layer) SetMediaType(v string) *Layer {
 
 // The image layer already exists in the associated repository.
 type LayerAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -6161,8 +6161,8 @@ func (s *LayerFailure) SetLayerDigest(v string) *LayerFailure {
 // The specified layer is not available because it is not associated with an
 // image. Unassociated image layers may be cleaned up at any time.
 type LayerInaccessibleException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -6218,8 +6218,8 @@ func (s LayerInaccessibleException) RequestID() string {
 
 // Layer parts must be at least 5 MiB in size.
 type LayerPartTooSmallException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -6276,8 +6276,8 @@ func (s LayerPartTooSmallException) RequestID() string {
 // The specified layers could not be found, or the specified layer is not valid
 // for this repository.
 type LayersNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -6333,8 +6333,8 @@ func (s LayersNotFoundException) RequestID() string {
 
 // The lifecycle policy could not be found, and no policy is set to the repository.
 type LifecyclePolicyNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6414,8 +6414,8 @@ func (s *LifecyclePolicyPreviewFilter) SetTagStatus(v string) *LifecyclePolicyPr
 // The previous lifecycle policy preview request has not completed. Please try
 // again later.
 type LifecyclePolicyPreviewInProgressException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6470,8 +6470,8 @@ func (s LifecyclePolicyPreviewInProgressException) RequestID() string {
 
 // There is no dry run for this repository.
 type LifecyclePolicyPreviewNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6638,8 +6638,8 @@ func (s *LifecyclePolicyRuleAction) SetType(v string) *LifecyclePolicyRuleAction
 // (https://docs.aws.amazon.com/AmazonECR/latest/userguide/service_limits.html)
 // in the Amazon Elastic Container Registry User Guide.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -7426,8 +7426,8 @@ func (s *Repository) SetRepositoryUri(v string) *Repository {
 
 // The specified repository already exists in the specified registry.
 type RepositoryAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -7484,8 +7484,8 @@ func (s RepositoryAlreadyExistsException) RequestID() string {
 // The specified repository contains images. To delete a repository that contains
 // images, you must force the deletion with the force parameter.
 type RepositoryNotEmptyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -7542,8 +7542,8 @@ func (s RepositoryNotEmptyException) RequestID() string {
 // The specified repository could not be found. Check the spelling of the specified
 // repository and ensure that you are performing operations on the correct registry.
 type RepositoryNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -7600,8 +7600,8 @@ func (s RepositoryNotFoundException) RequestID() string {
 // The specified repository and registry combination does not have an associated
 // repository policy.
 type RepositoryPolicyNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -7658,8 +7658,8 @@ func (s RepositoryPolicyNotFoundException) RequestID() string {
 // The specified image scan could not be found. Ensure that image scanning is
 // enabled on the repository and try again.
 type ScanNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7714,8 +7714,8 @@ func (s ScanNotFoundException) RequestID() string {
 
 // These errors are usually caused by a server-side issue.
 type ServerException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -8233,8 +8233,8 @@ func (s TagResourceOutput) GoString() string {
 // The list of tags on the repository is over the limit. The maximum number
 // of tags that can be applied to a repository is 50.
 type TooManyTagsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8517,8 +8517,8 @@ func (s *UploadLayerPartOutput) SetUploadId(v string) *UploadLayerPartOutput {
 // The upload could not be found, or the specified upload id is not valid for
 // this repository.
 type UploadNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message associated with the exception.
 	Message_ *string `locationName:"message" type:"string"`

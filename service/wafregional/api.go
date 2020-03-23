@@ -10096,8 +10096,8 @@ func (s *ListResourcesForWebACLOutput) SetResourceArns(v []*string) *ListResourc
 }
 
 type WAFBadRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10152,8 +10152,8 @@ func (s WAFBadRequestException) RequestID() string {
 
 // The name specified is invalid.
 type WAFDisallowedNameException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10209,8 +10209,8 @@ func (s WAFDisallowedNameException) RequestID() string {
 // The operation failed because of a system problem, even though the request
 // was valid. Retry your request.
 type WAFInternalErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10266,8 +10266,8 @@ func (s WAFInternalErrorException) RequestID() string {
 // The operation failed because you tried to create, update, or delete an object
 // by using an invalid account identifier.
 type WAFInvalidAccountException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10337,8 +10337,8 @@ func (s WAFInvalidAccountException) RequestID() string {
 //    * You tried to add a ByteMatchTuple to a ByteMatchSet, but the ByteMatchTuple
 //    already exists in the specified WebACL.
 type WAFInvalidOperationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10419,8 +10419,8 @@ func (s WAFInvalidOperationException) RequestID() string {
 //    * Your request references an ARN that is malformed, or corresponds to
 //    a resource with which a web ACL cannot be associated.
 type WAFInvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Field *string `locationName:"field" type:"string" enum:"ParameterExceptionField"`
 
@@ -10502,8 +10502,8 @@ func (s WAFInvalidParameterException) RequestID() string {
 //
 //    * Your policy must be composed using IAM Policy version 2012-10-17.
 type WAFInvalidPermissionPolicyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10558,8 +10558,8 @@ func (s WAFInvalidPermissionPolicyException) RequestID() string {
 
 // The regular expression (regex) you specified in RegexPatternString is invalid.
 type WAFInvalidRegexPatternException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10617,8 +10617,8 @@ func (s WAFInvalidRegexPatternException) RequestID() string {
 // see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 // in the AWS WAF Developer Guide.
 type WAFLimitsExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10684,8 +10684,8 @@ func (s WAFLimitsExceededException) RequestID() string {
 //
 //    * You tried to delete an IPSet that references one or more IP addresses.
 type WAFNonEmptyEntityException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10753,8 +10753,8 @@ func (s WAFNonEmptyEntityException) RequestID() string {
 //    * You tried to add a ByteMatchTuple to or delete a ByteMatchTuple from
 //    a ByteMatchSet that doesn't exist.
 type WAFNonexistentContainerException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10809,8 +10809,8 @@ func (s WAFNonexistentContainerException) RequestID() string {
 
 // The operation failed because the referenced object doesn't exist.
 type WAFNonexistentItemException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10870,8 +10870,8 @@ func (s WAFNonexistentItemException) RequestID() string {
 //
 //    * You tried to delete a Rule that is still referenced by a WebACL.
 type WAFReferencedItemException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10933,8 +10933,8 @@ func (s WAFReferencedItemException) RequestID() string {
 // exception again, you will have to wait additional time until the role is
 // unlocked.
 type WAFServiceLinkedRoleErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10990,8 +10990,8 @@ func (s WAFServiceLinkedRoleErrorException) RequestID() string {
 // The operation failed because you tried to create, update, or delete an object
 // by using a change token that has already been used.
 type WAFStaleDataException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11046,8 +11046,8 @@ func (s WAFStaleDataException) RequestID() string {
 
 // The specified subscription does not exist.
 type WAFSubscriptionNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11101,8 +11101,8 @@ func (s WAFSubscriptionNotFoundException) RequestID() string {
 }
 
 type WAFTagOperationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11156,8 +11156,8 @@ func (s WAFTagOperationException) RequestID() string {
 }
 
 type WAFTagOperationInternalErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11213,8 +11213,8 @@ func (s WAFTagOperationInternalErrorException) RequestID() string {
 // The operation failed because the entity referenced is temporarily unavailable.
 // Retry your request.
 type WAFUnavailableEntityException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

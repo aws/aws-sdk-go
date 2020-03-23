@@ -2756,8 +2756,8 @@ func (s *AdvancedSecurityOptionsStatus) SetStatus(v *OptionStatus) *AdvancedSecu
 
 // An error occurred while processing the request.
 type BaseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A description of the error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -3807,8 +3807,8 @@ func (s *DescribeReservedElasticsearchInstancesOutput) SetReservedElasticsearchI
 // An error occured because the client wanted to access a not supported operation.
 // Gives http status code of 409.
 type DisabledOperationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5039,8 +5039,8 @@ func (s *InstanceLimits) SetInstanceCountLimits(v *InstanceCountLimits) *Instanc
 // or failure (the failure is internal to the service) . Gives http status code
 // of 500.
 type InternalException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5096,8 +5096,8 @@ func (s InternalException) RequestID() string {
 // An exception for trying to create or access sub-resource that is either invalid
 // or not supported. Gives http status code of 409.
 type InvalidTypeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5153,8 +5153,8 @@ func (s InvalidTypeException) RequestID() string {
 // An exception for trying to create more than allowed resources or sub-resources.
 // Gives http status code of 409.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6248,8 +6248,8 @@ func (s *ReservedElasticsearchInstanceOffering) SetUsagePrice(v float64) *Reserv
 // An exception for creating a resource that already exists. Gives http status
 // code of 400.
 type ResourceAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6305,8 +6305,8 @@ func (s ResourceAlreadyExistsException) RequestID() string {
 // An exception for accessing or deleting a resource that does not exist. Gives
 // http status code of 400.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7273,8 +7273,8 @@ func (s *VPCOptions) SetSubnetIds(v []*string) *VPCOptions {
 // An exception for missing / invalid input fields. Gives http status code of
 // 400.
 type ValidationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

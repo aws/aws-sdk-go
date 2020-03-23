@@ -191,8 +191,8 @@ func (c *MarketplaceCommerceAnalytics) StartSupportDataExportWithContext(ctx aws
 
 // This exception is thrown when an internal service error occurs.
 type Exception struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// This message describes details of the error.
 	Message_ *string `locationName:"message" type:"string"`

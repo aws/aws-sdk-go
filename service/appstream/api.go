@@ -4776,8 +4776,8 @@ func (s *ComputeCapacityStatus) SetRunning(v int64) *ComputeCapacityStatus {
 
 // An API error occurred. Wait a few minutes and try again.
 type ConcurrentModificationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message in the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -8839,8 +8839,8 @@ func (s *ImageStateChangeReason) SetMessage(v string) *ImageStateChangeReason {
 
 // The image does not support storage connectors.
 type IncompatibleImageException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message in the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -8897,8 +8897,8 @@ func (s IncompatibleImageException) RequestID() string {
 // The resource cannot be created because your AWS account is suspended. For
 // assistance, contact AWS Support.
 type InvalidAccountStatusException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message in the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -8954,8 +8954,8 @@ func (s InvalidAccountStatusException) RequestID() string {
 
 // Indicates an incorrect combination of parameters, or a missing parameter.
 type InvalidParameterCombinationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message in the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -9011,8 +9011,8 @@ func (s InvalidParameterCombinationException) RequestID() string {
 
 // The specified role is invalid.
 type InvalidRoleException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message in the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -9103,8 +9103,8 @@ func (s *LastReportGenerationExecutionError) SetErrorMessage(v string) *LastRepo
 
 // The requested limit exceeds the permitted limit for an account.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message in the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -9431,8 +9431,8 @@ func (s *NetworkAccessConfiguration) SetEniPrivateIpAddress(v string) *NetworkAc
 
 // The attempted operation is not permitted.
 type OperationNotPermittedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message in the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -9488,8 +9488,8 @@ func (s OperationNotPermittedException) RequestID() string {
 
 // The specified resource already exists.
 type ResourceAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message in the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -9587,8 +9587,8 @@ func (s *ResourceError) SetErrorTimestamp(v time.Time) *ResourceError {
 
 // The specified resource is in use.
 type ResourceInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message in the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -9644,8 +9644,8 @@ func (s ResourceInUseException) RequestID() string {
 
 // The specified resource exists and is not in use, but isn't available.
 type ResourceNotAvailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message in the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -9701,8 +9701,8 @@ func (s ResourceNotAvailableException) RequestID() string {
 
 // The specified resource was not found.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message in the exception.
 	Message_ *string `locationName:"Message" type:"string"`

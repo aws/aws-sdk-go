@@ -112,8 +112,8 @@ func (c *EC2InstanceConnect) SendSSHPublicKeyWithContext(ctx aws.Context, input 
 // Indicates that either your AWS credentials are invalid or you do not have
 // access to the EC2 instance.
 type AuthException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -169,8 +169,8 @@ func (s AuthException) RequestID() string {
 // Indicates that the instance requested was not found in the given zone. Check
 // that you have provided a valid instance ID and the correct zone.
 type EC2InstanceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -226,8 +226,8 @@ func (s EC2InstanceNotFoundException) RequestID() string {
 // Indicates that you provided bad input. Ensure you have a valid instance ID,
 // the correct zone, and a valid SSH public key.
 type InvalidArgsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -410,8 +410,8 @@ func (s *SendSSHPublicKeyOutput) SetSuccess(v bool) *SendSSHPublicKeyOutput {
 // Indicates that the service encountered an error. Follow the message's instructions
 // and try again.
 type ServiceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -468,8 +468,8 @@ func (s ServiceException) RequestID() string {
 // Wait for a while and try again. If higher call volume is warranted contact
 // AWS Support.
 type ThrottlingException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

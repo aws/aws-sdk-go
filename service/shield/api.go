@@ -1940,8 +1940,8 @@ func (c *Shield) UpdateSubscriptionWithContext(ctx aws.Context, input *UpdateSub
 // Exception that indicates the specified AttackId does not exist, or the requester
 // does not have the appropriate permissions to access the AttackId.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1999,8 +1999,8 @@ func (s AccessDeniedException) RequestID() string {
 // indicates the user did not have the appropriate permissions. For more information,
 // see Granting a User Permissions to Pass a Role to an AWS Service (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html).
 type AccessDeniedForDependencyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3270,8 +3270,8 @@ func (s *GetSubscriptionStateOutput) SetSubscriptionState(v string) *GetSubscrip
 // Exception that indicates that a problem occurred with the service infrastructure.
 // You can retry the request.
 type InternalErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3327,8 +3327,8 @@ func (s InternalErrorException) RequestID() string {
 // Exception that indicates that the operation would not cause any change to
 // occur.
 type InvalidOperationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3384,8 +3384,8 @@ func (s InvalidOperationException) RequestID() string {
 // Exception that indicates that the NextToken specified in the request is invalid.
 // Submit the request using the NextToken value that was returned in the response.
 type InvalidPaginationTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3440,8 +3440,8 @@ func (s InvalidPaginationTokenException) RequestID() string {
 
 // Exception that indicates that the parameters passed to the API are invalid.
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3497,8 +3497,8 @@ func (s InvalidParameterException) RequestID() string {
 // Exception that indicates that the resource is invalid. You might not have
 // access to the resource, or the resource might not exist.
 type InvalidResourceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3590,8 +3590,8 @@ func (s *Limit) SetType(v string) *Limit {
 //
 // Limit is the threshold that would be exceeded.
 type LimitsExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Limit *int64 `type:"long"`
 
@@ -3872,8 +3872,8 @@ func (s *ListProtectionsOutput) SetProtections(v []*Protection) *ListProtections
 // of your subscription. This exception indicates that you are attempting to
 // change AutoRenew prior to that period.
 type LockedSubscriptionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3952,8 +3952,8 @@ func (s *Mitigation) SetMitigationName(v string) *Mitigation {
 
 // The ARN of the role that you specifed does not exist.
 type NoAssociatedRoleException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4009,8 +4009,8 @@ func (s NoAssociatedRoleException) RequestID() string {
 // Exception that indicates that the protection state has been modified by another
 // client. You can retry the request.
 type OptimisticLockException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4117,8 +4117,8 @@ func (s *Protection) SetResourceArn(v string) *Protection {
 
 // Exception indicating the specified resource already exists.
 type ResourceAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4173,8 +4173,8 @@ func (s ResourceAlreadyExistsException) RequestID() string {
 
 // Exception indicating the specified resource does not exist.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

@@ -12663,8 +12663,8 @@ func (c *Glue) UpdateWorkflowWithContext(ctx aws.Context, input *UpdateWorkflowI
 
 // Access to a resource was denied.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -12831,8 +12831,8 @@ func (s *Action) SetTimeout(v int64) *Action {
 
 // A resource to be created or added already exists.
 type AlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -14714,8 +14714,8 @@ func (s *Column) SetType(v string) *Column {
 
 // Two processes are trying to modify a resource simultaneously.
 type ConcurrentModificationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -14771,8 +14771,8 @@ func (s ConcurrentModificationException) RequestID() string {
 
 // Too many jobs are being run concurrently.
 type ConcurrentRunsExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -14906,8 +14906,8 @@ func (s *Condition) SetState(v string) *Condition {
 
 // A specified condition was not satisfied.
 type ConditionCheckFailureException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -15730,8 +15730,8 @@ func (s *CrawlerNodeDetails) SetCrawls(v []*Crawl) *CrawlerNodeDetails {
 
 // The specified crawler is not running.
 type CrawlerNotRunningException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -15787,8 +15787,8 @@ func (s CrawlerNotRunningException) RequestID() string {
 
 // The operation cannot be performed because the crawler is already running.
 type CrawlerRunningException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -15844,8 +15844,8 @@ func (s CrawlerRunningException) RequestID() string {
 
 // The specified crawler is stopping.
 type CrawlerStoppingException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -20351,8 +20351,8 @@ func (s *EncryptionConfiguration) SetS3Encryption(v []*S3Encryption) *Encryption
 
 // An encryption operation failed.
 type EncryptionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -20408,8 +20408,8 @@ func (s EncryptionException) RequestID() string {
 
 // A specified entity does not exist
 type EntityNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -25030,8 +25030,8 @@ func (s *GrokClassifier) SetVersion(v int64) *GrokClassifier {
 
 // The same unique identifier was associated with two different records.
 type IdempotentParameterMismatchException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -25172,8 +25172,8 @@ func (s *ImportLabelsTaskRunProperties) SetReplace(v bool) *ImportLabelsTaskRunP
 
 // An internal service error occurred.
 type InternalServiceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -25229,8 +25229,8 @@ func (s InternalServiceException) RequestID() string {
 
 // The input provided was not valid.
 type InvalidInputException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -27348,8 +27348,8 @@ func (s *MLTransform) SetWorkerType(v string) *MLTransform {
 
 // The machine learning transform is not ready to run.
 type MLTransformNotReadyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -27474,8 +27474,8 @@ func (s *MappingEntry) SetTargetType(v string) *MappingEntry {
 
 // There is no applicable schedule.
 type NoScheduleException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -27639,8 +27639,8 @@ func (s *NotificationProperty) SetNotifyDelayAfter(v int64) *NotificationPropert
 
 // The operation timed out.
 type OperationTimeoutException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -28547,8 +28547,8 @@ func (s *ResetJobBookmarkOutput) SetJobBookmarkEntry(v *JobBookmarkEntry) *Reset
 
 // A resource numerical limit was exceeded.
 type ResourceNumberLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -28753,8 +28753,8 @@ func (s *Schedule) SetState(v string) *Schedule {
 
 // The specified scheduler is not running.
 type SchedulerNotRunningException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -28810,8 +28810,8 @@ func (s SchedulerNotRunningException) RequestID() string {
 
 // The specified scheduler is already running.
 type SchedulerRunningException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -28867,8 +28867,8 @@ func (s SchedulerRunningException) RequestID() string {
 
 // The specified scheduler is transitioning.
 type SchedulerTransitioningException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -33711,8 +33711,8 @@ func (s *UserDefinedFunctionInput) SetResourceUris(v []*ResourceUri) *UserDefine
 
 // A value could not be validated.
 type ValidationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -33768,8 +33768,8 @@ func (s ValidationException) RequestID() string {
 
 // There was a version conflict.
 type VersionMismatchException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message describing the problem.
 	Message_ *string `locationName:"Message" type:"string"`

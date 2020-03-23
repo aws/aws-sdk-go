@@ -21408,8 +21408,8 @@ func (s *Certificate) SetStatus(v string) *Certificate {
 // are attempting to register. This is happens when you have registered more
 // than one CA certificate that has the same subject field and public key.
 type CertificateConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -21597,8 +21597,8 @@ func (s *CertificateDescription) SetValidity(v *CertificateValidity) *Certificat
 
 // The certificate operation is not allowed.
 type CertificateStateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -21654,8 +21654,8 @@ func (s CertificateStateException) RequestID() string {
 
 // The certificate is invalid.
 type CertificateValidationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Additional information about the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -22208,8 +22208,8 @@ func (s ConfirmTopicRuleDestinationOutput) GoString() string {
 // A conflicting resource update exception. This exception is thrown when two
 // pending updates cause a conflict.
 type ConflictingResourceUpdateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -25479,8 +25479,8 @@ func (s DeleteCertificateOutput) GoString() string {
 
 // You can't delete the resource because it is attached to one or more resources.
 type DeleteConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -32130,8 +32130,8 @@ func (s *ImplicitDeny) SetPolicies(v []*Policy) *ImplicitDeny {
 
 // The index is not ready.
 type IndexNotReadyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -32187,8 +32187,8 @@ func (s IndexNotReadyException) RequestID() string {
 
 // An unexpected error has occurred.
 type InternalException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -32244,8 +32244,8 @@ func (s InternalException) RequestID() string {
 
 // An unexpected error has occurred.
 type InternalFailureException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -32301,8 +32301,8 @@ func (s InternalFailureException) RequestID() string {
 
 // The aggregation is invalid.
 type InvalidAggregationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -32357,8 +32357,8 @@ func (s InvalidAggregationException) RequestID() string {
 
 // The query is invalid.
 type InvalidQueryException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -32414,8 +32414,8 @@ func (s InvalidQueryException) RequestID() string {
 
 // The request is not valid.
 type InvalidRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -32471,8 +32471,8 @@ func (s InvalidRequestException) RequestID() string {
 
 // The response is invalid.
 type InvalidResponseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -32530,8 +32530,8 @@ func (s InvalidResponseException) RequestID() string {
 // a job or a job execution which is "IN_PROGRESS" without setting the force
 // parameter.
 type InvalidStateTransitionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -33600,8 +33600,8 @@ func (s *LambdaAction) SetFunctionArn(v string) *LambdaAction {
 
 // A limit has been exceeded.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -38358,8 +38358,8 @@ func (s *LoggingOptionsPayload) SetRoleArn(v string) *LoggingOptionsPayload {
 
 // The policy documentation is not valid.
 type MalformedPolicyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -38778,8 +38778,8 @@ func (s *NonCompliantResource) SetResourceType(v string) *NonCompliantResource {
 
 // The resource is not configured.
 type NotConfiguredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -40056,8 +40056,8 @@ func (s *RegisterThingOutput) SetResourceArns(v map[string]*string) *RegisterThi
 
 // The registration code is invalid.
 type RegistrationCodeValidationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Additional information about the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -40605,8 +40605,8 @@ func (s *RepublishAction) SetTopic(v string) *RepublishAction {
 
 // The resource already exists.
 type ResourceAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -40785,8 +40785,8 @@ func (s *ResourceIdentifier) SetRoleAliasArn(v string) *ResourceIdentifier {
 
 // The specified resource does not exist.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -40842,8 +40842,8 @@ func (s ResourceNotFoundException) RequestID() string {
 
 // The resource registration failed.
 type ResourceRegistrationFailureException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -41544,8 +41544,8 @@ func (s *ServerCertificateSummary) SetServerCertificateStatusDetail(v string) *S
 
 // The service is temporarily unavailable.
 type ServiceUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -42107,8 +42107,8 @@ func (s *SnsAction) SetTargetArn(v string) *SnsAction {
 
 // The Rule-SQL expression can't be parsed correctly.
 type SqlParseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -43150,8 +43150,8 @@ func (s TagResourceOutput) GoString() string {
 // This exception occurs if you attempt to start a task with the same task-id
 // as an existing task but with a different clientRequestToken.
 type TaskAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -44210,8 +44210,8 @@ func (s *ThingTypeProperties) SetThingTypeDescription(v string) *ThingTypeProper
 
 // The rate exceeds the limit.
 type ThrottlingException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -44783,8 +44783,8 @@ func (s *TopicRulePayload) SetSql(v string) *TopicRulePayload {
 // You can't revert the certificate transfer because the transfer is already
 // complete.
 type TransferAlreadyCompletedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -44934,8 +44934,8 @@ func (s *TransferCertificateOutput) SetTransferredCertificateArn(v string) *Tran
 // You can't transfer the certificate because authorization policies are still
 // attached.
 type TransferConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -45051,8 +45051,8 @@ func (s *TransferData) SetTransferMessage(v string) *TransferData {
 
 // You are not authorized to perform this operation.
 type UnauthorizedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -47427,8 +47427,8 @@ func (s *ValidationError) SetErrorMessage(v string) *ValidationError {
 // An exception thrown when the version of an entity specified with the expectedVersion
 // parameter does not match the latest version in the system.
 type VersionConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -47484,8 +47484,8 @@ func (s VersionConflictException) RequestID() string {
 
 // The number of policy versions exceeds the limit.
 type VersionsLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message for the exception.
 	Message_ *string `locationName:"message" type:"string"`

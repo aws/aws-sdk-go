@@ -831,8 +831,8 @@ func (c *Textract) StartDocumentTextDetectionWithContext(ctx aws.Context, input 
 
 // You aren't authorized to perform the action.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1018,8 +1018,8 @@ func (s *AnalyzeDocumentOutput) SetHumanLoopActivationOutput(v *HumanLoopActivat
 
 // Amazon Textract isn't able to read the document.
 type BadDocumentException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1589,8 +1589,8 @@ func (s *DocumentMetadata) SetPages(v int64) *DocumentMetadata {
 // size for synchronous operations 5 MB. The maximum document size for asynchronous
 // operations is 500 MB for PDF files.
 type DocumentTooLargeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2121,8 +2121,8 @@ func (s *HumanLoopDataAttributes) SetContentClassifiers(v []*string) *HumanLoopD
 // Indicates you have exceeded the maximum number of active human in the loop
 // workflows available
 type HumanLoopQuotaExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -2185,8 +2185,8 @@ func (s HumanLoopQuotaExceededException) RequestID() string {
 // least one of the other input parameters is different from the previous call
 // to the operation.
 type IdempotentParameterMismatchException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2241,8 +2241,8 @@ func (s IdempotentParameterMismatchException) RequestID() string {
 
 // Amazon Textract experienced a service issue. Try your call again.
 type InternalServerError struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2297,8 +2297,8 @@ func (s InternalServerError) RequestID() string {
 
 // An invalid job identifier was passed to GetDocumentAnalysis or to GetDocumentAnalysis.
 type InvalidJobIdException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2356,8 +2356,8 @@ func (s InvalidJobIdException) RequestID() string {
 // or Bytes values are supplied in the Document request parameter. Validate
 // your parameter before calling the API operation again.
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2413,8 +2413,8 @@ func (s InvalidParameterException) RequestID() string {
 // Amazon Textract is unable to access the S3 object that's specified in the
 // request.
 type InvalidS3ObjectException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2473,8 +2473,8 @@ func (s InvalidS3ObjectException) RequestID() string {
 // 400) until the number of concurrently running jobs is below the Amazon Textract
 // service limit.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2632,8 +2632,8 @@ func (s *Point) SetY(v float64) *Point {
 // The number of requests exceeded your throughput limit. If you want to increase
 // this limit, contact Amazon Textract.
 type ProvisionedThroughputExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3048,8 +3048,8 @@ func (s *StartDocumentTextDetectionOutput) SetJobId(v string) *StartDocumentText
 // Amazon Textract is temporarily unable to process the request. Try your call
 // again.
 type ThrottlingException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3106,8 +3106,8 @@ func (s ThrottlingException) RequestID() string {
 // operations can be in PNG or JPEG format. Documents for asynchronous operations
 // can also be in PDF format.
 type UnsupportedDocumentException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

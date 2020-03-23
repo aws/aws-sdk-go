@@ -4290,8 +4290,8 @@ func (s ImportServerCatalogOutput) GoString() string {
 
 // An internal error occurred.
 type InternalError struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4346,8 +4346,8 @@ func (s InternalError) RequestID() string {
 
 // A specified parameter is not valid.
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4556,8 +4556,8 @@ func (s *ListAppsOutput) SetNextToken(v string) *ListAppsOutput {
 
 // A required parameter is missing.
 type MissingRequiredParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4612,8 +4612,8 @@ func (s MissingRequiredParameterException) RequestID() string {
 
 // There are no connectors available.
 type NoConnectorsAvailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4668,8 +4668,8 @@ func (s NoConnectorsAvailableException) RequestID() string {
 
 // This operation is not allowed.
 type OperationNotPermittedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5017,8 +5017,8 @@ func (s *ReplicationJob) SetVmServer(v *VmServer) *ReplicationJob {
 
 // The specified replication job already exists.
 type ReplicationJobAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5073,8 +5073,8 @@ func (s ReplicationJobAlreadyExistsException) RequestID() string {
 
 // The specified replication job does not exist.
 type ReplicationJobNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5257,8 +5257,8 @@ func (s *ReplicationRun) SetType(v string) *ReplicationRun {
 // You have exceeded the number of on-demand replication runs you can request
 // in a 24-hour period.
 type ReplicationRunLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5439,8 +5439,8 @@ func (s *Server) SetVmServer(v *VmServer) *Server {
 
 // The specified server cannot be replicated.
 type ServerCannotBeReplicatedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6009,8 +6009,8 @@ func (s *Tag) SetValue(v string) *Tag {
 
 // The service is temporarily unavailable.
 type TemporarilyUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6103,8 +6103,8 @@ func (s TerminateAppOutput) GoString() string {
 // You lack permissions needed to perform this operation. Check your IAM policies,
 // and ensure that you are using the correct access keys.
 type UnauthorizedOperationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

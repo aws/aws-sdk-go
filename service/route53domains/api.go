@@ -3003,8 +3003,8 @@ func (s *DisableDomainTransferLockOutput) SetOperationId(v string) *DisableDomai
 
 // The number of domains has exceeded the allowed threshold for the account.
 type DomainLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The number of domains has exceeded the allowed threshold for the account.
 	Message_ *string `locationName:"message" type:"string"`
@@ -3233,8 +3233,8 @@ func (s *DomainTransferability) SetTransferable(v string) *DomainTransferability
 
 // The request is already in progress for the domain.
 type DuplicateRequest struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The request is already in progress for the domain.
 	Message_ *string `locationName:"message" type:"string"`
@@ -4054,8 +4054,8 @@ func (s *GetOperationDetailOutput) SetType(v string) *GetOperationDetailOutput {
 // might refer to the ID of an operation that is already completed. For a domain
 // name, it might not be a valid domain name or belong to the requester account.
 type InvalidInput struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The requested item is not acceptable. For example, for an OperationId it
 	// might refer to the ID of an operation that is already completed. For a domain
@@ -4401,8 +4401,8 @@ func (s *Nameserver) SetName(v string) *Nameserver {
 // The number of operations or jobs running exceeded the allowed threshold for
 // the account.
 type OperationLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The number of operations or jobs running exceeded the allowed threshold for
 	// the account.
@@ -4967,8 +4967,8 @@ func (s *RetrieveDomainAuthCodeOutput) SetAuthCode(v string) *RetrieveDomainAuth
 
 // The top-level domain does not support this operation.
 type TLDRulesViolation struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The top-level domain does not support this operation.
 	Message_ *string `locationName:"message" type:"string"`
@@ -5309,8 +5309,8 @@ func (s *TransferDomainOutput) SetOperationId(v string) *TransferDomainOutput {
 
 // Amazon Route 53 does not support this top-level domain (TLD).
 type UnsupportedTLD struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Amazon Route 53 does not support this top-level domain (TLD).
 	Message_ *string `locationName:"message" type:"string"`

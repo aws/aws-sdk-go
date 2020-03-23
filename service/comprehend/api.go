@@ -5960,8 +5960,8 @@ func (s *BatchItemError) SetIndex(v int64) *BatchItemError {
 // The number of documents in the request exceeds the limit of 25. Try your
 // request again with fewer documents.
 type BatchSizeLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -6275,8 +6275,8 @@ func (s *ClassifyDocumentOutput) SetLabels(v []*DocumentLabel) *ClassifyDocument
 // Concurrent modification of the tags associated with an Amazon Comprehend
 // resource is not supported.
 type ConcurrentModificationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -9973,8 +9973,8 @@ func (s *InputDataConfig) SetS3Uri(v string) *InputDataConfig {
 
 // An internal server error occurred. Retry your request.
 type InternalServerException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -10029,8 +10029,8 @@ func (s InternalServerException) RequestID() string {
 
 // The filter specified for the operation is invalid. Specify a different filter.
 type InvalidFilterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -10085,8 +10085,8 @@ func (s InvalidFilterException) RequestID() string {
 
 // The request is invalid.
 type InvalidRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -10141,8 +10141,8 @@ func (s InvalidRequestException) RequestID() string {
 
 // The specified job was not found. Check the job ID and try again.
 type JobNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -10463,8 +10463,8 @@ func (s *KeyPhrasesDetectionJobProperties) SetVpcConfig(v *VpcConfig) *KeyPhrase
 // The KMS customer managed key (CMK) entered cannot be validated. Verify the
 // key and re-enter it.
 type KmsKeyValidationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -11548,8 +11548,8 @@ func (s *PartOfSpeechTag) SetTag(v string) *PartOfSpeechTag {
 // The specified name is already in use. Use a different name and try your request
 // again.
 type ResourceInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -11605,8 +11605,8 @@ func (s ResourceInUseException) RequestID() string {
 // The maximum number of recognizers per account has been exceeded. Review the
 // recognizers, perform cleanup, and then try your request again.
 type ResourceLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -11662,8 +11662,8 @@ func (s ResourceLimitExceededException) RequestID() string {
 // The specified resource ARN was not found. Check the ARN and try your request
 // again.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -11719,8 +11719,8 @@ func (s ResourceNotFoundException) RequestID() string {
 // The specified resource is not available. Check to see if the resource is
 // in the TRAINED state and try your request again.
 type ResourceUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -13818,8 +13818,8 @@ func (s TagResourceOutput) GoString() string {
 
 // The size of the input text exceeds the limit. Use a smaller document.
 type TextSizeLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -13874,8 +13874,8 @@ func (s TextSizeLimitExceededException) RequestID() string {
 
 // The number of requests exceeds the limit. Resubmit your request later.
 type TooManyRequestsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -13931,8 +13931,8 @@ func (s TooManyRequestsException) RequestID() string {
 // The request contains more tag keys than can be associated with a resource
 // (50 tag keys per resource).
 type TooManyTagKeysException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -13989,8 +13989,8 @@ func (s TooManyTagKeysException) RequestID() string {
 // tags per resource). The maximum number of tags includes both existing tags
 // and those included in your current request.
 type TooManyTagsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -14255,8 +14255,8 @@ func (s *TopicsDetectionJobProperties) SetVpcConfig(v *VpcConfig) *TopicsDetecti
 // Comprehend accepts text in all supported languages. For a list of supported
 // languages, see supported-languages.
 type UnsupportedLanguageException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }

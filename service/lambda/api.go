@@ -5780,8 +5780,8 @@ func (s *AliasRoutingConfiguration) SetAdditionalVersionWeights(v map[string]*fl
 
 // You have exceeded your maximum total code size per account. Learn more (https://docs.aws.amazon.com/lambda/latest/dg/limits.html)
 type CodeStorageExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -6924,8 +6924,8 @@ func (s *DestinationConfig) SetOnSuccess(v *OnSuccess) *DestinationConfig {
 
 // Need additional permissions to configure VPC settings.
 type EC2AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -6983,8 +6983,8 @@ func (s EC2AccessDeniedException) RequestID() string {
 // AWS Lambda was throttled by Amazon EC2 during Lambda function initialization
 // using the execution role provided for the Lambda function.
 type EC2ThrottledException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -7042,8 +7042,8 @@ func (s EC2ThrottledException) RequestID() string {
 // AWS Lambda received an unexpected EC2 client exception while setting up for
 // the Lambda function.
 type EC2UnexpectedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	EC2ErrorCode *string `type:"string"`
 
@@ -7104,8 +7104,8 @@ func (s EC2UnexpectedException) RequestID() string {
 // specified as part of Lambda function configuration, because the limit for
 // network interfaces has been reached.
 type ENILimitReachedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -8973,8 +8973,8 @@ func (s *GetProvisionedConcurrencyConfigOutput) SetStatusReason(v string) *GetPr
 
 // One of the parameters in the request is invalid.
 type InvalidParameterValueException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The exception message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -9033,8 +9033,8 @@ func (s InvalidParameterValueException) RequestID() string {
 
 // The request body could not be parsed as JSON.
 type InvalidRequestContentException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The exception message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -9093,8 +9093,8 @@ func (s InvalidRequestContentException) RequestID() string {
 
 // The runtime or runtime version specified is not supported.
 type InvalidRuntimeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -9152,8 +9152,8 @@ func (s InvalidRuntimeException) RequestID() string {
 // The Security Group ID provided in the Lambda function VPC configuration is
 // invalid.
 type InvalidSecurityGroupIDException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -9210,8 +9210,8 @@ func (s InvalidSecurityGroupIDException) RequestID() string {
 
 // The Subnet ID provided in the Lambda function VPC configuration is invalid.
 type InvalidSubnetIDException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -9268,8 +9268,8 @@ func (s InvalidSubnetIDException) RequestID() string {
 
 // AWS Lambda could not unzip the deployment package.
 type InvalidZipFileException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -9598,8 +9598,8 @@ func (s *InvokeOutput) SetStatusCode(v int64) *InvokeOutput {
 // Lambda was unable to decrypt the environment variables because KMS access
 // was denied. Check the Lambda function's KMS permissions.
 type KMSAccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -9657,8 +9657,8 @@ func (s KMSAccessDeniedException) RequestID() string {
 // Lambda was unable to decrypt the environment variables because the KMS key
 // used is disabled. Check the Lambda function's KMS key settings.
 type KMSDisabledException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -9716,8 +9716,8 @@ func (s KMSDisabledException) RequestID() string {
 // Lambda was unable to decrypt the environment variables because the KMS key
 // used is in an invalid state for Decrypt. Check the function's KMS key settings.
 type KMSInvalidStateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -9775,8 +9775,8 @@ func (s KMSInvalidStateException) RequestID() string {
 // Lambda was unable to decrypt the environment variables because the KMS key
 // was not found. Check the function's KMS key settings.
 type KMSNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -11048,8 +11048,8 @@ func (s *OnSuccess) SetDestination(v string) *OnSuccess {
 
 // The permissions policy for the resource is too large. Learn more (https://docs.aws.amazon.com/lambda/latest/dg/limits.html)
 type PolicyLengthExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -11108,8 +11108,8 @@ func (s PolicyLengthExceededException) RequestID() string {
 // function or alias. Call the GetFunction or the GetAlias API to retrieve the
 // latest RevisionId for your resource.
 type PreconditionFailedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The exception message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -11249,8 +11249,8 @@ func (s *ProvisionedConcurrencyConfigListItem) SetStatusReason(v string) *Provis
 
 // The specified configuration does not exist.
 type ProvisionedConcurrencyConfigNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -12199,8 +12199,8 @@ func (s RemovePermissionOutput) GoString() string {
 // The request payload exceeded the Invoke request body JSON input limit. For
 // more information, see Limits (https://docs.aws.amazon.com/lambda/latest/dg/limits.html).
 type RequestTooLargeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -12257,8 +12257,8 @@ func (s RequestTooLargeException) RequestID() string {
 
 // The resource already exists, or another operation is in progress.
 type ResourceConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The exception message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -12319,8 +12319,8 @@ func (s ResourceConflictException) RequestID() string {
 // attempted to update an EventSource Mapping in CREATING, or tried to delete
 // a EventSource mapping currently in the UPDATING state.
 type ResourceInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -12377,8 +12377,8 @@ func (s ResourceInUseException) RequestID() string {
 
 // The resource specified in the request does not exist.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -12436,8 +12436,8 @@ func (s ResourceNotFoundException) RequestID() string {
 // The function is inactive and its VPC connection is no longer available. Wait
 // for the VPC connection to reestablish and try again.
 type ResourceNotReadyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The exception message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -12496,8 +12496,8 @@ func (s ResourceNotReadyException) RequestID() string {
 
 // The AWS Lambda service encountered an internal error.
 type ServiceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -12555,8 +12555,8 @@ func (s ServiceException) RequestID() string {
 // AWS Lambda was not able to set up VPC access for the Lambda function because
 // one or more configured subnets has no available IP addresses.
 type SubnetIPAddressLimitReachedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -12682,8 +12682,8 @@ func (s TagResourceOutput) GoString() string {
 
 // The request throughput limit was exceeded.
 type TooManyRequestsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -12794,8 +12794,8 @@ func (s *TracingConfigResponse) SetMode(v string) *TracingConfigResponse {
 
 // The content type of the Invoke request body is not JSON.
 type UnsupportedMediaTypeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 

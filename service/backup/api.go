@@ -4917,8 +4917,8 @@ func (c *Backup) UpdateRecoveryPointLifecycleWithContext(ctx aws.Context, input 
 
 // The required resource already exists.
 type AlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Arn *string `type:"string"`
 
@@ -6092,8 +6092,8 @@ func (s DeleteRecoveryPointOutput) GoString() string {
 // A dependent AWS service or resource returned an error to the AWS Backup service,
 // and the action cannot be completed.
 type DependencyFailureException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -7900,8 +7900,8 @@ func (s *GetSupportedResourceTypesOutput) SetResourceTypes(v []*string) *GetSupp
 // Indicates that something is wrong with a parameter's value. For example,
 // the value is out of range.
 type InvalidParameterValueException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -7963,8 +7963,8 @@ func (s InvalidParameterValueException) RequestID() string {
 // Indicates that something is wrong with the input to the request. For example,
 // a parameter is of the wrong type.
 type InvalidRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -8263,8 +8263,8 @@ func (s *Lifecycle) SetMoveToColdStorageAfterDays(v int64) *Lifecycle {
 // A limit in the request has been exceeded; for example, a maximum number of
 // items allowed in a request.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -9615,8 +9615,8 @@ func (s *ListTagsOutput) SetTags(v map[string]*string) *ListTagsOutput {
 
 // Indicates that a required parameter is missing.
 type MissingParameterValueException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -10441,8 +10441,8 @@ func (s *RecoveryPointCreator) SetBackupRuleId(v string) *RecoveryPointCreator {
 
 // A resource that is required for the action doesn't exist.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string"`
 
@@ -11033,8 +11033,8 @@ func (s *SelectionsListMember) SetSelectionName(v string) *SelectionsListMember 
 
 // The request failed due to a temporary failure of the server.
 type ServiceUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"Code" type:"string"`
 

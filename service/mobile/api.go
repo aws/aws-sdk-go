@@ -1020,8 +1020,8 @@ func (c *Mobile) UpdateProjectWithContext(ctx aws.Context, input *UpdateProjectI
 
 // Account Action is required in order to continue the request.
 type AccountActionRequiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The Exception Error Message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -1078,8 +1078,8 @@ func (s AccountActionRequiredException) RequestID() string {
 // The request cannot be processed because some parameter is not valid or the
 // project state prevents the operation from being performed.
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The Exception Error Message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -1678,8 +1678,8 @@ func (s *ExportProjectOutput) SetSnapshotId(v string) *ExportProjectOutput {
 // The service has encountered an unexpected error condition which prevents
 // it from servicing the request.
 type InternalFailureException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The Exception Error Message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -1738,8 +1738,8 @@ func (s InternalFailureException) RequestID() string {
 // create another sub-account using AWS Organizations or remove some resources
 // and retry your request.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The Exception Error Message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -1937,8 +1937,8 @@ func (s *ListProjectsOutput) SetProjects(v []*ProjectSummary) *ListProjectsOutpu
 
 // No entity can be found with the specified identifier.
 type NotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The Exception Error Message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -2176,8 +2176,8 @@ func (s *Resource) SetType(v string) *Resource {
 // The service is temporarily unavailable. The request should be retried after
 // some time delay.
 type ServiceUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The Exception Error Message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -2237,8 +2237,8 @@ func (s ServiceUnavailableException) RequestID() string {
 // Too many requests have been received for this AWS account in too short a
 // time. The request should be retried after some time delay.
 type TooManyRequestsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The Exception Error Message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -2297,8 +2297,8 @@ func (s TooManyRequestsException) RequestID() string {
 
 // Credentials of the caller are insufficient to authorize the request.
 type UnauthorizedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The Exception Error Message.
 	Message_ *string `locationName:"message" type:"string"`

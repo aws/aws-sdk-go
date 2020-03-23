@@ -1673,8 +1673,8 @@ func (c *CognitoSync) UpdateRecordsWithContext(ctx aws.Context, input *UpdateRec
 // An exception thrown when a bulk publish operation is requested less than
 // 24 hours after a previous bulk publish operation completed successfully.
 type AlreadyStreamedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message associated with the AlreadyStreamedException exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -1863,8 +1863,8 @@ func (s *CognitoStreams) SetStreamingStatus(v string) *CognitoStreams {
 
 // Thrown if there are parallel requests to modify a resource.
 type ConcurrentModificationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned by a ConcurrentModicationException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -2372,8 +2372,8 @@ func (s *DescribeIdentityUsageOutput) SetIdentityUsage(v *IdentityUsage) *Descri
 // An exception thrown when there is an IN_PROGRESS bulk publish operation for
 // the given identity pool.
 type DuplicateRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message associated with the DuplicateRequestException exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -2811,8 +2811,8 @@ func (s *IdentityUsage) SetLastModifiedDate(v time.Time) *IdentityUsage {
 
 // Indicates an internal service error.
 type InternalErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Message returned by InternalErrorException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -2867,8 +2867,8 @@ func (s InternalErrorException) RequestID() string {
 }
 
 type InvalidConfigurationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Message returned by InvalidConfigurationException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -2924,8 +2924,8 @@ func (s InvalidConfigurationException) RequestID() string {
 
 // The AWS Lambda function returned invalid output or an exception.
 type InvalidLambdaFunctionOutputException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message returned when an InvalidLambdaFunctionOutputException occurs
 	Message_ *string `locationName:"message" type:"string"`
@@ -2981,8 +2981,8 @@ func (s InvalidLambdaFunctionOutputException) RequestID() string {
 
 // Thrown when a request parameter does not comply with the associated constraints.
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Message returned by InvalidParameterException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -3038,8 +3038,8 @@ func (s InvalidParameterException) RequestID() string {
 
 // AWS Lambda throttled your account, please contact AWS Support
 type LambdaThrottledException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message returned when an LambdaThrottledException is thrown
 	Message_ *string `locationName:"message" type:"string"`
@@ -3095,8 +3095,8 @@ func (s LambdaThrottledException) RequestID() string {
 
 // Thrown when the limit on the number of objects or operations has been exceeded.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Message returned by LimitExceededException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -3568,8 +3568,8 @@ func (s *ListRecordsOutput) SetSyncSessionToken(v string) *ListRecordsOutput {
 
 // Thrown when a user is not authorized to access the requested resource.
 type NotAuthorizedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned by a NotAuthorizedException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -3942,8 +3942,8 @@ func (s *RegisterDeviceOutput) SetDeviceId(v string) *RegisterDeviceOutput {
 // Thrown if an update can't be applied because the resource was changed by
 // another call and this would result in a conflict.
 type ResourceConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned by a ResourceConflictException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -3999,8 +3999,8 @@ func (s ResourceConflictException) RequestID() string {
 
 // Thrown if the resource doesn't exist.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Message returned by a ResourceNotFoundException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -4350,8 +4350,8 @@ func (s SubscribeToDatasetOutput) GoString() string {
 
 // Thrown if the request is throttled.
 type TooManyRequestsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Message returned by a TooManyRequestsException.
 	Message_ *string `locationName:"message" type:"string"`

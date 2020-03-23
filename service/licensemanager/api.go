@@ -1545,8 +1545,8 @@ func (c *LicenseManager) UpdateServiceSettingsWithContext(ctx aws.Context, input
 
 // Access to resource denied.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1602,8 +1602,8 @@ func (s AccessDeniedException) RequestID() string {
 // The AWS user account does not have permission to perform the action. Check
 // the IAM policy associated with this account.
 type AuthorizationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1918,8 +1918,8 @@ func (s DeleteLicenseConfigurationOutput) GoString() string {
 
 // A dependency required to run the API is missing.
 type FailedDependencyException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2009,8 +2009,8 @@ func (s *Filter) SetValues(v []*string) *Filter {
 
 // The request uses too many filters or too many filter values.
 type FilterLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2337,8 +2337,8 @@ func (s *GetServiceSettingsOutput) SetSnsTopicArn(v string) *GetServiceSettingsO
 
 // One or more parameter values are not valid.
 type InvalidParameterValueException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2396,8 +2396,8 @@ func (s InvalidParameterValueException) RequestID() string {
 // For example, you cannot allocate a license to an instance in the process
 // of shutting down.
 type InvalidResourceStateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2915,8 +2915,8 @@ func (s *LicenseSpecification) SetLicenseConfigurationArn(v string) *LicenseSpec
 
 // You do not have enough licenses available to support a new resource launch.
 type LicenseUsageException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3858,8 +3858,8 @@ func (s *ProductInformationFilter) SetProductInformationFilterValue(v []*string)
 
 // Too many requests have been submitted. Try again after a brief wait.
 type RateLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3983,8 +3983,8 @@ func (s *ResourceInventory) SetResourceType(v string) *ResourceInventory {
 
 // Your resource limits have been exceeded.
 type ResourceLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4039,8 +4039,8 @@ func (s ResourceLimitExceededException) RequestID() string {
 
 // The server experienced an internal error. Try again.
 type ServerInternalException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

@@ -11767,8 +11767,8 @@ func (s *Authorizer) SetType(v string) *Authorizer {
 // The submitted request is not valid, for example, the input is incomplete
 // or incorrect. See the accompanying error message for details.
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12004,8 +12004,8 @@ func (s *ClientCertificate) SetTags(v map[string]*string) *ClientCertificate {
 // The request configuration has conflicts. For details, see the accompanying
 // error message.
 type ConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -20283,8 +20283,8 @@ func (s *IntegrationResponse) SetStatusCode(v string) *IntegrationResponse {
 
 // The request exceeded the rate limit. Retry after the specified time period.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -20930,8 +20930,8 @@ func (s *Model) SetSchema(v string) *Model {
 
 // The requested resource is not found. Make sure that the request URI is correct.
 type NotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -22395,8 +22395,8 @@ func (s *SdkType) SetId(v string) *SdkType {
 // The requested service is not available. For details see the accompanying
 // error message. Retry after the specified time period.
 type ServiceUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -23178,8 +23178,8 @@ func (s *ThrottleSettings) SetRateLimit(v float64) *ThrottleSettings {
 // The request has reached its throttling limit. Retry after the specified time
 // period.
 type TooManyRequestsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -23236,8 +23236,8 @@ func (s TooManyRequestsException) RequestID() string {
 
 // The request is denied because the caller has insufficient permissions.
 type UnauthorizedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

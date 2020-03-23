@@ -2275,8 +2275,8 @@ func (c *Kafka) UpdateMonitoringWithContext(ctx aws.Context, input *UpdateMonito
 
 // Returns information about an error.
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	InvalidParameter *string `locationName:"invalidParameter" type:"string"`
 
@@ -3193,8 +3193,8 @@ func (s *ConfigurationRevision) SetRevision(v int64) *ConfigurationRevision {
 
 // Returns information about an error.
 type ConflictException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	InvalidParameter *string `locationName:"invalidParameter" type:"string"`
 
@@ -4286,8 +4286,8 @@ func (s *Firehose) SetEnabled(v bool) *Firehose {
 
 // Returns information about an error.
 type ForbiddenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	InvalidParameter *string `locationName:"invalidParameter" type:"string"`
 
@@ -4418,8 +4418,8 @@ func (s *GetBootstrapBrokersOutput) SetBootstrapBrokerStringTls(v string) *GetBo
 
 // Returns information about an error.
 type InternalServerErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	InvalidParameter *string `locationName:"invalidParameter" type:"string"`
 
@@ -5408,8 +5408,8 @@ func (s *NodeInfo) SetZookeeperNodeInfo(v *ZookeeperNodeInfo) *NodeInfo {
 
 // Returns information about an error.
 type NotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	InvalidParameter *string `locationName:"invalidParameter" type:"string"`
 
@@ -5679,8 +5679,8 @@ func (s *S3) SetPrefix(v string) *S3 {
 
 // Returns information about an error.
 type ServiceUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	InvalidParameter *string `locationName:"invalidParameter" type:"string"`
 
@@ -5868,8 +5868,8 @@ func (s *Tls) SetCertificateAuthorityArnList(v []*string) *Tls {
 
 // Returns information about an error.
 type TooManyRequestsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	InvalidParameter *string `locationName:"invalidParameter" type:"string"`
 
@@ -5926,8 +5926,8 @@ func (s TooManyRequestsException) RequestID() string {
 
 // Returns information about an error.
 type UnauthorizedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	InvalidParameter *string `locationName:"invalidParameter" type:"string"`
 

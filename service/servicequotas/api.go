@@ -2008,8 +2008,8 @@ func (c *ServiceQuotas) RequestServiceQuotaIncreaseWithContext(ctx aws.Context, 
 // The action you attempted is not allowed unless Service Access with Service
 // Quotas is enabled in your organization. To enable, call AssociateServiceQuotaTemplate.
 type AWSServiceAccessNotEnabledException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2064,8 +2064,8 @@ func (s AWSServiceAccessNotEnabledException) RequestID() string {
 
 // You do not have sufficient access to perform this action.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2237,8 +2237,8 @@ func (s DeleteServiceQuotaIncreaseRequestFromTemplateOutput) GoString() string {
 
 // You can't perform this action because a dependency does not have access.
 type DependencyAccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2731,8 +2731,8 @@ func (s *GetServiceQuotaOutput) SetQuota(v *ServiceQuota) *GetServiceQuotaOutput
 
 // Invalid input was provided.
 type IllegalArgumentException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2787,8 +2787,8 @@ func (s IllegalArgumentException) RequestID() string {
 
 // Invalid input was provided.
 type InvalidPaginationTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2843,8 +2843,8 @@ func (s InvalidPaginationTokenException) RequestID() string {
 
 // Invalid input was provided for the .
 type InvalidResourceStateException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3638,8 +3638,8 @@ func (s *MetricInfo) SetMetricStatisticRecommendation(v string) *MetricInfo {
 
 // The account making this call is not a member of an organization.
 type NoAvailableOrganizationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3694,8 +3694,8 @@ func (s NoAvailableOrganizationException) RequestID() string {
 
 // The specified resource does not exist.
 type NoSuchResourceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3751,8 +3751,8 @@ func (s NoSuchResourceException) RequestID() string {
 // The organization that your account belongs to, is not in All Features mode.
 // To enable all features mode, see EnableAllFeatures (https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnableAllFeatures.html).
 type OrganizationNotInAllFeaturesModeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3921,8 +3921,8 @@ func (s *PutServiceQuotaIncreaseRequestIntoTemplateOutput) SetServiceQuotaIncrea
 // some of the relevant resources, or use Service Quotas to request a service
 // quota increase.
 type QuotaExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4248,8 +4248,8 @@ func (s *RequestedServiceQuotaChange) SetUnit(v string) *RequestedServiceQuotaCh
 
 // The specified resource already exists.
 type ResourceAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4304,8 +4304,8 @@ func (s ResourceAlreadyExistsException) RequestID() string {
 
 // Something went wrong.
 type ServiceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4609,8 +4609,8 @@ func (s *ServiceQuotaIncreaseRequestInTemplate) SetUnit(v string) *ServiceQuotaI
 //
 // To use the template, call AssociateServiceQuotaTemplate.
 type ServiceQuotaTemplateNotInUseException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4666,8 +4666,8 @@ func (s ServiceQuotaTemplateNotInUseException) RequestID() string {
 // The Service Quotas template is not available in the Region where you are
 // making the request. Please make the request in us-east-1.
 type TemplatesNotAvailableInRegionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4723,8 +4723,8 @@ func (s TemplatesNotAvailableInRegionException) RequestID() string {
 // Due to throttling, the request was denied. Slow down the rate of request
 // calls, or request an increase for this quota.
 type TooManyRequestsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

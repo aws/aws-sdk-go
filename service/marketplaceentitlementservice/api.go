@@ -343,8 +343,8 @@ func (s *GetEntitlementsOutput) SetNextToken(v string) *GetEntitlementsOutput {
 // An internal error has occurred. Retry your request. If the problem persists,
 // post a message with details on the AWS forums.
 type InternalServiceErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -399,8 +399,8 @@ func (s InternalServiceErrorException) RequestID() string {
 
 // One or more parameters in your request was invalid.
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -455,8 +455,8 @@ func (s InvalidParameterException) RequestID() string {
 
 // The calls to the GetEntitlements API are throttled.
 type ThrottlingException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

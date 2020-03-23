@@ -1772,8 +1772,8 @@ func (s *ActiveDirectoryBackupAttributes) SetDomainName(v string) *ActiveDirecto
 
 // An Active Directory error.
 type ActiveDirectoryError struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The directory ID of the directory that an error pertains to.
 	//
@@ -1991,8 +1991,8 @@ func (s *BackupFailureDetails) SetMessage(v string) *BackupFailureDetails {
 // Another backup is already under way. Wait for completion before initiating
 // additional backups of this file system.
 type BackupInProgress struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -2048,8 +2048,8 @@ func (s BackupInProgress) RequestID() string {
 
 // No Amazon FSx backups were found based upon the supplied parameters.
 type BackupNotFound struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -2105,8 +2105,8 @@ func (s BackupNotFound) RequestID() string {
 
 // You can't delete a backup while it's being used to restore a file system.
 type BackupRestoring struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The ID of a file system being restored from the backup.
 	FileSystemId *string `min:"11" type:"string"`
@@ -2165,8 +2165,8 @@ func (s BackupRestoring) RequestID() string {
 
 // A generic error indicating a failure with a client request.
 type BadRequest struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -3538,8 +3538,8 @@ func (s *DataRepositoryTask) SetType(v string) *DataRepositoryTask {
 // The data repository task could not be canceled because the task has already
 // ended.
 type DataRepositoryTaskEnded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -3596,8 +3596,8 @@ func (s DataRepositoryTaskEnded) RequestID() string {
 // An existing data repository task is currently executing on the file system.
 // Wait until the existing task has completed, then create the new task.
 type DataRepositoryTaskExecuting struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -3723,8 +3723,8 @@ func (s *DataRepositoryTaskFilter) SetValues(v []*string) *DataRepositoryTaskFil
 
 // The data repository task or tasks you specified could not be found.
 type DataRepositoryTaskNotFound struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -4666,8 +4666,8 @@ func (s *FileSystemFailureDetails) SetMessage(v string) *FileSystemFailureDetail
 
 // No Amazon FSx file systems were found based upon supplied parameters.
 type FileSystemNotFound struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -4760,8 +4760,8 @@ func (s *Filter) SetValues(v []*string) *Filter {
 // request token but different parameters settings. A client request token should
 // always uniquely identify a single request.
 type IncompatibleParameterError struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -4822,8 +4822,8 @@ func (s IncompatibleParameterError) RequestID() string {
 
 // A generic error indicating a server-side failure.
 type InternalServerError struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -4879,8 +4879,8 @@ func (s InternalServerError) RequestID() string {
 
 // The path provided for data repository export isn't valid.
 type InvalidExportPath struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -4936,8 +4936,8 @@ func (s InvalidExportPath) RequestID() string {
 
 // The path provided for data repository import isn't valid.
 type InvalidImportPath struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -4998,8 +4998,8 @@ func (s InvalidImportPath) RequestID() string {
 // of IDs for security groups that are either invalid or not part of the VPC
 // specified.
 type InvalidNetworkSettings struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The ID of your Amazon EC2 security group. This ID is used to control network
 	// access to the endpoint that Amazon FSx creates on your behalf in each subnet.
@@ -5068,8 +5068,8 @@ func (s InvalidNetworkSettings) RequestID() string {
 // An invalid value for PerUnitStorageThroughput was provided. Please create
 // your file system again, using a valid value.
 type InvalidPerUnitStorageThroughput struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -5299,8 +5299,8 @@ func (s *LustreFileSystemConfiguration) SetWeeklyMaintenanceStartTime(v string) 
 
 // A file system configuration is required for this operation.
 type MissingFileSystemConfiguration struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -5357,8 +5357,8 @@ func (s MissingFileSystemConfiguration) RequestID() string {
 // The resource specified for the tagging operation is not a resource type owned
 // by Amazon FSx. Use the API of the relevant service to perform the operation.
 type NotServiceResourceError struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -5419,8 +5419,8 @@ func (s NotServiceResourceError) RequestID() string {
 
 // The resource specified does not support tagging.
 type ResourceDoesNotSupportTagging struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -5481,8 +5481,8 @@ func (s ResourceDoesNotSupportTagging) RequestID() string {
 
 // The resource specified by the Amazon Resource Name (ARN) can't be found.
 type ResourceNotFound struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -5826,8 +5826,8 @@ func (s *SelfManagedActiveDirectoryConfigurationUpdates) SetUserName(v string) *
 // An error indicating that a particular service limit was exceeded. You can
 // increase some service limits by contacting AWS Support.
 type ServiceLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Enumeration of the service limit that was exceeded.
 	//
@@ -6024,8 +6024,8 @@ func (s TagResourceOutput) GoString() string {
 
 // The requested operation is not supported for this resource or API.
 type UnsupportedOperation struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`

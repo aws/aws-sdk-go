@@ -3971,8 +3971,8 @@ func (s *GetResourceSharesOutput) SetResourceShares(v []*ResourceShare) *GetReso
 // one of the other input parameters is different from the previous call to
 // the operation.
 type IdempotentParameterMismatchException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4027,8 +4027,8 @@ func (s IdempotentParameterMismatchException) RequestID() string {
 
 // A client token is not valid.
 type InvalidClientTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4083,8 +4083,8 @@ func (s InvalidClientTokenException) RequestID() string {
 
 // The specified value for MaxResults is not valid.
 type InvalidMaxResultsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4139,8 +4139,8 @@ func (s InvalidMaxResultsException) RequestID() string {
 
 // The specified value for NextToken is not valid.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4195,8 +4195,8 @@ func (s InvalidNextTokenException) RequestID() string {
 
 // A parameter is not valid.
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4251,8 +4251,8 @@ func (s InvalidParameterException) RequestID() string {
 
 // The specified resource type is not valid.
 type InvalidResourceTypeException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4307,8 +4307,8 @@ func (s InvalidResourceTypeException) RequestID() string {
 
 // The requested state transition is not valid.
 type InvalidStateTransitionException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4904,8 +4904,8 @@ func (s *ListResourcesOutput) SetResources(v []*Resource) *ListResourcesOutput {
 
 // The format of an Amazon Resource Name (ARN) is not valid.
 type MalformedArnException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4960,8 +4960,8 @@ func (s MalformedArnException) RequestID() string {
 
 // A required input parameter is missing.
 type MissingRequiredParameterException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5016,8 +5016,8 @@ func (s MissingRequiredParameterException) RequestID() string {
 
 // The requested operation is not permitted.
 type OperationNotPermittedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5363,8 +5363,8 @@ func (s *Resource) SetType(v string) *Resource {
 
 // An Amazon Resource Name (ARN) was not found.
 type ResourceArnNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5726,8 +5726,8 @@ func (s *ResourceShareInvitation) SetStatus(v string) *ResourceShareInvitation {
 
 // The invitation was already accepted.
 type ResourceShareInvitationAlreadyAcceptedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5782,8 +5782,8 @@ func (s ResourceShareInvitationAlreadyAcceptedException) RequestID() string {
 
 // The invitation was already rejected.
 type ResourceShareInvitationAlreadyRejectedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5838,8 +5838,8 @@ func (s ResourceShareInvitationAlreadyRejectedException) RequestID() string {
 
 // The Amazon Resource Name (ARN) for an invitation was not found.
 type ResourceShareInvitationArnNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5894,8 +5894,8 @@ func (s ResourceShareInvitationArnNotFoundException) RequestID() string {
 
 // The invitation is expired.
 type ResourceShareInvitationExpiredException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5950,8 +5950,8 @@ func (s ResourceShareInvitationExpiredException) RequestID() string {
 
 // The requested resource share exceeds the limit for your account.
 type ResourceShareLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6184,8 +6184,8 @@ func (s *ResourceSharePermissionSummary) SetVersion(v string) *ResourceSharePerm
 
 // The service could not respond to the request due to an internal problem.
 type ServerInternalException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6240,8 +6240,8 @@ func (s ServerInternalException) RequestID() string {
 
 // The service is not available.
 type ServiceUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6362,8 +6362,8 @@ func (s *TagFilter) SetTagValues(v []*string) *TagFilter {
 
 // The requested tags exceed the limit for your account.
 type TagLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6418,8 +6418,8 @@ func (s TagLimitExceededException) RequestID() string {
 
 // The specified tag is a reserved word and cannot be used.
 type TagPolicyViolationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6540,8 +6540,8 @@ func (s TagResourceOutput) GoString() string {
 
 // A specified resource was not found.
 type UnknownResourceException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }

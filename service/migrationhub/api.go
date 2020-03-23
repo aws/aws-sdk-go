@@ -2200,8 +2200,8 @@ func (c *MigrationHub) PutResourceAttributesWithContext(ctx aws.Context, input *
 
 // You do not have sufficient access to perform this action.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3101,8 +3101,8 @@ func (s *DiscoveredResource) SetDescription(v string) *DiscoveredResource {
 // Exception raised to indicate a successfully authorized action when the DryRun
 // flag is set to "true".
 type DryRunOperation struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3157,8 +3157,8 @@ func (s DryRunOperation) RequestID() string {
 
 // The home region is not set. Set the home region to continue.
 type HomeRegionNotSetException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3297,8 +3297,8 @@ func (s ImportMigrationTaskOutput) GoString() string {
 // Exception raised when an internal, configuration, or dependency error is
 // encountered.
 type InternalServerError struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3354,8 +3354,8 @@ func (s InternalServerError) RequestID() string {
 // Exception raised when the provided input violates a policy constraint or
 // is entered in the wrong format or data type.
 type InvalidInputException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4265,8 +4265,8 @@ func (s NotifyMigrationTaskStateOutput) GoString() string {
 // Service (Application Discovery Service); most likely due to a misconfigured
 // policy or the migrationhub-discovery role is missing or not configured correctly.
 type PolicyErrorException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4556,8 +4556,8 @@ func (s *ResourceAttribute) SetValue(v string) *ResourceAttribute {
 // exist in Application Discovery Service (Application Discovery Service) or
 // in Migration Hub's repository.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4613,8 +4613,8 @@ func (s ResourceNotFoundException) RequestID() string {
 // Exception raised when there is an internal, configuration, or dependency
 // error encountered.
 type ServiceUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4729,8 +4729,8 @@ func (s *Task) SetStatusDetail(v string) *Task {
 // Exception raised to indicate a request was not authorized when the DryRun
 // flag is set to "true".
 type UnauthorizedOperation struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

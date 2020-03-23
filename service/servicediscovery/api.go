@@ -2572,8 +2572,8 @@ func (s *CreateServiceOutput) SetService(v *Service) *CreateServiceOutput {
 // The health check for the instance that is specified by ServiceId and InstanceId
 // is not a custom health check.
 type CustomHealthNotFound struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3248,8 +3248,8 @@ func (s *DnsRecord) SetType(v string) *DnsRecord {
 
 // The operation is already in progress.
 type DuplicateRequest struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The ID of the operation that is already in progress.
 	DuplicateOperationId *string `type:"string"`
@@ -4151,8 +4151,8 @@ func (s *Instance) SetId(v string) *Instance {
 // No instance exists with the specified ID, or the instance was recently registered,
 // and information about the instance hasn't propagated yet.
 type InstanceNotFound struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4266,8 +4266,8 @@ func (s *InstanceSummary) SetId(v string) *InstanceSummary {
 // might be missing, a numeric value might be outside the allowed range, or
 // a string value might exceed length constraints.
 type InvalidInput struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4881,8 +4881,8 @@ func (s *Namespace) SetType(v string) *Namespace {
 
 // The namespace that you're trying to create already exists.
 type NamespaceAlreadyExists struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The CreatorRequestId that was used to create the namespace.
 	CreatorRequestId *string `type:"string"`
@@ -5019,8 +5019,8 @@ func (s *NamespaceFilter) SetValues(v []*string) *NamespaceFilter {
 
 // No namespace exists with the specified ID.
 type NamespaceNotFound struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -5423,8 +5423,8 @@ func (s *OperationFilter) SetValues(v []*string) *OperationFilter {
 
 // No operation exists with the specified ID.
 type OperationNotFound struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -5725,8 +5725,8 @@ func (s *RegisterInstanceOutput) SetOperationId(v string) *RegisterInstanceOutpu
 // The specified resource can't be deleted because it contains other resources.
 // For example, you can't delete a service that contains any instances.
 type ResourceInUse struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -5782,8 +5782,8 @@ func (s ResourceInUse) RequestID() string {
 // The resource can't be created because you've reached the limit on the number
 // of resources.
 type ResourceLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -5971,8 +5971,8 @@ func (s *Service) SetNamespaceId(v string) *Service {
 // The service can't be created because a service with the same name already
 // exists.
 type ServiceAlreadyExists struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The CreatorRequestId that was used to create the service.
 	CreatorRequestId *string `type:"string"`
@@ -6231,8 +6231,8 @@ func (s *ServiceFilter) SetValues(v []*string) *ServiceFilter {
 
 // No service exists with the specified ID.
 type ServiceNotFound struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }

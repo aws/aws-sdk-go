@@ -2673,8 +2673,8 @@ func (s *InputDataConfig) SetS3Key(v string) *InputDataConfig {
 
 // An internal server error occurred. Retry your request.
 type InternalServerException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -2730,8 +2730,8 @@ func (s InternalServerException) RequestID() string {
 // The input text was not in valid UTF-8 character encoding. Check your text
 // then retry your request.
 type InvalidEncodingException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -2787,8 +2787,8 @@ func (s InvalidEncodingException) RequestID() string {
 // The request that you made is invalid. Check your request to determine why
 // it's invalid and then retry the request.
 type InvalidRequestException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -3092,8 +3092,8 @@ func (s *OutputDataConfig) SetS3Key(v string) *OutputDataConfig {
 // The resource identified by the specified Amazon Resource Name (ARN) was not
 // found. Check the ARN and try your request again.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -3441,8 +3441,8 @@ func (s *RxNormTrait) SetScore(v float64) *RxNormTrait {
 // The Amazon Comprehend Medical service is temporarily unavailable. Please
 // wait and then retry your request.
 type ServiceUnavailableException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -3942,8 +3942,8 @@ func (s *StopPHIDetectionJobOutput) SetJobId(v string) *StopPHIDetectionJobOutpu
 // The size of the text you submitted exceeds the size limit. Reduce the size
 // of the text or use a smaller document and then retry your request.
 type TextSizeLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -4000,8 +4000,8 @@ func (s TextSizeLimitExceededException) RequestID() string {
 // short time and then try your request again. Contact customer support for
 // more information about a service limit increase.
 type TooManyRequestsException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -4125,8 +4125,8 @@ func (s *UnmappedAttribute) SetType(v string) *UnmappedAttribute {
 // The filter that you specified for the operation is invalid. Check the filter
 // values that you entered and try your request again.
 type ValidationException struct {
-	_            struct{} `type:"structure"`
-	RespMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
