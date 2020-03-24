@@ -119,6 +119,8 @@ func (p *Provider) Retrieve() (credentials.Value, error) {
 	return p.RetrieveWithContext(aws.BackgroundContext())
 }
 
+// RetrieveWithContext will attempt to request the credentials from the endpoint the Provider
+// was configured for. And error will be returned if the retrieval fails.
 func (p *Provider) RetrieveWithContext(ctx credentials.Context) (credentials.Value, error) {
 	resp, err := p.getCredentials(ctx)
 	if err != nil {

@@ -67,6 +67,9 @@ func (p *WebIdentityRoleProvider) Retrieve() (credentials.Value, error) {
 	return p.RetrieveWithContext(aws.BackgroundContext())
 }
 
+// RetrieveWithContext will attempt to assume a role from a token which is located at
+// 'WebIdentityTokenFilePath' specified destination and if that is empty an
+// error will be returned.
 func (p *WebIdentityRoleProvider) RetrieveWithContext(ctx credentials.Context) (credentials.Value, error) {
 	b, err := ioutil.ReadFile(p.tokenFilePath)
 	if err != nil {

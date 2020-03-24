@@ -273,6 +273,7 @@ func (p *AssumeRoleProvider) Retrieve() (credentials.Value, error) {
 	return p.RetrieveWithContext(aws.BackgroundContext())
 }
 
+// RetrieveWithContext generates a new set of temporary credentials using STS.
 func (p *AssumeRoleProvider) RetrieveWithContext(ctx credentials.Context) (credentials.Value, error) {
 	// Apply defaults where parameters are not set.
 	if p.RoleSessionName == "" {
