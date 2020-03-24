@@ -108,6 +108,10 @@ type OrganizationsAPI interface {
 	DeletePolicyWithContext(aws.Context, *organizations.DeletePolicyInput, ...request.Option) (*organizations.DeletePolicyOutput, error)
 	DeletePolicyRequest(*organizations.DeletePolicyInput) (*request.Request, *organizations.DeletePolicyOutput)
 
+	DeregisterDelegatedAdministrator(*organizations.DeregisterDelegatedAdministratorInput) (*organizations.DeregisterDelegatedAdministratorOutput, error)
+	DeregisterDelegatedAdministratorWithContext(aws.Context, *organizations.DeregisterDelegatedAdministratorInput, ...request.Option) (*organizations.DeregisterDelegatedAdministratorOutput, error)
+	DeregisterDelegatedAdministratorRequest(*organizations.DeregisterDelegatedAdministratorInput) (*request.Request, *organizations.DeregisterDelegatedAdministratorOutput)
+
 	DescribeAccount(*organizations.DescribeAccountInput) (*organizations.DescribeAccountOutput, error)
 	DescribeAccountWithContext(aws.Context, *organizations.DescribeAccountInput, ...request.Option) (*organizations.DescribeAccountOutput, error)
 	DescribeAccountRequest(*organizations.DescribeAccountInput) (*request.Request, *organizations.DescribeAccountOutput)
@@ -203,6 +207,20 @@ type OrganizationsAPI interface {
 	ListCreateAccountStatusPages(*organizations.ListCreateAccountStatusInput, func(*organizations.ListCreateAccountStatusOutput, bool) bool) error
 	ListCreateAccountStatusPagesWithContext(aws.Context, *organizations.ListCreateAccountStatusInput, func(*organizations.ListCreateAccountStatusOutput, bool) bool, ...request.Option) error
 
+	ListDelegatedAdministrators(*organizations.ListDelegatedAdministratorsInput) (*organizations.ListDelegatedAdministratorsOutput, error)
+	ListDelegatedAdministratorsWithContext(aws.Context, *organizations.ListDelegatedAdministratorsInput, ...request.Option) (*organizations.ListDelegatedAdministratorsOutput, error)
+	ListDelegatedAdministratorsRequest(*organizations.ListDelegatedAdministratorsInput) (*request.Request, *organizations.ListDelegatedAdministratorsOutput)
+
+	ListDelegatedAdministratorsPages(*organizations.ListDelegatedAdministratorsInput, func(*organizations.ListDelegatedAdministratorsOutput, bool) bool) error
+	ListDelegatedAdministratorsPagesWithContext(aws.Context, *organizations.ListDelegatedAdministratorsInput, func(*organizations.ListDelegatedAdministratorsOutput, bool) bool, ...request.Option) error
+
+	ListDelegatedServicesForAccount(*organizations.ListDelegatedServicesForAccountInput) (*organizations.ListDelegatedServicesForAccountOutput, error)
+	ListDelegatedServicesForAccountWithContext(aws.Context, *organizations.ListDelegatedServicesForAccountInput, ...request.Option) (*organizations.ListDelegatedServicesForAccountOutput, error)
+	ListDelegatedServicesForAccountRequest(*organizations.ListDelegatedServicesForAccountInput) (*request.Request, *organizations.ListDelegatedServicesForAccountOutput)
+
+	ListDelegatedServicesForAccountPages(*organizations.ListDelegatedServicesForAccountInput, func(*organizations.ListDelegatedServicesForAccountOutput, bool) bool) error
+	ListDelegatedServicesForAccountPagesWithContext(aws.Context, *organizations.ListDelegatedServicesForAccountInput, func(*organizations.ListDelegatedServicesForAccountOutput, bool) bool, ...request.Option) error
+
 	ListHandshakesForAccount(*organizations.ListHandshakesForAccountInput) (*organizations.ListHandshakesForAccountOutput, error)
 	ListHandshakesForAccountWithContext(aws.Context, *organizations.ListHandshakesForAccountInput, ...request.Option) (*organizations.ListHandshakesForAccountOutput, error)
 	ListHandshakesForAccountRequest(*organizations.ListHandshakesForAccountInput) (*request.Request, *organizations.ListHandshakesForAccountOutput)
@@ -269,6 +287,10 @@ type OrganizationsAPI interface {
 	MoveAccount(*organizations.MoveAccountInput) (*organizations.MoveAccountOutput, error)
 	MoveAccountWithContext(aws.Context, *organizations.MoveAccountInput, ...request.Option) (*organizations.MoveAccountOutput, error)
 	MoveAccountRequest(*organizations.MoveAccountInput) (*request.Request, *organizations.MoveAccountOutput)
+
+	RegisterDelegatedAdministrator(*organizations.RegisterDelegatedAdministratorInput) (*organizations.RegisterDelegatedAdministratorOutput, error)
+	RegisterDelegatedAdministratorWithContext(aws.Context, *organizations.RegisterDelegatedAdministratorInput, ...request.Option) (*organizations.RegisterDelegatedAdministratorOutput, error)
+	RegisterDelegatedAdministratorRequest(*organizations.RegisterDelegatedAdministratorInput) (*request.Request, *organizations.RegisterDelegatedAdministratorOutput)
 
 	RemoveAccountFromOrganization(*organizations.RemoveAccountFromOrganizationInput) (*organizations.RemoveAccountFromOrganizationOutput, error)
 	RemoveAccountFromOrganizationWithContext(aws.Context, *organizations.RemoveAccountFromOrganizationInput, ...request.Option) (*organizations.RemoveAccountFromOrganizationOutput, error)

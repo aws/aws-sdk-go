@@ -452,8 +452,8 @@ func (c *RDSDataService) ExecuteStatementRequest(input *ExecuteStatementInput) (
 // If a call isn't part of a transaction because it doesn't include the transactionID
 // parameter, changes that result from the call are committed automatically.
 //
-// The response size limit is 1 MB or 1,000 records. If the call returns more
-// than 1 MB of response data or over 1,000 records, the call is terminated.
+// The response size limit is 1 MB. If the call returns more than 1 MB of response
+// data, the call is terminated.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -722,7 +722,16 @@ type BatchExecuteStatementInput struct {
 
 	// The parameter set for the batch operation.
 	//
-	// The maximum number of parameters in a parameter set is 1,000.
+	// The SQL statement is executed as many times as the number of parameter sets
+	// provided. To execute a SQL statement with no parameters, use one of the following
+	// options:
+	//
+	//    * Specify one or more empty parameter sets.
+	//
+	//    * Use the ExecuteStatement operation instead of the BatchExecuteStatement
+	//    operation.
+	//
+	// Array parameters are not supported.
 	ParameterSets [][]*SqlParameter `locationName:"parameterSets" type:"list"`
 
 	// The Amazon Resource Name (ARN) of the Aurora Serverless DB cluster.
@@ -1335,6 +1344,8 @@ type ExecuteStatementInput struct {
 	IncludeResultMetadata *bool `locationName:"includeResultMetadata" type:"boolean"`
 
 	// The parameters for the SQL statement.
+	//
+	// Array parameters are not supported.
 	Parameters []*SqlParameter `locationName:"parameters" type:"list"`
 
 	// The Amazon Resource Name (ARN) of the Aurora Serverless DB cluster.
