@@ -2006,8 +2006,8 @@ func (c *KinesisVideo) UpdateStreamWithContext(ctx aws.Context, input *UpdateStr
 
 // You do not have required permissions to perform this operation.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2024,7 +2024,7 @@ func (s AccessDeniedException) GoString() string {
 
 func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
 	return &AccessDeniedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2052,19 +2052,19 @@ func (s AccessDeniedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccessDeniedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccessDeniedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You have reached the maximum limit of active signaling channels for this
 // AWS account in this region.
 type AccountChannelLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2081,7 +2081,7 @@ func (s AccountChannelLimitExceededException) GoString() string {
 
 func newErrorAccountChannelLimitExceededException(v protocol.ResponseMetadata) error {
 	return &AccountChannelLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2109,18 +2109,18 @@ func (s AccountChannelLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccountChannelLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccountChannelLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The number of streams created for the account is too high.
 type AccountStreamLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2137,7 +2137,7 @@ func (s AccountStreamLimitExceededException) GoString() string {
 
 func newErrorAccountStreamLimitExceededException(v protocol.ResponseMetadata) error {
 	return &AccountStreamLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2165,12 +2165,12 @@ func (s AccountStreamLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccountStreamLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccountStreamLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A structure that encapsulates a signaling channel's metadata and properties.
@@ -2304,8 +2304,8 @@ func (s *ChannelNameCondition) SetComparisonValue(v string) *ChannelNameConditio
 // Kinesis Video Streams has throttled the request because you have exceeded
 // the limit of allowed client calls. Try making the call later.
 type ClientLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2322,7 +2322,7 @@ func (s ClientLimitExceededException) GoString() string {
 
 func newErrorClientLimitExceededException(v protocol.ResponseMetadata) error {
 	return &ClientLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2350,12 +2350,12 @@ func (s ClientLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ClientLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ClientLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type CreateSignalingChannelInput struct {
@@ -2902,8 +2902,8 @@ func (s *DescribeStreamOutput) SetStreamInfo(v *StreamInfo) *DescribeStreamOutpu
 
 // Not implemented.
 type DeviceStreamLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2920,7 +2920,7 @@ func (s DeviceStreamLimitExceededException) GoString() string {
 
 func newErrorDeviceStreamLimitExceededException(v protocol.ResponseMetadata) error {
 	return &DeviceStreamLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2948,12 +2948,12 @@ func (s DeviceStreamLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DeviceStreamLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DeviceStreamLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type GetDataEndpointInput struct {
@@ -3125,8 +3125,8 @@ func (s *GetSignalingChannelEndpointOutput) SetResourceEndpointList(v []*Resourc
 
 // The value for this input parameter is invalid.
 type InvalidArgumentException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3143,7 +3143,7 @@ func (s InvalidArgumentException) GoString() string {
 
 func newErrorInvalidArgumentException(v protocol.ResponseMetadata) error {
 	return &InvalidArgumentException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3171,18 +3171,18 @@ func (s InvalidArgumentException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidArgumentException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidArgumentException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Not implemented.
 type InvalidDeviceException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3199,7 +3199,7 @@ func (s InvalidDeviceException) GoString() string {
 
 func newErrorInvalidDeviceException(v protocol.ResponseMetadata) error {
 	return &InvalidDeviceException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3227,18 +3227,18 @@ func (s InvalidDeviceException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidDeviceException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidDeviceException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The format of the StreamARN is invalid.
 type InvalidResourceFormatException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3255,7 +3255,7 @@ func (s InvalidResourceFormatException) GoString() string {
 
 func newErrorInvalidResourceFormatException(v protocol.ResponseMetadata) error {
 	return &InvalidResourceFormatException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3283,12 +3283,12 @@ func (s InvalidResourceFormatException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidResourceFormatException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidResourceFormatException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListSignalingChannelsInput struct {
@@ -3662,8 +3662,8 @@ func (s *ListTagsForStreamOutput) SetTags(v map[string]*string) *ListTagsForStre
 
 // The caller is not authorized to perform this operation.
 type NotAuthorizedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3680,7 +3680,7 @@ func (s NotAuthorizedException) GoString() string {
 
 func newErrorNotAuthorizedException(v protocol.ResponseMetadata) error {
 	return &NotAuthorizedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3708,12 +3708,12 @@ func (s NotAuthorizedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NotAuthorizedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NotAuthorizedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An object that describes the endpoint of the signaling channel returned by
@@ -3754,8 +3754,8 @@ func (s *ResourceEndpointListItem) SetResourceEndpoint(v string) *ResourceEndpoi
 
 // The stream is currently not available for this operation.
 type ResourceInUseException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3772,7 +3772,7 @@ func (s ResourceInUseException) GoString() string {
 
 func newErrorResourceInUseException(v protocol.ResponseMetadata) error {
 	return &ResourceInUseException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3800,18 +3800,18 @@ func (s ResourceInUseException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceInUseException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceInUseException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Amazon Kinesis Video Streams can't find the stream that you specified.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3828,7 +3828,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3856,12 +3856,12 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An object that contains the endpoint configuration for the SINGLE_MASTER
@@ -4327,8 +4327,8 @@ func (s TagStreamOutput) GoString() string {
 // You have exceeded the limit of tags that you can associate with the resource.
 // Kinesis video streams support up to 50 tags.
 type TagsPerResourceExceededLimitException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4345,7 +4345,7 @@ func (s TagsPerResourceExceededLimitException) GoString() string {
 
 func newErrorTagsPerResourceExceededLimitException(v protocol.ResponseMetadata) error {
 	return &TagsPerResourceExceededLimitException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4373,12 +4373,12 @@ func (s TagsPerResourceExceededLimitException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TagsPerResourceExceededLimitException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TagsPerResourceExceededLimitException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UntagResourceInput struct {
@@ -4851,8 +4851,8 @@ func (s UpdateStreamOutput) GoString() string {
 // latest version, use the DescribeStream (https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_DescribeStream.html)
 // API.
 type VersionMismatchException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4869,7 +4869,7 @@ func (s VersionMismatchException) GoString() string {
 
 func newErrorVersionMismatchException(v protocol.ResponseMetadata) error {
 	return &VersionMismatchException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4897,12 +4897,12 @@ func (s VersionMismatchException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s VersionMismatchException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s VersionMismatchException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 const (

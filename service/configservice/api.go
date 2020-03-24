@@ -10602,8 +10602,8 @@ func (s *ConformancePackStatusDetail) SetStackArn(v string) *ConformancePackStat
 
 // You have specified a template that is not valid or supported.
 type ConformancePackTemplateValidationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10620,7 +10620,7 @@ func (s ConformancePackTemplateValidationException) GoString() string {
 
 func newErrorConformancePackTemplateValidationException(v protocol.ResponseMetadata) error {
 	return &ConformancePackTemplateValidationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10648,12 +10648,12 @@ func (s ConformancePackTemplateValidationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ConformancePackTemplateValidationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ConformancePackTemplateValidationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type DeleteAggregationAuthorizationInput struct {
@@ -15624,8 +15624,8 @@ func (s *GroupedResourceCount) SetResourceCount(v int64) *GroupedResourceCount {
 
 // Your Amazon S3 bucket policy does not permit AWS Config to write to it.
 type InsufficientDeliveryPolicyException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -15642,7 +15642,7 @@ func (s InsufficientDeliveryPolicyException) GoString() string {
 
 func newErrorInsufficientDeliveryPolicyException(v protocol.ResponseMetadata) error {
 	return &InsufficientDeliveryPolicyException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15670,12 +15670,12 @@ func (s InsufficientDeliveryPolicyException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InsufficientDeliveryPolicyException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InsufficientDeliveryPolicyException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Indicates one of the following errors:
@@ -15694,8 +15694,8 @@ func (s InsufficientDeliveryPolicyException) RequestID() string {
 //    pack cannot be created because you do not have permissions: To call IAM
 //    GetRole action or create a service linked role. To read Amazon S3 bucket.
 type InsufficientPermissionsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -15712,7 +15712,7 @@ func (s InsufficientPermissionsException) GoString() string {
 
 func newErrorInsufficientPermissionsException(v protocol.ResponseMetadata) error {
 	return &InsufficientPermissionsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15740,18 +15740,18 @@ func (s InsufficientPermissionsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InsufficientPermissionsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InsufficientPermissionsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You have provided a configuration recorder name that is not valid.
 type InvalidConfigurationRecorderNameException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -15768,7 +15768,7 @@ func (s InvalidConfigurationRecorderNameException) GoString() string {
 
 func newErrorInvalidConfigurationRecorderNameException(v protocol.ResponseMetadata) error {
 	return &InvalidConfigurationRecorderNameException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15796,18 +15796,18 @@ func (s InvalidConfigurationRecorderNameException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidConfigurationRecorderNameException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidConfigurationRecorderNameException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified delivery channel name is not valid.
 type InvalidDeliveryChannelNameException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -15824,7 +15824,7 @@ func (s InvalidDeliveryChannelNameException) GoString() string {
 
 func newErrorInvalidDeliveryChannelNameException(v protocol.ResponseMetadata) error {
 	return &InvalidDeliveryChannelNameException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15852,18 +15852,18 @@ func (s InvalidDeliveryChannelNameException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidDeliveryChannelNameException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidDeliveryChannelNameException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The syntax of the query is incorrect.
 type InvalidExpressionException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -15880,7 +15880,7 @@ func (s InvalidExpressionException) GoString() string {
 
 func newErrorInvalidExpressionException(v protocol.ResponseMetadata) error {
 	return &InvalidExpressionException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15908,18 +15908,18 @@ func (s InvalidExpressionException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidExpressionException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidExpressionException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified limit is outside the allowable range.
 type InvalidLimitException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -15936,7 +15936,7 @@ func (s InvalidLimitException) GoString() string {
 
 func newErrorInvalidLimitException(v protocol.ResponseMetadata) error {
 	return &InvalidLimitException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15964,19 +15964,19 @@ func (s InvalidLimitException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidLimitException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidLimitException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified next token is invalid. Specify the nextToken string that was
 // returned in the previous response to get the next page of results.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -15993,7 +15993,7 @@ func (s InvalidNextTokenException) GoString() string {
 
 func newErrorInvalidNextTokenException(v protocol.ResponseMetadata) error {
 	return &InvalidNextTokenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -16021,19 +16021,19 @@ func (s InvalidNextTokenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidNextTokenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidNextTokenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // One or more of the specified parameters are invalid. Verify that your parameters
 // are valid and try again.
 type InvalidParameterValueException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16050,7 +16050,7 @@ func (s InvalidParameterValueException) GoString() string {
 
 func newErrorInvalidParameterValueException(v protocol.ResponseMetadata) error {
 	return &InvalidParameterValueException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -16078,19 +16078,19 @@ func (s InvalidParameterValueException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidParameterValueException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidParameterValueException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // AWS Config throws an exception if the recording group does not contain a
 // valid list of resource types. Invalid values might also be incorrectly formatted.
 type InvalidRecordingGroupException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16107,7 +16107,7 @@ func (s InvalidRecordingGroupException) GoString() string {
 
 func newErrorInvalidRecordingGroupException(v protocol.ResponseMetadata) error {
 	return &InvalidRecordingGroupException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -16135,18 +16135,18 @@ func (s InvalidRecordingGroupException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidRecordingGroupException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidRecordingGroupException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified ResultToken is invalid.
 type InvalidResultTokenException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16163,7 +16163,7 @@ func (s InvalidResultTokenException) GoString() string {
 
 func newErrorInvalidResultTokenException(v protocol.ResponseMetadata) error {
 	return &InvalidResultTokenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -16191,18 +16191,18 @@ func (s InvalidResultTokenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidResultTokenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidResultTokenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You have provided a null or empty role ARN.
 type InvalidRoleException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16219,7 +16219,7 @@ func (s InvalidRoleException) GoString() string {
 
 func newErrorInvalidRoleException(v protocol.ResponseMetadata) error {
 	return &InvalidRoleException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -16247,18 +16247,18 @@ func (s InvalidRoleException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidRoleException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidRoleException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified Amazon S3 key prefix is not valid.
 type InvalidS3KeyPrefixException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16275,7 +16275,7 @@ func (s InvalidS3KeyPrefixException) GoString() string {
 
 func newErrorInvalidS3KeyPrefixException(v protocol.ResponseMetadata) error {
 	return &InvalidS3KeyPrefixException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -16303,18 +16303,18 @@ func (s InvalidS3KeyPrefixException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidS3KeyPrefixException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidS3KeyPrefixException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified Amazon SNS topic does not exist.
 type InvalidSNSTopicARNException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16331,7 +16331,7 @@ func (s InvalidSNSTopicARNException) GoString() string {
 
 func newErrorInvalidSNSTopicARNException(v protocol.ResponseMetadata) error {
 	return &InvalidSNSTopicARNException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -16359,19 +16359,19 @@ func (s InvalidSNSTopicARNException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidSNSTopicARNException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidSNSTopicARNException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified time range is not valid. The earlier time is not chronologically
 // before the later time.
 type InvalidTimeRangeException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16388,7 +16388,7 @@ func (s InvalidTimeRangeException) GoString() string {
 
 func newErrorInvalidTimeRangeException(v protocol.ResponseMetadata) error {
 	return &InvalidTimeRangeException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -16416,19 +16416,19 @@ func (s InvalidTimeRangeException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidTimeRangeException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidTimeRangeException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You cannot delete the delivery channel you specified because the configuration
 // recorder is running.
 type LastDeliveryChannelDeleteFailedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16445,7 +16445,7 @@ func (s LastDeliveryChannelDeleteFailedException) GoString() string {
 
 func newErrorLastDeliveryChannelDeleteFailedException(v protocol.ResponseMetadata) error {
 	return &LastDeliveryChannelDeleteFailedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -16473,12 +16473,12 @@ func (s LastDeliveryChannelDeleteFailedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LastDeliveryChannelDeleteFailedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LastDeliveryChannelDeleteFailedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // For StartConfigRulesEvaluation API, this exception is thrown if an evaluation
@@ -16488,8 +16488,8 @@ func (s LastDeliveryChannelDeleteFailedException) RequestID() string {
 // For PutConfigurationAggregator API, this exception is thrown if the number
 // of accounts and aggregators exceeds the limit.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16506,7 +16506,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -16534,12 +16534,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListAggregateDiscoveredResourcesInput struct {
@@ -16890,8 +16890,8 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 // You have reached the limit (100,000) of active custom resource types in your
 // account. Delete unused resources using DeleteResourceConfig.
 type MaxActiveResourcesExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16908,7 +16908,7 @@ func (s MaxActiveResourcesExceededException) GoString() string {
 
 func newErrorMaxActiveResourcesExceededException(v protocol.ResponseMetadata) error {
 	return &MaxActiveResourcesExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -16936,20 +16936,20 @@ func (s MaxActiveResourcesExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MaxActiveResourcesExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MaxActiveResourcesExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Failed to add the AWS Config rule because the account already contains the
 // maximum number of 150 rules. Consider deleting any deactivated rules before
 // you add new rules.
 type MaxNumberOfConfigRulesExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16966,7 +16966,7 @@ func (s MaxNumberOfConfigRulesExceededException) GoString() string {
 
 func newErrorMaxNumberOfConfigRulesExceededException(v protocol.ResponseMetadata) error {
 	return &MaxNumberOfConfigRulesExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -16994,18 +16994,18 @@ func (s MaxNumberOfConfigRulesExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MaxNumberOfConfigRulesExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MaxNumberOfConfigRulesExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You have reached the limit of the number of recorders you can create.
 type MaxNumberOfConfigurationRecordersExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17022,7 +17022,7 @@ func (s MaxNumberOfConfigurationRecordersExceededException) GoString() string {
 
 func newErrorMaxNumberOfConfigurationRecordersExceededException(v protocol.ResponseMetadata) error {
 	return &MaxNumberOfConfigurationRecordersExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17050,19 +17050,19 @@ func (s MaxNumberOfConfigurationRecordersExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MaxNumberOfConfigurationRecordersExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MaxNumberOfConfigurationRecordersExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You have reached the limit (6) of the number of conformance packs in an account
 // (6 conformance pack with 25 AWS Config rules per pack).
 type MaxNumberOfConformancePacksExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17079,7 +17079,7 @@ func (s MaxNumberOfConformancePacksExceededException) GoString() string {
 
 func newErrorMaxNumberOfConformancePacksExceededException(v protocol.ResponseMetadata) error {
 	return &MaxNumberOfConformancePacksExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17107,18 +17107,18 @@ func (s MaxNumberOfConformancePacksExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MaxNumberOfConformancePacksExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MaxNumberOfConformancePacksExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You have reached the limit of the number of delivery channels you can create.
 type MaxNumberOfDeliveryChannelsExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17135,7 +17135,7 @@ func (s MaxNumberOfDeliveryChannelsExceededException) GoString() string {
 
 func newErrorMaxNumberOfDeliveryChannelsExceededException(v protocol.ResponseMetadata) error {
 	return &MaxNumberOfDeliveryChannelsExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17163,19 +17163,19 @@ func (s MaxNumberOfDeliveryChannelsExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MaxNumberOfDeliveryChannelsExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MaxNumberOfDeliveryChannelsExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You have reached the limit of the number of organization config rules you
 // can create.
 type MaxNumberOfOrganizationConfigRulesExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17192,7 +17192,7 @@ func (s MaxNumberOfOrganizationConfigRulesExceededException) GoString() string {
 
 func newErrorMaxNumberOfOrganizationConfigRulesExceededException(v protocol.ResponseMetadata) error {
 	return &MaxNumberOfOrganizationConfigRulesExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17220,20 +17220,20 @@ func (s MaxNumberOfOrganizationConfigRulesExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MaxNumberOfOrganizationConfigRulesExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MaxNumberOfOrganizationConfigRulesExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You have reached the limit (6) of the number of organization conformance
 // packs in an account (6 conformance pack with 25 AWS Config rules per pack
 // per account).
 type MaxNumberOfOrganizationConformancePacksExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17250,7 +17250,7 @@ func (s MaxNumberOfOrganizationConformancePacksExceededException) GoString() str
 
 func newErrorMaxNumberOfOrganizationConformancePacksExceededException(v protocol.ResponseMetadata) error {
 	return &MaxNumberOfOrganizationConformancePacksExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17278,19 +17278,19 @@ func (s MaxNumberOfOrganizationConformancePacksExceededException) Error() string
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MaxNumberOfOrganizationConformancePacksExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MaxNumberOfOrganizationConformancePacksExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Failed to add the retention configuration because a retention configuration
 // with that name already exists.
 type MaxNumberOfRetentionConfigurationsExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17307,7 +17307,7 @@ func (s MaxNumberOfRetentionConfigurationsExceededException) GoString() string {
 
 func newErrorMaxNumberOfRetentionConfigurationsExceededException(v protocol.ResponseMetadata) error {
 	return &MaxNumberOfRetentionConfigurationsExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17335,12 +17335,12 @@ func (s MaxNumberOfRetentionConfigurationsExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MaxNumberOfRetentionConfigurationsExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MaxNumberOfRetentionConfigurationsExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Organization config rule creation or deletion status in each member account.
@@ -17450,8 +17450,8 @@ func (s *MemberAccountStatus) SetMemberAccountRuleStatus(v string) *MemberAccoun
 // There are no configuration recorders available to provide the role needed
 // to describe your resources. Create a configuration recorder.
 type NoAvailableConfigurationRecorderException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17468,7 +17468,7 @@ func (s NoAvailableConfigurationRecorderException) GoString() string {
 
 func newErrorNoAvailableConfigurationRecorderException(v protocol.ResponseMetadata) error {
 	return &NoAvailableConfigurationRecorderException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17496,18 +17496,18 @@ func (s NoAvailableConfigurationRecorderException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NoAvailableConfigurationRecorderException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NoAvailableConfigurationRecorderException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // There is no delivery channel available to record configurations.
 type NoAvailableDeliveryChannelException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17524,7 +17524,7 @@ func (s NoAvailableDeliveryChannelException) GoString() string {
 
 func newErrorNoAvailableDeliveryChannelException(v protocol.ResponseMetadata) error {
 	return &NoAvailableDeliveryChannelException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17552,18 +17552,18 @@ func (s NoAvailableDeliveryChannelException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NoAvailableDeliveryChannelException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NoAvailableDeliveryChannelException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Organization is no longer available.
 type NoAvailableOrganizationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17580,7 +17580,7 @@ func (s NoAvailableOrganizationException) GoString() string {
 
 func newErrorNoAvailableOrganizationException(v protocol.ResponseMetadata) error {
 	return &NoAvailableOrganizationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17608,18 +17608,18 @@ func (s NoAvailableOrganizationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NoAvailableOrganizationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NoAvailableOrganizationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // There is no configuration recorder running.
 type NoRunningConfigurationRecorderException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17636,7 +17636,7 @@ func (s NoRunningConfigurationRecorderException) GoString() string {
 
 func newErrorNoRunningConfigurationRecorderException(v protocol.ResponseMetadata) error {
 	return &NoRunningConfigurationRecorderException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17664,18 +17664,18 @@ func (s NoRunningConfigurationRecorderException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NoRunningConfigurationRecorderException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NoRunningConfigurationRecorderException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified Amazon S3 bucket does not exist.
 type NoSuchBucketException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17692,7 +17692,7 @@ func (s NoSuchBucketException) GoString() string {
 
 func newErrorNoSuchBucketException(v protocol.ResponseMetadata) error {
 	return &NoSuchBucketException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17720,19 +17720,19 @@ func (s NoSuchBucketException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NoSuchBucketException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NoSuchBucketException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // One or more AWS Config rules in the request are invalid. Verify that the
 // rule names are correct and try again.
 type NoSuchConfigRuleException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17749,7 +17749,7 @@ func (s NoSuchConfigRuleException) GoString() string {
 
 func newErrorNoSuchConfigRuleException(v protocol.ResponseMetadata) error {
 	return &NoSuchConfigRuleException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17777,18 +17777,18 @@ func (s NoSuchConfigRuleException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NoSuchConfigRuleException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NoSuchConfigRuleException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // AWS Config rule that you passed in the filter does not exist.
 type NoSuchConfigRuleInConformancePackException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17805,7 +17805,7 @@ func (s NoSuchConfigRuleInConformancePackException) GoString() string {
 
 func newErrorNoSuchConfigRuleInConformancePackException(v protocol.ResponseMetadata) error {
 	return &NoSuchConfigRuleInConformancePackException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17833,18 +17833,18 @@ func (s NoSuchConfigRuleInConformancePackException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NoSuchConfigRuleInConformancePackException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NoSuchConfigRuleInConformancePackException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You have specified a configuration aggregator that does not exist.
 type NoSuchConfigurationAggregatorException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17861,7 +17861,7 @@ func (s NoSuchConfigurationAggregatorException) GoString() string {
 
 func newErrorNoSuchConfigurationAggregatorException(v protocol.ResponseMetadata) error {
 	return &NoSuchConfigurationAggregatorException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17889,18 +17889,18 @@ func (s NoSuchConfigurationAggregatorException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NoSuchConfigurationAggregatorException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NoSuchConfigurationAggregatorException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You have specified a configuration recorder that does not exist.
 type NoSuchConfigurationRecorderException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17917,7 +17917,7 @@ func (s NoSuchConfigurationRecorderException) GoString() string {
 
 func newErrorNoSuchConfigurationRecorderException(v protocol.ResponseMetadata) error {
 	return &NoSuchConfigurationRecorderException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17945,18 +17945,18 @@ func (s NoSuchConfigurationRecorderException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NoSuchConfigurationRecorderException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NoSuchConfigurationRecorderException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You specified one or more conformance packs that do not exist.
 type NoSuchConformancePackException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17973,7 +17973,7 @@ func (s NoSuchConformancePackException) GoString() string {
 
 func newErrorNoSuchConformancePackException(v protocol.ResponseMetadata) error {
 	return &NoSuchConformancePackException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18001,18 +18001,18 @@ func (s NoSuchConformancePackException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NoSuchConformancePackException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NoSuchConformancePackException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You have specified a delivery channel that does not exist.
 type NoSuchDeliveryChannelException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18029,7 +18029,7 @@ func (s NoSuchDeliveryChannelException) GoString() string {
 
 func newErrorNoSuchDeliveryChannelException(v protocol.ResponseMetadata) error {
 	return &NoSuchDeliveryChannelException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18057,18 +18057,18 @@ func (s NoSuchDeliveryChannelException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NoSuchDeliveryChannelException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NoSuchDeliveryChannelException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You specified one or more organization config rules that do not exist.
 type NoSuchOrganizationConfigRuleException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18085,7 +18085,7 @@ func (s NoSuchOrganizationConfigRuleException) GoString() string {
 
 func newErrorNoSuchOrganizationConfigRuleException(v protocol.ResponseMetadata) error {
 	return &NoSuchOrganizationConfigRuleException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18113,12 +18113,12 @@ func (s NoSuchOrganizationConfigRuleException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NoSuchOrganizationConfigRuleException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NoSuchOrganizationConfigRuleException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // AWS Config organization conformance pack that you passed in the filter does
@@ -18127,8 +18127,8 @@ func (s NoSuchOrganizationConfigRuleException) RequestID() string {
 // For DeleteOrganizationConformancePack, you tried to delete an organization
 // conformance pack that does not exist.
 type NoSuchOrganizationConformancePackException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18145,7 +18145,7 @@ func (s NoSuchOrganizationConformancePackException) GoString() string {
 
 func newErrorNoSuchOrganizationConformancePackException(v protocol.ResponseMetadata) error {
 	return &NoSuchOrganizationConformancePackException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18173,18 +18173,18 @@ func (s NoSuchOrganizationConformancePackException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NoSuchOrganizationConformancePackException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NoSuchOrganizationConformancePackException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You specified an AWS Config rule without a remediation configuration.
 type NoSuchRemediationConfigurationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18201,7 +18201,7 @@ func (s NoSuchRemediationConfigurationException) GoString() string {
 
 func newErrorNoSuchRemediationConfigurationException(v protocol.ResponseMetadata) error {
 	return &NoSuchRemediationConfigurationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18229,18 +18229,18 @@ func (s NoSuchRemediationConfigurationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NoSuchRemediationConfigurationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NoSuchRemediationConfigurationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You tried to delete a remediation exception that does not exist.
 type NoSuchRemediationExceptionException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18257,7 +18257,7 @@ func (s NoSuchRemediationExceptionException) GoString() string {
 
 func newErrorNoSuchRemediationExceptionException(v protocol.ResponseMetadata) error {
 	return &NoSuchRemediationExceptionException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18285,18 +18285,18 @@ func (s NoSuchRemediationExceptionException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NoSuchRemediationExceptionException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NoSuchRemediationExceptionException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You have specified a retention configuration that does not exist.
 type NoSuchRetentionConfigurationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18313,7 +18313,7 @@ func (s NoSuchRetentionConfigurationException) GoString() string {
 
 func newErrorNoSuchRetentionConfigurationException(v protocol.ResponseMetadata) error {
 	return &NoSuchRetentionConfigurationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18341,12 +18341,12 @@ func (s NoSuchRetentionConfigurationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NoSuchRetentionConfigurationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NoSuchRetentionConfigurationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // For PutConfigAggregator API, no permission to call EnableAWSServiceAccess
@@ -18356,8 +18356,8 @@ func (s NoSuchRetentionConfigurationException) RequestID() string {
 // Config throws an exception if APIs are called from member accounts. All APIs
 // must be called from organization master account.
 type OrganizationAccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18374,7 +18374,7 @@ func (s OrganizationAccessDeniedException) GoString() string {
 
 func newErrorOrganizationAccessDeniedException(v protocol.ResponseMetadata) error {
 	return &OrganizationAccessDeniedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18402,12 +18402,12 @@ func (s OrganizationAccessDeniedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s OrganizationAccessDeniedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s OrganizationAccessDeniedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This object contains regions to set up the aggregator and an IAM role to
@@ -18475,8 +18475,8 @@ func (s *OrganizationAggregationSource) SetRoleArn(v string) *OrganizationAggreg
 // AWS Config resource cannot be created because your organization does not
 // have all features enabled.
 type OrganizationAllFeaturesNotEnabledException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18493,7 +18493,7 @@ func (s OrganizationAllFeaturesNotEnabledException) GoString() string {
 
 func newErrorOrganizationAllFeaturesNotEnabledException(v protocol.ResponseMetadata) error {
 	return &OrganizationAllFeaturesNotEnabledException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18521,12 +18521,12 @@ func (s OrganizationAllFeaturesNotEnabledException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s OrganizationAllFeaturesNotEnabledException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s OrganizationAllFeaturesNotEnabledException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An organization config rule that has information about config rules that
@@ -19009,8 +19009,8 @@ func (s *OrganizationConformancePackStatus) SetStatus(v string) *OrganizationCon
 
 // You have specified a template that is not valid or supported.
 type OrganizationConformancePackTemplateValidationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -19027,7 +19027,7 @@ func (s OrganizationConformancePackTemplateValidationException) GoString() strin
 
 func newErrorOrganizationConformancePackTemplateValidationException(v protocol.ResponseMetadata) error {
 	return &OrganizationConformancePackTemplateValidationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -19055,12 +19055,12 @@ func (s OrganizationConformancePackTemplateValidationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s OrganizationConformancePackTemplateValidationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s OrganizationConformancePackTemplateValidationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An object that specifies organization custom rule metadata such as resource
@@ -19420,8 +19420,8 @@ func (s *OrganizationResourceDetailedStatusFilters) SetStatus(v string) *Organiz
 
 // The configuration item size is outside the allowable range.
 type OversizedConfigurationItemException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -19438,7 +19438,7 @@ func (s OversizedConfigurationItemException) GoString() string {
 
 func newErrorOversizedConfigurationItemException(v protocol.ResponseMetadata) error {
 	return &OversizedConfigurationItemException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -19466,12 +19466,12 @@ func (s OversizedConfigurationItemException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s OversizedConfigurationItemException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s OversizedConfigurationItemException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An object that represents the account ID and region of an aggregator account
@@ -21409,8 +21409,8 @@ func (s *RemediationExecutionStep) SetStopTime(v time.Time) *RemediationExecutio
 // Remediation action is in progress. You can either cancel execution in AWS
 // Systems Manager or wait and try again later.
 type RemediationInProgressException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -21427,7 +21427,7 @@ func (s RemediationInProgressException) GoString() string {
 
 func newErrorRemediationInProgressException(v protocol.ResponseMetadata) error {
 	return &RemediationInProgressException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -21455,12 +21455,12 @@ func (s RemediationInProgressException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s RemediationInProgressException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s RemediationInProgressException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The value is either a dynamic (resource) value or a static value. You must
@@ -21751,8 +21751,8 @@ func (s *ResourceIdentifier) SetResourceType(v string) *ResourceIdentifier {
 //    * For DeleteConformancePack, a conformance pack creation, update, and
 //    deletion is in progress. Try your request again later.
 type ResourceInUseException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -21769,7 +21769,7 @@ func (s ResourceInUseException) GoString() string {
 
 func newErrorResourceInUseException(v protocol.ResponseMetadata) error {
 	return &ResourceInUseException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -21797,12 +21797,12 @@ func (s ResourceInUseException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceInUseException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceInUseException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The details that identify a resource within AWS Config, including the resource
@@ -21864,8 +21864,8 @@ func (s *ResourceKey) SetResourceType(v string) *ResourceKey {
 
 // You have specified a resource that is either unknown or has not been discovered.
 type ResourceNotDiscoveredException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -21882,7 +21882,7 @@ func (s ResourceNotDiscoveredException) GoString() string {
 
 func newErrorResourceNotDiscoveredException(v protocol.ResponseMetadata) error {
 	return &ResourceNotDiscoveredException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -21910,18 +21910,18 @@ func (s ResourceNotDiscoveredException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotDiscoveredException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotDiscoveredException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You have specified a resource that does not exist.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -21938,7 +21938,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -21966,12 +21966,12 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The dynamic value of the resource.
@@ -23074,8 +23074,8 @@ func (s TagResourceOutput) GoString() string {
 // You have reached the limit of the number of tags you can use. You have more
 // than 50 tags.
 type TooManyTagsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -23092,7 +23092,7 @@ func (s TooManyTagsException) GoString() string {
 
 func newErrorTooManyTagsException(v protocol.ResponseMetadata) error {
 	return &TooManyTagsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -23120,12 +23120,12 @@ func (s TooManyTagsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TooManyTagsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TooManyTagsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UntagResourceInput struct {
@@ -23204,8 +23204,8 @@ func (s UntagResourceOutput) GoString() string {
 
 // The requested action is not valid.
 type ValidationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -23222,7 +23222,7 @@ func (s ValidationException) GoString() string {
 
 func newErrorValidationException(v protocol.ResponseMetadata) error {
 	return &ValidationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -23250,12 +23250,12 @@ func (s ValidationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ValidationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ValidationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 const (

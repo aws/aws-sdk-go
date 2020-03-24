@@ -4684,8 +4684,8 @@ func (s *ActionExecutionResult) SetExternalExecutionUrl(v string) *ActionExecuti
 
 // The specified action cannot be found.
 type ActionNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4702,7 +4702,7 @@ func (s ActionNotFoundException) GoString() string {
 
 func newErrorActionNotFoundException(v protocol.ResponseMetadata) error {
 	return &ActionNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4730,12 +4730,12 @@ func (s ActionNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ActionNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ActionNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents information about the version (or revision) of an action.
@@ -5037,8 +5037,8 @@ func (s *ActionTypeId) SetVersion(v string) *ActionTypeId {
 
 // The specified action type cannot be found.
 type ActionTypeNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5055,7 +5055,7 @@ func (s ActionTypeNotFoundException) GoString() string {
 
 func newErrorActionTypeNotFoundException(v protocol.ResponseMetadata) error {
 	return &ActionTypeNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5083,12 +5083,12 @@ func (s ActionTypeNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ActionTypeNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ActionTypeNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Returns information about the settings for an action type.
@@ -5176,8 +5176,8 @@ func (s *ActionTypeSettings) SetThirdPartyConfigurationUrl(v string) *ActionType
 
 // The approval action has already been approved or rejected.
 type ApprovalAlreadyCompletedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5194,7 +5194,7 @@ func (s ApprovalAlreadyCompletedException) GoString() string {
 
 func newErrorApprovalAlreadyCompletedException(v protocol.ResponseMetadata) error {
 	return &ApprovalAlreadyCompletedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5222,12 +5222,12 @@ func (s ApprovalAlreadyCompletedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ApprovalAlreadyCompletedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ApprovalAlreadyCompletedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents information about the result of an approval request.
@@ -5661,8 +5661,8 @@ func (s *BlockerDeclaration) SetType(v string) *BlockerDeclaration {
 
 // Unable to modify the tag due to a simultaneous update request.
 type ConcurrentModificationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
@@ -5679,7 +5679,7 @@ func (s ConcurrentModificationException) GoString() string {
 
 func newErrorConcurrentModificationException(v protocol.ResponseMetadata) error {
 	return &ConcurrentModificationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5707,12 +5707,12 @@ func (s ConcurrentModificationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ConcurrentModificationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ConcurrentModificationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents the input of a CreateCustomActionType operation.
@@ -6465,8 +6465,8 @@ func (s DisableStageTransitionOutput) GoString() string {
 // out of sequence tasks. If you already chose to stop and abandon, you cannot
 // make that request again.
 type DuplicatedStopRequestException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
@@ -6483,7 +6483,7 @@ func (s DuplicatedStopRequestException) GoString() string {
 
 func newErrorDuplicatedStopRequestException(v protocol.ResponseMetadata) error {
 	return &DuplicatedStopRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6511,12 +6511,12 @@ func (s DuplicatedStopRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DuplicatedStopRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DuplicatedStopRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents the input of an EnableStageTransition action.
@@ -7347,8 +7347,8 @@ func (s *InputArtifact) SetName(v string) *InputArtifact {
 
 // The action declaration was specified in an invalid format.
 type InvalidActionDeclarationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7365,7 +7365,7 @@ func (s InvalidActionDeclarationException) GoString() string {
 
 func newErrorInvalidActionDeclarationException(v protocol.ResponseMetadata) error {
 	return &InvalidActionDeclarationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7393,18 +7393,18 @@ func (s InvalidActionDeclarationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidActionDeclarationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidActionDeclarationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The approval request already received a response or has expired.
 type InvalidApprovalTokenException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7421,7 +7421,7 @@ func (s InvalidApprovalTokenException) GoString() string {
 
 func newErrorInvalidApprovalTokenException(v protocol.ResponseMetadata) error {
 	return &InvalidApprovalTokenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7449,18 +7449,18 @@ func (s InvalidApprovalTokenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidApprovalTokenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidApprovalTokenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified resource ARN is invalid.
 type InvalidArnException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
@@ -7477,7 +7477,7 @@ func (s InvalidArnException) GoString() string {
 
 func newErrorInvalidArnException(v protocol.ResponseMetadata) error {
 	return &InvalidArnException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7505,18 +7505,18 @@ func (s InvalidArnException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidArnException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidArnException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Reserved for future use.
 type InvalidBlockerDeclarationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7533,7 +7533,7 @@ func (s InvalidBlockerDeclarationException) GoString() string {
 
 func newErrorInvalidBlockerDeclarationException(v protocol.ResponseMetadata) error {
 	return &InvalidBlockerDeclarationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7561,18 +7561,18 @@ func (s InvalidBlockerDeclarationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidBlockerDeclarationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidBlockerDeclarationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The client token was specified in an invalid format
 type InvalidClientTokenException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7589,7 +7589,7 @@ func (s InvalidClientTokenException) GoString() string {
 
 func newErrorInvalidClientTokenException(v protocol.ResponseMetadata) error {
 	return &InvalidClientTokenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7617,18 +7617,18 @@ func (s InvalidClientTokenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidClientTokenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidClientTokenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The job was specified in an invalid format or cannot be found.
 type InvalidJobException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7645,7 +7645,7 @@ func (s InvalidJobException) GoString() string {
 
 func newErrorInvalidJobException(v protocol.ResponseMetadata) error {
 	return &InvalidJobException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7673,18 +7673,18 @@ func (s InvalidJobException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidJobException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidJobException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The job state was specified in an invalid format.
 type InvalidJobStateException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7701,7 +7701,7 @@ func (s InvalidJobStateException) GoString() string {
 
 func newErrorInvalidJobStateException(v protocol.ResponseMetadata) error {
 	return &InvalidJobStateException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7729,19 +7729,19 @@ func (s InvalidJobStateException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidJobStateException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidJobStateException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The next token was specified in an invalid format. Make sure that the next
 // token you provide is the token returned by a previous call.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7758,7 +7758,7 @@ func (s InvalidNextTokenException) GoString() string {
 
 func newErrorInvalidNextTokenException(v protocol.ResponseMetadata) error {
 	return &InvalidNextTokenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7786,18 +7786,18 @@ func (s InvalidNextTokenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidNextTokenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidNextTokenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The nonce was specified in an invalid format.
 type InvalidNonceException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7814,7 +7814,7 @@ func (s InvalidNonceException) GoString() string {
 
 func newErrorInvalidNonceException(v protocol.ResponseMetadata) error {
 	return &InvalidNonceException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7842,18 +7842,18 @@ func (s InvalidNonceException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidNonceException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidNonceException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The stage declaration was specified in an invalid format.
 type InvalidStageDeclarationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7870,7 +7870,7 @@ func (s InvalidStageDeclarationException) GoString() string {
 
 func newErrorInvalidStageDeclarationException(v protocol.ResponseMetadata) error {
 	return &InvalidStageDeclarationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7898,18 +7898,18 @@ func (s InvalidStageDeclarationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidStageDeclarationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidStageDeclarationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The structure was specified in an invalid format.
 type InvalidStructureException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7926,7 +7926,7 @@ func (s InvalidStructureException) GoString() string {
 
 func newErrorInvalidStructureException(v protocol.ResponseMetadata) error {
 	return &InvalidStructureException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7954,18 +7954,18 @@ func (s InvalidStructureException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidStructureException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidStructureException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified resource tags are invalid.
 type InvalidTagsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
@@ -7982,7 +7982,7 @@ func (s InvalidTagsException) GoString() string {
 
 func newErrorInvalidTagsException(v protocol.ResponseMetadata) error {
 	return &InvalidTagsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8010,18 +8010,18 @@ func (s InvalidTagsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidTagsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidTagsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified authentication type is in an invalid format.
 type InvalidWebhookAuthenticationParametersException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8038,7 +8038,7 @@ func (s InvalidWebhookAuthenticationParametersException) GoString() string {
 
 func newErrorInvalidWebhookAuthenticationParametersException(v protocol.ResponseMetadata) error {
 	return &InvalidWebhookAuthenticationParametersException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8066,18 +8066,18 @@ func (s InvalidWebhookAuthenticationParametersException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidWebhookAuthenticationParametersException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidWebhookAuthenticationParametersException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified event filter rule is in an invalid format.
 type InvalidWebhookFilterPatternException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8094,7 +8094,7 @@ func (s InvalidWebhookFilterPatternException) GoString() string {
 
 func newErrorInvalidWebhookFilterPatternException(v protocol.ResponseMetadata) error {
 	return &InvalidWebhookFilterPatternException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8122,12 +8122,12 @@ func (s InvalidWebhookFilterPatternException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidWebhookFilterPatternException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidWebhookFilterPatternException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents information about a job.
@@ -8323,8 +8323,8 @@ func (s *JobDetails) SetId(v string) *JobDetails {
 
 // The job was specified in an invalid format or cannot be found.
 type JobNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8341,7 +8341,7 @@ func (s JobNotFoundException) GoString() string {
 
 func newErrorJobNotFoundException(v protocol.ResponseMetadata) error {
 	return &JobNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8369,19 +8369,19 @@ func (s JobNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s JobNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s JobNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The number of pipelines associated with the AWS account has exceeded the
 // limit allowed for the account.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8398,7 +8398,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8426,12 +8426,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListActionExecutionsInput struct {
@@ -9086,8 +9086,8 @@ func (s *ListWebhooksOutput) SetWebhooks(v []*ListWebhookItem) *ListWebhooksOutp
 // The stage has failed in a later run of the pipeline and the pipelineExecutionId
 // associated with the request is out of date.
 type NotLatestPipelineExecutionException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9104,7 +9104,7 @@ func (s NotLatestPipelineExecutionException) GoString() string {
 
 func newErrorNotLatestPipelineExecutionException(v protocol.ResponseMetadata) error {
 	return &NotLatestPipelineExecutionException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9132,12 +9132,12 @@ func (s NotLatestPipelineExecutionException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NotLatestPipelineExecutionException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NotLatestPipelineExecutionException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents information about the output of an action.
@@ -9192,8 +9192,8 @@ func (s *OutputArtifact) SetName(v string) *OutputArtifact {
 
 // Exceeded the total size limit for all variables in the pipeline.
 type OutputVariablesSizeExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
@@ -9210,7 +9210,7 @@ func (s OutputVariablesSizeExceededException) GoString() string {
 
 func newErrorOutputVariablesSizeExceededException(v protocol.ResponseMetadata) error {
 	return &OutputVariablesSizeExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9238,12 +9238,12 @@ func (s OutputVariablesSizeExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s OutputVariablesSizeExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s OutputVariablesSizeExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents information about a pipeline to a job worker.
@@ -9532,8 +9532,8 @@ func (s *PipelineExecution) SetStatus(v string) *PipelineExecution {
 // The pipeline execution was specified in an invalid format or cannot be found,
 // or an execution ID does not belong to the specified pipeline.
 type PipelineExecutionNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9550,7 +9550,7 @@ func (s PipelineExecutionNotFoundException) GoString() string {
 
 func newErrorPipelineExecutionNotFoundException(v protocol.ResponseMetadata) error {
 	return &PipelineExecutionNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9578,19 +9578,19 @@ func (s PipelineExecutionNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PipelineExecutionNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PipelineExecutionNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Unable to stop the pipeline execution. The execution might already be in
 // a Stopped state, or it might no longer be in progress.
 type PipelineExecutionNotStoppableException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
@@ -9607,7 +9607,7 @@ func (s PipelineExecutionNotStoppableException) GoString() string {
 
 func newErrorPipelineExecutionNotStoppableException(v protocol.ResponseMetadata) error {
 	return &PipelineExecutionNotStoppableException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9635,12 +9635,12 @@ func (s PipelineExecutionNotStoppableException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PipelineExecutionNotStoppableException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PipelineExecutionNotStoppableException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Summary information about a pipeline execution.
@@ -9786,8 +9786,8 @@ func (s *PipelineMetadata) SetUpdated(v time.Time) *PipelineMetadata {
 
 // The specified pipeline name is already in use.
 type PipelineNameInUseException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9804,7 +9804,7 @@ func (s PipelineNameInUseException) GoString() string {
 
 func newErrorPipelineNameInUseException(v protocol.ResponseMetadata) error {
 	return &PipelineNameInUseException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9832,18 +9832,18 @@ func (s PipelineNameInUseException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PipelineNameInUseException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PipelineNameInUseException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The pipeline was specified in an invalid format or cannot be found.
 type PipelineNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9860,7 +9860,7 @@ func (s PipelineNotFoundException) GoString() string {
 
 func newErrorPipelineNotFoundException(v protocol.ResponseMetadata) error {
 	return &PipelineNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9888,12 +9888,12 @@ func (s PipelineNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PipelineNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PipelineNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Returns a summary of a pipeline.
@@ -9949,8 +9949,8 @@ func (s *PipelineSummary) SetVersion(v int64) *PipelineSummary {
 
 // The pipeline version was specified in an invalid format or cannot be found.
 type PipelineVersionNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9967,7 +9967,7 @@ func (s PipelineVersionNotFoundException) GoString() string {
 
 func newErrorPipelineVersionNotFoundException(v protocol.ResponseMetadata) error {
 	return &PipelineVersionNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9995,12 +9995,12 @@ func (s PipelineVersionNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PipelineVersionNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PipelineVersionNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents the input of a PollForJobs action.
@@ -10980,8 +10980,8 @@ func (s RegisterWebhookWithThirdPartyOutput) GoString() string {
 
 // The resource was specified in an invalid format.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10998,7 +10998,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11026,12 +11026,12 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents the input of a RetryStageExecution action.
@@ -11427,8 +11427,8 @@ func (s *StageExecution) SetStatus(v string) *StageExecution {
 
 // The stage was specified in an invalid format or cannot be found.
 type StageNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11445,7 +11445,7 @@ func (s StageNotFoundException) GoString() string {
 
 func newErrorStageNotFoundException(v protocol.ResponseMetadata) error {
 	return &StageNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11473,19 +11473,19 @@ func (s StageNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s StageNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s StageNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Unable to retry. The pipeline structure or stage state might have changed
 // while actions awaited retry, or the stage contains no failed actions.
 type StageNotRetryableException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11502,7 +11502,7 @@ func (s StageNotRetryableException) GoString() string {
 
 func newErrorStageNotRetryableException(v protocol.ResponseMetadata) error {
 	return &StageNotRetryableException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11530,12 +11530,12 @@ func (s StageNotRetryableException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s StageNotRetryableException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s StageNotRetryableException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents information about the state of the stage.
@@ -12106,8 +12106,8 @@ func (s *ThirdPartyJobDetails) SetNonce(v string) *ThirdPartyJobDetails {
 
 // The tags limit for a resource has been exceeded.
 type TooManyTagsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
@@ -12124,7 +12124,7 @@ func (s TooManyTagsException) GoString() string {
 
 func newErrorTooManyTagsException(v protocol.ResponseMetadata) error {
 	return &TooManyTagsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12152,12 +12152,12 @@ func (s TooManyTagsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TooManyTagsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TooManyTagsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents information about the state of transitions between one stage and
@@ -12349,8 +12349,8 @@ func (s *UpdatePipelineOutput) SetPipeline(v *PipelineDeclaration) *UpdatePipeli
 
 // The validation was specified in an invalid format.
 type ValidationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12367,7 +12367,7 @@ func (s ValidationException) GoString() string {
 
 func newErrorValidationException(v protocol.ResponseMetadata) error {
 	return &ValidationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12395,12 +12395,12 @@ func (s ValidationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ValidationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ValidationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The authentication applied to incoming webhook trigger requests.
@@ -12673,8 +12673,8 @@ func (s *WebhookFilterRule) SetMatchEquals(v string) *WebhookFilterRule {
 
 // The specified webhook was entered in an invalid format or cannot be found.
 type WebhookNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12691,7 +12691,7 @@ func (s WebhookNotFoundException) GoString() string {
 
 func newErrorWebhookNotFoundException(v protocol.ResponseMetadata) error {
 	return &WebhookNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12719,12 +12719,12 @@ func (s WebhookNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WebhookNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WebhookNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 const (

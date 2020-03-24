@@ -331,8 +331,8 @@ func (s DeleteConnectionOutput) GoString() string {
 
 // The caller is not authorized to invoke this operation.
 type ForbiddenException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -349,7 +349,7 @@ func (s ForbiddenException) GoString() string {
 
 func newErrorForbiddenException(v protocol.ResponseMetadata) error {
 	return &ForbiddenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -377,12 +377,12 @@ func (s ForbiddenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ForbiddenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ForbiddenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type GetConnectionInput struct {
@@ -464,8 +464,8 @@ func (s *GetConnectionOutput) SetLastActiveAt(v time.Time) *GetConnectionOutput 
 
 // The connection with the provided id no longer exists.
 type GoneException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -482,7 +482,7 @@ func (s GoneException) GoString() string {
 
 func newErrorGoneException(v protocol.ResponseMetadata) error {
 	return &GoneException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -510,12 +510,12 @@ func (s GoneException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s GoneException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s GoneException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type Identity struct {
@@ -557,8 +557,8 @@ func (s *Identity) SetUserAgent(v string) *Identity {
 // The client is sending more than the allowed number of requests per unit of
 // time or the WebSocket client side buffer is full.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -575,7 +575,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -603,18 +603,18 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The data has exceeded the maximum size allowed.
 type PayloadTooLargeException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -631,7 +631,7 @@ func (s PayloadTooLargeException) GoString() string {
 
 func newErrorPayloadTooLargeException(v protocol.ResponseMetadata) error {
 	return &PayloadTooLargeException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -659,12 +659,12 @@ func (s PayloadTooLargeException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PayloadTooLargeException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PayloadTooLargeException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type PostToConnectionInput struct {

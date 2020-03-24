@@ -6533,8 +6533,8 @@ func (s *AliasListEntry) SetTargetKeyId(v string) *AliasListEntry {
 // The request was rejected because it attempted to create a resource that already
 // exists.
 type AlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6551,7 +6551,7 @@ func (s AlreadyExistsException) GoString() string {
 
 func newErrorAlreadyExistsException(v protocol.ResponseMetadata) error {
 	return &AlreadyExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6579,12 +6579,12 @@ func (s AlreadyExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AlreadyExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AlreadyExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type CancelKeyDeletionInput struct {
@@ -6671,8 +6671,8 @@ func (s *CancelKeyDeletionOutput) SetKeyId(v string) *CancelKeyDeletionOutput {
 // view the cluster certificate of a cluster, use the DescribeClusters (https://docs.aws.amazon.com/cloudhsm/latest/APIReference/API_DescribeClusters.html)
 // operation.
 type CloudHsmClusterInUseException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6689,7 +6689,7 @@ func (s CloudHsmClusterInUseException) GoString() string {
 
 func newErrorCloudHsmClusterInUseException(v protocol.ResponseMetadata) error {
 	return &CloudHsmClusterInUseException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6717,12 +6717,12 @@ func (s CloudHsmClusterInUseException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CloudHsmClusterInUseException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CloudHsmClusterInUseException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because the associated AWS CloudHSM cluster did
@@ -6756,8 +6756,8 @@ func (s CloudHsmClusterInUseException) RequestID() string {
 // see Configure a Default Security Group (https://docs.aws.amazon.com/cloudhsm/latest/userguide/configure-sg.html)
 // in the AWS CloudHSM User Guide .
 type CloudHsmClusterInvalidConfigurationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6774,7 +6774,7 @@ func (s CloudHsmClusterInvalidConfigurationException) GoString() string {
 
 func newErrorCloudHsmClusterInvalidConfigurationException(v protocol.ResponseMetadata) error {
 	return &CloudHsmClusterInvalidConfigurationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6802,12 +6802,12 @@ func (s CloudHsmClusterInvalidConfigurationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CloudHsmClusterInvalidConfigurationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CloudHsmClusterInvalidConfigurationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because the AWS CloudHSM cluster that is associated
@@ -6816,8 +6816,8 @@ func (s CloudHsmClusterInvalidConfigurationException) RequestID() string {
 // (https://docs.aws.amazon.com/cloudhsm/latest/userguide/getting-started.html)
 // in the AWS CloudHSM User Guide.
 type CloudHsmClusterNotActiveException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6834,7 +6834,7 @@ func (s CloudHsmClusterNotActiveException) GoString() string {
 
 func newErrorCloudHsmClusterNotActiveException(v protocol.ResponseMetadata) error {
 	return &CloudHsmClusterNotActiveException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6862,20 +6862,20 @@ func (s CloudHsmClusterNotActiveException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CloudHsmClusterNotActiveException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CloudHsmClusterNotActiveException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because AWS KMS cannot find the AWS CloudHSM cluster
 // with the specified cluster ID. Retry the request with a different cluster
 // ID.
 type CloudHsmClusterNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6892,7 +6892,7 @@ func (s CloudHsmClusterNotFoundException) GoString() string {
 
 func newErrorCloudHsmClusterNotFoundException(v protocol.ResponseMetadata) error {
 	return &CloudHsmClusterNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6920,12 +6920,12 @@ func (s CloudHsmClusterNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CloudHsmClusterNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CloudHsmClusterNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because the specified AWS CloudHSM cluster has a
@@ -6941,8 +6941,8 @@ func (s CloudHsmClusterNotFoundException) RequestID() string {
 // view the cluster certificate of a cluster, use the DescribeClusters (https://docs.aws.amazon.com/cloudhsm/latest/APIReference/API_DescribeClusters.html)
 // operation.
 type CloudHsmClusterNotRelatedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6959,7 +6959,7 @@ func (s CloudHsmClusterNotRelatedException) GoString() string {
 
 func newErrorCloudHsmClusterNotRelatedException(v protocol.ResponseMetadata) error {
 	return &CloudHsmClusterNotRelatedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6987,12 +6987,12 @@ func (s CloudHsmClusterNotRelatedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CloudHsmClusterNotRelatedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CloudHsmClusterNotRelatedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ConnectCustomKeyStoreInput struct {
@@ -7714,8 +7714,8 @@ func (s *CreateKeyOutput) SetKeyMetadata(v *KeyMetadata) *CreateKeyOutput {
 // use the ScheduleKeyDeletion operation to delete the CMKs. After they are
 // deleted, you can delete the custom key store.
 type CustomKeyStoreHasCMKsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7732,7 +7732,7 @@ func (s CustomKeyStoreHasCMKsException) GoString() string {
 
 func newErrorCustomKeyStoreHasCMKsException(v protocol.ResponseMetadata) error {
 	return &CustomKeyStoreHasCMKsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7760,12 +7760,12 @@ func (s CustomKeyStoreHasCMKsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CustomKeyStoreHasCMKsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CustomKeyStoreHasCMKsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because of the ConnectionState of the custom key
@@ -7786,8 +7786,8 @@ func (s CustomKeyStoreHasCMKsException) RequestID() string {
 //    with a ConnectionState of DISCONNECTING or FAILED. This operation is valid
 //    for all other ConnectionState values.
 type CustomKeyStoreInvalidStateException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7804,7 +7804,7 @@ func (s CustomKeyStoreInvalidStateException) GoString() string {
 
 func newErrorCustomKeyStoreInvalidStateException(v protocol.ResponseMetadata) error {
 	return &CustomKeyStoreInvalidStateException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7832,20 +7832,20 @@ func (s CustomKeyStoreInvalidStateException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CustomKeyStoreInvalidStateException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CustomKeyStoreInvalidStateException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because the specified custom key store name is already
 // assigned to another custom key store in the account. Try again with a custom
 // key store name that is unique in the account.
 type CustomKeyStoreNameInUseException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7862,7 +7862,7 @@ func (s CustomKeyStoreNameInUseException) GoString() string {
 
 func newErrorCustomKeyStoreNameInUseException(v protocol.ResponseMetadata) error {
 	return &CustomKeyStoreNameInUseException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7890,19 +7890,19 @@ func (s CustomKeyStoreNameInUseException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CustomKeyStoreNameInUseException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CustomKeyStoreNameInUseException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because AWS KMS cannot find a custom key store with
 // the specified key store name or ID.
 type CustomKeyStoreNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7919,7 +7919,7 @@ func (s CustomKeyStoreNotFoundException) GoString() string {
 
 func newErrorCustomKeyStoreNotFoundException(v protocol.ResponseMetadata) error {
 	return &CustomKeyStoreNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7947,12 +7947,12 @@ func (s CustomKeyStoreNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CustomKeyStoreNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CustomKeyStoreNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains information about each custom key store in the custom key store
@@ -8460,8 +8460,8 @@ func (s DeleteImportedKeyMaterialOutput) GoString() string {
 // The system timed out while trying to fulfill the request. The request can
 // be retried.
 type DependencyTimeoutException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8478,7 +8478,7 @@ func (s DependencyTimeoutException) GoString() string {
 
 func newErrorDependencyTimeoutException(v protocol.ResponseMetadata) error {
 	return &DependencyTimeoutException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8506,12 +8506,12 @@ func (s DependencyTimeoutException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DependencyTimeoutException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DependencyTimeoutException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type DescribeCustomKeyStoresInput struct {
@@ -8879,8 +8879,8 @@ func (s DisableKeyRotationOutput) GoString() string {
 
 // The request was rejected because the specified CMK is not enabled.
 type DisabledException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8897,7 +8897,7 @@ func (s DisabledException) GoString() string {
 
 func newErrorDisabledException(v protocol.ResponseMetadata) error {
 	return &DisabledException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8925,12 +8925,12 @@ func (s DisabledException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DisabledException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DisabledException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type DisconnectCustomKeyStoreInput struct {
@@ -9293,8 +9293,8 @@ func (s *EncryptOutput) SetKeyId(v string) *EncryptOutput {
 // GetParametersForImport to get a new import token and public key, use the
 // new public key to encrypt the key material, and then try the request again.
 type ExpiredImportTokenException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9311,7 +9311,7 @@ func (s ExpiredImportTokenException) GoString() string {
 
 func newErrorExpiredImportTokenException(v protocol.ResponseMetadata) error {
 	return &ExpiredImportTokenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9339,12 +9339,12 @@ func (s ExpiredImportTokenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ExpiredImportTokenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ExpiredImportTokenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type GenerateDataKeyInput struct {
@@ -10873,8 +10873,8 @@ func (s ImportKeyMaterialOutput) GoString() string {
 // The KeyId in a Decrypt request and the SourceKeyId in a ReEncrypt request
 // must identify the same CMK that was used to encrypt the ciphertext.
 type IncorrectKeyException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10891,7 +10891,7 @@ func (s IncorrectKeyException) GoString() string {
 
 func newErrorIncorrectKeyException(v protocol.ResponseMetadata) error {
 	return &IncorrectKeyException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10919,20 +10919,20 @@ func (s IncorrectKeyException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s IncorrectKeyException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s IncorrectKeyException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because the key material in the request is, expired,
 // invalid, or is not the same key material that was previously imported into
 // this customer master key (CMK).
 type IncorrectKeyMaterialException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10949,7 +10949,7 @@ func (s IncorrectKeyMaterialException) GoString() string {
 
 func newErrorIncorrectKeyMaterialException(v protocol.ResponseMetadata) error {
 	return &IncorrectKeyMaterialException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10977,12 +10977,12 @@ func (s IncorrectKeyMaterialException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s IncorrectKeyMaterialException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s IncorrectKeyMaterialException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because the trust anchor certificate in the request
@@ -10992,8 +10992,8 @@ func (s IncorrectKeyMaterialException) RequestID() string {
 // you create the trust anchor certificate and save it in the customerCA.crt
 // file.
 type IncorrectTrustAnchorException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11010,7 +11010,7 @@ func (s IncorrectTrustAnchorException) GoString() string {
 
 func newErrorIncorrectTrustAnchorException(v protocol.ResponseMetadata) error {
 	return &IncorrectTrustAnchorException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11038,19 +11038,19 @@ func (s IncorrectTrustAnchorException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s IncorrectTrustAnchorException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s IncorrectTrustAnchorException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because an internal exception occurred. The request
 // can be retried.
 type InternalException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11067,7 +11067,7 @@ func (s InternalException) GoString() string {
 
 func newErrorInternalException(v protocol.ResponseMetadata) error {
 	return &InternalException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11095,18 +11095,18 @@ func (s InternalException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because the specified alias name is not valid.
 type InvalidAliasNameException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11123,7 +11123,7 @@ func (s InvalidAliasNameException) GoString() string {
 
 func newErrorInvalidAliasNameException(v protocol.ResponseMetadata) error {
 	return &InvalidAliasNameException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11151,19 +11151,19 @@ func (s InvalidAliasNameException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidAliasNameException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidAliasNameException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because a specified ARN, or an ARN in a key policy,
 // is not valid.
 type InvalidArnException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11180,7 +11180,7 @@ func (s InvalidArnException) GoString() string {
 
 func newErrorInvalidArnException(v protocol.ResponseMetadata) error {
 	return &InvalidArnException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11208,12 +11208,12 @@ func (s InvalidArnException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidArnException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidArnException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // From the Decrypt or ReEncrypt operation, the request was rejected because
@@ -11224,8 +11224,8 @@ func (s InvalidArnException) RequestID() string {
 // From the ImportKeyMaterial operation, the request was rejected because AWS
 // KMS could not decrypt the encrypted (wrapped) key material.
 type InvalidCiphertextException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11242,7 +11242,7 @@ func (s InvalidCiphertextException) GoString() string {
 
 func newErrorInvalidCiphertextException(v protocol.ResponseMetadata) error {
 	return &InvalidCiphertextException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11270,18 +11270,18 @@ func (s InvalidCiphertextException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidCiphertextException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidCiphertextException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because the specified GrantId is not valid.
 type InvalidGrantIdException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11298,7 +11298,7 @@ func (s InvalidGrantIdException) GoString() string {
 
 func newErrorInvalidGrantIdException(v protocol.ResponseMetadata) error {
 	return &InvalidGrantIdException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11326,18 +11326,18 @@ func (s InvalidGrantIdException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidGrantIdException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidGrantIdException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because the specified grant token is not valid.
 type InvalidGrantTokenException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11354,7 +11354,7 @@ func (s InvalidGrantTokenException) GoString() string {
 
 func newErrorInvalidGrantTokenException(v protocol.ResponseMetadata) error {
 	return &InvalidGrantTokenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11382,19 +11382,19 @@ func (s InvalidGrantTokenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidGrantTokenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidGrantTokenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because the provided import token is invalid or
 // is associated with a different customer master key (CMK).
 type InvalidImportTokenException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11411,7 +11411,7 @@ func (s InvalidImportTokenException) GoString() string {
 
 func newErrorInvalidImportTokenException(v protocol.ResponseMetadata) error {
 	return &InvalidImportTokenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11439,12 +11439,12 @@ func (s InvalidImportTokenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidImportTokenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidImportTokenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected for one of the following reasons:
@@ -11461,8 +11461,8 @@ func (s InvalidImportTokenException) RequestID() string {
 // To find the encryption or signing algorithms supported for a particular CMK,
 // use the DescribeKey operation.
 type InvalidKeyUsageException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11479,7 +11479,7 @@ func (s InvalidKeyUsageException) GoString() string {
 
 func newErrorInvalidKeyUsageException(v protocol.ResponseMetadata) error {
 	return &InvalidKeyUsageException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11507,19 +11507,19 @@ func (s InvalidKeyUsageException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidKeyUsageException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidKeyUsageException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because the marker that specifies where pagination
 // should next begin is not valid.
 type InvalidMarkerException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11536,7 +11536,7 @@ func (s InvalidMarkerException) GoString() string {
 
 func newErrorInvalidMarkerException(v protocol.ResponseMetadata) error {
 	return &InvalidMarkerException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11564,12 +11564,12 @@ func (s InvalidMarkerException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidMarkerException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidMarkerException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because the state of the specified resource is not
@@ -11579,8 +11579,8 @@ func (s InvalidMarkerException) RequestID() string {
 // Key State Affects Use of a Customer Master Key (https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
 // in the AWS Key Management Service Developer Guide .
 type InvalidStateException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11597,7 +11597,7 @@ func (s InvalidStateException) GoString() string {
 
 func newErrorInvalidStateException(v protocol.ResponseMetadata) error {
 	return &InvalidStateException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11625,20 +11625,20 @@ func (s InvalidStateException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidStateException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidStateException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because the signature verification failed. Signature
 // verification fails when it cannot confirm that signature was produced by
 // signing the specified message with the specified CMK and signing algorithm.
 type KMSInvalidSignatureException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11655,7 +11655,7 @@ func (s KMSInvalidSignatureException) GoString() string {
 
 func newErrorKMSInvalidSignatureException(v protocol.ResponseMetadata) error {
 	return &KMSInvalidSignatureException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11683,12 +11683,12 @@ func (s KMSInvalidSignatureException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s KMSInvalidSignatureException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s KMSInvalidSignatureException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains information about each entry in the key list.
@@ -11940,8 +11940,8 @@ func (s *KeyMetadata) SetValidTo(v time.Time) *KeyMetadata {
 // The request was rejected because the specified CMK was not available. You
 // can retry the request.
 type KeyUnavailableException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11958,7 +11958,7 @@ func (s KeyUnavailableException) GoString() string {
 
 func newErrorKeyUnavailableException(v protocol.ResponseMetadata) error {
 	return &KeyUnavailableException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11986,20 +11986,20 @@ func (s KeyUnavailableException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s KeyUnavailableException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s KeyUnavailableException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because a quota was exceeded. For more information,
 // see Quotas (https://docs.aws.amazon.com/kms/latest/developerguide/limits.html)
 // in the AWS Key Management Service Developer Guide.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12016,7 +12016,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12044,12 +12044,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListAliasesInput struct {
@@ -12740,8 +12740,8 @@ func (s *ListRetirableGrantsInput) SetRetiringPrincipal(v string) *ListRetirable
 // The request was rejected because the specified policy is not syntactically
 // or semantically correct.
 type MalformedPolicyDocumentException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12758,7 +12758,7 @@ func (s MalformedPolicyDocumentException) GoString() string {
 
 func newErrorMalformedPolicyDocumentException(v protocol.ResponseMetadata) error {
 	return &MalformedPolicyDocumentException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12786,19 +12786,19 @@ func (s MalformedPolicyDocumentException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MalformedPolicyDocumentException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MalformedPolicyDocumentException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was rejected because the specified entity or resource could not
 // be found.
 type NotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12815,7 +12815,7 @@ func (s NotFoundException) GoString() string {
 
 func newErrorNotFoundException(v protocol.ResponseMetadata) error {
 	return &NotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12843,12 +12843,12 @@ func (s NotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type PutKeyPolicyInput struct {
@@ -13760,8 +13760,8 @@ func (s *Tag) SetTagValue(v string) *Tag {
 
 // The request was rejected because one or more tags are not valid.
 type TagException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13778,7 +13778,7 @@ func (s TagException) GoString() string {
 
 func newErrorTagException(v protocol.ResponseMetadata) error {
 	return &TagException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -13806,12 +13806,12 @@ func (s TagException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TagException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TagException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type TagResourceInput struct {
@@ -13906,8 +13906,8 @@ func (s TagResourceOutput) GoString() string {
 // The request was rejected because a specified parameter is not supported or
 // a specified resource is not valid for this operation.
 type UnsupportedOperationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -13924,7 +13924,7 @@ func (s UnsupportedOperationException) GoString() string {
 
 func newErrorUnsupportedOperationException(v protocol.ResponseMetadata) error {
 	return &UnsupportedOperationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -13952,12 +13952,12 @@ func (s UnsupportedOperationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnsupportedOperationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnsupportedOperationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UntagResourceInput struct {

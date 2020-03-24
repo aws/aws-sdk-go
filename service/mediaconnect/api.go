@@ -2215,8 +2215,8 @@ func (c *MediaConnect) UpdateFlowSourceWithContext(ctx aws.Context, input *Updat
 // documentation for the operation for more information on the cause of this
 // exception.
 type AddFlowOutputs420Exception struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2233,7 +2233,7 @@ func (s AddFlowOutputs420Exception) GoString() string {
 
 func newErrorAddFlowOutputs420Exception(v protocol.ResponseMetadata) error {
 	return &AddFlowOutputs420Exception{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2261,12 +2261,12 @@ func (s AddFlowOutputs420Exception) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AddFlowOutputs420Exception) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AddFlowOutputs420Exception) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Adds outputs to an existing flow. You can create up to 50 outputs per flow.
@@ -2608,8 +2608,8 @@ func (s *AddOutputRequest) SetStreamId(v string) *AddOutputRequest {
 // documentation for the operation for more information on the cause of this
 // exception.
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2626,7 +2626,7 @@ func (s BadRequestException) GoString() string {
 
 func newErrorBadRequestException(v protocol.ResponseMetadata) error {
 	return &BadRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2654,20 +2654,20 @@ func (s BadRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s BadRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s BadRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Exception raised by AWS Elemental MediaConnect. See the error message and
 // documentation for the operation for more information on the cause of this
 // exception.
 type CreateFlow420Exception struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2684,7 +2684,7 @@ func (s CreateFlow420Exception) GoString() string {
 
 func newErrorCreateFlow420Exception(v protocol.ResponseMetadata) error {
 	return &CreateFlow420Exception{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2712,12 +2712,12 @@ func (s CreateFlow420Exception) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CreateFlow420Exception) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CreateFlow420Exception) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Creates a new flow. The request must include one source. The request optionally
@@ -3392,8 +3392,8 @@ func (s *Flow) SetStatus(v string) *Flow {
 // documentation for the operation for more information on the cause of this
 // exception.
 type ForbiddenException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3410,7 +3410,7 @@ func (s ForbiddenException) GoString() string {
 
 func newErrorForbiddenException(v protocol.ResponseMetadata) error {
 	return &ForbiddenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3438,12 +3438,12 @@ func (s ForbiddenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ForbiddenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ForbiddenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The entitlements that you want to grant on a flow.
@@ -3536,8 +3536,8 @@ func (s *GrantEntitlementRequest) SetSubscribers(v []*string) *GrantEntitlementR
 // documentation for the operation for more information on the cause of this
 // exception.
 type GrantFlowEntitlements420Exception struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3554,7 +3554,7 @@ func (s GrantFlowEntitlements420Exception) GoString() string {
 
 func newErrorGrantFlowEntitlements420Exception(v protocol.ResponseMetadata) error {
 	return &GrantFlowEntitlements420Exception{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3582,12 +3582,12 @@ func (s GrantFlowEntitlements420Exception) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s GrantFlowEntitlements420Exception) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s GrantFlowEntitlements420Exception) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Grants an entitlement on a flow.
@@ -3691,8 +3691,8 @@ func (s *GrantFlowEntitlementsOutput) SetFlowArn(v string) *GrantFlowEntitlement
 // documentation for the operation for more information on the cause of this
 // exception.
 type InternalServerErrorException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3709,7 +3709,7 @@ func (s InternalServerErrorException) GoString() string {
 
 func newErrorInternalServerErrorException(v protocol.ResponseMetadata) error {
 	return &InternalServerErrorException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3737,12 +3737,12 @@ func (s InternalServerErrorException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServerErrorException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServerErrorException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListEntitlementsInput struct {
@@ -4133,8 +4133,8 @@ func (s *Messages) SetErrors(v []*string) *Messages {
 // documentation for the operation for more information on the cause of this
 // exception.
 type NotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4151,7 +4151,7 @@ func (s NotFoundException) GoString() string {
 
 func newErrorNotFoundException(v protocol.ResponseMetadata) error {
 	return &NotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4179,12 +4179,12 @@ func (s NotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The settings for an output.
@@ -4568,8 +4568,8 @@ func (s *RevokeFlowEntitlementOutput) SetFlowArn(v string) *RevokeFlowEntitlemen
 // documentation for the operation for more information on the cause of this
 // exception.
 type ServiceUnavailableException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4586,7 +4586,7 @@ func (s ServiceUnavailableException) GoString() string {
 
 func newErrorServiceUnavailableException(v protocol.ResponseMetadata) error {
 	return &ServiceUnavailableException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4614,12 +4614,12 @@ func (s ServiceUnavailableException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceUnavailableException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceUnavailableException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The settings for the source of the flow.
@@ -5081,8 +5081,8 @@ func (s TagResourceOutput) GoString() string {
 // documentation for the operation for more information on the cause of this
 // exception.
 type TooManyRequestsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5099,7 +5099,7 @@ func (s TooManyRequestsException) GoString() string {
 
 func newErrorTooManyRequestsException(v protocol.ResponseMetadata) error {
 	return &TooManyRequestsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5127,12 +5127,12 @@ func (s TooManyRequestsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TooManyRequestsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TooManyRequestsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Attributes related to the transport stream that are used in a source or output.

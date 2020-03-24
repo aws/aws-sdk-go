@@ -360,8 +360,8 @@ func (s *BucketInfo) SetBuckets(v []*Bucket) *BucketInfo {
 
 // Information about any problems encountered while processing an upload request.
 type DocumentServiceException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The description of the errors returned by the document service.
 	Message_ *string `locationName:"message" type:"string"`
@@ -382,7 +382,7 @@ func (s DocumentServiceException) GoString() string {
 
 func newErrorDocumentServiceException(v protocol.ResponseMetadata) error {
 	return &DocumentServiceException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -410,12 +410,12 @@ func (s DocumentServiceException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DocumentServiceException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DocumentServiceException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A warning returned by the document service when an issue is discovered while
@@ -657,8 +657,8 @@ func (s *Hits) SetStart(v int64) *Hits {
 
 // Information about any problems encountered while processing a search request.
 type SearchException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A description of the error returned by the search service.
 	Message_ *string `locationName:"message" type:"string"`
@@ -676,7 +676,7 @@ func (s SearchException) GoString() string {
 
 func newErrorSearchException(v protocol.ResponseMetadata) error {
 	return &SearchException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -704,12 +704,12 @@ func (s SearchException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s SearchException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s SearchException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Container for the parameters to the Search request.

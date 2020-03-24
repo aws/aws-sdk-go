@@ -9799,8 +9799,8 @@ func (s *CertificateConfiguration) SetCertificateType(v string) *CertificateConf
 // a service resource associated with the request. Resolve the conflict before
 // retrying this request.
 type ConflictException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -9817,7 +9817,7 @@ func (s ConflictException) GoString() string {
 
 func newErrorConflictException(v protocol.ResponseMetadata) error {
 	return &ConflictException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9845,12 +9845,12 @@ func (s ConflictException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ConflictException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ConflictException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents the input for a request action.
@@ -15051,8 +15051,8 @@ func (s *FleetCapacity) SetInstanceType(v string) *FleetCapacity {
 // The specified fleet has no available instances to fulfill a CreateGameSession
 // request. Clients can retry such requests immediately or after a waiting period.
 type FleetCapacityExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -15069,7 +15069,7 @@ func (s FleetCapacityExceededException) GoString() string {
 
 func newErrorFleetCapacityExceededException(v protocol.ResponseMetadata) error {
 	return &FleetCapacityExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15097,12 +15097,12 @@ func (s FleetCapacityExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s FleetCapacityExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s FleetCapacityExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Current status of fleet utilization, including the number of game and player
@@ -15595,8 +15595,8 @@ func (s *GameSessionDetail) SetProtectionPolicy(v string) *GameSessionDetail {
 // The game instance is currently full and cannot allow the requested player(s)
 // to join. Clients can retry such requests immediately or after a waiting period.
 type GameSessionFullException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -15613,7 +15613,7 @@ func (s GameSessionFullException) GoString() string {
 
 func newErrorGameSessionFullException(v protocol.ResponseMetadata) error {
 	return &GameSessionFullException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15641,12 +15641,12 @@ func (s GameSessionFullException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s GameSessionFullException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s GameSessionFullException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Object that describes a StartGameSessionPlacement request. This object includes
@@ -16192,8 +16192,8 @@ func (s *GetInstanceAccessOutput) SetInstanceAccess(v *InstanceAccess) *GetInsta
 // A game session with this custom ID string already exists in this fleet. Resolve
 // this conflict before retrying this request.
 type IdempotentParameterMismatchException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -16210,7 +16210,7 @@ func (s IdempotentParameterMismatchException) GoString() string {
 
 func newErrorIdempotentParameterMismatchException(v protocol.ResponseMetadata) error {
 	return &IdempotentParameterMismatchException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -16238,12 +16238,12 @@ func (s IdempotentParameterMismatchException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s IdempotentParameterMismatchException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s IdempotentParameterMismatchException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Properties that describe an instance of a virtual computing resource that
@@ -16458,8 +16458,8 @@ func (s *InstanceCredentials) SetUserName(v string) *InstanceCredentials {
 // the request. Clients can retry such requests immediately or after a waiting
 // period.
 type InternalServiceException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -16476,7 +16476,7 @@ func (s InternalServiceException) GoString() string {
 
 func newErrorInternalServiceException(v protocol.ResponseMetadata) error {
 	return &InternalServiceException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -16504,20 +16504,20 @@ func (s InternalServiceException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServiceException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServiceException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The requested operation would cause a conflict with the current state of
 // a resource associated with the request and/or the fleet. Resolve the conflict
 // before retrying.
 type InvalidFleetStatusException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -16534,7 +16534,7 @@ func (s InvalidFleetStatusException) GoString() string {
 
 func newErrorInvalidFleetStatusException(v protocol.ResponseMetadata) error {
 	return &InvalidFleetStatusException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -16562,20 +16562,20 @@ func (s InvalidFleetStatusException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidFleetStatusException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidFleetStatusException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The requested operation would cause a conflict with the current state of
 // a resource associated with the request and/or the game instance. Resolve
 // the conflict before retrying.
 type InvalidGameSessionStatusException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -16592,7 +16592,7 @@ func (s InvalidGameSessionStatusException) GoString() string {
 
 func newErrorInvalidGameSessionStatusException(v protocol.ResponseMetadata) error {
 	return &InvalidGameSessionStatusException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -16620,19 +16620,19 @@ func (s InvalidGameSessionStatusException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidGameSessionStatusException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidGameSessionStatusException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // One or more parameter values in the request are invalid. Correct the invalid
 // parameter values before retrying.
 type InvalidRequestException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -16649,7 +16649,7 @@ func (s InvalidRequestException) GoString() string {
 
 func newErrorInvalidRequestException(v protocol.ResponseMetadata) error {
 	return &InvalidRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -16677,12 +16677,12 @@ func (s InvalidRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A range of IP addresses and port settings that allow inbound traffic to connect
@@ -16784,8 +16784,8 @@ func (s *IpPermission) SetToPort(v int64) *IpPermission {
 // The requested operation would cause the resource to exceed the allowed service
 // limit. Resolve the issue before retrying.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -16802,7 +16802,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -16830,12 +16830,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents the input for a request action.
@@ -17817,8 +17817,8 @@ func (s *MatchmakingTicket) SetTicketId(v string) *MatchmakingTicket {
 // A service resource associated with the request could not be found. Clients
 // should not retry such requests.
 type NotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -17835,7 +17835,7 @@ func (s NotFoundException) GoString() string {
 
 func newErrorNotFoundException(v protocol.ResponseMetadata) error {
 	return &NotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17863,12 +17863,12 @@ func (s NotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Information about a player session that was created as part of a StartGameSessionPlacement
@@ -20373,8 +20373,8 @@ func (s TagResourceOutput) GoString() string {
 // tag format or the maximum tag limit may have been exceeded. Resolve the issue
 // before retrying.
 type TaggingFailedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -20391,7 +20391,7 @@ func (s TaggingFailedException) GoString() string {
 
 func newErrorTaggingFailedException(v protocol.ResponseMetadata) error {
 	return &TaggingFailedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -20419,12 +20419,12 @@ func (s TaggingFailedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TaggingFailedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TaggingFailedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Settings for a target-based scaling policy (see ScalingPolicy. A target-based
@@ -20492,8 +20492,8 @@ func (s *TargetConfiguration) SetTargetValue(v float64) *TargetConfiguration {
 // Such requests should only be retried if the routing strategy for the specified
 // alias is modified.
 type TerminalRoutingStrategyException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -20510,7 +20510,7 @@ func (s TerminalRoutingStrategyException) GoString() string {
 
 func newErrorTerminalRoutingStrategyException(v protocol.ResponseMetadata) error {
 	return &TerminalRoutingStrategyException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -20538,18 +20538,18 @@ func (s TerminalRoutingStrategyException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TerminalRoutingStrategyException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TerminalRoutingStrategyException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The client failed authentication. Clients should not retry such requests.
 type UnauthorizedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -20566,7 +20566,7 @@ func (s UnauthorizedException) GoString() string {
 
 func newErrorUnauthorizedException(v protocol.ResponseMetadata) error {
 	return &UnauthorizedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -20594,18 +20594,18 @@ func (s UnauthorizedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnauthorizedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnauthorizedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The requested operation is not supported in the Region specified.
 type UnsupportedRegionException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -20622,7 +20622,7 @@ func (s UnsupportedRegionException) GoString() string {
 
 func newErrorUnsupportedRegionException(v protocol.ResponseMetadata) error {
 	return &UnsupportedRegionException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -20650,12 +20650,12 @@ func (s UnsupportedRegionException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnsupportedRegionException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnsupportedRegionException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UntagResourceInput struct {

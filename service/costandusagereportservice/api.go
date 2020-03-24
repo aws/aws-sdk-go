@@ -540,8 +540,8 @@ func (s *DescribeReportDefinitionsOutput) SetReportDefinitions(v []*ReportDefini
 // A report with the specified name already exists in the account. Specify a
 // different report name.
 type DuplicateReportNameException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message to show the detail of the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -559,7 +559,7 @@ func (s DuplicateReportNameException) GoString() string {
 
 func newErrorDuplicateReportNameException(v protocol.ResponseMetadata) error {
 	return &DuplicateReportNameException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -587,19 +587,19 @@ func (s DuplicateReportNameException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DuplicateReportNameException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DuplicateReportNameException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An error on the server occurred during the processing of your request. Try
 // again later.
 type InternalErrorException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message to show the detail of the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -617,7 +617,7 @@ func (s InternalErrorException) GoString() string {
 
 func newErrorInternalErrorException(v protocol.ResponseMetadata) error {
 	return &InternalErrorException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -645,12 +645,12 @@ func (s InternalErrorException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalErrorException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalErrorException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ModifyReportDefinitionInput struct {
@@ -964,8 +964,8 @@ func (s *ReportDefinition) SetTimeUnit(v string) *ReportDefinition {
 // This account already has five reports defined. To define a new report, you
 // must delete an existing report.
 type ReportLimitReachedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message to show the detail of the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -983,7 +983,7 @@ func (s ReportLimitReachedException) GoString() string {
 
 func newErrorReportLimitReachedException(v protocol.ResponseMetadata) error {
 	return &ReportLimitReachedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1011,18 +1011,18 @@ func (s ReportLimitReachedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ReportLimitReachedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ReportLimitReachedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The input fails to satisfy the constraints specified by an AWS service.
 type ValidationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A message to show the detail of the exception.
 	Message_ *string `locationName:"Message" type:"string"`
@@ -1040,7 +1040,7 @@ func (s ValidationException) GoString() string {
 
 func newErrorValidationException(v protocol.ResponseMetadata) error {
 	return &ValidationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1068,12 +1068,12 @@ func (s ValidationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ValidationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ValidationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The region of the S3 bucket that AWS delivers the report into.

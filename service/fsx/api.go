@@ -1772,8 +1772,8 @@ func (s *ActiveDirectoryBackupAttributes) SetDomainName(v string) *ActiveDirecto
 
 // An Active Directory error.
 type ActiveDirectoryError struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The directory ID of the directory that an error pertains to.
 	//
@@ -1799,7 +1799,7 @@ func (s ActiveDirectoryError) GoString() string {
 
 func newErrorActiveDirectoryError(v protocol.ResponseMetadata) error {
 	return &ActiveDirectoryError{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1827,12 +1827,12 @@ func (s ActiveDirectoryError) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ActiveDirectoryError) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ActiveDirectoryError) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A backup of an Amazon FSx for Windows File Server file system. You can create
@@ -1991,8 +1991,8 @@ func (s *BackupFailureDetails) SetMessage(v string) *BackupFailureDetails {
 // Another backup is already under way. Wait for completion before initiating
 // additional backups of this file system.
 type BackupInProgress struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -2010,7 +2010,7 @@ func (s BackupInProgress) GoString() string {
 
 func newErrorBackupInProgress(v protocol.ResponseMetadata) error {
 	return &BackupInProgress{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2038,18 +2038,18 @@ func (s BackupInProgress) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s BackupInProgress) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s BackupInProgress) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // No Amazon FSx backups were found based upon the supplied parameters.
 type BackupNotFound struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -2067,7 +2067,7 @@ func (s BackupNotFound) GoString() string {
 
 func newErrorBackupNotFound(v protocol.ResponseMetadata) error {
 	return &BackupNotFound{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2095,18 +2095,18 @@ func (s BackupNotFound) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s BackupNotFound) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s BackupNotFound) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You can't delete a backup while it's being used to restore a file system.
 type BackupRestoring struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The ID of a file system being restored from the backup.
 	FileSystemId *string `min:"11" type:"string"`
@@ -2127,7 +2127,7 @@ func (s BackupRestoring) GoString() string {
 
 func newErrorBackupRestoring(v protocol.ResponseMetadata) error {
 	return &BackupRestoring{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2155,18 +2155,18 @@ func (s BackupRestoring) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s BackupRestoring) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s BackupRestoring) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A generic error indicating a failure with a client request.
 type BadRequest struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -2184,7 +2184,7 @@ func (s BadRequest) GoString() string {
 
 func newErrorBadRequest(v protocol.ResponseMetadata) error {
 	return &BadRequest{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2212,12 +2212,12 @@ func (s BadRequest) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s BadRequest) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s BadRequest) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Cancels a data repository task.
@@ -3538,8 +3538,8 @@ func (s *DataRepositoryTask) SetType(v string) *DataRepositoryTask {
 // The data repository task could not be canceled because the task has already
 // ended.
 type DataRepositoryTaskEnded struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -3557,7 +3557,7 @@ func (s DataRepositoryTaskEnded) GoString() string {
 
 func newErrorDataRepositoryTaskEnded(v protocol.ResponseMetadata) error {
 	return &DataRepositoryTaskEnded{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3585,19 +3585,19 @@ func (s DataRepositoryTaskEnded) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DataRepositoryTaskEnded) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DataRepositoryTaskEnded) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An existing data repository task is currently executing on the file system.
 // Wait until the existing task has completed, then create the new task.
 type DataRepositoryTaskExecuting struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -3615,7 +3615,7 @@ func (s DataRepositoryTaskExecuting) GoString() string {
 
 func newErrorDataRepositoryTaskExecuting(v protocol.ResponseMetadata) error {
 	return &DataRepositoryTaskExecuting{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3643,12 +3643,12 @@ func (s DataRepositoryTaskExecuting) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DataRepositoryTaskExecuting) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DataRepositoryTaskExecuting) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Provides information about why a data repository task failed. Only populated
@@ -3723,8 +3723,8 @@ func (s *DataRepositoryTaskFilter) SetValues(v []*string) *DataRepositoryTaskFil
 
 // The data repository task or tasks you specified could not be found.
 type DataRepositoryTaskNotFound struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -3742,7 +3742,7 @@ func (s DataRepositoryTaskNotFound) GoString() string {
 
 func newErrorDataRepositoryTaskNotFound(v protocol.ResponseMetadata) error {
 	return &DataRepositoryTaskNotFound{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3770,12 +3770,12 @@ func (s DataRepositoryTaskNotFound) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DataRepositoryTaskNotFound) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DataRepositoryTaskNotFound) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Provides the task status showing a running total of the total number of files
@@ -4666,8 +4666,8 @@ func (s *FileSystemFailureDetails) SetMessage(v string) *FileSystemFailureDetail
 
 // No Amazon FSx file systems were found based upon supplied parameters.
 type FileSystemNotFound struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -4685,7 +4685,7 @@ func (s FileSystemNotFound) GoString() string {
 
 func newErrorFileSystemNotFound(v protocol.ResponseMetadata) error {
 	return &FileSystemNotFound{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4713,12 +4713,12 @@ func (s FileSystemNotFound) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s FileSystemNotFound) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s FileSystemNotFound) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A filter used to restrict the results of describe calls. You can use multiple
@@ -4760,8 +4760,8 @@ func (s *Filter) SetValues(v []*string) *Filter {
 // request token but different parameters settings. A client request token should
 // always uniquely identify a single request.
 type IncompatibleParameterError struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -4784,7 +4784,7 @@ func (s IncompatibleParameterError) GoString() string {
 
 func newErrorIncompatibleParameterError(v protocol.ResponseMetadata) error {
 	return &IncompatibleParameterError{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4812,18 +4812,18 @@ func (s IncompatibleParameterError) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s IncompatibleParameterError) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s IncompatibleParameterError) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A generic error indicating a server-side failure.
 type InternalServerError struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -4841,7 +4841,7 @@ func (s InternalServerError) GoString() string {
 
 func newErrorInternalServerError(v protocol.ResponseMetadata) error {
 	return &InternalServerError{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4869,18 +4869,18 @@ func (s InternalServerError) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServerError) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServerError) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The path provided for data repository export isn't valid.
 type InvalidExportPath struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -4898,7 +4898,7 @@ func (s InvalidExportPath) GoString() string {
 
 func newErrorInvalidExportPath(v protocol.ResponseMetadata) error {
 	return &InvalidExportPath{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4926,18 +4926,18 @@ func (s InvalidExportPath) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidExportPath) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidExportPath) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The path provided for data repository import isn't valid.
 type InvalidImportPath struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -4955,7 +4955,7 @@ func (s InvalidImportPath) GoString() string {
 
 func newErrorInvalidImportPath(v protocol.ResponseMetadata) error {
 	return &InvalidImportPath{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4983,12 +4983,12 @@ func (s InvalidImportPath) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidImportPath) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidImportPath) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // One or more network settings specified in the request are invalid. InvalidVpcId
@@ -4998,8 +4998,8 @@ func (s InvalidImportPath) RequestID() string {
 // of IDs for security groups that are either invalid or not part of the VPC
 // specified.
 type InvalidNetworkSettings struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The ID of your Amazon EC2 security group. This ID is used to control network
 	// access to the endpoint that Amazon FSx creates on your behalf in each subnet.
@@ -5029,7 +5029,7 @@ func (s InvalidNetworkSettings) GoString() string {
 
 func newErrorInvalidNetworkSettings(v protocol.ResponseMetadata) error {
 	return &InvalidNetworkSettings{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5057,19 +5057,19 @@ func (s InvalidNetworkSettings) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidNetworkSettings) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidNetworkSettings) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An invalid value for PerUnitStorageThroughput was provided. Please create
 // your file system again, using a valid value.
 type InvalidPerUnitStorageThroughput struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -5087,7 +5087,7 @@ func (s InvalidPerUnitStorageThroughput) GoString() string {
 
 func newErrorInvalidPerUnitStorageThroughput(v protocol.ResponseMetadata) error {
 	return &InvalidPerUnitStorageThroughput{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5115,12 +5115,12 @@ func (s InvalidPerUnitStorageThroughput) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidPerUnitStorageThroughput) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidPerUnitStorageThroughput) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request object for ListTagsForResource operation.
@@ -5299,8 +5299,8 @@ func (s *LustreFileSystemConfiguration) SetWeeklyMaintenanceStartTime(v string) 
 
 // A file system configuration is required for this operation.
 type MissingFileSystemConfiguration struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -5318,7 +5318,7 @@ func (s MissingFileSystemConfiguration) GoString() string {
 
 func newErrorMissingFileSystemConfiguration(v protocol.ResponseMetadata) error {
 	return &MissingFileSystemConfiguration{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5346,19 +5346,19 @@ func (s MissingFileSystemConfiguration) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MissingFileSystemConfiguration) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MissingFileSystemConfiguration) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The resource specified for the tagging operation is not a resource type owned
 // by Amazon FSx. Use the API of the relevant service to perform the operation.
 type NotServiceResourceError struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -5381,7 +5381,7 @@ func (s NotServiceResourceError) GoString() string {
 
 func newErrorNotServiceResourceError(v protocol.ResponseMetadata) error {
 	return &NotServiceResourceError{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5409,18 +5409,18 @@ func (s NotServiceResourceError) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NotServiceResourceError) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NotServiceResourceError) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The resource specified does not support tagging.
 type ResourceDoesNotSupportTagging struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -5443,7 +5443,7 @@ func (s ResourceDoesNotSupportTagging) GoString() string {
 
 func newErrorResourceDoesNotSupportTagging(v protocol.ResponseMetadata) error {
 	return &ResourceDoesNotSupportTagging{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5471,18 +5471,18 @@ func (s ResourceDoesNotSupportTagging) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceDoesNotSupportTagging) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceDoesNotSupportTagging) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The resource specified by the Amazon Resource Name (ARN) can't be found.
 type ResourceNotFound struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -5505,7 +5505,7 @@ func (s ResourceNotFound) GoString() string {
 
 func newErrorResourceNotFound(v protocol.ResponseMetadata) error {
 	return &ResourceNotFound{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5533,12 +5533,12 @@ func (s ResourceNotFound) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFound) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFound) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The configuration of the self-managed Microsoft Active Directory (AD) directory
@@ -5826,8 +5826,8 @@ func (s *SelfManagedActiveDirectoryConfigurationUpdates) SetUserName(v string) *
 // An error indicating that a particular service limit was exceeded. You can
 // increase some service limits by contacting AWS Support.
 type ServiceLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Enumeration of the service limit that was exceeded.
 	//
@@ -5850,7 +5850,7 @@ func (s ServiceLimitExceeded) GoString() string {
 
 func newErrorServiceLimitExceeded(v protocol.ResponseMetadata) error {
 	return &ServiceLimitExceeded{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5878,12 +5878,12 @@ func (s ServiceLimitExceeded) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceLimitExceeded) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceLimitExceeded) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Specifies a key-value pair for a resource tag.
@@ -6024,8 +6024,8 @@ func (s TagResourceOutput) GoString() string {
 
 // The requested operation is not supported for this resource or API.
 type UnsupportedOperation struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A detailed error message.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
@@ -6043,7 +6043,7 @@ func (s UnsupportedOperation) GoString() string {
 
 func newErrorUnsupportedOperation(v protocol.ResponseMetadata) error {
 	return &UnsupportedOperation{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6071,12 +6071,12 @@ func (s UnsupportedOperation) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnsupportedOperation) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnsupportedOperation) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request object for UntagResource action.

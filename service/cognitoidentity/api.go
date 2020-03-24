@@ -2161,8 +2161,8 @@ func (c *CognitoIdentity) UpdateIdentityPoolWithContext(ctx aws.Context, input *
 
 // Thrown if there are parallel requests to modify a resource.
 type ConcurrentModificationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned by a ConcurrentModificationException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -2180,7 +2180,7 @@ func (s ConcurrentModificationException) GoString() string {
 
 func newErrorConcurrentModificationException(v protocol.ResponseMetadata) error {
 	return &ConcurrentModificationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2208,12 +2208,12 @@ func (s ConcurrentModificationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ConcurrentModificationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ConcurrentModificationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Input to the CreateIdentityPool action.
@@ -2620,8 +2620,8 @@ func (s *DescribeIdentityPoolInput) SetIdentityPoolId(v string) *DescribeIdentit
 // The provided developer user identifier is already registered with Cognito
 // under a different identity ID.
 type DeveloperUserAlreadyRegisteredException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// This developer user identifier is already registered with Cognito.
 	Message_ *string `locationName:"message" type:"string"`
@@ -2639,7 +2639,7 @@ func (s DeveloperUserAlreadyRegisteredException) GoString() string {
 
 func newErrorDeveloperUserAlreadyRegisteredException(v protocol.ResponseMetadata) error {
 	return &DeveloperUserAlreadyRegisteredException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2667,19 +2667,19 @@ func (s DeveloperUserAlreadyRegisteredException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DeveloperUserAlreadyRegisteredException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DeveloperUserAlreadyRegisteredException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An exception thrown when a dependent service such as Facebook or Twitter
 // is not responding
 type ExternalServiceException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned by an ExternalServiceException
 	Message_ *string `locationName:"message" type:"string"`
@@ -2697,7 +2697,7 @@ func (s ExternalServiceException) GoString() string {
 
 func newErrorExternalServiceException(v protocol.ResponseMetadata) error {
 	return &ExternalServiceException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2725,12 +2725,12 @@ func (s ExternalServiceException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ExternalServiceException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ExternalServiceException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Input to the GetCredentialsForIdentity action.
@@ -3489,8 +3489,8 @@ func (s *IdentityPoolShortDescription) SetIdentityPoolName(v string) *IdentityPo
 
 // Thrown when the service encounters an error during processing the request.
 type InternalErrorException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned by an InternalErrorException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -3508,7 +3508,7 @@ func (s InternalErrorException) GoString() string {
 
 func newErrorInternalErrorException(v protocol.ResponseMetadata) error {
 	return &InternalErrorException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3536,19 +3536,19 @@ func (s InternalErrorException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalErrorException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalErrorException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Thrown if the identity pool has no role associated for the given auth type
 // (auth/unauth) or if the AssumeRole fails.
 type InvalidIdentityPoolConfigurationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned for an InvalidIdentityPoolConfigurationException
 	Message_ *string `locationName:"message" type:"string"`
@@ -3566,7 +3566,7 @@ func (s InvalidIdentityPoolConfigurationException) GoString() string {
 
 func newErrorInvalidIdentityPoolConfigurationException(v protocol.ResponseMetadata) error {
 	return &InvalidIdentityPoolConfigurationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3594,18 +3594,18 @@ func (s InvalidIdentityPoolConfigurationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidIdentityPoolConfigurationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidIdentityPoolConfigurationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Thrown for missing or bad input parameter(s).
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned by an InvalidParameterException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -3623,7 +3623,7 @@ func (s InvalidParameterException) GoString() string {
 
 func newErrorInvalidParameterException(v protocol.ResponseMetadata) error {
 	return &InvalidParameterException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3651,18 +3651,18 @@ func (s InvalidParameterException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidParameterException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidParameterException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Thrown when the total number of user pools has exceeded a preset limit.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned by a LimitExceededException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -3680,7 +3680,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3708,12 +3708,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Input to the ListIdentities action.
@@ -4354,8 +4354,8 @@ func (s *MergeDeveloperIdentitiesOutput) SetIdentityId(v string) *MergeDeveloper
 
 // Thrown when a user is not authorized to access the requested resource.
 type NotAuthorizedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned by a NotAuthorizedException
 	Message_ *string `locationName:"message" type:"string"`
@@ -4373,7 +4373,7 @@ func (s NotAuthorizedException) GoString() string {
 
 func newErrorNotAuthorizedException(v protocol.ResponseMetadata) error {
 	return &NotAuthorizedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4401,12 +4401,12 @@ func (s NotAuthorizedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NotAuthorizedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NotAuthorizedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A provider representing an Amazon Cognito user pool and its client ID.
@@ -4479,8 +4479,8 @@ func (s *Provider) SetServerSideTokenCheck(v bool) *Provider {
 // Thrown when a user tries to use a login which is already linked to another
 // account.
 type ResourceConflictException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned by a ResourceConflictException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -4498,7 +4498,7 @@ func (s ResourceConflictException) GoString() string {
 
 func newErrorResourceConflictException(v protocol.ResponseMetadata) error {
 	return &ResourceConflictException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4526,19 +4526,19 @@ func (s ResourceConflictException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceConflictException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceConflictException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Thrown when the requested resource (for example, a dataset or record) does
 // not exist.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned by a ResourceNotFoundException.
 	Message_ *string `locationName:"message" type:"string"`
@@ -4556,7 +4556,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4584,12 +4584,12 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A role mapping.
@@ -4882,8 +4882,8 @@ func (s TagResourceOutput) GoString() string {
 
 // Thrown when a request is throttled.
 type TooManyRequestsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Message returned by a TooManyRequestsException
 	Message_ *string `locationName:"message" type:"string"`
@@ -4901,7 +4901,7 @@ func (s TooManyRequestsException) GoString() string {
 
 func newErrorTooManyRequestsException(v protocol.ResponseMetadata) error {
 	return &TooManyRequestsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4929,12 +4929,12 @@ func (s TooManyRequestsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TooManyRequestsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TooManyRequestsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Input to the UnlinkDeveloperIdentity action.

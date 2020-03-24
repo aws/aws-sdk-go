@@ -1948,8 +1948,8 @@ func (s *CodeSource) SetS3(v *S3Location) *CodeSource {
 // Another modification is being made. That modification must complete before
 // you can make your change.
 type ConcurrentModificationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1966,7 +1966,7 @@ func (s ConcurrentModificationException) GoString() string {
 
 func newErrorConcurrentModificationException(v protocol.ResponseMetadata) error {
 	return &ConcurrentModificationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1994,12 +1994,12 @@ func (s ConcurrentModificationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ConcurrentModificationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ConcurrentModificationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type CreateProjectInput struct {
@@ -2984,8 +2984,8 @@ func (s *GitHubCodeDestination) SetType(v string) *GitHubCodeDestination {
 
 // The next token is not valid.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3002,7 +3002,7 @@ func (s InvalidNextTokenException) GoString() string {
 
 func newErrorInvalidNextTokenException(v protocol.ResponseMetadata) error {
 	return &InvalidNextTokenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3030,18 +3030,18 @@ func (s InvalidNextTokenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidNextTokenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidNextTokenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The service role is not valid.
 type InvalidServiceRoleException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3058,7 +3058,7 @@ func (s InvalidServiceRoleException) GoString() string {
 
 func newErrorInvalidServiceRoleException(v protocol.ResponseMetadata) error {
 	return &InvalidServiceRoleException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3086,18 +3086,18 @@ func (s InvalidServiceRoleException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidServiceRoleException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidServiceRoleException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A resource limit has been exceeded.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3114,7 +3114,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3142,12 +3142,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListProjectsInput struct {
@@ -3619,8 +3619,8 @@ func (s *ListUserProfilesOutput) SetUserProfiles(v []*UserProfileSummary) *ListU
 // the AWS account. AWS CodeStar project IDs must be unique within a region
 // for the AWS account.
 type ProjectAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3637,7 +3637,7 @@ func (s ProjectAlreadyExistsException) GoString() string {
 
 func newErrorProjectAlreadyExistsException(v protocol.ResponseMetadata) error {
 	return &ProjectAlreadyExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3665,18 +3665,18 @@ func (s ProjectAlreadyExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ProjectAlreadyExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ProjectAlreadyExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Project configuration information is required but not specified.
 type ProjectConfigurationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3693,7 +3693,7 @@ func (s ProjectConfigurationException) GoString() string {
 
 func newErrorProjectConfigurationException(v protocol.ResponseMetadata) error {
 	return &ProjectConfigurationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3721,20 +3721,20 @@ func (s ProjectConfigurationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ProjectConfigurationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ProjectConfigurationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The project creation request was valid, but a nonspecific exception or error
 // occurred during project creation. The project could not be created in AWS
 // CodeStar.
 type ProjectCreationFailedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3751,7 +3751,7 @@ func (s ProjectCreationFailedException) GoString() string {
 
 func newErrorProjectCreationFailedException(v protocol.ResponseMetadata) error {
 	return &ProjectCreationFailedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3779,18 +3779,18 @@ func (s ProjectCreationFailedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ProjectCreationFailedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ProjectCreationFailedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified AWS CodeStar project was not found.
 type ProjectNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3807,7 +3807,7 @@ func (s ProjectNotFoundException) GoString() string {
 
 func newErrorProjectNotFoundException(v protocol.ResponseMetadata) error {
 	return &ProjectNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3835,12 +3835,12 @@ func (s ProjectNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ProjectNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ProjectNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An indication of whether a project creation or deletion is failed or successful.
@@ -4115,8 +4115,8 @@ func (s *TeamMember) SetUserArn(v string) *TeamMember {
 
 // The team member is already associated with a role in this project.
 type TeamMemberAlreadyAssociatedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4133,7 +4133,7 @@ func (s TeamMemberAlreadyAssociatedException) GoString() string {
 
 func newErrorTeamMemberAlreadyAssociatedException(v protocol.ResponseMetadata) error {
 	return &TeamMemberAlreadyAssociatedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4161,18 +4161,18 @@ func (s TeamMemberAlreadyAssociatedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TeamMemberAlreadyAssociatedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TeamMemberAlreadyAssociatedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified team member was not found.
 type TeamMemberNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4189,7 +4189,7 @@ func (s TeamMemberNotFoundException) GoString() string {
 
 func newErrorTeamMemberNotFoundException(v protocol.ResponseMetadata) error {
 	return &TeamMemberNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4217,12 +4217,12 @@ func (s TeamMemberNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TeamMemberNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TeamMemberNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The toolchain template file provided with the project request. AWS CodeStar
@@ -4767,8 +4767,8 @@ func (s *UpdateUserProfileOutput) SetUserArn(v string) *UpdateUserProfileOutput 
 // AWS CodeStar user profile names must be unique within a region for the AWS
 // account.
 type UserProfileAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4785,7 +4785,7 @@ func (s UserProfileAlreadyExistsException) GoString() string {
 
 func newErrorUserProfileAlreadyExistsException(v protocol.ResponseMetadata) error {
 	return &UserProfileAlreadyExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4813,18 +4813,18 @@ func (s UserProfileAlreadyExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UserProfileAlreadyExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UserProfileAlreadyExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The user profile was not found.
 type UserProfileNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4841,7 +4841,7 @@ func (s UserProfileNotFoundException) GoString() string {
 
 func newErrorUserProfileNotFoundException(v protocol.ResponseMetadata) error {
 	return &UserProfileNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4869,12 +4869,12 @@ func (s UserProfileNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UserProfileNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UserProfileNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Information about a user's profile in AWS CodeStar.
@@ -4940,8 +4940,8 @@ func (s *UserProfileSummary) SetUserArn(v string) *UserProfileSummary {
 
 // The specified input is either not valid, or it could not be validated.
 type ValidationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4958,7 +4958,7 @@ func (s ValidationException) GoString() string {
 
 func newErrorValidationException(v protocol.ResponseMetadata) error {
 	return &ValidationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4986,10 +4986,10 @@ func (s ValidationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ValidationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ValidationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }

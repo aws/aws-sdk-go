@@ -6179,8 +6179,8 @@ func (s *InputSerialization) SetCsv(v *CSVInput) *InputSerialization {
 // This error only applies to expedited retrievals and not to standard or bulk
 // retrievals.
 type InsufficientCapacityException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Code_ *string `locationName:"code" type:"string"`
 
@@ -6201,7 +6201,7 @@ func (s InsufficientCapacityException) GoString() string {
 
 func newErrorInsufficientCapacityException(v protocol.ResponseMetadata) error {
 	return &InsufficientCapacityException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6229,18 +6229,18 @@ func (s InsufficientCapacityException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InsufficientCapacityException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InsufficientCapacityException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Returned if a parameter of the request is incorrectly specified.
 type InvalidParameterValueException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// 400 Bad Request
 	Code_ *string `locationName:"code" type:"string"`
@@ -6264,7 +6264,7 @@ func (s InvalidParameterValueException) GoString() string {
 
 func newErrorInvalidParameterValueException(v protocol.ResponseMetadata) error {
 	return &InvalidParameterValueException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6292,12 +6292,12 @@ func (s InvalidParameterValueException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidParameterValueException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidParameterValueException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Describes the options for a range inventory retrieval job.
@@ -6815,8 +6815,8 @@ func (s *JobParameters) SetType(v string) *JobParameters {
 
 // Returned if the request results in a vault or account limit being exceeded.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// 400 Bad Request
 	Code_ *string `locationName:"code" type:"string"`
@@ -6840,7 +6840,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6868,12 +6868,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Provides options for retrieving a job list for an Amazon S3 Glacier vault.
@@ -7588,8 +7588,8 @@ func (s *ListVaultsOutput) SetVaultList(v []*DescribeVaultOutput) *ListVaultsOut
 
 // Returned if a required header or parameter is missing from the request.
 type MissingParameterValueException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// 400 Bad Request
 	Code_ *string `locationName:"code" type:"string"`
@@ -7613,7 +7613,7 @@ func (s MissingParameterValueException) GoString() string {
 
 func newErrorMissingParameterValueException(v protocol.ResponseMetadata) error {
 	return &MissingParameterValueException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7641,12 +7641,12 @@ func (s MissingParameterValueException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MissingParameterValueException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MissingParameterValueException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains information about the location where the select job results are
@@ -7750,8 +7750,8 @@ func (s *PartListElement) SetSHA256TreeHash(v string) *PartListElement {
 // Returned if a retrieval job would exceed the current data policy's retrieval
 // rate limit. For more information about data retrieval policies,
 type PolicyEnforcedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// PolicyEnforcedException
 	Code_ *string `locationName:"code" type:"string"`
@@ -7775,7 +7775,7 @@ func (s PolicyEnforcedException) GoString() string {
 
 func newErrorPolicyEnforcedException(v protocol.ResponseMetadata) error {
 	return &PolicyEnforcedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7803,12 +7803,12 @@ func (s PolicyEnforcedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PolicyEnforcedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PolicyEnforcedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The definition for a provisioned capacity unit.
@@ -8012,8 +8012,8 @@ func (s RemoveTagsFromVaultOutput) GoString() string {
 // Returned if, when uploading an archive, Amazon S3 Glacier times out while
 // receiving the upload.
 type RequestTimeoutException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// 408 Request Timeout
 	Code_ *string `locationName:"code" type:"string"`
@@ -8038,7 +8038,7 @@ func (s RequestTimeoutException) GoString() string {
 
 func newErrorRequestTimeoutException(v protocol.ResponseMetadata) error {
 	return &RequestTimeoutException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8066,19 +8066,19 @@ func (s RequestTimeoutException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s RequestTimeoutException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s RequestTimeoutException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Returned if the specified resource (such as a vault, upload ID, or job ID)
 // doesn't exist.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// 404 Not Found
 	Code_ *string `locationName:"code" type:"string"`
@@ -8103,7 +8103,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8131,12 +8131,12 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains information about the location in Amazon S3 where the select job
@@ -8301,8 +8301,8 @@ func (s *SelectParameters) SetOutputSerialization(v *OutputSerialization) *Selec
 
 // Returned if the service cannot complete the request.
 type ServiceUnavailableException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// 500 Internal Server Error
 	Code_ *string `locationName:"code" type:"string"`
@@ -8326,7 +8326,7 @@ func (s ServiceUnavailableException) GoString() string {
 
 func newErrorServiceUnavailableException(v protocol.ResponseMetadata) error {
 	return &ServiceUnavailableException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8354,12 +8354,12 @@ func (s ServiceUnavailableException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceUnavailableException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceUnavailableException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // SetDataRetrievalPolicy input.

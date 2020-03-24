@@ -831,8 +831,8 @@ func (c *Textract) StartDocumentTextDetectionWithContext(ctx aws.Context, input 
 
 // You aren't authorized to perform the action.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -849,7 +849,7 @@ func (s AccessDeniedException) GoString() string {
 
 func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
 	return &AccessDeniedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -877,12 +877,12 @@ func (s AccessDeniedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccessDeniedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccessDeniedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type AnalyzeDocumentInput struct {
@@ -1018,8 +1018,8 @@ func (s *AnalyzeDocumentOutput) SetHumanLoopActivationOutput(v *HumanLoopActivat
 
 // Amazon Textract isn't able to read the document.
 type BadDocumentException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1036,7 +1036,7 @@ func (s BadDocumentException) GoString() string {
 
 func newErrorBadDocumentException(v protocol.ResponseMetadata) error {
 	return &BadDocumentException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1064,12 +1064,12 @@ func (s BadDocumentException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s BadDocumentException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s BadDocumentException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A Block represents items that are recognized in a document within a group
@@ -1589,8 +1589,8 @@ func (s *DocumentMetadata) SetPages(v int64) *DocumentMetadata {
 // size for synchronous operations 5 MB. The maximum document size for asynchronous
 // operations is 500 MB for PDF files.
 type DocumentTooLargeException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1607,7 +1607,7 @@ func (s DocumentTooLargeException) GoString() string {
 
 func newErrorDocumentTooLargeException(v protocol.ResponseMetadata) error {
 	return &DocumentTooLargeException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1635,12 +1635,12 @@ func (s DocumentTooLargeException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DocumentTooLargeException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DocumentTooLargeException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Information about where the following items are located on a document page:
@@ -2121,8 +2121,8 @@ func (s *HumanLoopDataAttributes) SetContentClassifiers(v []*string) *HumanLoopD
 // Indicates you have exceeded the maximum number of active human in the loop
 // workflows available
 type HumanLoopQuotaExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -2145,7 +2145,7 @@ func (s HumanLoopQuotaExceededException) GoString() string {
 
 func newErrorHumanLoopQuotaExceededException(v protocol.ResponseMetadata) error {
 	return &HumanLoopQuotaExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2173,20 +2173,20 @@ func (s HumanLoopQuotaExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s HumanLoopQuotaExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s HumanLoopQuotaExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A ClientRequestToken input parameter was reused with an operation, but at
 // least one of the other input parameters is different from the previous call
 // to the operation.
 type IdempotentParameterMismatchException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2203,7 +2203,7 @@ func (s IdempotentParameterMismatchException) GoString() string {
 
 func newErrorIdempotentParameterMismatchException(v protocol.ResponseMetadata) error {
 	return &IdempotentParameterMismatchException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2231,18 +2231,18 @@ func (s IdempotentParameterMismatchException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s IdempotentParameterMismatchException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s IdempotentParameterMismatchException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Amazon Textract experienced a service issue. Try your call again.
 type InternalServerError struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2259,7 +2259,7 @@ func (s InternalServerError) GoString() string {
 
 func newErrorInternalServerError(v protocol.ResponseMetadata) error {
 	return &InternalServerError{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2287,18 +2287,18 @@ func (s InternalServerError) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServerError) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServerError) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An invalid job identifier was passed to GetDocumentAnalysis or to GetDocumentAnalysis.
 type InvalidJobIdException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2315,7 +2315,7 @@ func (s InvalidJobIdException) GoString() string {
 
 func newErrorInvalidJobIdException(v protocol.ResponseMetadata) error {
 	return &InvalidJobIdException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2343,12 +2343,12 @@ func (s InvalidJobIdException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidJobIdException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidJobIdException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An input parameter violated a constraint. For example, in synchronous operations,
@@ -2356,8 +2356,8 @@ func (s InvalidJobIdException) RequestID() string {
 // or Bytes values are supplied in the Document request parameter. Validate
 // your parameter before calling the API operation again.
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2374,7 +2374,7 @@ func (s InvalidParameterException) GoString() string {
 
 func newErrorInvalidParameterException(v protocol.ResponseMetadata) error {
 	return &InvalidParameterException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2402,19 +2402,19 @@ func (s InvalidParameterException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidParameterException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidParameterException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Amazon Textract is unable to access the S3 object that's specified in the
 // request.
 type InvalidS3ObjectException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2431,7 +2431,7 @@ func (s InvalidS3ObjectException) GoString() string {
 
 func newErrorInvalidS3ObjectException(v protocol.ResponseMetadata) error {
 	return &InvalidS3ObjectException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2459,12 +2459,12 @@ func (s InvalidS3ObjectException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidS3ObjectException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidS3ObjectException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An Amazon Textract service limit was exceeded. For example, if you start
@@ -2473,8 +2473,8 @@ func (s InvalidS3ObjectException) RequestID() string {
 // 400) until the number of concurrently running jobs is below the Amazon Textract
 // service limit.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2491,7 +2491,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2519,12 +2519,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The Amazon Simple Notification Service (Amazon SNS) topic to which Amazon
@@ -2632,8 +2632,8 @@ func (s *Point) SetY(v float64) *Point {
 // The number of requests exceeded your throughput limit. If you want to increase
 // this limit, contact Amazon Textract.
 type ProvisionedThroughputExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2650,7 +2650,7 @@ func (s ProvisionedThroughputExceededException) GoString() string {
 
 func newErrorProvisionedThroughputExceededException(v protocol.ResponseMetadata) error {
 	return &ProvisionedThroughputExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2678,12 +2678,12 @@ func (s ProvisionedThroughputExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ProvisionedThroughputExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ProvisionedThroughputExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Information about how blocks are related to each other. A Block object contains
@@ -3048,8 +3048,8 @@ func (s *StartDocumentTextDetectionOutput) SetJobId(v string) *StartDocumentText
 // Amazon Textract is temporarily unable to process the request. Try your call
 // again.
 type ThrottlingException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3066,7 +3066,7 @@ func (s ThrottlingException) GoString() string {
 
 func newErrorThrottlingException(v protocol.ResponseMetadata) error {
 	return &ThrottlingException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3094,20 +3094,20 @@ func (s ThrottlingException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ThrottlingException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ThrottlingException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The format of the input document isn't supported. Documents for synchronous
 // operations can be in PNG or JPEG format. Documents for asynchronous operations
 // can also be in PDF format.
 type UnsupportedDocumentException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3124,7 +3124,7 @@ func (s UnsupportedDocumentException) GoString() string {
 
 func newErrorUnsupportedDocumentException(v protocol.ResponseMetadata) error {
 	return &UnsupportedDocumentException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3152,12 +3152,12 @@ func (s UnsupportedDocumentException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnsupportedDocumentException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnsupportedDocumentException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A warning about an issue that occurred during asynchronous text analysis

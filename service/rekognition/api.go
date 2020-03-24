@@ -5840,8 +5840,8 @@ func (c *Rekognition) StopStreamProcessorWithContext(ctx aws.Context, input *Sto
 
 // You are not authorized to perform the action.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5858,7 +5858,7 @@ func (s AccessDeniedException) GoString() string {
 
 func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
 	return &AccessDeniedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5886,12 +5886,12 @@ func (s AccessDeniedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccessDeniedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccessDeniedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Structure containing the estimated age range, in years, for a face.
@@ -10267,8 +10267,8 @@ func (s *HumanLoopDataAttributes) SetContentClassifiers(v []*string) *HumanLoopD
 // The number of in-progress human reviews you have has exceeded the number
 // allowed.
 type HumanLoopQuotaExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -10291,7 +10291,7 @@ func (s HumanLoopQuotaExceededException) GoString() string {
 
 func newErrorHumanLoopQuotaExceededException(v protocol.ResponseMetadata) error {
 	return &HumanLoopQuotaExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10319,20 +10319,20 @@ func (s HumanLoopQuotaExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s HumanLoopQuotaExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s HumanLoopQuotaExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A ClientRequestToken input parameter was reused with an operation, but at
 // least one of the other input parameters is different from the previous call
 // to the operation.
 type IdempotentParameterMismatchException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10349,7 +10349,7 @@ func (s IdempotentParameterMismatchException) GoString() string {
 
 func newErrorIdempotentParameterMismatchException(v protocol.ResponseMetadata) error {
 	return &IdempotentParameterMismatchException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10377,12 +10377,12 @@ func (s IdempotentParameterMismatchException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s IdempotentParameterMismatchException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s IdempotentParameterMismatchException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Provides the input image either as bytes or an S3 object.
@@ -10501,8 +10501,8 @@ func (s *ImageQuality) SetSharpness(v float64) *ImageQuality {
 // The input image size exceeds the allowed limit. For more information, see
 // Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 type ImageTooLargeException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10519,7 +10519,7 @@ func (s ImageTooLargeException) GoString() string {
 
 func newErrorImageTooLargeException(v protocol.ResponseMetadata) error {
 	return &ImageTooLargeException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10547,12 +10547,12 @@ func (s ImageTooLargeException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ImageTooLargeException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ImageTooLargeException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type IndexFacesInput struct {
@@ -10811,8 +10811,8 @@ func (s *Instance) SetConfidence(v float64) *Instance {
 
 // Amazon Rekognition experienced a service issue. Try your call again.
 type InternalServerError struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10829,7 +10829,7 @@ func (s InternalServerError) GoString() string {
 
 func newErrorInternalServerError(v protocol.ResponseMetadata) error {
 	return &InternalServerError{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10857,18 +10857,18 @@ func (s InternalServerError) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServerError) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServerError) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The provided image format is not supported.
 type InvalidImageFormatException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10885,7 +10885,7 @@ func (s InvalidImageFormatException) GoString() string {
 
 func newErrorInvalidImageFormatException(v protocol.ResponseMetadata) error {
 	return &InvalidImageFormatException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10913,18 +10913,18 @@ func (s InvalidImageFormatException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidImageFormatException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidImageFormatException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Pagination token in the request is not valid.
 type InvalidPaginationTokenException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10941,7 +10941,7 @@ func (s InvalidPaginationTokenException) GoString() string {
 
 func newErrorInvalidPaginationTokenException(v protocol.ResponseMetadata) error {
 	return &InvalidPaginationTokenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10969,19 +10969,19 @@ func (s InvalidPaginationTokenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidPaginationTokenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidPaginationTokenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Input parameter violated a constraint. Validate your parameter before calling
 // the API operation again.
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -10998,7 +10998,7 @@ func (s InvalidParameterException) GoString() string {
 
 func newErrorInvalidParameterException(v protocol.ResponseMetadata) error {
 	return &InvalidParameterException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11026,18 +11026,18 @@ func (s InvalidParameterException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidParameterException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidParameterException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Amazon Rekognition is unable to access the S3 object specified in the request.
 type InvalidS3ObjectException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11054,7 +11054,7 @@ func (s InvalidS3ObjectException) GoString() string {
 
 func newErrorInvalidS3ObjectException(v protocol.ResponseMetadata) error {
 	return &InvalidS3ObjectException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11082,12 +11082,12 @@ func (s InvalidS3ObjectException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidS3ObjectException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidS3ObjectException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The Kinesis data stream Amazon Rekognition to which the analysis results
@@ -11282,8 +11282,8 @@ func (s *Landmark) SetY(v float64) *Landmark {
 // (HTTP status code: 400) until the number of concurrently running jobs is
 // below the Amazon Rekognition service limit.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -11300,7 +11300,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11328,12 +11328,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListCollectionsInput struct {
@@ -12221,8 +12221,8 @@ func (s *ProjectVersionDescription) SetTrainingEndTimestamp(v time.Time) *Projec
 // The number of requests exceeded your throughput limit. If you want to increase
 // this limit, contact Amazon Rekognition.
 type ProvisionedThroughputExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12239,7 +12239,7 @@ func (s ProvisionedThroughputExceededException) GoString() string {
 
 func newErrorProvisionedThroughputExceededException(v protocol.ResponseMetadata) error {
 	return &ProvisionedThroughputExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12267,12 +12267,12 @@ func (s ProvisionedThroughputExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ProvisionedThroughputExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ProvisionedThroughputExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type RecognizeCelebritiesInput struct {
@@ -12407,8 +12407,8 @@ func (s *RegionOfInterest) SetBoundingBox(v *BoundingBox) *RegionOfInterest {
 
 // A collection with the specified ID already exists.
 type ResourceAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12425,7 +12425,7 @@ func (s ResourceAlreadyExistsException) GoString() string {
 
 func newErrorResourceAlreadyExistsException(v protocol.ResponseMetadata) error {
 	return &ResourceAlreadyExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12453,17 +12453,17 @@ func (s ResourceAlreadyExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceAlreadyExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceAlreadyExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ResourceInUseException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12480,7 +12480,7 @@ func (s ResourceInUseException) GoString() string {
 
 func newErrorResourceInUseException(v protocol.ResponseMetadata) error {
 	return &ResourceInUseException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12508,18 +12508,18 @@ func (s ResourceInUseException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceInUseException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceInUseException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The collection specified in the request cannot be found.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12536,7 +12536,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12564,19 +12564,19 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The requested resource isn't ready. For example, this exception occurs when
 // you call DetectCustomLabels with a model version that isn't deployed.
 type ResourceNotReadyException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12593,7 +12593,7 @@ func (s ResourceNotReadyException) GoString() string {
 
 func newErrorResourceNotReadyException(v protocol.ResponseMetadata) error {
 	return &ResourceNotReadyException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12621,12 +12621,12 @@ func (s ResourceNotReadyException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotReadyException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotReadyException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Provides the S3 bucket name and object name.
@@ -14601,8 +14601,8 @@ func (s *TextDetectionResult) SetTimestamp(v int64) *TextDetectionResult {
 // Amazon Rekognition is temporarily unable to process the request. Try your
 // call again.
 type ThrottlingException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14619,7 +14619,7 @@ func (s ThrottlingException) GoString() string {
 
 func newErrorThrottlingException(v protocol.ResponseMetadata) error {
 	return &ThrottlingException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -14647,12 +14647,12 @@ func (s ThrottlingException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ThrottlingException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ThrottlingException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The dataset used for training.
@@ -14898,8 +14898,8 @@ func (s *VideoMetadata) SetFrameWidth(v int64) *VideoMetadata {
 // The file size or duration of the supplied media is too large. The maximum
 // file size is 10GB. The maximum duration is 6 hours.
 type VideoTooLargeException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14916,7 +14916,7 @@ func (s VideoTooLargeException) GoString() string {
 
 func newErrorVideoTooLargeException(v protocol.ResponseMetadata) error {
 	return &VideoTooLargeException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -14944,12 +14944,12 @@ func (s VideoTooLargeException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s VideoTooLargeException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s VideoTooLargeException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 const (

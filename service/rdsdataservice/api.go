@@ -657,8 +657,8 @@ func (s *ArrayValue) SetStringValues(v []*string) *ArrayValue {
 
 // There is an error in the call or in a SQL statement.
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message returned by this BadRequestException error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -676,7 +676,7 @@ func (s BadRequestException) GoString() string {
 
 func newErrorBadRequestException(v protocol.ResponseMetadata) error {
 	return &BadRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -704,12 +704,12 @@ func (s BadRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s BadRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s BadRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request parameters represent the input of a SQL statement over an array
@@ -1600,8 +1600,8 @@ func (s *Field) SetStringValue(v string) *Field {
 
 // There are insufficient privileges to make the call.
 type ForbiddenException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message returned by this ForbiddenException error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -1619,7 +1619,7 @@ func (s ForbiddenException) GoString() string {
 
 func newErrorForbiddenException(v protocol.ResponseMetadata) error {
 	return &ForbiddenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1647,18 +1647,18 @@ func (s ForbiddenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ForbiddenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ForbiddenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An internal error occurred.
 type InternalServerErrorException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1675,7 +1675,7 @@ func (s InternalServerErrorException) GoString() string {
 
 func newErrorInternalServerErrorException(v protocol.ResponseMetadata) error {
 	return &InternalServerErrorException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1703,18 +1703,18 @@ func (s InternalServerErrorException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServerErrorException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServerErrorException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The resourceArn, secretArn, or transactionId value can't be found.
 type NotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The error message returned by this NotFoundException error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -1732,7 +1732,7 @@ func (s NotFoundException) GoString() string {
 
 func newErrorNotFoundException(v protocol.ResponseMetadata) error {
 	return &NotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1760,12 +1760,12 @@ func (s NotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A record returned by a call.
@@ -1990,8 +1990,8 @@ func (s *RollbackTransactionOutput) SetTransactionStatus(v string) *RollbackTran
 
 // The service specified by the resourceArn parameter is not available.
 type ServiceUnavailableError struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2008,7 +2008,7 @@ func (s ServiceUnavailableError) GoString() string {
 
 func newErrorServiceUnavailableError(v protocol.ResponseMetadata) error {
 	return &ServiceUnavailableError{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2036,12 +2036,12 @@ func (s ServiceUnavailableError) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceUnavailableError) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceUnavailableError) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A parameter used in a SQL statement.
@@ -2137,8 +2137,8 @@ func (s *SqlStatementResult) SetResultFrame(v *ResultFrame) *SqlStatementResult 
 
 // The execution of the SQL statement timed out.
 type StatementTimeoutException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The database connection ID that executed the SQL statement.
 	DbConnectionId *int64 `locationName:"dbConnectionId" type:"long"`
@@ -2159,7 +2159,7 @@ func (s StatementTimeoutException) GoString() string {
 
 func newErrorStatementTimeoutException(v protocol.ResponseMetadata) error {
 	return &StatementTimeoutException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2187,12 +2187,12 @@ func (s StatementTimeoutException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s StatementTimeoutException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s StatementTimeoutException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A structure value returned by a call.

@@ -505,8 +505,8 @@ func (c *MediaStoreData) PutObjectWithContext(ctx aws.Context, input *PutObjectI
 
 // The specified container was not found for the specified account.
 type ContainerNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -523,7 +523,7 @@ func (s ContainerNotFoundException) GoString() string {
 
 func newErrorContainerNotFoundException(v protocol.ResponseMetadata) error {
 	return &ContainerNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -551,12 +551,12 @@ func (s ContainerNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ContainerNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ContainerNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type DeleteObjectInput struct {
@@ -892,8 +892,8 @@ func (s *GetObjectOutput) SetStatusCode(v int64) *GetObjectOutput {
 
 // The service is temporarily unavailable.
 type InternalServerError struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -910,7 +910,7 @@ func (s InternalServerError) GoString() string {
 
 func newErrorInternalServerError(v protocol.ResponseMetadata) error {
 	return &InternalServerError{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -938,12 +938,12 @@ func (s InternalServerError) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServerError) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServerError) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A metadata entry for a folder or object.
@@ -1122,8 +1122,8 @@ func (s *ListItemsOutput) SetNextToken(v string) *ListItemsOutput {
 
 // Could not perform an operation on an object that does not exist.
 type ObjectNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -1140,7 +1140,7 @@ func (s ObjectNotFoundException) GoString() string {
 
 func newErrorObjectNotFoundException(v protocol.ResponseMetadata) error {
 	return &ObjectNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1168,12 +1168,12 @@ func (s ObjectNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ObjectNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ObjectNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type PutObjectInput struct {
@@ -1356,8 +1356,8 @@ func (s *PutObjectOutput) SetStorageClass(v string) *PutObjectOutput {
 
 // The requested content range is not valid.
 type RequestedRangeNotSatisfiableException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -1374,7 +1374,7 @@ func (s RequestedRangeNotSatisfiableException) GoString() string {
 
 func newErrorRequestedRangeNotSatisfiableException(v protocol.ResponseMetadata) error {
 	return &RequestedRangeNotSatisfiableException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1402,12 +1402,12 @@ func (s RequestedRangeNotSatisfiableException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s RequestedRangeNotSatisfiableException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s RequestedRangeNotSatisfiableException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 const (

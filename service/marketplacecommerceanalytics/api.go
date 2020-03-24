@@ -191,8 +191,8 @@ func (c *MarketplaceCommerceAnalytics) StartSupportDataExportWithContext(ctx aws
 
 // This exception is thrown when an internal service error occurs.
 type Exception struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// This message describes details of the error.
 	Message_ *string `locationName:"message" type:"string"`
@@ -210,7 +210,7 @@ func (s Exception) GoString() string {
 
 func newErrorException(v protocol.ResponseMetadata) error {
 	return &Exception{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -238,12 +238,12 @@ func (s Exception) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s Exception) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s Exception) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Container for the parameters to the GenerateDataSet operation.

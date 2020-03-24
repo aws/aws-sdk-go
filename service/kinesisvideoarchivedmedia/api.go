@@ -830,8 +830,8 @@ func (c *KinesisVideoArchivedMedia) ListFragmentsPagesWithContext(ctx aws.Contex
 // Kinesis Video Streams has throttled the request because you have exceeded
 // the limit of allowed client calls. Try making the call later.
 type ClientLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -848,7 +848,7 @@ func (s ClientLimitExceededException) GoString() string {
 
 func newErrorClientLimitExceededException(v protocol.ResponseMetadata) error {
 	return &ClientLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -876,12 +876,12 @@ func (s ClientLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ClientLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ClientLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains the range of timestamps for the requested media, and the source
@@ -1874,8 +1874,8 @@ func (s *HLSTimestampRange) SetStartTimestamp(v time.Time) *HLSTimestampRange {
 // A specified parameter exceeds its restrictions, is not supported, or can't
 // be used.
 type InvalidArgumentException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1892,7 +1892,7 @@ func (s InvalidArgumentException) GoString() string {
 
 func newErrorInvalidArgumentException(v protocol.ResponseMetadata) error {
 	return &InvalidArgumentException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1920,19 +1920,19 @@ func (s InvalidArgumentException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidArgumentException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidArgumentException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The codec private data in at least one of the tracks of the video stream
 // is not valid for this operation.
 type InvalidCodecPrivateDataException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1949,7 +1949,7 @@ func (s InvalidCodecPrivateDataException) GoString() string {
 
 func newErrorInvalidCodecPrivateDataException(v protocol.ResponseMetadata) error {
 	return &InvalidCodecPrivateDataException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1977,12 +1977,12 @@ func (s InvalidCodecPrivateDataException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidCodecPrivateDataException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidCodecPrivateDataException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListFragmentsInput struct {
@@ -2105,8 +2105,8 @@ func (s *ListFragmentsOutput) SetNextToken(v string) *ListFragmentsOutput {
 
 // No codec private data was found in at least one of tracks of the video stream.
 type MissingCodecPrivateDataException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2123,7 +2123,7 @@ func (s MissingCodecPrivateDataException) GoString() string {
 
 func newErrorMissingCodecPrivateDataException(v protocol.ResponseMetadata) error {
 	return &MissingCodecPrivateDataException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2151,19 +2151,19 @@ func (s MissingCodecPrivateDataException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MissingCodecPrivateDataException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MissingCodecPrivateDataException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A streaming session was requested for a stream that does not retain data
 // (that is, has a DataRetentionInHours of 0).
 type NoDataRetentionException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2180,7 +2180,7 @@ func (s NoDataRetentionException) GoString() string {
 
 func newErrorNoDataRetentionException(v protocol.ResponseMetadata) error {
 	return &NoDataRetentionException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2208,19 +2208,19 @@ func (s NoDataRetentionException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NoDataRetentionException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NoDataRetentionException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Status Code: 403, The caller is not authorized to perform an operation on
 // the given stream, or the token has expired.
 type NotAuthorizedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2237,7 +2237,7 @@ func (s NotAuthorizedException) GoString() string {
 
 func newErrorNotAuthorizedException(v protocol.ResponseMetadata) error {
 	return &NotAuthorizedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2265,12 +2265,12 @@ func (s NotAuthorizedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NotAuthorizedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NotAuthorizedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // GetMedia throws this error when Kinesis Video Streams can't find the stream
@@ -2282,8 +2282,8 @@ func (s NotAuthorizedException) RequestID() string {
 // a session with a PlaybackMode of LIVE is requested for a stream that has
 // no fragments within the last 30 seconds.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2300,7 +2300,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2328,12 +2328,12 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The range of timestamps for which to return fragments.
@@ -2394,8 +2394,8 @@ func (s *TimestampRange) SetStartTimestamp(v time.Time) *TimestampRange {
 // fragment for a playback session. The codec ID for track 1 should be V_MPEG/ISO/AVC
 // and, optionally, the codec ID for track 2 should be A_AAC.
 type UnsupportedStreamMediaTypeException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2412,7 +2412,7 @@ func (s UnsupportedStreamMediaTypeException) GoString() string {
 
 func newErrorUnsupportedStreamMediaTypeException(v protocol.ResponseMetadata) error {
 	return &UnsupportedStreamMediaTypeException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2440,12 +2440,12 @@ func (s UnsupportedStreamMediaTypeException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnsupportedStreamMediaTypeException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnsupportedStreamMediaTypeException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 const (

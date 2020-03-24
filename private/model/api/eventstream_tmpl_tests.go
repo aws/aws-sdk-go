@@ -103,7 +103,7 @@ func valueForType(s *Shape, visited []string) string {
 		w := bytes.NewBuffer(nil)
 		fmt.Fprintf(w, "&%s{\n", s.ShapeName)
 		if s.Exception {
-			fmt.Fprintf(w, `respMetadata: protocol.ResponseMetadata{
+			fmt.Fprintf(w, `RespMetadata: protocol.ResponseMetadata{
 	StatusCode: 200,
 },
 `)

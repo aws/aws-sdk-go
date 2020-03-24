@@ -11552,8 +11552,8 @@ func (c *Organizations) UpdatePolicyWithContext(ctx aws.Context, input *UpdatePo
 // Your account isn't a member of an organization. To make this request, you
 // must use the credentials of an account that belongs to an organization.
 type AWSOrganizationsNotInUseException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -11570,7 +11570,7 @@ func (s AWSOrganizationsNotInUseException) GoString() string {
 
 func newErrorAWSOrganizationsNotInUseException(v protocol.ResponseMetadata) error {
 	return &AWSOrganizationsNotInUseException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11598,12 +11598,12 @@ func (s AWSOrganizationsNotInUseException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AWSOrganizationsNotInUseException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AWSOrganizationsNotInUseException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type AcceptHandshakeInput struct {
@@ -11676,8 +11676,8 @@ func (s *AcceptHandshakeOutput) SetHandshake(v *Handshake) *AcceptHandshakeOutpu
 // Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
 // in the IAM User Guide.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -11694,7 +11694,7 @@ func (s AccessDeniedException) GoString() string {
 
 func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
 	return &AccessDeniedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11722,20 +11722,20 @@ func (s AccessDeniedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccessDeniedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccessDeniedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation that you attempted requires you to have the iam:CreateServiceLinkedRole
 // for organizations.amazonaws.com permission so that AWS Organizations can
 // create the required service-linked role. You don't have that permission.
 type AccessDeniedForDependencyException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -11754,7 +11754,7 @@ func (s AccessDeniedForDependencyException) GoString() string {
 
 func newErrorAccessDeniedForDependencyException(v protocol.ResponseMetadata) error {
 	return &AccessDeniedForDependencyException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11782,12 +11782,12 @@ func (s AccessDeniedForDependencyException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccessDeniedForDependencyException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccessDeniedForDependencyException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains information about an AWS account that is a member of an organization.
@@ -11886,8 +11886,8 @@ func (s *Account) SetStatus(v string) *Account {
 // account whose credentials you used to make this request isn't a member of
 // an organization.
 type AccountNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -11904,7 +11904,7 @@ func (s AccountNotFoundException) GoString() string {
 
 func newErrorAccountNotFoundException(v protocol.ResponseMetadata) error {
 	return &AccountNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11932,12 +11932,12 @@ func (s AccountNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccountNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccountNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You can't invite an existing account to your organization until you verify
@@ -11945,8 +11945,8 @@ func (s AccountNotFoundException) RequestID() string {
 // information, see Email Address Verification (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_create.html#about-email-verification)
 // in the AWS Organizations User Guide.
 type AccountOwnerNotVerifiedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -11963,7 +11963,7 @@ func (s AccountOwnerNotVerifiedException) GoString() string {
 
 func newErrorAccountOwnerNotVerifiedException(v protocol.ResponseMetadata) error {
 	return &AccountOwnerNotVerifiedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11991,19 +11991,19 @@ func (s AccountOwnerNotVerifiedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccountOwnerNotVerifiedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccountOwnerNotVerifiedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This account is already a member of an organization. An account can belong
 // to only one organization at a time.
 type AlreadyInOrganizationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12020,7 +12020,7 @@ func (s AlreadyInOrganizationException) GoString() string {
 
 func newErrorAlreadyInOrganizationException(v protocol.ResponseMetadata) error {
 	return &AlreadyInOrganizationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12048,12 +12048,12 @@ func (s AlreadyInOrganizationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AlreadyInOrganizationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AlreadyInOrganizationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type AttachPolicyInput struct {
@@ -12253,8 +12253,8 @@ func (s *Child) SetType(v string) *Child {
 // We can't find an organizational unit (OU) or AWS account with the ChildId
 // that you specified.
 type ChildNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12271,7 +12271,7 @@ func (s ChildNotFoundException) GoString() string {
 
 func newErrorChildNotFoundException(v protocol.ResponseMetadata) error {
 	return &ChildNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12299,19 +12299,19 @@ func (s ChildNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ChildNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ChildNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The target of the operation is currently being modified by a different request.
 // Try again later.
 type ConcurrentModificationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12328,7 +12328,7 @@ func (s ConcurrentModificationException) GoString() string {
 
 func newErrorConcurrentModificationException(v protocol.ResponseMetadata) error {
 	return &ConcurrentModificationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12356,12 +12356,12 @@ func (s ConcurrentModificationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ConcurrentModificationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ConcurrentModificationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Performing this operation violates a minimum or maximum value limit. Examples
@@ -12465,8 +12465,8 @@ func (s ConcurrentModificationException) RequestID() string {
 //    see Tag Policies (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
 //    in the AWS Organizations User Guide.
 type ConstraintViolationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -12485,7 +12485,7 @@ func (s ConstraintViolationException) GoString() string {
 
 func newErrorConstraintViolationException(v protocol.ResponseMetadata) error {
 	return &ConstraintViolationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12513,12 +12513,12 @@ func (s ConstraintViolationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ConstraintViolationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ConstraintViolationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type CreateAccountInput struct {
@@ -12779,8 +12779,8 @@ func (s *CreateAccountStatus) SetState(v string) *CreateAccountStatus {
 // We can't find a create account request with the CreateAccountRequestId that
 // you specified.
 type CreateAccountStatusNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -12797,7 +12797,7 @@ func (s CreateAccountStatusNotFoundException) GoString() string {
 
 func newErrorCreateAccountStatusNotFoundException(v protocol.ResponseMetadata) error {
 	return &CreateAccountStatusNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12825,12 +12825,12 @@ func (s CreateAccountStatusNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CreateAccountStatusNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CreateAccountStatusNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type CreateGovCloudAccountInput struct {
@@ -13888,8 +13888,8 @@ func (s *DescribePolicyOutput) SetPolicy(v *Policy) *DescribePolicyOutput {
 // We can't find the destination container (a root or OU) with the ParentId
 // that you specified.
 type DestinationParentNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -13906,7 +13906,7 @@ func (s DestinationParentNotFoundException) GoString() string {
 
 func newErrorDestinationParentNotFoundException(v protocol.ResponseMetadata) error {
 	return &DestinationParentNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -13934,12 +13934,12 @@ func (s DestinationParentNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DestinationParentNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DestinationParentNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type DetachPolicyInput struct {
@@ -14166,8 +14166,8 @@ func (s *DisablePolicyTypeOutput) SetRoot(v *Root) *DisablePolicyTypeOutput {
 
 // That account is already present in the specified destination.
 type DuplicateAccountException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14184,7 +14184,7 @@ func (s DuplicateAccountException) GoString() string {
 
 func newErrorDuplicateAccountException(v protocol.ResponseMetadata) error {
 	return &DuplicateAccountException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -14212,12 +14212,12 @@ func (s DuplicateAccountException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DuplicateAccountException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DuplicateAccountException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A handshake with the same action and target already exists. For example,
@@ -14226,8 +14226,8 @@ func (s DuplicateAccountException) RequestID() string {
 // to resend an invitation to an account, ensure that existing handshakes that
 // might be considered duplicates are canceled or declined.
 type DuplicateHandshakeException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14244,7 +14244,7 @@ func (s DuplicateHandshakeException) GoString() string {
 
 func newErrorDuplicateHandshakeException(v protocol.ResponseMetadata) error {
 	return &DuplicateHandshakeException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -14272,18 +14272,18 @@ func (s DuplicateHandshakeException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DuplicateHandshakeException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DuplicateHandshakeException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An OU with the same name already exists.
 type DuplicateOrganizationalUnitException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14300,7 +14300,7 @@ func (s DuplicateOrganizationalUnitException) GoString() string {
 
 func newErrorDuplicateOrganizationalUnitException(v protocol.ResponseMetadata) error {
 	return &DuplicateOrganizationalUnitException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -14328,18 +14328,18 @@ func (s DuplicateOrganizationalUnitException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DuplicateOrganizationalUnitException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DuplicateOrganizationalUnitException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The selected policy is already attached to the specified target.
 type DuplicatePolicyAttachmentException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14356,7 +14356,7 @@ func (s DuplicatePolicyAttachmentException) GoString() string {
 
 func newErrorDuplicatePolicyAttachmentException(v protocol.ResponseMetadata) error {
 	return &DuplicatePolicyAttachmentException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -14384,18 +14384,18 @@ func (s DuplicatePolicyAttachmentException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DuplicatePolicyAttachmentException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DuplicatePolicyAttachmentException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A policy with the same name already exists.
 type DuplicatePolicyException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14412,7 +14412,7 @@ func (s DuplicatePolicyException) GoString() string {
 
 func newErrorDuplicatePolicyException(v protocol.ResponseMetadata) error {
 	return &DuplicatePolicyException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -14440,12 +14440,12 @@ func (s DuplicatePolicyException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DuplicatePolicyException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DuplicatePolicyException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains rules to be applied to the affected accounts. The effective policy
@@ -14506,8 +14506,8 @@ func (s *EffectivePolicy) SetTargetId(v string) *EffectivePolicy {
 // policy of this type. Contact the administrator of your organization about
 // attaching a policy of this type to the account.
 type EffectivePolicyNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14524,7 +14524,7 @@ func (s EffectivePolicyNotFoundException) GoString() string {
 
 func newErrorEffectivePolicyNotFoundException(v protocol.ResponseMetadata) error {
 	return &EffectivePolicyNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -14552,12 +14552,12 @@ func (s EffectivePolicyNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s EffectivePolicyNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s EffectivePolicyNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type EnableAWSServiceAccessInput struct {
@@ -14775,8 +14775,8 @@ func (s *EnabledServicePrincipal) SetServicePrincipal(v string) *EnabledServiceP
 // If after one hour you continue to receive this error, contact AWS Support
 // (https://console.aws.amazon.com/support/home#/).
 type FinalizingOrganizationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14793,7 +14793,7 @@ func (s FinalizingOrganizationException) GoString() string {
 
 func newErrorFinalizingOrganizationException(v protocol.ResponseMetadata) error {
 	return &FinalizingOrganizationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -14821,12 +14821,12 @@ func (s FinalizingOrganizationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s FinalizingOrganizationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s FinalizingOrganizationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains information that must be exchanged to securely establish a relationship
@@ -14974,8 +14974,8 @@ func (s *Handshake) SetState(v string) *Handshake {
 // The specified handshake is already in the requested state. For example, you
 // can't accept a handshake that was already accepted.
 type HandshakeAlreadyInStateException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -14992,7 +14992,7 @@ func (s HandshakeAlreadyInStateException) GoString() string {
 
 func newErrorHandshakeAlreadyInStateException(v protocol.ResponseMetadata) error {
 	return &HandshakeAlreadyInStateException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15020,12 +15020,12 @@ func (s HandshakeAlreadyInStateException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s HandshakeAlreadyInStateException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s HandshakeAlreadyInStateException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The requested operation would violate the constraint identified in the reason
@@ -15067,8 +15067,8 @@ func (s HandshakeAlreadyInStateException) RequestID() string {
 //    account that doesn't have a payment instrument, such as a credit card,
 //    associated with it.
 type HandshakeConstraintViolationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -15087,7 +15087,7 @@ func (s HandshakeConstraintViolationException) GoString() string {
 
 func newErrorHandshakeConstraintViolationException(v protocol.ResponseMetadata) error {
 	return &HandshakeConstraintViolationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15115,12 +15115,12 @@ func (s HandshakeConstraintViolationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s HandshakeConstraintViolationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s HandshakeConstraintViolationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Specifies the criteria that are used to select the handshakes for the operation.
@@ -15166,8 +15166,8 @@ func (s *HandshakeFilter) SetParentHandshakeId(v string) *HandshakeFilter {
 
 // We can't find a handshake with the HandshakeId that you specified.
 type HandshakeNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -15184,7 +15184,7 @@ func (s HandshakeNotFoundException) GoString() string {
 
 func newErrorHandshakeNotFoundException(v protocol.ResponseMetadata) error {
 	return &HandshakeNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15212,12 +15212,12 @@ func (s HandshakeNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s HandshakeNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s HandshakeNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Identifies a participant in a handshake.
@@ -15343,8 +15343,8 @@ func (s *HandshakeResource) SetValue(v string) *HandshakeResource {
 // example, you can't cancel a handshake that was already accepted or accept
 // a handshake that was already declined.
 type InvalidHandshakeTransitionException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -15361,7 +15361,7 @@ func (s InvalidHandshakeTransitionException) GoString() string {
 
 func newErrorInvalidHandshakeTransitionException(v protocol.ResponseMetadata) error {
 	return &InvalidHandshakeTransitionException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15389,12 +15389,12 @@ func (s InvalidHandshakeTransitionException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidHandshakeTransitionException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidHandshakeTransitionException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The requested operation failed because you provided invalid values for one
@@ -15462,8 +15462,8 @@ func (s InvalidHandshakeTransitionException) RequestID() string {
 //    * MOVING_ACCOUNT_BETWEEN_DIFFERENT_ROOTS: You can move an account only
 //    between entities in the same root.
 type InvalidInputException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -15482,7 +15482,7 @@ func (s InvalidInputException) GoString() string {
 
 func newErrorInvalidInputException(v protocol.ResponseMetadata) error {
 	return &InvalidInputException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15510,12 +15510,12 @@ func (s InvalidInputException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidInputException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidInputException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type InviteAccountToOrganizationInput struct {
@@ -17151,8 +17151,8 @@ func (s *ListTargetsForPolicyOutput) SetTargets(v []*PolicyTargetSummary) *ListT
 // service control policy syntax, see Service Control Policy Syntax (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_scp-syntax.html)
 // in the AWS Organizations User Guide.
 type MalformedPolicyDocumentException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -17169,7 +17169,7 @@ func (s MalformedPolicyDocumentException) GoString() string {
 
 func newErrorMalformedPolicyDocumentException(v protocol.ResponseMetadata) error {
 	return &MalformedPolicyDocumentException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17197,20 +17197,20 @@ func (s MalformedPolicyDocumentException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MalformedPolicyDocumentException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MalformedPolicyDocumentException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You can't remove a master account from an organization. If you want the master
 // account to become a member account in another organization, you must first
 // delete the current organization of the master account.
 type MasterCannotLeaveOrganizationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -17227,7 +17227,7 @@ func (s MasterCannotLeaveOrganizationException) GoString() string {
 
 func newErrorMasterCannotLeaveOrganizationException(v protocol.ResponseMetadata) error {
 	return &MasterCannotLeaveOrganizationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17255,12 +17255,12 @@ func (s MasterCannotLeaveOrganizationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MasterCannotLeaveOrganizationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MasterCannotLeaveOrganizationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type MoveAccountInput struct {
@@ -17482,8 +17482,8 @@ func (s *Organization) SetMasterAccountId(v string) *Organization {
 // The organization isn't empty. To delete an organization, you must first remove
 // all accounts except the master account, delete all OUs, and delete all policies.
 type OrganizationNotEmptyException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -17500,7 +17500,7 @@ func (s OrganizationNotEmptyException) GoString() string {
 
 func newErrorOrganizationNotEmptyException(v protocol.ResponseMetadata) error {
 	return &OrganizationNotEmptyException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17528,12 +17528,12 @@ func (s OrganizationNotEmptyException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s OrganizationNotEmptyException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s OrganizationNotEmptyException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains details about an organizational unit (OU). An OU is a container
@@ -17596,8 +17596,8 @@ func (s *OrganizationalUnit) SetName(v string) *OrganizationalUnit {
 // The specified OU is not empty. Move all accounts to another root or to other
 // OUs, remove all child OUs, and try the operation again.
 type OrganizationalUnitNotEmptyException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -17614,7 +17614,7 @@ func (s OrganizationalUnitNotEmptyException) GoString() string {
 
 func newErrorOrganizationalUnitNotEmptyException(v protocol.ResponseMetadata) error {
 	return &OrganizationalUnitNotEmptyException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17642,18 +17642,18 @@ func (s OrganizationalUnitNotEmptyException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s OrganizationalUnitNotEmptyException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s OrganizationalUnitNotEmptyException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // We can't find an OU with the OrganizationalUnitId that you specified.
 type OrganizationalUnitNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -17670,7 +17670,7 @@ func (s OrganizationalUnitNotFoundException) GoString() string {
 
 func newErrorOrganizationalUnitNotFoundException(v protocol.ResponseMetadata) error {
 	return &OrganizationalUnitNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17698,12 +17698,12 @@ func (s OrganizationalUnitNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s OrganizationalUnitNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s OrganizationalUnitNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains information about either a root or an organizational unit (OU) that
@@ -17753,8 +17753,8 @@ func (s *Parent) SetType(v string) *Parent {
 
 // We can't find a root or OU with the ParentId that you specified.
 type ParentNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -17771,7 +17771,7 @@ func (s ParentNotFoundException) GoString() string {
 
 func newErrorParentNotFoundException(v protocol.ResponseMetadata) error {
 	return &ParentNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17799,12 +17799,12 @@ func (s ParentNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ParentNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ParentNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains rules to be applied to the affected accounts. Policies can be attached
@@ -17845,8 +17845,8 @@ func (s *Policy) SetPolicySummary(v *PolicySummary) *Policy {
 // Changes to the effective policy are in progress, and its contents can't be
 // returned. Try the operation again later.
 type PolicyChangesInProgressException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -17863,7 +17863,7 @@ func (s PolicyChangesInProgressException) GoString() string {
 
 func newErrorPolicyChangesInProgressException(v protocol.ResponseMetadata) error {
 	return &PolicyChangesInProgressException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17891,19 +17891,19 @@ func (s PolicyChangesInProgressException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PolicyChangesInProgressException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PolicyChangesInProgressException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The policy is attached to one or more entities. You must detach it from all
 // roots, OUs, and accounts before performing this operation.
 type PolicyInUseException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -17920,7 +17920,7 @@ func (s PolicyInUseException) GoString() string {
 
 func newErrorPolicyInUseException(v protocol.ResponseMetadata) error {
 	return &PolicyInUseException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17948,18 +17948,18 @@ func (s PolicyInUseException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PolicyInUseException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PolicyInUseException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The policy isn't attached to the specified target in the specified root.
 type PolicyNotAttachedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -17976,7 +17976,7 @@ func (s PolicyNotAttachedException) GoString() string {
 
 func newErrorPolicyNotAttachedException(v protocol.ResponseMetadata) error {
 	return &PolicyNotAttachedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18004,18 +18004,18 @@ func (s PolicyNotAttachedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PolicyNotAttachedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PolicyNotAttachedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // We can't find a policy with the PolicyId that you specified.
 type PolicyNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -18032,7 +18032,7 @@ func (s PolicyNotFoundException) GoString() string {
 
 func newErrorPolicyNotFoundException(v protocol.ResponseMetadata) error {
 	return &PolicyNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18060,12 +18060,12 @@ func (s PolicyNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PolicyNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PolicyNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains information about a policy, but does not include the content. To
@@ -18226,8 +18226,8 @@ func (s *PolicyTargetSummary) SetType(v string) *PolicyTargetSummary {
 
 // The specified policy type is already enabled in the specified root.
 type PolicyTypeAlreadyEnabledException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -18244,7 +18244,7 @@ func (s PolicyTypeAlreadyEnabledException) GoString() string {
 
 func newErrorPolicyTypeAlreadyEnabledException(v protocol.ResponseMetadata) error {
 	return &PolicyTypeAlreadyEnabledException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18272,12 +18272,12 @@ func (s PolicyTypeAlreadyEnabledException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PolicyTypeAlreadyEnabledException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PolicyTypeAlreadyEnabledException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You can't use the specified policy type with the feature set currently enabled
@@ -18286,8 +18286,8 @@ func (s PolicyTypeAlreadyEnabledException) RequestID() string {
 // Disabling a Policy Type on a Root (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies.html#enable_policies_on_root)
 // in the AWS Organizations User Guide.
 type PolicyTypeNotAvailableForOrganizationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -18304,7 +18304,7 @@ func (s PolicyTypeNotAvailableForOrganizationException) GoString() string {
 
 func newErrorPolicyTypeNotAvailableForOrganizationException(v protocol.ResponseMetadata) error {
 	return &PolicyTypeNotAvailableForOrganizationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18332,12 +18332,12 @@ func (s PolicyTypeNotAvailableForOrganizationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PolicyTypeNotAvailableForOrganizationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PolicyTypeNotAvailableForOrganizationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified policy type isn't currently enabled in this root. You can't
@@ -18346,8 +18346,8 @@ func (s PolicyTypeNotAvailableForOrganizationException) RequestID() string {
 // Your Organization (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html)
 // in the AWS Organizations User Guide.
 type PolicyTypeNotEnabledException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -18364,7 +18364,7 @@ func (s PolicyTypeNotEnabledException) GoString() string {
 
 func newErrorPolicyTypeNotEnabledException(v protocol.ResponseMetadata) error {
 	return &PolicyTypeNotEnabledException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18392,12 +18392,12 @@ func (s PolicyTypeNotEnabledException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PolicyTypeNotEnabledException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PolicyTypeNotEnabledException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains information about a policy type and its status in the associated
@@ -18567,8 +18567,8 @@ func (s *Root) SetPolicyTypes(v []*PolicyTypeSummary) *Root {
 
 // We can't find a root with the RootId that you specified.
 type RootNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -18585,7 +18585,7 @@ func (s RootNotFoundException) GoString() string {
 
 func newErrorRootNotFoundException(v protocol.ResponseMetadata) error {
 	return &RootNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18613,19 +18613,19 @@ func (s RootNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s RootNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s RootNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // AWS Organizations can't complete your request because of an internal service
 // error. Try again later.
 type ServiceException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -18642,7 +18642,7 @@ func (s ServiceException) GoString() string {
 
 func newErrorServiceException(v protocol.ResponseMetadata) error {
 	return &ServiceException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18670,18 +18670,18 @@ func (s ServiceException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // We can't find a source root or OU with the ParentId that you specified.
 type SourceParentNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -18698,7 +18698,7 @@ func (s SourceParentNotFoundException) GoString() string {
 
 func newErrorSourceParentNotFoundException(v protocol.ResponseMetadata) error {
 	return &SourceParentNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18726,12 +18726,12 @@ func (s SourceParentNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s SourceParentNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s SourceParentNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A custom key-value pair associated with a resource such as an account within
@@ -18873,8 +18873,8 @@ func (s TagResourceOutput) GoString() string {
 
 // We can't find a root, OU, or account with the TargetId that you specified.
 type TargetNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -18891,7 +18891,7 @@ func (s TargetNotFoundException) GoString() string {
 
 func newErrorTargetNotFoundException(v protocol.ResponseMetadata) error {
 	return &TargetNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18919,12 +18919,12 @@ func (s TargetNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TargetNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TargetNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You have sent too many requests in too short a period of time. The limit
@@ -18934,8 +18934,8 @@ func (s TargetNotFoundException) RequestID() string {
 // Organizations (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_reference_limits.html)
 // in the AWS Organizations User Guide.
 type TooManyRequestsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -18954,7 +18954,7 @@ func (s TooManyRequestsException) GoString() string {
 
 func newErrorTooManyRequestsException(v protocol.ResponseMetadata) error {
 	return &TooManyRequestsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18982,18 +18982,18 @@ func (s TooManyRequestsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TooManyRequestsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TooManyRequestsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This action isn't available in the current Region.
 type UnsupportedAPIEndpointException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -19010,7 +19010,7 @@ func (s UnsupportedAPIEndpointException) GoString() string {
 
 func newErrorUnsupportedAPIEndpointException(v protocol.ResponseMetadata) error {
 	return &UnsupportedAPIEndpointException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -19038,12 +19038,12 @@ func (s UnsupportedAPIEndpointException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnsupportedAPIEndpointException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnsupportedAPIEndpointException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UntagResourceInput struct {

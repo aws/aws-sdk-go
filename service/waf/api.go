@@ -9517,8 +9517,8 @@ func (s *ActivatedRule) SetType(v string) *ActivatedRule {
 }
 
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9535,7 +9535,7 @@ func (s BadRequestException) GoString() string {
 
 func newErrorBadRequestException(v protocol.ResponseMetadata) error {
 	return &BadRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9563,12 +9563,12 @@ func (s BadRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s BadRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s BadRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // In a GetByteMatchSet request, ByteMatchSet is a complex type that contains
@@ -12462,8 +12462,8 @@ func (s *DeleteXssMatchSetOutput) SetChangeToken(v string) *DeleteXssMatchSetOut
 
 // The name specified is invalid.
 type DisallowedNameException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -12480,7 +12480,7 @@ func (s DisallowedNameException) GoString() string {
 
 func newErrorDisallowedNameException(v protocol.ResponseMetadata) error {
 	return &DisallowedNameException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12508,12 +12508,12 @@ func (s DisallowedNameException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DisallowedNameException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DisallowedNameException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The rule to exclude from a rule group. This is applicable only when the ActivatedRule
@@ -14532,8 +14532,8 @@ func (s *IPSetUpdate) SetIPSetDescriptor(v *IPSetDescriptor) *IPSetUpdate {
 // The operation failed because of a system problem, even though the request
 // was valid. Retry your request.
 type InternalErrorException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14550,7 +14550,7 @@ func (s InternalErrorException) GoString() string {
 
 func newErrorInternalErrorException(v protocol.ResponseMetadata) error {
 	return &InternalErrorException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -14578,19 +14578,19 @@ func (s InternalErrorException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalErrorException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalErrorException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation failed because you tried to create, update, or delete an object
 // by using an invalid account identifier.
 type InvalidAccountException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14607,7 +14607,7 @@ func (s InvalidAccountException) GoString() string {
 
 func newErrorInvalidAccountException(v protocol.ResponseMetadata) error {
 	return &InvalidAccountException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -14635,12 +14635,12 @@ func (s InvalidAccountException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidAccountException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidAccountException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation failed because there was nothing to do. For example:
@@ -14660,8 +14660,8 @@ func (s InvalidAccountException) RequestID() string {
 //    * You tried to add a ByteMatchTuple to a ByteMatchSet, but the ByteMatchTuple
 //    already exists in the specified WebACL.
 type InvalidOperationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14678,7 +14678,7 @@ func (s InvalidOperationException) GoString() string {
 
 func newErrorInvalidOperationException(v protocol.ResponseMetadata) error {
 	return &InvalidOperationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -14706,12 +14706,12 @@ func (s InvalidOperationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidOperationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidOperationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation failed because AWS WAF didn't recognize a parameter in the
@@ -14742,8 +14742,8 @@ func (s InvalidOperationException) RequestID() string {
 //    * Your request references an ARN that is malformed, or corresponds to
 //    a resource with which a web ACL cannot be associated.
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Field *string `locationName:"field" type:"string" enum:"ParameterExceptionField"`
 
@@ -14766,7 +14766,7 @@ func (s InvalidParameterException) GoString() string {
 
 func newErrorInvalidParameterException(v protocol.ResponseMetadata) error {
 	return &InvalidParameterException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -14794,12 +14794,12 @@ func (s InvalidParameterException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidParameterException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidParameterException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation failed because the specified policy is not in the proper format.
@@ -14825,8 +14825,8 @@ func (s InvalidParameterException) RequestID() string {
 //
 //    * Your policy must be composed using IAM Policy version 2012-10-17.
 type InvalidPermissionPolicyException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14843,7 +14843,7 @@ func (s InvalidPermissionPolicyException) GoString() string {
 
 func newErrorInvalidPermissionPolicyException(v protocol.ResponseMetadata) error {
 	return &InvalidPermissionPolicyException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -14871,18 +14871,18 @@ func (s InvalidPermissionPolicyException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidPermissionPolicyException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidPermissionPolicyException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The regular expression (regex) you specified in RegexPatternString is invalid.
 type InvalidRegexPatternException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14899,7 +14899,7 @@ func (s InvalidRegexPatternException) GoString() string {
 
 func newErrorInvalidRegexPatternException(v protocol.ResponseMetadata) error {
 	return &InvalidRegexPatternException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -14927,12 +14927,12 @@ func (s InvalidRegexPatternException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidRegexPatternException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidRegexPatternException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation exceeds a resource limit, for example, the maximum number of
@@ -14940,8 +14940,8 @@ func (s InvalidRegexPatternException) RequestID() string {
 // see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 // in the AWS WAF Developer Guide.
 type LimitsExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14958,7 +14958,7 @@ func (s LimitsExceededException) GoString() string {
 
 func newErrorLimitsExceededException(v protocol.ResponseMetadata) error {
 	return &LimitsExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -14986,12 +14986,12 @@ func (s LimitsExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitsExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitsExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListActivatedRulesInRuleGroupInput struct {
@@ -16507,8 +16507,8 @@ func (s *LoggingConfiguration) SetResourceArn(v string) *LoggingConfiguration {
 //
 //    * You tried to delete an IPSet that references one or more IP addresses.
 type NonEmptyEntityException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16525,7 +16525,7 @@ func (s NonEmptyEntityException) GoString() string {
 
 func newErrorNonEmptyEntityException(v protocol.ResponseMetadata) error {
 	return &NonEmptyEntityException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -16553,12 +16553,12 @@ func (s NonEmptyEntityException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NonEmptyEntityException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NonEmptyEntityException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation failed because you tried to add an object to or delete an object
@@ -16576,8 +16576,8 @@ func (s NonEmptyEntityException) RequestID() string {
 //    * You tried to add a ByteMatchTuple to or delete a ByteMatchTuple from
 //    a ByteMatchSet that doesn't exist.
 type NonexistentContainerException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16594,7 +16594,7 @@ func (s NonexistentContainerException) GoString() string {
 
 func newErrorNonexistentContainerException(v protocol.ResponseMetadata) error {
 	return &NonexistentContainerException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -16622,18 +16622,18 @@ func (s NonexistentContainerException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NonexistentContainerException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NonexistentContainerException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation failed because the referenced object doesn't exist.
 type NonexistentItemException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -16650,7 +16650,7 @@ func (s NonexistentItemException) GoString() string {
 
 func newErrorNonexistentItemException(v protocol.ResponseMetadata) error {
 	return &NonexistentItemException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -16678,12 +16678,12 @@ func (s NonexistentItemException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NonexistentItemException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NonexistentItemException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Specifies the ByteMatchSet, IPSet, SqlInjectionMatchSet, XssMatchSet, RegexMatchSet,
@@ -17029,8 +17029,8 @@ func (s *RateBasedRule) SetRuleId(v string) *RateBasedRule {
 //
 //    * You tried to delete a Rule that is still referenced by a WebACL.
 type ReferencedItemException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -17047,7 +17047,7 @@ func (s ReferencedItemException) GoString() string {
 
 func newErrorReferencedItemException(v protocol.ResponseMetadata) error {
 	return &ReferencedItemException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -17075,12 +17075,12 @@ func (s ReferencedItemException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ReferencedItemException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ReferencedItemException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // In a GetRegexMatchSet request, RegexMatchSet is a complex type that contains
@@ -18006,8 +18006,8 @@ func (s *SampledHTTPRequest) SetWeight(v int64) *SampledHTTPRequest {
 // exception again, you will have to wait additional time until the role is
 // unlocked.
 type ServiceLinkedRoleErrorException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18024,7 +18024,7 @@ func (s ServiceLinkedRoleErrorException) GoString() string {
 
 func newErrorServiceLinkedRoleErrorException(v protocol.ResponseMetadata) error {
 	return &ServiceLinkedRoleErrorException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18052,12 +18052,12 @@ func (s ServiceLinkedRoleErrorException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceLinkedRoleErrorException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceLinkedRoleErrorException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Specifies a constraint on the size of a part of the web request. AWS WAF
@@ -18709,8 +18709,8 @@ func (s *SqlInjectionMatchTuple) SetTextTransformation(v string) *SqlInjectionMa
 // The operation failed because you tried to create, update, or delete an object
 // by using a change token that has already been used.
 type StaleDataException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18727,7 +18727,7 @@ func (s StaleDataException) GoString() string {
 
 func newErrorStaleDataException(v protocol.ResponseMetadata) error {
 	return &StaleDataException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18755,12 +18755,12 @@ func (s StaleDataException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s StaleDataException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s StaleDataException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A summary of the rule groups you are subscribed to.
@@ -18818,8 +18818,8 @@ func (s *SubscribedRuleGroupSummary) SetRuleGroupId(v string) *SubscribedRuleGro
 
 // The specified subscription does not exist.
 type SubscriptionNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18836,7 +18836,7 @@ func (s SubscriptionNotFoundException) GoString() string {
 
 func newErrorSubscriptionNotFoundException(v protocol.ResponseMetadata) error {
 	return &SubscriptionNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18864,12 +18864,12 @@ func (s SubscriptionNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s SubscriptionNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s SubscriptionNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type Tag struct {
@@ -18946,8 +18946,8 @@ func (s *TagInfoForResource) SetTagList(v []*Tag) *TagInfoForResource {
 }
 
 type TagOperationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18964,7 +18964,7 @@ func (s TagOperationException) GoString() string {
 
 func newErrorTagOperationException(v protocol.ResponseMetadata) error {
 	return &TagOperationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18992,17 +18992,17 @@ func (s TagOperationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TagOperationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TagOperationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type TagOperationInternalErrorException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -19019,7 +19019,7 @@ func (s TagOperationInternalErrorException) GoString() string {
 
 func newErrorTagOperationInternalErrorException(v protocol.ResponseMetadata) error {
 	return &TagOperationInternalErrorException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -19047,12 +19047,12 @@ func (s TagOperationInternalErrorException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TagOperationInternalErrorException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TagOperationInternalErrorException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type TagResourceInput struct {

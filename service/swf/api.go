@@ -7143,8 +7143,8 @@ func (s *DecisionTaskTimedOutEventAttributes) SetTimeoutType(v string) *Decision
 // If these parameters aren't set and no default parameters were defined in
 // the workflow type, this error is displayed.
 type DefaultUndefinedFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7161,7 +7161,7 @@ func (s DefaultUndefinedFault) GoString() string {
 
 func newErrorDefaultUndefinedFault(v protocol.ResponseMetadata) error {
 	return &DefaultUndefinedFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7189,12 +7189,12 @@ func (s DefaultUndefinedFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DefaultUndefinedFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DefaultUndefinedFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type DeprecateActivityTypeInput struct {
@@ -7830,8 +7830,8 @@ func (s *DescribeWorkflowTypeOutput) SetTypeInfo(v *WorkflowTypeInfo) *DescribeW
 // registering a domain that is either already registered or deprecated, or
 // if you undeprecate a domain that is currently registered.
 type DomainAlreadyExistsFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A description that may help with diagnosing the cause of the fault.
 	Message_ *string `locationName:"message" type:"string"`
@@ -7849,7 +7849,7 @@ func (s DomainAlreadyExistsFault) GoString() string {
 
 func newErrorDomainAlreadyExistsFault(v protocol.ResponseMetadata) error {
 	return &DomainAlreadyExistsFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7877,12 +7877,12 @@ func (s DomainAlreadyExistsFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DomainAlreadyExistsFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DomainAlreadyExistsFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains the configuration settings of a domain.
@@ -7913,8 +7913,8 @@ func (s *DomainConfiguration) SetWorkflowExecutionRetentionPeriodInDays(v string
 
 // Returned when the specified domain has been deprecated.
 type DomainDeprecatedFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A description that may help with diagnosing the cause of the fault.
 	Message_ *string `locationName:"message" type:"string"`
@@ -7932,7 +7932,7 @@ func (s DomainDeprecatedFault) GoString() string {
 
 func newErrorDomainDeprecatedFault(v protocol.ResponseMetadata) error {
 	return &DomainDeprecatedFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7960,12 +7960,12 @@ func (s DomainDeprecatedFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DomainDeprecatedFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DomainDeprecatedFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains general information about a domain.
@@ -9438,8 +9438,8 @@ func (s *LambdaFunctionTimedOutEventAttributes) SetTimeoutType(v string) *Lambda
 // To address this fault you should either clean up unused resources or increase
 // the limit by contacting AWS.
 type LimitExceededFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A description that may help with diagnosing the cause of the fault.
 	Message_ *string `locationName:"message" type:"string"`
@@ -9457,7 +9457,7 @@ func (s LimitExceededFault) GoString() string {
 
 func newErrorLimitExceededFault(v protocol.ResponseMetadata) error {
 	return &LimitExceededFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9485,12 +9485,12 @@ func (s LimitExceededFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListActivityTypesInput struct {
@@ -10352,8 +10352,8 @@ func (s *MarkerRecordedEventAttributes) SetMarkerName(v string) *MarkerRecordedE
 // Returned when the caller doesn't have sufficient permissions to invoke the
 // action.
 type OperationNotPermittedFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A description that may help with diagnosing the cause of the fault.
 	Message_ *string `locationName:"message" type:"string"`
@@ -10371,7 +10371,7 @@ func (s OperationNotPermittedFault) GoString() string {
 
 func newErrorOperationNotPermittedFault(v protocol.ResponseMetadata) error {
 	return &OperationNotPermittedFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -10399,12 +10399,12 @@ func (s OperationNotPermittedFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s OperationNotPermittedFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s OperationNotPermittedFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains the count of tasks in a task list.
@@ -14603,8 +14603,8 @@ func (s *TimerStartedEventAttributes) SetTimerId(v string) *TimerStartedEventAtt
 
 // You've exceeded the number of tags allowed for a domain.
 type TooManyTagsFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -14621,7 +14621,7 @@ func (s TooManyTagsFault) GoString() string {
 
 func newErrorTooManyTagsFault(v protocol.ResponseMetadata) error {
 	return &TooManyTagsFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -14649,20 +14649,20 @@ func (s TooManyTagsFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TooManyTagsFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TooManyTagsFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Returned if the type already exists in the specified domain. You may get
 // this fault if you are registering a type that is either already registered
 // or deprecated, or if you undeprecate a type that is currently registered.
 type TypeAlreadyExistsFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A description that may help with diagnosing the cause of the fault.
 	Message_ *string `locationName:"message" type:"string"`
@@ -14680,7 +14680,7 @@ func (s TypeAlreadyExistsFault) GoString() string {
 
 func newErrorTypeAlreadyExistsFault(v protocol.ResponseMetadata) error {
 	return &TypeAlreadyExistsFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -14708,18 +14708,18 @@ func (s TypeAlreadyExistsFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TypeAlreadyExistsFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TypeAlreadyExistsFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Returned when the specified activity or workflow type was already deprecated.
 type TypeDeprecatedFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A description that may help with diagnosing the cause of the fault.
 	Message_ *string `locationName:"message" type:"string"`
@@ -14737,7 +14737,7 @@ func (s TypeDeprecatedFault) GoString() string {
 
 func newErrorTypeDeprecatedFault(v protocol.ResponseMetadata) error {
 	return &TypeDeprecatedFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -14765,12 +14765,12 @@ func (s TypeDeprecatedFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TypeDeprecatedFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TypeDeprecatedFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UndeprecateActivityTypeInput struct {
@@ -14980,8 +14980,8 @@ func (s UndeprecateWorkflowTypeOutput) GoString() string {
 // operation (region or domain). This could happen if the named resource was
 // never created or is no longer available for this operation.
 type UnknownResourceFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A description that may help with diagnosing the cause of the fault.
 	Message_ *string `locationName:"message" type:"string"`
@@ -14999,7 +14999,7 @@ func (s UnknownResourceFault) GoString() string {
 
 func newErrorUnknownResourceFault(v protocol.ResponseMetadata) error {
 	return &UnknownResourceFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15027,12 +15027,12 @@ func (s UnknownResourceFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnknownResourceFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnknownResourceFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UntagResourceInput struct {
@@ -15166,8 +15166,8 @@ func (s *WorkflowExecution) SetWorkflowId(v string) *WorkflowExecution {
 // Returned by StartWorkflowExecution when an open execution with the same workflowId
 // is already running in the specified domain.
 type WorkflowExecutionAlreadyStartedFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A description that may help with diagnosing the cause of the fault.
 	Message_ *string `locationName:"message" type:"string"`
@@ -15185,7 +15185,7 @@ func (s WorkflowExecutionAlreadyStartedFault) GoString() string {
 
 func newErrorWorkflowExecutionAlreadyStartedFault(v protocol.ResponseMetadata) error {
 	return &WorkflowExecutionAlreadyStartedFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15213,12 +15213,12 @@ func (s WorkflowExecutionAlreadyStartedFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WorkflowExecutionAlreadyStartedFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WorkflowExecutionAlreadyStartedFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Provides the details of the WorkflowExecutionCancelRequested event.

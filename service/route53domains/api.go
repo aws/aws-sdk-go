@@ -3003,8 +3003,8 @@ func (s *DisableDomainTransferLockOutput) SetOperationId(v string) *DisableDomai
 
 // The number of domains has exceeded the allowed threshold for the account.
 type DomainLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The number of domains has exceeded the allowed threshold for the account.
 	Message_ *string `locationName:"message" type:"string"`
@@ -3022,7 +3022,7 @@ func (s DomainLimitExceeded) GoString() string {
 
 func newErrorDomainLimitExceeded(v protocol.ResponseMetadata) error {
 	return &DomainLimitExceeded{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3050,12 +3050,12 @@ func (s DomainLimitExceeded) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DomainLimitExceeded) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DomainLimitExceeded) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Information about one suggested domain name.
@@ -3233,8 +3233,8 @@ func (s *DomainTransferability) SetTransferable(v string) *DomainTransferability
 
 // The request is already in progress for the domain.
 type DuplicateRequest struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The request is already in progress for the domain.
 	Message_ *string `locationName:"message" type:"string"`
@@ -3252,7 +3252,7 @@ func (s DuplicateRequest) GoString() string {
 
 func newErrorDuplicateRequest(v protocol.ResponseMetadata) error {
 	return &DuplicateRequest{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3280,12 +3280,12 @@ func (s DuplicateRequest) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DuplicateRequest) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DuplicateRequest) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type EnableDomainAutoRenewInput struct {
@@ -4054,8 +4054,8 @@ func (s *GetOperationDetailOutput) SetType(v string) *GetOperationDetailOutput {
 // might refer to the ID of an operation that is already completed. For a domain
 // name, it might not be a valid domain name or belong to the requester account.
 type InvalidInput struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The requested item is not acceptable. For example, for an OperationId it
 	// might refer to the ID of an operation that is already completed. For a domain
@@ -4075,7 +4075,7 @@ func (s InvalidInput) GoString() string {
 
 func newErrorInvalidInput(v protocol.ResponseMetadata) error {
 	return &InvalidInput{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4103,12 +4103,12 @@ func (s InvalidInput) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidInput) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidInput) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The ListDomains request includes the following elements.
@@ -4401,8 +4401,8 @@ func (s *Nameserver) SetName(v string) *Nameserver {
 // The number of operations or jobs running exceeded the allowed threshold for
 // the account.
 type OperationLimitExceeded struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The number of operations or jobs running exceeded the allowed threshold for
 	// the account.
@@ -4421,7 +4421,7 @@ func (s OperationLimitExceeded) GoString() string {
 
 func newErrorOperationLimitExceeded(v protocol.ResponseMetadata) error {
 	return &OperationLimitExceeded{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4449,12 +4449,12 @@ func (s OperationLimitExceeded) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s OperationLimitExceeded) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s OperationLimitExceeded) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // OperationSummary includes the following elements.
@@ -4967,8 +4967,8 @@ func (s *RetrieveDomainAuthCodeOutput) SetAuthCode(v string) *RetrieveDomainAuth
 
 // The top-level domain does not support this operation.
 type TLDRulesViolation struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The top-level domain does not support this operation.
 	Message_ *string `locationName:"message" type:"string"`
@@ -4986,7 +4986,7 @@ func (s TLDRulesViolation) GoString() string {
 
 func newErrorTLDRulesViolation(v protocol.ResponseMetadata) error {
 	return &TLDRulesViolation{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5014,12 +5014,12 @@ func (s TLDRulesViolation) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TLDRulesViolation) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TLDRulesViolation) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Each tag includes the following elements.
@@ -5309,8 +5309,8 @@ func (s *TransferDomainOutput) SetOperationId(v string) *TransferDomainOutput {
 
 // Amazon Route 53 does not support this top-level domain (TLD).
 type UnsupportedTLD struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Amazon Route 53 does not support this top-level domain (TLD).
 	Message_ *string `locationName:"message" type:"string"`
@@ -5328,7 +5328,7 @@ func (s UnsupportedTLD) GoString() string {
 
 func newErrorUnsupportedTLD(v protocol.ResponseMetadata) error {
 	return &UnsupportedTLD{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5356,12 +5356,12 @@ func (s UnsupportedTLD) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnsupportedTLD) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnsupportedTLD) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The UpdateDomainContact request includes the following elements.

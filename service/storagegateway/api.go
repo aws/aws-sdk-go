@@ -13262,8 +13262,8 @@ func (s *GatewayInfo) SetGatewayType(v string) *GatewayInfo {
 // An internal server error has occurred during the request. For more information,
 // see the error and message fields.
 type InternalServerError struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A StorageGatewayError that provides more information about the cause of the
 	// error.
@@ -13285,7 +13285,7 @@ func (s InternalServerError) GoString() string {
 
 func newErrorInternalServerError(v protocol.ResponseMetadata) error {
 	return &InternalServerError{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -13313,19 +13313,19 @@ func (s InternalServerError) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServerError) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServerError) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An exception occurred because an invalid gateway request was issued to the
 // service. For more information, see the error and message fields.
 type InvalidGatewayRequestException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A StorageGatewayError that provides more detail about the cause of the error.
 	Error_ *Error `locationName:"error" type:"structure"`
@@ -13346,7 +13346,7 @@ func (s InvalidGatewayRequestException) GoString() string {
 
 func newErrorInvalidGatewayRequestException(v protocol.ResponseMetadata) error {
 	return &InvalidGatewayRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -13374,12 +13374,12 @@ func (s InvalidGatewayRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidGatewayRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidGatewayRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // JoinDomainInput
@@ -15398,8 +15398,8 @@ func (s *SMBFileShareInfo) SetValidUserList(v []*string) *SMBFileShareInfo {
 // An internal server error has occurred because the service is unavailable.
 // For more information, see the error and message fields.
 type ServiceUnavailableError struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// A StorageGatewayError that provides more information about the cause of the
 	// error.
@@ -15421,7 +15421,7 @@ func (s ServiceUnavailableError) GoString() string {
 
 func newErrorServiceUnavailableError(v protocol.ResponseMetadata) error {
 	return &ServiceUnavailableError{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15449,12 +15449,12 @@ func (s ServiceUnavailableError) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceUnavailableError) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceUnavailableError) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // SetLocalConsolePasswordInput

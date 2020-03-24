@@ -7168,8 +7168,8 @@ func (c *QuickSight) UpdateUserWithContext(ctx aws.Context, input *UpdateUserInp
 // your policies have the correct permissions, and that you are using the correct
 // access keys.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -7189,7 +7189,7 @@ func (s AccessDeniedException) GoString() string {
 
 func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
 	return &AccessDeniedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7217,12 +7217,12 @@ func (s AccessDeniedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccessDeniedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccessDeniedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The active AWS Identity and Access Management (IAM) policy assignment.
@@ -7993,8 +7993,8 @@ func (s *ColumnTag) SetColumnGeographicRole(v string) *ColumnTag {
 // A resource is already in a state that indicates an action is happening that
 // must complete before a new update can be applied.
 type ConcurrentUpdatingException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -8013,7 +8013,7 @@ func (s ConcurrentUpdatingException) GoString() string {
 
 func newErrorConcurrentUpdatingException(v protocol.ResponseMetadata) error {
 	return &ConcurrentUpdatingException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8041,18 +8041,18 @@ func (s ConcurrentUpdatingException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ConcurrentUpdatingException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ConcurrentUpdatingException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Updating or deleting a resource can cause an inconsistent state.
 type ConflictException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -8072,7 +8072,7 @@ func (s ConflictException) GoString() string {
 
 func newErrorConflictException(v protocol.ResponseMetadata) error {
 	return &ConflictException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8100,12 +8100,12 @@ func (s ConflictException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ConflictException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ConflictException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A transform operation that creates calculated columns. Columns created in
@@ -14208,8 +14208,8 @@ func (s *DescribeUserOutput) SetUser(v *User) *DescribeUserOutput {
 // The domain specified isn't on the allow list. All domains for embedded dashboards
 // must be added to the approved list by an Amazon QuickSight admin.
 type DomainNotWhitelistedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -14229,7 +14229,7 @@ func (s DomainNotWhitelistedException) GoString() string {
 
 func newErrorDomainNotWhitelistedException(v protocol.ResponseMetadata) error {
 	return &DomainNotWhitelistedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -14257,12 +14257,12 @@ func (s DomainNotWhitelistedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DomainNotWhitelistedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DomainNotWhitelistedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Error information for the SPICE ingestion of a dataset.
@@ -14797,8 +14797,8 @@ func (s *IAMPolicyAssignmentSummary) SetAssignmentStatus(v string) *IAMPolicyAss
 // The identity type specified isn't supported. Supported identity types include
 // IAM and QUICKSIGHT.
 type IdentityTypeNotSupportedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -14818,7 +14818,7 @@ func (s IdentityTypeNotSupportedException) GoString() string {
 
 func newErrorIdentityTypeNotSupportedException(v protocol.ResponseMetadata) error {
 	return &IdentityTypeNotSupportedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -14846,12 +14846,12 @@ func (s IdentityTypeNotSupportedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s IdentityTypeNotSupportedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s IdentityTypeNotSupportedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Information about the SPICE ingestion for a dataset.
@@ -15085,8 +15085,8 @@ func (s *IntegerParameter) SetValues(v []*int64) *IntegerParameter {
 
 // An internal failure occurred.
 type InternalFailureException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -15106,7 +15106,7 @@ func (s InternalFailureException) GoString() string {
 
 func newErrorInternalFailureException(v protocol.ResponseMetadata) error {
 	return &InternalFailureException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15134,18 +15134,18 @@ func (s InternalFailureException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalFailureException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalFailureException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The NextToken value isn't valid.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -15165,7 +15165,7 @@ func (s InvalidNextTokenException) GoString() string {
 
 func newErrorInvalidNextTokenException(v protocol.ResponseMetadata) error {
 	return &InvalidNextTokenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15193,18 +15193,18 @@ func (s InvalidNextTokenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidNextTokenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidNextTokenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // One or more parameters has a value that isn't valid.
 type InvalidParameterValueException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -15224,7 +15224,7 @@ func (s InvalidParameterValueException) GoString() string {
 
 func newErrorInvalidParameterValueException(v protocol.ResponseMetadata) error {
 	return &InvalidParameterValueException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15252,12 +15252,12 @@ func (s InvalidParameterValueException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidParameterValueException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidParameterValueException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Jira parameters.
@@ -15394,8 +15394,8 @@ func (s *JoinInstruction) SetType(v string) *JoinInstruction {
 
 // A limit is exceeded.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -15418,7 +15418,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15446,12 +15446,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListDashboardVersionsInput struct {
@@ -17973,8 +17973,8 @@ func (s *PostgreSqlParameters) SetPort(v int64) *PostgreSqlParameters {
 
 // One or more preconditions aren't met.
 type PreconditionNotMetException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -17994,7 +17994,7 @@ func (s PreconditionNotMetException) GoString() string {
 
 func newErrorPreconditionNotMetException(v protocol.ResponseMetadata) error {
 	return &PreconditionNotMetException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18022,12 +18022,12 @@ func (s PreconditionNotMetException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PreconditionNotMetException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PreconditionNotMetException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Presto parameters.
@@ -18684,8 +18684,8 @@ func (s *RenameColumnOperation) SetNewColumnName(v string) *RenameColumnOperatio
 
 // The resource specified already exists.
 type ResourceExistsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -18708,7 +18708,7 @@ func (s ResourceExistsException) GoString() string {
 
 func newErrorResourceExistsException(v protocol.ResponseMetadata) error {
 	return &ResourceExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18736,18 +18736,18 @@ func (s ResourceExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // One or more resources can't be found.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -18770,7 +18770,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18798,12 +18798,12 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Permission for the resource.
@@ -18870,8 +18870,8 @@ func (s *ResourcePermission) SetPrincipal(v string) *ResourcePermission {
 
 // This resource is currently unavailable.
 type ResourceUnavailableException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -18894,7 +18894,7 @@ func (s ResourceUnavailableException) GoString() string {
 
 func newErrorResourceUnavailableException(v protocol.ResponseMetadata) error {
 	return &ResourceUnavailableException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18922,12 +18922,12 @@ func (s ResourceUnavailableException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceUnavailableException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceUnavailableException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Information about rows for a data set SPICE ingestion.
@@ -19326,8 +19326,8 @@ func (s *ServiceNowParameters) SetSiteBaseUrl(v string) *ServiceNowParameters {
 // The number of minutes specified for the lifetime of a session isn't valid.
 // The session lifetime must be 15-600 minutes.
 type SessionLifetimeInMinutesInvalidException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -19347,7 +19347,7 @@ func (s SessionLifetimeInMinutesInvalidException) GoString() string {
 
 func newErrorSessionLifetimeInMinutesInvalidException(v protocol.ResponseMetadata) error {
 	return &SessionLifetimeInMinutesInvalidException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -19375,12 +19375,12 @@ func (s SessionLifetimeInMinutesInvalidException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s SessionLifetimeInMinutesInvalidException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s SessionLifetimeInMinutesInvalidException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Sheet controls option.
@@ -20514,8 +20514,8 @@ func (s *TeradataParameters) SetPort(v int64) *TeradataParameters {
 
 // Access is throttled.
 type ThrottlingException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -20535,7 +20535,7 @@ func (s ThrottlingException) GoString() string {
 
 func newErrorThrottlingException(v protocol.ResponseMetadata) error {
 	return &ThrottlingException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -20563,12 +20563,12 @@ func (s ThrottlingException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ThrottlingException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ThrottlingException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A data transformation on a logical table. This is a variant type structure.
@@ -20747,8 +20747,8 @@ func (s *TwitterParameters) SetQuery(v string) *TwitterParameters {
 // Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 // Not every operation and capability is available in every edition.
 type UnsupportedUserEditionException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -20768,7 +20768,7 @@ func (s UnsupportedUserEditionException) GoString() string {
 
 func newErrorUnsupportedUserEditionException(v protocol.ResponseMetadata) error {
 	return &UnsupportedUserEditionException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -20796,12 +20796,12 @@ func (s UnsupportedUserEditionException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnsupportedUserEditionException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnsupportedUserEditionException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UntagResourceInput struct {
@@ -23267,8 +23267,8 @@ func (s *User) SetUserName(v string) *User {
 // operation that requires finding a user based on a provided user name, such
 // as DeleteUser, DescribeUser, and so on.
 type UserNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -23288,7 +23288,7 @@ func (s UserNotFoundException) GoString() string {
 
 func newErrorUserNotFoundException(v protocol.ResponseMetadata) error {
 	return &UserNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -23316,12 +23316,12 @@ func (s UserNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UserNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UserNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // VPC connection properties.

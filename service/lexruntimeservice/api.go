@@ -638,8 +638,8 @@ func (c *LexRuntimeService) PutSessionWithContext(ctx aws.Context, input *PutSes
 // Either the Amazon Lex bot is still building, or one of the dependent services
 // (Amazon Polly, AWS Lambda) failed with an internal service error.
 type BadGatewayException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -656,7 +656,7 @@ func (s BadGatewayException) GoString() string {
 
 func newErrorBadGatewayException(v protocol.ResponseMetadata) error {
 	return &BadGatewayException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -684,19 +684,19 @@ func (s BadGatewayException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s BadGatewayException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s BadGatewayException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Request validation failed, there is no usable message in the context, or
 // the bot build failed, is still in progress, or contains unbuilt changes.
 type BadRequestException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -713,7 +713,7 @@ func (s BadRequestException) GoString() string {
 
 func newErrorBadRequestException(v protocol.ResponseMetadata) error {
 	return &BadRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -741,12 +741,12 @@ func (s BadRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s BadRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s BadRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents an option to be shown on the client platform (Facebook, Slack,
@@ -791,8 +791,8 @@ func (s *Button) SetValue(v string) *Button {
 
 // Two clients are using the same AWS account, Amazon Lex bot, and user ID.
 type ConflictException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -809,7 +809,7 @@ func (s ConflictException) GoString() string {
 
 func newErrorConflictException(v protocol.ResponseMetadata) error {
 	return &ConflictException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -837,12 +837,12 @@ func (s ConflictException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ConflictException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ConflictException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type DeleteSessionInput struct {
@@ -981,8 +981,8 @@ func (s *DeleteSessionOutput) SetUserId(v string) *DeleteSessionOutput {
 //    * If a fulfillment Lambda function returns a Delegate dialog action without
 //    removing any slot values.
 type DependencyFailedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -999,7 +999,7 @@ func (s DependencyFailedException) GoString() string {
 
 func newErrorDependencyFailedException(v protocol.ResponseMetadata) error {
 	return &DependencyFailedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1027,12 +1027,12 @@ func (s DependencyFailedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DependencyFailedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DependencyFailedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Describes the next action that the bot should take in its interaction with
@@ -1518,8 +1518,8 @@ func (s *IntentSummary) SetSlots(v map[string]*string) *IntentSummary {
 
 // Internal service error. Retry the call.
 type InternalFailureException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1536,7 +1536,7 @@ func (s InternalFailureException) GoString() string {
 
 func newErrorInternalFailureException(v protocol.ResponseMetadata) error {
 	return &InternalFailureException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1564,18 +1564,18 @@ func (s InternalFailureException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalFailureException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalFailureException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Exceeded a limit.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -1594,7 +1594,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1622,18 +1622,18 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is not used.
 type LoopDetectedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -1650,7 +1650,7 @@ func (s LoopDetectedException) GoString() string {
 
 func newErrorLoopDetectedException(v protocol.ResponseMetadata) error {
 	return &LoopDetectedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1678,18 +1678,18 @@ func (s LoopDetectedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LoopDetectedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LoopDetectedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The accept header in the request does not have a valid value.
 type NotAcceptableException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1706,7 +1706,7 @@ func (s NotAcceptableException) GoString() string {
 
 func newErrorNotAcceptableException(v protocol.ResponseMetadata) error {
 	return &NotAcceptableException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1734,19 +1734,19 @@ func (s NotAcceptableException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NotAcceptableException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NotAcceptableException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The resource (such as the Amazon Lex bot or an alias) that is referred to
 // is not found.
 type NotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1763,7 +1763,7 @@ func (s NotFoundException) GoString() string {
 
 func newErrorNotFoundException(v protocol.ResponseMetadata) error {
 	return &NotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1791,12 +1791,12 @@ func (s NotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type PostContentInput struct {
@@ -2838,8 +2838,8 @@ func (s *PutSessionOutput) SetSlots(v aws.JSONValue) *PutSessionOutput {
 
 // The input speech is too long.
 type RequestTimeoutException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2856,7 +2856,7 @@ func (s RequestTimeoutException) GoString() string {
 
 func newErrorRequestTimeoutException(v protocol.ResponseMetadata) error {
 	return &RequestTimeoutException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2884,12 +2884,12 @@ func (s RequestTimeoutException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s RequestTimeoutException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s RequestTimeoutException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // If you configure a response card when creating your bots, Amazon Lex substitutes
@@ -2976,8 +2976,8 @@ func (s *SentimentResponse) SetSentimentScore(v string) *SentimentResponse {
 
 // The Content-Type header (PostContent API) has an invalid value.
 type UnsupportedMediaTypeException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2994,7 +2994,7 @@ func (s UnsupportedMediaTypeException) GoString() string {
 
 func newErrorUnsupportedMediaTypeException(v protocol.ResponseMetadata) error {
 	return &UnsupportedMediaTypeException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3022,12 +3022,12 @@ func (s UnsupportedMediaTypeException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnsupportedMediaTypeException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnsupportedMediaTypeException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 const (

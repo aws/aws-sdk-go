@@ -424,7 +424,7 @@ func mockStartStreamTranscriptionReadEvents() (
 func TestStartStreamTranscription_ReadException(t *testing.T) {
 	expectEvents := []TranscriptResultStreamEvent{
 		&BadRequestException{
-			respMetadata: protocol.ResponseMetadata{
+			RespMetadata: protocol.ResponseMetadata{
 				StatusCode: 200,
 			},
 			Message_: aws.String("string value goes here"),
@@ -478,7 +478,7 @@ func TestStartStreamTranscription_ReadException(t *testing.T) {
 	}
 
 	expectErr := &BadRequestException{
-		respMetadata: protocol.ResponseMetadata{
+		RespMetadata: protocol.ResponseMetadata{
 			StatusCode: 200,
 		},
 		Message_: aws.String("string value goes here"),

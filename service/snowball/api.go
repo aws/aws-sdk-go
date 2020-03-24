@@ -2146,8 +2146,8 @@ func (s CancelJobOutput) GoString() string {
 // this cluster, try again and create jobs until your cluster has exactly five
 // notes.
 type ClusterLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -2164,7 +2164,7 @@ func (s ClusterLimitExceededException) GoString() string {
 
 func newErrorClusterLimitExceededException(v protocol.ResponseMetadata) error {
 	return &ClusterLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2192,12 +2192,12 @@ func (s ClusterLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ClusterLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ClusterLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains a cluster's state, a cluster's ID, and other important information.
@@ -3360,8 +3360,8 @@ func (s *Ec2AmiResource) SetSnowballAmiId(v string) *Ec2AmiResource {
 // Your IAM user lacks the necessary Amazon EC2 permissions to perform the attempted
 // action.
 type Ec2RequestFailedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -3378,7 +3378,7 @@ func (s Ec2RequestFailedException) GoString() string {
 
 func newErrorEc2RequestFailedException(v protocol.ResponseMetadata) error {
 	return &Ec2RequestFailedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3406,12 +3406,12 @@ func (s Ec2RequestFailedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s Ec2RequestFailedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s Ec2RequestFailedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The container for the EventTriggerDefinition$EventResourceARN.
@@ -3713,8 +3713,8 @@ func (s *INDTaxDocuments) SetGSTIN(v string) *INDTaxDocuments {
 // The address provided was invalid. Check the address with your region's carrier,
 // and try again.
 type InvalidAddressException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -3731,7 +3731,7 @@ func (s InvalidAddressException) GoString() string {
 
 func newErrorInvalidAddressException(v protocol.ResponseMetadata) error {
 	return &InvalidAddressException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3759,20 +3759,20 @@ func (s InvalidAddressException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidAddressException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidAddressException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Job or cluster creation failed. One ore more inputs were invalid. Confirm
 // that the CreateClusterRequest$SnowballType value supports your CreateJobRequest$JobType,
 // and try again.
 type InvalidInputCombinationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -3789,7 +3789,7 @@ func (s InvalidInputCombinationException) GoString() string {
 
 func newErrorInvalidInputCombinationException(v protocol.ResponseMetadata) error {
 	return &InvalidInputCombinationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3817,19 +3817,19 @@ func (s InvalidInputCombinationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidInputCombinationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidInputCombinationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The action can't be performed because the job's current state doesn't allow
 // that action to be performed.
 type InvalidJobStateException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -3846,7 +3846,7 @@ func (s InvalidJobStateException) GoString() string {
 
 func newErrorInvalidJobStateException(v protocol.ResponseMetadata) error {
 	return &InvalidJobStateException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3874,19 +3874,19 @@ func (s InvalidJobStateException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidJobStateException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidJobStateException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The NextToken string was altered unexpectedly, and the operation has stopped.
 // Run the operation without changing the NextToken string, and try again.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -3903,7 +3903,7 @@ func (s InvalidNextTokenException) GoString() string {
 
 func newErrorInvalidNextTokenException(v protocol.ResponseMetadata) error {
 	return &InvalidNextTokenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3931,19 +3931,19 @@ func (s InvalidNextTokenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidNextTokenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidNextTokenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified resource can't be found. Check the information you provided
 // in your last request, and try again.
 type InvalidResourceException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 
@@ -3963,7 +3963,7 @@ func (s InvalidResourceException) GoString() string {
 
 func newErrorInvalidResourceException(v protocol.ResponseMetadata) error {
 	return &InvalidResourceException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3991,12 +3991,12 @@ func (s InvalidResourceException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidResourceException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidResourceException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Each JobListEntry object contains a job's state, a job's ID, and a value
@@ -4418,8 +4418,8 @@ func (s *JobResource) SetS3Resources(v []*S3Resource) *JobResource {
 // The provided AWS Key Management Service key lacks the permissions to perform
 // the specified CreateJob or UpdateJob action.
 type KMSRequestFailedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -4436,7 +4436,7 @@ func (s KMSRequestFailedException) GoString() string {
 
 func newErrorKMSRequestFailedException(v protocol.ResponseMetadata) error {
 	return &KMSRequestFailedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4464,12 +4464,12 @@ func (s KMSRequestFailedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s KMSRequestFailedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s KMSRequestFailedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains a key range. For export jobs, a S3Resource object can have an optional
@@ -5143,8 +5143,8 @@ func (s *TaxDocuments) SetIND(v *INDTaxDocuments) *TaxDocuments {
 // error occurred. Check the address with your region's carrier and try again.
 // If the issue persists, contact AWS Support.
 type UnsupportedAddressException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
@@ -5161,7 +5161,7 @@ func (s UnsupportedAddressException) GoString() string {
 
 func newErrorUnsupportedAddressException(v protocol.ResponseMetadata) error {
 	return &UnsupportedAddressException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5189,12 +5189,12 @@ func (s UnsupportedAddressException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnsupportedAddressException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnsupportedAddressException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UpdateClusterInput struct {

@@ -2524,8 +2524,8 @@ func (c *CloudTrail) UpdateTrailWithContext(ctx aws.Context, input *UpdateTrailI
 //
 // arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail
 type ARNInvalidException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2542,7 +2542,7 @@ func (s ARNInvalidException) GoString() string {
 
 func newErrorARNInvalidException(v protocol.ResponseMetadata) error {
 	return &ARNInvalidException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2570,12 +2570,12 @@ func (s ARNInvalidException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ARNInvalidException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ARNInvalidException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when trusted access has not been enabled between
@@ -2583,8 +2583,8 @@ func (s ARNInvalidException) RequestID() string {
 // Trusted Access with Other AWS Services (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html)
 // and Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
 type AccessNotEnabledException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2601,7 +2601,7 @@ func (s AccessNotEnabledException) GoString() string {
 
 func newErrorAccessNotEnabledException(v protocol.ResponseMetadata) error {
 	return &AccessNotEnabledException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2629,12 +2629,12 @@ func (s AccessNotEnabledException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccessNotEnabledException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccessNotEnabledException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Specifies the tags to add to a trail.
@@ -2716,8 +2716,8 @@ func (s AddTagsOutput) GoString() string {
 
 // Cannot set a CloudWatch Logs delivery for this region.
 type CloudWatchLogsDeliveryUnavailableException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2734,7 +2734,7 @@ func (s CloudWatchLogsDeliveryUnavailableException) GoString() string {
 
 func newErrorCloudWatchLogsDeliveryUnavailableException(v protocol.ResponseMetadata) error {
 	return &CloudWatchLogsDeliveryUnavailableException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2762,12 +2762,12 @@ func (s CloudWatchLogsDeliveryUnavailableException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CloudWatchLogsDeliveryUnavailableException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CloudWatchLogsDeliveryUnavailableException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Specifies the settings for each trail.
@@ -4026,8 +4026,8 @@ func (s *GetTrailStatusOutput) SetTimeLoggingStopped(v string) *GetTrailStatusOu
 // If you run GetInsightSelectors on a trail that does not have Insights events
 // enabled, the operation throws the exception InsightNotEnabledException.
 type InsightNotEnabledException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4044,7 +4044,7 @@ func (s InsightNotEnabledException) GoString() string {
 
 func newErrorInsightNotEnabledException(v protocol.ResponseMetadata) error {
 	return &InsightNotEnabledException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4072,12 +4072,12 @@ func (s InsightNotEnabledException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InsightNotEnabledException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InsightNotEnabledException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A JSON string that contains a list of insight types that are logged on a
@@ -4111,8 +4111,8 @@ func (s *InsightSelector) SetInsightType(v string) *InsightSelector {
 // an organization trail in a required service. For more information, see Prepare
 // For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
 type InsufficientDependencyServiceAccessPermissionException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4129,7 +4129,7 @@ func (s InsufficientDependencyServiceAccessPermissionException) GoString() strin
 
 func newErrorInsufficientDependencyServiceAccessPermissionException(v protocol.ResponseMetadata) error {
 	return &InsufficientDependencyServiceAccessPermissionException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4157,19 +4157,19 @@ func (s InsufficientDependencyServiceAccessPermissionException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InsufficientDependencyServiceAccessPermissionException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InsufficientDependencyServiceAccessPermissionException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when the policy on the S3 bucket or KMS key is not
 // sufficient.
 type InsufficientEncryptionPolicyException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4186,7 +4186,7 @@ func (s InsufficientEncryptionPolicyException) GoString() string {
 
 func newErrorInsufficientEncryptionPolicyException(v protocol.ResponseMetadata) error {
 	return &InsufficientEncryptionPolicyException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4214,18 +4214,18 @@ func (s InsufficientEncryptionPolicyException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InsufficientEncryptionPolicyException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InsufficientEncryptionPolicyException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when the policy on the S3 bucket is not sufficient.
 type InsufficientS3BucketPolicyException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4242,7 +4242,7 @@ func (s InsufficientS3BucketPolicyException) GoString() string {
 
 func newErrorInsufficientS3BucketPolicyException(v protocol.ResponseMetadata) error {
 	return &InsufficientS3BucketPolicyException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4270,18 +4270,18 @@ func (s InsufficientS3BucketPolicyException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InsufficientS3BucketPolicyException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InsufficientS3BucketPolicyException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when the policy on the SNS topic is not sufficient.
 type InsufficientSnsTopicPolicyException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4298,7 +4298,7 @@ func (s InsufficientSnsTopicPolicyException) GoString() string {
 
 func newErrorInsufficientSnsTopicPolicyException(v protocol.ResponseMetadata) error {
 	return &InsufficientSnsTopicPolicyException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4326,18 +4326,18 @@ func (s InsufficientSnsTopicPolicyException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InsufficientSnsTopicPolicyException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InsufficientSnsTopicPolicyException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when the provided CloudWatch log group is not valid.
 type InvalidCloudWatchLogsLogGroupArnException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4354,7 +4354,7 @@ func (s InvalidCloudWatchLogsLogGroupArnException) GoString() string {
 
 func newErrorInvalidCloudWatchLogsLogGroupArnException(v protocol.ResponseMetadata) error {
 	return &InvalidCloudWatchLogsLogGroupArnException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4382,18 +4382,18 @@ func (s InvalidCloudWatchLogsLogGroupArnException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidCloudWatchLogsLogGroupArnException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidCloudWatchLogsLogGroupArnException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when the provided role is not valid.
 type InvalidCloudWatchLogsRoleArnException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4410,7 +4410,7 @@ func (s InvalidCloudWatchLogsRoleArnException) GoString() string {
 
 func newErrorInvalidCloudWatchLogsRoleArnException(v protocol.ResponseMetadata) error {
 	return &InvalidCloudWatchLogsRoleArnException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4438,19 +4438,19 @@ func (s InvalidCloudWatchLogsRoleArnException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidCloudWatchLogsRoleArnException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidCloudWatchLogsRoleArnException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Occurs if an event category that is not valid is specified as a value of
 // EventCategory.
 type InvalidEventCategoryException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4467,7 +4467,7 @@ func (s InvalidEventCategoryException) GoString() string {
 
 func newErrorInvalidEventCategoryException(v protocol.ResponseMetadata) error {
 	return &InvalidEventCategoryException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4495,12 +4495,12 @@ func (s InvalidEventCategoryException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidEventCategoryException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidEventCategoryException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when the PutEventSelectors operation is called with
@@ -4523,8 +4523,8 @@ func (s InvalidEventCategoryException) RequestID() string {
 //    * Specify a valid value for a parameter. For example, specifying the ReadWriteType
 //    parameter with a value of read-only is invalid.
 type InvalidEventSelectorsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4541,7 +4541,7 @@ func (s InvalidEventSelectorsException) GoString() string {
 
 func newErrorInvalidEventSelectorsException(v protocol.ResponseMetadata) error {
 	return &InvalidEventSelectorsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4569,19 +4569,19 @@ func (s InvalidEventSelectorsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidEventSelectorsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidEventSelectorsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when an operation is called on a trail from a region
 // other than the region in which the trail was created.
 type InvalidHomeRegionException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4598,7 +4598,7 @@ func (s InvalidHomeRegionException) GoString() string {
 
 func newErrorInvalidHomeRegionException(v protocol.ResponseMetadata) error {
 	return &InvalidHomeRegionException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4626,20 +4626,20 @@ func (s InvalidHomeRegionException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidHomeRegionException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidHomeRegionException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The formatting or syntax of the InsightSelectors JSON statement in your PutInsightSelectors
 // or GetInsightSelectors request is not valid, or the specified insight type
 // in the InsightSelectors statement is not a valid insight type.
 type InvalidInsightSelectorsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4656,7 +4656,7 @@ func (s InvalidInsightSelectorsException) GoString() string {
 
 func newErrorInvalidInsightSelectorsException(v protocol.ResponseMetadata) error {
 	return &InvalidInsightSelectorsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4684,18 +4684,18 @@ func (s InvalidInsightSelectorsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidInsightSelectorsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidInsightSelectorsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when the KMS key ARN is invalid.
 type InvalidKmsKeyIdException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4712,7 +4712,7 @@ func (s InvalidKmsKeyIdException) GoString() string {
 
 func newErrorInvalidKmsKeyIdException(v protocol.ResponseMetadata) error {
 	return &InvalidKmsKeyIdException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4740,18 +4740,18 @@ func (s InvalidKmsKeyIdException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidKmsKeyIdException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidKmsKeyIdException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Occurs when an invalid lookup attribute is specified.
 type InvalidLookupAttributesException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4768,7 +4768,7 @@ func (s InvalidLookupAttributesException) GoString() string {
 
 func newErrorInvalidLookupAttributesException(v protocol.ResponseMetadata) error {
 	return &InvalidLookupAttributesException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4796,18 +4796,18 @@ func (s InvalidLookupAttributesException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidLookupAttributesException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidLookupAttributesException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown if the limit specified is invalid.
 type InvalidMaxResultsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4824,7 +4824,7 @@ func (s InvalidMaxResultsException) GoString() string {
 
 func newErrorInvalidMaxResultsException(v protocol.ResponseMetadata) error {
 	return &InvalidMaxResultsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4852,19 +4852,19 @@ func (s InvalidMaxResultsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidMaxResultsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidMaxResultsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Invalid token or token that was previously used in a request with different
 // parameters. This exception is thrown if the token is invalid.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4881,7 +4881,7 @@ func (s InvalidNextTokenException) GoString() string {
 
 func newErrorInvalidNextTokenException(v protocol.ResponseMetadata) error {
 	return &InvalidNextTokenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4909,19 +4909,19 @@ func (s InvalidNextTokenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidNextTokenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidNextTokenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when the combination of parameters provided is not
 // valid.
 type InvalidParameterCombinationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4938,7 +4938,7 @@ func (s InvalidParameterCombinationException) GoString() string {
 
 func newErrorInvalidParameterCombinationException(v protocol.ResponseMetadata) error {
 	return &InvalidParameterCombinationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4966,18 +4966,18 @@ func (s InvalidParameterCombinationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidParameterCombinationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidParameterCombinationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when the provided S3 bucket name is not valid.
 type InvalidS3BucketNameException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4994,7 +4994,7 @@ func (s InvalidS3BucketNameException) GoString() string {
 
 func newErrorInvalidS3BucketNameException(v protocol.ResponseMetadata) error {
 	return &InvalidS3BucketNameException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5022,18 +5022,18 @@ func (s InvalidS3BucketNameException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidS3BucketNameException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidS3BucketNameException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when the provided S3 prefix is not valid.
 type InvalidS3PrefixException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5050,7 +5050,7 @@ func (s InvalidS3PrefixException) GoString() string {
 
 func newErrorInvalidS3PrefixException(v protocol.ResponseMetadata) error {
 	return &InvalidS3PrefixException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5078,18 +5078,18 @@ func (s InvalidS3PrefixException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidS3PrefixException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidS3PrefixException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when the provided SNS topic name is not valid.
 type InvalidSnsTopicNameException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5106,7 +5106,7 @@ func (s InvalidSnsTopicNameException) GoString() string {
 
 func newErrorInvalidSnsTopicNameException(v protocol.ResponseMetadata) error {
 	return &InvalidSnsTopicNameException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5134,19 +5134,19 @@ func (s InvalidSnsTopicNameException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidSnsTopicNameException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidSnsTopicNameException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when the specified tag key or values are not valid.
 // It can also occur if there are duplicate tags or too many tags on the resource.
 type InvalidTagParameterException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5163,7 +5163,7 @@ func (s InvalidTagParameterException) GoString() string {
 
 func newErrorInvalidTagParameterException(v protocol.ResponseMetadata) error {
 	return &InvalidTagParameterException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5191,19 +5191,19 @@ func (s InvalidTagParameterException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidTagParameterException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidTagParameterException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Occurs if the timestamp values are invalid. Either the start time occurs
 // after the end time or the time range is outside the range of possible values.
 type InvalidTimeRangeException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5220,7 +5220,7 @@ func (s InvalidTimeRangeException) GoString() string {
 
 func newErrorInvalidTimeRangeException(v protocol.ResponseMetadata) error {
 	return &InvalidTimeRangeException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5248,18 +5248,18 @@ func (s InvalidTimeRangeException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidTimeRangeException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidTimeRangeException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Reserved for future use.
 type InvalidTokenException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5276,7 +5276,7 @@ func (s InvalidTokenException) GoString() string {
 
 func newErrorInvalidTokenException(v protocol.ResponseMetadata) error {
 	return &InvalidTokenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5304,12 +5304,12 @@ func (s InvalidTokenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidTokenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidTokenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when the provided trail name is not valid. Trail
@@ -5327,8 +5327,8 @@ func (s InvalidTokenException) RequestID() string {
 //
 //    * Not be in IP address format (for example, 192.168.5.4)
 type InvalidTrailNameException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5345,7 +5345,7 @@ func (s InvalidTrailNameException) GoString() string {
 
 func newErrorInvalidTrailNameException(v protocol.ResponseMetadata) error {
 	return &InvalidTrailNameException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5373,19 +5373,19 @@ func (s InvalidTrailNameException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidTrailNameException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidTrailNameException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when there is an issue with the specified KMS key
 // and the trail can’t be updated.
 type KmsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5402,7 +5402,7 @@ func (s KmsException) GoString() string {
 
 func newErrorKmsException(v protocol.ResponseMetadata) error {
 	return &KmsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5430,20 +5430,20 @@ func (s KmsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s KmsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s KmsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is no longer in use.
 //
 // Deprecated: KmsKeyDisabledException has been deprecated
 type KmsKeyDisabledException struct {
-	_            struct{} `deprecated:"true" type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `deprecated:"true" type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5460,7 +5460,7 @@ func (s KmsKeyDisabledException) GoString() string {
 
 func newErrorKmsKeyDisabledException(v protocol.ResponseMetadata) error {
 	return &KmsKeyDisabledException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5488,19 +5488,19 @@ func (s KmsKeyDisabledException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s KmsKeyDisabledException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s KmsKeyDisabledException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when the KMS key does not exist, or when the S3
 // bucket and the KMS key are not in the same region.
 type KmsKeyNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5517,7 +5517,7 @@ func (s KmsKeyNotFoundException) GoString() string {
 
 func newErrorKmsKeyNotFoundException(v protocol.ResponseMetadata) error {
 	return &KmsKeyNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5545,12 +5545,12 @@ func (s KmsKeyNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s KmsKeyNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s KmsKeyNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Requests the public keys for a specified time range.
@@ -5981,8 +5981,8 @@ func (s *LookupEventsOutput) SetNextToken(v string) *LookupEventsOutput {
 
 // This exception is thrown when the maximum number of trails is reached.
 type MaximumNumberOfTrailsExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5999,7 +5999,7 @@ func (s MaximumNumberOfTrailsExceededException) GoString() string {
 
 func newErrorMaximumNumberOfTrailsExceededException(v protocol.ResponseMetadata) error {
 	return &MaximumNumberOfTrailsExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6027,12 +6027,12 @@ func (s MaximumNumberOfTrailsExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MaximumNumberOfTrailsExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MaximumNumberOfTrailsExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when the AWS account making the request to create
@@ -6040,8 +6040,8 @@ func (s MaximumNumberOfTrailsExceededException) RequestID() string {
 // in AWS Organizations. For more information, see Prepare For Creating a Trail
 // For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
 type NotOrganizationMasterAccountException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6058,7 +6058,7 @@ func (s NotOrganizationMasterAccountException) GoString() string {
 
 func newErrorNotOrganizationMasterAccountException(v protocol.ResponseMetadata) error {
 	return &NotOrganizationMasterAccountException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6086,18 +6086,18 @@ func (s NotOrganizationMasterAccountException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NotOrganizationMasterAccountException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NotOrganizationMasterAccountException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when the requested operation is not permitted.
 type OperationNotPermittedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6114,7 +6114,7 @@ func (s OperationNotPermittedException) GoString() string {
 
 func newErrorOperationNotPermittedException(v protocol.ResponseMetadata) error {
 	return &OperationNotPermittedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6142,12 +6142,12 @@ func (s OperationNotPermittedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s OperationNotPermittedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s OperationNotPermittedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when AWS Organizations is not configured to support
@@ -6155,8 +6155,8 @@ func (s OperationNotPermittedException) RequestID() string {
 // creating an organization trail. For more information, see Prepare For Creating
 // a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
 type OrganizationNotInAllFeaturesModeException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6173,7 +6173,7 @@ func (s OrganizationNotInAllFeaturesModeException) GoString() string {
 
 func newErrorOrganizationNotInAllFeaturesModeException(v protocol.ResponseMetadata) error {
 	return &OrganizationNotInAllFeaturesModeException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6201,20 +6201,20 @@ func (s OrganizationNotInAllFeaturesModeException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s OrganizationNotInAllFeaturesModeException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s OrganizationNotInAllFeaturesModeException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when the request is made from an AWS account that
 // is not a member of an organization. To make this request, sign in using the
 // credentials of an account that belongs to an organization.
 type OrganizationsNotInUseException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6231,7 +6231,7 @@ func (s OrganizationsNotInUseException) GoString() string {
 
 func newErrorOrganizationsNotInUseException(v protocol.ResponseMetadata) error {
 	return &OrganizationsNotInUseException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6259,12 +6259,12 @@ func (s OrganizationsNotInUseException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s OrganizationsNotInUseException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s OrganizationsNotInUseException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains information about a returned public key.
@@ -6632,8 +6632,8 @@ func (s *Resource) SetResourceType(v string) *Resource {
 
 // This exception is thrown when the specified resource is not found.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6650,7 +6650,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6678,12 +6678,12 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A resource tag.
@@ -6722,8 +6722,8 @@ func (s *ResourceTag) SetTagsList(v []*Tag) *ResourceTag {
 // This exception is thrown when the specified resource type is not supported
 // by CloudTrail.
 type ResourceTypeNotSupportedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6740,7 +6740,7 @@ func (s ResourceTypeNotSupportedException) GoString() string {
 
 func newErrorResourceTypeNotSupportedException(v protocol.ResponseMetadata) error {
 	return &ResourceTypeNotSupportedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6768,18 +6768,18 @@ func (s ResourceTypeNotSupportedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceTypeNotSupportedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceTypeNotSupportedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when the specified S3 bucket does not exist.
 type S3BucketDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6796,7 +6796,7 @@ func (s S3BucketDoesNotExistException) GoString() string {
 
 func newErrorS3BucketDoesNotExistException(v protocol.ResponseMetadata) error {
 	return &S3BucketDoesNotExistException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6824,12 +6824,12 @@ func (s S3BucketDoesNotExistException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s S3BucketDoesNotExistException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s S3BucketDoesNotExistException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request to CloudTrail to start logging AWS API calls for an account.
@@ -7002,8 +7002,8 @@ func (s *Tag) SetValue(v string) *Tag {
 // The number of tags per trail has exceeded the permitted amount. Currently,
 // the limit is 50.
 type TagsLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7020,7 +7020,7 @@ func (s TagsLimitExceededException) GoString() string {
 
 func newErrorTagsLimitExceededException(v protocol.ResponseMetadata) error {
 	return &TagsLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7048,12 +7048,12 @@ func (s TagsLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TagsLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TagsLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The settings for a trail.
@@ -7235,8 +7235,8 @@ func (s *Trail) SetTrailARN(v string) *Trail {
 
 // This exception is thrown when the specified trail already exists.
 type TrailAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7253,7 +7253,7 @@ func (s TrailAlreadyExistsException) GoString() string {
 
 func newErrorTrailAlreadyExistsException(v protocol.ResponseMetadata) error {
 	return &TrailAlreadyExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7281,12 +7281,12 @@ func (s TrailAlreadyExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TrailAlreadyExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TrailAlreadyExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Information about a CloudTrail trail, including the trail's name, home region,
@@ -7334,8 +7334,8 @@ func (s *TrailInfo) SetTrailARN(v string) *TrailInfo {
 
 // This exception is thrown when the trail with the given name is not found.
 type TrailNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7352,7 +7352,7 @@ func (s TrailNotFoundException) GoString() string {
 
 func newErrorTrailNotFoundException(v protocol.ResponseMetadata) error {
 	return &TrailNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7380,18 +7380,18 @@ func (s TrailNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TrailNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TrailNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is no longer in use.
 type TrailNotProvidedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7408,7 +7408,7 @@ func (s TrailNotProvidedException) GoString() string {
 
 func newErrorTrailNotProvidedException(v protocol.ResponseMetadata) error {
 	return &TrailNotProvidedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7436,18 +7436,18 @@ func (s TrailNotProvidedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TrailNotProvidedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TrailNotProvidedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when the requested operation is not supported.
 type UnsupportedOperationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7464,7 +7464,7 @@ func (s UnsupportedOperationException) GoString() string {
 
 func newErrorUnsupportedOperationException(v protocol.ResponseMetadata) error {
 	return &UnsupportedOperationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7492,12 +7492,12 @@ func (s UnsupportedOperationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnsupportedOperationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnsupportedOperationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Specifies settings to update for the trail.

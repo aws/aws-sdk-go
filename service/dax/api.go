@@ -2188,8 +2188,8 @@ func (s *Cluster) SetTotalNodes(v int64) *Cluster {
 
 // You already have a DAX cluster with the given identifier.
 type ClusterAlreadyExistsFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2206,7 +2206,7 @@ func (s ClusterAlreadyExistsFault) GoString() string {
 
 func newErrorClusterAlreadyExistsFault(v protocol.ResponseMetadata) error {
 	return &ClusterAlreadyExistsFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2234,18 +2234,18 @@ func (s ClusterAlreadyExistsFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ClusterAlreadyExistsFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ClusterAlreadyExistsFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The requested cluster ID does not refer to an existing DAX cluster.
 type ClusterNotFoundFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2262,7 +2262,7 @@ func (s ClusterNotFoundFault) GoString() string {
 
 func newErrorClusterNotFoundFault(v protocol.ResponseMetadata) error {
 	return &ClusterNotFoundFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2290,19 +2290,19 @@ func (s ClusterNotFoundFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ClusterNotFoundFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ClusterNotFoundFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You have attempted to exceed the maximum number of DAX clusters for your
 // AWS account.
 type ClusterQuotaForCustomerExceededFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2319,7 +2319,7 @@ func (s ClusterQuotaForCustomerExceededFault) GoString() string {
 
 func newErrorClusterQuotaForCustomerExceededFault(v protocol.ResponseMetadata) error {
 	return &ClusterQuotaForCustomerExceededFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2347,12 +2347,12 @@ func (s ClusterQuotaForCustomerExceededFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ClusterQuotaForCustomerExceededFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ClusterQuotaForCustomerExceededFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type CreateClusterInput struct {
@@ -3744,8 +3744,8 @@ func (s *IncreaseReplicationFactorOutput) SetCluster(v *Cluster) *IncreaseReplic
 // There are not enough system resources to create the cluster you requested
 // (or to resize an already-existing cluster).
 type InsufficientClusterCapacityFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3762,7 +3762,7 @@ func (s InsufficientClusterCapacityFault) GoString() string {
 
 func newErrorInsufficientClusterCapacityFault(v protocol.ResponseMetadata) error {
 	return &InsufficientClusterCapacityFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3790,18 +3790,18 @@ func (s InsufficientClusterCapacityFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InsufficientClusterCapacityFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InsufficientClusterCapacityFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The Amazon Resource Name (ARN) supplied in the request is not valid.
 type InvalidARNFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3818,7 +3818,7 @@ func (s InvalidARNFault) GoString() string {
 
 func newErrorInvalidARNFault(v protocol.ResponseMetadata) error {
 	return &InvalidARNFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3846,18 +3846,18 @@ func (s InvalidARNFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidARNFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidARNFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The requested DAX cluster is not in the available state.
 type InvalidClusterStateFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3874,7 +3874,7 @@ func (s InvalidClusterStateFault) GoString() string {
 
 func newErrorInvalidClusterStateFault(v protocol.ResponseMetadata) error {
 	return &InvalidClusterStateFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3902,18 +3902,18 @@ func (s InvalidClusterStateFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidClusterStateFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidClusterStateFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Two or more incompatible parameters were specified.
 type InvalidParameterCombinationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3930,7 +3930,7 @@ func (s InvalidParameterCombinationException) GoString() string {
 
 func newErrorInvalidParameterCombinationException(v protocol.ResponseMetadata) error {
 	return &InvalidParameterCombinationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3958,18 +3958,18 @@ func (s InvalidParameterCombinationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidParameterCombinationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidParameterCombinationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // One or more parameters in a parameter group are in an invalid state.
 type InvalidParameterGroupStateFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3986,7 +3986,7 @@ func (s InvalidParameterGroupStateFault) GoString() string {
 
 func newErrorInvalidParameterGroupStateFault(v protocol.ResponseMetadata) error {
 	return &InvalidParameterGroupStateFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4014,18 +4014,18 @@ func (s InvalidParameterGroupStateFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidParameterGroupStateFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidParameterGroupStateFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The value for a parameter is invalid.
 type InvalidParameterValueException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4042,7 +4042,7 @@ func (s InvalidParameterValueException) GoString() string {
 
 func newErrorInvalidParameterValueException(v protocol.ResponseMetadata) error {
 	return &InvalidParameterValueException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4070,18 +4070,18 @@ func (s InvalidParameterValueException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidParameterValueException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidParameterValueException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An invalid subnet identifier was specified.
 type InvalidSubnet struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4098,7 +4098,7 @@ func (s InvalidSubnet) GoString() string {
 
 func newErrorInvalidSubnet(v protocol.ResponseMetadata) error {
 	return &InvalidSubnet{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4126,18 +4126,18 @@ func (s InvalidSubnet) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidSubnet) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidSubnet) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The VPC network is in an invalid state.
 type InvalidVPCNetworkStateFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4154,7 +4154,7 @@ func (s InvalidVPCNetworkStateFault) GoString() string {
 
 func newErrorInvalidVPCNetworkStateFault(v protocol.ResponseMetadata) error {
 	return &InvalidVPCNetworkStateFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4182,12 +4182,12 @@ func (s InvalidVPCNetworkStateFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidVPCNetworkStateFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidVPCNetworkStateFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListTagsInput struct {
@@ -4347,8 +4347,8 @@ func (s *Node) SetParameterGroupStatus(v string) *Node {
 
 // None of the nodes in the cluster have the given node ID.
 type NodeNotFoundFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4365,7 +4365,7 @@ func (s NodeNotFoundFault) GoString() string {
 
 func newErrorNodeNotFoundFault(v protocol.ResponseMetadata) error {
 	return &NodeNotFoundFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4393,18 +4393,18 @@ func (s NodeNotFoundFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NodeNotFoundFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NodeNotFoundFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You have attempted to exceed the maximum number of nodes for a DAX cluster.
 type NodeQuotaForClusterExceededFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4421,7 +4421,7 @@ func (s NodeQuotaForClusterExceededFault) GoString() string {
 
 func newErrorNodeQuotaForClusterExceededFault(v protocol.ResponseMetadata) error {
 	return &NodeQuotaForClusterExceededFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4449,18 +4449,18 @@ func (s NodeQuotaForClusterExceededFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NodeQuotaForClusterExceededFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NodeQuotaForClusterExceededFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You have attempted to exceed the maximum number of nodes for your AWS account.
 type NodeQuotaForCustomerExceededFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4477,7 +4477,7 @@ func (s NodeQuotaForCustomerExceededFault) GoString() string {
 
 func newErrorNodeQuotaForCustomerExceededFault(v protocol.ResponseMetadata) error {
 	return &NodeQuotaForCustomerExceededFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4505,12 +4505,12 @@ func (s NodeQuotaForCustomerExceededFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NodeQuotaForCustomerExceededFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NodeQuotaForCustomerExceededFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents a parameter value that is applicable to a particular node type.
@@ -4725,8 +4725,8 @@ func (s *ParameterGroup) SetParameterGroupName(v string) *ParameterGroup {
 
 // The specified parameter group already exists.
 type ParameterGroupAlreadyExistsFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4743,7 +4743,7 @@ func (s ParameterGroupAlreadyExistsFault) GoString() string {
 
 func newErrorParameterGroupAlreadyExistsFault(v protocol.ResponseMetadata) error {
 	return &ParameterGroupAlreadyExistsFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4771,18 +4771,18 @@ func (s ParameterGroupAlreadyExistsFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ParameterGroupAlreadyExistsFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ParameterGroupAlreadyExistsFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified parameter group does not exist.
 type ParameterGroupNotFoundFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4799,7 +4799,7 @@ func (s ParameterGroupNotFoundFault) GoString() string {
 
 func newErrorParameterGroupNotFoundFault(v protocol.ResponseMetadata) error {
 	return &ParameterGroupNotFoundFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4827,18 +4827,18 @@ func (s ParameterGroupNotFoundFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ParameterGroupNotFoundFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ParameterGroupNotFoundFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You have attempted to exceed the maximum number of parameter groups.
 type ParameterGroupQuotaExceededFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4855,7 +4855,7 @@ func (s ParameterGroupQuotaExceededFault) GoString() string {
 
 func newErrorParameterGroupQuotaExceededFault(v protocol.ResponseMetadata) error {
 	return &ParameterGroupQuotaExceededFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4883,12 +4883,12 @@ func (s ParameterGroupQuotaExceededFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ParameterGroupQuotaExceededFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ParameterGroupQuotaExceededFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The status of a parameter group.
@@ -5149,8 +5149,8 @@ func (s *SecurityGroupMembership) SetStatus(v string) *SecurityGroupMembership {
 
 // The specified service linked role (SLR) was not found.
 type ServiceLinkedRoleNotFoundFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5167,7 +5167,7 @@ func (s ServiceLinkedRoleNotFoundFault) GoString() string {
 
 func newErrorServiceLinkedRoleNotFoundFault(v protocol.ResponseMetadata) error {
 	return &ServiceLinkedRoleNotFoundFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5195,12 +5195,12 @@ func (s ServiceLinkedRoleNotFoundFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceLinkedRoleNotFoundFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceLinkedRoleNotFoundFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents the subnet associated with a DAX cluster. This parameter refers
@@ -5295,8 +5295,8 @@ func (s *SubnetGroup) SetVpcId(v string) *SubnetGroup {
 
 // The specified subnet group already exists.
 type SubnetGroupAlreadyExistsFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5313,7 +5313,7 @@ func (s SubnetGroupAlreadyExistsFault) GoString() string {
 
 func newErrorSubnetGroupAlreadyExistsFault(v protocol.ResponseMetadata) error {
 	return &SubnetGroupAlreadyExistsFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5341,18 +5341,18 @@ func (s SubnetGroupAlreadyExistsFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s SubnetGroupAlreadyExistsFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s SubnetGroupAlreadyExistsFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified subnet group is currently in use.
 type SubnetGroupInUseFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5369,7 +5369,7 @@ func (s SubnetGroupInUseFault) GoString() string {
 
 func newErrorSubnetGroupInUseFault(v protocol.ResponseMetadata) error {
 	return &SubnetGroupInUseFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5397,18 +5397,18 @@ func (s SubnetGroupInUseFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s SubnetGroupInUseFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s SubnetGroupInUseFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The requested subnet group name does not refer to an existing subnet group.
 type SubnetGroupNotFoundFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5425,7 +5425,7 @@ func (s SubnetGroupNotFoundFault) GoString() string {
 
 func newErrorSubnetGroupNotFoundFault(v protocol.ResponseMetadata) error {
 	return &SubnetGroupNotFoundFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5453,19 +5453,19 @@ func (s SubnetGroupNotFoundFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s SubnetGroupNotFoundFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s SubnetGroupNotFoundFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request cannot be processed because it would exceed the allowed number
 // of subnets in a subnet group.
 type SubnetGroupQuotaExceededFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5482,7 +5482,7 @@ func (s SubnetGroupQuotaExceededFault) GoString() string {
 
 func newErrorSubnetGroupQuotaExceededFault(v protocol.ResponseMetadata) error {
 	return &SubnetGroupQuotaExceededFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5510,18 +5510,18 @@ func (s SubnetGroupQuotaExceededFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s SubnetGroupQuotaExceededFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s SubnetGroupQuotaExceededFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The requested subnet is being used by another subnet group.
 type SubnetInUse struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5538,7 +5538,7 @@ func (s SubnetInUse) GoString() string {
 
 func newErrorSubnetInUse(v protocol.ResponseMetadata) error {
 	return &SubnetInUse{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5566,19 +5566,19 @@ func (s SubnetInUse) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s SubnetInUse) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s SubnetInUse) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request cannot be processed because it would exceed the allowed number
 // of subnets in a subnet group.
 type SubnetQuotaExceededFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5595,7 +5595,7 @@ func (s SubnetQuotaExceededFault) GoString() string {
 
 func newErrorSubnetQuotaExceededFault(v protocol.ResponseMetadata) error {
 	return &SubnetQuotaExceededFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5623,12 +5623,12 @@ func (s SubnetQuotaExceededFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s SubnetQuotaExceededFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s SubnetQuotaExceededFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A description of a tag. Every tag is a key-value pair. You can add up to
@@ -5675,8 +5675,8 @@ func (s *Tag) SetValue(v string) *Tag {
 
 // The tag does not exist.
 type TagNotFoundFault struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5693,7 +5693,7 @@ func (s TagNotFoundFault) GoString() string {
 
 func newErrorTagNotFoundFault(v protocol.ResponseMetadata) error {
 	return &TagNotFoundFault{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5721,18 +5721,18 @@ func (s TagNotFoundFault) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TagNotFoundFault) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TagNotFoundFault) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You have exceeded the maximum number of tags for this DAX cluster.
 type TagQuotaPerResourceExceeded struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5749,7 +5749,7 @@ func (s TagQuotaPerResourceExceeded) GoString() string {
 
 func newErrorTagQuotaPerResourceExceeded(v protocol.ResponseMetadata) error {
 	return &TagQuotaPerResourceExceeded{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5777,12 +5777,12 @@ func (s TagQuotaPerResourceExceeded) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TagQuotaPerResourceExceeded) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TagQuotaPerResourceExceeded) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type TagResourceInput struct {

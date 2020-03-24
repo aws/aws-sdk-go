@@ -14773,8 +14773,8 @@ func (s AdminUserGlobalSignOutOutput) GoString() string {
 // account. This exception tells user that an account with this email or phone
 // already exists.
 type AliasExistsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message sent to the user when an alias exists.
 	Message_ *string `locationName:"message" type:"string"`
@@ -14792,7 +14792,7 @@ func (s AliasExistsException) GoString() string {
 
 func newErrorAliasExistsException(v protocol.ResponseMetadata) error {
 	return &AliasExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -14820,12 +14820,12 @@ func (s AliasExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AliasExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AliasExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The Amazon Pinpoint analytics configuration for collecting metrics for a
@@ -15401,8 +15401,8 @@ func (s *CodeDeliveryDetailsType) SetDestination(v string) *CodeDeliveryDetailsT
 
 // This exception is thrown when a verification code fails to deliver successfully.
 type CodeDeliveryFailureException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message sent when a verification code fails to deliver successfully.
 	Message_ *string `locationName:"message" type:"string"`
@@ -15420,7 +15420,7 @@ func (s CodeDeliveryFailureException) GoString() string {
 
 func newErrorCodeDeliveryFailureException(v protocol.ResponseMetadata) error {
 	return &CodeDeliveryFailureException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15448,19 +15448,19 @@ func (s CodeDeliveryFailureException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CodeDeliveryFailureException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CodeDeliveryFailureException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown if the provided code does not match what the server
 // was expecting.
 type CodeMismatchException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message provided when the code mismatch exception is thrown.
 	Message_ *string `locationName:"message" type:"string"`
@@ -15478,7 +15478,7 @@ func (s CodeMismatchException) GoString() string {
 
 func newErrorCodeMismatchException(v protocol.ResponseMetadata) error {
 	return &CodeMismatchException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15506,12 +15506,12 @@ func (s CodeMismatchException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CodeMismatchException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CodeMismatchException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The compromised credentials actions type
@@ -15609,8 +15609,8 @@ func (s *CompromisedCredentialsRiskConfigurationType) SetEventFilter(v []*string
 
 // This exception is thrown if two or more modifications are happening concurrently.
 type ConcurrentModificationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message provided when the concurrent exception is thrown.
 	Message_ *string `locationName:"message" type:"string"`
@@ -15628,7 +15628,7 @@ func (s ConcurrentModificationException) GoString() string {
 
 func newErrorConcurrentModificationException(v protocol.ResponseMetadata) error {
 	return &ConcurrentModificationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -15656,12 +15656,12 @@ func (s ConcurrentModificationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ConcurrentModificationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ConcurrentModificationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Confirms the device request.
@@ -18834,8 +18834,8 @@ func (s *DomainDescriptionType) SetVersion(v string) *DomainDescriptionType {
 // This exception is thrown when the provider is already supported by the user
 // pool.
 type DuplicateProviderException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -18852,7 +18852,7 @@ func (s DuplicateProviderException) GoString() string {
 
 func newErrorDuplicateProviderException(v protocol.ResponseMetadata) error {
 	return &DuplicateProviderException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -18880,12 +18880,12 @@ func (s DuplicateProviderException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DuplicateProviderException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DuplicateProviderException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The email configuration type.
@@ -19030,8 +19030,8 @@ func (s *EmailConfigurationType) SetSourceArn(v string) *EmailConfigurationType 
 // This exception is thrown when there is a code mismatch and the service fails
 // to configure the software token TOTP multi-factor authentication (MFA).
 type EnableSoftwareTokenMFAException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -19048,7 +19048,7 @@ func (s EnableSoftwareTokenMFAException) GoString() string {
 
 func newErrorEnableSoftwareTokenMFAException(v protocol.ResponseMetadata) error {
 	return &EnableSoftwareTokenMFAException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -19076,12 +19076,12 @@ func (s EnableSoftwareTokenMFAException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s EnableSoftwareTokenMFAException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s EnableSoftwareTokenMFAException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Specifies the user context data captured at the time of an event request.
@@ -19235,8 +19235,8 @@ func (s *EventRiskType) SetRiskLevel(v string) *EventRiskType {
 
 // This exception is thrown if a code has expired.
 type ExpiredCodeException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the expired code exception is thrown.
 	Message_ *string `locationName:"message" type:"string"`
@@ -19254,7 +19254,7 @@ func (s ExpiredCodeException) GoString() string {
 
 func newErrorExpiredCodeException(v protocol.ResponseMetadata) error {
 	return &ExpiredCodeException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -19282,12 +19282,12 @@ func (s ExpiredCodeException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ExpiredCodeException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ExpiredCodeException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents the request to forget the device.
@@ -20354,8 +20354,8 @@ func (s GlobalSignOutOutput) GoString() string {
 // This exception is thrown when Amazon Cognito encounters a group that already
 // exists in the user pool.
 type GroupExistsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -20372,7 +20372,7 @@ func (s GroupExistsException) GoString() string {
 
 func newErrorGroupExistsException(v protocol.ResponseMetadata) error {
 	return &GroupExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -20400,12 +20400,12 @@ func (s GroupExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s GroupExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s GroupExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The group type.
@@ -20914,8 +20914,8 @@ func (s *InitiateAuthOutput) SetSession(v string) *InitiateAuthOutput {
 
 // This exception is thrown when Amazon Cognito encounters an internal error.
 type InternalErrorException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when Amazon Cognito throws an internal error exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -20933,7 +20933,7 @@ func (s InternalErrorException) GoString() string {
 
 func newErrorInternalErrorException(v protocol.ResponseMetadata) error {
 	return &InternalErrorException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -20961,19 +20961,19 @@ func (s InternalErrorException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalErrorException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalErrorException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when Amazon Cognito is not allowed to use your email
 // identity. HTTP status code: 400.
 type InvalidEmailRoleAccessPolicyException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when you have an unverified email address or the identity
 	// policy is not set on an email address that Amazon Cognito can access.
@@ -20992,7 +20992,7 @@ func (s InvalidEmailRoleAccessPolicyException) GoString() string {
 
 func newErrorInvalidEmailRoleAccessPolicyException(v protocol.ResponseMetadata) error {
 	return &InvalidEmailRoleAccessPolicyException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -21020,19 +21020,19 @@ func (s InvalidEmailRoleAccessPolicyException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidEmailRoleAccessPolicyException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidEmailRoleAccessPolicyException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when the Amazon Cognito service encounters an invalid
 // AWS Lambda response.
 type InvalidLambdaResponseException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the Amazon Cognito service throws an invalid AWS
 	// Lambda response exception.
@@ -21051,7 +21051,7 @@ func (s InvalidLambdaResponseException) GoString() string {
 
 func newErrorInvalidLambdaResponseException(v protocol.ResponseMetadata) error {
 	return &InvalidLambdaResponseException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -21079,18 +21079,18 @@ func (s InvalidLambdaResponseException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidLambdaResponseException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidLambdaResponseException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when the specified OAuth flow is invalid.
 type InvalidOAuthFlowException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -21107,7 +21107,7 @@ func (s InvalidOAuthFlowException) GoString() string {
 
 func newErrorInvalidOAuthFlowException(v protocol.ResponseMetadata) error {
 	return &InvalidOAuthFlowException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -21135,19 +21135,19 @@ func (s InvalidOAuthFlowException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidOAuthFlowException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidOAuthFlowException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when the Amazon Cognito service encounters an invalid
 // parameter.
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the Amazon Cognito service throws an invalid parameter
 	// exception.
@@ -21166,7 +21166,7 @@ func (s InvalidParameterException) GoString() string {
 
 func newErrorInvalidParameterException(v protocol.ResponseMetadata) error {
 	return &InvalidParameterException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -21194,19 +21194,19 @@ func (s InvalidParameterException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidParameterException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidParameterException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when the Amazon Cognito service encounters an invalid
 // password.
 type InvalidPasswordException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the Amazon Cognito service throws an invalid user
 	// password exception.
@@ -21225,7 +21225,7 @@ func (s InvalidPasswordException) GoString() string {
 
 func newErrorInvalidPasswordException(v protocol.ResponseMetadata) error {
 	return &InvalidPasswordException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -21253,19 +21253,19 @@ func (s InvalidPasswordException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidPasswordException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidPasswordException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is returned when the role provided for SMS configuration does
 // not have permission to publish using Amazon SNS.
 type InvalidSmsRoleAccessPolicyException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message retuned when the invalid SMS role access policy exception is
 	// thrown.
@@ -21284,7 +21284,7 @@ func (s InvalidSmsRoleAccessPolicyException) GoString() string {
 
 func newErrorInvalidSmsRoleAccessPolicyException(v protocol.ResponseMetadata) error {
 	return &InvalidSmsRoleAccessPolicyException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -21312,12 +21312,12 @@ func (s InvalidSmsRoleAccessPolicyException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidSmsRoleAccessPolicyException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidSmsRoleAccessPolicyException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when the trust relationship is invalid for the role
@@ -21325,8 +21325,8 @@ func (s InvalidSmsRoleAccessPolicyException) RequestID() string {
 // or the external ID provided in the role does not match what is provided in
 // the SMS configuration for the user pool.
 type InvalidSmsRoleTrustRelationshipException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the role trust relationship for the SMS message
 	// is invalid.
@@ -21345,7 +21345,7 @@ func (s InvalidSmsRoleTrustRelationshipException) GoString() string {
 
 func newErrorInvalidSmsRoleTrustRelationshipException(v protocol.ResponseMetadata) error {
 	return &InvalidSmsRoleTrustRelationshipException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -21373,18 +21373,18 @@ func (s InvalidSmsRoleTrustRelationshipException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidSmsRoleTrustRelationshipException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidSmsRoleTrustRelationshipException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when the user pool configuration is invalid.
 type InvalidUserPoolConfigurationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the user pool configuration is invalid.
 	Message_ *string `locationName:"message" type:"string"`
@@ -21402,7 +21402,7 @@ func (s InvalidUserPoolConfigurationException) GoString() string {
 
 func newErrorInvalidUserPoolConfigurationException(v protocol.ResponseMetadata) error {
 	return &InvalidUserPoolConfigurationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -21430,12 +21430,12 @@ func (s InvalidUserPoolConfigurationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidUserPoolConfigurationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidUserPoolConfigurationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Specifies the configuration for AWS Lambda triggers.
@@ -21586,8 +21586,8 @@ func (s *LambdaConfigType) SetVerifyAuthChallengeResponse(v string) *LambdaConfi
 // This exception is thrown when a user exceeds the limit for a requested AWS
 // resource.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when Amazon Cognito throws a limit exceeded exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -21605,7 +21605,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -21633,12 +21633,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents the request to list the devices.
@@ -22664,8 +22664,8 @@ func (s *ListUsersOutput) SetUsers(v []*UserType) *ListUsersOutput {
 // This exception is thrown when Amazon Cognito cannot find a multi-factor authentication
 // (MFA) method.
 type MFAMethodNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when Amazon Cognito throws an MFA method not found exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -22683,7 +22683,7 @@ func (s MFAMethodNotFoundException) GoString() string {
 
 func newErrorMFAMethodNotFoundException(v protocol.ResponseMetadata) error {
 	return &MFAMethodNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -22711,12 +22711,12 @@ func (s MFAMethodNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MFAMethodNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MFAMethodNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This data type is no longer supported. You can use it only for SMS MFA configurations.
@@ -22869,8 +22869,8 @@ func (s *NewDeviceMetadataType) SetDeviceKey(v string) *NewDeviceMetadataType {
 
 // This exception is thrown when a user is not authorized.
 type NotAuthorizedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the Amazon Cognito service returns a not authorized
 	// exception.
@@ -22889,7 +22889,7 @@ func (s NotAuthorizedException) GoString() string {
 
 func newErrorNotAuthorizedException(v protocol.ResponseMetadata) error {
 	return &NotAuthorizedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -22917,12 +22917,12 @@ func (s NotAuthorizedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NotAuthorizedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NotAuthorizedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The notify configuration type.
@@ -23227,8 +23227,8 @@ func (s *PasswordPolicyType) SetTemporaryPasswordValidityDays(v int64) *Password
 
 // This exception is thrown when a password reset is required.
 type PasswordResetRequiredException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when a password reset is required.
 	Message_ *string `locationName:"message" type:"string"`
@@ -23246,7 +23246,7 @@ func (s PasswordResetRequiredException) GoString() string {
 
 func newErrorPasswordResetRequiredException(v protocol.ResponseMetadata) error {
 	return &PasswordResetRequiredException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -23274,18 +23274,18 @@ func (s PasswordResetRequiredException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PasswordResetRequiredException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PasswordResetRequiredException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when a precondition is not met.
 type PreconditionNotMetException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when a precondition is not met.
 	Message_ *string `locationName:"message" type:"string"`
@@ -23303,7 +23303,7 @@ func (s PreconditionNotMetException) GoString() string {
 
 func newErrorPreconditionNotMetException(v protocol.ResponseMetadata) error {
 	return &PreconditionNotMetException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -23331,12 +23331,12 @@ func (s PreconditionNotMetException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PreconditionNotMetException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PreconditionNotMetException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A container for identity provider details.
@@ -23661,8 +23661,8 @@ func (s *ResendConfirmationCodeOutput) SetCodeDeliveryDetails(v *CodeDeliveryDet
 // This exception is thrown when the Amazon Cognito service cannot find the
 // requested resource.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the Amazon Cognito service returns a resource not
 	// found exception.
@@ -23681,7 +23681,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -23709,12 +23709,12 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A resource server scope.
@@ -24295,8 +24295,8 @@ func (s *SchemaAttributeType) SetStringAttributeConstraints(v *StringAttributeCo
 
 // This exception is thrown when the specified scope does not exist.
 type ScopeDoesNotExistException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -24313,7 +24313,7 @@ func (s ScopeDoesNotExistException) GoString() string {
 
 func newErrorScopeDoesNotExistException(v protocol.ResponseMetadata) error {
 	return &ScopeDoesNotExistException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -24341,12 +24341,12 @@ func (s ScopeDoesNotExistException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ScopeDoesNotExistException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ScopeDoesNotExistException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type SetRiskConfigurationInput struct {
@@ -25199,8 +25199,8 @@ func (s *SmsMfaConfigType) SetSmsConfiguration(v *SmsConfigurationType) *SmsMfaC
 // This exception is thrown when the software token TOTP multi-factor authentication
 // (MFA) is not enabled for the user pool.
 type SoftwareTokenMFANotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -25217,7 +25217,7 @@ func (s SoftwareTokenMFANotFoundException) GoString() string {
 
 func newErrorSoftwareTokenMFANotFoundException(v protocol.ResponseMetadata) error {
 	return &SoftwareTokenMFANotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -25245,12 +25245,12 @@ func (s SoftwareTokenMFANotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s SoftwareTokenMFANotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s SoftwareTokenMFANotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The type used for enabling software token MFA at the user pool level.
@@ -25583,8 +25583,8 @@ func (s TagResourceOutput) GoString() string {
 // This exception is thrown when the user has made too many failed attempts
 // for a given action (e.g., sign in).
 type TooManyFailedAttemptsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the Amazon Cognito service returns a too many failed
 	// attempts exception.
@@ -25603,7 +25603,7 @@ func (s TooManyFailedAttemptsException) GoString() string {
 
 func newErrorTooManyFailedAttemptsException(v protocol.ResponseMetadata) error {
 	return &TooManyFailedAttemptsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -25631,19 +25631,19 @@ func (s TooManyFailedAttemptsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TooManyFailedAttemptsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TooManyFailedAttemptsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when the user has made too many requests for a given
 // operation.
 type TooManyRequestsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the Amazon Cognito service returns a too many requests
 	// exception.
@@ -25662,7 +25662,7 @@ func (s TooManyRequestsException) GoString() string {
 
 func newErrorTooManyRequestsException(v protocol.ResponseMetadata) error {
 	return &TooManyRequestsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -25690,12 +25690,12 @@ func (s TooManyRequestsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TooManyRequestsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TooManyRequestsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A container for the UI customization information for a user pool's built-in
@@ -25780,8 +25780,8 @@ func (s *UICustomizationType) SetUserPoolId(v string) *UICustomizationType {
 // This exception is thrown when the Amazon Cognito service encounters an unexpected
 // exception with the AWS Lambda service.
 type UnexpectedLambdaException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the Amazon Cognito service returns an unexpected
 	// AWS Lambda exception.
@@ -25800,7 +25800,7 @@ func (s UnexpectedLambdaException) GoString() string {
 
 func newErrorUnexpectedLambdaException(v protocol.ResponseMetadata) error {
 	return &UnexpectedLambdaException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -25828,18 +25828,18 @@ func (s UnexpectedLambdaException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnexpectedLambdaException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnexpectedLambdaException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when the specified identifier is not supported.
 type UnsupportedIdentityProviderException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -25856,7 +25856,7 @@ func (s UnsupportedIdentityProviderException) GoString() string {
 
 func newErrorUnsupportedIdentityProviderException(v protocol.ResponseMetadata) error {
 	return &UnsupportedIdentityProviderException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -25884,18 +25884,18 @@ func (s UnsupportedIdentityProviderException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnsupportedIdentityProviderException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnsupportedIdentityProviderException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request failed because the user is in an unsupported state.
 type UnsupportedUserStateException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the user is in an unsupported state.
 	Message_ *string `locationName:"message" type:"string"`
@@ -25913,7 +25913,7 @@ func (s UnsupportedUserStateException) GoString() string {
 
 func newErrorUnsupportedUserStateException(v protocol.ResponseMetadata) error {
 	return &UnsupportedUserStateException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -25941,12 +25941,12 @@ func (s UnsupportedUserStateException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnsupportedUserStateException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnsupportedUserStateException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UntagResourceInput struct {
@@ -27431,8 +27431,8 @@ func (s *UserContextDataType) SetEncodedData(v string) *UserContextDataType {
 // This exception is thrown when you are trying to modify a user pool while
 // a user import job is in progress for that pool.
 type UserImportInProgressException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the user pool has an import job running.
 	Message_ *string `locationName:"message" type:"string"`
@@ -27450,7 +27450,7 @@ func (s UserImportInProgressException) GoString() string {
 
 func newErrorUserImportInProgressException(v protocol.ResponseMetadata) error {
 	return &UserImportInProgressException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -27478,12 +27478,12 @@ func (s UserImportInProgressException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UserImportInProgressException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UserImportInProgressException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The user import job type.
@@ -27644,8 +27644,8 @@ func (s *UserImportJobType) SetUserPoolId(v string) *UserImportJobType {
 // This exception is thrown when the Amazon Cognito service encounters a user
 // validation exception with the AWS Lambda service.
 type UserLambdaValidationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the Amazon Cognito service returns a user validation
 	// exception with the AWS Lambda service.
@@ -27664,7 +27664,7 @@ func (s UserLambdaValidationException) GoString() string {
 
 func newErrorUserLambdaValidationException(v protocol.ResponseMetadata) error {
 	return &UserLambdaValidationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -27692,18 +27692,18 @@ func (s UserLambdaValidationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UserLambdaValidationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UserLambdaValidationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when a user is not confirmed successfully.
 type UserNotConfirmedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when a user is not confirmed successfully.
 	Message_ *string `locationName:"message" type:"string"`
@@ -27721,7 +27721,7 @@ func (s UserNotConfirmedException) GoString() string {
 
 func newErrorUserNotConfirmedException(v protocol.ResponseMetadata) error {
 	return &UserNotConfirmedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -27749,18 +27749,18 @@ func (s UserNotConfirmedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UserNotConfirmedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UserNotConfirmedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when a user is not found.
 type UserNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when a user is not found.
 	Message_ *string `locationName:"message" type:"string"`
@@ -27778,7 +27778,7 @@ func (s UserNotFoundException) GoString() string {
 
 func newErrorUserNotFoundException(v protocol.ResponseMetadata) error {
 	return &UserNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -27806,18 +27806,18 @@ func (s UserNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UserNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UserNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This exception is thrown when user pool add-ons are not enabled.
 type UserPoolAddOnNotEnabledException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -27834,7 +27834,7 @@ func (s UserPoolAddOnNotEnabledException) GoString() string {
 
 func newErrorUserPoolAddOnNotEnabledException(v protocol.ResponseMetadata) error {
 	return &UserPoolAddOnNotEnabledException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -27862,12 +27862,12 @@ func (s UserPoolAddOnNotEnabledException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UserPoolAddOnNotEnabledException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UserPoolAddOnNotEnabledException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The user pool add-ons type.
@@ -28354,8 +28354,8 @@ func (s *UserPoolPolicyType) SetPasswordPolicy(v *PasswordPolicyType) *UserPoolP
 
 // This exception is thrown when a user pool tag cannot be set or updated.
 type UserPoolTaggingException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -28372,7 +28372,7 @@ func (s UserPoolTaggingException) GoString() string {
 
 func newErrorUserPoolTaggingException(v protocol.ResponseMetadata) error {
 	return &UserPoolTaggingException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -28400,12 +28400,12 @@ func (s UserPoolTaggingException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UserPoolTaggingException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UserPoolTaggingException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A container for information about the user pool.
@@ -28876,8 +28876,8 @@ func (s *UsernameConfigurationType) SetCaseSensitive(v bool) *UsernameConfigurat
 // This exception is thrown when Amazon Cognito encounters a user name that
 // already exists in the user pool.
 type UsernameExistsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when Amazon Cognito throws a user name exists exception.
 	Message_ *string `locationName:"message" type:"string"`
@@ -28895,7 +28895,7 @@ func (s UsernameExistsException) GoString() string {
 
 func newErrorUsernameExistsException(v protocol.ResponseMetadata) error {
 	return &UsernameExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -28923,12 +28923,12 @@ func (s UsernameExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UsernameExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UsernameExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The template for verification messages.

@@ -414,7 +414,8 @@ func exceptionCollides(name string) bool {
 		"String",
 		"GoString",
 		"RequestID",
-		"StatusCode":
+		"StatusCode",
+		"RespMetadata":
 		return true
 	}
 	return false

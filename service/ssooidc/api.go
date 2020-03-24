@@ -327,8 +327,8 @@ func (c *SSOOIDC) StartDeviceAuthorizationWithContext(ctx aws.Context, input *St
 
 // You do not have sufficient access to perform this action.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Error_ *string `locationName:"error" type:"string"`
 
@@ -349,7 +349,7 @@ func (s AccessDeniedException) GoString() string {
 
 func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
 	return &AccessDeniedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -377,19 +377,19 @@ func (s AccessDeniedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccessDeniedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccessDeniedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Indicates that a request to authorize a client with an access user session
 // token is pending.
 type AuthorizationPendingException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Error_ *string `locationName:"error" type:"string"`
 
@@ -410,7 +410,7 @@ func (s AuthorizationPendingException) GoString() string {
 
 func newErrorAuthorizationPendingException(v protocol.ResponseMetadata) error {
 	return &AuthorizationPendingException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -438,12 +438,12 @@ func (s AuthorizationPendingException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AuthorizationPendingException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AuthorizationPendingException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type CreateTokenInput struct {
@@ -636,8 +636,8 @@ func (s *CreateTokenOutput) SetTokenType(v string) *CreateTokenOutput {
 // Indicates that the token issued by the service is expired and is no longer
 // valid.
 type ExpiredTokenException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Error_ *string `locationName:"error" type:"string"`
 
@@ -658,7 +658,7 @@ func (s ExpiredTokenException) GoString() string {
 
 func newErrorExpiredTokenException(v protocol.ResponseMetadata) error {
 	return &ExpiredTokenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -686,19 +686,19 @@ func (s ExpiredTokenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ExpiredTokenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ExpiredTokenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Indicates that an error from the service occurred while trying to process
 // a request.
 type InternalServerException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Error_ *string `locationName:"error" type:"string"`
 
@@ -719,7 +719,7 @@ func (s InternalServerException) GoString() string {
 
 func newErrorInternalServerException(v protocol.ResponseMetadata) error {
 	return &InternalServerException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -747,20 +747,20 @@ func (s InternalServerException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServerException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServerException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Indicates that the clientId or clientSecret in the request is invalid. For
 // example, this can occur when a client sends an incorrect clientId or an expired
 // clientSecret.
 type InvalidClientException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Error_ *string `locationName:"error" type:"string"`
 
@@ -781,7 +781,7 @@ func (s InvalidClientException) GoString() string {
 
 func newErrorInvalidClientException(v protocol.ResponseMetadata) error {
 	return &InvalidClientException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -809,19 +809,19 @@ func (s InvalidClientException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidClientException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidClientException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Indicates that the client information sent in the request during registration
 // is invalid.
 type InvalidClientMetadataException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Error_ *string `locationName:"error" type:"string"`
 
@@ -842,7 +842,7 @@ func (s InvalidClientMetadataException) GoString() string {
 
 func newErrorInvalidClientMetadataException(v protocol.ResponseMetadata) error {
 	return &InvalidClientMetadataException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -870,19 +870,19 @@ func (s InvalidClientMetadataException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidClientMetadataException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidClientMetadataException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Indicates that a request contains an invalid grant. This can occur if a client
 // makes a CreateToken request with an invalid grant type.
 type InvalidGrantException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Error_ *string `locationName:"error" type:"string"`
 
@@ -903,7 +903,7 @@ func (s InvalidGrantException) GoString() string {
 
 func newErrorInvalidGrantException(v protocol.ResponseMetadata) error {
 	return &InvalidGrantException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -931,19 +931,19 @@ func (s InvalidGrantException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidGrantException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidGrantException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Indicates that something is wrong with the input to the request. For example,
 // a required parameter might be missing or out of range.
 type InvalidRequestException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Error_ *string `locationName:"error" type:"string"`
 
@@ -964,7 +964,7 @@ func (s InvalidRequestException) GoString() string {
 
 func newErrorInvalidRequestException(v protocol.ResponseMetadata) error {
 	return &InvalidRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -992,18 +992,18 @@ func (s InvalidRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Indicates that the scope provided in the request is invalid.
 type InvalidScopeException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Error_ *string `locationName:"error" type:"string"`
 
@@ -1024,7 +1024,7 @@ func (s InvalidScopeException) GoString() string {
 
 func newErrorInvalidScopeException(v protocol.ResponseMetadata) error {
 	return &InvalidScopeException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1052,12 +1052,12 @@ func (s InvalidScopeException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidScopeException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidScopeException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type RegisterClientInput struct {
@@ -1196,8 +1196,8 @@ func (s *RegisterClientOutput) SetTokenEndpoint(v string) *RegisterClientOutput 
 // Indicates that the client is making the request too frequently and is more
 // than the service can handle.
 type SlowDownException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Error_ *string `locationName:"error" type:"string"`
 
@@ -1218,7 +1218,7 @@ func (s SlowDownException) GoString() string {
 
 func newErrorSlowDownException(v protocol.ResponseMetadata) error {
 	return &SlowDownException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1246,12 +1246,12 @@ func (s SlowDownException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s SlowDownException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s SlowDownException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type StartDeviceAuthorizationInput struct {
@@ -1403,8 +1403,8 @@ func (s *StartDeviceAuthorizationOutput) SetVerificationUriComplete(v string) *S
 // Indicates that the client is not currently authorized to make the request.
 // This can happen when a clientId is not issued for a public client.
 type UnauthorizedClientException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Error_ *string `locationName:"error" type:"string"`
 
@@ -1425,7 +1425,7 @@ func (s UnauthorizedClientException) GoString() string {
 
 func newErrorUnauthorizedClientException(v protocol.ResponseMetadata) error {
 	return &UnauthorizedClientException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1453,18 +1453,18 @@ func (s UnauthorizedClientException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnauthorizedClientException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnauthorizedClientException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Indicates that the grant type in the request is not supported by the service.
 type UnsupportedGrantTypeException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Error_ *string `locationName:"error" type:"string"`
 
@@ -1485,7 +1485,7 @@ func (s UnsupportedGrantTypeException) GoString() string {
 
 func newErrorUnsupportedGrantTypeException(v protocol.ResponseMetadata) error {
 	return &UnsupportedGrantTypeException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -1513,10 +1513,10 @@ func (s UnsupportedGrantTypeException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnsupportedGrantTypeException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnsupportedGrantTypeException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }

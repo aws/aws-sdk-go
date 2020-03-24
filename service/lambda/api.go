@@ -5780,8 +5780,8 @@ func (s *AliasRoutingConfiguration) SetAdditionalVersionWeights(v map[string]*fl
 
 // You have exceeded your maximum total code size per account. Learn more (https://docs.aws.amazon.com/lambda/latest/dg/limits.html)
 type CodeStorageExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -5801,7 +5801,7 @@ func (s CodeStorageExceededException) GoString() string {
 
 func newErrorCodeStorageExceededException(v protocol.ResponseMetadata) error {
 	return &CodeStorageExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5829,12 +5829,12 @@ func (s CodeStorageExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CodeStorageExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CodeStorageExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type CreateAliasInput struct {
@@ -6924,8 +6924,8 @@ func (s *DestinationConfig) SetOnSuccess(v *OnSuccess) *DestinationConfig {
 
 // Need additional permissions to configure VPC settings.
 type EC2AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -6944,7 +6944,7 @@ func (s EC2AccessDeniedException) GoString() string {
 
 func newErrorEC2AccessDeniedException(v protocol.ResponseMetadata) error {
 	return &EC2AccessDeniedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6972,19 +6972,19 @@ func (s EC2AccessDeniedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s EC2AccessDeniedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s EC2AccessDeniedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // AWS Lambda was throttled by Amazon EC2 during Lambda function initialization
 // using the execution role provided for the Lambda function.
 type EC2ThrottledException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -7003,7 +7003,7 @@ func (s EC2ThrottledException) GoString() string {
 
 func newErrorEC2ThrottledException(v protocol.ResponseMetadata) error {
 	return &EC2ThrottledException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7031,19 +7031,19 @@ func (s EC2ThrottledException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s EC2ThrottledException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s EC2ThrottledException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // AWS Lambda received an unexpected EC2 client exception while setting up for
 // the Lambda function.
 type EC2UnexpectedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	EC2ErrorCode *string `type:"string"`
 
@@ -7064,7 +7064,7 @@ func (s EC2UnexpectedException) GoString() string {
 
 func newErrorEC2UnexpectedException(v protocol.ResponseMetadata) error {
 	return &EC2UnexpectedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7092,20 +7092,20 @@ func (s EC2UnexpectedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s EC2UnexpectedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s EC2UnexpectedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // AWS Lambda was not able to create an elastic network interface in the VPC,
 // specified as part of Lambda function configuration, because the limit for
 // network interfaces has been reached.
 type ENILimitReachedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -7124,7 +7124,7 @@ func (s ENILimitReachedException) GoString() string {
 
 func newErrorENILimitReachedException(v protocol.ResponseMetadata) error {
 	return &ENILimitReachedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7152,12 +7152,12 @@ func (s ENILimitReachedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ENILimitReachedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ENILimitReachedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A function's environment variable settings.
@@ -8973,8 +8973,8 @@ func (s *GetProvisionedConcurrencyConfigOutput) SetStatusReason(v string) *GetPr
 
 // One of the parameters in the request is invalid.
 type InvalidParameterValueException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The exception message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -8995,7 +8995,7 @@ func (s InvalidParameterValueException) GoString() string {
 
 func newErrorInvalidParameterValueException(v protocol.ResponseMetadata) error {
 	return &InvalidParameterValueException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9023,18 +9023,18 @@ func (s InvalidParameterValueException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidParameterValueException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidParameterValueException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request body could not be parsed as JSON.
 type InvalidRequestContentException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The exception message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -9055,7 +9055,7 @@ func (s InvalidRequestContentException) GoString() string {
 
 func newErrorInvalidRequestContentException(v protocol.ResponseMetadata) error {
 	return &InvalidRequestContentException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9083,18 +9083,18 @@ func (s InvalidRequestContentException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidRequestContentException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidRequestContentException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The runtime or runtime version specified is not supported.
 type InvalidRuntimeException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -9113,7 +9113,7 @@ func (s InvalidRuntimeException) GoString() string {
 
 func newErrorInvalidRuntimeException(v protocol.ResponseMetadata) error {
 	return &InvalidRuntimeException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9141,19 +9141,19 @@ func (s InvalidRuntimeException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidRuntimeException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidRuntimeException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The Security Group ID provided in the Lambda function VPC configuration is
 // invalid.
 type InvalidSecurityGroupIDException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -9172,7 +9172,7 @@ func (s InvalidSecurityGroupIDException) GoString() string {
 
 func newErrorInvalidSecurityGroupIDException(v protocol.ResponseMetadata) error {
 	return &InvalidSecurityGroupIDException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9200,18 +9200,18 @@ func (s InvalidSecurityGroupIDException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidSecurityGroupIDException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidSecurityGroupIDException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The Subnet ID provided in the Lambda function VPC configuration is invalid.
 type InvalidSubnetIDException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -9230,7 +9230,7 @@ func (s InvalidSubnetIDException) GoString() string {
 
 func newErrorInvalidSubnetIDException(v protocol.ResponseMetadata) error {
 	return &InvalidSubnetIDException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9258,18 +9258,18 @@ func (s InvalidSubnetIDException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidSubnetIDException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidSubnetIDException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // AWS Lambda could not unzip the deployment package.
 type InvalidZipFileException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -9288,7 +9288,7 @@ func (s InvalidZipFileException) GoString() string {
 
 func newErrorInvalidZipFileException(v protocol.ResponseMetadata) error {
 	return &InvalidZipFileException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9316,12 +9316,12 @@ func (s InvalidZipFileException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidZipFileException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidZipFileException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Deprecated: InvokeAsyncInput has been deprecated
@@ -9598,8 +9598,8 @@ func (s *InvokeOutput) SetStatusCode(v int64) *InvokeOutput {
 // Lambda was unable to decrypt the environment variables because KMS access
 // was denied. Check the Lambda function's KMS permissions.
 type KMSAccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -9618,7 +9618,7 @@ func (s KMSAccessDeniedException) GoString() string {
 
 func newErrorKMSAccessDeniedException(v protocol.ResponseMetadata) error {
 	return &KMSAccessDeniedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9646,19 +9646,19 @@ func (s KMSAccessDeniedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s KMSAccessDeniedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s KMSAccessDeniedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Lambda was unable to decrypt the environment variables because the KMS key
 // used is disabled. Check the Lambda function's KMS key settings.
 type KMSDisabledException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -9677,7 +9677,7 @@ func (s KMSDisabledException) GoString() string {
 
 func newErrorKMSDisabledException(v protocol.ResponseMetadata) error {
 	return &KMSDisabledException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9705,19 +9705,19 @@ func (s KMSDisabledException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s KMSDisabledException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s KMSDisabledException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Lambda was unable to decrypt the environment variables because the KMS key
 // used is in an invalid state for Decrypt. Check the function's KMS key settings.
 type KMSInvalidStateException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -9736,7 +9736,7 @@ func (s KMSInvalidStateException) GoString() string {
 
 func newErrorKMSInvalidStateException(v protocol.ResponseMetadata) error {
 	return &KMSInvalidStateException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9764,19 +9764,19 @@ func (s KMSInvalidStateException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s KMSInvalidStateException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s KMSInvalidStateException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Lambda was unable to decrypt the environment variables because the KMS key
 // was not found. Check the function's KMS key settings.
 type KMSNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -9795,7 +9795,7 @@ func (s KMSNotFoundException) GoString() string {
 
 func newErrorKMSNotFoundException(v protocol.ResponseMetadata) error {
 	return &KMSNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9823,12 +9823,12 @@ func (s KMSNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s KMSNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s KMSNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // An AWS Lambda layer (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
@@ -11048,8 +11048,8 @@ func (s *OnSuccess) SetDestination(v string) *OnSuccess {
 
 // The permissions policy for the resource is too large. Learn more (https://docs.aws.amazon.com/lambda/latest/dg/limits.html)
 type PolicyLengthExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -11068,7 +11068,7 @@ func (s PolicyLengthExceededException) GoString() string {
 
 func newErrorPolicyLengthExceededException(v protocol.ResponseMetadata) error {
 	return &PolicyLengthExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11096,20 +11096,20 @@ func (s PolicyLengthExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PolicyLengthExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PolicyLengthExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The RevisionId provided does not match the latest RevisionId for the Lambda
 // function or alias. Call the GetFunction or the GetAlias API to retrieve the
 // latest RevisionId for your resource.
 type PreconditionFailedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The exception message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -11130,7 +11130,7 @@ func (s PreconditionFailedException) GoString() string {
 
 func newErrorPreconditionFailedException(v protocol.ResponseMetadata) error {
 	return &PreconditionFailedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11158,12 +11158,12 @@ func (s PreconditionFailedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PreconditionFailedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PreconditionFailedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Details about the provisioned concurrency configuration for a function alias
@@ -11249,8 +11249,8 @@ func (s *ProvisionedConcurrencyConfigListItem) SetStatusReason(v string) *Provis
 
 // The specified configuration does not exist.
 type ProvisionedConcurrencyConfigNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -11269,7 +11269,7 @@ func (s ProvisionedConcurrencyConfigNotFoundException) GoString() string {
 
 func newErrorProvisionedConcurrencyConfigNotFoundException(v protocol.ResponseMetadata) error {
 	return &ProvisionedConcurrencyConfigNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -11297,12 +11297,12 @@ func (s ProvisionedConcurrencyConfigNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ProvisionedConcurrencyConfigNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ProvisionedConcurrencyConfigNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type PublishLayerVersionInput struct {
@@ -12199,8 +12199,8 @@ func (s RemovePermissionOutput) GoString() string {
 // The request payload exceeded the Invoke request body JSON input limit. For
 // more information, see Limits (https://docs.aws.amazon.com/lambda/latest/dg/limits.html).
 type RequestTooLargeException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -12219,7 +12219,7 @@ func (s RequestTooLargeException) GoString() string {
 
 func newErrorRequestTooLargeException(v protocol.ResponseMetadata) error {
 	return &RequestTooLargeException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12247,18 +12247,18 @@ func (s RequestTooLargeException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s RequestTooLargeException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s RequestTooLargeException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The resource already exists, or another operation is in progress.
 type ResourceConflictException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The exception message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -12279,7 +12279,7 @@ func (s ResourceConflictException) GoString() string {
 
 func newErrorResourceConflictException(v protocol.ResponseMetadata) error {
 	return &ResourceConflictException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12307,20 +12307,20 @@ func (s ResourceConflictException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceConflictException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceConflictException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The operation conflicts with the resource's availability. For example, you
 // attempted to update an EventSource Mapping in CREATING, or tried to delete
 // a EventSource mapping currently in the UPDATING state.
 type ResourceInUseException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -12339,7 +12339,7 @@ func (s ResourceInUseException) GoString() string {
 
 func newErrorResourceInUseException(v protocol.ResponseMetadata) error {
 	return &ResourceInUseException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12367,18 +12367,18 @@ func (s ResourceInUseException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceInUseException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceInUseException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The resource specified in the request does not exist.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -12397,7 +12397,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12425,19 +12425,19 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The function is inactive and its VPC connection is no longer available. Wait
 // for the VPC connection to reestablish and try again.
 type ResourceNotReadyException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The exception message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -12458,7 +12458,7 @@ func (s ResourceNotReadyException) GoString() string {
 
 func newErrorResourceNotReadyException(v protocol.ResponseMetadata) error {
 	return &ResourceNotReadyException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12486,18 +12486,18 @@ func (s ResourceNotReadyException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotReadyException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotReadyException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The AWS Lambda service encountered an internal error.
 type ServiceException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -12516,7 +12516,7 @@ func (s ServiceException) GoString() string {
 
 func newErrorServiceException(v protocol.ResponseMetadata) error {
 	return &ServiceException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12544,19 +12544,19 @@ func (s ServiceException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // AWS Lambda was not able to set up VPC access for the Lambda function because
 // one or more configured subnets has no available IP addresses.
 type SubnetIPAddressLimitReachedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -12575,7 +12575,7 @@ func (s SubnetIPAddressLimitReachedException) GoString() string {
 
 func newErrorSubnetIPAddressLimitReachedException(v protocol.ResponseMetadata) error {
 	return &SubnetIPAddressLimitReachedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12603,12 +12603,12 @@ func (s SubnetIPAddressLimitReachedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s SubnetIPAddressLimitReachedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s SubnetIPAddressLimitReachedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type TagResourceInput struct {
@@ -12682,8 +12682,8 @@ func (s TagResourceOutput) GoString() string {
 
 // The request throughput limit was exceeded.
 type TooManyRequestsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -12707,7 +12707,7 @@ func (s TooManyRequestsException) GoString() string {
 
 func newErrorTooManyRequestsException(v protocol.ResponseMetadata) error {
 	return &TooManyRequestsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12735,12 +12735,12 @@ func (s TooManyRequestsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TooManyRequestsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TooManyRequestsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The function's AWS X-Ray tracing configuration. To sample and record incoming
@@ -12794,8 +12794,8 @@ func (s *TracingConfigResponse) SetMode(v string) *TracingConfigResponse {
 
 // The content type of the Invoke request body is not JSON.
 type UnsupportedMediaTypeException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
@@ -12814,7 +12814,7 @@ func (s UnsupportedMediaTypeException) GoString() string {
 
 func newErrorUnsupportedMediaTypeException(v protocol.ResponseMetadata) error {
 	return &UnsupportedMediaTypeException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -12842,12 +12842,12 @@ func (s UnsupportedMediaTypeException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnsupportedMediaTypeException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnsupportedMediaTypeException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UntagResourceInput struct {

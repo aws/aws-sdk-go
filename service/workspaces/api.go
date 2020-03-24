@@ -3796,8 +3796,8 @@ func (c *WorkSpaces) UpdateRulesOfIpGroupWithContext(ctx aws.Context, input *Upd
 
 // The user is not authorized to access a resource.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3814,7 +3814,7 @@ func (s AccessDeniedException) GoString() string {
 
 func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
 	return &AccessDeniedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3842,12 +3842,12 @@ func (s AccessDeniedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccessDeniedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccessDeniedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Describes a modification to the configuration of Bring Your Own License (BYOL)
@@ -6055,8 +6055,8 @@ func (s *ImportWorkspaceImageOutput) SetImageId(v string) *ImportWorkspaceImageO
 
 // One or more parameter values are not valid.
 type InvalidParameterValuesException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The exception error message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -6074,7 +6074,7 @@ func (s InvalidParameterValuesException) GoString() string {
 
 func newErrorInvalidParameterValuesException(v protocol.ResponseMetadata) error {
 	return &InvalidParameterValuesException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6102,18 +6102,18 @@ func (s InvalidParameterValuesException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidParameterValuesException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidParameterValuesException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The state of the resource is not valid for this operation.
 type InvalidResourceStateException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6130,7 +6130,7 @@ func (s InvalidResourceStateException) GoString() string {
 
 func newErrorInvalidResourceStateException(v protocol.ResponseMetadata) error {
 	return &InvalidResourceStateException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6158,12 +6158,12 @@ func (s InvalidResourceStateException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidResourceStateException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidResourceStateException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Describes an IP access control group.
@@ -6958,8 +6958,8 @@ func (s *OperatingSystem) SetType(v string) *OperatingSystem {
 // The properties of this WorkSpace are currently being modified. Try again
 // in a moment.
 type OperationInProgressException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6976,7 +6976,7 @@ func (s OperationInProgressException) GoString() string {
 
 func newErrorOperationInProgressException(v protocol.ResponseMetadata) error {
 	return &OperationInProgressException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7004,18 +7004,18 @@ func (s OperationInProgressException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s OperationInProgressException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s OperationInProgressException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This operation is not supported.
 type OperationNotSupportedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7032,7 +7032,7 @@ func (s OperationNotSupportedException) GoString() string {
 
 func newErrorOperationNotSupportedException(v protocol.ResponseMetadata) error {
 	return &OperationNotSupportedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7060,12 +7060,12 @@ func (s OperationNotSupportedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s OperationNotSupportedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s OperationNotSupportedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Describes the information used to reboot a WorkSpace.
@@ -7427,8 +7427,8 @@ func (s RegisterWorkspaceDirectoryOutput) GoString() string {
 
 // The specified resource already exists.
 type ResourceAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7445,7 +7445,7 @@ func (s ResourceAlreadyExistsException) GoString() string {
 
 func newErrorResourceAlreadyExistsException(v protocol.ResponseMetadata) error {
 	return &ResourceAlreadyExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7473,18 +7473,18 @@ func (s ResourceAlreadyExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceAlreadyExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceAlreadyExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The resource is associated with a directory.
 type ResourceAssociatedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7501,7 +7501,7 @@ func (s ResourceAssociatedException) GoString() string {
 
 func newErrorResourceAssociatedException(v protocol.ResponseMetadata) error {
 	return &ResourceAssociatedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7529,18 +7529,18 @@ func (s ResourceAssociatedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceAssociatedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceAssociatedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The resource could not be created.
 type ResourceCreationFailedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -7557,7 +7557,7 @@ func (s ResourceCreationFailedException) GoString() string {
 
 func newErrorResourceCreationFailedException(v protocol.ResponseMetadata) error {
 	return &ResourceCreationFailedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7585,18 +7585,18 @@ func (s ResourceCreationFailedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceCreationFailedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceCreationFailedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Your resource limits have been exceeded.
 type ResourceLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The exception error message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -7614,7 +7614,7 @@ func (s ResourceLimitExceededException) GoString() string {
 
 func newErrorResourceLimitExceededException(v protocol.ResponseMetadata) error {
 	return &ResourceLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7642,18 +7642,18 @@ func (s ResourceLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The resource could not be found.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The resource could not be found.
 	Message_ *string `locationName:"message" type:"string"`
@@ -7674,7 +7674,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7702,18 +7702,18 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified resource is not available.
 type ResourceUnavailableException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The exception error message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -7734,7 +7734,7 @@ func (s ResourceUnavailableException) GoString() string {
 
 func newErrorResourceUnavailableException(v protocol.ResponseMetadata) error {
 	return &ResourceUnavailableException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -7762,12 +7762,12 @@ func (s ResourceUnavailableException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceUnavailableException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceUnavailableException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type RestoreWorkspaceInput struct {
@@ -8345,8 +8345,8 @@ func (s *TerminateWorkspacesOutput) SetFailedRequests(v []*FailedWorkspaceChange
 // network IP range. For more information, see Configure a VPC for Amazon WorkSpaces
 // (https://docs.aws.amazon.com/workspaces/latest/adminguide/amazon-workspaces-vpc.html).
 type UnsupportedNetworkConfigurationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8363,7 +8363,7 @@ func (s UnsupportedNetworkConfigurationException) GoString() string {
 
 func newErrorUnsupportedNetworkConfigurationException(v protocol.ResponseMetadata) error {
 	return &UnsupportedNetworkConfigurationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8391,20 +8391,20 @@ func (s UnsupportedNetworkConfigurationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnsupportedNetworkConfigurationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnsupportedNetworkConfigurationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The configuration of this WorkSpace is not supported for this operation.
 // For more information, see Required Configuration and Service Components for
 // WorkSpaces (https://docs.aws.amazon.com/workspaces/latest/adminguide/required-service-components.html).
 type UnsupportedWorkspaceConfigurationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -8421,7 +8421,7 @@ func (s UnsupportedWorkspaceConfigurationException) GoString() string {
 
 func newErrorUnsupportedWorkspaceConfigurationException(v protocol.ResponseMetadata) error {
 	return &UnsupportedWorkspaceConfigurationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -8449,12 +8449,12 @@ func (s UnsupportedWorkspaceConfigurationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnsupportedWorkspaceConfigurationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnsupportedWorkspaceConfigurationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UpdateRulesOfIpGroupInput struct {
@@ -9459,8 +9459,8 @@ func (s *WorkspaceRequest) SetWorkspaceProperties(v *WorkspaceProperties) *Works
 // role before you can register a directory. For more information, see Creating
 // the workspaces_DefaultRole Role (https://docs.aws.amazon.com/workspaces/latest/adminguide/workspaces-access-control.html#create-default-role).
 type WorkspacesDefaultRoleNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -9477,7 +9477,7 @@ func (s WorkspacesDefaultRoleNotFoundException) GoString() string {
 
 func newErrorWorkspacesDefaultRoleNotFoundException(v protocol.ResponseMetadata) error {
 	return &WorkspacesDefaultRoleNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -9505,12 +9505,12 @@ func (s WorkspacesDefaultRoleNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s WorkspacesDefaultRoleNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s WorkspacesDefaultRoleNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 const (

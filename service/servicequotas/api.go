@@ -2008,8 +2008,8 @@ func (c *ServiceQuotas) RequestServiceQuotaIncreaseWithContext(ctx aws.Context, 
 // The action you attempted is not allowed unless Service Access with Service
 // Quotas is enabled in your organization. To enable, call AssociateServiceQuotaTemplate.
 type AWSServiceAccessNotEnabledException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2026,7 +2026,7 @@ func (s AWSServiceAccessNotEnabledException) GoString() string {
 
 func newErrorAWSServiceAccessNotEnabledException(v protocol.ResponseMetadata) error {
 	return &AWSServiceAccessNotEnabledException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2054,18 +2054,18 @@ func (s AWSServiceAccessNotEnabledException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AWSServiceAccessNotEnabledException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AWSServiceAccessNotEnabledException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // You do not have sufficient access to perform this action.
 type AccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2082,7 +2082,7 @@ func (s AccessDeniedException) GoString() string {
 
 func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
 	return &AccessDeniedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2110,12 +2110,12 @@ func (s AccessDeniedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s AccessDeniedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s AccessDeniedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type AssociateServiceQuotaTemplateInput struct {
@@ -2237,8 +2237,8 @@ func (s DeleteServiceQuotaIncreaseRequestFromTemplateOutput) GoString() string {
 
 // You can't perform this action because a dependency does not have access.
 type DependencyAccessDeniedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2255,7 +2255,7 @@ func (s DependencyAccessDeniedException) GoString() string {
 
 func newErrorDependencyAccessDeniedException(v protocol.ResponseMetadata) error {
 	return &DependencyAccessDeniedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2283,12 +2283,12 @@ func (s DependencyAccessDeniedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s DependencyAccessDeniedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s DependencyAccessDeniedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type DisassociateServiceQuotaTemplateInput struct {
@@ -2731,8 +2731,8 @@ func (s *GetServiceQuotaOutput) SetQuota(v *ServiceQuota) *GetServiceQuotaOutput
 
 // Invalid input was provided.
 type IllegalArgumentException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2749,7 +2749,7 @@ func (s IllegalArgumentException) GoString() string {
 
 func newErrorIllegalArgumentException(v protocol.ResponseMetadata) error {
 	return &IllegalArgumentException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2777,18 +2777,18 @@ func (s IllegalArgumentException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s IllegalArgumentException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s IllegalArgumentException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Invalid input was provided.
 type InvalidPaginationTokenException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2805,7 +2805,7 @@ func (s InvalidPaginationTokenException) GoString() string {
 
 func newErrorInvalidPaginationTokenException(v protocol.ResponseMetadata) error {
 	return &InvalidPaginationTokenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2833,18 +2833,18 @@ func (s InvalidPaginationTokenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidPaginationTokenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidPaginationTokenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Invalid input was provided for the .
 type InvalidResourceStateException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -2861,7 +2861,7 @@ func (s InvalidResourceStateException) GoString() string {
 
 func newErrorInvalidResourceStateException(v protocol.ResponseMetadata) error {
 	return &InvalidResourceStateException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2889,12 +2889,12 @@ func (s InvalidResourceStateException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidResourceStateException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidResourceStateException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListAWSDefaultServiceQuotasInput struct {
@@ -3638,8 +3638,8 @@ func (s *MetricInfo) SetMetricStatisticRecommendation(v string) *MetricInfo {
 
 // The account making this call is not a member of an organization.
 type NoAvailableOrganizationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3656,7 +3656,7 @@ func (s NoAvailableOrganizationException) GoString() string {
 
 func newErrorNoAvailableOrganizationException(v protocol.ResponseMetadata) error {
 	return &NoAvailableOrganizationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3684,18 +3684,18 @@ func (s NoAvailableOrganizationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NoAvailableOrganizationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NoAvailableOrganizationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified resource does not exist.
 type NoSuchResourceException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3712,7 +3712,7 @@ func (s NoSuchResourceException) GoString() string {
 
 func newErrorNoSuchResourceException(v protocol.ResponseMetadata) error {
 	return &NoSuchResourceException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3740,19 +3740,19 @@ func (s NoSuchResourceException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NoSuchResourceException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NoSuchResourceException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The organization that your account belongs to, is not in All Features mode.
 // To enable all features mode, see EnableAllFeatures (https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnableAllFeatures.html).
 type OrganizationNotInAllFeaturesModeException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3769,7 +3769,7 @@ func (s OrganizationNotInAllFeaturesModeException) GoString() string {
 
 func newErrorOrganizationNotInAllFeaturesModeException(v protocol.ResponseMetadata) error {
 	return &OrganizationNotInAllFeaturesModeException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3797,12 +3797,12 @@ func (s OrganizationNotInAllFeaturesModeException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s OrganizationNotInAllFeaturesModeException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s OrganizationNotInAllFeaturesModeException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type PutServiceQuotaIncreaseRequestIntoTemplateInput struct {
@@ -3921,8 +3921,8 @@ func (s *PutServiceQuotaIncreaseRequestIntoTemplateOutput) SetServiceQuotaIncrea
 // some of the relevant resources, or use Service Quotas to request a service
 // quota increase.
 type QuotaExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -3939,7 +3939,7 @@ func (s QuotaExceededException) GoString() string {
 
 func newErrorQuotaExceededException(v protocol.ResponseMetadata) error {
 	return &QuotaExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3967,12 +3967,12 @@ func (s QuotaExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s QuotaExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s QuotaExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A structure that contains information about the quota period.
@@ -4248,8 +4248,8 @@ func (s *RequestedServiceQuotaChange) SetUnit(v string) *RequestedServiceQuotaCh
 
 // The specified resource already exists.
 type ResourceAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4266,7 +4266,7 @@ func (s ResourceAlreadyExistsException) GoString() string {
 
 func newErrorResourceAlreadyExistsException(v protocol.ResponseMetadata) error {
 	return &ResourceAlreadyExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4294,18 +4294,18 @@ func (s ResourceAlreadyExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceAlreadyExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceAlreadyExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Something went wrong.
 type ServiceException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4322,7 +4322,7 @@ func (s ServiceException) GoString() string {
 
 func newErrorServiceException(v protocol.ResponseMetadata) error {
 	return &ServiceException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4350,12 +4350,12 @@ func (s ServiceException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A structure that contains the ServiceName and ServiceCode. It does not include
@@ -4609,8 +4609,8 @@ func (s *ServiceQuotaIncreaseRequestInTemplate) SetUnit(v string) *ServiceQuotaI
 //
 // To use the template, call AssociateServiceQuotaTemplate.
 type ServiceQuotaTemplateNotInUseException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4627,7 +4627,7 @@ func (s ServiceQuotaTemplateNotInUseException) GoString() string {
 
 func newErrorServiceQuotaTemplateNotInUseException(v protocol.ResponseMetadata) error {
 	return &ServiceQuotaTemplateNotInUseException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4655,19 +4655,19 @@ func (s ServiceQuotaTemplateNotInUseException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceQuotaTemplateNotInUseException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceQuotaTemplateNotInUseException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The Service Quotas template is not available in the Region where you are
 // making the request. Please make the request in us-east-1.
 type TemplatesNotAvailableInRegionException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4684,7 +4684,7 @@ func (s TemplatesNotAvailableInRegionException) GoString() string {
 
 func newErrorTemplatesNotAvailableInRegionException(v protocol.ResponseMetadata) error {
 	return &TemplatesNotAvailableInRegionException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4712,19 +4712,19 @@ func (s TemplatesNotAvailableInRegionException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TemplatesNotAvailableInRegionException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TemplatesNotAvailableInRegionException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Due to throttling, the request was denied. Slow down the rate of request
 // calls, or request an increase for this quota.
 type TooManyRequestsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -4741,7 +4741,7 @@ func (s TooManyRequestsException) GoString() string {
 
 func newErrorTooManyRequestsException(v protocol.ResponseMetadata) error {
 	return &TooManyRequestsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4769,12 +4769,12 @@ func (s TooManyRequestsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TooManyRequestsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TooManyRequestsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 const (

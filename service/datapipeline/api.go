@@ -2899,8 +2899,8 @@ func (s *InstanceIdentity) SetSignature(v string) *InstanceIdentity {
 
 // An internal service error occurred.
 type InternalServiceError struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Description of the error message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -2918,7 +2918,7 @@ func (s InternalServiceError) GoString() string {
 
 func newErrorInternalServiceError(v protocol.ResponseMetadata) error {
 	return &InternalServiceError{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2946,20 +2946,20 @@ func (s InternalServiceError) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalServiceError) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalServiceError) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request was not valid. Verify that your request was properly formatted,
 // that the signature was generated with the correct credentials, and that you
 // haven't exceeded any of the service limits for your account.
 type InvalidRequestException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Description of the error message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -2977,7 +2977,7 @@ func (s InvalidRequestException) GoString() string {
 
 func newErrorInvalidRequestException(v protocol.ResponseMetadata) error {
 	return &InvalidRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3005,12 +3005,12 @@ func (s InvalidRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains the parameters for ListPipelines.
@@ -3344,8 +3344,8 @@ func (s *ParameterValue) SetStringValue(v string) *ParameterValue {
 
 // The specified pipeline has been deleted.
 type PipelineDeletedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Description of the error message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -3363,7 +3363,7 @@ func (s PipelineDeletedException) GoString() string {
 
 func newErrorPipelineDeletedException(v protocol.ResponseMetadata) error {
 	return &PipelineDeletedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3391,12 +3391,12 @@ func (s PipelineDeletedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PipelineDeletedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PipelineDeletedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains pipeline metadata.
@@ -3507,8 +3507,8 @@ func (s *PipelineIdName) SetName(v string) *PipelineIdName {
 // The specified pipeline was not found. Verify that you used the correct user
 // and account identifiers.
 type PipelineNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Description of the error message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -3526,7 +3526,7 @@ func (s PipelineNotFoundException) GoString() string {
 
 func newErrorPipelineNotFoundException(v protocol.ResponseMetadata) error {
 	return &PipelineNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3554,12 +3554,12 @@ func (s PipelineNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PipelineNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PipelineNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains information about a pipeline object. This can be a logical, physical,
@@ -4612,8 +4612,8 @@ func (s *Tag) SetValue(v string) *Tag {
 
 // The specified task was not found.
 type TaskNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// Description of the error message.
 	Message_ *string `locationName:"message" type:"string"`
@@ -4631,7 +4631,7 @@ func (s TaskNotFoundException) GoString() string {
 
 func newErrorTaskNotFoundException(v protocol.ResponseMetadata) error {
 	return &TaskNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4659,12 +4659,12 @@ func (s TaskNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TaskNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TaskNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Contains information about a pipeline task that is assigned to a task runner.

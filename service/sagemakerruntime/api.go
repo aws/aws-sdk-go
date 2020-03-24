@@ -124,8 +124,8 @@ func (c *SageMakerRuntime) InvokeEndpointWithContext(ctx aws.Context, input *Inv
 
 // An internal failure occurred.
 type InternalFailure struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -142,7 +142,7 @@ func (s InternalFailure) GoString() string {
 
 func newErrorInternalFailure(v protocol.ResponseMetadata) error {
 	return &InternalFailure{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -170,12 +170,12 @@ func (s InternalFailure) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalFailure) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalFailure) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type InvokeEndpointInput struct {
@@ -357,8 +357,8 @@ func (s *InvokeEndpointOutput) SetInvokedProductionVariant(v string) *InvokeEndp
 // Model (owned by the customer in the container) returned 4xx or 5xx error
 // code.
 type ModelError struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The Amazon Resource Name (ARN) of the log stream.
 	LogStreamArn *string `type:"string"`
@@ -384,7 +384,7 @@ func (s ModelError) GoString() string {
 
 func newErrorModelError(v protocol.ResponseMetadata) error {
 	return &ModelError{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -412,18 +412,18 @@ func (s ModelError) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ModelError) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ModelError) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The service is unavailable. Try your call again.
 type ServiceUnavailable struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -440,7 +440,7 @@ func (s ServiceUnavailable) GoString() string {
 
 func newErrorServiceUnavailable(v protocol.ResponseMetadata) error {
 	return &ServiceUnavailable{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -468,18 +468,18 @@ func (s ServiceUnavailable) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServiceUnavailable) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServiceUnavailable) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Inspect your request and try again.
 type ValidationError struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -496,7 +496,7 @@ func (s ValidationError) GoString() string {
 
 func newErrorValidationError(v protocol.ResponseMetadata) error {
 	return &ValidationError{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -524,10 +524,10 @@ func (s ValidationError) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ValidationError) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ValidationError) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }

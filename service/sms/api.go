@@ -4290,8 +4290,8 @@ func (s ImportServerCatalogOutput) GoString() string {
 
 // An internal error occurred.
 type InternalError struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4308,7 +4308,7 @@ func (s InternalError) GoString() string {
 
 func newErrorInternalError(v protocol.ResponseMetadata) error {
 	return &InternalError{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4336,18 +4336,18 @@ func (s InternalError) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InternalError) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InternalError) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A specified parameter is not valid.
 type InvalidParameterException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4364,7 +4364,7 @@ func (s InvalidParameterException) GoString() string {
 
 func newErrorInvalidParameterException(v protocol.ResponseMetadata) error {
 	return &InvalidParameterException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4392,12 +4392,12 @@ func (s InvalidParameterException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidParameterException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidParameterException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type LaunchAppInput struct {
@@ -4556,8 +4556,8 @@ func (s *ListAppsOutput) SetNextToken(v string) *ListAppsOutput {
 
 // A required parameter is missing.
 type MissingRequiredParameterException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4574,7 +4574,7 @@ func (s MissingRequiredParameterException) GoString() string {
 
 func newErrorMissingRequiredParameterException(v protocol.ResponseMetadata) error {
 	return &MissingRequiredParameterException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4602,18 +4602,18 @@ func (s MissingRequiredParameterException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MissingRequiredParameterException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MissingRequiredParameterException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // There are no connectors available.
 type NoConnectorsAvailableException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4630,7 +4630,7 @@ func (s NoConnectorsAvailableException) GoString() string {
 
 func newErrorNoConnectorsAvailableException(v protocol.ResponseMetadata) error {
 	return &NoConnectorsAvailableException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4658,18 +4658,18 @@ func (s NoConnectorsAvailableException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s NoConnectorsAvailableException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s NoConnectorsAvailableException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // This operation is not allowed.
 type OperationNotPermittedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4686,7 +4686,7 @@ func (s OperationNotPermittedException) GoString() string {
 
 func newErrorOperationNotPermittedException(v protocol.ResponseMetadata) error {
 	return &OperationNotPermittedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4714,12 +4714,12 @@ func (s OperationNotPermittedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s OperationNotPermittedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s OperationNotPermittedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type PutAppLaunchConfigurationInput struct {
@@ -5017,8 +5017,8 @@ func (s *ReplicationJob) SetVmServer(v *VmServer) *ReplicationJob {
 
 // The specified replication job already exists.
 type ReplicationJobAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5035,7 +5035,7 @@ func (s ReplicationJobAlreadyExistsException) GoString() string {
 
 func newErrorReplicationJobAlreadyExistsException(v protocol.ResponseMetadata) error {
 	return &ReplicationJobAlreadyExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5063,18 +5063,18 @@ func (s ReplicationJobAlreadyExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ReplicationJobAlreadyExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ReplicationJobAlreadyExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The specified replication job does not exist.
 type ReplicationJobNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5091,7 +5091,7 @@ func (s ReplicationJobNotFoundException) GoString() string {
 
 func newErrorReplicationJobNotFoundException(v protocol.ResponseMetadata) error {
 	return &ReplicationJobNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5119,12 +5119,12 @@ func (s ReplicationJobNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ReplicationJobNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ReplicationJobNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Represents a replication run.
@@ -5257,8 +5257,8 @@ func (s *ReplicationRun) SetType(v string) *ReplicationRun {
 // You have exceeded the number of on-demand replication runs you can request
 // in a 24-hour period.
 type ReplicationRunLimitExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5275,7 +5275,7 @@ func (s ReplicationRunLimitExceededException) GoString() string {
 
 func newErrorReplicationRunLimitExceededException(v protocol.ResponseMetadata) error {
 	return &ReplicationRunLimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5303,12 +5303,12 @@ func (s ReplicationRunLimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ReplicationRunLimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ReplicationRunLimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Details of the current stage of a replication run.
@@ -5439,8 +5439,8 @@ func (s *Server) SetVmServer(v *VmServer) *Server {
 
 // The specified server cannot be replicated.
 type ServerCannotBeReplicatedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5457,7 +5457,7 @@ func (s ServerCannotBeReplicatedException) GoString() string {
 
 func newErrorServerCannotBeReplicatedException(v protocol.ResponseMetadata) error {
 	return &ServerCannotBeReplicatedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5485,12 +5485,12 @@ func (s ServerCannotBeReplicatedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ServerCannotBeReplicatedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ServerCannotBeReplicatedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A logical grouping of servers.
@@ -6009,8 +6009,8 @@ func (s *Tag) SetValue(v string) *Tag {
 
 // The service is temporarily unavailable.
 type TemporarilyUnavailableException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6027,7 +6027,7 @@ func (s TemporarilyUnavailableException) GoString() string {
 
 func newErrorTemporarilyUnavailableException(v protocol.ResponseMetadata) error {
 	return &TemporarilyUnavailableException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6055,12 +6055,12 @@ func (s TemporarilyUnavailableException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TemporarilyUnavailableException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TemporarilyUnavailableException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type TerminateAppInput struct {
@@ -6103,8 +6103,8 @@ func (s TerminateAppOutput) GoString() string {
 // You lack permissions needed to perform this operation. Check your IAM policies,
 // and ensure that you are using the correct access keys.
 type UnauthorizedOperationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -6121,7 +6121,7 @@ func (s UnauthorizedOperationException) GoString() string {
 
 func newErrorUnauthorizedOperationException(v protocol.ResponseMetadata) error {
 	return &UnauthorizedOperationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -6149,12 +6149,12 @@ func (s UnauthorizedOperationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s UnauthorizedOperationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s UnauthorizedOperationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UpdateAppInput struct {

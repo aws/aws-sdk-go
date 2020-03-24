@@ -497,7 +497,7 @@ func TestGetEventStream_ReadException(t *testing.T) {
 			StrVal: aws.String("string value goes here"),
 		},
 		&ExceptionEvent{
-			respMetadata: protocol.ResponseMetadata{
+			RespMetadata: protocol.ResponseMetadata{
 				StatusCode: 200,
 			},
 			IntVal:   aws.Int64(123),
@@ -562,7 +562,7 @@ func TestGetEventStream_ReadException(t *testing.T) {
 	}
 
 	expectErr := &ExceptionEvent{
-		respMetadata: protocol.ResponseMetadata{
+		RespMetadata: protocol.ResponseMetadata{
 			StatusCode: 200,
 		},
 		IntVal:   aws.Int64(123),

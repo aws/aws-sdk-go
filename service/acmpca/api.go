@@ -2579,8 +2579,8 @@ func (s *CertificateAuthorityConfiguration) SetSubject(v *ASN1Subject) *Certific
 // The certificate authority certificate you are importing does not comply with
 // conditions specified in the certificate that signed it.
 type CertificateMismatchException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2597,7 +2597,7 @@ func (s CertificateMismatchException) GoString() string {
 
 func newErrorCertificateMismatchException(v protocol.ResponseMetadata) error {
 	return &CertificateMismatchException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2625,18 +2625,18 @@ func (s CertificateMismatchException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s CertificateMismatchException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s CertificateMismatchException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A previous update to your private CA is still ongoing.
 type ConcurrentModificationException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2653,7 +2653,7 @@ func (s ConcurrentModificationException) GoString() string {
 
 func newErrorConcurrentModificationException(v protocol.ResponseMetadata) error {
 	return &ConcurrentModificationException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -2681,12 +2681,12 @@ func (s ConcurrentModificationException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ConcurrentModificationException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ConcurrentModificationException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type CreateCertificateAuthorityAuditReportInput struct {
@@ -3848,8 +3848,8 @@ func (s ImportCertificateAuthorityCertificateOutput) GoString() string {
 
 // One or more of the specified arguments was not valid.
 type InvalidArgsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3866,7 +3866,7 @@ func (s InvalidArgsException) GoString() string {
 
 func newErrorInvalidArgsException(v protocol.ResponseMetadata) error {
 	return &InvalidArgsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3894,18 +3894,18 @@ func (s InvalidArgsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidArgsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidArgsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The requested Amazon Resource Name (ARN) does not refer to an existing resource.
 type InvalidArnException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3922,7 +3922,7 @@ func (s InvalidArnException) GoString() string {
 
 func newErrorInvalidArnException(v protocol.ResponseMetadata) error {
 	return &InvalidArnException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -3950,19 +3950,19 @@ func (s InvalidArnException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidArnException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidArnException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The token specified in the NextToken argument is not valid. Use the token
 // returned from your previous call to ListCertificateAuthorities.
 type InvalidNextTokenException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3979,7 +3979,7 @@ func (s InvalidNextTokenException) GoString() string {
 
 func newErrorInvalidNextTokenException(v protocol.ResponseMetadata) error {
 	return &InvalidNextTokenException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4007,19 +4007,19 @@ func (s InvalidNextTokenException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidNextTokenException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidNextTokenException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The S3 bucket policy is not valid. The policy must give ACM Private CA rights
 // to read from and write to the bucket and find the bucket location.
 type InvalidPolicyException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4036,7 +4036,7 @@ func (s InvalidPolicyException) GoString() string {
 
 func newErrorInvalidPolicyException(v protocol.ResponseMetadata) error {
 	return &InvalidPolicyException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4064,18 +4064,18 @@ func (s InvalidPolicyException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidPolicyException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidPolicyException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request action cannot be performed or is prohibited.
 type InvalidRequestException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4092,7 +4092,7 @@ func (s InvalidRequestException) GoString() string {
 
 func newErrorInvalidRequestException(v protocol.ResponseMetadata) error {
 	return &InvalidRequestException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4120,19 +4120,19 @@ func (s InvalidRequestException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidRequestException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidRequestException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The private CA is in a state during which a report or certificate cannot
 // be generated.
 type InvalidStateException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4149,7 +4149,7 @@ func (s InvalidStateException) GoString() string {
 
 func newErrorInvalidStateException(v protocol.ResponseMetadata) error {
 	return &InvalidStateException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4177,19 +4177,19 @@ func (s InvalidStateException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidStateException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidStateException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The tag associated with the CA is not valid. The invalid argument is contained
 // in the message field.
 type InvalidTagException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4206,7 +4206,7 @@ func (s InvalidTagException) GoString() string {
 
 func newErrorInvalidTagException(v protocol.ResponseMetadata) error {
 	return &InvalidTagException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4234,12 +4234,12 @@ func (s InvalidTagException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s InvalidTagException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s InvalidTagException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type IssueCertificateInput struct {
@@ -4428,8 +4428,8 @@ func (s *IssueCertificateOutput) SetCertificateArn(v string) *IssueCertificateOu
 // An ACM Private CA limit has been exceeded. See the exception message returned
 // to determine the limit that was exceeded.
 type LimitExceededException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4446,7 +4446,7 @@ func (s LimitExceededException) GoString() string {
 
 func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 	return &LimitExceededException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4474,12 +4474,12 @@ func (s LimitExceededException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s LimitExceededException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s LimitExceededException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type ListCertificateAuthoritiesInput struct {
@@ -4784,8 +4784,8 @@ func (s *ListTagsOutput) SetTags(v []*Tag) *ListTagsOutput {
 
 // The certificate signing request is invalid.
 type MalformedCSRException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4802,7 +4802,7 @@ func (s MalformedCSRException) GoString() string {
 
 func newErrorMalformedCSRException(v protocol.ResponseMetadata) error {
 	return &MalformedCSRException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4830,18 +4830,18 @@ func (s MalformedCSRException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MalformedCSRException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MalformedCSRException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // One or more fields in the certificate are invalid.
 type MalformedCertificateException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4858,7 +4858,7 @@ func (s MalformedCertificateException) GoString() string {
 
 func newErrorMalformedCertificateException(v protocol.ResponseMetadata) error {
 	return &MalformedCertificateException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -4886,12 +4886,12 @@ func (s MalformedCertificateException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s MalformedCertificateException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s MalformedCertificateException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Permissions designate which private CA actions can be performed by an AWS
@@ -4972,8 +4972,8 @@ func (s *Permission) SetSourceAccount(v string) *Permission {
 
 // The designated permission has already been given to the user.
 type PermissionAlreadyExistsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -4990,7 +4990,7 @@ func (s PermissionAlreadyExistsException) GoString() string {
 
 func newErrorPermissionAlreadyExistsException(v protocol.ResponseMetadata) error {
 	return &PermissionAlreadyExistsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5018,18 +5018,18 @@ func (s PermissionAlreadyExistsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s PermissionAlreadyExistsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s PermissionAlreadyExistsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Your request has already been completed.
 type RequestAlreadyProcessedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5046,7 +5046,7 @@ func (s RequestAlreadyProcessedException) GoString() string {
 
 func newErrorRequestAlreadyProcessedException(v protocol.ResponseMetadata) error {
 	return &RequestAlreadyProcessedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5074,18 +5074,18 @@ func (s RequestAlreadyProcessedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s RequestAlreadyProcessedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s RequestAlreadyProcessedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // The request has failed for an unspecified reason.
 type RequestFailedException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5102,7 +5102,7 @@ func (s RequestFailedException) GoString() string {
 
 func newErrorRequestFailedException(v protocol.ResponseMetadata) error {
 	return &RequestFailedException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5130,18 +5130,18 @@ func (s RequestFailedException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s RequestFailedException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s RequestFailedException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // Your request is already in progress.
 type RequestInProgressException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5158,7 +5158,7 @@ func (s RequestInProgressException) GoString() string {
 
 func newErrorRequestInProgressException(v protocol.ResponseMetadata) error {
 	return &RequestInProgressException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5186,19 +5186,19 @@ func (s RequestInProgressException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s RequestInProgressException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s RequestInProgressException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 // A resource such as a private CA, S3 bucket, certificate, or audit report
 // cannot be found.
 type ResourceNotFoundException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5215,7 +5215,7 @@ func (s ResourceNotFoundException) GoString() string {
 
 func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
 	return &ResourceNotFoundException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5243,12 +5243,12 @@ func (s ResourceNotFoundException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s ResourceNotFoundException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s ResourceNotFoundException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type RestoreCertificateAuthorityInput struct {
@@ -5593,8 +5593,8 @@ func (s TagCertificateAuthorityOutput) GoString() string {
 // You can associate up to 50 tags with a private CA. Exception information
 // is contained in the exception message field.
 type TooManyTagsException struct {
-	_            struct{} `type:"structure"`
-	respMetadata protocol.ResponseMetadata
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -5611,7 +5611,7 @@ func (s TooManyTagsException) GoString() string {
 
 func newErrorTooManyTagsException(v protocol.ResponseMetadata) error {
 	return &TooManyTagsException{
-		respMetadata: v,
+		RespMetadata: v,
 	}
 }
 
@@ -5639,12 +5639,12 @@ func (s TooManyTagsException) Error() string {
 
 // Status code returns the HTTP status code for the request's response error.
 func (s TooManyTagsException) StatusCode() int {
-	return s.respMetadata.StatusCode
+	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
 func (s TooManyTagsException) RequestID() string {
-	return s.respMetadata.RequestID
+	return s.RespMetadata.RequestID
 }
 
 type UntagCertificateAuthorityInput struct {
