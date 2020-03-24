@@ -14,7 +14,7 @@
     "DescribeUpdate": "<p>Returns descriptive information about an update against your Amazon EKS cluster or associated managed node group.</p> <p>When the status of the update is <code>Succeeded</code>, the update is complete. If an update fails, the status is <code>Failed</code>, and an error detail explains the reason for the failure.</p>",
     "ListClusters": "<p>Lists the Amazon EKS clusters in your AWS account in the specified Region.</p>",
     "ListFargateProfiles": "<p>Lists the AWS Fargate profiles associated with the specified cluster in your AWS account in the specified Region.</p>",
-    "ListNodegroups": "<p>Lists the Amazon EKS node groups associated with the specified cluster in your AWS account in the specified Region.</p>",
+    "ListNodegroups": "<p>Lists the Amazon EKS managed node groups associated with the specified cluster in your AWS account in the specified Region. Self-managed node groups are not listed.</p>",
     "ListTagsForResource": "<p>List the tags for an Amazon EKS resource.</p>",
     "ListUpdates": "<p>Lists the updates associated with an Amazon EKS cluster or managed node group in your AWS account, in the specified Region.</p>",
     "TagResource": "<p>Associates the specified tags to a resource with the specified <code>resourceArn</code>. If existing tags on a resource are not specified in the request parameters, they are not changed. When a resource is deleted, the tags associated with that resource are deleted as well. Tags that you create for Amazon EKS resources do not propagate to any other resources associated with the cluster. For example, if you tag a cluster with this operation, that tag does not automatically propagate to the subnets and worker nodes associated with the cluster.</p>",

@@ -1,3 +1,14 @@
+Release v1.29.31 (2020-03-24)
+===
+
+### Service Client Updates
+* `service/athena`: Updates service documentation
+  * Documentation updates for Athena, including QueryExecutionStatus QUEUED and RUNNING states. QUEUED now indicates that the query has been submitted to the service. RUNNING indicates that the query is in execution phase.
+* `service/eks`: Updates service API and documentation
+* `service/organizations`: Updates service API, documentation, and paginators
+  * Introduces actions for giving a member account administrative Organizations permissions for an AWS service. You can run this action only for AWS services that support this feature.
+* `service/rds-data`: Updates service documentation
+
 Release v1.29.30 (2020-03-23)
 ===
 

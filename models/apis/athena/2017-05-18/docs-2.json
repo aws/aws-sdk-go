@@ -12,8 +12,8 @@
     "GetQueryExecution": "<p>Returns information about a single execution of a query if you have access to the workgroup in which the query ran. Each time a query executes, information about the query execution is saved with a unique ID.</p>",
     "GetQueryResults": "<p>Streams the results of a single query execution specified by <code>QueryExecutionId</code> from the Athena query results location in Amazon S3. For more information, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/querying.html\">Query Results</a> in the <i>Amazon Athena User Guide</i>. This request does not execute the query but returns results. Use <a>StartQueryExecution</a> to run a query.</p> <p>To stream query results successfully, the IAM principal with permission to call <code>GetQueryResults</code> also must have permissions to the Amazon S3 <code>GetObject</code> action for the Athena query results location.</p> <important> <p>IAM principals with permission to the Amazon S3 <code>GetObject</code> action for the query results location are able to retrieve query results from Amazon S3 even if permission to the <code>GetQueryResults</code> action is denied. To restrict user or role access, ensure that Amazon S3 permissions to the Athena query location are denied.</p> </important>",
     "GetWorkGroup": "<p>Returns information about the workgroup with the specified name.</p>",
-    "ListNamedQueries": "<p>Provides a list of available query IDs only for queries saved in the specified workgroup. Requires that you have access to the workgroup.</p> <p>For code samples using the AWS SDK for Java, see <a href=\"http://docs.aws.amazon.com/athena/latest/ug/code-samples.html\">Examples and Code Samples</a> in the <i>Amazon Athena User Guide</i>.</p>",
-    "ListQueryExecutions": "<p>Provides a list of available query execution IDs for the queries in the specified workgroup. Requires you to have access to the workgroup in which the queries ran.</p> <p>For code samples using the AWS SDK for Java, see <a href=\"http://docs.aws.amazon.com/athena/latest/ug/code-samples.html\">Examples and Code Samples</a> in the <i>Amazon Athena User Guide</i>.</p>",
+    "ListNamedQueries": "<p>Provides a list of available query IDs only for queries saved in the specified workgroup. Requires that you have access to the workgroup. If a workgroup is not specified, lists the saved queries for the primary workgroup.</p> <p>For code samples using the AWS SDK for Java, see <a href=\"http://docs.aws.amazon.com/athena/latest/ug/code-samples.html\">Examples and Code Samples</a> in the <i>Amazon Athena User Guide</i>.</p>",
+    "ListQueryExecutions": "<p>Provides a list of available query execution IDs for the queries in the specified workgroup. If a workgroup is not specified, returns a list of query execution IDs for the primary workgroup. Requires you to have access to the workgroup in which the queries ran.</p> <p>For code samples using the AWS SDK for Java, see <a href=\"http://docs.aws.amazon.com/athena/latest/ug/code-samples.html\">Examples and Code Samples</a> in the <i>Amazon Athena User Guide</i>.</p>",
     "ListTagsForResource": "<p>Lists the tags associated with this workgroup.</p>",
     "ListWorkGroups": "<p>Lists available workgroups for the account.</p>",
     "StartQueryExecution": "<p>Runs the SQL query statements contained in the <code>Query</code>. Requires you to have access to the workgroup in which the query ran.</p> <p>For code samples using the AWS SDK for Java, see <a href=\"http://docs.aws.amazon.com/athena/latest/ug/code-samples.html\">Examples and Code Samples</a> in the <i>Amazon Athena User Guide</i>.</p>",
@@ -426,13 +426,13 @@
     "QueryExecutionState": {
       "base": null,
       "refs": {
-        "QueryExecutionStatus$State": "<p>The state of query execution. <code>QUEUED</code> state is listed but is not used by Athena and is reserved for future use. <code>RUNNING</code> indicates that the query has been submitted to the service, and Athena will execute the query as soon as resources are available. <code>SUCCEEDED</code> indicates that the query completed without errors. <code>FAILED</code> indicates that the query experienced an error and did not complete processing. <code>CANCELLED</code> indicates that a user input interrupted query execution. </p>"
+        "QueryExecutionStatus$State": "<p>The state of query execution. <code>QUEUED</code> indicates that the query has been submitted to the service, and Athena will execute the query as soon as resources are available. <code>RUNNING</code> indicates that the query is in execution phase. <code>SUCCEEDED</code> indicates that the query completed without errors. <code>FAILED</code> indicates that the query experienced an error and did not complete processing. <code>CANCELLED</code> indicates that a user input interrupted query execution. </p>"
       }
     },
     "QueryExecutionStatistics": {
       "base": "<p>The amount of data scanned during the query execution and the amount of time that it took to execute, and the type of statement that was run.</p>",
       "refs": {
-        "QueryExecution$Statistics": "<p>The amount of data scanned during the query execution and the amount of time that it took to execute, and the type of statement that was run.</p>"
+        "QueryExecution$Statistics": "<p>Query execution statistics, such as the amount of data scanned, the amount of time that the query took to process, and the type of statement that was run.</p>"
       }
     },
     "QueryExecutionStatus": {
@@ -683,8 +683,8 @@
         "CreateWorkGroupInput$Name": "<p>The workgroup name.</p>",
         "DeleteWorkGroupInput$WorkGroup": "<p>The unique name of the workgroup to delete.</p>",
         "GetWorkGroupInput$WorkGroup": "<p>The name of the workgroup.</p>",
-        "ListNamedQueriesInput$WorkGroup": "<p>The name of the workgroup from which the named queries are being returned.</p>",
-        "ListQueryExecutionsInput$WorkGroup": "<p>The name of the workgroup from which queries are being returned.</p>",
+        "ListNamedQueriesInput$WorkGroup": "<p>The name of the workgroup from which the named queries are returned. If a workgroup is not specified, the saved queries for the primary workgroup are returned.</p>",
+        "ListQueryExecutionsInput$WorkGroup": "<p>The name of the workgroup from which queries are returned. If a workgroup is not specified, a list of available query execution IDs for the queries in the primary workgroup is returned.</p>",
         "NamedQuery$WorkGroup": "<p>The name of the workgroup that contains the named query.</p>",
         "QueryExecution$WorkGroup": "<p>The name of the workgroup in which the query ran.</p>",
         "StartQueryExecutionInput$WorkGroup": "<p>The name of the workgroup in which the query is being started.</p>",

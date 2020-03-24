@@ -1444,8 +1444,9 @@ func (c *EKS) ListNodegroupsRequest(input *ListNodegroupsInput) (req *request.Re
 
 // ListNodegroups API operation for Amazon Elastic Kubernetes Service.
 //
-// Lists the Amazon EKS node groups associated with the specified cluster in
-// your AWS account in the specified Region.
+// Lists the Amazon EKS managed node groups associated with the specified cluster
+// in your AWS account in the specified Region. Self-managed node groups are
+// not listed.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6744,6 +6745,9 @@ const (
 	// NodegroupIssueCodeEc2subnetNotFound is a NodegroupIssueCode enum value
 	NodegroupIssueCodeEc2subnetNotFound = "Ec2SubnetNotFound"
 
+	// NodegroupIssueCodeEc2subnetInvalidConfiguration is a NodegroupIssueCode enum value
+	NodegroupIssueCodeEc2subnetInvalidConfiguration = "Ec2SubnetInvalidConfiguration"
+
 	// NodegroupIssueCodeIamInstanceProfileNotFound is a NodegroupIssueCode enum value
 	NodegroupIssueCodeIamInstanceProfileNotFound = "IamInstanceProfileNotFound"
 
@@ -6752,6 +6756,9 @@ const (
 
 	// NodegroupIssueCodeIamNodeRoleNotFound is a NodegroupIssueCode enum value
 	NodegroupIssueCodeIamNodeRoleNotFound = "IamNodeRoleNotFound"
+
+	// NodegroupIssueCodeNodeCreationFailure is a NodegroupIssueCode enum value
+	NodegroupIssueCodeNodeCreationFailure = "NodeCreationFailure"
 
 	// NodegroupIssueCodeAsgInstanceLaunchFailures is a NodegroupIssueCode enum value
 	NodegroupIssueCodeAsgInstanceLaunchFailures = "AsgInstanceLaunchFailures"

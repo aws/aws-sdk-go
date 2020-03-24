@@ -250,6 +250,26 @@
         {"shape":"UnsupportedAPIEndpointException"}
       ]
     },
+    "DeregisterDelegatedAdministrator":{
+      "name":"DeregisterDelegatedAdministrator",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeregisterDelegatedAdministratorRequest"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountNotFoundException"},
+        {"shape":"AccountNotRegisteredException"},
+        {"shape":"AWSOrganizationsNotInUseException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ConstraintViolationException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ServiceException"},
+        {"shape":"UnsupportedAPIEndpointException"}
+      ]
+    },
     "DescribeAccount":{
       "name":"DescribeAccount",
       "http":{
@@ -614,6 +634,44 @@
         {"shape":"UnsupportedAPIEndpointException"}
       ]
     },
+    "ListDelegatedAdministrators":{
+      "name":"ListDelegatedAdministrators",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListDelegatedAdministratorsRequest"},
+      "output":{"shape":"ListDelegatedAdministratorsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"AWSOrganizationsNotInUseException"},
+        {"shape":"ConstraintViolationException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ServiceException"},
+        {"shape":"UnsupportedAPIEndpointException"}
+      ]
+    },
+    "ListDelegatedServicesForAccount":{
+      "name":"ListDelegatedServicesForAccount",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListDelegatedServicesForAccountRequest"},
+      "output":{"shape":"ListDelegatedServicesForAccountResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountNotFoundException"},
+        {"shape":"AccountNotRegisteredException"},
+        {"shape":"AWSOrganizationsNotInUseException"},
+        {"shape":"ConstraintViolationException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ServiceException"},
+        {"shape":"UnsupportedAPIEndpointException"}
+      ]
+    },
     "ListHandshakesForAccount":{
       "name":"ListHandshakesForAccount",
       "http":{
@@ -787,6 +845,26 @@
         {"shape":"ServiceException"}
       ]
     },
+    "RegisterDelegatedAdministrator":{
+      "name":"RegisterDelegatedAdministrator",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RegisterDelegatedAdministratorRequest"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"AccountAlreadyRegisteredException"},
+        {"shape":"AccountNotFoundException"},
+        {"shape":"AWSOrganizationsNotInUseException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ConstraintViolationException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ServiceException"},
+        {"shape":"UnsupportedAPIEndpointException"}
+      ]
+    },
     "RemoveAccountFromOrganization":{
       "name":"RemoveAccountFromOrganization",
       "http":{
@@ -937,6 +1015,13 @@
         "JoinedTimestamp":{"shape":"Timestamp"}
       }
     },
+    "AccountAlreadyRegisteredException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
     "AccountArn":{
       "type":"string",
       "pattern":"^arn:aws:organizations::\\d{12}:account\\/o-[a-z0-9]{10,32}\\/\\d{12}"
@@ -960,6 +1045,13 @@
       "sensitive":true
     },
     "AccountNotFoundException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
+    "AccountNotRegisteredException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"ExceptionMessage"}
@@ -1094,7 +1186,11 @@
         "EMAIL_VERIFICATION_CODE_EXPIRED",
         "WAIT_PERIOD_ACTIVE",
         "MAX_TAG_LIMIT_EXCEEDED",
-        "TAG_POLICY_VIOLATION"
+        "TAG_POLICY_VIOLATION",
+        "MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED",
+        "CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR",
+        "CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG",
+        "DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE"
       ]
     },
     "CreateAccountFailureReason":{
@@ -1250,6 +1346,34 @@
         "Handshake":{"shape":"Handshake"}
       }
     },
+    "DelegatedAdministrator":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"AccountId"},
+        "Arn":{"shape":"AccountArn"},
+        "Email":{"shape":"Email"},
+        "Name":{"shape":"AccountName"},
+        "Status":{"shape":"AccountStatus"},
+        "JoinedMethod":{"shape":"AccountJoinedMethod"},
+        "JoinedTimestamp":{"shape":"Timestamp"},
+        "DelegationEnabledDate":{"shape":"Timestamp"}
+      }
+    },
+    "DelegatedAdministrators":{
+      "type":"list",
+      "member":{"shape":"DelegatedAdministrator"}
+    },
+    "DelegatedService":{
+      "type":"structure",
+      "members":{
+        "ServicePrincipal":{"shape":"ServicePrincipal"},
+        "DelegationEnabledDate":{"shape":"Timestamp"}
+      }
+    },
+    "DelegatedServices":{
+      "type":"list",
+      "member":{"shape":"DelegatedService"}
+    },
     "DeleteOrganizationalUnitRequest":{
       "type":"structure",
       "required":["OrganizationalUnitId"],
@@ -1262,6 +1386,17 @@
       "required":["PolicyId"],
       "members":{
         "PolicyId":{"shape":"PolicyId"}
+      }
+    },
+    "DeregisterDelegatedAdministratorRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "ServicePrincipal"
+      ],
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "ServicePrincipal":{"shape":"ServicePrincipal"}
       }
     },
     "DescribeAccountRequest":{
@@ -1795,6 +1930,37 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListDelegatedAdministratorsRequest":{
+      "type":"structure",
+      "members":{
+        "ServicePrincipal":{"shape":"ServicePrincipal"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListDelegatedAdministratorsResponse":{
+      "type":"structure",
+      "members":{
+        "DelegatedAdministrators":{"shape":"DelegatedAdministrators"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListDelegatedServicesForAccountRequest":{
+      "type":"structure",
+      "required":["AccountId"],
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListDelegatedServicesForAccountResponse":{
+      "type":"structure",
+      "members":{
+        "DelegatedServices":{"shape":"DelegatedServices"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListHandshakesForAccountRequest":{
       "type":"structure",
       "members":{
@@ -2209,6 +2375,17 @@
     "PolicyTypes":{
       "type":"list",
       "member":{"shape":"PolicyTypeSummary"}
+    },
+    "RegisterDelegatedAdministratorRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "ServicePrincipal"
+      ],
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "ServicePrincipal":{"shape":"ServicePrincipal"}
+      }
     },
     "RemoveAccountFromOrganizationRequest":{
       "type":"structure",

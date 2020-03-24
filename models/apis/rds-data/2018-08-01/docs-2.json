@@ -6,7 +6,7 @@
     "BeginTransaction": "<p>Starts a SQL transaction.</p> <pre><code> &lt;important&gt; &lt;p&gt;A transaction can run for a maximum of 24 hours. A transaction is terminated and rolled back automatically after 24 hours.&lt;/p&gt; &lt;p&gt;A transaction times out if no calls use its transaction ID in three minutes. If a transaction times out before it's committed, it's rolled back automatically.&lt;/p&gt; &lt;p&gt;DDL statements inside a transaction cause an implicit commit. We recommend that you run each DDL statement in a separate &lt;code&gt;ExecuteStatement&lt;/code&gt; call with &lt;code&gt;continueAfterTimeout&lt;/code&gt; enabled.&lt;/p&gt; &lt;/important&gt; </code></pre>",
     "CommitTransaction": "<p>Ends a SQL transaction started with the <code>BeginTransaction</code> operation and commits the changes.</p>",
     "ExecuteSql": "<p>Runs one or more SQL statements.</p> <important> <p>This operation is deprecated. Use the <code>BatchExecuteStatement</code> or <code>ExecuteStatement</code> operation.</p> </important>",
-    "ExecuteStatement": "<p>Runs a SQL statement against a database.</p> <important> <p>If a call isn't part of a transaction because it doesn't include the <code>transactionID</code> parameter, changes that result from the call are committed automatically.</p> </important> <p>The response size limit is 1 MB or 1,000 records. If the call returns more than 1 MB of response data or over 1,000 records, the call is terminated.</p>",
+    "ExecuteStatement": "<p>Runs a SQL statement against a database.</p> <important> <p>If a call isn't part of a transaction because it doesn't include the <code>transactionID</code> parameter, changes that result from the call are committed automatically.</p> </important> <p>The response size limit is 1 MB. If the call returns more than 1 MB of response data, the call is terminated.</p>",
     "RollbackTransaction": "<p>Performs a rollback of a transaction. Rolling back a transaction cancels its changes.</p>"
   },
   "shapes": {
@@ -347,13 +347,13 @@
     "SqlParameterSets": {
       "base": null,
       "refs": {
-        "BatchExecuteStatementRequest$parameterSets": "<p>The parameter set for the batch operation.</p> <p>The maximum number of parameters in a parameter set is 1,000.</p>"
+        "BatchExecuteStatementRequest$parameterSets": "<p>The parameter set for the batch operation.</p> <p>The SQL statement is executed as many times as the number of parameter sets provided. To execute a SQL statement with no parameters, use one of the following options:</p> <ul> <li> <p>Specify one or more empty parameter sets.</p> </li> <li> <p>Use the <code>ExecuteStatement</code> operation instead of the <code>BatchExecuteStatement</code> operation.</p> </li> </ul> <note> <p>Array parameters are not supported.</p> </note>"
       }
     },
     "SqlParametersList": {
       "base": null,
       "refs": {
-        "ExecuteStatementRequest$parameters": "<p>The parameters for the SQL statement.</p>",
+        "ExecuteStatementRequest$parameters": "<p>The parameters for the SQL statement.</p> <note> <p>Array parameters are not supported.</p> </note>",
         "SqlParameterSets$member": null
       }
     },
