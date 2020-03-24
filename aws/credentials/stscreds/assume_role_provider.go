@@ -120,7 +120,7 @@ type AssumeRoler interface {
 }
 
 type assumeRolerWithContext interface {
-	AssumeRoleWithContext(aws.Context, *sts.AssumeRoleInput, ...request.Option) (*sts.AssumeRoleOutput, error)
+	AssumeRoleWithContext(credentials.Context, *sts.AssumeRoleInput, ...request.Option) (*sts.AssumeRoleOutput, error)
 }
 
 // DefaultDuration is the default amount of time in minutes that the credentials
@@ -273,7 +273,7 @@ func (p *AssumeRoleProvider) Retrieve() (credentials.Value, error) {
 	return p.RetrieveWithContext(aws.BackgroundContext())
 }
 
-func (p *AssumeRoleProvider) RetrieveWithContext(ctx aws.Context) (credentials.Value, error) {
+func (p *AssumeRoleProvider) RetrieveWithContext(ctx credentials.Context) (credentials.Value, error) {
 	// Apply defaults where parameters are not set.
 	if p.RoleSessionName == "" {
 		// Try to work out a role name that will hopefully end up unique.
