@@ -112,6 +112,10 @@ type DetectiveAPI interface {
 	RejectInvitation(*detective.RejectInvitationInput) (*detective.RejectInvitationOutput, error)
 	RejectInvitationWithContext(aws.Context, *detective.RejectInvitationInput, ...request.Option) (*detective.RejectInvitationOutput, error)
 	RejectInvitationRequest(*detective.RejectInvitationInput) (*request.Request, *detective.RejectInvitationOutput)
+
+	StartMonitoringMember(*detective.StartMonitoringMemberInput) (*detective.StartMonitoringMemberOutput, error)
+	StartMonitoringMemberWithContext(aws.Context, *detective.StartMonitoringMemberInput, ...request.Option) (*detective.StartMonitoringMemberOutput, error)
+	StartMonitoringMemberRequest(*detective.StartMonitoringMemberInput) (*request.Request, *detective.StartMonitoringMemberOutput)
 }
 
 var _ DetectiveAPI = (*detective.Detective)(nil)

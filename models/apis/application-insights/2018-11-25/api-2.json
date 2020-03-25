@@ -425,6 +425,7 @@
         "LifeCycle":{"shape":"LifeCycle"},
         "OpsItemSNSTopicArn":{"shape":"OpsItemSNSTopicArn"},
         "OpsCenterEnabled":{"shape":"OpsCenterEnabled"},
+        "CWEMonitorEnabled":{"shape":"CWEMonitorEnabled"},
         "Remarks":{"shape":"Remarks"}
       }
     },
@@ -439,6 +440,22 @@
       },
       "exception":true
     },
+    "CWEMonitorEnabled":{"type":"boolean"},
+    "CloudWatchEventDetailType":{"type":"string"},
+    "CloudWatchEventId":{"type":"string"},
+    "CloudWatchEventSource":{
+      "type":"string",
+      "enum":[
+        "EC2",
+        "CODE_DEPLOY",
+        "HEALTH"
+      ]
+    },
+    "CodeDeployApplication":{"type":"string"},
+    "CodeDeployDeploymentGroup":{"type":"string"},
+    "CodeDeployDeploymentId":{"type":"string"},
+    "CodeDeployInstanceGroupId":{"type":"string"},
+    "CodeDeployState":{"type":"string"},
     "ComponentConfiguration":{
       "type":"string",
       "max":10000,
@@ -486,6 +503,7 @@
       "members":{
         "ResourceGroupName":{"shape":"ResourceGroupName"},
         "OpsCenterEnabled":{"shape":"OpsCenterEnabled"},
+        "CWEMonitorEnabled":{"shape":"CWEMonitorEnabled"},
         "OpsItemSNSTopicArn":{"shape":"OpsItemSNSTopicArn"},
         "Tags":{"shape":"TagList"}
       }
@@ -712,6 +730,7 @@
         "Problem":{"shape":"Problem"}
       }
     },
+    "Ec2State":{"type":"string"},
     "EndTime":{"type":"timestamp"},
     "ErrorMsg":{"type":"string"},
     "ExceptionMessage":{"type":"string"},
@@ -733,6 +752,11 @@
         "NOT_USEFUL"
       ]
     },
+    "HealthEventArn":{"type":"string"},
+    "HealthEventDescription":{"type":"string"},
+    "HealthEventTypeCategory":{"type":"string"},
+    "HealthEventTypeCode":{"type":"string"},
+    "HealthService":{"type":"string"},
     "Insights":{"type":"string"},
     "InternalServerException":{
       "type":"structure",
@@ -925,7 +949,28 @@
         "MetricNamespace":{"shape":"MetricNamespace"},
         "MetricName":{"shape":"MetricName"},
         "Unit":{"shape":"Unit"},
-        "Value":{"shape":"Value"}
+        "Value":{"shape":"Value"},
+        "CloudWatchEventId":{"shape":"CloudWatchEventId"},
+        "CloudWatchEventSource":{"shape":"CloudWatchEventSource"},
+        "CloudWatchEventDetailType":{"shape":"CloudWatchEventDetailType"},
+        "HealthEventArn":{"shape":"HealthEventArn"},
+        "HealthService":{"shape":"HealthService"},
+        "HealthEventTypeCode":{"shape":"HealthEventTypeCode"},
+        "HealthEventTypeCategory":{"shape":"HealthEventTypeCategory"},
+        "HealthEventDescription":{"shape":"HealthEventDescription"},
+        "CodeDeployDeploymentId":{"shape":"CodeDeployDeploymentId"},
+        "CodeDeployDeploymentGroup":{"shape":"CodeDeployDeploymentGroup"},
+        "CodeDeployState":{"shape":"CodeDeployState"},
+        "CodeDeployApplication":{"shape":"CodeDeployApplication"},
+        "CodeDeployInstanceGroupId":{"shape":"CodeDeployInstanceGroupId"},
+        "Ec2State":{"shape":"Ec2State"},
+        "XRayFaultPercent":{"shape":"XRayFaultPercent"},
+        "XRayThrottlePercent":{"shape":"XRayThrottlePercent"},
+        "XRayErrorPercent":{"shape":"XRayErrorPercent"},
+        "XRayRequestCount":{"shape":"XRayRequestCount"},
+        "XRayRequestAverageLatency":{"shape":"XRayRequestAverageLatency"},
+        "XRayNodeName":{"shape":"XRayNodeName"},
+        "XRayNodeType":{"shape":"XRayNodeType"}
       }
     },
     "ObservationId":{
@@ -1127,6 +1172,7 @@
       "members":{
         "ResourceGroupName":{"shape":"ResourceGroupName"},
         "OpsCenterEnabled":{"shape":"OpsCenterEnabled"},
+        "CWEMonitorEnabled":{"shape":"CWEMonitorEnabled"},
         "OpsItemSNSTopicArn":{"shape":"OpsItemSNSTopicArn"},
         "RemoveSNSTopic":{"shape":"RemoveSNSTopic"}
       }
@@ -1203,6 +1249,13 @@
       },
       "exception":true
     },
-    "Value":{"type":"double"}
+    "Value":{"type":"double"},
+    "XRayErrorPercent":{"type":"integer"},
+    "XRayFaultPercent":{"type":"integer"},
+    "XRayNodeName":{"type":"string"},
+    "XRayNodeType":{"type":"string"},
+    "XRayRequestAverageLatency":{"type":"long"},
+    "XRayRequestCount":{"type":"integer"},
+    "XRayThrottlePercent":{"type":"integer"}
   }
 }

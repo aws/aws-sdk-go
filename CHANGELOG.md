@@ -1,3 +1,16 @@
+Release v1.29.32 (2020-03-25)
+===
+
+### Service Client Updates
+* `service/application-insights`: Updates service API and documentation
+* `service/ce`: Updates service API and documentation
+* `service/detective`: Updates service API and documentation
+* `service/es`: Updates service API, documentation, and paginators
+  * Adding support for customer packages (dictionary files) to Amazon Elasticsearch Service
+* `service/managedblockchain`: Updates service API and documentation
+* `service/xray`: Updates service API and documentation
+  * GetTraceSummaries - Now provides additional root cause attribute ClientImpacting which indicates whether root cause impacted trace client.
+
 Release v1.29.31 (2020-03-24)
 ===
 
