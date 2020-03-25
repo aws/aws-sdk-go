@@ -2893,6 +2893,9 @@ func (s *EncryptionConfig) SetType(v string) *EncryptionConfig {
 type ErrorRootCause struct {
 	_ struct{} `type:"structure"`
 
+	// A flag that denotes that the root cause impacts the trace client.
+	ClientImpacting *bool `type:"boolean"`
+
 	// A list of services corresponding to an error. A service identifies a segment
 	// and it contains a name, account ID, type, and inferred flag.
 	Services []*ErrorRootCauseService `type:"list"`
@@ -2906,6 +2909,12 @@ func (s ErrorRootCause) String() string {
 // GoString returns the string representation
 func (s ErrorRootCause) GoString() string {
 	return s.String()
+}
+
+// SetClientImpacting sets the ClientImpacting field's value.
+func (s *ErrorRootCause) SetClientImpacting(v bool) *ErrorRootCause {
+	s.ClientImpacting = &v
+	return s
 }
 
 // SetServices sets the Services field's value.
@@ -3073,6 +3082,9 @@ func (s *ErrorStatistics) SetTotalCount(v int64) *ErrorStatistics {
 type FaultRootCause struct {
 	_ struct{} `type:"structure"`
 
+	// A flag that denotes that the root cause impacts the trace client.
+	ClientImpacting *bool `type:"boolean"`
+
 	// A list of corresponding services. A service identifies a segment and it contains
 	// a name, account ID, type, and inferred flag.
 	Services []*FaultRootCauseService `type:"list"`
@@ -3086,6 +3098,12 @@ func (s FaultRootCause) String() string {
 // GoString returns the string representation
 func (s FaultRootCause) GoString() string {
 	return s.String()
+}
+
+// SetClientImpacting sets the ClientImpacting field's value.
+func (s *FaultRootCause) SetClientImpacting(v bool) *FaultRootCause {
+	s.ClientImpacting = &v
+	return s
 }
 
 // SetServices sets the Services field's value.
@@ -4666,6 +4684,9 @@ func (s *ResourceARNDetail) SetARN(v string) *ResourceARNDetail {
 type ResponseTimeRootCause struct {
 	_ struct{} `type:"structure"`
 
+	// A flag that denotes that the root cause impacts the trace client.
+	ClientImpacting *bool `type:"boolean"`
+
 	// A list of corresponding services. A service identifies a segment and contains
 	// a name, account ID, type, and inferred flag.
 	Services []*ResponseTimeRootCauseService `type:"list"`
@@ -4679,6 +4700,12 @@ func (s ResponseTimeRootCause) String() string {
 // GoString returns the string representation
 func (s ResponseTimeRootCause) GoString() string {
 	return s.String()
+}
+
+// SetClientImpacting sets the ClientImpacting field's value.
+func (s *ResponseTimeRootCause) SetClientImpacting(v bool) *ResponseTimeRootCause {
+	s.ClientImpacting = &v
+	return s
 }
 
 // SetServices sets the Services field's value.

@@ -159,6 +159,13 @@ func (c *Detective) CreateGraphRequest(input *CreateGraphInput) (req *request.Re
 // as the master account. This operation is called by the account that is enabling
 // Detective.
 //
+// Before you try to enable Detective, make sure that your account has been
+// enrolled in Amazon GuardDuty for at least 48 hours. If you do not meet this
+// requirement, you cannot enable Detective. If you do meet the GuardDuty prerequisite,
+// then when you make the request to enable Detective, it checks whether your
+// data volume is within the Detective quota. If it exceeds the quota, then
+// you cannot enable Detective.
+//
 // The operation also enables Detective for the calling account in the currently
 // selected Region. It returns the ARN of the new behavior graph.
 //
@@ -183,6 +190,19 @@ func (c *Detective) CreateGraphRequest(input *CreateGraphInput) (req *request.Re
 //
 //   * InternalServerException
 //   The request was valid but failed because of a problem with the service.
+//
+//   * ServiceQuotaExceededException
+//   This request cannot be completed for one of the following reasons.
+//
+//      * The request would cause the number of member accounts in the behavior
+//      graph to exceed the maximum allowed. A behavior graph cannot have more
+//      than 1000 member accounts.
+//
+//      * The request would cause the data rate for the behavior graph to exceed
+//      the maximum allowed.
+//
+//      * Detective is unable to verify the data rate for the member account.
+//      This is usually because the member account is not enrolled in Amazon GuardDuty.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/CreateGraph
 func (c *Detective) CreateGraph(input *CreateGraphInput) (*CreateGraphOutput, error) {
@@ -290,9 +310,17 @@ func (c *Detective) CreateMembersRequest(input *CreateMembersInput) (req *reques
 //   The request parameters are invalid.
 //
 //   * ServiceQuotaExceededException
-//   This request would cause the number of member accounts in the behavior graph
-//   to exceed the maximum allowed. A behavior graph cannot have more than 1000
-//   member accounts.
+//   This request cannot be completed for one of the following reasons.
+//
+//      * The request would cause the number of member accounts in the behavior
+//      graph to exceed the maximum allowed. A behavior graph cannot have more
+//      than 1000 member accounts.
+//
+//      * The request would cause the data rate for the behavior graph to exceed
+//      the maximum allowed.
+//
+//      * Detective is unable to verify the data rate for the member account.
+//      This is usually because the member account is not enrolled in Amazon GuardDuty.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/CreateMembers
 func (c *Detective) CreateMembers(input *CreateMembersInput) (*CreateMembersOutput, error) {
@@ -1210,6 +1238,115 @@ func (c *Detective) RejectInvitation(input *RejectInvitationInput) (*RejectInvit
 // for more information on using Contexts.
 func (c *Detective) RejectInvitationWithContext(ctx aws.Context, input *RejectInvitationInput, opts ...request.Option) (*RejectInvitationOutput, error) {
 	req, out := c.RejectInvitationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartMonitoringMember = "StartMonitoringMember"
+
+// StartMonitoringMemberRequest generates a "aws/request.Request" representing the
+// client's request for the StartMonitoringMember operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartMonitoringMember for more information on using the StartMonitoringMember
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartMonitoringMemberRequest method.
+//    req, resp := client.StartMonitoringMemberRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/StartMonitoringMember
+func (c *Detective) StartMonitoringMemberRequest(input *StartMonitoringMemberInput) (req *request.Request, output *StartMonitoringMemberOutput) {
+	op := &request.Operation{
+		Name:       opStartMonitoringMember,
+		HTTPMethod: "POST",
+		HTTPPath:   "/graph/member/monitoringstate",
+	}
+
+	if input == nil {
+		input = &StartMonitoringMemberInput{}
+	}
+
+	output = &StartMonitoringMemberOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StartMonitoringMember API operation for Amazon Detective.
+//
+// Sends a request to enable data ingest for a member account that has a status
+// of ACCEPTED_BUT_DISABLED.
+//
+// For valid member accounts, the status is updated as follows.
+//
+//    * If Detective enabled the member account, then the new status is ENABLED.
+//
+//    * If Detective cannot enable the member account, the status remains ACCEPTED_BUT_DISABLED.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Detective's
+// API operation StartMonitoringMember for usage and error information.
+//
+// Returned Error Types:
+//   * ConflictException
+//   The request attempted an invalid action.
+//
+//   * InternalServerException
+//   The request was valid but failed because of a problem with the service.
+//
+//   * ResourceNotFoundException
+//   The request refers to a nonexistent resource.
+//
+//   * ServiceQuotaExceededException
+//   This request cannot be completed for one of the following reasons.
+//
+//      * The request would cause the number of member accounts in the behavior
+//      graph to exceed the maximum allowed. A behavior graph cannot have more
+//      than 1000 member accounts.
+//
+//      * The request would cause the data rate for the behavior graph to exceed
+//      the maximum allowed.
+//
+//      * Detective is unable to verify the data rate for the member account.
+//      This is usually because the member account is not enrolled in Amazon GuardDuty.
+//
+//   * ValidationException
+//   The request parameters are invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/detective-2018-10-26/StartMonitoringMember
+func (c *Detective) StartMonitoringMember(input *StartMonitoringMemberInput) (*StartMonitoringMemberOutput, error) {
+	req, out := c.StartMonitoringMemberRequest(input)
+	return out, req.Send()
+}
+
+// StartMonitoringMemberWithContext is the same as StartMonitoringMember with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartMonitoringMember for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Detective) StartMonitoringMemberWithContext(ctx aws.Context, input *StartMonitoringMemberInput, opts ...request.Option) (*StartMonitoringMemberOutput, error) {
+	req, out := c.StartMonitoringMemberRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2211,6 +2348,19 @@ type MemberDetail struct {
 	// The AWS account identifier for the member account.
 	AccountId *string `min:"12" type:"string"`
 
+	// For member accounts with a status of ACCEPTED_BUT_DISABLED, the reason that
+	// the member account is blocked.
+	//
+	// The reason can have one of the following values:
+	//
+	//    * VOLUME_TOO_HIGH - Indicates that adding the member account would cause
+	//    the data rate for the behavior graph to be too high.
+	//
+	//    * VOLUME_UNKNOWN - Indicates that Detective is unable to verify the data
+	//    rate for the member account. This is usually because the member account
+	//    is not enrolled in Amazon GuardDuty.
+	DisabledReason *string `type:"string" enum:"MemberDisabledReason"`
+
 	// The AWS account root user email address for the member account.
 	EmailAddress *string `min:"1" type:"string"`
 
@@ -2223,6 +2373,20 @@ type MemberDetail struct {
 
 	// The AWS account identifier of the master account for the behavior graph.
 	MasterId *string `min:"12" type:"string"`
+
+	// The member account data volume as a percentage of the maximum allowed data
+	// volume. 0 indicates 0 percent, and 100 indicates 100 percent.
+	//
+	// Note that this is not the percentage of the behavior graph data volume.
+	//
+	// For example, the data volume for the behavior graph is 80 GB per day. The
+	// maximum data volume is 160 GB per day. If the data volume for the member
+	// account is 40 GB per day, then PercentOfGraphUtilization is 25. It represents
+	// 25% of the maximum allowed data volume.
+	PercentOfGraphUtilization *float64 `type:"double"`
+
+	// The date and time when the graph utilization percentage was last updated.
+	PercentOfGraphUtilizationUpdatedTime *time.Time `type:"timestamp"`
 
 	// The current membership status of the member account. The status can have
 	// one of the following values:
@@ -2242,6 +2406,10 @@ type MemberDetail struct {
 	//
 	//    * ENABLED - Indicates that the member account accepted the invitation
 	//    to contribute to the behavior graph.
+	//
+	//    * ACCEPTED_BUT_DISABLED - Indicates that the member account accepted the
+	//    invitation, but is blocked from contributing data to the behavior graph.
+	//    DisabledReason provides the reason why the member account is blocked.
 	//
 	// Member accounts that declined an invitation or that were removed from the
 	// behavior graph are not included.
@@ -2268,6 +2436,12 @@ func (s *MemberDetail) SetAccountId(v string) *MemberDetail {
 	return s
 }
 
+// SetDisabledReason sets the DisabledReason field's value.
+func (s *MemberDetail) SetDisabledReason(v string) *MemberDetail {
+	s.DisabledReason = &v
+	return s
+}
+
 // SetEmailAddress sets the EmailAddress field's value.
 func (s *MemberDetail) SetEmailAddress(v string) *MemberDetail {
 	s.EmailAddress = &v
@@ -2289,6 +2463,18 @@ func (s *MemberDetail) SetInvitedTime(v time.Time) *MemberDetail {
 // SetMasterId sets the MasterId field's value.
 func (s *MemberDetail) SetMasterId(v string) *MemberDetail {
 	s.MasterId = &v
+	return s
+}
+
+// SetPercentOfGraphUtilization sets the PercentOfGraphUtilization field's value.
+func (s *MemberDetail) SetPercentOfGraphUtilization(v float64) *MemberDetail {
+	s.PercentOfGraphUtilization = &v
+	return s
+}
+
+// SetPercentOfGraphUtilizationUpdatedTime sets the PercentOfGraphUtilizationUpdatedTime field's value.
+func (s *MemberDetail) SetPercentOfGraphUtilizationUpdatedTime(v time.Time) *MemberDetail {
+	s.PercentOfGraphUtilizationUpdatedTime = &v
 	return s
 }
 
@@ -2415,9 +2601,17 @@ func (s ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// This request would cause the number of member accounts in the behavior graph
-// to exceed the maximum allowed. A behavior graph cannot have more than 1000
-// member accounts.
+// This request cannot be completed for one of the following reasons.
+//
+//    * The request would cause the number of member accounts in the behavior
+//    graph to exceed the maximum allowed. A behavior graph cannot have more
+//    than 1000 member accounts.
+//
+//    * The request would cause the data rate for the behavior graph to exceed
+//    the maximum allowed.
+//
+//    * Detective is unable to verify the data rate for the member account.
+//    This is usually because the member account is not enrolled in Amazon GuardDuty.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2471,6 +2665,77 @@ func (s ServiceQuotaExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type StartMonitoringMemberInput struct {
+	_ struct{} `type:"structure"`
+
+	// The account ID of the member account to try to enable.
+	//
+	// The account must be an invited member account with a status of ACCEPTED_BUT_DISABLED.
+	//
+	// AccountId is a required field
+	AccountId *string `min:"12" type:"string" required:"true"`
+
+	// The ARN of the behavior graph.
+	//
+	// GraphArn is a required field
+	GraphArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StartMonitoringMemberInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartMonitoringMemberInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartMonitoringMemberInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartMonitoringMemberInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
+	if s.GraphArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("GraphArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *StartMonitoringMemberInput) SetAccountId(v string) *StartMonitoringMemberInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetGraphArn sets the GraphArn field's value.
+func (s *StartMonitoringMemberInput) SetGraphArn(v string) *StartMonitoringMemberInput {
+	s.GraphArn = &v
+	return s
+}
+
+type StartMonitoringMemberOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s StartMonitoringMemberOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartMonitoringMemberOutput) GoString() string {
+	return s.String()
 }
 
 // Amazon Detective is currently in preview.
@@ -2566,6 +2831,14 @@ func (s ValidationException) RequestID() string {
 }
 
 const (
+	// MemberDisabledReasonVolumeTooHigh is a MemberDisabledReason enum value
+	MemberDisabledReasonVolumeTooHigh = "VOLUME_TOO_HIGH"
+
+	// MemberDisabledReasonVolumeUnknown is a MemberDisabledReason enum value
+	MemberDisabledReasonVolumeUnknown = "VOLUME_UNKNOWN"
+)
+
+const (
 	// MemberStatusInvited is a MemberStatus enum value
 	MemberStatusInvited = "INVITED"
 
@@ -2577,4 +2850,7 @@ const (
 
 	// MemberStatusEnabled is a MemberStatus enum value
 	MemberStatusEnabled = "ENABLED"
+
+	// MemberStatusAcceptedButDisabled is a MemberStatus enum value
+	MemberStatusAcceptedButDisabled = "ACCEPTED_BUT_DISABLED"
 )

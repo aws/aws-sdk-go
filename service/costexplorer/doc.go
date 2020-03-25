@@ -16,7 +16,7 @@
 //    * https://ce.us-east-1.amazonaws.com
 //
 // For information about costs associated with the Cost Explorer API, see AWS
-// Cost Management Pricing (https://aws.amazon.com/aws-cost-management/pricing/).
+// Cost Management Pricing (http://aws.amazon.com/aws-cost-management/pricing/).
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25 for more information on this service.
 //

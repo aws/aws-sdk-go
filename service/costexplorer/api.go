@@ -58,7 +58,7 @@ func (c *CostExplorer) CreateCostCategoryDefinitionRequest(input *CreateCostCate
 //
 //  Cost Category is in public beta for AWS Billing and Cost Management and
 //  is subject to change. Your use of Cost Categories is subject to the Beta
-//  Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+//  Service Participation terms of the AWS Service Terms (http://aws.amazon.com/service-terms/)
 //  (Section 1.10).
 //
 // Creates a new Cost Category with the requested name and rules.
@@ -147,7 +147,7 @@ func (c *CostExplorer) DeleteCostCategoryDefinitionRequest(input *DeleteCostCate
 //
 //  Cost Category is in public beta for AWS Billing and Cost Management and
 //  is subject to change. Your use of Cost Categories is subject to the Beta
-//  Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+//  Service Participation terms of the AWS Service Terms (http://aws.amazon.com/service-terms/)
 //  (Section 1.10).
 //
 // Deletes a Cost Category. Expenses from this month going forward will no longer
@@ -236,7 +236,7 @@ func (c *CostExplorer) DescribeCostCategoryDefinitionRequest(input *DescribeCost
 //
 //  Cost Category is in public beta for AWS Billing and Cost Management and
 //  is subject to change. Your use of Cost Categories is subject to the Beta
-//  Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+//  Service Participation terms of the AWS Service Terms (http://aws.amazon.com/service-terms/)
 //  (Section 1.10).
 //
 // Returns the name, ARN, rules, definition, and effective dates of a Cost Category
@@ -331,7 +331,7 @@ func (c *CostExplorer) GetCostAndUsageRequest(input *GetCostAndUsageInput) (req 
 // cost and usage-related metric, such as BlendedCosts or UsageQuantity, that
 // you want the request to return. You can also filter and group your data by
 // various dimensions, such as SERVICE or AZ, in a specific time range. For
-// a complete list of valid dimensions, see the GetDimensionValues (http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetDimensionValues.html)
+// a complete list of valid dimensions, see the GetDimensionValues (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetDimensionValues.html)
 // operation. Master accounts in an organization in AWS Organizations have access
 // to all member accounts.
 //
@@ -1759,7 +1759,7 @@ func (c *CostExplorer) ListCostCategoryDefinitionsRequest(input *ListCostCategor
 //
 //  Cost Category is in public beta for AWS Billing and Cost Management and
 //  is subject to change. Your use of Cost Categories is subject to the Beta
-//  Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+//  Service Participation terms of the AWS Service Terms (http://aws.amazon.com/service-terms/)
 //  (Section 1.10).
 //
 // Returns the name, ARN and effective dates of all Cost Categories defined
@@ -1849,7 +1849,7 @@ func (c *CostExplorer) UpdateCostCategoryDefinitionRequest(input *UpdateCostCate
 //
 //  Cost Category is in public beta for AWS Billing and Cost Management and
 //  is subject to change. Your use of Cost Categories is subject to the Beta
-//  Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+//  Service Participation terms of the AWS Service Terms (http://aws.amazon.com/service-terms/)
 //  (Section 1.10).
 //
 // Updates an existing Cost Category. Changes made to the Cost Category rules
@@ -1955,7 +1955,7 @@ func (s BillExpirationException) RequestID() string {
 //
 //  Cost Category is in public beta for AWS Billing and Cost Management and
 //  is subject to change. Your use of Cost Categories is subject to the Beta
-//  Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+//  Service Participation terms of the AWS Service Terms (http://aws.amazon.com/service-terms/)
 //  (Section 1.10).
 //
 // The structure of Cost Categories. This includes detailed metadata and the
@@ -2043,7 +2043,7 @@ func (s *CostCategory) SetRules(v []*CostCategoryRule) *CostCategory {
 //
 //  Cost Category is in public beta for AWS Billing and Cost Management and
 //  is subject to change. Your use of Cost Categories is subject to the Beta
-//  Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+//  Service Participation terms of the AWS Service Terms (http://aws.amazon.com/service-terms/)
 //  (Section 1.10).
 //
 // A reference to a Cost Category containing only enough information to identify
@@ -2104,7 +2104,7 @@ func (s *CostCategoryReference) SetName(v string) *CostCategoryReference {
 //
 //  Cost Category is in public beta for AWS Billing and Cost Management and
 //  is subject to change. Your use of Cost Categories is subject to the Beta
-//  Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+//  Service Participation terms of the AWS Service Terms (http://aws.amazon.com/service-terms/)
 //  (Section 1.10).
 //
 // Rules are processed in order. If there are multiple rules that match the
@@ -2113,7 +2113,7 @@ func (s *CostCategoryReference) SetName(v string) *CostCategoryReference {
 type CostCategoryRule struct {
 	_ struct{} `type:"structure"`
 
-	// An Expression (http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
+	// An Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
 	// object used to categorize costs. This supports dimensions, Tags, and nested
 	// expressions. Currently the only dimensions supported is LINKED_ACCOUNT.
 	//
@@ -2177,7 +2177,7 @@ func (s *CostCategoryRule) SetValue(v string) *CostCategoryRule {
 //
 //  Cost Category is in public beta for AWS Billing and Cost Management and
 //  is subject to change. Your use of Cost Categories is subject to the Beta
-//  Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+//  Service Participation terms of the AWS Service Terms (http://aws.amazon.com/service-terms/)
 //  (Section 1.10).
 //
 // The values that are available for Cost Categories.
@@ -2922,7 +2922,7 @@ type DescribeCostCategoryDefinitionOutput struct {
 	//
 	//  Cost Category is in public beta for AWS Billing and Cost Management and
 	//  is subject to change. Your use of Cost Categories is subject to the Beta
-	//  Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+	//  Service Participation terms of the AWS Service Terms (http://aws.amazon.com/service-terms/)
 	//  (Section 1.10).
 	//
 	// The structure of Cost Categories. This includes detailed metadata and the
@@ -3439,7 +3439,7 @@ type Expression struct {
 
 	//  Cost Category is in public beta for AWS Billing and Cost Management and
 	//  is subject to change. Your use of Cost Categories is subject to the Beta
-	//  Service Participation terms of the AWS Service Terms (https://aws.amazon.com/service-terms/)
+	//  Service Participation terms of the AWS Service Terms (http://aws.amazon.com/service-terms/)
 	//  (Section 1.10).
 	//
 	// The specific CostCategory used for Expression.
@@ -3591,7 +3591,7 @@ type GetCostAndUsageInput struct {
 	// Filters AWS costs by different dimensions. For example, you can specify SERVICE
 	// and LINKED_ACCOUNT and get the costs that are associated with that account's
 	// usage of that service. You can nest Expression objects to define any combination
-	// of dimension filters. For more information, see Expression (http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html).
+	// of dimension filters. For more information, see Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html).
 	Filter *Expression `type:"structure"`
 
 	// Sets the AWS cost granularity to MONTHLY or DAILY, or HOURLY. If Granularity
@@ -3610,7 +3610,7 @@ type GetCostAndUsageInput struct {
 
 	// Which metrics are returned in the query. For more information about blended
 	// and unblended rates, see Why does the "blended" annotation appear on some
-	// line items in my bill? (https://aws.amazon.com/premiumsupport/knowledge-center/blended-rates-intro/).
+	// line items in my bill? (http://aws.amazon.com/premiumsupport/knowledge-center/blended-rates-intro/).
 	//
 	// Valid values are AmortizedCost, BlendedCost, NetAmortizedCost, NetUnblendedCost,
 	// NormalizedUsageAmount, UnblendedCost, and UsageQuantity.
@@ -3937,7 +3937,7 @@ type GetCostForecastInput struct {
 
 	// Which metric Cost Explorer uses to create your forecast. For more information
 	// about blended and unblended rates, see Why does the "blended" annotation
-	// appear on some line items in my bill? (https://aws.amazon.com/premiumsupport/knowledge-center/blended-rates-intro/).
+	// appear on some line items in my bill? (http://aws.amazon.com/premiumsupport/knowledge-center/blended-rates-intro/).
 	//
 	// Valid values for a GetCostForecast call are the following:
 	//
@@ -4440,7 +4440,7 @@ type GetReservationCoverageInput struct {
 	//
 	//    * TENANCY
 	//
-	// GetReservationCoverage uses the same Expression (http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
+	// GetReservationCoverage uses the same Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
 	// object as the other operations, but only AND is supported among each dimension.
 	// You can nest only one level deep. If there are multiple values for a dimension,
 	// they are OR'd together.
@@ -4621,12 +4621,10 @@ type GetReservationPurchaseRecommendationInput struct {
 	// The account ID that is associated with the recommendation.
 	AccountId *string `type:"string"`
 
-	// The account scope that you want recommendations for. PAYER means that AWS
-	// includes the master account and any member accounts when it calculates its
-	// recommendations. LINKED means that AWS includes only member accounts when
-	// it calculates its recommendations.
-	//
-	// Valid values are PAYER and LINKED.
+	// The account scope that you want your recommendations for. Amazon Web Services
+	// calculates recommendations including the payer account and linked accounts
+	// if the value is set to PAYER. If the value is LINKED, recommendations are
+	// calculated for individual linked accounts only.
 	AccountScope *string `type:"string" enum:"AccountScope"`
 
 	// The number of previous days that you want AWS to consider when it calculates
@@ -4803,7 +4801,7 @@ type GetReservationUtilizationInput struct {
 	//
 	//    * TENANCY
 	//
-	// GetReservationUtilization uses the same Expression (http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
+	// GetReservationUtilization uses the same Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
 	// object as the other operations, but only AND is supported among each dimension,
 	// and nesting is supported up to only one level deep. If there are multiple
 	// values for a dimension, they are OR'd together.
@@ -5106,7 +5104,7 @@ type GetSavingsPlansCoverageInput struct {
 	//
 	//    * INSTANCE_FAMILY
 	//
-	// GetSavingsPlansCoverage uses the same Expression (http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
+	// GetSavingsPlansCoverage uses the same Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
 	// object as the other operations, but only AND is supported among each dimension.
 	// If there are multiple values for a dimension, they are OR'd together.
 	Filter *Expression `type:"structure"`
@@ -5258,6 +5256,24 @@ func (s *GetSavingsPlansCoverageOutput) SetSavingsPlansCoverages(v []*SavingsPla
 type GetSavingsPlansPurchaseRecommendationInput struct {
 	_ struct{} `type:"structure"`
 
+	// The account scope that you want your recommendations for. Amazon Web Services
+	// calculates recommendations including the payer account and linked accounts
+	// if the value is set to PAYER. If the value is LINKED, recommendations are
+	// calculated for individual linked accounts only.
+	AccountScope *string `type:"string" enum:"AccountScope"`
+
+	// You can filter your recommendations by Account ID with the LINKED_ACCOUNT
+	// dimension. To filter your recommendations by Account ID, specify Key as LINKED_ACCOUNT
+	// and Value as the comma-separated Acount ID(s) for which you want to see Savings
+	// Plans purchase recommendations.
+	//
+	// For GetSavingsPlansPurchaseRecommendation, the Filter does not include CostCategories
+	// or Tags. It only includes Dimensions. With Dimensions, Key must be LINKED_ACCOUNT
+	// and Value can be a single Account ID or multiple comma-separated Account
+	// IDs for which you want to see Savings Plans Purchase Recommendations. AND
+	// and OR operators are not supported.
+	Filter *Expression `type:"structure"`
+
 	// The lookback period used to generate the recommendation.
 	//
 	// LookbackPeriodInDays is a required field
@@ -5313,11 +5329,28 @@ func (s *GetSavingsPlansPurchaseRecommendationInput) Validate() error {
 	if s.TermInYears == nil {
 		invalidParams.Add(request.NewErrParamRequired("TermInYears"))
 	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountScope sets the AccountScope field's value.
+func (s *GetSavingsPlansPurchaseRecommendationInput) SetAccountScope(v string) *GetSavingsPlansPurchaseRecommendationInput {
+	s.AccountScope = &v
+	return s
+}
+
+// SetFilter sets the Filter field's value.
+func (s *GetSavingsPlansPurchaseRecommendationInput) SetFilter(v *Expression) *GetSavingsPlansPurchaseRecommendationInput {
+	s.Filter = v
+	return s
 }
 
 // SetLookbackPeriodInDays sets the LookbackPeriodInDays field's value.
@@ -5416,7 +5449,7 @@ type GetSavingsPlansUtilizationDetailsInput struct {
 	//
 	//    * INSTANCE_TYPE_FAMILY
 	//
-	// GetSavingsPlansUtilizationDetails uses the same Expression (http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
+	// GetSavingsPlansUtilizationDetails uses the same Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
 	// object as the other operations, but only AND is supported among each dimension.
 	Filter *Expression `type:"structure"`
 
@@ -5572,7 +5605,7 @@ type GetSavingsPlansUtilizationInput struct {
 	//
 	//    * INSTANCE_TYPE_FAMILY
 	//
-	// GetSavingsPlansUtilization uses the same Expression (http://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
+	// GetSavingsPlansUtilization uses the same Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
 	// object as the other operations, but only AND is supported among each dimension.
 	Filter *Expression `type:"structure"`
 
@@ -7653,6 +7686,12 @@ func (s *SavingsPlansDetails) SetRegion(v string) *SavingsPlansDetails {
 type SavingsPlansPurchaseRecommendation struct {
 	_ struct{} `type:"structure"`
 
+	// The account scope that you want your recommendations for. Amazon Web Services
+	// calculates recommendations including the payer account and linked accounts
+	// if the value is set to PAYER. If the value is LINKED, recommendations are
+	// calculated for individual linked accounts only.
+	AccountScope *string `type:"string" enum:"AccountScope"`
+
 	// The lookback period in days, used to generate the recommendation.
 	LookbackPeriodInDays *string `type:"string" enum:"LookbackPeriodInDays"`
 
@@ -7681,6 +7720,12 @@ func (s SavingsPlansPurchaseRecommendation) String() string {
 // GoString returns the string representation
 func (s SavingsPlansPurchaseRecommendation) GoString() string {
 	return s.String()
+}
+
+// SetAccountScope sets the AccountScope field's value.
+func (s *SavingsPlansPurchaseRecommendation) SetAccountScope(v string) *SavingsPlansPurchaseRecommendation {
+	s.AccountScope = &v
+	return s
 }
 
 // SetLookbackPeriodInDays sets the LookbackPeriodInDays field's value.

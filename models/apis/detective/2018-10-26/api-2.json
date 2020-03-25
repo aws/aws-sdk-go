@@ -35,7 +35,8 @@
       "output":{"shape":"CreateGraphResponse"},
       "errors":[
         {"shape":"ConflictException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "CreateMembers":{
@@ -160,6 +161,21 @@
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "StartMonitoringMember":{
+      "name":"StartMonitoringMember",
+      "http":{
+        "method":"POST",
+        "requestUri":"/graph/member/monitoringstate"
+      },
+      "input":{"shape":"StartMonitoringMemberRequest"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceQuotaExceededException"},
         {"shape":"ValidationException"}
       ]
     }
@@ -371,13 +387,23 @@
         "GraphArn":{"shape":"GraphArn"},
         "MasterId":{"shape":"AccountId"},
         "Status":{"shape":"MemberStatus"},
+        "DisabledReason":{"shape":"MemberDisabledReason"},
         "InvitedTime":{"shape":"Timestamp"},
-        "UpdatedTime":{"shape":"Timestamp"}
+        "UpdatedTime":{"shape":"Timestamp"},
+        "PercentOfGraphUtilization":{"shape":"Percentage"},
+        "PercentOfGraphUtilizationUpdatedTime":{"shape":"Timestamp"}
       }
     },
     "MemberDetailList":{
       "type":"list",
       "member":{"shape":"MemberDetail"}
+    },
+    "MemberDisabledReason":{
+      "type":"string",
+      "enum":[
+        "VOLUME_TOO_HIGH",
+        "VOLUME_UNKNOWN"
+      ]
     },
     "MemberResultsLimit":{
       "type":"integer",
@@ -391,7 +417,8 @@
         "INVITED",
         "VERIFICATION_IN_PROGRESS",
         "VERIFICATION_FAILED",
-        "ENABLED"
+        "ENABLED",
+        "ACCEPTED_BUT_DISABLED"
       ]
     },
     "PaginationToken":{
@@ -399,6 +426,7 @@
       "max":1024,
       "min":1
     },
+    "Percentage":{"type":"double"},
     "RejectInvitationRequest":{
       "type":"structure",
       "required":["GraphArn"],
@@ -421,6 +449,17 @@
       },
       "error":{"httpStatusCode":402},
       "exception":true
+    },
+    "StartMonitoringMemberRequest":{
+      "type":"structure",
+      "required":[
+        "GraphArn",
+        "AccountId"
+      ],
+      "members":{
+        "GraphArn":{"shape":"GraphArn"},
+        "AccountId":{"shape":"AccountId"}
+      }
     },
     "Timestamp":{"type":"timestamp"},
     "UnprocessedAccount":{

@@ -79,6 +79,62 @@
       "refs": {
       }
     },
+    "CWEMonitorEnabled": {
+      "base": null,
+      "refs": {
+        "ApplicationInfo$CWEMonitorEnabled": "<p> Indicates whether Application Insights can listen to CloudWatch events for the application resources, such as <code>instance terminated</code>, <code>failed deployment</code>, and others. </p>",
+        "CreateApplicationRequest$CWEMonitorEnabled": "<p> Indicates whether Application Insights can listen to CloudWatch events for the application resources, such as <code>instance terminated</code>, <code>failed deployment</code>, and others. </p>",
+        "UpdateApplicationRequest$CWEMonitorEnabled": "<p> Indicates whether Application Insights can listen to CloudWatch events for the application resources, such as <code>instance terminated</code>, <code>failed deployment</code>, and others. </p>"
+      }
+    },
+    "CloudWatchEventDetailType": {
+      "base": null,
+      "refs": {
+        "Observation$CloudWatchEventDetailType": "<p> The detail type of the CloudWatch Event-based observation, for example, <code>EC2 Instance State-change Notification</code>. </p>"
+      }
+    },
+    "CloudWatchEventId": {
+      "base": null,
+      "refs": {
+        "Observation$CloudWatchEventId": "<p> The ID of the CloudWatch Event-based observation related to the detected problem. </p>"
+      }
+    },
+    "CloudWatchEventSource": {
+      "base": null,
+      "refs": {
+        "Observation$CloudWatchEventSource": "<p> The source of the CloudWatch Event. </p>"
+      }
+    },
+    "CodeDeployApplication": {
+      "base": null,
+      "refs": {
+        "Observation$CodeDeployApplication": "<p> The CodeDeploy application to which the deployment belongs. </p>"
+      }
+    },
+    "CodeDeployDeploymentGroup": {
+      "base": null,
+      "refs": {
+        "Observation$CodeDeployDeploymentGroup": "<p> The deployment group to which the CodeDeploy deployment belongs. </p>"
+      }
+    },
+    "CodeDeployDeploymentId": {
+      "base": null,
+      "refs": {
+        "Observation$CodeDeployDeploymentId": "<p> The deployment ID of the CodeDeploy-based observation related to the detected problem. </p>"
+      }
+    },
+    "CodeDeployInstanceGroupId": {
+      "base": null,
+      "refs": {
+        "Observation$CodeDeployInstanceGroupId": "<p> The instance group to which the CodeDeploy instance belongs. </p>"
+      }
+    },
+    "CodeDeployState": {
+      "base": null,
+      "refs": {
+        "Observation$CodeDeployState": "<p> The status of the CodeDeploy deployment, for example <code>SUCCESS</code> or <code> FAILURE</code>. </p>"
+      }
+    },
     "ComponentConfiguration": {
       "base": null,
       "refs": {
@@ -289,6 +345,12 @@
       "refs": {
       }
     },
+    "Ec2State": {
+      "base": null,
+      "refs": {
+        "Observation$Ec2State": "<p> The state of the instance, such as <code>STOPPING</code> or <code>TERMINATING</code>. </p>"
+      }
+    },
     "EndTime": {
       "base": null,
       "refs": {
@@ -331,6 +393,36 @@
       "base": null,
       "refs": {
         "Feedback$value": null
+      }
+    },
+    "HealthEventArn": {
+      "base": null,
+      "refs": {
+        "Observation$HealthEventArn": "<p> The Amazon Resource Name (ARN) of the AWS Health Event-based observation.</p>"
+      }
+    },
+    "HealthEventDescription": {
+      "base": null,
+      "refs": {
+        "Observation$HealthEventDescription": "<p> The description of the AWS Health event provided by the service, such as Amazon EC2. </p>"
+      }
+    },
+    "HealthEventTypeCategory": {
+      "base": null,
+      "refs": {
+        "Observation$HealthEventTypeCategory": "<p> The category of the AWS Health event, such as <code>issue</code>. </p>"
+      }
+    },
+    "HealthEventTypeCode": {
+      "base": null,
+      "refs": {
+        "Observation$HealthEventTypeCode": "<p> The type of the AWS Health event, for example, <code>AWS_EC2_POWER_CONNECTIVITY_ISSUE</code>. </p>"
+      }
+    },
+    "HealthService": {
+      "base": null,
+      "refs": {
+        "Observation$HealthService": "<p> The service to which the AWS Health Event belongs, such as EC2. </p>"
       }
     },
     "Insights": {
@@ -860,6 +952,48 @@
       "base": null,
       "refs": {
         "Observation$Value": "<p>The value of the source observation metric.</p>"
+      }
+    },
+    "XRayErrorPercent": {
+      "base": null,
+      "refs": {
+        "Observation$XRayErrorPercent": "<p> The X-Ray request error percentage for this node. </p>"
+      }
+    },
+    "XRayFaultPercent": {
+      "base": null,
+      "refs": {
+        "Observation$XRayFaultPercent": "<p> The X-Ray request fault percentage for this node. </p>"
+      }
+    },
+    "XRayNodeName": {
+      "base": null,
+      "refs": {
+        "Observation$XRayNodeName": "<p> The name of the X-Ray node. </p>"
+      }
+    },
+    "XRayNodeType": {
+      "base": null,
+      "refs": {
+        "Observation$XRayNodeType": "<p> The type of the X-Ray node. </p>"
+      }
+    },
+    "XRayRequestAverageLatency": {
+      "base": null,
+      "refs": {
+        "Observation$XRayRequestAverageLatency": "<p> The X-Ray node request average latency for this node. </p>"
+      }
+    },
+    "XRayRequestCount": {
+      "base": null,
+      "refs": {
+        "Observation$XRayRequestCount": "<p> The X-Ray request count for this node. </p>"
+      }
+    },
+    "XRayThrottlePercent": {
+      "base": null,
+      "refs": {
+        "Observation$XRayThrottlePercent": "<p> The X-Ray request throttle percentage for this node. </p>"
       }
     }
   }

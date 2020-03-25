@@ -870,9 +870,11 @@
         "SavingsPlansType":{"shape":"SupportedSavingsPlansType"},
         "TermInYears":{"shape":"TermInYears"},
         "PaymentOption":{"shape":"PaymentOption"},
+        "AccountScope":{"shape":"AccountScope"},
         "NextPageToken":{"shape":"NextPageToken"},
         "PageSize":{"shape":"NonNegativeInteger"},
-        "LookbackPeriodInDays":{"shape":"LookbackPeriodInDays"}
+        "LookbackPeriodInDays":{"shape":"LookbackPeriodInDays"},
+        "Filter":{"shape":"Expression"}
       }
     },
     "GetSavingsPlansPurchaseRecommendationResponse":{
@@ -1387,6 +1389,7 @@
     "SavingsPlansPurchaseRecommendation":{
       "type":"structure",
       "members":{
+        "AccountScope":{"shape":"AccountScope"},
         "SavingsPlansType":{"shape":"SupportedSavingsPlansType"},
         "TermInYears":{"shape":"TermInYears"},
         "PaymentOption":{"shape":"PaymentOption"},

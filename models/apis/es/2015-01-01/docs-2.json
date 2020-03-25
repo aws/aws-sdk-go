@@ -3,22 +3,29 @@
   "service": "<fullname>Amazon Elasticsearch Configuration Service</fullname> <p>Use the Amazon Elasticsearch Configuration API to create, configure, and manage Elasticsearch domains.</p> <p>For sample code that uses the Configuration API, see the <a href=\"https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-configuration-samples.html\">Amazon Elasticsearch Service Developer Guide</a>. The guide also contains <a href=\"https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-request-signing.html\">sample code for sending signed HTTP requests to the Elasticsearch APIs</a>.</p> <p>The endpoint for configuration service requests is region-specific: es.<i>region</i>.amazonaws.com. For example, es.us-east-1.amazonaws.com. For a current list of supported regions and endpoints, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticsearch-service-regions\" target=\"_blank\">Regions and Endpoints</a>.</p>",
   "operations": {
     "AddTags": "<p>Attaches tags to an existing Elasticsearch domain. Tags are a set of case-sensitive key value pairs. An Elasticsearch domain may have up to 10 tags. See <a href=\"http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains.html#es-managedomains-awsresorcetagging\" target=\"_blank\"> Tagging Amazon Elasticsearch Service Domains for more information.</a></p>",
+    "AssociatePackage": "<p>Associates a package with an Amazon ES domain.</p>",
     "CancelElasticsearchServiceSoftwareUpdate": "<p>Cancels a scheduled service software update for an Amazon ES domain. You can only perform this operation before the <code>AutomatedUpdateDate</code> and when the <code>UpdateStatus</code> is in the <code>PENDING_UPDATE</code> state.</p>",
     "CreateElasticsearchDomain": "<p>Creates a new Elasticsearch domain. For more information, see <a href=\"http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomains\" target=\"_blank\">Creating Elasticsearch Domains</a> in the <i>Amazon Elasticsearch Service Developer Guide</i>.</p>",
+    "CreatePackage": "<p>Create a package for use with Amazon ES domains.</p>",
     "DeleteElasticsearchDomain": "<p>Permanently deletes the specified Elasticsearch domain and all of its data. Once a domain is deleted, it cannot be recovered.</p>",
     "DeleteElasticsearchServiceRole": "<p>Deletes the service-linked role that Elasticsearch Service uses to manage and maintain VPC domains. Role deletion will fail if any existing VPC domains use the role. You must delete any such Elasticsearch domains before deleting the role. See <a href=\"http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-vpc.html#es-enabling-slr\" target=\"_blank\">Deleting Elasticsearch Service Role</a> in <i>VPC Endpoints for Amazon Elasticsearch Service Domains</i>.</p>",
+    "DeletePackage": "<p>Delete the package.</p>",
     "DescribeElasticsearchDomain": "<p>Returns domain configuration information about the specified Elasticsearch domain, including the domain ID, domain endpoint, and domain ARN.</p>",
     "DescribeElasticsearchDomainConfig": "<p>Provides cluster configuration information about the specified Elasticsearch domain, such as the state, creation date, update version, and update date for cluster options.</p>",
     "DescribeElasticsearchDomains": "<p>Returns domain configuration information about the specified Elasticsearch domains, including the domain ID, domain endpoint, and domain ARN.</p>",
     "DescribeElasticsearchInstanceTypeLimits": "<p> Describe Elasticsearch Limits for a given InstanceType and ElasticsearchVersion. When modifying existing Domain, specify the <code> <a>DomainName</a> </code> to know what Limits are supported for modifying. </p>",
+    "DescribePackages": "<p>Describes all packages available to Amazon ES. Includes options for filtering, limiting the number of results, and pagination.</p>",
     "DescribeReservedElasticsearchInstanceOfferings": "<p>Lists available reserved Elasticsearch instance offerings.</p>",
     "DescribeReservedElasticsearchInstances": "<p>Returns information about reserved Elasticsearch instances for this account.</p>",
+    "DissociatePackage": "<p>Dissociates a package from the Amazon ES domain.</p>",
     "GetCompatibleElasticsearchVersions": "<p> Returns a list of upgrade compatible Elastisearch versions. You can optionally pass a <code> <a>DomainName</a> </code> to get all upgrade compatible Elasticsearch versions for that specific domain. </p>",
     "GetUpgradeHistory": "<p>Retrieves the complete history of the last 10 upgrades that were performed on the domain.</p>",
     "GetUpgradeStatus": "<p>Retrieves the latest status of the last upgrade or upgrade eligibility check that was performed on the domain.</p>",
     "ListDomainNames": "<p>Returns the name of all Elasticsearch domains owned by the current user's account. </p>",
+    "ListDomainsForPackage": "<p>Lists all Amazon ES domains associated with the package.</p>",
     "ListElasticsearchInstanceTypes": "<p>List all Elasticsearch instance types that are supported for given ElasticsearchVersion</p>",
     "ListElasticsearchVersions": "<p>List all supported Elasticsearch versions</p>",
+    "ListPackagesForDomain": "<p>Lists all packages associated with the Amazon ES domain.</p>",
     "ListTags": "<p>Returns all tags for the given Elasticsearch domain.</p>",
     "PurchaseReservedElasticsearchInstanceOffering": "<p>Allows you to purchase reserved Elasticsearch instances.</p>",
     "RemoveTags": "<p>Removes the specified set of tags from the specified Elasticsearch domain.</p>",
@@ -35,6 +42,11 @@
         "ListTagsRequest$ARN": "<p> Specify the <code>ARN</code> for the Elasticsearch domain to which the tags are attached that you want to view.</p>",
         "MasterUserOptions$MasterUserARN": "<p>ARN for the master user (if IAM is enabled).</p>",
         "RemoveTagsRequest$ARN": "<p>Specifies the <code>ARN</code> for the Elasticsearch domain from which you want to delete the specified tags.</p>"
+      }
+    },
+    "AccessDeniedException": {
+      "base": "<p>An error occurred because user does not have permissions to access the resource. Returns HTTP status code 403.</p>",
+      "refs": {
       }
     },
     "AccessPoliciesStatus": {
@@ -93,6 +105,16 @@
       "base": "<p> Specifies the status of advanced security options for the specified Elasticsearch domain.</p>",
       "refs": {
         "ElasticsearchDomainConfig$AdvancedSecurityOptions": "<p>Specifies <code>AdvancedSecurityOptions</code> for the domain. </p>"
+      }
+    },
+    "AssociatePackageRequest": {
+      "base": "<p> Container for request parameters to <code> <a>AssociatePackage</a> </code> operation. </p>",
+      "refs": {
+      }
+    },
+    "AssociatePackageResponse": {
+      "base": "<p> Container for response returned by <code> <a>AssociatePackage</a> </code> operation. </p>",
+      "refs": {
       }
     },
     "BaseException": {
@@ -170,6 +192,11 @@
         "CompatibleElasticsearchVersionsList$member": null
       }
     },
+    "ConflictException": {
+      "base": "<p>An error occurred because the client attempts to remove a resource that is currently in use. Returns HTTP status code 409.</p>",
+      "refs": {
+      }
+    },
     "CreateElasticsearchDomainRequest": {
       "base": null,
       "refs": {
@@ -180,6 +207,22 @@
       "refs": {
       }
     },
+    "CreatePackageRequest": {
+      "base": "<p> Container for request parameters to <code> <a>CreatePackage</a> </code> operation. </p>",
+      "refs": {
+      }
+    },
+    "CreatePackageResponse": {
+      "base": "<p> Container for response returned by <code> <a>CreatePackage</a> </code> operation. </p>",
+      "refs": {
+      }
+    },
+    "CreatedAt": {
+      "base": null,
+      "refs": {
+        "PackageDetails$CreatedAt": "<p>Timestamp which tells creation date of the package.</p>"
+      }
+    },
     "DeleteElasticsearchDomainRequest": {
       "base": "<p>Container for the parameters to the <code><a>DeleteElasticsearchDomain</a></code> operation. Specifies the name of the Elasticsearch domain that you want to delete.</p>",
       "refs": {
@@ -187,6 +230,16 @@
     },
     "DeleteElasticsearchDomainResponse": {
       "base": "<p>The result of a <code>DeleteElasticsearchDomain</code> request. Contains the status of the pending deletion, or no status if the domain and all of its resources have been deleted.</p>",
+      "refs": {
+      }
+    },
+    "DeletePackageRequest": {
+      "base": "<p> Container for request parameters to <code> <a>DeletePackage</a> </code> operation. </p>",
+      "refs": {
+      }
+    },
+    "DeletePackageResponse": {
+      "base": "<p> Container for response parameters to <code> <a>DeletePackage</a> </code> operation. </p>",
       "refs": {
       }
     },
@@ -242,6 +295,46 @@
       "refs": {
       }
     },
+    "DescribePackagesFilter": {
+      "base": "<p>Filter to apply in <code>DescribePackage</code> response.</p>",
+      "refs": {
+        "DescribePackagesFilterList$member": null
+      }
+    },
+    "DescribePackagesFilterList": {
+      "base": "<p>A list of <code>DescribePackagesFilter</code> to filter the packages included in a <code>DescribePackages</code> response.</p>",
+      "refs": {
+        "DescribePackagesRequest$Filters": "<p>Only returns packages that match the <code>DescribePackagesFilterList</code> values.</p>"
+      }
+    },
+    "DescribePackagesFilterName": {
+      "base": null,
+      "refs": {
+        "DescribePackagesFilter$Name": "<p>Any field from <code>PackageDetails</code>.</p>"
+      }
+    },
+    "DescribePackagesFilterValue": {
+      "base": null,
+      "refs": {
+        "DescribePackagesFilterValues$member": null
+      }
+    },
+    "DescribePackagesFilterValues": {
+      "base": null,
+      "refs": {
+        "DescribePackagesFilter$Value": "<p>A list of values for the specified field.</p>"
+      }
+    },
+    "DescribePackagesRequest": {
+      "base": "<p> Container for request parameters to <code> <a>DescribePackage</a> </code> operation. </p>",
+      "refs": {
+      }
+    },
+    "DescribePackagesResponse": {
+      "base": "<p> Container for response returned by <code> <a>DescribePackages</a> </code> operation. </p>",
+      "refs": {
+      }
+    },
     "DescribeReservedElasticsearchInstanceOfferingsRequest": {
       "base": "<p>Container for parameters to <code>DescribeReservedElasticsearchInstanceOfferings</code></p>",
       "refs": {
@@ -264,6 +357,16 @@
     },
     "DisabledOperationException": {
       "base": "<p>An error occured because the client wanted to access a not supported operation. Gives http status code of 409.</p>",
+      "refs": {
+      }
+    },
+    "DissociatePackageRequest": {
+      "base": "<p> Container for request parameters to <code> <a>DissociatePackage</a> </code> operation. </p>",
+      "refs": {
+      }
+    },
+    "DissociatePackageResponse": {
+      "base": "<p> Container for response returned by <code> <a>DissociatePackage</a> </code> operation. </p>",
       "refs": {
       }
     },
@@ -303,19 +406,23 @@
     "DomainName": {
       "base": "<p>The name of an Elasticsearch domain. Domain names are unique across the domains owned by an account within an AWS region. Domain names start with a letter or number and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).</p>",
       "refs": {
+        "AssociatePackageRequest$DomainName": "<p>Name of the domain that you want to associate the package with.</p>",
         "CancelElasticsearchServiceSoftwareUpdateRequest$DomainName": "<p>The name of the domain that you want to stop the latest service software update on.</p>",
         "CreateElasticsearchDomainRequest$DomainName": "<p>The name of the Elasticsearch domain that you are creating. Domain names are unique across the domains owned by an account within an AWS region. Domain names must start with a lowercase letter and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).</p>",
         "DeleteElasticsearchDomainRequest$DomainName": "<p>The name of the Elasticsearch domain that you want to permanently delete.</p>",
         "DescribeElasticsearchDomainConfigRequest$DomainName": "<p>The Elasticsearch domain that you want to get information about.</p>",
         "DescribeElasticsearchDomainRequest$DomainName": "<p>The name of the Elasticsearch domain for which you want information.</p>",
         "DescribeElasticsearchInstanceTypeLimitsRequest$DomainName": "<p> DomainName represents the name of the Domain that we are trying to modify. This should be present only if we are querying for Elasticsearch <code> <a>Limits</a> </code> for existing domain. </p>",
+        "DissociatePackageRequest$DomainName": "<p>Name of the domain that you want to associate the package with.</p>",
         "DomainInfo$DomainName": "<p> Specifies the <code>DomainName</code>.</p>",
         "DomainNameList$member": null,
+        "DomainPackageDetails$DomainName": "<p>Name of the domain you've associated a package with.</p>",
         "ElasticsearchDomainStatus$DomainName": "<p>The name of an Elasticsearch domain. Domain names are unique across the domains owned by an account within an AWS region. Domain names start with a letter or number and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).</p>",
         "GetCompatibleElasticsearchVersionsRequest$DomainName": null,
         "GetUpgradeHistoryRequest$DomainName": null,
         "GetUpgradeStatusRequest$DomainName": null,
         "ListElasticsearchInstanceTypesRequest$DomainName": "<p>DomainName represents the name of the Domain that we are trying to modify. This should be present only if we are querying for list of available Elasticsearch instance types when modifying existing domain. </p>",
+        "ListPackagesForDomainRequest$DomainName": "<p>The name of the domain for which you want to list associated packages.</p>",
         "StartElasticsearchServiceSoftwareUpdateRequest$DomainName": "<p>The name of the domain that you want to update to the latest service software.</p>",
         "UpdateElasticsearchDomainConfigRequest$DomainName": "<p>The name of the Elasticsearch domain that you are updating. </p>",
         "UpgradeElasticsearchDomainRequest$DomainName": null,
@@ -326,6 +433,27 @@
       "base": "<p>A list of Elasticsearch domain names.</p>",
       "refs": {
         "DescribeElasticsearchDomainsRequest$DomainNames": "<p>The Elasticsearch domains for which you want information.</p>"
+      }
+    },
+    "DomainPackageDetails": {
+      "base": "<p>Information on a package that is associated with a domain.</p>",
+      "refs": {
+        "AssociatePackageResponse$DomainPackageDetails": "<p><code>DomainPackageDetails</code></p>",
+        "DissociatePackageResponse$DomainPackageDetails": "<p><code>DomainPackageDetails</code></p>",
+        "DomainPackageDetailsList$member": null
+      }
+    },
+    "DomainPackageDetailsList": {
+      "base": null,
+      "refs": {
+        "ListDomainsForPackageResponse$DomainPackageDetailsList": "<p>List of <code>DomainPackageDetails</code> objects.</p>",
+        "ListPackagesForDomainResponse$DomainPackageDetailsList": "<p>List of <code>DomainPackageDetails</code> objects.</p>"
+      }
+    },
+    "DomainPackageStatus": {
+      "base": null,
+      "refs": {
+        "DomainPackageDetails$DomainPackageStatus": "<p>State of the association. Values are ASSOCIATING/ASSOCIATION_FAILED/ACTIVE/DISSOCIATING/DISSOCIATION_FAILED.</p>"
       }
     },
     "Double": {
@@ -461,10 +589,24 @@
         "ElasticsearchDomainStatus$Endpoints": "<p>Map containing the Elasticsearch domain endpoints used to submit index and search requests. Example <code>key, value</code>: <code>'vpc','vpc-endpoint-h2dsd34efgyghrtguk5gt6j2foh4.us-east-1.es.amazonaws.com'</code>.</p>"
       }
     },
+    "ErrorDetails": {
+      "base": null,
+      "refs": {
+        "DomainPackageDetails$ErrorDetails": "<p>Additional information if the package is in an error state. Null otherwise.</p>",
+        "PackageDetails$ErrorDetails": "<p>Additional information if the package is in an error state. Null otherwise.</p>"
+      }
+    },
     "ErrorMessage": {
       "base": null,
       "refs": {
-        "BaseException$message": "<p>A description of the error.</p>"
+        "BaseException$message": "<p>A description of the error.</p>",
+        "ErrorDetails$ErrorMessage": null
+      }
+    },
+    "ErrorType": {
+      "base": null,
+      "refs": {
+        "ErrorDetails$ErrorType": null
       }
     },
     "GUID": {
@@ -586,6 +728,12 @@
         "EncryptionAtRestOptions$KmsKeyId": "<p> Specifies the KMS Key ID for Encryption At Rest options.</p>"
       }
     },
+    "LastUpdated": {
+      "base": null,
+      "refs": {
+        "DomainPackageDetails$LastUpdated": "<p>Timestamp of the most-recent update to the association status.</p>"
+      }
+    },
     "LimitExceededException": {
       "base": "<p>An exception for trying to create more than allowed resources or sub-resources. Gives http status code of 409.</p>",
       "refs": {
@@ -628,6 +776,16 @@
       "refs": {
       }
     },
+    "ListDomainsForPackageRequest": {
+      "base": "<p> Container for request parameters to <code> <a>ListDomainsForPackage</a> </code> operation. </p>",
+      "refs": {
+      }
+    },
+    "ListDomainsForPackageResponse": {
+      "base": "<p> Container for response parameters to <code> <a>ListDomainsForPackage</a> </code> operation. </p>",
+      "refs": {
+      }
+    },
     "ListElasticsearchInstanceTypesRequest": {
       "base": "<p> Container for the parameters to the <code> <a>ListElasticsearchInstanceTypes</a> </code> operation. </p>",
       "refs": {
@@ -645,6 +803,16 @@
     },
     "ListElasticsearchVersionsResponse": {
       "base": "<p> Container for the parameters for response received from <code> <a>ListElasticsearchVersions</a> </code> operation. </p>",
+      "refs": {
+      }
+    },
+    "ListPackagesForDomainRequest": {
+      "base": "<p> Container for request parameters to <code> <a>ListPackagesForDomain</a> </code> operation. </p>",
+      "refs": {
+      }
+    },
+    "ListPackagesForDomainResponse": {
+      "base": "<p> Container for response parameters to <code> <a>ListPackagesForDomain</a> </code> operation. </p>",
       "refs": {
       }
     },
@@ -694,11 +862,14 @@
     "MaxResults": {
       "base": "<p> Set this value to limit the number of results returned. </p>",
       "refs": {
+        "DescribePackagesRequest$MaxResults": "<p>Limits results to a maximum number of packages.</p>",
         "DescribeReservedElasticsearchInstanceOfferingsRequest$MaxResults": "<p>Set this value to limit the number of results returned. If not specified, defaults to 100.</p>",
         "DescribeReservedElasticsearchInstancesRequest$MaxResults": "<p>Set this value to limit the number of results returned. If not specified, defaults to 100.</p>",
         "GetUpgradeHistoryRequest$MaxResults": null,
+        "ListDomainsForPackageRequest$MaxResults": "<p>Limits results to a maximum number of domains.</p>",
         "ListElasticsearchInstanceTypesRequest$MaxResults": "<p> Set this value to limit the number of results returned. Value provided must be greater than 30 else it wont be honored. </p>",
-        "ListElasticsearchVersionsRequest$MaxResults": "<p> Set this value to limit the number of results returned. Value provided must be greater than 10 else it wont be honored. </p>"
+        "ListElasticsearchVersionsRequest$MaxResults": "<p> Set this value to limit the number of results returned. Value provided must be greater than 10 else it wont be honored. </p>",
+        "ListPackagesForDomainRequest$MaxResults": "<p>Limits results to a maximum number of packages.</p>"
       }
     },
     "MaximumInstanceCount": {
@@ -716,14 +887,17 @@
     "NextToken": {
       "base": "<p> Paginated APIs accepts NextToken input to returns next page results and provides a NextToken output in the response which can be used by the client to retrieve more results. </p>",
       "refs": {
+        "DescribePackagesRequest$NextToken": "<p>Used for pagination. Only necessary if a previous API call includes a non-null NextToken value. If provided, returns results for the next page.</p>",
         "DescribeReservedElasticsearchInstanceOfferingsRequest$NextToken": "<p>NextToken should be sent in case if earlier API call produced result containing NextToken. It is used for pagination.</p>",
         "DescribeReservedElasticsearchInstanceOfferingsResponse$NextToken": "<p>Provides an identifier to allow retrieval of paginated results.</p>",
         "DescribeReservedElasticsearchInstancesRequest$NextToken": "<p>NextToken should be sent in case if earlier API call produced result containing NextToken. It is used for pagination.</p>",
         "GetUpgradeHistoryRequest$NextToken": null,
+        "ListDomainsForPackageRequest$NextToken": "<p>Used for pagination. Only necessary if a previous API call includes a non-null NextToken value. If provided, returns results for the next page.</p>",
         "ListElasticsearchInstanceTypesRequest$NextToken": "<p>NextToken should be sent in case if earlier API call produced result containing NextToken. It is used for pagination. </p>",
         "ListElasticsearchInstanceTypesResponse$NextToken": "<p>In case if there are more results available NextToken would be present, make further request to the same API with received NextToken to paginate remaining results. </p>",
         "ListElasticsearchVersionsRequest$NextToken": null,
-        "ListElasticsearchVersionsResponse$NextToken": null
+        "ListElasticsearchVersionsResponse$NextToken": null,
+        "ListPackagesForDomainRequest$NextToken": "<p>Used for pagination. Only necessary if a previous API call includes a non-null NextToken value. If provided, returns results for the next page.</p>"
       }
     },
     "NodeToNodeEncryptionOptions": {
@@ -764,6 +938,66 @@
         "VPCDerivedInfoStatus$Status": "<p> Specifies the status of the VPC options for the specified Elasticsearch domain.</p>"
       }
     },
+    "PackageDescription": {
+      "base": null,
+      "refs": {
+        "CreatePackageRequest$PackageDescription": "<p>Description of the package.</p>",
+        "PackageDetails$PackageDescription": "<p>User-specified description of the package.</p>"
+      }
+    },
+    "PackageDetails": {
+      "base": "<p>Basic information about a package.</p>",
+      "refs": {
+        "CreatePackageResponse$PackageDetails": "<p>Information about the package <code>PackageDetails</code>.</p>",
+        "DeletePackageResponse$PackageDetails": "<p><code>PackageDetails</code></p>",
+        "PackageDetailsList$member": null
+      }
+    },
+    "PackageDetailsList": {
+      "base": null,
+      "refs": {
+        "DescribePackagesResponse$PackageDetailsList": "<p>List of <code>PackageDetails</code> objects.</p>"
+      }
+    },
+    "PackageID": {
+      "base": null,
+      "refs": {
+        "AssociatePackageRequest$PackageID": "<p>Internal ID of the package that you want to associate with a domain. Use <code>DescribePackages</code> to find this value.</p>",
+        "DeletePackageRequest$PackageID": "<p>Internal ID of the package that you want to delete. Use <code>DescribePackages</code> to find this value.</p>",
+        "DissociatePackageRequest$PackageID": "<p>Internal ID of the package that you want to associate with a domain. Use <code>DescribePackages</code> to find this value.</p>",
+        "DomainPackageDetails$PackageID": "<p>Internal ID of the package.</p>",
+        "ListDomainsForPackageRequest$PackageID": "<p>The package for which to list domains.</p>",
+        "PackageDetails$PackageID": "<p>Internal ID of the package.</p>"
+      }
+    },
+    "PackageName": {
+      "base": null,
+      "refs": {
+        "CreatePackageRequest$PackageName": "<p>Unique identifier for the package.</p>",
+        "DomainPackageDetails$PackageName": "<p>User specified name of the package.</p>",
+        "PackageDetails$PackageName": "<p>User specified name of the package.</p>"
+      }
+    },
+    "PackageSource": {
+      "base": "<p>The S3 location for importing the package specified as <code>S3BucketName</code> and <code>S3Key</code></p>",
+      "refs": {
+        "CreatePackageRequest$PackageSource": "<p>The customer S3 location <code>PackageSource</code> for importing the package.</p>"
+      }
+    },
+    "PackageStatus": {
+      "base": null,
+      "refs": {
+        "PackageDetails$PackageStatus": "<p>Current state of the package. Values are COPYING/COPY_FAILED/AVAILABLE/DELETING/DELETE_FAILED</p>"
+      }
+    },
+    "PackageType": {
+      "base": null,
+      "refs": {
+        "CreatePackageRequest$PackageType": "<p>Type of package. Currently supports only TXT-DICTIONARY.</p>",
+        "DomainPackageDetails$PackageType": "<p>Currently supports only TXT-DICTIONARY.</p>",
+        "PackageDetails$PackageType": "<p>Currently supports only TXT-DICTIONARY.</p>"
+      }
+    },
     "Password": {
       "base": null,
       "refs": {
@@ -800,6 +1034,12 @@
       "refs": {
         "ReservedElasticsearchInstance$RecurringCharges": "<p>The charge to your account regardless of whether you are creating any domains using the instance offering.</p>",
         "ReservedElasticsearchInstanceOffering$RecurringCharges": "<p>The charge to your account regardless of whether you are creating any domains using the instance offering.</p>"
+      }
+    },
+    "ReferencePath": {
+      "base": null,
+      "refs": {
+        "DomainPackageDetails$ReferencePath": "<p>The relative path on Amazon ES nodes, which can be used as synonym_path when the package is synonym file.</p>"
       }
     },
     "RemoveTagsRequest": {
@@ -860,6 +1100,18 @@
       "base": null,
       "refs": {
         "CognitoOptions$RoleArn": "<p>Specifies the role ARN that provides Elasticsearch permissions for accessing Cognito resources.</p>"
+      }
+    },
+    "S3BucketName": {
+      "base": null,
+      "refs": {
+        "PackageSource$S3BucketName": "<p>Name of the bucket containing the package.</p>"
+      }
+    },
+    "S3Key": {
+      "base": null,
+      "refs": {
+        "PackageSource$S3Key": "<p>Key (file name) of the package.</p>"
       }
     },
     "ServiceSoftwareOptions": {
@@ -949,9 +1201,12 @@
       "refs": {
         "AdvancedOptions$key": null,
         "AdvancedOptions$value": null,
+        "DescribePackagesResponse$NextToken": null,
         "DescribeReservedElasticsearchInstancesResponse$NextToken": "<p>Provides an identifier to allow retrieval of paginated results.</p>",
         "EndpointsMap$key": null,
         "GetUpgradeHistoryResponse$NextToken": "<p>Pagination token that needs to be supplied to the next call to get the next page of results</p>",
+        "ListDomainsForPackageResponse$NextToken": null,
+        "ListPackagesForDomainResponse$NextToken": "<p>Pagination token that needs to be supplied to the next call to get the next page of results.</p>",
         "RecurringCharge$RecurringChargeFrequency": "<p>The frequency of the recurring charge.</p>",
         "ReservedElasticsearchInstance$ReservedElasticsearchInstanceOfferingId": "<p>The offering identifier.</p>",
         "ReservedElasticsearchInstance$CurrencyCode": "<p>The currency code for the reserved Elasticsearch instance offering.</p>",

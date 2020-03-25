@@ -29,9 +29,17 @@ const (
 	// ErrCodeServiceQuotaExceededException for service response error code
 	// "ServiceQuotaExceededException".
 	//
-	// This request would cause the number of member accounts in the behavior graph
-	// to exceed the maximum allowed. A behavior graph cannot have more than 1000
-	// member accounts.
+	// This request cannot be completed for one of the following reasons.
+	//
+	//    * The request would cause the number of member accounts in the behavior
+	//    graph to exceed the maximum allowed. A behavior graph cannot have more
+	//    than 1000 member accounts.
+	//
+	//    * The request would cause the data rate for the behavior graph to exceed
+	//    the maximum allowed.
+	//
+	//    * Detective is unable to verify the data rate for the member account.
+	//    This is usually because the member account is not enrolled in Amazon GuardDuty.
 	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
 
 	// ErrCodeValidationException for service response error code

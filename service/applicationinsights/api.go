@@ -2764,6 +2764,11 @@ func (s *ApplicationComponent) SetTier(v string) *ApplicationComponent {
 type ApplicationInfo struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates whether Application Insights can listen to CloudWatch events for
+	// the application resources, such as instance terminated, failed deployment,
+	// and others.
+	CWEMonitorEnabled *bool `type:"boolean"`
+
 	// The lifecycle of the application.
 	LifeCycle *string `type:"string"`
 
@@ -2795,6 +2800,12 @@ func (s ApplicationInfo) String() string {
 // GoString returns the string representation
 func (s ApplicationInfo) GoString() string {
 	return s.String()
+}
+
+// SetCWEMonitorEnabled sets the CWEMonitorEnabled field's value.
+func (s *ApplicationInfo) SetCWEMonitorEnabled(v bool) *ApplicationInfo {
+	s.CWEMonitorEnabled = &v
+	return s
 }
 
 // SetLifeCycle sets the LifeCycle field's value.
@@ -2957,6 +2968,11 @@ func (s *ConfigurationEvent) SetMonitoredResourceARN(v string) *ConfigurationEve
 type CreateApplicationInput struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates whether Application Insights can listen to CloudWatch events for
+	// the application resources, such as instance terminated, failed deployment,
+	// and others.
+	CWEMonitorEnabled *bool `type:"boolean"`
+
 	// When set to true, creates opsItems for any problems detected on an application.
 	OpsCenterEnabled *bool `type:"boolean"`
 
@@ -3012,6 +3028,12 @@ func (s *CreateApplicationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCWEMonitorEnabled sets the CWEMonitorEnabled field's value.
+func (s *CreateApplicationInput) SetCWEMonitorEnabled(v bool) *CreateApplicationInput {
+	s.CWEMonitorEnabled = &v
+	return s
 }
 
 // SetOpsCenterEnabled sets the OpsCenterEnabled field's value.
@@ -4960,8 +4982,54 @@ func (s *LogPattern) SetRank(v int64) *LogPattern {
 type Observation struct {
 	_ struct{} `type:"structure"`
 
+	// The detail type of the CloudWatch Event-based observation, for example, EC2
+	// Instance State-change Notification.
+	CloudWatchEventDetailType *string `type:"string"`
+
+	// The ID of the CloudWatch Event-based observation related to the detected
+	// problem.
+	CloudWatchEventId *string `type:"string"`
+
+	// The source of the CloudWatch Event.
+	CloudWatchEventSource *string `type:"string" enum:"CloudWatchEventSource"`
+
+	// The CodeDeploy application to which the deployment belongs.
+	CodeDeployApplication *string `type:"string"`
+
+	// The deployment group to which the CodeDeploy deployment belongs.
+	CodeDeployDeploymentGroup *string `type:"string"`
+
+	// The deployment ID of the CodeDeploy-based observation related to the detected
+	// problem.
+	CodeDeployDeploymentId *string `type:"string"`
+
+	// The instance group to which the CodeDeploy instance belongs.
+	CodeDeployInstanceGroupId *string `type:"string"`
+
+	// The status of the CodeDeploy deployment, for example SUCCESS or FAILURE.
+	CodeDeployState *string `type:"string"`
+
+	// The state of the instance, such as STOPPING or TERMINATING.
+	Ec2State *string `type:"string"`
+
 	// The time when the observation ended, in epoch seconds.
 	EndTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the AWS Health Event-based observation.
+	HealthEventArn *string `type:"string"`
+
+	// The description of the AWS Health event provided by the service, such as
+	// Amazon EC2.
+	HealthEventDescription *string `type:"string"`
+
+	// The category of the AWS Health event, such as issue.
+	HealthEventTypeCategory *string `type:"string"`
+
+	// The type of the AWS Health event, for example, AWS_EC2_POWER_CONNECTIVITY_ISSUE.
+	HealthEventTypeCode *string `type:"string"`
+
+	// The service to which the AWS Health Event belongs, such as EC2.
+	HealthService *string `type:"string"`
 
 	// The ID of the observation type.
 	Id *string `min:"38" type:"string"`
@@ -4999,6 +5067,27 @@ type Observation struct {
 
 	// The value of the source observation metric.
 	Value *float64 `type:"double"`
+
+	// The X-Ray request error percentage for this node.
+	XRayErrorPercent *int64 `type:"integer"`
+
+	// The X-Ray request fault percentage for this node.
+	XRayFaultPercent *int64 `type:"integer"`
+
+	// The name of the X-Ray node.
+	XRayNodeName *string `type:"string"`
+
+	// The type of the X-Ray node.
+	XRayNodeType *string `type:"string"`
+
+	// The X-Ray node request average latency for this node.
+	XRayRequestAverageLatency *int64 `type:"long"`
+
+	// The X-Ray request count for this node.
+	XRayRequestCount *int64 `type:"integer"`
+
+	// The X-Ray request throttle percentage for this node.
+	XRayThrottlePercent *int64 `type:"integer"`
 }
 
 // String returns the string representation
@@ -5011,9 +5100,93 @@ func (s Observation) GoString() string {
 	return s.String()
 }
 
+// SetCloudWatchEventDetailType sets the CloudWatchEventDetailType field's value.
+func (s *Observation) SetCloudWatchEventDetailType(v string) *Observation {
+	s.CloudWatchEventDetailType = &v
+	return s
+}
+
+// SetCloudWatchEventId sets the CloudWatchEventId field's value.
+func (s *Observation) SetCloudWatchEventId(v string) *Observation {
+	s.CloudWatchEventId = &v
+	return s
+}
+
+// SetCloudWatchEventSource sets the CloudWatchEventSource field's value.
+func (s *Observation) SetCloudWatchEventSource(v string) *Observation {
+	s.CloudWatchEventSource = &v
+	return s
+}
+
+// SetCodeDeployApplication sets the CodeDeployApplication field's value.
+func (s *Observation) SetCodeDeployApplication(v string) *Observation {
+	s.CodeDeployApplication = &v
+	return s
+}
+
+// SetCodeDeployDeploymentGroup sets the CodeDeployDeploymentGroup field's value.
+func (s *Observation) SetCodeDeployDeploymentGroup(v string) *Observation {
+	s.CodeDeployDeploymentGroup = &v
+	return s
+}
+
+// SetCodeDeployDeploymentId sets the CodeDeployDeploymentId field's value.
+func (s *Observation) SetCodeDeployDeploymentId(v string) *Observation {
+	s.CodeDeployDeploymentId = &v
+	return s
+}
+
+// SetCodeDeployInstanceGroupId sets the CodeDeployInstanceGroupId field's value.
+func (s *Observation) SetCodeDeployInstanceGroupId(v string) *Observation {
+	s.CodeDeployInstanceGroupId = &v
+	return s
+}
+
+// SetCodeDeployState sets the CodeDeployState field's value.
+func (s *Observation) SetCodeDeployState(v string) *Observation {
+	s.CodeDeployState = &v
+	return s
+}
+
+// SetEc2State sets the Ec2State field's value.
+func (s *Observation) SetEc2State(v string) *Observation {
+	s.Ec2State = &v
+	return s
+}
+
 // SetEndTime sets the EndTime field's value.
 func (s *Observation) SetEndTime(v time.Time) *Observation {
 	s.EndTime = &v
+	return s
+}
+
+// SetHealthEventArn sets the HealthEventArn field's value.
+func (s *Observation) SetHealthEventArn(v string) *Observation {
+	s.HealthEventArn = &v
+	return s
+}
+
+// SetHealthEventDescription sets the HealthEventDescription field's value.
+func (s *Observation) SetHealthEventDescription(v string) *Observation {
+	s.HealthEventDescription = &v
+	return s
+}
+
+// SetHealthEventTypeCategory sets the HealthEventTypeCategory field's value.
+func (s *Observation) SetHealthEventTypeCategory(v string) *Observation {
+	s.HealthEventTypeCategory = &v
+	return s
+}
+
+// SetHealthEventTypeCode sets the HealthEventTypeCode field's value.
+func (s *Observation) SetHealthEventTypeCode(v string) *Observation {
+	s.HealthEventTypeCode = &v
+	return s
+}
+
+// SetHealthService sets the HealthService field's value.
+func (s *Observation) SetHealthService(v string) *Observation {
+	s.HealthService = &v
 	return s
 }
 
@@ -5086,6 +5259,48 @@ func (s *Observation) SetUnit(v string) *Observation {
 // SetValue sets the Value field's value.
 func (s *Observation) SetValue(v float64) *Observation {
 	s.Value = &v
+	return s
+}
+
+// SetXRayErrorPercent sets the XRayErrorPercent field's value.
+func (s *Observation) SetXRayErrorPercent(v int64) *Observation {
+	s.XRayErrorPercent = &v
+	return s
+}
+
+// SetXRayFaultPercent sets the XRayFaultPercent field's value.
+func (s *Observation) SetXRayFaultPercent(v int64) *Observation {
+	s.XRayFaultPercent = &v
+	return s
+}
+
+// SetXRayNodeName sets the XRayNodeName field's value.
+func (s *Observation) SetXRayNodeName(v string) *Observation {
+	s.XRayNodeName = &v
+	return s
+}
+
+// SetXRayNodeType sets the XRayNodeType field's value.
+func (s *Observation) SetXRayNodeType(v string) *Observation {
+	s.XRayNodeType = &v
+	return s
+}
+
+// SetXRayRequestAverageLatency sets the XRayRequestAverageLatency field's value.
+func (s *Observation) SetXRayRequestAverageLatency(v int64) *Observation {
+	s.XRayRequestAverageLatency = &v
+	return s
+}
+
+// SetXRayRequestCount sets the XRayRequestCount field's value.
+func (s *Observation) SetXRayRequestCount(v int64) *Observation {
+	s.XRayRequestCount = &v
+	return s
+}
+
+// SetXRayThrottlePercent sets the XRayThrottlePercent field's value.
+func (s *Observation) SetXRayThrottlePercent(v int64) *Observation {
+	s.XRayThrottlePercent = &v
 	return s
 }
 
@@ -5685,6 +5900,11 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateApplicationInput struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates whether Application Insights can listen to CloudWatch events for
+	// the application resources, such as instance terminated, failed deployment,
+	// and others.
+	CWEMonitorEnabled *bool `type:"boolean"`
+
 	// When set to true, creates opsItems for any problems detected on an application.
 	OpsCenterEnabled *bool `type:"boolean"`
 
@@ -5728,6 +5948,12 @@ func (s *UpdateApplicationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCWEMonitorEnabled sets the CWEMonitorEnabled field's value.
+func (s *UpdateApplicationInput) SetCWEMonitorEnabled(v bool) *UpdateApplicationInput {
+	s.CWEMonitorEnabled = &v
+	return s
 }
 
 // SetOpsCenterEnabled sets the OpsCenterEnabled field's value.
@@ -6155,6 +6381,17 @@ func (s ValidationException) StatusCode() int {
 func (s ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
+
+const (
+	// CloudWatchEventSourceEc2 is a CloudWatchEventSource enum value
+	CloudWatchEventSourceEc2 = "EC2"
+
+	// CloudWatchEventSourceCodeDeploy is a CloudWatchEventSource enum value
+	CloudWatchEventSourceCodeDeploy = "CODE_DEPLOY"
+
+	// CloudWatchEventSourceHealth is a CloudWatchEventSource enum value
+	CloudWatchEventSourceHealth = "HEALTH"
+)
 
 const (
 	// ConfigurationEventResourceTypeCloudwatchAlarm is a ConfigurationEventResourceType enum value
