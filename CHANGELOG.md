@@ -1,3 +1,12 @@
+Release v1.29.33 (2020-03-26)
+===
+
+### Service Client Updates
+* `service/fsx`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * This release updates Amazon Augmented AI CreateFlowDefinition API and DescribeFlowDefinition response.
+* `service/securityhub`: Updates service API and documentation
+
 Release v1.29.32 (2020-03-25)
 ===
 

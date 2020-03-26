@@ -2690,6 +2690,7 @@
       ],
       "members":{
         "FlowDefinitionName":{"shape":"FlowDefinitionName"},
+        "HumanLoopRequestSource":{"shape":"HumanLoopRequestSource"},
         "HumanLoopActivationConfig":{"shape":"HumanLoopActivationConfig"},
         "HumanLoopConfig":{"shape":"HumanLoopConfig"},
         "OutputConfig":{"shape":"FlowDefinitionOutputConfig"},
@@ -3096,6 +3097,7 @@
     "CreationTime":{"type":"timestamp"},
     "CsvContentType":{
       "type":"string",
+      "max":256,
       "min":1,
       "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*\\/[a-zA-Z0-9](-*[a-zA-Z0-9.])*"
     },
@@ -3689,6 +3691,7 @@
         "FlowDefinitionName":{"shape":"FlowDefinitionName"},
         "FlowDefinitionStatus":{"shape":"FlowDefinitionStatus"},
         "CreationTime":{"shape":"Timestamp"},
+        "HumanLoopRequestSource":{"shape":"HumanLoopRequestSource"},
         "HumanLoopActivationConfig":{"shape":"HumanLoopActivationConfig"},
         "HumanLoopConfig":{"shape":"HumanLoopConfig"},
         "OutputConfig":{"shape":"FlowDefinitionOutputConfig"},
@@ -4650,8 +4653,7 @@
         "Initializing",
         "Active",
         "Failed",
-        "Deleting",
-        "Deleted"
+        "Deleting"
       ]
     },
     "FlowDefinitionSummaries":{
@@ -4781,12 +4783,8 @@
     },
     "HumanLoopActivationConfig":{
       "type":"structure",
-      "required":[
-        "HumanLoopRequestSource",
-        "HumanLoopActivationConditionsConfig"
-      ],
+      "required":["HumanLoopActivationConditionsConfig"],
       "members":{
-        "HumanLoopRequestSource":{"shape":"HumanLoopRequestSource"},
         "HumanLoopActivationConditionsConfig":{"shape":"HumanLoopActivationConditionsConfig"}
       }
     },
@@ -5257,6 +5255,7 @@
     },
     "JsonContentType":{
       "type":"string",
+      "max":256,
       "min":1,
       "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*\\/[a-zA-Z0-9](-*[a-zA-Z0-9.])*"
     },
@@ -6897,7 +6896,8 @@
         "LessThanOrEqualTo",
         "Contains",
         "Exists",
-        "NotExists"
+        "NotExists",
+        "In"
       ]
     },
     "OptionalDouble":{"type":"double"},
@@ -8110,6 +8110,7 @@
         "sbe_c",
         "qcs605",
         "qcs603",
+        "sitara_am57x",
         "amba_cv22"
       ]
     },

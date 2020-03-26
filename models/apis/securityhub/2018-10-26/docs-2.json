@@ -24,7 +24,7 @@
     "DisassociateFromMasterAccount": "<p>Disassociates the current Security Hub member account from the associated master account.</p>",
     "DisassociateMembers": "<p>Disassociates the specified member accounts from the associated master account.</p>",
     "EnableImportFindingsForProduct": "<p>Enables the integration of a partner product with Security Hub. Integrated products send findings to Security Hub.</p> <p>When you enable a product integration, a permission policy that grants permission for the product to send findings to Security Hub is applied.</p>",
-    "EnableSecurityHub": "<p>Enables Security Hub for your account in the current Region or the Region you specify in the request.</p> <p>When you enable Security Hub, you grant to Security Hub the permissions necessary to gather findings from AWS Config, Amazon GuardDuty, Amazon Inspector, and Amazon Macie.</p> <p>When you use the <code>EnableSecurityHub</code> operation to enable Security Hub, you also automatically enable the CIS AWS Foundations standard. You do not enable the Payment Card Industry Data Security Standard (PCI DSS) standard. To enable a standard, use the <code> <a>BatchEnableStandards</a> </code> operation. To disable a standard, use the <code> <a>BatchDisableStandards</a> </code> operation.</p> <p>To learn more, see <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-settingup.html\">Setting Up AWS Security Hub</a> in the <i>AWS Security Hub User Guide</i>.</p>",
+    "EnableSecurityHub": "<p>Enables Security Hub for your account in the current Region or the Region you specify in the request.</p> <p>When you enable Security Hub, you grant to Security Hub the permissions necessary to gather findings from other services that are integrated with Security Hub.</p> <p>When you use the <code>EnableSecurityHub</code> operation to enable Security Hub, you also automatically enable the CIS AWS Foundations standard. You do not enable the Payment Card Industry Data Security Standard (PCI DSS) standard. To not enable the CIS AWS Foundations standard, set <code>EnableDefaultStandards</code> to <code>false</code>.</p> <p>After you enable Security Hub, to enable a standard, use the <code> <a>BatchEnableStandards</a> </code> operation. To disable a standard, use the <code> <a>BatchDisableStandards</a> </code> operation.</p> <p>To learn more, see <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-settingup.html\">Setting Up AWS Security Hub</a> in the <i>AWS Security Hub User Guide</i>.</p>",
     "GetEnabledStandards": "<p>Returns a list of the standards that are currently enabled.</p>",
     "GetFindings": "<p>Returns a list of findings that match the specified criteria.</p>",
     "GetInsightResults": "<p>Lists the results of the Security Hub insight specified by the insight ARN.</p>",
@@ -594,7 +594,9 @@
         "AwsRdsDbInstanceDetails$IAMDatabaseAuthenticationEnabled": "<p>True if mapping of AWS Identity and Access Management (IAM) accounts to database accounts is enabled, and otherwise false.</p> <p>IAM database authentication can be enabled for the following database engines.</p> <ul> <li> <p>For MySQL 5.6, minor version 5.6.34 or higher</p> </li> <li> <p>For MySQL 5.7, minor version 5.7.16 or higher</p> </li> <li> <p>Aurora 5.6 or higher</p> </li> </ul>",
         "AwsRdsDbInstanceDetails$PubliclyAccessible": "<p>Specifies the accessibility options for the DB instance.</p> <p>A value of true specifies an Internet-facing instance with a publicly resolvable DNS name, which resolves to a public IP address.</p> <p>A value of false specifies an internal instance with a DNS name that resolves to a private IP address. </p>",
         "AwsRdsDbInstanceDetails$StorageEncrypted": "<p>Specifies whether the DB instance is encrypted.</p>",
-        "ListMembersRequest$OnlyAssociated": "<p>Specifies which member accounts to include in the response based on their relationship status with the master account. The default value is <code>TRUE</code>.</p> <p>If <code>OnlyAssociated</code> is set to <code>TRUE</code>, the response includes member accounts whose relationship status with the master is set to <code>ENABLED</code> or <code>DISABLED</code>.</p> <p>If <code>OnlyAssociated</code> is set to <code>FALSE</code>, the response includes all existing member accounts. </p>"
+        "EnableSecurityHubRequest$EnableDefaultStandards": "<p>Whether to enable the security standards that Security Hub has designated as automatically enabled. If you do not provide a value for <code>EnableDefaultStandards</code>, it is set to <code>true</code>. To not enable the automatically enabled standards, set <code>EnableDefaultStandards</code> to <code>false</code>.</p>",
+        "ListMembersRequest$OnlyAssociated": "<p>Specifies which member accounts to include in the response based on their relationship status with the master account. The default value is <code>TRUE</code>.</p> <p>If <code>OnlyAssociated</code> is set to <code>TRUE</code>, the response includes member accounts whose relationship status with the master is set to <code>ENABLED</code> or <code>DISABLED</code>.</p> <p>If <code>OnlyAssociated</code> is set to <code>FALSE</code>, the response includes all existing member accounts. </p>",
+        "Standard$EnabledByDefault": "<p>Whether the standard is enabled by default. When Security Hub is enabled from the console, if a standard is enabled by default, the check box for that standard is selected by default.</p> <p>When Security Hub is enabled using the <code>EnableSecurityHub</code> API operation, the standard is enabled by default unless <code>EnableDefaultStandards</code> is set to <code>false</code>.</p>"
       }
     },
     "CategoryList": {
@@ -944,7 +946,7 @@
       }
     },
     "ImportFindingsError": {
-      "base": "<p>Includes details of the list of the findings that cannot be imported.</p>",
+      "base": "<p>The list of the findings that cannot be imported. For each finding, the list provides the error.</p>",
       "refs": {
         "ImportFindingsErrorList$member": null
       }
@@ -1431,7 +1433,7 @@
         "CreateActionTargetRequest$Id": "<p>The ID for the custom action target.</p>",
         "CreateActionTargetResponse$ActionTargetArn": "<p>The ARN for the custom action target.</p>",
         "CreateInsightRequest$Name": "<p>The name of the custom insight to create.</p>",
-        "CreateInsightRequest$GroupByAttribute": "<p>The attribute used as the aggregator to group related findings for the insight.</p>",
+        "CreateInsightRequest$GroupByAttribute": "<p>The attribute used to group the findings for the insight. The grouping attribute identifies the type of item that the insight applies to. For example, if an insight is grouped by resource identifier, then the insight produces a list of resource identifiers.</p>",
         "CreateInsightResponse$InsightArn": "<p>The ARN of the insight created.</p>",
         "DateFilter$Start": "<p>A start date for the date filter.</p>",
         "DateFilter$End": "<p>An end date for the date filter.</p>",
@@ -1449,12 +1451,12 @@
         "FieldMap$key": null,
         "FieldMap$value": null,
         "GetInsightResultsRequest$InsightArn": "<p>The ARN of the insight for which to return results.</p>",
-        "ImportFindingsError$Id": "<p>The ID of the error made during the <code>BatchImportFindings</code> operation.</p>",
-        "ImportFindingsError$ErrorCode": "<p>The code of the error made during the <code>BatchImportFindings</code> operation.</p>",
-        "ImportFindingsError$ErrorMessage": "<p>The message of the error made during the <code>BatchImportFindings</code> operation.</p>",
+        "ImportFindingsError$Id": "<p>The identifier of the finding that could not be updated.</p>",
+        "ImportFindingsError$ErrorCode": "<p>The code of the error returned by the <code>BatchImportFindings</code> operation.</p>",
+        "ImportFindingsError$ErrorMessage": "<p>The message of the error returned by the <code>BatchImportFindings</code> operation.</p>",
         "Insight$InsightArn": "<p>The ARN of a Security Hub insight.</p>",
         "Insight$Name": "<p>The name of a Security Hub insight.</p>",
-        "Insight$GroupByAttribute": "<p>The attribute that the insight's findings are grouped by. This attribute is used as a findings aggregator for the purposes of viewing and managing multiple related findings under a single operand.</p>",
+        "Insight$GroupByAttribute": "<p>The grouping attribute for the insight's findings. Indicates how to group the matching findings, and identifies the type of item that the insight applies to. For example, if an insight is grouped by resource identifier, then the insight produces a list of resource identifiers.</p>",
         "InsightResultValue$GroupByAttributeValue": "<p>The value of the attribute that the findings are grouped by for the insight whose results are returned by the <code>GetInsightResults</code> operation.</p>",
         "InsightResults$InsightArn": "<p>The ARN of the insight whose results are returned by the <code>GetInsightResults</code> operation.</p>",
         "InsightResults$GroupByAttribute": "<p>The attribute that the findings are grouped by for the insight whose results are returned by the <code>GetInsightResults</code> operation.</p>",
