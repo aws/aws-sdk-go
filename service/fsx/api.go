@@ -293,8 +293,8 @@ func (c *FSx) CreateDataRepositoryTaskRequest(input *CreateDataRepositoryTaskInp
 // repository. A CreateDataRepositoryTask operation will fail if a data repository
 // is not linked to the FSx file system. To learn more about data repository
 // tasks, see Using Data Repository Tasks (https://docs.aws.amazon.com/fsx/latest/LustreGuide/data-repository-tasks.html).
-// To learn more about linking a data repository to your file system, see Step
-// 1: Create Your Amazon FSx for Lustre File System (https://docs.aws.amazon.com/fsx/latest/LustreGuide/getting-started-step1.html).
+// To learn more about linking a data repository to your file system, see Setting
+// the Export Prefix (https://docs.aws.amazon.com/fsx/latest/LustreGuide/export-data-repository.html#export-prefix).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2515,12 +2515,16 @@ type CreateDataRepositoryTaskInput struct {
 
 	// (Optional) The path or paths on the Amazon FSx file system to use when the
 	// data repository task is processed. The default path is the file system root
-	// directory.
+	// directory. The paths you provide need to be relative to the mount point of
+	// the file system. If the mount point is /mnt/fsx and /mnt/fsx/path1 is a directory
+	// or file on the file system you want to export, then the path to provide is
+	// path1. If a path that you provide isn't valid, the task fails.
 	Paths []*string `type:"list"`
 
 	// Defines whether or not Amazon FSx provides a CompletionReport once the task
 	// has completed. A CompletionReport provides a detailed report on the files
 	// that Amazon FSx processed that meet the criteria specified by the Scope parameter.
+	// For more information, see Working with Task Completion Reports (https://docs.aws.amazon.com/fsx/latest/LustreGuide/task-completion-report.html).
 	//
 	// Report is a required field
 	Report *CompletionReport `type:"structure" required:"true"`
@@ -2663,12 +2667,37 @@ type CreateFileSystemFromBackupInput struct {
 
 	// A list of IDs for the security groups that apply to the specified network
 	// interfaces created for file system access. These security groups apply to
-	// all network interfaces. This value isn't returned in later describe requests.
+	// all network interfaces. This value isn't returned in later DescribeFileSystem
+	// requests.
 	SecurityGroupIds []*string `type:"list"`
 
-	// A list of IDs for the subnets that the file system will be accessible from.
-	// Currently, you can specify only one subnet. The file server is also launched
-	// in that subnet's Availability Zone.
+	// Sets the storage type for the Windows file system you're creating from a
+	// backup. Valid values are SSD and HDD.
+	//
+	//    * Set to SSD to use solid state drive storage. Supported on all Windows
+	//    deployment types.
+	//
+	//    * Set to HDD to use hard disk drive storage. Supported on SINGLE_AZ_2
+	//    and MULTI_AZ_1 Windows file system deployment types.
+	//
+	// Default value is SSD.
+	//
+	// HDD and SSD storage types have different minimum storage capacity requirements.
+	// A restored file system's storage capacity is tied to the file system that
+	// was backed up. You can create a file system that uses HDD storage from a
+	// backup of a file system that used SSD storage only if the original SSD file
+	// system had a storage capacity of at least 2000 GiB.
+	StorageType *string `type:"string" enum:"StorageType"`
+
+	// Specifies the IDs of the subnets that the file system will be accessible
+	// from. For Windows MULTI_AZ_1 file system deployment types, provide exactly
+	// two subnet IDs, one for the preferred file server and one for the standby
+	// file server. You specify one of these subnets as the preferred subnet using
+	// the WindowsConfiguration > PreferredSubnetID property.
+	//
+	// For Windows SINGLE_AZ_1 and SINGLE_AZ_2 deployment types and Lustre file
+	// systems, provide exactly one subnet ID. The file server is launched in that
+	// subnet's Availability Zone.
 	//
 	// SubnetIds is a required field
 	SubnetIds []*string `type:"list" required:"true"`
@@ -2749,6 +2778,12 @@ func (s *CreateFileSystemFromBackupInput) SetSecurityGroupIds(v []*string) *Crea
 	return s
 }
 
+// SetStorageType sets the StorageType field's value.
+func (s *CreateFileSystemFromBackupInput) SetStorageType(v string) *CreateFileSystemFromBackupInput {
+	s.StorageType = &v
+	return s
+}
+
 // SetSubnetIds sets the SubnetIds field's value.
 func (s *CreateFileSystemFromBackupInput) SetSubnetIds(v []*string) *CreateFileSystemFromBackupInput {
 	s.SubnetIds = v
@@ -2814,8 +2849,7 @@ type CreateFileSystemInput struct {
 	// in the AWS Key Management Service API Reference.
 	KmsKeyId *string `min:"1" type:"string"`
 
-	// The Lustre configuration for the file system being created. This value is
-	// required if FileSystemType is set to LUSTRE.
+	// The Lustre configuration for the file system being created.
 	LustreConfiguration *CreateFileSystemLustreConfiguration `type:"structure"`
 
 	// A list of IDs specifying the security groups to apply to all network interfaces
@@ -2823,17 +2857,37 @@ type CreateFileSystemInput struct {
 	// to describe the file system.
 	SecurityGroupIds []*string `type:"list"`
 
-	// The storage capacity of the file system being created.
+	// Sets the storage capacity of the file system that you're creating.
 	//
-	// For Windows file systems, valid values are 32 GiB - 65,536 GiB.
+	// For Lustre file systems:
 	//
-	// For SCRATCH_1 Lustre file systems, valid values are 1,200, 2,400, 3,600,
-	// then continuing in increments of 3600 GiB. For SCRATCH_2 and PERSISTENT_1
-	// file systems, valid values are 1200, 2400, then continuing in increments
-	// of 2400 GiB.
+	//    * For SCRATCH_2 and PERSISTENT_1 deployment types, valid values are 1.2,
+	//    2.4, and increments of 2.4 TiB.
+	//
+	//    * For SCRATCH_1 deployment type, valid values are 1.2, 2.4, and increments
+	//    of 3.6 TiB.
+	//
+	// For Windows file systems:
+	//
+	//    * If StorageType=SSD, valid values are 32 GiB - 65,536 GiB (64 TiB).
+	//
+	//    * If StorageType=HDD, valid values are 2000 GiB - 65,536 GiB (64 TiB).
 	//
 	// StorageCapacity is a required field
 	StorageCapacity *int64 `type:"integer" required:"true"`
+
+	// Sets the storage type for the Amazon FSx for Windows file system you're creating.
+	// Valid values are SSD and HDD.
+	//
+	//    * Set to SSD to use solid state drive storage. SSD is supported on all
+	//    Windows deployment types.
+	//
+	//    * Set to HDD to use hard disk drive storage. HDD is supported on SINGLE_AZ_2
+	//    and MULTI_AZ_1 Windows file system deployment types.
+	//
+	// Default value is SSD. For more information, see Storage Type Options (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/optimize-fsx-tco.html#saz-maz-storage-type)
+	// in the Amazon FSx for Windows User Guide.
+	StorageType *string `type:"string" enum:"StorageType"`
 
 	// Specifies the IDs of the subnets that the file system will be accessible
 	// from. For Windows MULTI_AZ_1 file system deployment types, provide exactly
@@ -2841,9 +2895,9 @@ type CreateFileSystemInput struct {
 	// file server. You specify one of these subnets as the preferred subnet using
 	// the WindowsConfiguration > PreferredSubnetID property.
 	//
-	// For Windows SINGLE_AZ_1 file system deployment types and Lustre file systems,
-	// provide exactly one subnet ID. The file server is launched in that subnet's
-	// Availability Zone.
+	// For Windows SINGLE_AZ_1 and SINGLE_AZ_2 file system deployment types and
+	// Lustre file systems, provide exactly one subnet ID. The file server is launched
+	// in that subnet's Availability Zone.
 	//
 	// SubnetIds is a required field
 	SubnetIds []*string `type:"list" required:"true"`
@@ -2852,8 +2906,7 @@ type CreateFileSystemInput struct {
 	// Name tag appears in the console as the file system name.
 	Tags []*Tag `min:"1" type:"list"`
 
-	// The Microsoft Windows configuration for the file system being created. This
-	// value is required if FileSystemType is set to WINDOWS.
+	// The Microsoft Windows configuration for the file system being created.
 	WindowsConfiguration *CreateFileSystemWindowsConfiguration `type:"structure"`
 }
 
@@ -2951,6 +3004,12 @@ func (s *CreateFileSystemInput) SetStorageCapacity(v int64) *CreateFileSystemInp
 	return s
 }
 
+// SetStorageType sets the StorageType field's value.
+func (s *CreateFileSystemInput) SetStorageType(v string) *CreateFileSystemInput {
+	s.StorageType = &v
+	return s
+}
+
 // SetSubnetIds sets the SubnetIds field's value.
 func (s *CreateFileSystemInput) SetSubnetIds(v []*string) *CreateFileSystemInput {
 	s.SubnetIds = v
@@ -2969,8 +3028,7 @@ func (s *CreateFileSystemInput) SetWindowsConfiguration(v *CreateFileSystemWindo
 	return s
 }
 
-// The Lustre configuration for the file system being created. This value is
-// required if FileSystemType is set to LUSTRE.
+// The Lustre configuration for the file system being created.
 type CreateFileSystemLustreConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -3027,13 +3085,12 @@ type CreateFileSystemLustreConfiguration struct {
 	// MiB (500 GiB). Amazon S3 objects have a maximum size of 5 TB.
 	ImportedFileChunkSize *int64 `min:"1" type:"integer"`
 
-	// (Optional) For the PERSISTENT_1 deployment type, describes the amount of
-	// read and write throughput for each 1 tebibyte of storage, in MB/s/TiB. File
-	// system throughput capacity is calculated by multiplying ﬁle system storage
-	// capacity (TiB) by the PerUnitStorageThroughput (MB/s/TiB). For a 2.4 TiB
-	// ﬁle system, provisioning 50 MB/s/TiB of PerUnitStorageThroughput yields
-	// 120 MB/s of ﬁle system throughput. You pay for the amount of throughput
-	// that you provision. (Default = 200 MB/s/TiB)
+	// Required for the PERSISTENT_1 deployment type, describes the amount of read
+	// and write throughput for each 1 tebibyte of storage, in MB/s/TiB. File system
+	// throughput capacity is calculated by multiplying ﬁle system storage capacity
+	// (TiB) by the PerUnitStorageThroughput (MB/s/TiB). For a 2.4 TiB ﬁle system,
+	// provisioning 50 MB/s/TiB of PerUnitStorageThroughput yields 117 MB/s of ﬁle
+	// system throughput. You pay for the amount of throughput that you provision.
 	//
 	// Valid values are 50, 100, 200.
 	PerUnitStorageThroughput *int64 `min:"50" type:"integer"`
@@ -3169,13 +3226,17 @@ type CreateFileSystemWindowsConfiguration struct {
 	//    * MULTI_AZ_1 - Deploys a high availability file system that is configured
 	//    for Multi-AZ redundancy to tolerate temporary Availability Zone (AZ) unavailability.
 	//    You can only deploy a Multi-AZ file system in AWS Regions that have a
-	//    minimum of three Availability Zones.
+	//    minimum of three Availability Zones. Also supports HDD storage type
 	//
 	//    * SINGLE_AZ_1 - (Default) Choose to deploy a file system that is configured
 	//    for single AZ redundancy.
 	//
-	// To learn more about high availability Multi-AZ file systems, see High Availability
-	// for Amazon FSx for Windows File Server (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/high-availability-multiAZ.html).
+	//    * SINGLE_AZ_2 - The latest generation Single AZ file system. Specifies
+	//    a file system that is configured for single AZ redundancy and supports
+	//    HDD storage type.
+	//
+	// For more information, see Availability and Durability: Single-AZ and Multi-AZ
+	// File Systems (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/high-availability-multiAZ.html).
 	DeploymentType *string `type:"string" enum:"WindowsDeploymentType"`
 
 	// Required when DeploymentType is set to MULTI_AZ_1. This specifies the subnet
@@ -4516,9 +4577,21 @@ type FileSystem struct {
 	// The storage capacity of the file system in gigabytes (GB).
 	StorageCapacity *int64 `type:"integer"`
 
-	// The ID of the subnet to contain the endpoint for the file system. One and
-	// only one is supported. The file system is launched in the Availability Zone
-	// associated with this subnet.
+	// The storage type of the file system. Valid values are SSD and HDD. If set
+	// to SSD, the file system uses solid state drive storage. If set to HDD, the
+	// file system uses hard disk drive storage.
+	StorageType *string `type:"string" enum:"StorageType"`
+
+	// Specifies the IDs of the subnets that the file system is accessible from.
+	// For Windows MULTI_AZ_1 file system deployment type, there are two subnet
+	// IDs, one for the preferred file server and one for the standby file server.
+	// The preferred file server subnet identified in the PreferredSubnetID property.
+	// All other file systems have only one subnet ID.
+	//
+	// For Lustre file systems, and Single-AZ Windows file systems, this is the
+	// ID of the subnet that contains the endpoint for the file system. For MULTI_AZ_1
+	// Windows file systems, the endpoint for the file system is available in the
+	// PreferredSubnetID.
 	SubnetIds []*string `type:"list"`
 
 	// The tags to associate with the file system. For more information, see Tagging
@@ -4612,6 +4685,12 @@ func (s *FileSystem) SetResourceARN(v string) *FileSystem {
 // SetStorageCapacity sets the StorageCapacity field's value.
 func (s *FileSystem) SetStorageCapacity(v int64) *FileSystem {
 	s.StorageCapacity = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *FileSystem) SetStorageType(v string) *FileSystem {
+	s.StorageType = &v
 	return s
 }
 
@@ -6407,10 +6486,17 @@ type WindowsFileSystemConfiguration struct {
 	// Specifies the file system deployment type, valid values are the following:
 	//
 	//    * MULTI_AZ_1 - Specifies a high availability file system that is configured
-	//    for Multi-AZ redundancy to tolerate temporary Availability Zone (AZ) unavailability.
+	//    for Multi-AZ redundancy to tolerate temporary Availability Zone (AZ) unavailability,
+	//    and supports SSD and HDD storage.
 	//
 	//    * SINGLE_AZ_1 - (Default) Specifies a file system that is configured for
-	//    single AZ redundancy.
+	//    single AZ redundancy, only supports SSD storage.
+	//
+	//    * SINGLE_AZ_2 - Latest generation Single AZ file system. Specifies a file
+	//    system that is configured for single AZ redundancy and supports SSD and
+	//    HDD storage.
+	//
+	// For more information, see Single-AZ and Multi-AZ File Systems (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/high-availability-multiAZ.html).
 	DeploymentType *string `type:"string" enum:"WindowsDeploymentType"`
 
 	// The list of maintenance operations in progress for this file system.
@@ -6421,12 +6507,11 @@ type WindowsFileSystemConfiguration struct {
 	//
 	// Use this IP address when mounting the file system on Linux SMB clients or
 	// Windows SMB clients that are not joined to a Microsoft Active Directory.
-	// Applicable for both SINGLE_AZ_1 and MULTI_AZ_1 deployment types. This IP
-	// address is temporarily unavailable when the file system is undergoing maintenance.
+	// Applicable for all Windows file system deployment types. This IP address
+	// is temporarily unavailable when the file system is undergoing maintenance.
 	// For Linux and Windows SMB clients that are joined to an Active Directory,
-	// use the file system's DNSName instead. For more information and instruction
-	// on mapping and mounting file shares, see https://docs.aws.amazon.com/fsx/latest/WindowsGuide/accessing-file-shares.html
-	// (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/accessing-file-shares.html).
+	// use the file system's DNSName instead. For more information on mapping and
+	// mounting file shares, see Accessing File Shares (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/accessing-file-shares.html).
 	PreferredFileServerIp *string `min:"7" type:"string"`
 
 	// For MULTI_AZ_1 deployment types, it specifies the ID of the subnet where
@@ -6434,13 +6519,16 @@ type WindowsFileSystemConfiguration struct {
 	// in SubnetIds property. Amazon FSx serves traffic from this subnet except
 	// in the event of a failover to the secondary file server.
 	//
-	// For SINGLE_AZ_1 deployment types, this value is the same as that for SubnetIDs.
+	// For SINGLE_AZ_1 and SINGLE_AZ_2 deployment types, this value is the same
+	// as that for SubnetIDs. For more information, see Availability and Durability:
+	// Single-AZ and Multi-AZ File Systems (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/high-availability-multiAZ.html#single-multi-az-resources)
 	PreferredSubnetId *string `min:"15" type:"string"`
 
 	// For MULTI_AZ_1 deployment types, use this endpoint when performing administrative
 	// tasks on the file system using Amazon FSx Remote PowerShell.
 	//
-	// For SINGLE_AZ_1 deployment types, this is the DNS name of the file system.
+	// For SINGLE_AZ_1 and SINGLE_AZ_2 deployment types, this is the DNS name of
+	// the file system.
 	//
 	// This endpoint is temporarily unavailable when the file system is undergoing
 	// maintenance.
@@ -6703,10 +6791,22 @@ const (
 	ServiceLimitTotalUserInitiatedBackups = "TOTAL_USER_INITIATED_BACKUPS"
 )
 
+// The storage type for your Amazon FSx file system.
+const (
+	// StorageTypeSsd is a StorageType enum value
+	StorageTypeSsd = "SSD"
+
+	// StorageTypeHdd is a StorageType enum value
+	StorageTypeHdd = "HDD"
+)
+
 const (
 	// WindowsDeploymentTypeMultiAz1 is a WindowsDeploymentType enum value
 	WindowsDeploymentTypeMultiAz1 = "MULTI_AZ_1"
 
 	// WindowsDeploymentTypeSingleAz1 is a WindowsDeploymentType enum value
 	WindowsDeploymentTypeSingleAz1 = "SINGLE_AZ_1"
+
+	// WindowsDeploymentTypeSingleAz2 is a WindowsDeploymentType enum value
+	WindowsDeploymentTypeSingleAz2 = "SINGLE_AZ_2"
 )

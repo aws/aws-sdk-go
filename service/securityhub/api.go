@@ -2376,14 +2376,16 @@ func (c *SecurityHub) EnableSecurityHubRequest(input *EnableSecurityHubInput) (r
 // you specify in the request.
 //
 // When you enable Security Hub, you grant to Security Hub the permissions necessary
-// to gather findings from AWS Config, Amazon GuardDuty, Amazon Inspector, and
-// Amazon Macie.
+// to gather findings from other services that are integrated with Security
+// Hub.
 //
 // When you use the EnableSecurityHub operation to enable Security Hub, you
 // also automatically enable the CIS AWS Foundations standard. You do not enable
-// the Payment Card Industry Data Security Standard (PCI DSS) standard. To enable
-// a standard, use the BatchEnableStandards operation. To disable a standard,
-// use the BatchDisableStandards operation.
+// the Payment Card Industry Data Security Standard (PCI DSS) standard. To not
+// enable the CIS AWS Foundations standard, set EnableDefaultStandards to false.
+//
+// After you enable Security Hub, to enable a standard, use the BatchEnableStandards
+// operation. To disable a standard, use the BatchDisableStandards operation.
 //
 // To learn more, see Setting Up AWS Security Hub (https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-settingup.html)
 // in the AWS Security Hub User Guide.
@@ -9375,7 +9377,10 @@ type CreateInsightInput struct {
 	// Filters is a required field
 	Filters *AwsSecurityFindingFilters `type:"structure" required:"true"`
 
-	// The attribute used as the aggregator to group related findings for the insight.
+	// The attribute used to group the findings for the insight. The grouping attribute
+	// identifies the type of item that the insight applies to. For example, if
+	// an insight is grouped by resource identifier, then the insight produces a
+	// list of resource identifiers.
 	//
 	// GroupByAttribute is a required field
 	GroupByAttribute *string `type:"string" required:"true"`
@@ -10507,6 +10512,12 @@ func (s *EnableImportFindingsForProductOutput) SetProductSubscriptionArn(v strin
 type EnableSecurityHubInput struct {
 	_ struct{} `type:"structure"`
 
+	// Whether to enable the security standards that Security Hub has designated
+	// as automatically enabled. If you do not provide a value for EnableDefaultStandards,
+	// it is set to true. To not enable the automatically enabled standards, set
+	// EnableDefaultStandards to false.
+	EnableDefaultStandards *bool `type:"boolean"`
+
 	// The tags to add to the Hub resource when you enable Security Hub.
 	Tags map[string]*string `min:"1" type:"map"`
 }
@@ -10532,6 +10543,12 @@ func (s *EnableSecurityHubInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEnableDefaultStandards sets the EnableDefaultStandards field's value.
+func (s *EnableSecurityHubInput) SetEnableDefaultStandards(v bool) *EnableSecurityHubInput {
+	s.EnableDefaultStandards = &v
+	return s
 }
 
 // SetTags sets the Tags field's value.
@@ -11058,21 +11075,22 @@ func (s *GetMembersOutput) SetUnprocessedAccounts(v []*Result) *GetMembersOutput
 	return s
 }
 
-// Includes details of the list of the findings that cannot be imported.
+// The list of the findings that cannot be imported. For each finding, the list
+// provides the error.
 type ImportFindingsError struct {
 	_ struct{} `type:"structure"`
 
-	// The code of the error made during the BatchImportFindings operation.
+	// The code of the error returned by the BatchImportFindings operation.
 	//
 	// ErrorCode is a required field
 	ErrorCode *string `type:"string" required:"true"`
 
-	// The message of the error made during the BatchImportFindings operation.
+	// The message of the error returned by the BatchImportFindings operation.
 	//
 	// ErrorMessage is a required field
 	ErrorMessage *string `type:"string" required:"true"`
 
-	// The ID of the error made during the BatchImportFindings operation.
+	// The identifier of the finding that could not be updated.
 	//
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
@@ -11117,9 +11135,10 @@ type Insight struct {
 	// Filters is a required field
 	Filters *AwsSecurityFindingFilters `type:"structure" required:"true"`
 
-	// The attribute that the insight's findings are grouped by. This attribute
-	// is used as a findings aggregator for the purposes of viewing and managing
-	// multiple related findings under a single operand.
+	// The grouping attribute for the insight's findings. Indicates how to group
+	// the matching findings, and identifies the type of item that the insight applies
+	// to. For example, if an insight is grouped by resource identifier, then the
+	// insight produces a list of resource identifiers.
 	//
 	// GroupByAttribute is a required field
 	GroupByAttribute *string `type:"string" required:"true"`
@@ -13333,6 +13352,14 @@ type Standard struct {
 	// A description of the standard.
 	Description *string `type:"string"`
 
+	// Whether the standard is enabled by default. When Security Hub is enabled
+	// from the console, if a standard is enabled by default, the check box for
+	// that standard is selected by default.
+	//
+	// When Security Hub is enabled using the EnableSecurityHub API operation, the
+	// standard is enabled by default unless EnableDefaultStandards is set to false.
+	EnabledByDefault *bool `type:"boolean"`
+
 	// The name of the standard.
 	Name *string `type:"string"`
 
@@ -13353,6 +13380,12 @@ func (s Standard) GoString() string {
 // SetDescription sets the Description field's value.
 func (s *Standard) SetDescription(v string) *Standard {
 	s.Description = &v
+	return s
+}
+
+// SetEnabledByDefault sets the EnabledByDefault field's value.
+func (s *Standard) SetEnabledByDefault(v bool) *Standard {
+	s.EnabledByDefault = &v
 	return s
 }
 

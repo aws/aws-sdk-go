@@ -1809,7 +1809,8 @@
     "EnableSecurityHubRequest":{
       "type":"structure",
       "members":{
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "EnableDefaultStandards":{"shape":"Boolean"}
       }
     },
     "EnableSecurityHubResponse":{
@@ -2534,7 +2535,8 @@
       "members":{
         "StandardsArn":{"shape":"NonEmptyString"},
         "Name":{"shape":"NonEmptyString"},
-        "Description":{"shape":"NonEmptyString"}
+        "Description":{"shape":"NonEmptyString"},
+        "EnabledByDefault":{"shape":"Boolean"}
       }
     },
     "Standards":{

@@ -8,6 +8,7 @@
     "serviceFullName":"Amazon FSx",
     "serviceId":"FSx",
     "signatureVersion":"v4",
+    "signingName":"fsx",
     "targetPrefix":"AWSSimbaAPIService_v20180301",
     "uid":"fsx-2018-03-01"
   },
@@ -482,7 +483,8 @@
         "SubnetIds":{"shape":"SubnetIds"},
         "SecurityGroupIds":{"shape":"SecurityGroupIds"},
         "Tags":{"shape":"Tags"},
-        "WindowsConfiguration":{"shape":"CreateFileSystemWindowsConfiguration"}
+        "WindowsConfiguration":{"shape":"CreateFileSystemWindowsConfiguration"},
+        "StorageType":{"shape":"StorageType"}
       }
     },
     "CreateFileSystemFromBackupResponse":{
@@ -516,6 +518,7 @@
         },
         "FileSystemType":{"shape":"FileSystemType"},
         "StorageCapacity":{"shape":"StorageCapacity"},
+        "StorageType":{"shape":"StorageType"},
         "SubnetIds":{"shape":"SubnetIds"},
         "SecurityGroupIds":{"shape":"SecurityGroupIds"},
         "Tags":{"shape":"Tags"},
@@ -829,6 +832,7 @@
         "Lifecycle":{"shape":"FileSystemLifecycle"},
         "FailureDetails":{"shape":"FileSystemFailureDetails"},
         "StorageCapacity":{"shape":"StorageCapacity"},
+        "StorageType":{"shape":"StorageType"},
         "VpcId":{"shape":"VpcId"},
         "SubnetIds":{"shape":"SubnetIds"},
         "NetworkInterfaceIds":{"shape":"NetworkInterfaceIds"},
@@ -993,7 +997,7 @@
       "type":"string",
       "max":2048,
       "min":1,
-      "pattern":"^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89aAbB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}|arn:aws[a-z-]{0,7}:kms:[a-z]{2}-[a-z-]{4,}-\\d+:\\d{12}:(key|alias)\\/([a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89aAbB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}|[a-zA-Z0-9:\\/_-]+)|alias\\/[a-zA-Z0-9:\\/_-]+$"
+      "pattern":"^.{1,2048}$"
     },
     "LastUpdatedTime":{"type":"timestamp"},
     "ListTagsForResourceRequest":{
@@ -1115,7 +1119,7 @@
       "type":"string",
       "max":512,
       "min":8,
-      "pattern":"^arn:aws[a-z-]{0,7}:[A-Za-z0-9][A-za-z0-9_/.-]{0,62}:[A-za-z0-9_/.-]{0,63}:[A-za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-za-z0-9_/.-]{0,127}$"
+      "pattern":"^arn:(?=[^:]+:fsx:[^:]+:\\d{12}:)((|(?=[a-z0-9-.]{1,63})(?!\\d{1,3}(\\.\\d{1,3}){3})(?![^:]*-{2})(?![^:]*-\\.)(?![^:]*\\.-)[a-z0-9].*(?<!-)):){4}(?!/).{0,1024}$"
     },
     "ResourceDoesNotSupportTagging":{
       "type":"structure",
@@ -1203,6 +1207,13 @@
     "StorageCapacity":{
       "type":"integer",
       "min":0
+    },
+    "StorageType":{
+      "type":"string",
+      "enum":[
+        "SSD",
+        "HDD"
+      ]
     },
     "SubnetId":{
       "type":"string",
@@ -1348,7 +1359,8 @@
       "type":"string",
       "enum":[
         "MULTI_AZ_1",
-        "SINGLE_AZ_1"
+        "SINGLE_AZ_1",
+        "SINGLE_AZ_2"
       ]
     },
     "WindowsFileSystemConfiguration":{
