@@ -1,6 +1,6 @@
 # Example
 
-This is an example using the AWS SDK for Go to delete a ECR Repository.
+This is an example using the AWS SDK for Go to delete an ECR Repository.
 
 
 # Usage
