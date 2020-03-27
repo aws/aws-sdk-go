@@ -143,7 +143,7 @@ const (
 
 	// DefaultBufSize limits buffer size from growing to an enormous
 	// amount due to a faulty process.
-	DefaultBufSize = int(8 * sdkio.KibiByte)
+	DefaultBufSize = int(16 * sdkio.KibiByte)
 
 	// DefaultTimeout default limit on time a process can run.
 	DefaultTimeout = time.Duration(1) * time.Minute
