@@ -66,7 +66,7 @@
       }
     },
     "AttributeFilter": {
-      "base": "<p>Provides filtering the query results based on document attributes.</p>",
+      "base": "<p>Provides filtering the query results based on document attributes.</p> <p>When you use the <code>AndAllFilters</code> or <code>OrAllFilters</code>, filters you can use a total of 3 layers. For example, you can use:</p> <ol> <li> <p> <code>&lt;AndAllFilters&gt;</code> </p> </li> <li> <p> <code> &lt;OrAllFilters&gt;</code> </p> </li> <li> <p> <code> &lt;EqualTo&gt;</code> </p> </li> </ol>",
       "refs": {
         "AttributeFilter$NotFilter": "<p>Performs a logical <code>NOT</code> operation on all supplied filters.</p>",
         "AttributeFilterList$member": null,
@@ -127,7 +127,7 @@
     "Blob": {
       "base": null,
       "refs": {
-        "Document$Blob": "<p>The contents of the document as a base-64 encoded string.</p>"
+        "Document$Blob": "<p>The contents of the document. </p> <p>Documents passed to the <code>Blob</code> parameter must be base64 encoded. Your code might not need to encode the document file bytes if you're using an AWS SDK to call Amazon Kendra operations. If you are calling the Amazon Kendra endpoint directly using REST, you must base64 encode the contents before sending.</p>"
       }
     },
     "Boolean": {
@@ -137,7 +137,8 @@
         "Search$Facetable": "<p>Indicates that the field can be used to create search facets, a count of results for each value in the field. The default is <code>false</code> .</p>",
         "Search$Searchable": "<p>Determines whether the field is used in the search. If the <code>Searchable</code> field is <code>true</code>, you can use relevance tuning to manually tune how Amazon Kendra weights the field in the search. The default is <code>true</code> for string fields and <code>false</code> for number and date fields.</p>",
         "Search$Displayable": "<p>Determines whether the field is returned in the query response. The default is <code>true</code>.</p>",
-        "SharePointConfiguration$CrawlAttachments": "<p> <code>TRUE</code> to include attachments to documents stored in your Microsoft SharePoint site in the index; otherwise, <code>FALSE</code>.</p>"
+        "SharePointConfiguration$CrawlAttachments": "<p> <code>TRUE</code> to include attachments to documents stored in your Microsoft SharePoint site in the index; otherwise, <code>FALSE</code>.</p>",
+        "SharePointConfiguration$UseChangeLog": "<p>Set to <code>TRUE</code> to use the Microsoft SharePoint change log to determine the documents that need to be updated in the index. Depending on the size of the SharePoint change log, it may take longer for Amazon Kendra to use the change log than it takes it to determine the changed documents using the Amazon Kendra document crawler.</p>"
       }
     },
     "ChangeDetectingColumns": {
@@ -156,6 +157,12 @@
       "base": null,
       "refs": {
         "SubmitFeedbackRequest$ClickFeedbackItems": "<p>Tells Amazon Kendra that a particular search result link was chosen by the user. </p>"
+      }
+    },
+    "ClientTokenName": {
+      "base": null,
+      "refs": {
+        "CreateIndexRequest$ClientToken": "<p>A token that you provide to identify the request to create an index. Multiple calls to the <code>CreateIndex</code> operation with the same client token will create only one index.”</p>"
       }
     },
     "ColumnConfiguration": {
@@ -259,7 +266,9 @@
       "base": null,
       "refs": {
         "S3DataSourceConfiguration$InclusionPrefixes": "<p>A list of S3 prefixes for the documents that should be included in the index.</p>",
-        "S3DataSourceConfiguration$ExclusionPatterns": "<p>A list of glob patterns for documents that should not be indexed. If a document that matches an inclusion prefix also matches an exclusion pattern, the document is not indexed.</p> <p>For more information about glob patterns, see <a href=\"http://wikipedia.org/wiki/Glob_%28programming%29\">glob (programming)</a> in <i>Wikipedia</i>.</p>"
+        "S3DataSourceConfiguration$ExclusionPatterns": "<p>A list of glob patterns for documents that should not be indexed. If a document that matches an inclusion prefix also matches an exclusion pattern, the document is not indexed.</p> <p>For more information about glob patterns, see <a href=\"http://wikipedia.org/wiki/Glob_%28programming%29\">glob (programming)</a> in <i>Wikipedia</i>.</p>",
+        "SharePointConfiguration$InclusionPatterns": "<p>A list of regular expression patterns. Documents that match the patterns are included in the index. Documents that don't match the patterns are excluded from the index. If a document matches both an inclusion pattern and an exclusion pattern, the document is not included in the index.</p> <p>The regex is applied to the display URL of the SharePoint document.</p>",
+        "SharePointConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns. Documents that match the patterns are excluded from the index. Documents that don't match the patterns are included in the index. If a document matches both an exclusion pattern and an inclusion pattern, the document is not included in the index.</p> <p>The regex is applied to the display URL of the SharePoint document.</p>"
       }
     },
     "DataSourceInclusionsExclusionsStringsMember": {

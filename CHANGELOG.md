@@ -1,3 +1,13 @@
+Release v1.29.34 (2020-03-27)
+===
+
+### Service Client Updates
+* `service/globalaccelerator`: Updates service API and documentation
+* `service/kendra`: Updates service API and documentation
+  * The Amazon Kendra Microsoft SharePoint data source now supports include and exclude regular expressions and change log features. Include and exclude regular expressions enable you to  provide a list of regular expressions to match the display URL of SharePoint documents to either include or exclude documents respectively. When you enable the changelog feature it enables Amazon Kendra to use the SharePoint change log to determine which documents to update in the index.
+* `service/servicecatalog`: Updates service documentation
+  * Added "LocalRoleName" as an acceptable Parameter for Launch type in CreateConstraint and UpdateConstraint APIs
+
 Release v1.29.33 (2020-03-26)
 ===
 

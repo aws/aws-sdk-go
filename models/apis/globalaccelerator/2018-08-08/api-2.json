@@ -472,8 +472,20 @@
       "type":"structure",
       "members":{
         "Cidr":{"shape":"GenericString"},
-        "State":{"shape":"ByoipCidrState"}
+        "State":{"shape":"ByoipCidrState"},
+        "Events":{"shape":"ByoipCidrEvents"}
       }
+    },
+    "ByoipCidrEvent":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"GenericString"},
+        "Timestamp":{"shape":"Timestamp"}
+      }
+    },
+    "ByoipCidrEvents":{
+      "type":"list",
+      "member":{"shape":"ByoipCidrEvent"}
     },
     "ByoipCidrNotFoundException":{
       "type":"structure",

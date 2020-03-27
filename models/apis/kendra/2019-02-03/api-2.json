@@ -100,6 +100,7 @@
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -501,6 +502,11 @@
       "type":"list",
       "member":{"shape":"ClickFeedback"}
     },
+    "ClientTokenName":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
     "ColumnConfiguration":{
       "type":"structure",
       "required":[
@@ -614,7 +620,11 @@
         "Name":{"shape":"IndexName"},
         "RoleArn":{"shape":"RoleArn"},
         "ServerSideEncryptionConfiguration":{"shape":"ServerSideEncryptionConfiguration"},
-        "Description":{"shape":"Description"}
+        "Description":{"shape":"Description"},
+        "ClientToken":{
+          "shape":"ClientTokenName",
+          "idempotencyToken":true
+        }
       }
     },
     "CreateIndexResponse":{
@@ -640,7 +650,7 @@
       "type":"string",
       "max":100,
       "min":1,
-      "pattern":"^[a-zA-Z][a-zA-Z0-9_]*$"
+      "pattern":"^[a-zA-Z][a-zA-Z0-9_.]*$"
     },
     "DataSourceId":{
       "type":"string",
@@ -657,8 +667,7 @@
     "DataSourceInclusionsExclusionsStringsMember":{
       "type":"string",
       "max":50,
-      "min":1,
-      "pattern":"^\\P{C}*$"
+      "min":1
     },
     "DataSourceName":{
       "type":"string",
@@ -947,8 +956,7 @@
     "DocumentAttributeStringValue":{
       "type":"string",
       "max":2048,
-      "min":1,
-      "pattern":"^\\P{C}*$"
+      "min":1
     },
     "DocumentAttributeValue":{
       "type":"structure",
@@ -1505,8 +1513,7 @@
     "S3ObjectKey":{
       "type":"string",
       "max":1024,
-      "min":1,
-      "pattern":".*"
+      "min":1
     },
     "S3Path":{
       "type":"structure",
@@ -1565,6 +1572,9 @@
         "Urls":{"shape":"SharePointUrlList"},
         "SecretArn":{"shape":"SecretArn"},
         "CrawlAttachments":{"shape":"Boolean"},
+        "UseChangeLog":{"shape":"Boolean"},
+        "InclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "ExclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
         "VpcConfiguration":{"shape":"DataSourceVpcConfiguration"},
         "FieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
         "DocumentTitleFieldName":{"shape":"DataSourceFieldName"}
