@@ -468,6 +468,8 @@ func (c *Kendra) CreateIndexRequest(input *CreateIndexInput) (req *request.Reque
 //
 //   * AccessDeniedException
 //
+//   * ConflictException
+//
 //   * InternalServerException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/CreateIndex
@@ -2206,6 +2208,15 @@ func (s *AdditionalResultAttributeValue) SetTextWithHighlightsValue(v *TextWithH
 }
 
 // Provides filtering the query results based on document attributes.
+//
+// When you use the AndAllFilters or OrAllFilters, filters you can use a total
+// of 3 layers. For example, you can use:
+//
+// <AndAllFilters>
+//
+// <OrAllFilters>
+//
+// <EqualTo>
 type AttributeFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -3305,6 +3316,11 @@ func (s *CreateFaqOutput) SetId(v string) *CreateFaqOutput {
 type CreateIndexInput struct {
 	_ struct{} `type:"structure"`
 
+	// A token that you provide to identify the request to create an index. Multiple
+	// calls to the CreateIndex operation with the same client token will create
+	// only one index.”
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
 	// A description for the index.
 	Description *string `min:"1" type:"string"`
 
@@ -3338,6 +3354,9 @@ func (s CreateIndexInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateIndexInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateIndexInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
@@ -3363,6 +3382,12 @@ func (s *CreateIndexInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateIndexInput) SetClientToken(v string) *CreateIndexInput {
+	s.ClientToken = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -4526,7 +4551,12 @@ type Document struct {
 	// searches, and to provide additional information in the query response.
 	Attributes []*DocumentAttribute `min:"1" type:"list"`
 
-	// The contents of the document as a base-64 encoded string.
+	// The contents of the document.
+	//
+	// Documents passed to the Blob parameter must be base64 encoded. Your code
+	// might not need to encode the document file bytes if you're using an AWS SDK
+	// to call Amazon Kendra operations. If you are calling the Amazon Kendra endpoint
+	// directly using REST, you must base64 encode the contents before sending.
 	//
 	// Blob is automatically base64 encoded/decoded by the SDK.
 	Blob []byte `min:"1" type:"blob"`
@@ -6792,11 +6822,27 @@ type SharePointConfiguration struct {
 	// The Microsoft SharePoint attribute field that contains the title of the document.
 	DocumentTitleFieldName *string `min:"1" type:"string"`
 
+	// A list of regular expression patterns. Documents that match the patterns
+	// are excluded from the index. Documents that don't match the patterns are
+	// included in the index. If a document matches both an exclusion pattern and
+	// an inclusion pattern, the document is not included in the index.
+	//
+	// The regex is applied to the display URL of the SharePoint document.
+	ExclusionPatterns []*string `type:"list"`
+
 	// A list of DataSourceToIndexFieldMapping objects that map Microsoft SharePoint
 	// attributes to custom fields in the Amazon Kendra index. You must first create
 	// the index fields using the operation before you map SharePoint attributes.
 	// For more information, see Mapping Data Source Fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
 	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// A list of regular expression patterns. Documents that match the patterns
+	// are included in the index. Documents that don't match the patterns are excluded
+	// from the index. If a document matches both an inclusion pattern and an exclusion
+	// pattern, the document is not included in the index.
+	//
+	// The regex is applied to the display URL of the SharePoint document.
+	InclusionPatterns []*string `type:"list"`
 
 	// The Amazon Resource Name (ARN) of credentials stored in AWS Secrets Manager.
 	// The credentials should be a user/password pair. For more information, see
@@ -6818,6 +6864,13 @@ type SharePointConfiguration struct {
 	//
 	// Urls is a required field
 	Urls []*string `min:"1" type:"list" required:"true"`
+
+	// Set to TRUE to use the Microsoft SharePoint change log to determine the documents
+	// that need to be updated in the index. Depending on the size of the SharePoint
+	// change log, it may take longer for Amazon Kendra to use the change log than
+	// it takes it to determine the changed documents using the Amazon Kendra document
+	// crawler.
+	UseChangeLog *bool `type:"boolean"`
 
 	// Provides information for connecting to an Amazon VPC.
 	VpcConfiguration *DataSourceVpcConfiguration `type:"structure"`
@@ -6891,9 +6944,21 @@ func (s *SharePointConfiguration) SetDocumentTitleFieldName(v string) *SharePoin
 	return s
 }
 
+// SetExclusionPatterns sets the ExclusionPatterns field's value.
+func (s *SharePointConfiguration) SetExclusionPatterns(v []*string) *SharePointConfiguration {
+	s.ExclusionPatterns = v
+	return s
+}
+
 // SetFieldMappings sets the FieldMappings field's value.
 func (s *SharePointConfiguration) SetFieldMappings(v []*DataSourceToIndexFieldMapping) *SharePointConfiguration {
 	s.FieldMappings = v
+	return s
+}
+
+// SetInclusionPatterns sets the InclusionPatterns field's value.
+func (s *SharePointConfiguration) SetInclusionPatterns(v []*string) *SharePointConfiguration {
+	s.InclusionPatterns = v
 	return s
 }
 
@@ -6912,6 +6977,12 @@ func (s *SharePointConfiguration) SetSharePointVersion(v string) *SharePointConf
 // SetUrls sets the Urls field's value.
 func (s *SharePointConfiguration) SetUrls(v []*string) *SharePointConfiguration {
 	s.Urls = v
+	return s
+}
+
+// SetUseChangeLog sets the UseChangeLog field's value.
+func (s *SharePointConfiguration) SetUseChangeLog(v bool) *SharePointConfiguration {
+	s.UseChangeLog = &v
 	return s
 }
 

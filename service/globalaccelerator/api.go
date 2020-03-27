@@ -1013,7 +1013,8 @@ func (c *GlobalAccelerator) DescribeEndpointGroupRequest(input *DescribeEndpoint
 
 // DescribeEndpointGroup API operation for AWS Global Accelerator.
 //
-// Describe an endpoint group.
+// Describe an endpoint group. To see an AWS CLI example of describing an endpoint
+// group, scroll down to Example.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1271,7 +1272,8 @@ func (c *GlobalAccelerator) ListByoipCidrsRequest(input *ListByoipCidrsInput) (r
 // ListByoipCidrs API operation for AWS Global Accelerator.
 //
 // Lists the IP address ranges that were specified in calls to ProvisionByoipCidr
-// (https://docs.aws.amazon.com/global-accelerator/latest/api/ProvisionByoipCidr.html).
+// (https://docs.aws.amazon.com/global-accelerator/latest/api/ProvisionByoipCidr.html),
+// including the current state and a history of state changes.
 //
 // To see an AWS CLI example of listing BYOIP CIDR addresses, scroll down to
 // Example.
@@ -2850,7 +2852,7 @@ func (s AssociatedListenerFoundException) RequestID() string {
 }
 
 // Information about an IP address range that is provisioned for use with your
-// AWS resources through bring your own IP addresses (BYOIP).
+// AWS resources through bring your own IP address (BYOIP).
 //
 // The following describes each BYOIP State that your IP address range can be
 // in.
@@ -2902,6 +2904,10 @@ type ByoipCidr struct {
 	// The address range, in CIDR notation.
 	Cidr *string `type:"string"`
 
+	// A history of status changes for an IP address range that that you bring to
+	// AWS Global Accelerator through bring your own IP address (BYOIP).
+	Events []*ByoipCidrEvent `type:"list"`
+
 	// The state of the address pool.
 	State *string `type:"string" enum:"ByoipCidrState"`
 }
@@ -2922,9 +2928,53 @@ func (s *ByoipCidr) SetCidr(v string) *ByoipCidr {
 	return s
 }
 
+// SetEvents sets the Events field's value.
+func (s *ByoipCidr) SetEvents(v []*ByoipCidrEvent) *ByoipCidr {
+	s.Events = v
+	return s
+}
+
 // SetState sets the State field's value.
 func (s *ByoipCidr) SetState(v string) *ByoipCidr {
 	s.State = &v
+	return s
+}
+
+// A complex type that contains a Message and a Timestamp value for changes
+// that you make in the status an IP address range that you bring to AWS Global
+// Accelerator through bring your own IP address (BYOIP).
+type ByoipCidrEvent struct {
+	_ struct{} `type:"structure"`
+
+	// A string that contains an Event message describing changes that you make
+	// in the status of an IP address range that you bring to AWS Global Accelerator
+	// through bring your own IP address (BYOIP).
+	Message *string `type:"string"`
+
+	// A timestamp when you make a status change for an IP address range that you
+	// bring to AWS Global Accelerator through bring your own IP address (BYOIP).
+	Timestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s ByoipCidrEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ByoipCidrEvent) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *ByoipCidrEvent) SetMessage(v string) *ByoipCidrEvent {
+	s.Message = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *ByoipCidrEvent) SetTimestamp(v time.Time) *ByoipCidrEvent {
+	s.Timestamp = &v
 	return s
 }
 
@@ -3966,8 +4016,8 @@ type EndpointConfiguration struct {
 	// X-Forwarded-For request header as traffic travels to applications on the
 	// Application Load Balancer endpoint fronted by the accelerator.
 	//
-	// For more information, see Viewing Client IP Addresses in AWS Global Accelerator
-	// (https://docs.aws.amazon.com/global-accelerator/latest/dg/introduction-how-it-works-client-ip.html)
+	// For more information, see Preserve Client IP Addresses in AWS Global Accelerator
+	// (https://docs.aws.amazon.com/global-accelerator/latest/dg/preserve-client-ip-address.html)
 	// in the AWS Global Accelerator Developer Guide.
 	ClientIPPreservationEnabled *bool `type:"boolean"`
 
