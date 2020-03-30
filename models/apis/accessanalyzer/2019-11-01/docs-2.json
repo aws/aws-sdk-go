@@ -66,6 +66,12 @@
         "UpdateFindingsRequest$analyzerArn": "<p>The ARN of the analyzer that generated the findings to update.</p>"
       }
     },
+    "AnalyzerStatus": {
+      "base": null,
+      "refs": {
+        "AnalyzerSummary$status": "<p>The status of the analyzer. An <code>Active</code> analyzer successfully monitors supported resources and generates new findings. The analyzer is <code>Disabled</code> when a user action, such as removing trusted access for IAM Access Analyzer from AWS Organizations, causes the analyzer to stop generating new findings. The status is <code>Creating</code> when the analyzer creation is in progress and <code>Failed</code> when the analyzer creation has failed. </p>"
+      }
+    },
     "AnalyzerSummary": {
       "base": "<p>Contains information about the analyzer.</p>",
       "refs": {
@@ -352,6 +358,12 @@
         "FindingSummary$principal": "<p>The external principal that has access to a resource within the zone of trust.</p>"
       }
     },
+    "ReasonCode": {
+      "base": null,
+      "refs": {
+        "StatusReason$code": "<p>The reason code for the current status of the analyzer.</p>"
+      }
+    },
     "ResourceArn": {
       "base": null,
       "refs": {
@@ -399,12 +411,20 @@
       "refs": {
       }
     },
+    "StatusReason": {
+      "base": "<p>Provides more details about the current status of the analyzer. For example, if the creation for the analyzer fails, a <code>Failed</code> status is displayed. For an analyzer with organization as the type, this failure can be due to an issue with creating the service-linked roles required in the member accounts of the AWS organization.</p>",
+      "refs": {
+        "AnalyzerSummary$statusReason": "<p>The <code>statusReason</code> provides more details about the current status of the analyzer. For example, if the creation for the analyzer fails, a <code>Failed</code> status is displayed. For an analyzer with organization as the type, this failure can be due to an issue with creating the service-linked roles required in the member accounts of the AWS organization.</p>"
+      }
+    },
     "String": {
       "base": null,
       "refs": {
         "AccessDeniedException$message": null,
         "ActionList$member": null,
         "AnalyzedResource$error": "<p>An error message.</p>",
+        "AnalyzedResource$resourceOwnerAccount": "<p>The AWS account ID that owns the resource.</p>",
+        "AnalyzedResourceSummary$resourceOwnerAccount": "<p>The AWS account ID that owns the resource.</p>",
         "AnalyzerSummary$lastResourceAnalyzed": "<p>The resource that was most recently analyzed by the analyzer.</p>",
         "ConditionKeyMap$key": null,
         "ConditionKeyMap$value": null,
@@ -418,8 +438,10 @@
         "FilterCriteriaMap$key": null,
         "Finding$error": "<p>An error.</p>",
         "Finding$resource": "<p>The resource that an external principal has access to.</p>",
+        "Finding$resourceOwnerAccount": "<p>The AWS account ID that owns the resource.</p>",
         "FindingSummary$error": "<p>The error that resulted in an Error finding.</p>",
         "FindingSummary$resource": "<p>The resource that the external principal has access to.</p>",
+        "FindingSummary$resourceOwnerAccount": "<p>The AWS account ID that owns the resource.</p>",
         "InternalServerException$message": null,
         "ListTagsForResourceRequest$resourceArn": "<p>The ARN of the resource to retrieve tags from.</p>",
         "PrincipalMap$key": null,

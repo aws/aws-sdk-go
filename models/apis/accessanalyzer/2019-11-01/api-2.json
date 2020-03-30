@@ -346,6 +346,7 @@
         "createdAt",
         "isPublic",
         "resourceArn",
+        "resourceOwnerAccount",
         "resourceType",
         "updatedAt"
       ],
@@ -356,6 +357,7 @@
         "error":{"shape":"String"},
         "isPublic":{"shape":"Boolean"},
         "resourceArn":{"shape":"ResourceArn"},
+        "resourceOwnerAccount":{"shape":"String"},
         "resourceType":{"shape":"ResourceType"},
         "sharedVia":{"shape":"SharedViaList"},
         "status":{"shape":"FindingStatus"},
@@ -366,10 +368,12 @@
       "type":"structure",
       "required":[
         "resourceArn",
+        "resourceOwnerAccount",
         "resourceType"
       ],
       "members":{
         "resourceArn":{"shape":"ResourceArn"},
+        "resourceOwnerAccount":{"shape":"String"},
         "resourceType":{"shape":"ResourceType"}
       }
     },
@@ -381,12 +385,22 @@
       "type":"string",
       "pattern":"^[^:]*:[^:]*:[^:]*:[^:]*:[^:]*:analyzer/.{1,255}$"
     },
+    "AnalyzerStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "CREATING",
+        "DISABLED",
+        "FAILED"
+      ]
+    },
     "AnalyzerSummary":{
       "type":"structure",
       "required":[
         "arn",
         "createdAt",
         "name",
+        "status",
         "type"
       ],
       "members":{
@@ -395,6 +409,8 @@
         "lastResourceAnalyzed":{"shape":"String"},
         "lastResourceAnalyzedAt":{"shape":"Timestamp"},
         "name":{"shape":"Name"},
+        "status":{"shape":"AnalyzerStatus"},
+        "statusReason":{"shape":"StatusReason"},
         "tags":{"shape":"TagsMap"},
         "type":{"shape":"Type"}
       }
@@ -556,6 +572,7 @@
         "condition",
         "createdAt",
         "id",
+        "resourceOwnerAccount",
         "resourceType",
         "status",
         "updatedAt"
@@ -570,6 +587,7 @@
         "isPublic":{"shape":"Boolean"},
         "principal":{"shape":"PrincipalMap"},
         "resource":{"shape":"String"},
+        "resourceOwnerAccount":{"shape":"String"},
         "resourceType":{"shape":"ResourceType"},
         "status":{"shape":"FindingStatus"},
         "updatedAt":{"shape":"Timestamp"}
@@ -602,6 +620,7 @@
         "condition",
         "createdAt",
         "id",
+        "resourceOwnerAccount",
         "resourceType",
         "status",
         "updatedAt"
@@ -616,6 +635,7 @@
         "isPublic":{"shape":"Boolean"},
         "principal":{"shape":"PrincipalMap"},
         "resource":{"shape":"String"},
+        "resourceOwnerAccount":{"shape":"String"},
         "resourceType":{"shape":"ResourceType"},
         "status":{"shape":"FindingStatus"},
         "updatedAt":{"shape":"Timestamp"}
@@ -882,6 +902,15 @@
       "key":{"shape":"String"},
       "value":{"shape":"String"}
     },
+    "ReasonCode":{
+      "type":"string",
+      "enum":[
+        "AWS_SERVICE_ACCESS_DISABLED",
+        "DELEGATED_ADMINISTRATOR_DEREGISTERED",
+        "ORGANIZATION_DELETED",
+        "SERVICE_LINKED_ROLE_CREATION_FAILED"
+      ]
+    },
     "ResourceArn":{
       "type":"string",
       "pattern":"arn:[^:]*:[^:]*:[^:]*:[^:]*:.*$"
@@ -955,6 +984,13 @@
         "resourceArn":{"shape":"ResourceArn"}
       }
     },
+    "StatusReason":{
+      "type":"structure",
+      "required":["code"],
+      "members":{
+        "code":{"shape":"ReasonCode"}
+      }
+    },
     "String":{"type":"string"},
     "TagKeys":{
       "type":"list",
@@ -1009,7 +1045,10 @@
     "Token":{"type":"string"},
     "Type":{
       "type":"string",
-      "enum":["ACCOUNT"]
+      "enum":[
+        "ACCOUNT",
+        "ORGANIZATION"
+      ]
     },
     "UntagResourceRequest":{
       "type":"structure",
