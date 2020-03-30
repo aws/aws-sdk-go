@@ -1986,6 +1986,11 @@ type AnalyzedResource struct {
 	// ResourceArn is a required field
 	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
 
+	// The AWS account ID that owns the resource.
+	//
+	// ResourceOwnerAccount is a required field
+	ResourceOwnerAccount *string `locationName:"resourceOwnerAccount" type:"string" required:"true"`
+
 	// The type of the resource that was analyzed.
 	//
 	// ResourceType is a required field
@@ -2049,6 +2054,12 @@ func (s *AnalyzedResource) SetResourceArn(v string) *AnalyzedResource {
 	return s
 }
 
+// SetResourceOwnerAccount sets the ResourceOwnerAccount field's value.
+func (s *AnalyzedResource) SetResourceOwnerAccount(v string) *AnalyzedResource {
+	s.ResourceOwnerAccount = &v
+	return s
+}
+
 // SetResourceType sets the ResourceType field's value.
 func (s *AnalyzedResource) SetResourceType(v string) *AnalyzedResource {
 	s.ResourceType = &v
@@ -2082,6 +2093,11 @@ type AnalyzedResourceSummary struct {
 	// ResourceArn is a required field
 	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
 
+	// The AWS account ID that owns the resource.
+	//
+	// ResourceOwnerAccount is a required field
+	ResourceOwnerAccount *string `locationName:"resourceOwnerAccount" type:"string" required:"true"`
+
 	// The type of resource that was analyzed.
 	//
 	// ResourceType is a required field
@@ -2101,6 +2117,12 @@ func (s AnalyzedResourceSummary) GoString() string {
 // SetResourceArn sets the ResourceArn field's value.
 func (s *AnalyzedResourceSummary) SetResourceArn(v string) *AnalyzedResourceSummary {
 	s.ResourceArn = &v
+	return s
+}
+
+// SetResourceOwnerAccount sets the ResourceOwnerAccount field's value.
+func (s *AnalyzedResourceSummary) SetResourceOwnerAccount(v string) *AnalyzedResourceSummary {
+	s.ResourceOwnerAccount = &v
 	return s
 }
 
@@ -2134,6 +2156,23 @@ type AnalyzerSummary struct {
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The status of the analyzer. An Active analyzer successfully monitors supported
+	// resources and generates new findings. The analyzer is Disabled when a user
+	// action, such as removing trusted access for IAM Access Analyzer from AWS
+	// Organizations, causes the analyzer to stop generating new findings. The status
+	// is Creating when the analyzer creation is in progress and Failed when the
+	// analyzer creation has failed.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"AnalyzerStatus"`
+
+	// The statusReason provides more details about the current status of the analyzer.
+	// For example, if the creation for the analyzer fails, a Failed status is displayed.
+	// For an analyzer with organization as the type, this failure can be due to
+	// an issue with creating the service-linked roles required in the member accounts
+	// of the AWS organization.
+	StatusReason *StatusReason `locationName:"statusReason" type:"structure"`
 
 	// The tags added to the analyzer.
 	Tags map[string]*string `locationName:"tags" type:"map"`
@@ -2182,6 +2221,18 @@ func (s *AnalyzerSummary) SetLastResourceAnalyzedAt(v time.Time) *AnalyzerSummar
 // SetName sets the Name field's value.
 func (s *AnalyzerSummary) SetName(v string) *AnalyzerSummary {
 	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AnalyzerSummary) SetStatus(v string) *AnalyzerSummary {
+	s.Status = &v
+	return s
+}
+
+// SetStatusReason sets the StatusReason field's value.
+func (s *AnalyzerSummary) SetStatusReason(v *StatusReason) *AnalyzerSummary {
+	s.StatusReason = v
 	return s
 }
 
@@ -2805,6 +2856,11 @@ type Finding struct {
 	// The resource that an external principal has access to.
 	Resource *string `locationName:"resource" type:"string"`
 
+	// The AWS account ID that owns the resource.
+	//
+	// ResourceOwnerAccount is a required field
+	ResourceOwnerAccount *string `locationName:"resourceOwnerAccount" type:"string" required:"true"`
+
 	// The type of the resource reported in the finding.
 	//
 	// ResourceType is a required field
@@ -2885,6 +2941,12 @@ func (s *Finding) SetResource(v string) *Finding {
 	return s
 }
 
+// SetResourceOwnerAccount sets the ResourceOwnerAccount field's value.
+func (s *Finding) SetResourceOwnerAccount(v string) *Finding {
+	s.ResourceOwnerAccount = &v
+	return s
+}
+
 // SetResourceType sets the ResourceType field's value.
 func (s *Finding) SetResourceType(v string) *Finding {
 	s.ResourceType = &v
@@ -2944,6 +3006,11 @@ type FindingSummary struct {
 
 	// The resource that the external principal has access to.
 	Resource *string `locationName:"resource" type:"string"`
+
+	// The AWS account ID that owns the resource.
+	//
+	// ResourceOwnerAccount is a required field
+	ResourceOwnerAccount *string `locationName:"resourceOwnerAccount" type:"string" required:"true"`
 
 	// The type of the resource that the external principal has access to.
 	//
@@ -3022,6 +3089,12 @@ func (s *FindingSummary) SetPrincipal(v map[string]*string) *FindingSummary {
 // SetResource sets the Resource field's value.
 func (s *FindingSummary) SetResource(v string) *FindingSummary {
 	s.Resource = &v
+	return s
+}
+
+// SetResourceOwnerAccount sets the ResourceOwnerAccount field's value.
+func (s *FindingSummary) SetResourceOwnerAccount(v string) *FindingSummary {
+	s.ResourceOwnerAccount = &v
 	return s
 }
 
@@ -4173,6 +4246,36 @@ func (s StartResourceScanOutput) GoString() string {
 	return s.String()
 }
 
+// Provides more details about the current status of the analyzer. For example,
+// if the creation for the analyzer fails, a Failed status is displayed. For
+// an analyzer with organization as the type, this failure can be due to an
+// issue with creating the service-linked roles required in the member accounts
+// of the AWS organization.
+type StatusReason struct {
+	_ struct{} `type:"structure"`
+
+	// The reason code for the current status of the analyzer.
+	//
+	// Code is a required field
+	Code *string `locationName:"code" type:"string" required:"true" enum:"ReasonCode"`
+}
+
+// String returns the string representation
+func (s StatusReason) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StatusReason) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *StatusReason) SetCode(v string) *StatusReason {
+	s.Code = &v
+	return s
+}
+
 // Adds a tag to the specified resource.
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
@@ -4679,6 +4782,20 @@ func (s *ValidationExceptionField) SetName(v string) *ValidationExceptionField {
 }
 
 const (
+	// AnalyzerStatusActive is a AnalyzerStatus enum value
+	AnalyzerStatusActive = "ACTIVE"
+
+	// AnalyzerStatusCreating is a AnalyzerStatus enum value
+	AnalyzerStatusCreating = "CREATING"
+
+	// AnalyzerStatusDisabled is a AnalyzerStatus enum value
+	AnalyzerStatusDisabled = "DISABLED"
+
+	// AnalyzerStatusFailed is a AnalyzerStatus enum value
+	AnalyzerStatusFailed = "FAILED"
+)
+
+const (
 	// FindingStatusActive is a FindingStatus enum value
 	FindingStatusActive = "ACTIVE"
 
@@ -4706,6 +4823,20 @@ const (
 )
 
 const (
+	// ReasonCodeAwsServiceAccessDisabled is a ReasonCode enum value
+	ReasonCodeAwsServiceAccessDisabled = "AWS_SERVICE_ACCESS_DISABLED"
+
+	// ReasonCodeDelegatedAdministratorDeregistered is a ReasonCode enum value
+	ReasonCodeDelegatedAdministratorDeregistered = "DELEGATED_ADMINISTRATOR_DEREGISTERED"
+
+	// ReasonCodeOrganizationDeleted is a ReasonCode enum value
+	ReasonCodeOrganizationDeleted = "ORGANIZATION_DELETED"
+
+	// ReasonCodeServiceLinkedRoleCreationFailed is a ReasonCode enum value
+	ReasonCodeServiceLinkedRoleCreationFailed = "SERVICE_LINKED_ROLE_CREATION_FAILED"
+)
+
+const (
 	// ResourceTypeAwsIamRole is a ResourceType enum value
 	ResourceTypeAwsIamRole = "AWS::IAM::Role"
 
@@ -4728,6 +4859,9 @@ const (
 const (
 	// TypeAccount is a Type enum value
 	TypeAccount = "ACCOUNT"
+
+	// TypeOrganization is a Type enum value
+	TypeOrganization = "ORGANIZATION"
 )
 
 const (
