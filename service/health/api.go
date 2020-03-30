@@ -1652,12 +1652,12 @@ func newErrorConcurrentModificationException(v protocol.ResponseMetadata) error 
 }
 
 // Code returns the exception type name.
-func (s ConcurrentModificationException) Code() string {
+func (s *ConcurrentModificationException) Code() string {
 	return "ConcurrentModificationException"
 }
 
 // Message returns the exception's message.
-func (s ConcurrentModificationException) Message() string {
+func (s *ConcurrentModificationException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -1665,21 +1665,21 @@ func (s ConcurrentModificationException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s ConcurrentModificationException) OrigErr() error {
+func (s *ConcurrentModificationException) OrigErr() error {
 	return nil
 }
 
-func (s ConcurrentModificationException) Error() string {
+func (s *ConcurrentModificationException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s ConcurrentModificationException) StatusCode() int {
+func (s *ConcurrentModificationException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s ConcurrentModificationException) RequestID() string {
+func (s *ConcurrentModificationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -3641,12 +3641,12 @@ func newErrorInvalidPaginationToken(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s InvalidPaginationToken) Code() string {
+func (s *InvalidPaginationToken) Code() string {
 	return "InvalidPaginationToken"
 }
 
 // Message returns the exception's message.
-func (s InvalidPaginationToken) Message() string {
+func (s *InvalidPaginationToken) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -3654,21 +3654,21 @@ func (s InvalidPaginationToken) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s InvalidPaginationToken) OrigErr() error {
+func (s *InvalidPaginationToken) OrigErr() error {
 	return nil
 }
 
-func (s InvalidPaginationToken) Error() string {
+func (s *InvalidPaginationToken) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s InvalidPaginationToken) StatusCode() int {
+func (s *InvalidPaginationToken) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s InvalidPaginationToken) RequestID() string {
+func (s *InvalidPaginationToken) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -4123,12 +4123,12 @@ func newErrorUnsupportedLocale(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s UnsupportedLocale) Code() string {
+func (s *UnsupportedLocale) Code() string {
 	return "UnsupportedLocale"
 }
 
 // Message returns the exception's message.
-func (s UnsupportedLocale) Message() string {
+func (s *UnsupportedLocale) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -4136,21 +4136,21 @@ func (s UnsupportedLocale) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s UnsupportedLocale) OrigErr() error {
+func (s *UnsupportedLocale) OrigErr() error {
 	return nil
 }
 
-func (s UnsupportedLocale) Error() string {
+func (s *UnsupportedLocale) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s UnsupportedLocale) StatusCode() int {
+func (s *UnsupportedLocale) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s UnsupportedLocale) RequestID() string {
+func (s *UnsupportedLocale) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 

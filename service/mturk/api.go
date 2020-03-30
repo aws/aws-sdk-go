@@ -8661,12 +8661,12 @@ func newErrorRequestError(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s RequestError) Code() string {
+func (s *RequestError) Code() string {
 	return "RequestError"
 }
 
 // Message returns the exception's message.
-func (s RequestError) Message() string {
+func (s *RequestError) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -8674,21 +8674,21 @@ func (s RequestError) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s RequestError) OrigErr() error {
+func (s *RequestError) OrigErr() error {
 	return nil
 }
 
-func (s RequestError) Error() string {
+func (s *RequestError) Error() string {
 	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s RequestError) StatusCode() int {
+func (s *RequestError) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s RequestError) RequestID() string {
+func (s *RequestError) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -9167,12 +9167,12 @@ func newErrorServiceFault(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s ServiceFault) Code() string {
+func (s *ServiceFault) Code() string {
 	return "ServiceFault"
 }
 
 // Message returns the exception's message.
-func (s ServiceFault) Message() string {
+func (s *ServiceFault) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -9180,21 +9180,21 @@ func (s ServiceFault) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s ServiceFault) OrigErr() error {
+func (s *ServiceFault) OrigErr() error {
 	return nil
 }
 
-func (s ServiceFault) Error() string {
+func (s *ServiceFault) Error() string {
 	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s ServiceFault) StatusCode() int {
+func (s *ServiceFault) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s ServiceFault) RequestID() string {
+func (s *ServiceFault) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 

@@ -2041,12 +2041,12 @@ func newErrorCloudHsmInternalException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s CloudHsmInternalException) Code() string {
+func (s *CloudHsmInternalException) Code() string {
 	return "CloudHsmInternalException"
 }
 
 // Message returns the exception's message.
-func (s CloudHsmInternalException) Message() string {
+func (s *CloudHsmInternalException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -2054,21 +2054,21 @@ func (s CloudHsmInternalException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s CloudHsmInternalException) OrigErr() error {
+func (s *CloudHsmInternalException) OrigErr() error {
 	return nil
 }
 
-func (s CloudHsmInternalException) Error() string {
+func (s *CloudHsmInternalException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s CloudHsmInternalException) StatusCode() int {
+func (s *CloudHsmInternalException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s CloudHsmInternalException) RequestID() string {
+func (s *CloudHsmInternalException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -2101,12 +2101,12 @@ func newErrorCloudHsmServiceException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s CloudHsmServiceException) Code() string {
+func (s *CloudHsmServiceException) Code() string {
 	return "CloudHsmServiceException"
 }
 
 // Message returns the exception's message.
-func (s CloudHsmServiceException) Message() string {
+func (s *CloudHsmServiceException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -2114,21 +2114,21 @@ func (s CloudHsmServiceException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s CloudHsmServiceException) OrigErr() error {
+func (s *CloudHsmServiceException) OrigErr() error {
 	return nil
 }
 
-func (s CloudHsmServiceException) Error() string {
+func (s *CloudHsmServiceException) Error() string {
 	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s CloudHsmServiceException) StatusCode() int {
+func (s *CloudHsmServiceException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s CloudHsmServiceException) RequestID() string {
+func (s *CloudHsmServiceException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -3218,12 +3218,12 @@ func newErrorInvalidRequestException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s InvalidRequestException) Code() string {
+func (s *InvalidRequestException) Code() string {
 	return "InvalidRequestException"
 }
 
 // Message returns the exception's message.
-func (s InvalidRequestException) Message() string {
+func (s *InvalidRequestException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -3231,21 +3231,21 @@ func (s InvalidRequestException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s InvalidRequestException) OrigErr() error {
+func (s *InvalidRequestException) OrigErr() error {
 	return nil
 }
 
-func (s InvalidRequestException) Error() string {
+func (s *InvalidRequestException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s InvalidRequestException) StatusCode() int {
+func (s *InvalidRequestException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s InvalidRequestException) RequestID() string {
+func (s *InvalidRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 

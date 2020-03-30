@@ -354,12 +354,12 @@ func newErrorForbiddenException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s ForbiddenException) Code() string {
+func (s *ForbiddenException) Code() string {
 	return "ForbiddenException"
 }
 
 // Message returns the exception's message.
-func (s ForbiddenException) Message() string {
+func (s *ForbiddenException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -367,21 +367,21 @@ func (s ForbiddenException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s ForbiddenException) OrigErr() error {
+func (s *ForbiddenException) OrigErr() error {
 	return nil
 }
 
-func (s ForbiddenException) Error() string {
+func (s *ForbiddenException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s ForbiddenException) StatusCode() int {
+func (s *ForbiddenException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s ForbiddenException) RequestID() string {
+func (s *ForbiddenException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -487,12 +487,12 @@ func newErrorGoneException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s GoneException) Code() string {
+func (s *GoneException) Code() string {
 	return "GoneException"
 }
 
 // Message returns the exception's message.
-func (s GoneException) Message() string {
+func (s *GoneException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -500,21 +500,21 @@ func (s GoneException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s GoneException) OrigErr() error {
+func (s *GoneException) OrigErr() error {
 	return nil
 }
 
-func (s GoneException) Error() string {
+func (s *GoneException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s GoneException) StatusCode() int {
+func (s *GoneException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s GoneException) RequestID() string {
+func (s *GoneException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -580,12 +580,12 @@ func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s LimitExceededException) Code() string {
+func (s *LimitExceededException) Code() string {
 	return "LimitExceededException"
 }
 
 // Message returns the exception's message.
-func (s LimitExceededException) Message() string {
+func (s *LimitExceededException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -593,21 +593,21 @@ func (s LimitExceededException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s LimitExceededException) OrigErr() error {
+func (s *LimitExceededException) OrigErr() error {
 	return nil
 }
 
-func (s LimitExceededException) Error() string {
+func (s *LimitExceededException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s LimitExceededException) StatusCode() int {
+func (s *LimitExceededException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s LimitExceededException) RequestID() string {
+func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -636,12 +636,12 @@ func newErrorPayloadTooLargeException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s PayloadTooLargeException) Code() string {
+func (s *PayloadTooLargeException) Code() string {
 	return "PayloadTooLargeException"
 }
 
 // Message returns the exception's message.
-func (s PayloadTooLargeException) Message() string {
+func (s *PayloadTooLargeException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -649,21 +649,21 @@ func (s PayloadTooLargeException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s PayloadTooLargeException) OrigErr() error {
+func (s *PayloadTooLargeException) OrigErr() error {
 	return nil
 }
 
-func (s PayloadTooLargeException) Error() string {
+func (s *PayloadTooLargeException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s PayloadTooLargeException) StatusCode() int {
+func (s *PayloadTooLargeException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s PayloadTooLargeException) RequestID() string {
+func (s *PayloadTooLargeException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 

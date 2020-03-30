@@ -13290,12 +13290,12 @@ func newErrorInternalServerError(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s InternalServerError) Code() string {
+func (s *InternalServerError) Code() string {
 	return "InternalServerError"
 }
 
 // Message returns the exception's message.
-func (s InternalServerError) Message() string {
+func (s *InternalServerError) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -13303,21 +13303,21 @@ func (s InternalServerError) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s InternalServerError) OrigErr() error {
+func (s *InternalServerError) OrigErr() error {
 	return nil
 }
 
-func (s InternalServerError) Error() string {
+func (s *InternalServerError) Error() string {
 	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s InternalServerError) StatusCode() int {
+func (s *InternalServerError) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s InternalServerError) RequestID() string {
+func (s *InternalServerError) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -13351,12 +13351,12 @@ func newErrorInvalidGatewayRequestException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s InvalidGatewayRequestException) Code() string {
+func (s *InvalidGatewayRequestException) Code() string {
 	return "InvalidGatewayRequestException"
 }
 
 // Message returns the exception's message.
-func (s InvalidGatewayRequestException) Message() string {
+func (s *InvalidGatewayRequestException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -13364,21 +13364,21 @@ func (s InvalidGatewayRequestException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s InvalidGatewayRequestException) OrigErr() error {
+func (s *InvalidGatewayRequestException) OrigErr() error {
 	return nil
 }
 
-func (s InvalidGatewayRequestException) Error() string {
+func (s *InvalidGatewayRequestException) Error() string {
 	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s InvalidGatewayRequestException) StatusCode() int {
+func (s *InvalidGatewayRequestException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s InvalidGatewayRequestException) RequestID() string {
+func (s *InvalidGatewayRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -15426,12 +15426,12 @@ func newErrorServiceUnavailableError(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s ServiceUnavailableError) Code() string {
+func (s *ServiceUnavailableError) Code() string {
 	return "ServiceUnavailableError"
 }
 
 // Message returns the exception's message.
-func (s ServiceUnavailableError) Message() string {
+func (s *ServiceUnavailableError) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -15439,21 +15439,21 @@ func (s ServiceUnavailableError) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s ServiceUnavailableError) OrigErr() error {
+func (s *ServiceUnavailableError) OrigErr() error {
 	return nil
 }
 
-func (s ServiceUnavailableError) Error() string {
+func (s *ServiceUnavailableError) Error() string {
 	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s ServiceUnavailableError) StatusCode() int {
+func (s *ServiceUnavailableError) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s ServiceUnavailableError) RequestID() string {
+func (s *ServiceUnavailableError) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 

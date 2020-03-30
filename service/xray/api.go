@@ -4395,12 +4395,12 @@ func newErrorInvalidRequestException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s InvalidRequestException) Code() string {
+func (s *InvalidRequestException) Code() string {
 	return "InvalidRequestException"
 }
 
 // Message returns the exception's message.
-func (s InvalidRequestException) Message() string {
+func (s *InvalidRequestException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -4408,21 +4408,21 @@ func (s InvalidRequestException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s InvalidRequestException) OrigErr() error {
+func (s *InvalidRequestException) OrigErr() error {
 	return nil
 }
 
-func (s InvalidRequestException) Error() string {
+func (s *InvalidRequestException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s InvalidRequestException) StatusCode() int {
+func (s *InvalidRequestException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s InvalidRequestException) RequestID() string {
+func (s *InvalidRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -4884,12 +4884,12 @@ func newErrorRuleLimitExceededException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s RuleLimitExceededException) Code() string {
+func (s *RuleLimitExceededException) Code() string {
 	return "RuleLimitExceededException"
 }
 
 // Message returns the exception's message.
-func (s RuleLimitExceededException) Message() string {
+func (s *RuleLimitExceededException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -4897,21 +4897,21 @@ func (s RuleLimitExceededException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s RuleLimitExceededException) OrigErr() error {
+func (s *RuleLimitExceededException) OrigErr() error {
 	return nil
 }
 
-func (s RuleLimitExceededException) Error() string {
+func (s *RuleLimitExceededException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s RuleLimitExceededException) StatusCode() int {
+func (s *RuleLimitExceededException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s RuleLimitExceededException) RequestID() string {
+func (s *RuleLimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -5968,12 +5968,12 @@ func newErrorThrottledException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s ThrottledException) Code() string {
+func (s *ThrottledException) Code() string {
 	return "ThrottledException"
 }
 
 // Message returns the exception's message.
-func (s ThrottledException) Message() string {
+func (s *ThrottledException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -5981,21 +5981,21 @@ func (s ThrottledException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s ThrottledException) OrigErr() error {
+func (s *ThrottledException) OrigErr() error {
 	return nil
 }
 
-func (s ThrottledException) Error() string {
+func (s *ThrottledException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s ThrottledException) StatusCode() int {
+func (s *ThrottledException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s ThrottledException) RequestID() string {
+func (s *ThrottledException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 

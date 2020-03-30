@@ -387,12 +387,12 @@ func newErrorDocumentServiceException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s DocumentServiceException) Code() string {
+func (s *DocumentServiceException) Code() string {
 	return "DocumentServiceException"
 }
 
 // Message returns the exception's message.
-func (s DocumentServiceException) Message() string {
+func (s *DocumentServiceException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -400,21 +400,21 @@ func (s DocumentServiceException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s DocumentServiceException) OrigErr() error {
+func (s *DocumentServiceException) OrigErr() error {
 	return nil
 }
 
-func (s DocumentServiceException) Error() string {
+func (s *DocumentServiceException) Error() string {
 	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s DocumentServiceException) StatusCode() int {
+func (s *DocumentServiceException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s DocumentServiceException) RequestID() string {
+func (s *DocumentServiceException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -681,12 +681,12 @@ func newErrorSearchException(v protocol.ResponseMetadata) error {
 }
 
 // Code returns the exception type name.
-func (s SearchException) Code() string {
+func (s *SearchException) Code() string {
 	return "SearchException"
 }
 
 // Message returns the exception's message.
-func (s SearchException) Message() string {
+func (s *SearchException) Message() string {
 	if s.Message_ != nil {
 		return *s.Message_
 	}
@@ -694,21 +694,21 @@ func (s SearchException) Message() string {
 }
 
 // OrigErr always returns nil, satisfies awserr.Error interface.
-func (s SearchException) OrigErr() error {
+func (s *SearchException) OrigErr() error {
 	return nil
 }
 
-func (s SearchException) Error() string {
+func (s *SearchException) Error() string {
 	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
 }
 
 // Status code returns the HTTP status code for the request's response error.
-func (s SearchException) StatusCode() int {
+func (s *SearchException) StatusCode() int {
 	return s.RespMetadata.StatusCode
 }
 
 // RequestID returns the service's response RequestID for request.
-func (s SearchException) RequestID() string {
+func (s *SearchException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
