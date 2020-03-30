@@ -1,5 +1,5 @@
 ### SDK Features
-* SDK generate errors are fixed to use pointer receivers preventing confussion, and potential impossible type assertions. the SDK will only return API generated API error types as pointers. This fix ensures Go's type system will catch invalid error type assertions.
+* SDK generated errors are fixed to use pointer receivers preventing confusion, and potential impossible type assertions. The SDK will only return API generated API error types as pointers. This fix ensures Go's type system will catch invalid error type assertions.
 
 ### SDK Enhancements
 * Update SDK's `go-jmespath` dependency to latest tagged version `0.3.0` ([#3205](https://github.com/aws/aws-sdk-go/pull/3205))
