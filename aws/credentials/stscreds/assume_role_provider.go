@@ -120,7 +120,7 @@ type AssumeRoler interface {
 }
 
 type assumeRolerWithContext interface {
-	AssumeRoleWithContext(credentials.Context, *sts.AssumeRoleInput, ...request.Option) (*sts.AssumeRoleOutput, error)
+	AssumeRoleWithContext(aws.Context, *sts.AssumeRoleInput, ...request.Option) (*sts.AssumeRoleOutput, error)
 }
 
 // DefaultDuration is the default amount of time in minutes that the credentials

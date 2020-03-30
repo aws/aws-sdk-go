@@ -154,7 +154,7 @@ type errorOutput struct {
 	Message string `json:"message"`
 }
 
-func (p *Provider) getCredentials(ctx credentials.Context) (*getCredentialsOutput, error) {
+func (p *Provider) getCredentials(ctx aws.Context) (*getCredentialsOutput, error) {
 	op := &request.Operation{
 		Name:       "GetCredentials",
 		HTTPMethod: "GET",

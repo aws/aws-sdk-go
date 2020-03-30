@@ -138,7 +138,7 @@ const iamSecurityCredsPath = "iam/security-credentials/"
 
 // requestCredList requests a list of credentials from the EC2 service.
 // If there are no credentials, or there is an error making or receiving the request
-func requestCredList(ctx credentials.Context, client *ec2metadata.EC2Metadata) ([]string, error) {
+func requestCredList(ctx aws.Context, client *ec2metadata.EC2Metadata) ([]string, error) {
 	resp, err := client.GetMetadataWithContext(ctx, iamSecurityCredsPath)
 	if err != nil {
 		return nil, awserr.New("EC2RoleRequestError", "no EC2 instance role found", err)
@@ -162,7 +162,7 @@ func requestCredList(ctx credentials.Context, client *ec2metadata.EC2Metadata) (
 //
 // If the credentials cannot be found, or there is an error reading the response
 // and error will be returned.
-func requestCred(ctx credentials.Context, client *ec2metadata.EC2Metadata, credsName string) (ec2RoleCredRespBody, error) {
+func requestCred(ctx aws.Context, client *ec2metadata.EC2Metadata, credsName string) (ec2RoleCredRespBody, error) {
 	resp, err := client.GetMetadataWithContext(ctx, sdkuri.PathJoin(iamSecurityCredsPath, credsName))
 	if err != nil {
 		return ec2RoleCredRespBody{},
