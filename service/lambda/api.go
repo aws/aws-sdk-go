@@ -173,10 +173,10 @@ func (c *Lambda) AddPermissionRequest(input *AddPermissionInput) (req *request.R
 // To grant permission to another account, specify the account ID as the Principal.
 // For AWS services, the principal is a domain-style identifier defined by the
 // service, like s3.amazonaws.com or sns.amazonaws.com. For AWS services, you
-// can also specify the ARN or owning account of the associated resource as
-// the SourceArn or SourceAccount. If you grant permission to a service principal
-// without specifying the source, other accounts could potentially configure
-// resources in their account to invoke your Lambda function.
+// can also specify the ARN of the associated resource as the SourceArn. If
+// you grant permission to a service principal without specifying the source,
+// other accounts could potentially configure resources in their account to
+// invoke your Lambda function.
 //
 // This action adds a statement to a resource-based permissions policy for the
 // function. For more information about function policies, see Lambda Function
@@ -5545,11 +5545,9 @@ type AddPermissionInput struct {
 	// read it.
 	RevisionId *string `type:"string"`
 
-	// For AWS services, the ID of the account that owns the resource. Use this
-	// instead of SourceArn to grant permission to resources that are owned by another
-	// account (for example, all of an account's Amazon S3 buckets). Or use it together
+	// For Amazon S3, the ID of the account that owns the resource. Use this together
 	// with SourceArn to ensure that the resource is owned by the specified account.
-	// For example, an Amazon S3 bucket could be deleted by its owner and recreated
+	// It is possible for an Amazon S3 bucket to be deleted by its owner and recreated
 	// by another account.
 	SourceAccount *string `type:"string"`
 
@@ -5993,8 +5991,8 @@ type CreateEventSourceMappingInput struct {
 	// FunctionName is a required field
 	FunctionName *string `min:"1" type:"string" required:"true"`
 
-	// The maximum amount of time to gather records before invoking the function,
-	// in seconds.
+	// (Streams) The maximum amount of time to gather records before invoking the
+	// function, in seconds.
 	MaximumBatchingWindowInSeconds *int64 `type:"integer"`
 
 	// (Streams) The maximum age of a record that Lambda sends to a function for
@@ -7279,8 +7277,8 @@ type EventSourceMappingConfiguration struct {
 	// The result of the last AWS Lambda invocation of your Lambda function.
 	LastProcessingResult *string `type:"string"`
 
-	// The maximum amount of time to gather records before invoking the function,
-	// in seconds.
+	// (Streams) The maximum amount of time to gather records before invoking the
+	// function, in seconds.
 	MaximumBatchingWindowInSeconds *int64 `type:"integer"`
 
 	// (Streams) The maximum age of a record that Lambda sends to a function for
@@ -13068,8 +13066,8 @@ type UpdateEventSourceMappingInput struct {
 	// function name, it's limited to 64 characters in length.
 	FunctionName *string `min:"1" type:"string"`
 
-	// The maximum amount of time to gather records before invoking the function,
-	// in seconds.
+	// (Streams) The maximum amount of time to gather records before invoking the
+	// function, in seconds.
 	MaximumBatchingWindowInSeconds *int64 `type:"integer"`
 
 	// (Streams) The maximum age of a record that Lambda sends to a function for
@@ -13887,6 +13885,9 @@ const (
 
 	// RuntimeDotnetcore21 is a Runtime enum value
 	RuntimeDotnetcore21 = "dotnetcore2.1"
+
+	// RuntimeDotnetcore31 is a Runtime enum value
+	RuntimeDotnetcore31 = "dotnetcore3.1"
 
 	// RuntimeNodejs43Edge is a Runtime enum value
 	RuntimeNodejs43Edge = "nodejs4.3-edge"

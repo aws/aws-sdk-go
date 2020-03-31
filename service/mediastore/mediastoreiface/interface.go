@@ -80,6 +80,10 @@ type MediaStoreAPI interface {
 	DeleteLifecyclePolicyWithContext(aws.Context, *mediastore.DeleteLifecyclePolicyInput, ...request.Option) (*mediastore.DeleteLifecyclePolicyOutput, error)
 	DeleteLifecyclePolicyRequest(*mediastore.DeleteLifecyclePolicyInput) (*request.Request, *mediastore.DeleteLifecyclePolicyOutput)
 
+	DeleteMetricPolicy(*mediastore.DeleteMetricPolicyInput) (*mediastore.DeleteMetricPolicyOutput, error)
+	DeleteMetricPolicyWithContext(aws.Context, *mediastore.DeleteMetricPolicyInput, ...request.Option) (*mediastore.DeleteMetricPolicyOutput, error)
+	DeleteMetricPolicyRequest(*mediastore.DeleteMetricPolicyInput) (*request.Request, *mediastore.DeleteMetricPolicyOutput)
+
 	DescribeContainer(*mediastore.DescribeContainerInput) (*mediastore.DescribeContainerOutput, error)
 	DescribeContainerWithContext(aws.Context, *mediastore.DescribeContainerInput, ...request.Option) (*mediastore.DescribeContainerOutput, error)
 	DescribeContainerRequest(*mediastore.DescribeContainerInput) (*request.Request, *mediastore.DescribeContainerOutput)
@@ -95,6 +99,10 @@ type MediaStoreAPI interface {
 	GetLifecyclePolicy(*mediastore.GetLifecyclePolicyInput) (*mediastore.GetLifecyclePolicyOutput, error)
 	GetLifecyclePolicyWithContext(aws.Context, *mediastore.GetLifecyclePolicyInput, ...request.Option) (*mediastore.GetLifecyclePolicyOutput, error)
 	GetLifecyclePolicyRequest(*mediastore.GetLifecyclePolicyInput) (*request.Request, *mediastore.GetLifecyclePolicyOutput)
+
+	GetMetricPolicy(*mediastore.GetMetricPolicyInput) (*mediastore.GetMetricPolicyOutput, error)
+	GetMetricPolicyWithContext(aws.Context, *mediastore.GetMetricPolicyInput, ...request.Option) (*mediastore.GetMetricPolicyOutput, error)
+	GetMetricPolicyRequest(*mediastore.GetMetricPolicyInput) (*request.Request, *mediastore.GetMetricPolicyOutput)
 
 	ListContainers(*mediastore.ListContainersInput) (*mediastore.ListContainersOutput, error)
 	ListContainersWithContext(aws.Context, *mediastore.ListContainersInput, ...request.Option) (*mediastore.ListContainersOutput, error)
@@ -118,6 +126,10 @@ type MediaStoreAPI interface {
 	PutLifecyclePolicy(*mediastore.PutLifecyclePolicyInput) (*mediastore.PutLifecyclePolicyOutput, error)
 	PutLifecyclePolicyWithContext(aws.Context, *mediastore.PutLifecyclePolicyInput, ...request.Option) (*mediastore.PutLifecyclePolicyOutput, error)
 	PutLifecyclePolicyRequest(*mediastore.PutLifecyclePolicyInput) (*request.Request, *mediastore.PutLifecyclePolicyOutput)
+
+	PutMetricPolicy(*mediastore.PutMetricPolicyInput) (*mediastore.PutMetricPolicyOutput, error)
+	PutMetricPolicyWithContext(aws.Context, *mediastore.PutMetricPolicyInput, ...request.Option) (*mediastore.PutMetricPolicyOutput, error)
+	PutMetricPolicyRequest(*mediastore.PutMetricPolicyInput) (*request.Request, *mediastore.PutMetricPolicyOutput)
 
 	StartAccessLogging(*mediastore.StartAccessLoggingInput) (*mediastore.StartAccessLoggingOutput, error)
 	StartAccessLoggingWithContext(aws.Context, *mediastore.StartAccessLoggingInput, ...request.Option) (*mediastore.StartAccessLoggingOutput, error)

@@ -58,8 +58,6 @@ func (c *Detective) AcceptInvitationRequest(input *AcceptInvitationInput) (req *
 
 // AcceptInvitation API operation for Amazon Detective.
 //
-// Amazon Detective is currently in preview.
-//
 // Accepts an invitation for the member account to contribute data to a behavior
 // graph. This operation can only be called by an invited member account.
 //
@@ -152,8 +150,6 @@ func (c *Detective) CreateGraphRequest(input *CreateGraphInput) (req *request.Re
 }
 
 // CreateGraph API operation for Amazon Detective.
-//
-// Amazon Detective is currently in preview.
 //
 // Creates a new behavior graph for the calling account, and sets that account
 // as the master account. This operation is called by the account that is enabling
@@ -269,8 +265,6 @@ func (c *Detective) CreateMembersRequest(input *CreateMembersInput) (req *reques
 }
 
 // CreateMembers API operation for Amazon Detective.
-//
-// Amazon Detective is currently in preview.
 //
 // Sends a request to invite the specified AWS accounts to be member accounts
 // in the behavior graph. This operation can only be called by the master account
@@ -389,8 +383,6 @@ func (c *Detective) DeleteGraphRequest(input *DeleteGraphInput) (req *request.Re
 
 // DeleteGraph API operation for Amazon Detective.
 //
-// Amazon Detective is currently in preview.
-//
 // Disables the specified behavior graph and queues it to be deleted. This operation
 // removes the graph from each member account's list of behavior graphs.
 //
@@ -478,8 +470,6 @@ func (c *Detective) DeleteMembersRequest(input *DeleteMembersInput) (req *reques
 }
 
 // DeleteMembers API operation for Amazon Detective.
-//
-// Amazon Detective is currently in preview.
 //
 // Deletes one or more member accounts from the master account behavior graph.
 // This operation can only be called by a Detective master account. That account
@@ -574,8 +564,6 @@ func (c *Detective) DisassociateMembershipRequest(input *DisassociateMembershipI
 
 // DisassociateMembership API operation for Amazon Detective.
 //
-// Amazon Detective is currently in preview.
-//
 // Removes the member account from the specified behavior graph. This operation
 // can only be called by a member account that has the ENABLED status.
 //
@@ -664,8 +652,6 @@ func (c *Detective) GetMembersRequest(input *GetMembersInput) (req *request.Requ
 }
 
 // GetMembers API operation for Amazon Detective.
-//
-// Amazon Detective is currently in preview.
 //
 // Returns the membership details for specified member accounts for a behavior
 // graph.
@@ -758,8 +744,6 @@ func (c *Detective) ListGraphsRequest(input *ListGraphsInput) (req *request.Requ
 }
 
 // ListGraphs API operation for Amazon Detective.
-//
-// Amazon Detective is currently in preview.
 //
 // Returns the list of behavior graphs that the calling account is a master
 // of. This operation can only be called by a master account.
@@ -904,8 +888,6 @@ func (c *Detective) ListInvitationsRequest(input *ListInvitationsInput) (req *re
 }
 
 // ListInvitations API operation for Amazon Detective.
-//
-// Amazon Detective is currently in preview.
 //
 // Retrieves the list of open and accepted behavior graph invitations for the
 // member account. This operation can only be called by a member account.
@@ -1055,8 +1037,6 @@ func (c *Detective) ListMembersRequest(input *ListMembersInput) (req *request.Re
 
 // ListMembers API operation for Amazon Detective.
 //
-// Amazon Detective is currently in preview.
-//
 // Retrieves the list of member accounts for a behavior graph. Does not return
 // member accounts that were removed from the behavior graph.
 //
@@ -1195,8 +1175,6 @@ func (c *Detective) RejectInvitationRequest(input *RejectInvitationInput) (req *
 }
 
 // RejectInvitation API operation for Amazon Detective.
-//
-// Amazon Detective is currently in preview.
 //
 // Rejects an invitation to contribute the account data to a behavior graph.
 // This operation must be called by a member account that has the INVITED status.
@@ -1407,8 +1385,6 @@ func (s AcceptInvitationOutput) GoString() string {
 	return s.String()
 }
 
-// Amazon Detective is currently in preview.
-//
 // An AWS account that is the master of or a member of a behavior graph.
 type Account struct {
 	_ struct{} `type:"structure"`
@@ -1971,8 +1947,6 @@ func (s *GetMembersOutput) SetUnprocessedAccounts(v []*UnprocessedAccount) *GetM
 	return s
 }
 
-// Amazon Detective is currently in preview.
-//
 // A behavior graph in Detective.
 type Graph struct {
 	_ struct{} `type:"structure"`
@@ -2338,8 +2312,6 @@ func (s *ListMembersOutput) SetNextToken(v string) *ListMembersOutput {
 	return s
 }
 
-// Amazon Detective is currently in preview.
-//
 // Details about a member account that was invited to contribute to a behavior
 // graph.
 type MemberDetail struct {
@@ -2349,15 +2321,15 @@ type MemberDetail struct {
 	AccountId *string `min:"12" type:"string"`
 
 	// For member accounts with a status of ACCEPTED_BUT_DISABLED, the reason that
-	// the member account is blocked.
+	// the member account is not enabled.
 	//
 	// The reason can have one of the following values:
 	//
 	//    * VOLUME_TOO_HIGH - Indicates that adding the member account would cause
-	//    the data rate for the behavior graph to be too high.
+	//    the data volume for the behavior graph to be too high.
 	//
 	//    * VOLUME_UNKNOWN - Indicates that Detective is unable to verify the data
-	//    rate for the member account. This is usually because the member account
+	//    volume for the member account. This is usually because the member account
 	//    is not enrolled in Amazon GuardDuty.
 	DisabledReason *string `type:"string" enum:"MemberDisabledReason"`
 
@@ -2408,8 +2380,8 @@ type MemberDetail struct {
 	//    to contribute to the behavior graph.
 	//
 	//    * ACCEPTED_BUT_DISABLED - Indicates that the member account accepted the
-	//    invitation, but is blocked from contributing data to the behavior graph.
-	//    DisabledReason provides the reason why the member account is blocked.
+	//    invitation but is prevented from contributing data to the behavior graph.
+	//    DisabledReason provides the reason why the member account is not enabled.
 	//
 	// Member accounts that declined an invitation or that were removed from the
 	// behavior graph are not included.
@@ -2738,8 +2710,6 @@ func (s StartMonitoringMemberOutput) GoString() string {
 	return s.String()
 }
 
-// Amazon Detective is currently in preview.
-//
 // A member account that was included in a request but for which the request
 // could not be processed.
 type UnprocessedAccount struct {

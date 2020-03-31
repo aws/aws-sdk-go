@@ -686,10 +686,35 @@
         "GrowthFactor":{"shape":"Percentage"},
         "FinalBakeTimeInMinutes":{"shape":"MinutesBetween0And24Hours"},
         "State":{"shape":"DeploymentState"},
+        "EventLog":{"shape":"DeploymentEvents"},
         "PercentageComplete":{"shape":"Percentage"},
         "StartedAt":{"shape":"Iso8601DateTime"},
         "CompletedAt":{"shape":"Iso8601DateTime"}
       }
+    },
+    "DeploymentEvent":{
+      "type":"structure",
+      "members":{
+        "EventType":{"shape":"DeploymentEventType"},
+        "TriggeredBy":{"shape":"TriggeredBy"},
+        "Description":{"shape":"Description"},
+        "OccurredAt":{"shape":"Iso8601DateTime"}
+      }
+    },
+    "DeploymentEventType":{
+      "type":"string",
+      "enum":[
+        "PERCENTAGE_UPDATED",
+        "ROLLBACK_STARTED",
+        "ROLLBACK_COMPLETED",
+        "BAKE_TIME_STARTED",
+        "DEPLOYMENT_STARTED",
+        "DEPLOYMENT_COMPLETED"
+      ]
+    },
+    "DeploymentEvents":{
+      "type":"list",
+      "member":{"shape":"DeploymentEvent"}
     },
     "DeploymentList":{
       "type":"list",
@@ -1222,6 +1247,15 @@
     "TagValue":{
       "type":"string",
       "max":256
+    },
+    "TriggeredBy":{
+      "type":"string",
+      "enum":[
+        "USER",
+        "APPCONFIG",
+        "CLOUDWATCH_ALARM",
+        "INTERNAL_ERROR"
+      ]
     },
     "UntagResourceRequest":{
       "type":"structure",

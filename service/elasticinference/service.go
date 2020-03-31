@@ -30,9 +30,9 @@ var initRequest func(*request.Request)
 
 // Service information constants
 const (
-	ServiceName = "Elastic Inference"     // Name of service.
-	EndpointsID = "api.elastic-inference" // ID to lookup a service endpoint with.
-	ServiceID   = "Elastic Inference"     // ServiceID is a unique identifier of a specific service.
+	ServiceName = "Elastic Inference" // Name of service.
+	EndpointsID = "elastic-inference" // ID to lookup a service endpoint with.
+	ServiceID   = "Elastic Inference" // ServiceID is a unique identifier of a specific service.
 )
 
 // New creates a new instance of the ElasticInference client with a session.

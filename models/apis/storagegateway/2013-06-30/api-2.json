@@ -1140,6 +1140,10 @@
         "TargetARN":{"shape":"TargetARN"}
       }
     },
+    "AuditDestinationARN":{
+      "type":"string",
+      "max":1024
+    },
     "Authentication":{
       "type":"string",
       "max":15,
@@ -1336,6 +1340,7 @@
         "AdminUserList":{"shape":"FileShareUserList"},
         "ValidUserList":{"shape":"FileShareUserList"},
         "InvalidUserList":{"shape":"FileShareUserList"},
+        "AuditDestinationARN":{"shape":"AuditDestinationARN"},
         "Authentication":{"shape":"Authentication"},
         "Tags":{"shape":"Tags"}
       }
@@ -2664,6 +2669,7 @@
         "AdminUserList":{"shape":"FileShareUserList"},
         "ValidUserList":{"shape":"FileShareUserList"},
         "InvalidUserList":{"shape":"FileShareUserList"},
+        "AuditDestinationARN":{"shape":"AuditDestinationARN"},
         "Authentication":{"shape":"Authentication"},
         "Tags":{"shape":"Tags"}
       }
@@ -3087,7 +3093,8 @@
         "SMBACLEnabled":{"shape":"Boolean"},
         "AdminUserList":{"shape":"FileShareUserList"},
         "ValidUserList":{"shape":"FileShareUserList"},
-        "InvalidUserList":{"shape":"FileShareUserList"}
+        "InvalidUserList":{"shape":"FileShareUserList"},
+        "AuditDestinationARN":{"shape":"AuditDestinationARN"}
       }
     },
     "UpdateSMBFileShareOutput":{

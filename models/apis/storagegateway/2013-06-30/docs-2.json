@@ -162,6 +162,14 @@
       "refs": {
       }
     },
+    "AuditDestinationARN": {
+      "base": null,
+      "refs": {
+        "CreateSMBFileShareInput$AuditDestinationARN": "<p>The Amazon Resource Name (ARN) of the storage used for the audit logs.</p>",
+        "SMBFileShareInfo$AuditDestinationARN": "<p>The Amazon Resource Name (ARN) of the storage used for the audit logs.</p>",
+        "UpdateSMBFileShareInput$AuditDestinationARN": "<p>The Amazon Resource Name (ARN) of the storage used for the audit logs.</p>"
+      }
+    },
     "Authentication": {
       "base": "<p>The authentication method of the file share.</p> <p>Valid values are <code>ActiveDirectory</code> or <code>GuestAccess</code>. The default is <code>ActiveDirectory</code>.</p>",
       "refs": {
@@ -916,7 +924,7 @@
         "CancelRetrievalInput$GatewayARN": null,
         "CreateCachediSCSIVolumeInput$GatewayARN": null,
         "CreateNFSFileShareInput$GatewayARN": "<p>The Amazon Resource Name (ARN) of the file gateway on which you want to create a file share.</p>",
-        "CreateSMBFileShareInput$GatewayARN": "<p>The Amazon Resource Name (ARN) of the file gateway on which you want to create a file share.</p>",
+        "CreateSMBFileShareInput$GatewayARN": "<p>The ARN of the file gateway on which you want to create a file share.</p>",
         "CreateStorediSCSIVolumeInput$GatewayARN": null,
         "CreateTapeWithBarcodeInput$GatewayARN": "<p>The unique Amazon Resource Name (ARN) that represents the gateway to associate the virtual tape with. Use the <a>ListGateways</a> operation to return a list of gateways for your account and AWS Region.</p>",
         "CreateTapesInput$GatewayARN": "<p>The unique Amazon Resource Name (ARN) that represents the gateway to associate the virtual tapes with. Use the <a>ListGateways</a> operation to return a list of gateways for your account and AWS Region.</p>",

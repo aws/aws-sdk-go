@@ -807,6 +807,210 @@ func (c *Rekognition) DeleteFacesWithContext(ctx aws.Context, input *DeleteFaces
 	return out, req.Send()
 }
 
+const opDeleteProject = "DeleteProject"
+
+// DeleteProjectRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteProject operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteProject for more information on using the DeleteProject
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteProjectRequest method.
+//    req, resp := client.DeleteProjectRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Rekognition) DeleteProjectRequest(input *DeleteProjectInput) (req *request.Request, output *DeleteProjectOutput) {
+	op := &request.Operation{
+		Name:       opDeleteProject,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteProjectInput{}
+	}
+
+	output = &DeleteProjectOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteProject API operation for Amazon Rekognition.
+//
+// Deletes an Amazon Rekognition Custom Labels project. To delete a project
+// you must first delete all versions of the model associated with the project.
+// To delete a version of a model, see DeleteProjectVersion.
+//
+// This operation requires permissions to perform the rekognition:DeleteProject
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation DeleteProject for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceInUseException
+//
+//   * ResourceNotFoundException
+//   The collection specified in the request cannot be found.
+//
+//   * InvalidParameterException
+//   Input parameter violated a constraint. Validate your parameter before calling
+//   the API operation again.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform the action.
+//
+//   * InternalServerError
+//   Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   * ThrottlingException
+//   Amazon Rekognition is temporarily unable to process the request. Try your
+//   call again.
+//
+//   * ProvisionedThroughputExceededException
+//   The number of requests exceeded your throughput limit. If you want to increase
+//   this limit, contact Amazon Rekognition.
+//
+func (c *Rekognition) DeleteProject(input *DeleteProjectInput) (*DeleteProjectOutput, error) {
+	req, out := c.DeleteProjectRequest(input)
+	return out, req.Send()
+}
+
+// DeleteProjectWithContext is the same as DeleteProject with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteProject for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) DeleteProjectWithContext(ctx aws.Context, input *DeleteProjectInput, opts ...request.Option) (*DeleteProjectOutput, error) {
+	req, out := c.DeleteProjectRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteProjectVersion = "DeleteProjectVersion"
+
+// DeleteProjectVersionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteProjectVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteProjectVersion for more information on using the DeleteProjectVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteProjectVersionRequest method.
+//    req, resp := client.DeleteProjectVersionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Rekognition) DeleteProjectVersionRequest(input *DeleteProjectVersionInput) (req *request.Request, output *DeleteProjectVersionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteProjectVersion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteProjectVersionInput{}
+	}
+
+	output = &DeleteProjectVersionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteProjectVersion API operation for Amazon Rekognition.
+//
+// Deletes a version of a model.
+//
+// You must first stop the model before you can delete it. To check if a model
+// is running, use the Status field returned from DescribeProjectVersions. To
+// stop a running model call StopProjectVersion.
+//
+// This operation requires permissions to perform the rekognition:DeleteProjectVersion
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation DeleteProjectVersion for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The collection specified in the request cannot be found.
+//
+//   * ResourceInUseException
+//
+//   * InvalidParameterException
+//   Input parameter violated a constraint. Validate your parameter before calling
+//   the API operation again.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform the action.
+//
+//   * InternalServerError
+//   Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   * ThrottlingException
+//   Amazon Rekognition is temporarily unable to process the request. Try your
+//   call again.
+//
+//   * ProvisionedThroughputExceededException
+//   The number of requests exceeded your throughput limit. If you want to increase
+//   this limit, contact Amazon Rekognition.
+//
+func (c *Rekognition) DeleteProjectVersion(input *DeleteProjectVersionInput) (*DeleteProjectVersionOutput, error) {
+	req, out := c.DeleteProjectVersionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteProjectVersionWithContext is the same as DeleteProjectVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteProjectVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) DeleteProjectVersionWithContext(ctx aws.Context, input *DeleteProjectVersionInput, opts ...request.Option) (*DeleteProjectVersionOutput, error) {
+	req, out := c.DeleteProjectVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteStreamProcessor = "DeleteStreamProcessor"
 
 // DeleteStreamProcessorRequest generates a "aws/request.Request" representing the
@@ -7211,6 +7415,134 @@ func (s DeleteFacesOutput) GoString() string {
 // SetDeletedFaces sets the DeletedFaces field's value.
 func (s *DeleteFacesOutput) SetDeletedFaces(v []*string) *DeleteFacesOutput {
 	s.DeletedFaces = v
+	return s
+}
+
+type DeleteProjectInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the project that you want to delete.
+	//
+	// ProjectArn is a required field
+	ProjectArn *string `min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteProjectInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteProjectInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteProjectInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteProjectInput"}
+	if s.ProjectArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProjectArn"))
+	}
+	if s.ProjectArn != nil && len(*s.ProjectArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProjectArn sets the ProjectArn field's value.
+func (s *DeleteProjectInput) SetProjectArn(v string) *DeleteProjectInput {
+	s.ProjectArn = &v
+	return s
+}
+
+type DeleteProjectOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The current status of the delete project operation.
+	Status *string `type:"string" enum:"ProjectStatus"`
+}
+
+// String returns the string representation
+func (s DeleteProjectOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteProjectOutput) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *DeleteProjectOutput) SetStatus(v string) *DeleteProjectOutput {
+	s.Status = &v
+	return s
+}
+
+type DeleteProjectVersionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the model version that you want to delete.
+	//
+	// ProjectVersionArn is a required field
+	ProjectVersionArn *string `min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteProjectVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteProjectVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteProjectVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteProjectVersionInput"}
+	if s.ProjectVersionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProjectVersionArn"))
+	}
+	if s.ProjectVersionArn != nil && len(*s.ProjectVersionArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectVersionArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProjectVersionArn sets the ProjectVersionArn field's value.
+func (s *DeleteProjectVersionInput) SetProjectVersionArn(v string) *DeleteProjectVersionInput {
+	s.ProjectVersionArn = &v
+	return s
+}
+
+type DeleteProjectVersionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the deletion operation.
+	Status *string `type:"string" enum:"ProjectVersionStatus"`
+}
+
+// String returns the string representation
+func (s DeleteProjectVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteProjectVersionOutput) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *DeleteProjectVersionOutput) SetStatus(v string) *DeleteProjectVersionOutput {
+	s.Status = &v
 	return s
 }
 

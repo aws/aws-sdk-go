@@ -87,6 +87,21 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "DeleteMetricPolicy":{
+      "name":"DeleteMetricPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteMetricPolicyInput"},
+      "output":{"shape":"DeleteMetricPolicyOutput"},
+      "errors":[
+        {"shape":"ContainerInUseException"},
+        {"shape":"ContainerNotFoundException"},
+        {"shape":"PolicyNotFoundException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "DescribeContainer":{
       "name":"DescribeContainer",
       "http":{
@@ -142,6 +157,21 @@
         {"shape":"ContainerInUseException"},
         {"shape":"ContainerNotFoundException"},
         {"shape":"PolicyNotFoundException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
+    "GetMetricPolicy":{
+      "name":"GetMetricPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetMetricPolicyInput"},
+      "output":{"shape":"GetMetricPolicyOutput"},
+      "errors":[
+        {"shape":"ContainerNotFoundException"},
+        {"shape":"PolicyNotFoundException"},
+        {"shape":"ContainerInUseException"},
         {"shape":"InternalServerError"}
       ]
     },
@@ -207,6 +237,20 @@
       },
       "input":{"shape":"PutLifecyclePolicyInput"},
       "output":{"shape":"PutLifecyclePolicyOutput"},
+      "errors":[
+        {"shape":"ContainerInUseException"},
+        {"shape":"ContainerNotFoundException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
+    "PutMetricPolicy":{
+      "name":"PutMetricPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutMetricPolicyInput"},
+      "output":{"shape":"PutMetricPolicyOutput"},
       "errors":[
         {"shape":"ContainerInUseException"},
         {"shape":"ContainerNotFoundException"},
@@ -313,6 +357,13 @@
         "Message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "ContainerLevelMetrics":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
     },
     "ContainerList":{
       "type":"list",
@@ -442,6 +493,18 @@
       "members":{
       }
     },
+    "DeleteMetricPolicyInput":{
+      "type":"structure",
+      "required":["ContainerName"],
+      "members":{
+        "ContainerName":{"shape":"ContainerName"}
+      }
+    },
+    "DeleteMetricPolicyOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DescribeContainerInput":{
       "type":"structure",
       "members":{
@@ -514,6 +577,20 @@
         "LifecyclePolicy":{"shape":"LifecyclePolicy"}
       }
     },
+    "GetMetricPolicyInput":{
+      "type":"structure",
+      "required":["ContainerName"],
+      "members":{
+        "ContainerName":{"shape":"ContainerName"}
+      }
+    },
+    "GetMetricPolicyOutput":{
+      "type":"structure",
+      "required":["MetricPolicy"],
+      "members":{
+        "MetricPolicy":{"shape":"MetricPolicy"}
+      }
+    },
     "Header":{
       "type":"string",
       "max":8192,
@@ -583,6 +660,43 @@
         "HEAD"
       ]
     },
+    "MetricPolicy":{
+      "type":"structure",
+      "required":["ContainerLevelMetrics"],
+      "members":{
+        "ContainerLevelMetrics":{"shape":"ContainerLevelMetrics"},
+        "MetricPolicyRules":{"shape":"MetricPolicyRules"}
+      }
+    },
+    "MetricPolicyRule":{
+      "type":"structure",
+      "required":[
+        "ObjectGroup",
+        "ObjectGroupName"
+      ],
+      "members":{
+        "ObjectGroup":{"shape":"ObjectGroup"},
+        "ObjectGroupName":{"shape":"ObjectGroupName"}
+      }
+    },
+    "MetricPolicyRules":{
+      "type":"list",
+      "member":{"shape":"MetricPolicyRule"},
+      "max":300,
+      "min":1
+    },
+    "ObjectGroup":{
+      "type":"string",
+      "max":900,
+      "min":1,
+      "pattern":"/?(?:[A-Za-z0-9_=:\\.\\-\\~\\*]+/){0,10}(?:[A-Za-z0-9_=:\\.\\-\\~\\*]+)?/?"
+    },
+    "ObjectGroupName":{
+      "type":"string",
+      "max":30,
+      "min":1,
+      "pattern":"[a-zA-Z0-9_]+"
+    },
     "Origin":{
       "type":"string",
       "max":2048,
@@ -650,6 +764,22 @@
       "members":{
       }
     },
+    "PutMetricPolicyInput":{
+      "type":"structure",
+      "required":[
+        "ContainerName",
+        "MetricPolicy"
+      ],
+      "members":{
+        "ContainerName":{"shape":"ContainerName"},
+        "MetricPolicy":{"shape":"MetricPolicy"}
+      }
+    },
+    "PutMetricPolicyOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "StartAccessLoggingInput":{
       "type":"structure",
       "required":["ContainerName"],
@@ -685,7 +815,8 @@
     "TagKey":{
       "type":"string",
       "max":128,
-      "min":1
+      "min":1,
+      "pattern":"[\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*"
     },
     "TagKeyList":{
       "type":"list",
@@ -693,7 +824,9 @@
     },
     "TagList":{
       "type":"list",
-      "member":{"shape":"Tag"}
+      "member":{"shape":"Tag"},
+      "max":200,
+      "min":1
     },
     "TagResourceInput":{
       "type":"structure",
@@ -714,7 +847,8 @@
     "TagValue":{
       "type":"string",
       "max":256,
-      "min":0
+      "min":0,
+      "pattern":"[\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*"
     },
     "TimeStamp":{"type":"timestamp"},
     "UntagResourceInput":{

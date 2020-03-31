@@ -151,6 +151,24 @@
       "refs": {
       }
     },
+    "DeploymentEvent": {
+      "base": "<p>An object that describes a deployment event.</p>",
+      "refs": {
+        "DeploymentEvents$member": null
+      }
+    },
+    "DeploymentEventType": {
+      "base": null,
+      "refs": {
+        "DeploymentEvent$EventType": "<p>The type of deployment event. Deployment event types include the start, stop, or completion of a deployment; a percentage update; the start or stop of a bake period; the start or completion of a rollback.</p>"
+      }
+    },
+    "DeploymentEvents": {
+      "base": null,
+      "refs": {
+        "Deployment$EventLog": "<p>A list containing all events related to a deployment. The most recent events are displayed first.</p>"
+      }
+    },
     "DeploymentList": {
       "base": null,
       "refs": {
@@ -211,6 +229,7 @@
         "CreateDeploymentStrategyRequest$Description": "<p>A description of the deployment strategy.</p>",
         "CreateEnvironmentRequest$Description": "<p>A description of the environment.</p>",
         "Deployment$Description": "<p>The description of the deployment.</p>",
+        "DeploymentEvent$Description": "<p>A description of the deployment event. Descriptions include, but are not limited to, the user account or the CloudWatch alarm ARN that initiated a rollback, the percentage of hosts that received the deployment, or in the case of an internal error, a recommendation to attempt a new deployment.</p>",
         "DeploymentStrategy$Description": "<p>The description of the deployment strategy.</p>",
         "Environment$Description": "<p>The description of the environment.</p>",
         "StartDeploymentRequest$Description": "<p>A description of the deployment.</p>",
@@ -356,6 +375,7 @@
       "refs": {
         "Deployment$StartedAt": "<p>The time the deployment started.</p>",
         "Deployment$CompletedAt": "<p>The time the deployment completed. </p>",
+        "DeploymentEvent$OccurredAt": "<p>The date and time the event occurred.</p>",
         "DeploymentSummary$StartedAt": "<p>Time the deployment started.</p>",
         "DeploymentSummary$CompletedAt": "<p>Time the deployment completed.</p>"
       }
@@ -560,6 +580,12 @@
       "base": null,
       "refs": {
         "TagMap$value": null
+      }
+    },
+    "TriggeredBy": {
+      "base": null,
+      "refs": {
+        "DeploymentEvent$TriggeredBy": "<p>The entity that triggered the deployment event. Events can be triggered by a user, AWS AppConfig, an Amazon CloudWatch alarm, or an internal error.</p>"
       }
     },
     "UntagResourceRequest": {

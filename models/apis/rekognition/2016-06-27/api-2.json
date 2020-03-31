@@ -137,6 +137,42 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DeleteProject":{
+      "name":"DeleteProject",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteProjectRequest"},
+      "output":{"shape":"DeleteProjectResponse"},
+      "errors":[
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerError"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ProvisionedThroughputExceededException"}
+      ]
+    },
+    "DeleteProjectVersion":{
+      "name":"DeleteProjectVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteProjectVersionRequest"},
+      "output":{"shape":"DeleteProjectVersionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerError"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ProvisionedThroughputExceededException"}
+      ]
+    },
     "DeleteStreamProcessor":{
       "name":"DeleteStreamProcessor",
       "http":{
@@ -1148,6 +1184,32 @@
       "type":"structure",
       "members":{
         "DeletedFaces":{"shape":"FaceIdList"}
+      }
+    },
+    "DeleteProjectRequest":{
+      "type":"structure",
+      "required":["ProjectArn"],
+      "members":{
+        "ProjectArn":{"shape":"ProjectArn"}
+      }
+    },
+    "DeleteProjectResponse":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"ProjectStatus"}
+      }
+    },
+    "DeleteProjectVersionRequest":{
+      "type":"structure",
+      "required":["ProjectVersionArn"],
+      "members":{
+        "ProjectVersionArn":{"shape":"ProjectVersionArn"}
+      }
+    },
+    "DeleteProjectVersionResponse":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"ProjectVersionStatus"}
       }
     },
     "DeleteStreamProcessorRequest":{
