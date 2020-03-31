@@ -84,6 +84,10 @@ type WAFV2API interface {
 	CreateWebACLWithContext(aws.Context, *wafv2.CreateWebACLInput, ...request.Option) (*wafv2.CreateWebACLOutput, error)
 	CreateWebACLRequest(*wafv2.CreateWebACLInput) (*request.Request, *wafv2.CreateWebACLOutput)
 
+	DeleteFirewallManagerRuleGroups(*wafv2.DeleteFirewallManagerRuleGroupsInput) (*wafv2.DeleteFirewallManagerRuleGroupsOutput, error)
+	DeleteFirewallManagerRuleGroupsWithContext(aws.Context, *wafv2.DeleteFirewallManagerRuleGroupsInput, ...request.Option) (*wafv2.DeleteFirewallManagerRuleGroupsOutput, error)
+	DeleteFirewallManagerRuleGroupsRequest(*wafv2.DeleteFirewallManagerRuleGroupsInput) (*request.Request, *wafv2.DeleteFirewallManagerRuleGroupsOutput)
+
 	DeleteIPSet(*wafv2.DeleteIPSetInput) (*wafv2.DeleteIPSetOutput, error)
 	DeleteIPSetWithContext(aws.Context, *wafv2.DeleteIPSetInput, ...request.Option) (*wafv2.DeleteIPSetOutput, error)
 	DeleteIPSetRequest(*wafv2.DeleteIPSetInput) (*request.Request, *wafv2.DeleteIPSetOutput)
@@ -91,6 +95,10 @@ type WAFV2API interface {
 	DeleteLoggingConfiguration(*wafv2.DeleteLoggingConfigurationInput) (*wafv2.DeleteLoggingConfigurationOutput, error)
 	DeleteLoggingConfigurationWithContext(aws.Context, *wafv2.DeleteLoggingConfigurationInput, ...request.Option) (*wafv2.DeleteLoggingConfigurationOutput, error)
 	DeleteLoggingConfigurationRequest(*wafv2.DeleteLoggingConfigurationInput) (*request.Request, *wafv2.DeleteLoggingConfigurationOutput)
+
+	DeletePermissionPolicy(*wafv2.DeletePermissionPolicyInput) (*wafv2.DeletePermissionPolicyOutput, error)
+	DeletePermissionPolicyWithContext(aws.Context, *wafv2.DeletePermissionPolicyInput, ...request.Option) (*wafv2.DeletePermissionPolicyOutput, error)
+	DeletePermissionPolicyRequest(*wafv2.DeletePermissionPolicyInput) (*request.Request, *wafv2.DeletePermissionPolicyOutput)
 
 	DeleteRegexPatternSet(*wafv2.DeleteRegexPatternSetInput) (*wafv2.DeleteRegexPatternSetOutput, error)
 	DeleteRegexPatternSetWithContext(aws.Context, *wafv2.DeleteRegexPatternSetInput, ...request.Option) (*wafv2.DeleteRegexPatternSetOutput, error)
@@ -119,6 +127,10 @@ type WAFV2API interface {
 	GetLoggingConfiguration(*wafv2.GetLoggingConfigurationInput) (*wafv2.GetLoggingConfigurationOutput, error)
 	GetLoggingConfigurationWithContext(aws.Context, *wafv2.GetLoggingConfigurationInput, ...request.Option) (*wafv2.GetLoggingConfigurationOutput, error)
 	GetLoggingConfigurationRequest(*wafv2.GetLoggingConfigurationInput) (*request.Request, *wafv2.GetLoggingConfigurationOutput)
+
+	GetPermissionPolicy(*wafv2.GetPermissionPolicyInput) (*wafv2.GetPermissionPolicyOutput, error)
+	GetPermissionPolicyWithContext(aws.Context, *wafv2.GetPermissionPolicyInput, ...request.Option) (*wafv2.GetPermissionPolicyOutput, error)
+	GetPermissionPolicyRequest(*wafv2.GetPermissionPolicyInput) (*request.Request, *wafv2.GetPermissionPolicyOutput)
 
 	GetRateBasedStatementManagedKeys(*wafv2.GetRateBasedStatementManagedKeysInput) (*wafv2.GetRateBasedStatementManagedKeysOutput, error)
 	GetRateBasedStatementManagedKeysWithContext(aws.Context, *wafv2.GetRateBasedStatementManagedKeysInput, ...request.Option) (*wafv2.GetRateBasedStatementManagedKeysOutput, error)
@@ -179,6 +191,10 @@ type WAFV2API interface {
 	PutLoggingConfiguration(*wafv2.PutLoggingConfigurationInput) (*wafv2.PutLoggingConfigurationOutput, error)
 	PutLoggingConfigurationWithContext(aws.Context, *wafv2.PutLoggingConfigurationInput, ...request.Option) (*wafv2.PutLoggingConfigurationOutput, error)
 	PutLoggingConfigurationRequest(*wafv2.PutLoggingConfigurationInput) (*request.Request, *wafv2.PutLoggingConfigurationOutput)
+
+	PutPermissionPolicy(*wafv2.PutPermissionPolicyInput) (*wafv2.PutPermissionPolicyOutput, error)
+	PutPermissionPolicyWithContext(aws.Context, *wafv2.PutPermissionPolicyInput, ...request.Option) (*wafv2.PutPermissionPolicyOutput, error)
+	PutPermissionPolicyRequest(*wafv2.PutPermissionPolicyInput) (*request.Request, *wafv2.PutPermissionPolicyOutput)
 
 	TagResource(*wafv2.TagResourceInput) (*wafv2.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *wafv2.TagResourceInput, ...request.Option) (*wafv2.TagResourceOutput, error)

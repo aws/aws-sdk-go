@@ -88,6 +88,14 @@ type RekognitionAPI interface {
 	DeleteFacesWithContext(aws.Context, *rekognition.DeleteFacesInput, ...request.Option) (*rekognition.DeleteFacesOutput, error)
 	DeleteFacesRequest(*rekognition.DeleteFacesInput) (*request.Request, *rekognition.DeleteFacesOutput)
 
+	DeleteProject(*rekognition.DeleteProjectInput) (*rekognition.DeleteProjectOutput, error)
+	DeleteProjectWithContext(aws.Context, *rekognition.DeleteProjectInput, ...request.Option) (*rekognition.DeleteProjectOutput, error)
+	DeleteProjectRequest(*rekognition.DeleteProjectInput) (*request.Request, *rekognition.DeleteProjectOutput)
+
+	DeleteProjectVersion(*rekognition.DeleteProjectVersionInput) (*rekognition.DeleteProjectVersionOutput, error)
+	DeleteProjectVersionWithContext(aws.Context, *rekognition.DeleteProjectVersionInput, ...request.Option) (*rekognition.DeleteProjectVersionOutput, error)
+	DeleteProjectVersionRequest(*rekognition.DeleteProjectVersionInput) (*request.Request, *rekognition.DeleteProjectVersionOutput)
+
 	DeleteStreamProcessor(*rekognition.DeleteStreamProcessorInput) (*rekognition.DeleteStreamProcessorOutput, error)
 	DeleteStreamProcessorWithContext(aws.Context, *rekognition.DeleteStreamProcessorInput, ...request.Option) (*rekognition.DeleteStreamProcessorOutput, error)
 	DeleteStreamProcessorRequest(*rekognition.DeleteStreamProcessorInput) (*request.Request, *rekognition.DeleteStreamProcessorOutput)

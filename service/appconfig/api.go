@@ -4011,6 +4011,63 @@ func (s DeleteEnvironmentOutput) GoString() string {
 	return s.String()
 }
 
+// An object that describes a deployment event.
+type DeploymentEvent struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the deployment event. Descriptions include, but are not
+	// limited to, the user account or the CloudWatch alarm ARN that initiated a
+	// rollback, the percentage of hosts that received the deployment, or in the
+	// case of an internal error, a recommendation to attempt a new deployment.
+	Description *string `type:"string"`
+
+	// The type of deployment event. Deployment event types include the start, stop,
+	// or completion of a deployment; a percentage update; the start or stop of
+	// a bake period; the start or completion of a rollback.
+	EventType *string `type:"string" enum:"DeploymentEventType"`
+
+	// The date and time the event occurred.
+	OccurredAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The entity that triggered the deployment event. Events can be triggered by
+	// a user, AWS AppConfig, an Amazon CloudWatch alarm, or an internal error.
+	TriggeredBy *string `type:"string" enum:"TriggeredBy"`
+}
+
+// String returns the string representation
+func (s DeploymentEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeploymentEvent) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *DeploymentEvent) SetDescription(v string) *DeploymentEvent {
+	s.Description = &v
+	return s
+}
+
+// SetEventType sets the EventType field's value.
+func (s *DeploymentEvent) SetEventType(v string) *DeploymentEvent {
+	s.EventType = &v
+	return s
+}
+
+// SetOccurredAt sets the OccurredAt field's value.
+func (s *DeploymentEvent) SetOccurredAt(v time.Time) *DeploymentEvent {
+	s.OccurredAt = &v
+	return s
+}
+
+// SetTriggeredBy sets the TriggeredBy field's value.
+func (s *DeploymentEvent) SetTriggeredBy(v string) *DeploymentEvent {
+	s.TriggeredBy = &v
+	return s
+}
+
 type DeploymentStrategy struct {
 	_ struct{} `type:"structure"`
 
@@ -4762,6 +4819,10 @@ type GetDeploymentOutput struct {
 	// The ID of the environment that was deployed.
 	EnvironmentId *string `type:"string"`
 
+	// A list containing all events related to a deployment. The most recent events
+	// are displayed first.
+	EventLog []*DeploymentEvent `type:"list"`
+
 	// The amount of time AppConfig monitored for alarms before considering the
 	// deployment to be complete and no longer eligible for automatic roll back.
 	FinalBakeTimeInMinutes *int64 `type:"integer"`
@@ -4856,6 +4917,12 @@ func (s *GetDeploymentOutput) SetDescription(v string) *GetDeploymentOutput {
 // SetEnvironmentId sets the EnvironmentId field's value.
 func (s *GetDeploymentOutput) SetEnvironmentId(v string) *GetDeploymentOutput {
 	s.EnvironmentId = &v
+	return s
+}
+
+// SetEventLog sets the EventLog field's value.
+func (s *GetDeploymentOutput) SetEventLog(v []*DeploymentEvent) *GetDeploymentOutput {
+	s.EventLog = v
 	return s
 }
 
@@ -6022,6 +6089,10 @@ type StartDeploymentOutput struct {
 	// The ID of the environment that was deployed.
 	EnvironmentId *string `type:"string"`
 
+	// A list containing all events related to a deployment. The most recent events
+	// are displayed first.
+	EventLog []*DeploymentEvent `type:"list"`
+
 	// The amount of time AppConfig monitored for alarms before considering the
 	// deployment to be complete and no longer eligible for automatic roll back.
 	FinalBakeTimeInMinutes *int64 `type:"integer"`
@@ -6116,6 +6187,12 @@ func (s *StartDeploymentOutput) SetDescription(v string) *StartDeploymentOutput 
 // SetEnvironmentId sets the EnvironmentId field's value.
 func (s *StartDeploymentOutput) SetEnvironmentId(v string) *StartDeploymentOutput {
 	s.EnvironmentId = &v
+	return s
+}
+
+// SetEventLog sets the EventLog field's value.
+func (s *StartDeploymentOutput) SetEventLog(v []*DeploymentEvent) *StartDeploymentOutput {
+	s.EventLog = v
 	return s
 }
 
@@ -6263,6 +6340,10 @@ type StopDeploymentOutput struct {
 	// The ID of the environment that was deployed.
 	EnvironmentId *string `type:"string"`
 
+	// A list containing all events related to a deployment. The most recent events
+	// are displayed first.
+	EventLog []*DeploymentEvent `type:"list"`
+
 	// The amount of time AppConfig monitored for alarms before considering the
 	// deployment to be complete and no longer eligible for automatic roll back.
 	FinalBakeTimeInMinutes *int64 `type:"integer"`
@@ -6357,6 +6438,12 @@ func (s *StopDeploymentOutput) SetDescription(v string) *StopDeploymentOutput {
 // SetEnvironmentId sets the EnvironmentId field's value.
 func (s *StopDeploymentOutput) SetEnvironmentId(v string) *StopDeploymentOutput {
 	s.EnvironmentId = &v
+	return s
+}
+
+// SetEventLog sets the EventLog field's value.
+func (s *StopDeploymentOutput) SetEventLog(v []*DeploymentEvent) *StopDeploymentOutput {
+	s.EventLog = v
 	return s
 }
 
@@ -7346,6 +7433,26 @@ func (s *Validator) SetType(v string) *Validator {
 }
 
 const (
+	// DeploymentEventTypePercentageUpdated is a DeploymentEventType enum value
+	DeploymentEventTypePercentageUpdated = "PERCENTAGE_UPDATED"
+
+	// DeploymentEventTypeRollbackStarted is a DeploymentEventType enum value
+	DeploymentEventTypeRollbackStarted = "ROLLBACK_STARTED"
+
+	// DeploymentEventTypeRollbackCompleted is a DeploymentEventType enum value
+	DeploymentEventTypeRollbackCompleted = "ROLLBACK_COMPLETED"
+
+	// DeploymentEventTypeBakeTimeStarted is a DeploymentEventType enum value
+	DeploymentEventTypeBakeTimeStarted = "BAKE_TIME_STARTED"
+
+	// DeploymentEventTypeDeploymentStarted is a DeploymentEventType enum value
+	DeploymentEventTypeDeploymentStarted = "DEPLOYMENT_STARTED"
+
+	// DeploymentEventTypeDeploymentCompleted is a DeploymentEventType enum value
+	DeploymentEventTypeDeploymentCompleted = "DEPLOYMENT_COMPLETED"
+)
+
+const (
 	// DeploymentStateBaking is a DeploymentState enum value
 	DeploymentStateBaking = "BAKING"
 
@@ -7393,6 +7500,20 @@ const (
 
 	// ReplicateToSsmDocument is a ReplicateTo enum value
 	ReplicateToSsmDocument = "SSM_DOCUMENT"
+)
+
+const (
+	// TriggeredByUser is a TriggeredBy enum value
+	TriggeredByUser = "USER"
+
+	// TriggeredByAppconfig is a TriggeredBy enum value
+	TriggeredByAppconfig = "APPCONFIG"
+
+	// TriggeredByCloudwatchAlarm is a TriggeredBy enum value
+	TriggeredByCloudwatchAlarm = "CLOUDWATCH_ALARM"
+
+	// TriggeredByInternalError is a TriggeredBy enum value
+	TriggeredByInternalError = "INTERNAL_ERROR"
 )
 
 const (

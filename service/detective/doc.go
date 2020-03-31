@@ -3,10 +3,6 @@
 // Package detective provides the client and types for making API
 // requests to Amazon Detective.
 //
-//
-// Amazon Detective is currently in preview. The Detective API can only be used
-// by accounts that are admitted into the preview.
-//
 // Detective uses machine learning and purpose-built visualizations to help
 // you analyze and investigate security issues across your Amazon Web Services
 // (AWS) workloads. Detective automatically extracts time-based events such

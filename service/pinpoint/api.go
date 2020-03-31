@@ -28358,6 +28358,9 @@ type SMSMessage struct {
 	// your dedicated number.
 	Keyword *string `type:"string"`
 
+	// The URL of an image or video to display in the SMS message.
+	MediaUrl *string `type:"string"`
+
 	// The SMS message type. Valid values are: TRANSACTIONAL, the message is critical
 	// or time-sensitive, such as a one-time password that supports a customer transaction;
 	// and, PROMOTIONAL, the message is not critical or time-sensitive, such as
@@ -28398,6 +28401,12 @@ func (s *SMSMessage) SetBody(v string) *SMSMessage {
 // SetKeyword sets the Keyword field's value.
 func (s *SMSMessage) SetKeyword(v string) *SMSMessage {
 	s.Keyword = &v
+	return s
+}
+
+// SetMediaUrl sets the MediaUrl field's value.
+func (s *SMSMessage) SetMediaUrl(v string) *SMSMessage {
+	s.MediaUrl = &v
 	return s
 }
 

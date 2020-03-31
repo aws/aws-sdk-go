@@ -531,8 +531,9 @@
     },
     "ManagedServiceData":{
       "type":"string",
-      "max":1024,
-      "min":1
+      "max":4096,
+      "min":1,
+      "pattern":".*"
     },
     "MemberAccounts":{
       "type":"list",
@@ -737,6 +738,7 @@
       "type":"string",
       "enum":[
         "WAF",
+        "WAFV2",
         "SHIELD_ADVANCED",
         "SECURITY_GROUPS_COMMON",
         "SECURITY_GROUPS_CONTENT_AUDIT",

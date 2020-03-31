@@ -1,3 +1,29 @@
+Release v1.30.1 (2020-03-31)
+===
+
+### Service Client Updates
+* `service/appconfig`: Updates service API and documentation
+* `service/detective`: Updates service documentation
+* `service/elastic-inference`: Updates service API
+* `service/fms`: Updates service API and documentation
+* `service/glue`: Updates service API and documentation
+  * Add two enums for MongoDB connection: Added "CONNECTION_URL" to "ConnectionPropertyKey" and added "MONGODB" to "ConnectionType"
+* `service/lambda`: Updates service API and documentation
+  * AWS Lambda now supports .NET Core 3.1
+* `service/mediastore`: Updates service API and documentation
+  * This release adds support for CloudWatch Metrics. You can now set a policy on your container to dictate which metrics MediaStore sends to CloudWatch.
+* `service/opsworkscm`: Updates service documentation
+  * Documentation updates for OpsWorks-CM CreateServer values.
+* `service/organizations`: Updates service documentation
+  * Documentation updates for AWS Organizations
+* `service/pinpoint`: Updates service API and documentation
+  * This release of the Amazon Pinpoint API introduces MMS support for SMS messages.
+* `service/rekognition`: Updates service API and documentation
+  * This release adds DeleteProject and DeleteProjectVersion APIs to Amazon Rekognition Custom Labels.
+* `service/storagegateway`: Updates service API and documentation
+  * Adding audit logging support for SMB File Shares
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.30.0 (2020-03-30)
 ===
 

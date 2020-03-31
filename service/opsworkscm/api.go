@@ -2317,11 +2317,10 @@ type CreateServerInput struct {
 	// exceeded. The default value is 1.
 	BackupRetentionCount *int64 `min:"1" type:"integer"`
 
-	// Supported on servers running Chef Automate 2. A PEM-formatted HTTPS certificate.
-	// The value can be be a single, self-signed certificate, or a certificate chain.
-	// If you specify a custom certificate, you must also specify values for CustomDomain
-	// and CustomPrivateKey. The following are requirements for the CustomCertificate
-	// value:
+	// A PEM-formatted HTTPS certificate. The value can be be a single, self-signed
+	// certificate, or a certificate chain. If you specify a custom certificate,
+	// you must also specify values for CustomDomain and CustomPrivateKey. The following
+	// are requirements for the CustomCertificate value:
 	//
 	//    * You can provide either a self-signed, custom certificate, or the full
 	//    certificate chain.
@@ -2339,20 +2338,19 @@ type CreateServerInput struct {
 	//    * The certificate must match the value of CustomPrivateKey.
 	CustomCertificate *string `type:"string"`
 
-	// Supported on servers running Chef Automate 2. An optional public endpoint
-	// of a server, such as https://aws.my-company.com. To access the server, create
-	// a CNAME DNS record in your preferred DNS service that points the custom domain
-	// to the endpoint that is generated when the server is created (the value of
-	// the CreateServer Endpoint attribute). You cannot access the server by using
-	// the generated Endpoint value if the server is using a custom domain. If you
-	// specify a custom domain, you must also specify values for CustomCertificate
-	// and CustomPrivateKey.
+	// An optional public endpoint of a server, such as https://aws.my-company.com.
+	// To access the server, create a CNAME DNS record in your preferred DNS service
+	// that points the custom domain to the endpoint that is generated when the
+	// server is created (the value of the CreateServer Endpoint attribute). You
+	// cannot access the server by using the generated Endpoint value if the server
+	// is using a custom domain. If you specify a custom domain, you must also specify
+	// values for CustomCertificate and CustomPrivateKey.
 	CustomDomain *string `type:"string"`
 
-	// Supported on servers running Chef Automate 2. A private key in PEM format
-	// for connecting to the server by using HTTPS. The private key must not be
-	// encrypted; it cannot be protected by a password or passphrase. If you specify
-	// a custom private key, you must also specify values for CustomDomain and CustomCertificate.
+	// A private key in PEM format for connecting to the server by using HTTPS.
+	// The private key must not be encrypted; it cannot be protected by a password
+	// or passphrase. If you specify a custom private key, you must also specify
+	// values for CustomDomain and CustomCertificate.
 	CustomPrivateKey *string `type:"string" sensitive:"true"`
 
 	// Enable or disable scheduled backups. Valid values are true or false. The
@@ -2397,7 +2395,7 @@ type CreateServerInput struct {
 	EngineModel *string `type:"string"`
 
 	// The major release version of the engine that you want to use. For a Chef
-	// server, the valid value for EngineVersion is currently 12. For a Puppet server,
+	// server, the valid value for EngineVersion is currently 2. For a Puppet server,
 	// the valid value is 2017.
 	EngineVersion *string `type:"string"`
 
@@ -2429,8 +2427,8 @@ type CreateServerInput struct {
 	//
 	//    * DDD:HH:MM for weekly backups
 	//
-	// The specified time is in coordinated universal time (UTC). The default value
-	// is a random, daily start time.
+	// MM must be specified as 00. The specified time is in coordinated universal
+	// time (UTC). The default value is a random, daily start time.
 	//
 	// Example: 08:00, which represents a daily start time of 08:00 UTC.
 	//
@@ -2440,9 +2438,10 @@ type CreateServerInput struct {
 
 	// The start time for a one-hour period each week during which AWS OpsWorks
 	// CM performs maintenance on the instance. Valid values must be specified in
-	// the following format: DDD:HH:MM. The specified time is in coordinated universal
-	// time (UTC). The default value is a random one-hour period on Tuesday, Wednesday,
-	// or Friday. See TimeWindowDefinition for more information.
+	// the following format: DDD:HH:MM. MM must be specified as 00. The specified
+	// time is in coordinated universal time (UTC). The default value is a random
+	// one-hour period on Tuesday, Wednesday, or Friday. See TimeWindowDefinition
+	// for more information.
 	//
 	// Example: Mon:08:00, which represents a start time of every Monday at 08:00
 	// UTC. (8:00 a.m.)
@@ -2494,11 +2493,11 @@ type CreateServerInput struct {
 	//
 	//    * The key can be a maximum of 127 characters, and can contain only Unicode
 	//    letters, numbers, or separators, or the following special characters:
-	//    + - = . _ : /
+	//    + - = . _ : / @
 	//
 	//    * The value can be a maximum 255 characters, and contain only Unicode
 	//    letters, numbers, or separators, or the following special characters:
-	//    + - = . _ : /
+	//    + - = . _ : / @
 	//
 	//    * Leading and trailing white spaces are trimmed from both the key and
 	//    value.
@@ -4052,7 +4051,7 @@ type Server struct {
 	EngineModel *string `type:"string"`
 
 	// The engine version of the server. For a Chef server, the valid value for
-	// EngineVersion is currently 12. For a Puppet server, the valid value is 2017.
+	// EngineVersion is currently 2. For a Puppet server, the valid value is 2017.
 	EngineVersion *string `type:"string"`
 
 	// The instance profile ARN of the server.

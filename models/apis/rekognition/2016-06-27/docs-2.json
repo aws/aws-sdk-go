@@ -9,6 +9,8 @@
     "CreateStreamProcessor": "<p>Creates an Amazon Rekognition stream processor that you can use to detect and recognize faces in a streaming video.</p> <p>Amazon Rekognition Video is a consumer of live video from Amazon Kinesis Video Streams. Amazon Rekognition Video sends analysis results to Amazon Kinesis Data Streams.</p> <p>You provide as input a Kinesis video stream (<code>Input</code>) and a Kinesis data stream (<code>Output</code>) stream. You also specify the face recognition criteria in <code>Settings</code>. For example, the collection containing faces that you want to recognize. Use <code>Name</code> to assign an identifier for the stream processor. You use <code>Name</code> to manage the stream processor. For example, you can start processing the source video by calling <a>StartStreamProcessor</a> with the <code>Name</code> field. </p> <p>After you have finished analyzing a streaming video, use <a>StopStreamProcessor</a> to stop processing. You can delete the stream processor by calling <a>DeleteStreamProcessor</a>.</p>",
     "DeleteCollection": "<p>Deletes the specified collection. Note that this operation removes all faces in the collection. For an example, see <a>delete-collection-procedure</a>.</p> <p>This operation requires permissions to perform the <code>rekognition:DeleteCollection</code> action.</p>",
     "DeleteFaces": "<p>Deletes faces from a collection. You specify a collection ID and an array of face IDs to remove from the collection.</p> <p>This operation requires permissions to perform the <code>rekognition:DeleteFaces</code> action.</p>",
+    "DeleteProject": "<p>Deletes an Amazon Rekognition Custom Labels project. To delete a project you must first delete all versions of the model associated with the project. To delete a version of a model, see <a>DeleteProjectVersion</a>.</p> <p>This operation requires permissions to perform the <code>rekognition:DeleteProject</code> action. </p>",
+    "DeleteProjectVersion": "<p>Deletes a version of a model. </p> <p>You must first stop the model before you can delete it. To check if a model is running, use the <code>Status</code> field returned from <a>DescribeProjectVersions</a>. To stop a running model call <a>StopProjectVersion</a>. </p> <p>This operation requires permissions to perform the <code>rekognition:DeleteProjectVersion</code> action. </p>",
     "DeleteStreamProcessor": "<p>Deletes the stream processor identified by <code>Name</code>. You assign the value for <code>Name</code> when you create the stream processor with <a>CreateStreamProcessor</a>. You might not be able to use the same name for a stream processor for a few seconds after calling <code>DeleteStreamProcessor</code>.</p>",
     "DescribeCollection": "<p>Describes the specified collection. You can use <code>DescribeCollection</code> to get information, such as the number of faces indexed into a collection and the version of the model used by the collection for face detection.</p> <p>For more information, see Describing a Collection in the Amazon Rekognition Developer Guide.</p>",
     "DescribeProjectVersions": "<p>Lists and describes the models in an Amazon Rekognition Custom Labels project. You can specify up to 10 model versions in <code>ProjectVersionArns</code>. If you don't specify a value, descriptions for all models are returned.</p> <p>This operation requires permissions to perform the <code>rekognition:DescribeProjectVersions</code> action.</p>",
@@ -366,6 +368,26 @@
       }
     },
     "DeleteFacesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteProjectRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteProjectResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteProjectVersionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteProjectVersionResponse": {
       "base": null,
       "refs": {
       }
@@ -1293,6 +1315,7 @@
       "refs": {
         "CreateProjectResponse$ProjectArn": "<p>The Amazon Resource Name (ARN) of the new project. You can use the ARN to configure IAM access to the project. </p>",
         "CreateProjectVersionRequest$ProjectArn": "<p>The ARN of the Amazon Rekognition Custom Labels project that manages the model that you want to train.</p>",
+        "DeleteProjectRequest$ProjectArn": "<p>The Amazon Resource Name (ARN) of the project that you want to delete.</p>",
         "DescribeProjectVersionsRequest$ProjectArn": "<p>The Amazon Resource Name (ARN) of the project that contains the models you want to describe.</p>",
         "ProjectDescription$ProjectArn": "<p>The Amazon Resource Name (ARN) of the project.</p>"
       }
@@ -1318,6 +1341,7 @@
     "ProjectStatus": {
       "base": null,
       "refs": {
+        "DeleteProjectResponse$Status": "<p>The current status of the delete project operation.</p>",
         "ProjectDescription$Status": "<p>The current status of the project.</p>"
       }
     },
@@ -1325,6 +1349,7 @@
       "base": null,
       "refs": {
         "CreateProjectVersionResponse$ProjectVersionArn": "<p>The ARN of the model version that was created. Use <code>DescribeProjectVersion</code> to get the current status of the training operation.</p>",
+        "DeleteProjectVersionRequest$ProjectVersionArn": "<p>The Amazon Resource Name (ARN) of the model version that you want to delete.</p>",
         "DetectCustomLabelsRequest$ProjectVersionArn": "<p>The ARN of the model version that you want to use.</p>",
         "ProjectVersionDescription$ProjectVersionArn": "<p>The Amazon Resource Name (ARN) of the model version. </p>",
         "StartProjectVersionRequest$ProjectVersionArn": "<p>The Amazon Resource Name(ARN) of the model version that you want to start.</p>",
@@ -1346,6 +1371,7 @@
     "ProjectVersionStatus": {
       "base": null,
       "refs": {
+        "DeleteProjectVersionResponse$Status": "<p>The status of the deletion operation.</p>",
         "ProjectVersionDescription$Status": "<p>The current status of the model version.</p>",
         "StartProjectVersionResponse$Status": "<p>The current running status of the model. </p>",
         "StopProjectVersionResponse$Status": "<p>The current status of the stop operation. </p>"

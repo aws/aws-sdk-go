@@ -25,7 +25,8 @@
         {"shape":"WAFInternalErrorException"},
         {"shape":"WAFInvalidParameterException"},
         {"shape":"WAFNonexistentItemException"},
-        {"shape":"WAFUnavailableEntityException"}
+        {"shape":"WAFUnavailableEntityException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "CheckCapacity":{
@@ -61,7 +62,8 @@
         {"shape":"WAFOptimisticLockException"},
         {"shape":"WAFLimitsExceededException"},
         {"shape":"WAFTagOperationException"},
-        {"shape":"WAFTagOperationInternalErrorException"}
+        {"shape":"WAFTagOperationInternalErrorException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "CreateRegexPatternSet":{
@@ -79,7 +81,8 @@
         {"shape":"WAFOptimisticLockException"},
         {"shape":"WAFLimitsExceededException"},
         {"shape":"WAFTagOperationException"},
-        {"shape":"WAFTagOperationInternalErrorException"}
+        {"shape":"WAFTagOperationInternalErrorException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "CreateRuleGroup":{
@@ -99,7 +102,9 @@
         {"shape":"WAFUnavailableEntityException"},
         {"shape":"WAFTagOperationException"},
         {"shape":"WAFTagOperationInternalErrorException"},
-        {"shape":"WAFSubscriptionNotFoundException"}
+        {"shape":"WAFSubscriptionNotFoundException"},
+        {"shape":"WAFNonexistentItemException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "CreateWebACL":{
@@ -121,7 +126,24 @@
         {"shape":"WAFNonexistentItemException"},
         {"shape":"WAFTagOperationException"},
         {"shape":"WAFTagOperationInternalErrorException"},
-        {"shape":"WAFSubscriptionNotFoundException"}
+        {"shape":"WAFSubscriptionNotFoundException"},
+        {"shape":"WAFInvalidOperationException"}
+      ]
+    },
+    "DeleteFirewallManagerRuleGroups":{
+      "name":"DeleteFirewallManagerRuleGroups",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteFirewallManagerRuleGroupsRequest"},
+      "output":{"shape":"DeleteFirewallManagerRuleGroupsResponse"},
+      "errors":[
+        {"shape":"WAFInternalErrorException"},
+        {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFNonexistentItemException"},
+        {"shape":"WAFOptimisticLockException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "DeleteIPSet":{
@@ -139,7 +161,8 @@
         {"shape":"WAFOptimisticLockException"},
         {"shape":"WAFAssociatedItemException"},
         {"shape":"WAFTagOperationException"},
-        {"shape":"WAFTagOperationInternalErrorException"}
+        {"shape":"WAFTagOperationInternalErrorException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "DeleteLoggingConfiguration":{
@@ -153,7 +176,23 @@
       "errors":[
         {"shape":"WAFInternalErrorException"},
         {"shape":"WAFNonexistentItemException"},
-        {"shape":"WAFOptimisticLockException"}
+        {"shape":"WAFOptimisticLockException"},
+        {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFInvalidOperationException"}
+      ]
+    },
+    "DeletePermissionPolicy":{
+      "name":"DeletePermissionPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeletePermissionPolicyRequest"},
+      "output":{"shape":"DeletePermissionPolicyResponse"},
+      "errors":[
+        {"shape":"WAFNonexistentItemException"},
+        {"shape":"WAFInternalErrorException"},
+        {"shape":"WAFInvalidParameterException"}
       ]
     },
     "DeleteRegexPatternSet":{
@@ -171,7 +210,8 @@
         {"shape":"WAFOptimisticLockException"},
         {"shape":"WAFAssociatedItemException"},
         {"shape":"WAFTagOperationException"},
-        {"shape":"WAFTagOperationInternalErrorException"}
+        {"shape":"WAFTagOperationInternalErrorException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "DeleteRuleGroup":{
@@ -189,7 +229,8 @@
         {"shape":"WAFOptimisticLockException"},
         {"shape":"WAFAssociatedItemException"},
         {"shape":"WAFTagOperationException"},
-        {"shape":"WAFTagOperationInternalErrorException"}
+        {"shape":"WAFTagOperationInternalErrorException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "DeleteWebACL":{
@@ -207,7 +248,8 @@
         {"shape":"WAFOptimisticLockException"},
         {"shape":"WAFAssociatedItemException"},
         {"shape":"WAFTagOperationException"},
-        {"shape":"WAFTagOperationInternalErrorException"}
+        {"shape":"WAFTagOperationInternalErrorException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "DescribeManagedRuleGroup":{
@@ -222,7 +264,8 @@
         {"shape":"WAFInternalErrorException"},
         {"shape":"WAFInvalidParameterException"},
         {"shape":"WAFInvalidResourceException"},
-        {"shape":"WAFNonexistentItemException"}
+        {"shape":"WAFNonexistentItemException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "DisassociateWebACL":{
@@ -236,7 +279,8 @@
       "errors":[
         {"shape":"WAFInternalErrorException"},
         {"shape":"WAFInvalidParameterException"},
-        {"shape":"WAFNonexistentItemException"}
+        {"shape":"WAFNonexistentItemException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "GetIPSet":{
@@ -250,7 +294,8 @@
       "errors":[
         {"shape":"WAFInternalErrorException"},
         {"shape":"WAFInvalidParameterException"},
-        {"shape":"WAFNonexistentItemException"}
+        {"shape":"WAFNonexistentItemException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "GetLoggingConfiguration":{
@@ -263,7 +308,23 @@
       "output":{"shape":"GetLoggingConfigurationResponse"},
       "errors":[
         {"shape":"WAFInternalErrorException"},
-        {"shape":"WAFNonexistentItemException"}
+        {"shape":"WAFNonexistentItemException"},
+        {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFInvalidOperationException"}
+      ]
+    },
+    "GetPermissionPolicy":{
+      "name":"GetPermissionPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetPermissionPolicyRequest"},
+      "output":{"shape":"GetPermissionPolicyResponse"},
+      "errors":[
+        {"shape":"WAFNonexistentItemException"},
+        {"shape":"WAFInternalErrorException"},
+        {"shape":"WAFInvalidParameterException"}
       ]
     },
     "GetRateBasedStatementManagedKeys":{
@@ -277,7 +338,8 @@
       "errors":[
         {"shape":"WAFInternalErrorException"},
         {"shape":"WAFInvalidParameterException"},
-        {"shape":"WAFNonexistentItemException"}
+        {"shape":"WAFNonexistentItemException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "GetRegexPatternSet":{
@@ -291,7 +353,8 @@
       "errors":[
         {"shape":"WAFInternalErrorException"},
         {"shape":"WAFInvalidParameterException"},
-        {"shape":"WAFNonexistentItemException"}
+        {"shape":"WAFNonexistentItemException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "GetRuleGroup":{
@@ -305,7 +368,8 @@
       "errors":[
         {"shape":"WAFInternalErrorException"},
         {"shape":"WAFInvalidParameterException"},
-        {"shape":"WAFNonexistentItemException"}
+        {"shape":"WAFNonexistentItemException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "GetSampledRequests":{
@@ -333,7 +397,8 @@
       "errors":[
         {"shape":"WAFInternalErrorException"},
         {"shape":"WAFInvalidParameterException"},
-        {"shape":"WAFNonexistentItemException"}
+        {"shape":"WAFNonexistentItemException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "GetWebACLForResource":{
@@ -348,7 +413,8 @@
         {"shape":"WAFInternalErrorException"},
         {"shape":"WAFNonexistentItemException"},
         {"shape":"WAFInvalidParameterException"},
-        {"shape":"WAFUnavailableEntityException"}
+        {"shape":"WAFUnavailableEntityException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "ListAvailableManagedRuleGroups":{
@@ -361,7 +427,8 @@
       "output":{"shape":"ListAvailableManagedRuleGroupsResponse"},
       "errors":[
         {"shape":"WAFInternalErrorException"},
-        {"shape":"WAFInvalidParameterException"}
+        {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "ListIPSets":{
@@ -374,7 +441,8 @@
       "output":{"shape":"ListIPSetsResponse"},
       "errors":[
         {"shape":"WAFInternalErrorException"},
-        {"shape":"WAFInvalidParameterException"}
+        {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "ListLoggingConfigurations":{
@@ -387,7 +455,8 @@
       "output":{"shape":"ListLoggingConfigurationsResponse"},
       "errors":[
         {"shape":"WAFInternalErrorException"},
-        {"shape":"WAFInvalidParameterException"}
+        {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "ListRegexPatternSets":{
@@ -400,7 +469,8 @@
       "output":{"shape":"ListRegexPatternSetsResponse"},
       "errors":[
         {"shape":"WAFInternalErrorException"},
-        {"shape":"WAFInvalidParameterException"}
+        {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "ListResourcesForWebACL":{
@@ -414,7 +484,8 @@
       "errors":[
         {"shape":"WAFInternalErrorException"},
         {"shape":"WAFNonexistentItemException"},
-        {"shape":"WAFInvalidParameterException"}
+        {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "ListRuleGroups":{
@@ -427,7 +498,8 @@
       "output":{"shape":"ListRuleGroupsResponse"},
       "errors":[
         {"shape":"WAFInternalErrorException"},
-        {"shape":"WAFInvalidParameterException"}
+        {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "ListTagsForResource":{
@@ -443,7 +515,8 @@
         {"shape":"WAFInvalidParameterException"},
         {"shape":"WAFNonexistentItemException"},
         {"shape":"WAFTagOperationException"},
-        {"shape":"WAFTagOperationInternalErrorException"}
+        {"shape":"WAFTagOperationInternalErrorException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "ListWebACLs":{
@@ -456,7 +529,8 @@
       "output":{"shape":"ListWebACLsResponse"},
       "errors":[
         {"shape":"WAFInternalErrorException"},
-        {"shape":"WAFInvalidParameterException"}
+        {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "PutLoggingConfiguration":{
@@ -472,7 +546,23 @@
         {"shape":"WAFNonexistentItemException"},
         {"shape":"WAFOptimisticLockException"},
         {"shape":"WAFServiceLinkedRoleErrorException"},
-        {"shape":"WAFInvalidParameterException"}
+        {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFInvalidOperationException"}
+      ]
+    },
+    "PutPermissionPolicy":{
+      "name":"PutPermissionPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutPermissionPolicyRequest"},
+      "output":{"shape":"PutPermissionPolicyResponse"},
+      "errors":[
+        {"shape":"WAFNonexistentItemException"},
+        {"shape":"WAFInternalErrorException"},
+        {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFInvalidPermissionPolicyException"}
       ]
     },
     "TagResource":{
@@ -489,7 +579,8 @@
         {"shape":"WAFLimitsExceededException"},
         {"shape":"WAFNonexistentItemException"},
         {"shape":"WAFTagOperationException"},
-        {"shape":"WAFTagOperationInternalErrorException"}
+        {"shape":"WAFTagOperationInternalErrorException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "UntagResource":{
@@ -505,7 +596,8 @@
         {"shape":"WAFInvalidParameterException"},
         {"shape":"WAFNonexistentItemException"},
         {"shape":"WAFTagOperationException"},
-        {"shape":"WAFTagOperationInternalErrorException"}
+        {"shape":"WAFTagOperationInternalErrorException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "UpdateIPSet":{
@@ -522,7 +614,8 @@
         {"shape":"WAFNonexistentItemException"},
         {"shape":"WAFDuplicateItemException"},
         {"shape":"WAFOptimisticLockException"},
-        {"shape":"WAFLimitsExceededException"}
+        {"shape":"WAFLimitsExceededException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "UpdateRegexPatternSet":{
@@ -539,7 +632,8 @@
         {"shape":"WAFNonexistentItemException"},
         {"shape":"WAFDuplicateItemException"},
         {"shape":"WAFOptimisticLockException"},
-        {"shape":"WAFLimitsExceededException"}
+        {"shape":"WAFLimitsExceededException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "UpdateRuleGroup":{
@@ -558,7 +652,8 @@
         {"shape":"WAFOptimisticLockException"},
         {"shape":"WAFLimitsExceededException"},
         {"shape":"WAFUnavailableEntityException"},
-        {"shape":"WAFSubscriptionNotFoundException"}
+        {"shape":"WAFSubscriptionNotFoundException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     },
     "UpdateWebACL":{
@@ -578,7 +673,8 @@
         {"shape":"WAFLimitsExceededException"},
         {"shape":"WAFInvalidResourceException"},
         {"shape":"WAFUnavailableEntityException"},
-        {"shape":"WAFSubscriptionNotFoundException"}
+        {"shape":"WAFSubscriptionNotFoundException"},
+        {"shape":"WAFInvalidOperationException"}
       ]
     }
   },
@@ -1043,6 +1139,23 @@
         "Allow":{"shape":"AllowAction"}
       }
     },
+    "DeleteFirewallManagerRuleGroupsRequest":{
+      "type":"structure",
+      "required":[
+        "WebACLArn",
+        "WebACLLockToken"
+      ],
+      "members":{
+        "WebACLArn":{"shape":"ResourceArn"},
+        "WebACLLockToken":{"shape":"LockToken"}
+      }
+    },
+    "DeleteFirewallManagerRuleGroupsResponse":{
+      "type":"structure",
+      "members":{
+        "NextWebACLLockToken":{"shape":"LockToken"}
+      }
+    },
     "DeleteIPSetRequest":{
       "type":"structure",
       "required":[
@@ -1071,6 +1184,18 @@
       }
     },
     "DeleteLoggingConfigurationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeletePermissionPolicyRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"ResourceArn"}
+      }
+    },
+    "DeletePermissionPolicyResponse":{
       "type":"structure",
       "members":{
       }
@@ -1216,6 +1341,34 @@
       "min":1,
       "pattern":".*\\S.*"
     },
+    "FirewallManagerRuleGroup":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Priority",
+        "FirewallManagerStatement",
+        "OverrideAction",
+        "VisibilityConfig"
+      ],
+      "members":{
+        "Name":{"shape":"EntityName"},
+        "Priority":{"shape":"RulePriority"},
+        "FirewallManagerStatement":{"shape":"FirewallManagerStatement"},
+        "OverrideAction":{"shape":"OverrideAction"},
+        "VisibilityConfig":{"shape":"VisibilityConfig"}
+      }
+    },
+    "FirewallManagerRuleGroups":{
+      "type":"list",
+      "member":{"shape":"FirewallManagerRuleGroup"}
+    },
+    "FirewallManagerStatement":{
+      "type":"structure",
+      "members":{
+        "ManagedRuleGroupStatement":{"shape":"ManagedRuleGroupStatement"},
+        "RuleGroupReferenceStatement":{"shape":"RuleGroupReferenceStatement"}
+      }
+    },
     "GeoMatchStatement":{
       "type":"structure",
       "members":{
@@ -1253,6 +1406,19 @@
       "type":"structure",
       "members":{
         "LoggingConfiguration":{"shape":"LoggingConfiguration"}
+      }
+    },
+    "GetPermissionPolicyRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"ResourceArn"}
+      }
+    },
+    "GetPermissionPolicyResponse":{
+      "type":"structure",
+      "members":{
+        "Policy":{"shape":"PolicyString"}
       }
     },
     "GetRateBasedStatementManagedKeysRequest":{
@@ -1727,10 +1893,15 @@
         "RESOURCE_TYPE",
         "TAGS",
         "TAG_KEYS",
-        "METRIC_NAME"
+        "METRIC_NAME",
+        "FIREWALL_MANAGER_STATEMENT"
       ]
     },
     "ParameterExceptionParameter":{
+      "type":"string",
+      "min":1
+    },
+    "PolicyString":{
       "type":"string",
       "min":1
     },
@@ -1756,6 +1927,22 @@
       "type":"structure",
       "members":{
         "LoggingConfiguration":{"shape":"LoggingConfiguration"}
+      }
+    },
+    "PutPermissionPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "Policy"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"ResourceArn"},
+        "Policy":{"shape":"PolicyString"}
+      }
+    },
+    "PutPermissionPolicyResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "QueryString":{
@@ -1847,8 +2034,7 @@
     },
     "RegularExpressionList":{
       "type":"list",
-      "member":{"shape":"Regex"},
-      "min":1
+      "member":{"shape":"Regex"}
     },
     "ResourceArn":{
       "type":"string",
@@ -2311,6 +2497,13 @@
       "exception":true,
       "fault":true
     },
+    "WAFInvalidOperationException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
     "WAFInvalidParameterException":{
       "type":"structure",
       "members":{
@@ -2318,6 +2511,13 @@
         "Field":{"shape":"ParameterExceptionField"},
         "Parameter":{"shape":"ParameterExceptionParameter"},
         "Reason":{"shape":"ErrorReason"}
+      },
+      "exception":true
+    },
+    "WAFInvalidPermissionPolicyException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
       },
       "exception":true
     },
@@ -2402,7 +2602,10 @@
         "Description":{"shape":"EntityDescription"},
         "Rules":{"shape":"Rules"},
         "VisibilityConfig":{"shape":"VisibilityConfig"},
-        "Capacity":{"shape":"ConsumedCapacity"}
+        "Capacity":{"shape":"ConsumedCapacity"},
+        "PreProcessFirewallManagerRuleGroups":{"shape":"FirewallManagerRuleGroups"},
+        "PostProcessFirewallManagerRuleGroups":{"shape":"FirewallManagerRuleGroups"},
+        "ManagedByFirewallManager":{"shape":"Boolean"}
       }
     },
     "WebACLSummaries":{

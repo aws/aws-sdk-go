@@ -3171,8 +3171,9 @@ func (c *Organizations) DeregisterDelegatedAdministratorRequest(input *Deregiste
 // the specified AWS service.
 //
 // You can run this action only for AWS services that support this feature.
-// For a current list of services that support it, see AWS Services That Support
-// Using Delegated Administrators (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrated-services-list.html#services-that-support-delegated-admin)
+// For a current list of services that support it, see the column Supports Delegated
+// Administrator in the table at AWS Services that you can use with AWS Organizations
+// (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrated-services-list.html)
 // in the AWS Organizations User Guide.
 //
 // This operation can be called only from the organization's master account.
@@ -11327,8 +11328,9 @@ func (c *Organizations) RegisterDelegatedAdministratorRequest(input *RegisterDel
 // the AWS service.
 //
 // You can run this action only for AWS services that support this feature.
-// For a current list of services that support it, see AWS Services That Support
-// Using Delegated Administrators (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrated-services-list.html#services-that-support-delegated-admin)
+// For a current list of services that support it, see the column Supports Delegated
+// Administrator in the table at AWS Services that you can use with AWS Organizations
+// (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrated-services-list.html)
 // in the AWS Organizations User Guide.
 //
 // This operation can be called only from the organization's master account.

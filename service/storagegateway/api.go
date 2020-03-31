@@ -9075,6 +9075,9 @@ type CreateSMBFileShareInput struct {
 	// they like on the file share, regardless of file permissions.
 	AdminUserList []*string `type:"list"`
 
+	// The Amazon Resource Name (ARN) of the storage used for the audit logs.
+	AuditDestinationARN *string `type:"string"`
+
 	// The authentication method that users use to access the file share.
 	//
 	// Valid values are ActiveDirectory or GuestAccess. The default is ActiveDirectory.
@@ -9091,8 +9094,7 @@ type CreateSMBFileShareInput struct {
 	// If this field is not populated, the default value S3_STANDARD is used. Optional.
 	DefaultStorageClass *string `min:"5" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the file gateway on which you want to create
-	// a file share.
+	// The ARN of the file gateway on which you want to create a file share.
 	//
 	// GatewayARN is a required field
 	GatewayARN *string `min:"50" type:"string" required:"true"`
@@ -9233,6 +9235,12 @@ func (s *CreateSMBFileShareInput) Validate() error {
 // SetAdminUserList sets the AdminUserList field's value.
 func (s *CreateSMBFileShareInput) SetAdminUserList(v []*string) *CreateSMBFileShareInput {
 	s.AdminUserList = v
+	return s
+}
+
+// SetAuditDestinationARN sets the AuditDestinationARN field's value.
+func (s *CreateSMBFileShareInput) SetAuditDestinationARN(v string) *CreateSMBFileShareInput {
+	s.AuditDestinationARN = &v
 	return s
 }
 
@@ -15176,6 +15184,9 @@ type SMBFileShareInfo struct {
 	// For example @group1. Can only be set if Authentication is set to ActiveDirectory.
 	AdminUserList []*string `type:"list"`
 
+	// The Amazon Resource Name (ARN) of the storage used for the audit logs.
+	AuditDestinationARN *string `type:"string"`
+
 	// The authentication method of the file share.
 	//
 	// Valid values are ActiveDirectory or GuestAccess. The default is ActiveDirectory.
@@ -15278,6 +15289,12 @@ func (s SMBFileShareInfo) GoString() string {
 // SetAdminUserList sets the AdminUserList field's value.
 func (s *SMBFileShareInfo) SetAdminUserList(v []*string) *SMBFileShareInfo {
 	s.AdminUserList = v
+	return s
+}
+
+// SetAuditDestinationARN sets the AuditDestinationARN field's value.
+func (s *SMBFileShareInfo) SetAuditDestinationARN(v string) *SMBFileShareInfo {
+	s.AuditDestinationARN = &v
 	return s
 }
 
@@ -17183,6 +17200,9 @@ type UpdateSMBFileShareInput struct {
 	// @group1. Can only be set if Authentication is set to ActiveDirectory.
 	AdminUserList []*string `type:"list"`
 
+	// The Amazon Resource Name (ARN) of the storage used for the audit logs.
+	AuditDestinationARN *string `type:"string"`
+
 	// The default storage class for objects put into an Amazon S3 bucket by the
 	// file gateway. Possible values are S3_STANDARD, S3_STANDARD_IA, or S3_ONEZONE_IA.
 	// If this field is not populated, the default value S3_STANDARD is used. Optional.
@@ -17278,6 +17298,12 @@ func (s *UpdateSMBFileShareInput) Validate() error {
 // SetAdminUserList sets the AdminUserList field's value.
 func (s *UpdateSMBFileShareInput) SetAdminUserList(v []*string) *UpdateSMBFileShareInput {
 	s.AdminUserList = v
+	return s
+}
+
+// SetAuditDestinationARN sets the AuditDestinationARN field's value.
+func (s *UpdateSMBFileShareInput) SetAuditDestinationARN(v string) *UpdateSMBFileShareInput {
+	s.AuditDestinationARN = &v
 	return s
 }
 

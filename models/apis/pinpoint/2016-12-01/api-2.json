@@ -10032,6 +10032,9 @@
         "Keyword": {
           "shape": "__string"
         },
+        "MediaUrl": {
+          "shape": "__string"
+        },
         "MessageType": {
           "shape": "MessageType"
         },
