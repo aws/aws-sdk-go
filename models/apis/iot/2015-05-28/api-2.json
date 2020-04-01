@@ -303,6 +303,22 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "CreateDimension":{
+      "name":"CreateDimension",
+      "http":{
+        "method":"POST",
+        "requestUri":"/dimensions/{name}"
+      },
+      "input":{"shape":"CreateDimensionRequest"},
+      "output":{"shape":"CreateDimensionResponse"},
+      "errors":[
+        {"shape":"InternalFailureException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "CreateDomainConfiguration":{
       "name":"CreateDomainConfiguration",
       "http":{
@@ -729,6 +745,20 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"InternalFailureException"},
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "DeleteDimension":{
+      "name":"DeleteDimension",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/dimensions/{name}"
+      },
+      "input":{"shape":"DeleteDimensionRequest"},
+      "output":{"shape":"DeleteDimensionResponse"},
+      "errors":[
+        {"shape":"InternalFailureException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "DeleteDomainConfiguration":{
@@ -1226,6 +1256,21 @@
         {"shape":"UnauthorizedException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"InternalFailureException"}
+      ]
+    },
+    "DescribeDimension":{
+      "name":"DescribeDimension",
+      "http":{
+        "method":"GET",
+        "requestUri":"/dimensions/{name}"
+      },
+      "input":{"shape":"DescribeDimensionRequest"},
+      "output":{"shape":"DescribeDimensionResponse"},
+      "errors":[
+        {"shape":"InternalFailureException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "DescribeDomainConfiguration":{
@@ -1992,6 +2037,20 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "ListDimensions":{
+      "name":"ListDimensions",
+      "http":{
+        "method":"GET",
+        "requestUri":"/dimensions"
+      },
+      "input":{"shape":"ListDimensionsRequest"},
+      "output":{"shape":"ListDimensionsResponse"},
+      "errors":[
+        {"shape":"InternalFailureException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "ListDomainConfigurations":{
       "name":"ListDomainConfigurations",
       "http":{
@@ -2273,7 +2332,8 @@
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"ThrottlingException"},
-        {"shape":"InternalFailureException"}
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "ListSecurityProfilesForTarget":{
@@ -2992,6 +3052,21 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "UpdateDimension":{
+      "name":"UpdateDimension",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/dimensions/{name}"
+      },
+      "input":{"shape":"UpdateDimensionRequest"},
+      "output":{"shape":"UpdateDimensionResponse"},
+      "errors":[
+        {"shape":"InternalFailureException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "UpdateDomainConfiguration":{
       "name":"UpdateDomainConfiguration",
       "http":{
@@ -3400,6 +3475,10 @@
     "AdditionalMetricsToRetainList":{
       "type":"list",
       "member":{"shape":"BehaviorMetric"}
+    },
+    "AdditionalMetricsToRetainV2List":{
+      "type":"list",
+      "member":{"shape":"MetricToRetain"}
     },
     "AdditionalParameterMap":{
       "type":"map",
@@ -3956,6 +4035,7 @@
       "members":{
         "name":{"shape":"BehaviorName"},
         "metric":{"shape":"BehaviorMetric"},
+        "metricDimension":{"shape":"MetricDimension"},
         "criteria":{"shape":"BehaviorCriteria"}
       }
     },
@@ -4490,6 +4570,36 @@
         "certificatePem":{"shape":"CertificatePem"}
       }
     },
+    "CreateDimensionRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "type",
+        "stringValues",
+        "clientRequestToken"
+      ],
+      "members":{
+        "name":{
+          "shape":"DimensionName",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "type":{"shape":"DimensionType"},
+        "stringValues":{"shape":"DimensionStringValues"},
+        "tags":{"shape":"TagList"},
+        "clientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateDimensionResponse":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"DimensionName"},
+        "arn":{"shape":"DimensionArn"}
+      }
+    },
     "CreateDomainConfigurationRequest":{
       "type":"structure",
       "required":["domainConfigurationName"],
@@ -4842,7 +4952,12 @@
         "securityProfileDescription":{"shape":"SecurityProfileDescription"},
         "behaviors":{"shape":"Behaviors"},
         "alertTargets":{"shape":"AlertTargets"},
-        "additionalMetricsToRetain":{"shape":"AdditionalMetricsToRetainList"},
+        "additionalMetricsToRetain":{
+          "shape":"AdditionalMetricsToRetainList",
+          "deprecated":true,
+          "deprecatedMessage":"Use additionalMetricsToRetainV2."
+        },
+        "additionalMetricsToRetainV2":{"shape":"AdditionalMetricsToRetainV2List"},
         "tags":{"shape":"TagList"}
       }
     },
@@ -5111,6 +5226,22 @@
       },
       "error":{"httpStatusCode":409},
       "exception":true
+    },
+    "DeleteDimensionRequest":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{
+          "shape":"DimensionName",
+          "location":"uri",
+          "locationName":"name"
+        }
+      }
+    },
+    "DeleteDimensionResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "DeleteDomainConfigurationRequest":{
       "type":"structure",
@@ -5678,6 +5809,28 @@
         "authorizerDescription":{"shape":"AuthorizerDescription"}
       }
     },
+    "DescribeDimensionRequest":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{
+          "shape":"DimensionName",
+          "location":"uri",
+          "locationName":"name"
+        }
+      }
+    },
+    "DescribeDimensionResponse":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"DimensionName"},
+        "arn":{"shape":"DimensionArn"},
+        "type":{"shape":"DimensionType"},
+        "stringValues":{"shape":"DimensionStringValues"},
+        "creationDate":{"shape":"Timestamp"},
+        "lastModifiedDate":{"shape":"Timestamp"}
+      }
+    },
     "DescribeDomainConfigurationRequest":{
       "type":"structure",
       "required":["domainConfigurationName"],
@@ -5933,7 +6086,12 @@
         "securityProfileDescription":{"shape":"SecurityProfileDescription"},
         "behaviors":{"shape":"Behaviors"},
         "alertTargets":{"shape":"AlertTargets"},
-        "additionalMetricsToRetain":{"shape":"AdditionalMetricsToRetainList"},
+        "additionalMetricsToRetain":{
+          "shape":"AdditionalMetricsToRetainList",
+          "deprecated":true,
+          "deprecatedMessage":"Use additionalMetricsToRetainV2."
+        },
+        "additionalMetricsToRetainV2":{"shape":"AdditionalMetricsToRetainV2List"},
         "version":{"shape":"Version"},
         "creationDate":{"shape":"Timestamp"},
         "lastModifiedDate":{"shape":"Timestamp"}
@@ -6169,6 +6327,39 @@
       "type":"string",
       "max":128,
       "min":1
+    },
+    "DimensionArn":{"type":"string"},
+    "DimensionName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[a-zA-Z0-9:_-]+"
+    },
+    "DimensionNames":{
+      "type":"list",
+      "member":{"shape":"DimensionName"}
+    },
+    "DimensionStringValue":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "DimensionStringValues":{
+      "type":"list",
+      "member":{"shape":"DimensionStringValue"},
+      "max":100,
+      "min":1
+    },
+    "DimensionType":{
+      "type":"string",
+      "enum":["TOPIC_FILTER"]
+    },
+    "DimensionValueOperator":{
+      "type":"string",
+      "enum":[
+        "IN",
+        "NOT_IN"
+      ]
     },
     "DisableAllLogs":{"type":"boolean"},
     "DisableTopicRuleRequest":{
@@ -7534,6 +7725,28 @@
         "nextMarker":{"shape":"Marker"}
       }
     },
+    "ListDimensionsRequest":{
+      "type":"structure",
+      "members":{
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListDimensionsResponse":{
+      "type":"structure",
+      "members":{
+        "dimensionNames":{"shape":"DimensionNames"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
     "ListDomainConfigurationsRequest":{
       "type":"structure",
       "members":{
@@ -8054,6 +8267,11 @@
           "shape":"MaxResults",
           "location":"querystring",
           "locationName":"maxResults"
+        },
+        "dimensionName":{
+          "shape":"DimensionName",
+          "location":"querystring",
+          "locationName":"dimensionName"
         }
       }
     },
@@ -8655,6 +8873,22 @@
     "MessageId":{
       "type":"string",
       "max":128
+    },
+    "MetricDimension":{
+      "type":"structure",
+      "required":["dimensionName"],
+      "members":{
+        "dimensionName":{"shape":"DimensionName"},
+        "operator":{"shape":"DimensionValueOperator"}
+      }
+    },
+    "MetricToRetain":{
+      "type":"structure",
+      "required":["metric"],
+      "members":{
+        "metric":{"shape":"BehaviorMetric"},
+        "metricDimension":{"shape":"MetricDimension"}
+      }
     },
     "MetricValue":{
       "type":"structure",
@@ -10688,6 +10922,32 @@
         "action":{"shape":"DeviceCertificateUpdateAction"}
       }
     },
+    "UpdateDimensionRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "stringValues"
+      ],
+      "members":{
+        "name":{
+          "shape":"DimensionName",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "stringValues":{"shape":"DimensionStringValues"}
+      }
+    },
+    "UpdateDimensionResponse":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"DimensionName"},
+        "arn":{"shape":"DimensionArn"},
+        "type":{"shape":"DimensionType"},
+        "stringValues":{"shape":"DimensionStringValues"},
+        "creationDate":{"shape":"Timestamp"},
+        "lastModifiedDate":{"shape":"Timestamp"}
+      }
+    },
     "UpdateDomainConfigurationRequest":{
       "type":"structure",
       "required":["domainConfigurationName"],
@@ -10866,7 +11126,12 @@
         "securityProfileDescription":{"shape":"SecurityProfileDescription"},
         "behaviors":{"shape":"Behaviors"},
         "alertTargets":{"shape":"AlertTargets"},
-        "additionalMetricsToRetain":{"shape":"AdditionalMetricsToRetainList"},
+        "additionalMetricsToRetain":{
+          "shape":"AdditionalMetricsToRetainList",
+          "deprecated":true,
+          "deprecatedMessage":"Use additionalMetricsToRetainV2."
+        },
+        "additionalMetricsToRetainV2":{"shape":"AdditionalMetricsToRetainV2List"},
         "deleteBehaviors":{"shape":"DeleteBehaviors"},
         "deleteAlertTargets":{"shape":"DeleteAlertTargets"},
         "deleteAdditionalMetricsToRetain":{"shape":"DeleteAdditionalMetricsToRetain"},
@@ -10885,7 +11150,12 @@
         "securityProfileDescription":{"shape":"SecurityProfileDescription"},
         "behaviors":{"shape":"Behaviors"},
         "alertTargets":{"shape":"AlertTargets"},
-        "additionalMetricsToRetain":{"shape":"AdditionalMetricsToRetainList"},
+        "additionalMetricsToRetain":{
+          "shape":"AdditionalMetricsToRetainList",
+          "deprecated":true,
+          "deprecatedMessage":"Use additionalMetricsToRetainV2."
+        },
+        "additionalMetricsToRetainV2":{"shape":"AdditionalMetricsToRetainV2List"},
         "version":{"shape":"Version"},
         "creationDate":{"shape":"Timestamp"},
         "lastModifiedDate":{"shape":"Timestamp"}

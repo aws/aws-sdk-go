@@ -132,6 +132,10 @@ type IoTAPI interface {
 	CreateCertificateFromCsrWithContext(aws.Context, *iot.CreateCertificateFromCsrInput, ...request.Option) (*iot.CreateCertificateFromCsrOutput, error)
 	CreateCertificateFromCsrRequest(*iot.CreateCertificateFromCsrInput) (*request.Request, *iot.CreateCertificateFromCsrOutput)
 
+	CreateDimension(*iot.CreateDimensionInput) (*iot.CreateDimensionOutput, error)
+	CreateDimensionWithContext(aws.Context, *iot.CreateDimensionInput, ...request.Option) (*iot.CreateDimensionOutput, error)
+	CreateDimensionRequest(*iot.CreateDimensionInput) (*request.Request, *iot.CreateDimensionOutput)
+
 	CreateDomainConfiguration(*iot.CreateDomainConfigurationInput) (*iot.CreateDomainConfigurationOutput, error)
 	CreateDomainConfigurationWithContext(aws.Context, *iot.CreateDomainConfigurationInput, ...request.Option) (*iot.CreateDomainConfigurationOutput, error)
 	CreateDomainConfigurationRequest(*iot.CreateDomainConfigurationInput) (*request.Request, *iot.CreateDomainConfigurationOutput)
@@ -231,6 +235,10 @@ type IoTAPI interface {
 	DeleteCertificate(*iot.DeleteCertificateInput) (*iot.DeleteCertificateOutput, error)
 	DeleteCertificateWithContext(aws.Context, *iot.DeleteCertificateInput, ...request.Option) (*iot.DeleteCertificateOutput, error)
 	DeleteCertificateRequest(*iot.DeleteCertificateInput) (*request.Request, *iot.DeleteCertificateOutput)
+
+	DeleteDimension(*iot.DeleteDimensionInput) (*iot.DeleteDimensionOutput, error)
+	DeleteDimensionWithContext(aws.Context, *iot.DeleteDimensionInput, ...request.Option) (*iot.DeleteDimensionOutput, error)
+	DeleteDimensionRequest(*iot.DeleteDimensionInput) (*request.Request, *iot.DeleteDimensionOutput)
 
 	DeleteDomainConfiguration(*iot.DeleteDomainConfigurationInput) (*iot.DeleteDomainConfigurationOutput, error)
 	DeleteDomainConfigurationWithContext(aws.Context, *iot.DeleteDomainConfigurationInput, ...request.Option) (*iot.DeleteDomainConfigurationOutput, error)
@@ -355,6 +363,10 @@ type IoTAPI interface {
 	DescribeDefaultAuthorizer(*iot.DescribeDefaultAuthorizerInput) (*iot.DescribeDefaultAuthorizerOutput, error)
 	DescribeDefaultAuthorizerWithContext(aws.Context, *iot.DescribeDefaultAuthorizerInput, ...request.Option) (*iot.DescribeDefaultAuthorizerOutput, error)
 	DescribeDefaultAuthorizerRequest(*iot.DescribeDefaultAuthorizerInput) (*request.Request, *iot.DescribeDefaultAuthorizerOutput)
+
+	DescribeDimension(*iot.DescribeDimensionInput) (*iot.DescribeDimensionOutput, error)
+	DescribeDimensionWithContext(aws.Context, *iot.DescribeDimensionInput, ...request.Option) (*iot.DescribeDimensionOutput, error)
+	DescribeDimensionRequest(*iot.DescribeDimensionInput) (*request.Request, *iot.DescribeDimensionOutput)
 
 	DescribeDomainConfiguration(*iot.DescribeDomainConfigurationInput) (*iot.DescribeDomainConfigurationOutput, error)
 	DescribeDomainConfigurationWithContext(aws.Context, *iot.DescribeDomainConfigurationInput, ...request.Option) (*iot.DescribeDomainConfigurationOutput, error)
@@ -547,6 +559,10 @@ type IoTAPI interface {
 	ListCertificatesByCA(*iot.ListCertificatesByCAInput) (*iot.ListCertificatesByCAOutput, error)
 	ListCertificatesByCAWithContext(aws.Context, *iot.ListCertificatesByCAInput, ...request.Option) (*iot.ListCertificatesByCAOutput, error)
 	ListCertificatesByCARequest(*iot.ListCertificatesByCAInput) (*request.Request, *iot.ListCertificatesByCAOutput)
+
+	ListDimensions(*iot.ListDimensionsInput) (*iot.ListDimensionsOutput, error)
+	ListDimensionsWithContext(aws.Context, *iot.ListDimensionsInput, ...request.Option) (*iot.ListDimensionsOutput, error)
+	ListDimensionsRequest(*iot.ListDimensionsInput) (*request.Request, *iot.ListDimensionsOutput)
 
 	ListDomainConfigurations(*iot.ListDomainConfigurationsInput) (*iot.ListDomainConfigurationsOutput, error)
 	ListDomainConfigurationsWithContext(aws.Context, *iot.ListDomainConfigurationsInput, ...request.Option) (*iot.ListDomainConfigurationsOutput, error)
@@ -799,6 +815,10 @@ type IoTAPI interface {
 	UpdateCertificate(*iot.UpdateCertificateInput) (*iot.UpdateCertificateOutput, error)
 	UpdateCertificateWithContext(aws.Context, *iot.UpdateCertificateInput, ...request.Option) (*iot.UpdateCertificateOutput, error)
 	UpdateCertificateRequest(*iot.UpdateCertificateInput) (*request.Request, *iot.UpdateCertificateOutput)
+
+	UpdateDimension(*iot.UpdateDimensionInput) (*iot.UpdateDimensionOutput, error)
+	UpdateDimensionWithContext(aws.Context, *iot.UpdateDimensionInput, ...request.Option) (*iot.UpdateDimensionOutput, error)
+	UpdateDimensionRequest(*iot.UpdateDimensionInput) (*request.Request, *iot.UpdateDimensionOutput)
 
 	UpdateDomainConfiguration(*iot.UpdateDomainConfigurationInput) (*iot.UpdateDomainConfigurationOutput, error)
 	UpdateDomainConfigurationWithContext(aws.Context, *iot.UpdateDomainConfigurationInput, ...request.Option) (*iot.UpdateDomainConfigurationOutput, error)

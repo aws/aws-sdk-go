@@ -1,3 +1,11 @@
+Release v1.30.2 (2020-04-01)
+===
+
+### Service Client Updates
+* `service/iot`: Updates service API and documentation
+  * This release introduces Dimensions for AWS IoT Device Defender. Dimensions can be used in Security Profiles to collect and monitor fine-grained metrics.
+* `service/mediaconnect`: Updates service API and documentation
+
 Release v1.30.1 (2020-03-31)
 ===
 

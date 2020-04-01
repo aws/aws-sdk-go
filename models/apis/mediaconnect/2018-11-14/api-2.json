@@ -82,6 +82,40 @@
         }
       ]
     },
+    "AddFlowVpcInterfaces": {
+      "name": "AddFlowVpcInterfaces",
+      "http": {
+        "method": "POST",
+        "requestUri": "/v1/flows/{flowArn}/vpcInterfaces",
+        "responseCode": 201
+      },
+      "input": {
+        "shape": "AddFlowVpcInterfacesRequest"
+      },
+      "output": {
+        "shape": "AddFlowVpcInterfacesResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
     "CreateFlow": {
       "name": "CreateFlow",
       "http": {
@@ -348,6 +382,40 @@
       },
       "output": {
         "shape": "RemoveFlowSourceResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "RemoveFlowVpcInterface": {
+      "name": "RemoveFlowVpcInterface",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/v1/flows/{flowArn}/vpcInterfaces/{vpcInterfaceName}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "RemoveFlowVpcInterfaceRequest"
+      },
+      "output": {
+        "shape": "RemoveFlowVpcInterfaceResponse"
       },
       "errors": [
         {
@@ -732,6 +800,37 @@
         }
       }
     },
+    "AddFlowVpcInterfacesRequest": {
+      "type": "structure",
+      "members": {
+        "FlowArn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "flowArn"
+        },
+        "VpcInterfaces": {
+          "shape": "__listOfVpcInterfaceRequest",
+          "locationName": "vpcInterfaces"
+        }
+      },
+      "required": [
+        "FlowArn",
+        "VpcInterfaces"
+      ]
+    },
+    "AddFlowVpcInterfacesResponse": {
+      "type": "structure",
+      "members": {
+        "FlowArn": {
+          "shape": "__string",
+          "locationName": "flowArn"
+        },
+        "VpcInterfaces": {
+          "shape": "__listOfVpcInterface",
+          "locationName": "vpcInterfaces"
+        }
+      }
+    },
     "AddOutputRequest": {
       "type": "structure",
       "members": {
@@ -854,6 +953,10 @@
         "Sources": {
           "shape": "__listOfSetSourceRequest",
           "locationName": "sources"
+        },
+        "VpcInterfaces": {
+          "shape": "__listOfVpcInterfaceRequest",
+          "locationName": "vpcInterfaces"
         }
       },
       "required": [
@@ -1059,6 +1162,10 @@
         "Status": {
           "shape": "Status",
           "locationName": "status"
+        },
+        "VpcInterfaces": {
+          "shape": "__listOfVpcInterface",
+          "locationName": "vpcInterfaces"
         }
       },
       "required": [
@@ -1477,6 +1584,42 @@
         }
       }
     },
+    "RemoveFlowVpcInterfaceRequest": {
+      "type": "structure",
+      "members": {
+        "FlowArn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "flowArn"
+        },
+        "VpcInterfaceName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "vpcInterfaceName"
+        }
+      },
+      "required": [
+        "FlowArn",
+        "VpcInterfaceName"
+      ]
+    },
+    "RemoveFlowVpcInterfaceResponse": {
+      "type": "structure",
+      "members": {
+        "FlowArn": {
+          "shape": "__string",
+          "locationName": "flowArn"
+        },
+        "NonDeletedNetworkInterfaceIds": {
+          "shape": "__listOf__string",
+          "locationName": "nonDeletedNetworkInterfaceIds"
+        },
+        "VpcInterfaceName": {
+          "shape": "__string",
+          "locationName": "vpcInterfaceName"
+        }
+      }
+    },
     "ResponseError": {
       "type": "structure",
       "members": {
@@ -1576,6 +1719,10 @@
           "shape": "__string",
           "locationName": "streamId"
         },
+        "VpcInterfaceName": {
+          "shape": "__string",
+          "locationName": "vpcInterfaceName"
+        },
         "WhitelistCidr": {
           "shape": "__string",
           "locationName": "whitelistCidr"
@@ -1620,6 +1767,10 @@
         "Transport": {
           "shape": "Transport",
           "locationName": "transport"
+        },
+        "VpcInterfaceName": {
+          "shape": "__string",
+          "locationName": "vpcInterfaceName"
         },
         "WhitelistCidr": {
           "shape": "__string",
@@ -2039,6 +2190,10 @@
           "shape": "__string",
           "locationName": "streamId"
         },
+        "VpcInterfaceName": {
+          "shape": "__string",
+          "locationName": "vpcInterfaceName"
+        },
         "WhitelistCidr": {
           "shape": "__string",
           "locationName": "whitelistCidr"
@@ -2061,6 +2216,65 @@
           "locationName": "source"
         }
       }
+    },
+    "VpcInterface": {
+      "type": "structure",
+      "members": {
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "NetworkInterfaceIds": {
+          "shape": "__listOf__string",
+          "locationName": "networkInterfaceIds"
+        },
+        "RoleArn": {
+          "shape": "__string",
+          "locationName": "roleArn"
+        },
+        "SecurityGroupIds": {
+          "shape": "__listOf__string",
+          "locationName": "securityGroupIds"
+        },
+        "SubnetId": {
+          "shape": "__string",
+          "locationName": "subnetId"
+        }
+      },
+      "required": [
+        "NetworkInterfaceIds",
+        "SubnetId",
+        "SecurityGroupIds",
+        "RoleArn",
+        "Name"
+      ]
+    },
+    "VpcInterfaceRequest": {
+      "type": "structure",
+      "members": {
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "RoleArn": {
+          "shape": "__string",
+          "locationName": "roleArn"
+        },
+        "SecurityGroupIds": {
+          "shape": "__listOf__string",
+          "locationName": "securityGroupIds"
+        },
+        "SubnetId": {
+          "shape": "__string",
+          "locationName": "subnetId"
+        }
+      },
+      "required": [
+        "SubnetId",
+        "SecurityGroupIds",
+        "RoleArn",
+        "Name"
+      ]
     },
     "__boolean": {
       "type": "boolean"
@@ -2117,6 +2331,18 @@
       "type": "list",
       "member": {
         "shape": "Source"
+      }
+    },
+    "__listOfVpcInterface": {
+      "type": "list",
+      "member": {
+        "shape": "VpcInterface"
+      }
+    },
+    "__listOfVpcInterfaceRequest": {
+      "type": "list",
+      "member": {
+        "shape": "VpcInterfaceRequest"
       }
     },
     "__listOf__integer": {

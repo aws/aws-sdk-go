@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<fullname>AWS IoT</fullname> <p>AWS IoT provides secure, bi-directional communication between Internet-connected devices (such as sensors, actuators, embedded devices, or smart appliances) and the AWS cloud. You can discover your custom IoT-Data endpoint to communicate with, configure rules for data processing and integration with other services, organize resources associated with each device (Registry), configure logging, and create and manage policies and credentials to authenticate devices.</p> <p>For more information about how AWS IoT works, see the <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/aws-iot-how-it-works.html\">Developer Guide</a>.</p> <p>For information about how to use the credentials provider for AWS IoT, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/authorizing-direct-aws.html\">Authorizing Direct Calls to AWS Services</a>.</p>",
+  "service": "<fullname>AWS IoT</fullname> <p>AWS IoT provides secure, bi-directional communication between Internet-connected devices (such as sensors, actuators, embedded devices, or smart appliances) and the AWS cloud. You can discover your custom IoT-Data endpoint to communicate with, configure rules for data processing and integration with other services, organize resources associated with each device (Registry), configure logging, and create and manage policies and credentials to authenticate devices.</p> <p>The service endpoints that expose this API are listed in <a href=\"https://docs.aws.amazon.com/general/latest/gr/iot-core.html\">AWS IoT Core Endpoints and Quotas</a>. You must use the endpoint for the region that has the resources you want to access.</p> <p>The service name used by <a href=\"https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html\">AWS Signature Version 4</a> to sign the request is: <i>execute-api</i>.</p> <p>For more information about how AWS IoT works, see the <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/aws-iot-how-it-works.html\">Developer Guide</a>.</p> <p>For information about how to use the credentials provider for AWS IoT, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/authorizing-direct-aws.html\">Authorizing Direct Calls to AWS Services</a>.</p>",
   "operations": {
     "AcceptCertificateTransfer": "<p>Accepts a pending certificate transfer. The default state of the certificate is INACTIVE.</p> <p>To check for pending certificate transfers, call <a>ListCertificates</a> to enumerate your certificates.</p>",
     "AddThingToBillingGroup": "<p>Adds a thing to a billing group.</p>",
@@ -20,6 +20,7 @@
     "CreateAuthorizer": "<p>Creates an authorizer.</p>",
     "CreateBillingGroup": "<p>Creates a billing group.</p>",
     "CreateCertificateFromCsr": "<p>Creates an X.509 certificate using the specified certificate signing request.</p> <p> <b>Note:</b> The CSR must include a public key that is either an RSA key with a length of at least 2048 bits or an ECC key from NIST P-256 or NIST P-384 curves. </p> <p> <b>Note:</b> Reusing the same certificate signing request (CSR) results in a distinct certificate.</p> <p>You can create multiple certificates in a batch by creating a directory, copying multiple .csr files into that directory, and then specifying that directory on the command line. The following commands show how to create a batch of certificates given a batch of CSRs.</p> <p>Assuming a set of CSRs are located inside of the directory my-csr-directory:</p> <p>On Linux and OS X, the command is:</p> <p>$ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/{}</p> <p>This command lists all of the CSRs in my-csr-directory and pipes each CSR file name to the aws iot create-certificate-from-csr AWS CLI command to create a certificate for the corresponding CSR.</p> <p>The aws iot create-certificate-from-csr part of the command can also be run in parallel to speed up the certificate creation process:</p> <p>$ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/{}</p> <p>On Windows PowerShell, the command to create certificates for all CSRs in my-csr-directory is:</p> <p>&gt; ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/$_}</p> <p>On a Windows command prompt, the command to create certificates for all CSRs in my-csr-directory is:</p> <p>&gt; forfiles /p my-csr-directory /c \"cmd /c aws iot create-certificate-from-csr --certificate-signing-request file://@path\"</p>",
+    "CreateDimension": "<p>Create a dimension that you can use to limit the scope of a metric used in a security profile for AWS IoT Device Defender. For example, using a <code>TOPIC_FILTER</code> dimension, you can narrow down the scope of the metric only to MQTT topics whose name match the pattern specified in the dimension.</p>",
     "CreateDomainConfiguration": "<p>Creates a domain configuration.</p> <note> <p>The domain configuration feature is in public preview and is subject to change.</p> </note>",
     "CreateDynamicThingGroup": "<p>Creates a dynamic thing group.</p>",
     "CreateJob": "<p>Creates a job.</p>",
@@ -45,6 +46,7 @@
     "DeleteBillingGroup": "<p>Deletes the billing group.</p>",
     "DeleteCACertificate": "<p>Deletes a registered CA certificate.</p>",
     "DeleteCertificate": "<p>Deletes the specified certificate.</p> <p>A certificate cannot be deleted if it has a policy or IoT thing attached to it or if its status is set to ACTIVE. To delete a certificate, first use the <a>DetachPrincipalPolicy</a> API to detach all policies. Next, use the <a>UpdateCertificate</a> API to set the certificate to the INACTIVE status.</p>",
+    "DeleteDimension": "<p>Removes the specified dimension from your AWS account.</p>",
     "DeleteDomainConfiguration": "<p>Deletes the specified domain configuration.</p> <note> <p>The domain configuration feature is in public preview and is subject to change.</p> </note>",
     "DeleteDynamicThingGroup": "<p>Deletes a dynamic thing group.</p>",
     "DeleteJob": "<p>Deletes a job and its related job executions.</p> <p>Deleting a job may take time, depending on the number of job executions created for the job and various other factors. While the job is being deleted, the status of the job will be shown as \"DELETION_IN_PROGRESS\". Attempting to delete or cancel a job whose status is already \"DELETION_IN_PROGRESS\" will result in an error.</p> <p>Only 10 jobs may have status \"DELETION_IN_PROGRESS\" at the same time, or a LimitExceededException will occur.</p>",
@@ -76,6 +78,7 @@
     "DescribeCACertificate": "<p>Describes a registered CA certificate.</p>",
     "DescribeCertificate": "<p>Gets information about the specified certificate.</p>",
     "DescribeDefaultAuthorizer": "<p>Describes the default authorizer.</p>",
+    "DescribeDimension": "<p>Provides details about a dimension that is defined in your AWS account.</p>",
     "DescribeDomainConfiguration": "<p>Gets summary information about a domain configuration.</p> <note> <p>The domain configuration feature is in public preview and is subject to change.</p> </note>",
     "DescribeEndpoint": "<p>Returns a unique endpoint specific to the AWS account making the call.</p>",
     "DescribeEventConfigurations": "<p>Describes event configurations.</p>",
@@ -124,6 +127,7 @@
     "ListCACertificates": "<p>Lists the CA certificates registered for your AWS account.</p> <p>The results are paginated with a default page size of 25. You can use the returned marker to retrieve additional results.</p>",
     "ListCertificates": "<p>Lists the certificates registered in your AWS account.</p> <p>The results are paginated with a default page size of 25. You can use the returned marker to retrieve additional results.</p>",
     "ListCertificatesByCA": "<p>List the device certificates signed by the specified CA certificate.</p>",
+    "ListDimensions": "<p>List the set of dimensions that are defined for your AWS account.</p>",
     "ListDomainConfigurations": "<p>Gets a list of domain configurations for the user. This list is sorted alphabetically by domain configuration name.</p> <note> <p>The domain configuration feature is in public preview and is subject to change.</p> </note>",
     "ListIndices": "<p>Lists the search indices.</p>",
     "ListJobExecutionsForJob": "<p>Lists the job executions for a job.</p>",
@@ -187,6 +191,7 @@
     "UpdateBillingGroup": "<p>Updates information about the billing group.</p>",
     "UpdateCACertificate": "<p>Updates a registered CA certificate.</p>",
     "UpdateCertificate": "<p>Updates the status of the specified certificate. This operation is idempotent.</p> <p>Moving a certificate from the ACTIVE state (including REVOKED) will not disconnect currently connected devices, but these devices will be unable to reconnect.</p> <p>The ACTIVE state is required to authenticate devices connecting to AWS IoT using a certificate.</p>",
+    "UpdateDimension": "<p>Updates the definition for a dimension. You cannot change the type of a dimension after it is created (you can delete it and re-create it).</p>",
     "UpdateDomainConfiguration": "<p>Updates values stored in the domain configuration. Domain configurations for default endpoints can't be updated.</p> <note> <p>The domain configuration feature is in public preview and is subject to change.</p> </note>",
     "UpdateDynamicThingGroup": "<p>Updates a dynamic thing group.</p>",
     "UpdateEventConfigurations": "<p>Updates the event configurations.</p>",
@@ -312,10 +317,19 @@
     "AdditionalMetricsToRetainList": {
       "base": null,
       "refs": {
-        "CreateSecurityProfileRequest$additionalMetricsToRetain": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's <code>behaviors</code>, but it is also retained for any metric specified here.</p>",
-        "DescribeSecurityProfileResponse$additionalMetricsToRetain": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's <code>behaviors</code>, but it is also retained for any metric specified here.</p>",
-        "UpdateSecurityProfileRequest$additionalMetricsToRetain": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's <code>behaviors</code>, but it is also retained for any metric specified here.</p>",
-        "UpdateSecurityProfileResponse$additionalMetricsToRetain": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the security profile's <code>behaviors</code>, but it is also retained for any metric specified here.</p>"
+        "CreateSecurityProfileRequest$additionalMetricsToRetain": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's <code>behaviors</code>, but it is also retained for any metric specified here.</p> <p> <b>Note:</b> This API field is deprecated. Please use <a>CreateSecurityProfileRequest$additionalMetricsToRetainV2</a> instead.</p>",
+        "DescribeSecurityProfileResponse$additionalMetricsToRetain": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's <code>behaviors</code>, but it is also retained for any metric specified here.</p> <p> <b>Note:</b> This API field is deprecated. Please use <a>DescribeSecurityProfileResponse$additionalMetricsToRetainV2</a> instead.</p>",
+        "UpdateSecurityProfileRequest$additionalMetricsToRetain": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's <code>behaviors</code>, but it is also retained for any metric specified here.</p> <p> <b>Note:</b> This API field is deprecated. Please use <a>UpdateSecurityProfileRequest$additionalMetricsToRetainV2</a> instead.</p>",
+        "UpdateSecurityProfileResponse$additionalMetricsToRetain": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the security profile's <code>behaviors</code>, but it is also retained for any metric specified here.</p> <p> <b>Note:</b> This API field is deprecated. Please use <a>UpdateSecurityProfileResponse$additionalMetricsToRetainV2</a> instead.</p>"
+      }
+    },
+    "AdditionalMetricsToRetainV2List": {
+      "base": null,
+      "refs": {
+        "CreateSecurityProfileRequest$additionalMetricsToRetainV2": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's <code>behaviors</code>, but it is also retained for any metric specified here.</p>",
+        "DescribeSecurityProfileResponse$additionalMetricsToRetainV2": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's behaviors, but it is also retained for any metric specified here.</p>",
+        "UpdateSecurityProfileRequest$additionalMetricsToRetainV2": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's behaviors, but it is also retained for any metric specified here.</p>",
+        "UpdateSecurityProfileResponse$additionalMetricsToRetainV2": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's behaviors, but it is also retained for any metric specified here.</p>"
       }
     },
     "AdditionalParameterMap": {
@@ -1003,7 +1017,8 @@
       "base": null,
       "refs": {
         "AdditionalMetricsToRetainList$member": null,
-        "Behavior$metric": "<p>What is measured by the behavior.</p>"
+        "Behavior$metric": "<p>What is measured by the behavior.</p>",
+        "MetricToRetain$metric": "<p>What is measured by the behavior.</p>"
       }
     },
     "BehaviorName": {
@@ -1370,6 +1385,7 @@
     "ClientRequestToken": {
       "base": null,
       "refs": {
+        "CreateDimensionRequest$clientRequestToken": "<p>Each dimension must have a unique client request token. If you try to create a new dimension with the same token as a dimension that already exists, an exception occurs. If you omit this value, AWS SDKs will automatically generate a unique client request.</p>",
         "StartAuditMitigationActionsTaskRequest$clientRequestToken": "<p>Each audit mitigation task must have a unique client request token. If you try to start a new task with the same token as a task that already exists, an exception occurs. If you omit this value, a unique client request token is generated automatically.</p>"
       }
     },
@@ -1380,9 +1396,9 @@
       }
     },
     "CloudwatchLogsAction": {
-      "base": "<p>Describes an action that sends data to CloudWatch logs.</p>",
+      "base": "<p>Describes an action that sends data to CloudWatch Logs.</p>",
       "refs": {
-        "Action$cloudwatchLogs": "<p>Send data to CloudWatch logs.</p>"
+        "Action$cloudwatchLogs": "<p>Send data to CloudWatch Logs.</p>"
       }
     },
     "CloudwatchMetricAction": {
@@ -1524,6 +1540,16 @@
     },
     "CreateCertificateFromCsrResponse": {
       "base": "<p>The output from the CreateCertificateFromCsr operation.</p>",
+      "refs": {
+      }
+    },
+    "CreateDimensionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateDimensionResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -1897,6 +1923,16 @@
       "refs": {
       }
     },
+    "DeleteDimensionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteDimensionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteDomainConfigurationRequest": {
       "base": null,
       "refs": {
@@ -2207,6 +2243,16 @@
       "refs": {
       }
     },
+    "DescribeDimensionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDimensionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeDomainConfigurationRequest": {
       "base": null,
       "refs": {
@@ -2452,6 +2498,64 @@
         "ListActiveViolationsRequest$thingName": "<p>The name of the thing whose active violations are listed.</p>",
         "ListViolationEventsRequest$thingName": "<p>A filter to limit results to those alerts caused by the specified thing.</p>",
         "ViolationEvent$thingName": "<p>The name of the thing responsible for the violation event.</p>"
+      }
+    },
+    "DimensionArn": {
+      "base": null,
+      "refs": {
+        "CreateDimensionResponse$arn": "<p>The ARN (Amazon resource name) of the created dimension.</p>",
+        "DescribeDimensionResponse$arn": "<p>The ARN (Amazon resource name) for the dimension.</p>",
+        "UpdateDimensionResponse$arn": "<p>The ARN (Amazon resource name) of the created dimension.</p>"
+      }
+    },
+    "DimensionName": {
+      "base": null,
+      "refs": {
+        "CreateDimensionRequest$name": "<p>A unique identifier for the dimension. Choose something that describes the type and value to make it easy to remember what it does.</p>",
+        "CreateDimensionResponse$name": "<p>A unique identifier for the dimension.</p>",
+        "DeleteDimensionRequest$name": "<p>The unique identifier for the dimension that you want to delete.</p>",
+        "DescribeDimensionRequest$name": "<p>The unique identifier for the dimension.</p>",
+        "DescribeDimensionResponse$name": "<p>The unique identifier for the dimension.</p>",
+        "DimensionNames$member": null,
+        "ListSecurityProfilesRequest$dimensionName": "<p>A filter to limit results to the security profiles that use the defined dimension.</p>",
+        "MetricDimension$dimensionName": "<p>A unique identifier for the dimension.</p>",
+        "UpdateDimensionRequest$name": "<p>A unique identifier for the dimension. Choose something that describes the type and value to make it easy to remember what it does.</p>",
+        "UpdateDimensionResponse$name": "<p>A unique identifier for the dimension.</p>"
+      }
+    },
+    "DimensionNames": {
+      "base": null,
+      "refs": {
+        "ListDimensionsResponse$dimensionNames": "<p>A list of the names of the defined dimensions. Use <code>DescribeDimension</code> to get details for a dimension.</p>"
+      }
+    },
+    "DimensionStringValue": {
+      "base": null,
+      "refs": {
+        "DimensionStringValues$member": null
+      }
+    },
+    "DimensionStringValues": {
+      "base": null,
+      "refs": {
+        "CreateDimensionRequest$stringValues": "<p>Specifies the value or list of values for the dimension. For <code>TOPIC_FILTER</code> dimensions, this is a pattern used to match the MQTT topic (for example, \"admin/#\").</p>",
+        "DescribeDimensionResponse$stringValues": "<p>The value or list of values used to scope the dimension. For example, for topic filters, this is the pattern used to match the MQTT topic name.</p>",
+        "UpdateDimensionRequest$stringValues": "<p>Specifies the value or list of values for the dimension. For <code>TOPIC_FILTER</code> dimensions, this is a pattern used to match the MQTT topic (for example, \"admin/#\").</p>",
+        "UpdateDimensionResponse$stringValues": "<p>The value or list of values used to scope the dimension. For example, for topic filters, this is the pattern used to match the MQTT topic name.</p>"
+      }
+    },
+    "DimensionType": {
+      "base": null,
+      "refs": {
+        "CreateDimensionRequest$type": "<p>Specifies the type of dimension. Supported types: <code>TOPIC_FILTER.</code> </p>",
+        "DescribeDimensionResponse$type": "<p>The type of the dimension.</p>",
+        "UpdateDimensionResponse$type": "<p>The type of the dimension.</p>"
+      }
+    },
+    "DimensionValueOperator": {
+      "base": null,
+      "refs": {
+        "MetricDimension$operator": "<p>Defines how the <code>dimensionValues</code> of a dimension are interpreted. For example, for DimensionType TOPIC_FILTER, with <code>IN</code> operator, a message will be counted only if its topic matches one of the topic filters. With <code>NOT_IN</code> Operator, a message will be counted only if it doesn't match any of the topic filters. The operator is optional: if it's not provided (is <code>null</code>), it will be interpreted as <code>IN</code>.</p>"
       }
     },
     "DisableAllLogs": {
@@ -3603,6 +3707,16 @@
       "refs": {
       }
     },
+    "ListDimensionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDimensionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListDomainConfigurationsRequest": {
       "base": null,
       "refs": {
@@ -4069,6 +4183,7 @@
         "ListAuditMitigationActionsExecutionsRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p>",
         "ListAuditMitigationActionsTasksRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p>",
         "ListAuditTasksRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p>",
+        "ListDimensionsRequest$maxResults": "<p>The maximum number of results to retrieve at one time.</p>",
         "ListMitigationActionsRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p>",
         "ListOTAUpdatesRequest$maxResults": "<p>The maximum number of results to return at one time.</p>",
         "ListProvisioningTemplateVersionsRequest$maxResults": "<p>The maximum number of results to return at one time.</p>",
@@ -4113,6 +4228,19 @@
       "base": null,
       "refs": {
         "IotEventsAction$messageId": "<p>[Optional] Use this to ensure that only one input (message) with a given messageId will be processed by an AWS IoT Events detector.</p>"
+      }
+    },
+    "MetricDimension": {
+      "base": "<p>The dimension of a metric.</p>",
+      "refs": {
+        "Behavior$metricDimension": "<p>The dimension for a metric in your behavior. For example, using a <code>TOPIC_FILTER</code> dimension, you can narrow down the scope of the metric only to MQTT topics whose name match the pattern specified in the dimension.</p>",
+        "MetricToRetain$metricDimension": "<p>The dimension of a metric.</p>"
+      }
+    },
+    "MetricToRetain": {
+      "base": "<p>The metric you want to retain. Dimensions are optional.</p>",
+      "refs": {
+        "AdditionalMetricsToRetainV2List$member": null
       }
     },
     "MetricValue": {
@@ -4265,6 +4393,8 @@
         "ListAuditTasksResponse$nextToken": "<p>A token that can be used to retrieve the next set of results, or <code>null</code> if there are no additional results.</p>",
         "ListBillingGroupsRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
         "ListBillingGroupsResponse$nextToken": "<p>The token used to get the next set of results, or <b>null</b> if there are no additional results.</p>",
+        "ListDimensionsRequest$nextToken": "<p>The token for the next set of results.</p>",
+        "ListDimensionsResponse$nextToken": "<p>A token that can be used to retrieve the next set of results, or <code>null</code> if there are no additional results.</p>",
         "ListIndicesRequest$nextToken": "<p>The token used to get the next set of results, or <code>null</code> if there are no additional results.</p>",
         "ListIndicesResponse$nextToken": "<p>The token used to get the next set of results, or <code>null</code> if there are no additional results.</p>",
         "ListJobExecutionsForJobRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
@@ -5932,6 +6062,7 @@
       "base": null,
       "refs": {
         "CreateBillingGroupRequest$tags": "<p>Metadata which can be used to manage the billing group.</p>",
+        "CreateDimensionRequest$tags": "<p>Metadata that can be used to manage the dimension.</p>",
         "CreateDynamicThingGroupRequest$tags": "<p>Metadata which can be used to manage the dynamic thing group.</p>",
         "CreateJobRequest$tags": "<p>Metadata which can be used to manage the job.</p>",
         "CreateMitigationActionRequest$tags": "<p>Metadata that can be used to manage the mitigation action.</p>",
@@ -6450,6 +6581,8 @@
         "DescribeAuditMitigationActionsTaskResponse$startTime": "<p>The date and time when the task was started.</p>",
         "DescribeAuditMitigationActionsTaskResponse$endTime": "<p>The date and time when the task was completed or canceled.</p>",
         "DescribeAuditTaskResponse$taskStartTime": "<p>The time the audit started.</p>",
+        "DescribeDimensionResponse$creationDate": "<p>The date the dimension was created.</p>",
+        "DescribeDimensionResponse$lastModifiedDate": "<p>The date the dimension was last modified.</p>",
         "DescribeMitigationActionResponse$creationDate": "<p>The date and time when the mitigation action was added to your AWS account.</p>",
         "DescribeMitigationActionResponse$lastModifiedDate": "<p>The date and time when the mitigation action was last changed.</p>",
         "DescribeSecurityProfileResponse$creationDate": "<p>The time the security profile was created.</p>",
@@ -6463,6 +6596,8 @@
         "ListViolationEventsRequest$startTime": "<p>The start time for the alerts to be listed.</p>",
         "ListViolationEventsRequest$endTime": "<p>The end time for the alerts to be listed.</p>",
         "MitigationActionIdentifier$creationDate": "<p>The date when this mitigation action was created.</p>",
+        "UpdateDimensionResponse$creationDate": "<p>The date and time, in milliseconds since epoch, when the dimension was initially created.</p>",
+        "UpdateDimensionResponse$lastModifiedDate": "<p>The date and time, in milliseconds since epoch, when the dimension was most recently updated.</p>",
         "UpdateSecurityProfileResponse$creationDate": "<p>The time the security profile was created.</p>",
         "UpdateSecurityProfileResponse$lastModifiedDate": "<p>The time the security profile was last modified.</p>",
         "ViolationEvent$violationEventTime": "<p>The time the violation event occurred.</p>"
@@ -6700,6 +6835,16 @@
         "MitigationActionParams$updateDeviceCertificateParams": "<p>Parameters to define a mitigation action that changes the state of the device certificate to inactive.</p>"
       }
     },
+    "UpdateDimensionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateDimensionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateDomainConfigurationRequest": {
       "base": null,
       "refs": {
@@ -6849,7 +6994,7 @@
       "base": null,
       "refs": {
         "HttpAction$url": "<p>The endpoint URL. If substitution templates are used in the URL, you must also specify a <code>confirmationUrl</code>. If this is a new destination, a new <code>TopicRuleDestination</code> is created if possible.</p>",
-        "HttpAction$confirmationUrl": "<p>The URL to which AWS IoT sends a confirmation message. The value of the confirmation URL must be a prefix of the endpoint URL. If you do not specify a confirmation URL AWS IoT uses the endpoint URL as the confirmation URL. If you use substitution templates in the confirmationUrl, you must create and enable topic rule destinations that match each possible value of the substituion template before traffic is allowed to your endpoint URL.</p>",
+        "HttpAction$confirmationUrl": "<p>The URL to which AWS IoT sends a confirmation message. The value of the confirmation URL must be a prefix of the endpoint URL. If you do not specify a confirmation URL AWS IoT uses the endpoint URL as the confirmation URL. If you use substitution templates in the confirmationUrl, you must create and enable topic rule destinations that match each possible value of the substitution template before traffic is allowed to your endpoint URL.</p>",
         "HttpUrlDestinationConfiguration$confirmationUrl": "<p>The URL AWS IoT uses to confirm ownership of or access to the topic rule destination URL.</p>",
         "HttpUrlDestinationProperties$confirmationUrl": "<p>The URL used to confirm the HTTP topic rule destination URL.</p>",
         "HttpUrlDestinationSummary$confirmationUrl": "<p>The URL used to confirm ownership of or access to the HTTP topic rule destination URL.</p>"
