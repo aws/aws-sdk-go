@@ -229,6 +229,112 @@ func (c *MediaConnect) AddFlowSourcesWithContext(ctx aws.Context, input *AddFlow
 	return out, req.Send()
 }
 
+const opAddFlowVpcInterfaces = "AddFlowVpcInterfaces"
+
+// AddFlowVpcInterfacesRequest generates a "aws/request.Request" representing the
+// client's request for the AddFlowVpcInterfaces operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AddFlowVpcInterfaces for more information on using the AddFlowVpcInterfaces
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AddFlowVpcInterfacesRequest method.
+//    req, resp := client.AddFlowVpcInterfacesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/AddFlowVpcInterfaces
+func (c *MediaConnect) AddFlowVpcInterfacesRequest(input *AddFlowVpcInterfacesInput) (req *request.Request, output *AddFlowVpcInterfacesOutput) {
+	op := &request.Operation{
+		Name:       opAddFlowVpcInterfaces,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/flows/{flowArn}/vpcInterfaces",
+	}
+
+	if input == nil {
+		input = &AddFlowVpcInterfacesInput{}
+	}
+
+	output = &AddFlowVpcInterfacesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AddFlowVpcInterfaces API operation for AWS MediaConnect.
+//
+// Adds VPC interfaces to flow
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaConnect's
+// API operation AddFlowVpcInterfaces for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * InternalServerErrorException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * ForbiddenException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * NotFoundException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * ServiceUnavailableException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * TooManyRequestsException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/AddFlowVpcInterfaces
+func (c *MediaConnect) AddFlowVpcInterfaces(input *AddFlowVpcInterfacesInput) (*AddFlowVpcInterfacesOutput, error) {
+	req, out := c.AddFlowVpcInterfacesRequest(input)
+	return out, req.Send()
+}
+
+// AddFlowVpcInterfacesWithContext is the same as AddFlowVpcInterfaces with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AddFlowVpcInterfaces for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaConnect) AddFlowVpcInterfacesWithContext(ctx aws.Context, input *AddFlowVpcInterfacesInput, opts ...request.Option) (*AddFlowVpcInterfacesOutput, error) {
+	req, out := c.AddFlowVpcInterfacesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateFlow = "CreateFlow"
 
 // CreateFlowRequest generates a "aws/request.Request" representing the
@@ -1274,6 +1380,115 @@ func (c *MediaConnect) RemoveFlowSource(input *RemoveFlowSourceInput) (*RemoveFl
 // for more information on using Contexts.
 func (c *MediaConnect) RemoveFlowSourceWithContext(ctx aws.Context, input *RemoveFlowSourceInput, opts ...request.Option) (*RemoveFlowSourceOutput, error) {
 	req, out := c.RemoveFlowSourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opRemoveFlowVpcInterface = "RemoveFlowVpcInterface"
+
+// RemoveFlowVpcInterfaceRequest generates a "aws/request.Request" representing the
+// client's request for the RemoveFlowVpcInterface operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RemoveFlowVpcInterface for more information on using the RemoveFlowVpcInterface
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RemoveFlowVpcInterfaceRequest method.
+//    req, resp := client.RemoveFlowVpcInterfaceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/RemoveFlowVpcInterface
+func (c *MediaConnect) RemoveFlowVpcInterfaceRequest(input *RemoveFlowVpcInterfaceInput) (req *request.Request, output *RemoveFlowVpcInterfaceOutput) {
+	op := &request.Operation{
+		Name:       opRemoveFlowVpcInterface,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v1/flows/{flowArn}/vpcInterfaces/{vpcInterfaceName}",
+	}
+
+	if input == nil {
+		input = &RemoveFlowVpcInterfaceInput{}
+	}
+
+	output = &RemoveFlowVpcInterfaceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RemoveFlowVpcInterface API operation for AWS MediaConnect.
+//
+// Removes a VPC Interface from an existing flow. This request can be made only
+// on a VPC interface that does not have a Source or Output associated with
+// it. If the VPC interface is referenced by a Source or Output, you must first
+// delete or update the Source or Output to no longer reference the VPC interface.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaConnect's
+// API operation RemoveFlowVpcInterface for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * InternalServerErrorException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * ForbiddenException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * NotFoundException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * ServiceUnavailableException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * TooManyRequestsException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/RemoveFlowVpcInterface
+func (c *MediaConnect) RemoveFlowVpcInterface(input *RemoveFlowVpcInterfaceInput) (*RemoveFlowVpcInterfaceOutput, error) {
+	req, out := c.RemoveFlowVpcInterfaceRequest(input)
+	return out, req.Send()
+}
+
+// RemoveFlowVpcInterfaceWithContext is the same as RemoveFlowVpcInterface with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RemoveFlowVpcInterface for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaConnect) RemoveFlowVpcInterfaceWithContext(ctx aws.Context, input *RemoveFlowVpcInterfaceInput, opts ...request.Option) (*RemoveFlowVpcInterfaceOutput, error) {
+	req, out := c.RemoveFlowVpcInterfaceRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2465,6 +2680,104 @@ func (s *AddFlowSourcesOutput) SetSources(v []*Source) *AddFlowSourcesOutput {
 	return s
 }
 
+// Adds VPC interfaces to an existing flow.
+type AddFlowVpcInterfacesInput struct {
+	_ struct{} `type:"structure"`
+
+	// FlowArn is a required field
+	FlowArn *string `location:"uri" locationName:"flowArn" type:"string" required:"true"`
+
+	// A list of VPC interfaces that you want to add.
+	//
+	// VpcInterfaces is a required field
+	VpcInterfaces []*VpcInterfaceRequest `locationName:"vpcInterfaces" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s AddFlowVpcInterfacesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddFlowVpcInterfacesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddFlowVpcInterfacesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddFlowVpcInterfacesInput"}
+	if s.FlowArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowArn"))
+	}
+	if s.FlowArn != nil && len(*s.FlowArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowArn", 1))
+	}
+	if s.VpcInterfaces == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcInterfaces"))
+	}
+	if s.VpcInterfaces != nil {
+		for i, v := range s.VpcInterfaces {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "VpcInterfaces", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFlowArn sets the FlowArn field's value.
+func (s *AddFlowVpcInterfacesInput) SetFlowArn(v string) *AddFlowVpcInterfacesInput {
+	s.FlowArn = &v
+	return s
+}
+
+// SetVpcInterfaces sets the VpcInterfaces field's value.
+func (s *AddFlowVpcInterfacesInput) SetVpcInterfaces(v []*VpcInterfaceRequest) *AddFlowVpcInterfacesInput {
+	s.VpcInterfaces = v
+	return s
+}
+
+// The result of a successful AddFlowVpcInterfaces request. The response includes
+// the details of the newly added VPC interfaces.
+type AddFlowVpcInterfacesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the flow that these VPC interfaces were added to.
+	FlowArn *string `locationName:"flowArn" type:"string"`
+
+	// The details of the newly added VPC interfaces.
+	VpcInterfaces []*VpcInterface `locationName:"vpcInterfaces" type:"list"`
+}
+
+// String returns the string representation
+func (s AddFlowVpcInterfacesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddFlowVpcInterfacesOutput) GoString() string {
+	return s.String()
+}
+
+// SetFlowArn sets the FlowArn field's value.
+func (s *AddFlowVpcInterfacesOutput) SetFlowArn(v string) *AddFlowVpcInterfacesOutput {
+	s.FlowArn = &v
+	return s
+}
+
+// SetVpcInterfaces sets the VpcInterfaces field's value.
+func (s *AddFlowVpcInterfacesOutput) SetVpcInterfaces(v []*VpcInterface) *AddFlowVpcInterfacesOutput {
+	s.VpcInterfaces = v
+	return s
+}
+
 // The output that you want to add to this flow.
 type AddOutputRequest struct {
 	_ struct{} `type:"structure"`
@@ -2747,6 +3060,9 @@ type CreateFlowInput struct {
 	SourceFailoverConfig *FailoverConfig `locationName:"sourceFailoverConfig" type:"structure"`
 
 	Sources []*SetSourceRequest `locationName:"sources" type:"list"`
+
+	// The VPC interfaces you want on the flow.
+	VpcInterfaces []*VpcInterfaceRequest `locationName:"vpcInterfaces" type:"list"`
 }
 
 // String returns the string representation
@@ -2800,6 +3116,16 @@ func (s *CreateFlowInput) Validate() error {
 			}
 		}
 	}
+	if s.VpcInterfaces != nil {
+		for i, v := range s.VpcInterfaces {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "VpcInterfaces", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -2846,6 +3172,12 @@ func (s *CreateFlowInput) SetSourceFailoverConfig(v *FailoverConfig) *CreateFlow
 // SetSources sets the Sources field's value.
 func (s *CreateFlowInput) SetSources(v []*SetSourceRequest) *CreateFlowInput {
 	s.Sources = v
+	return s
+}
+
+// SetVpcInterfaces sets the VpcInterfaces field's value.
+func (s *CreateFlowInput) SetVpcInterfaces(v []*VpcInterfaceRequest) *CreateFlowInput {
+	s.VpcInterfaces = v
 	return s
 }
 
@@ -3310,6 +3642,9 @@ type Flow struct {
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"Status"`
+
+	// The VPC Interfaces for this flow.
+	VpcInterfaces []*VpcInterface `locationName:"vpcInterfaces" type:"list"`
 }
 
 // String returns the string representation
@@ -3385,6 +3720,12 @@ func (s *Flow) SetSources(v []*Source) *Flow {
 // SetStatus sets the Status field's value.
 func (s *Flow) SetStatus(v string) *Flow {
 	s.Status = &v
+	return s
+}
+
+// SetVpcInterfaces sets the VpcInterfaces field's value.
+func (s *Flow) SetVpcInterfaces(v []*VpcInterface) *Flow {
+	s.VpcInterfaces = v
 	return s
 }
 
@@ -4475,6 +4816,104 @@ func (s *RemoveFlowSourceOutput) SetSourceArn(v string) *RemoveFlowSourceOutput 
 	return s
 }
 
+type RemoveFlowVpcInterfaceInput struct {
+	_ struct{} `type:"structure"`
+
+	// FlowArn is a required field
+	FlowArn *string `location:"uri" locationName:"flowArn" type:"string" required:"true"`
+
+	// VpcInterfaceName is a required field
+	VpcInterfaceName *string `location:"uri" locationName:"vpcInterfaceName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RemoveFlowVpcInterfaceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveFlowVpcInterfaceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RemoveFlowVpcInterfaceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RemoveFlowVpcInterfaceInput"}
+	if s.FlowArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowArn"))
+	}
+	if s.FlowArn != nil && len(*s.FlowArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowArn", 1))
+	}
+	if s.VpcInterfaceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcInterfaceName"))
+	}
+	if s.VpcInterfaceName != nil && len(*s.VpcInterfaceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VpcInterfaceName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFlowArn sets the FlowArn field's value.
+func (s *RemoveFlowVpcInterfaceInput) SetFlowArn(v string) *RemoveFlowVpcInterfaceInput {
+	s.FlowArn = &v
+	return s
+}
+
+// SetVpcInterfaceName sets the VpcInterfaceName field's value.
+func (s *RemoveFlowVpcInterfaceInput) SetVpcInterfaceName(v string) *RemoveFlowVpcInterfaceInput {
+	s.VpcInterfaceName = &v
+	return s
+}
+
+// The result of a successful RemoveFlowVpcInterface request including the flow
+// ARN and the VPC interface name that was removed.
+type RemoveFlowVpcInterfaceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the flow that is associated with the VPC interface you removed.
+	FlowArn *string `locationName:"flowArn" type:"string"`
+
+	// IDs of network interfaces associated with the removed VPC interface that
+	// Media Connect was unable to remove.
+	NonDeletedNetworkInterfaceIds []*string `locationName:"nonDeletedNetworkInterfaceIds" type:"list"`
+
+	// The name of the VPC interface that was removed.
+	VpcInterfaceName *string `locationName:"vpcInterfaceName" type:"string"`
+}
+
+// String returns the string representation
+func (s RemoveFlowVpcInterfaceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveFlowVpcInterfaceOutput) GoString() string {
+	return s.String()
+}
+
+// SetFlowArn sets the FlowArn field's value.
+func (s *RemoveFlowVpcInterfaceOutput) SetFlowArn(v string) *RemoveFlowVpcInterfaceOutput {
+	s.FlowArn = &v
+	return s
+}
+
+// SetNonDeletedNetworkInterfaceIds sets the NonDeletedNetworkInterfaceIds field's value.
+func (s *RemoveFlowVpcInterfaceOutput) SetNonDeletedNetworkInterfaceIds(v []*string) *RemoveFlowVpcInterfaceOutput {
+	s.NonDeletedNetworkInterfaceIds = v
+	return s
+}
+
+// SetVpcInterfaceName sets the VpcInterfaceName field's value.
+func (s *RemoveFlowVpcInterfaceOutput) SetVpcInterfaceName(v string) *RemoveFlowVpcInterfaceOutput {
+	s.VpcInterfaceName = &v
+	return s
+}
+
 type RevokeFlowEntitlementInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4658,6 +5097,9 @@ type SetSourceRequest struct {
 	// only to Zixi-based streams.
 	StreamId *string `locationName:"streamId" type:"string"`
 
+	// The name of the VPC interface to use for this source.
+	VpcInterfaceName *string `locationName:"vpcInterfaceName" type:"string"`
+
 	// The range of IP addresses that should be allowed to contribute content to
 	// your source. These IP addresses should be in the form of a Classless Inter-Domain
 	// Routing (CIDR) block; for example, 10.0.0.0/16.
@@ -4743,6 +5185,12 @@ func (s *SetSourceRequest) SetStreamId(v string) *SetSourceRequest {
 	return s
 }
 
+// SetVpcInterfaceName sets the VpcInterfaceName field's value.
+func (s *SetSourceRequest) SetVpcInterfaceName(v string) *SetSourceRequest {
+	s.VpcInterfaceName = &v
+	return s
+}
+
 // SetWhitelistCidr sets the WhitelistCidr field's value.
 func (s *SetSourceRequest) SetWhitelistCidr(v string) *SetSourceRequest {
 	s.WhitelistCidr = &v
@@ -4786,6 +5234,9 @@ type Source struct {
 
 	// Attributes related to the transport stream that are used in the source.
 	Transport *Transport `locationName:"transport" type:"structure"`
+
+	// The name of the VPC Interface this Source is configured with.
+	VpcInterfaceName *string `locationName:"vpcInterfaceName" type:"string"`
 
 	// The range of IP addresses that should be allowed to contribute content to
 	// your source. These IP addresses should be in the form of a Classless Inter-Domain
@@ -4854,6 +5305,12 @@ func (s *Source) SetSourceArn(v string) *Source {
 // SetTransport sets the Transport field's value.
 func (s *Source) SetTransport(v *Transport) *Source {
 	s.Transport = v
+	return s
+}
+
+// SetVpcInterfaceName sets the VpcInterfaceName field's value.
+func (s *Source) SetVpcInterfaceName(v string) *Source {
+	s.VpcInterfaceName = &v
 	return s
 }
 
@@ -5844,6 +6301,9 @@ type UpdateFlowSourceInput struct {
 	// only to Zixi-based streams.
 	StreamId *string `locationName:"streamId" type:"string"`
 
+	// The name of the VPC Interface to configure this Source with.
+	VpcInterfaceName *string `locationName:"vpcInterfaceName" type:"string"`
+
 	// The range of IP addresses that should be allowed to contribute content to
 	// your source. These IP addresses should be in the form of a Classless Inter-Domain
 	// Routing (CIDR) block; for example, 10.0.0.0/16.
@@ -5942,6 +6402,12 @@ func (s *UpdateFlowSourceInput) SetStreamId(v string) *UpdateFlowSourceInput {
 	return s
 }
 
+// SetVpcInterfaceName sets the VpcInterfaceName field's value.
+func (s *UpdateFlowSourceInput) SetVpcInterfaceName(v string) *UpdateFlowSourceInput {
+	s.VpcInterfaceName = &v
+	return s
+}
+
 // SetWhitelistCidr sets the WhitelistCidr field's value.
 func (s *UpdateFlowSourceInput) SetWhitelistCidr(v string) *UpdateFlowSourceInput {
 	s.WhitelistCidr = &v
@@ -5979,6 +6445,158 @@ func (s *UpdateFlowSourceOutput) SetFlowArn(v string) *UpdateFlowSourceOutput {
 // SetSource sets the Source field's value.
 func (s *UpdateFlowSourceOutput) SetSource(v *Source) *UpdateFlowSourceOutput {
 	s.Source = v
+	return s
+}
+
+// The settings for a VPC Source.
+type VpcInterface struct {
+	_ struct{} `type:"structure"`
+
+	// Immutable and has to be a unique against other VpcInterfaces in this Flow
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// IDs of the network interfaces created in customer's account by MediaConnect.
+	//
+	// NetworkInterfaceIds is a required field
+	NetworkInterfaceIds []*string `locationName:"networkInterfaceIds" type:"list" required:"true"`
+
+	// Role Arn MediaConnect can assumes to create ENIs in customer's account
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// Security Group IDs to be used on ENI.
+	//
+	// SecurityGroupIds is a required field
+	SecurityGroupIds []*string `locationName:"securityGroupIds" type:"list" required:"true"`
+
+	// Subnet must be in the AZ of the Flow
+	//
+	// SubnetId is a required field
+	SubnetId *string `locationName:"subnetId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s VpcInterface) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VpcInterface) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *VpcInterface) SetName(v string) *VpcInterface {
+	s.Name = &v
+	return s
+}
+
+// SetNetworkInterfaceIds sets the NetworkInterfaceIds field's value.
+func (s *VpcInterface) SetNetworkInterfaceIds(v []*string) *VpcInterface {
+	s.NetworkInterfaceIds = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *VpcInterface) SetRoleArn(v string) *VpcInterface {
+	s.RoleArn = &v
+	return s
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *VpcInterface) SetSecurityGroupIds(v []*string) *VpcInterface {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *VpcInterface) SetSubnetId(v string) *VpcInterface {
+	s.SubnetId = &v
+	return s
+}
+
+// Desired VPC Interface for a Flow
+type VpcInterfaceRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the VPC Interface. This value must be unique within the current
+	// flow.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// Role Arn MediaConnect can assumes to create ENIs in customer's account
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// Security Group IDs to be used on ENI.
+	//
+	// SecurityGroupIds is a required field
+	SecurityGroupIds []*string `locationName:"securityGroupIds" type:"list" required:"true"`
+
+	// Subnet must be in the AZ of the Flow
+	//
+	// SubnetId is a required field
+	SubnetId *string `locationName:"subnetId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s VpcInterfaceRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VpcInterfaceRequest) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VpcInterfaceRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VpcInterfaceRequest"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.SecurityGroupIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityGroupIds"))
+	}
+	if s.SubnetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubnetId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *VpcInterfaceRequest) SetName(v string) *VpcInterfaceRequest {
+	s.Name = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *VpcInterfaceRequest) SetRoleArn(v string) *VpcInterfaceRequest {
+	s.RoleArn = &v
+	return s
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *VpcInterfaceRequest) SetSecurityGroupIds(v []*string) *VpcInterfaceRequest {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *VpcInterfaceRequest) SetSubnetId(v string) *VpcInterfaceRequest {
+	s.SubnetId = &v
 	return s
 }
 

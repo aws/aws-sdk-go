@@ -1725,6 +1725,97 @@ func (c *IoT) CreateCertificateFromCsrWithContext(ctx aws.Context, input *Create
 	return out, req.Send()
 }
 
+const opCreateDimension = "CreateDimension"
+
+// CreateDimensionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDimension operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateDimension for more information on using the CreateDimension
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateDimensionRequest method.
+//    req, resp := client.CreateDimensionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) CreateDimensionRequest(input *CreateDimensionInput) (req *request.Request, output *CreateDimensionOutput) {
+	op := &request.Operation{
+		Name:       opCreateDimension,
+		HTTPMethod: "POST",
+		HTTPPath:   "/dimensions/{name}",
+	}
+
+	if input == nil {
+		input = &CreateDimensionInput{}
+	}
+
+	output = &CreateDimensionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateDimension API operation for AWS IoT.
+//
+// Create a dimension that you can use to limit the scope of a metric used in
+// a security profile for AWS IoT Device Defender. For example, using a TOPIC_FILTER
+// dimension, you can narrow down the scope of the metric only to MQTT topics
+// whose name match the pattern specified in the dimension.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation CreateDimension for usage and error information.
+//
+// Returned Error Types:
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * LimitExceededException
+//   A limit has been exceeded.
+//
+//   * ResourceAlreadyExistsException
+//   The resource already exists.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+func (c *IoT) CreateDimension(input *CreateDimensionInput) (*CreateDimensionOutput, error) {
+	req, out := c.CreateDimensionRequest(input)
+	return out, req.Send()
+}
+
+// CreateDimensionWithContext is the same as CreateDimension with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateDimension for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) CreateDimensionWithContext(ctx aws.Context, input *CreateDimensionInput, opts ...request.Option) (*CreateDimensionOutput, error) {
+	req, out := c.CreateDimensionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateDomainConfiguration = "CreateDomainConfiguration"
 
 // CreateDomainConfigurationRequest generates a "aws/request.Request" representing the
@@ -4060,6 +4151,89 @@ func (c *IoT) DeleteCertificate(input *DeleteCertificateInput) (*DeleteCertifica
 // for more information on using Contexts.
 func (c *IoT) DeleteCertificateWithContext(ctx aws.Context, input *DeleteCertificateInput, opts ...request.Option) (*DeleteCertificateOutput, error) {
 	req, out := c.DeleteCertificateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteDimension = "DeleteDimension"
+
+// DeleteDimensionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDimension operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteDimension for more information on using the DeleteDimension
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteDimensionRequest method.
+//    req, resp := client.DeleteDimensionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) DeleteDimensionRequest(input *DeleteDimensionInput) (req *request.Request, output *DeleteDimensionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteDimension,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/dimensions/{name}",
+	}
+
+	if input == nil {
+		input = &DeleteDimensionInput{}
+	}
+
+	output = &DeleteDimensionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteDimension API operation for AWS IoT.
+//
+// Removes the specified dimension from your AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DeleteDimension for usage and error information.
+//
+// Returned Error Types:
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+func (c *IoT) DeleteDimension(input *DeleteDimensionInput) (*DeleteDimensionOutput, error) {
+	req, out := c.DeleteDimensionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteDimensionWithContext is the same as DeleteDimension with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteDimension for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) DeleteDimensionWithContext(ctx aws.Context, input *DeleteDimensionInput, opts ...request.Option) (*DeleteDimensionOutput, error) {
+	req, out := c.DeleteDimensionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6879,6 +7053,91 @@ func (c *IoT) DescribeDefaultAuthorizer(input *DescribeDefaultAuthorizerInput) (
 // for more information on using Contexts.
 func (c *IoT) DescribeDefaultAuthorizerWithContext(ctx aws.Context, input *DescribeDefaultAuthorizerInput, opts ...request.Option) (*DescribeDefaultAuthorizerOutput, error) {
 	req, out := c.DescribeDefaultAuthorizerRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeDimension = "DescribeDimension"
+
+// DescribeDimensionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDimension operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDimension for more information on using the DescribeDimension
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeDimensionRequest method.
+//    req, resp := client.DescribeDimensionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) DescribeDimensionRequest(input *DescribeDimensionInput) (req *request.Request, output *DescribeDimensionOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDimension,
+		HTTPMethod: "GET",
+		HTTPPath:   "/dimensions/{name}",
+	}
+
+	if input == nil {
+		input = &DescribeDimensionInput{}
+	}
+
+	output = &DescribeDimensionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDimension API operation for AWS IoT.
+//
+// Provides details about a dimension that is defined in your AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DescribeDimension for usage and error information.
+//
+// Returned Error Types:
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+func (c *IoT) DescribeDimension(input *DescribeDimensionInput) (*DescribeDimensionOutput, error) {
+	req, out := c.DescribeDimensionRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDimensionWithContext is the same as DescribeDimension with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDimension for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) DescribeDimensionWithContext(ctx aws.Context, input *DescribeDimensionInput, opts ...request.Option) (*DescribeDimensionOutput, error) {
+	req, out := c.DescribeDimensionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -11156,6 +11415,88 @@ func (c *IoT) ListCertificatesByCAWithContext(ctx aws.Context, input *ListCertif
 	return out, req.Send()
 }
 
+const opListDimensions = "ListDimensions"
+
+// ListDimensionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListDimensions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDimensions for more information on using the ListDimensions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListDimensionsRequest method.
+//    req, resp := client.ListDimensionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) ListDimensionsRequest(input *ListDimensionsInput) (req *request.Request, output *ListDimensionsOutput) {
+	op := &request.Operation{
+		Name:       opListDimensions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/dimensions",
+	}
+
+	if input == nil {
+		input = &ListDimensionsInput{}
+	}
+
+	output = &ListDimensionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDimensions API operation for AWS IoT.
+//
+// List the set of dimensions that are defined for your AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation ListDimensions for usage and error information.
+//
+// Returned Error Types:
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+func (c *IoT) ListDimensions(input *ListDimensionsInput) (*ListDimensionsOutput, error) {
+	req, out := c.ListDimensionsRequest(input)
+	return out, req.Send()
+}
+
+// ListDimensionsWithContext is the same as ListDimensions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDimensions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) ListDimensionsWithContext(ctx aws.Context, input *ListDimensionsInput, opts ...request.Option) (*ListDimensionsOutput, error) {
+	req, out := c.ListDimensionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListDomainConfigurations = "ListDomainConfigurations"
 
 // ListDomainConfigurationsRequest generates a "aws/request.Request" representing the
@@ -12730,6 +13071,9 @@ func (c *IoT) ListSecurityProfilesRequest(input *ListSecurityProfilesInput) (req
 //
 //   * InternalFailureException
 //   An unexpected error has occurred.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
 //
 func (c *IoT) ListSecurityProfiles(input *ListSecurityProfilesInput) (*ListSecurityProfilesOutput, error) {
 	req, out := c.ListSecurityProfilesRequest(input)
@@ -16806,6 +17150,92 @@ func (c *IoT) UpdateCertificateWithContext(ctx aws.Context, input *UpdateCertifi
 	return out, req.Send()
 }
 
+const opUpdateDimension = "UpdateDimension"
+
+// UpdateDimensionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateDimension operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateDimension for more information on using the UpdateDimension
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateDimensionRequest method.
+//    req, resp := client.UpdateDimensionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) UpdateDimensionRequest(input *UpdateDimensionInput) (req *request.Request, output *UpdateDimensionOutput) {
+	op := &request.Operation{
+		Name:       opUpdateDimension,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/dimensions/{name}",
+	}
+
+	if input == nil {
+		input = &UpdateDimensionInput{}
+	}
+
+	output = &UpdateDimensionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateDimension API operation for AWS IoT.
+//
+// Updates the definition for a dimension. You cannot change the type of a dimension
+// after it is created (you can delete it and re-create it).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation UpdateDimension for usage and error information.
+//
+// Returned Error Types:
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+func (c *IoT) UpdateDimension(input *UpdateDimensionInput) (*UpdateDimensionOutput, error) {
+	req, out := c.UpdateDimensionRequest(input)
+	return out, req.Send()
+}
+
+// UpdateDimensionWithContext is the same as UpdateDimension with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateDimension for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) UpdateDimensionWithContext(ctx aws.Context, input *UpdateDimensionInput, opts ...request.Option) (*UpdateDimensionOutput, error) {
+	req, out := c.UpdateDimensionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateDomainConfiguration = "UpdateDomainConfiguration"
 
 // UpdateDomainConfigurationRequest generates a "aws/request.Request" representing the
@@ -18442,7 +18872,7 @@ type Action struct {
 	// Change the state of a CloudWatch alarm.
 	CloudwatchAlarm *CloudwatchAlarmAction `locationName:"cloudwatchAlarm" type:"structure"`
 
-	// Send data to CloudWatch logs.
+	// Send data to CloudWatch Logs.
 	CloudwatchLogs *CloudwatchLogsAction `locationName:"cloudwatchLogs" type:"structure"`
 
 	// Capture a CloudWatch metric.
@@ -20585,6 +21015,11 @@ type Behavior struct {
 	// What is measured by the behavior.
 	Metric *string `locationName:"metric" type:"string"`
 
+	// The dimension for a metric in your behavior. For example, using a TOPIC_FILTER
+	// dimension, you can narrow down the scope of the metric only to MQTT topics
+	// whose name match the pattern specified in the dimension.
+	MetricDimension *MetricDimension `locationName:"metricDimension" type:"structure"`
+
 	// The name you have given to the behavior.
 	//
 	// Name is a required field
@@ -20615,6 +21050,11 @@ func (s *Behavior) Validate() error {
 			invalidParams.AddNested("Criteria", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.MetricDimension != nil {
+		if err := s.MetricDimension.Validate(); err != nil {
+			invalidParams.AddNested("MetricDimension", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -20631,6 +21071,12 @@ func (s *Behavior) SetCriteria(v *BehaviorCriteria) *Behavior {
 // SetMetric sets the Metric field's value.
 func (s *Behavior) SetMetric(v string) *Behavior {
 	s.Metric = &v
+	return s
+}
+
+// SetMetricDimension sets the MetricDimension field's value.
+func (s *Behavior) SetMetricDimension(v *MetricDimension) *Behavior {
+	s.MetricDimension = v
 	return s
 }
 
@@ -21851,7 +22297,7 @@ func (s *CloudwatchAlarmAction) SetStateValue(v string) *CloudwatchAlarmAction {
 	return s
 }
 
-// Describes an action that sends data to CloudWatch logs.
+// Describes an action that sends data to CloudWatch Logs.
 type CloudwatchLogsAction struct {
 	_ struct{} `type:"structure"`
 
@@ -22583,6 +23029,137 @@ func (s *CreateCertificateFromCsrOutput) SetCertificateId(v string) *CreateCerti
 // SetCertificatePem sets the CertificatePem field's value.
 func (s *CreateCertificateFromCsrOutput) SetCertificatePem(v string) *CreateCertificateFromCsrOutput {
 	s.CertificatePem = &v
+	return s
+}
+
+type CreateDimensionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Each dimension must have a unique client request token. If you try to create
+	// a new dimension with the same token as a dimension that already exists, an
+	// exception occurs. If you omit this value, AWS SDKs will automatically generate
+	// a unique client request.
+	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// A unique identifier for the dimension. Choose something that describes the
+	// type and value to make it easy to remember what it does.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Specifies the value or list of values for the dimension. For TOPIC_FILTER
+	// dimensions, this is a pattern used to match the MQTT topic (for example,
+	// "admin/#").
+	//
+	// StringValues is a required field
+	StringValues []*string `locationName:"stringValues" min:"1" type:"list" required:"true"`
+
+	// Metadata that can be used to manage the dimension.
+	Tags []*Tag `locationName:"tags" type:"list"`
+
+	// Specifies the type of dimension. Supported types: TOPIC_FILTER.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"DimensionType"`
+}
+
+// String returns the string representation
+func (s CreateDimensionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateDimensionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateDimensionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDimensionInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.StringValues == nil {
+		invalidParams.Add(request.NewErrParamRequired("StringValues"))
+	}
+	if s.StringValues != nil && len(s.StringValues) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StringValues", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateDimensionInput) SetClientRequestToken(v string) *CreateDimensionInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateDimensionInput) SetName(v string) *CreateDimensionInput {
+	s.Name = &v
+	return s
+}
+
+// SetStringValues sets the StringValues field's value.
+func (s *CreateDimensionInput) SetStringValues(v []*string) *CreateDimensionInput {
+	s.StringValues = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDimensionInput) SetTags(v []*Tag) *CreateDimensionInput {
+	s.Tags = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CreateDimensionInput) SetType(v string) *CreateDimensionInput {
+	s.Type = &v
+	return s
+}
+
+type CreateDimensionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN (Amazon resource name) of the created dimension.
+	Arn *string `locationName:"arn" type:"string"`
+
+	// A unique identifier for the dimension.
+	Name *string `locationName:"name" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateDimensionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateDimensionOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateDimensionOutput) SetArn(v string) *CreateDimensionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateDimensionOutput) SetName(v string) *CreateDimensionOutput {
+	s.Name = &v
 	return s
 }
 
@@ -24361,7 +24938,17 @@ type CreateSecurityProfileInput struct {
 	// A list of metrics whose data is retained (stored). By default, data is retained
 	// for any metric used in the profile's behaviors, but it is also retained for
 	// any metric specified here.
-	AdditionalMetricsToRetain []*string `locationName:"additionalMetricsToRetain" type:"list"`
+	//
+	// Note: This API field is deprecated. Please use CreateSecurityProfileRequest$additionalMetricsToRetainV2
+	// instead.
+	//
+	// Deprecated: Use additionalMetricsToRetainV2.
+	AdditionalMetricsToRetain []*string `locationName:"additionalMetricsToRetain" deprecated:"true" type:"list"`
+
+	// A list of metrics whose data is retained (stored). By default, data is retained
+	// for any metric used in the profile's behaviors, but it is also retained for
+	// any metric specified here.
+	AdditionalMetricsToRetainV2 []*MetricToRetain `locationName:"additionalMetricsToRetainV2" type:"list"`
 
 	// Specifies the destinations to which alerts are sent. (Alerts are always sent
 	// to the console.) Alerts are generated when a device (thing) violates a behavior.
@@ -24402,6 +24989,16 @@ func (s *CreateSecurityProfileInput) Validate() error {
 	if s.SecurityProfileName != nil && len(*s.SecurityProfileName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SecurityProfileName", 1))
 	}
+	if s.AdditionalMetricsToRetainV2 != nil {
+		for i, v := range s.AdditionalMetricsToRetainV2 {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AdditionalMetricsToRetainV2", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.AlertTargets != nil {
 		for i, v := range s.AlertTargets {
 			if v == nil {
@@ -24432,6 +25029,12 @@ func (s *CreateSecurityProfileInput) Validate() error {
 // SetAdditionalMetricsToRetain sets the AdditionalMetricsToRetain field's value.
 func (s *CreateSecurityProfileInput) SetAdditionalMetricsToRetain(v []*string) *CreateSecurityProfileInput {
 	s.AdditionalMetricsToRetain = v
+	return s
+}
+
+// SetAdditionalMetricsToRetainV2 sets the AdditionalMetricsToRetainV2 field's value.
+func (s *CreateSecurityProfileInput) SetAdditionalMetricsToRetainV2(v []*MetricToRetain) *CreateSecurityProfileInput {
+	s.AdditionalMetricsToRetainV2 = v
 	return s
 }
 
@@ -25532,6 +26135,61 @@ func (s *DeleteConflictException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *DeleteConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type DeleteDimensionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the dimension that you want to delete.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteDimensionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDimensionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDimensionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDimensionInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteDimensionInput) SetName(v string) *DeleteDimensionInput {
+	s.Name = &v
+	return s
+}
+
+type DeleteDimensionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDimensionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDimensionOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteDomainConfigurationInput struct {
@@ -27655,6 +28313,116 @@ func (s *DescribeDefaultAuthorizerOutput) SetAuthorizerDescription(v *Authorizer
 	return s
 }
 
+type DescribeDimensionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the dimension.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeDimensionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDimensionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDimensionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDimensionInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DescribeDimensionInput) SetName(v string) *DescribeDimensionInput {
+	s.Name = &v
+	return s
+}
+
+type DescribeDimensionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN (Amazon resource name) for the dimension.
+	Arn *string `locationName:"arn" type:"string"`
+
+	// The date the dimension was created.
+	CreationDate *time.Time `locationName:"creationDate" type:"timestamp"`
+
+	// The date the dimension was last modified.
+	LastModifiedDate *time.Time `locationName:"lastModifiedDate" type:"timestamp"`
+
+	// The unique identifier for the dimension.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The value or list of values used to scope the dimension. For example, for
+	// topic filters, this is the pattern used to match the MQTT topic name.
+	StringValues []*string `locationName:"stringValues" min:"1" type:"list"`
+
+	// The type of the dimension.
+	Type *string `locationName:"type" type:"string" enum:"DimensionType"`
+}
+
+// String returns the string representation
+func (s DescribeDimensionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDimensionOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *DescribeDimensionOutput) SetArn(v string) *DescribeDimensionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *DescribeDimensionOutput) SetCreationDate(v time.Time) *DescribeDimensionOutput {
+	s.CreationDate = &v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *DescribeDimensionOutput) SetLastModifiedDate(v time.Time) *DescribeDimensionOutput {
+	s.LastModifiedDate = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DescribeDimensionOutput) SetName(v string) *DescribeDimensionOutput {
+	s.Name = &v
+	return s
+}
+
+// SetStringValues sets the StringValues field's value.
+func (s *DescribeDimensionOutput) SetStringValues(v []*string) *DescribeDimensionOutput {
+	s.StringValues = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DescribeDimensionOutput) SetType(v string) *DescribeDimensionOutput {
+	s.Type = &v
+	return s
+}
+
 type DescribeDomainConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -28754,7 +29522,17 @@ type DescribeSecurityProfileOutput struct {
 	// A list of metrics whose data is retained (stored). By default, data is retained
 	// for any metric used in the profile's behaviors, but it is also retained for
 	// any metric specified here.
-	AdditionalMetricsToRetain []*string `locationName:"additionalMetricsToRetain" type:"list"`
+	//
+	// Note: This API field is deprecated. Please use DescribeSecurityProfileResponse$additionalMetricsToRetainV2
+	// instead.
+	//
+	// Deprecated: Use additionalMetricsToRetainV2.
+	AdditionalMetricsToRetain []*string `locationName:"additionalMetricsToRetain" deprecated:"true" type:"list"`
+
+	// A list of metrics whose data is retained (stored). By default, data is retained
+	// for any metric used in the profile's behaviors, but it is also retained for
+	// any metric specified here.
+	AdditionalMetricsToRetainV2 []*MetricToRetain `locationName:"additionalMetricsToRetainV2" type:"list"`
 
 	// Where the alerts are sent. (Alerts are always sent to the console.)
 	AlertTargets map[string]*AlertTarget `locationName:"alertTargets" type:"map"`
@@ -28797,6 +29575,12 @@ func (s DescribeSecurityProfileOutput) GoString() string {
 // SetAdditionalMetricsToRetain sets the AdditionalMetricsToRetain field's value.
 func (s *DescribeSecurityProfileOutput) SetAdditionalMetricsToRetain(v []*string) *DescribeSecurityProfileOutput {
 	s.AdditionalMetricsToRetain = v
+	return s
+}
+
+// SetAdditionalMetricsToRetainV2 sets the AdditionalMetricsToRetainV2 field's value.
+func (s *DescribeSecurityProfileOutput) SetAdditionalMetricsToRetainV2(v []*MetricToRetain) *DescribeSecurityProfileOutput {
+	s.AdditionalMetricsToRetainV2 = v
 	return s
 }
 
@@ -31794,7 +32578,7 @@ type HttpAction struct {
 	// URL must be a prefix of the endpoint URL. If you do not specify a confirmation
 	// URL AWS IoT uses the endpoint URL as the confirmation URL. If you use substitution
 	// templates in the confirmationUrl, you must create and enable topic rule destinations
-	// that match each possible value of the substituion template before traffic
+	// that match each possible value of the substitution template before traffic
 	// is allowed to your endpoint URL.
 	ConfirmationUrl *string `locationName:"confirmationUrl" type:"string"`
 
@@ -34860,6 +35644,85 @@ func (s *ListCertificatesOutput) SetNextMarker(v string) *ListCertificatesOutput
 	return s
 }
 
+type ListDimensionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to retrieve at one time.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListDimensionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListDimensionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDimensionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDimensionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDimensionsInput) SetMaxResults(v int64) *ListDimensionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDimensionsInput) SetNextToken(v string) *ListDimensionsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDimensionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the names of the defined dimensions. Use DescribeDimension to get
+	// details for a dimension.
+	DimensionNames []*string `locationName:"dimensionNames" type:"list"`
+
+	// A token that can be used to retrieve the next set of results, or null if
+	// there are no additional results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListDimensionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListDimensionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDimensionNames sets the DimensionNames field's value.
+func (s *ListDimensionsOutput) SetDimensionNames(v []*string) *ListDimensionsOutput {
+	s.DimensionNames = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDimensionsOutput) SetNextToken(v string) *ListDimensionsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListDomainConfigurationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -36524,6 +37387,9 @@ func (s *ListSecurityProfilesForTargetOutput) SetSecurityProfileTargetMappings(v
 type ListSecurityProfilesInput struct {
 	_ struct{} `type:"structure"`
 
+	// A filter to limit results to the security profiles that use the defined dimension.
+	DimensionName *string `location:"querystring" locationName:"dimensionName" min:"1" type:"string"`
+
 	// The maximum number of results to return at one time.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -36544,6 +37410,9 @@ func (s ListSecurityProfilesInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListSecurityProfilesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListSecurityProfilesInput"}
+	if s.DimensionName != nil && len(*s.DimensionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DimensionName", 1))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -36552,6 +37421,12 @@ func (s *ListSecurityProfilesInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDimensionName sets the DimensionName field's value.
+func (s *ListSecurityProfilesInput) SetDimensionName(v string) *ListSecurityProfilesInput {
+	s.DimensionName = &v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -38411,6 +39286,115 @@ func (s *MalformedPolicyException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *MalformedPolicyException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The dimension of a metric.
+type MetricDimension struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the dimension.
+	//
+	// DimensionName is a required field
+	DimensionName *string `locationName:"dimensionName" min:"1" type:"string" required:"true"`
+
+	// Defines how the dimensionValues of a dimension are interpreted. For example,
+	// for DimensionType TOPIC_FILTER, with IN operator, a message will be counted
+	// only if its topic matches one of the topic filters. With NOT_IN Operator,
+	// a message will be counted only if it doesn't match any of the topic filters.
+	// The operator is optional: if it's not provided (is null), it will be interpreted
+	// as IN.
+	Operator *string `locationName:"operator" type:"string" enum:"DimensionValueOperator"`
+}
+
+// String returns the string representation
+func (s MetricDimension) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MetricDimension) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MetricDimension) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MetricDimension"}
+	if s.DimensionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DimensionName"))
+	}
+	if s.DimensionName != nil && len(*s.DimensionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DimensionName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDimensionName sets the DimensionName field's value.
+func (s *MetricDimension) SetDimensionName(v string) *MetricDimension {
+	s.DimensionName = &v
+	return s
+}
+
+// SetOperator sets the Operator field's value.
+func (s *MetricDimension) SetOperator(v string) *MetricDimension {
+	s.Operator = &v
+	return s
+}
+
+// The metric you want to retain. Dimensions are optional.
+type MetricToRetain struct {
+	_ struct{} `type:"structure"`
+
+	// What is measured by the behavior.
+	//
+	// Metric is a required field
+	Metric *string `locationName:"metric" type:"string" required:"true"`
+
+	// The dimension of a metric.
+	MetricDimension *MetricDimension `locationName:"metricDimension" type:"structure"`
+}
+
+// String returns the string representation
+func (s MetricToRetain) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MetricToRetain) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MetricToRetain) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MetricToRetain"}
+	if s.Metric == nil {
+		invalidParams.Add(request.NewErrParamRequired("Metric"))
+	}
+	if s.MetricDimension != nil {
+		if err := s.MetricDimension.Validate(); err != nil {
+			invalidParams.AddNested("MetricDimension", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMetric sets the Metric field's value.
+func (s *MetricToRetain) SetMetric(v string) *MetricToRetain {
+	s.Metric = &v
+	return s
+}
+
+// SetMetricDimension sets the MetricDimension field's value.
+func (s *MetricToRetain) SetMetricDimension(v *MetricDimension) *MetricToRetain {
+	s.MetricDimension = v
+	return s
 }
 
 // The value to be compared with the metric.
@@ -45728,6 +46712,138 @@ func (s *UpdateDeviceCertificateParams) SetAction(v string) *UpdateDeviceCertifi
 	return s
 }
 
+type UpdateDimensionInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the dimension. Choose something that describes the
+	// type and value to make it easy to remember what it does.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Specifies the value or list of values for the dimension. For TOPIC_FILTER
+	// dimensions, this is a pattern used to match the MQTT topic (for example,
+	// "admin/#").
+	//
+	// StringValues is a required field
+	StringValues []*string `locationName:"stringValues" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateDimensionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateDimensionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateDimensionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateDimensionInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.StringValues == nil {
+		invalidParams.Add(request.NewErrParamRequired("StringValues"))
+	}
+	if s.StringValues != nil && len(s.StringValues) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StringValues", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateDimensionInput) SetName(v string) *UpdateDimensionInput {
+	s.Name = &v
+	return s
+}
+
+// SetStringValues sets the StringValues field's value.
+func (s *UpdateDimensionInput) SetStringValues(v []*string) *UpdateDimensionInput {
+	s.StringValues = v
+	return s
+}
+
+type UpdateDimensionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN (Amazon resource name) of the created dimension.
+	Arn *string `locationName:"arn" type:"string"`
+
+	// The date and time, in milliseconds since epoch, when the dimension was initially
+	// created.
+	CreationDate *time.Time `locationName:"creationDate" type:"timestamp"`
+
+	// The date and time, in milliseconds since epoch, when the dimension was most
+	// recently updated.
+	LastModifiedDate *time.Time `locationName:"lastModifiedDate" type:"timestamp"`
+
+	// A unique identifier for the dimension.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The value or list of values used to scope the dimension. For example, for
+	// topic filters, this is the pattern used to match the MQTT topic name.
+	StringValues []*string `locationName:"stringValues" min:"1" type:"list"`
+
+	// The type of the dimension.
+	Type *string `locationName:"type" type:"string" enum:"DimensionType"`
+}
+
+// String returns the string representation
+func (s UpdateDimensionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateDimensionOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateDimensionOutput) SetArn(v string) *UpdateDimensionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *UpdateDimensionOutput) SetCreationDate(v time.Time) *UpdateDimensionOutput {
+	s.CreationDate = &v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *UpdateDimensionOutput) SetLastModifiedDate(v time.Time) *UpdateDimensionOutput {
+	s.LastModifiedDate = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateDimensionOutput) SetName(v string) *UpdateDimensionOutput {
+	s.Name = &v
+	return s
+}
+
+// SetStringValues sets the StringValues field's value.
+func (s *UpdateDimensionOutput) SetStringValues(v []*string) *UpdateDimensionOutput {
+	s.StringValues = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *UpdateDimensionOutput) SetType(v string) *UpdateDimensionOutput {
+	s.Type = &v
+	return s
+}
+
 type UpdateDomainConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -46588,7 +47704,17 @@ type UpdateSecurityProfileInput struct {
 	// A list of metrics whose data is retained (stored). By default, data is retained
 	// for any metric used in the profile's behaviors, but it is also retained for
 	// any metric specified here.
-	AdditionalMetricsToRetain []*string `locationName:"additionalMetricsToRetain" type:"list"`
+	//
+	// Note: This API field is deprecated. Please use UpdateSecurityProfileRequest$additionalMetricsToRetainV2
+	// instead.
+	//
+	// Deprecated: Use additionalMetricsToRetainV2.
+	AdditionalMetricsToRetain []*string `locationName:"additionalMetricsToRetain" deprecated:"true" type:"list"`
+
+	// A list of metrics whose data is retained (stored). By default, data is retained
+	// for any metric used in the profile's behaviors, but it is also retained for
+	// any metric specified here.
+	AdditionalMetricsToRetainV2 []*MetricToRetain `locationName:"additionalMetricsToRetainV2" type:"list"`
 
 	// Where the alerts are sent. (Alerts are always sent to the console.)
 	AlertTargets map[string]*AlertTarget `locationName:"alertTargets" type:"map"`
@@ -46643,6 +47769,16 @@ func (s *UpdateSecurityProfileInput) Validate() error {
 	if s.SecurityProfileName != nil && len(*s.SecurityProfileName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SecurityProfileName", 1))
 	}
+	if s.AdditionalMetricsToRetainV2 != nil {
+		for i, v := range s.AdditionalMetricsToRetainV2 {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AdditionalMetricsToRetainV2", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.AlertTargets != nil {
 		for i, v := range s.AlertTargets {
 			if v == nil {
@@ -46673,6 +47809,12 @@ func (s *UpdateSecurityProfileInput) Validate() error {
 // SetAdditionalMetricsToRetain sets the AdditionalMetricsToRetain field's value.
 func (s *UpdateSecurityProfileInput) SetAdditionalMetricsToRetain(v []*string) *UpdateSecurityProfileInput {
 	s.AdditionalMetricsToRetain = v
+	return s
+}
+
+// SetAdditionalMetricsToRetainV2 sets the AdditionalMetricsToRetainV2 field's value.
+func (s *UpdateSecurityProfileInput) SetAdditionalMetricsToRetainV2(v []*MetricToRetain) *UpdateSecurityProfileInput {
+	s.AdditionalMetricsToRetainV2 = v
 	return s
 }
 
@@ -46730,7 +47872,17 @@ type UpdateSecurityProfileOutput struct {
 	// A list of metrics whose data is retained (stored). By default, data is retained
 	// for any metric used in the security profile's behaviors, but it is also retained
 	// for any metric specified here.
-	AdditionalMetricsToRetain []*string `locationName:"additionalMetricsToRetain" type:"list"`
+	//
+	// Note: This API field is deprecated. Please use UpdateSecurityProfileResponse$additionalMetricsToRetainV2
+	// instead.
+	//
+	// Deprecated: Use additionalMetricsToRetainV2.
+	AdditionalMetricsToRetain []*string `locationName:"additionalMetricsToRetain" deprecated:"true" type:"list"`
+
+	// A list of metrics whose data is retained (stored). By default, data is retained
+	// for any metric used in the profile's behaviors, but it is also retained for
+	// any metric specified here.
+	AdditionalMetricsToRetainV2 []*MetricToRetain `locationName:"additionalMetricsToRetainV2" type:"list"`
 
 	// Where the alerts are sent. (Alerts are always sent to the console.)
 	AlertTargets map[string]*AlertTarget `locationName:"alertTargets" type:"map"`
@@ -46771,6 +47923,12 @@ func (s UpdateSecurityProfileOutput) GoString() string {
 // SetAdditionalMetricsToRetain sets the AdditionalMetricsToRetain field's value.
 func (s *UpdateSecurityProfileOutput) SetAdditionalMetricsToRetain(v []*string) *UpdateSecurityProfileOutput {
 	s.AdditionalMetricsToRetain = v
+	return s
+}
+
+// SetAdditionalMetricsToRetainV2 sets the AdditionalMetricsToRetainV2 field's value.
+func (s *UpdateSecurityProfileOutput) SetAdditionalMetricsToRetainV2(v []*MetricToRetain) *UpdateSecurityProfileOutput {
+	s.AdditionalMetricsToRetainV2 = v
 	return s
 }
 
@@ -47889,6 +49047,19 @@ const (
 const (
 	// DeviceCertificateUpdateActionDeactivate is a DeviceCertificateUpdateAction enum value
 	DeviceCertificateUpdateActionDeactivate = "DEACTIVATE"
+)
+
+const (
+	// DimensionTypeTopicFilter is a DimensionType enum value
+	DimensionTypeTopicFilter = "TOPIC_FILTER"
+)
+
+const (
+	// DimensionValueOperatorIn is a DimensionValueOperator enum value
+	DimensionValueOperatorIn = "IN"
+
+	// DimensionValueOperatorNotIn is a DimensionValueOperator enum value
+	DimensionValueOperatorNotIn = "NOT_IN"
 )
 
 const (
