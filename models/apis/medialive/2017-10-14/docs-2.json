@@ -281,6 +281,12 @@
         "RtmpGroupSettings$AuthenticationScheme": "Authentication scheme to use when connecting with CDN"
       }
     },
+    "AutomaticInputFailoverSettings": {
+      "base": "The settings for Automatic Input Failover.",
+      "refs": {
+        "InputAttachment$AutomaticInputFailoverSettings": "User-specified settings for defining what the conditions are for declaring the input unhealthy and failing over to a different input."
+      }
+    },
     "AvailBlanking": {
       "base": "Avail Blanking",
       "refs": {
@@ -879,6 +885,12 @@
         "H264Settings$FlickerAq": "If set to enabled, adjust quantization within each frame to reduce flicker or 'pop' on I-frames."
       }
     },
+    "H264ForceFieldPictures": {
+      "base": "H264 Force Field Pictures",
+      "refs": {
+        "H264Settings$ForceFieldPictures": "This setting applies only when scan type is \"interlaced.\" It controls whether coding is on a field basis or a frame basis. (When the video is progressive, the coding is always on a frame basis.)\nenabled: Always code on a field basis, so that odd and even sets of fields are coded separately.\ndisabled: Code the two sets of fields separately (on a field basis) or together (on a frame basis, using PAFF or MBAFF), depending on what is most appropriate for the content."
+      }
+    },
     "H264FramerateControl": {
       "base": "H264 Framerate Control",
       "refs": {
@@ -1415,6 +1427,12 @@
       "base": "Maximum input bitrate in megabits per second. Bitrates up to 50 Mbps are supported currently.",
       "refs": {
         "InputSpecification$MaximumBitrate": "Maximum input bitrate, categorized coarsely"
+      }
+    },
+    "InputPreference": {
+      "base": "Input preference when deciding which input to make active when a previously failed input has recovered.\nIf \\\"EQUAL_INPUT_PREFERENCE\\\", then the active input will stay active as long as it is healthy.\nIf \\\"PRIMARY_INPUT_PREFERRED\\\", then always switch back to the primary input when it is healthy.\n",
+      "refs": {
+        "AutomaticInputFailoverSettings$InputPreference": "Input preference when deciding which input to make active when a previously failed input has recovered."
       }
     },
     "InputResolution": {
@@ -3451,6 +3469,7 @@
         "AudioDescription$StreamName": "Used for MS Smooth and Apple HLS outputs. Indicates the name displayed by the player (eg. English, or Director Commentary).",
         "AudioLanguageSelection$LanguageCode": "Selects a specific three-letter language code from within an audio source.",
         "AudioOnlyHlsSettings$AudioGroupId": "Specifies the group to which the audio Rendition belongs.",
+        "AutomaticInputFailoverSettings$SecondaryInputId": "The input ID of the secondary input in the automatic input failover pair.",
         "BadGatewayException$Message": null,
         "BurnInDestinationSettings$FontSize": "When set to 'auto' fontSize will scale depending on the size of the output.  Giving a positive integer will specify the exact font size in points.  All burn-in and DVB-Sub font settings must match.",
         "CaptionDescription$CaptionSelectorName": "Specifies which input caption selector to use as a caption source when generating output captions. This field should match a captionSelector name.",

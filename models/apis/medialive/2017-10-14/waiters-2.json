@@ -61,7 +61,7 @@
       "description": "Wait until a channel has is stopped",
       "operation": "DescribeChannel",
       "delay": 5,
-      "maxAttempts": 28,
+      "maxAttempts": 60,
       "acceptors": [
         {
           "state": "success",
@@ -86,7 +86,7 @@
       "description": "Wait until a channel has been deleted",
       "operation": "DescribeChannel",
       "delay": 5,
-      "maxAttempts": 20,
+      "maxAttempts": 84,
       "acceptors": [
         {
           "state": "success",

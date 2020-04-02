@@ -535,7 +535,7 @@
         "Namespace":{"shape":"Namespace"},
         "MetricName":{"shape":"MetricName"},
         "Dimensions":{"shape":"Dimensions"},
-        "Stat":{"shape":"Stat"},
+        "Stat":{"shape":"AnomalyDetectorMetricStat"},
         "Configuration":{"shape":"AnomalyDetectorConfiguration"},
         "StateValue":{"shape":"AnomalyDetectorStateValue"}
       }
@@ -551,7 +551,15 @@
       "type":"list",
       "member":{"shape":"Range"}
     },
-    "AnomalyDetectorMetricTimezone":{"type":"string"},
+    "AnomalyDetectorMetricStat":{
+      "type":"string",
+      "pattern":"(SampleCount|Average|Sum|Minimum|Maximum|p(\\d{1,2}|100)(\\.\\d{0,2})?|[ou]\\d+(\\.\\d*)?)(_E|_L|_H)?"
+    },
+    "AnomalyDetectorMetricTimezone":{
+      "type":"string",
+      "max":50,
+      "pattern":".*"
+    },
     "AnomalyDetectorStateValue":{
       "type":"string",
       "enum":[
@@ -751,7 +759,7 @@
         "Namespace":{"shape":"Namespace"},
         "MetricName":{"shape":"MetricName"},
         "Dimensions":{"shape":"Dimensions"},
-        "Stat":{"shape":"Stat"}
+        "Stat":{"shape":"AnomalyDetectorMetricStat"}
       }
     },
     "DeleteAnomalyDetectorOutput":{
@@ -1612,7 +1620,7 @@
         "Namespace":{"shape":"Namespace"},
         "MetricName":{"shape":"MetricName"},
         "Dimensions":{"shape":"Dimensions"},
-        "Stat":{"shape":"Stat"},
+        "Stat":{"shape":"AnomalyDetectorMetricStat"},
         "Configuration":{"shape":"AnomalyDetectorConfiguration"}
       }
     },
@@ -1664,7 +1672,8 @@
       "members":{
         "RuleName":{"shape":"InsightRuleName"},
         "RuleState":{"shape":"InsightRuleState"},
-        "RuleDefinition":{"shape":"InsightRuleDefinition"}
+        "RuleDefinition":{"shape":"InsightRuleDefinition"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "PutInsightRuleOutput":{

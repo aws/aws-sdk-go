@@ -1,3 +1,25 @@
+Release v1.30.3 (2020-04-02)
+===
+
+### Service Client Updates
+* `service/gamelift`: Updates service API and documentation
+  * Public preview of GameLift FleetIQ as a standalone feature. GameLift FleetIQ makes it possible to use low-cost Spot instances by limiting the chance of interruptions affecting game sessions. FleetIQ is a feature of the managed GameLift service, and can now be used with game hosting in EC2 Auto Scaling groups that you manage in your own account.
+* `service/medialive`: Updates service API, documentation, and waiters
+  * AWS Elemental MediaLive now supports Automatic Input Failover. This feature provides resiliency upstream of the channel, before ingest starts.
+* `service/monitoring`: Updates service API and documentation
+  * Amazon CloudWatch Contributor Insights adds support for tags and tagging on resource creation.
+* `service/rds`: Updates service documentation
+  * Documentation updates for RDS: creating read replicas is now supported for SQL Server DB instances
+* `service/redshift`: Updates service documentation
+  * Documentation updates for redshift
+
+### SDK Enhancements
+* `aws/credentials`: `ProviderWithContext` optional interface has been added to support passing contexts on credential retrieval ([#3223](https://github.com/aws/aws-sdk-go/pull/3223))
+  * Credential providers that implement the optional `ProviderWithContext` will have context passed to them
+  * `ec2rolecreds.EC2RoleProvider`, `endpointcreds.Provider`, `stscreds.AssumeRoleProvider`, `stscreds.WebIdentityRoleProvider` have been updated to support the `ProviderWithContext` interface
+  * Fixes [#3213](https://github.com/aws/aws-sdk-go/issues/3213)
+* `aws/ec2metadata`: Context aware operations have been added `EC2Metadata` client ([#3223](https://github.com/aws/aws-sdk-go/pull/3223))
+
 Release v1.30.2 (2020-04-01)
 ===
 
