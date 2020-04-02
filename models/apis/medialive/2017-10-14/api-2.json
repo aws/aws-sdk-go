@@ -2101,6 +2101,22 @@
         "COMMON"
       ]
     },
+    "AutomaticInputFailoverSettings": {
+      "type": "structure",
+      "members": {
+        "InputPreference": {
+          "shape": "InputPreference",
+          "locationName": "inputPreference"
+        },
+        "SecondaryInputId": {
+          "shape": "__string",
+          "locationName": "secondaryInputId"
+        }
+      },
+      "required": [
+        "SecondaryInputId"
+      ]
+    },
     "AvailBlanking": {
       "type": "structure",
       "members": {
@@ -4772,6 +4788,13 @@
         "ENABLED"
       ]
     },
+    "H264ForceFieldPictures": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "ENABLED"
+      ]
+    },
     "H264FramerateControl": {
       "type": "string",
       "enum": [
@@ -4906,6 +4929,10 @@
         "FlickerAq": {
           "shape": "H264FlickerAq",
           "locationName": "flickerAq"
+        },
+        "ForceFieldPictures": {
+          "shape": "H264ForceFieldPictures",
+          "locationName": "forceFieldPictures"
         },
         "FramerateControl": {
           "shape": "H264FramerateControl",
@@ -5937,6 +5964,10 @@
     "InputAttachment": {
       "type": "structure",
       "members": {
+        "AutomaticInputFailoverSettings": {
+          "shape": "AutomaticInputFailoverSettings",
+          "locationName": "automaticInputFailoverSettings"
+        },
         "InputAttachmentName": {
           "shape": "__string",
           "locationName": "inputAttachmentName"
@@ -6155,6 +6186,13 @@
         "MAX_10_MBPS",
         "MAX_20_MBPS",
         "MAX_50_MBPS"
+      ]
+    },
+    "InputPreference": {
+      "type": "string",
+      "enum": [
+        "EQUAL_INPUT_PREFERENCE",
+        "PRIMARY_INPUT_PREFERRED"
       ]
     },
     "InputResolution": {

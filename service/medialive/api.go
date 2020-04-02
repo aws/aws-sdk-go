@@ -5372,6 +5372,55 @@ func (s *AudioSelectorSettings) SetAudioPidSelection(v *AudioPidSelection) *Audi
 	return s
 }
 
+// The settings for Automatic Input Failover.
+type AutomaticInputFailoverSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Input preference when deciding which input to make active when a previously
+	// failed input has recovered.
+	InputPreference *string `locationName:"inputPreference" type:"string" enum:"InputPreference"`
+
+	// The input ID of the secondary input in the automatic input failover pair.
+	//
+	// SecondaryInputId is a required field
+	SecondaryInputId *string `locationName:"secondaryInputId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AutomaticInputFailoverSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AutomaticInputFailoverSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AutomaticInputFailoverSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AutomaticInputFailoverSettings"}
+	if s.SecondaryInputId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecondaryInputId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInputPreference sets the InputPreference field's value.
+func (s *AutomaticInputFailoverSettings) SetInputPreference(v string) *AutomaticInputFailoverSettings {
+	s.InputPreference = &v
+	return s
+}
+
+// SetSecondaryInputId sets the SecondaryInputId field's value.
+func (s *AutomaticInputFailoverSettings) SetSecondaryInputId(v string) *AutomaticInputFailoverSettings {
+	s.SecondaryInputId = &v
+	return s
+}
+
 // Avail Blanking
 type AvailBlanking struct {
 	_ struct{} `type:"structure"`
@@ -11193,6 +11242,15 @@ type H264Settings struct {
 	// or 'pop' on I-frames.
 	FlickerAq *string `locationName:"flickerAq" type:"string" enum:"H264FlickerAq"`
 
+	// This setting applies only when scan type is "interlaced." It controls whether
+	// coding is on a field basis or a frame basis. (When the video is progressive,
+	// the coding is always on a frame basis.)enabled: Always code on a field basis,
+	// so that odd and even sets of fields are coded separately.disabled: Code the
+	// two sets of fields separately (on a field basis) or together (on a frame
+	// basis, using PAFF or MBAFF), depending on what is most appropriate for the
+	// content.
+	ForceFieldPictures *string `locationName:"forceFieldPictures" type:"string" enum:"H264ForceFieldPictures"`
+
 	// This field indicates how the output video frame rate is specified. If "specified"
 	// is selected then the output video frame rate is determined by framerateNumerator
 	// and framerateDenominator, else if "initializeFromSource" is selected then
@@ -11429,6 +11487,12 @@ func (s *H264Settings) SetFixedAfd(v string) *H264Settings {
 // SetFlickerAq sets the FlickerAq field's value.
 func (s *H264Settings) SetFlickerAq(v string) *H264Settings {
 	s.FlickerAq = &v
+	return s
+}
+
+// SetForceFieldPictures sets the ForceFieldPictures field's value.
+func (s *H264Settings) SetForceFieldPictures(v string) *H264Settings {
+	s.ForceFieldPictures = &v
 	return s
 }
 
@@ -13298,6 +13362,10 @@ func (s *Input) SetType(v string) *Input {
 type InputAttachment struct {
 	_ struct{} `type:"structure"`
 
+	// User-specified settings for defining what the conditions are for declaring
+	// the input unhealthy and failing over to a different input.
+	AutomaticInputFailoverSettings *AutomaticInputFailoverSettings `locationName:"automaticInputFailoverSettings" type:"structure"`
+
 	// User-specified name for the attachment. This is required if the user wants
 	// to use this input in an input switch action.
 	InputAttachmentName *string `locationName:"inputAttachmentName" type:"string"`
@@ -13322,6 +13390,11 @@ func (s InputAttachment) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *InputAttachment) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "InputAttachment"}
+	if s.AutomaticInputFailoverSettings != nil {
+		if err := s.AutomaticInputFailoverSettings.Validate(); err != nil {
+			invalidParams.AddNested("AutomaticInputFailoverSettings", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.InputSettings != nil {
 		if err := s.InputSettings.Validate(); err != nil {
 			invalidParams.AddNested("InputSettings", err.(request.ErrInvalidParams))
@@ -13332,6 +13405,12 @@ func (s *InputAttachment) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAutomaticInputFailoverSettings sets the AutomaticInputFailoverSettings field's value.
+func (s *InputAttachment) SetAutomaticInputFailoverSettings(v *AutomaticInputFailoverSettings) *InputAttachment {
+	s.AutomaticInputFailoverSettings = v
+	return s
 }
 
 // SetInputAttachmentName sets the InputAttachmentName field's value.
@@ -23009,6 +23088,15 @@ const (
 	H264FlickerAqEnabled = "ENABLED"
 )
 
+// H264 Force Field Pictures
+const (
+	// H264ForceFieldPicturesDisabled is a H264ForceFieldPictures enum value
+	H264ForceFieldPicturesDisabled = "DISABLED"
+
+	// H264ForceFieldPicturesEnabled is a H264ForceFieldPictures enum value
+	H264ForceFieldPicturesEnabled = "ENABLED"
+)
+
 // H264 Framerate Control
 const (
 	// H264FramerateControlInitializeFromSource is a H264FramerateControl enum value
@@ -23712,6 +23800,18 @@ const (
 
 	// InputMaximumBitrateMax50Mbps is a InputMaximumBitrate enum value
 	InputMaximumBitrateMax50Mbps = "MAX_50_MBPS"
+)
+
+// Input preference when deciding which input to make active when a previously
+// failed input has recovered.If \"EQUAL_INPUT_PREFERENCE\", then the active
+// input will stay active as long as it is healthy.If \"PRIMARY_INPUT_PREFERRED\",
+// then always switch back to the primary input when it is healthy.
+const (
+	// InputPreferenceEqualInputPreference is a InputPreference enum value
+	InputPreferenceEqualInputPreference = "EQUAL_INPUT_PREFERENCE"
+
+	// InputPreferencePrimaryInputPreferred is a InputPreference enum value
+	InputPreferencePrimaryInputPreferred = "PRIMARY_INPUT_PREFERRED"
 )
 
 // Input resolution based on lines of vertical resolution in the input; SD is
