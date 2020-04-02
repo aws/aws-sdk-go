@@ -47,6 +47,11 @@ type DecryptionClient struct {
 //	}))
 func NewDecryptionClient(prov client.ConfigProvider, options ...func(*DecryptionClient)) *DecryptionClient {
 	s3client := s3.New(prov)
+
+	s3client.Handlers.Build.PushBack(func(r *request.Request) {
+		request.AddToUserAgent(r, "S3Crypto")
+	})
+
 	client := &DecryptionClient{
 		S3Client: s3client,
 		LoadStrategy: defaultV2LoadStrategy{

@@ -43,8 +43,14 @@ type EncryptionClient struct {
 //	handler := s3crypto.NewKMSKeyGenerator(kms.New(sess), cmkID)
 //	svc := s3crypto.New(sess, s3crypto.AESGCMContentCipherBuilder(handler))
 func NewEncryptionClient(prov client.ConfigProvider, builder ContentCipherBuilder, options ...func(*EncryptionClient)) *EncryptionClient {
+	s3client := s3.New(prov)
+
+	s3client.Handlers.Build.PushBack(func(r *request.Request) {
+		request.AddToUserAgent(r, "S3Crypto")
+	})
+
 	client := &EncryptionClient{
-		S3Client:             s3.New(prov),
+		S3Client:             s3client,
 		ContentCipherBuilder: builder,
 		SaveStrategy:         HeaderV2SaveStrategy{},
 		MinFileSize:          DefaultMinFileSize,
