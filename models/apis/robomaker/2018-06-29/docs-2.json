@@ -234,6 +234,21 @@
         "LaunchConfig$launchFile": "<p>The launch file name.</p>"
       }
     },
+    "Compute": {
+      "base": "<p>Compute information for the simulation job.</p>",
+      "refs": {
+        "CreateSimulationJobRequest$compute": "<p>Compute information for the simulation job.</p>",
+        "SimulationJobRequest$compute": "<p>Compute information for the simulation job</p>"
+      }
+    },
+    "ComputeResponse": {
+      "base": "<p>Compute information for the simulation job</p>",
+      "refs": {
+        "CreateSimulationJobResponse$compute": "<p>Compute information for the simulation job.</p>",
+        "DescribeSimulationJobResponse$compute": "<p>Compute information for the simulation job.</p>",
+        "SimulationJob$compute": "<p>Compute information for the simulation job</p>"
+      }
+    },
     "ConcurrentDeploymentException": {
       "base": "<p>The failure percentage threshold percentage was met.</p>",
       "refs": {
@@ -1408,6 +1423,13 @@
         "CreateSimulationJobResponse$simulationTimeMillis": "<p>The simulation job execution duration in milliseconds.</p>",
         "DescribeSimulationJobResponse$simulationTimeMillis": "<p>The simulation job execution duration in milliseconds.</p>",
         "SimulationJob$simulationTimeMillis": "<p>The simulation job execution duration in milliseconds.</p>"
+      }
+    },
+    "SimulationUnit": {
+      "base": null,
+      "refs": {
+        "Compute$simulationUnitLimit": "<p>The simulation unit limit. Your simulation is allocated CPU and memory proportional to the supplied simulation unit limit. A simulation unit is 1 vcpu and 2GB of memory. You are only billed for the SU utilization you consume up to the maximim value provided. </p>",
+        "ComputeResponse$simulationUnitLimit": "<p>The simulation unit limit. Your simulation is allocated CPU and memory proportional to the supplied simulation unit limit. A simulation unit is 1 vcpu and 2GB of memory. You are only billed for the SU utilization you consume up to the maximim value provided. </p>"
       }
     },
     "Source": {

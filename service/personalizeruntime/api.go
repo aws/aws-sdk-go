@@ -199,7 +199,6 @@ type GetPersonalizedRankingInput struct {
 	// The contextual metadata to use when getting recommendations. Contextual metadata
 	// includes any interaction information that might be relevant when getting
 	// a user's recommendations, such as the user's current location or device type.
-	// For more information, see Contextual Metadata.
 	Context map[string]*string `locationName:"context" type:"map"`
 
 	// A list of items (itemId's) to rank. If an item was not included in the training
@@ -303,7 +302,6 @@ type GetRecommendationsInput struct {
 	// The contextual metadata to use when getting recommendations. Contextual metadata
 	// includes any interaction information that might be relevant when getting
 	// a user's recommendations, such as the user's current location or device type.
-	// For more information, see Contextual Metadata.
 	Context map[string]*string `locationName:"context" type:"map"`
 
 	// The item ID to provide recommendations for.
@@ -461,6 +459,10 @@ type PredictedItem struct {
 
 	// The recommended item ID.
 	ItemId *string `locationName:"itemId" type:"string"`
+
+	// A numeric representation of the model's certainty in the item's suitability.
+	// For more information on scoring logic, see how-scores-work.
+	Score *float64 `locationName:"score" type:"double"`
 }
 
 // String returns the string representation
@@ -476,6 +478,12 @@ func (s PredictedItem) GoString() string {
 // SetItemId sets the ItemId field's value.
 func (s *PredictedItem) SetItemId(v string) *PredictedItem {
 	s.ItemId = &v
+	return s
+}
+
+// SetScore sets the Score field's value.
+func (s *PredictedItem) SetScore(v float64) *PredictedItem {
+	s.Score = &v
 	return s
 }
 

@@ -4402,6 +4402,73 @@ func (s CancelSimulationJobOutput) GoString() string {
 	return s.String()
 }
 
+// Compute information for the simulation job.
+type Compute struct {
+	_ struct{} `type:"structure"`
+
+	// The simulation unit limit. Your simulation is allocated CPU and memory proportional
+	// to the supplied simulation unit limit. A simulation unit is 1 vcpu and 2GB
+	// of memory. You are only billed for the SU utilization you consume up to the
+	// maximim value provided.
+	SimulationUnitLimit *int64 `locationName:"simulationUnitLimit" min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s Compute) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Compute) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Compute) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Compute"}
+	if s.SimulationUnitLimit != nil && *s.SimulationUnitLimit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("SimulationUnitLimit", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSimulationUnitLimit sets the SimulationUnitLimit field's value.
+func (s *Compute) SetSimulationUnitLimit(v int64) *Compute {
+	s.SimulationUnitLimit = &v
+	return s
+}
+
+// Compute information for the simulation job
+type ComputeResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The simulation unit limit. Your simulation is allocated CPU and memory proportional
+	// to the supplied simulation unit limit. A simulation unit is 1 vcpu and 2GB
+	// of memory. You are only billed for the SU utilization you consume up to the
+	// maximim value provided.
+	SimulationUnitLimit *int64 `locationName:"simulationUnitLimit" min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s ComputeResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ComputeResponse) GoString() string {
+	return s.String()
+}
+
+// SetSimulationUnitLimit sets the SimulationUnitLimit field's value.
+func (s *ComputeResponse) SetSimulationUnitLimit(v int64) *ComputeResponse {
+	s.SimulationUnitLimit = &v
+	return s
+}
+
 // The failure percentage threshold percentage was met.
 type ConcurrentDeploymentException struct {
 	_            struct{}                  `type:"structure"`
@@ -5652,6 +5719,9 @@ type CreateSimulationJobInput struct {
 	// of the request.
 	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string" idempotencyToken:"true"`
 
+	// Compute information for the simulation job.
+	Compute *Compute `locationName:"compute" type:"structure"`
+
 	// Specify data sources to mount read-only files from S3 into your simulation.
 	// These files are available under /opt/robomaker/datasources/data_source_name.
 	//
@@ -5741,6 +5811,11 @@ func (s *CreateSimulationJobInput) Validate() error {
 	if s.SimulationApplications != nil && len(s.SimulationApplications) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SimulationApplications", 1))
 	}
+	if s.Compute != nil {
+		if err := s.Compute.Validate(); err != nil {
+			invalidParams.AddNested("Compute", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.DataSources != nil {
 		for i, v := range s.DataSources {
 			if v == nil {
@@ -5796,6 +5871,12 @@ func (s *CreateSimulationJobInput) Validate() error {
 // SetClientRequestToken sets the ClientRequestToken field's value.
 func (s *CreateSimulationJobInput) SetClientRequestToken(v string) *CreateSimulationJobInput {
 	s.ClientRequestToken = &v
+	return s
+}
+
+// SetCompute sets the Compute field's value.
+func (s *CreateSimulationJobInput) SetCompute(v *Compute) *CreateSimulationJobInput {
+	s.Compute = v
 	return s
 }
 
@@ -5868,6 +5949,9 @@ type CreateSimulationJobOutput struct {
 	// Unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request.
 	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string"`
+
+	// Compute information for the simulation job.
+	Compute *ComputeResponse `locationName:"compute" type:"structure"`
 
 	// The data sources for the simulation job.
 	DataSources []*DataSource `locationName:"dataSources" type:"list"`
@@ -5995,6 +6079,12 @@ func (s *CreateSimulationJobOutput) SetArn(v string) *CreateSimulationJobOutput 
 // SetClientRequestToken sets the ClientRequestToken field's value.
 func (s *CreateSimulationJobOutput) SetClientRequestToken(v string) *CreateSimulationJobOutput {
 	s.ClientRequestToken = &v
+	return s
+}
+
+// SetCompute sets the Compute field's value.
+func (s *CreateSimulationJobOutput) SetCompute(v *ComputeResponse) *CreateSimulationJobOutput {
+	s.Compute = v
 	return s
 }
 
@@ -7856,6 +7946,9 @@ type DescribeSimulationJobOutput struct {
 	// of the request.
 	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string"`
 
+	// Compute information for the simulation job.
+	Compute *ComputeResponse `locationName:"compute" type:"structure"`
+
 	// The data sources for the simulation job.
 	DataSources []*DataSource `locationName:"dataSources" type:"list"`
 
@@ -7993,6 +8086,12 @@ func (s *DescribeSimulationJobOutput) SetArn(v string) *DescribeSimulationJobOut
 // SetClientRequestToken sets the ClientRequestToken field's value.
 func (s *DescribeSimulationJobOutput) SetClientRequestToken(v string) *DescribeSimulationJobOutput {
 	s.ClientRequestToken = &v
+	return s
+}
+
+// SetCompute sets the Compute field's value.
+func (s *DescribeSimulationJobOutput) SetCompute(v *ComputeResponse) *DescribeSimulationJobOutput {
+	s.Compute = v
 	return s
 }
 
@@ -10761,6 +10860,9 @@ type SimulationJob struct {
 	// A unique identifier for this SimulationJob request.
 	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string"`
 
+	// Compute information for the simulation job
+	Compute *ComputeResponse `locationName:"compute" type:"structure"`
+
 	// The data sources for the simulation job.
 	DataSources []*DataSource `locationName:"dataSources" type:"list"`
 
@@ -10849,6 +10951,12 @@ func (s *SimulationJob) SetArn(v string) *SimulationJob {
 // SetClientRequestToken sets the ClientRequestToken field's value.
 func (s *SimulationJob) SetClientRequestToken(v string) *SimulationJob {
 	s.ClientRequestToken = &v
+	return s
+}
+
+// SetCompute sets the Compute field's value.
+func (s *SimulationJob) SetCompute(v *ComputeResponse) *SimulationJob {
+	s.Compute = v
 	return s
 }
 
@@ -11090,6 +11198,9 @@ func (s *SimulationJobBatchSummary) SetStatus(v string) *SimulationJobBatchSumma
 type SimulationJobRequest struct {
 	_ struct{} `type:"structure"`
 
+	// Compute information for the simulation job
+	Compute *Compute `locationName:"compute" type:"structure"`
+
 	// Specify data sources to mount read-only files from S3 into your simulation.
 	// These files are available under /opt/robomaker/datasources/data_source_name.
 	//
@@ -11173,6 +11284,11 @@ func (s *SimulationJobRequest) Validate() error {
 	if s.SimulationApplications != nil && len(s.SimulationApplications) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SimulationApplications", 1))
 	}
+	if s.Compute != nil {
+		if err := s.Compute.Validate(); err != nil {
+			invalidParams.AddNested("Compute", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.DataSources != nil {
 		for i, v := range s.DataSources {
 			if v == nil {
@@ -11223,6 +11339,12 @@ func (s *SimulationJobRequest) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCompute sets the Compute field's value.
+func (s *SimulationJobRequest) SetCompute(v *Compute) *SimulationJobRequest {
+	s.Compute = v
+	return s
 }
 
 // SetDataSources sets the DataSources field's value.

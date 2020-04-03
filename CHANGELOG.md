@@ -1,3 +1,10 @@
+Release v1.30.4 (2020-04-03)
+===
+
+### Service Client Updates
+* `service/personalize-runtime`: Updates service API and documentation
+* `service/robomaker`: Updates service API and documentation
+
 Release v1.30.3 (2020-04-02)
 ===
 
