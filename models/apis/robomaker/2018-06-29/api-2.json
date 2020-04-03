@@ -718,6 +718,18 @@
       "min":1,
       "pattern":"[a-zA-Z0-9_.\\-]*"
     },
+    "Compute":{
+      "type":"structure",
+      "members":{
+        "simulationUnitLimit":{"shape":"SimulationUnit"}
+      }
+    },
+    "ComputeResponse":{
+      "type":"structure",
+      "members":{
+        "simulationUnitLimit":{"shape":"SimulationUnit"}
+      }
+    },
     "ConcurrentDeploymentException":{
       "type":"structure",
       "members":{
@@ -921,7 +933,8 @@
         "simulationApplications":{"shape":"SimulationApplicationConfigs"},
         "dataSources":{"shape":"DataSourceConfigs"},
         "tags":{"shape":"TagMap"},
-        "vpcConfig":{"shape":"VPCConfig"}
+        "vpcConfig":{"shape":"VPCConfig"},
+        "compute":{"shape":"Compute"}
       }
     },
     "CreateSimulationJobRequests":{
@@ -948,7 +961,8 @@
         "simulationApplications":{"shape":"SimulationApplicationConfigs"},
         "dataSources":{"shape":"DataSources"},
         "tags":{"shape":"TagMap"},
-        "vpcConfig":{"shape":"VPCConfigResponse"}
+        "vpcConfig":{"shape":"VPCConfigResponse"},
+        "compute":{"shape":"ComputeResponse"}
       }
     },
     "CreatedAt":{"type":"timestamp"},
@@ -1320,7 +1334,8 @@
         "dataSources":{"shape":"DataSources"},
         "tags":{"shape":"TagMap"},
         "vpcConfig":{"shape":"VPCConfigResponse"},
-        "networkInterface":{"shape":"NetworkInterface"}
+        "networkInterface":{"shape":"NetworkInterface"},
+        "compute":{"shape":"ComputeResponse"}
       }
     },
     "EnvironmentVariableKey":{
@@ -2000,7 +2015,8 @@
         "dataSources":{"shape":"DataSources"},
         "tags":{"shape":"TagMap"},
         "vpcConfig":{"shape":"VPCConfigResponse"},
-        "networkInterface":{"shape":"NetworkInterface"}
+        "networkInterface":{"shape":"NetworkInterface"},
+        "compute":{"shape":"ComputeResponse"}
       }
     },
     "SimulationJobBatchErrorCode":{
@@ -2083,6 +2099,7 @@
         "simulationApplications":{"shape":"SimulationApplicationConfigs"},
         "dataSources":{"shape":"DataSourceConfigs"},
         "vpcConfig":{"shape":"VPCConfig"},
+        "compute":{"shape":"Compute"},
         "tags":{"shape":"TagMap"}
       }
     },
@@ -2144,6 +2161,11 @@
       "pattern":"7|9|Kinetic|Melodic|Dashing"
     },
     "SimulationTimeMillis":{"type":"long"},
+    "SimulationUnit":{
+      "type":"integer",
+      "max":15,
+      "min":1
+    },
     "Source":{
       "type":"structure",
       "members":{

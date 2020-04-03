@@ -28,8 +28,8 @@
     "Context": {
       "base": null,
       "refs": {
-        "GetPersonalizedRankingRequest$context": "<p>The contextual metadata to use when getting recommendations. Contextual metadata includes any interaction information that might be relevant when getting a user's recommendations, such as the user's current location or device type. For more information, see Contextual Metadata.</p>",
-        "GetRecommendationsRequest$context": "<p>The contextual metadata to use when getting recommendations. Contextual metadata includes any interaction information that might be relevant when getting a user's recommendations, such as the user's current location or device type. For more information, see Contextual Metadata.</p>"
+        "GetPersonalizedRankingRequest$context": "<p>The contextual metadata to use when getting recommendations. Contextual metadata includes any interaction information that might be relevant when getting a user's recommendations, such as the user's current location or device type.</p>",
+        "GetRecommendationsRequest$context": "<p>The contextual metadata to use when getting recommendations. Contextual metadata includes any interaction information that might be relevant when getting a user's recommendations, such as the user's current location or device type.</p>"
       }
     },
     "ErrorMessage": {
@@ -100,6 +100,12 @@
     "ResourceNotFoundException": {
       "base": "<p>The specified resource does not exist.</p>",
       "refs": {
+      }
+    },
+    "Score": {
+      "base": null,
+      "refs": {
+        "PredictedItem$score": "<p>A numeric representation of the model's certainty in the item's suitability. For more information on scoring logic, see <a>how-scores-work</a>.</p>"
       }
     },
     "UserID": {
