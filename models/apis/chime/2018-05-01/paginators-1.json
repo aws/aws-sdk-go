@@ -30,6 +30,11 @@
       "output_token": "NextToken",
       "limit_key": "MaxResults"
     },
+    "ListProxySessions": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
     "ListRoomMemberships": {
       "input_token": "NextToken",
       "output_token": "NextToken",

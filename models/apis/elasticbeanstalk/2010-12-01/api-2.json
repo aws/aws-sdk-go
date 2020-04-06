@@ -425,6 +425,18 @@
         "resultWrapper":"ListAvailableSolutionStacksResult"
       }
     },
+    "ListPlatformBranches":{
+      "name":"ListPlatformBranches",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListPlatformBranchesRequest"},
+      "output":{
+        "shape":"ListPlatformBranchesResult",
+        "resultWrapper":"ListPlatformBranchesResult"
+      }
+    },
     "ListPlatformVersions":{
       "name":"ListPlatformVersions",
       "http":{
@@ -810,6 +822,8 @@
     },
     "BoxedBoolean":{"type":"boolean"},
     "BoxedInt":{"type":"integer"},
+    "BranchName":{"type":"string"},
+    "BranchOrder":{"type":"integer"},
     "BuildConfiguration":{
       "type":"structure",
       "required":[
@@ -1697,6 +1711,21 @@
         "SolutionStackDetails":{"shape":"AvailableSolutionStackDetailsList"}
       }
     },
+    "ListPlatformBranchesRequest":{
+      "type":"structure",
+      "members":{
+        "Filters":{"shape":"SearchFilters"},
+        "MaxRecords":{"shape":"PlatformBranchMaxRecords"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "ListPlatformBranchesResult":{
+      "type":"structure",
+      "members":{
+        "PlatformBranchSummaryList":{"shape":"PlatformBranchSummaryList"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
     "ListPlatformVersionsRequest":{
       "type":"structure",
       "members":{
@@ -1873,6 +1902,25 @@
       "member":{"shape":"OptionSpecification"}
     },
     "PlatformArn":{"type":"string"},
+    "PlatformBranchLifecycleState":{"type":"string"},
+    "PlatformBranchMaxRecords":{
+      "type":"integer",
+      "min":1
+    },
+    "PlatformBranchSummary":{
+      "type":"structure",
+      "members":{
+        "PlatformName":{"shape":"PlatformName"},
+        "BranchName":{"shape":"BranchName"},
+        "LifecycleState":{"shape":"PlatformBranchLifecycleState"},
+        "BranchOrder":{"shape":"BranchOrder"},
+        "SupportedTierList":{"shape":"SupportedTierList"}
+      }
+    },
+    "PlatformBranchSummaryList":{
+      "type":"list",
+      "member":{"shape":"PlatformBranchSummary"}
+    },
     "PlatformCategory":{"type":"string"},
     "PlatformDescription":{
       "type":"structure",
@@ -1894,7 +1942,10 @@
         "Frameworks":{"shape":"PlatformFrameworks"},
         "CustomAmiList":{"shape":"CustomAmiList"},
         "SupportedTierList":{"shape":"SupportedTierList"},
-        "SupportedAddonList":{"shape":"SupportedAddonList"}
+        "SupportedAddonList":{"shape":"SupportedAddonList"},
+        "PlatformLifecycleState":{"shape":"PlatformLifecycleState"},
+        "PlatformBranchName":{"shape":"BranchName"},
+        "PlatformBranchLifecycleState":{"shape":"PlatformBranchLifecycleState"}
       }
     },
     "PlatformFilter":{
@@ -1927,6 +1978,7 @@
       "type":"list",
       "member":{"shape":"PlatformFramework"}
     },
+    "PlatformLifecycleState":{"type":"string"},
     "PlatformMaxRecords":{
       "type":"integer",
       "min":1
@@ -1964,7 +2016,11 @@
         "OperatingSystemName":{"shape":"OperatingSystemName"},
         "OperatingSystemVersion":{"shape":"OperatingSystemVersion"},
         "SupportedTierList":{"shape":"SupportedTierList"},
-        "SupportedAddonList":{"shape":"SupportedAddonList"}
+        "SupportedAddonList":{"shape":"SupportedAddonList"},
+        "PlatformLifecycleState":{"shape":"PlatformLifecycleState"},
+        "PlatformVersion":{"shape":"PlatformVersion"},
+        "PlatformBranchName":{"shape":"BranchName"},
+        "PlatformBranchLifecycleState":{"shape":"PlatformBranchLifecycleState"}
       }
     },
     "PlatformSummaryList":{
@@ -2127,6 +2183,25 @@
       "exception":true
     },
     "SampleTimestamp":{"type":"timestamp"},
+    "SearchFilter":{
+      "type":"structure",
+      "members":{
+        "Attribute":{"shape":"SearchFilterAttribute"},
+        "Operator":{"shape":"SearchFilterOperator"},
+        "Values":{"shape":"SearchFilterValues"}
+      }
+    },
+    "SearchFilterAttribute":{"type":"string"},
+    "SearchFilterOperator":{"type":"string"},
+    "SearchFilterValue":{"type":"string"},
+    "SearchFilterValues":{
+      "type":"list",
+      "member":{"shape":"SearchFilterValue"}
+    },
+    "SearchFilters":{
+      "type":"list",
+      "member":{"shape":"SearchFilter"}
+    },
     "SingleInstanceHealth":{
       "type":"structure",
       "members":{

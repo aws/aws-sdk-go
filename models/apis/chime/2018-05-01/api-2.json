@@ -321,6 +321,25 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "CreateProxySession":{
+      "name":"CreateProxySession",
+      "http":{
+        "method":"POST",
+        "requestUri":"/voice-connectors/{voiceConnectorId}/proxy-sessions",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateProxySessionRequest"},
+      "output":{"shape":"CreateProxySessionResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "CreateRoom":{
       "name":"CreateRoom",
       "http":{
@@ -513,6 +532,24 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "DeleteProxySession":{
+      "name":"DeleteProxySession",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/voice-connectors/{voiceConnectorId}/proxy-sessions/{proxySessionId}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteProxySessionRequest"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "DeleteRoom":{
       "name":"DeleteRoom",
       "http":{
@@ -595,6 +632,24 @@
         "responseCode":204
       },
       "input":{"shape":"DeleteVoiceConnectorOriginationRequest"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "DeleteVoiceConnectorProxy":{
+      "name":"DeleteVoiceConnectorProxy",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/voice-connectors/{voiceConnectorId}/programmable-numbers/proxy",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteVoiceConnectorProxyRequest"},
       "errors":[
         {"shape":"UnauthorizedClientException"},
         {"shape":"NotFoundException"},
@@ -918,6 +973,25 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "GetProxySession":{
+      "name":"GetProxySession",
+      "http":{
+        "method":"GET",
+        "requestUri":"/voice-connectors/{voiceConnectorId}/proxy-sessions/{proxySessionId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetProxySessionRequest"},
+      "output":{"shape":"GetProxySessionResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "GetRoom":{
       "name":"GetRoom",
       "http":{
@@ -1041,6 +1115,25 @@
       },
       "input":{"shape":"GetVoiceConnectorOriginationRequest"},
       "output":{"shape":"GetVoiceConnectorOriginationResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "GetVoiceConnectorProxy":{
+      "name":"GetVoiceConnectorProxy",
+      "http":{
+        "method":"GET",
+        "requestUri":"/voice-connectors/{voiceConnectorId}/programmable-numbers/proxy",
+        "responseCode":200
+      },
+      "input":{"shape":"GetVoiceConnectorProxyRequest"},
+      "output":{"shape":"GetVoiceConnectorProxyResponse"},
       "errors":[
         {"shape":"UnauthorizedClientException"},
         {"shape":"NotFoundException"},
@@ -1236,6 +1329,25 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "ListProxySessions":{
+      "name":"ListProxySessions",
+      "http":{
+        "method":"GET",
+        "requestUri":"/voice-connectors/{voiceConnectorId}/proxy-sessions",
+        "responseCode":200
+      },
+      "input":{"shape":"ListProxySessionsRequest"},
+      "output":{"shape":"ListProxySessionsResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "ListRoomMemberships":{
       "name":"ListRoomMemberships",
       "http":{
@@ -1416,6 +1528,25 @@
       "output":{"shape":"PutVoiceConnectorOriginationResponse"},
       "errors":[
         {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "PutVoiceConnectorProxy":{
+      "name":"PutVoiceConnectorProxy",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/voice-connectors/{voiceConnectorId}/programmable-numbers/proxy"
+      },
+      "input":{"shape":"PutVoiceConnectorProxyRequest"},
+      "output":{"shape":"PutVoiceConnectorProxyResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"NotFoundException"},
         {"shape":"ForbiddenException"},
         {"shape":"BadRequestException"},
@@ -1668,6 +1799,25 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "UpdateProxySession":{
+      "name":"UpdateProxySession",
+      "http":{
+        "method":"POST",
+        "requestUri":"/voice-connectors/{voiceConnectorId}/proxy-sessions/{proxySessionId}",
+        "responseCode":201
+      },
+      "input":{"shape":"UpdateProxySessionRequest"},
+      "output":{"shape":"UpdateProxySessionResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "UpdateRoom":{
       "name":"UpdateRoom",
       "http":{
@@ -1843,6 +1993,10 @@
         "IsAlexaForBusinessEnabled":{"shape":"Boolean"},
         "AlexaForBusinessRoomArn":{"shape":"SensitiveString"}
       }
+    },
+    "AreaCode":{
+      "type":"string",
+      "pattern":"^$|^[0-9]{3,3}$"
     },
     "Arn":{
       "type":"string",
@@ -2149,6 +2303,17 @@
       "type":"list",
       "member":{"shape":"CallingRegion"}
     },
+    "Capability":{
+      "type":"string",
+      "enum":[
+        "Voice",
+        "SMS"
+      ]
+    },
+    "CapabilityList":{
+      "type":"list",
+      "member":{"shape":"Capability"}
+    },
     "ClientRequestToken":{
       "type":"string",
       "max":64,
@@ -2164,6 +2329,16 @@
       },
       "error":{"httpStatusCode":409},
       "exception":true
+    },
+    "Country":{
+      "type":"string",
+      "pattern":"^$|^[A-Z]{2,2}$"
+    },
+    "CountryList":{
+      "type":"list",
+      "member":{"shape":"Country"},
+      "max":100,
+      "min":1
     },
     "CpsLimit":{
       "type":"integer",
@@ -2278,6 +2453,34 @@
       "type":"structure",
       "members":{
         "PhoneNumberOrder":{"shape":"PhoneNumberOrder"}
+      }
+    },
+    "CreateProxySessionRequest":{
+      "type":"structure",
+      "required":[
+        "ParticipantPhoneNumbers",
+        "Capabilities",
+        "VoiceConnectorId"
+      ],
+      "members":{
+        "VoiceConnectorId":{
+          "shape":"NonEmptyString128",
+          "location":"uri",
+          "locationName":"voiceConnectorId"
+        },
+        "ParticipantPhoneNumbers":{"shape":"ParticipantPhoneNumberList"},
+        "Name":{"shape":"ProxySessionNameString"},
+        "ExpiryMinutes":{"shape":"PositiveInteger"},
+        "Capabilities":{"shape":"CapabilityList"},
+        "NumberSelectionBehavior":{"shape":"NumberSelectionBehavior"},
+        "GeoMatchLevel":{"shape":"GeoMatchLevel"},
+        "GeoMatchParams":{"shape":"GeoMatchParams"}
+      }
+    },
+    "CreateProxySessionResponse":{
+      "type":"structure",
+      "members":{
+        "ProxySession":{"shape":"ProxySession"}
       }
     },
     "CreateRoomMembershipRequest":{
@@ -2476,6 +2679,25 @@
         }
       }
     },
+    "DeleteProxySessionRequest":{
+      "type":"structure",
+      "required":[
+        "VoiceConnectorId",
+        "ProxySessionId"
+      ],
+      "members":{
+        "VoiceConnectorId":{
+          "shape":"NonEmptyString128",
+          "location":"uri",
+          "locationName":"voiceConnectorId"
+        },
+        "ProxySessionId":{
+          "shape":"NonEmptyString128",
+          "location":"uri",
+          "locationName":"proxySessionId"
+        }
+      }
+    },
     "DeleteRoomMembershipRequest":{
       "type":"structure",
       "required":[
@@ -2537,6 +2759,17 @@
       "members":{
         "VoiceConnectorId":{
           "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"voiceConnectorId"
+        }
+      }
+    },
+    "DeleteVoiceConnectorProxyRequest":{
+      "type":"structure",
+      "required":["VoiceConnectorId"],
+      "members":{
+        "VoiceConnectorId":{
+          "shape":"NonEmptyString128",
           "location":"uri",
           "locationName":"voiceConnectorId"
         }
@@ -2731,6 +2964,24 @@
       "error":{"httpStatusCode":403},
       "exception":true
     },
+    "GeoMatchLevel":{
+      "type":"string",
+      "enum":[
+        "Country",
+        "AreaCode"
+      ]
+    },
+    "GeoMatchParams":{
+      "type":"structure",
+      "required":[
+        "Country",
+        "AreaCode"
+      ],
+      "members":{
+        "Country":{"shape":"Country"},
+        "AreaCode":{"shape":"AreaCode"}
+      }
+    },
     "GetAccountRequest":{
       "type":"structure",
       "required":["AccountId"],
@@ -2905,6 +3156,31 @@
         "CallingNameUpdatedTimestamp":{"shape":"Iso8601Timestamp"}
       }
     },
+    "GetProxySessionRequest":{
+      "type":"structure",
+      "required":[
+        "VoiceConnectorId",
+        "ProxySessionId"
+      ],
+      "members":{
+        "VoiceConnectorId":{
+          "shape":"NonEmptyString128",
+          "location":"uri",
+          "locationName":"voiceConnectorId"
+        },
+        "ProxySessionId":{
+          "shape":"NonEmptyString128",
+          "location":"uri",
+          "locationName":"proxySessionId"
+        }
+      }
+    },
+    "GetProxySessionResponse":{
+      "type":"structure",
+      "members":{
+        "ProxySession":{"shape":"ProxySession"}
+      }
+    },
     "GetRoomRequest":{
       "type":"structure",
       "required":[
@@ -3031,6 +3307,23 @@
         "Origination":{"shape":"Origination"}
       }
     },
+    "GetVoiceConnectorProxyRequest":{
+      "type":"structure",
+      "required":["VoiceConnectorId"],
+      "members":{
+        "VoiceConnectorId":{
+          "shape":"NonEmptyString128",
+          "location":"uri",
+          "locationName":"voiceConnectorId"
+        }
+      }
+    },
+    "GetVoiceConnectorProxyResponse":{
+      "type":"structure",
+      "members":{
+        "Proxy":{"shape":"Proxy"}
+      }
+    },
     "GetVoiceConnectorRequest":{
       "type":"structure",
       "required":["VoiceConnectorId"],
@@ -3103,6 +3396,7 @@
       "type":"string",
       "pattern":"[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}"
     },
+    "Integer":{"type":"integer"},
     "Invite":{
       "type":"structure",
       "members":{
@@ -3341,6 +3635,39 @@
       "members":{
         "PhoneNumbers":{"shape":"PhoneNumberList"},
         "NextToken":{"shape":"String"}
+      }
+    },
+    "ListProxySessionsRequest":{
+      "type":"structure",
+      "required":["VoiceConnectorId"],
+      "members":{
+        "VoiceConnectorId":{
+          "shape":"NonEmptyString128",
+          "location":"uri",
+          "locationName":"voiceConnectorId"
+        },
+        "Status":{
+          "shape":"ProxySessionStatus",
+          "location":"querystring",
+          "locationName":"status"
+        },
+        "NextToken":{
+          "shape":"NextTokenString",
+          "location":"querystring",
+          "locationName":"next-token"
+        },
+        "MaxResults":{
+          "shape":"ResultMax",
+          "location":"querystring",
+          "locationName":"max-results"
+        }
+      }
+    },
+    "ListProxySessionsResponse":{
+      "type":"structure",
+      "members":{
+        "ProxySessions":{"shape":"ProxySessions"},
+        "NextToken":{"shape":"NextTokenString"}
       }
     },
     "ListRoomMembershipsRequest":{
@@ -3614,8 +3941,18 @@
       "member":{"shape":"MembershipItem"},
       "max":50
     },
+    "NextTokenString":{
+      "type":"string",
+      "max":65535
+    },
     "NonEmptyString":{
       "type":"string",
+      "pattern":".*\\S.*"
+    },
+    "NonEmptyString128":{
+      "type":"string",
+      "max":128,
+      "min":1,
       "pattern":".*\\S.*"
     },
     "NonEmptyStringList":{
@@ -3633,6 +3970,13 @@
       "exception":true
     },
     "NullableBoolean":{"type":"boolean"},
+    "NumberSelectionBehavior":{
+      "type":"string",
+      "enum":[
+        "PreferSticky",
+        "AvoidSticky"
+      ]
+    },
     "OrderedPhoneNumber":{
       "type":"structure",
       "members":{
@@ -3689,6 +4033,23 @@
       "type":"integer",
       "max":100,
       "min":1
+    },
+    "Participant":{
+      "type":"structure",
+      "members":{
+        "PhoneNumber":{"shape":"E164PhoneNumber"},
+        "ProxyPhoneNumber":{"shape":"E164PhoneNumber"}
+      }
+    },
+    "ParticipantPhoneNumberList":{
+      "type":"list",
+      "member":{"shape":"E164PhoneNumber"},
+      "max":2,
+      "min":2
+    },
+    "Participants":{
+      "type":"list",
+      "member":{"shape":"Participant"}
     },
     "PhoneNumber":{
       "type":"structure",
@@ -3816,10 +4177,58 @@
       "max":65535,
       "min":0
     },
+    "PositiveInteger":{
+      "type":"integer",
+      "min":1
+    },
     "ProfileServiceMaxResults":{
       "type":"integer",
       "max":200,
       "min":1
+    },
+    "Proxy":{
+      "type":"structure",
+      "members":{
+        "DefaultSessionExpiryMinutes":{"shape":"Integer"},
+        "Disabled":{"shape":"Boolean"},
+        "FallBackPhoneNumber":{"shape":"E164PhoneNumber"},
+        "PhoneNumberCountries":{"shape":"StringList"}
+      }
+    },
+    "ProxySession":{
+      "type":"structure",
+      "members":{
+        "VoiceConnectorId":{"shape":"NonEmptyString128"},
+        "ProxySessionId":{"shape":"NonEmptyString128"},
+        "Name":{"shape":"String128"},
+        "Status":{"shape":"ProxySessionStatus"},
+        "ExpiryMinutes":{"shape":"PositiveInteger"},
+        "Capabilities":{"shape":"CapabilityList"},
+        "CreatedTimestamp":{"shape":"Iso8601Timestamp"},
+        "UpdatedTimestamp":{"shape":"Iso8601Timestamp"},
+        "EndedTimestamp":{"shape":"Iso8601Timestamp"},
+        "Participants":{"shape":"Participants"},
+        "NumberSelectionBehavior":{"shape":"NumberSelectionBehavior"},
+        "GeoMatchLevel":{"shape":"GeoMatchLevel"},
+        "GeoMatchParams":{"shape":"GeoMatchParams"}
+      }
+    },
+    "ProxySessionNameString":{
+      "type":"string",
+      "pattern":"^$|^[a-zA-Z0-9 ]{0,30}$",
+      "sensitive":true
+    },
+    "ProxySessionStatus":{
+      "type":"string",
+      "enum":[
+        "Open",
+        "InProgress",
+        "Closed"
+      ]
+    },
+    "ProxySessions":{
+      "type":"list",
+      "member":{"shape":"ProxySession"}
     },
     "PutEventsConfigurationRequest":{
       "type":"structure",
@@ -3888,6 +4297,31 @@
       "type":"structure",
       "members":{
         "Origination":{"shape":"Origination"}
+      }
+    },
+    "PutVoiceConnectorProxyRequest":{
+      "type":"structure",
+      "required":[
+        "DefaultSessionExpiryMinutes",
+        "PhoneNumberPoolCountries",
+        "VoiceConnectorId"
+      ],
+      "members":{
+        "VoiceConnectorId":{
+          "shape":"NonEmptyString128",
+          "location":"uri",
+          "locationName":"voiceConnectorId"
+        },
+        "DefaultSessionExpiryMinutes":{"shape":"Integer"},
+        "PhoneNumberPoolCountries":{"shape":"CountryList"},
+        "FallBackPhoneNumber":{"shape":"E164PhoneNumber"},
+        "Disabled":{"shape":"Boolean"}
+      }
+    },
+    "PutVoiceConnectorProxyResponse":{
+      "type":"structure",
+      "members":{
+        "Proxy":{"shape":"Proxy"}
       }
     },
     "PutVoiceConnectorStreamingConfigurationRequest":{
@@ -4162,6 +4596,10 @@
       }
     },
     "String":{"type":"string"},
+    "String128":{
+      "type":"string",
+      "max":128
+    },
     "StringList":{
       "type":"list",
       "member":{"shape":"String"}
@@ -4341,6 +4779,34 @@
       "required":["CallingName"],
       "members":{
         "CallingName":{"shape":"CallingName"}
+      }
+    },
+    "UpdateProxySessionRequest":{
+      "type":"structure",
+      "required":[
+        "Capabilities",
+        "VoiceConnectorId",
+        "ProxySessionId"
+      ],
+      "members":{
+        "VoiceConnectorId":{
+          "shape":"NonEmptyString128",
+          "location":"uri",
+          "locationName":"voiceConnectorId"
+        },
+        "ProxySessionId":{
+          "shape":"NonEmptyString128",
+          "location":"uri",
+          "locationName":"proxySessionId"
+        },
+        "Capabilities":{"shape":"CapabilityList"},
+        "ExpiryMinutes":{"shape":"PositiveInteger"}
+      }
+    },
+    "UpdateProxySessionResponse":{
+      "type":"structure",
+      "members":{
+        "ProxySession":{"shape":"ProxySession"}
       }
     },
     "UpdateRoomMembershipRequest":{
