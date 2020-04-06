@@ -68,6 +68,10 @@ type TranscribeServiceAPI interface {
 	CreateVocabularyFilterWithContext(aws.Context, *transcribeservice.CreateVocabularyFilterInput, ...request.Option) (*transcribeservice.CreateVocabularyFilterOutput, error)
 	CreateVocabularyFilterRequest(*transcribeservice.CreateVocabularyFilterInput) (*request.Request, *transcribeservice.CreateVocabularyFilterOutput)
 
+	DeleteMedicalTranscriptionJob(*transcribeservice.DeleteMedicalTranscriptionJobInput) (*transcribeservice.DeleteMedicalTranscriptionJobOutput, error)
+	DeleteMedicalTranscriptionJobWithContext(aws.Context, *transcribeservice.DeleteMedicalTranscriptionJobInput, ...request.Option) (*transcribeservice.DeleteMedicalTranscriptionJobOutput, error)
+	DeleteMedicalTranscriptionJobRequest(*transcribeservice.DeleteMedicalTranscriptionJobInput) (*request.Request, *transcribeservice.DeleteMedicalTranscriptionJobOutput)
+
 	DeleteTranscriptionJob(*transcribeservice.DeleteTranscriptionJobInput) (*transcribeservice.DeleteTranscriptionJobOutput, error)
 	DeleteTranscriptionJobWithContext(aws.Context, *transcribeservice.DeleteTranscriptionJobInput, ...request.Option) (*transcribeservice.DeleteTranscriptionJobOutput, error)
 	DeleteTranscriptionJobRequest(*transcribeservice.DeleteTranscriptionJobInput) (*request.Request, *transcribeservice.DeleteTranscriptionJobOutput)
@@ -80,6 +84,10 @@ type TranscribeServiceAPI interface {
 	DeleteVocabularyFilterWithContext(aws.Context, *transcribeservice.DeleteVocabularyFilterInput, ...request.Option) (*transcribeservice.DeleteVocabularyFilterOutput, error)
 	DeleteVocabularyFilterRequest(*transcribeservice.DeleteVocabularyFilterInput) (*request.Request, *transcribeservice.DeleteVocabularyFilterOutput)
 
+	GetMedicalTranscriptionJob(*transcribeservice.GetMedicalTranscriptionJobInput) (*transcribeservice.GetMedicalTranscriptionJobOutput, error)
+	GetMedicalTranscriptionJobWithContext(aws.Context, *transcribeservice.GetMedicalTranscriptionJobInput, ...request.Option) (*transcribeservice.GetMedicalTranscriptionJobOutput, error)
+	GetMedicalTranscriptionJobRequest(*transcribeservice.GetMedicalTranscriptionJobInput) (*request.Request, *transcribeservice.GetMedicalTranscriptionJobOutput)
+
 	GetTranscriptionJob(*transcribeservice.GetTranscriptionJobInput) (*transcribeservice.GetTranscriptionJobOutput, error)
 	GetTranscriptionJobWithContext(aws.Context, *transcribeservice.GetTranscriptionJobInput, ...request.Option) (*transcribeservice.GetTranscriptionJobOutput, error)
 	GetTranscriptionJobRequest(*transcribeservice.GetTranscriptionJobInput) (*request.Request, *transcribeservice.GetTranscriptionJobOutput)
@@ -91,6 +99,13 @@ type TranscribeServiceAPI interface {
 	GetVocabularyFilter(*transcribeservice.GetVocabularyFilterInput) (*transcribeservice.GetVocabularyFilterOutput, error)
 	GetVocabularyFilterWithContext(aws.Context, *transcribeservice.GetVocabularyFilterInput, ...request.Option) (*transcribeservice.GetVocabularyFilterOutput, error)
 	GetVocabularyFilterRequest(*transcribeservice.GetVocabularyFilterInput) (*request.Request, *transcribeservice.GetVocabularyFilterOutput)
+
+	ListMedicalTranscriptionJobs(*transcribeservice.ListMedicalTranscriptionJobsInput) (*transcribeservice.ListMedicalTranscriptionJobsOutput, error)
+	ListMedicalTranscriptionJobsWithContext(aws.Context, *transcribeservice.ListMedicalTranscriptionJobsInput, ...request.Option) (*transcribeservice.ListMedicalTranscriptionJobsOutput, error)
+	ListMedicalTranscriptionJobsRequest(*transcribeservice.ListMedicalTranscriptionJobsInput) (*request.Request, *transcribeservice.ListMedicalTranscriptionJobsOutput)
+
+	ListMedicalTranscriptionJobsPages(*transcribeservice.ListMedicalTranscriptionJobsInput, func(*transcribeservice.ListMedicalTranscriptionJobsOutput, bool) bool) error
+	ListMedicalTranscriptionJobsPagesWithContext(aws.Context, *transcribeservice.ListMedicalTranscriptionJobsInput, func(*transcribeservice.ListMedicalTranscriptionJobsOutput, bool) bool, ...request.Option) error
 
 	ListTranscriptionJobs(*transcribeservice.ListTranscriptionJobsInput) (*transcribeservice.ListTranscriptionJobsOutput, error)
 	ListTranscriptionJobsWithContext(aws.Context, *transcribeservice.ListTranscriptionJobsInput, ...request.Option) (*transcribeservice.ListTranscriptionJobsOutput, error)
@@ -112,6 +127,10 @@ type TranscribeServiceAPI interface {
 
 	ListVocabularyFiltersPages(*transcribeservice.ListVocabularyFiltersInput, func(*transcribeservice.ListVocabularyFiltersOutput, bool) bool) error
 	ListVocabularyFiltersPagesWithContext(aws.Context, *transcribeservice.ListVocabularyFiltersInput, func(*transcribeservice.ListVocabularyFiltersOutput, bool) bool, ...request.Option) error
+
+	StartMedicalTranscriptionJob(*transcribeservice.StartMedicalTranscriptionJobInput) (*transcribeservice.StartMedicalTranscriptionJobOutput, error)
+	StartMedicalTranscriptionJobWithContext(aws.Context, *transcribeservice.StartMedicalTranscriptionJobInput, ...request.Option) (*transcribeservice.StartMedicalTranscriptionJobOutput, error)
+	StartMedicalTranscriptionJobRequest(*transcribeservice.StartMedicalTranscriptionJobInput) (*request.Request, *transcribeservice.StartMedicalTranscriptionJobOutput)
 
 	StartTranscriptionJob(*transcribeservice.StartTranscriptionJobInput) (*transcribeservice.StartTranscriptionJobOutput, error)
 	StartTranscriptionJobWithContext(aws.Context, *transcribeservice.StartTranscriptionJobInput, ...request.Option) (*transcribeservice.StartTranscriptionJobOutput, error)

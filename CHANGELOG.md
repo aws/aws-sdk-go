@@ -1,3 +1,15 @@
+Release v1.30.5 (2020-04-06)
+===
+
+### Service Client Updates
+* `service/chime`: Updates service API, documentation, and paginators
+  * Amazon Chime proxy phone sessions let you provide two users with a shared phone number to communicate via voice or text for up to 12 hours without revealing personal phone numbers. When users call or message the provided phone number, they are connected to the other party and their private phone numbers are replaced with the shared number in Caller ID.
+* `service/elasticbeanstalk`: Updates service API, documentation, and paginators
+  * This release adds a new action, ListPlatformBranches, and updates two actions, ListPlatformVersions and DescribePlatformVersion, to support the concept of Elastic Beanstalk platform branches.
+* `service/iam`: Updates service documentation
+  * Documentation updates for AWS Identity and Access Management (IAM).
+* `service/transcribe`: Updates service API, documentation, and paginators
+
 Release v1.30.4 (2020-04-03)
 ===
 

@@ -18,6 +18,7 @@
     "CreateBot": "<p>Creates a bot for an Amazon Chime Enterprise account.</p>",
     "CreateMeeting": "<p>Creates a new Amazon Chime SDK meeting in the specified media Region with no initial attendees. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
     "CreatePhoneNumberOrder": "<p>Creates an order for phone numbers to be provisioned. Choose from Amazon Chime Business Calling and Amazon Chime Voice Connector product types. For toll-free numbers, you must use the Amazon Chime Voice Connector product type.</p>",
+    "CreateProxySession": null,
     "CreateRoom": "<p>Creates a chat room for the specified Amazon Chime Enterprise account.</p>",
     "CreateRoomMembership": "<p>Adds a member to a chat room in an Amazon Chime Enterprise account. A member can be either a user or a bot. The member role designates whether the member is a chat room administrator or a general chat room member.</p>",
     "CreateUser": "<p>Creates a user under the specified Amazon Chime account.</p>",
@@ -28,11 +29,13 @@
     "DeleteEventsConfiguration": "<p>Deletes the events configuration that allows a bot to receive outgoing events.</p>",
     "DeleteMeeting": "<p>Deletes the specified Amazon Chime SDK meeting. When a meeting is deleted, its attendees are also deleted and clients can no longer join it. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
     "DeletePhoneNumber": "<p>Moves the specified phone number into the <b>Deletion queue</b>. A phone number must be disassociated from any users or Amazon Chime Voice Connectors before it can be deleted.</p> <p>Deleted phone numbers remain in the <b>Deletion queue</b> for 7 days before they are deleted permanently.</p>",
+    "DeleteProxySession": null,
     "DeleteRoom": "<p>Deletes a chat room in an Amazon Chime Enterprise account.</p>",
     "DeleteRoomMembership": "<p>Removes a member from a chat room in an Amazon Chime Enterprise account.</p>",
     "DeleteVoiceConnector": "<p>Deletes the specified Amazon Chime Voice Connector. Any phone numbers associated with the Amazon Chime Voice Connector must be disassociated from it before it can be deleted.</p>",
     "DeleteVoiceConnectorGroup": "<p>Deletes the specified Amazon Chime Voice Connector group. Any <code>VoiceConnectorItems</code> and phone numbers associated with the group must be removed before it can be deleted.</p>",
     "DeleteVoiceConnectorOrigination": "<p>Deletes the origination settings for the specified Amazon Chime Voice Connector.</p>",
+    "DeleteVoiceConnectorProxy": null,
     "DeleteVoiceConnectorStreamingConfiguration": "<p>Deletes the streaming configuration for the specified Amazon Chime Voice Connector.</p>",
     "DeleteVoiceConnectorTermination": "<p>Deletes the termination settings for the specified Amazon Chime Voice Connector.</p>",
     "DeleteVoiceConnectorTerminationCredentials": "<p>Deletes the specified SIP credentials used by your equipment to authenticate during call termination.</p>",
@@ -50,6 +53,7 @@
     "GetPhoneNumber": "<p>Retrieves details for the specified phone number ID, such as associations, capabilities, and product type.</p>",
     "GetPhoneNumberOrder": "<p>Retrieves details for the specified phone number order, such as order creation timestamp, phone numbers in E.164 format, product type, and order status.</p>",
     "GetPhoneNumberSettings": "<p>Retrieves the phone number settings for the administrator's AWS account, such as the default outbound calling name.</p>",
+    "GetProxySession": null,
     "GetRoom": "<p>Retrieves room details, such as the room name, for a room in an Amazon Chime Enterprise account.</p>",
     "GetUser": "<p>Retrieves details for the specified user ID, such as primary email address, license type, and personal meeting PIN.</p> <p>To retrieve user details with an email address instead of a user ID, use the <a>ListUsers</a> action, and then filter by email address.</p>",
     "GetUserSettings": "<p>Retrieves settings for the specified user ID, such as any associated phone number settings.</p>",
@@ -57,6 +61,7 @@
     "GetVoiceConnectorGroup": "<p>Retrieves details for the specified Amazon Chime Voice Connector group, such as timestamps, name, and associated <code>VoiceConnectorItems</code>.</p>",
     "GetVoiceConnectorLoggingConfiguration": "<p>Retrieves the logging configuration details for the specified Amazon Chime Voice Connector. Shows whether SIP message logs are enabled for sending to Amazon CloudWatch Logs.</p>",
     "GetVoiceConnectorOrigination": "<p>Retrieves origination setting details for the specified Amazon Chime Voice Connector.</p>",
+    "GetVoiceConnectorProxy": null,
     "GetVoiceConnectorStreamingConfiguration": "<p>Retrieves the streaming configuration details for the specified Amazon Chime Voice Connector. Shows whether media streaming is enabled for sending to Amazon Kinesis. It also shows the retention period, in hours, for the Amazon Kinesis data.</p>",
     "GetVoiceConnectorTermination": "<p>Retrieves termination setting details for the specified Amazon Chime Voice Connector.</p>",
     "GetVoiceConnectorTerminationHealth": "<p>Retrieves information about the last time a SIP <code>OPTIONS</code> ping was received from your SIP infrastructure for the specified Amazon Chime Voice Connector.</p>",
@@ -67,6 +72,7 @@
     "ListMeetings": "<p>Lists up to 100 active Amazon Chime SDK meetings. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
     "ListPhoneNumberOrders": "<p>Lists the phone number orders for the administrator's Amazon Chime account.</p>",
     "ListPhoneNumbers": "<p>Lists the phone numbers for the specified Amazon Chime account, Amazon Chime user, Amazon Chime Voice Connector, or Amazon Chime Voice Connector group.</p>",
+    "ListProxySessions": null,
     "ListRoomMemberships": "<p>Lists the membership details for the specified room in an Amazon Chime Enterprise account, such as the members' IDs, email addresses, and names.</p>",
     "ListRooms": "<p>Lists the room details for the specified Amazon Chime Enterprise account. Optionally, filter the results by a member ID (user ID or bot ID) to see a list of rooms that the member belongs to.</p>",
     "ListUsers": "<p>Lists the users that belong to the specified Amazon Chime account. You can specify an email address to list only the user that the email address belongs to.</p>",
@@ -77,6 +83,7 @@
     "PutEventsConfiguration": "<p>Creates an events configuration that allows a bot to receive outgoing events sent by Amazon Chime. Choose either an HTTPS endpoint or a Lambda function ARN. For more information, see <a>Bot</a>.</p>",
     "PutVoiceConnectorLoggingConfiguration": "<p>Adds a logging configuration for the specified Amazon Chime Voice Connector. The logging configuration specifies whether SIP message logs are enabled for sending to Amazon CloudWatch Logs.</p>",
     "PutVoiceConnectorOrigination": "<p>Adds origination settings for the specified Amazon Chime Voice Connector.</p>",
+    "PutVoiceConnectorProxy": null,
     "PutVoiceConnectorStreamingConfiguration": "<p>Adds a streaming configuration for the specified Amazon Chime Voice Connector. The streaming configuration specifies whether media streaming is enabled for sending to Amazon Kinesis. It also sets the retention period, in hours, for the Amazon Kinesis data.</p>",
     "PutVoiceConnectorTermination": "<p>Adds termination settings for the specified Amazon Chime Voice Connector.</p>",
     "PutVoiceConnectorTerminationCredentials": "<p>Adds termination SIP credentials for the specified Amazon Chime Voice Connector.</p>",
@@ -90,6 +97,7 @@
     "UpdateGlobalSettings": "<p>Updates global settings for the administrator's AWS account, such as Amazon Chime Business Calling and Amazon Chime Voice Connector settings.</p>",
     "UpdatePhoneNumber": "<p>Updates phone number details, such as product type or calling name, for the specified phone number ID. You can update one phone number detail at a time. For example, you can update either the product type or the calling name in one action.</p> <p>For toll-free numbers, you must use the Amazon Chime Voice Connector product type.</p> <p>Updates to outbound calling names can take up to 72 hours to complete. Pending updates to outbound calling names must be complete before you can request another update.</p>",
     "UpdatePhoneNumberSettings": "<p>Updates the phone number settings for the administrator's AWS account, such as the default outbound calling name. You can update the default outbound calling name once every seven days. Outbound calling names can take up to 72 hours to update.</p>",
+    "UpdateProxySession": null,
     "UpdateRoom": "<p>Updates room details, such as the room name, for a room in an Amazon Chime Enterprise account.</p>",
     "UpdateRoomMembership": "<p>Updates room membership details, such as the member role, for a room in an Amazon Chime Enterprise account. The member role designates whether the member is a chat room administrator or a general chat room member. The member role can be updated only for user IDs.</p>",
     "UpdateUser": "<p>Updates user details for a specified user ID. Currently, only <code>LicenseType</code> updates are supported for this action.</p>",
@@ -145,6 +153,12 @@
         "UpdateUserRequest$AlexaForBusinessMetadata": "<p>The Alexa for Business metadata.</p>",
         "UpdateUserRequestItem$AlexaForBusinessMetadata": "<p>The Alexa for Business metadata.</p>",
         "User$AlexaForBusinessMetadata": "<p>The Alexa for Business metadata.</p>"
+      }
+    },
+    "AreaCode": {
+      "base": null,
+      "refs": {
+        "GeoMatchParams$AreaCode": null
       }
     },
     "Arn": {
@@ -299,6 +313,8 @@
         "CreateVoiceConnectorRequest$RequireEncryption": "<p>When enabled, requires encryption for the Amazon Chime Voice Connector.</p>",
         "LoggingConfiguration$EnableSIPLogs": "<p>When true, enables SIP message logs for sending to Amazon CloudWatch Logs.</p>",
         "Origination$Disabled": "<p>When origination settings are disabled, inbound calls are not enabled for your Amazon Chime Voice Connector.</p>",
+        "Proxy$Disabled": null,
+        "PutVoiceConnectorProxyRequest$Disabled": null,
         "StreamingConfiguration$Disabled": "<p>When true, media streaming to Amazon Kinesis is turned off.</p>",
         "TelephonySettings$InboundCalling": "<p>Allows or denies inbound calling.</p>",
         "TelephonySettings$OutboundCalling": "<p>Allows or denies outbound calling.</p>",
@@ -365,6 +381,20 @@
         "Termination$CallingRegions": "<p>The countries to which calls are allowed, in ISO 3166-1 alpha-2 format. Required.</p>"
       }
     },
+    "Capability": {
+      "base": null,
+      "refs": {
+        "CapabilityList$member": null
+      }
+    },
+    "CapabilityList": {
+      "base": null,
+      "refs": {
+        "CreateProxySessionRequest$Capabilities": null,
+        "ProxySession$Capabilities": null,
+        "UpdateProxySessionRequest$Capabilities": null
+      }
+    },
     "ClientRequestToken": {
       "base": null,
       "refs": {
@@ -375,6 +405,19 @@
     "ConflictException": {
       "base": "<p>The request could not be processed because of conflict in the current state of the resource.</p>",
       "refs": {
+      }
+    },
+    "Country": {
+      "base": null,
+      "refs": {
+        "CountryList$member": null,
+        "GeoMatchParams$Country": null
+      }
+    },
+    "CountryList": {
+      "base": null,
+      "refs": {
+        "PutVoiceConnectorProxyRequest$PhoneNumberPoolCountries": null
       }
     },
     "CpsLimit": {
@@ -447,6 +490,16 @@
       }
     },
     "CreatePhoneNumberOrderResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateProxySessionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateProxySessionResponse": {
       "base": null,
       "refs": {
       }
@@ -549,6 +602,11 @@
       "refs": {
       }
     },
+    "DeleteProxySessionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteRoomMembershipRequest": {
       "base": null,
       "refs": {
@@ -565,6 +623,11 @@
       }
     },
     "DeleteVoiceConnectorOriginationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteVoiceConnectorProxyRequest": {
       "base": null,
       "refs": {
       }
@@ -635,7 +698,12 @@
         "AssociatePhoneNumberWithUserRequest$E164PhoneNumber": "<p>The phone number, in E.164 format.</p>",
         "E164PhoneNumberList$member": null,
         "OrderedPhoneNumber$E164PhoneNumber": "<p>The phone number, in E.164 format.</p>",
+        "Participant$PhoneNumber": null,
+        "Participant$ProxyPhoneNumber": null,
+        "ParticipantPhoneNumberList$member": null,
         "PhoneNumber$E164PhoneNumber": "<p>The phone number, in E.164 format.</p>",
+        "Proxy$FallBackPhoneNumber": null,
+        "PutVoiceConnectorProxyRequest$FallBackPhoneNumber": null,
         "Termination$DefaultPhoneNumber": "<p>The default caller ID phone number.</p>"
       }
     },
@@ -706,6 +774,20 @@
     "ForbiddenException": {
       "base": "<p>The client is permanently forbidden from making the request. For example, when a user tries to create an account from an unsupported Region.</p>",
       "refs": {
+      }
+    },
+    "GeoMatchLevel": {
+      "base": null,
+      "refs": {
+        "CreateProxySessionRequest$GeoMatchLevel": null,
+        "ProxySession$GeoMatchLevel": null
+      }
+    },
+    "GeoMatchParams": {
+      "base": null,
+      "refs": {
+        "CreateProxySessionRequest$GeoMatchParams": null,
+        "ProxySession$GeoMatchParams": null
       }
     },
     "GetAccountRequest": {
@@ -798,6 +880,16 @@
       "refs": {
       }
     },
+    "GetProxySessionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetProxySessionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetRoomRequest": {
       "base": null,
       "refs": {
@@ -854,6 +946,16 @@
       }
     },
     "GetVoiceConnectorOriginationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceConnectorProxyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetVoiceConnectorProxyResponse": {
       "base": null,
       "refs": {
       }
@@ -916,6 +1018,13 @@
         "PhoneNumberOrder$PhoneNumberOrderId": "<p>The phone number order ID.</p>"
       }
     },
+    "Integer": {
+      "base": null,
+      "refs": {
+        "Proxy$DefaultSessionExpiryMinutes": null,
+        "PutVoiceConnectorProxyRequest$DefaultSessionExpiryMinutes": null
+      }
+    },
     "Invite": {
       "base": "<p>Invitation object returned after emailing users to invite them to join the Amazon Chime <code>Team</code> account.</p>",
       "refs": {
@@ -958,6 +1067,9 @@
         "PhoneNumberAssociation$AssociatedTimestamp": "<p>The timestamp of the phone number association, in ISO 8601 format.</p>",
         "PhoneNumberOrder$CreatedTimestamp": "<p>The phone number order creation timestamp, in ISO 8601 format.</p>",
         "PhoneNumberOrder$UpdatedTimestamp": "<p>The updated phone number order timestamp, in ISO 8601 format.</p>",
+        "ProxySession$CreatedTimestamp": null,
+        "ProxySession$UpdatedTimestamp": null,
+        "ProxySession$EndedTimestamp": null,
         "Room$CreatedTimestamp": "<p>The room creation timestamp, in ISO 8601 format.</p>",
         "Room$UpdatedTimestamp": "<p>The room update timestamp, in ISO 8601 format.</p>",
         "RoomMembership$UpdatedTimestamp": "<p>The room membership update timestamp, in ISO 8601 format.</p>",
@@ -1048,6 +1160,16 @@
       }
     },
     "ListPhoneNumbersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListProxySessionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListProxySessionsResponse": {
       "base": null,
       "refs": {
       }
@@ -1192,6 +1314,13 @@
         "BatchCreateRoomMembershipRequest$MembershipItemList": "<p>The list of membership items.</p>"
       }
     },
+    "NextTokenString": {
+      "base": null,
+      "refs": {
+        "ListProxySessionsRequest$NextToken": null,
+        "ListProxySessionsResponse$NextToken": null
+      }
+    },
     "NonEmptyString": {
       "base": null,
       "refs": {
@@ -1298,6 +1427,24 @@
         "VoiceConnectorItem$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>"
       }
     },
+    "NonEmptyString128": {
+      "base": null,
+      "refs": {
+        "CreateProxySessionRequest$VoiceConnectorId": null,
+        "DeleteProxySessionRequest$VoiceConnectorId": null,
+        "DeleteProxySessionRequest$ProxySessionId": null,
+        "DeleteVoiceConnectorProxyRequest$VoiceConnectorId": null,
+        "GetProxySessionRequest$VoiceConnectorId": null,
+        "GetProxySessionRequest$ProxySessionId": null,
+        "GetVoiceConnectorProxyRequest$VoiceConnectorId": null,
+        "ListProxySessionsRequest$VoiceConnectorId": null,
+        "ProxySession$VoiceConnectorId": null,
+        "ProxySession$ProxySessionId": null,
+        "PutVoiceConnectorProxyRequest$VoiceConnectorId": null,
+        "UpdateProxySessionRequest$VoiceConnectorId": null,
+        "UpdateProxySessionRequest$ProxySessionId": null
+      }
+    },
     "NonEmptyStringList": {
       "base": null,
       "refs": {
@@ -1323,6 +1470,13 @@
         "PhoneNumberCapabilities$InboundMMS": "<p>Allows or denies inbound MMS messaging for the specified phone number.</p>",
         "PhoneNumberCapabilities$OutboundMMS": "<p>Allows or denies outbound MMS messaging for the specified phone number.</p>",
         "UpdateBotRequest$Disabled": "<p>When true, stops the specified bot from running in your account.</p>"
+      }
+    },
+    "NumberSelectionBehavior": {
+      "base": null,
+      "refs": {
+        "CreateProxySessionRequest$NumberSelectionBehavior": null,
+        "ProxySession$NumberSelectionBehavior": null
       }
     },
     "OrderedPhoneNumber": {
@@ -1379,6 +1533,24 @@
       "base": null,
       "refs": {
         "OriginationRoute$Weight": "<p>The weight associated with the host. If hosts are equal in priority, calls are distributed among them based on their relative weight.</p>"
+      }
+    },
+    "Participant": {
+      "base": null,
+      "refs": {
+        "Participants$member": null
+      }
+    },
+    "ParticipantPhoneNumberList": {
+      "base": null,
+      "refs": {
+        "CreateProxySessionRequest$ParticipantPhoneNumbers": null
+      }
+    },
+    "Participants": {
+      "base": null,
+      "refs": {
+        "ProxySession$Participants": null
       }
     },
     "PhoneNumber": {
@@ -1494,11 +1666,54 @@
         "OriginationRoute$Port": "<p>The designated origination route port. Defaults to 5060.</p>"
       }
     },
+    "PositiveInteger": {
+      "base": null,
+      "refs": {
+        "CreateProxySessionRequest$ExpiryMinutes": null,
+        "ProxySession$ExpiryMinutes": null,
+        "UpdateProxySessionRequest$ExpiryMinutes": null
+      }
+    },
     "ProfileServiceMaxResults": {
       "base": null,
       "refs": {
         "ListAccountsRequest$MaxResults": "<p>The maximum number of results to return in a single call. Defaults to 100.</p>",
         "ListUsersRequest$MaxResults": "<p>The maximum number of results to return in a single call. Defaults to 100.</p>"
+      }
+    },
+    "Proxy": {
+      "base": null,
+      "refs": {
+        "GetVoiceConnectorProxyResponse$Proxy": null,
+        "PutVoiceConnectorProxyResponse$Proxy": null
+      }
+    },
+    "ProxySession": {
+      "base": null,
+      "refs": {
+        "CreateProxySessionResponse$ProxySession": null,
+        "GetProxySessionResponse$ProxySession": null,
+        "ProxySessions$member": null,
+        "UpdateProxySessionResponse$ProxySession": null
+      }
+    },
+    "ProxySessionNameString": {
+      "base": null,
+      "refs": {
+        "CreateProxySessionRequest$Name": null
+      }
+    },
+    "ProxySessionStatus": {
+      "base": null,
+      "refs": {
+        "ListProxySessionsRequest$Status": null,
+        "ProxySession$Status": null
+      }
+    },
+    "ProxySessions": {
+      "base": null,
+      "refs": {
+        "ListProxySessionsResponse$ProxySessions": null
       }
     },
     "PutEventsConfigurationRequest": {
@@ -1527,6 +1742,16 @@
       }
     },
     "PutVoiceConnectorOriginationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutVoiceConnectorProxyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutVoiceConnectorProxyResponse": {
       "base": null,
       "refs": {
       }
@@ -1605,6 +1830,7 @@
         "ListMeetingsRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
         "ListPhoneNumberOrdersRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
         "ListPhoneNumbersRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
+        "ListProxySessionsRequest$MaxResults": null,
         "ListRoomMembershipsRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
         "ListRoomsRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
         "ListVoiceConnectorGroupsRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
@@ -1804,9 +2030,16 @@
         "VoiceConnectorSettings$CdrBucket": "<p>The Amazon S3 bucket designated for call detail record storage.</p>"
       }
     },
+    "String128": {
+      "base": null,
+      "refs": {
+        "ProxySession$Name": null
+      }
+    },
     "StringList": {
       "base": null,
       "refs": {
+        "Proxy$PhoneNumberCountries": null,
         "Termination$CidrAllowedList": "<p>The IP addresses allowed to make calls, in CIDR format. Required.</p>"
       }
     },
@@ -1909,6 +2142,16 @@
       }
     },
     "UpdatePhoneNumberSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateProxySessionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateProxySessionResponse": {
       "base": null,
       "refs": {
       }

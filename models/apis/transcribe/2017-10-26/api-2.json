@@ -43,6 +43,19 @@
         {"shape":"ConflictException"}
       ]
     },
+    "DeleteMedicalTranscriptionJob":{
+      "name":"DeleteMedicalTranscriptionJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteMedicalTranscriptionJobRequest"},
+      "errors":[
+        {"shape":"LimitExceededException"},
+        {"shape":"BadRequestException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "DeleteTranscriptionJob":{
       "name":"DeleteTranscriptionJob",
       "http":{
@@ -82,6 +95,21 @@
         {"shape":"LimitExceededException"},
         {"shape":"BadRequestException"},
         {"shape":"InternalFailureException"}
+      ]
+    },
+    "GetMedicalTranscriptionJob":{
+      "name":"GetMedicalTranscriptionJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetMedicalTranscriptionJobRequest"},
+      "output":{"shape":"GetMedicalTranscriptionJobResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"NotFoundException"}
       ]
     },
     "GetTranscriptionJob":{
@@ -129,6 +157,20 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "ListMedicalTranscriptionJobs":{
+      "name":"ListMedicalTranscriptionJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListMedicalTranscriptionJobsRequest"},
+      "output":{"shape":"ListMedicalTranscriptionJobsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "ListTranscriptionJobs":{
       "name":"ListTranscriptionJobs",
       "http":{
@@ -169,6 +211,21 @@
         {"shape":"BadRequestException"},
         {"shape":"LimitExceededException"},
         {"shape":"InternalFailureException"}
+      ]
+    },
+    "StartMedicalTranscriptionJob":{
+      "name":"StartMedicalTranscriptionJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartMedicalTranscriptionJobRequest"},
+      "output":{"shape":"StartMedicalTranscriptionJobResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ConflictException"}
       ]
     },
     "StartTranscriptionJob":{
@@ -294,6 +351,13 @@
       "pattern":"^arn:aws:iam::[0-9]{0,63}:role/[A-Za-z0-9:_/+=,@.-]{0,1023}$"
     },
     "DateTime":{"type":"timestamp"},
+    "DeleteMedicalTranscriptionJobRequest":{
+      "type":"structure",
+      "required":["MedicalTranscriptionJobName"],
+      "members":{
+        "MedicalTranscriptionJobName":{"shape":"TranscriptionJobName"}
+      }
+    },
     "DeleteTranscriptionJobRequest":{
       "type":"structure",
       "required":["TranscriptionJobName"],
@@ -316,6 +380,19 @@
       }
     },
     "FailureReason":{"type":"string"},
+    "GetMedicalTranscriptionJobRequest":{
+      "type":"structure",
+      "required":["MedicalTranscriptionJobName"],
+      "members":{
+        "MedicalTranscriptionJobName":{"shape":"TranscriptionJobName"}
+      }
+    },
+    "GetMedicalTranscriptionJobResponse":{
+      "type":"structure",
+      "members":{
+        "MedicalTranscriptionJob":{"shape":"MedicalTranscriptionJob"}
+      }
+    },
     "GetTranscriptionJobRequest":{
       "type":"structure",
       "required":["TranscriptionJobName"],
@@ -427,6 +504,23 @@
       },
       "exception":true
     },
+    "ListMedicalTranscriptionJobsRequest":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"TranscriptionJobStatus"},
+        "JobNameContains":{"shape":"TranscriptionJobName"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListMedicalTranscriptionJobsResponse":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"TranscriptionJobStatus"},
+        "NextToken":{"shape":"NextToken"},
+        "MedicalTranscriptionJobSummaries":{"shape":"MedicalTranscriptionJobSummaries"}
+      }
+    },
     "ListTranscriptionJobsRequest":{
       "type":"structure",
       "members":{
@@ -511,6 +605,60 @@
       "max":48000,
       "min":8000
     },
+    "MedicalTranscript":{
+      "type":"structure",
+      "members":{
+        "TranscriptFileUri":{"shape":"Uri"}
+      }
+    },
+    "MedicalTranscriptionJob":{
+      "type":"structure",
+      "members":{
+        "MedicalTranscriptionJobName":{"shape":"TranscriptionJobName"},
+        "TranscriptionJobStatus":{"shape":"TranscriptionJobStatus"},
+        "LanguageCode":{"shape":"LanguageCode"},
+        "MediaSampleRateHertz":{"shape":"MediaSampleRateHertz"},
+        "MediaFormat":{"shape":"MediaFormat"},
+        "Media":{"shape":"Media"},
+        "Transcript":{"shape":"MedicalTranscript"},
+        "StartTime":{"shape":"DateTime"},
+        "CreationTime":{"shape":"DateTime"},
+        "CompletionTime":{"shape":"DateTime"},
+        "FailureReason":{"shape":"FailureReason"},
+        "Settings":{"shape":"MedicalTranscriptionSetting"},
+        "Specialty":{"shape":"Specialty"},
+        "Type":{"shape":"Type"}
+      }
+    },
+    "MedicalTranscriptionJobSummaries":{
+      "type":"list",
+      "member":{"shape":"MedicalTranscriptionJobSummary"}
+    },
+    "MedicalTranscriptionJobSummary":{
+      "type":"structure",
+      "members":{
+        "MedicalTranscriptionJobName":{"shape":"TranscriptionJobName"},
+        "CreationTime":{"shape":"DateTime"},
+        "StartTime":{"shape":"DateTime"},
+        "CompletionTime":{"shape":"DateTime"},
+        "LanguageCode":{"shape":"LanguageCode"},
+        "TranscriptionJobStatus":{"shape":"TranscriptionJobStatus"},
+        "FailureReason":{"shape":"FailureReason"},
+        "OutputLocationType":{"shape":"OutputLocationType"},
+        "Specialty":{"shape":"Specialty"},
+        "Type":{"shape":"Type"}
+      }
+    },
+    "MedicalTranscriptionSetting":{
+      "type":"structure",
+      "members":{
+        "ShowSpeakerLabels":{"shape":"Boolean"},
+        "MaxSpeakerLabels":{"shape":"MaxSpeakers"},
+        "ChannelIdentification":{"shape":"Boolean"},
+        "ShowAlternatives":{"shape":"Boolean"},
+        "MaxAlternatives":{"shape":"MaxAlternatives"}
+      }
+    },
     "NextToken":{
       "type":"string",
       "max":8192,
@@ -567,6 +715,39 @@
         "MaxAlternatives":{"shape":"MaxAlternatives"},
         "VocabularyFilterName":{"shape":"VocabularyFilterName"},
         "VocabularyFilterMethod":{"shape":"VocabularyFilterMethod"}
+      }
+    },
+    "Specialty":{
+      "type":"string",
+      "enum":["PRIMARYCARE"]
+    },
+    "StartMedicalTranscriptionJobRequest":{
+      "type":"structure",
+      "required":[
+        "MedicalTranscriptionJobName",
+        "LanguageCode",
+        "Media",
+        "OutputBucketName",
+        "Specialty",
+        "Type"
+      ],
+      "members":{
+        "MedicalTranscriptionJobName":{"shape":"TranscriptionJobName"},
+        "LanguageCode":{"shape":"LanguageCode"},
+        "MediaSampleRateHertz":{"shape":"MediaSampleRateHertz"},
+        "MediaFormat":{"shape":"MediaFormat"},
+        "Media":{"shape":"Media"},
+        "OutputBucketName":{"shape":"OutputBucketName"},
+        "OutputEncryptionKMSKeyId":{"shape":"KMSKeyId"},
+        "Settings":{"shape":"MedicalTranscriptionSetting"},
+        "Specialty":{"shape":"Specialty"},
+        "Type":{"shape":"Type"}
+      }
+    },
+    "StartMedicalTranscriptionJobResponse":{
+      "type":"structure",
+      "members":{
+        "MedicalTranscriptionJob":{"shape":"MedicalTranscriptionJob"}
       }
     },
     "StartTranscriptionJobRequest":{
@@ -654,6 +835,13 @@
         "OutputLocationType":{"shape":"OutputLocationType"},
         "ContentRedaction":{"shape":"ContentRedaction"}
       }
+    },
+    "Type":{
+      "type":"string",
+      "enum":[
+        "CONVERSATION",
+        "DICTATION"
+      ]
     },
     "UpdateVocabularyFilterRequest":{
       "type":"structure",
