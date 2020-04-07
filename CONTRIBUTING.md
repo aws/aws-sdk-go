@@ -30,7 +30,7 @@ guidelines prior to filing a bug report.
 3. Provide as much information about your environment, SDK version, and
    relevant dependencies as possible. For example, let us know what version
    of Go you are using, which and version of the operating system, and the
-   the environment your code is running in. e.g Container.
+   environment your code is running in. e.g Container.
 
 4. Provide a minimal test case that reproduces your issue or any error
    information you related to your problem. We can provide feedback much
