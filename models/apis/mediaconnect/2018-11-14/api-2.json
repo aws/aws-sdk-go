@@ -877,6 +877,10 @@
         "StreamId": {
           "shape": "__string",
           "locationName": "streamId"
+        },
+        "VpcInterfaceAttachment": {
+          "shape": "VpcInterfaceAttachment",
+          "locationName": "vpcInterfaceAttachment"
         }
       },
       "required": [
@@ -1503,6 +1507,10 @@
         "Transport": {
           "shape": "Transport",
           "locationName": "transport"
+        },
+        "VpcInterfaceAttachment": {
+          "shape": "VpcInterfaceAttachment",
+          "locationName": "vpcInterfaceAttachment"
         }
       },
       "required": [
@@ -2099,6 +2107,10 @@
         "StreamId": {
           "shape": "__string",
           "locationName": "streamId"
+        },
+        "VpcInterfaceAttachment": {
+          "shape": "VpcInterfaceAttachment",
+          "locationName": "vpcInterfaceAttachment"
         }
       },
       "required": [
@@ -2248,6 +2260,15 @@
         "RoleArn",
         "Name"
       ]
+    },
+    "VpcInterfaceAttachment": {
+      "type": "structure",
+      "members": {
+        "VpcInterfaceName": {
+          "shape": "__string",
+          "locationName": "vpcInterfaceName"
+        }
+      }
     },
     "VpcInterfaceRequest": {
       "type": "structure",

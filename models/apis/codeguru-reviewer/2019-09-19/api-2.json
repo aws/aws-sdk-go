@@ -229,7 +229,8 @@
     "Name":{
       "type":"string",
       "max":100,
-      "min":1
+      "min":1,
+      "pattern":"^\\S[\\w.-]*$"
     },
     "Names":{
       "type":"list",
@@ -253,7 +254,8 @@
     "Owner":{
       "type":"string",
       "max":100,
-      "min":1
+      "min":1,
+      "pattern":"^\\S(.*\\S)?$"
     },
     "Owners":{
       "type":"list",

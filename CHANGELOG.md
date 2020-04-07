@@ -1,3 +1,12 @@
+Release v1.30.6 (2020-04-07)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service documentation
+  * Documentation updates for Amazon API Gateway.
+* `service/codeguru-reviewer`: Updates service API
+* `service/mediaconnect`: Updates service API and documentation
+
 Release v1.30.5 (2020-04-06)
 ===
 

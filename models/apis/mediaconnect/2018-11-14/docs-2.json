@@ -345,6 +345,14 @@
         "__listOfVpcInterface$member": null
       }
     },
+    "VpcInterfaceAttachment" : {
+      "base": "The settings for attaching a VPC interface to an output.",
+      "refs": {
+        "AddOutputRequest$VpcInterfaceAttachment": "The name of the VPC interface attachment to use for this output.",
+        "Output$VpcInterfaceAttachment": "The name of the VPC interface attachment to use for this output.",
+        "UpdateFlowOutputRequest$VpcInterfaceAttachment": "The name of the VPC interface attachment to use for this output."
+      }
+    },
     "VpcInterfaceRequest": {
       "base": "Desired VPC Interface for a Flow",
       "refs": {
@@ -566,6 +574,7 @@
         "VpcInterface$Name": "Immutable and has to be a unique against other VpcInterfaces in this Flow",
         "VpcInterface$RoleArn": "Role Arn MediaConnect can assumes to create ENIs in customer's account",
         "VpcInterface$SubnetId": "Subnet must be in the AZ of the Flow",
+        "VpcInterfaceAttachment$VpcInterfaceName" : "The name of the VPC interface to use for this output.",
         "VpcInterfaceRequest$Name": "The name of the VPC Interface. This value must be unique within the current flow.",
         "VpcInterfaceRequest$RoleArn": "Role Arn MediaConnect can assumes to create ENIs in customer's account",
         "VpcInterfaceRequest$SubnetId": "Subnet must be in the AZ of the Flow",
