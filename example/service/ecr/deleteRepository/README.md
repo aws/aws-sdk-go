@@ -8,13 +8,13 @@ This is an example using the AWS SDK for Go to delete an ECR Repository.
 The example deletes the repository name provided in the first parameter from default `us-east-1` aws region.
 
 ```sh
-go run deleteRepository.go <repo_name>
+go run -tags example deleteRepository.go <repo_name>
 ```
 
 To delete a repository from a diferent region, set `AWS_REGION` env var.
 
 ```sh
-AWS_REGION=us-east-1 go run deleteRepository.go <repo_name>
+AWS_REGION=us-west-2 go run -tags example deleteRepository.go <repo_name>
 ```
 
 Output:
