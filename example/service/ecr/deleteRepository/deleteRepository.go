@@ -16,7 +16,7 @@ const DEAFULT_AWS_REGION = "us-east-1"
 // This example deletes an ECR Repository
 //
 // Usage:
-// AWS_REGION=us-east-1 go run deleteECRRepository.go <repo_name>
+// AWS_REGION=us-east-1 go run -tags example deleteECRRepository.go <repo_name>
 func main() {
 
 	config := &aws.Config{Region: aws.String(getAwsRegion())}
@@ -30,8 +30,8 @@ func main() {
 		Force:          aws.Bool(false),
 		RepositoryName: aws.String(repoName),
 	}
+	
 	output, err := svc.DeleteRepository(input)
-
 	if err != nil {
 		fmt.Printf("\nError deleting the repo %v in region %v\n%v\n", repoName, aws.StringValue(config.Region), err.Error())
 		os.Exit(1)
@@ -42,7 +42,7 @@ func main() {
 
 // Print correct usage and exit the program with code 1
 func printUsageAndExit1() {
-	fmt.Println("\nUsage: AWS_REGION=us-east-1 go run deleteECRRepository.go <repo_name>")
+	fmt.Println("\nUsage: AWS_REGION=us-east-1 go run -tags example deleteECRRepository.go <repo_name>")
 	os.Exit(1)
 }
 
