@@ -221,7 +221,7 @@
         "ApiKey$enabled": "<p>Specifies whether the API Key can be used by callers.</p>",
         "CanarySettings$useStageCache": "<p>A Boolean flag to indicate whether the canary deployment uses the stage cache or not.</p>",
         "CreateApiKeyRequest$enabled": "<p>Specifies whether the <a>ApiKey</a> can be used by callers.</p>",
-        "CreateApiKeyRequest$generateDistinctId": "<p>Specifies whether (<code>true</code>) or not (<code>false</code>) the key identifier is distinct from the created API key value.</p>",
+        "CreateApiKeyRequest$generateDistinctId": "<p>Specifies whether (<code>true</code>) or not (<code>false</code>) the key identifier is distinct from the created API key value. This parameter is deprecated and should not be used.</p>",
         "CreateRequestValidatorRequest$validateRequestBody": "<p>A Boolean flag to indicate whether to validate request body according to the configured model schema for the method (<code>true</code>) or not (<code>false</code>).</p>",
         "CreateRequestValidatorRequest$validateRequestParameters": "<p>A Boolean flag to indicate whether to validate request parameters, <code>true</code>, or not <code>false</code>.</p>",
         "CreateStageRequest$cacheClusterEnabled": "<p>Whether cache clustering is enabled for the stage.</p>",
@@ -1072,7 +1072,7 @@
         "ApiKeyIds$warnings": "<p>A list of warning messages.</p>",
         "ApiKeys$warnings": "<p>A list of warning messages logged during the import of API keys when the <code>failOnWarnings</code> option is set to true.</p>",
         "CreateRestApiRequest$binaryMediaTypes": "<p>The list of binary media types supported by the <a>RestApi</a>. By default, the <a>RestApi</a> supports only UTF-8-encoded text payloads.</p>",
-        "CreateVpcLinkRequest$targetArns": "<p>[Required] The ARNs of network load balancers of the VPC targeted by the VPC link. The network load balancers must be owned by the same AWS account of the API owner.</p>",
+        "CreateVpcLinkRequest$targetArns": "<p>[Required] The ARN of the network load balancer of the VPC targeted by the VPC link. The network load balancer must be owned by the same AWS account of the API owner.</p>",
         "DocumentationPartIds$ids": "<p>A list of the returned documentation part identifiers.</p>",
         "DocumentationPartIds$warnings": "<p>A list of warning messages reported during import of documentation parts.</p>",
         "EndpointConfiguration$vpcEndpointIds": "<p>A list of VpcEndpointIds of an API (<a>RestApi</a>) against which to create Route53 ALIASes. It is only supported for <code>PRIVATE</code> endpoint type.</p>",
@@ -1087,7 +1087,7 @@
         "RestApi$warnings": "<p>The warning messages reported when <code>failonwarnings</code> is turned on during API import.</p>",
         "RestApi$binaryMediaTypes": "<p>The list of binary media types supported by the <a>RestApi</a>. By default, the <a>RestApi</a> supports only UTF-8-encoded text payloads.</p>",
         "UntagResourceRequest$tagKeys": "<p>[Required] The Tag keys to delete.</p>",
-        "VpcLink$targetArns": "<p>The ARNs of network load balancers of the VPC targeted by the VPC link. The network load balancers must be owned by the same AWS account of the API owner.</p>"
+        "VpcLink$targetArns": "<p>The ARN of the network load balancer of the VPC targeted by the VPC link. The network load balancer must be owned by the same AWS account of the API owner.</p>"
       }
     },
     "ListOfUsage": {
@@ -1500,7 +1500,7 @@
       "base": null,
       "refs": {
         "AccessLogSettings$format": "<p>A single line format of the access logs of data, as specified by selected <a href=\"https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-mapping-template-reference.html#context-variable-reference\">$context variables</a>. The format must include at least <code>$context.requestId</code>.</p>",
-        "AccessLogSettings$destinationArn": "<p>The ARN of the CloudWatch Logs log group to receive access logs.</p>",
+        "AccessLogSettings$destinationArn": "<p>The Amazon Resource Name (ARN) of the CloudWatch Logs log group or Kinesis Data Firehose delivery stream to receive access logs. If you specify a Kinesis Data Firehose delivery stream, the stream name must begin with <code>amazon-apigateway-</code>.</p>",
         "Account$cloudwatchRoleArn": "<p>The ARN of an Amazon CloudWatch role for the current <a>Account</a>. </p>",
         "Account$apiKeyVersion": "<p>The version of the API keys used for the account.</p>",
         "ApiKey$id": "<p>The identifier of the API Key.</p>",
@@ -1544,7 +1544,7 @@
         "CreateBasePathMappingRequest$domainName": "<p>[Required] The domain name of the <a>BasePathMapping</a> resource to create.</p>",
         "CreateBasePathMappingRequest$basePath": "<p>The base path name that callers of the API must provide as part of the URL after the domain name. This value must be unique for all of the mappings across a single API. Specify '(none)' if you do not want callers to specify a base path name after the domain name.</p>",
         "CreateBasePathMappingRequest$restApiId": "<p>[Required] The string identifier of the associated <a>RestApi</a>.</p>",
-        "CreateBasePathMappingRequest$stage": "<p>The name of the API's stage that you want to use for this mapping. Specify '(none)' if you do not want callers to explicitly specify the stage name after any base path name.</p>",
+        "CreateBasePathMappingRequest$stage": "<p>The name of the API's stage that you want to use for this mapping. Specify '(none)' if you want callers to explicitly specify the stage name after any base path name.</p>",
         "CreateDeploymentRequest$restApiId": "<p>[Required] The string identifier of the associated <a>RestApi</a>.</p>",
         "CreateDeploymentRequest$stageName": "<p>The name of the <a>Stage</a> resource for the <a>Deployment</a> resource to create.</p>",
         "CreateDeploymentRequest$stageDescription": "<p>The description of the <a>Stage</a> resource for the <a>Deployment</a> resource to create.</p>",
@@ -1734,7 +1734,7 @@
         "GetStageRequest$stageName": "<p>[Required] The name of the <a>Stage</a> resource to get information about.</p>",
         "GetStagesRequest$restApiId": "<p>[Required] The string identifier of the associated <a>RestApi</a>.</p>",
         "GetStagesRequest$deploymentId": "<p>The stages' deployment identifiers.</p>",
-        "GetTagsRequest$resourceArn": "<p>[Required] The ARN of a resource that can be tagged. The resource ARN must be URL-encoded.</p>",
+        "GetTagsRequest$resourceArn": "<p>[Required] The ARN of a resource that can be tagged.</p>",
         "GetTagsRequest$position": "<p>(Not currently supported) The current pagination position in the paged result set.</p>",
         "GetUsagePlanKeyRequest$usagePlanId": "<p>[Required] The Id of the <a>UsagePlan</a> resource representing the usage plan containing the to-be-retrieved <a>UsagePlanKey</a> resource representing a plan customer.</p>",
         "GetUsagePlanKeyRequest$keyId": "<p>[Required] The key Id of the to-be-retrieved <a>UsagePlanKey</a> resource representing a plan customer.</p>",
@@ -1778,7 +1778,7 @@
         "Method$authorizerId": "<p>The identifier of an <a>Authorizer</a> to use on this method. The <code>authorizationType</code> must be <code>CUSTOM</code>.</p>",
         "Method$requestValidatorId": "<p>The identifier of a <a>RequestValidator</a> for request validation.</p>",
         "Method$operationName": "<p>A human-friendly operation identifier for the method. For example, you can assign the <code>operationName</code> of <code>ListPets</code> for the <code>GET /pets</code> method in the <code>PetStore</code> example.</p>",
-        "MethodSetting$loggingLevel": "<p>Specifies the logging level for this method, which affects the log entries pushed to Amazon CloudWatch Logs. The PATCH path for this setting is <code>/{method_setting_key}/logging/loglevel</code>, and the available levels are <code>OFF</code>, <code>ERROR</code>, and <code>INFO</code>.</p>",
+        "MethodSetting$loggingLevel": "<p>Specifies the logging level for this method, which affects the log entries pushed to Amazon CloudWatch Logs. The PATCH path for this setting is <code>/{method_setting_key}/logging/loglevel</code>, and the available levels are <code>OFF</code>, <code>ERROR</code>, and <code>INFO</code>. Choose <code>ERROR</code> to write only error-level entries to CloudWatch Logs, or choose <code>INFO</code> to include all <code>ERROR</code> events as well as extra informational events.</p>",
         "MethodSnapshot$authorizationType": "<p>The method's authorization type. Valid values are <code>NONE</code> for open access, <code>AWS_IAM</code> for using AWS IAM permissions, <code>CUSTOM</code> for using a custom authorizer, or <code>COGNITO_USER_POOLS</code> for using a Cognito user pool.</p>",
         "Model$id": "<p>The identifier for the model resource.</p>",
         "Model$name": "<p>The name of the model. Must be an alphanumeric string.</p>",
@@ -1850,7 +1850,7 @@
         "Stage$webAclArn": "<p>The ARN of the WebAcl associated with the <a>Stage</a>.</p>",
         "StageKey$restApiId": "<p>The string identifier of the associated <a>RestApi</a>.</p>",
         "StageKey$stageName": "<p>The stage name associated with the stage key.</p>",
-        "TagResourceRequest$resourceArn": "<p>[Required] The ARN of a resource that can be tagged. The resource ARN must be URL-encoded.</p>",
+        "TagResourceRequest$resourceArn": "<p>[Required] The ARN of a resource that can be tagged.</p>",
         "Template$value": "<p>The Apache <a href=\"https://velocity.apache.org/engine/devel/vtl-reference-guide.html\" target=\"_blank\">Velocity Template Language (VTL)</a> template content used for the template resource.</p>",
         "TestInvokeAuthorizerRequest$restApiId": "<p>[Required] The string identifier of the associated <a>RestApi</a>.</p>",
         "TestInvokeAuthorizerRequest$authorizerId": "<p>[Required] Specifies a test invoke authorizer request's <a>Authorizer</a> ID.</p>",
@@ -1870,7 +1870,7 @@
         "TooManyRequestsException$retryAfterSeconds": null,
         "TooManyRequestsException$message": null,
         "UnauthorizedException$message": null,
-        "UntagResourceRequest$resourceArn": "<p>[Required] The ARN of a resource that can be tagged. The resource ARN must be URL-encoded.</p>",
+        "UntagResourceRequest$resourceArn": "<p>[Required] The ARN of a resource that can be tagged.</p>",
         "UpdateApiKeyRequest$apiKey": "<p>[Required] The identifier of the <a>ApiKey</a> resource to be updated.</p>",
         "UpdateAuthorizerRequest$restApiId": "<p>[Required] The string identifier of the associated <a>RestApi</a>.</p>",
         "UpdateAuthorizerRequest$authorizerId": "<p>[Required] The identifier of the <a>Authorizer</a> resource.</p>",
@@ -2149,7 +2149,7 @@
       }
     },
     "VpcLink": {
-      "base": "<p>A API Gateway VPC link for a <a>RestApi</a> to access resources in an Amazon Virtual Private Cloud (VPC).</p> <div class=\"remarks\"> <p><p>To enable access to a resource in an Amazon Virtual Private Cloud through Amazon API Gateway, you, as an API developer, create a <a>VpcLink</a> resource targeted for one or more network load balancers of the VPC and then integrate an API method with a private integration that uses the <a>VpcLink</a>. The private integration has an integration type of <code>HTTP</code> or <code>HTTP_PROXY</code> and has a connection type of <code>VPC_LINK</code>. The integration uses the <code>connectionId</code> property to identify the <a>VpcLink</a> used.</p> </p> </div>",
+      "base": "<p>An API Gateway VPC link for a <a>RestApi</a> to access resources in an Amazon Virtual Private Cloud (VPC).</p> <div class=\"remarks\"> <p><p>To enable access to a resource in an Amazon Virtual Private Cloud through Amazon API Gateway, you, as an API developer, create a <a>VpcLink</a> resource targeted for one or more network load balancers of the VPC and then integrate an API method with a private integration that uses the <a>VpcLink</a>. The private integration has an integration type of <code>HTTP</code> or <code>HTTP_PROXY</code> and has a connection type of <code>VPC_LINK</code>. The integration uses the <code>connectionId</code> property to identify the <a>VpcLink</a> used.</p> </p> </div>",
       "refs": {
         "ListOfVpcLink$member": null
       }
