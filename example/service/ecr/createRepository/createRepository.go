@@ -16,7 +16,7 @@ const DEAFULT_AWS_REGION = "us-east-1"
 // This example creates a new ECR Repository
 //
 // Usage:
-// AWS_REGION=us-east-1 go run createECRRepository.go <repo_name>
+// AWS_REGION=us-east-1 go run -tags examplecreateECRRepository.go <repo_name>
 func main() {
 
 	config := &aws.Config{Region: aws.String(getAwsRegion())}
@@ -29,8 +29,8 @@ func main() {
 	input := &ecr.CreateRepositoryInput{
 		RepositoryName: aws.String(repoName),
 	}
+	
 	output, err := svc.CreateRepository(input)
-
 	if err != nil {
 		fmt.Printf("\nError creating the repo %v in region %v\n%v\n", repoName, aws.StringValue(config.Region), err.Error())
 		os.Exit(1)
@@ -41,7 +41,7 @@ func main() {
 
 // Print correct usage and exit the program with code 1
 func printUsageAndExit1() {
-	fmt.Println("\nUsage: AWS_REGION=us-east-1 go run createECRRepository.go <repo_name>")
+	fmt.Println("\nUsage: AWS_REGION=us-east-1 go run -tags example createECRRepository.go <repo_name>")
 	os.Exit(1)
 }
 
