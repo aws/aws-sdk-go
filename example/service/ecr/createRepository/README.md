@@ -8,13 +8,13 @@ This is an example using the AWS SDK for Go to create a new ECR Repository.
 The example creates the repository name provided in the first parameter on default `us-east-1` aws region.
 
 ```sh
-go run createRepository.go <repo_name>
+go run -tags example createRepository.go <repo_name>
 ```
 
 To create a repository in a diferent region, set `AWS_REGION` env var.
 
 ```sh
-AWS_REGION=us-east-1 go run createRepository.go <repo_name>
+AWS_REGION=us-west-2 go -tags example run createRepository.go <repo_name>
 ```
 
 Output:
