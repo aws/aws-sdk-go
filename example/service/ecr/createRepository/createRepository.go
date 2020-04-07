@@ -16,7 +16,7 @@ const DEAFULT_AWS_REGION = "us-east-1"
 // This example creates a new ECR Repository
 //
 // Usage:
-// AWS_REGION=us-east-1 go run -tags examplecreateECRRepository.go <repo_name>
+// AWS_REGION=us-east-1 go run -tags example createECRRepository.go <repo_name>
 func main() {
 
 	config := &aws.Config{Region: aws.String(getAwsRegion())}
