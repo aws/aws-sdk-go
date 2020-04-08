@@ -79,6 +79,21 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "GetPolicy":{
+      "name":"GetPolicy",
+      "http":{
+        "method":"GET",
+        "requestUri":"/profilingGroups/{profilingGroupName}/policy",
+        "responseCode":200
+      },
+      "input":{"shape":"GetPolicyRequest"},
+      "output":{"shape":"GetPolicyResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "GetProfile":{
       "name":"GetProfile",
       "http":{
@@ -141,6 +156,41 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "PutPermission":{
+      "name":"PutPermission",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/profilingGroups/{profilingGroupName}/policy/{actionGroup}",
+        "responseCode":200
+      },
+      "input":{"shape":"PutPermissionRequest"},
+      "output":{"shape":"PutPermissionResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
+    },
+    "RemovePermission":{
+      "name":"RemovePermission",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/profilingGroups/{profilingGroupName}/policy/{actionGroup}",
+        "responseCode":200
+      },
+      "input":{"shape":"RemovePermissionRequest"},
+      "output":{"shape":"RemovePermissionResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "UpdateProfilingGroup":{
       "name":"UpdateProfilingGroup",
       "http":{
@@ -161,6 +211,10 @@
     }
   },
   "shapes":{
+    "ActionGroup":{
+      "type":"string",
+      "enum":["agentPermissions"]
+    },
     "AgentConfiguration":{
       "type":"structure",
       "required":[
@@ -303,6 +357,28 @@
       "max":255,
       "min":1,
       "pattern":"^[\\w-.:/]+$"
+    },
+    "GetPolicyRequest":{
+      "type":"structure",
+      "required":["profilingGroupName"],
+      "members":{
+        "profilingGroupName":{
+          "shape":"ProfilingGroupName",
+          "location":"uri",
+          "locationName":"profilingGroupName"
+        }
+      }
+    },
+    "GetPolicyResponse":{
+      "type":"structure",
+      "required":[
+        "policy",
+        "revisionId"
+      ],
+      "members":{
+        "policy":{"shape":"String"},
+        "revisionId":{"shape":"RevisionId"}
+      }
     },
     "GetProfileRequest":{
       "type":"structure",
@@ -521,6 +597,13 @@
       "members":{
       }
     },
+    "Principal":{"type":"string"},
+    "Principals":{
+      "type":"list",
+      "member":{"shape":"Principal"},
+      "max":50,
+      "min":1
+    },
     "ProfileTime":{
       "type":"structure",
       "members":{
@@ -565,6 +648,75 @@
         "latestAggregatedProfile":{"shape":"AggregatedProfileTime"}
       }
     },
+    "PutPermissionRequest":{
+      "type":"structure",
+      "required":[
+        "actionGroup",
+        "principals",
+        "profilingGroupName"
+      ],
+      "members":{
+        "actionGroup":{
+          "shape":"ActionGroup",
+          "location":"uri",
+          "locationName":"actionGroup"
+        },
+        "principals":{"shape":"Principals"},
+        "profilingGroupName":{
+          "shape":"ProfilingGroupName",
+          "location":"uri",
+          "locationName":"profilingGroupName"
+        },
+        "revisionId":{"shape":"RevisionId"}
+      }
+    },
+    "PutPermissionResponse":{
+      "type":"structure",
+      "required":[
+        "policy",
+        "revisionId"
+      ],
+      "members":{
+        "policy":{"shape":"String"},
+        "revisionId":{"shape":"RevisionId"}
+      }
+    },
+    "RemovePermissionRequest":{
+      "type":"structure",
+      "required":[
+        "actionGroup",
+        "profilingGroupName",
+        "revisionId"
+      ],
+      "members":{
+        "actionGroup":{
+          "shape":"ActionGroup",
+          "location":"uri",
+          "locationName":"actionGroup"
+        },
+        "profilingGroupName":{
+          "shape":"ProfilingGroupName",
+          "location":"uri",
+          "locationName":"profilingGroupName"
+        },
+        "revisionId":{
+          "shape":"RevisionId",
+          "location":"querystring",
+          "locationName":"revisionId"
+        }
+      }
+    },
+    "RemovePermissionResponse":{
+      "type":"structure",
+      "required":[
+        "policy",
+        "revisionId"
+      ],
+      "members":{
+        "policy":{"shape":"String"},
+        "revisionId":{"shape":"RevisionId"}
+      }
+    },
     "ResourceNotFoundException":{
       "type":"structure",
       "required":["message"],
@@ -576,6 +728,10 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "RevisionId":{
+      "type":"string",
+      "pattern":"[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
     },
     "ServiceQuotaExceededException":{
       "type":"structure",

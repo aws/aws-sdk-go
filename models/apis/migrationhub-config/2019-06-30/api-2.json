@@ -25,6 +25,7 @@
         {"shape":"InternalServerError"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
         {"shape":"DryRunOperation"},
         {"shape":"InvalidInputException"}
       ]
@@ -41,6 +42,7 @@
         {"shape":"InternalServerError"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
         {"shape":"InvalidInputException"}
       ]
     },
@@ -56,6 +58,7 @@
         {"shape":"InternalServerError"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
         {"shape":"InvalidInputException"}
       ]
     }
@@ -171,6 +174,7 @@
       "exception":true
     },
     "RequestedTime":{"type":"timestamp"},
+    "RetryAfterSeconds":{"type":"integer"},
     "ServiceUnavailableException":{
       "type":"structure",
       "members":{
@@ -196,6 +200,15 @@
     "TargetType":{
       "type":"string",
       "enum":["ACCOUNT"]
+    },
+    "ThrottlingException":{
+      "type":"structure",
+      "required":["Message"],
+      "members":{
+        "Message":{"shape":"ErrorMessage"},
+        "RetryAfterSeconds":{"shape":"RetryAfterSeconds"}
+      },
+      "exception":true
     },
     "Token":{
       "type":"string",

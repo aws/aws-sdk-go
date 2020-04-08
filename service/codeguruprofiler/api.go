@@ -371,6 +371,91 @@ func (c *CodeGuruProfiler) DescribeProfilingGroupWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+const opGetPolicy = "GetPolicy"
+
+// GetPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetPolicy for more information on using the GetPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetPolicyRequest method.
+//    req, resp := client.GetPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/GetPolicy
+func (c *CodeGuruProfiler) GetPolicyRequest(input *GetPolicyInput) (req *request.Request, output *GetPolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetPolicy,
+		HTTPMethod: "GET",
+		HTTPPath:   "/profilingGroups/{profilingGroupName}/policy",
+	}
+
+	if input == nil {
+		input = &GetPolicyInput{}
+	}
+
+	output = &GetPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetPolicy API operation for Amazon CodeGuru Profiler.
+//
+// Gets the profiling group policy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CodeGuru Profiler's
+// API operation GetPolicy for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The server encountered an internal error and is unable to complete the request.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/GetPolicy
+func (c *CodeGuruProfiler) GetPolicy(input *GetPolicyInput) (*GetPolicyOutput, error) {
+	req, out := c.GetPolicyRequest(input)
+	return out, req.Send()
+}
+
+// GetPolicyWithContext is the same as GetPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeGuruProfiler) GetPolicyWithContext(ctx aws.Context, input *GetPolicyInput, opts ...request.Option) (*GetPolicyOutput, error) {
+	req, out := c.GetPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetProfile = "GetProfile"
 
 // GetProfileRequest generates a "aws/request.Request" representing the
@@ -839,6 +924,193 @@ func (c *CodeGuruProfiler) PostAgentProfile(input *PostAgentProfileInput) (*Post
 // for more information on using Contexts.
 func (c *CodeGuruProfiler) PostAgentProfileWithContext(ctx aws.Context, input *PostAgentProfileInput, opts ...request.Option) (*PostAgentProfileOutput, error) {
 	req, out := c.PostAgentProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutPermission = "PutPermission"
+
+// PutPermissionRequest generates a "aws/request.Request" representing the
+// client's request for the PutPermission operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutPermission for more information on using the PutPermission
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutPermissionRequest method.
+//    req, resp := client.PutPermissionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/PutPermission
+func (c *CodeGuruProfiler) PutPermissionRequest(input *PutPermissionInput) (req *request.Request, output *PutPermissionOutput) {
+	op := &request.Operation{
+		Name:       opPutPermission,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/profilingGroups/{profilingGroupName}/policy/{actionGroup}",
+	}
+
+	if input == nil {
+		input = &PutPermissionInput{}
+	}
+
+	output = &PutPermissionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutPermission API operation for Amazon CodeGuru Profiler.
+//
+// Provides permission to the principals. This overwrites the existing permissions,
+// and is not additive.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CodeGuru Profiler's
+// API operation PutPermission for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The server encountered an internal error and is unable to complete the request.
+//
+//   * ConflictException
+//   The requested operation would cause a conflict with the current state of
+//   a service resource associated with the request. Resolve the conflict before
+//   retrying this request.
+//
+//   * ValidationException
+//   The parameter is not valid.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/PutPermission
+func (c *CodeGuruProfiler) PutPermission(input *PutPermissionInput) (*PutPermissionOutput, error) {
+	req, out := c.PutPermissionRequest(input)
+	return out, req.Send()
+}
+
+// PutPermissionWithContext is the same as PutPermission with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutPermission for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeGuruProfiler) PutPermissionWithContext(ctx aws.Context, input *PutPermissionInput, opts ...request.Option) (*PutPermissionOutput, error) {
+	req, out := c.PutPermissionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opRemovePermission = "RemovePermission"
+
+// RemovePermissionRequest generates a "aws/request.Request" representing the
+// client's request for the RemovePermission operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RemovePermission for more information on using the RemovePermission
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RemovePermissionRequest method.
+//    req, resp := client.RemovePermissionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/RemovePermission
+func (c *CodeGuruProfiler) RemovePermissionRequest(input *RemovePermissionInput) (req *request.Request, output *RemovePermissionOutput) {
+	op := &request.Operation{
+		Name:       opRemovePermission,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/profilingGroups/{profilingGroupName}/policy/{actionGroup}",
+	}
+
+	if input == nil {
+		input = &RemovePermissionInput{}
+	}
+
+	output = &RemovePermissionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RemovePermission API operation for Amazon CodeGuru Profiler.
+//
+// Removes statement for the provided action group from the policy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CodeGuru Profiler's
+// API operation RemovePermission for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The server encountered an internal error and is unable to complete the request.
+//
+//   * ConflictException
+//   The requested operation would cause a conflict with the current state of
+//   a service resource associated with the request. Resolve the conflict before
+//   retrying this request.
+//
+//   * ValidationException
+//   The parameter is not valid.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguruprofiler-2019-07-18/RemovePermission
+func (c *CodeGuruProfiler) RemovePermission(input *RemovePermissionInput) (*RemovePermissionOutput, error) {
+	req, out := c.RemovePermissionRequest(input)
+	return out, req.Send()
+}
+
+// RemovePermissionWithContext is the same as RemovePermission with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RemovePermission for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeGuruProfiler) RemovePermissionWithContext(ctx aws.Context, input *RemovePermissionInput, opts ...request.Option) (*RemovePermissionOutput, error) {
+	req, out := c.RemovePermissionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1391,6 +1663,85 @@ func (s DescribeProfilingGroupOutput) GoString() string {
 // SetProfilingGroup sets the ProfilingGroup field's value.
 func (s *DescribeProfilingGroupOutput) SetProfilingGroup(v *ProfilingGroupDescription) *DescribeProfilingGroupOutput {
 	s.ProfilingGroup = v
+	return s
+}
+
+// The structure representing the getPolicyRequest.
+type GetPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the profiling group.
+	//
+	// ProfilingGroupName is a required field
+	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetPolicyInput"}
+	if s.ProfilingGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfilingGroupName"))
+	}
+	if s.ProfilingGroupName != nil && len(*s.ProfilingGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfilingGroupName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProfilingGroupName sets the ProfilingGroupName field's value.
+func (s *GetPolicyInput) SetProfilingGroupName(v string) *GetPolicyInput {
+	s.ProfilingGroupName = &v
+	return s
+}
+
+// The structure representing the getPolicyResponse.
+type GetPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource-based policy attached to the ProfilingGroup.
+	//
+	// Policy is a required field
+	Policy *string `locationName:"policy" type:"string" required:"true"`
+
+	// A unique identifier for the current revision of the policy.
+	//
+	// RevisionId is a required field
+	RevisionId *string `locationName:"revisionId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *GetPolicyOutput) SetPolicy(v string) *GetPolicyOutput {
+	s.Policy = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *GetPolicyOutput) SetRevisionId(v string) *GetPolicyOutput {
+	s.RevisionId = &v
 	return s
 }
 
@@ -2106,6 +2457,243 @@ func (s *ProfilingStatus) SetLatestAggregatedProfile(v *AggregatedProfileTime) *
 	return s
 }
 
+// The structure representing the putPermissionRequest.
+type PutPermissionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of actions that the users and roles can perform on the profiling
+	// group.
+	//
+	// ActionGroup is a required field
+	ActionGroup *string `location:"uri" locationName:"actionGroup" type:"string" required:"true" enum:"ActionGroup"`
+
+	// The list of role and user ARNs or the accountId that needs access (wildcards
+	// are not allowed).
+	//
+	// Principals is a required field
+	Principals []*string `locationName:"principals" min:"1" type:"list" required:"true"`
+
+	// The name of the profiling group.
+	//
+	// ProfilingGroupName is a required field
+	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
+
+	// A unique identifier for the current revision of the policy. This is required,
+	// if a policy exists for the profiling group. This is not required when creating
+	// the policy for the first time.
+	RevisionId *string `locationName:"revisionId" type:"string"`
+}
+
+// String returns the string representation
+func (s PutPermissionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutPermissionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutPermissionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutPermissionInput"}
+	if s.ActionGroup == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActionGroup"))
+	}
+	if s.ActionGroup != nil && len(*s.ActionGroup) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ActionGroup", 1))
+	}
+	if s.Principals == nil {
+		invalidParams.Add(request.NewErrParamRequired("Principals"))
+	}
+	if s.Principals != nil && len(s.Principals) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Principals", 1))
+	}
+	if s.ProfilingGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfilingGroupName"))
+	}
+	if s.ProfilingGroupName != nil && len(*s.ProfilingGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfilingGroupName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActionGroup sets the ActionGroup field's value.
+func (s *PutPermissionInput) SetActionGroup(v string) *PutPermissionInput {
+	s.ActionGroup = &v
+	return s
+}
+
+// SetPrincipals sets the Principals field's value.
+func (s *PutPermissionInput) SetPrincipals(v []*string) *PutPermissionInput {
+	s.Principals = v
+	return s
+}
+
+// SetProfilingGroupName sets the ProfilingGroupName field's value.
+func (s *PutPermissionInput) SetProfilingGroupName(v string) *PutPermissionInput {
+	s.ProfilingGroupName = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *PutPermissionInput) SetRevisionId(v string) *PutPermissionInput {
+	s.RevisionId = &v
+	return s
+}
+
+// The structure representing the putPermissionResponse.
+type PutPermissionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource-based policy.
+	//
+	// Policy is a required field
+	Policy *string `locationName:"policy" type:"string" required:"true"`
+
+	// A unique identifier for the current revision of the policy.
+	//
+	// RevisionId is a required field
+	RevisionId *string `locationName:"revisionId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PutPermissionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutPermissionOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *PutPermissionOutput) SetPolicy(v string) *PutPermissionOutput {
+	s.Policy = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *PutPermissionOutput) SetRevisionId(v string) *PutPermissionOutput {
+	s.RevisionId = &v
+	return s
+}
+
+// The structure representing the removePermissionRequest.
+type RemovePermissionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of actions that the users and roles can perform on the profiling
+	// group.
+	//
+	// ActionGroup is a required field
+	ActionGroup *string `location:"uri" locationName:"actionGroup" type:"string" required:"true" enum:"ActionGroup"`
+
+	// The name of the profiling group.
+	//
+	// ProfilingGroupName is a required field
+	ProfilingGroupName *string `location:"uri" locationName:"profilingGroupName" min:"1" type:"string" required:"true"`
+
+	// A unique identifier for the current revision of the policy.
+	//
+	// RevisionId is a required field
+	RevisionId *string `location:"querystring" locationName:"revisionId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RemovePermissionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemovePermissionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RemovePermissionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RemovePermissionInput"}
+	if s.ActionGroup == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActionGroup"))
+	}
+	if s.ActionGroup != nil && len(*s.ActionGroup) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ActionGroup", 1))
+	}
+	if s.ProfilingGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfilingGroupName"))
+	}
+	if s.ProfilingGroupName != nil && len(*s.ProfilingGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfilingGroupName", 1))
+	}
+	if s.RevisionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RevisionId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActionGroup sets the ActionGroup field's value.
+func (s *RemovePermissionInput) SetActionGroup(v string) *RemovePermissionInput {
+	s.ActionGroup = &v
+	return s
+}
+
+// SetProfilingGroupName sets the ProfilingGroupName field's value.
+func (s *RemovePermissionInput) SetProfilingGroupName(v string) *RemovePermissionInput {
+	s.ProfilingGroupName = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *RemovePermissionInput) SetRevisionId(v string) *RemovePermissionInput {
+	s.RevisionId = &v
+	return s
+}
+
+// The structure representing the removePermissionResponse.
+type RemovePermissionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource-based policy.
+	//
+	// Policy is a required field
+	Policy *string `locationName:"policy" type:"string" required:"true"`
+
+	// A unique identifier for the current revision of the policy.
+	//
+	// RevisionId is a required field
+	RevisionId *string `locationName:"revisionId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RemovePermissionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemovePermissionOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *RemovePermissionOutput) SetPolicy(v string) *RemovePermissionOutput {
+	s.Policy = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *RemovePermissionOutput) SetRevisionId(v string) *RemovePermissionOutput {
+	s.RevisionId = &v
+	return s
+}
+
 // The resource specified in the request does not exist.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -2416,6 +3004,11 @@ func (s *ValidationException) StatusCode() int {
 func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
+
+const (
+	// ActionGroupAgentPermissions is a ActionGroup enum value
+	ActionGroupAgentPermissions = "agentPermissions"
+)
 
 const (
 	// AggregationPeriodP1d is a AggregationPeriod enum value

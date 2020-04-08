@@ -2243,6 +2243,10 @@
           "locationName": "clientRequestToken",
           "idempotencyToken": true
         },
+        "HopDestinations": {
+          "shape": "__listOfHopDestination",
+          "locationName": "hopDestinations"
+        },
         "JobTemplate": {
           "shape": "__string",
           "locationName": "jobTemplate"
@@ -2308,6 +2312,10 @@
         "Description": {
           "shape": "__string",
           "locationName": "description"
+        },
+        "HopDestinations": {
+          "shape": "__listOfHopDestination",
+          "locationName": "hopDestinations"
         },
         "Name": {
           "shape": "__string",
@@ -4707,6 +4715,23 @@
         "TDRL"
       ]
     },
+    "HopDestination": {
+      "type": "structure",
+      "members": {
+        "Priority": {
+          "shape": "__integerMinNegative50Max50",
+          "locationName": "priority"
+        },
+        "Queue": {
+          "shape": "__string",
+          "locationName": "queue"
+        },
+        "WaitMinutes": {
+          "shape": "__integer",
+          "locationName": "waitMinutes"
+        }
+      }
+    },
     "Id3Insertion": {
       "type": "structure",
       "members": {
@@ -5073,6 +5098,10 @@
           "shape": "__string",
           "locationName": "errorMessage"
         },
+        "HopDestinations": {
+          "shape": "__listOfHopDestination",
+          "locationName": "hopDestinations"
+        },
         "Id": {
           "shape": "__string",
           "locationName": "id"
@@ -5100,6 +5129,10 @@
         "Queue": {
           "shape": "__string",
           "locationName": "queue"
+        },
+        "QueueTransitions": {
+          "shape": "__listOfQueueTransition",
+          "locationName": "queueTransitions"
         },
         "RetryCount": {
           "shape": "__integer",
@@ -5233,6 +5266,10 @@
         "Description": {
           "shape": "__string",
           "locationName": "description"
+        },
+        "HopDestinations": {
+          "shape": "__listOfHopDestination",
+          "locationName": "hopDestinations"
         },
         "LastUpdated": {
           "shape": "__timestampUnix",
@@ -7138,6 +7175,23 @@
         "PAUSED"
       ]
     },
+    "QueueTransition": {
+      "type": "structure",
+      "members": {
+        "DestinationQueue": {
+          "shape": "__string",
+          "locationName": "destinationQueue"
+        },
+        "SourceQueue": {
+          "shape": "__string",
+          "locationName": "sourceQueue"
+        },
+        "Timestamp": {
+          "shape": "__timestampUnix",
+          "locationName": "timestamp"
+        }
+      }
+    },
     "Rectangle": {
       "type": "structure",
       "members": {
@@ -7661,6 +7715,10 @@
         "Description": {
           "shape": "__string",
           "locationName": "description"
+        },
+        "HopDestinations": {
+          "shape": "__listOfHopDestination",
+          "locationName": "hopDestinations"
         },
         "Name": {
           "shape": "__string",
@@ -8448,6 +8506,12 @@
         "shape": "HlsCaptionLanguageMapping"
       }
     },
+    "__listOfHopDestination": {
+      "type": "list",
+      "member": {
+        "shape": "HopDestination"
+      }
+    },
     "__listOfId3Insertion": {
       "type": "list",
       "member": {
@@ -8536,6 +8600,12 @@
       "type": "list",
       "member": {
         "shape": "Queue"
+      }
+    },
+    "__listOfQueueTransition": {
+      "type": "list",
+      "member": {
+        "shape": "QueueTransition"
       }
     },
     "__listOfTeletextPageType": {
