@@ -103,6 +103,7 @@ func (c *EncryptionClient) PutObjectRequest(input *s3.PutObjectInput) (*request.
 		}
 		if err != nil {
 			r.Error = err
+			return
 		}
 
 		md5 := newMD5Reader(input.Body)
