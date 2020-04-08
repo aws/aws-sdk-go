@@ -120,9 +120,9 @@
       }
     },
     "AccelerationSettings": {
-      "base": "Accelerated transcoding can significantly speed up jobs with long, visually complex content. Outputs that use this feature incur pro-tier pricing. For information about feature limitations, see the AWS Elemental MediaConvert User Guide.",
+      "base": "Accelerated transcoding can significantly speed up jobs with long, visually complex content.",
       "refs": {
-        "CreateJobRequest$AccelerationSettings": "Accelerated transcoding can significantly speed up jobs with long, visually complex content. Outputs that use this feature incur pro-tier pricing. For information about feature limitations, see the AWS Elemental MediaConvert User Guide.",
+        "CreateJobRequest$AccelerationSettings": "Optional. Accelerated transcoding can significantly speed up jobs with long, visually complex content. Outputs that use this feature incur pro-tier pricing. For information about feature limitations, see the AWS Elemental MediaConvert User Guide.",
         "CreateJobTemplateRequest$AccelerationSettings": "Accelerated transcoding can significantly speed up jobs with long, visually complex content. Outputs that use this feature incur pro-tier pricing. For information about feature limitations, see the AWS Elemental MediaConvert User Guide.",
         "Job$AccelerationSettings": "Accelerated transcoding can significantly speed up jobs with long, visually complex content.",
         "JobTemplate$AccelerationSettings": "Accelerated transcoding can significantly speed up jobs with long, visually complex content.",
@@ -326,10 +326,10 @@
       }
     },
     "BillingTagsSource": {
-      "base": "Optional. Choose a tag type that AWS Billing and Cost Management will use to sort your AWS Elemental MediaConvert costs on any billing report that you set up. Any transcoding outputs that don't have an associated tag will appear in your billing report unsorted. If you don't choose a valid value for this field, your job outputs will appear on the billing report unsorted.",
+      "base": "The tag type that AWS Billing and Cost Management will use to sort your AWS Elemental MediaConvert costs on any billing report that you set up.",
       "refs": {
         "CreateJobRequest$BillingTagsSource": "Optional. Choose a tag type that AWS Billing and Cost Management will use to sort your AWS Elemental MediaConvert costs on any billing report that you set up. Any transcoding outputs that don't have an associated tag will appear in your billing report unsorted. If you don't choose a valid value for this field, your job outputs will appear on the billing report unsorted.",
-        "Job$BillingTagsSource": "Optional. Choose a tag type that AWS Billing and Cost Management will use to sort your AWS Elemental MediaConvert costs on any billing report that you set up. Any transcoding outputs that don't have an associated tag will appear in your billing report unsorted. If you don't choose a valid value for this field, your job outputs will appear on the billing report unsorted."
+        "Job$BillingTagsSource": "The tag type that AWS Billing and Cost Management will use to sort your AWS Elemental MediaConvert costs on any billing report that you set up."
       }
     },
     "BurninDestinationSettings": {
@@ -1631,6 +1631,12 @@
         "HlsGroupSettings$TimedMetadataId3Frame": "Indicates ID3 frame that has the timecode."
       }
     },
+    "HopDestination": {
+      "base": "Optional. Configuration for a destination queue to which the job can hop once a customer-defined minimum wait time has passed.",
+      "refs": {
+        "__listOfHopDestination$member": null
+      }
+    },
     "Id3Insertion": {
       "base": "To insert ID3 tags in your output, specify two values. Use ID3 tag (Id3) to specify the base 64 encoded string and use Timecode (TimeCode) to specify the time when the tag should be inserted. To insert multiple ID3 tags in your output, create multiple instances of ID3 insertion (Id3Insertion).",
       "refs": {
@@ -1764,7 +1770,7 @@
       "base": "A job's status can be SUBMITTED, PROGRESSING, COMPLETE, CANCELED, or ERROR.",
       "refs": {
         "Job$Status": "A job's status can be SUBMITTED, PROGRESSING, COMPLETE, CANCELED, or ERROR.",
-        "ListJobsRequest$Status": "A job's status can be SUBMITTED, PROGRESSING, COMPLETE, CANCELED, or ERROR."
+        "ListJobsRequest$Status": "Optional. A job's status can be SUBMITTED, PROGRESSING, COMPLETE, CANCELED, or ERROR."
       }
     },
     "JobTemplate": {
@@ -2279,12 +2285,12 @@
       }
     },
     "Order": {
-      "base": "When you request lists of resources, you can optionally specify whether they are sorted in ASCENDING or DESCENDING order. Default varies by resource.",
+      "base": "Optional. When you request lists of resources, you can specify whether they are sorted in ASCENDING or DESCENDING order. Default varies by resource.",
       "refs": {
-        "ListJobTemplatesRequest$Order": "When you request lists of resources, you can optionally specify whether they are sorted in ASCENDING or DESCENDING order. Default varies by resource.",
-        "ListJobsRequest$Order": "When you request lists of resources, you can optionally specify whether they are sorted in ASCENDING or DESCENDING order. Default varies by resource.",
-        "ListPresetsRequest$Order": "When you request lists of resources, you can optionally specify whether they are sorted in ASCENDING or DESCENDING order. Default varies by resource.",
-        "ListQueuesRequest$Order": "When you request lists of resources, you can optionally specify whether they are sorted in ASCENDING or DESCENDING order. Default varies by resource."
+        "ListJobTemplatesRequest$Order": "Optional. When you request lists of resources, you can specify whether they are sorted in ASCENDING or DESCENDING order. Default varies by resource.",
+        "ListJobsRequest$Order": "Optional. When you request lists of resources, you can specify whether they are sorted in ASCENDING or DESCENDING order. Default varies by resource.",
+        "ListPresetsRequest$Order": "Optional. When you request lists of resources, you can specify whether they are sorted in ASCENDING or DESCENDING order. Default varies by resource.",
+        "ListQueuesRequest$Order": "Optional. When you request lists of resources, you can specify whether they are sorted in ASCENDING or DESCENDING order. Default varies by resource."
       }
     },
     "Output": {
@@ -2442,6 +2448,12 @@
         "UpdateQueueRequest$Status": "Pause or activate a queue by changing its status between ACTIVE and PAUSED. If you pause a queue, jobs in that queue won't begin. Jobs that are running when you pause the queue continue to run until they finish or result in an error."
       }
     },
+    "QueueTransition": {
+      "base": "Description of the source and destination queues between which the job has moved, along with the timestamp of the move",
+      "refs": {
+        "__listOfQueueTransition$member": null
+      }
+    },
     "Rectangle": {
       "base": "Use Rectangle to identify a specific area of the video frame.",
       "refs": {
@@ -2549,7 +2561,7 @@
     "SimulateReservedQueue": {
       "base": "Enable this setting when you run a test job to estimate how many reserved transcoding slots (RTS) you need. When this is enabled, MediaConvert runs your job from an on-demand queue with similar performance to what you will see with one RTS in a reserved queue. This setting is disabled by default.",
       "refs": {
-        "CreateJobRequest$SimulateReservedQueue": "Enable this setting when you run a test job to estimate how many reserved transcoding slots (RTS) you need. When this is enabled, MediaConvert runs your job from an on-demand queue with similar performance to what you will see with one RTS in a reserved queue. This setting is disabled by default.",
+        "CreateJobRequest$SimulateReservedQueue": "Optional. Enable this setting when you run a test job to estimate how many reserved transcoding slots (RTS) you need. When this is enabled, MediaConvert runs your job from an on-demand queue with similar performance to what you will see with one RTS in a reserved queue. This setting is disabled by default.",
         "Job$SimulateReservedQueue": "Enable this setting when you run a test job to estimate how many reserved transcoding slots (RTS) you need. When this is enabled, MediaConvert runs your job from an on-demand queue with similar performance to what you will see with one RTS in a reserved queue. This setting is disabled by default."
       }
     },
@@ -2577,7 +2589,7 @@
     "StatusUpdateInterval": {
       "base": "Specify how often MediaConvert sends STATUS_UPDATE events to Amazon CloudWatch Events. Set the interval, in seconds, between status updates. MediaConvert sends an update at this interval from the time the service begins processing your job to the time it completes the transcode or encounters an error.",
       "refs": {
-        "CreateJobRequest$StatusUpdateInterval": "Specify how often MediaConvert sends STATUS_UPDATE events to Amazon CloudWatch Events. Set the interval, in seconds, between status updates. MediaConvert sends an update at this interval from the time the service begins processing your job to the time it completes the transcode or encounters an error.",
+        "CreateJobRequest$StatusUpdateInterval": "Optional. Specify how often MediaConvert sends STATUS_UPDATE events to Amazon CloudWatch Events. Set the interval, in seconds, between status updates. MediaConvert sends an update at this interval from the time the service begins processing your job to the time it completes the transcode or encounters an error.",
         "CreateJobTemplateRequest$StatusUpdateInterval": "Specify how often MediaConvert sends STATUS_UPDATE events to Amazon CloudWatch Events. Set the interval, in seconds, between status updates. MediaConvert sends an update at this interval from the time the service begins processing your job to the time it completes the transcode or encounters an error.",
         "Job$StatusUpdateInterval": "Specify how often MediaConvert sends STATUS_UPDATE events to Amazon CloudWatch Events. Set the interval, in seconds, between status updates. MediaConvert sends an update at this interval from the time the service begins processing your job to the time it completes the transcode or encounters an error.",
         "JobTemplate$StatusUpdateInterval": "Specify how often MediaConvert sends STATUS_UPDATE events to Amazon CloudWatch Events. Set the interval, in seconds, between status updates. MediaConvert sends an update at this interval from the time the service begins processing your job to the time it completes the transcode or encounters an error.",
@@ -2843,6 +2855,7 @@
       "base": null,
       "refs": {
         "DescribeEndpointsRequest$MaxResults": "Optional. Max number of endpoints, up to twenty, that will be returned at one time.",
+        "HopDestination$WaitMinutes": "Required for setting up a job to use queue hopping. Minimum wait time in minutes until the job can hop to the destination queue. Valid range is 1 to 1440 minutes, inclusive.",
         "Job$ErrorCode": "Error code for the job",
         "Job$JobPercentComplete": "An estimate of how far your job has progressed. This estimate is shown as a percentage of the total time from when your job leaves its queue to when your output files appear in your output Amazon S3 bucket. AWS Elemental MediaConvert provides jobPercentComplete in CloudWatch STATUS_UPDATE events and in the response to GetJob and ListJobs requests. The jobPercentComplete estimate is reliable for the following input containers: Quicktime, Transport Stream, MP4, and MXF. For some jobs, the service can't provide information about job progress. In those cases, jobPercentComplete returns a null value.",
         "Job$RetryCount": "The number of times that the service automatically attempted to process your job after encountering an error.",
@@ -3439,8 +3452,9 @@
     "__integerMinNegative50Max50": {
       "base": null,
       "refs": {
-        "CreateJobRequest$Priority": "Specify the relative priority for this job. In any given queue, the service begins processing the job with the highest value first. When more than one job has the same priority, the service begins processing the job that you submitted first. If you don't specify a priority, the service uses the default value 0.",
+        "CreateJobRequest$Priority": "Optional. Specify the relative priority for this job. In any given queue, the service begins processing the job with the highest value first. When more than one job has the same priority, the service begins processing the job that you submitted first. If you don't specify a priority, the service uses the default value 0.",
         "CreateJobTemplateRequest$Priority": "Specify the relative priority for this job. In any given queue, the service begins processing the job with the highest value first. When more than one job has the same priority, the service begins processing the job that you submitted first. If you don't specify a priority, the service uses the default value 0.",
+        "HopDestination$Priority": "Optional. When you set up a job to use queue hopping, you can specify a different relative priority for the job in the destination queue. If you don't specify, the relative priority will remain the same as in the previous queue.",
         "Job$Priority": "Relative priority on the job.",
         "JobTemplate$Priority": "Relative priority on the job.",
         "UpdateJobTemplateRequest$Priority": "Specify the relative priority for this job. In any given queue, the service begins processing the job with the highest value first. When more than one job has the same priority, the service begins processing the job that you submitted first. If you don't specify a priority, the service uses the default value 0."
@@ -3518,6 +3532,16 @@
       "base": null,
       "refs": {
         "HlsGroupSettings$CaptionLanguageMappings": "Language to be used on Caption outputs"
+      }
+    },
+    "__listOfHopDestination": {
+      "base": null,
+      "refs": {
+        "CreateJobRequest$HopDestinations": "Optional. Use queue hopping to avoid overly long waits in the backlog of the queue that you submit your job to. Specify an alternate queue and the maximum time that your job will wait in the initial queue before hopping. For more information about this feature, see the AWS Elemental MediaConvert User Guide.",
+        "CreateJobTemplateRequest$HopDestinations": "Optional. Use queue hopping to avoid overly long waits in the backlog of the queue that you submit your job to. Specify an alternate queue and the maximum time that your job will wait in the initial queue before hopping. For more information about this feature, see the AWS Elemental MediaConvert User Guide.",
+        "Job$HopDestinations": "Optional list of hop destinations.",
+        "JobTemplate$HopDestinations": "Optional list of hop destinations.",
+        "UpdateJobTemplateRequest$HopDestinations": "Optional list of hop destinations."
       }
     },
     "__listOfId3Insertion": {
@@ -3612,6 +3636,12 @@
         "ListQueuesResponse$Queues": "List of queues."
       }
     },
+    "__listOfQueueTransition": {
+      "base": null,
+      "refs": {
+        "Job$QueueTransitions": "The job's queue hopping history."
+      }
+    },
     "__listOfTeletextPageType": {
       "base": null,
       "refs": {
@@ -3700,8 +3730,8 @@
     "__mapOf__string": {
       "base": null,
       "refs": {
-        "CreateJobRequest$Tags": "The tags that you want to add to the resource. You can tag resources with a key-value pair or with only a key.",
-        "CreateJobRequest$UserMetadata": "User-defined metadata that you want to associate with an MediaConvert job. You specify metadata in key/value pairs.",
+        "CreateJobRequest$Tags": "Optional. The tags that you want to add to the resource. You can tag resources with a key-value pair or with only a key.",
+        "CreateJobRequest$UserMetadata": "Optional. User-defined metadata that you want to associate with an MediaConvert job. You specify metadata in key/value pairs.",
         "CreateJobTemplateRequest$Tags": "The tags that you want to add to the resource. You can tag resources with a key-value pair or with only a key.",
         "CreatePresetRequest$Tags": "The tags that you want to add to the resource. You can tag resources with a key-value pair or with only a key.",
         "CreateQueueRequest$Tags": "The tags that you want to add to the resource. You can tag resources with a key-value pair or with only a key.",
@@ -3719,8 +3749,8 @@
         "CaptionDescription$LanguageDescription": "Specify a label for this set of output captions. For example, \"English\", \"Director commentary\", or \"track_2\". For streaming outputs, MediaConvert passes this information into destination manifests for display on the end-viewer's player device. For outputs in other output groups, the service ignores this setting.",
         "CaptionDescriptionPreset$LanguageDescription": "Specify a label for this set of output captions. For example, \"English\", \"Director commentary\", or \"track_2\". For streaming outputs, MediaConvert passes this information into destination manifests for display on the end-viewer's player device. For outputs in other output groups, the service ignores this setting.",
         "CmafGroupSettings$BaseUrl": "A partial URI prefix that will be put in the manifest file at the top level BaseURL element. Can be used if streams are delivered from a different URL than the manifest file.",
-        "CreateJobRequest$ClientRequestToken": "Idempotency token for CreateJob operation.",
-        "CreateJobRequest$JobTemplate": "When you create a job, you can either specify a job template or specify the transcoding settings individually",
+        "CreateJobRequest$ClientRequestToken": "Optional. Idempotency token for CreateJob operation.",
+        "CreateJobRequest$JobTemplate": "Optional. When you create a job, you can either specify a job template or specify the transcoding settings individually.",
         "CreateJobRequest$Queue": "Optional. When you create a job, you can specify a queue to send it to. If you don't specify, the job will go to the default queue. For more about queues, see the User Guide topic at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html.",
         "CreateJobRequest$Role": "Required. The IAM role you use for creating this job. For details about permissions, see the User Guide topic at the User Guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/iam-role.html.",
         "CreateJobTemplateRequest$Category": "Optional. A category for the job template you are creating",
@@ -3750,11 +3780,12 @@
         "HlsSettings$AudioGroupId": "Specifies the group to which the audio Rendition belongs.",
         "HlsSettings$AudioRenditionSets": "List all the audio groups that are used with the video output stream. Input all the audio GROUP-IDs that are associated to the video, separate by ','.",
         "HlsSettings$SegmentModifier": "Use this setting to add an identifying string to the filename of each segment. The service adds this string between the name modifier and segment index number. You can use format identifiers in the string. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/using-variables-in-your-job-settings.html",
+        "HopDestination$Queue": "Optional unless the job is submitted on the default queue. When you set up a job to use queue hopping, you can specify a destination queue. This queue cannot be the original queue to which the job is submitted. If the original queue isn't the default queue and you don't specify the destination queue, the job will move to the default queue.",
         "Job$Arn": "An identifier for this resource that is unique within all of AWS.",
         "Job$ErrorMessage": "Error message of Job",
         "Job$Id": "A portion of the job's ARN, unique within your AWS Elemental MediaConvert resources",
         "Job$JobTemplate": "The job template that the job is created from, if it is created from a job template.",
-        "Job$Queue": "Optional. When you create a job, you can specify a queue to send it to. If you don't specify, the job will go to the default queue. For more about queues, see the User Guide topic at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html",
+        "Job$Queue": "When you create a job, you can specify a queue to send it to. If you don't specify, the job will go to the default queue. For more about queues, see the User Guide topic at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html",
         "Job$Role": "The IAM role you use for creating this job. For details about permissions, see the User Guide topic at the User Guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/iam-role.html",
         "JobTemplate$Arn": "An identifier for this resource that is unique within all of AWS.",
         "JobTemplate$Category": "An optional category you create to organize your job templates.",
@@ -3764,8 +3795,8 @@
         "ListJobTemplatesRequest$Category": "Optionally, specify a job template category to limit responses to only job templates from that category.",
         "ListJobTemplatesRequest$NextToken": "Use this string, provided with the response to a previous request, to request the next batch of job templates.",
         "ListJobTemplatesResponse$NextToken": "Use this string to request the next batch of job templates.",
-        "ListJobsRequest$NextToken": "Use this string, provided with the response to a previous request, to request the next batch of jobs.",
-        "ListJobsRequest$Queue": "Provide a queue name to get back only jobs from that queue.",
+        "ListJobsRequest$NextToken": "Optional. Use this string, provided with the response to a previous request, to request the next batch of jobs.",
+        "ListJobsRequest$Queue": "Optional. Provide a queue name to get back only jobs from that queue.",
         "ListJobsResponse$NextToken": "Use this string to request the next batch of jobs.",
         "ListPresetsRequest$Category": "Optionally, specify a preset category to limit responses to only presets from that category.",
         "ListPresetsRequest$NextToken": "Use this string, provided with the response to a previous request, to request the next batch of presets.",
@@ -3785,6 +3816,8 @@
         "Queue$Arn": "An identifier for this resource that is unique within all of AWS.",
         "Queue$Description": "An optional description that you create for each queue.",
         "Queue$Name": "A name that you create for each queue. Each name must be unique within your account.",
+        "QueueTransition$DestinationQueue": "The queue that the job was on after the transition.",
+        "QueueTransition$SourceQueue": "The queue that the job was on before the transition.",
         "ResourceTags$Arn": "The Amazon Resource Name (ARN) of the resource.",
         "SpekeKeyProvider$ResourceId": "Specify the resource ID that your SPEKE-compliant key provider uses to identify this content.",
         "StaticKeyProvider$Url": "Relates to DRM implementation. The location of the license server used for protecting content.",
@@ -4055,6 +4088,7 @@
         "Preset$LastUpdated": "The timestamp in epoch seconds when the preset was last updated.",
         "Queue$CreatedAt": "The timestamp in epoch seconds for when you created the queue.",
         "Queue$LastUpdated": "The timestamp in epoch seconds for when you most recently updated the queue.",
+        "QueueTransition$Timestamp": "The time, in Unix epoch format, that the job moved from the source queue to the destination queue.",
         "ReservationPlan$ExpiresAt": "The timestamp in epoch seconds for when the current pricing plan term for this reserved queue expires.",
         "ReservationPlan$PurchasedAt": "The timestamp in epoch seconds for when you set up the current pricing plan for this reserved queue.",
         "Timing$FinishTime": "The time, in Unix epoch format, that the transcoding job finished",

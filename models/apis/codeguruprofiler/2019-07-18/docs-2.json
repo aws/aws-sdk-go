@@ -6,13 +6,23 @@
     "CreateProfilingGroup": "<p>Creates a profiling group.</p>",
     "DeleteProfilingGroup": "<p>Deletes a profiling group.</p>",
     "DescribeProfilingGroup": "<p>Describes a profiling group.</p>",
+    "GetPolicy": "<p>Gets the profiling group policy.</p>",
     "GetProfile": "<p>Gets the aggregated profile of a profiling group for the specified time range. If the requested time range does not align with the available aggregated profiles, it is expanded to attain alignment. If aggregated profiles are available only for part of the period requested, the profile is returned from the earliest available to the latest within the requested time range. </p> <p>For example, if the requested time range is from 00:00 to 00:20 and the available profiles are from 00:15 to 00:25, the returned profile will be from 00:15 to 00:20. </p> <p>You must specify exactly two of the following parameters: <code>startTime</code>, <code>period</code>, and <code>endTime</code>. </p>",
     "ListProfileTimes": "<p>List the start times of the available aggregated profiles of a profiling group for an aggregation period within the specified time range.</p>",
     "ListProfilingGroups": "<p>Lists profiling groups.</p>",
     "PostAgentProfile": "<p/>",
+    "PutPermission": "<p>Provides permission to the principals. This overwrites the existing permissions, and is not additive.</p>",
+    "RemovePermission": "<p>Removes statement for the provided action group from the policy.</p>",
     "UpdateProfilingGroup": "<p>Updates a profiling group.</p>"
   },
   "shapes": {
+    "ActionGroup": {
+      "base": null,
+      "refs": {
+        "PutPermissionRequest$actionGroup": "<p>The list of actions that the users and roles can perform on the profiling group.</p>",
+        "RemovePermissionRequest$actionGroup": "<p>The list of actions that the users and roles can perform on the profiling group.</p>"
+      }
+    },
     "AgentConfiguration": {
       "base": "<p/>",
       "refs": {
@@ -118,6 +128,16 @@
         "ConfigureAgentRequest$fleetInstanceId": "<p/>"
       }
     },
+    "GetPolicyRequest": {
+      "base": "<p>The structure representing the getPolicyRequest.</p>",
+      "refs": {
+      }
+    },
+    "GetPolicyResponse": {
+      "base": "<p>The structure representing the getPolicyResponse.</p>",
+      "refs": {
+      }
+    },
     "GetProfileRequest": {
       "base": "<p>The structure representing the getProfileRequest.</p>",
       "refs": {
@@ -203,6 +223,18 @@
       "refs": {
       }
     },
+    "Principal": {
+      "base": null,
+      "refs": {
+        "Principals$member": null
+      }
+    },
+    "Principals": {
+      "base": null,
+      "refs": {
+        "PutPermissionRequest$principals": "<p>The list of role and user ARNs or the accountId that needs access (wildcards are not allowed).</p>"
+      }
+    },
     "ProfileTime": {
       "base": "<p>Information about the profile time.</p>",
       "refs": {
@@ -243,11 +275,14 @@
         "CreateProfilingGroupRequest$profilingGroupName": "<p>The name of the profiling group.</p>",
         "DeleteProfilingGroupRequest$profilingGroupName": "<p>The profiling group name to delete.</p>",
         "DescribeProfilingGroupRequest$profilingGroupName": "<p>The profiling group name.</p>",
+        "GetPolicyRequest$profilingGroupName": "<p>The name of the profiling group.</p>",
         "GetProfileRequest$profilingGroupName": "<p>The name of the profiling group to get.</p>",
         "ListProfileTimesRequest$profilingGroupName": "<p>The name of the profiling group.</p>",
         "PostAgentProfileRequest$profilingGroupName": "<p/>",
         "ProfilingGroupDescription$name": "<p>The name of the profiling group.</p>",
         "ProfilingGroupNames$member": null,
+        "PutPermissionRequest$profilingGroupName": "<p>The name of the profiling group.</p>",
+        "RemovePermissionRequest$profilingGroupName": "<p>The name of the profiling group.</p>",
         "UpdateProfilingGroupRequest$profilingGroupName": "<p>The name of the profiling group to update.</p>"
       }
     },
@@ -263,9 +298,39 @@
         "ProfilingGroupDescription$profilingStatus": "<p>The status of the profiling group.</p>"
       }
     },
+    "PutPermissionRequest": {
+      "base": "<p>The structure representing the putPermissionRequest.</p>",
+      "refs": {
+      }
+    },
+    "PutPermissionResponse": {
+      "base": "<p>The structure representing the putPermissionResponse.</p>",
+      "refs": {
+      }
+    },
+    "RemovePermissionRequest": {
+      "base": "<p>The structure representing the removePermissionRequest.</p>",
+      "refs": {
+      }
+    },
+    "RemovePermissionResponse": {
+      "base": "<p>The structure representing the removePermissionResponse.</p>",
+      "refs": {
+      }
+    },
     "ResourceNotFoundException": {
       "base": "<p>The resource specified in the request does not exist.</p>",
       "refs": {
+      }
+    },
+    "RevisionId": {
+      "base": null,
+      "refs": {
+        "GetPolicyResponse$revisionId": "<p>A unique identifier for the current revision of the policy.</p>",
+        "PutPermissionRequest$revisionId": "<p>A unique identifier for the current revision of the policy. This is required, if a policy exists for the profiling group. This is not required when creating the policy for the first time.</p>",
+        "PutPermissionResponse$revisionId": "<p>A unique identifier for the current revision of the policy.</p>",
+        "RemovePermissionRequest$revisionId": "<p>A unique identifier for the current revision of the policy.</p>",
+        "RemovePermissionResponse$revisionId": "<p>A unique identifier for the current revision of the policy.</p>"
       }
     },
     "ServiceQuotaExceededException": {
@@ -277,11 +342,14 @@
       "base": null,
       "refs": {
         "ConflictException$message": null,
+        "GetPolicyResponse$policy": "<p>The resource-based policy attached to the <code>ProfilingGroup</code>.</p>",
         "GetProfileRequest$accept": "<p>The format of the profile to return. You can choose <code>application/json</code> or the default <code>application/x-amzn-ion</code>. </p>",
         "GetProfileResponse$contentEncoding": "<p>The content encoding of the profile.</p>",
         "GetProfileResponse$contentType": "<p>The content type of the profile in the payload. It is either <code>application/json</code> or the default <code>application/x-amzn-ion</code>.</p>",
         "InternalServerException$message": null,
         "PostAgentProfileRequest$contentType": "<p/>",
+        "PutPermissionResponse$policy": "<p>The resource-based policy.</p>",
+        "RemovePermissionResponse$policy": "<p>The resource-based policy.</p>",
         "ResourceNotFoundException$message": null,
         "ServiceQuotaExceededException$message": null,
         "ThrottlingException$message": null,

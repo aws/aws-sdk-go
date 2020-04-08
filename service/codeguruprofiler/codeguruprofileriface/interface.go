@@ -76,6 +76,10 @@ type CodeGuruProfilerAPI interface {
 	DescribeProfilingGroupWithContext(aws.Context, *codeguruprofiler.DescribeProfilingGroupInput, ...request.Option) (*codeguruprofiler.DescribeProfilingGroupOutput, error)
 	DescribeProfilingGroupRequest(*codeguruprofiler.DescribeProfilingGroupInput) (*request.Request, *codeguruprofiler.DescribeProfilingGroupOutput)
 
+	GetPolicy(*codeguruprofiler.GetPolicyInput) (*codeguruprofiler.GetPolicyOutput, error)
+	GetPolicyWithContext(aws.Context, *codeguruprofiler.GetPolicyInput, ...request.Option) (*codeguruprofiler.GetPolicyOutput, error)
+	GetPolicyRequest(*codeguruprofiler.GetPolicyInput) (*request.Request, *codeguruprofiler.GetPolicyOutput)
+
 	GetProfile(*codeguruprofiler.GetProfileInput) (*codeguruprofiler.GetProfileOutput, error)
 	GetProfileWithContext(aws.Context, *codeguruprofiler.GetProfileInput, ...request.Option) (*codeguruprofiler.GetProfileOutput, error)
 	GetProfileRequest(*codeguruprofiler.GetProfileInput) (*request.Request, *codeguruprofiler.GetProfileOutput)
@@ -97,6 +101,14 @@ type CodeGuruProfilerAPI interface {
 	PostAgentProfile(*codeguruprofiler.PostAgentProfileInput) (*codeguruprofiler.PostAgentProfileOutput, error)
 	PostAgentProfileWithContext(aws.Context, *codeguruprofiler.PostAgentProfileInput, ...request.Option) (*codeguruprofiler.PostAgentProfileOutput, error)
 	PostAgentProfileRequest(*codeguruprofiler.PostAgentProfileInput) (*request.Request, *codeguruprofiler.PostAgentProfileOutput)
+
+	PutPermission(*codeguruprofiler.PutPermissionInput) (*codeguruprofiler.PutPermissionOutput, error)
+	PutPermissionWithContext(aws.Context, *codeguruprofiler.PutPermissionInput, ...request.Option) (*codeguruprofiler.PutPermissionOutput, error)
+	PutPermissionRequest(*codeguruprofiler.PutPermissionInput) (*request.Request, *codeguruprofiler.PutPermissionOutput)
+
+	RemovePermission(*codeguruprofiler.RemovePermissionInput) (*codeguruprofiler.RemovePermissionOutput, error)
+	RemovePermissionWithContext(aws.Context, *codeguruprofiler.RemovePermissionInput, ...request.Option) (*codeguruprofiler.RemovePermissionOutput, error)
+	RemovePermissionRequest(*codeguruprofiler.RemovePermissionInput) (*request.Request, *codeguruprofiler.RemovePermissionOutput)
 
 	UpdateProfilingGroup(*codeguruprofiler.UpdateProfilingGroupInput) (*codeguruprofiler.UpdateProfilingGroupOutput, error)
 	UpdateProfilingGroupWithContext(aws.Context, *codeguruprofiler.UpdateProfilingGroupInput, ...request.Option) (*codeguruprofiler.UpdateProfilingGroupOutput, error)

@@ -77,6 +77,9 @@ func (c *MigrationHubConfig) CreateHomeRegionControlRequest(input *CreateHomeReg
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
 //   * DryRunOperation
 //   Exception raised to indicate that authorization of an action was successful,
 //   when the DryRun flag is set to true.
@@ -157,8 +160,7 @@ func (c *MigrationHubConfig) DescribeHomeRegionControlsRequest(input *DescribeHo
 
 // DescribeHomeRegionControls API operation for AWS Migration Hub Config.
 //
-// This API permits filtering on the ControlId, HomeRegion, and RegionControlScope
-// fields.
+// This API permits filtering on the ControlId and HomeRegion fields.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -178,6 +180,9 @@ func (c *MigrationHubConfig) DescribeHomeRegionControlsRequest(input *DescribeHo
 //
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
 //
 //   * InvalidInputException
 //   Exception raised when the provided input violates a policy constraint or
@@ -325,6 +330,9 @@ func (c *MigrationHubConfig) GetHomeRegionRequest(input *GetHomeRegionInput) (re
 //
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
 //
 //   * InvalidInputException
 //   Exception raised when the provided input violates a policy constraint or
@@ -999,6 +1007,65 @@ func (s *Target) SetId(v string) *Target {
 func (s *Target) SetType(v string) *Target {
 	s.Type = &v
 	return s
+}
+
+// The request was denied due to request throttling.
+type ThrottlingException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// The number of seconds the caller should wait before retrying.
+	RetryAfterSeconds *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s ThrottlingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ThrottlingException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottlingException(v protocol.ResponseMetadata) error {
+	return &ThrottlingException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ThrottlingException) Code() string {
+	return "ThrottlingException"
+}
+
+// Message returns the exception's message.
+func (s *ThrottlingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ThrottlingException) OrigErr() error {
+	return nil
+}
+
+func (s *ThrottlingException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ThrottlingException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ThrottlingException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 const (

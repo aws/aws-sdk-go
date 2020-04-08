@@ -1703,6 +1703,9 @@ func (c *Chime) CreateProxySessionRequest(input *CreateProxySessionInput) (req *
 
 // CreateProxySession API operation for Amazon Chime.
 //
+// Creates a proxy session on the specified Amazon Chime Voice Connector for
+// the specified participant phone numbers.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2845,6 +2848,9 @@ func (c *Chime) DeleteProxySessionRequest(input *DeleteProxySessionInput) (req *
 
 // DeleteProxySession API operation for Amazon Chime.
 //
+// Deletes the specified proxy session from the specified Amazon Chime Voice
+// Connector.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3448,6 +3454,8 @@ func (c *Chime) DeleteVoiceConnectorProxyRequest(input *DeleteVoiceConnectorProx
 }
 
 // DeleteVoiceConnectorProxy API operation for Amazon Chime.
+//
+// Deletes the proxy configuration from the specified Amazon Chime Voice Connector.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5232,6 +5240,9 @@ func (c *Chime) GetProxySessionRequest(input *GetProxySessionInput) (req *reques
 
 // GetProxySession API operation for Amazon Chime.
 //
+// Gets the specified proxy session details for the specified Amazon Chime Voice
+// Connector.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6025,6 +6036,9 @@ func (c *Chime) GetVoiceConnectorProxyRequest(input *GetVoiceConnectorProxyInput
 
 // GetVoiceConnectorProxy API operation for Amazon Chime.
 //
+// Gets the proxy configuration details for the specified Amazon Chime Voice
+// Connector.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6635,6 +6649,104 @@ func (c *Chime) ListAccountsPagesWithContext(ctx aws.Context, input *ListAccount
 	return p.Err()
 }
 
+const opListAttendeeTags = "ListAttendeeTags"
+
+// ListAttendeeTagsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAttendeeTags operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAttendeeTags for more information on using the ListAttendeeTags
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAttendeeTagsRequest method.
+//    req, resp := client.ListAttendeeTagsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListAttendeeTags
+func (c *Chime) ListAttendeeTagsRequest(input *ListAttendeeTagsInput) (req *request.Request, output *ListAttendeeTagsOutput) {
+	op := &request.Operation{
+		Name:       opListAttendeeTags,
+		HTTPMethod: "GET",
+		HTTPPath:   "/meetings/{meetingId}/attendees/{attendeeId}/tags",
+	}
+
+	if input == nil {
+		input = &ListAttendeeTagsInput{}
+	}
+
+	output = &ListAttendeeTagsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAttendeeTags API operation for Amazon Chime.
+//
+// Lists the tags applied to an Amazon Chime SDK attendee resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation ListAttendeeTags for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListAttendeeTags
+func (c *Chime) ListAttendeeTags(input *ListAttendeeTagsInput) (*ListAttendeeTagsOutput, error) {
+	req, out := c.ListAttendeeTagsRequest(input)
+	return out, req.Send()
+}
+
+// ListAttendeeTagsWithContext is the same as ListAttendeeTags with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAttendeeTags for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListAttendeeTagsWithContext(ctx aws.Context, input *ListAttendeeTagsInput, opts ...request.Option) (*ListAttendeeTagsOutput, error) {
+	req, out := c.ListAttendeeTagsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListAttendees = "ListAttendees"
 
 // ListAttendeesRequest generates a "aws/request.Request" representing the
@@ -6948,6 +7060,104 @@ func (c *Chime) ListBotsPagesWithContext(ctx aws.Context, input *ListBotsInput, 
 	}
 
 	return p.Err()
+}
+
+const opListMeetingTags = "ListMeetingTags"
+
+// ListMeetingTagsRequest generates a "aws/request.Request" representing the
+// client's request for the ListMeetingTags operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMeetingTags for more information on using the ListMeetingTags
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListMeetingTagsRequest method.
+//    req, resp := client.ListMeetingTagsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListMeetingTags
+func (c *Chime) ListMeetingTagsRequest(input *ListMeetingTagsInput) (req *request.Request, output *ListMeetingTagsOutput) {
+	op := &request.Operation{
+		Name:       opListMeetingTags,
+		HTTPMethod: "GET",
+		HTTPPath:   "/meetings/{meetingId}/tags",
+	}
+
+	if input == nil {
+		input = &ListMeetingTagsInput{}
+	}
+
+	output = &ListMeetingTagsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListMeetingTags API operation for Amazon Chime.
+//
+// Lists the tags applied to an Amazon Chime SDK meeting resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation ListMeetingTags for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListMeetingTags
+func (c *Chime) ListMeetingTags(input *ListMeetingTagsInput) (*ListMeetingTagsOutput, error) {
+	req, out := c.ListMeetingTagsRequest(input)
+	return out, req.Send()
+}
+
+// ListMeetingTagsWithContext is the same as ListMeetingTags with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMeetingTags for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListMeetingTagsWithContext(ctx aws.Context, input *ListMeetingTagsInput, opts ...request.Option) (*ListMeetingTagsOutput, error) {
+	req, out := c.ListMeetingTagsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListMeetings = "ListMeetings"
@@ -7462,6 +7672,8 @@ func (c *Chime) ListProxySessionsRequest(input *ListProxySessionsInput) (req *re
 
 // ListProxySessions API operation for Amazon Chime.
 //
+// Lists the proxy sessions for the specified Amazon Chime Voice Connector.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7879,6 +8091,101 @@ func (c *Chime) ListRoomsPagesWithContext(ctx aws.Context, input *ListRoomsInput
 	}
 
 	return p.Err()
+}
+
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListTagsForResourceRequest method.
+//    req, resp := client.ListTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListTagsForResource
+func (c *Chime) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "GET",
+		HTTPPath:   "/tags",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for Amazon Chime.
+//
+// Lists the tags applied to an Amazon Chime SDK meeting resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListTagsForResource
+func (c *Chime) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListUsers = "ListUsers"
@@ -8886,6 +9193,9 @@ func (c *Chime) PutVoiceConnectorProxyRequest(input *PutVoiceConnectorProxyInput
 
 // PutVoiceConnectorProxy API operation for Amazon Chime.
 //
+// Puts the specified proxy configuration to the specified Amazon Chime Voice
+// Connector.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -9638,6 +9948,600 @@ func (c *Chime) SearchAvailablePhoneNumbersWithContext(ctx aws.Context, input *S
 	return out, req.Send()
 }
 
+const opTagAttendee = "TagAttendee"
+
+// TagAttendeeRequest generates a "aws/request.Request" representing the
+// client's request for the TagAttendee operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagAttendee for more information on using the TagAttendee
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the TagAttendeeRequest method.
+//    req, resp := client.TagAttendeeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/TagAttendee
+func (c *Chime) TagAttendeeRequest(input *TagAttendeeInput) (req *request.Request, output *TagAttendeeOutput) {
+	op := &request.Operation{
+		Name:       opTagAttendee,
+		HTTPMethod: "POST",
+		HTTPPath:   "/meetings/{meetingId}/attendees/{attendeeId}/tags?operation=add",
+	}
+
+	if input == nil {
+		input = &TagAttendeeInput{}
+	}
+
+	output = &TagAttendeeOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagAttendee API operation for Amazon Chime.
+//
+// Applies the specified tags to the specified Amazon Chime SDK attendee.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation TagAttendee for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ResourceLimitExceededException
+//   The request exceeds the resource limit.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/TagAttendee
+func (c *Chime) TagAttendee(input *TagAttendeeInput) (*TagAttendeeOutput, error) {
+	req, out := c.TagAttendeeRequest(input)
+	return out, req.Send()
+}
+
+// TagAttendeeWithContext is the same as TagAttendee with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagAttendee for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) TagAttendeeWithContext(ctx aws.Context, input *TagAttendeeInput, opts ...request.Option) (*TagAttendeeOutput, error) {
+	req, out := c.TagAttendeeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opTagMeeting = "TagMeeting"
+
+// TagMeetingRequest generates a "aws/request.Request" representing the
+// client's request for the TagMeeting operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagMeeting for more information on using the TagMeeting
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the TagMeetingRequest method.
+//    req, resp := client.TagMeetingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/TagMeeting
+func (c *Chime) TagMeetingRequest(input *TagMeetingInput) (req *request.Request, output *TagMeetingOutput) {
+	op := &request.Operation{
+		Name:       opTagMeeting,
+		HTTPMethod: "POST",
+		HTTPPath:   "/meetings/{meetingId}/tags?operation=add",
+	}
+
+	if input == nil {
+		input = &TagMeetingInput{}
+	}
+
+	output = &TagMeetingOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagMeeting API operation for Amazon Chime.
+//
+// Applies the specified tags to the specified Amazon Chime SDK meeting.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation TagMeeting for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ResourceLimitExceededException
+//   The request exceeds the resource limit.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/TagMeeting
+func (c *Chime) TagMeeting(input *TagMeetingInput) (*TagMeetingOutput, error) {
+	req, out := c.TagMeetingRequest(input)
+	return out, req.Send()
+}
+
+// TagMeetingWithContext is the same as TagMeeting with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagMeeting for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) TagMeetingWithContext(ctx aws.Context, input *TagMeetingInput, opts ...request.Option) (*TagMeetingOutput, error) {
+	req, out := c.TagMeetingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the TagResourceRequest method.
+//    req, resp := client.TagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/TagResource
+func (c *Chime) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/tags?operation=tag-resource",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for Amazon Chime.
+//
+// Applies the specified tags to the specified Amazon Chime SDK meeting resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/TagResource
+func (c *Chime) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagAttendee = "UntagAttendee"
+
+// UntagAttendeeRequest generates a "aws/request.Request" representing the
+// client's request for the UntagAttendee operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagAttendee for more information on using the UntagAttendee
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UntagAttendeeRequest method.
+//    req, resp := client.UntagAttendeeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UntagAttendee
+func (c *Chime) UntagAttendeeRequest(input *UntagAttendeeInput) (req *request.Request, output *UntagAttendeeOutput) {
+	op := &request.Operation{
+		Name:       opUntagAttendee,
+		HTTPMethod: "POST",
+		HTTPPath:   "/meetings/{meetingId}/attendees/{attendeeId}/tags?operation=delete",
+	}
+
+	if input == nil {
+		input = &UntagAttendeeInput{}
+	}
+
+	output = &UntagAttendeeOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagAttendee API operation for Amazon Chime.
+//
+// Untags the specified tags from the specified Amazon Chime SDK attendee.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation UntagAttendee for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UntagAttendee
+func (c *Chime) UntagAttendee(input *UntagAttendeeInput) (*UntagAttendeeOutput, error) {
+	req, out := c.UntagAttendeeRequest(input)
+	return out, req.Send()
+}
+
+// UntagAttendeeWithContext is the same as UntagAttendee with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagAttendee for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) UntagAttendeeWithContext(ctx aws.Context, input *UntagAttendeeInput, opts ...request.Option) (*UntagAttendeeOutput, error) {
+	req, out := c.UntagAttendeeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagMeeting = "UntagMeeting"
+
+// UntagMeetingRequest generates a "aws/request.Request" representing the
+// client's request for the UntagMeeting operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagMeeting for more information on using the UntagMeeting
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UntagMeetingRequest method.
+//    req, resp := client.UntagMeetingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UntagMeeting
+func (c *Chime) UntagMeetingRequest(input *UntagMeetingInput) (req *request.Request, output *UntagMeetingOutput) {
+	op := &request.Operation{
+		Name:       opUntagMeeting,
+		HTTPMethod: "POST",
+		HTTPPath:   "/meetings/{meetingId}/tags?operation=delete",
+	}
+
+	if input == nil {
+		input = &UntagMeetingInput{}
+	}
+
+	output = &UntagMeetingOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagMeeting API operation for Amazon Chime.
+//
+// Untags the specified tags from the specified Amazon Chime SDK meeting.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation UntagMeeting for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UntagMeeting
+func (c *Chime) UntagMeeting(input *UntagMeetingInput) (*UntagMeetingOutput, error) {
+	req, out := c.UntagMeetingRequest(input)
+	return out, req.Send()
+}
+
+// UntagMeetingWithContext is the same as UntagMeeting with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagMeeting for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) UntagMeetingWithContext(ctx aws.Context, input *UntagMeetingInput, opts ...request.Option) (*UntagMeetingOutput, error) {
+	req, out := c.UntagMeetingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UntagResourceRequest method.
+//    req, resp := client.UntagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UntagResource
+func (c *Chime) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/tags?operation=untag-resource",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for Amazon Chime.
+//
+// Untags the specified tags from the specified Amazon Chime SDK meeting resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UntagResource
+func (c *Chime) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateAccount = "UpdateAccount"
 
 // UpdateAccountRequest generates a "aws/request.Request" representing the
@@ -10289,6 +11193,8 @@ func (c *Chime) UpdateProxySessionRequest(input *UpdateProxySessionInput) (req *
 }
 
 // UpdateProxySession API operation for Amazon Chime.
+//
+// Updates the specified proxy session details, such as voice or SMS capabilities.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12492,6 +13398,9 @@ type CreateAttendeeInput struct {
 	//
 	// MeetingId is a required field
 	MeetingId *string `location:"uri" locationName:"meetingId" type:"string" required:"true"`
+
+	// The tag key-value pairs.
+	Tags []*Tag `min:"1" type:"list"`
 }
 
 // String returns the string representation
@@ -12519,6 +13428,19 @@ func (s *CreateAttendeeInput) Validate() error {
 	if s.MeetingId != nil && len(*s.MeetingId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MeetingId", 1))
 	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -12535,6 +13457,12 @@ func (s *CreateAttendeeInput) SetExternalUserId(v string) *CreateAttendeeInput {
 // SetMeetingId sets the MeetingId field's value.
 func (s *CreateAttendeeInput) SetMeetingId(v string) *CreateAttendeeInput {
 	s.MeetingId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateAttendeeInput) SetTags(v []*Tag) *CreateAttendeeInput {
+	s.Tags = v
 	return s
 }
 
@@ -12571,6 +13499,9 @@ type CreateAttendeeRequestItem struct {
 	//
 	// ExternalUserId is a required field
 	ExternalUserId *string `min:"2" type:"string" required:"true" sensitive:"true"`
+
+	// The tag key-value pairs.
+	Tags []*Tag `min:"1" type:"list"`
 }
 
 // String returns the string representation
@@ -12592,6 +13523,19 @@ func (s *CreateAttendeeRequestItem) Validate() error {
 	if s.ExternalUserId != nil && len(*s.ExternalUserId) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("ExternalUserId", 2))
 	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -12602,6 +13546,12 @@ func (s *CreateAttendeeRequestItem) Validate() error {
 // SetExternalUserId sets the ExternalUserId field's value.
 func (s *CreateAttendeeRequestItem) SetExternalUserId(v string) *CreateAttendeeRequestItem {
 	s.ExternalUserId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateAttendeeRequestItem) SetTags(v []*Tag) *CreateAttendeeRequestItem {
+	s.Tags = v
 	return s
 }
 
@@ -12699,6 +13649,9 @@ type CreateMeetingInput struct {
 	// meetings.
 	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
 
+	// The external meeting ID.
+	ExternalMeetingId *string `min:"2" type:"string" sensitive:"true"`
+
 	// The Region in which to create the meeting. Available values: ap-northeast-1,
 	// ap-southeast-1, ap-southeast-2, ca-central-1, eu-central-1, eu-north-1, eu-west-1,
 	// eu-west-2, eu-west-3, sa-east-1, us-east-1, us-east-2, us-west-1, us-west-2.
@@ -12710,6 +13663,9 @@ type CreateMeetingInput struct {
 	// The configuration for resource targets to receive notifications when meeting
 	// and attendee events occur.
 	NotificationsConfiguration *MeetingNotificationConfiguration `type:"structure"`
+
+	// The tag key-value pairs.
+	Tags []*Tag `min:"1" type:"list"`
 }
 
 // String returns the string representation
@@ -12728,12 +13684,28 @@ func (s *CreateMeetingInput) Validate() error {
 	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 2))
 	}
+	if s.ExternalMeetingId != nil && len(*s.ExternalMeetingId) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ExternalMeetingId", 2))
+	}
 	if s.MeetingHostId != nil && len(*s.MeetingHostId) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("MeetingHostId", 2))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
 	if s.NotificationsConfiguration != nil {
 		if err := s.NotificationsConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("NotificationsConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -12746,6 +13718,12 @@ func (s *CreateMeetingInput) Validate() error {
 // SetClientRequestToken sets the ClientRequestToken field's value.
 func (s *CreateMeetingInput) SetClientRequestToken(v string) *CreateMeetingInput {
 	s.ClientRequestToken = &v
+	return s
+}
+
+// SetExternalMeetingId sets the ExternalMeetingId field's value.
+func (s *CreateMeetingInput) SetExternalMeetingId(v string) *CreateMeetingInput {
+	s.ExternalMeetingId = &v
 	return s
 }
 
@@ -12764,6 +13742,12 @@ func (s *CreateMeetingInput) SetMeetingHostId(v string) *CreateMeetingInput {
 // SetNotificationsConfiguration sets the NotificationsConfiguration field's value.
 func (s *CreateMeetingInput) SetNotificationsConfiguration(v *MeetingNotificationConfiguration) *CreateMeetingInput {
 	s.NotificationsConfiguration = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateMeetingInput) SetTags(v []*Tag) *CreateMeetingInput {
+	s.Tags = v
 	return s
 }
 
@@ -12868,22 +13852,35 @@ func (s *CreatePhoneNumberOrderOutput) SetPhoneNumberOrder(v *PhoneNumberOrder) 
 type CreateProxySessionInput struct {
 	_ struct{} `type:"structure"`
 
+	// The proxy session capabilities.
+	//
 	// Capabilities is a required field
 	Capabilities []*string `type:"list" required:"true"`
 
+	// The number of minutes allowed for the proxy session.
 	ExpiryMinutes *int64 `min:"1" type:"integer"`
 
+	// The preference for matching the country or area code of the proxy phone number
+	// with that of the first participant.
 	GeoMatchLevel *string `type:"string" enum:"GeoMatchLevel"`
 
+	// The country and area code for the proxy phone number.
 	GeoMatchParams *GeoMatchParams `type:"structure"`
 
+	// The name of the proxy session.
 	Name *string `type:"string" sensitive:"true"`
 
+	// The preference for proxy phone number reuse, or stickiness, between the same
+	// participants across sessions.
 	NumberSelectionBehavior *string `type:"string" enum:"NumberSelectionBehavior"`
 
+	// The participant phone numbers.
+	//
 	// ParticipantPhoneNumbers is a required field
 	ParticipantPhoneNumbers []*string `min:"2" type:"list" required:"true"`
 
+	// The Amazon Chime voice connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" min:"1" type:"string" required:"true"`
 }
@@ -12982,6 +13979,7 @@ func (s *CreateProxySessionInput) SetVoiceConnectorId(v string) *CreateProxySess
 type CreateProxySessionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The proxy session details.
 	ProxySession *ProxySession `type:"structure"`
 }
 
@@ -13805,9 +14803,13 @@ func (s DeletePhoneNumberOutput) GoString() string {
 type DeleteProxySessionInput struct {
 	_ struct{} `type:"structure"`
 
+	// The proxy session ID.
+	//
 	// ProxySessionId is a required field
 	ProxySessionId *string `location:"uri" locationName:"proxySessionId" min:"1" type:"string" required:"true"`
 
+	// The Amazon Chime voice connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" min:"1" type:"string" required:"true"`
 }
@@ -14199,6 +15201,8 @@ func (s DeleteVoiceConnectorOutput) GoString() string {
 type DeleteVoiceConnectorProxyInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Chime Voice Connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" min:"1" type:"string" required:"true"`
 }
@@ -14820,12 +15824,17 @@ func (s *ForbiddenException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The country and area code for a proxy phone number in a proxy phone session.
 type GeoMatchParams struct {
 	_ struct{} `type:"structure"`
 
+	// The area code.
+	//
 	// AreaCode is a required field
 	AreaCode *string `type:"string" required:"true"`
 
+	// The country.
+	//
 	// Country is a required field
 	Country *string `type:"string" required:"true"`
 }
@@ -15526,9 +16535,13 @@ func (s *GetPhoneNumberSettingsOutput) SetCallingNameUpdatedTimestamp(v time.Tim
 type GetProxySessionInput struct {
 	_ struct{} `type:"structure"`
 
+	// The proxy session ID.
+	//
 	// ProxySessionId is a required field
 	ProxySessionId *string `location:"uri" locationName:"proxySessionId" min:"1" type:"string" required:"true"`
 
+	// The Amazon Chime voice connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" min:"1" type:"string" required:"true"`
 }
@@ -15580,6 +16593,7 @@ func (s *GetProxySessionInput) SetVoiceConnectorId(v string) *GetProxySessionInp
 type GetProxySessionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The proxy session details.
 	ProxySession *ProxySession `type:"structure"`
 }
 
@@ -16101,6 +17115,8 @@ func (s *GetVoiceConnectorOutput) SetVoiceConnector(v *VoiceConnector) *GetVoice
 type GetVoiceConnectorProxyInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Chime voice connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" min:"1" type:"string" required:"true"`
 }
@@ -16140,6 +17156,7 @@ func (s *GetVoiceConnectorProxyInput) SetVoiceConnectorId(v string) *GetVoiceCon
 type GetVoiceConnectorProxyOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The proxy configuration details.
 	Proxy *Proxy `type:"structure"`
 }
 
@@ -16588,6 +17605,87 @@ func (s *ListAccountsOutput) SetNextToken(v string) *ListAccountsOutput {
 	return s
 }
 
+type ListAttendeeTagsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime SDK attendee ID.
+	//
+	// AttendeeId is a required field
+	AttendeeId *string `location:"uri" locationName:"attendeeId" type:"string" required:"true"`
+
+	// The Amazon Chime SDK meeting ID.
+	//
+	// MeetingId is a required field
+	MeetingId *string `location:"uri" locationName:"meetingId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListAttendeeTagsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAttendeeTagsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAttendeeTagsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAttendeeTagsInput"}
+	if s.AttendeeId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttendeeId"))
+	}
+	if s.AttendeeId != nil && len(*s.AttendeeId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttendeeId", 1))
+	}
+	if s.MeetingId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MeetingId"))
+	}
+	if s.MeetingId != nil && len(*s.MeetingId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MeetingId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttendeeId sets the AttendeeId field's value.
+func (s *ListAttendeeTagsInput) SetAttendeeId(v string) *ListAttendeeTagsInput {
+	s.AttendeeId = &v
+	return s
+}
+
+// SetMeetingId sets the MeetingId field's value.
+func (s *ListAttendeeTagsInput) SetMeetingId(v string) *ListAttendeeTagsInput {
+	s.MeetingId = &v
+	return s
+}
+
+type ListAttendeeTagsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of tag key-value pairs.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s ListAttendeeTagsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAttendeeTagsOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListAttendeeTagsOutput) SetTags(v []*Tag) *ListAttendeeTagsOutput {
+	s.Tags = v
+	return s
+}
+
 type ListAttendeesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16774,6 +17872,70 @@ func (s *ListBotsOutput) SetBots(v []*Bot) *ListBotsOutput {
 // SetNextToken sets the NextToken field's value.
 func (s *ListBotsOutput) SetNextToken(v string) *ListBotsOutput {
 	s.NextToken = &v
+	return s
+}
+
+type ListMeetingTagsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime SDK meeting ID.
+	//
+	// MeetingId is a required field
+	MeetingId *string `location:"uri" locationName:"meetingId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListMeetingTagsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListMeetingTagsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMeetingTagsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMeetingTagsInput"}
+	if s.MeetingId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MeetingId"))
+	}
+	if s.MeetingId != nil && len(*s.MeetingId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MeetingId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMeetingId sets the MeetingId field's value.
+func (s *ListMeetingTagsInput) SetMeetingId(v string) *ListMeetingTagsInput {
+	s.MeetingId = &v
+	return s
+}
+
+type ListMeetingTagsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of tag key-value pairs.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s ListMeetingTagsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListMeetingTagsOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListMeetingTagsOutput) SetTags(v []*Tag) *ListMeetingTagsOutput {
+	s.Tags = v
 	return s
 }
 
@@ -17047,12 +18209,17 @@ func (s *ListPhoneNumbersOutput) SetPhoneNumbers(v []*PhoneNumber) *ListPhoneNum
 type ListProxySessionsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The maximum number of results to return in a single call.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
+	// The token to use to retrieve the next page of results.
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 
+	// The proxy session status.
 	Status *string `location:"querystring" locationName:"status" type:"string" enum:"ProxySessionStatus"`
 
+	// The Amazon Chime voice connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" min:"1" type:"string" required:"true"`
 }
@@ -17113,8 +18280,10 @@ func (s *ListProxySessionsInput) SetVoiceConnectorId(v string) *ListProxySession
 type ListProxySessionsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The token to use to retrieve the next page of results.
 	NextToken *string `type:"string"`
 
+	// The proxy session details.
 	ProxySessions []*ProxySession `type:"list"`
 }
 
@@ -17351,6 +18520,70 @@ func (s *ListRoomsOutput) SetNextToken(v string) *ListRoomsOutput {
 // SetRooms sets the Rooms field's value.
 func (s *ListRoomsOutput) SetRooms(v []*Room) *ListRoomsOutput {
 	s.Rooms = v
+	return s
+}
+
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource ARN.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `location:"querystring" locationName:"arn" min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *ListTagsForResourceInput) SetResourceARN(v string) *ListTagsForResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of tag-key value pairs.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput {
+	s.Tags = v
 	return s
 }
 
@@ -17865,6 +19098,9 @@ func (s *MediaPlacement) SetTurnControlUrl(v string) *MediaPlacement {
 type Meeting struct {
 	_ struct{} `type:"structure"`
 
+	// The external meeting ID.
+	ExternalMeetingId *string `min:"2" type:"string" sensitive:"true"`
+
 	// The media placement for the meeting.
 	MediaPlacement *MediaPlacement `type:"structure"`
 
@@ -17885,6 +19121,12 @@ func (s Meeting) String() string {
 // GoString returns the string representation
 func (s Meeting) GoString() string {
 	return s.String()
+}
+
+// SetExternalMeetingId sets the ExternalMeetingId field's value.
+func (s *Meeting) SetExternalMeetingId(v string) *Meeting {
+	s.ExternalMeetingId = &v
+	return s
 }
 
 // SetMediaPlacement sets the MediaPlacement field's value.
@@ -18318,11 +19560,15 @@ func (s *OriginationRoute) SetWeight(v int64) *OriginationRoute {
 	return s
 }
 
+// The phone number and proxy phone number for a participant in an Amazon Chime
+// Voice Connector proxy session.
 type Participant struct {
 	_ struct{} `type:"structure"`
 
+	// The participant's phone number.
 	PhoneNumber *string `type:"string" sensitive:"true"`
 
+	// The participant's proxy phone number.
 	ProxyPhoneNumber *string `type:"string" sensitive:"true"`
 }
 
@@ -18701,15 +19947,21 @@ func (s *PhoneNumberOrder) SetUpdatedTimestamp(v time.Time) *PhoneNumberOrder {
 	return s
 }
 
+// The proxy configuration for an Amazon Chime Voice Connector.
 type Proxy struct {
 	_ struct{} `type:"structure"`
 
+	// The default number of minutes allowed for proxy sessions.
 	DefaultSessionExpiryMinutes *int64 `type:"integer"`
 
+	// When true, stops proxy sessions from being created on the specified Amazon
+	// Chime Voice Connector.
 	Disabled *bool `type:"boolean"`
 
+	// The phone number to route calls to after a proxy session expires.
 	FallBackPhoneNumber *string `type:"string" sensitive:"true"`
 
+	// The countries for proxy phone numbers to be selected from.
 	PhoneNumberCountries []*string `type:"list"`
 }
 
@@ -18747,33 +19999,49 @@ func (s *Proxy) SetPhoneNumberCountries(v []*string) *Proxy {
 	return s
 }
 
+// The proxy session for an Amazon Chime Voice Connector.
 type ProxySession struct {
 	_ struct{} `type:"structure"`
 
+	// The proxy session capabilities.
 	Capabilities []*string `type:"list"`
 
+	// The created timestamp, in ISO 8601 format.
 	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// The ended timestamp, in ISO 8601 format.
 	EndedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// The number of minutes allowed for the proxy session.
 	ExpiryMinutes *int64 `min:"1" type:"integer"`
 
+	// The preference for matching the country or area code of the proxy phone number
+	// with that of the first participant.
 	GeoMatchLevel *string `type:"string" enum:"GeoMatchLevel"`
 
+	// The country and area code for the proxy phone number.
 	GeoMatchParams *GeoMatchParams `type:"structure"`
 
+	// The name of the proxy session.
 	Name *string `type:"string"`
 
+	// The preference for proxy phone number reuse, or stickiness, between the same
+	// participants across sessions.
 	NumberSelectionBehavior *string `type:"string" enum:"NumberSelectionBehavior"`
 
+	// The proxy session participants.
 	Participants []*Participant `type:"list"`
 
+	// The proxy session ID.
 	ProxySessionId *string `min:"1" type:"string"`
 
+	// The status of the proxy session.
 	Status *string `type:"string" enum:"ProxySessionStatus"`
 
+	// The updated timestamp, in ISO 8601 format.
 	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// The Amazon Chime voice connector ID.
 	VoiceConnectorId *string `min:"1" type:"string"`
 }
 
@@ -19129,16 +20397,25 @@ func (s *PutVoiceConnectorOriginationOutput) SetOrigination(v *Origination) *Put
 type PutVoiceConnectorProxyInput struct {
 	_ struct{} `type:"structure"`
 
+	// The default number of minutes allowed for proxy sessions.
+	//
 	// DefaultSessionExpiryMinutes is a required field
 	DefaultSessionExpiryMinutes *int64 `type:"integer" required:"true"`
 
+	// When true, stops proxy sessions from being created on the specified Amazon
+	// Chime Voice Connector.
 	Disabled *bool `type:"boolean"`
 
+	// The phone number to route calls to after a proxy session expires.
 	FallBackPhoneNumber *string `type:"string" sensitive:"true"`
 
+	// The countries for proxy phone numbers to be selected from.
+	//
 	// PhoneNumberPoolCountries is a required field
 	PhoneNumberPoolCountries []*string `min:"1" type:"list" required:"true"`
 
+	// The Amazon Chime voice connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" min:"1" type:"string" required:"true"`
 }
@@ -19211,6 +20488,7 @@ func (s *PutVoiceConnectorProxyInput) SetVoiceConnectorId(v string) *PutVoiceCon
 type PutVoiceConnectorProxyOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The proxy configuration details.
 	Proxy *Proxy `type:"structure"`
 }
 
@@ -20181,6 +21459,328 @@ func (s *StreamingConfiguration) SetDisabled(v bool) *StreamingConfiguration {
 	return s
 }
 
+// Describes a tag applied to a resource.
+type Tag struct {
+	_ struct{} `type:"structure"`
+
+	// The key of the tag.
+	//
+	// Key is a required field
+	Key *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The value of the tag.
+	//
+	// Value is a required field
+	Value *string `min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
+}
+
+type TagAttendeeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime SDK attendee ID.
+	//
+	// AttendeeId is a required field
+	AttendeeId *string `location:"uri" locationName:"attendeeId" type:"string" required:"true"`
+
+	// The Amazon Chime SDK meeting ID.
+	//
+	// MeetingId is a required field
+	MeetingId *string `location:"uri" locationName:"meetingId" type:"string" required:"true"`
+
+	// The tag key-value pairs.
+	//
+	// Tags is a required field
+	Tags []*Tag `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s TagAttendeeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagAttendeeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagAttendeeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagAttendeeInput"}
+	if s.AttendeeId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttendeeId"))
+	}
+	if s.AttendeeId != nil && len(*s.AttendeeId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttendeeId", 1))
+	}
+	if s.MeetingId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MeetingId"))
+	}
+	if s.MeetingId != nil && len(*s.MeetingId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MeetingId", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttendeeId sets the AttendeeId field's value.
+func (s *TagAttendeeInput) SetAttendeeId(v string) *TagAttendeeInput {
+	s.AttendeeId = &v
+	return s
+}
+
+// SetMeetingId sets the MeetingId field's value.
+func (s *TagAttendeeInput) SetMeetingId(v string) *TagAttendeeInput {
+	s.MeetingId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagAttendeeInput) SetTags(v []*Tag) *TagAttendeeInput {
+	s.Tags = v
+	return s
+}
+
+type TagAttendeeOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s TagAttendeeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagAttendeeOutput) GoString() string {
+	return s.String()
+}
+
+type TagMeetingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime SDK meeting ID.
+	//
+	// MeetingId is a required field
+	MeetingId *string `location:"uri" locationName:"meetingId" type:"string" required:"true"`
+
+	// The tag key-value pairs.
+	//
+	// Tags is a required field
+	Tags []*Tag `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s TagMeetingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagMeetingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagMeetingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagMeetingInput"}
+	if s.MeetingId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MeetingId"))
+	}
+	if s.MeetingId != nil && len(*s.MeetingId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MeetingId", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMeetingId sets the MeetingId field's value.
+func (s *TagMeetingInput) SetMeetingId(v string) *TagMeetingInput {
+	s.MeetingId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagMeetingInput) SetTags(v []*Tag) *TagMeetingInput {
+	s.Tags = v
+	return s
+}
+
+type TagMeetingOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s TagMeetingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagMeetingOutput) GoString() string {
+	return s.String()
+}
+
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource ARN.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The tag key-value pairs.
+	//
+	// Tags is a required field
+	Tags []*Tag `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *TagResourceInput) SetResourceARN(v string) *TagResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceOutput) GoString() string {
+	return s.String()
+}
+
 // Settings that allow management of telephony permissions for an Amazon Chime
 // user, such as inbound and outbound calling and text messaging.
 type TelephonySettings struct {
@@ -20531,6 +22131,239 @@ func (s *UnprocessableEntityException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *UnprocessableEntityException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type UntagAttendeeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime SDK attendee ID.
+	//
+	// AttendeeId is a required field
+	AttendeeId *string `location:"uri" locationName:"attendeeId" type:"string" required:"true"`
+
+	// The Amazon Chime SDK meeting ID.
+	//
+	// MeetingId is a required field
+	MeetingId *string `location:"uri" locationName:"meetingId" type:"string" required:"true"`
+
+	// The tag keys.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s UntagAttendeeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagAttendeeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagAttendeeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagAttendeeInput"}
+	if s.AttendeeId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttendeeId"))
+	}
+	if s.AttendeeId != nil && len(*s.AttendeeId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttendeeId", 1))
+	}
+	if s.MeetingId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MeetingId"))
+	}
+	if s.MeetingId != nil && len(*s.MeetingId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MeetingId", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+	if s.TagKeys != nil && len(s.TagKeys) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagKeys", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttendeeId sets the AttendeeId field's value.
+func (s *UntagAttendeeInput) SetAttendeeId(v string) *UntagAttendeeInput {
+	s.AttendeeId = &v
+	return s
+}
+
+// SetMeetingId sets the MeetingId field's value.
+func (s *UntagAttendeeInput) SetMeetingId(v string) *UntagAttendeeInput {
+	s.MeetingId = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagAttendeeInput) SetTagKeys(v []*string) *UntagAttendeeInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagAttendeeOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UntagAttendeeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagAttendeeOutput) GoString() string {
+	return s.String()
+}
+
+type UntagMeetingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Chime SDK meeting ID.
+	//
+	// MeetingId is a required field
+	MeetingId *string `location:"uri" locationName:"meetingId" type:"string" required:"true"`
+
+	// The tag keys.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s UntagMeetingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagMeetingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagMeetingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagMeetingInput"}
+	if s.MeetingId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MeetingId"))
+	}
+	if s.MeetingId != nil && len(*s.MeetingId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MeetingId", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+	if s.TagKeys != nil && len(s.TagKeys) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagKeys", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMeetingId sets the MeetingId field's value.
+func (s *UntagMeetingInput) SetMeetingId(v string) *UntagMeetingInput {
+	s.MeetingId = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagMeetingInput) SetTagKeys(v []*string) *UntagMeetingInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagMeetingOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UntagMeetingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagMeetingOutput) GoString() string {
+	return s.String()
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource ARN.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The tag keys.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+	if s.TagKeys != nil && len(s.TagKeys) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagKeys", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *UntagResourceInput) SetResourceARN(v string) *UntagResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateAccountInput struct {
@@ -21029,14 +22862,21 @@ func (s UpdatePhoneNumberSettingsOutput) GoString() string {
 type UpdateProxySessionInput struct {
 	_ struct{} `type:"structure"`
 
+	// The proxy session capabilities.
+	//
 	// Capabilities is a required field
 	Capabilities []*string `type:"list" required:"true"`
 
+	// The number of minutes allowed for the proxy session.
 	ExpiryMinutes *int64 `min:"1" type:"integer"`
 
+	// The proxy session ID.
+	//
 	// ProxySessionId is a required field
 	ProxySessionId *string `location:"uri" locationName:"proxySessionId" min:"1" type:"string" required:"true"`
 
+	// The Amazon Chime voice connector ID.
+	//
 	// VoiceConnectorId is a required field
 	VoiceConnectorId *string `location:"uri" locationName:"voiceConnectorId" min:"1" type:"string" required:"true"`
 }
@@ -21106,6 +22946,7 @@ func (s *UpdateProxySessionInput) SetVoiceConnectorId(v string) *UpdateProxySess
 type UpdateProxySessionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The proxy session details.
 	ProxySession *ProxySession `type:"structure"`
 }
 

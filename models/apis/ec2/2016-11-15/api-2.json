@@ -1268,6 +1268,15 @@
       },
       "input":{"shape":"DeregisterImageRequest"}
     },
+    "DeregisterInstanceEventNotificationAttributes":{
+      "name":"DeregisterInstanceEventNotificationAttributes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeregisterInstanceEventNotificationAttributesRequest"},
+      "output":{"shape":"DeregisterInstanceEventNotificationAttributesResult"}
+    },
     "DeregisterTransitGatewayMulticastGroupMembers":{
       "name":"DeregisterTransitGatewayMulticastGroupMembers",
       "http":{
@@ -1645,6 +1654,15 @@
       },
       "input":{"shape":"DescribeInstanceCreditSpecificationsRequest"},
       "output":{"shape":"DescribeInstanceCreditSpecificationsResult"}
+    },
+    "DescribeInstanceEventNotificationAttributes":{
+      "name":"DescribeInstanceEventNotificationAttributes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeInstanceEventNotificationAttributesRequest"},
+      "output":{"shape":"DescribeInstanceEventNotificationAttributesResult"}
     },
     "DescribeInstanceStatus":{
       "name":"DescribeInstanceStatus",
@@ -3166,6 +3184,15 @@
       },
       "input":{"shape":"RegisterImageRequest"},
       "output":{"shape":"RegisterImageResult"}
+    },
+    "RegisterInstanceEventNotificationAttributes":{
+      "name":"RegisterInstanceEventNotificationAttributes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RegisterInstanceEventNotificationAttributesRequest"},
+      "output":{"shape":"RegisterInstanceEventNotificationAttributesResult"}
     },
     "RegisterTransitGatewayMulticastGroupMembers":{
       "name":"RegisterTransitGatewayMulticastGroupMembers",
@@ -8983,6 +9010,32 @@
         }
       }
     },
+    "DeregisterInstanceEventNotificationAttributesRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "InstanceTagAttribute":{"shape":"DeregisterInstanceTagAttributeRequest"}
+      }
+    },
+    "DeregisterInstanceEventNotificationAttributesResult":{
+      "type":"structure",
+      "members":{
+        "InstanceTagAttribute":{
+          "shape":"InstanceTagNotificationAttribute",
+          "locationName":"instanceTagAttribute"
+        }
+      }
+    },
+    "DeregisterInstanceTagAttributeRequest":{
+      "type":"structure",
+      "members":{
+        "IncludeAllTagsOfInstance":{"shape":"Boolean"},
+        "InstanceTagKeys":{
+          "shape":"InstanceTagKeySet",
+          "locationName":"InstanceTagKey"
+        }
+      }
+    },
     "DeregisterTransitGatewayMulticastGroupMembersRequest":{
       "type":"structure",
       "members":{
@@ -10303,6 +10356,21 @@
         "NextToken":{
           "shape":"String",
           "locationName":"nextToken"
+        }
+      }
+    },
+    "DescribeInstanceEventNotificationAttributesRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DescribeInstanceEventNotificationAttributesResult":{
+      "type":"structure",
+      "members":{
+        "InstanceTagAttribute":{
+          "shape":"InstanceTagNotificationAttribute",
+          "locationName":"instanceTagAttribute"
         }
       }
     },
@@ -17638,6 +17706,26 @@
         }
       }
     },
+    "InstanceTagKeySet":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"item"
+      }
+    },
+    "InstanceTagNotificationAttribute":{
+      "type":"structure",
+      "members":{
+        "InstanceTagKeys":{
+          "shape":"InstanceTagKeySet",
+          "locationName":"instanceTagKeySet"
+        },
+        "IncludeAllTagsOfInstance":{
+          "shape":"Boolean",
+          "locationName":"includeAllTagsOfInstance"
+        }
+      }
+    },
     "InstanceType":{
       "type":"string",
       "enum":[
@@ -22603,6 +22691,32 @@
         "ImageId":{
           "shape":"String",
           "locationName":"imageId"
+        }
+      }
+    },
+    "RegisterInstanceEventNotificationAttributesRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "InstanceTagAttribute":{"shape":"RegisterInstanceTagAttributeRequest"}
+      }
+    },
+    "RegisterInstanceEventNotificationAttributesResult":{
+      "type":"structure",
+      "members":{
+        "InstanceTagAttribute":{
+          "shape":"InstanceTagNotificationAttribute",
+          "locationName":"instanceTagAttribute"
+        }
+      }
+    },
+    "RegisterInstanceTagAttributeRequest":{
+      "type":"structure",
+      "members":{
+        "IncludeAllTagsOfInstance":{"shape":"Boolean"},
+        "InstanceTagKeys":{
+          "shape":"InstanceTagKeySet",
+          "locationName":"InstanceTagKey"
         }
       }
     },

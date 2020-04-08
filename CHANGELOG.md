@@ -1,3 +1,24 @@
+Release v1.30.7 (2020-04-08)
+===
+
+### Service Client Updates
+* `service/chime`: Updates service API and documentation
+  * feature: Chime: This release introduces the ability to tag Amazon Chime SDK meeting resources.  You can use tags to organize and identify your resources for cost allocation.
+* `service/cloudformation`: Updates service documentation
+  * The OrganizationalUnitIds parameter on StackSet and the OrganizationalUnitId parameter on StackInstance, StackInstanceSummary, and StackSetOperationResultSummary are now reserved for internal use. No data is returned for this parameter.
+* `service/codeguruprofiler`: Updates service API, documentation, and paginators
+* `service/ec2`: Updates service API and documentation
+  * This release provides the ability to include tags in EC2 event notifications.
+* `service/ecs`: Updates service API and documentation
+  * This release provides native support for specifying Amazon EFS file systems as volumes in your Amazon ECS task definitions.
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK adds support for queue hopping. Jobs can now hop from their original queue to a specified alternate queue, based on the maximum wait time that you specify in the job settings.
+* `service/migrationhub-config`: Updates service API and documentation
+
+### SDK Enhancements
+* `example/service/ecr`: Add create and delete repository examples ([#3221](https://github.com/aws/aws-sdk-go/pull/3221))
+  * Adds examples demonstrating how you can create and delete repositories with the SDK.
+
 Release v1.30.6 (2020-04-07)
 ===
 

@@ -323,6 +323,10 @@ type ChimeAPI interface {
 	ListAccountsPages(*chime.ListAccountsInput, func(*chime.ListAccountsOutput, bool) bool) error
 	ListAccountsPagesWithContext(aws.Context, *chime.ListAccountsInput, func(*chime.ListAccountsOutput, bool) bool, ...request.Option) error
 
+	ListAttendeeTags(*chime.ListAttendeeTagsInput) (*chime.ListAttendeeTagsOutput, error)
+	ListAttendeeTagsWithContext(aws.Context, *chime.ListAttendeeTagsInput, ...request.Option) (*chime.ListAttendeeTagsOutput, error)
+	ListAttendeeTagsRequest(*chime.ListAttendeeTagsInput) (*request.Request, *chime.ListAttendeeTagsOutput)
+
 	ListAttendees(*chime.ListAttendeesInput) (*chime.ListAttendeesOutput, error)
 	ListAttendeesWithContext(aws.Context, *chime.ListAttendeesInput, ...request.Option) (*chime.ListAttendeesOutput, error)
 	ListAttendeesRequest(*chime.ListAttendeesInput) (*request.Request, *chime.ListAttendeesOutput)
@@ -336,6 +340,10 @@ type ChimeAPI interface {
 
 	ListBotsPages(*chime.ListBotsInput, func(*chime.ListBotsOutput, bool) bool) error
 	ListBotsPagesWithContext(aws.Context, *chime.ListBotsInput, func(*chime.ListBotsOutput, bool) bool, ...request.Option) error
+
+	ListMeetingTags(*chime.ListMeetingTagsInput) (*chime.ListMeetingTagsOutput, error)
+	ListMeetingTagsWithContext(aws.Context, *chime.ListMeetingTagsInput, ...request.Option) (*chime.ListMeetingTagsOutput, error)
+	ListMeetingTagsRequest(*chime.ListMeetingTagsInput) (*request.Request, *chime.ListMeetingTagsOutput)
 
 	ListMeetings(*chime.ListMeetingsInput) (*chime.ListMeetingsOutput, error)
 	ListMeetingsWithContext(aws.Context, *chime.ListMeetingsInput, ...request.Option) (*chime.ListMeetingsOutput, error)
@@ -378,6 +386,10 @@ type ChimeAPI interface {
 
 	ListRoomsPages(*chime.ListRoomsInput, func(*chime.ListRoomsOutput, bool) bool) error
 	ListRoomsPagesWithContext(aws.Context, *chime.ListRoomsInput, func(*chime.ListRoomsOutput, bool) bool, ...request.Option) error
+
+	ListTagsForResource(*chime.ListTagsForResourceInput) (*chime.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *chime.ListTagsForResourceInput, ...request.Option) (*chime.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*chime.ListTagsForResourceInput) (*request.Request, *chime.ListTagsForResourceOutput)
 
 	ListUsers(*chime.ListUsersInput) (*chime.ListUsersOutput, error)
 	ListUsersWithContext(aws.Context, *chime.ListUsersInput, ...request.Option) (*chime.ListUsersOutput, error)
@@ -451,6 +463,30 @@ type ChimeAPI interface {
 	SearchAvailablePhoneNumbers(*chime.SearchAvailablePhoneNumbersInput) (*chime.SearchAvailablePhoneNumbersOutput, error)
 	SearchAvailablePhoneNumbersWithContext(aws.Context, *chime.SearchAvailablePhoneNumbersInput, ...request.Option) (*chime.SearchAvailablePhoneNumbersOutput, error)
 	SearchAvailablePhoneNumbersRequest(*chime.SearchAvailablePhoneNumbersInput) (*request.Request, *chime.SearchAvailablePhoneNumbersOutput)
+
+	TagAttendee(*chime.TagAttendeeInput) (*chime.TagAttendeeOutput, error)
+	TagAttendeeWithContext(aws.Context, *chime.TagAttendeeInput, ...request.Option) (*chime.TagAttendeeOutput, error)
+	TagAttendeeRequest(*chime.TagAttendeeInput) (*request.Request, *chime.TagAttendeeOutput)
+
+	TagMeeting(*chime.TagMeetingInput) (*chime.TagMeetingOutput, error)
+	TagMeetingWithContext(aws.Context, *chime.TagMeetingInput, ...request.Option) (*chime.TagMeetingOutput, error)
+	TagMeetingRequest(*chime.TagMeetingInput) (*request.Request, *chime.TagMeetingOutput)
+
+	TagResource(*chime.TagResourceInput) (*chime.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *chime.TagResourceInput, ...request.Option) (*chime.TagResourceOutput, error)
+	TagResourceRequest(*chime.TagResourceInput) (*request.Request, *chime.TagResourceOutput)
+
+	UntagAttendee(*chime.UntagAttendeeInput) (*chime.UntagAttendeeOutput, error)
+	UntagAttendeeWithContext(aws.Context, *chime.UntagAttendeeInput, ...request.Option) (*chime.UntagAttendeeOutput, error)
+	UntagAttendeeRequest(*chime.UntagAttendeeInput) (*request.Request, *chime.UntagAttendeeOutput)
+
+	UntagMeeting(*chime.UntagMeetingInput) (*chime.UntagMeetingOutput, error)
+	UntagMeetingWithContext(aws.Context, *chime.UntagMeetingInput, ...request.Option) (*chime.UntagMeetingOutput, error)
+	UntagMeetingRequest(*chime.UntagMeetingInput) (*request.Request, *chime.UntagMeetingOutput)
+
+	UntagResource(*chime.UntagResourceInput) (*chime.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *chime.UntagResourceInput, ...request.Option) (*chime.UntagResourceOutput, error)
+	UntagResourceRequest(*chime.UntagResourceInput) (*request.Request, *chime.UntagResourceOutput)
 
 	UpdateAccount(*chime.UpdateAccountInput) (*chime.UpdateAccountOutput, error)
 	UpdateAccountWithContext(aws.Context, *chime.UpdateAccountInput, ...request.Option) (*chime.UpdateAccountOutput, error)
